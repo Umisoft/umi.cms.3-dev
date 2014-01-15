@@ -3,7 +3,6 @@
     "description": "UMI.CMS",
     "type": "library",
     "license": "proprietary",
-    "minimum-stability": "stable",
     "homepage": "http://umi-cms.ru/",
     "autoload": {
         "psr-4": {
@@ -12,6 +11,6 @@
     },
     "require": {
         "php": ">=5.4.0",
-        "umi/framework": "1.*@RC"
+        "umi/framework": "dev-master"
     }
 }
