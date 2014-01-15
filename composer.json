@@ -1,0 +1,17 @@
+{
+    "name": "umi/cms",
+    "description": "UMI.CMS",
+    "type": "library",
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "homepage": "http://umi-cms.ru/",
+    "autoload": {
+        "psr-4": {
+            "umi\\cms\\": ""
+        }
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "umi/framework": "dev-master"
+    }
+}
