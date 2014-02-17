@@ -8,7 +8,6 @@
 
 namespace umicms\configuration;
 
-use umi\extension\twig\TwigTemplateEngine;
 use umi\hmvc\component\IComponent;
 use umi\orm\collection\ICollectionFactory;
 use umi\orm\toolbox\ORMTools;
@@ -44,7 +43,20 @@ return [
         'admin'      => '{#lazy:~/project/admin/admin.config.php}'
     ],
 
+    IComponent::OPTION_CONTROLLERS => [
+       'install' =>   'umicms\controller\InstallController'
+    ],
+
     IComponent::OPTION_ROUTES => [
+
+        'install' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'route' => '/install',
+            'defaults' => [
+                'controller' => 'install'
+            ]
+        ],
+
         'admin' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'route' => '/admin',
