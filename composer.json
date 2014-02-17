@@ -1,16 +1,26 @@
 {
     "name": "umi/cms",
-    "description": "UMI.CMS",
+    "description": "UMI.CMS 3 Development Package",
     "type": "library",
     "license": "proprietary",
     "homepage": "http://umi-cms.ru/",
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "umi\\cms\\": ""
+            "umicms\\": "umicms/library"
         }
+    },
+    "replace": {
+        "umi/cms" : "self.version"
     },
     "require": {
         "php": ">=5.4.0",
-        "umi/framework": "dev-master"
-    }
+        "umi/framework-dev": "*"
+    },
+    "repositories":[
+        {
+            "type": "git",
+            "url": "git@gl.umisoft.ru:umisoft/umi-framework-dev.git"
+        }
+    ]
 }
