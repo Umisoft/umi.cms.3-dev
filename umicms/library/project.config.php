@@ -29,11 +29,21 @@ return [
     Bootstrap::OPTION_TOOLS_SETTINGS => [
         ORMTools::NAME => [
             'metadata'    => [
-                'structure' => '{#lazy:~/project/module/structure/metadata/structure.config.php}'
+                'structure' => '{#lazy:~/project/module/structure/metadata/structure.config.php}',
+
+                'news_category' => '{#lazy:~/project/module/news/metadata/category.config.php}',
+                'news_news_item' => '{#lazy:~/project/module/news/metadata/news_item.config.php}',
+                'news_news_item_subject' => '{#lazy:~/project/module/news/metadata/news_item_subject.config.php}',
+                'news_subject' => '{#lazy:~/project/module/news/metadata/subject.config.php}'
             ],
 
             'collections' => [
-                'structure'     => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC]
+                'structure'     => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+
+                'news_category' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'news_news_item' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'news_news_item_subject' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'news_subject' => ['type' => ICollectionFactory::TYPE_SIMPLE]
             ]
         ]
     ],
