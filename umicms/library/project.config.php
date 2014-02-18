@@ -8,7 +8,6 @@
 
 namespace umicms\configuration;
 
-use umi\extension\twig\TwigTemplateEngine;
 use umi\hmvc\component\IComponent;
 use umi\orm\collection\ICollectionFactory;
 use umi\orm\toolbox\ORMTools;
@@ -30,11 +29,33 @@ return [
     Bootstrap::OPTION_TOOLS_SETTINGS => [
         ORMTools::NAME => [
             'metadata'    => [
-                'structure' => '{#lazy:~/project/module/structure/metadata/structure.config.php}'
+                'structure' => '{#lazy:~/project/module/structure/metadata/structure.config.php}',
+
+                'news_category' => '{#lazy:~/project/module/news/metadata/category.config.php}',
+                'news_news_item' => '{#lazy:~/project/module/news/metadata/news_item.config.php}',
+                'news_news_item_subject' => '{#lazy:~/project/module/news/metadata/news_item_subject.config.php}',
+                'news_subject' => '{#lazy:~/project/module/news/metadata/subject.config.php}',
+
+                'blog_category' => '{#lazy:~/project/module/blog/metadata/category.config.php}',
+                'blog_post' => '{#lazy:~/project/module/blog/metadata/post.config.php}',
+                'blog_comment' => '{#lazy:~/project/module/blog/metadata/comment.config.php}',
+                'blog_tag' => '{#lazy:~/project/module/blog/metadata/tag.config.php}',
+                'blog_post_tag' => '{#lazy:~/project/module/blog/metadata/post_tag.config.php}',
             ],
 
             'collections' => [
-                'structure'     => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC]
+                'structure'     => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+
+                'news_category' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'news_news_item' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'news_news_item_subject' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'news_subject' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+
+                'blog_category' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'blog_post' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'blog_comment' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'blog_tag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'blog_post_tag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
             ]
         ]
     ],
@@ -44,7 +65,20 @@ return [
         'admin'      => '{#lazy:~/project/admin/admin.config.php}'
     ],
 
+    IComponent::OPTION_CONTROLLERS => [
+       'install' =>   'umicms\controller\InstallController'
+    ],
+
     IComponent::OPTION_ROUTES => [
+
+        'install' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'route' => '/install',
+            'defaults' => [
+                'controller' => 'install'
+            ]
+        ],
+
         'admin' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'route' => '/admin',
