@@ -18,7 +18,9 @@ return [
     ],
 
     SiteApplication::OPTION_COMPONENTS => [
-        'structure' => '{#lazy:~/project/module/structure/site/module.config.php}'
+        'structure' => '{#lazy:~/project/module/structure/site/module.config.php}',
+        'news' => '{#lazy:~/project/module/news/site/module.config.php}',
+        'blog' => '{#lazy:~/project/module/blog/site/module.config.php}'
     ],
 
     SiteApplication::OPTION_CONTROLLERS => [
