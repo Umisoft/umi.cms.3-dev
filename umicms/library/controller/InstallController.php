@@ -51,6 +51,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $this->installStaticPages();
         $this->installNews();
+        $this->installGratitude();
 
         $this->getObjectPersister()->commit();
 
@@ -125,6 +126,49 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
     }
 
+    protected function installGratitude() {
+
+        /**
+         * @var SimpleCollection $newsCollection
+         */
+        $newsCollection = $this->getCollectionManager()->getCollection('news_news_item');
+        /**
+         * @var SimpleHierarchicCollection $categoriesCollection
+         */
+        $categoriesCollection = $this->getCollectionManager()->getCollection('news_category');
+
+        $gratitude = $categoriesCollection->add('gratitude')
+            ->setValue('displayName', 'Благодарности')
+            ->setValue('metaTitle', 'Благодарности')
+            ->setValue('h1', 'Благодарности')
+            ->setValue('displayName', 'Благодарности')
+            ->setGUID('4430239f-77f4-464d-b9eb-46f4c93eee8c');
+
+
+        $newsCollection->add()
+            ->setValue('displayName', 'Наташа')
+            ->setValue('metaTitle', 'Наташа Рублева, домохозяйка')
+            ->setValue('h1', 'Наташа Рублева, домохозяйка')
+            ->setValue('announcement', '<p>Не то, чтобы я верю в привидения, но пару месяцев назад я начала регулярно находить в нашем супружеском ложе чьи-то светлые волосы, сережки и следы губной помады. Муж тоже отрицает существование привидений, однако так дальше продолжаться не могло</p>')
+            ->setValue('content', '<p>Не то, чтобы я верю в привидения, но пару месяцев назад я начала регулярно находить в нашем супружеском ложе чьи-то светлые волосы, сережки и следы губной помады. Муж тоже отрицает существование привидений, однако так дальше продолжаться не могло. Я вызвала наряд охотниц за привидениями, и теперь мы избавлены от этих проблем. Сотрудница организации рекомендовала мне воспользоваться услугами спецподразделения &laquo;Отряд в бикини&raquo;. Я не пожалела, и, кажется, муж остался доволен.</p>')
+            ->setValue('date', '2013-06-24 19:11')
+            ->setValue('category', $gratitude)
+            ->setValue('slug', 'natasha')
+            ->setGUID('da5ec9a8-229c-4120-949c-2bb9eb641f24');
+
+        $newsCollection->add()
+            ->setValue('displayName', 'Александр')
+            ->setValue('metaTitle', 'Александр, 35 лет, топ-менеджер сети строительных магазинов')
+            ->setValue('h1', 'Александр, 35 лет, топ-менеджер сети строительных магазинов')
+            ->setValue('announcement', '<p>С 18 лет меня довольно регулярно похищали инопланетяне.&nbsp;Но последней каплей стало похищение в ноябре сего года, во время которого они насильственным способом изменили мои предпочтения в еде</p>')
+            ->setValue('content', '<p>С 18 лет меня довольно регулярно похищали инопланетяне. Но последней каплей стало похищение в ноябре сего года, во время которого они насильственным способом изменили мои предпочтения в еде &ndash; я перестал смыслить свою жизнь без пива и чипсов. Я был вынужден обратиться к профессионалам. Как мне помогли Охотницы? Инициировав повторный сеанс связи, они совершили настоящий переворот. Теперь я замечательно обхожусь пряниками и шоколадом. Особую благодарность хочу выразить Охотнице Елене Жаровой за красивые глаза.</p>')
+            ->setValue('date', '2013-06-24 19:14')
+            ->setValue('category', $gratitude)
+            ->setGUID('60744128-996a-4cea-a937-c20ebc5c8c77')
+            ->setValue('slug', 'aleksandr');
+
+    }
+
     protected function installStaticPages()
     {
         /**
@@ -193,7 +237,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $connection->exec("DROP TABLE IF EXISTS `demohunt_news_category`");
         $connection->exec("DROP TABLE IF EXISTS `demohunt_news_news_item`");
         $connection->exec("DROP TABLE IF EXISTS `demohunt_news_subject`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_item_subject`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_news_item_subject`");
 
         $connection->exec(
             "
