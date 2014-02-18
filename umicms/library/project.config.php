@@ -17,7 +17,8 @@ use umicms\Bootstrap;
 return [
 
     Bootstrap::OPTION_PROJECT_API => [
-        'umicms\module\structure\api\StructureApi' => 'umicms\module\structure\api\StructureApi'
+        'umicms\module\structure\api\StructureApi' => 'umicms\module\structure\api\StructureApi',
+        'umicms\module\news\api\CategoryApi' => 'umicms\module\news\api\CategoryApi'
     ],
 
     Bootstrap::OPTION_TOOLS => [
