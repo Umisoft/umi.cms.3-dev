@@ -5,6 +5,7 @@ use umi\hmvc\component\IComponent;
 use umi\http\IHttpAware;
 use umi\http\THttpAware;
 use umi\orm\exception\NonexistentEntityException;
+use umi\orm\metadata\field\special\UriField;
 use umi\orm\object\IHierarchicObject;
 use umi\orm\selector\condition\IFieldConditionGroup;
 use umi\orm\selector\ISelector;
@@ -89,7 +90,7 @@ class SiteRoute extends BaseRoute implements IHttpAware, ISiteSettingsAware
         $selector->begin(IFieldConditionGroup::MODE_OR);
         for ($i = 0; $i < count($urlParts); $i++) {
             $part = array_slice($urlParts, 0, $i + 1);
-            $partUrl = '//' . implode('/', $part); // TODO UriField::URI_START_SYMBOL
+            $partUrl = UriField::URI_START_SYMBOL . '/' . implode('/', $part);
             $selector
                 ->where(IHierarchicObject::FIELD_URI)
                 ->equals($partUrl);

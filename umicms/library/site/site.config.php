@@ -14,7 +14,7 @@ return [
     SiteApplication::OPTION_CLASS => 'umicms\site\SiteApplication',
 
     SiteApplication::OPTION_SETTINGS => [
-        SiteApplication::SETTING_URL_POSTFIX => 'html'
+        SiteApplication::SETTING_URL_POSTFIX => ''
     ],
 
     SiteApplication::OPTION_COMPONENTS => [

@@ -60,10 +60,9 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
     protected $defaultRequestFormat = 'html';
 
     /**
-     * @var array $supportedRequestFormats список поддерживаемых форматов
+     * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
      */
-    protected $supportedRequestFormats = [
-        'html' => [],
+    protected $supportedRequestPostfixes = [
         'json' => [],
         'xml'  => []
     ];
@@ -114,15 +113,15 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
     /**
      * Производит определение формата запроса по постфиксу
      * @param string $postfix
-     * @throws HttpNotFound если формат запроса не поддерживается приложением
+     * @throws HttpNotFound если постфикс запроса не поддерживается приложением
      * @return string
      */
     protected function getRequestFormatByPostfix($postfix) {
-        if (is_null($postfix)) {
-            $postfix = $this->getSiteUrlPostfix() ?: $this->defaultRequestFormat;
+        if (is_null($postfix) || $postfix === $this->getSiteUrlPostfix()) {
+            return $this->defaultRequestFormat;
         }
 
-        if (isset($this->supportedRequestFormats[$postfix])) {
+        if (isset($this->supportedRequestPostfixes[$postfix])) {
             return $postfix;
         }
 
