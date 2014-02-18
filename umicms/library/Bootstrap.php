@@ -20,8 +20,8 @@ use umi\route\result\IRouteResult;
 use umi\spl\config\TConfigSupport;
 use umi\toolkit\IToolkit;
 use umi\toolkit\Toolkit;
-use umicms\core\IProjectConfigAware;
-use umicms\core\TProjectConfigAware;
+use umicms\config\IProjectConfigAware;
+use umicms\config\TProjectConfigAware;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
@@ -97,6 +97,12 @@ class Bootstrap implements IProjectConfigAware
         $baseUrl = isset($routeMatches['uri']) ? $routeMatches['uri'] : '';
         $routePath = $routeResult->getUnmatchedUrl() ?: '/';
 
+        if (preg_match('|\.([\w]+)$|u', $routePath, $matches)) {
+            $format = $matches[1];
+            $routePath = substr($routePath, 0, -strlen($format) - 1);
+            $request->setRequestFormat($format);
+        }
+
         /**
          * @var IDispatcher $dispatcher
          */
@@ -110,7 +116,7 @@ class Bootstrap implements IProjectConfigAware
      */
     protected function createProject()
     {
-        $config = $this->configToArray($this->getConfig());
+        $config = $this->configToArray($this->getProjectConfig());
 
         /**
          * @var IMvcEntityFactory $mvcEntityFactory
@@ -144,7 +150,8 @@ class Bootstrap implements IProjectConfigAware
         $routeFactory = $this->toolkit->getService('umi\route\IRouteFactory');
         $siteRouter = $routeFactory->createRouter($siteRoutes);
 
-        $routeResult = $siteRouter->match($request->getUri());
+        $route = $request->getSchemeAndHttpHost() . $request->getBaseUrl() . $request->getPathInfo();
+        $routeResult = $siteRouter->match($route);
         $routeMatches = $routeResult->getMatches();
 
         if (empty($routeMatches)) {
@@ -294,13 +301,13 @@ class Bootstrap implements IProjectConfigAware
          * @var IConfigIO $configIO
          */
         $configIO = $this->toolkit->getService('umi\config\io\IConfigIO');
-        $this->setConfig($configIO->read($configFileName));
+        $this->setProjectConfig($configIO->read($configFileName));
 
         $this->toolkit->registerAwareInterface(
-            'umicms\core\IProjectConfigAware',
+            'umicms\config\IProjectConfigAware',
             function ($object) {
                 if ($object instanceof IProjectConfigAware) {
-                    $object->setConfig($this->getConfig());
+                    $object->setProjectConfig($this->getProjectConfig());
                 }
             }
         );
@@ -312,25 +319,16 @@ class Bootstrap implements IProjectConfigAware
      */
     protected function registerProjectTools()
     {
-        if ($this
-            ->getConfig()
-            ->has(self::OPTION_TOOLS)
-        ) {
+        $config = $this->getProjectConfig();
+        if ($config->has(self::OPTION_TOOLS)) {
             $this->toolkit->registerToolboxes(
-                $this
-                    ->getConfig()
-                    ->get(self::OPTION_TOOLS)
+                $config->get(self::OPTION_TOOLS)
             );
         }
 
-        if ($this
-            ->getConfig()
-            ->has(self::OPTION_TOOLS_SETTINGS)
-        ) {
+        if ($config->has(self::OPTION_TOOLS_SETTINGS)) {
             $this->toolkit->setSettings(
-                $this
-                    ->getConfig()
-                    ->get(self::OPTION_TOOLS_SETTINGS)
+                $config->get(self::OPTION_TOOLS_SETTINGS)
             );
         }
     }
@@ -342,7 +340,7 @@ class Bootstrap implements IProjectConfigAware
     protected function registerProjectApi()
     {
         $apiClasses = $this
-            ->getConfig()
+            ->getProjectConfig()
             ->get(self::OPTION_PROJECT_API);
 
         if ($apiClasses) {

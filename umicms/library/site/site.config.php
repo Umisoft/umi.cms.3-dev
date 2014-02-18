@@ -13,6 +13,10 @@ use umicms\site\SiteApplication;
 return [
     SiteApplication::OPTION_CLASS => 'umicms\site\SiteApplication',
 
+    SiteApplication::OPTION_SETTINGS => [
+        SiteApplication::SETTING_URL_POSTFIX => 'html'
+    ],
+
     SiteApplication::OPTION_COMPONENTS => [
         'structure' => '{#lazy:~/project/module/structure/site/module.config.php}'
     ],
@@ -29,8 +33,8 @@ return [
     ],
 
     SiteApplication::OPTION_ROUTES => [
-        'sitePageRoute' => [
-            'type' => 'sitePageRoute'
+        'siteRoute' => [
+            'type' => 'siteRoute'
         ]
     ]
 ];

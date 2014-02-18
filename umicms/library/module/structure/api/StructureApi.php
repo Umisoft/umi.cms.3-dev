@@ -62,6 +62,14 @@ class StructureApi implements ICollectionManagerAware, ILocalizable
     }
 
     /**
+     * Проверяет, был ли установлен текущий элемент структуры.
+     * @return bool
+     */
+    public function hasCurrentElement() {
+        return !is_null($this->currentElement);
+    }
+
+    /**
      * Возвращает селектор для выбора элементов структуры.
      * @param bool $onlyActive учитывать активность
      * @return ISelector

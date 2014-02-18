@@ -6,7 +6,7 @@
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
-namespace umicms\core;
+namespace umicms\config;
 
 use umi\config\entity\IConfig;
 use umicms\exception\RequiredDependencyException;
@@ -17,32 +17,32 @@ use umicms\exception\RequiredDependencyException;
 trait TProjectConfigAware
 {
     /**
-     * @var IConfig $_config
+     * @var IConfig $traitProjectConfig
      */
-    private $_config;
+    private $traitProjectConfig;
 
     /**
-     * Устанавливает конфигурацию сайта.
+     * Устанавливает конфигурацию проекта.
      * @param IConfig $config
      */
-    public function setConfig(IConfig $config) {
-        $this->_config = $config;
+    public function setProjectConfig(IConfig $config) {
+        $this->traitProjectConfig = $config;
     }
 
     /**
-     * Возвращает конфигурацию сайта.
+     * Возвращает конфигурацию проекта.
      * @throws RequiredDependencyException если конфигурация не была установлена
      * @return IConfig
      */
-    protected function getConfig() {
-        if (!$this->_config) {
+    protected function getProjectConfig() {
+        if (!$this->traitProjectConfig) {
             throw new RequiredDependencyException(sprintf(
-                'Site configuration is not injected in class "%s".',
+                'Project configuration is not injected in class "%s".',
                 get_class($this)
             ));
         }
 
-        return $this->_config;
+        return $this->traitProjectConfig;
     }
 
 }

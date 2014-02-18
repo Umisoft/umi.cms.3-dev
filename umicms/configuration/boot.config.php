@@ -35,7 +35,7 @@ return [
             'factories' => [
                 'route' => [
                     'types' => [
-                        'sitePageRoute' => 'umicms\route\SitePageRoute'
+                        'siteRoute' => 'umicms\route\SiteRoute'
                     ]
                 ]
             ]

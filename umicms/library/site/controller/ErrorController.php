@@ -81,8 +81,8 @@ class ErrorController extends BaseController
             [
                 'e' => $this->exception
             ]
-        )
-            ->setStatusCode($this->exception->getCode());
+        );
+            //->setStatusCode($this->exception->getCode());
     }
 
     /**

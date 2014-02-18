@@ -9,26 +9,65 @@
 
 namespace umicms\site;
 
+use umi\config\entity\IConfig;
 use umi\hmvc\component\Component;
 use umi\hmvc\dispatcher\IDispatchContext;
+use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\IHttpAware;
 use umi\http\Request;
 use umi\http\Response;
 use umi\http\THttpAware;
+use umi\toolkit\IToolkitAware;
+use umi\toolkit\TToolkitAware;
+use umicms\config\ISiteSettingsAware;
+use umicms\config\TSiteSettingsAware;
+use umicms\exception\UnexpectedValueException;
 use umicms\module\structure\api\StructureApi;
-use umicms\route\SitePageRoute;
 
 /**
  * Приложение сайта.
  */
-class SiteApplication extends Component implements IHttpAware
+class SiteApplication extends Component implements IHttpAware, IToolkitAware, ISiteSettingsAware
 {
+    use TSiteSettingsAware;
     use THttpAware;
+    use TToolkitAware;
+
+    /**
+     * Имя опции для задания настроек сайта.
+     */
+    const OPTION_SETTINGS = 'settings';
+    /**
+     * Имя настройки для задания guid главной страницы
+     */
+    const SETTING_DEFAULT_PAGE_GUID = 'default-page';
+    /**
+     * Имя настройки для задания постфикса всех URL
+     */
+    const SETTING_URL_POSTFIX = 'url-postfix';
 
     /**
      * @var StructureApi $structureApi
      */
     protected $structureApi;
+    /**
+     * @var string $requestFormat формат запроса к приложению
+     */
+    protected $currentRequestFormat = 'html';
+    /**
+     * @var string $defaultRequestFormat формат запроса к приложению по умолчанию
+     */
+    protected $defaultRequestFormat = 'html';
+
+    /**
+     * @var array $supportedRequestFormats список поддерживаемых форматов
+     */
+    protected $supportedRequestFormats = [
+        'html' => [],
+        'json' => [],
+        'xml'  => []
+    ];
+
 
     /**
      * {@inheritdoc}
@@ -39,6 +78,8 @@ class SiteApplication extends Component implements IHttpAware
         parent::__construct($name, $path, $options);
 
         $this->structureApi = $structureApi;
+
+        $this->registerSiteSettings();
     }
 
     /**
@@ -46,9 +87,72 @@ class SiteApplication extends Component implements IHttpAware
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        $isDefaultPage = trim($request->getPathInfo(), '/') === trim($context->getBaseUrl(), '/');
+        if (!$this->structureApi->hasCurrentElement()) {
+            return null;
+        }
+
+        $routePath = $request->getPathInfo();
+        if ($suffix = $request->getRequestFormat(null)) {
+            $routePath = substr($routePath, 0, -strlen($suffix) - 1);
+        }
+
+        $isDefaultPage = trim($routePath, '/') === trim($context->getBaseUrl(), '/');
+
+        if (!$isDefaultPage && $response = $this->processUrlPostfixRedirect($request)) {
+            return $response;
+        }
 
         if (!$isDefaultPage && $response = $this->processDefaultPageRedirect($context)) {
+            return $response;
+        }
+
+        $this->currentRequestFormat = $this->getRequestFormatByPostfix($request->getRequestFormat(null));
+
+        return null;
+    }
+
+    /**
+     * Производит определение формата запроса по постфиксу
+     * @param string $postfix
+     * @throws HttpNotFound если формат запроса не поддерживается приложением
+     * @return string
+     */
+    protected function getRequestFormatByPostfix($postfix) {
+        if (is_null($postfix)) {
+            $postfix = $this->getSiteUrlPostfix() ?: $this->defaultRequestFormat;
+        }
+
+        if (isset($this->supportedRequestFormats[$postfix])) {
+            return $postfix;
+        }
+
+        throw new HttpNotFound($this->translate(
+            'Url postfix "{postfix}" is not supported.',
+            ['postfix' => $postfix]
+        ));
+    }
+
+    /**
+     * Производит редирект на url с постфиксом, если он задан в настройках
+     * и запрос выполнен без его указания.
+     * @param Request $request
+     * @return Response|null
+     */
+    protected function processUrlPostfixRedirect(Request $request) {
+        $postfix = $this->getSiteUrlPostfix();
+
+        if ($postfix && is_null($request->getRequestFormat(null))) {
+            $redirectUrl = $request->getBaseUrl() . $request->getPathInfo() . '.' . $postfix;
+
+            if ($queryString = $request->getQueryString()) {
+                $redirectUrl .= '?' . $queryString;
+            }
+
+            $response = $this->createHttpResponse();
+            $response->headers->set('Location', $redirectUrl);
+            $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY);
+            $response->setIsCompleted();
+
             return $response;
         }
 
@@ -59,25 +163,44 @@ class SiteApplication extends Component implements IHttpAware
      * Выполняет редирект на базовый url, если пользователь запрашивает станицу по умолчанию
      * по ее прямому url.
      * @param IDispatchContext $context
-     * @return Response
+     * @return Response|null
      */
     protected function processDefaultPageRedirect(IDispatchContext $context) {
-        $routeParams = $context->getRouteParams();
+        $currentElement = $this->structureApi->getCurrentElement();
+        if ($currentElement->getGUID() === $this->getSiteDefaultPageGuid()) {
 
-        if (isset($routeParams[SitePageRoute::OPTION_DEFAULT_PAGE])) {
-            $currentElement = $this->structureApi->getCurrentElement();
-            if ($currentElement->getGUID() === $routeParams[SitePageRoute::OPTION_DEFAULT_PAGE]) {
+            $response = $this->createHttpResponse();
+            $response->headers->set('Location', $context->getBaseUrl());
+            $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY);
+            $response->setIsCompleted();
 
-                $response = $this->createHttpResponse();
-                $response->headers->set('Location', $context->getBaseUrl());
-                $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY);
-                $response->setIsCompleted();
-
-                return $response;
-            }
+            return $response;
         }
 
         return null;
+    }
+
+    /**
+     * Регистрирует сервисы для работы сайта.
+     */
+    protected function registerSiteSettings() {
+        $settings = isset($this->options[self::OPTION_SETTINGS]) ? $this->options[self::OPTION_SETTINGS] : null;
+
+        if (!$settings instanceof IConfig) {
+            throw new UnexpectedValueException($this->translate(
+                'Site settings should be instance of IConfig.'
+            ));
+        }
+        $this->setSiteSettings($settings);
+
+        $this->getToolkit()->registerAwareInterface(
+            'umicms\config\ISiteSettingsAware',
+            function ($object) use ($settings) {
+                if ($object instanceof ISiteSettingsAware) {
+                    $object->setSiteSettings($settings);
+                }
+            }
+        );
     }
 
 }

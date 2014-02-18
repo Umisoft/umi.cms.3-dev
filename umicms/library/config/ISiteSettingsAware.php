@@ -7,18 +7,18 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\core;
+namespace umicms\config;
 
 use umi\config\entity\IConfig;
 
 /**
- * Интерфейс для использования конфигурации текущего проекта.
+ * Интерфейс для использования настроек сайта.
  */
-interface IProjectConfigAware
+interface ISiteSettingsAware
 {
     /**
-     * Устанавливает конфигурацию проекта.
+     * Устанавливает настройки сайта.
      * @param IConfig $config
      */
-    public function setConfig(IConfig $config);
+    public function setSiteSettings(IConfig $config);
 }

@@ -9,20 +9,19 @@ use umi\orm\object\IHierarchicObject;
 use umi\orm\selector\condition\IFieldConditionGroup;
 use umi\orm\selector\ISelector;
 use umi\route\type\BaseRoute;
+use umicms\config\ISiteSettingsAware;
+use umicms\config\TSiteSettingsAware;
 use umicms\module\structure\api\StructureApi;
 use umicms\module\structure\model\StructureElement;
+use umicms\site\SiteApplication;
 
 /**
- * Правила роутинга для страниц сайта.
+ * Правила роутинга для сайта.
  */
-class SitePageRoute extends BaseRoute implements IHttpAware
+class SiteRoute extends BaseRoute implements IHttpAware, ISiteSettingsAware
 {
     use THttpAware;
-
-    /**
-     * Опция для установки страницы по умолчанию
-     */
-    const OPTION_DEFAULT_PAGE = 'page';
+    use TSiteSettingsAware;
 
     /**
      * @var StructureApi $systemApi API работы со структурой
@@ -60,18 +59,15 @@ class SitePageRoute extends BaseRoute implements IHttpAware
         return ''; // TODO
     }
 
+
     /**
      * Производит маршрутизацию до главной страницы
      * @return bool|int
      */
     protected function matchDefaultPage()
     {
-        if (!isset($this->defaults[self::OPTION_DEFAULT_PAGE])) {
-            return false;
-        }
-
         try {
-            $element = $this->structureApi->getElement($this->defaults[self::OPTION_DEFAULT_PAGE]);
+            $element = $this->structureApi->getElement($this->getSiteDefaultPageGuid());
             $this->setCurrentElement($element);
 
             return 0;
