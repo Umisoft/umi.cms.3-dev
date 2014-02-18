@@ -53,10 +53,11 @@ return [
         ],
         'created'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
         'updated'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
-
-        'newsItem' => ['type' => IField::TYPE_BELONGS_TO, 'columnName' => 'news_item_id', 'target' => 'news_news_item'],
-        'subject' => ['type' => IField::TYPE_BELONGS_TO, 'columnName' => 'subject_id', 'target' => 'news_subject']
-
+        'post'                  => ['type'       => IField::TYPE_BELONGS_TO,
+                                    'columnName' => 'post_id',
+                                    'target'     => 'blog_post'
+        ],
+        'tag'                   => ['type' => IField::TYPE_BELONGS_TO, 'columnName' => 'tag_id', 'target' => 'blog_tag']
 
     ],
     'types'      => [
@@ -71,7 +72,8 @@ return [
                 'created',
                 'updated',
                 'displayName',
-                'newsItem',
+                'post',
+                'tag'
             ]
         ]
     ]

@@ -34,7 +34,13 @@ return [
                 'news_category' => '{#lazy:~/project/module/news/metadata/category.config.php}',
                 'news_news_item' => '{#lazy:~/project/module/news/metadata/news_item.config.php}',
                 'news_news_item_subject' => '{#lazy:~/project/module/news/metadata/news_item_subject.config.php}',
-                'news_subject' => '{#lazy:~/project/module/news/metadata/subject.config.php}'
+                'news_subject' => '{#lazy:~/project/module/news/metadata/subject.config.php}',
+
+                'blog_category' => '{#lazy:~/project/module/blog/metadata/category.config.php}',
+                'blog_post' => '{#lazy:~/project/module/blog/metadata/post.config.php}',
+                'blog_comment' => '{#lazy:~/project/module/blog/metadata/comment.config.php}',
+                'blog_tag' => '{#lazy:~/project/module/blog/metadata/tag.config.php}',
+                'blog_post_tag' => '{#lazy:~/project/module/blog/metadata/post_tag.config.php}',
             ],
 
             'collections' => [
@@ -43,7 +49,13 @@ return [
                 'news_category' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
                 'news_news_item' => ['type' => ICollectionFactory::TYPE_SIMPLE],
                 'news_news_item_subject' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'news_subject' => ['type' => ICollectionFactory::TYPE_SIMPLE]
+                'news_subject' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+
+                'blog_category' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'blog_post' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'blog_comment' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'blog_tag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'blog_post_tag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
             ]
         ]
     ],

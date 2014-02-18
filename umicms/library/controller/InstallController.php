@@ -16,6 +16,8 @@ use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\SimpleCollection;
 use umi\orm\collection\SimpleHierarchicCollection;
 use umi\orm\collection\TCollectionManagerAware;
+use umi\orm\metadata\IObjectType;
+use umi\orm\object\IHierarchicObject;
 use umi\orm\object\IObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
@@ -52,10 +54,85 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->installStaticPages();
         $this->installNews();
         $this->installGratitude();
+        $this->installBlog();
 
         $this->getObjectPersister()->commit();
 
         return $this->createResponse('Installed');
+    }
+
+    protected function installBlog()
+    {
+        /**
+         * @var SimpleHierarchicCollection $structureCollection
+         */
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+        /**
+         * @var SimpleHierarchicCollection $categoriesCollection
+         */
+        $categoriesCollection = $this->getCollectionManager()->getCollection('blog_category');
+        /**
+         * @var SimpleCollection $postCollection
+         */
+        $postCollection = $this->getCollectionManager()->getCollection('blog_post');
+        /**
+         * @var SimpleHierarchicCollection $commentCollection
+         */
+        $commentCollection = $this->getCollectionManager()->getCollection('blog_comment');
+
+
+        $structureCollection->add('blog', 'system')
+            ->setValue('displayName', 'Блог')
+            ->setGUID('9aa6745f-f40d-5489-8043-d959594123ce')
+            ->getProperty('module')->setValue('blog');
+
+        $blog = $categoriesCollection->add('company')
+            ->setValue('displayName', 'Блог')
+            ->setValue('metaTitle', 'Блог Охотниц за приведениями')
+            ->setValue('h1', 'Блог Охотниц за приведениями')
+            ->setValue('content', '<p>Это блого обо всем на свете...</p>')
+            ->setGUID('7865b444-6799-45d6-9145-93a614bdfab7');
+
+        $post1 = $postCollection->add()
+            ->setValue('displayName', 'Девиантное поведение призраков и домовых и способы влияния на него')
+            ->setValue('metaTitle', 'Девиантное поведение призраков и домовых и способы влияния на него')
+            ->setValue('h1', 'Девиантное поведение призраков и домовых и способы влияния на него')
+            ->setValue('content', '<p>Причины девиантного поведения домашних призраков кроются безусловно во влиянии MTV и пропаганде агрессивной альтернативной музыки.<br /><br />Также наблюдается рост домовых, практикующих экстремальное катание на роликовых коньках, скейт-бордах, BMX, что повышает общий уровень черепно-мозговых травм среди паранормальных существ. <br /><br />Не может не оказывать влияния проникновение культуры эмо в быт и уклад домашних призраков, что ведет к росту самоубийств и депрессивных состояний среди этих в общем-то жизнерадостных<br /> созданий.<br /><br />В качестве метода влияния на отклонения у домашний призраков я вижу их обращение в более позитивные и миролюбивые культуры, их пропаганда и популяризация в среде домашних призраков.<br /><br /><strong>Екатерина Джа-Дуплинская</strong></p>')
+            ->setValue('date', '2010-08-11 17:35:00')
+            ->setValue('slug', 'deviant')
+            ->setGUID('8e675484-bea4-4fb5-9802-4750cc21e509');
+
+        /**
+         * @var IHierarchicObject $comment1
+         */
+        $comment1 = $commentCollection->add('comment1')
+            ->setValue('displayName', 'Re: Девиантное поведение призраков и домовых и способы влияния на него')
+            ->setValue('content', '<p>О да. Недавно в нашем замке один милый маленький призрак покончил с собой. Мы были уверены, что это невозможно, но каким-то образом ему удалось раствориться в воде, наполняющей наш древний колодец.</p>')
+            ->setValue('date', '2012-11-15 15:07:31')
+            ->setValue('post', $post1);
+
+        $commentCollection->add('comment2', IObjectType::BASE, $comment1)
+            ->setValue('displayName', 'Re: Re: Девиантное поведение призраков и домовых и способы влияния на него')
+            ->setValue('content', '<p>Возможно, вашего призрака еще удастся спасти. Попробуйте насыпать в колодец пару столовых ложек молотых семян бессмертника. Это должно помочь призраку снова сконденсировать свое нематериальное тело. И да, важно, чтобы семена были собраны в новолуние.</p>')
+            ->setValue('date', '2012-11-15 15:11:21')
+            ->setValue('post', $post1);
+
+        $post2 = $postCollection->add()
+            ->setValue('displayName', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
+            ->setValue('metaTitle', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
+            ->setValue('h1', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
+            ->setValue('content', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>')
+            ->setValue('date', '2010-08-14 17:35:00')
+            ->setValue('category', $blog)
+            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj')
+            ->setGUID('2ff677ee-765c-42ee-bb97-778f03f00c50');
+
+        $commentCollection->add('comment3')
+            ->setValue('displayName', 'важный вопрос')
+            ->setValue('content', '<p>Существует ли разговорник для общения с НЛО? Основы этикета?</p>')
+            ->setValue('date', '2012-11-15 15:05:34')
+            ->setValue('post', $post2);
+
     }
 
     protected function installNews()
@@ -73,18 +150,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $categoriesCollection = $this->getCollectionManager()->getCollection('news_category');
 
-        /**
-         * @var SystemPage $newsModulePage
-         */
-        $newsModulePage = $structureCollection->add('news', 'system')
+        $structureCollection->add('news', 'system')
             ->setValue('displayName', 'Новости')
-            ->setGUID('9ee6745f-f40d-46d8-8043-d959594628ce');
+            ->setGUID('9ee6745f-f40d-46d8-8043-d959594628ce')
+            ->getProperty('module')->setValue('news');
 
-        $newsModulePage->getProperty('module')->setValue('news');
-
-        /**
-         * @var IObject $newsModulePage
-         */
         $newsCategory = $categoriesCollection->add('company')
             ->setValue('displayName', 'Новости сайта')
             ->setValue('metaTitle', 'Новости сайта')
@@ -226,8 +296,172 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $this->installStructureTable();
         $this->installNewsTables();
+        $this->installBlogTables();
 
         $connection->exec($dialect->getEnableForeignKeysSQL());
+    }
+
+    protected function installBlogTables()
+    {
+        $connection = $this->dbCluster->getConnection();
+
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_category`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_post`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_comment`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_tag`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_post_tag`");
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_blog_category` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255) DEFAULT NULL,
+                    `type` varchar(255) DEFAULT NULL,
+                    `version` int(10) unsigned DEFAULT '1',
+
+                    `pid` bigint(20) unsigned DEFAULT NULL,
+                    `mpath` varchar(255) DEFAULT NULL,
+                    `uri` text,
+                    `slug` varchar(255) DEFAULT NULL,
+                    `order` int(10) unsigned DEFAULT NULL,
+                    `level` int(10) unsigned DEFAULT NULL,
+                    `child_count` int(10) unsigned DEFAULT '0',
+
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `content` text,
+                    `meta_description` varchar(255) DEFAULT NULL,
+                    `meta_keywords` varchar(255) DEFAULT NULL,
+                    `meta_title` varchar(255) DEFAULT NULL,
+                    `h1` varchar(255) DEFAULT NULL,
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `blog_category_guid` (`guid`),
+                    UNIQUE KEY `blog_category_pid_slug` (`pid`, `slug`),
+                    KEY `blog_category_type` (`type`),
+                    KEY `blog_category_pid` (`pid`),
+                    CONSTRAINT `FK_blog_category_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_blog_post` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255) DEFAULT NULL,
+                    `type` varchar(255) DEFAULT NULL,
+                    `version` int(10) unsigned DEFAULT '1',
+                    `slug` varchar(255) DEFAULT NULL,
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `date` datetime DEFAULT NULL,
+                    `content` text,
+                    `announcement` text,
+                    `meta_description` varchar(255) DEFAULT NULL,
+                    `meta_keywords` varchar(255) DEFAULT NULL,
+                    `meta_title` varchar(255) DEFAULT NULL,
+                    `h1` varchar(255) DEFAULT NULL,
+                    `category_id` bigint(20) unsigned DEFAULT NULL,
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `blog_post_guid` (`guid`),
+                    UNIQUE KEY `blog_post_slug` (`slug`),
+                    KEY `blog_post_type` (`type`),
+                    KEY `blog_post_category` (`category_id`),
+                    CONSTRAINT `FK_blog_post_category` FOREIGN KEY (`category_id`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_blog_tag` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255) DEFAULT NULL,
+                    `type` varchar(255) DEFAULT NULL,
+                    `version` int(10) unsigned DEFAULT '1',
+                    `slug` varchar(255) DEFAULT NULL,
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `content` text,
+                    `meta_description` varchar(255) DEFAULT NULL,
+                    `meta_keywords` varchar(255) DEFAULT NULL,
+                    `meta_title` varchar(255) DEFAULT NULL,
+                    `h1` varchar(255) DEFAULT NULL,
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `blog_tag_guid` (`guid`),
+                    UNIQUE KEY `blog_tag_slug` (`slug`),
+                    KEY `blog_tag_type` (`type`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_blog_post_tag` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255) DEFAULT NULL,
+                    `type` varchar(255) DEFAULT NULL,
+                    `version` int(10) unsigned DEFAULT '1',
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `post_id` bigint(20) unsigned,
+                    `tag_id` bigint(20) unsigned,
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `post_tag_guid` (`guid`),
+                    KEY `post_tag_type` (`type`),
+                    KEY `post_tag_tag` (`tag_id`),
+                    KEY `post_tag_post` (`post_id`),
+                    CONSTRAINT `FK_post_tag_tag` FOREIGN KEY (`tag_id`) REFERENCES `demohunt_blog_tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_post_tag_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_blog_comment` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255) DEFAULT NULL,
+                    `type` varchar(255) DEFAULT NULL,
+                    `version` int(10) unsigned DEFAULT '1',
+                    `pid` bigint(20) unsigned DEFAULT NULL,
+                    `mpath` varchar(255) DEFAULT NULL,
+                    `uri` text,
+                    `slug` varchar(255) DEFAULT NULL,
+                    `order` int(10) unsigned DEFAULT NULL,
+                    `level` int(10) unsigned DEFAULT NULL,
+                    `child_count` int(10) unsigned DEFAULT '0',
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `content` text,
+                    `post_id` bigint(20) unsigned,
+                    `date` datetime DEFAULT NULL,
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `blog_comment_guid` (`guid`),
+                    UNIQUE KEY `blog_comment_pid_slug` (`pid`, `slug`),
+                    KEY `blog_comment_type` (`type`),
+                    KEY `blog_comment_pid` (`pid`),
+                    KEY `blog_comment_post` (`post_id`),
+                    CONSTRAINT `FK_blog_comment_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_blog_comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_comment_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
     }
 
     protected function installNewsTables()
@@ -268,7 +502,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_category_guid` (`guid`),
                     UNIQUE KEY `news_category_pid_slug` (`pid`, `slug`),
-                    KEY `news_category_type` (`type`)
+                    KEY `news_category_type` (`type`),
+                    KEY `news_category_pid` (`pid`),
+                    CONSTRAINT `FK_news_category_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_news_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
