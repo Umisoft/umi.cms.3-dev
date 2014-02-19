@@ -25,7 +25,7 @@ return [
     IComponent::OPTION_ROUTES      => [
         'category' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => 'category/{slug}',
+            'route'    => '/category/{slug}',
             'defaults' => [
                 'controller' => 'category'
             ]

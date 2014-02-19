@@ -46,10 +46,14 @@ class SiteRoute extends BaseRoute implements IHttpAware, ISiteSettingsAware
     public function match($url)
     {
         if (is_null($url)) {
-            return $this->matchDefaultPage();
+            $matched = $this->matchDefaultPage();
+        } else {
+            $matched = $this->matchPage($url);
         }
 
-        return $this->matchPage($url);
+        $this->params['isMatchingComplete'] = (strlen($url) === $matched);
+
+        return $matched;
     }
 
     /**
@@ -106,7 +110,7 @@ class SiteRoute extends BaseRoute implements IHttpAware, ISiteSettingsAware
         if ($element instanceof StructureElement) {
             $this->setCurrentElement($element);
 
-            return strlen($element->getURL());
+            return strlen($element->getURL()) - 1;
         } else {
             return false;
         }

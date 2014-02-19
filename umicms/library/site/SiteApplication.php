@@ -95,13 +95,14 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
             $routePath = substr($routePath, 0, -strlen($suffix) - 1);
         }
 
-        $isDefaultPage = trim($routePath, '/') === trim($context->getBaseUrl(), '/');
+        $isRootPath = trim($routePath, '/') === trim($context->getBaseUrl(), '/');
+        $isMatchingComplete = $context->getRouteParams()['isMatchingComplete'];
 
-        if (!$isDefaultPage && $response = $this->processUrlPostfixRedirect($request)) {
+        if (!$isRootPath && $response = $this->processUrlPostfixRedirect($request)) {
             return $response;
         }
 
-        if (!$isDefaultPage && $response = $this->processDefaultPageRedirect($context)) {
+        if ($isMatchingComplete && !$isRootPath && $response = $this->processDefaultPageRedirect($context)) {
             return $response;
         }
 

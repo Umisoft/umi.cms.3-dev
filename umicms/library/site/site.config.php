@@ -8,8 +8,6 @@
 
 namespace umicms\site;
 
-use umicms\site\SiteApplication;
-
 return [
     SiteApplication::OPTION_CLASS => 'umicms\site\SiteApplication',
 
