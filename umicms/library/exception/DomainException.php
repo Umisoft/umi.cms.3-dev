@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\exception;
+namespace umicms\library\exception;
 
 /**
  * Исключения, связанные тем, что значение не придерживается определенных правил текущего контекста.

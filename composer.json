@@ -7,7 +7,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "umicms\\": "umicms/library"
+            "umicms\\": "umicms"
         }
     },
     "replace": {

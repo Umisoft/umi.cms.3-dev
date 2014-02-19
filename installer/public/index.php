@@ -7,8 +7,8 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-use umicms\Bootstrap;
-use umicms\Environment;
+use umicms\library\Bootstrap;
+use umicms\library\Environment;
 
 $vendorDirectory = dirname(dirname(__DIR__)) . '/vendor';
 $autoLoaderPath = $vendorDirectory . '/autoload.php';
@@ -39,18 +39,18 @@ require $autoLoaderPath;
 $env = new Environment;
 
 $directoryCms = dirname(dirname(__DIR__)) . '/umicms';
-$directoryCore = $directoryCms . '/library';
-$directoryProject = dirname(dirname(__DIR__));
+$directoryProjects = dirname(dirname(__DIR__));
 
-$toolkitPath = $directoryProject . '/vendor/umi/framework-dev/library';
+$toolkitPath = $directoryProjects . '/vendor/umi/framework-dev/library';
 
 defined('FRAMEWORK_TOOLKIT_DIR') or define('FRAMEWORK_TOOLKIT_DIR', $toolkitPath);
 
 $env->bootConfigMaster = $directoryCms . '/configuration/boot.config.php';
-$env->bootConfigLocal = $directoryProject . '/configuration/boot.config.php';
-$env->projectConfiguration =  $directoryProject . '/configuration/projects.config.php';
-$env->directoryCore = $directoryCore;
-$env->directoryProject = $directoryProject;
+$env->bootConfigLocal = $directoryProjects . '/configuration/boot.config.php';
+$env->projectConfiguration =  $directoryProjects . '/configuration/projects.config.php';
+$env->directoryCms = $directoryCms;
+$env->directoryCmsProject = $directoryCms . '/project';
+$env->directoryProjects = $directoryProjects;
 
 
 

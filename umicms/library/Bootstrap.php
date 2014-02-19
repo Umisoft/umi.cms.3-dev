@@ -6,7 +6,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms;
+namespace umicms\library;
 
 use umi\config\entity\IConfig;
 use umi\config\io\IConfigIO;
@@ -20,11 +20,11 @@ use umi\route\result\IRouteResult;
 use umi\spl\config\TConfigSupport;
 use umi\toolkit\IToolkit;
 use umi\toolkit\Toolkit;
-use umicms\config\IProjectConfigAware;
-use umicms\config\TProjectConfigAware;
-use umicms\exception\InvalidArgumentException;
-use umicms\exception\RuntimeException;
-use umicms\exception\UnexpectedValueException;
+use umicms\project\config\IProjectConfigAware;
+use umicms\project\config\TProjectConfigAware;
+use umicms\library\exception\InvalidArgumentException;
+use umicms\library\exception\RuntimeException;
+use umicms\library\exception\UnexpectedValueException;
 
 /**
  * Загрузчик приложений UMI.CMS
@@ -192,7 +192,7 @@ class Bootstrap implements IProjectConfigAware
 
         $configIO->registerAlias(
             '~/project',
-            $this->environment->directoryCore,
+            $this->environment->directoryCmsProject,
             $directories[1]
         );
 
@@ -284,8 +284,8 @@ class Bootstrap implements IProjectConfigAware
 
         $configIO->registerAlias(
             '~',
-            $this->environment->directoryCore,
-            $this->environment->directoryProject
+            $this->environment->directoryCms,
+            $this->environment->directoryProjects
         );
 
     }
@@ -304,7 +304,7 @@ class Bootstrap implements IProjectConfigAware
         $this->setProjectConfig($configIO->read($configFileName));
 
         $this->toolkit->registerAwareInterface(
-            'umicms\config\IProjectConfigAware',
+            'umicms\project\config\IProjectConfigAware',
             function ($object) {
                 if ($object instanceof IProjectConfigAware) {
                     $object->setProjectConfig($this->getProjectConfig());

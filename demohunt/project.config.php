@@ -2,7 +2,7 @@
 namespace demohunt;
 
 use umi\dbal\toolbox\DbalTools;
-use umicms\Bootstrap;
+use umicms\library\Bootstrap;
 
 return [
     Bootstrap::OPTION_TOOLS_SETTINGS => [

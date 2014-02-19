@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms;
+namespace umicms\library;
 
 /**
  * Настройки окружения UMI.CMS.
@@ -23,13 +23,17 @@ class Environment
      */
     public $bootConfigLocal;
     /**
-     * @var string $directoryCore директория ядра UMI.CMS
+     * @var string $directoryCms директория ядра UMI.CMS
      */
-    public $directoryCore;
+    public $directoryCms;
     /**
-     * @var string $directoryProject директория для пользовательских проектов
+     * @var string $directoryCmsProject директория файлов проекта UMI.CMS
      */
-    public $directoryProject;
+    public $directoryCmsProject;
+    /**
+     * @var string $directoryProjects директория для пользовательских проектов
+     */
+    public $directoryProjects;
     /**
      * @var string $projectConfiguration файл с настройками проектов
      */

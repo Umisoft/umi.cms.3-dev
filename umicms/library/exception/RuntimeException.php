@@ -1,5 +1,5 @@
 <?php
-	namespace umicms\exception;
+	namespace umicms\library\exception;
 
 	/**
 	 * Исключения, связанные с ошибками, которые можно выявить только во время исполнения

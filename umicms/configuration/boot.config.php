@@ -12,7 +12,7 @@ namespace umicms\configuration;
 use umi\config\toolbox\ConfigTools;
 use umi\log\toolbox\LogTools;
 use umi\route\toolbox\RouteTools;
-use umicms\Bootstrap;
+use umicms\library\Bootstrap;
 
 
 return [
@@ -35,7 +35,7 @@ return [
             'factories' => [
                 'route' => [
                     'types' => [
-                        'siteRoute' => 'umicms\route\SiteRoute'
+                        'siteRoute' => 'umicms\project\route\SiteRoute'
                     ]
                 ]
             ]

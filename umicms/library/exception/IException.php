@@ -1,5 +1,5 @@
 <?php
-	namespace umicms\exception;
+	namespace umicms\library\exception;
 
 	/**
 	 * Исключения, связанные с работой ядра UMI.CMS
