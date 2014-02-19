@@ -11,6 +11,7 @@ namespace umicms\project\module\structure\model;
 
 /**
  * Простая статическая страница.
+ *
  * @property string $metaKeywords мета-тег keywords
  * @property string $metaDescription мета-тег description
  * @property string $metaTitle мета-тег title

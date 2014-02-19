@@ -7,12 +7,15 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\exception;
+namespace umicms\api\toolbox;
 
 /**
- * Исключения, связанные с попыткой обратиться к несуществующей сущности.
+ * Конфигурация для регистрации набора инструментов.
  */
-class NonexistentEntityException extends RuntimeException
-{
-}
- 
+return [
+    'name'     => ApiTools::NAME,
+    'class'    => __NAMESPACE__ . '\ApiTools',
+    'services' => [
+        'umicms\api\IPublicApi'
+    ]
+];

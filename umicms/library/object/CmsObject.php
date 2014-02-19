@@ -7,12 +7,14 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\exception;
+namespace umicms\object;
+
+use umi\orm\object\Object;
 
 /**
- * Исключения, связанные с попыткой обратиться к несуществующей сущности.
+ * Класс простого объекта UMI.CMS.
  */
-class NonexistentEntityException extends RuntimeException
+class CmsObject extends Object implements ICmsObject
 {
+
 }
- 

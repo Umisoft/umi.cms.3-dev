@@ -6,13 +6,12 @@
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
-
-namespace umicms\exception;
+namespace umicms\project\module\news\api;
 
 /**
- * Исключения, связанные с попыткой обратиться к несуществующей сущности.
+ * Class NewsSubjectApi
  */
-class NonexistentEntityException extends RuntimeException
+class NewsSubjectApi
 {
+
 }
- 

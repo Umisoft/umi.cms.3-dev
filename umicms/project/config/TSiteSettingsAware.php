@@ -9,7 +9,7 @@
 namespace umicms\project\config;
 
 use umi\config\entity\IConfig;
-use umicms\library\exception\RequiredDependencyException;
+use umicms\exception\RequiredDependencyException;
 use umicms\project\site\SiteApplication;
 
 /**

@@ -113,6 +113,7 @@ return [
     ],
     'types'      => [
         'base' => [
+            'objectClass' => 'umicms\project\module\news\object\NewsRubric',
             'fields' => [
                 'id',
                 'guid',

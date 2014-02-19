@@ -9,23 +9,22 @@
 
 namespace umicms\project\module\news\site\controller;
 
-use umicms\library\controller\BaseController;
-use umicms\project\module\news\api\CategoryApi;
+use umicms\controller\BaseController;
+use umicms\project\module\news\api\NewsPublicApi;
 
 /**
  * Контроллер отображения категории новостей
  */
-class CategoryController extends BaseController
+class RubricController extends BaseController
 {
-
     /**
-     * @var CategoryApi $categoryApi
+     * @var NewsPublicApi $api
      */
-    protected $categoryApi;
+    protected $api;
 
-    public function __construct(CategoryApi $categoryApi)
+    public function __construct(NewsPublicApi $api)
     {
-        $this->categoryApi = $categoryApi;
+        $this->api = $api;
     }
 
     /**
@@ -36,7 +35,7 @@ class CategoryController extends BaseController
         $slug = $this->getRouteVar('slug');
 
         return $this->createViewResponse(
-            'category', ['category' => $this->categoryApi->getCategoryBySlug($slug)]
+            'category', ['category' => $this->api->rubric()->getRubricBySlug($slug)]
         );
     }
 }

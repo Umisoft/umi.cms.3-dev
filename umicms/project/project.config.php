@@ -10,25 +10,27 @@ namespace umicms\project;
 
 use umi\hmvc\component\IComponent;
 use umi\orm\collection\ICollectionFactory;
-use umi\orm\toolbox\ORMTools;
+use umi\orm\toolbox\OrmTools;
 use umi\route\IRouteFactory;
-use umicms\library\Bootstrap;
+use umicms\Bootstrap;
 
 return [
 
-    Bootstrap::OPTION_PROJECT_API => [
-        'umicms\project\module\structure\api\StructureApi' => 'umicms\project\module\structure\api\StructureApi',
-        'umicms\project\module\news\api\CategoryApi' => 'umicms\project\module\news\api\CategoryApi'
-    ],
-
     Bootstrap::OPTION_TOOLS => [
-        require(FRAMEWORK_TOOLKIT_DIR . '/i18n/toolbox/config.php'),
-        require(FRAMEWORK_TOOLKIT_DIR . '/dbal/toolbox/config.php'),
-        require(FRAMEWORK_TOOLKIT_DIR . '/orm/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/i18n/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/dbal/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/orm/toolbox/config.php'),
+        require(CMS_LIBRARY_DIR . '/api/toolbox/config.php')
     ],
 
     Bootstrap::OPTION_TOOLS_SETTINGS => [
-        ORMTools::NAME => [
+        OrmTools::NAME => [
+            'factories' => [
+                'object' => [
+                    'defaultObjectClass' => 'umicms\object\CmsObject',
+                    'defaultHierarchicObjectClass' => 'umicms\object\CmsElement'
+                ]
+            ],
             'metadata'    => [
                 'structure' => '{#lazy:~/project/module/structure/metadata/structure.config.php}',
 

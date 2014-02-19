@@ -7,12 +7,12 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\exception;
+namespace umicms\api;
 
 /**
- * Исключения, связанные с попыткой обратиться к несуществующей сущности.
+ * Интерфейс публично доступного API.
  */
-class NonexistentEntityException extends RuntimeException
+interface IPublicApi
 {
+
 }
- 

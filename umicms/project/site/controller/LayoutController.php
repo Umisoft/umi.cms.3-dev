@@ -9,7 +9,7 @@
 namespace umicms\project\site\controller;
 
 use umi\http\Response;
-use umicms\library\controller\BaseController;
+use umicms\controller\BaseController;
 
 /**
  * Контроллер сетки сайта.

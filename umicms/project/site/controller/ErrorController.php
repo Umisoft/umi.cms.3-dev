@@ -12,7 +12,7 @@ use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpForbidden;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
-use umicms\library\controller\BaseController;
+use umicms\controller\BaseController;
 
 /**
  * Контроллер ошибок для сайта.

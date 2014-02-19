@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\library;
+namespace umicms;
 
 /**
  * Настройки окружения UMI.CMS.

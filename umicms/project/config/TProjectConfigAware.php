@@ -10,7 +10,7 @@
 namespace umicms\project\config;
 
 use umi\config\entity\IConfig;
-use umicms\library\exception\RequiredDependencyException;
+use umicms\exception\RequiredDependencyException;
 
 /**
  * Трейт для работы с конфигурацией проекта UMI.CMS

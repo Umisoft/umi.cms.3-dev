@@ -13,9 +13,10 @@ use umi\route\IRouteFactory;
 
 return [
     IComponent::OPTION_CONTROLLERS => [
-        'category' => 'umicms\project\module\news\site\controller\CategoryController',
+        'lastNews' => 'umicms\project\module\news\site\controller\LastNewsController',
+        'rubric' => 'umicms\project\module\news\site\controller\RubricController',
         'newsItem' => 'umicms\project\module\news\site\controller\NewsItemController',
-        'subject' => 'umicms\project\module\news\site\controller\SubjectController',
+        'subject' => 'umicms\project\module\news\site\controller\SubjectController'
     ],
     IComponent::OPTION_VIEW        => [
         'type'      => 'php',
@@ -23,11 +24,11 @@ return [
         'directory' => __DIR__ . '/template/php',
     ],
     IComponent::OPTION_ROUTES      => [
-        'category' => [
+        'rubric' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/category/{slug}',
+            'route'    => '/rubric/{slug}',
             'defaults' => [
-                'controller' => 'category'
+                'controller' => 'rubric'
             ]
         ],
         'newsItem' => [
@@ -42,6 +43,12 @@ return [
             'route'    => '/subject/{slug}',
             'defaults' => [
                 'controller' => 'subject'
+            ]
+        ],
+        'index' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'defaults' => [
+                'controller' => 'lastNews'
             ]
         ]
     ]

@@ -21,7 +21,7 @@ use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
 use umicms\project\config\ISiteSettingsAware;
 use umicms\project\config\TSiteSettingsAware;
-use umicms\library\exception\UnexpectedValueException;
+use umicms\exception\UnexpectedValueException;
 use umicms\project\module\structure\api\StructureApi;
 
 /**

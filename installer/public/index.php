@@ -7,8 +7,8 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-use umicms\library\Bootstrap;
-use umicms\library\Environment;
+use umicms\Bootstrap;
+use umicms\Environment;
 
 $vendorDirectory = dirname(dirname(__DIR__)) . '/vendor';
 $autoLoaderPath = $vendorDirectory . '/autoload.php';
@@ -43,7 +43,8 @@ $directoryProjects = dirname(dirname(__DIR__));
 
 $toolkitPath = $directoryProjects . '/vendor/umi/framework-dev/library';
 
-defined('FRAMEWORK_TOOLKIT_DIR') or define('FRAMEWORK_TOOLKIT_DIR', $toolkitPath);
+defined('CMS_LIBRARY_DIR') or define('CMS_LIBRARY_DIR', $directoryCms . '/library');
+defined('FRAMEWORK_LIBRARY_DIR') or define('FRAMEWORK_LIBRARY_DIR', $toolkitPath);
 
 $env->bootConfigMaster = $directoryCms . '/configuration/boot.config.php';
 $env->bootConfigLocal = $directoryProjects . '/configuration/boot.config.php';

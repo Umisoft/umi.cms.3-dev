@@ -7,12 +7,15 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\exception;
+namespace umicms\project\module\news\object;
+
+use umicms\object\CmsElement;
 
 /**
- * Исключения, связанные с попыткой обратиться к несуществующей сущности.
+ * Категория новостей.
  */
-class NonexistentEntityException extends RuntimeException
+class NewsRubric extends CmsElement
 {
+
 }
  

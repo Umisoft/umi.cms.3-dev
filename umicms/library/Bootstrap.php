@@ -6,7 +6,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\library;
+namespace umicms;
 
 use umi\config\entity\IConfig;
 use umi\config\io\IConfigIO;
@@ -22,9 +22,9 @@ use umi\toolkit\IToolkit;
 use umi\toolkit\Toolkit;
 use umicms\project\config\IProjectConfigAware;
 use umicms\project\config\TProjectConfigAware;
-use umicms\library\exception\InvalidArgumentException;
-use umicms\library\exception\RuntimeException;
-use umicms\library\exception\UnexpectedValueException;
+use umicms\exception\InvalidArgumentException;
+use umicms\exception\RuntimeException;
+use umicms\exception\UnexpectedValueException;
 
 /**
  * Загрузчик приложений UMI.CMS
@@ -42,10 +42,6 @@ class Bootstrap implements IProjectConfigAware
      * Конфигурация иснтрументов
      */
     const OPTION_TOOLS_SETTINGS = 'settings';
-    /**
-     * Конфигурация API-сервисов проекта
-     */
-    const OPTION_PROJECT_API = 'api';
 
     /**
      * @var Environment $environment настройки окружения UMI.CMS
@@ -198,7 +194,6 @@ class Bootstrap implements IProjectConfigAware
 
         $this->registerProjectConfiguration($configFileName);
         $this->registerProjectTools();
-        $this->registerProjectApi();
 
         return $routeResult;
     }
@@ -330,30 +325,6 @@ class Bootstrap implements IProjectConfigAware
             $this->toolkit->setSettings(
                 $config->get(self::OPTION_TOOLS_SETTINGS)
             );
-        }
-    }
-
-    /**
-     * Регистрирует API-сервисы для текущего проекта.
-     * @return void
-     */
-    protected function registerProjectApi()
-    {
-        $apiClasses = $this
-            ->getProjectConfig()
-            ->get(self::OPTION_PROJECT_API);
-
-        if ($apiClasses) {
-            foreach ($this->configToArray($apiClasses) as $apiContract => $apiClass) {
-                $this->toolkit->registerService(
-                    $apiContract,
-                    function () use ($apiContract, $apiClass) {
-                        return $this->toolkit
-                            ->getPrototype($apiClass, [$apiContract])
-                            ->createSingleInstance();
-                    }
-                );
-            }
         }
     }
 

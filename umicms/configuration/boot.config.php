@@ -12,7 +12,7 @@ namespace umicms\configuration;
 use umi\config\toolbox\ConfigTools;
 use umi\log\toolbox\LogTools;
 use umi\route\toolbox\RouteTools;
-use umicms\library\Bootstrap;
+use umicms\Bootstrap;
 
 
 return [
@@ -20,12 +20,12 @@ return [
      * Конфигурация для регистрации наборов инструментов.
      */
     Bootstrap::OPTION_TOOLS  => [
-        require(FRAMEWORK_TOOLKIT_DIR . '/config/toolbox/config.php'),
-        require(FRAMEWORK_TOOLKIT_DIR . '/http/toolbox/config.php'),
-        require(FRAMEWORK_TOOLKIT_DIR . '/route/toolbox/config.php'),
-        require(FRAMEWORK_TOOLKIT_DIR . '/session/toolbox/config.php'),
-        require(FRAMEWORK_TOOLKIT_DIR . '/hmvc/toolbox/config.php'),
-        require(FRAMEWORK_TOOLKIT_DIR . '/templating/toolbox/config.php')
+        require(FRAMEWORK_LIBRARY_DIR . '/config/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/http/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/route/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/session/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/hmvc/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/templating/toolbox/config.php')
     ],
     /**
      * Настройки инструментов.
