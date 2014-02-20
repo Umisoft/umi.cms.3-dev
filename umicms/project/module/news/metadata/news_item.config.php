@@ -9,7 +9,7 @@
 namespace umicms\project\module\news\metadata;
 
 use umi\orm\metadata\field\IField;
-use umi\orm\object\IObject;
+use umicms\project\module\news\object\NewsItem;
 
 return [
     'dataSource' => [
@@ -17,93 +17,93 @@ return [
     ],
     'fields'     => [
 
-        IObject::FIELD_IDENTIFY => [
+        NewsItem::FIELD_IDENTIFY     => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
             'accessor'   => 'getId'
         ],
-        IObject::FIELD_GUID     => [
+        NewsItem::FIELD_GUID         => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
             'mutator'    => 'setGuid'
         ],
-        IObject::FIELD_TYPE     => [
+        NewsItem::FIELD_TYPE         => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
             'accessor'   => 'getType',
             'readOnly'   => true
         ],
-        IObject::FIELD_VERSION  => [
+        NewsItem::FIELD_VERSION      => [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
             'mutator'      => 'setVersion',
             'defaultValue' => 1
         ],
-        'displayName'           => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
-        'active'                => [
+        NewsItem::FIELD_DISPLAY_NAME => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
+        NewsItem::FIELD_ACTIVE       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'active',
             'defaultValue' => 1
         ],
-        'locked'                => [
+        NewsItem::FIELD_LOCKED       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
             'defaultValue' => 0
         ],
-        'created'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        'updated'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
-
-        'h1'                    => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
-        'metaTitle'             => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
-        'metaKeywords'          => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
-        'metaDescription'       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
-        'content'               => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
-        'announcement'          => ['type' => IField::TYPE_TEXT, 'columnName' => 'announcement'],
-        'category'                => ['type'       => IField::TYPE_BELONGS_TO,
-                                    'columnName' => 'category_id',
-                                    'target'     => 'news_category'
+        NewsItem::FIELD_CREATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
+        NewsItem::FIELD_UPDATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
+        'h1'                         => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
+        'metaTitle'                  => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
+        'metaKeywords'               => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
+        'metaDescription'            => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
+        'content'                    => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
+        NewsItem::FIELD_ANNOUNCEMENT => ['type' => IField::TYPE_TEXT, 'columnName' => 'announcement'],
+        NewsItem::FIELD_RUBRIC       => [
+            'type'       => IField::TYPE_BELONGS_TO,
+            'columnName' => 'rubric_id',
+            'target'     => 'news_rubric'
         ],
-        'slug'                  => ['type'       => IField::TYPE_SLUG,
-                                    'columnName' => 'slug',
-                                    'accessor'   => 'getSlug',
-                                    'mutator'    => 'setSlug'
+        NewsItem::FIELD_SLUG         => [
+            'type'       => IField::TYPE_SLUG,
+            'columnName' => 'slug',
+            'accessor'   => 'getSlug',
+            'mutator'    => 'setSlug'
         ],
-        'subjects'              => ['type'         => IField::TYPE_MANY_TO_MANY,
-                                    'target'       => 'news_subject',
-                                    'bridge'       => 'news_item_subject',
-                                    'relatedField' => 'newsItem',
-                                    'targetField'  => 'subject'
+        NewsItem::FIELD_SUBJECTS     => [
+            'type'         => IField::TYPE_MANY_TO_MANY,
+            'target'       => 'news_subject',
+            'bridge'       => 'news_item_subject',
+            'relatedField' => 'newsItem',
+            'targetField'  => 'subject'
         ],
-        'date'                  => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'date']
+        NewsItem::FIELD_DATE         => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'date']
 
     ],
     'types'      => [
-        'base' => [
+        'objectClass' => 'umicms\project\module\news\object\NewsItem',
+        'base'        => [
             'fields' => [
-                'id',
-                'guid',
-                'type',
-                'version',
-                'active',
-                'locked',
-                'created',
-                'updated',
-                'displayName',
-
-                'category',
-                'slug',
-
+                NewsItem::FIELD_IDENTIFY,
+                NewsItem::FIELD_GUID,
+                NewsItem::FIELD_TYPE,
+                NewsItem::FIELD_VERSION,
+                NewsItem::FIELD_ACTIVE,
+                NewsItem::FIELD_LOCKED,
+                NewsItem::FIELD_CREATED,
+                NewsItem::FIELD_UPDATED,
+                NewsItem::FIELD_DISPLAY_NAME,
+                NewsItem::FIELD_RUBRIC,
+                NewsItem::FIELD_SLUG,
                 'h1',
                 'metaTitle',
                 'metaKeywords',
                 'metaDescription',
-
-                'announcement',
                 'content',
-                'subjects',
-                'date'
+                NewsItem::FIELD_ANNOUNCEMENT,
+                NewsItem::FIELD_SUBJECTS,
+                NewsItem::FIELD_DATE
             ]
         ]
     ]

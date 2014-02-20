@@ -17,6 +17,7 @@ use umicms\project\module\news\api\NewsPublicApi;
  */
 class RubricController extends BaseController
 {
+
     /**
      * @var NewsPublicApi $api
      */
@@ -32,10 +33,15 @@ class RubricController extends BaseController
      */
     public function __invoke()
     {
-        $slug = $this->getRouteVar('slug');
+        $url = $this->getRouteVar('url');
+        $rubric = $this->api->rubric()->getByUrl($url);
 
         return $this->createViewResponse(
-            'category', ['category' => $this->api->rubric()->getRubricBySlug($slug)]
+            'rubric',
+            [
+                'rubric' => $rubric,
+                'news' => $this->api->getRubricNews($rubric->guid)
+            ]
         );
     }
 }

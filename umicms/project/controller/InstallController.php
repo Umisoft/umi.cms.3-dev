@@ -145,16 +145,16 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $newsCollection = $this->getCollectionManager()->getCollection('news_news_item');
         /**
-         * @var SimpleHierarchicCollection $categoriesCollection
+         * @var SimpleHierarchicCollection $rubricCollection
          */
-        $categoriesCollection = $this->getCollectionManager()->getCollection('news_category');
+        $rubricCollection = $this->getCollectionManager()->getCollection('news_rubric');
 
         $structureCollection->add('news', 'system')
             ->setValue('displayName', 'Новости')
             ->setGUID('9ee6745f-f40d-46d8-8043-d959594628ce')
             ->getProperty('module')->setValue('news');
 
-        $newsCategory = $categoriesCollection->add('company')
+        $rubric = $rubricCollection->add('company')
             ->setValue('displayName', 'Новости сайта')
             ->setValue('metaTitle', 'Новости сайта')
             ->setValue('h1', 'Новости сайта')
@@ -167,7 +167,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>По результатам исследования Ассоциации любителей и ненавистников зомби, главной причиной социопатии зомби является еда из ресторанов МакДональдс.</p>')
             ->setValue('content', '<p>По результатам исследования Ассоциации любителей и ненавистников зомби, главной причиной социопатии зомби является еда из ресторанов МакДональдс.  Ученые давно бьют тревогу по поводу образа жизни молодых зомби и сейчас активно занялись пропагандой спорта, фитнес-клубов, активных игр на воздухе и популяризацией вегетарианской пищи среди представителей этого вида.  Пока ученые занимаются всеми этими вещами, молодые зомби курят по подъездам, впадают в депрессивные состоянии, примыкают к эмо-группировкам и совершенно не хотят работать.  &laquo;А между тем, этих ребят еще можно спасти, &mdash; комментирует Виктория Евдокимова, Охотница за привидениями со стажем, &mdash; и это в силах каждого из нас. Если увидите на улице одинокого зомби, подойдите и поинтересуйтесь, как обстоят дела с его девчонкой, какие у него планы на выходные, и что он делал прошлым летом&raquo;.</p>')
             ->setValue('date', '2010-08-01 17:34:00')
-            ->setValue('category', $newsCategory)
+            ->setValue('rubric', $rubric)
             ->setGUID('d6eb9ad1-667e-429d-a476-fa64c5eec115')
             ->setValue('slug', 'zombi');
 
@@ -178,7 +178,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>Внимание: в составе Отряда в бикини произошли небольшие перестановки. В связи с испорченным маникюром и плохим настроением место Лолиты Андреевой займет Маша Шикова.</p>')
             ->setValue('content', '<p>Внимание: в составе Отряда в бикини произошли небольшие перестановки. В связи с испорченным маникюром и плохим настроением место Лолиты Андреевой займет Маша Шикова.  Маша Шикова имеет большой опыт в борьбе с домашними призраками и два столкновения с вампирами. Новая Охотница прекрасно вписалась в наш дружный женский коллектив и в ожидании интересных заданий уже пополнила свой гардероб пятью новыми комплектами бикини.   Лолита Андреева на редкость вяло комментирует свой выход из отряда. По нашим данным, это связано с тем, что маникюрный мастер девушки, с которым у нее был длительный роман, без предупреждения уехал в отпуск на Бали и оставил ее "подыхать в одиночестве".</p>')
             ->setValue('date', '2010-08-03 17:36:00')
-            ->setValue('category', $newsCategory)
+            ->setValue('rubric', $rubric)
             ->setGUID('35806ed8-1306-41b5-bbf9-fe2faedfc835')
             ->setValue('slug', 'bikini');
 
@@ -189,7 +189,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>')
             ->setValue('content', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>')
             ->setValue('date', '2010-08-02 17:35:00')
-            ->setValue('category', $newsCategory)
+            ->setValue('rubric', $rubric)
             ->setGUID('96a6bea4-3c77-4ea1-9eb3-c4b1082253db')
             ->setValue('slug', 'privideniya');
 
@@ -202,11 +202,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $newsCollection = $this->getCollectionManager()->getCollection('news_news_item');
         /**
-         * @var SimpleHierarchicCollection $categoriesCollection
+         * @var SimpleHierarchicCollection $rubricCollection
          */
-        $categoriesCollection = $this->getCollectionManager()->getCollection('news_category');
+        $rubricCollection = $this->getCollectionManager()->getCollection('news_rubric');
 
-        $gratitude = $categoriesCollection->add('gratitude')
+        $gratitude = $rubricCollection->add('gratitude')
             ->setValue('displayName', 'Благодарности')
             ->setValue('metaTitle', 'Благодарности')
             ->setValue('h1', 'Благодарности')
@@ -221,7 +221,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>Не то, чтобы я верю в привидения, но пару месяцев назад я начала регулярно находить в нашем супружеском ложе чьи-то светлые волосы, сережки и следы губной помады. Муж тоже отрицает существование привидений, однако так дальше продолжаться не могло</p>')
             ->setValue('content', '<p>Не то, чтобы я верю в привидения, но пару месяцев назад я начала регулярно находить в нашем супружеском ложе чьи-то светлые волосы, сережки и следы губной помады. Муж тоже отрицает существование привидений, однако так дальше продолжаться не могло. Я вызвала наряд охотниц за привидениями, и теперь мы избавлены от этих проблем. Сотрудница организации рекомендовала мне воспользоваться услугами спецподразделения &laquo;Отряд в бикини&raquo;. Я не пожалела, и, кажется, муж остался доволен.</p>')
             ->setValue('date', '2013-06-24 19:11')
-            ->setValue('category', $gratitude)
+            ->setValue('rubric', $gratitude)
             ->setValue('slug', 'natasha')
             ->setGUID('da5ec9a8-229c-4120-949c-2bb9eb641f24');
 
@@ -232,7 +232,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>С 18 лет меня довольно регулярно похищали инопланетяне.&nbsp;Но последней каплей стало похищение в ноябре сего года, во время которого они насильственным способом изменили мои предпочтения в еде</p>')
             ->setValue('content', '<p>С 18 лет меня довольно регулярно похищали инопланетяне. Но последней каплей стало похищение в ноябре сего года, во время которого они насильственным способом изменили мои предпочтения в еде &ndash; я перестал смыслить свою жизнь без пива и чипсов. Я был вынужден обратиться к профессионалам. Как мне помогли Охотницы? Инициировав повторный сеанс связи, они совершили настоящий переворот. Теперь я замечательно обхожусь пряниками и шоколадом. Особую благодарность хочу выразить Охотнице Елене Жаровой за красивые глаза.</p>')
             ->setValue('date', '2013-06-24 19:14')
-            ->setValue('category', $gratitude)
+            ->setValue('rubric', $gratitude)
             ->setGUID('60744128-996a-4cea-a937-c20ebc5c8c77')
             ->setValue('slug', 'aleksandr');
 
@@ -467,14 +467,14 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     {
         $connection = $this->dbCluster->getConnection();
 
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_category`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_rubric`");
         $connection->exec("DROP TABLE IF EXISTS `demohunt_news_news_item`");
         $connection->exec("DROP TABLE IF EXISTS `demohunt_news_subject`");
         $connection->exec("DROP TABLE IF EXISTS `demohunt_news_news_item_subject`");
 
         $connection->exec(
             "
-                CREATE TABLE `demohunt_news_category` (
+                CREATE TABLE `demohunt_news_rubric` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
                     `guid` varchar(255) DEFAULT NULL,
                     `type` varchar(255) DEFAULT NULL,
@@ -499,11 +499,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     PRIMARY KEY (`id`),
-                    UNIQUE KEY `news_category_guid` (`guid`),
-                    UNIQUE KEY `news_category_pid_slug` (`pid`, `slug`),
-                    KEY `news_category_type` (`type`),
-                    KEY `news_category_pid` (`pid`),
-                    CONSTRAINT `FK_news_category_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_news_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    UNIQUE KEY `news_rubric_guid` (`guid`),
+                    UNIQUE KEY `news_rubric_pid_slug` (`pid`, `slug`),
+                    KEY `news_rubric_type` (`type`),
+                    KEY `news_rubric_pid` (`pid`),
+                    CONSTRAINT `FK_news_rubric_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -528,13 +528,13 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
-                    `category_id` bigint(20) unsigned DEFAULT NULL,
+                    `rubric_id` bigint(20) unsigned DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_news_item_guid` (`guid`),
                     UNIQUE KEY `news_news_item_slug` (`slug`),
                     KEY `news_news_item_type` (`type`),
-                    KEY `news_news_item_category` (`category_id`),
-                    CONSTRAINT `FK_news_news_item_category` FOREIGN KEY (`category_id`) REFERENCES `demohunt_news_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    KEY `news_news_item_rubric` (`rubric_id`),
+                    CONSTRAINT `FK_news_news_item_rubric` FOREIGN KEY (`rubric_id`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );

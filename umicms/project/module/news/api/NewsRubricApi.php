@@ -9,40 +9,65 @@
 
 namespace umicms\project\module\news\api;
 
+use umi\orm\exception\IException;
 use umicms\api\BaseHierarchicCollectionApi;
 use umicms\exception\NonexistentEntityException;
 use umicms\project\module\news\object\NewsRubric;
 
 /**
- * API для работы с категориями новостей
+ * API для работы с новостными рубриками
  */
 class NewsRubricApi extends BaseHierarchicCollectionApi
 {
     /**
-     * @var string $collectionName имя коллекции для хранения категорий новостей
+     * {@inheritdoc}
      */
-    public $collectionName = 'news_category';
+    public $collectionName = 'news_rubric';
 
     /**
-     * Возвращает новостую рубрику по ее slug
-     * @param string $slug
-     * @throws NonexistentEntityException если рубрика не существует
+     * Возвращает новостую рубрику по ее GUID
+     * @param string $guid
+     * @throws NonexistentEntityException если не удалось получить рубрику
      * @return NewsRubric
      */
-    public function getRubricBySlug($slug)
-    {
-        $category = $this->getElementBySlug($slug);
+    public function get($guid) {
 
-        if (!$category instanceof NewsRubric) {
+        try {
+            return $this->getCollection()->get($guid);
+        } catch(IException $e) {
             throw new NonexistentEntityException(
                 $this->translate(
-                    'News rubric "{slug}" does not exist',
-                    ['slug' => $slug]
-                )
+                    'Cannot find news rubric by guid "{guid}".',
+                    ['guid' => $guid]
+                ),
+                0,
+                $e
             );
         }
-
-        return $category;
     }
+
+    /**
+     * Возвращает новостую рубрику по ее URL
+     * @param string $url
+     * @throws NonexistentEntityException если не удалось получить рубрику
+     * @return NewsRubric
+     */
+    public function getByUrl($url)
+    {
+        try {
+            return $this->getElementByUrl($url);
+        } catch(IException $e) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find news rubric by url "{url}".',
+                    ['url' => $url]
+                ),
+                0,
+                $e
+            );
+        }
+    }
+
+
 }
  

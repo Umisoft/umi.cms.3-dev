@@ -13,7 +13,7 @@ use umi\orm\object\IHierarchicObject;
 
 return [
     'dataSource' => [
-        'sourceName' => 'umi_news_item'
+        'sourceName' => 'umi_news_rubric'
     ],
     'fields'     => [
 
@@ -104,11 +104,7 @@ return [
         'metaTitle'             => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
         'metaKeywords'          => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
         'metaDescription'       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
-        'content'               => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
-        'newsItems'             => ['type'        => IField::TYPE_HAS_MANY,
-                                    'target'      => 'news_item',
-                                    'targetField' => 'category'
-        ]
+        'content'               => ['type' => IField::TYPE_TEXT, 'columnName' => 'content']
 
     ],
     'types'      => [
@@ -135,8 +131,7 @@ return [
                 'metaTitle',
                 'metaKeywords',
                 'metaDescription',
-                'content',
-                'newsItems'
+                'content'
             ]
         ]
     ]

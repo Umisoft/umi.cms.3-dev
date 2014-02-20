@@ -23,10 +23,17 @@ return [
         'extension' => 'phtml',
         'directory' => __DIR__ . '/template/php',
     ],
+
+    IComponent::OPTION_WIDGET => [
+        'viewNewsItem' => 'umicms\project\module\news\site\widget\NewsItemWidget',
+        'lastNewsList' => 'umicms\project\module\news\site\widget\LastNewsListWidget',
+        'rubricsList' => 'umicms\project\module\news\site\widget\RubricsListWidget'
+    ],
+
     IComponent::OPTION_ROUTES      => [
         'rubric' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/rubric/{slug}',
+            'route'    => '/rubric/{url}',
             'defaults' => [
                 'controller' => 'rubric'
             ]
