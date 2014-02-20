@@ -23,15 +23,18 @@ use umicms\project\config\ISiteSettingsAware;
 use umicms\project\config\TSiteSettingsAware;
 use umicms\exception\UnexpectedValueException;
 use umicms\project\module\structure\api\StructureApi;
+use umicms\serialization\ISerializationAware;
+use umicms\serialization\TSerializationAware;
 
 /**
  * Приложение сайта.
  */
-class SiteApplication extends Component implements IHttpAware, IToolkitAware, ISiteSettingsAware
+class SiteApplication extends Component implements IHttpAware, IToolkitAware, ISiteSettingsAware, ISerializationAware
 {
     use TSiteSettingsAware;
     use THttpAware;
     use TToolkitAware;
+    use TSerializationAware;
 
     /**
      * Имя опции для задания настроек сайта.
@@ -45,6 +48,10 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
      * Имя настройки для задания постфикса всех URL
      */
     const SETTING_URL_POSTFIX = 'url-postfix';
+    /**
+     * Формат запроса по умолчанию.
+     */
+    const DEFAULT_REQUEST_FORMAT = 'html';
 
     /**
      * @var StructureApi $structureApi
@@ -53,19 +60,12 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
     /**
      * @var string $requestFormat формат запроса к приложению
      */
-    protected $currentRequestFormat = 'html';
-    /**
-     * @var string $defaultRequestFormat формат запроса к приложению по умолчанию
-     */
-    protected $defaultRequestFormat = 'html';
+    protected $currentRequestFormat = self::DEFAULT_REQUEST_FORMAT;
 
     /**
      * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
      */
-    protected $supportedRequestPostfixes = [
-        'json' => [],
-        'xml'  => []
-    ];
+    protected $supportedRequestPostfixes = ['json', 'xml'];
 
 
     /**
@@ -112,6 +112,17 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function onDispatchResponse(IDispatchContext $context, Response $response)
+    {
+       if ($this->currentRequestFormat !== self::DEFAULT_REQUEST_FORMAT) {
+           $content = $this->serializeObject($this->currentRequestFormat, $response->getContent());
+           $response->setContent($content);
+       }
+    }
+
+    /**
      * Производит определение формата запроса по постфиксу
      * @param string $postfix
      * @throws HttpNotFound если постфикс запроса не поддерживается приложением
@@ -119,17 +130,17 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
      */
     protected function getRequestFormatByPostfix($postfix) {
         if (is_null($postfix) || $postfix === $this->getSiteUrlPostfix()) {
-            return $this->defaultRequestFormat;
+            return self::DEFAULT_REQUEST_FORMAT;
         }
 
-        if (isset($this->supportedRequestPostfixes[$postfix])) {
-            return $postfix;
+        if (!in_array($postfix, $this->supportedRequestPostfixes)) {
+            throw new HttpNotFound($this->translate(
+                'Url postfix "{postfix}" is not supported.',
+                ['postfix' => $postfix]
+            ));
         }
 
-        throw new HttpNotFound($this->translate(
-            'Url postfix "{postfix}" is not supported.',
-            ['postfix' => $postfix]
-        ));
+        return $postfix;
     }
 
     /**

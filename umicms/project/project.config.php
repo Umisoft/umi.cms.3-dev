@@ -20,7 +20,8 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/i18n/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/dbal/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/orm/toolbox/config.php'),
-        require(CMS_LIBRARY_DIR . '/api/toolbox/config.php')
+        require(CMS_LIBRARY_DIR . '/api/toolbox/config.php'),
+        require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php')
     ],
 
     Bootstrap::OPTION_TOOLS_SETTINGS => [
