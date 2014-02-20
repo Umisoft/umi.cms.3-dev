@@ -64,17 +64,12 @@ return [
                                     'columnName' => 'slug',
                                     'accessor'   => 'getSlug',
                                     'mutator'    => 'setSlug'
-        ],
-        'newsItems'                  => ['type'         => IField::TYPE_MANY_TO_MANY,
-                                    'target'       => 'news_news_item',
-                                    'bridge'       => 'news_news_item_subject',
-                                    'relatedField' => 'subject',
-                                    'targetField'  => 'news_item'
         ]
 
     ],
     'types'      => [
         'base' => [
+            'objectClass' => 'umicms\project\module\news\object\NewsSubject',
             'fields' => [
                 'id',
                 'guid',
@@ -90,8 +85,7 @@ return [
                 'metaKeywords',
                 'metaDescription',
                 'content',
-                'slug',
-                'newsItems'
+                'slug'
             ]
         ]
     ]

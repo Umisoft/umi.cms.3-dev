@@ -10,6 +10,7 @@
 namespace umicms\api;
 
 use umi\orm\collection\SimpleHierarchicCollection;
+use umi\orm\exception\NonexistentEntityException;
 use umi\orm\metadata\field\special\MaterializedPathField;
 use umi\orm\selector\ISelector;
 use umicms\exception\InvalidArgumentException;
@@ -124,18 +125,14 @@ abstract class BaseHierarchicCollectionApi extends BaseCollectionApi
     }
 
     /**
-     * Возвращает категорию новостей по ее slug
-     * @param string $slug
-     * @return CmsElement|null
+     * Возвращает элемент по его URL
+     * @param string $url URL элемента без начального слеша
+     * @throws NonexistentEntityException если элемент не найден
+     * @return CmsElement
      */
-    protected function getElementBySlug($slug)
+    protected function getElementByUrl($url)
     {
-        return $this->getCollection()
-            ->select()
-            ->where(CmsElement::FIELD_SLUG)->equals($slug)
-            ->limit(1)
-            ->result()
-            ->fetch();
+        return $this->getCollection()->getByUri('/' . $url);
     }
 
 }

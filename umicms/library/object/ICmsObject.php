@@ -42,4 +42,8 @@ interface ICmsObject
      *  Имя поля для хранения времени последнего изменения объекта
      */
     const FIELD_UPDATED = 'updated';
+    /**
+     * Имя поля для хранения названия объекта
+     */
+    const FIELD_DISPLAY_NAME = 'displayName';
 }

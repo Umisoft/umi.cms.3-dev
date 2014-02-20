@@ -1,0 +1,21 @@
+<?php
+/**
+ * @var umicms\project\module\news\object\NewsRubric $rubric
+ * @var umi\orm\selector\ISelector $news
+ * @var umicms\project\module\news\object\NewsItem $newsItem
+ */
+?>
+<h1><?= $rubric->h1 ?></h1>
+<?= $rubric->content ?>
+
+<?php if ($news->getTotal()) :?>
+
+    <ul class="unstyled">
+        <?php foreach ($news as $newsItem) : ?>
+            <li>
+                <h3><?= $newsItem->h1 ?></h3>
+                <?= $newsItem->announcement ?>
+            </li>
+        <?php endforeach;?>
+    </ul>
+<?php endif; ?>
