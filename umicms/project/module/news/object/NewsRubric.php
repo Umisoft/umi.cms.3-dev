@@ -9,7 +9,6 @@
 
 namespace umicms\project\module\news\object;
 
-use umi\orm\objectset\IObjectSet;
 use umicms\object\CmsElement;
 
 /**

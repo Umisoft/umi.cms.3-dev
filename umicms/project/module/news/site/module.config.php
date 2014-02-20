@@ -13,7 +13,7 @@ use umi\route\IRouteFactory;
 
 return [
     IComponent::OPTION_CONTROLLERS => [
-        'lastNews' => 'umicms\project\module\news\site\controller\LastNewsController',
+        'index' => 'umicms\project\module\news\site\controller\IndexController',
         'rubric' => 'umicms\project\module\news\site\controller\RubricController',
         'newsItem' => 'umicms\project\module\news\site\controller\NewsItemController',
         'subject' => 'umicms\project\module\news\site\controller\SubjectController'
@@ -26,8 +26,14 @@ return [
 
     IComponent::OPTION_WIDGET => [
         'viewNewsItem' => 'umicms\project\module\news\site\widget\NewsItemWidget',
-        'lastNewsList' => 'umicms\project\module\news\site\widget\LastNewsListWidget',
-        'rubricsList' => 'umicms\project\module\news\site\widget\RubricsListWidget'
+        'viewRubric' => 'umicms\project\module\news\site\widget\RubricWidget',
+        'viewSubject' => 'umicms\project\module\news\site\widget\SubjectWidget',
+
+        'rubricNewsList' => 'umicms\project\module\news\site\widget\RubricNewsListWidget',
+        'subjectNewsList' => 'umicms\project\module\news\site\widget\SubjectNewsListWidget',
+
+        'rubricList' => 'umicms\project\module\news\site\widget\RubricListWidget',
+        'subjectList' => 'umicms\project\module\news\site\widget\SubjectListWidget'
     ],
 
     IComponent::OPTION_ROUTES      => [
@@ -55,7 +61,7 @@ return [
         'index' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => 'lastNews'
+                'controller' => 'index'
             ]
         ]
     ]

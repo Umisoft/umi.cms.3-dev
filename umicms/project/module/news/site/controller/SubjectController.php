@@ -13,9 +13,9 @@ use umicms\controller\BaseController;
 use umicms\project\module\news\api\NewsPublicApi;
 
 /**
- * Контроллер отображения новостной рубрики
+ * Контроллер отображения новостного сюжета
  */
-class RubricController extends BaseController
+class SubjectController extends BaseController
 {
 
     /**
@@ -33,13 +33,13 @@ class RubricController extends BaseController
      */
     public function __invoke()
     {
-        $url = $this->getRouteVar('url');
-        $rubric = $this->api->rubric()->getByUrl($url);
+        $slug = $this->getRouteVar('slug');
+        $subject = $this->api->subject()->getBySlug($slug);
 
         return $this->createViewResponse(
-            'rubric/view',
+            'subject/view',
             [
-                'rubric' => $rubric
+                'subject' => $subject
             ]
         );
     }

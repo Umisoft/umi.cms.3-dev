@@ -13,10 +13,11 @@ use umicms\controller\BaseController;
 use umicms\project\module\news\api\NewsPublicApi;
 
 /**
- * Контроллер отображения последних новостей
+ * Контроллер отображения новости
  */
-class LastNewsController extends BaseController
+class NewsItemController extends BaseController
 {
+
     /**
      * @var NewsPublicApi $api
      */
@@ -32,7 +33,15 @@ class LastNewsController extends BaseController
      */
     public function __invoke()
     {
-        return $this->createResponse('TODO: last news.');
+        $slug = $this->getRouteVar('slug');
+        $newsItem = $this->api->news()->getBySlug($slug);
+
+        return $this->createViewResponse(
+            'item/view',
+            [
+                'newsItem' => $newsItem
+            ]
+        );
     }
 }
  

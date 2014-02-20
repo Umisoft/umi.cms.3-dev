@@ -7,18 +7,19 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\structure\site\controller;
+namespace umicms\project\module\news\site\controller;
 
 use umicms\controller\BaseController;
 use umicms\exception\RuntimeException;
 use umicms\project\module\structure\api\StructureApi;
-use umicms\project\module\structure\model\StaticPage;
+use umicms\project\module\structure\model\SystemPage;
 
 /**
- * Контроллер для вывода простой страницы.
+ * Контроллер отображения системной страницы модуля "Новости".
  */
-class StaticPageController extends BaseController
+class IndexController extends BaseController
 {
+
     /**
      * @var StructureApi $structureApi
      */
@@ -35,17 +36,18 @@ class StaticPageController extends BaseController
     {
         $currentElement = $this->structureApi->getCurrentElement();
 
-        if (!$currentElement instanceof StaticPage) {
+        if (!$currentElement instanceof SystemPage) {
             throw new RuntimeException($this->translate(
-                'Current structure element is not static page.'
+                'Current structure element is not system module page.'
             ));
         }
 
         return $this->createViewResponse(
-            'page',
+            'system/view',
             [
                 'page' => $currentElement
             ]
         );
     }
 }
+ 

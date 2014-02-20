@@ -18,6 +18,6 @@ use umi\i18n\TLocalizable;
  */
 abstract class BaseWidget extends FrameworkBaseWidget implements ILocalizable
 {
-    use TLocalizable
+    use TLocalizable;
 }
  

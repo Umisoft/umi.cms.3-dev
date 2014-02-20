@@ -14,6 +14,7 @@ use umicms\api\BaseComplexApi;
 use umicms\api\IPublicApi;
 use umicms\project\module\news\object\NewsItem;
 use umicms\project\module\news\object\NewsRubric;
+use umicms\project\module\news\object\NewsSubject;
 
 /**
  * Публичное API модуля "Новости"
@@ -48,12 +49,12 @@ class NewsPublicApi extends BaseComplexApi implements IPublicApi
     }
 
     /**
-     * Возвращает селектор для выборки последних новостей указанных рубрик.
+     * Возвращает селектор для выборки новостей указанных рубрик.
      * @param array $rubricGuids список GUID рубрик новостей
      * @param int $limit максимальное количество новостей
      * @return ISelector
      */
-    public function getLastNews($rubricGuids = [], $limit = null)
+    public function getRubricNews($rubricGuids = [], $limit = null)
     {
         $news = $this->news()->select()
             ->orderBy(NewsItem::FIELD_DATE, ISelector::ORDER_DESC);
@@ -61,6 +62,29 @@ class NewsPublicApi extends BaseComplexApi implements IPublicApi
         if (count($rubricGuids)) {
             $news->where(NewsItem::FIELD_RUBRIC . ISelector::FIELD_SEPARATOR . NewsRubric::FIELD_GUID)
                 ->in($rubricGuids);
+        }
+
+        if ($limit) {
+            $news->limit($limit);
+        }
+
+        return $news;
+    }
+
+    /**
+     * Возвращает селектор для выборки новостей указанных сюжетов.
+     * @param array $subjectGuids список GUID сюжетов новостей
+     * @param int $limit максимальное количество новостей
+     * @return ISelector
+     */
+    public function getSubjectNews($subjectGuids = [], $limit = null)
+    {
+        $news = $this->news()->select()
+            ->orderBy(NewsItem::FIELD_DATE, ISelector::ORDER_DESC);
+
+        if (count($subjectGuids)) {
+            $news->where(NewsItem::FIELD_SUBJECTS . ISelector::FIELD_SEPARATOR . NewsSubject::FIELD_GUID)
+                ->in($subjectGuids);
         }
 
         if ($limit) {
@@ -90,27 +114,19 @@ class NewsPublicApi extends BaseComplexApi implements IPublicApi
     }
 
     /**
-     * Возвращает селектор для выбора новостей рубрики.
-     * @param string $rubricGuid GUID рубрики
+     * Возвращает селектор для выборки новостных сюжетов.
+     * @param int $limit максимальное количество сюжетов
      * @return ISelector
      */
-    public function getRubricNews($rubricGuid)
+    public function getSubjects($limit = null)
     {
-        $rubric = $this->rubric()->get($rubricGuid);
+        $rubrics = $this->subject()->select();
 
-        return $this->news()->getNewsByRubric($rubric);
-    }
+        if ($limit) {
+            $rubrics->limit($limit);
+        }
 
-    /**
-     * Возвращает селектор для выбора новостей сюжета.
-     * @param string $subjectGuid GUID сюжета
-     * @return ISelector
-     */
-    public function getSubjectNews($subjectGuid)
-    {
-        $subject = $this->subject()->get($subjectGuid);
-
-        return $this->news()->getNewsBySubject($subject);
+        return $rubrics;
     }
 
 }

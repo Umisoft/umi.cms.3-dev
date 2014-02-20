@@ -18,6 +18,10 @@ use umi\http\Response;
 use umi\route\IRouteFactory;
 use umi\route\result\IRouteResult;
 use umi\spl\config\TConfigSupport;
+use umi\templating\engine\ITemplateEngineFactory;
+use umi\templating\engine\php\PhpTemplateEngine;
+use umi\templating\engine\php\TemplatingPhpExtension;
+use umi\templating\engine\php\ViewPhpExtension;
 use umi\toolkit\IToolkit;
 use umi\toolkit\Toolkit;
 use umicms\project\config\IProjectConfigAware;
@@ -103,6 +107,7 @@ class Bootstrap implements IProjectConfigAware
          * @var IDispatcher $dispatcher
          */
         $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+        $this->initTemplateEngines($dispatcher);
         $dispatcher->dispatchRequest($project, $request, $routePath, $baseUrl);
     }
 
@@ -265,6 +270,30 @@ class Bootstrap implements IProjectConfigAware
         }
 
         return $toolkit;
+    }
+
+    /**
+     * Задает инициализаторы для добавления расширений в шаблонизаторы
+     * @param IDispatcher $dispatcher
+     */
+    protected function initTemplateEngines(IDispatcher $dispatcher)
+    {
+        /**
+         * @var ITemplateEngineFactory $templateEngineFactory
+         */
+        $templateEngineFactory = $this->toolkit->getService('umi\templating\engine\ITemplateEngineFactory');
+        $templateEngineFactory->setInitializer(
+            ITemplateEngineFactory::PHP_ENGINE,
+            function (PhpTemplateEngine $templateEngine) use ($dispatcher) {
+
+                $viewExtension = new ViewPhpExtension($dispatcher);
+                $templateExtension = new TemplatingPhpExtension();
+
+                $templateEngine
+                    ->addExtension($viewExtension)
+                    ->addExtension($templateExtension);
+            }
+        );
     }
 
     /**

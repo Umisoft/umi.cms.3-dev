@@ -14,7 +14,6 @@ use umi\orm\object\HierarchicObject;
 /**
  * Класс иерархического объекта UMI.CMS.
  *
- * @property string $uri URI элемента
  * @property string $slug последняя часть ЧПУ
  * @property int $level уровень вложенности в иерархии
  * @property int $order порядок следования в иерархии

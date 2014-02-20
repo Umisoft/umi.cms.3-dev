@@ -1,20 +1,19 @@
 <?php
 /**
- * @var umicms\project\module\news\object\NewsRubric $rubric
+ * @var umicms\project\module\news\object\NewsSubject $subject
  * @var umi\orm\selector\ISelector $news
  * @var umicms\project\module\news\object\NewsItem $newsItem
  */
 ?>
-<h1><?= $rubric->h1 ?></h1>
-<?= $rubric->content ?>
+<h1><?= $subject->h1 ?></h1>
+<?= $subject->content ?>
 
 <?php if ($news->getTotal()) :?>
 
-    <ul class="unstyled">
+    <ul>
         <?php foreach ($news as $newsItem) : ?>
             <li>
-                <h3><?= $newsItem->h1 ?></h3>
-                <?= $newsItem->announcement ?>
+                <?= $this->widget('viewNewsItem', ['guid' => $newsItem->guid, 'template' => 'item/shortView']); ?>
             </li>
         <?php endforeach;?>
     </ul>

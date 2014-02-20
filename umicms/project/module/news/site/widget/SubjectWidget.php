@@ -13,16 +13,16 @@ use umicms\project\module\news\api\NewsPublicApi;
 use umicms\widget\BaseWidget;
 
 /**
- * Виджет вывода новости
+ * Виджет вывода сюжета новостей
  */
-class NewsItemWidget extends BaseWidget
+class SubjectWidget extends BaseWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'item/view';
+    public $template = 'subject/view';
     /**
-     * @var string $guid GUID новости
+     * @var string $guid GUID сюжета
      */
     public $guid;
 
@@ -48,7 +48,7 @@ class NewsItemWidget extends BaseWidget
         return $this->createResult(
             $this->template,
             [
-                'newsItem' => $this->api->news()->get($this->guid)
+                'subject' => $this->api->subject()->get($this->guid)
             ]
         );
     }

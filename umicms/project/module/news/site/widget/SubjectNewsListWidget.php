@@ -13,18 +13,24 @@ use umicms\project\module\news\api\NewsPublicApi;
 use umicms\widget\BaseWidget;
 
 /**
- * Виджет вывода новости
+ * Виджет для вывода списка новостей по сюжетам
  */
-class NewsItemWidget extends BaseWidget
+class SubjectNewsListWidget extends BaseWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'item/view';
+    public $template = 'item/list';
     /**
-     * @var string $guid GUID новости
+     * @var int $limit максимальное количество выводимых новостей.
+     * Если не указано, выводятся все новости.
      */
-    public $guid;
+    public $limit;
+    /**
+     * @var array $rubricGuids список GUID новостных сюжетов, из которых выводятся новости.
+     * Если не указаны, то выводятся новости всех сюжетов
+     */
+    public $subjectGuids = [];
 
     /**
      * @var NewsPublicApi $api API модуля "Новости"
@@ -48,7 +54,7 @@ class NewsItemWidget extends BaseWidget
         return $this->createResult(
             $this->template,
             [
-                'newsItem' => $this->api->news()->get($this->guid)
+                'news' => $this->api->getSubjectNews($this->subjectGuids, $this->limit)
             ]
         );
     }

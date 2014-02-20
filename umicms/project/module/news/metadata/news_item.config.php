@@ -82,8 +82,8 @@ return [
 
     ],
     'types'      => [
-        'objectClass' => 'umicms\project\module\news\object\NewsItem',
         'base'        => [
+            'objectClass' => 'umicms\project\module\news\object\NewsItem',
             'fields' => [
                 NewsItem::FIELD_IDENTIFY,
                 NewsItem::FIELD_GUID,

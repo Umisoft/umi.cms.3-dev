@@ -61,7 +61,7 @@ class ErrorController extends BaseController
         }
 
         return $this->createViewResponse(
-            'error/runtime',
+            'error/controller',
             [
                 'e' => $this->exception,
                 'stack' => $stack
