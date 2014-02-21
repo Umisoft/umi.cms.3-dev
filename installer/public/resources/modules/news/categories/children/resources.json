@@ -1,0 +1,49 @@
+{
+	"templateType": "tableTemplate",
+	"objects": {
+		"category": [
+			{
+				"id":"lj234-34l5jl-dfigj-dlkljl-dkgdr",
+				"title":"IT",
+				"parent": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
+				"publishDate": "10.01.2014",
+				"viewCounter": 13
+			},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg33d1", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg33d2", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg33d3", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg33d4", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg33d5", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg33d6", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg33d7", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg33d8", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg33d9", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3310", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3311", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3312", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3313", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3314", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3315", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3316", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3317", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3318", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3319", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3320", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3321", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3322", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3323", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3324", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3325", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3326", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3327", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23},
+			{"id":"lj234-34l5jl-dfigj-dlkljl-dkg3328", "title":"Биатлон", "parent":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "publishDate":"01.01.2014", "viewCounter":23}
+		]
+	},
+	"meta": {
+		"columns": [
+			{"title": "Имя категории", "width": 200, "type": "string", "name": "title"},
+			{"title": "Дата публикации", "width": 140, "type": "date", "name": "publishDate"},
+			{"title": "Количество просмотров", "width": 80, "type": "number", "name": "viewCounter"}
+		]
+	}
+}

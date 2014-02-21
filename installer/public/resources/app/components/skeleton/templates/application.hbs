@@ -1,0 +1,43 @@
+<div class="s-full-height-before umi-header">
+	{{render "topBar"}}
+	{{#view "toggleVersion"}}
+		<div class="version-list">
+			<a {{bind-attr class=":button :tiny view.version.v1::secondary"}} {{action "toggleVersion" "v1" target="view"}}>1</a>
+			<a {{bind-attr class=":button :tiny view.version.v2::secondary"}} {{action "toggleVersion" "v2" target="view"}}>2</a>
+		</div>
+		{{#if view.version.v1}}
+			{{render "dock"}}
+		{{/if}}
+		{{#if view.version.v2}}
+			{{#view "dockZoom"}}
+				<div class="dock-wrapper">
+					<ul class="dock navigation"  data-dock>
+						<li><a href="/admin/data-models/"><img src="/resource/admin/deploy/img/dock-icons/48-1.png" /><span>Модели данных</span></a></li>
+						<li><a href="/admin/structure/"><img src="/resource/admin/deploy/img/dock-icons/48-3.png" /><span>Структура</span></a></li>
+						<li><a href="#"><img src="/resource/admin/deploy/img/dock-icons/48-4.png" /><span>Обратная связь</span></a></li>
+						<li><a href="#"><img src="/resource/admin/deploy/img/dock-icons/48-2.png" /><span>Справочники</span></a></li>
+						<li><a href="#"><img src="/resource/admin/deploy/img/dock-icons/48-6.png" /><span>Блоги</span></a></li>
+						<li><a href="#"><img src="/resource/admin/deploy/img/dock-icons/48-8.png" /><span>Корзина</span></a></li>
+						<li><a href="#"><img src="/resource/admin/deploy/img/dock-icons/48-7.png" /><span>Обмен данными</span></a></li>
+						<li><a href="#"><img src="/resource/admin/deploy/img/dock-icons/48-10.png" /><span>Файлы</span></a></li>
+						<li><a href="#"><img src="/resource/admin/deploy/img/dock-icons/48-11.png" /><span>Настройки</span></a></li>
+						<li><a href="/admin/users/"><img src="/resource/admin/deploy/img/dock-icons/48-5.png" /><span>Пользователи</span></a></li>
+						<li class="favorites"><a href="#" data-dropdown="dropdown-favorites"><img src="/resource/admin/deploy/img/dock-icons/48-9-shine.png" /><span>Избранное</span></a>
+							<ul id="dropdown-favorites" class="f-dropdown content" data-dropdown-content>
+								<li class="placeholder"><span>Вы ещё ничего не добавили в закладки</span></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			{{/view}}
+			<div class="pretty-dock-components">
+				<nav>
+					<a href="#" class="active">Товары</a>
+					<a href="#" class="">Заказы</a>
+					<a href="#">Настройки</a>
+				</nav>
+			</div>
+		{{/if}}
+	{{/view}}
+</div>
+{{outlet}}

@@ -1,0 +1,112 @@
+// 
+// FOUNDATION SETTINGS
+//
+
+
+// Global
+$experimental: true;
+$rem-base: 16px;
+$base-font-size: 100%;
+$primary-color: #259cec;
+$secondary-color: #F5F5F5;
+$alert-color: #b94a48;
+//На макетах везде шрифт Segoe UI,
+//но на кнопках в браузере он выглядит отвратно,
+// поэтому им дан Open Sans
+$body-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+//$header-font-family: join("Open Sans", $body-font-family);
+$button-font-family: Arial;
+
+
+// Grid
+$row-width: 100%;
+
+// Button
+$button-tny: rem-calc(6);  // 24px
+$button-sml: rem-calc(7);  // нет на макете
+$button-med: rem-calc(8); // 32px
+$button-lrg: rem-calc(10); // 37px
+$button-font-tny: rem-calc(9);
+$button-font-sml: rem-calc(11);
+$button-font-med: rem-calc(13);
+$button-font-lrg: rem-calc(13);
+
+$button-font-weight: bold;
+
+// Off Canvas Menu Variables
+$off-canvas-bg: #D6E0E9;
+
+// Off Canvas Menu Icon Variables
+$tabbar-menu-icon-color: #333333;
+
+// Off Canvas Back-Link Overlay
+$off-canvas-overlay-box-shadow: none;
+// Transition Variables
+$menu-slide: none;
+
+//
+// TOP BAR
+//
+$topbar-bg: linear-gradient(top, #3E4756 0%, #1C1F26 100%);
+// Height and margin
+$topbar-height: 24px;
+
+//
+// Forms
+//
+$form-spacing: rem-calc(16);
+$input-border-color: #d3d7da;
+
+$form-label-font-color: #787b84;
+
+$fieldset-border-style: dashed;
+$fieldset-border-width: 2px;
+$fieldset-border-color: #c2c7cd;
+
+$legend-bg: none;
+$legend-font-weight: bold;
+$legend-padding: rem-calc(0 3);
+
+$input-error-message-padding: rem-calc(6 9 9) !default;
+$input-error-message-top: -1px;
+$input-error-message-font-size: rem-calc(12) !default;
+$input-error-message-font-weight: bold !default;
+$input-error-message-font-style: normal !default;
+$input-error-message-font-color: #fff !default;
+$input-error-message-font-color-alt: #333 !default;
+
+//
+// Reveal
+//
+
+$reveal-overlay-bg: rgba(#4a4a4a, .45);
+
+//
+// Tables
+//
+
+// These control the background color for the table and even rows
+$table-bg: #f6f7f8;
+$table-even-row-bg: #E8F0F6;
+
+// These control the table cell border style
+//$table-border-style: solid;
+$table-border-size: 0;
+//$table-border-color: #E2E3E4;
+
+// These control the table head styles
+$table-head-bg: #ffffff;
+$table-head-font-size: rem-calc(13);
+$table-head-font-color: #575E6C;
+$table-head-font-weight: bold;
+//$table-head-padding: rem-calc(10);
+
+// These control the row padding and font styles
+$table-row-padding: rem-calc(8 10);
+$table-row-font-size: rem-calc(13);
+//$table-row-font-color: #222;
+//$table-line-height: rem-calc(18);
+
+// These are for controlling the display and margin of tables
+//$table-display: table-cell;
+//$table-margin-bottom: rem-calc(20);
