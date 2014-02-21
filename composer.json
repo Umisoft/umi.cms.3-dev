@@ -8,7 +8,8 @@
     "autoload": {
         "psr-4": {
             "umicms\\": "umicms/library",
-            "umicms\\project\\" : "umicms/project"
+            "umicms\\project\\" : "umicms/project",
+            "demohunt\\" : "demohunt"
         }
     },
     "replace": {

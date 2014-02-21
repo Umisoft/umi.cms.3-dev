@@ -2,6 +2,8 @@
 namespace demohunt;
 
 use umi\dbal\toolbox\DbalTools;
+use umi\hmvc\component\IComponent;
+use umi\route\IRouteFactory;
 use umicms\Bootstrap;
 
 return [
@@ -24,5 +26,21 @@ return [
                 ]
             ]
         ]
+    ],
+
+    IComponent::OPTION_CONTROLLERS => [
+        'install' =>   'demohunt\controller\InstallController'
+    ],
+
+    IComponent::OPTION_ROUTES => [
+        'install' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'priority' => 0,
+            'route' => '/install',
+            'defaults' => [
+                'controller' => 'install'
+            ]
+        ]
     ]
+
 ];
