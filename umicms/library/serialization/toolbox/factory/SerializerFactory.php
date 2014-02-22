@@ -28,10 +28,34 @@ class SerializerFactory implements IFactory, ISerializerFactory
      */
     public $types = [
         self::TYPE_XML => [
-            'object' => 'umicms\serialization\xml\ObjectXmlSerializer'
+            //'umi\hmvc\view\View' => 'umicms\serialization\xml\hmvc\ViewXmlSerializer',
+            'Exception' => 'umicms\serialization\xml\ExceptionSerializer',
+            'object' => 'umicms\serialization\xml\ObjectSerializer',
+            'array' => 'umicms\serialization\xml\ArraySerializer',
+            // scalar types
+            'boolean' => 'umicms\serialization\xml\ScalarSerializer',
+            'integer' => 'umicms\serialization\xml\ScalarSerializer',
+            'double' => 'umicms\serialization\xml\ScalarSerializer',
+            'string' => 'umicms\serialization\xml\ScalarSerializer',
+            // null
+            'NULL' => 'umicms\serialization\xml\NullSerializer',
+            // cms objects
+            'umicms\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
+            'umicms\object\CmsElement' => 'umicms\serialization\xml\object\CmsElementSerializer',
+            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\object\FieldSerializer'
+
         ],
         self::TYPE_JSON => [
-
+            'Exception' => 'umicms\serialization\json\ExceptionSerializer',
+            'object' => 'umicms\serialization\json\ObjectSerializer',
+            'array' => 'umicms\serialization\json\ArraySerializer',
+            // scalar types
+            'boolean' => 'umicms\serialization\json\ScalarSerializer',
+            'integer' => 'umicms\serialization\json\ScalarSerializer',
+            'double' => 'umicms\serialization\json\ScalarSerializer',
+            'string' => 'umicms\serialization\json\ScalarSerializer',
+            // null
+            'NULL' => 'umicms\serialization\xml\NullSerializer',
         ]
     ];
 
@@ -45,7 +69,7 @@ class SerializerFactory implements IFactory, ISerializerFactory
         return $this
             ->getPrototype(
                 $serializerClass,
-                [],
+                ['umicms\serialization\ISerializer'],
                 function (IPrototype $prototype) {
                     /** @noinspection PhpParamsInspection */
                     if (!is_callable($prototype->getPrototypeInstance())) {
@@ -101,7 +125,7 @@ class SerializerFactory implements IFactory, ISerializerFactory
 
         throw new OutOfBoundsException($this->translate(
             'Serializer for type "{type}" and object type "{objectType}" is not registered.',
-            ['type' => $type, 'class' => $objectType]
+            ['type' => $type, 'objectType' => $objectType]
         ));
     }
 

@@ -30,15 +30,14 @@ trait TSerializationAware
     }
 
     /**
-     * Сериализует объект в строку.
+     * Возвращает сериализатор объекта в строку.
      * @param string $type тип сериализации
      * @param mixed $object
-     * @return string
+     * @return ISerializer|callable
      */
-    protected function serializeObject($type, $object)
+    protected function getSerializer($type, $object)
     {
-        $serializer = $this->getSerializerFactory()->getSerializer($type, $object);
-        return $serializer($object);
+        return $this->getSerializerFactory()->getSerializer($type, $object);
     }
 
     /**

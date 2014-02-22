@@ -33,7 +33,7 @@ interface ISerializerFactory
      * @param mixed $object
      * @throws OutOfBoundsException если сериализатор для указанного типа и объекта не зарегистрирован
      * @throws UnexpectedValueException если сериализатор не callable
-     * @return callable
+     * @return ISerializer|callable
      */
     public function getSerializer($type, $object);
 }

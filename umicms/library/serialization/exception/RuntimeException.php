@@ -6,17 +6,12 @@
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
-namespace umicms\serialization\xml;
 
-use umicms\serialization\ISerializationAware;
-use umicms\serialization\TSerializationAware;
+namespace umicms\serialization\exception;
 
 /**
- * Базовый сериализатор объектов в XML
+ * Исключения, связанные с ошибками, которые можно выявить только во время исполнения
  */
-abstract class BaseXmlSerializer implements ISerializationAware
+class RuntimeException extends \RuntimeException implements IException
 {
-    use TSerializationAware;
-
-
 }
