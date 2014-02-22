@@ -3,7 +3,9 @@
  * @var umicms\project\module\news\object\NewsSubject $subject
  */
 ?>
-<h1><?= $subject->h1 ?></h1>
-<?= $subject->content ?>
-
+<h2>
+    <a href="<?= $this->url('subject', ['slug' => $subject->slug]); ?>">
+        <?= $subject->h1 ?>
+    </a>
+</h2>
 <?= $this->widget('subjectNewsList', ['subjectGuids' => [$subject->guid], 'template' => 'item/list']); ?>

@@ -1,0 +1,57 @@
+<?php /** @var \Exception $e */ ?>
+<div>
+    <h1>An error occurred</h1>
+
+    <h2><?= $e->getMessage(); ?></h2>
+
+    <hr/>
+    <h2>Additional information:</h2>
+
+    <h3><?= get_class($e); ?></h3>
+    <dl>
+        <dt>File:</dt>
+        <dd>
+            <pre><?= $e->getFile() ?>:<?= $e->getLine() ?></pre>
+        </dd>
+        <dt>Message:</dt>
+        <dd>
+            <pre><?= $e->getMessage() ?></pre>
+        </dd>
+        <dt>Stack trace:</dt>
+        <dd>
+            <pre><?= $e->getTraceAsString() ?></pre>
+        </dd>
+    </dl>
+    <?php
+    $e = $e->getPrevious();
+
+    if ($e) :
+        ?>
+        <hr/>
+        <h2>Previous exceptions:</h2>
+        <ul>
+            <?php while ($e) : ?>
+                <li>
+                    <h3><?= get_class($e); ?></h3>
+                    <dl>
+                        <dt>File:</dt>
+                        <dd>
+                            <pre><?= $e->getFile() ?>:<?= $e->getLine() ?></pre>
+                        </dd>
+                        <dt>Message:</dt>
+                        <dd>
+                            <pre><?= $e->getMessage(); ?></pre>
+                        </dd>
+                        <dt>Stack trace:</dt>
+                        <dd>
+                            <pre><?= $e->getTraceAsString() ?></pre>
+                        </dd>
+                    </dl>
+                </li>
+                <?php
+                $e = $e->getPrevious();
+            endwhile;
+            ?>
+        </ul>
+    <?php endif; ?>
+</div>
