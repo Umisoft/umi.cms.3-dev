@@ -6,18 +6,18 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\site\controller;
+namespace umicms\project\admin\controller;
 
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpForbidden;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
-use umicms\controller\BaseController;
+use umicms\controller\BaseAdminController;
 
 /**
- * Контроллер ошибок для сайта.
+ * Контроллер ошибок для административной зоны.
  */
-class ErrorController extends BaseController
+class ErrorController extends BaseAdminController
 {
 
     /**

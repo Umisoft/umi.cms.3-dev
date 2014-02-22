@@ -5,6 +5,20 @@
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
+
 namespace umicms\project\admin;
 
-return [];
+return [
+
+    AdminApplication::OPTION_CONTROLLERS => [
+        AdminApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
+        AdminApplication::LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
+    ],
+
+    AdminApplication::OPTION_VIEW        => [
+        'type'      => 'php',
+        'extension' => 'phtml',
+        'directory' => __DIR__ . '/template/php'
+    ]
+
+];
