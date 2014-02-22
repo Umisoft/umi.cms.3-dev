@@ -1,55 +1,55 @@
-<?php /** @var \Exception $e */ ?>
+<?php /** @var \Exception $error */ ?>
 <div>
     <h1>An error occurred</h1>
 
-    <h2><?= $e->getMessage(); ?></h2>
+    <h2><?= $error->getMessage(); ?></h2>
 
     <hr/>
     <h2>Additional information:</h2>
 
-    <h3><?= get_class($e); ?></h3>
+    <h3><?= get_class($error); ?></h3>
     <dl>
         <dt>File:</dt>
         <dd>
-            <pre><?= $e->getFile() ?>:<?= $e->getLine() ?></pre>
+            <pre><?= $error->getFile() ?>:<?= $error->getLine() ?></pre>
         </dd>
         <dt>Message:</dt>
         <dd>
-            <pre><?= $e->getMessage() ?></pre>
+            <pre><?= $error->getMessage() ?></pre>
         </dd>
         <dt>Stack trace:</dt>
         <dd>
-            <pre><?= $e->getTraceAsString() ?></pre>
+            <pre><?= $error->getTraceAsString() ?></pre>
         </dd>
     </dl>
     <?php
-    $e = $e->getPrevious();
+    $error = $error->getPrevious();
 
-    if ($e) :
+    if ($error) :
         ?>
         <hr/>
         <h2>Previous exceptions:</h2>
         <ul>
-            <?php while ($e) : ?>
+            <?php while ($error) : ?>
                 <li>
-                    <h3><?= get_class($e); ?></h3>
+                    <h3><?= get_class($error); ?></h3>
                     <dl>
                         <dt>File:</dt>
                         <dd>
-                            <pre><?= $e->getFile() ?>:<?= $e->getLine() ?></pre>
+                            <pre><?= $error->getFile() ?>:<?= $error->getLine() ?></pre>
                         </dd>
                         <dt>Message:</dt>
                         <dd>
-                            <pre><?= $e->getMessage(); ?></pre>
+                            <pre><?= $error->getMessage(); ?></pre>
                         </dd>
                         <dt>Stack trace:</dt>
                         <dd>
-                            <pre><?= $e->getTraceAsString() ?></pre>
+                            <pre><?= $error->getTraceAsString() ?></pre>
                         </dd>
                     </dl>
                 </li>
                 <?php
-                $e = $e->getPrevious();
+                $error = $error->getPrevious();
             endwhile;
             ?>
         </ul>

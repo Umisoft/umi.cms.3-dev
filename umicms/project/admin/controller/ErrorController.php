@@ -13,9 +13,10 @@ use umi\hmvc\exception\http\HttpForbidden;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
 use umicms\controller\BaseAdminController;
+use umicms\exception\NonexistentEntityException;
 
 /**
- * Контроллер ошибок для административной зоны.
+ * Контроллер ошибок для сайта.
  */
 class ErrorController extends BaseAdminController
 {
@@ -40,12 +41,15 @@ class ErrorController extends BaseAdminController
     public function __invoke()
     {
 
-        if ($this->exception instanceof HttpNotFound) {
-             return $this->error404();
-        }
+        switch (true) {
+            // 404
+            case $this->exception instanceof HttpNotFound:
+            case $this->exception instanceof NonexistentEntityException:
+                return $this->error404();
+            // 403
+            case $this->exception instanceof HttpForbidden:
+                return $this->error403();
 
-        if ($this->exception instanceof HttpForbidden) {
-            return $this->error403();
         }
 
         $code = HttpException::HTTP_INTERNAL_SERVER_ERROR;
@@ -63,7 +67,7 @@ class ErrorController extends BaseAdminController
         return $this->createViewResponse(
             'error/controller',
             [
-                'e' => $this->exception,
+                'error' => $this->exception,
                 'stack' => $stack
             ]
         )
@@ -79,10 +83,10 @@ class ErrorController extends BaseAdminController
         return $this->createViewResponse(
             'error/404',
             [
-                'e' => $this->exception
+                'error' => $this->exception
             ]
         );
-            //->setStatusCode($this->exception->getCode()); //TODO вернуть
+        //  ->setStatusCode(Response::HTTP_NOT_FOUND); TODO: enable!
     }
 
     /**
@@ -94,9 +98,9 @@ class ErrorController extends BaseAdminController
         return $this->createViewResponse(
             'error/403',
             [
-                'e' => $this->exception
+                'error' => $this->exception
             ]
         )
-            ->setStatusCode($this->exception->getCode());
+            ->setStatusCode(Response::HTTP_FORBIDDEN);
     }
 }

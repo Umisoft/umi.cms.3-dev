@@ -67,7 +67,7 @@ class ErrorController extends BaseController
         return $this->createViewResponse(
             'error/controller',
             [
-                'e' => $this->exception,
+                'error' => $this->exception,
                 'stack' => $stack
             ]
         )
@@ -83,10 +83,10 @@ class ErrorController extends BaseController
         return $this->createViewResponse(
             'error/404',
             [
-                'e' => $this->exception
+                'error' => $this->exception
             ]
         );
-          //  ->setStatusCode(Response::HTTP_NOT_FOUND);
+          //  ->setStatusCode(Response::HTTP_NOT_FOUND); TODO: enable!
     }
 
     /**
@@ -98,7 +98,7 @@ class ErrorController extends BaseController
         return $this->createViewResponse(
             'error/403',
             [
-                'e' => $this->exception
+                'error' => $this->exception
             ]
         )
             ->setStatusCode(Response::HTTP_FORBIDDEN);
