@@ -68,7 +68,7 @@
 				"id": 1,
 				"modes": {
 					"lj234-34l5jl-dfigj-dlkljl-dkgkl": {"slug":["properties", "child-categories"], "titles":["Свойства","Дочерние рубрики"], "resources": ["/resources/modules/news/categories/properties/resources.json", "/resources/modules/news/categories/children/resources.json"], "contentType": ["category", "category"], "current": 0},
-					"lj234-34l5jl-dfigj-dlkljl-dkgdf": {"slug":["properties", "child-categories"], "titles":["Свойства","Дочерние рубрики"], "resources": ["news/category/properties", "news/category/child-categories"], "contentType": ["category", "category"], "current": 0}
+					"lj234-34l5jl-dfigj-dlkljl-dkgdf": {"slug":["properties", "child-categories"], "titles":["Свойства","Дочерние рубрики"], "resources": ["/news/category/properties", "/news/category/child-categories"], "contentType": ["category", "category"], "current": 0}
 				}
 			}
 		]
