@@ -14,15 +14,16 @@ use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
 
 /**
- * Базовый контроллер действий над объектом.
+ * Базовый контроллер Read-Update-Delete операций над объектом.
  */
 abstract class BaseRestItemController extends BaseController
 {
     /**
      * Возвращает объект.
+     * @param string $guid GUID объекта
      * @return mixed
      */
-    abstract protected function get();
+    abstract protected function get($guid);
 
     /**
      * Обновляет и возвращает объект.
@@ -43,8 +44,9 @@ abstract class BaseRestItemController extends BaseController
     {
         switch($this->getRequest()->getMethod()) {
             case 'GET': {
+                $guid = $this->getRouteVar('guid');
                 return $this->createViewResponse(
-                    'item', ['item' => $this->get()]
+                    'item', ['item' => $this->get($guid)]
                 );
             }
             case 'PUT': {

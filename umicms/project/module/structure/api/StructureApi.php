@@ -9,8 +9,10 @@
 
 namespace umicms\project\module\structure\api;
 
+use umi\orm\exception\IException;
 use umicms\api\BaseHierarchicCollectionApi;
 use umicms\api\IPublicApi;
+use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
 use umicms\project\module\structure\model\StructureElement;
 
@@ -63,11 +65,23 @@ class StructureApi extends BaseHierarchicCollectionApi implements IPublicApi
     /**
      * Возвращает элемент по GUID.
      * @param string $guid
+     * @throws NonexistentEntityException если не удалось получить элемент
      * @return StructureElement
      */
     public function getElement($guid)
     {
-        return $this->getCollection()->get($guid);
+        try {
+            return $this->getCollection()->get($guid);
+        } catch(IException $e) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find element by guid "{guid}".',
+                    ['guid' => $guid]
+                ),
+                0,
+                $e
+            );
+        }
     }
 
 }

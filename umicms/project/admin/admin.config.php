@@ -27,6 +27,7 @@ return [
 
     AdminApplication::OPTION_COMPONENTS => [
         'structure' => '{#lazy:~/project/module/structure/admin/module.config.php}',
+        'users' => '{#lazy:~/project/module/users/admin/module.config.php}',
         'news' => '{#lazy:~/project/module/news/admin/module.config.php}',
         'blog' => '{#lazy:~/project/module/blog/admin/module.config.php}'
     ],

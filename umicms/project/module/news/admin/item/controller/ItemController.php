@@ -9,20 +9,51 @@
 
 namespace umicms\project\module\news\admin\item\controller;
 
-use umicms\base\controller\BaseController;
+use umicms\base\controller\BaseRestItemController;
+use umicms\project\module\news\api\NewsPublicApi;
 
 /**
- * Контроллер действий над объектом.
+ * Контроллер Read-Update-Delete операций над объектом.
  */
-class ItemController extends BaseController
+class ItemController extends BaseRestItemController
 {
+
+    /**
+     * @var NewsPublicApi $api
+     */
+    protected $api;
+
+    /**
+     * Конструктор.
+     * @param NewsPublicApi $api
+     */
+    public function __construct(NewsPublicApi $api)
+    {
+        $this->api = $api;
+    }
 
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function get($guid)
     {
-        return $this->createResponse('TODO: настройки модуля');
+        return $this->api->news()->get($guid);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function update()
+    {
+        // TODO: Implement update() method.
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function delete()
+    {
+        // TODO: Implement delete() method.
     }
 }
  

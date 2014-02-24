@@ -6,7 +6,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\news\admin\item;
+namespace umicms\project\module\users\admin\user;
 
 use umi\hmvc\component\IComponent;
 use umi\route\IRouteFactory;
@@ -14,20 +14,12 @@ use umi\route\IRouteFactory;
 return [
 
     IComponent::OPTION_CONTROLLERS => [
-        'settings' => __NAMESPACE__ . '\controller\SettingsController',
         'list' => __NAMESPACE__ . '\controller\ListController',
         'item' => __NAMESPACE__ . '\controller\ItemController',
+        'action' => __NAMESPACE__ . '\controller\ActionController',
     ],
 
     IComponent::OPTION_ROUTES      => [
-
-        'settings' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route'    => '/settings',
-            'defaults' => [
-                'controller' => 'settings'
-            ]
-        ],
 
         'list' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
@@ -43,6 +35,23 @@ return [
             'defaults' => [
                 'controller' => 'item'
             ]
+        ],
+
+        'itemAction' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{guid:guid}/{action}',
+            'defaults' => [
+                'controller' => 'action'
+            ]
+        ],
+
+        'action' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{action}',
+            'defaults' => [
+                'controller' => 'action'
+            ]
         ]
+
     ]
 ];

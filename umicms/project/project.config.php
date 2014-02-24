@@ -8,6 +8,9 @@
 
 namespace umicms\project;
 
+use umi\authentication\adapter\ORMAdapter;
+use umi\authentication\IAuthenticationFactory;
+use umi\authentication\toolbox\AuthenticationTools;
 use umi\hmvc\component\IComponent;
 use umi\orm\collection\ICollectionFactory;
 use umi\orm\toolbox\OrmTools;
@@ -20,11 +23,31 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/i18n/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/dbal/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/orm/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/authentication/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/api/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php')
     ],
 
     Bootstrap::OPTION_TOOLS_SETTINGS => [
+
+        AuthenticationTools::NAME => [
+            'factories' => [
+                'authentication' => [
+                    'defaultAdapter' => [
+                        'type' => IAuthenticationFactory::ADAPTER_ORM,
+                        'options' => [
+                            ORMAdapter::OPTION_COLLECTION => 'user',
+                            ORMAdapter::OPTION_LOGIN_FIELDS => ['login', 'email'],
+                            ORMAdapter::OPTION_PASSWORD_FIELD => 'password'
+                        ]
+                    ],
+                    'defaultStorage' => [
+                        'type' => IAuthenticationFactory::STORAGE_ORM_SESSION
+                    ]
+                ]
+             ]
+        ],
+
         OrmTools::NAME => [
             'factories' => [
                 'object' => [
@@ -45,6 +68,8 @@ return [
                 'blog_comment' => '{#lazy:~/project/module/blog/metadata/comment.config.php}',
                 'blog_tag' => '{#lazy:~/project/module/blog/metadata/tag.config.php}',
                 'blog_post_tag' => '{#lazy:~/project/module/blog/metadata/post_tag.config.php}',
+
+                'user' => '{#lazy:~/project/module/users/metadata/user.config.php}',
             ],
 
             'collections' => [
@@ -60,6 +85,7 @@ return [
                 'blog_comment' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
                 'blog_tag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
                 'blog_post_tag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'user' => ['type' => ICollectionFactory::TYPE_SIMPLE],
             ]
         ]
     ],

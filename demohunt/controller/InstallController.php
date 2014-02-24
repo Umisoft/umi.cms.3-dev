@@ -22,6 +22,8 @@ use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\base\controller\BaseController;
 use umicms\project\module\structure\model\StaticPage;
+use umicms\project\module\users\api\UsersApi;
+use umicms\project\module\users\object\User;
 
 /**
  * Class InstallController
@@ -36,10 +38,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      * @var IDbCluster $dbCluster
      */
     protected $dbCluster;
+    /**
+     * @var UsersApi $usersApi
+     */
+    protected $usersApi;
 
-    public function __construct(IDbCluster $dbCluster)
+    public function __construct(IDbCluster $dbCluster, UsersApi $usersApi)
     {
         $this->dbCluster = $dbCluster;
+        $this->usersApi = $usersApi;
     }
 
     /**
@@ -50,6 +57,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     {
         $this->installDbStructure();
 
+        $this->installUsers();
         $this->installStaticPages();
         $this->installNews();
         $this->installGratitude();
@@ -58,6 +66,25 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->getObjectPersister()->commit();
 
         return $this->createResponse('Installed');
+    }
+
+    protected function installUsers()
+    {
+        /**
+         * @var SimpleCollection $userCollection
+         */
+        $userCollection = $this->getCollectionManager()->getCollection('user');
+
+        /**
+         * @var User $sv
+         */
+        $sv = $userCollection->add()
+            ->setValue('displayName', 'Супервайзер')
+            ->setValue('login', 'sv')
+            ->setValue('email', 'sv@umisoft.ru')
+            ->setGUID('68347a1d-c6ea-49c0-9ec3-b7406e42b01e');
+
+        $this->usersApi->setUserPassword($sv, '1');
     }
 
     protected function installBlog()
@@ -298,7 +325,41 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->installNewsTables();
         $this->installBlogTables();
 
+        $this->installUsersTables();
+
         $connection->exec($dialect->getEnableForeignKeysSQL());
+    }
+
+    protected function installUsersTables()
+    {
+        $connection = $this->dbCluster->getConnection();
+
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_user`");
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_user` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255) DEFAULT NULL,
+                    `type` varchar(255) DEFAULT NULL,
+                    `version` int(10) unsigned DEFAULT '1',
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+
+                    `login` varchar(255) DEFAULT NULL,
+                    `email` varchar(255) DEFAULT NULL,
+                    `password` varchar(255) DEFAULT NULL,
+                    `password_salt` varchar(255) DEFAULT NULL,
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `user_guid` (`guid`),
+                    KEY `user_type` (`type`),
+                    KEY `user_login` (`login`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
     }
 
     protected function installBlogTables()
