@@ -1,0 +1,58 @@
+{
+	"templateType": "formTemplate",
+	"objects": {
+		"category": [
+			{
+				"id": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
+				"title": "Спорт",
+				"content": "Это категория про спорт",
+				"publishDate": "12.12.2014",
+				"viewCounter": 456,
+				"hasChildren": true,
+				"children": ["lj234-34l5jl-dfigj-dlkljl-dkgdf", "lj234-34l5jl-dfigj-dlkljl-dkg33df"]
+			}
+		]
+	},
+	"meta": {
+		"fieldsets": [
+			{
+				"legend": "Основные поля",
+				"id": "f1",
+				"fields": [
+					{
+						"name": "title",
+						"type": "string",
+						"required": true,
+						"title": "Название категории",
+						"placeholder": "Введите название"
+					},
+					{
+						"name": "content",
+						"type": "text",
+						"required": true,
+						"title": "Описание категории",
+						"placeholder": "Введите описание категории"
+					}
+				]
+			},
+			{
+				"legend": "Второстепенные поля",
+				"id": "f2",
+				"fields": [
+					{
+						"name": "publishDate",
+						"type": "date",
+						"required": true,
+						"title": "Дата публикации"
+					},
+					{
+						"name": "viewCounter",
+						"type": "number",
+						"required": true,
+						"title": "Количество просмотров"
+					}
+				]
+			}
+		]
+	}
+}

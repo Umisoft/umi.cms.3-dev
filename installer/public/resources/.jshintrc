@@ -1,0 +1,28 @@
+{
+	"bitwise": true,
+	"camelcase": true,
+	"curly": true,
+	"eqeqeq": true,
+	"es3": true,
+	"forin": true,
+	"latedef": true,
+	"newcap": true,
+	"noarg": true,
+	"noempty": true,
+	"nonew": true,
+	"undef": true,
+	"unused": true,
+	"strict": true,
+	"browser": true,
+	"jquery": true,
+	"worker": true,
+
+	"predef":[
+		"define",
+		"Ember",
+		"DS",
+		"Handlebars",
+		"RSVP",
+		"require"
+	]
+}
