@@ -40,8 +40,8 @@ class SerializerFactory implements IFactory, ISerializerFactory
             // null
             'NULL' => 'umicms\serialization\xml\NullSerializer',
             // cms objects
-            'umicms\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
-            'umicms\object\CmsElement' => 'umicms\serialization\xml\object\CmsElementSerializer',
+            'umicms\base\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
+            'umicms\base\object\CmsElement' => 'umicms\serialization\xml\object\CmsElementSerializer',
             'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\object\FieldSerializer'
 
         ],

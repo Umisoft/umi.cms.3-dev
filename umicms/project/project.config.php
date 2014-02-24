@@ -28,8 +28,8 @@ return [
         OrmTools::NAME => [
             'factories' => [
                 'object' => [
-                    'defaultObjectClass' => 'umicms\object\CmsObject',
-                    'defaultHierarchicObjectClass' => 'umicms\object\CmsElement'
+                    'defaultObjectClass' => 'umicms\base\object\CmsObject',
+                    'defaultHierarchicObjectClass' => 'umicms\base\object\CmsElement'
                 ]
             ],
             'metadata'    => [

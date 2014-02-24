@@ -11,7 +11,7 @@ namespace umicms\project\module\news\object;
 
 use DateTime;
 use umi\orm\objectset\IManyToManyObjectSet;
-use umicms\object\CmsObject;
+use umicms\base\object\CmsObject;
 
 /**
  * Новость.

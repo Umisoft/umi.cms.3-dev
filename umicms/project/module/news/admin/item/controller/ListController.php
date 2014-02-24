@@ -7,22 +7,25 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\news\site\controller;
+namespace umicms\project\module\news\admin\item\controller;
 
-use umicms\base\controller\BaseController;
+use umicms\base\controller\BaseRestListController;
 use umicms\project\module\news\api\NewsPublicApi;
 
 /**
- * Контроллер отображения новости
+ * Контроллер действий над списком.
  */
-class NewsItemController extends BaseController
+class ListController extends BaseRestListController
 {
-
     /**
      * @var NewsPublicApi $api
      */
     protected $api;
 
+    /**
+     * Конструктор.
+     * @param NewsPublicApi $api
+     */
     public function __construct(NewsPublicApi $api)
     {
         $this->api = $api;
@@ -31,17 +34,17 @@ class NewsItemController extends BaseController
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getList()
     {
-        $slug = $this->getRouteVar('slug');
-        $newsItem = $this->api->news()->getBySlug($slug);
+        return  $this->api->news()->select(false);
+    }
 
-        return $this->createViewResponse(
-            'item/view',
-            [
-                'newsItem' => $newsItem
-            ]
-        );
+    /**
+     * {@inheritdoc}
+     */
+    protected function create()
+    {
+        // TODO: Implement create() method.
     }
 }
  

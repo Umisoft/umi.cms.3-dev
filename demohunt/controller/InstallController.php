@@ -20,7 +20,7 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\controller\BaseController;
+use umicms\base\controller\BaseController;
 use umicms\project\module\structure\model\StaticPage;
 
 /**

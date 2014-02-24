@@ -1,7 +1,6 @@
 <?php
 /**
  * UMI.Framework (http://umi-framework.ru/)
- *
  * @link      http://github.com/Umisoft/framework for the canonical source repository
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
@@ -67,7 +66,6 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
      */
     protected $supportedRequestPostfixes = ['json', 'xml'];
 
-
     /**
      * {@inheritdoc}
      * @param StructureApi $structureApi
@@ -116,13 +114,13 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
      */
     public function onDispatchResponse(IDispatchContext $context, Response $response)
     {
-       if ($this->currentRequestFormat !== self::DEFAULT_REQUEST_FORMAT) {
-           $view = $response->getContent();
-           $serializer = $this->getSerializer($this->currentRequestFormat, $view);
-           $serializer->init();
-           $serializer($view);
-           $response->setContent($serializer->output());
-       }
+        if ($this->currentRequestFormat !== self::DEFAULT_REQUEST_FORMAT) {
+            $view = $response->getContent();
+            $serializer = $this->getSerializer($this->currentRequestFormat, $view);
+            $serializer->init();
+            $serializer($view);
+            $response->setContent($serializer->output());
+        }
     }
 
     /**
@@ -131,7 +129,8 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
      * @throws HttpNotFound если постфикс запроса не поддерживается приложением
      * @return string
      */
-    protected function getRequestFormatByPostfix($postfix) {
+    protected function getRequestFormatByPostfix($postfix)
+    {
         if (is_null($postfix) || $postfix === $this->getSiteUrlPostfix()) {
             return self::DEFAULT_REQUEST_FORMAT;
         }
@@ -152,7 +151,8 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
      * @param Request $request
      * @return Response|null
      */
-    protected function processUrlPostfixRedirect(Request $request) {
+    protected function processUrlPostfixRedirect(Request $request)
+    {
         $postfix = $this->getSiteUrlPostfix();
 
         if ($postfix && is_null($request->getRequestFormat(null))) {
@@ -179,7 +179,8 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
      * @param IDispatchContext $context
      * @return Response|null
      */
-    protected function processDefaultPageRedirect(IDispatchContext $context) {
+    protected function processDefaultPageRedirect(IDispatchContext $context)
+    {
         $currentElement = $this->structureApi->getCurrentElement();
         if ($currentElement->getGUID() === $this->getSiteDefaultPageGuid()) {
 
@@ -197,7 +198,8 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
     /**
      * Регистрирует сервисы для работы сайта.
      */
-    protected function registerSiteSettings() {
+    protected function registerSiteSettings()
+    {
         $settings = isset($this->options[self::OPTION_SETTINGS]) ? $this->options[self::OPTION_SETTINGS] : null;
 
         if (!$settings instanceof IConfig) {
@@ -207,7 +209,8 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
         }
         $this->setSiteSettings($settings);
 
-        $this->getToolkit()->registerAwareInterface(
+        $this->getToolkit()
+            ->registerAwareInterface(
             'umicms\project\config\ISiteSettingsAware',
             function ($object) use ($settings) {
                 if ($object instanceof ISiteSettingsAware) {

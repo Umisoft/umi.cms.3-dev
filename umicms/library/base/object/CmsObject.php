@@ -7,12 +7,14 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\controller;
+namespace umicms\base\object;
+
+use umi\orm\object\Object;
 
 /**
- * Базовый контроллер административной зоны.
+ * Класс простого объекта UMI.CMS.
  */
-abstract class BaseAdminController extends BaseController
+class CmsObject extends Object implements ICmsObject
 {
 
 }

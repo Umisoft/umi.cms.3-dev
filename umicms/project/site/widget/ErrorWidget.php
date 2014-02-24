@@ -10,7 +10,7 @@ namespace umicms\project\site\widget;
 
 use Exception;
 use umicms\exception\UnexpectedValueException;
-use umicms\widget\BaseWidget;
+use umicms\base\widget\BaseWidget;
 
 /**
  * Виджет для вывода ошибки виджетов.

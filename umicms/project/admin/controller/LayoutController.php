@@ -9,12 +9,12 @@
 namespace umicms\project\admin\controller;
 
 use umi\http\Response;
-use umicms\controller\BaseAdminController;
+use umicms\base\controller\BaseController;
 
 /**
  * Контроллер сетки административной зоны.
  */
-class LayoutController extends BaseAdminController
+class LayoutController extends BaseController
 {
 
     /**

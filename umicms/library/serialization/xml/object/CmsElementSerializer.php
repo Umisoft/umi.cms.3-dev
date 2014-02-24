@@ -9,7 +9,7 @@
 
 namespace umicms\serialization\xml\object;
 
-use umicms\object\CmsElement;
+use umicms\base\object\CmsElement;
 use umicms\serialization\xml\BaseSerializer;
 
 /**
