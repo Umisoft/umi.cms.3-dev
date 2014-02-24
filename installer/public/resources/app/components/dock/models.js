@@ -8,7 +8,7 @@ define(['App'], function(UMI){
 			title: DS.attr('string'),
 			componentList: DS.hasMany('componentList'),
 			img: function(){
-				return '/resource/admin/modules/' + this.get('slug') + '/icon.png';
+				return '/resources/modules/' + this.get('slug') + '/icon.png';
 			}.property()
 		});
 

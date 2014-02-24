@@ -17,7 +17,7 @@ define(['./app'],	function(UMI){
 
 		UMI.Router.reopen({
 			location: 'history',
-			rootURL: '/admin/'
+			rootURL: UmiSettings.rootURL
 		});
 
 //		UMI.ErrorState = Ember.Mixin.create({//TODO: Обрабатывать все типы ошибок, и разные роуты
@@ -39,7 +39,7 @@ define(['./app'],	function(UMI){
 			 */
 			model: function(){
 				var self = this;
-				var baseResource = '/resource/admin/modules/baseResource.json';
+				var baseResource = '/resources/modules/baseResource.json';
 				return $.getJSON(baseResource).then(
 					function(results){
 						UMI.FactoryForModels(results.models);
@@ -152,7 +152,7 @@ define(['./app'],	function(UMI){
 
 			redirect: function(model, transition){
 				if(transition.targetName === this.routeName + '.index'){
-					var rootTreeNode = this.store.all(this.controllerFor('component').get('treeType')).findBy('root', true);
+					var rootTreeNode = this.store.all(this.controllerFor('component').get('treeType')).findBy('id', this.controllerFor('componentMode').get('id'));
 					return this.transitionTo('treeActive', rootTreeNode);
 				}
 			},
@@ -174,7 +174,9 @@ define(['./app'],	function(UMI){
 				}
 			},
 			serialize: function(model){
-				return {treeActive: model.get('id')};
+				if(model){
+					return {treeActive: model.get('id')};
+				}
 			}
 		});
 

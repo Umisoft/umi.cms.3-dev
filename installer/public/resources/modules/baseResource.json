@@ -51,15 +51,15 @@
 		"componentList": [
 			{
 				"id": 1,
-				"slug": "news",
-				"title": "Новости",
-				"resource": "/resource/admin/modules/news/news/settings.json"
+				"slug": "categories",
+				"title": "Рубрики",
+				"resource": "/resources/modules/news/categories/settings.json"
 			},
 			{
 				"id": 2,
-				"slug": "categories",
-				"title": "Рубрики",
-				"resource": "/resource/admin/modules/news/categories/settings.json"
+				"slug": "news",
+				"title": "Новости",
+				"resource": "/resources/modules/news/news/settings.json"
 			}
 		]
 	}

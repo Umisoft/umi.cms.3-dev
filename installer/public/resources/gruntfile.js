@@ -7,7 +7,7 @@ module.exports = function(grunt){
 
         watch: {
             sass: {
-                files: ['resource/admin/app/sass/**/*.scss','resource/admin/app/foundationJs/*.js','resource/admin/app/foundationJs/components/*.js'],
+                files: ['app/sass/**/*.scss','app/foundationJs/*.js','app/foundationJs/components/*.js'],
                 tasks: ['sass','concat','autoprefixer']
             }
         },
@@ -15,10 +15,10 @@ module.exports = function(grunt){
         sass: {
             dev: {
                 options: {
-                    includePaths: ['resource/admin/libs/foundation/scss/']
+                    includePaths: ['libs/foundation/scss/']
                 },
                 files: {
-                    'resource/admin/deploy/app.css': 'resource/admin/app/sass/app.scss'
+                    'deploy/app.css': 'app/sass/app.scss'
                 }
             }
         },
@@ -28,7 +28,7 @@ module.exports = function(grunt){
                 browsers: ['last 2 version', 'ie 9', 'opera 12']
             },
             dist: {
-                src: 'resource/admin/deploy/app.css'
+                src: 'deploy/app.css'
             }
         },
 
@@ -37,15 +37,15 @@ module.exports = function(grunt){
 				separator: ''
 			},
 			dist: {
-				src: ['resource/admin/libs/foundation/js/vendor/*.js','resource/admin/app/foundationJs/foundation.js','resource/admin/app/foundationJs/components/*.js'],
-				dest: 'resource/admin/deploy/foundation.js'
+				src: ['libs/foundation/js/vendor/*.js','app/foundationJs/foundation.js','app/foundationJs/components/*.js'],
+				dest: 'deploy/foundation.js'
 			}
 		}
 //
 //		csso: {
 //			compress: {
 //				files: {
-//					'resource/admin/deploy/app.css': ['resource/admin/deploy/app.css']
+//					'deploy/app.css': ['deploy/app.css']
 //				}
 //			}
 //		},
@@ -56,7 +56,7 @@ module.exports = function(grunt){
 //			},
 //			dist: {
 //				files: {
-//					'resource/admin/deploy/<%= pkg.name %>.js': ['<%= concat.dist.dest %>']
+//					'deploy/<%= pkg.name %>.js': ['<%= concat.dist.dest %>']
 //				}
 //			}
 //		},
@@ -68,7 +68,7 @@ module.exports = function(grunt){
 //                version: '<%= pkg.version %>',
 //                url: '<%= pkg.homepage %>',
 //                options: {
-//                    paths: ['resource/admin/app', 'resource/admin/modules'],
+//                    paths: ['app', 'modules'],
 //                    outdir: 'docs/frontend'
 //                }
 //            }
