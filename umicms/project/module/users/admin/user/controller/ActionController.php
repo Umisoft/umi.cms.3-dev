@@ -38,8 +38,7 @@ class ActionController extends BaseRestActionController
      */
     protected function getQueryActions()
     {
-        //return [];
-        return ['login', 'logout'];
+        return [];
     }
 
     /**

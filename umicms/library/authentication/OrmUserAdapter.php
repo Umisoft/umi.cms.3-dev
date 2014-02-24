@@ -10,6 +10,7 @@
 namespace umicms\authentication;
 
 use umi\authentication\adapter\ORMAdapter;
+use umi\orm\object\IObject;
 use umicms\project\module\users\object\User;
 
 /**
@@ -19,11 +20,11 @@ class OrmUserAdapter extends ORMAdapter
 {
     /**
      * Проверяет правильность пароля для указанного пользователя
-     * @param User $user пользователь
+     * @param IObject $user пользователь
      * @param string $password пароль
      * @return bool
      */
-    public function checkPassword(User $user, $password) {
+    public function checkPassword(IObject $user, $password) {
         $passwordHash = crypt($password, $user->getProperty(User::FIELD_PASSWORD_SALT)->getValue());
 
         return $user->getProperty($this->passwordField)->getValue() === $passwordHash;

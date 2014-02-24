@@ -33,8 +33,11 @@ return [
         AuthenticationTools::NAME => [
             'factories' => [
                 'authentication' => [
+                    'adapterClasses' => [
+                        'ormUserAdapter' => 'umicms\authentication\OrmUserAdapter'
+                    ],
                     'defaultAdapter' => [
-                        'type' => IAuthenticationFactory::ADAPTER_ORM,
+                        'type' => 'ormUserAdapter',
                         'options' => [
                             ORMAdapter::OPTION_COLLECTION => 'user',
                             ORMAdapter::OPTION_LOGIN_FIELDS => ['login', 'email'],

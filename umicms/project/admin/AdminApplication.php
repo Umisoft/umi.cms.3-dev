@@ -79,10 +79,13 @@ class AdminApplication extends Component implements IAdminSettingsAware, IToolki
     public function onDispatchResponse(IDispatchContext $context, Response $response)
     {
         if (isset($context->getRouteParams()[self::MATCH_COMPONENT])) {
-            $view = $response->getContent();
-            $serializer = $this->getSerializer($this->currentRequestFormat, $view);
+            $result = [
+                'result' => $response->getContent()
+            ];
+
+            $serializer = $this->getSerializer($this->currentRequestFormat, $result);
             $serializer->init();
-            $serializer($view);
+            $serializer($result);
             $response->setContent($serializer->output());
         }
     }

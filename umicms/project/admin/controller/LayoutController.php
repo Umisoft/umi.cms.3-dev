@@ -10,9 +10,10 @@ namespace umicms\project\admin\controller;
 
 use umi\http\Response;
 use umicms\base\controller\BaseController;
+use umicms\project\module\users\api\UsersApi;
 
 /**
- * Контроллер сетки административной зоны.
+ * Контроллер сетки административной панели.
  */
 class LayoutController extends BaseController
 {
@@ -23,12 +24,19 @@ class LayoutController extends BaseController
     protected $response;
 
     /**
+     * @var UsersApi $api
+     */
+    protected $api;
+
+    /**
      * Конструктор.
      * @param Response $response
+     * @param UsersApi $api
      */
-    public function __construct(Response $response)
+    public function __construct(Response $response, UsersApi $api)
     {
         $this->response = $response;
+        $this->api = $api;
     }
 
     /**
@@ -40,7 +48,9 @@ class LayoutController extends BaseController
         $response = $this->createViewResponse(
             'layout',
             [
-                'content' => $this->response->getContent()
+                'content' => $this->response->getContent(),
+                'baseUrl' => $this->getContext()->getBaseUrl(),
+                'authenticated' => $this->api->isAuthenticated()
             ]
         );
 

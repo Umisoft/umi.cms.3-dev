@@ -115,10 +115,13 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
     public function onDispatchResponse(IDispatchContext $context, Response $response)
     {
         if ($this->currentRequestFormat !== self::DEFAULT_REQUEST_FORMAT) {
-            $view = $response->getContent();
-            $serializer = $this->getSerializer($this->currentRequestFormat, $view);
+            $result = [
+                'result' => $response->getContent()
+            ];
+
+            $serializer = $this->getSerializer($this->currentRequestFormat, $result);
             $serializer->init();
-            $serializer($view);
+            $serializer($result);
             $response->setContent($serializer->output());
         }
     }
