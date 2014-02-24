@@ -1,11 +1,11 @@
 define(['App'], function(UMI){
-	'use strict';
+    'use strict';
 
-	return function(){
-		UMI.DockController = Ember.ArrayController.extend({
-			content: [],
-			sortAscending: true,
-			sortProperties: ['id']
-		});
-	};
+    return function(){
+        UMI.DockController = Ember.ArrayController.extend({
+            content: [],
+            sortAscending: true,
+            sortProperties: ['id']
+        });
+    };
 });

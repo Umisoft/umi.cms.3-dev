@@ -40,7 +40,7 @@
 
 <div class="magellan-menu s-full-height-before">
     {{#each meta.fieldsets}}
-        <a href="#{{unbound id}}">{{legend}}</a>
+    <a href="#{{unbound id}}">{{legend}}</a>
     {{/each}}
 </div>
 
@@ -48,15 +48,15 @@
 
 <div class="umi-form-control-content">
     {{#with model.object as object}}
-        {{#each meta.fieldsets}}
-            <a name="{{unbound id}}"></a>
-            <fieldset>
-                <legend><i class="icon icon-bottom umi-form-control-fieldset-toggle"></i>{{legend}}</legend>
-                {{#each fields}}
-                    {{view "field" objectBinding="object" metaBinding="this"}}
-                {{/each}}
-            </fieldset>
+    {{#each meta.fieldsets}}
+    <a name="{{unbound id}}"></a>
+    <fieldset>
+        <legend><i class="icon icon-bottom umi-form-control-fieldset-toggle"></i>{{legend}}</legend>
+        {{#each fields}}
+        {{view "field" objectBinding="object" metaBinding="this"}}
         {{/each}}
+    </fieldset>
+    {{/each}}
     {{/with}}
 </div>
 
@@ -77,31 +77,31 @@
             <div class="umi-dropdown-row">
                 <div class="umi-dropdown-row-text">Виталий</div>
                 <div class="right">
-                    <div><input type="checkbox" /></div>
-                    <div><input type="checkbox" /></div>
-                    <div><input type="checkbox" /></div>
-                    <div><input type="checkbox" checked /></div>
-                    <div><input type="checkbox" /></div>
+                    <div><input type="checkbox"/></div>
+                    <div><input type="checkbox"/></div>
+                    <div><input type="checkbox"/></div>
+                    <div><input type="checkbox" checked/></div>
+                    <div><input type="checkbox"/></div>
                 </div>
             </div>
             <div class="umi-dropdown-row">
                 <div class="umi-dropdown-row-text">Кирилл</div>
                 <div class="right">
-                    <div><input type="checkbox" checked /></div>
-                    <div><input type="checkbox" /></div>
-                    <div><input type="checkbox" checked /></div>
-                    <div><input type="checkbox" /></div>
-                    <div><input type="checkbox" /></div>
+                    <div><input type="checkbox" checked/></div>
+                    <div><input type="checkbox"/></div>
+                    <div><input type="checkbox" checked/></div>
+                    <div><input type="checkbox"/></div>
+                    <div><input type="checkbox"/></div>
                 </div>
             </div>
             <div class="umi-dropdown-row">
                 <div class="umi-dropdown-row-text">Семён</div>
                 <div class="right">
-                    <div><input type="checkbox" /></div>
-                    <div><input type="checkbox" /></div>
-                    <div><input type="checkbox" checked /></div>
-                    <div><input type="checkbox" checked /></div>
-                    <div><input type="checkbox" checked /></div>
+                    <div><input type="checkbox"/></div>
+                    <div><input type="checkbox"/></div>
+                    <div><input type="checkbox" checked/></div>
+                    <div><input type="checkbox" checked/></div>
+                    <div><input type="checkbox" checked/></div>
                 </div>
             </div>
             <div class="umi-dropdown-row">
@@ -123,31 +123,31 @@
             <div class="umi-dropdown-row">
                 <div class="umi-dropdown-row-text">Виталий</div>
                 <div class="right">
-                    <div><input type="checkbox" checked /></div>
-                    <div><input type="checkbox" checked /></div>
-                    <div><input type="checkbox" checked /></div>
-                    <div><input type="checkbox" checked /></div>
-                    <div><input type="checkbox" /></div>
+                    <div><input type="checkbox" checked/></div>
+                    <div><input type="checkbox" checked/></div>
+                    <div><input type="checkbox" checked/></div>
+                    <div><input type="checkbox" checked/></div>
+                    <div><input type="checkbox"/></div>
                 </div>
             </div>
             <div class="umi-dropdown-row">
                 <div class="umi-dropdown-row-text">Кирилл</div>
                 <div class="right">
-                    <div><input type="checkbox" checked /></div>
-                    <div><input type="checkbox" /></div>
-                    <div><input type="checkbox" checked /></div>
-                    <div><input type="checkbox" checked /></div>
-                    <div><input type="checkbox" /></div>
+                    <div><input type="checkbox" checked/></div>
+                    <div><input type="checkbox"/></div>
+                    <div><input type="checkbox" checked/></div>
+                    <div><input type="checkbox" checked/></div>
+                    <div><input type="checkbox"/></div>
                 </div>
             </div>
             <div class="umi-dropdown-row">
                 <div class="umi-dropdown-row-text">Семён</div>
                 <div class="right">
-                    <div><input type="checkbox" /></div>
-                    <div><input type="checkbox" checked /></div>
-                    <div><input type="checkbox" /></div>
-                    <div><input type="checkbox" /></div>
-                    <div><input type="checkbox" /></div>
+                    <div><input type="checkbox"/></div>
+                    <div><input type="checkbox" checked/></div>
+                    <div><input type="checkbox"/></div>
+                    <div><input type="checkbox"/></div>
+                    <div><input type="checkbox"/></div>
                 </div>
             </div>
             <div class="umi-dropdown-row">
@@ -157,9 +157,12 @@
     </div>
 
     <div class="umi-form-tabs">
-        <div class="umi-form-save-button" {{action 'save' model.object target="view"}}>Сохранить</div>
-        <div class="umi-form-tab"><i class="icon icon-pause"></i></div>
-        <div class="umi-form-tab"><i class="icon icon-6"></i></div>
-        <div class="button secondary s-margin-clear" {{action 'delete' model.object target="view"}}><i class="icon icon-delete"></i></div>
+        <div class="umi-form-save-button"
+        {{action 'save' model.object target="view"}}>Сохранить
     </div>
+    <div class="umi-form-tab"><i class="icon icon-pause"></i></div>
+    <div class="umi-form-tab"><i class="icon icon-6"></i></div>
+    <div class="button secondary s-margin-clear"
+    {{action 'delete' model.object target="view"}}><i class="icon icon-delete"></i></div>
+</div>
 </div>

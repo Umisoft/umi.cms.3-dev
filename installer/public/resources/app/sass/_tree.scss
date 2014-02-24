@@ -1,188 +1,188 @@
 //
 // Umi-tree-column
 //
-.umi-tree-header{
-	@include s-gradient-grey();
-	border-bottom: 1px solid #98A2AB;
+.umi-tree-header {
+    @include s-gradient-grey();
+    border-bottom: 1px solid #98A2AB;
 }
 
-.umi-tree{
-	padding: 0;
-	box-sizing: border-box;
-	border-right: 1px solid #CCD9E2;
-	margin-left: rem-calc(5);
-	margin-top: 10px;
-	font-size: rem-calc(13);
+.umi-tree {
+    padding: 0;
+    box-sizing: border-box;
+    border-right: 1px solid #CCD9E2;
+    margin-left: rem-calc(5);
+    margin-top: 10px;
+    font-size: rem-calc(13);
 
-	ul.f-dropdown{
-		padding-left: 0;
-	}
+    ul.f-dropdown {
+        padding-left: 0;
+    }
 
-	ul{
-		margin: 0;
-		list-style: none;
-		font-size: rem-calc(13);
-		padding-left: rem-calc(20);
-	}
+    ul {
+        margin: 0;
+        list-style: none;
+        font-size: rem-calc(13);
+        padding-left: rem-calc(20);
+    }
 
-	li{
-		line-height: rem-calc(24);
-		a{
-			color: #000000;
-			&.active{
-				color: $primary-color;
-			}
-		}
-	}
-	span{
-		width: rem-calc(20);
-		height: rem-calc(20);
-	}
+    li {
+        line-height: rem-calc(24);
+        a {
+            color: #000000;
+            &.active {
+                color: $primary-color;
+            }
+        }
+    }
+    span {
+        width: rem-calc(20);
+        height: rem-calc(20);
+    }
 
+    .umi-item {
+        position: relative;
+        padding-left: 20px;
+        white-space: nowrap;
+        z-index: 2;
+        &.active {
+            background: linear-gradient(top, #35a9fc 0%, #0f8bd5 100%);
+            color: #FFFFFF;
+        }
+        &:hover {
+            .icon-right, .icon-bottom {
+                background-position-y: -19px;
+            }
+            a {
+                color: #fff;
+                border-right: 0;
+            }
+            .umi-tree-context-menu {
+                display: block;
+            }
+            + .hover-bg {
+                display: block;
+            }
+        }
+    }
 
-	.umi-item{
-		position: relative;
-		padding-left: 20px;
-		white-space: nowrap;
-		z-index: 2;
-		&.active{
-			background: linear-gradient(top, #35a9fc 0%, #0f8bd5 100%);
-			color: #FFFFFF;
-		}
-		&:hover{
-			.icon-right, .icon-bottom{
-				background-position-y: -19px;
-			}
-			a{
-				color: #fff;
-				border-right: 0;
-			}
-			 .umi-tree-context-menu{
-				display: block;
-			}
-			+ .hover-bg{
-				display: block;
-			}
-		}
-	}
+    i {
+        margin: rem-calc(2 -2 2 0);
+    }
 
-	i{
-		margin: rem-calc(2 -2 2 0);
-	}
+    .move {
+        cursor: move !important;
+    }
 
-	.move{
-		cursor: move!important;
-	}
+    .umi-expand-hover {
+        display: inline-block;
+        width: rem-calc(20);
+        height: rem-calc(20);
+        cursor: hand;
+        position: absolute;
+        margin-left: rem-calc(20);
+        margin-top: rem-calc(2);
+        left: -20px;
+        i {
+            margin: 0;
+        }
+    }
 
-	.umi-expand-hover{
-		display: inline-block;
-		width: rem-calc(20);
-		height: rem-calc(20);
-		cursor: hand;
-		position: absolute;
-		margin-left: rem-calc(20);
-		margin-top: rem-calc(2);
-		left: -20px;
-		i{
-			margin: 0;
-		}
-	}
+    .umi-tree-placeholder {
+        height: rem-calc(24);
+        background: #C4D2DD;
+        border-radius: rem-calc(12);
+        margin-left: 15px;
+        transition: background 0.2s linear;
+        &:hover, &:focus {
+            background: darken(#C4D2DD, 3%);
+        }
+    }
 
-	.umi-tree-placeholder{
-		height: rem-calc(24);
-		background: #C4D2DD;
-		border-radius: rem-calc(12);
-		margin-left: 15px;
-		transition: background 0.2s linear;
-		&:hover, &:focus{
-			background: darken(#C4D2DD, 3%);
-		}
-	}
+    .umi-tree-expand-hover {
+        > div a {
+            text-decoration: underline;
+        }
+    }
 
-	.umi-tree-expand-hover{
-		> div a{
-			text-decoration: underline;
-		}
-	}
+    &.drag-inside {
+        a, .icon, .move {
+            cursor: default;
+        }
+    }
 
-	&.drag-inside{
-		a, .icon, .move{
-			cursor: default;
-		}
-	}
+    .umi-tree-context-menu {
+        display: none;
+        position: absolute;
+        right: rem-calc(6);
+        margin: 0;
+        padding: 0;
+        margin-top: -24px;
+        background: linear-gradient(to bottom, $primary-color 0%, darken($primary-color, 5%) 50%);
+        background: linear-gradient(top, $primary-color 0%, darken($primary-color, 5%) 50%);
+    }
 
-	.umi-tree-context-menu{
-		display: none;
-		position: absolute;
-		right: rem-calc(6);
-		margin: 0;
-		padding: 0;
-		margin-top: -24px;
-		background: linear-gradient(to bottom, $primary-color 0%, darken($primary-color, 5%) 50%);
-		background: linear-gradient(top, $primary-color 0%, darken($primary-color, 5%) 50%);
-	}
-
-	.hover-bg{
-		background: linear-gradient(to bottom, $primary-color 0%, darken($primary-color, 5%) 50%);
-		background: linear-gradient(top, $primary-color 0%, darken($primary-color, 5%) 50%);
-		position: absolute;
-		height: 24px;
-		right: 0;
-		min-width: 100%;
-		margin-left: -1000px;
-		padding-left: 1000px;
-		display: none;
-		margin-top: -24px;
-		z-index: 1;
-	}
+    .hover-bg {
+        background: linear-gradient(to bottom, $primary-color 0%, darken($primary-color, 5%) 50%);
+        background: linear-gradient(top, $primary-color 0%, darken($primary-color, 5%) 50%);
+        position: absolute;
+        height: 24px;
+        right: 0;
+        min-width: 100%;
+        margin-left: -1000px;
+        padding-left: 1000px;
+        display: none;
+        margin-top: -24px;
+        z-index: 1;
+    }
 }
-.umi-tree-ghost{
-	height: rem-calc(24);
-	color: #000000;
-	border: none;
-	z-index: 1000;
-	line-height: rem-calc(24);
-	font-size: rem-calc(13);
-	display: inline-block;
-	cursor: default;
-	position: absolute;
-	i{
-		margin: rem-calc(2 -2 2 0);
-	}
+
+.umi-tree-ghost {
+    height: rem-calc(24);
+    color: #000000;
+    border: none;
+    z-index: 1000;
+    line-height: rem-calc(24);
+    font-size: rem-calc(13);
+    display: inline-block;
+    cursor: default;
+    position: absolute;
+    i {
+        margin: rem-calc(2 -2 2 0);
+    }
 }
 
 // Вот тут говнокод
-.umi-tree-header{
-	.f-dropdown{
-		input{
-			display: block;
-			margin-bottom: 0;
-			float: left;
-			margin-top: rem-calc(5);
-		}
-		label{
-			margin-bottom: 0;
-		}
-		li{
-			border-bottom: 1px solid #98A2AB;
-			padding: rem-calc(5 8);
-			&:last-child{
-				border-bottom: none;
-			}
-			&:hover{
-				background: #FFF;
-			}
-			.title{
-				display: block;
-				margin-left:rem-calc(20);
-				line-height: normal;
-			}
-			div{
-				margin-bottom: rem-calc(5);
-				&:last-child{
-					margin-bottom: 0;
-				}
-			}
-		}
-	}
+.umi-tree-header {
+    .f-dropdown {
+        input {
+            display: block;
+            margin-bottom: 0;
+            float: left;
+            margin-top: rem-calc(5);
+        }
+        label {
+            margin-bottom: 0;
+        }
+        li {
+            border-bottom: 1px solid #98A2AB;
+            padding: rem-calc(5 8);
+            &:last-child {
+                border-bottom: none;
+            }
+            &:hover {
+                background: #FFF;
+            }
+            .title {
+                display: block;
+                margin-left: rem-calc(20);
+                line-height: normal;
+            }
+            div {
+                margin-bottom: rem-calc(5);
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
 }

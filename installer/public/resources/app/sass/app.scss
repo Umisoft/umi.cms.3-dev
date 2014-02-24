@@ -1,7 +1,6 @@
 @import "foundation/_functions";
 @import "_settings";
 //@import "foundation";
-
 //Переделаываем компоненты Foundation
 @import "foundationOverridden/_global";
 @import "foundationOverridden/_type";
@@ -9,7 +8,6 @@
 @import "foundationOverridden/_offcanvas";
 @import "foundationOverridden/_switch";
 @import "foundationOverridden/_visibility";
-
 //Подключаем компоненты Foundation
 @import "foundation/components/_accordion";
 @import "foundation/components/_alert-boxes";
@@ -44,8 +42,6 @@
 @import "foundation/components/_tooltips";
 //@import "foundation/components/_offcanvas";
 //@import "foundation/components/_visibility";
-
-
 //Добавляем стили
 @import "_snippets";
 @import "_button";
@@ -58,7 +54,6 @@
 @import "_tableControl";
 @import "_formControl";
 @import "_dropdown";
-
 //Перебиваем стили сторонних модулей
 @import "antiVendor/ckEditor";
 

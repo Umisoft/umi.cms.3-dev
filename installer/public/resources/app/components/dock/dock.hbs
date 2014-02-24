@@ -1,23 +1,24 @@
 <dl class="tabs">
-	{{#each item in controller}}
-		{{#view 'dockModuleButton' contentBinding="item"}}
+    {{#each item in controller}}
+    {{#view 'dockModuleButton' contentBinding="item"}}
 			<span class="button large s-margin-clear">
 				<img {{bind-attr src=item.img}} />
 				<span>{{item.title}}</span>
 			</span>
-		{{/view}}
-	{{/each}}
+    {{/view}}
+    {{/each}}
 </dl>
 <div class="tabs-content">
-	{{#each item in controller}}
-		{{#view 'dockComponentsGroup' contentBinding="item"}}
-			<ul class="button-group">
-				{{#each component in item.componentList}}
-					<li>
-						{{#link-to 'component' item.slug component.slug classNames="button large s-margin-clear"}}{{component.title}}{{/link-to}}
-					</li>
-				{{/each}}
-			</ul>
-		{{/view}}
-	{{/each}}
+    {{#each item in controller}}
+    {{#view 'dockComponentsGroup' contentBinding="item"}}
+    <ul class="button-group">
+        {{#each component in item.componentList}}
+        <li>
+            {{#link-to 'component' item.slug component.slug classNames="button large
+            s-margin-clear"}}{{component.title}}{{/link-to}}
+        </li>
+        {{/each}}
+    </ul>
+    {{/view}}
+    {{/each}}
 </div>

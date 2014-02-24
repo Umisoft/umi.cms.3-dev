@@ -1,34 +1,35 @@
 <div class="columns small-12">
-	<div class="row s-full-height-before umi-tree-header">
-		{{#if filters}}
-			<a href="#" data-dropdown="drop" class="button flat square s-margin-clear right">
-				<i class="icon icon-settings"></i>
-			</a>
-			<ul id="drop" data-dropdown-content class="f-dropdown" data-align="right">
-				{{#each filters}}
-					<li>
-						{{#if checkbox}}
-							<label><input type="checkbox" name=name checked=checked {{action 'filter' name}}/> <span class="title">{{title}}</span></label>
-						{{/if}}
-						{{#if radio}}
-							{{#each element in elements}}
-								<div>
-									<label>
-										<input type="radio" name=name value=element.value checked=element.checked {{action 'filter' name element}}/> <span class="title">{{element.title}}</span>
-									</label>
-								</div>
-							{{/each}}
-						{{/if}}
-					</li>
-				{{/each}}
-			</ul>
-		{{/if}}
-	</div>
-	<div class="row s-full-height">
-		<ul class="umi-tree-list umi-tree">
-			{{#each node in nodes itemController="treeItem"}}
-				{{partial "treeItem"}}
-			{{/each}}
-		</ul>
-	</div>
+    <div class="row s-full-height-before umi-tree-header">
+        {{#if filters}}
+        <a href="#" data-dropdown="drop" class="button flat square s-margin-clear right">
+            <i class="icon icon-settings"></i>
+        </a>
+        <ul id="drop" data-dropdown-content class="f-dropdown" data-align="right">
+            {{#each filters}}
+            <li>
+                {{#if checkbox}}
+                <label><input type="checkbox" name=name checked=checked {{action 'filter' name}}/> <span class="title">{{title}}</span></label>
+                {{/if}}
+                {{#if radio}}
+                {{#each element in elements}}
+                <div>
+                    <label>
+                        <input type="radio" name=name value=element.value checked=element.checked {{action 'filter' name
+                        element}}/> <span class="title">{{element.title}}</span>
+                    </label>
+                </div>
+                {{/each}}
+                {{/if}}
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </div>
+    <div class="row s-full-height">
+        <ul class="umi-tree-list umi-tree">
+            {{#each node in nodes itemController="treeItem"}}
+            {{partial "treeItem"}}
+            {{/each}}
+        </ul>
+    </div>
 </div>

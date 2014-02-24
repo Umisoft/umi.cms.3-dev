@@ -2,7 +2,6 @@
 // FOUNDATION SETTINGS
 //
 
-
 // Global
 $experimental: true;
 $rem-base: 16px;
@@ -17,15 +16,18 @@ $body-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "He
 //$header-font-family: join("Open Sans", $body-font-family);
 $button-font-family: Arial;
 
-
 // Grid
 $row-width: 100%;
 
 // Button
-$button-tny: rem-calc(6);  // 24px
-$button-sml: rem-calc(7);  // нет на макете
-$button-med: rem-calc(8); // 32px
-$button-lrg: rem-calc(10); // 37px
+$button-tny: rem-calc(6);
+// 24px
+$button-sml: rem-calc(7);
+// нет на макете
+$button-med: rem-calc(8);
+// 32px
+$button-lrg: rem-calc(10);
+// 37px
 $button-font-tny: rem-calc(9);
 $button-font-sml: rem-calc(11);
 $button-font-med: rem-calc(13);

@@ -314,11 +314,11 @@ blockquote, blockquote p {
     font-size: 1.4375rem; } }
 
 /*
-			   * Print styles.
-			   *
-			   * Inlined to avoid required HTTP connection: www.phpied.com/delay-loading-your-print-css/
-			   * Credit to Paul Irish and HTML5 Boilerplate (html5boilerplate.com)
-			  */
+               * Print styles.
+               *
+               * Inlined to avoid required HTTP connection: www.phpied.com/delay-loading-your-print-css/
+               * Credit to Paul Irish and HTML5 Boilerplate (html5boilerplate.com)
+              */
 .print-only {
   display: none !important; }
 

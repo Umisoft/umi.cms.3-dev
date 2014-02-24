@@ -1,32 +1,33 @@
 <div class="row">
-	<div class="large-6 columns">
-		<div class="row collapse">
-			<div class="small-10 columns">
-				<input type="text" placeholder="">
-			</div>
-			<div class="small-2 columns">
-				<button class="button postfix">Поиск </button>
-			</div>
-		</div>
-	</div>
+    <div class="large-6 columns">
+        <div class="row collapse">
+            <div class="small-10 columns">
+                <input type="text" placeholder="">
+            </div>
+            <div class="small-2 columns">
+                <button class="button postfix">Поиск</button>
+            </div>
+        </div>
+    </div>
 </div>
 {{#if isProcess}}
-	<div class="row">
-		<div class="small-12">
-			{{progress-bar percent=percentComplete}}
-		</div>
-	</div>
+<div class="row">
+    <div class="small-12">
+        {{progress-bar percent=percentComplete}}
+    </div>
+</div>
 {{/if}}
 {{#if results}}
-	{{#each results}}
-		<div class="row">
-			<div class="small-21 columns">
-				<div class="panel">
-					<h5>{{#link-to 'guid' slug}}{{title}}{{/link-to}}</h5>
-					<p>{{text}}</p>
-					{{#link-to 'guid' slug classNames="button"}}Редактировать{{/link-to}}
-				</div>
-			</div>
-		</div>
-	{{/each}}
+{{#each results}}
+<div class="row">
+    <div class="small-21 columns">
+        <div class="panel">
+            <h5>{{#link-to 'guid' slug}}{{title}}{{/link-to}}</h5>
+
+            <p>{{text}}</p>
+            {{#link-to 'guid' slug classNames="button"}}Редактировать{{/link-to}}
+        </div>
+    </div>
+</div>
+{{/each}}
 {{/if}}

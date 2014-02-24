@@ -1,27 +1,27 @@
 {
-  "name": "umi-cms-3",
-  "version": "0.0.1",
-  "devDependencies": {
-    "grunt-cli": "latest",
-    "bower": "latest",
-    "css-b64-images": "latest",
-    "browser-sync":"latest",
+    "name": "umi-cms-3",
+    "version": "0.0.1",
+    "devDependencies": {
+        "grunt-cli": "latest",
+        "bower": "latest",
+        "css-b64-images": "latest",
+        "browser-sync": "latest",
 
-    "grunt": "latest",
-    "grunt-contrib-watch": "latest",
-    "grunt-sass": "latest",
-    "grunt-autoprefixer": "latest",
-    "grunt-csso": "latest",
-    "grunt-contrib-uglify": "latest",
-    "grunt-contrib-concat": "latest",
-    "grunt-contrib-jshint": "latest",
-    "grunt-svgmin": "latest",
-    "qunitjs": "latest",
-    "grunt-contrib-yuidoc": "latest",
-    "karma": "latest",
-    "karma-qunit": "latest",
-    "karma-ember-preprocessor": "latest",
-    "karma-firefox-launcher": "latest",
-    "karma-ie-launcher": "latest"
-  }
+        "grunt": "latest",
+        "grunt-contrib-watch": "latest",
+        "grunt-sass": "latest",
+        "grunt-autoprefixer": "latest",
+        "grunt-csso": "latest",
+        "grunt-contrib-uglify": "latest",
+        "grunt-contrib-concat": "latest",
+        "grunt-contrib-jshint": "latest",
+        "grunt-svgmin": "latest",
+        "qunitjs": "latest",
+        "grunt-contrib-yuidoc": "latest",
+        "karma": "latest",
+        "karma-qunit": "latest",
+        "karma-ember-preprocessor": "latest",
+        "karma-firefox-launcher": "latest",
+        "karma-ie-launcher": "latest"
+    }
 }
