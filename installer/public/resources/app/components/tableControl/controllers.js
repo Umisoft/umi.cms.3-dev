@@ -29,17 +29,17 @@ define(['App'], function(UMI){
 
             addRecord: function(){
                 var name = this.get('newName');
-                if( !name.trim() ){
+                if(!name.trim()){
                     return;
                 }
 
                 var lastName = this.get('newLastName');
-                if( !lastName.trim() ){
+                if(!lastName.trim()){
                     return;
                 }
 
                 var email = this.get('newEmail');
-                if( !email.trim() ){
+                if(!email.trim()){
                     return;
                 }
 

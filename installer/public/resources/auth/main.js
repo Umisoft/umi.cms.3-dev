@@ -8,7 +8,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                 shake: function(){
                     function shake(id, a, d){
                         id.style.left = a.shift() + 'px';
-                        if( a.length > 0 ){
+                        if(a.length > 0){
                             setTimeout(function(){
                                 shake(id, a, d);
                             }, d);
@@ -33,18 +33,18 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                     };
                     for(i = 0; i < form.elements.length; i++){
                         element = form.elements[i];
-                        if( (element.hasAttribute('required') || element.value) && element.hasAttribute('pattern') ){
+                        if((element.hasAttribute('required') || element.value) && element.hasAttribute('pattern')){
                             pattern = new RegExp(element.getAttribute('pattern'));
-                            if( !pattern.test(element.value) ){
+                            if(!pattern.test(element.value)){
                                 valid = false;
                             }
-                        } else if( element.hasAttribute('required') ){
-                            if( !element.value ){
+                        } else if(element.hasAttribute('required')){
+                            if(!element.value){
                                 valid = false;
                             }
                         }
-                        if( element.getAttribute('type') !== 'submit' ){
-                            if( valid ){
+                        if(element.getAttribute('type') !== 'submit'){
+                            if(valid){
                                 $(element).closest('.columns').removeClass('error');
                                 element.onfocus = null;
                             } else{
@@ -77,7 +77,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
         tempaltes(Auth);
 
         // Проверяем есть ли шаблон и если нет то собираем его
-        if( !document.querySelector('.auth-layout') ){
+        if(!document.querySelector('.auth-layout')){
             var helper = document.createElement('div');
             helper.innerHTML = Auth.TEMPLATES.app({outlet: Auth.TEMPLATES.index()});
             helper = document.body.appendChild(helper);
@@ -101,7 +101,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
 
         var bubblesHidden = true;
         document.onmousemove = function(event){
-            if( bubblesHidden ){
+            if(bubblesHidden){
                 bubbles.className = 'bubbles visible';
                 bubblesFront.className = 'bubbles-front visible';
                 bubblesHidden = false;
@@ -117,7 +117,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
         var errorsBlock = document.querySelector('.errors-list');
 
         $(document).on('submit', 'form', function(){
-            if( !Auth.validator.check(this) ){
+            if(!Auth.validator.check(this)){
                 return false;
             }
             var container = $(this.parentNode);
@@ -128,7 +128,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
             var action = this.getAttribute('action');
             var deffer = $.post(action, data);
             deffer.done(function(data){
-                if( data === 'redirect' ){
+                if(data === 'redirect'){
                     Auth.transition();
                 } else{
                     //Auth.validator.shake();

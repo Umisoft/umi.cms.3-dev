@@ -14,19 +14,19 @@
         },
 
         events: function(){
-            $(this.scope).off('.offcanvas').on('click.fndtn.offcanvas', '.left-off-canvas-toggle', function(e){
-                    e.preventDefault();
-                    $(this).closest('.off-canvas-wrap').toggleClass('move-right');
-                }).on('click.fndtn.offcanvas', '.exit-off-canvas', function(e){
-                    e.preventDefault();
-                    $(".off-canvas-wrap").removeClass("move-right");
-                }).on('click.fndtn.offcanvas', '.right-off-canvas-toggle', function(e){
-                    e.preventDefault();
-                    $(this).closest(".off-canvas-wrap").toggleClass("move-left");
-                }).on('click.fndtn.offcanvas', '.exit-off-canvas', function(e){
-                    e.preventDefault();
-                    $(".off-canvas-wrap").removeClass("move-left");
-                });
+            $(this.scope).off('.offcanvas').on('click.fndtn.offcanvas', '.left-off-canvas-toggle',function(e){
+                e.preventDefault();
+                $(this).closest('.off-canvas-wrap').toggleClass('move-right');
+            }).on('click.fndtn.offcanvas', '.exit-off-canvas',function(e){
+                e.preventDefault();
+                $(".off-canvas-wrap").removeClass("move-right");
+            }).on('click.fndtn.offcanvas', '.right-off-canvas-toggle',function(e){
+                e.preventDefault();
+                $(this).closest(".off-canvas-wrap").toggleClass("move-left");
+            }).on('click.fndtn.offcanvas', '.exit-off-canvas', function(e){
+                e.preventDefault();
+                $(".off-canvas-wrap").removeClass("move-left");
+            });
         },
 
         reflow: function(){
@@ -41,7 +41,7 @@ $('.umi-divider').on('mousedown', function(event){
 
     $('html').on('mousemove', function(event){
         event.preventDefault();
-        if( event.pageX > 0 && event.pageX < $(window).width() / 2 ){
+        if(event.pageX > 0 && event.pageX < $(window).width() / 2){
             $that.offset({"left": event.pageX - 5});
             $('.left-off-canvas-menu').width(event.pageX);
             $('.off-canvas-wrap.move-right').width('calc(100% - ' + event.pageX + 'px)');
@@ -50,7 +50,7 @@ $('.umi-divider').on('mousedown', function(event){
     });
 
     $('html').on('mouseup', function(event){
-        if( event.pageX < 100 ){
+        if(event.pageX < 100){
             $that.offset({"left": 0});
             $('.left-off-canvas-menu').width(0);
             $('.off-canvas-wrap.move-right').width('calc(100% - ' + 0 + 'px)');

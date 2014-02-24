@@ -22,7 +22,7 @@
 
                 e.preventDefault();
 
-                if( active[0] == target[0] && settings.toggleable ){
+                if(active[0] == target[0] && settings.toggleable){
                     return target.toggleClass(settings.active_class);
                 }
 

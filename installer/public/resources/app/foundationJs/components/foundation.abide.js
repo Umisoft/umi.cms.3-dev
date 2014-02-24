@@ -53,26 +53,26 @@
         events: function(scope){
             var self = this, form = $(scope).attr('novalidate', 'novalidate'), settings = form.data('abide-init');
 
-            form.off('.abide').on('submit.fndtn.abide validate.fndtn.abide', function(e){
-                    var is_ajax = /ajax/i.test($(this).attr('data-abide'));
-                    return self.validate($(this).find('input, textarea, select').get(), e, is_ajax);
-                }).find('input, textarea, select').off('.abide').on('blur.fndtn.abide change.fndtn.abide', function(e){
+            form.off('.abide').on('submit.fndtn.abide validate.fndtn.abide',function(e){
+                var is_ajax = /ajax/i.test($(this).attr('data-abide'));
+                return self.validate($(this).find('input, textarea, select').get(), e, is_ajax);
+            }).find('input, textarea, select').off('.abide').on('blur.fndtn.abide change.fndtn.abide',function(e){
+                self.validate([this], e);
+            }).on('keydown.fndtn.abide', function(e){
+                var settings = $(this).closest('form').data('abide-init');
+                clearTimeout(self.timer);
+                self.timer = setTimeout(function(){
                     self.validate([this], e);
-                }).on('keydown.fndtn.abide', function(e){
-                    var settings = $(this).closest('form').data('abide-init');
-                    clearTimeout(self.timer);
-                    self.timer = setTimeout(function(){
-                        self.validate([this], e);
-                    }.bind(this), settings.timeout);
-                });
+                }.bind(this), settings.timeout);
+            });
         },
 
         validate: function(els, e, is_ajax){
             var validations = this.parse_patterns(els), validation_count = validations.length, form = $(els[0]).closest('form'), submit_event = /submit/.test(e.type);
 
             for(var i = 0; i < validation_count; i++){
-                if( !validations[i] && (submit_event || is_ajax) ){
-                    if( this.settings.focus_on_invalid ){
+                if(!validations[i] && (submit_event || is_ajax)){
+                    if(this.settings.focus_on_invalid){
                         els[i].focus();
                     }
                     form.trigger('invalid');
@@ -81,13 +81,13 @@
                 }
             }
 
-            if( submit_event || is_ajax ){
+            if(submit_event || is_ajax){
                 form.trigger('valid');
             }
 
             form.removeAttr('data-invalid');
 
-            if( is_ajax ){
+            if(is_ajax){
                 return false;
             }
 
@@ -107,15 +107,15 @@
         pattern: function(el){
             var type = el.getAttribute('type'), required = typeof el.getAttribute('required') === 'string';
 
-            if( this.settings.patterns.hasOwnProperty(type) ){
+            if(this.settings.patterns.hasOwnProperty(type)){
                 return [el, this.settings.patterns[type], required];
             }
 
             var pattern = el.getAttribute('pattern') || '';
 
-            if( this.settings.patterns.hasOwnProperty(pattern) && pattern.length > 0 ){
+            if(this.settings.patterns.hasOwnProperty(pattern) && pattern.length > 0){
                 return [el, this.settings.patterns[pattern], required];
-            } else if( pattern.length > 0 ){
+            } else if(pattern.length > 0){
                 return [el, new RegExp(pattern), required];
             }
 
@@ -130,12 +130,12 @@
             for(var i = count - 1; i >= 0; i--){
                 var el = el_patterns[i][0], required = el_patterns[i][2], value = el.value, is_equal = el.getAttribute('data-equalto'), is_radio = el.type === "radio", valid_length = (required) ? (el.value.length > 0) : true;
 
-                if( is_radio && required ){
+                if(is_radio && required){
                     validations.push(this.valid_radio(el, required));
-                } else if( is_equal && required ){
+                } else if(is_equal && required){
                     validations.push(this.valid_equal(el, required));
                 } else{
-                    if( el_patterns[i][1].test(value) && valid_length || !required && el.value.length < 1 ){
+                    if(el_patterns[i][1].test(value) && valid_length || !required && el.value.length < 1){
                         $(el).removeAttr('data-invalid').parent().removeClass('error');
                         validations.push(true);
                     } else{
@@ -152,13 +152,13 @@
             var name = el.getAttribute('name'), group = document.getElementsByName(name), count = group.length, valid = false;
 
             for(var i = 0; i < count; i++){
-                if( group[i].checked ){
+                if(group[i].checked){
                     valid = true;
                 }
             }
 
             for(var i = 0; i < count; i++){
-                if( valid ){
+                if(valid){
                     $(group[i]).removeAttr('data-invalid').parent().removeClass('error');
                 } else{
                     $(group[i]).attr('data-invalid', '').parent().addClass('error');
@@ -171,7 +171,7 @@
         valid_equal: function(el, required){
             var from = document.getElementById(el.getAttribute('data-equalto')).value, to = el.value, valid = (from === to);
 
-            if( valid ){
+            if(valid){
                 $(el).removeAttr('data-invalid').parent().removeClass('error');
             } else{
                 $(el).attr('data-invalid', '').parent().addClass('error');

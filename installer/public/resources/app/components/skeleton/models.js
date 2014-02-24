@@ -33,7 +33,7 @@ define(['./app'], function(UMI){
                             propertyValue = DS.attr('date');
                             break;
                         case 'relationship':
-                            if( model.properties[i].relationship.params ){
+                            if(model.properties[i].relationship.params){
                                 propertyValue = DS[model.properties[i].relationship.type](model.properties[i].relationship.name, model.properties[i].relationship.params);
                             } else{
                                 propertyValue = DS[model.properties[i].relationship.type](model.properties[i].relationship.name);
@@ -48,7 +48,7 @@ define(['./app'], function(UMI){
 
                 UMI[model.name] = DS.Model.extend(properties);
 
-                if( model.resource ){
+                if(model.resource){
                     UMI[model.name + 'Adapter'] = UMI.RESTAdapter.extend({
                         namespace: model.resource,
                         buildURL: function(record, suffix){

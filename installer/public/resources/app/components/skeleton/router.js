@@ -41,15 +41,15 @@ define(['./app'], function(UMI){
                 var self = this;
                 var baseResource = '/resources/modules/baseResource.json';
                 return $.getJSON(baseResource).then(function(results){
-                        UMI.FactoryForModels(results.models);
-                        var model;
-                        for(model in results.records){
-                            if( results.records.hasOwnProperty(model) ){
-                                self.store.pushMany(model, results.records[model]);
-                            }
+                    UMI.FactoryForModels(results.models);
+                    var model;
+                    for(model in results.records){
+                        if(results.records.hasOwnProperty(model)){
+                            self.store.pushMany(model, results.records[model]);
                         }
-                        self.controllerFor('dock').set('content', self.store.all('moduleList'));
-                    });
+                    }
+                    self.controllerFor('dock').set('content', self.store.all('moduleList'));
+                });
             },
             actions: {
                 /**
@@ -58,7 +58,7 @@ define(['./app'], function(UMI){
                  * приложение становится неактивным и происходит смена шаблона на шаблон авторизации.
                  * */
                 willTransition: function(transition){
-                    if( transition.targetName === 'logout' ){
+                    if(transition.targetName === 'logout'){
                         transition.abort();
                         var applicationLayout = document.querySelector('.umi-main-view');
                         var maskLayout = document.createElement('div');
@@ -82,7 +82,7 @@ define(['./app'], function(UMI){
 
         UMI.IndexRoute = Ember.Route.extend({
             redirect: function(model, transition){
-                if( transition.targetName === this.routeName ){
+                if(transition.targetName === this.routeName){
                     var firstChild = this.store.all('moduleList').get('firstObject');
                     return this.transitionTo('module', firstChild.get('slug'));
                 }
@@ -101,7 +101,7 @@ define(['./app'], function(UMI){
                 return module;
             },
             redirect: function(model, transition){
-                if( transition.targetName === this.routeName + '.index' ){
+                if(transition.targetName === this.routeName + '.index'){
                     var firstChild = model.get('componentList').get('firstObject');
                     return this.transitionTo('component', firstChild.get('slug'));
                 }
@@ -121,33 +121,33 @@ define(['./app'], function(UMI){
                  * Получим ресурсы для компонента
                  */
                 return $.getJSON(componentResource).then(function(results){
-                        var nameModel;
-                        var modes;
-                        var hasTree;
+                    var nameModel;
+                    var modes;
+                    var hasTree;
 
-                        for(nameModel in results.records){
-                            if( results.records.hasOwnProperty(nameModel) ){
-                                self.store.pushMany(nameModel, results.records[nameModel]);
-                            }
+                    for(nameModel in results.records){
+                        if(results.records.hasOwnProperty(nameModel)){
+                            self.store.pushMany(nameModel, results.records[nameModel]);
                         }
-                        hasTree = results.treeSettings ? true : false;
-                        self.controllerFor('component').set('hasTree', hasTree);
-                        if( hasTree ){
-                            self.controllerFor('component').set('treeSettings', results.treeSettings);
-                            self.controllerFor('component').set('treeType', results.treeSettings.root.type);
-                        }
-                        /**
-                         * Установим режимы для компонента
-                         * */
-                        self.controllerFor('componentMode').set('id', results.treeSettings.root.ids[0]);
-                        modes = self.store.all('componentMode').findBy('id', model.get('id'));
-                        self.controllerFor('componentMode').set('modes', modes);
-                        return model;
-                    });
+                    }
+                    hasTree = results.treeSettings ? true : false;
+                    self.controllerFor('component').set('hasTree', hasTree);
+                    if(hasTree){
+                        self.controllerFor('component').set('treeSettings', results.treeSettings);
+                        self.controllerFor('component').set('treeType', results.treeSettings.root.type);
+                    }
+                    /**
+                     * Установим режимы для компонента
+                     * */
+                    self.controllerFor('componentMode').set('id', results.treeSettings.root.ids[0]);
+                    modes = self.store.all('componentMode').findBy('id', model.get('id'));
+                    self.controllerFor('componentMode').set('modes', modes);
+                    return model;
+                });
             },
 
             redirect: function(model, transition){
-                if( transition.targetName === this.routeName + '.index' ){
+                if(transition.targetName === this.routeName + '.index'){
                     var rootTreeNode = this.store.all(this.controllerFor('component').get('treeType')).findBy('id', this.controllerFor('componentMode').get('id'));
                     return this.transitionTo('treeActive', rootTreeNode);
                 }
@@ -163,14 +163,14 @@ define(['./app'], function(UMI){
                 return this.store.find(this.controllerFor('component').get('treeType'), params.treeActive);
             },
             redirect: function(model, transition){
-                if( transition.targetName === this.routeName + '.index' ){
+                if(transition.targetName === this.routeName + '.index'){
                     var modes = this.controllerFor('componentMode').get('content');
                     var mode = modes.findBy('current', true);
                     return this.transitionTo('mode', mode.get('slug'));
                 }
             },
             serialize: function(model){
-                if( model ){
+                if(model){
                     return {treeActive: model.get('id')};
                 }
             }
@@ -182,7 +182,7 @@ define(['./app'], function(UMI){
                 return modes.findBy('slug', params.mode);
             },
             redirect: function(model, transition){
-                if( transition.targetName === this.routeName + '.index' ){
+                if(transition.targetName === this.routeName + '.index'){
                     var self = this;
                     var activeNode = this.modelFor('treeActive');
 
@@ -191,18 +191,18 @@ define(['./app'], function(UMI){
                      * если совпадают: перенаправляем на contentRoute соответсвующий активному объекту в дереве
                      * если не совпадают: перенаправляем на первый объект находящийся в указанной связи с выбранным объектом дерева
                      * */
-                    if( activeNode.constructor.typeKey === this.modelFor('mode').get('contentType') ){
+                    if(activeNode.constructor.typeKey === this.modelFor('mode').get('contentType')){
                         return self.transitionTo('content', activeNode.get('id'));
                     } else{
                         var objects = this.modelFor('treeActive').get(model.get('contentType'));
                         return objects.then(function(objects){
-                                return self.transitionTo('content', objects.get('firstObject.id'));
-                            });
+                            return self.transitionTo('content', objects.get('firstObject.id'));
+                        });
                     }
                 }
             },
             serialize: function(model){
-                if( model ){
+                if(model){
                     return {mode: model.get('slug')};
                 }
             }
@@ -214,21 +214,21 @@ define(['./app'], function(UMI){
                 var activeMode = this.modelFor('mode');
                 var results = {};
                 return $.getJSON(activeMode.get('resources')).then(function(data){
-                        for(var object in data.objects){
-                            if( data.objects.hasOwnProperty(object) ){
-                                self.store.pushMany(object, data.objects[object]);
-                            }
+                    for(var object in data.objects){
+                        if(data.objects.hasOwnProperty(object)){
+                            self.store.pushMany(object, data.objects[object]);
                         }
-                        return self.store.find(self.modelFor('mode').get('contentType'), params.content).then(function(model){
-                                results.object = model;
-                                results.templateType = data.templateType;
-                                results.meta = data.meta;
-                                return results;
-                            });
+                    }
+                    return self.store.find(self.modelFor('mode').get('contentType'), params.content).then(function(model){
+                        results.object = model;
+                        results.templateType = data.templateType;
+                        results.meta = data.meta;
+                        return results;
                     });
+                });
             },
             serialize: function(results){
-                if( results ){
+                if(results){
                     return {content: results.object.get('id')};
                 }
             },
@@ -236,7 +236,7 @@ define(['./app'], function(UMI){
                 this.render(results.templateType);
             },
             redirect: function(model, transition){
-                if( transition.params.content.content === 'search' ){
+                if(transition.params.content.content === 'search'){
                     console.log('search');
                 }
             }

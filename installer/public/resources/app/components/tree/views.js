@@ -81,7 +81,7 @@ define(['App'], function(UMI){
 
                     var delayBeforeExpand;
                     $(document).on('mousemove', 'body, .umi-tree-ghost', function(event){
-                        if( delayBeforeExpand ){
+                        if(delayBeforeExpand){
                             clearTimeout(delayBeforeExpand);
                         }
                         ghostPosition(event);
@@ -99,10 +99,10 @@ define(['App'], function(UMI){
                             Ember.View.views[node.firstElementChild.id].get('controller').set('isExpanded', true);
                         };
                         // Проверим находимся мы над деревом или нет
-                        if( $(elem).closest('.umi-tree').length ){
+                        if($(elem).closest('.umi-tree').length){
                             hoverElement = $(elem).closest('li')[0];
                             // Устанавливаем плэйсхолдер рядом с элементом
-                            if( hoverElement && hoverElement !== placeholder && !$(hoverElement).hasClass('root') ){
+                            if(hoverElement && hoverElement !== placeholder && !$(hoverElement).hasClass('root')){
                                 elemHeight = hoverElement.offsetHeight;
                                 elemPositionTop = hoverElement.getBoundingClientRect().top;
                                 // Помещаем плэйсхолдер:
@@ -110,15 +110,15 @@ define(['App'], function(UMI){
                                 // 2) перед нодой - Если позиция курсора на ноде выше ~30% её высоты
                                 // 3) При наведении на центр необходимо раскрыть ноду если есть потомки
                                 //    или спросить пользователя о ....
-                                if( event.clientY > elemPositionTop + parseInt(elemHeight * 0.7, 10) ){
+                                if(event.clientY > elemPositionTop + parseInt(elemHeight * 0.7, 10)){
                                     placeholder = placeholder.parentNode.removeChild(placeholder);
                                     nextElement = findNextSubling(hoverElement, 'li');
-                                    if( nextElement ){
+                                    if(nextElement){
                                         placeholder = hoverElement.parentNode.insertBefore(placeholder, nextElement);
                                     } else{
                                         placeholder = hoverElement.parentNode.appendChild(placeholder);
                                     }
-                                } else if( event.clientY < elemPositionTop + parseInt(elemHeight * 0.4, 10) ){
+                                } else if(event.clientY < elemPositionTop + parseInt(elemHeight * 0.4, 10)){
                                     placeholder = placeholder.parentNode.removeChild(placeholder);
                                     placeholder = hoverElement.parentNode.insertBefore(placeholder, hoverElement);
                                 } else{
@@ -142,7 +142,7 @@ define(['App'], function(UMI){
                         ghost.parentNode.removeChild(ghost);
 
                         // Если курсор над плейсхолдером считаем что перемещение удачное
-                        if( list ){
+                        if(list){
                             var parentList = placeholder.parentNode;
                             $(parentList).children('li:not(.hide)').each(function(index){
                                 indexes[jQuery(this).data('id')] = index + 1;// Index начнется с 1
@@ -150,7 +150,7 @@ define(['App'], function(UMI){
                             self.get('controller').send('updateSortOrder', indexes, placeholder.getAttribute('data-id'), list.getAttribute('data-parent-id'));
                         }
                         // Удаление плэйсхолдера
-                        if( placeholder.parentNode ){
+                        if(placeholder.parentNode){
                             placeholder.parentNode.removeChild(placeholder);
                         }
                         $(draggableNode).removeClass('hide');

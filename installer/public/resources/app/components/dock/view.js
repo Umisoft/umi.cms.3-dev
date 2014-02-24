@@ -22,7 +22,7 @@ define(['App'], function(UMI){
                 });
             },
             mouseEnter: function(){
-                if( delayResetActive ){
+                if(delayResetActive){
                     clearTimeout(delayResetActive);
                 }
             }
@@ -36,7 +36,7 @@ define(['App'], function(UMI){
             }.property('content.isActive'),
             mouseEnter: function(){
                 var setActive = function(self){
-                    if( !self.get('active') ){
+                    if(!self.get('active')){
                         self.get('parentView.controller.content').findBy('isActive', true).set('isActive', false);
                     }
                     self.get('content').set('isActive', true);
@@ -73,7 +73,7 @@ define(['App'], function(UMI){
                 self.update().addEvent();
                 self.buffer = document.createElement('div');
                 self.buffer.className = 'dock-buffer';
-                if( !self.el.style.marginLeft ){
+                if(!self.el.style.marginLeft){
                     self.el.style.marginLeft = 0;
                 }
                 self.buffer = self.el.parentNode.appendChild(self.buffer);
@@ -98,14 +98,14 @@ define(['App'], function(UMI){
             addEvent: function(){
                 var self = this, def = {old: 0, cur: 0, def: 0, coeff: 1 }, firstLoad = true, intervalLeaveDock, intervalLeaveItem, isActive, afterClick, futureOffset, move = {};
                 for(var i = 0; i < this.el.childNodes.length; i++){
-                    if( this.el.childNodes[i].nodeType !== 1 ){
+                    if(this.el.childNodes[i].nodeType !== 1){
                         continue;
                     }
-                    if( this.el.childNodes[i].className.indexOf('favorites') !== -1 ){
+                    if(this.el.childNodes[i].className.indexOf('favorites') !== -1){
                         continue;
                     }
                     this.el.childNodes[i].onmousemove = function(e){
-                        if( !firstLoad ){
+                        if(!firstLoad){
                             var elHover = this;
                             clearInterval(intervalLeaveDock);
                             !intervalLeaveItem || clearTimeout(intervalLeaveItem);
@@ -114,7 +114,7 @@ define(['App'], function(UMI){
                             }, 300);
                         }
                         function onHover(event, elm){
-                            if( isActive || afterClick ){
+                            if(isActive || afterClick){
                                 return false;
                             }
                             isActive = true;
@@ -122,17 +122,17 @@ define(['App'], function(UMI){
                             var posBegin = $(elm).position().left + elm.offsetWidth / 2 + parseInt(self.el.style.marginLeft);
 
                             $(elm.parentNode).find('img').stop().animate({height: 40, margin: '14px 36px 38px'}, {
-                                    duration: 280,
-                                    step: function(n, o){
-                                        if( this.parentNode.parentNode == elm ){
-                                            self.el.style.marginLeft = posBegin - (o.elem.parentNode.parentNode.offsetLeft + o.elem.parentNode.offsetWidth / 2) + 'px';
-                                        }
-                                    },
-                                    complete: function(){
-                                        self.$el.addClass('full');
-                                        move.proccess = true;
+                                duration: 280,
+                                step: function(n, o){
+                                    if(this.parentNode.parentNode == elm){
+                                        self.el.style.marginLeft = posBegin - (o.elem.parentNode.parentNode.offsetLeft + o.elem.parentNode.offsetWidth / 2) + 'px';
                                     }
-                                });
+                                },
+                                complete: function(){
+                                    self.$el.addClass('full');
+                                    move.proccess = true;
+                                }
+                            });
                         }
 
                         firstLoad = false;
@@ -170,12 +170,12 @@ define(['App'], function(UMI){
                     move.oldtime = false;
                     move.proccess = false;
                     $(el.parentNode).find('img').stop().animate({margin: '9px 11px 9px', height: 30}, {
-                            duration: 130,
-                            easing: 'linear',
-                            complete: function(){
+                        duration: 130,
+                        easing: 'linear',
+                        complete: function(){
 
-                            }
-                        });
+                        }
+                    });
                     self.$el.animate({marginLeft: '0px'}, {duration: 130, easing: 'linear', complete: function(){
                         self.$el.removeClass('full');
                         afterClick = false;
@@ -183,70 +183,70 @@ define(['App'], function(UMI){
                 }
 
                 this.$el.mouseleave(function(e){
-                        def.old = false;
-                        if( !e.relatedTarget ){
-                            $(document.body).bind('mouseover', function(e){
-                                if( self.$el.hasClass('full') && !($(e.target).closest('.dock')).size() ){
-                                    leaveDock(self.el);
-                                }
-                                $(this).unbind('mouseover');
-                            });
-                            return false;
-                        }
-                        if( e.relatedTarget.className == 'dock-buffer' ){
-                            return false;
-                        }
-                        var el = this;
-                        intervalLeaveDock = setTimeout(function(){
-                            leaveDock(el);
-                        }, 500);
-                    }).mousemove(function(e){
-                    if( !move.oldtime ){
+                    def.old = false;
+                    if(!e.relatedTarget){
+                        $(document.body).bind('mouseover', function(e){
+                            if(self.$el.hasClass('full') && !($(e.target).closest('.dock')).size()){
+                                leaveDock(self.el);
+                            }
+                            $(this).unbind('mouseover');
+                        });
+                        return false;
+                    }
+                    if(e.relatedTarget.className == 'dock-buffer'){
+                        return false;
+                    }
+                    var el = this;
+                    intervalLeaveDock = setTimeout(function(){
+                        leaveDock(el);
+                    }, 500);
+                }).mousemove(function(e){
+                    if(!move.oldtime){
                         move.oldtime = new Date();
                     }
-                        move.curtime = new Date();
-                    if( move.curtime - move.oldtime > 700 || move.proccess ){
+                    move.curtime = new Date();
+                    if(move.curtime - move.oldtime > 700 || move.proccess){
                         moving(this);
                     }
 
-                        function moving(el){
-                            move.proccess = true;
-                            var isDropdown = $(e.target).closest('.dropdown-menu').size(), dockParent = el.parentNode, elOffsetLeft = el.offsetLeft, elWidth = el.offsetWidth, dockParentWidth = el.parentNode.offsetWidth;
-                            def.cur = e.clientX;
-                            if( def.old ){
-                                def.def = def.old - def.cur;
-                            }
+                    function moving(el){
+                        move.proccess = true;
+                        var isDropdown = $(e.target).closest('.dropdown-menu').size(), dockParent = el.parentNode, elOffsetLeft = el.offsetLeft, elWidth = el.offsetWidth, dockParentWidth = el.parentNode.offsetWidth;
+                        def.cur = e.clientX;
+                        if(def.old){
+                            def.def = def.old - def.cur;
+                        }
 
-                            if( Math.abs(elOffsetLeft) + elWidth > dockParentWidth && !isDropdown ){
-                                if( def.def > 0 ){
-                                    // move left
-                                    def.coeff = Math.abs(elOffsetLeft) / (e.clientX);
-                                    futureOffset = Math.round(parseInt(el.style.marginLeft) + def.def * def.coeff);
-                                    if( def.coeff > 0 && futureOffset + parseInt(el.style.left) < -20 ){
-                                        el.style.marginLeft = futureOffset + 'px';
-                                    }
-                                } else if( def.def < 0 ){
-                                    // move right
-                                    def.coeff = Math.abs((elWidth - dockParentWidth + elOffsetLeft) / (dockParentWidth - e.clientX));
-                                    futureOffset = Math.round(parseInt(el.style.marginLeft) + def.def * def.coeff);
+                        if(Math.abs(elOffsetLeft) + elWidth > dockParentWidth && !isDropdown){
+                            if(def.def > 0){
+                                // move left
+                                def.coeff = Math.abs(elOffsetLeft) / (e.clientX);
+                                futureOffset = Math.round(parseInt(el.style.marginLeft) + def.def * def.coeff);
+                                if(def.coeff > 0 && futureOffset + parseInt(el.style.left) < -20){
+                                    el.style.marginLeft = futureOffset + 'px';
+                                }
+                            } else if(def.def < 0){
+                                // move right
+                                def.coeff = Math.abs((elWidth - dockParentWidth + elOffsetLeft) / (dockParentWidth - e.clientX));
+                                futureOffset = Math.round(parseInt(el.style.marginLeft) + def.def * def.coeff);
 
-                                    if( def.coeff > 0 && dockParentWidth < elWidth - 20 + ( futureOffset + (parseInt(el.style.left) )) ){
-                                        el.style.marginLeft = futureOffset + 'px';
-                                    }
+                                if(def.coeff > 0 && dockParentWidth < elWidth - 20 + ( futureOffset + (parseInt(el.style.left) ))){
+                                    el.style.marginLeft = futureOffset + 'px';
                                 }
                             }
-                            def.old = e.clientX;
                         }
-                    });
+                        def.old = e.clientX;
+                    }
+                });
                 $(self.el.parentNode).on('mouseleave mousemove', '.dock-buffer', function(e){
-                    if( e.type == 'mousemove' ){
+                    if(e.type == 'mousemove'){
                         clearInterval(intervalLeaveDock);
                         intervalLeaveDock = setTimeout(function(){
                             leaveDock(self.el);
                         }, 300);
-                    } else if( e.type == 'mouseleave' ){
+                    } else if(e.type == 'mouseleave'){
                         clearInterval(intervalLeaveDock);
-                        if( !$(e.relatedTarget).closest('.dock').size() ){
+                        if(!$(e.relatedTarget).closest('.dock').size()){
                             leaveDock(self.el);
                         }
                     }

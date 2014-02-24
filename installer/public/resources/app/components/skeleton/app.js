@@ -23,12 +23,12 @@ define(['DS', 'Modernizr'], function(DS, Modernizr){
             return (this.Android() || this.BlackBerry() || this.iOS() || this.Opera() || this.Windows());
         }
     };
-    if( mobileDetection.any() ){
+    if(mobileDetection.any()){
         console.log('mobile');
     }
 
     //Проверка размеров экрана
-    if( screen.width < 800 ){
+    if(screen.width < 800){
         console.log('Минимальная поддерживаемая ширина экрана - 800px');
     }
 
@@ -72,20 +72,20 @@ define(['DS', 'Modernizr'], function(DS, Modernizr){
             hash.dataType = 'json';
             hash.context = this;
 
-            if( hash.data && type !== 'GET' ){
+            if(hash.data && type !== 'GET'){
                 hash.contentType = 'application/json; charset=utf-8';
                 hash.data = JSON.stringify(hash.data);
             }
 
             var headers = this.headers;
 
-            if( type === 'PUT' || type === 'DELETE' ){
+            if(type === 'PUT' || type === 'DELETE'){
                 headers = headers || {};
                 headers['x-real-request-method'] = type;
                 hash.type = 'POST';
             }
 
-            if( headers !== undefined ){
+            if(headers !== undefined){
                 hash.beforeSend = function(xhr){
                     Ember.ArrayPolyfills.forEach.call(Ember.keys(headers), function(key){
                         xhr.setRequestHeader(key, headers[key]);

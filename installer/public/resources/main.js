@@ -88,7 +88,7 @@ require.config({
 });
 
 
-if( UmiSettings.login ){
+if(UmiSettings.login){
     require(['app/main'], function(application){
         application();
     });

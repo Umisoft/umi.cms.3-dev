@@ -40,10 +40,10 @@
                     //   console.log($(this).html(), a, b, c);
                     // });
 
-                    if( /IMG/.test(el[0].nodeName) ){
+                    if(/IMG/.test(el[0].nodeName)){
                         var orig_path = el[0].src;
 
-                        if( new RegExp(path, 'i').test(orig_path) ){
+                        if(new RegExp(path, 'i').test(orig_path)){
                             return;
                         }
 
@@ -53,7 +53,7 @@
                     }
                     var last_path = el.data('interchange-last-path');
 
-                    if( last_path == path ){
+                    if(last_path == path){
                         return;
                     }
 
@@ -81,8 +81,8 @@
             var self = this;
 
             $(window).off('.interchange').on('resize.fndtn.interchange', self.throttle(function(){
-                    self.resize.call(self);
-                }, 50));
+                self.resize.call(self);
+            }, 50));
 
             return this;
         },
@@ -90,18 +90,18 @@
         resize: function(){
             var cache = this.cache;
 
-            if( !this.images_loaded || !this.nodes_loaded ){
+            if(!this.images_loaded || !this.nodes_loaded){
                 setTimeout($.proxy(this.resize, this), 50);
                 return;
             }
 
             for(var uuid in cache){
-                if( cache.hasOwnProperty(uuid) ){
+                if(cache.hasOwnProperty(uuid)){
                     var passed = this.results(uuid, cache[uuid]);
 
-                    if( passed ){
+                    if(passed){
                         this.settings.directives[passed.scenario[1]](passed.el, passed.scenario[0], function(){
-                            if( arguments[0] instanceof Array ){
+                            if(arguments[0] instanceof Array){
                                 var args = arguments[0];
                             } else{
                                 var args = Array.prototype.slice.call(arguments, 0);
@@ -118,17 +118,17 @@
         results: function(uuid, scenarios){
             var count = scenarios.length;
 
-            if( count > 0 ){
+            if(count > 0){
                 var el = this.S('[data-uuid="' + uuid + '"]');
 
                 for(var i = count - 1; i >= 0; i--){
                     var mq, rule = scenarios[i][2];
-                    if( this.settings.named_queries.hasOwnProperty(rule) ){
+                    if(this.settings.named_queries.hasOwnProperty(rule)){
                         mq = matchMedia(this.settings.named_queries[rule]);
                     } else{
                         mq = matchMedia(rule);
                     }
-                    if( mq.matches ){
+                    if(mq.matches){
                         return {el: el, scenario: scenarios[i]};
                     }
                 }
@@ -138,7 +138,7 @@
         },
 
         load: function(type, force_update){
-            if( typeof this['cached_' + type] === 'undefined' || force_update ){
+            if(typeof this['cached_' + type] === 'undefined' || force_update){
                 this['update_' + type]();
             }
 
@@ -154,15 +154,15 @@
 
             for(var i = count - 1; i >= 0; i--){
                 loaded_count++;
-                if( images[i] ){
+                if(images[i]){
                     var str = images[i].getAttribute(data_attr) || '';
 
-                    if( str.length > 0 ){
+                    if(str.length > 0){
                         this.cached_images.push(images[i]);
                     }
                 }
 
-                if( loaded_count === count ){
+                if(loaded_count === count){
                     this.images_loaded = true;
                     this.enhance('images');
                 }
@@ -184,11 +184,11 @@
                 loaded_count++;
                 var str = nodes[i].getAttribute(data_attr) || '';
 
-                if( str.length > 0 ){
+                if(str.length > 0){
                     this.cached_nodes.push(nodes[i]);
                 }
 
-                if( loaded_count === count ){
+                if(loaded_count === count){
                     this.nodes_loaded = true;
                     this.enhance('nodes');
                 }
@@ -214,7 +214,7 @@
         convert_directive: function(directive){
             var trimmed = this.trim(directive);
 
-            if( trimmed.length > 0 ){
+            if(trimmed.length > 0){
                 return trimmed;
             }
 
@@ -224,11 +224,11 @@
         object: function(el){
             var raw_arr = this.parse_data_attr(el), scenarios = [], count = raw_arr.length;
 
-            if( count > 0 ){
+            if(count > 0){
                 for(var i = count - 1; i >= 0; i--){
                     var split = raw_arr[i].split(/\((.*?)(\))$/);
 
-                    if( split.length > 1 ){
+                    if(split.length > 1){
                         var cached_split = split[0].split(','), params = this.parse_params(cached_split[0], cached_split[1], split[1]);
 
                         scenarios.push(params);
@@ -252,7 +252,7 @@
         store: function(el, scenarios){
             var uuid = this.uuid(), current_uuid = el.data('uuid');
 
-            if( current_uuid ){
+            if(current_uuid){
                 return this.cache[current_uuid];
             }
 
@@ -262,7 +262,7 @@
         },
 
         trim: function(str){
-            if( typeof str === 'string' ){
+            if(typeof str === 'string'){
                 return $.trim(str);
             }
 
@@ -273,7 +273,7 @@
             var raw = el.data(this.settings.load_attr).split(/\[(.*?)\]/), count = raw.length, output = [];
 
             for(var i = count - 1; i >= 0; i--){
-                if( raw[i].replace(/[\W\d]+/, '').length > 4 ){
+                if(raw[i].replace(/[\W\d]+/, '').length > 4){
                     output.push(raw[i]);
                 }
             }

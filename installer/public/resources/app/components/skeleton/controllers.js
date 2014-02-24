@@ -12,7 +12,7 @@ define(['./app'], function(UMI){
         UMI.ComponentModeController = Ember.ArrayController.extend({
             content: function(){
                 var componentMode = this.get('modes');
-                if( componentMode ){
+                if(componentMode){
                     var buttons = [];
                     componentMode = componentMode.get('modes')[this.get('id')];
                     for(var i = 0; i < componentMode.titles.length; i++){

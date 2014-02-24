@@ -13,7 +13,7 @@ define(['./app'], function(UMI){
                     $(document).foundation();
                 });
                 $(document).on('keydown', function(e){
-                    if( e.altKey && e.which === 86 ){
+                    if(e.altKey && e.which === 86){
                         self.toggleProperty('showAllVersion');
                     }
                 });

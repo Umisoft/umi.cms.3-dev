@@ -49,40 +49,40 @@
             var self = this;
 
             $('[data-reveal-id]', this.scope).off('.reveal').on('click.fndtn.reveal', function(e){
-                    e.preventDefault();
+                e.preventDefault();
 
-                    if( !self.locked ){
-                        var element = $(this), ajax = element.data('reveal-ajax');
+                if(!self.locked){
+                    var element = $(this), ajax = element.data('reveal-ajax');
 
-                        self.locked = true;
+                    self.locked = true;
 
-                        if( typeof ajax === 'undefined' ){
-                            self.open.call(self, element);
-                        } else{
-                            var url = ajax === true ? element.attr('href') : ajax;
+                    if(typeof ajax === 'undefined'){
+                        self.open.call(self, element);
+                    } else{
+                        var url = ajax === true ? element.attr('href') : ajax;
 
-                            self.open.call(self, element, {url: url});
-                        }
+                        self.open.call(self, element, {url: url});
                     }
-                });
+                }
+            });
 
             $(this.scope).off('.reveal').on('click.fndtn.reveal', this.close_targets(), function(e){
 
-                    e.preventDefault();
+                e.preventDefault();
 
-                    if( !self.locked ){
-                        var settings = $('[data-reveal].open').data('reveal-init'), bg_clicked = $(e.target)[0] === $('.' + settings.bg_class)[0];
+                if(!self.locked){
+                    var settings = $('[data-reveal].open').data('reveal-init'), bg_clicked = $(e.target)[0] === $('.' + settings.bg_class)[0];
 
-                        if( bg_clicked && !settings.close_on_background_click ){
-                            return;
-                        }
-
-                        self.locked = true;
-                        self.close.call(self, bg_clicked ? $('[data-reveal].open') : $(this).closest('[data-reveal]'));
+                    if(bg_clicked && !settings.close_on_background_click){
+                        return;
                     }
-                });
 
-            if( $('[data-reveal]', this.scope).length > 0 ){
+                    self.locked = true;
+                    self.close.call(self, bg_clicked ? $('[data-reveal].open') : $(this).closest('[data-reveal]'));
+                }
+            });
+
+            if($('[data-reveal]', this.scope).length > 0){
                 $(this.scope)// .off('.reveal')
                     .on('open.fndtn.reveal', this.settings.open).on('opened.fndtn.reveal', this.settings.opened).on('opened.fndtn.reveal', this.open_video).on('close.fndtn.reveal', this.settings.close).on('closed.fndtn.reveal', this.settings.closed).on('closed.fndtn.reveal', this.close_video);
             } else{
@@ -92,7 +92,7 @@
 
             $('body').on('keyup.fndtn.reveal', function(event){
                 var open_modal = $('[data-reveal].open'), settings = open_modal.data('reveal-init');
-                if( event.which === 27 && settings.close_on_esc ){ // 27 is the keycode for the Escape key
+                if(event.which === 27 && settings.close_on_esc){ // 27 is the keycode for the Escape key
                     open_modal.foundation('reveal', 'close');
                 }
             });
@@ -101,8 +101,8 @@
         },
 
         open: function(target, ajax_settings){
-            if( target ){
-                if( typeof target.selector !== 'undefined' ){
+            if(target){
+                if(typeof target.selector !== 'undefined'){
                     var modal = $('#' + target.data('reveal-id'));
                 } else{
                     var modal = $(this.scope);
@@ -113,20 +113,20 @@
                 var modal = $(this.scope);
             }
 
-            if( !modal.hasClass('open') ){
+            if(!modal.hasClass('open')){
                 var open_modal = $('[data-reveal].open');
 
-                if( typeof modal.data('css-top') === 'undefined' ){
+                if(typeof modal.data('css-top') === 'undefined'){
                     modal.data('css-top', parseInt(modal.css('top'), 10)).data('offset', this.cache_offset(modal));
                 }
 
                 modal.trigger('open');
 
-                if( open_modal.length < 1 ){
+                if(open_modal.length < 1){
                     this.toggle_bg();
                 }
 
-                if( typeof ajax_settings === 'undefined' || !ajax_settings.url ){
+                if(typeof ajax_settings === 'undefined' || !ajax_settings.url){
                     this.hide(open_modal, this.settings.css.close);
                     this.show(modal, this.settings.css.open);
                 } else{
@@ -134,7 +134,7 @@
 
                     $.extend(ajax_settings, {
                         success: function(data, textStatus, jqXHR){
-                            if( $.isFunction(old_success) ){
+                            if($.isFunction(old_success)){
                                 old_success(data, textStatus, jqXHR);
                             }
 
@@ -155,7 +155,7 @@
 
             var modal = modal && modal.length ? modal : $(this.scope), open_modals = $('[data-reveal].open');
 
-            if( open_modals.length > 0 ){
+            if(open_modals.length > 0){
                 this.locked = true;
                 modal.trigger('close');
                 this.toggle_bg();
@@ -166,7 +166,7 @@
         close_targets: function(){
             var base = '.' + this.settings.dismiss_modal_class;
 
-            if( this.settings.close_on_background_click ){
+            if(this.settings.close_on_background_click){
                 return base + ', .' + this.settings.bg_class;
             }
 
@@ -174,11 +174,11 @@
         },
 
         toggle_bg: function(){
-            if( $('.' + this.settings.bg_class).length === 0 ){
+            if($('.' + this.settings.bg_class).length === 0){
                 this.settings.bg = $('<div />', {'class': this.settings.bg_class}).appendTo('body');
             }
 
-            if( this.settings.bg.filter(':visible').length > 0 ){
+            if(this.settings.bg.filter(':visible').length > 0){
                 this.hide(this.settings.bg);
             } else{
                 this.show(this.settings.bg);
@@ -187,8 +187,8 @@
 
         show: function(el, css){
             // is modal
-            if( css ){
-                if( el.parent('body').length === 0 ){
+            if(css){
+                if(el.parent('body').length === 0){
                     var placeholder = el.wrap('<div style="display: none;" />').parent();
                     el.on('closed.fndtn.reveal.wrapped', function(){
                         el.detach().appendTo(placeholder);
@@ -198,7 +198,7 @@
                     el.detach().appendTo('body');
                 }
 
-                if( /pop/i.test(this.settings.animation) ){
+                if(/pop/i.test(this.settings.animation)){
                     css.top = $(window).scrollTop() - el.data('offset') + 'px';
                     var end_css = {
                         top: $(window).scrollTop() + el.data('css-top') + 'px',
@@ -207,20 +207,20 @@
 
                     return this.delay(function(){
                         return el.css(css).animate(end_css, this.settings.animation_speed, 'linear', function(){
-                                this.locked = false;
-                                el.trigger('opened');
-                            }.bind(this)).addClass('open');
+                            this.locked = false;
+                            el.trigger('opened');
+                        }.bind(this)).addClass('open');
                     }.bind(this), this.settings.animation_speed / 2);
                 }
 
-                if( /fade/i.test(this.settings.animation) ){
+                if(/fade/i.test(this.settings.animation)){
                     var end_css = {opacity: 1};
 
                     return this.delay(function(){
                         return el.css(css).animate(end_css, this.settings.animation_speed, 'linear', function(){
-                                this.locked = false;
-                                el.trigger('opened');
-                            }.bind(this)).addClass('open');
+                            this.locked = false;
+                            el.trigger('opened');
+                        }.bind(this)).addClass('open');
                     }.bind(this), this.settings.animation_speed / 2);
                 }
 
@@ -228,7 +228,7 @@
             }
 
             // should we animate the background?
-            if( /fade/i.test(this.settings.animation) ){
+            if(/fade/i.test(this.settings.animation)){
                 return el.fadeIn(this.settings.animation_speed / 2);
             }
 
@@ -237,8 +237,8 @@
 
         hide: function(el, css){
             // is modal
-            if( css ){
-                if( /pop/i.test(this.settings.animation) ){
+            if(css){
+                if(/pop/i.test(this.settings.animation)){
                     var end_css = {
                         top: -$(window).scrollTop() - el.data('offset') + 'px',
                         opacity: 0
@@ -246,20 +246,20 @@
 
                     return this.delay(function(){
                         return el.animate(end_css, this.settings.animation_speed, 'linear', function(){
-                                this.locked = false;
-                                el.css(css).trigger('closed');
-                            }.bind(this)).removeClass('open');
+                            this.locked = false;
+                            el.css(css).trigger('closed');
+                        }.bind(this)).removeClass('open');
                     }.bind(this), this.settings.animation_speed / 2);
                 }
 
-                if( /fade/i.test(this.settings.animation) ){
+                if(/fade/i.test(this.settings.animation)){
                     var end_css = {opacity: 0};
 
                     return this.delay(function(){
                         return el.animate(end_css, this.settings.animation_speed, 'linear', function(){
-                                this.locked = false;
-                                el.css(css).trigger('closed');
-                            }.bind(this)).removeClass('open');
+                            this.locked = false;
+                            el.css(css).trigger('closed');
+                        }.bind(this)).removeClass('open');
                     }.bind(this), this.settings.animation_speed / 2);
                 }
 
@@ -267,7 +267,7 @@
             }
 
             // should we animate the background?
-            if( /fade/i.test(this.settings.animation) ){
+            if(/fade/i.test(this.settings.animation)){
                 return el.fadeOut(this.settings.animation_speed / 2);
             }
 
@@ -277,7 +277,7 @@
         close_video: function(e){
             var video = $(this).find('.flex-video'), iframe = video.find('iframe');
 
-            if( iframe.length > 0 ){
+            if(iframe.length > 0){
                 iframe.attr('data-src', iframe[0].src);
                 iframe.attr('src', 'about:blank');
                 video.hide();
@@ -287,9 +287,9 @@
         open_video: function(e){
             var video = $(this).find('.flex-video'), iframe = video.find('iframe');
 
-            if( iframe.length > 0 ){
+            if(iframe.length > 0){
                 var data_src = iframe.attr('data-src');
-                if( typeof data_src === 'string' ){
+                if(typeof data_src === 'string'){
                     iframe[0].src = iframe.attr('data-src');
                 } else{
                     var src = iframe[0].src;

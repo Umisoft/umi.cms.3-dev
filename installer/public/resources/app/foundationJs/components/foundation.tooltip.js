@@ -27,35 +27,35 @@
         events: function(){
             var self = this;
 
-            if( Modernizr.touch ){
-                $(this.scope).off('.tooltip').on('click.fndtn.tooltip touchstart.fndtn.tooltip touchend.fndtn.tooltip', '[data-tooltip]', function(e){
-                        var settings = $.extend({}, self.settings, self.data_options($(this)));
-                        if( !settings.disable_for_touch ){
-                            e.preventDefault();
-                            $(settings.tooltip_class).hide();
-                            self.showOrCreateTip($(this));
-                        }
-                    }).on('click.fndtn.tooltip touchstart.fndtn.tooltip touchend.fndtn.tooltip', this.settings.tooltip_class, function(e){
+            if(Modernizr.touch){
+                $(this.scope).off('.tooltip').on('click.fndtn.tooltip touchstart.fndtn.tooltip touchend.fndtn.tooltip', '[data-tooltip]',function(e){
+                    var settings = $.extend({}, self.settings, self.data_options($(this)));
+                    if(!settings.disable_for_touch){
                         e.preventDefault();
-                        $(this).fadeOut(150);
-                    });
+                        $(settings.tooltip_class).hide();
+                        self.showOrCreateTip($(this));
+                    }
+                }).on('click.fndtn.tooltip touchstart.fndtn.tooltip touchend.fndtn.tooltip', this.settings.tooltip_class, function(e){
+                    e.preventDefault();
+                    $(this).fadeOut(150);
+                });
             } else{
                 $(this.scope).off('.tooltip').on('mouseenter.fndtn.tooltip mouseleave.fndtn.tooltip', '[data-tooltip]', function(e){
-                        var $this = $(this);
+                    var $this = $(this);
 
-                        if( /enter|over/i.test(e.type) ){
-                            self.showOrCreateTip($this);
-                        } else if( e.type === 'mouseout' || e.type === 'mouseleave' ){
-                            self.hide($this);
-                        }
-                    });
+                    if(/enter|over/i.test(e.type)){
+                        self.showOrCreateTip($this);
+                    } else if(e.type === 'mouseout' || e.type === 'mouseleave'){
+                        self.hide($this);
+                    }
+                });
             }
         },
 
         showOrCreateTip: function($target){
             var $tip = this.getTip($target);
 
-            if( $tip && $tip.length > 0 ){
+            if($tip && $tip.length > 0){
                 return this.show($target);
             }
 
@@ -65,7 +65,7 @@
         getTip: function($target){
             var selector = this.selector($target), tip = null;
 
-            if( selector ){
+            if(selector){
                 tip = $('span[data-selector="' + selector + '"]' + this.settings.tooltip_class);
             }
 
@@ -75,7 +75,7 @@
         selector: function($target){
             var id = $target.attr('id'), dataSelector = $target.attr('data-tooltip') || $target.attr('data-selector');
 
-            if( (id && id.length < 1 || !id) && typeof dataSelector != 'string' ){
+            if((id && id.length < 1 || !id) && typeof dataSelector != 'string'){
                 dataSelector = 'tooltip' + Math.random().toString(36).substring(7);
                 $target.attr('data-selector', dataSelector);
             }
@@ -87,7 +87,7 @@
             var $tip = $(this.settings.tip_template(this.selector($target), $('<div></div>').html($target.attr('title')).html())), classes = this.inheritable_classes($target);
 
             $tip.addClass(classes).appendTo(this.settings.append_to);
-            if( Modernizr.touch ){
+            if(Modernizr.touch){
                 $tip.append('<span class="tap-to-close">' + this.settings.touch_close_text + '</span>');
             }
             $target.removeAttr('title').attr('title', '');
@@ -116,22 +116,22 @@
 
             objPos(tip, (target.offset().top + target.outerHeight() + 10), 'auto', 'auto', target.offset().left, width);
 
-            if( this.small() ){
+            if(this.small()){
                 objPos(tip, (target.offset().top + target.outerHeight() + 10), 'auto', 'auto', 12.5, $(this.scope).width());
                 tip.addClass('tip-override');
                 objPos(nub, -nubHeight, 'auto', 'auto', target.offset().left);
             } else{
                 var left = target.offset().left;
-                if( Foundation.rtl ){
+                if(Foundation.rtl){
                     left = target.offset().left + target.offset().width - tip.outerWidth();
                 }
                 objPos(tip, (target.offset().top + target.outerHeight() + 10), 'auto', 'auto', left, width);
                 tip.removeClass('tip-override');
-                if( classes && classes.indexOf('tip-top') > -1 ){
+                if(classes && classes.indexOf('tip-top') > -1){
                     objPos(tip, (target.offset().top - tip.outerHeight()), 'auto', 'auto', left, width).removeClass('tip-override');
-                } else if( classes && classes.indexOf('tip-left') > -1 ){
+                } else if(classes && classes.indexOf('tip-left') > -1){
                     objPos(tip, (target.offset().top + (target.outerHeight() / 2) - nubHeight * 2.5), 'auto', 'auto', (target.offset().left - tip.outerWidth() - nubHeight), width).removeClass('tip-override');
-                } else if( classes && classes.indexOf('tip-right') > -1 ){
+                } else if(classes && classes.indexOf('tip-right') > -1){
                     objPos(tip, (target.offset().top + (target.outerHeight() / 2) - nubHeight * 2.5), 'auto', 'auto', (target.offset().left + target.outerWidth() + nubHeight), width).removeClass('tip-override');
                 }
             }
@@ -145,12 +145,12 @@
 
         inheritable_classes: function(target){
             var inheritables = [
-                    'tip-top', 'tip-left', 'tip-bottom', 'tip-right', 'noradius'
-                ].concat(this.settings.additional_inheritable_classes), classes = target.attr('class'), filtered = classes ? $.map(classes.split(' '),function(el, i){
-                    if( $.inArray(el, inheritables) !== -1 ){
-                        return el;
-                    }
-                }).join(' ') : '';
+                'tip-top', 'tip-left', 'tip-bottom', 'tip-right', 'noradius'
+            ].concat(this.settings.additional_inheritable_classes), classes = target.attr('class'), filtered = classes ? $.map(classes.split(' '),function(el, i){
+                if($.inArray(el, inheritables) !== -1){
+                    return el;
+                }
+            }).join(' ') : '';
 
             return $.trim(filtered);
         },

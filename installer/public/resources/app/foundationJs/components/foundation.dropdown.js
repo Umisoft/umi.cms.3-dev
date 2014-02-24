@@ -25,66 +25,66 @@
         events: function(scope){
             var self = this;
 
-            $(this.scope).off('.dropdown').on('click.fndtn.dropdown', '[data-dropdown]', function(e){
-                    var settings = $(this).data('dropdown-init');
-                    e.preventDefault();
+            $(this.scope).off('.dropdown').on('click.fndtn.dropdown', '[data-dropdown]',function(e){
+                var settings = $(this).data('dropdown-init');
+                e.preventDefault();
 
-                if( !settings.is_hover || Modernizr.touch ){
+                if(!settings.is_hover || Modernizr.touch){
                     self.toggle($(this));
                 }
-                }).on('mouseenter.fndtn.dropdown', '[data-dropdown], [data-dropdown-content]', function(e){
-                    var $this = $(this);
-                    clearTimeout(self.timeout);
+            }).on('mouseenter.fndtn.dropdown', '[data-dropdown], [data-dropdown-content]',function(e){
+                var $this = $(this);
+                clearTimeout(self.timeout);
 
-                    if( $this.data('dropdown') ){
-                        var dropdown = $('#' + $this.data('dropdown')), target = $this;
-                    } else{
-                        var dropdown = $this;
-                        target = $("[data-dropdown='" + dropdown.attr('id') + "']");
-                    }
+                if($this.data('dropdown')){
+                    var dropdown = $('#' + $this.data('dropdown')), target = $this;
+                } else{
+                    var dropdown = $this;
+                    target = $("[data-dropdown='" + dropdown.attr('id') + "']");
+                }
 
-                    var settings = target.data('dropdown-init');
-                if( settings.is_hover ){
+                var settings = target.data('dropdown-init');
+                if(settings.is_hover){
                     self.open.apply(self, [dropdown, target]);
                 }
-                }).on('mouseleave.fndtn.dropdown', '[data-dropdown], [data-dropdown-content]', function(e){
-                    var $this = $(this);
-                    self.timeout = setTimeout(function(){
-                        if( $this.data('dropdown') ){
-                            var settings = $this.data('dropdown-init');
-                            if( settings.is_hover ){
-                                self.close.call(self, $('#' + $this.data('dropdown')));
-                            }
-                        } else{
-                            var target = $('[data-dropdown="' + $(this).attr('id') + '"]'), settings = target.data('dropdown-init');
-                            if( settings.is_hover ){
-                                self.close.call(self, $this);
-                            }
+            }).on('mouseleave.fndtn.dropdown', '[data-dropdown], [data-dropdown-content]',function(e){
+                var $this = $(this);
+                self.timeout = setTimeout(function(){
+                    if($this.data('dropdown')){
+                        var settings = $this.data('dropdown-init');
+                        if(settings.is_hover){
+                            self.close.call(self, $('#' + $this.data('dropdown')));
                         }
-                    }.bind(this), 150);
-                }).on('click.fndtn.dropdown', function(e){
-                    var parent = $(e.target).closest('[data-dropdown-content]');
-
-                    if( $(e.target).data('dropdown') || $(e.target).parent().data('dropdown') ){
-                        return;
+                    } else{
+                        var target = $('[data-dropdown="' + $(this).attr('id') + '"]'), settings = target.data('dropdown-init');
+                        if(settings.is_hover){
+                            self.close.call(self, $this);
+                        }
                     }
-                    if( !($(e.target).data('revealId')) && (parent.length > 0 && ($(e.target).is('[data-dropdown-content]') || $.contains(parent.first()[0], e.target))) ){
-                        e.stopPropagation();
-                        return;
-                    }
+                }.bind(this), 150);
+            }).on('click.fndtn.dropdown',function(e){
+                var parent = $(e.target).closest('[data-dropdown-content]');
 
-                    self.close.call(self, $('[data-dropdown-content]'));
-                }).on('opened.fndtn.dropdown', '[data-dropdown-content]', this.settings.opened).on('closed.fndtn.dropdown', '[data-dropdown-content]', this.settings.closed);
+                if($(e.target).data('dropdown') || $(e.target).parent().data('dropdown')){
+                    return;
+                }
+                if(!($(e.target).data('revealId')) && (parent.length > 0 && ($(e.target).is('[data-dropdown-content]') || $.contains(parent.first()[0], e.target)))){
+                    e.stopPropagation();
+                    return;
+                }
+
+                self.close.call(self, $('[data-dropdown-content]'));
+            }).on('opened.fndtn.dropdown', '[data-dropdown-content]', this.settings.opened).on('closed.fndtn.dropdown', '[data-dropdown-content]', this.settings.closed);
 
             $(window).off('.dropdown').on('resize.fndtn.dropdown', self.throttle(function(){
-                    self.resize.call(self);
-                }, 50)).trigger('resize');
+                self.resize.call(self);
+            }, 50)).trigger('resize');
         },
 
         close: function(dropdown){
             var self = this;
             dropdown.each(function(){
-                if( $(this).hasClass(self.settings.active_class) ){
+                if($(this).hasClass(self.settings.active_class)){
                     $(this).css(Foundation.rtl ? 'right' : 'left', '-99999px').removeClass(self.settings.active_class);
                     $(this).trigger('closed');
                 }
@@ -98,14 +98,14 @@
 
         toggle: function(target){
             var dropdown = $('#' + target.data('dropdown'));
-            if( dropdown.length === 0 ){
+            if(dropdown.length === 0){
                 // No dropdown found, not continuing
                 return;
             }
 
             this.close.call(this, $('[data-dropdown-content]').not(dropdown));
 
-            if( dropdown.hasClass(this.settings.active_class) ){
+            if(dropdown.hasClass(this.settings.active_class)){
                 this.close.call(this, dropdown);
             } else{
                 this.close.call(this, $('[data-dropdown-content]'))
@@ -116,7 +116,7 @@
         resize: function(){
             var dropdown = $('[data-dropdown-content].open'), target = $("[data-dropdown='" + dropdown.attr('id') + "']");
 
-            if( dropdown.length && target.length ){
+            if(dropdown.length && target.length){
                 this.css(dropdown, target);
             }
         },
@@ -127,7 +127,7 @@
             position.top -= offset_parent.offset().top;
             position.left -= offset_parent.offset().left;
 
-            if( this.small() ){
+            if(this.small()){
                 dropdown.css({
                     position: 'absolute',
                     width: '95%',
@@ -136,13 +136,13 @@
                 });
                 dropdown.css(Foundation.rtl ? 'right' : 'left', '2.5%');
             } else{
-                if( !Foundation.rtl && $(window).width() > dropdown.outerWidth() + target.offset().left ){
+                if(!Foundation.rtl && $(window).width() > dropdown.outerWidth() + target.offset().left){
                     var left = position.left;
-                    if( dropdown.hasClass('right') ){
+                    if(dropdown.hasClass('right')){
                         dropdown.removeClass('right');
                     }
                 } else{
-                    if( !dropdown.hasClass('right') ){
+                    if(!dropdown.hasClass('right')){
                         dropdown.addClass('right');
                     }
                     var left = position.left - (dropdown.outerWidth() - target.outerWidth());

@@ -42,20 +42,20 @@ define(['App'], function(UMI){
                         /**В результате перемещения ноды находящиеся перед перемещаемым элементом должны изменить индекс*/
                         var listNodes = self.store.all(type);
                         for(var key in indexes){
-                            if( indexes.hasOwnProperty(key) ){
+                            if(indexes.hasOwnProperty(key)){
                                 nodes.push(listNodes.findBy('id', key).set('index', indexes[key]));
                             }
                         }
                         // При перемещении ноды в другого родителя
                         // изменим связи belongsTo и hasMany для
                         // соответствующих нод
-                        if( parent.get('id') !== oldParent.get('id') ){
-                            if( oldParent ){
+                        if(parent.get('id') !== oldParent.get('id')){
+                            if(oldParent){
                                 oldParent.get('children').removeObject(node);// удаляем связь hasMany
                             }
                             //console.log(parent);
                             node.set('parent', parent); // добавляем связь belongTo
-                            if( parent ){
+                            if(parent){
                                 parent.get('children').addObject(node); // добавляем связь hasMany
                             }
                         }
@@ -89,7 +89,7 @@ define(['App'], function(UMI){
                 var filter;
                 var model = this.get('model');
                 for(filter in filters){
-                    if( model.get(filter) === filters[filter] ){
+                    if(model.get(filter) === filters[filter]){
                         ++counter;
                     }
                 }
