@@ -3,19 +3,67 @@
         {
             "id": 1,
             "modes": {
-                "lj234-34l5jl-dfigj-dlkljl-dkgkl": {"slug":["edit", "child-pages", "chart"], "titles":["Редактировать","Дочерние страницы", "Статистика"], "template": ["formTemplate", "tableTemplate", "chartTemplate"], "resources": ["news", "category", "stat"], "current": 0},
-                "lj234-34l5jl-dfigj-dlkljl-dkgdf": {"slug":["edit", "child-pages"], "titles":["Редактировать","Дочерние страницы"], "template": ["formTemplate", "tableTemplate"], "resources": ["news", "category"], "current": 0},
-                "lj234-34l5jl-dfigj-dlkljl-dkgsd": {"slug":["edit", "child-pages"], "titles":["Редактировать","Дочерние страницы"], "template": ["formTemplate", "tableTemplate"], "resources": ["news", "category"], "current": 0},
-                "lj234-34l5jl-dfigj-dlkljl-dkgef": {"slug":["edit", "child-pages"], "titles":["Редактировать","Дочерние страницы"], "template": ["formTemplate", "tableTemplate"], "resources": ["news", "category"], "current": 0}
+                "lj234-34l5jl-dfigj-dlkljl-dkgkl": {
+                    "slug": ["edit", "child-pages", "chart"],
+                    "titles": ["Редактировать", "Дочерние страницы", "Статистика"],
+                    "template": ["formTemplate", "tableTemplate", "chartTemplate"],
+                    "resources": ["news", "category", "stat"],
+                    "current": 0
+                },
+                "lj234-34l5jl-dfigj-dlkljl-dkgdf": {
+                    "slug": ["edit", "child-pages"],
+                    "titles": ["Редактировать", "Дочерние страницы"],
+                    "template": ["formTemplate", "tableTemplate"],
+                    "resources": ["news", "category"],
+                    "current": 0
+                },
+                "lj234-34l5jl-dfigj-dlkljl-dkgsd": {
+                    "slug": ["edit", "child-pages"],
+                    "titles": ["Редактировать", "Дочерние страницы"],
+                    "template": ["formTemplate", "tableTemplate"],
+                    "resources": ["news", "category"],
+                    "current": 0
+                },
+                "lj234-34l5jl-dfigj-dlkljl-dkgef": {
+                    "slug": ["edit", "child-pages"],
+                    "titles": ["Редактировать", "Дочерние страницы"],
+                    "template": ["formTemplate", "tableTemplate"],
+                    "resources": ["news", "category"],
+                    "current": 0
+                }
             }
         },
         {
             "id": 2,
             "modes": {
-                "lj234-34l5jl-dfigj-dlkljl-dkgkl": {"slug":["edit","child-pages", "chart"], "titles":["Редактировать","Дочерние страницы", "Статистика"], "template": ["formTemplate", "tableTemplate", "chartTemplate"], "resources": ["edit", "category", "stat"], "current": 0},
-                "lj234-34l5jl-dfigj-dlkljl-dkgdf": {"slug":["edit","child-pages"], "titles":["Редактировать","Дочерние страницы"], "template": ["formTemplate", "tableTemplate"], "resources": ["news", "category"], "current": 0},
-                "lj234-34l5jl-dfigj-dlkljl-dkgsd": {"slug":["edit","child-pages"], "titles":["Редактировать","Дочерние страницы"], "template": ["formTemplate", "tableTemplate"], "resources": ["news", "category"], "current": 0},
-                "lj234-34l5jl-dfigj-dlkljl-dkgef": {"slug":["edit","child-pages"], "titles":["Редактировать","Дочерние страницы"], "template": ["formTemplate", "tableTemplate"], "resources": ["news", "category"], "current": 0}
+                "lj234-34l5jl-dfigj-dlkljl-dkgkl": {
+                    "slug": ["edit", "child-pages", "chart"],
+                    "titles": ["Редактировать", "Дочерние страницы", "Статистика"],
+                    "template": ["formTemplate", "tableTemplate", "chartTemplate"],
+                    "resources": ["edit", "category", "stat"],
+                    "current": 0
+                },
+                "lj234-34l5jl-dfigj-dlkljl-dkgdf": {
+                    "slug": ["edit", "child-pages"],
+                    "titles": ["Редактировать", "Дочерние страницы"],
+                    "template": ["formTemplate", "tableTemplate"],
+                    "resources": ["news", "category"],
+                    "current": 0
+                },
+                "lj234-34l5jl-dfigj-dlkljl-dkgsd": {
+                    "slug": ["edit", "child-pages"],
+                    "titles": ["Редактировать", "Дочерние страницы"],
+                    "template": ["formTemplate", "tableTemplate"],
+                    "resources": ["news", "category"],
+                    "current": 0
+                },
+                "lj234-34l5jl-dfigj-dlkljl-dkgef": {
+                    "slug": ["edit", "child-pages"],
+                    "titles": ["Редактировать", "Дочерние страницы"],
+                    "template": ["formTemplate", "tableTemplate"],
+                    "resources": ["news", "category"],
+                    "current": 0
+                }
             }
         }
     ]

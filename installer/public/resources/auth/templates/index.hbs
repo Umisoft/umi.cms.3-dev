@@ -1,34 +1,35 @@
 <div class="panel pretty radius shake-it">
-	<form name="auth" novalidate="novalidate" class="custom large" data-abide="1" method="post" action="/admin">
-		<div class="errors-list"></div>
-		<div class="row">
-			<div class="small-12 columns">
-				<i class="icon icon-user input-icon"></i>
-				<input name="login" placeholder="Имя пользователя" tabindex="1" autofocus="autofocus" type="text" required="required" value="">
-				<span class="error">Поле не заполнено</span>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-12 columns">
-				<i class="icon icon-key input-icon"></i>
-				<input name="password" placeholder="Пароль" tabindex="2" type="password" required="required" value="">
-				<span class="error">Поле не заполнено</span>
-			</div>
-		</div>
-		<div class="row">
-			<div class="small-7 columns">
-				<label class="left" for="rememberMe">
-					<input name="rememberMe" id="rememberMe" tabindex="3" type="checkbox" value="1">
-					Запомнить меня
-				</label>
-			</div>
-			<div class="small-5 columns">
-				<input name="submit" class="button primary radius expand s-margin-clear" type="submit" value="Войти">
-				<span class="loader"></span>
-			</div>
-		</div>
-	</form>
+    <form name="auth" novalidate="novalidate" class="custom large" data-abide="1" method="post" action="/admin">
+        <div class="errors-list"></div>
+        <div class="row">
+            <div class="small-12 columns">
+                <i class="icon icon-user input-icon"></i>
+                <input name="login" placeholder="Имя пользователя" tabindex="1" autofocus="autofocus" type="text"
+                       required="required" value="">
+                <span class="error">Поле не заполнено</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <i class="icon icon-key input-icon"></i>
+                <input name="password" placeholder="Пароль" tabindex="2" type="password" required="required" value="">
+                <span class="error">Поле не заполнено</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-7 columns">
+                <label class="left" for="rememberMe">
+                    <input name="rememberMe" id="rememberMe" tabindex="3" type="checkbox" value="1">
+                    Запомнить меня
+                </label>
+            </div>
+            <div class="small-5 columns">
+                <input name="submit" class="button primary radius expand s-margin-clear" type="submit" value="Войти">
+                <span class="loader"></span>
+            </div>
+        </div>
+    </form>
 </div>
 <div class="text-center">
-	<a href="lostPassword" class="button simple" data-handler="forgetPass">Забыли пароль?</a>
+    <a href="lostPassword" class="button simple" data-handler="forgetPass">Забыли пароль?</a>
 </div>

@@ -1,45 +1,158 @@
 {
     "news": [
-        {"guid": "lj234-34l5jl-dfigj-dlkljl-dkgkl", "title": "Новость 1", "content":"Олимпиада в Сочи день 1", "storyLine":["lj2df-34l5ds-dfagj-dlkljl-dkgk1"], "category":["lj234-34l5jl-dfigj-dlkljl-dkgkl"]},
-        {"guid": "lj234-34l5jl-dfigj-dlkljl-dk34d", "title": "Новость 2", "content":"Олимпиада в Сочи день 2", "storyLine":["lj2df-34l5ds-dfagj-dlkljl-dkgk1"], "category":["lj234-34l5jl-dfigj-dlkljl-dkgkl"]},
-        {"guid": "lj234-34l5jl-dfigj-dlkljl-dk232", "title": "Новость 3", "content":"Олимпиада в Сочи день 3", "storyLine":["lj2df-34l5ds-dfagj-dlkljl-dkgk1"], "category":["lj234-34l5jl-dfigj-dlkljl-dkgkl"]},
-        {"guid": "lj234-34l5jl-dfigj-dlkljl-dk212", "title": "Новость 4", "content":"Олимпиада в Сочи день 4", "storyLine":["lj2df-34l5ds-dfagj-dlkljl-dkgk1"], "category":["lj234-34l5jl-dfigj-dlkljl-dkgkl"]},
-        {"guid": "lj234-34l5jl-dfigj-dlkljl-ddw13", "title": "Новость 5", "content":"Олимпиада в Сочи день 5", "storyLine":["lj2df-34l5ds-dfagj-dlkljl-dkgk1"], "category":["lj234-34l5jl-dfigj-dlkljl-dkgkl"]},
+        {
+            "guid": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
+            "title": "Новость 1",
+            "content": "Олимпиада в Сочи день 1",
+            "storyLine": ["lj2df-34l5ds-dfagj-dlkljl-dkgk1"],
+            "category": ["lj234-34l5jl-dfigj-dlkljl-dkgkl"]
+        },
+        {
+            "guid": "lj234-34l5jl-dfigj-dlkljl-dk34d",
+            "title": "Новость 2",
+            "content": "Олимпиада в Сочи день 2",
+            "storyLine": ["lj2df-34l5ds-dfagj-dlkljl-dkgk1"],
+            "category": ["lj234-34l5jl-dfigj-dlkljl-dkgkl"]
+        },
+        {
+            "guid": "lj234-34l5jl-dfigj-dlkljl-dk232",
+            "title": "Новость 3",
+            "content": "Олимпиада в Сочи день 3",
+            "storyLine": ["lj2df-34l5ds-dfagj-dlkljl-dkgk1"],
+            "category": ["lj234-34l5jl-dfigj-dlkljl-dkgkl"]
+        },
+        {
+            "guid": "lj234-34l5jl-dfigj-dlkljl-dk212",
+            "title": "Новость 4",
+            "content": "Олимпиада в Сочи день 4",
+            "storyLine": ["lj2df-34l5ds-dfagj-dlkljl-dkgk1"],
+            "category": ["lj234-34l5jl-dfigj-dlkljl-dkgkl"]
+        },
+        {
+            "guid": "lj234-34l5jl-dfigj-dlkljl-ddw13",
+            "title": "Новость 5",
+            "content": "Олимпиада в Сочи день 5",
+            "storyLine": ["lj2df-34l5ds-dfagj-dlkljl-dkgk1"],
+            "category": ["lj234-34l5jl-dfigj-dlkljl-dkgkl"]
+        },
 
-        {"guid": "lj234-34l5jl-dfigj-dlkljl-dd223", "title": "Новость 6", "content":"Реорганизация Microsoft", "storyLine":["lj2df-34l5ds-dfagj-dlkljl-54gk2"], "category":["lj234-34l5jl-dfigj-dlkljl-dkgdf"]},
-        {"guid": "lj234-34l5jl-dfigj-dlkljl-d2713", "title": "Новость 7", "content":"Покупка Nokia", "storyLine":["lj2df-34l5ds-dfagj-dlkljl-54gk2"], "category":["lj234-34l5jl-dfigj-dlkljl-dkgdf"]},
-        {"guid": "lj234-34l5jl-dfigj-dlkljl-d6633", "title": "Новость 8", "content":"Новый CEO", "storyLine":["lj2df-34l5ds-dfagj-dlkljl-54gk2"], "category":["lj234-34l5jl-dfigj-dlkljl-dkgdf"]}
+        {
+            "guid": "lj234-34l5jl-dfigj-dlkljl-dd223",
+            "title": "Новость 6",
+            "content": "Реорганизация Microsoft",
+            "storyLine": ["lj2df-34l5ds-dfagj-dlkljl-54gk2"],
+            "category": ["lj234-34l5jl-dfigj-dlkljl-dkgdf"]
+        },
+        {
+            "guid": "lj234-34l5jl-dfigj-dlkljl-d2713",
+            "title": "Новость 7",
+            "content": "Покупка Nokia",
+            "storyLine": ["lj2df-34l5ds-dfagj-dlkljl-54gk2"],
+            "category": ["lj234-34l5jl-dfigj-dlkljl-dkgdf"]
+        },
+        {
+            "guid": "lj234-34l5jl-dfigj-dlkljl-d6633",
+            "title": "Новость 8",
+            "content": "Новый CEO",
+            "storyLine": ["lj2df-34l5ds-dfagj-dlkljl-54gk2"],
+            "category": ["lj234-34l5jl-dfigj-dlkljl-dkgdf"]
+        }
     ],
 
     "category": [
-        {"guid":"lj234-34l5jl-dfigj-dlkljl-dkgkl", "title":"Спорт", "news":["lj234-34l5jl-dfigj-dlkljl-dkgkl", "lj234-34l5jl-dfigj-dlkljl-dk34d", "lj234-34l5jl-dfigj-dlkljl-dk232", "lj234-34l5jl-dfigj-dlkljl-dk212","lj234-34l5jl-dfigj-dlkljl-ddw13"], "root":true},
-        {"guid":"lj234-34l5jl-dfigj-dlkljl-dkgdf", "title":"IT", "news":["lj234-34l5jl-dfigj-dlkljl-dd223", "lj234-34l5jl-dfigj-dlkljl-d2713", "lj234-34l5jl-dfigj-dlkljl-d6633"], "parent": "lj234-34l5jl-dfigj-dlkljl-dkgkl"}
+        {
+            "guid": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
+            "title": "Спорт",
+            "news": ["lj234-34l5jl-dfigj-dlkljl-dkgkl", "lj234-34l5jl-dfigj-dlkljl-dk34d", "lj234-34l5jl-dfigj-dlkljl-dk232", "lj234-34l5jl-dfigj-dlkljl-dk212", "lj234-34l5jl-dfigj-dlkljl-ddw13"],
+            "root": true
+        },
+        {
+            "guid": "lj234-34l5jl-dfigj-dlkljl-dkgdf",
+            "title": "IT",
+            "news": ["lj234-34l5jl-dfigj-dlkljl-dd223", "lj234-34l5jl-dfigj-dlkljl-d2713", "lj234-34l5jl-dfigj-dlkljl-d6633"],
+            "parent": "lj234-34l5jl-dfigj-dlkljl-dkgkl"
+        }
     ],
 
     "storyLine": [
-        {"guid": "lj2df-34l5ds-dfagj-dlkljl-dkgk1", "title":"Олимпиада в Сочи", "news":["lj234-34l5jl-dfigj-dlkljl-dkgkl", "lj234-34l5jl-dfigj-dlkljl-dk34d", "lj234-34l5jl-dfigj-dlkljl-dk232","lj234-34l5jl-dfigj-dlkljl-dk212","lj234-34l5jl-dfigj-dlkljl-ddw13"]},
-        {"guid": "lj2df-34l5ds-dfagj-dlkljl-54gk2", "title":"Microsoft", "news":["lj234-34l5jl-dfigj-dlkljl-dd223", "lj234-34l5jl-dfigj-dlkljl-d2713", "lj234-34l5jl-dfigj-dlkljl-d6633"]}
+        {
+            "guid": "lj2df-34l5ds-dfagj-dlkljl-dkgk1",
+            "title": "Олимпиада в Сочи",
+            "news": ["lj234-34l5jl-dfigj-dlkljl-dkgkl", "lj234-34l5jl-dfigj-dlkljl-dk34d", "lj234-34l5jl-dfigj-dlkljl-dk232", "lj234-34l5jl-dfigj-dlkljl-dk212", "lj234-34l5jl-dfigj-dlkljl-ddw13"]
+        },
+        {
+            "guid": "lj2df-34l5ds-dfagj-dlkljl-54gk2",
+            "title": "Microsoft",
+            "news": ["lj234-34l5jl-dfigj-dlkljl-dd223", "lj234-34l5jl-dfigj-dlkljl-d2713", "lj234-34l5jl-dfigj-dlkljl-d6633"]
+        }
     ],
-
 
 
     "componentMode": [
         {
             "id": 1,
             "modes": {
-                "lj234-34l5jl-dfigj-dlkljl-dkgkl": {"slug":["edit", "child-pages", "chart"], "titles":["Редактировать","Дочерние страницы", "Статистика"], "template": ["formTemplate", "tableTemplate", "chartTemplate"], "resources": ["edit", "child-pages", "chart"], "current": 0},
-                "lj234-34l5jl-dfigj-dlkljl-dkgdf": {"slug":["edit", "child-pages"], "titles":["Редактировать","Дочерние страницы"], "template": ["formTemplate", "tableTemplate"], "resources": ["edit", "child-pages"], "current": 0},
-                "lj234-34l5jl-dfigj-dlkljl-dkgsd": {"slug":["edit", "child-pages"], "titles":["Редактировать","Дочерние страницы"], "template": ["formTemplate", "tableTemplate"], "resources": ["edit", "child-pages"], "current": 0},
-                "lj234-34l5jl-dfigj-dlkljl-dkgef": {"slug":["edit", "child-pages"], "titles":["Редактировать","Дочерние страницы"], "template": ["formTemplate", "tableTemplate"], "resources": ["edit", "child-pages"], "current": 0}
+                "lj234-34l5jl-dfigj-dlkljl-dkgkl": {
+                    "slug": ["edit", "child-pages", "chart"],
+                    "titles": ["Редактировать", "Дочерние страницы", "Статистика"],
+                    "template": ["formTemplate", "tableTemplate", "chartTemplate"],
+                    "resources": ["edit", "child-pages", "chart"],
+                    "current": 0
+                },
+                "lj234-34l5jl-dfigj-dlkljl-dkgdf": {
+                    "slug": ["edit", "child-pages"],
+                    "titles": ["Редактировать", "Дочерние страницы"],
+                    "template": ["formTemplate", "tableTemplate"],
+                    "resources": ["edit", "child-pages"],
+                    "current": 0
+                },
+                "lj234-34l5jl-dfigj-dlkljl-dkgsd": {
+                    "slug": ["edit", "child-pages"],
+                    "titles": ["Редактировать", "Дочерние страницы"],
+                    "template": ["formTemplate", "tableTemplate"],
+                    "resources": ["edit", "child-pages"],
+                    "current": 0
+                },
+                "lj234-34l5jl-dfigj-dlkljl-dkgef": {
+                    "slug": ["edit", "child-pages"],
+                    "titles": ["Редактировать", "Дочерние страницы"],
+                    "template": ["formTemplate", "tableTemplate"],
+                    "resources": ["edit", "child-pages"],
+                    "current": 0
+                }
             }
         },
         {
             "id": 2,
             "modes": {
-                "lj234-34l5jl-dfigj-dlkljl-dkgkl": {"slug":["edit","child-pages", "chart"], "titles":["Редактировать","Дочерние страницы", "Статистика"], "template": ["formTemplate", "tableTemplate", "chartTemplate"], "resources": ["edit", "child-pages", "chart"], "current": 0},
-                "lj234-34l5jl-dfigj-dlkljl-dkgdf": {"slug":["edit","child-pages"], "titles":["Редактировать","Дочерние страницы"], "template": ["formTemplate", "tableTemplate"], "resources": ["edit", "child-pages"], "current": 0},
-                "lj234-34l5jl-dfigj-dlkljl-dkgsd": {"slug":["edit","child-pages"], "titles":["Редактировать","Дочерние страницы"], "template": ["formTemplate", "tableTemplate"], "resources": ["edit", "child-pages"], "current": 0},
-                "lj234-34l5jl-dfigj-dlkljl-dkgef": {"slug":["edit","child-pages"], "titles":["Редактировать","Дочерние страницы"], "template": ["formTemplate", "tableTemplate"], "resources": ["edit", "child-pages"], "current": 0}
+                "lj234-34l5jl-dfigj-dlkljl-dkgkl": {
+                    "slug": ["edit", "child-pages", "chart"],
+                    "titles": ["Редактировать", "Дочерние страницы", "Статистика"],
+                    "template": ["formTemplate", "tableTemplate", "chartTemplate"],
+                    "resources": ["edit", "child-pages", "chart"],
+                    "current": 0
+                },
+                "lj234-34l5jl-dfigj-dlkljl-dkgdf": {
+                    "slug": ["edit", "child-pages"],
+                    "titles": ["Редактировать", "Дочерние страницы"],
+                    "template": ["formTemplate", "tableTemplate"],
+                    "resources": ["edit", "child-pages"],
+                    "current": 0
+                },
+                "lj234-34l5jl-dfigj-dlkljl-dkgsd": {
+                    "slug": ["edit", "child-pages"],
+                    "titles": ["Редактировать", "Дочерние страницы"],
+                    "template": ["formTemplate", "tableTemplate"],
+                    "resources": ["edit", "child-pages"],
+                    "current": 0
+                },
+                "lj234-34l5jl-dfigj-dlkljl-dkgef": {
+                    "slug": ["edit", "child-pages"],
+                    "titles": ["Редактировать", "Дочерние страницы"],
+                    "template": ["formTemplate", "tableTemplate"],
+                    "resources": ["edit", "child-pages"],
+                    "current": 0
+                }
             }
         }
     ]

@@ -1,32 +1,37 @@
-;(function ($, window, document, undefined) {
+;
+(function ($, window, document, undefined) {
     'use strict';
 
     Foundation.libs.reveal = {
-        name : 'reveal',
+        name: 'reveal',
 
-        version : '5.0.0',
+        version: '5.0.0',
 
-        locked : false,
+        locked: false,
 
-        settings : {
+        settings: {
             animation: 'fadeAndPop',
             animation_speed: 250,
             close_on_background_click: true,
             close_on_esc: true,
             dismiss_modal_class: 'close-reveal-modal',
             bg_class: 'reveal-modal-bg',
-            open: function(){},
-            opened: function(){},
-            close: function(){},
-            closed: function(){},
-            bg : $('.reveal-modal-bg'),
-            css : {
-                open : {
+            open: function () {
+            },
+            opened: function () {
+            },
+            close: function () {
+            },
+            closed: function () {
+            },
+            bg: $('.reveal-modal-bg'),
+            css: {
+                open: {
                     'opacity': 0,
                     'visibility': 'visible',
-                    'display' : 'block'
+                    'display': 'block'
                 },
-                close : {
+                close: {
                     'opacity': 1,
                     'visibility': 'hidden',
                     'display': 'none'
@@ -34,13 +39,13 @@
             }
         },
 
-        init : function (scope, method, options) {
+        init: function (scope, method, options) {
             Foundation.inherit(this, 'delay');
 
             this.bindings(method, options);
         },
 
-        events : function (scope) {
+        events: function (scope) {
             var self = this;
 
             $('[data-reveal-id]', this.scope)
@@ -83,7 +88,7 @@
                     }
                 });
 
-            if($('[data-reveal]', this.scope).length > 0) {
+            if ($('[data-reveal]', this.scope).length > 0) {
                 $(this.scope)
                     // .off('.reveal')
                     .on('open.fndtn.reveal', this.settings.open)
@@ -103,10 +108,10 @@
                     .on('closed.fndtn.reveal', '[data-reveal]', this.close_video);
             }
 
-            $('body').on('keyup.fndtn.reveal', function ( event ) {
+            $('body').on('keyup.fndtn.reveal', function (event) {
                 var open_modal = $('[data-reveal].open'),
                     settings = open_modal.data('reveal-init');
-                if ( event.which === 27  && settings.close_on_esc) { // 27 is the keycode for the Escape key
+                if (event.which === 27 && settings.close_on_esc) { // 27 is the keycode for the Escape key
                     open_modal.foundation('reveal', 'close');
                 }
             });
@@ -114,7 +119,7 @@
             return true;
         },
 
-        open : function (target, ajax_settings) {
+        open: function (target, ajax_settings) {
             if (target) {
                 if (typeof target.selector !== 'undefined') {
                     var modal = $('#' + target.data('reveal-id'));
@@ -150,7 +155,7 @@
 
                     $.extend(ajax_settings, {
                         success: function (data, textStatus, jqXHR) {
-                            if ( $.isFunction(old_success) ) {
+                            if ($.isFunction(old_success)) {
                                 old_success(data, textStatus, jqXHR);
                             }
 
@@ -167,7 +172,7 @@
             }
         },
 
-        close : function (modal) {
+        close: function (modal) {
 
             var modal = modal && modal.length ? modal : $(this.scope),
                 open_modals = $('[data-reveal].open');
@@ -180,7 +185,7 @@
             }
         },
 
-        close_targets : function () {
+        close_targets: function () {
             var base = '.' + this.settings.dismiss_modal_class;
 
             if (this.settings.close_on_background_click) {
@@ -190,7 +195,7 @@
             return base;
         },
 
-        toggle_bg : function () {
+        toggle_bg: function () {
             if ($('.' + this.settings.bg_class).length === 0) {
                 this.settings.bg = $('<div />', {'class': this.settings.bg_class})
                     .appendTo('body');
@@ -203,12 +208,12 @@
             }
         },
 
-        show : function (el, css) {
+        show: function (el, css) {
             // is modal
             if (css) {
                 if (el.parent('body').length === 0) {
                     var placeholder = el.wrap('<div style="display: none;" />').parent();
-                    el.on('closed.fndtn.reveal.wrapped', function() {
+                    el.on('closed.fndtn.reveal.wrapped', function () {
                         el.detach().appendTo(placeholder);
                         el.unwrap().unbind('closed.fndtn.reveal.wrapped');
                     });
@@ -259,12 +264,12 @@
             return el.show();
         },
 
-        hide : function (el, css) {
+        hide: function (el, css) {
             // is modal
             if (css) {
                 if (/pop/i.test(this.settings.animation)) {
                     var end_css = {
-                        top: - $(window).scrollTop() - el.data('offset') + 'px',
+                        top: -$(window).scrollTop() - el.data('offset') + 'px',
                         opacity: 0
                     };
 
@@ -302,7 +307,7 @@
             return el.hide();
         },
 
-        close_video : function (e) {
+        close_video: function (e) {
             var video = $(this).find('.flex-video'),
                 iframe = video.find('iframe');
 
@@ -313,7 +318,7 @@
             }
         },
 
-        open_video : function (e) {
+        open_video: function (e) {
             var video = $(this).find('.flex-video'),
                 iframe = video.find('iframe');
 
@@ -330,7 +335,7 @@
             }
         },
 
-        cache_offset : function (modal) {
+        cache_offset: function (modal) {
             var offset = modal.show().height() + parseInt(modal.css('top'), 10);
 
             modal.hide();
@@ -338,10 +343,11 @@
             return offset;
         },
 
-        off : function () {
+        off: function () {
             $(this.scope).off('.fndtn.reveal');
         },
 
-        reflow : function () {}
+        reflow: function () {
+        }
     };
 }(jQuery, this, this.document));

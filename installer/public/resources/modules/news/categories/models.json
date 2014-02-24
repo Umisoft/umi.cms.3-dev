@@ -1,74 +1,74 @@
 {
     "category": [
         {
-			"id":"lj234-34l5jl-dfigj-dlkljl-dkgkl",
-			"title":"Спорт",
-			"hasChildren": true,
-			"children": [
-				"lj234-34l5jl-dfigj-dlkljl-dkg33d1",
-				"lj234-34l5jl-dfigj-dlkljl-dkg33d2",
-				"lj234-34l5jl-dfigj-dlkljl-dkg33d3",
-				"lj234-34l5jl-dfigj-dlkljl-dkg33d4",
-				"lj234-34l5jl-dfigj-dlkljl-dkg33d5",
-				"lj234-34l5jl-dfigj-dlkljl-dkg33d6",
-				"lj234-34l5jl-dfigj-dlkljl-dkg33d7",
-				"lj234-34l5jl-dfigj-dlkljl-dkg33d8",
-				"lj234-34l5jl-dfigj-dlkljl-dkg33d9",
-				"lj234-34l5jl-dfigj-dlkljl-dkg3310",
-				"lj234-34l5jl-dfigj-dlkljl-dkg3311",
-				"lj234-34l5jl-dfigj-dlkljl-dkg3312",
-				"lj234-34l5jl-dfigj-dlkljl-dkg3313",
-				"lj234-34l5jl-dfigj-dlkljl-dkg3328"
-			],
-			"active": true
-		},
+            "id": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
+            "title": "Спорт",
+            "hasChildren": true,
+            "children": [
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d1",
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d2",
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d3",
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d4",
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d5",
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d6",
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d7",
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d8",
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d9",
+                "lj234-34l5jl-dfigj-dlkljl-dkg3310",
+                "lj234-34l5jl-dfigj-dlkljl-dkg3311",
+                "lj234-34l5jl-dfigj-dlkljl-dkg3312",
+                "lj234-34l5jl-dfigj-dlkljl-dkg3313",
+                "lj234-34l5jl-dfigj-dlkljl-dkg3328"
+            ],
+            "active": true
+        },
         {
-			"id":"lj234-34l5jl-dfigj-dlkljl-dkgdf",
-			"title":"IT",
-			"parent": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
-			"hasChildren": true,
-			"children": ["lj234-34l5jl-d23gj-dl3jl-3423df", "lj234-34l5jl-d23gj-dl3jl-34g3314", "lj234-34l5jl-d23gj-dl3jl-34g33141", "lj234-34l5jl-d23gj-dl3jl-34g33d233"],
-			"active": true
-		},
-		{
-			"id":"lj234-34l5jl-dfigj-dlkljl-dkg33df",
-			"title":"Биатлон",
-			"parent": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
-			"publishDate": "01.01.2014",
-			"viewCounter": 23,
-			"active": false
-		},
-		{
-			"id":"lj234-34l5jl-d23gj-dl3jl-3423df",
-			"index":2,
-			"title":"Linux",
-			"parent": "lj234-34l5jl-dfigj-dlkljl-dkgdf",
-			"publishDate": "01.01.2014",
-			"viewCounter": 23
-		},
-		{
-			"id":"lj234-34l5jl-d23gj-dl3jl-34g3314",
-			"index":1,
-			"title":"Windows",
-			"parent": "lj234-34l5jl-dfigj-dlkljl-dkgdf",
-			"publishDate": "01.01.2014",
-			"viewCounter": 23
-		},
-		{
-			"id":"lj234-34l5jl-d23gj-dl3jl-34g33141",
-			"index":3,
-			"title":"OS X",
-			"parent": "lj234-34l5jl-dfigj-dlkljl-dkgdf",
-			"publishDate": "01.01.2014",
-			"viewCounter": 23
-		},
-		{
-			"id":"lj234-34l5jl-d23gj-dl3jl-34g33d233",
-			"index":4,
-			"title":"Nokia",
-			"parent": "lj234-34l5jl-dfigj-dlkljl-dkgdf",
-			"publishDate": "01.01.2014",
-			"viewCounter": 23
-		}
+            "id": "lj234-34l5jl-dfigj-dlkljl-dkgdf",
+            "title": "IT",
+            "parent": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
+            "hasChildren": true,
+            "children": ["lj234-34l5jl-d23gj-dl3jl-3423df", "lj234-34l5jl-d23gj-dl3jl-34g3314", "lj234-34l5jl-d23gj-dl3jl-34g33141", "lj234-34l5jl-d23gj-dl3jl-34g33d233"],
+            "active": true
+        },
+        {
+            "id": "lj234-34l5jl-dfigj-dlkljl-dkg33df",
+            "title": "Биатлон",
+            "parent": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
+            "publishDate": "01.01.2014",
+            "viewCounter": 23,
+            "active": false
+        },
+        {
+            "id": "lj234-34l5jl-d23gj-dl3jl-3423df",
+            "index": 2,
+            "title": "Linux",
+            "parent": "lj234-34l5jl-dfigj-dlkljl-dkgdf",
+            "publishDate": "01.01.2014",
+            "viewCounter": 23
+        },
+        {
+            "id": "lj234-34l5jl-d23gj-dl3jl-34g3314",
+            "index": 1,
+            "title": "Windows",
+            "parent": "lj234-34l5jl-dfigj-dlkljl-dkgdf",
+            "publishDate": "01.01.2014",
+            "viewCounter": 23
+        },
+        {
+            "id": "lj234-34l5jl-d23gj-dl3jl-34g33141",
+            "index": 3,
+            "title": "OS X",
+            "parent": "lj234-34l5jl-dfigj-dlkljl-dkgdf",
+            "publishDate": "01.01.2014",
+            "viewCounter": 23
+        },
+        {
+            "id": "lj234-34l5jl-d23gj-dl3jl-34g33d233",
+            "index": 4,
+            "title": "Nokia",
+            "parent": "lj234-34l5jl-dfigj-dlkljl-dkgdf",
+            "publishDate": "01.01.2014",
+            "viewCounter": 23
+        }
     ]
 }

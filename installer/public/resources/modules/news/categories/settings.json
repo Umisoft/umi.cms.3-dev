@@ -1,76 +1,140 @@
 {
-	"treeSettings": {
-		"root": {
-			"type": "category",
-			"ids": ["lj234-34l5jl-dfigj-dlkljl-dkgkl"]
-		},
-		"items": {
-			"lj234-34l5jl-dfigj-dlkljl-dkgkl": {
-				"actions": [0, 2, 3, 4, 5]
-			},
-			"actions": [
-				{"type": "add", "title": "Добавить новость", "actionType": "link", "actionParams": {"link": "add"}},
-				{"type": "add", "title": "Добавить рубрику", "actionType": "link", "actionParams": {"link": "edit"}},
-				{"type": "copy", "title": "Создать копию", "actionType": "action", "actionParams": {"action": "copy"}},
-				{"type": "edit", "title": "Редактировать", "actionType": "action", "actionParams": {"action": "edit"}},
-				{"type": "active", "title": "Снять активность", "actionType": "changeProperty", "actionParams": {"property": "active"}},
-				{"type": "delete", "title": "Удалить рубрику", "actionType": "action", "actionParams": {"action": "delete"}}
-			]
-		},
-		"filters": [
-			{
-				"checkbox": true,
-				"title": "Показывать неактивные страницы",
-				"property": "active",
-				"checked": true,
-				"name": "inactive"
-			},
-			{
-				"radio": true,
-				"name": "modulePages",
-				"property": "type",
-				"elements": [
-					{"title": "Не показывать страницы модулей", "value": "hideMode", "checked": true},
-					{"title": "Показывать страницы модулей", "value": "showMode"},
-					{"title": "Показывать страницы модулей и компонетов",  "value": "showAll"}
-				]
-			}
-		]
-	},
-	"records": {
-		"category": [
-			{
-				"id":"lj234-34l5jl-dfigj-dlkljl-dkgkl",
-				"title":"Спорт",
-				"news":["lj234-34l5jl-dfigj-dlkljl-dkgkl", "lj234-34l5jl-dfigj-dlkljl-dk34d", "lj234-34l5jl-dfigj-dlkljl-dk232", "lj234-34l5jl-dfigj-dlkljl-dk212","lj234-34l5jl-dfigj-dlkljl-ddw13"],
-				"hasChildren": true,
-				"children": [
-					"lj234-34l5jl-dfigj-dlkljl-dkg33d1",
-					"lj234-34l5jl-dfigj-dlkljl-dkg33d2",
-					"lj234-34l5jl-dfigj-dlkljl-dkg33d3",
-					"lj234-34l5jl-dfigj-dlkljl-dkg33d4",
-					"lj234-34l5jl-dfigj-dlkljl-dkg33d5",
-					"lj234-34l5jl-dfigj-dlkljl-dkg33d6",
-					"lj234-34l5jl-dfigj-dlkljl-dkg33d7",
-					"lj234-34l5jl-dfigj-dlkljl-dkg33d8",
-					"lj234-34l5jl-dfigj-dlkljl-dkg33d9",
-					"lj234-34l5jl-dfigj-dlkljl-dkg3310",
-					"lj234-34l5jl-dfigj-dlkljl-dkg3311",
-					"lj234-34l5jl-dfigj-dlkljl-dkg3312",
-					"lj234-34l5jl-dfigj-dlkljl-dkg3313",
-					"lj234-34l5jl-dfigj-dlkljl-dkg3328"
-				],
-				"active": true
-			}
-		],
-		"componentMode": [
-			{
-				"id": 1,
-				"modes": {
-					"lj234-34l5jl-dfigj-dlkljl-dkgkl": {"slug":["properties", "child-categories"], "titles":["Свойства","Дочерние рубрики"], "resources": ["/resources/modules/news/categories/properties/resources.json", "/resources/modules/news/categories/children/resources.json"], "contentType": ["category", "category"], "current": 0},
-					"lj234-34l5jl-dfigj-dlkljl-dkgdf": {"slug":["properties", "child-categories"], "titles":["Свойства","Дочерние рубрики"], "resources": ["/news/category/properties", "/news/category/child-categories"], "contentType": ["category", "category"], "current": 0}
-				}
-			}
-		]
-	}
+    "treeSettings": {
+        "root": {
+            "type": "category",
+            "ids": ["lj234-34l5jl-dfigj-dlkljl-dkgkl"]
+        },
+        "items": {
+            "lj234-34l5jl-dfigj-dlkljl-dkgkl": {
+                "actions": [0, 2, 3, 4, 5]
+            },
+            "actions": [
+                {
+                    "type": "add",
+                    "title": "Добавить новость",
+                    "actionType": "link",
+                    "actionParams": {
+                        "link": "add"
+                    }
+                },
+                {
+                    "type": "add",
+                    "title": "Добавить рубрику",
+                    "actionType": "link",
+                    "actionParams": {
+                        "link": "edit"
+                    }
+                },
+                {
+                    "type": "copy",
+                    "title": "Создать копию",
+                    "actionType": "action",
+                    "actionParams": {
+                        "action": "copy"
+                    }
+                },
+                {
+                    "type": "edit",
+                    "title": "Редактировать",
+                    "actionType": "action",
+                    "actionParams": {
+                        "action": "edit"
+                    }
+                },
+                {
+                    "type": "active",
+                    "title": "Снять активность",
+                    "actionType": "changeProperty",
+                    "actionParams": {
+                        "property": "active"
+                    }
+                },
+                {
+                    "type": "delete",
+                    "title": "Удалить рубрику",
+                    "actionType": "action",
+                    "actionParams": {
+                        "action": "delete"
+                    }
+                }
+            ]
+        },
+        "filters": [
+            {
+                "checkbox": true,
+                "title": "Показывать неактивные страницы",
+                "property": "active",
+                "checked": true,
+                "name": "inactive"
+            },
+            {
+                "radio": true,
+                "name": "modulePages",
+                "property": "type",
+                "elements": [
+                    {
+                        "title": "Не показывать страницы модулей",
+                        "value": "hideMode",
+                        "checked": true
+                    },
+                    {
+                        "title": "Показывать страницы модулей",
+                        "value": "showMode"
+                    },
+                    {
+                        "title": "Показывать страницы модулей и компонетов",
+                        "value": "showAll"
+                    }
+                ]
+            }
+        ]
+    },
+    "records": {
+        "category": [
+            {
+                "id": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
+                "title": "Спорт",
+                "news": ["lj234-34l5jl-dfigj-dlkljl-dkgkl", "lj234-34l5jl-dfigj-dlkljl-dk34d", "lj234-34l5jl-dfigj-dlkljl-dk232", "lj234-34l5jl-dfigj-dlkljl-dk212", "lj234-34l5jl-dfigj-dlkljl-ddw13"],
+                "hasChildren": true,
+                "children": [
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d1",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d2",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d3",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d4",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d5",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d6",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d7",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d8",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d9",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg3310",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg3311",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg3312",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg3313",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg3328"
+                ],
+                "active": true
+            }
+        ],
+        "componentMode": [
+            {
+                "id": 1,
+                "modes": {
+                    "lj234-34l5jl-dfigj-dlkljl-dkgkl": {
+                        "slug": ["properties", "child-categories"],
+                        "titles": ["Свойства", "Дочерние рубрики"],
+                        "resources": ["/resources/modules/news/categories/properties/resources.json", "/resources/modules/news/categories/children/resources.json"],
+                        "contentType": ["category", "category"],
+                        "current": 0
+                    },
+                    "lj234-34l5jl-dfigj-dlkljl-dkgdf": {
+                        "slug": ["properties", "child-categories"],
+                        "titles": ["Свойства", "Дочерние рубрики"],
+                        "resources": ["/news/category/properties", "/news/category/child-categories"],
+                        "contentType": ["category", "category"],
+                        "current": 0
+                    }
+                }
+            }
+        ]
+    }
 }
