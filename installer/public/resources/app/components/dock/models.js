@@ -1,13 +1,13 @@
-define(['App'], function (UMI) {
+define(['App'], function(UMI){
     'use strict';
 
-    return function () {
+    return function(){
         // определяем модель для списка модулей
         UMI.ModuleList = DS.Model.extend({
             slug: DS.attr('string'),
             title: DS.attr('string'),
             componentList: DS.hasMany('componentList'),
-            img: function () {
+            img: function(){
                 return '/resources/modules/' + this.get('slug') + '/icon.png';
             }.property()
         });

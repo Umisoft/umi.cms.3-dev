@@ -1,15 +1,15 @@
-define(['auth/templates', 'Handlebars', 'jQuery'], function (tempaltes) {
+define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
     // загрузим зависимости для приложения
     //require(['DS']);
-    return function () {
+    return function(){
         var Auth = {
             TEMPLATES: {},
             validator: {
-                shake: function () {
-                    function shake(id, a, d) {
+                shake: function(){
+                    function shake(id, a, d){
                         id.style.left = a.shift() + 'px';
-                        if (a.length > 0) {
-                            setTimeout(function () {
+                        if( a.length > 0 ){
+                            setTimeout(function(){
                                 shake(id, a, d);
                             }, d);
                         }
@@ -21,33 +21,33 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function (tempaltes) {
                     i.style.position = 'relative';
                     shake(i, p, 20);
                 },
-                check: function (form) {
+                check: function(form){
                     var i;
                     var element;
                     var pattern;
                     var valid = true;
-                    var removeError = function (el) {
-                        el.onfocus = function () {
+                    var removeError = function(el){
+                        el.onfocus = function(){
                             $(this).closest('.columns').removeClass('error');
                         };
                     };
-                    for (i = 0; i < form.elements.length; i++) {
+                    for(i = 0; i < form.elements.length; i++){
                         element = form.elements[i];
-                        if ((element.hasAttribute('required') || element.value) && element.hasAttribute('pattern')) {
+                        if( (element.hasAttribute('required') || element.value) && element.hasAttribute('pattern') ){
                             pattern = new RegExp(element.getAttribute('pattern'));
-                            if (!pattern.test(element.value)) {
+                            if( !pattern.test(element.value) ){
                                 valid = false;
                             }
-                        } else if (element.hasAttribute('required')) {
-                            if (!element.value) {
+                        } else if( element.hasAttribute('required') ){
+                            if( !element.value ){
                                 valid = false;
                             }
                         }
-                        if (element.getAttribute('type') !== 'submit') {
-                            if (valid) {
+                        if( element.getAttribute('type') !== 'submit' ){
+                            if( valid ){
                                 $(element).closest('.columns').removeClass('error');
                                 element.onfocus = null;
-                            } else {
+                            } else{
                                 $(element).closest('.columns').addClass('error');
                                 removeError(element);
                                 return false;
@@ -57,16 +57,16 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function (tempaltes) {
                     return true;
                 }
             },
-            transition: function () {
+            transition: function(){
                 // Событие при успешном переходе
                 document.onmousemove = null;
                 var authLayout = document.querySelector('.auth-layout');
                 var maskLayout = document.querySelector('.auth-mask');
                 $(authLayout).addClass('off');
-                require(['app/main'], function (application) {
+                require(['app/main'], function(application){
                     application();
                     $(authLayout).addClass('fade-out');
-                    setTimeout(function () {
+                    setTimeout(function(){
                         authLayout.parentNode.removeChild(authLayout);
                         maskLayout.parentNode.removeChild(maskLayout);
                         //Auth = null; TODO: Нужно удалять приложение Auth после авторизации
@@ -77,7 +77,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function (tempaltes) {
         tempaltes(Auth);
 
         // Проверяем есть ли шаблон и если нет то собираем его
-        if (!document.querySelector('.auth-layout')) {
+        if( !document.querySelector('.auth-layout') ){
             var helper = document.createElement('div');
             helper.innerHTML = Auth.TEMPLATES.app({outlet: Auth.TEMPLATES.index()});
             helper = document.body.appendChild(helper);
@@ -86,7 +86,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function (tempaltes) {
 
         var bubbles = document.querySelector('.bubbles');
         var bubblesFront = document.querySelector('.bubbles-front');
-        var parallax = function (event) {
+        var parallax = function(event){
             var bodyWidth = document.body.offsetWidth;
             var bodyHeight = document.body.offsetHeight;
             var deltaX = 0.04;
@@ -100,8 +100,8 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function (tempaltes) {
         };
 
         var bubblesHidden = true;
-        document.onmousemove = function (event) {
-            if (bubblesHidden) {
+        document.onmousemove = function(event){
+            if( bubblesHidden ){
                 bubbles.className = 'bubbles visible';
                 bubblesFront.className = 'bubbles-front visible';
                 bubblesHidden = false;
@@ -109,15 +109,15 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function (tempaltes) {
             parallax(event);
         };
 
-        $(document).on('click', '.close', function () {
+        $(document).on('click', '.close', function(){
             this.parentNode.parentNode.removeChild(this.parentNode);
             return false;
         });
 
         var errorsBlock = document.querySelector('.errors-list');
 
-        $(document).on('submit', 'form', function () {
-            if (!Auth.validator.check(this)) {
+        $(document).on('submit', 'form', function(){
+            if( !Auth.validator.check(this) ){
                 return false;
             }
             var container = $(this.parentNode);
@@ -127,10 +127,10 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function (tempaltes) {
             var data = $(this).serialize();
             var action = this.getAttribute('action');
             var deffer = $.post(action, data);
-            deffer.done(function (data) {
-                if (data === 'redirect') {
+            deffer.done(function(data){
+                if( data === 'redirect' ){
                     Auth.transition();
-                } else {
+                } else{
                     //Auth.validator.shake();
                     //setTimeout(function(){
                     container.removeClass('loading');
@@ -141,7 +141,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function (tempaltes) {
                     //}, 600);
                 }
             });
-            deffer.fail(function () {
+            deffer.fail(function(){
                 container.removeClass('loading');
                 submit.removeAttribute('disabled');
                 Auth.validator.shake();

@@ -1,11 +1,11 @@
 <script>
-    $('legend').click(function () {
+    $('legend').click(function(){
         $(this).find('i').toggleClass("icon-top icon-bottom");
         $(this).parent().find('div').toggle();
     });
 
     //Функция вызывается после выполнения всего didInsertelement
-    setTimeout(function () {
+    setTimeout(function(){
         var formControlScroll = new IScroll('.umi-table-control-content-center', {
             scrollX: true,
             probeType: 3,
@@ -19,7 +19,7 @@
         });
     }, 0);
 
-    $('.umi-form-tab').click(function (event) {
+    $('.umi-form-tab').click(function(event){
         event.stopPropagation();
         $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
         $(this).addClass('active');
@@ -28,11 +28,11 @@
         $('.umi-form-tab-content').eq(i).addClass('active');
     });
 
-    $('html').on('click', function (event) {
+    $('html').on('click', function(event){
         $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
     });
 
-    $('.umi-form-tabs-content').click(function (event) {
+    $('.umi-form-tabs-content').click(function(event){
         event.stopPropagation();
     });
 </script>

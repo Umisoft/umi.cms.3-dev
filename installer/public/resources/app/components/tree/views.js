@@ -1,13 +1,13 @@
-define(['App'], function (UMI) {
+define(['App'], function(UMI){
     'use strict';
-    return function () {
+    return function(){
 
         UMI.TreeItemView = Ember.View.extend({
             tagName: 'div',
             handle: '.icon',
             classNames: ['umi-item'],
             classNameBindings: ['root'],
-            root: function () {
+            root: function(){
                 return this.get('controller.model.root');
             }.property('controller.model')
         });
@@ -15,10 +15,10 @@ define(['App'], function (UMI) {
         UMI.TreeControlView = Ember.View.extend({
             tagName: 'div',
             classNames: ['row', 's-full-height'],
-            didInsertElement: function () {
+            didInsertElement: function(){
                 var self = this;
                 //Выпадающее меню
-                self.$().on('click', '.umi-tree-tab', function (event) {
+                self.$().on('click', '.umi-tree-tab', function(event){
                     event.stopPropagation();
                     $('.umi-tree-tab, .umi-tree-tab-content').removeClass('active');
                     $(this).addClass('active');
@@ -28,12 +28,12 @@ define(['App'], function (UMI) {
                 });
 
                 //Переключение кнопки сортировки вверх-вниз
-                this.$().on('click', '.umi-tree-drop-down-toggler a', function () {
+                this.$().on('click', '.umi-tree-drop-down-toggler a', function(){
                     self.$().find('.icon-bottom-thin, .icon-top-thin').toggleClass('icon-bottom-thin icon-top-thin');
                     $('.umi-tree-drop-down').toggle();
                 });
 
-                this.$().on('mousedown', '.icon.move', function (event) {
+                this.$().on('mousedown', '.icon.move', function(event){
                     var draggableNode = this.parentNode.parentNode;
                     var placeholder = document.createElement('li');
                     var ghost = document.createElement('span');
@@ -57,7 +57,7 @@ define(['App'], function (UMI) {
                     /**
                      * Устанавливает позицию призрака
                      * */
-                    var ghostPosition = function (event) {
+                    var ghostPosition = function(event){
                         ghost.style.top = event.pageY + ghostPositionOffset + 'px';
                         ghost.style.left = event.pageX + ghostPositionOffset + 'px';
                     };
@@ -70,18 +70,18 @@ define(['App'], function (UMI) {
                      * @param {string} Тип элемента который требуется найти
                      * @returns {Object|Null} Возвращаем найденный элемент
                      * */
-                    function findNextSubling(element, type) {
+                    function findNextSubling(element, type){
                         type = type.toUpperCase();
                         var nextElement = element.nextElementSibling;
-                        while (nextElement && nextElement.tagName !== type) {
+                        while(nextElement && nextElement.tagName !== type){
                             nextElement = nextElement.nextElementSibling;
                         }
                         return nextElement;
                     }
 
                     var delayBeforeExpand;
-                    $(document).on('mousemove', 'body, .umi-tree-ghost', function (event) {
-                        if (delayBeforeExpand) {
+                    $(document).on('mousemove', 'body, .umi-tree-ghost', function(event){
+                        if( delayBeforeExpand ){
                             clearTimeout(delayBeforeExpand);
                         }
                         ghostPosition(event);
@@ -93,16 +93,16 @@ define(['App'], function (UMI) {
                         var elem = document.elementFromPoint(event.clientX, event.clientY);
 
                         // Расскороем ноду имеющую потомков
-                        var setExpanded = function (node) {
+                        var setExpanded = function(node){
                             // Предполагаем что div всегда будет первым потомком в li
                             // но та к делать не круто
                             Ember.View.views[node.firstElementChild.id].get('controller').set('isExpanded', true);
                         };
                         // Проверим находимся мы над деревом или нет
-                        if ($(elem).closest('.umi-tree').length) {
+                        if( $(elem).closest('.umi-tree').length ){
                             hoverElement = $(elem).closest('li')[0];
                             // Устанавливаем плэйсхолдер рядом с элементом
-                            if (hoverElement && hoverElement !== placeholder && !$(hoverElement).hasClass('root')) {
+                            if( hoverElement && hoverElement !== placeholder && !$(hoverElement).hasClass('root') ){
                                 elemHeight = hoverElement.offsetHeight;
                                 elemPositionTop = hoverElement.getBoundingClientRect().top;
                                 // Помещаем плэйсхолдер:
@@ -110,19 +110,19 @@ define(['App'], function (UMI) {
                                 // 2) перед нодой - Если позиция курсора на ноде выше ~30% её высоты
                                 // 3) При наведении на центр необходимо раскрыть ноду если есть потомки
                                 //    или спросить пользователя о ....
-                                if (event.clientY > elemPositionTop + parseInt(elemHeight * 0.7, 10)) {
+                                if( event.clientY > elemPositionTop + parseInt(elemHeight * 0.7, 10) ){
                                     placeholder = placeholder.parentNode.removeChild(placeholder);
                                     nextElement = findNextSubling(hoverElement, 'li');
-                                    if (nextElement) {
+                                    if( nextElement ){
                                         placeholder = hoverElement.parentNode.insertBefore(placeholder, nextElement);
-                                    } else {
+                                    } else{
                                         placeholder = hoverElement.parentNode.appendChild(placeholder);
                                     }
-                                } else if (event.clientY < elemPositionTop + parseInt(elemHeight * 0.4, 10)) {
+                                } else if( event.clientY < elemPositionTop + parseInt(elemHeight * 0.4, 10) ){
                                     placeholder = placeholder.parentNode.removeChild(placeholder);
                                     placeholder = hoverElement.parentNode.insertBefore(placeholder, hoverElement);
-                                } else {
-                                    delayBeforeExpand = setTimeout(function () {
+                                } else{
+                                    delayBeforeExpand = setTimeout(function(){
                                         setExpanded(hoverElement);
                                     }, 500);
                                 }
@@ -130,7 +130,7 @@ define(['App'], function (UMI) {
                         }
                     });
 
-                    $(document).on('mouseup', function (event) {
+                    $(document).on('mouseup', function(event){
                         var elem = document.elementFromPoint(event.clientX, event.clientY);
                         var indexes = [];
                         var list = $(elem).closest('.umi-tree-list')[0];
@@ -142,15 +142,15 @@ define(['App'], function (UMI) {
                         ghost.parentNode.removeChild(ghost);
 
                         // Если курсор над плейсхолдером считаем что перемещение удачное
-                        if (list) {
+                        if( list ){
                             var parentList = placeholder.parentNode;
-                            $(parentList).children('li:not(.hide)').each(function (index) {
+                            $(parentList).children('li:not(.hide)').each(function(index){
                                 indexes[jQuery(this).data('id')] = index + 1;// Index начнется с 1
                             });
                             self.get('controller').send('updateSortOrder', indexes, placeholder.getAttribute('data-id'), list.getAttribute('data-parent-id'));
                         }
                         // Удаление плэйсхолдера
-                        if (placeholder.parentNode) {
+                        if( placeholder.parentNode ){
                             placeholder.parentNode.removeChild(placeholder);
                         }
                         $(draggableNode).removeClass('hide');

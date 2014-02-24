@@ -1,9 +1,9 @@
-define(['App'], function (UMI) {
+define(['App'], function(UMI){
     'use strict';
 
-    return function () {
+    return function(){
         UMI.SiteListController = Ember.ArrayController.extend({
-            content: function () {
+            content: function(){
                 return this.store.find('site_list');
             }.property(),
             sortProperties: ['id'],

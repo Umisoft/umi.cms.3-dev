@@ -1,20 +1,20 @@
-define(['App'], function (UMI) {
+define(['App'], function(UMI){
     'use strict';
-    return function () {
+    return function(){
 
         UMI.TableController = Ember.ArrayController.extend({
-            addRecord: function () {
+            addRecord: function(){
                 this.controllerFor('TableRows').send('addRecord');
             }
         });
 
         UMI.TableHeadersController = Ember.ArrayController.extend({
             needs: 'tableRows',
-            content: function () {
+            content: function(){
                 return this.store.find('table_header');
             }.property(),
 
-            removeRecords: function () {
+            removeRecords: function(){
                 //Вызываем метод removeRecords из контроллера rows
                 this.controllerFor('TableRows').send('removeRecords');
             }
@@ -23,23 +23,23 @@ define(['App'], function (UMI) {
         UMI.TableRowsController = Ember.ArrayController.extend({
             needs: ['tableRow'],
             sliceValue: 8,
-            content: function () {
+            content: function(){
                 return this.store.find('table_row');
             }.property(),
 
-            addRecord: function () {
+            addRecord: function(){
                 var name = this.get('newName');
-                if (!name.trim()) {
+                if( !name.trim() ){
                     return;
                 }
 
                 var lastName = this.get('newLastName');
-                if (!lastName.trim()) {
+                if( !lastName.trim() ){
                     return;
                 }
 
                 var email = this.get('newEmail');
-                if (!email.trim()) {
+                if( !email.trim() ){
                     return;
                 }
 
@@ -56,56 +56,56 @@ define(['App'], function (UMI) {
                 todo.save();
             },
 
-            removeRecords: function () {
+            removeRecords: function(){
                 var toRemove = this.filterProperty('isChecked', true);
                 //Выполняем методы для каждого объекта в вернувшемся массиве
                 toRemove.invoke('deleteRecord');
                 toRemove.invoke('save');
             }
 
-//			isChecked: function(key, value){
-//				var model = this.get('model');
-//				if(value === undefined){
-//					return model.get('isChecked');
-//				}else{
-//					model.set('isChecked',value);
-//					model.save();
-//					return value;
-//				}
-//			}.property('model.isChecked'),
-//
-//			checkAll: function(key, value){
-//				this.setEach('isChecked', value);
-//			}.property()
+            //			isChecked: function(key, value){
+            //				var model = this.get('model');
+            //				if(value === undefined){
+            //					return model.get('isChecked');
+            //				}else{
+            //					model.set('isChecked',value);
+            //					model.save();
+            //					return value;
+            //				}
+            //			}.property('model.isChecked'),
+            //
+            //			checkAll: function(key, value){
+            //				this.setEach('isChecked', value);
+            //			}.property()
         });
 
         UMI.TableRowController = Ember.ObjectController.extend({
             cell: null,
 
-            init: function () {
+            init: function(){
                 var content = Ember.keys(Ember.meta(UMI.TableRow.proto()).descs); //Получаем список свойств модели
                 var row = [];
 
-                for (var i = 0; i < content.length; i++) {
+                for(var i = 0; i < content.length; i++){
                     row.push(this.get(content[i].toString()));
                 }
                 this.cell = row;
             },
 
             actions: {
-                editName: function () {
+                editName: function(){
                     this.set('isEditName', true);
                 },
 
-                editLastName: function () {
+                editLastName: function(){
                 },
 
-                endEditName: function () {
+                endEditName: function(){
                     this.set('isEditName', false);
                     $(this).val('text');
                 },
 
-                removeRecord: function () {
+                removeRecord: function(){
                     var record = this.get('model');
                     record.deleteRecord();
                     record.save();

@@ -12,8 +12,8 @@ require.config({
         DS: 'libs/ember-data/ember-data',
         Foundation: 'deploy/foundation',
         ckEditor: 'libs/ckeditor/ckeditor'
-//        qunit: 'libs/qunit/qunit/qunit',
-//        tests: 'tests/main'
+        //        qunit: 'libs/qunit/qunit/qunit',
+        //        tests: 'tests/main'
     },
 
     shim: {
@@ -43,15 +43,15 @@ require.config({
         ckEditor: {
             exports: 'ckEditor'
         }
-//        qunit: {
-//            deps: ['jQuery'],
-//            exports: 'qunit'
-//        },
-//
-//        tests: {
-//            deps: ['qunit'],
-//            exports: 'tests'
-//        }
+        //        qunit: {
+        //            deps: ['jQuery'],
+        //            exports: 'qunit'
+        //        },
+        //
+        //        tests: {
+        //            deps: ['qunit'],
+        //            exports: 'tests'
+        //        }
     },
 
     packages: [
@@ -88,7 +88,7 @@ require.config({
 });
 
 
-if(UmiSettings.login){
+if( UmiSettings.login ){
     require(['app/main'], function(application){
         application();
     });

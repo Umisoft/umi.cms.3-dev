@@ -94,23 +94,20 @@
             {
                 "id": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
                 "title": "Спорт",
-                "news": ["lj234-34l5jl-dfigj-dlkljl-dkgkl", "lj234-34l5jl-dfigj-dlkljl-dk34d", "lj234-34l5jl-dfigj-dlkljl-dk232", "lj234-34l5jl-dfigj-dlkljl-dk212", "lj234-34l5jl-dfigj-dlkljl-ddw13"],
+                "news": [
+                    "lj234-34l5jl-dfigj-dlkljl-dkgkl", "lj234-34l5jl-dfigj-dlkljl-dk34d",
+                    "lj234-34l5jl-dfigj-dlkljl-dk232", "lj234-34l5jl-dfigj-dlkljl-dk212",
+                    "lj234-34l5jl-dfigj-dlkljl-ddw13"
+                ],
                 "hasChildren": true,
                 "children": [
-                    "lj234-34l5jl-dfigj-dlkljl-dkg33d1",
-                    "lj234-34l5jl-dfigj-dlkljl-dkg33d2",
-                    "lj234-34l5jl-dfigj-dlkljl-dkg33d3",
-                    "lj234-34l5jl-dfigj-dlkljl-dkg33d4",
-                    "lj234-34l5jl-dfigj-dlkljl-dkg33d5",
-                    "lj234-34l5jl-dfigj-dlkljl-dkg33d6",
-                    "lj234-34l5jl-dfigj-dlkljl-dkg33d7",
-                    "lj234-34l5jl-dfigj-dlkljl-dkg33d8",
-                    "lj234-34l5jl-dfigj-dlkljl-dkg33d9",
-                    "lj234-34l5jl-dfigj-dlkljl-dkg3310",
-                    "lj234-34l5jl-dfigj-dlkljl-dkg3311",
-                    "lj234-34l5jl-dfigj-dlkljl-dkg3312",
-                    "lj234-34l5jl-dfigj-dlkljl-dkg3313",
-                    "lj234-34l5jl-dfigj-dlkljl-dkg3328"
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d1", "lj234-34l5jl-dfigj-dlkljl-dkg33d2",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d3", "lj234-34l5jl-dfigj-dlkljl-dkg33d4",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d5", "lj234-34l5jl-dfigj-dlkljl-dkg33d6",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d7", "lj234-34l5jl-dfigj-dlkljl-dkg33d8",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg33d9", "lj234-34l5jl-dfigj-dlkljl-dkg3310",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg3311", "lj234-34l5jl-dfigj-dlkljl-dkg3312",
+                    "lj234-34l5jl-dfigj-dlkljl-dkg3313", "lj234-34l5jl-dfigj-dlkljl-dkg3328"
                 ],
                 "active": true
             }
@@ -122,7 +119,10 @@
                     "lj234-34l5jl-dfigj-dlkljl-dkgkl": {
                         "slug": ["properties", "child-categories"],
                         "titles": ["Свойства", "Дочерние рубрики"],
-                        "resources": ["/resources/modules/news/categories/properties/resources.json", "/resources/modules/news/categories/children/resources.json"],
+                        "resources": [
+                            "/resources/modules/news/categories/properties/resources.json",
+                            "/resources/modules/news/categories/children/resources.json"
+                        ],
                         "contentType": ["category", "category"],
                         "current": 0
                     },

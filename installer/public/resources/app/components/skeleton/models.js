@@ -1,13 +1,13 @@
-define(['./app'], function (UMI) {
+define(['./app'], function(UMI){
     'use strict';
 
-    return function () {
+    return function(){
         /**
          * Создает экземпляры DS.Model
          *
          * @param {array} Массив обьектов
          * */
-        UMI.FactoryForModels = function (models) {
+        UMI.FactoryForModels = function(models){
             var i;
             var j;
             var model;
@@ -15,11 +15,11 @@ define(['./app'], function (UMI) {
             var propertyValue;
             var relationshipParams;
 
-            for (j = 0; j < models.length; j++) {
+            for(j = 0; j < models.length; j++){
                 model = models[j];
 
-                for (i = 0; i < model.properties.length; i++) {
-                    switch (model.properties[i].type) {
+                for(i = 0; i < model.properties.length; i++){
+                    switch(model.properties[i].type){
                         case 'string':
                             propertyValue = DS.attr('string');
                             break;
@@ -33,9 +33,9 @@ define(['./app'], function (UMI) {
                             propertyValue = DS.attr('date');
                             break;
                         case 'relationship':
-                            if (model.properties[i].relationship.params) {
+                            if( model.properties[i].relationship.params ){
                                 propertyValue = DS[model.properties[i].relationship.type](model.properties[i].relationship.name, model.properties[i].relationship.params);
-                            } else {
+                            } else{
                                 propertyValue = DS[model.properties[i].relationship.type](model.properties[i].relationship.name);
                             }
                             break;
@@ -48,10 +48,10 @@ define(['./app'], function (UMI) {
 
                 UMI[model.name] = DS.Model.extend(properties);
 
-                if (model.resource) {
+                if( model.resource ){
                     UMI[model.name + 'Adapter'] = UMI.RESTAdapter.extend({
                         namespace: model.resource,
-                        buildURL: function (record, suffix) {
+                        buildURL: function(record, suffix){
                             var s = this._super(record, suffix);
                             return s + ".php";
                         }
@@ -67,7 +67,7 @@ define(['./app'], function (UMI) {
 
         UMI.ComponentModeAdapter = DS.RESTAdapter.extend({
             namespace: 'resource/admin/modules/news/categories',
-            buildURL: function (record, suffix) {
+            buildURL: function(record, suffix){
                 var s = this._super(record, suffix);
                 return s + ".json";
             }

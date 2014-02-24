@@ -5,20 +5,13 @@
             "title": "Спорт",
             "hasChildren": true,
             "children": [
-                "lj234-34l5jl-dfigj-dlkljl-dkg33d1",
-                "lj234-34l5jl-dfigj-dlkljl-dkg33d2",
-                "lj234-34l5jl-dfigj-dlkljl-dkg33d3",
-                "lj234-34l5jl-dfigj-dlkljl-dkg33d4",
-                "lj234-34l5jl-dfigj-dlkljl-dkg33d5",
-                "lj234-34l5jl-dfigj-dlkljl-dkg33d6",
-                "lj234-34l5jl-dfigj-dlkljl-dkg33d7",
-                "lj234-34l5jl-dfigj-dlkljl-dkg33d8",
-                "lj234-34l5jl-dfigj-dlkljl-dkg33d9",
-                "lj234-34l5jl-dfigj-dlkljl-dkg3310",
-                "lj234-34l5jl-dfigj-dlkljl-dkg3311",
-                "lj234-34l5jl-dfigj-dlkljl-dkg3312",
-                "lj234-34l5jl-dfigj-dlkljl-dkg3313",
-                "lj234-34l5jl-dfigj-dlkljl-dkg3328"
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d1", "lj234-34l5jl-dfigj-dlkljl-dkg33d2",
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d3", "lj234-34l5jl-dfigj-dlkljl-dkg33d4",
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d5", "lj234-34l5jl-dfigj-dlkljl-dkg33d6",
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d7", "lj234-34l5jl-dfigj-dlkljl-dkg33d8",
+                "lj234-34l5jl-dfigj-dlkljl-dkg33d9", "lj234-34l5jl-dfigj-dlkljl-dkg3310",
+                "lj234-34l5jl-dfigj-dlkljl-dkg3311", "lj234-34l5jl-dfigj-dlkljl-dkg3312",
+                "lj234-34l5jl-dfigj-dlkljl-dkg3313", "lj234-34l5jl-dfigj-dlkljl-dkg3328"
             ],
             "active": true
         },
@@ -27,7 +20,10 @@
             "title": "IT",
             "parent": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
             "hasChildren": true,
-            "children": ["lj234-34l5jl-d23gj-dl3jl-3423df", "lj234-34l5jl-d23gj-dl3jl-34g3314", "lj234-34l5jl-d23gj-dl3jl-34g33141", "lj234-34l5jl-d23gj-dl3jl-34g33d233"],
+            "children": [
+                "lj234-34l5jl-d23gj-dl3jl-3423df", "lj234-34l5jl-d23gj-dl3jl-34g3314",
+                "lj234-34l5jl-d23gj-dl3jl-34g33141", "lj234-34l5jl-d23gj-dl3jl-34g33d233"
+            ],
             "active": true
         },
         {

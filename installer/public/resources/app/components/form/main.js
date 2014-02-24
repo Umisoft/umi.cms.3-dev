@@ -1,5 +1,4 @@
-define(['App', 'text!./form.hbs'],
-    function (UMI, formTpl) {
+define(['App', 'text!./form.hbs'], function(UMI, formTpl){
         'use strict';
         Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
 
@@ -25,11 +24,11 @@ define(['App', 'text!./form.hbs'],
             attributeBindings: ['abide:data-abide'],
             abide: 'ajax',
             actions: {
-                save: function (object) {
+                save: function(object){
                     //console.log(object.get('title'));
                     object.save();
                 },
-                delete: function (object) {
+                delete: function(object){
                     object.deleteRecord();
                     object.save();
                 }
@@ -43,10 +42,10 @@ define(['App', 'text!./form.hbs'],
          Ember.TEMPLATES['UMI/field/number'] = Ember.Handlebars.compile(formTpl);*/
 
         UMI.FieldView = Ember.View.extend({
-            template: function () {
+            template: function(){
                 var meta = this.get('meta');
                 var template;
-                switch (meta.type) {
+                switch(meta.type){
                     case 'string':
                         template = Ember.Handlebars.compile('{{input type="text" value=object.' + meta.name + '}}');
                         break;
@@ -73,13 +72,12 @@ define(['App', 'text!./form.hbs'],
             tagName: 'div',
             classNames: ['ckeditor-row'],// TODO: Атрибут required не биндится к хелперу textarea
             template: Ember.Handlebars.compile('{{textarea value=value required=attributes.required pattern=pattern class=attributes.class disabled=disabled}}'),
-            didInsertElement: function () {
+            didInsertElement: function(){
                 var el = this.$().children('textarea');
-                Ember.run.next(this, function () {
+                Ember.run.next(this, function(){
                     CKEDITOR.replace(el[0].id);
                 });
             }
         });
         //TODO: Для форм нужно не забыть в шаблоне, и в остальных местах биндить все возможные атрибуты
-    }
-);
+    });

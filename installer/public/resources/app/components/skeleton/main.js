@@ -1,5 +1,6 @@
-define(['./app', './templates', './models', './router', './controllers', './views'],
-    function (applicationNamespace, templates, models, router, controller, views) {
+define([
+    './app', './templates', './models', './router', './controllers', './views'
+], function(applicationNamespace, templates, models, router, controller, views){
         'use strict';
         templates();
         models();
@@ -7,5 +8,4 @@ define(['./app', './templates', './models', './router', './controllers', './view
         controller();
         views();
         return applicationNamespace;
-    }
-);
+    });

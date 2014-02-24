@@ -63,13 +63,18 @@
         {
             "guid": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
             "title": "Спорт",
-            "news": ["lj234-34l5jl-dfigj-dlkljl-dkgkl", "lj234-34l5jl-dfigj-dlkljl-dk34d", "lj234-34l5jl-dfigj-dlkljl-dk232", "lj234-34l5jl-dfigj-dlkljl-dk212", "lj234-34l5jl-dfigj-dlkljl-ddw13"],
+            "news": [
+                "lj234-34l5jl-dfigj-dlkljl-dkgkl", "lj234-34l5jl-dfigj-dlkljl-dk34d", "lj234-34l5jl-dfigj-dlkljl-dk232",
+                "lj234-34l5jl-dfigj-dlkljl-dk212", "lj234-34l5jl-dfigj-dlkljl-ddw13"
+            ],
             "root": true
         },
         {
             "guid": "lj234-34l5jl-dfigj-dlkljl-dkgdf",
             "title": "IT",
-            "news": ["lj234-34l5jl-dfigj-dlkljl-dd223", "lj234-34l5jl-dfigj-dlkljl-d2713", "lj234-34l5jl-dfigj-dlkljl-d6633"],
+            "news": [
+                "lj234-34l5jl-dfigj-dlkljl-dd223", "lj234-34l5jl-dfigj-dlkljl-d2713", "lj234-34l5jl-dfigj-dlkljl-d6633"
+            ],
             "parent": "lj234-34l5jl-dfigj-dlkljl-dkgkl"
         }
     ],
@@ -78,12 +83,17 @@
         {
             "guid": "lj2df-34l5ds-dfagj-dlkljl-dkgk1",
             "title": "Олимпиада в Сочи",
-            "news": ["lj234-34l5jl-dfigj-dlkljl-dkgkl", "lj234-34l5jl-dfigj-dlkljl-dk34d", "lj234-34l5jl-dfigj-dlkljl-dk232", "lj234-34l5jl-dfigj-dlkljl-dk212", "lj234-34l5jl-dfigj-dlkljl-ddw13"]
+            "news": [
+                "lj234-34l5jl-dfigj-dlkljl-dkgkl", "lj234-34l5jl-dfigj-dlkljl-dk34d", "lj234-34l5jl-dfigj-dlkljl-dk232",
+                "lj234-34l5jl-dfigj-dlkljl-dk212", "lj234-34l5jl-dfigj-dlkljl-ddw13"
+            ]
         },
         {
             "guid": "lj2df-34l5ds-dfagj-dlkljl-54gk2",
             "title": "Microsoft",
-            "news": ["lj234-34l5jl-dfigj-dlkljl-dd223", "lj234-34l5jl-dfigj-dlkljl-d2713", "lj234-34l5jl-dfigj-dlkljl-d6633"]
+            "news": [
+                "lj234-34l5jl-dfigj-dlkljl-dd223", "lj234-34l5jl-dfigj-dlkljl-d2713", "lj234-34l5jl-dfigj-dlkljl-d6633"
+            ]
         }
     ],
 

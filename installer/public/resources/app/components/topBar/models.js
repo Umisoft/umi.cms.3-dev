@@ -1,7 +1,7 @@
-define(['App'], function (UMI) {
+define(['App'], function(UMI){
     'use strict';
 
-    return function () {
+    return function(){
         UMI.SiteList = DS.Model.extend({
             slug: DS.attr('string'),
             title: DS.attr('string'),

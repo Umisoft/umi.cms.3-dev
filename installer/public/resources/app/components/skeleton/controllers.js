@@ -1,7 +1,7 @@
-define(['./app'], function (UMI) {
+define(['./app'], function(UMI){
     'use strict';
 
-    return function () {
+    return function(){
 
         UMI.ComponentController = Ember.ObjectController.extend({
             treeSettings: false,
@@ -10,12 +10,12 @@ define(['./app'], function (UMI) {
         });
 
         UMI.ComponentModeController = Ember.ArrayController.extend({
-            content: function () {
+            content: function(){
                 var componentMode = this.get('modes');
-                if (componentMode) {
+                if( componentMode ){
                     var buttons = [];
                     componentMode = componentMode.get('modes')[this.get('id')];
-                    for (var i = 0; i < componentMode.titles.length; i++) {
+                    for(var i = 0; i < componentMode.titles.length; i++){
                         buttons.push(Ember.Object.create({slug: componentMode.slug[i], title: componentMode.titles[i], contentType: componentMode.contentType[i], current: (componentMode.current === i ? true : false), resources: componentMode.resources[i]}));
                     }
                     return buttons;
