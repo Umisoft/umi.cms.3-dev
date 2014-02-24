@@ -10,7 +10,7 @@
 namespace umicms\project\module\news\object;
 
 use umi\orm\objectset\IManyToManyObjectSet;
-use umicms\object\CmsObject;
+use umicms\base\object\CmsObject;
 
 /**
  * Новостной сюжет.

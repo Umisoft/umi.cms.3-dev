@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\news\object;
 
-use umicms\object\CmsElement;
+use umicms\base\object\CmsElement;
 
 /**
  * Новостная рубрика.

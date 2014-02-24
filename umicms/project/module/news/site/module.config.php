@@ -15,7 +15,7 @@ return [
     IComponent::OPTION_CONTROLLERS => [
         'index' => 'umicms\project\module\news\site\controller\IndexController',
         'rubric' => 'umicms\project\module\news\site\controller\RubricController',
-        'newsItem' => 'umicms\project\module\news\site\controller\NewsItemController',
+        'item' => 'umicms\project\module\news\site\controller\NewsItemController',
         'subject' => 'umicms\project\module\news\site\controller\SubjectController'
     ],
     IComponent::OPTION_VIEW        => [
@@ -44,11 +44,11 @@ return [
                 'controller' => 'rubric'
             ]
         ],
-        'newsItem' => [
+        'item' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/item/{slug}',
             'defaults' => [
-                'controller' => 'newsItem'
+                'controller' => 'item'
             ]
         ],
         'subject' => [

@@ -28,8 +28,8 @@ return [
         OrmTools::NAME => [
             'factories' => [
                 'object' => [
-                    'defaultObjectClass' => 'umicms\object\CmsObject',
-                    'defaultHierarchicObjectClass' => 'umicms\object\CmsElement'
+                    'defaultObjectClass' => 'umicms\base\object\CmsObject',
+                    'defaultHierarchicObjectClass' => 'umicms\base\object\CmsElement'
                 ]
             ],
             'metadata'    => [
@@ -69,19 +69,7 @@ return [
         'admin'      => '{#lazy:~/project/admin/admin.config.php}'
     ],
 
-    IComponent::OPTION_CONTROLLERS => [
-       'install' =>   'umicms\project\controller\InstallController'
-    ],
-
     IComponent::OPTION_ROUTES => [
-
-        'install' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'route' => '/install',
-            'defaults' => [
-                'controller' => 'install'
-            ]
-        ],
 
         'admin' => [
             'type' => IRouteFactory::ROUTE_FIXED,

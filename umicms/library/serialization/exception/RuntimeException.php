@@ -7,14 +7,11 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\object;
-
-use umi\orm\object\Object;
+namespace umicms\serialization\exception;
 
 /**
- * Класс простого объекта UMI.CMS.
+ * Исключения, связанные с ошибками, которые можно выявить только во время исполнения
  */
-class CmsObject extends Object implements ICmsObject
+class RuntimeException extends \RuntimeException implements IException
 {
-
 }

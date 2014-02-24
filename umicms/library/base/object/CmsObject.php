@@ -7,17 +7,14 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\widget;
+namespace umicms\base\object;
 
-use umi\hmvc\widget\BaseWidget as FrameworkBaseWidget;
-use umi\i18n\ILocalizable;
-use umi\i18n\TLocalizable;
+use umi\orm\object\Object;
 
 /**
- * Базовый виджет UMI.CMS
+ * Класс простого объекта UMI.CMS.
  */
-abstract class BaseWidget extends FrameworkBaseWidget implements ILocalizable
+class CmsObject extends Object implements ICmsObject
 {
-    use TLocalizable;
+
 }
- 

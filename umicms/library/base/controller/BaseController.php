@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\controller;
+namespace umicms\base\controller;
 
 use umi\hmvc\controller\BaseController as FrameworkController;
 use umi\i18n\ILocalizable;

@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\object;
+namespace umicms\base\object;
 
 use umi\orm\object\HierarchicObject;
 

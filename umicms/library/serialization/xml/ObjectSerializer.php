@@ -6,6 +6,7 @@
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
+
 namespace umicms\serialization\xml;
 
 use umicms\serialization\exception\UnexpectedValueException;
@@ -13,23 +14,28 @@ use umicms\serialization\exception\UnexpectedValueException;
 /**
  * XML-сериализатор для произвольных объектов "по умолчанию".
  */
-class ObjectXmlSerializer extends BaseXmlSerializer
+class ObjectSerializer extends BaseSerializer
 {
     /**
-     * {@inheritdoc}
+     * Сериализует объект в XML.
+     * @param object $object
+     * @throws UnexpectedValueException если передан не объект
      */
     public function __invoke($object)
     {
         if (!is_object($object)) {
-            throw new UnexpectedValueException('Cannot serialize object. Object instance required.');
+            throw new UnexpectedValueException($this->translate(
+                'Cannot serialize object. Value type "{type}" is not object.',
+                ['type' => gettype($object)]
+            ));
         }
 
-        $publicVars = get_object_vars($object);
-        foreach ($publicVars as $propName => $value) {
-            var_dump($propName);
-
+        if ($object instanceof \Traversable) {
+            $variables = iterator_to_array($object, true);
+        } else {
+            $variables = get_object_vars($object);
         }
-        var_dump(get_class($object));
-        exit;
+
+        $this->delegate($variables);
     }
 }

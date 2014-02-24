@@ -7,10 +7,11 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\object;
+namespace umicms\base\object;
 
 use DateTime;
 use umi\orm\metadata\IObjectType;
+use umi\orm\object\IObject;
 
 /**
  * Интерфейс ORM-объекта для UMI.CMS.
@@ -24,7 +25,7 @@ use umi\orm\metadata\IObjectType;
  * @property DateTime $created время создания элемента
  * @property DateTime $updated время обновления элемента
  */
-interface ICmsObject
+interface ICmsObject extends IObject
 {
     /**
      *  Имя поля для хранения состояния активности объекта

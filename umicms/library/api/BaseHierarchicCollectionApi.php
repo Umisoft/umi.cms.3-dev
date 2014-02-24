@@ -15,7 +15,7 @@ use umi\orm\metadata\field\special\MaterializedPathField;
 use umi\orm\selector\ISelector;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\UnexpectedValueException;
-use umicms\object\CmsElement;
+use umicms\base\object\CmsElement;
 
 /**
  * Базовый класс API для работы с простой иерархической ORM-коллекцией.

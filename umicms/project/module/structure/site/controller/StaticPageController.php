@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\structure\site\controller;
 
-use umicms\controller\BaseController;
+use umicms\base\controller\BaseController;
 use umicms\exception\RuntimeException;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\model\StaticPage;

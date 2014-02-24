@@ -6,17 +6,12 @@
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
-namespace umicms\serialization\xml;
 
-use umicms\serialization\ISerializationAware;
-use umicms\serialization\TSerializationAware;
+namespace umicms\serialization\exception;
 
 /**
- * Базовый сериализатор объектов в XML
+ * {@inheritdoc}
  */
-abstract class BaseXmlSerializer implements ISerializationAware
+class LogicException extends \LogicException implements IException
 {
-    use TSerializationAware;
-
-
 }

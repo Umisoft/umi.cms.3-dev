@@ -1,0 +1,17 @@
+<?php
+/**
+ * @var umicms\project\module\news\object\NewsSubject $subject
+ * @var umi\orm\selector\ISelector $subjects
+ */
+?>
+
+<?php if ($subjects->getTotal()) :?>
+
+    <ul>
+        <?php foreach ($subjects as $subject) : ?>
+            <li>
+                <?= $this->widget('viewSubject', ['guid' => $subject->guid, 'template' => 'subject/shortView']); ?>
+            </li>
+        <?php endforeach;?>
+    </ul>
+<?php endif; ?>

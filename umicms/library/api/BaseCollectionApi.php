@@ -18,7 +18,7 @@ use umi\orm\collection\ILinkedHierarchicCollection;
 use umi\orm\collection\ISimpleCollection;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\selector\ISelector;
-use umicms\object\ICmsObject;
+use umicms\base\object\ICmsObject;
 
 /**
  * Базовый класс API для работы с ORM-коллекцией.
