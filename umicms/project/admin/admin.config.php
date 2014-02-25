@@ -20,9 +20,9 @@ return [
 
     AdminApplication::OPTION_CONTROLLERS => [
         AdminApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
-        AdminApplication::LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
 
         'default' => __NAMESPACE__ . '\controller\DefaultController',
+        'settings' => __NAMESPACE__ . '\controller\SettingsController',
     ],
 
     AdminApplication::OPTION_COMPONENTS => [
@@ -39,6 +39,14 @@ return [
     ],
 
     AdminApplication::OPTION_ROUTES => [
+
+        'settings' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route' => '/api/settings',
+            'defaults' => [
+                'controller' => 'settings'
+            ]
+        ],
 
         'api' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,

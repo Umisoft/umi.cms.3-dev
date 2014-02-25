@@ -8,18 +8,22 @@
 
 namespace umicms\project\module\users\admin\user;
 
-use umi\hmvc\component\IComponent;
 use umi\route\IRouteFactory;
+use umicms\base\component\Component;
 
 return [
 
-    IComponent::OPTION_CONTROLLERS => [
+    Component::OPTION_SETTINGS => [
+
+    ],
+
+    Component::OPTION_CONTROLLERS => [
         'list' => __NAMESPACE__ . '\controller\ListController',
         'item' => __NAMESPACE__ . '\controller\ItemController',
         'action' => __NAMESPACE__ . '\controller\ActionController',
     ],
 
-    IComponent::OPTION_ROUTES      => [
+    Component::OPTION_ROUTES      => [
 
         'list' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,

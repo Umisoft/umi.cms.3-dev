@@ -9,15 +9,13 @@
 
 namespace umicms\project\admin;
 
-use umi\config\entity\IConfig;
-use umi\hmvc\component\Component;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Request;
 use umi\http\Response;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
-use umicms\exception\UnexpectedValueException;
+use umicms\base\component\Component;
 use umicms\project\config\IAdminSettingsAware;
 use umicms\project\config\TAdminSettingsAware;
 use umicms\serialization\ISerializationAware;
@@ -32,10 +30,6 @@ class AdminApplication extends Component implements IAdminSettingsAware, IToolki
     use TToolkitAware;
     use TSerializationAware;
 
-    /**
-     * Имя опции для задания настроек.
-     */
-    const OPTION_SETTINGS = 'settings';
     /**
      * Формат запроса по умолчанию.
      */
@@ -66,7 +60,7 @@ class AdminApplication extends Component implements IAdminSettingsAware, IToolki
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        if (isset($context->getRouteParams()[self::MATCH_COMPONENT])) {
+        if (!isset($context->getRouteParams()['uri'])) {
             $this->currentRequestFormat = $this->getRequestFormatByPostfix($request->getRequestFormat(null));
         }
 
@@ -78,7 +72,8 @@ class AdminApplication extends Component implements IAdminSettingsAware, IToolki
      */
     public function onDispatchResponse(IDispatchContext $context, Response $response)
     {
-        if (isset($context->getRouteParams()[self::MATCH_COMPONENT])) {
+
+        if (!isset($context->getRouteParams()['uri'])) {
             $result = [
                 'result' => $response->getContent()
             ];
@@ -113,20 +108,14 @@ class AdminApplication extends Component implements IAdminSettingsAware, IToolki
      */
     protected function registerAdminSettings()
     {
-        $settings = isset($this->options[self::OPTION_SETTINGS]) ? $this->options[self::OPTION_SETTINGS] : null;
 
-        if (!$settings instanceof IConfig) {
-            throw new UnexpectedValueException($this->translate(
-                'Administration panel settings should be instance of IConfig.'
-            ));
-        }
-        $this->setAdminSettings($settings);
+        $this->setAdminSettings($this->getSettings());
 
         $this->getToolkit()->registerAwareInterface(
             'umicms\project\config\IAdminSettingsAware',
-            function ($object) use ($settings) {
+            function ($object) {
                 if ($object instanceof IAdminSettingsAware) {
-                    $object->setAdminSettings($settings);
+                    $object->setAdminSettings($this->getSettings());
                 }
             }
         );

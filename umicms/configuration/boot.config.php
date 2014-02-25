@@ -9,8 +9,7 @@
 
 namespace umicms\configuration;
 
-use umi\config\toolbox\ConfigTools;
-use umi\log\toolbox\LogTools;
+use umi\hmvc\toolbox\HmvcTools;
 use umi\route\toolbox\RouteTools;
 use umicms\Bootstrap;
 
@@ -37,6 +36,14 @@ return [
                     'types' => [
                         'siteRoute' => 'umicms\project\route\SiteRoute'
                     ]
+                ]
+            ]
+        ],
+        HmvcTools::NAME => [
+            'dispatcherClass' => 'umicms\hmvc\Dispatcher',
+            'factories' => [
+                'entity' => [
+                    'componentClass' => 'umicms\base\component\Component'
                 ]
             ]
         ]

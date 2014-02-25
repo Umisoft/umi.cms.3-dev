@@ -19,8 +19,13 @@ class ArraySerializer extends BaseSerializer
      * @param array $array
      */
     public function __invoke(array $array) {
-        foreach ($array as $key => $value) {
-            $this->writeElement($key, $value);
+
+        if (!empty($array)) {
+            foreach ($array as $key => $value) {
+                $this->writeElement($key, $value);
+            }
+        } else {
+            $this->writeRaw([]);
         }
     }
 }

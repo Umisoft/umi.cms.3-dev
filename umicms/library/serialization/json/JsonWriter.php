@@ -114,19 +114,11 @@ class JsonWriter
 
     /**
      * Записывает значение в текущий элемент.
-     * @param mixed $value скалаярное значение элемента, либо null
+     * @param mixed $value
      * @throws LogicException если элемент уже имеет значение
      */
     public function write($value)
     {
-        if (!is_scalar($value) && !is_null($value)) {
-            throw new LogicException(
-                sprintf(
-                    'Cannot write element value. Value should be scalar.',
-                    $this->currentElement->name
-                )
-            );
-        }
         if (!is_null($this->currentElement->value)) {
             throw new LogicException(
                 sprintf(

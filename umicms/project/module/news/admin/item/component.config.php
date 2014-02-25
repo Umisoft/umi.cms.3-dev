@@ -8,18 +8,22 @@
 
 namespace umicms\project\module\news\admin\item;
 
-use umi\hmvc\component\IComponent;
 use umi\route\IRouteFactory;
+use umicms\base\component\Component;
 
 return [
 
-    IComponent::OPTION_CONTROLLERS => [
+    Component::OPTION_SETTINGS => [
+
+    ],
+
+    Component::OPTION_CONTROLLERS => [
         'settings' => __NAMESPACE__ . '\controller\SettingsController',
         'list' => __NAMESPACE__ . '\controller\ListController',
         'item' => __NAMESPACE__ . '\controller\ItemController',
     ],
 
-    IComponent::OPTION_ROUTES      => [
+    Component::OPTION_ROUTES      => [
 
         'settings' => [
             'type'     => IRouteFactory::ROUTE_FIXED,

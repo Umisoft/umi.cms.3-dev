@@ -46,7 +46,7 @@ class ErrorWidget extends BaseWidget
         return $this->createResult(
             'error/widget',
             [
-                'e' => $this->exception,
+                'error' => $this->exception,
                 'stack' => $stack
             ]
         );
