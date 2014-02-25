@@ -1,5 +1,5 @@
 define([
-    'text!./templates/table.hbs', './view'
+    'text!./templates/table.hbs', './view', 'App'
 ], function(tableTpl, view){
     'use strict';
 

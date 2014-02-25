@@ -1,6 +1,6 @@
 define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
-    // загрузим зависимости для приложения
-    //require(['DS']);
+    "use strict";
+
     return function(){
         var Auth = {
             TEMPLATES: {},

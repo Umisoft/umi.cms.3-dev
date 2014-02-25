@@ -11,9 +11,8 @@ require.config({
         Ember: 'libs/ember/ember',
         DS: 'libs/ember-data/ember-data',
         Foundation: 'deploy/foundation',
-        ckEditor: 'libs/ckeditor/ckeditor'
-        //        qunit: 'libs/qunit/qunit/qunit',
-        //        tests: 'tests/main'
+        ckEditor: 'libs/ckeditor/ckeditor',
+        App: 'app/components/skeleton/main'
     },
 
     shim: {
@@ -43,22 +42,9 @@ require.config({
         ckEditor: {
             exports: 'ckEditor'
         }
-        //        qunit: {
-        //            deps: ['jQuery'],
-        //            exports: 'qunit'
-        //        },
-        //
-        //        tests: {
-        //            deps: ['qunit'],
-        //            exports: 'tests'
-        //        }
     },
 
     packages: [
-        {
-            name: "App",
-            location: 'app/components/skeleton'
-        },
         {
             name: 'topBar',
             location: "app/components/topBar"
@@ -89,12 +75,14 @@ require.config({
 
 
 if(UmiSettings.login){
-    require(['app/main'], function(application){
+    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll'], function(application){
+        "use strict";
         application();
     });
 
 } else{
-    require(['auth/main'], function(Auth){
-        Auth();
+    require(['auth/main'], function(auth){
+        "use strict";
+        auth();
     });
 }
