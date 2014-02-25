@@ -7,7 +7,7 @@ module.exports = function(grunt){
 
         watch: {
             sass: {
-                files: ['app/sass/**/*.scss', 'app/foundationJs/*.js', 'app/foundationJs/components/*.js'],
+                files: ['app/sass/**/*.scss', 'app/foundationJs/**/*.js'],
                 tasks: ['sass', 'concat', 'autoprefixer']
             }
         },
@@ -38,7 +38,7 @@ module.exports = function(grunt){
             },
             dist: {
                 src: [
-                    'libs/foundation/js/vendor/*.js', 'app/foundationJs/foundation.js',
+                    'app/foundationJs/foundation.js',
                     'app/foundationJs/components/*.js'
                 ],
                 dest: 'deploy/foundation.js'
