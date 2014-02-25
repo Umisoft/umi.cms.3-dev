@@ -8,16 +8,20 @@
 
 namespace umicms\project\module\users\admin;
 
-use umi\hmvc\component\IComponent;
 use umi\route\IRouteFactory;
+use umicms\base\component\Component;
 
 return [
 
-    IComponent::OPTION_COMPONENTS => [
+    Component::OPTION_SETTINGS => [
+
+    ],
+
+    Component::OPTION_COMPONENTS => [
         'user' => '{#lazy:~/project/module/users/admin/user/component.config.php}'
     ],
 
-    IComponent::OPTION_ROUTES      => [
+    Component::OPTION_ROUTES      => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{component}'

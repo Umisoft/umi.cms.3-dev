@@ -6,11 +6,12 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\structure\admin;
+namespace umicms\project\module\news\admin\rubric;
 
 use umicms\base\component\Component;
 
 return [
+
     Component::OPTION_SETTINGS => [
 
     ]

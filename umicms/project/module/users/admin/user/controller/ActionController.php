@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\users\admin\user\controller;
 
-use umi\hmvc\exception\http\HttpForbidden;
+use umi\hmvc\exception\http\HttpUnauthorized;
 use umicms\base\controller\BaseRestActionController;
 use umicms\project\module\users\api\UsersApi;
 
@@ -53,7 +53,7 @@ class ActionController extends BaseRestActionController
     {
         if (!$this->api->isAuthenticated()) {
             if (!$this->api->login($this->getPostVar('login'), $this->getPostVar('password'))) {
-                throw new HttpForbidden(
+                throw new HttpUnauthorized(
                     $this->translate('Incorrect login or password.')
                 );
             }

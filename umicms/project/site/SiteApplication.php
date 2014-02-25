@@ -8,8 +8,6 @@
 
 namespace umicms\project\site;
 
-use umi\config\entity\IConfig;
-use umi\hmvc\component\Component;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\IHttpAware;
@@ -18,9 +16,9 @@ use umi\http\Response;
 use umi\http\THttpAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
+use umicms\base\component\Component;
 use umicms\project\config\ISiteSettingsAware;
 use umicms\project\config\TSiteSettingsAware;
-use umicms\exception\UnexpectedValueException;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\TSerializationAware;
@@ -35,10 +33,6 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
     use TToolkitAware;
     use TSerializationAware;
 
-    /**
-     * Имя опции для задания настроек сайта.
-     */
-    const OPTION_SETTINGS = 'settings';
     /**
      * Имя настройки для задания guid главной страницы
      */
@@ -203,21 +197,14 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
      */
     protected function registerSiteSettings()
     {
-        $settings = isset($this->options[self::OPTION_SETTINGS]) ? $this->options[self::OPTION_SETTINGS] : null;
-
-        if (!$settings instanceof IConfig) {
-            throw new UnexpectedValueException($this->translate(
-                'Site settings should be instance of IConfig.'
-            ));
-        }
-        $this->setSiteSettings($settings);
+        $this->setSiteSettings($this->getSettings());
 
         $this->getToolkit()
             ->registerAwareInterface(
             'umicms\project\config\ISiteSettingsAware',
-            function ($object) use ($settings) {
+            function ($object) {
                 if ($object instanceof ISiteSettingsAware) {
-                    $object->setSiteSettings($settings);
+                    $object->setSiteSettings($this->getSettings());
                 }
             }
         );

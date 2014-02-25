@@ -8,18 +8,22 @@
 
 namespace umicms\project\module\news\admin;
 
-use umi\hmvc\component\IComponent;
 use umi\route\IRouteFactory;
+use umicms\base\component\Component;
 
 return [
 
-    IComponent::OPTION_COMPONENTS => [
+    Component::OPTION_SETTINGS => [
+
+    ],
+
+    Component::OPTION_COMPONENTS => [
         'rubric' => '{#lazy:~/project/module/news/admin/rubric/component.config.php}',
         'item' => '{#lazy:~/project/module/news/admin/item/component.config.php}',
         'subject' => '{#lazy:~/project/module/news/admin/subject/component.config.php}'
     ],
 
-    IComponent::OPTION_ROUTES      => [
+    Component::OPTION_ROUTES      => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{component}'

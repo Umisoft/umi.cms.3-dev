@@ -13,10 +13,10 @@ use umicms\Environment;
 $vendorDirectory = dirname(dirname(__DIR__)) . '/vendor';
 $autoLoaderPath = $vendorDirectory . '/autoload.php';
 
-ini_set('error_reporting', -1);
+error_reporting(-1);
 ini_set('display_errors', 1);
 
-$startTime = microtime(true);
+$umicmsStartTime = microtime(true);
 
 // TODO: error_reporting control
 register_shutdown_function(function() {
@@ -52,8 +52,6 @@ $env->projectConfiguration =  $directoryProjects . '/configuration/projects.conf
 $env->directoryCms = $directoryCms;
 $env->directoryCmsProject = $directoryCms . '/project';
 $env->directoryProjects = $directoryProjects;
-
-
 
 $bootstrap = new Bootstrap($env);
 $bootstrap->run();
