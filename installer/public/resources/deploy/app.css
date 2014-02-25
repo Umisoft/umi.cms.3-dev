@@ -4258,7 +4258,8 @@ ul.pagination {
 
 .s-full-height-before {
   height: 34px;
-  position: relative; }
+  position: relative;
+  z-index: 2; }
   .s-full-height-before ~ .s-full-height {
     z-index: 1;
     position: relative;
@@ -6103,6 +6104,28 @@ label {
   .f-dropdown[data-align="right"]:after {
     left: auto;
     right: 6px; }
+
+.qunit-container-button {
+  position: absolute;
+  z-index: 100000;
+  top: 0;
+  left: 0;
+  height: 25px;
+  background: #008000;
+  color: #FFFFFF;
+  line-height: 25px;
+  padding: 0 5px;
+  font-size: 13px;
+  border: 1px solid #2A9949; }
+
+.qunit-container {
+  display: none;
+  position: absolute;
+  z-index: 100000;
+  width: 100%;
+  top: 24px;
+  left: 0;
+  border-bottom: 10px solid rgba(0, 0, 0, 0.73); }
 
 .cke_chrome {
   border-radius: 5px;
