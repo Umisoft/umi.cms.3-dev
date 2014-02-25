@@ -125,26 +125,21 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
             var submit = this.elements.submit;
             submit.setAttribute('disabled', 'disabled');
             var data = $(this).serialize();
-            var action = this.getAttribute('action');
+            var action = UmiSettings.baseURL + '/api/users/user/login.json';
             var deffer = $.post(action, data);
             deffer.done(function(data){
-                if(data === 'redirect'){
-                    Auth.transition();
-                } else{
-                    //Auth.validator.shake();
-                    //setTimeout(function(){
-                    container.removeClass('loading');
-                    submit.removeAttribute('disabled');
-                    var errorList = {error: "Логин или пароль указан неверно."};
-                    errorsBlock.innerHTML = Auth.TEMPLATES.errors(errorList);
-                    $(errorsBlock).children('.alert-box').addClass('visible');
-                    //}, 600);
-                }
+                window.UmiSettings.baseUrl = data.result.baseUrl;
+                Auth.transition();
             });
-            deffer.fail(function(){
+            deffer.fail(function(error){
                 container.removeClass('loading');
                 submit.removeAttribute('disabled');
-                Auth.validator.shake();
+                if(error.status === 401){
+                   // console.log(error, sad, asdsad, error.responseJSON);
+                    var errorList = {error: error.responseJSON.result.error.message};
+                    errorsBlock.innerHTML = Auth.TEMPLATES.errors(errorList);
+                    $(errorsBlock).children('.alert-box').addClass('visible');
+                }
             });
             return false;
         });
