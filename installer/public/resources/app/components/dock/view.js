@@ -4,7 +4,6 @@ define(['App'], function(UMI){
     return function(){
 
         // Было бы круто чтобы переменная все же была свойством view
-        var delaySetActive;
         var delayResetActive;
 
         UMI.DockView = Ember.View.extend({
@@ -42,9 +41,7 @@ define(['App'], function(UMI){
                     self.get('content').set('isActive', true);
                 };
                 var self = this;
-                //				delaySetActive = setTimeout(function() {
                 setActive(self);
-                //				}, 210);
             }
         });
 

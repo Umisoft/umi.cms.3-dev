@@ -1,17 +1,15 @@
 define(
     [
         'DS',
+        'Modernizr',
         'app/components/skeleton/templates',
         'app/components/skeleton/models',
         'app/components/skeleton/router',
         'app/components/skeleton/controllers',
         'app/components/skeleton/views'
     ],
-    function(DS, templates, models, router, controller, views){
+    function(DS, Modernizr, templates, models, router, controller, views){
         'use strict';
-
-       // var DS = require('DS');
-        var Modernizr = require('Modernizr');
 
         //Проверка браузера на мобильность
         window.mobileDetection = {

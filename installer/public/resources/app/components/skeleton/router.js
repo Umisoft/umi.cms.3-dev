@@ -39,16 +39,24 @@ define([], function(){
              */
             model: function(){
                 var self = this;
-                var baseResource = '/resources/modules/baseResource.json';
+                var baseResource = UmiSettings.baseURL + '/api/settings.json';
                 return $.getJSON(baseResource).then(function(results){
-                    UMI.FactoryForModels(results.models);
-                    var model;
-                    for(model in results.records){
-                        if(results.records.hasOwnProperty(model)){
-                            self.store.pushMany(model, results.records[model]);
+                    var result = results.result;
+                    if(result.models){
+                        UMI.FactoryForModels(result.models);
+                    }
+                    if(result.records){
+                        var model;
+                        for(model in result.records){
+                            if(result.records.hasOwnProperty(model)){
+                                self.store.pushMany(model, result.records[model]);
+                            }
                         }
                     }
-                    self.controllerFor('dock').set('content', self.store.all('moduleList'));
+
+                    if(result.modules){
+                        self.controllerFor('dock').set('modules', result.modules);
+                    }
                 });
             },
             actions: {
@@ -83,18 +91,18 @@ define([], function(){
         UMI.IndexRoute = Ember.Route.extend({
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName){
-                    var firstChild = this.store.all('moduleList').get('firstObject');
-                    return this.transitionTo('module', firstChild.get('slug'));
+                    var firstChild = this.controllerFor('dock').get('content.firstObject');
+                    return this.transitionTo('module', firstChild.get('name'));
                 }
             }
         });
 
         UMI.ModuleRoute = Ember.Route.extend({
             model: function(params){
-                var modules = this.store.all('moduleList');
-                var module = modules.findBy('slug', params.module);
+                var modules = this.controllerFor('dock').get('content');
+                var module = modules.findBy('name', params.module);
                 // некрасивое решение
-                this.controllerFor('dock').set('activeModule', module.get('slug'));
+                this.controllerFor('dock').set('activeModule', module.get('name'));
                 modules.setEach('isActive', false);
                 // Для добавления класса active вкладке модуля в dock добавим атрибут isActive
                 module.set('isActive', true);
@@ -102,8 +110,8 @@ define([], function(){
             },
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
-                    var firstChild = model.get('componentList').get('firstObject');
-                    return this.transitionTo('component', firstChild.get('slug'));
+//                    var firstChild = model.get('componentList').get('firstObject');
+//                    return this.transitionTo('component', firstChild.get('slug'));
                 }
             },
             serialize: function(model){
