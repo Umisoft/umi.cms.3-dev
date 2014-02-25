@@ -1,7 +1,7 @@
-define(['./app'], function(UMI){
+define([], function(){
     'use strict';
 
-    return function(){
+    return function(UMI){
 
         UMI.ComponentController = Ember.ObjectController.extend({
             treeSettings: false,

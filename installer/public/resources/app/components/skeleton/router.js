@@ -1,7 +1,7 @@
-define(['./app'], function(UMI){
+define([], function(){
     'use strict';
 
-    return function(){
+    return function(UMI){
         UMI.Router.map(function(){
             this.resource('module', {path: '/:module'}, function(){
                 this.resource('component', {path: '/:component'}, function(){
@@ -17,7 +17,7 @@ define(['./app'], function(UMI){
 
         UMI.Router.reopen({
             location: 'history',
-            rootURL: UmiSettings.rootURL
+            rootURL: UmiSettings.baseURL
         });
 
         //		UMI.ErrorState = Ember.Mixin.create({//TODO: Обрабатывать все типы ошибок, и разные роуты
@@ -65,9 +65,9 @@ define(['./app'], function(UMI){
                         maskLayout.className = 'auth-mask';
                         maskLayout = document.body.appendChild(maskLayout);
                         $(applicationLayout).addClass('off');
-                        $.get('/admin/auth/logout');
-                        require(['auth/main'], function(Auth){
-                            Auth();
+                        $.post('/admin/api/users/user/logout.json');
+                        require(['auth/main'], function(auth){
+                            auth();
                             $(applicationLayout).addClass('fade-out');
                             Ember.run.later('', function(){
                                 UMI.reset();

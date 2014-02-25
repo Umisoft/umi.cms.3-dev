@@ -7,10 +7,10 @@
         <a {{bind-attr class=":button :tiny view.version.v2::secondary"}} {{action "toggleVersion" "v2"
         target="view"}}>2</a>
     </div>
-    {{#if view.version.v1}}
+    {{#if view.version.v2}}
     {{render "dock"}}
     {{/if}}
-    {{#if view.version.v2}}
+    {{#if view.version.v1}}
     {{#view "dockZoom"}}
     <div class="dock-wrapper">
         <ul class="dock navigation" data-dock>

@@ -40,6 +40,7 @@ $s-full-height-before-height: 34px;
 .s-full-height-before {
     height: $s-full-height-before-height;
     position: relative;
+    z-index: 2;
     ~ .s-full-height {
         z-index: 1;
         position: relative;
