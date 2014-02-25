@@ -14,7 +14,7 @@ define(['App'], function(UMI){
                     var content = self.get('controller.content');
                     content.findBy('isActive', true).set('isActive', false);
                     var activeModule = self.get('controller.activeModule');
-                    content.findBy('slug', activeModule).set('isActive', true);
+                    content.findBy('name', activeModule).set('isActive', true);
                 };
                 $('body').one('click', function(){
                     resetActive(self);
