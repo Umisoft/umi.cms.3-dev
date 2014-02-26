@@ -1,18 +1,18 @@
-.s-margin-clear {
+.s-margin-clear{
     margin: 0 !important;
 }
 
-.s-padding-clear {
+.s-padding-clear{
     padding: 0 !important;
 }
 
-.s-scroll-wrap {
+.s-scroll-wrap{
     overflow: hidden;
     position: relative;
     height: 100%;
 }
 
-.s-unselectable {
+.s-unselectable{
     //Запрет выделения элементов
     touch-callout: none !important;
     user-drag: none !important;
@@ -23,25 +23,25 @@
 // Высота 100%
 $s-full-height-before-height: 34px;
 
-.s-full-height {
+.s-full-height{
     height: 100%;
     max-height: 100%;
     box-sizing: border-box;
 }
 
-.row.s-full-height {
-    > .columns {
+.row.s-full-height{
+    > .columns{
         height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
     }
 }
 
-.s-full-height-before {
+.s-full-height-before{
     height: $s-full-height-before-height;
     position: relative;
     z-index: 2;
-    ~ .s-full-height {
+    ~ .s-full-height{
         z-index: 1;
         position: relative;
         margin-top: -$s-full-height-before-height;
@@ -49,42 +49,42 @@ $s-full-height-before-height: 34px;
     }
 }
 
-.s-blur {
+.s-blur{
     -webkit-filter: blur(4px);
 }
 
-@mixin s-gradient-grey {
+@mixin s-gradient-grey{
     background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);
     background: linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%); //#d6e0e9
 }
 
-.s-gradient-grey {
+.s-gradient-grey{
     @include s-gradient-grey();
 }
 
 // Положу здесь, просто потому что больше некуда
-.has-version {
+.has-version{
     position: relative;
-    .version-list {
+    .version-list{
         position: absolute;
         display: none;
         right: 0;
         bottom: -24px;
         z-index: 100;
-        .button {
+        .button{
             margin-bottom: 0;
         }
     }
 }
 
-.show-all-version {
-    .has-version {
+.show-all-version{
+    .has-version{
         box-shadow: 0 1px 16px 1px #808080;
     }
-    .version-list {
+    .version-list{
         display: block;
         box-shadow: 0 1px 4px 1px #808080;
-        .button {
+        .button{
             float: left;
         }
     }

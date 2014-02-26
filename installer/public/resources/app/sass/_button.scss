@@ -3,58 +3,58 @@
     background-repeat: repeat-x;
     background-color: darken($color-end, 1%);
     transition: background-position 0.1s linear;
-    &:hover, &:focus {
+    &:hover, &:focus{
         background-position-y: - $button-med*2;
         background-color: darken($color-end, 1%);
     }
-    &:focus {
+    &:focus{
         background-color: darken($color-end, 2%);
     }
 }
 
-.button, button {
+.button, button{
     // TODO: Подумать над кнопками
     @include button-bg-gradient(#3aadff, #0087d4);
     vertical-align: top;
-    &.secondary {
+    &.secondary{
         // Временное решение
         @include button-bg-gradient(#ffffff, #ffffff);
     }
-    &.wide {
+    &.wide{
         padding-left: rem-calc(40);
         padding-right: rem-calc(40);
     }
-    &.square {
+    &.square{
         padding-left: $button-med;
         padding-right: $button-med;
     }
-    .icon {
+    .icon{
         margin-top: -4px;
         margin-bottom: -3px;
     }
-    &.tiny {
-        .icon {
+    &.tiny{
+        .icon{
             // Костыль конечно
             margin-top: -7px;
             margin-bottom: -6px;
             margin-left: -1px;
             margin-right: -5px;
         }
-        &.square {
+        &.square{
             padding-left: $button-tny;
             padding-right: $button-tny;
         }
     }
     // Может быть secondary будет белой? Я не видел до сих пор на макете серой кнопки
-    &.flat {
+    &.flat{
         background: none;
         color: $button-font-color-alt;
     }
 
-    &.white {
+    &.white{
         @include button($padding: $button-med, $bg: #FFF);
     }
-    .icon {
+    .icon{
         vertical-align: middle;
     }
 }

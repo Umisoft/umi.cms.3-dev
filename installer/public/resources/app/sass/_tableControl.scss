@@ -1,4 +1,4 @@
-.umi-table-control {
+.umi-table-control{
     font-size: rem-calc(13);
     height: 100%;
     position: relative;
@@ -8,25 +8,25 @@
     box-sizing: border-box;
 }
 
-.umi-table-control-header {
+.umi-table-control-header{
     position: relative;
     z-index: 10;
 }
 
-.umi-table-control-header-left {
+.umi-table-control-header-left{
     position: absolute;
     z-index: 2;
     border: 0;
 }
 
-.umi-table-control-header-center {
+.umi-table-control-header-center{
     position: absolute;
     left: rem-calc(34);
     right: 0;
     //	right: rem-calc(32);
 }
 
-.umi-table-control-header-right {
+.umi-table-control-header-right{
     position: absolute;
     width: rem-calc(32);
     height: rem-calc(68);
@@ -35,13 +35,13 @@
     opacity: 0.4;
 }
 
-.umi-table-control-content {
+.umi-table-control-content{
     position: relative;
     top: rem-calc(68);
     height: 100%;
 }
 
-.umi-table-control-content-left {
+.umi-table-control-content-left{
     position: absolute;
     z-index: 9;
     //	width: rem-calc(132);
@@ -59,7 +59,7 @@
     //    }
 }
 
-.umi-table-control-content-center {
+.umi-table-control-content-center{
     position: absolute;
     //	overflow: hidden; TODO Это стиль для IScroll???
     top: 0;
@@ -68,7 +68,7 @@
     right: 0;
 }
 
-.umi-table-control-content-right {
+.umi-table-control-content-right{
     position: absolute;
     width: rem-calc(32);
     top: 0;
@@ -78,7 +78,7 @@
     opacity: 0.4;
 }
 
-.umi-table-control-footer {
+.umi-table-control-footer{
     position: absolute;
     width: 100%;
     bottom: 0px;
@@ -92,7 +92,7 @@
     //	bottom: 0;
     background: #FFFFFF;
     //	border-top: 1px solid #F0F2F4;
-    &:after {
+    &:after{
         content: "";
         position: absolute;
         display: block;
@@ -101,44 +101,44 @@
         top: -3px;
         background: url(img/shadows/toTopShadow.png);
     }
-    .left {
-        i {
+    .left{
+        i{
             margin-top: rem-calc(6);
             margin-left: rem-calc(6);
             line-height: rem-calc(22);
         }
-        a {
+        a{
             line-height: rem-calc(32);
         }
     }
-    .right {
+    .right{
         padding: rem-calc(5 10);
         line-height: rem-calc(22);
-        input {
+        input{
             padding: 0;
             height: rem-calc(22);
         }
     }
 }
 
-.umi-table-header {
+.umi-table-header{
     table-layout: fixed;
     border: 0;
     border-collapse: collapse;
 }
 
-.umi-table-header-left {
+.umi-table-header-left{
     table-layout: fixed;
     border-collapse: collapse;
     border: 0;
     border-right: 1px solid #E2E3E4;
 }
 
-.umi-table-header-div {
+.umi-table-header-div{
     border-left: 1px solid #E2E3E4;
 }
 
-.umi-table-titles {
+.umi-table-titles{
     width: 100%;
     height: rem-calc(34);
     font-weight: bold;
@@ -146,7 +146,7 @@
     background: #FFFFFF;
 }
 
-.umi-table-column-resizer {
+.umi-table-column-resizer{
     position: absolute;
     float: left;
     z-index: 100;
@@ -158,11 +158,11 @@
     cursor: e-resize;
 }
 
-.umi-table-column-resizer:hover {
+.umi-table-column-resizer:hover{
     background: #444444;
 }
 
-.umi-table-filters {
+.umi-table-filters{
     overflow: hidden;
     position: relative;
     z-index: 1;
@@ -171,7 +171,7 @@
     background: #F7F8F9;
 }
 
-.umi-table-title-div {
+.umi-table-title-div{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -181,12 +181,12 @@
     border-left: 1px solid #E3E4E5;
 }
 
-.umi-table-filter-column {
+.umi-table-filter-column{
     padding: 0;
     border-bottom: 1px solid #E3E4E5;
 }
 
-.umi-table-filter-div {
+.umi-table-filter-div{
     //	overflow: hidden;
     position: relative;
     white-space: nowrap;
@@ -194,7 +194,7 @@
     height: rem-calc(21);
     border-left: 1px solid #E3E4E5;
     padding: rem-calc(6 10);
-    &:after {
+    &:after{
         content: "";
         position: absolute;
         float: left;
@@ -207,30 +207,30 @@
     }
 }
 
-.umi-table-filter-button {
+.umi-table-filter-button{
     float: left;
     cursor: pointer;
 }
 
-.umi-table-filter-button-left {
+.umi-table-filter-button-left{
     margin-left: -5px;
     margin-right: 5px;
 }
 
-.umi-table-filter-button-right {
+.umi-table-filter-button-right{
     float: right;
     margin-right: -5px;
 }
 
-.umi-table-filter-input {
+.umi-table-filter-input{
     float: left;
     width: unquote("calc(100% - 40px)");
-    input {
+    input{
         height: 21px !important;
     }
 }
 
-.umi-table-header-column {
+.umi-table-header-column{
     table-layout: fixed;
     position: relative;
     padding: 0;
@@ -239,7 +239,7 @@
     cursor: move;
 }
 
-.umi-table-header-column-fixed {
+.umi-table-header-column-fixed{
     table-layout: fixed;
     position: relative;
     padding: 0;
@@ -248,7 +248,7 @@
     cursor: default;
 }
 
-.umi-table-left {
+.umi-table-left{
     border: 0;
     border-collapse: collapse;
     border-right: 1px solid #E2E3E4;
@@ -256,7 +256,7 @@
     background: #F7F8F9;
 }
 
-.umi-table-header-left-title {
+.umi-table-header-left-title{
     //	width: 100%;
     //	height: rem-calc(34);
     //	font-weight: bold;
@@ -265,7 +265,7 @@
     border-bottom: 1px solid #E3E4E5;
 }
 
-.umi-table-header-left-filter {
+.umi-table-header-left-filter{
     overflow: hidden;
     position: relative;
     z-index: 1;
@@ -275,7 +275,7 @@
     border-bottom: 1px solid #E3E4E5;
 }
 
-.umi-table-header-column-left {
+.umi-table-header-column-left{
     table-layout: fixed;
     position: relative;
     padding: 0;
@@ -283,13 +283,13 @@
     border-bottom: 1px solid #E2E3E4;
 }
 
-.umi-table-title-column-left {
+.umi-table-title-column-left{
     padding: 0;
 }
 
-.umi-table-filter-column-left {
+.umi-table-filter-column-left{
     padding: 0;
-    &:after {
+    &:after{
         content: "";
         position: absolute;
         float: left;
@@ -300,7 +300,7 @@
     }
 }
 
-.umi-table-title-div-left {
+.umi-table-title-div-left{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -310,19 +310,19 @@
     border-left: 1px solid #E3E4E5;
 }
 
-.umi-table-filter-div-left {
+.umi-table-filter-div-left{
     height: rem-calc(33);
     line-height: rem-calc(33);
     border-left: 1px solid #E3E4E5;
     padding: rem-calc(0 10);
 }
 
-.umi-table-left-div {
+.umi-table-left-div{
     line-height: rem-calc(32);
     padding-left: rem-calc(10);
 }
 
-.umi-table {
+.umi-table{
     float: left;
     border-collapse: collapse;
     table-layout: fixed;
@@ -330,13 +330,13 @@
     background: #F7F8F9;
 }
 
-.umi-table-tr {
+.umi-table-tr{
     height: rem-calc(32);
     cursor: pointer;
-    &:nth-child(odd) {
+    &:nth-child(odd){
         background: #E9F1F7;
     }
-    &:last-of-type {
+    &:last-of-type{
         border-bottom: 1px solid #E3E4E5;
         position: relative;
         //        .umi-table-cell-div:after{
@@ -350,18 +350,18 @@
         //            background: url(img/shadows/toBottomShadow.png);
         //        }
     }
-    &.checked {
+    &.checked{
         color: #FFFFFF;
         background: #8B95A5;
     }
 
     //TODO Довести до нормального вида
-    .icon-delete {
+    .icon-delete{
         margin: rem-calc(6 0 0 0);
     }
 }
 
-.umi-table-cell-div {
+.umi-table-cell-div{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -372,18 +372,18 @@
     padding: 0 10px;
 }
 
-.umi-table-empty-column {
+.umi-table-empty-column{
     float: none;
     width: 100%;
     right: 0;
 }
 
-.umi-table-empty-result {
+.umi-table-empty-result{
     padding: 20px;
     background: #D6E0E9;
 }
 
-.ghost {
+.ghost{
     //	transform: translateZ(0);
     border: 0;
     border-collapse: collapse;
@@ -396,31 +396,31 @@
     border: 1px solid #9DA6AF;
 }
 
-.ghost-tr {
-    &:nth-child(odd) {
+.ghost-tr{
+    &:nth-child(odd){
         background: #E9F1F7;
     }
 }
 
-.ghost-div {
+.ghost-div{
     padding: rem-calc(8 10);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.umi-table-ghost-header {
+.umi-table-ghost-header{
     table-layout: fixed;
     border: 0;
     border-collapse: collapse;
     color: #575E6C;
     font-weight: bold;
     z-index: 101;
-    tr:last-of-type {
+    tr:last-of-type{
         background: #f7F8F9;
         border-top: 1px solid #E2E3E4;
         border-bottom: 1px solid #E2E3E4;
-        &:after {
+        &:after{
             content: "";
             position: absolute;
             float: left;
@@ -432,7 +432,7 @@
             background: url(img/shadows/toBottomShadow.png);
         }
     }
-    .umi-table-title-div {
+    .umi-table-title-div{
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -441,7 +441,7 @@
         padding: rem-calc(0 10);
         border: 0;
     }
-    .umi-table-filter-div {
+    .umi-table-filter-div{
         //		overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -451,13 +451,13 @@
     }
 }
 
-.umi-empty-column {
+.umi-empty-column{
     border: none;
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
 
-.umi-table-ghost-content {
+.umi-table-ghost-content{
     table-layout: fixed;
     border: 0;
     border-collapse: collapse;
@@ -465,7 +465,7 @@
     color: #575E6C;
 }
 
-.tableGhost {
+.tableGhost{
     //	transform: translateZ(0);
     position: relative; //TODO Под вопросом
     z-index: 10; //TODO Под вопросом

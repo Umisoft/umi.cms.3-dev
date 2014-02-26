@@ -66,7 +66,7 @@ $transition-ease: $switch-paddle-transition-ease) {
     margin-bottom: $switch-bottom-margin;
 
     // Default label styles for type and transition
-    label {
+    label{
         position: relative;
         #{$default-float}: 0;
         z-index: 2;
@@ -83,7 +83,7 @@ $transition-ease: $switch-paddle-transition-ease) {
 
     // So that we don't need to recreate the form with any JS, we use the
     // existing radio button, but we cleverly position and hide it.
-    input {
+    input{
         position: absolute;
         z-index: 3;
         opacity: 0;
@@ -93,13 +93,13 @@ $transition-ease: $switch-paddle-transition-ease) {
 
         // Hover and focus styles for the paddle
         &:hover,
-        &:focus {
+        &:focus{
             cursor: $cursor-pointer-value;
         }
     }
 
     // The toggle area for radio switches. We call is a paddle.
-    span:last-child {
+    span:last-child{
         position: absolute;
         top: -1px;
         #{$default-float}: -1px;
@@ -114,44 +114,44 @@ $transition-ease: $switch-paddle-transition-ease) {
     }
 
     // When a label isn't :checked, we hide it as it slides away.
-    input:not(:checked) + label {
+    input:not(:checked) + label{
         opacity: 0;
     }
 
     // Controlling the position of the labels as they are toggled.
-    input:checked {
+    input:checked{
         display: none !important;
     }
-    input {
+    input{
         #{$default-float}: 0;
         display: block !important;
     }
 
     // Left Label alignment and position changes, including fixes for while inside a custom form
     input:first-of-type + label,
-    input:first-of-type + span + label {
+    input:first-of-type + span + label{
         #{$default-float}: -50%;
     }
     input:first-of-type:checked + label,
-    input:first-of-type:checked + span + label {
+    input:first-of-type:checked + span + label{
         #{$default-float}: 0%;
     }
 
     // Right Label alignment and position changes, including fixes for while inside a custom form
     input:last-of-type + label,
-    input:last-of-type + span + label {
+    input:last-of-type + span + label{
         #{$opposite-direction}: -50%;
         #{$default-float}: auto;
         text-align: $opposite-direction;
     }
     input:last-of-type:checked + label,
-    input:last-of-type:checked + span + label {
+    input:last-of-type:checked + span + label{
         #{$opposite-direction}: 0%;
         #{$default-float}: auto;
     }
 
     // Hiding custom form spans since we auto-create them
-    span.custom {
+    span.custom{
         display: none !important;
     }
 
@@ -165,7 +165,7 @@ $transition-ease: $switch-paddle-transition-ease) {
     //   @if $experimental { -webkit-animation: none 0; }
     // }
 
-    form.custom & .hidden-field {
+    form.custom & .hidden-field{
         margin-left: auto;
         position: absolute;
         visibility: visible;
@@ -183,21 +183,21 @@ $line-height: 2.3rem) {
 
     height: rem-calc($height);
 
-    label {
+    label{
         padding: rem-calc(0, $switch-label-side-padding);
         line-height: $line-height;
         font-size: rem-calc($font-size);
     }
 
-    input {
+    input{
         // Move the paddle to the right position
-        &:first-of-type:checked ~ span:last-child {
+        &:first-of-type:checked ~ span:last-child{
             #{$default-float}: 100%;
             margin-#{$default-float}: rem-calc(-$height + 1px);
         }
     }
 
-    span:last-child {
+    span:last-child{
         width: rem-calc($height);
         height: rem-calc($height);
     }
@@ -217,21 +217,21 @@ $negative-color: $switch-negative-color,
 $radius: false,
 $base-style: true) {
 
-    @if $base-style {
+    @if $base-style{
         background: $switch-bg;
         border-color: $switch-border-color;
 
-        span:last-child {
+        span:last-child{
             border-color: darken($paddle-bg, 30%);
             background: $paddle-bg;
-            @if $experimental {
+            @if $experimental{
                 background: -moz-linear-gradient(top, $paddle-bg 0%, darken($paddle-bg, 5%) 100%);
                 background: -webkit-linear-gradient(top, $paddle-bg 0%, darken($paddle-bg, 5%) 100%);
             }
             background: linear-gradient(to bottom, $paddle-bg 0%, darken($paddle-bg, 5%) 100%);
 
             // Building the alternating colored sides of the switch
-            @if $experimental {
+            @if $experimental{
                 -webkit-box-shadow: 2px 0 10px 0 rgba(0, 0, 0, 0.07), 1000px 0 0 1000px $positive-color,
                 -2px 0 10px 0 rgba(0, 0, 0, 0.07),
                 -1000px 0 0 1000px $negative-color;
@@ -242,10 +242,10 @@ $base-style: true) {
         }
 
         &:hover,
-        &:focus {
-            span:last-child {
+        &:focus{
+            span:last-child{
                 background: $paddle-bg;
-                @if $experimental {
+                @if $experimental{
                     background: -moz-linear-gradient(top, $paddle-bg 0%, darken($paddle-bg, 10%) 100%);
                     background: -webkit-linear-gradient(top, $paddle-bg 0%, darken($paddle-bg, 10%) 100%);
                 }
@@ -253,7 +253,7 @@ $base-style: true) {
             }
         }
 
-        &:active {
+        &:active{
             background: transparent;
         }
     }
@@ -261,12 +261,12 @@ $base-style: true) {
     // Setting up the radius for switches
     @if $radius == true {
         @include radius(4px);
-        span:last-child {
+        span:last-child{
             @include radius(3px);
         }
-    } @else if $radius {
+    } @else if $radius{
         @include radius($radius);
-        span:last-child {
+        span:last-child{
             @include radius($radius - 1px);
         }
     }
@@ -300,53 +300,53 @@ $base-style: true) {
     @include switch-style($paddle-bg, $positive-color, $negative-color, $radius, $base-style);
 }
 
-@include exports("switch") {
-    @if $include-html-form-classes {
-        .switch {
+@include exports("switch"){
+    @if $include-html-form-classes{
+        .switch{
             @include switch;
 
             // Large radio switches
-            &.large {
+            &.large{
                 @include switch-size($switch-height-lrg, $switch-font-size-lrg);
             }
 
             // Small radio switches
-            &.small {
+            &.small{
                 @include switch-size($switch-height-sml, $switch-font-size-sml, 2.1rem);
             }
 
             // Tiny radio switches
-            &.tiny {
+            &.tiny{
                 @include switch-size($switch-height-tny, $switch-font-size-tny, 1.9rem);
             }
 
             // Add a radius to the switch
-            &.radius {
+            &.radius{
                 @include radius(4px);
-                span:last-child {
+                span:last-child{
                     @include radius(3px);
                 }
             }
 
             // Make the switch completely round, like a pill
-            &.round {
+            &.round{
                 @include radius(1000px);
-                span:last-child {
+                span:last-child{
                     @include radius(999px);
                 }
-                label {
+                label{
                     padding: rem-calc(0 $switch-label-side-padding + 3);
                 }
             }
 
         }
 
-        @if $experimental {
-            @-webkit-keyframes webkitSiblingBugfix {
-                from {
+        @if $experimental{
+            @-webkit-keyframes webkitSiblingBugfix{
+                from{
                     position: relative;
                 }
-                to {
+                to{
                     position: relative;
                 }
             }

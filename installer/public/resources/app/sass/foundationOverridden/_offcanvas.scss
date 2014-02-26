@@ -63,19 +63,19 @@ $menu-slide: "transform 500ms ease" !default;
 
 // EXTEND CLASSES
 // Remove transition flicker on phones
-%kill-flicker {
+%kill-flicker{
     // -webkit-transform: translateZ(0);
     -webkit-backface-visibility: hidden;
 }
 
 // Basic properties for the content wraps
-%wrap-base {
+%wrap-base{
     position: relative;
     width: 100%;
 }
 
 // basic styles for off-canvas menu container
-%off-canvas-menu {
+%off-canvas-menu{
     width: $off-canvas-width;
     top: 0;
     bottom: 0;
@@ -98,7 +98,7 @@ $menu-slide: "transform 500ms ease" !default;
 
 // OFF CANVAS WRAP
 // Wrap visible content and prevent scroll bars
-@mixin off-canvas-wrap {
+@mixin off-canvas-wrap{
     @extend %kill-flicker;
     @extend %wrap-base;
     overflow: hidden;
@@ -106,7 +106,7 @@ $menu-slide: "transform 500ms ease" !default;
 
 // INNER WRAP
 // Main content area that moves to reveal the off-canvas nav
-@mixin inner-wrap {
+@mixin inner-wrap{
     @extend %kill-flicker;
     @extend %wrap-base;
     @include clearfix;
@@ -121,7 +121,7 @@ $menu-slide: "transform 500ms ease" !default;
 
 // TAB BAR
 // This is the tab bar base
-@mixin tab-bar-base {
+@mixin tab-bar-base{
     @extend %kill-flicker;
 
     // base styles
@@ -135,41 +135,41 @@ $menu-slide: "transform 500ms ease" !default;
     // z-index: 999;
 
     // Typography
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6{
         color: $tabbar-header-color;
         font-weight: $tabbar-header-weight;
         line-height: $tabbar-header-line-height;
         margin: $tabbar-header-margin;
     }
-    h1, h2, h3, h4 {
+    h1, h2, h3, h4{
         font-size: $h5-font-size;
     }
 }
 
 // SMALL SECTIONS
 // These are small sections on the left and right that contain the off-canvas toggle buttons;
-%tabbar-small-section {
+%tabbar-small-section{
     width: $tabbar-height;
     height: $tabbar-height;
     position: absolute;
     top: 0;
 }
 
-@mixin left-small-section {
+@mixin left-small-section{
     @extend %tabbar-small-section;
     border-right: $tabbar-left-section-border;
     box-shadow: 1px 0 0 lighten($tabbar-bg, 10%);
     left: 0;
 }
 
-@mixin right-small-section {
+@mixin right-small-section{
     @extend %tabbar-small-section;
     border-left: $tabbar-right-section-border;
     box-shadow: -1px 0 0 darken($tabbar-bg, 10%);
     right: 0;
 }
 
-@mixin tab-bar-section {
+@mixin tab-bar-section{
     padding: $tabbar-middle-padding;
     position: absolute;
     text-align: center;
@@ -180,15 +180,15 @@ $menu-slide: "transform 500ms ease" !default;
     }
 
     // still need to make these non-presntational
-    &.left {
+    &.left{
         left: 0;
         right: $tabbar-height;
     }
-    &.right {
+    &.right{
         left: $tabbar-height;
         right: 0;
     }
-    &.middle {
+    &.middle{
         left: $tabbar-height;
         right: $tabbar-height;
     }
@@ -196,13 +196,13 @@ $menu-slide: "transform 500ms ease" !default;
 
 // OFF CANVAS LIST
 // This is the list of links in the off-canvas menu
-@mixin off-canvas-list {
+@mixin off-canvas-list{
     list-style-type: none;
     padding: 0;
     margin: 0;
 
-    li {
-        label {
+    li{
+        label{
             padding: $off-canvas-label-padding;
             color: $off-canvas-label-color;
             text-transform: $off-canvas-label-text-transform;
@@ -212,7 +212,7 @@ $menu-slide: "transform 500ms ease" !default;
             border-bottom: $off-canvas-label-border-bottom;
             margin: $off-canvas-label-margin;
         }
-        a {
+        a{
             display: block;
             padding: $off-canvas-link-padding;
             color: $off-canvas-link-color;
@@ -224,7 +224,7 @@ $menu-slide: "transform 500ms ease" !default;
 
 // BACK LINK
 // This is an overlay that, when clicked, will toggle off the off canvas menu
-@mixin back-link {
+@mixin back-link{
     @extend %kill-flicker;
 
     transition: $off-canvas-overlay-transition;
@@ -242,7 +242,7 @@ $menu-slide: "transform 500ms ease" !default;
     z-index: 1002;
 
     @media #{$medium-up} {
-        &:hover {
+        &:hover{
             background: $off-canvas-overlay-background-hover;
         }
     }
@@ -250,16 +250,16 @@ $menu-slide: "transform 500ms ease" !default;
 
 // OFF CANVAS MENUS
 // These are the containers that contain the off canvas content
-@mixin left-off-canvas-menu {
+@mixin left-off-canvas-menu{
     @extend %kill-flicker;
     @extend %off-canvas-menu;
     @include translate3d(-100%, 0, 0);
-    * {
+    *{
         @extend %kill-flicker;
     }
 }
 
-@mixin right-off-canvas-menu {
+@mixin right-off-canvas-menu{
     @extend %kill-flicker;
     @extend %off-canvas-menu;
     @include translate3d(100%, 0, 0);
@@ -270,33 +270,33 @@ $menu-slide: "transform 500ms ease" !default;
 // DEFAULT CLASSES
 //
 
-.off-canvas-wrap {
+.off-canvas-wrap{
     @include off-canvas-wrap;
 }
 
-.inner-wrap {
+.inner-wrap{
     @include inner-wrap;
 }
 
-nav.tab-bar {
+nav.tab-bar{
     @include tab-bar-base;
 }
 
-section.left-small {
+section.left-small{
     @include left-small-section;
 }
 
-section.right-small {
+section.right-small{
     @include right-small-section;
 }
 
-section.tab-bar-section {
+section.tab-bar-section{
     @include tab-bar-section;
 }
 
 // MENU BUTTON
 // This is a little bonus. You don't need it for off canvas to work. Mixins to be written in the future.
-a.menu-icon {
+a.menu-icon{
     text-indent: $tabbar-menu-icon-text-indent;
     width: $tabbar-height;
     height: $tabbar-height;
@@ -307,7 +307,7 @@ a.menu-icon {
     position: relative;
 
     // this is the actual hamburger icon
-    span {
+    span{
 
         position: absolute;
         display: block;
@@ -317,70 +317,70 @@ a.menu-icon {
         top: $tabbar-hamburger-icon-top;
         // margin-top: $tabbar-height / 4;
 
-        @if $experimental {
+        @if $experimental{
             -webkit-box-shadow: 0 10px 0 1px $tabbar-menu-icon-color, 0 16px 0 1px $tabbar-menu-icon-color, 0 22px 0 1px $tabbar-menu-icon-color;
         }
         box-shadow: 0 10px 0 1px $tabbar-menu-icon-color, 0 16px 0 1px $tabbar-menu-icon-color, 0 22px 0 1px $tabbar-menu-icon-color;
     }
 
-    &:hover span {
-        @if $experimental {
+    &:hover span{
+        @if $experimental{
             -webkit-box-shadow: 0 10px 0 1px $tabbar-menu-icon-hover, 0 16px 0 1px $tabbar-menu-icon-hover, 0 22px 0 1px $tabbar-menu-icon-hover;
         }
         box-shadow: 0 10px 0 1px $tabbar-menu-icon-hover, 0 16px 0 1px $tabbar-menu-icon-hover, 0 22px 0 1px $tabbar-menu-icon-hover;
     }
 }
 
-.left-off-canvas-menu {
+.left-off-canvas-menu{
     @include left-off-canvas-menu;
 }
 
-.right-off-canvas-menu {
+.right-off-canvas-menu{
     @include right-off-canvas-menu;
 }
 
-ul.off-canvas-list {
+ul.off-canvas-list{
     @include off-canvas-list;
 }
 
 // ANIMATION CLASSES
 // These classes are added with JS and trigger the actual animation. 
-.move-right {
-    > .inner-wrap {
+.move-right{
+    > .inner-wrap{
         @include translate3d($off-canvas-width, 0, 0);
     }
-    a.exit-off-canvas {
+    a.exit-off-canvas{
         @include back-link;
     }
 }
 
-.move-left {
-    > .inner-wrap {
+.move-left{
+    > .inner-wrap{
         @include translate3d(-($off-canvas-width), 0, 0);
 
     }
-    a.exit-off-canvas {
+    a.exit-off-canvas{
         @include back-link;
     }
 }
 
 // IE9 HAX
 // Womp womp! IE9 doesn't do CSS transforms. Let's fix this.
-.lt-ie10 {
+.lt-ie10{
 
     // move off canvas menus off the viewport
-    .left-off-canvas-menu {
+    .left-off-canvas-menu{
         left: -($off-canvas-width);
     }
-    .right-off-canvas-menu {
+    .right-off-canvas-menu{
         right: -($off-canvas-width);
     }
 
     // Snap them in place
-    .move-left > .inner-wrap {
+    .move-left > .inner-wrap{
         right: $off-canvas-width;
     }
-    .move-right > .inner-wrap {
+    .move-right > .inner-wrap{
         left: $off-canvas-width;
     }
 

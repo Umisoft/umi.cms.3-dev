@@ -24,7 +24,7 @@ $include-html-visibility-classes: $include-html-classes !default;
     .hide-for-xlarge-up,
     .hide-for-xlarge-only,
     .hide-for-xxlarge-up,
-    .hide-for-xxlarge-only {
+    .hide-for-xxlarge-only{
         display: inherit !important;
     }
 
@@ -42,7 +42,7 @@ $include-html-visibility-classes: $include-html-classes !default;
     .show-for-xlarge-up,
     .show-for-xlarge-only,
     .show-for-xxlarge-up,
-    .show-for-xxlarge-only {
+    .show-for-xxlarge-only{
         display: none !important;
     }
 
@@ -61,7 +61,7 @@ $include-html-visibility-classes: $include-html-classes !default;
         .hide-for-xlarge-up,
         .hide-for-xlarge-only,
         .hide-for-xxlarge-up,
-        .hide-for-xxlarge-only {
+        .hide-for-xxlarge-only{
             display: inherit !important;
         }
 
@@ -79,7 +79,7 @@ $include-html-visibility-classes: $include-html-classes !default;
         .show-for-xlarge-up,
         .show-for-xlarge-only,
         .show-for-xxlarge-up,
-        .show-for-xxlarge-only {
+        .show-for-xxlarge-only{
             display: none !important;
         }
     }
@@ -99,7 +99,7 @@ $include-html-visibility-classes: $include-html-classes !default;
         .hide-for-xlarge-up,
         .hide-for-xlarge-only,
         .hide-for-xxlarge-up,
-        .hide-for-xxlarge-only {
+        .hide-for-xxlarge-only{
             display: inherit !important;
         }
 
@@ -114,7 +114,7 @@ $include-html-visibility-classes: $include-html-classes !default;
         .show-for-xlarge-up,
         .show-for-xlarge-only,
         .show-for-xxlarge-up,
-        .show-for-xxlarge-only {
+        .show-for-xxlarge-only{
             display: none !important;
         }
     }
@@ -132,7 +132,7 @@ $include-html-visibility-classes: $include-html-classes !default;
         .show-for-xlarge-up,
         .show-for-xlarge-only,
         .hide-for-xxlarge-up,
-        .hide-for-xxlarge-only {
+        .hide-for-xxlarge-only{
             display: inherit !important;
         }
 
@@ -147,7 +147,7 @@ $include-html-visibility-classes: $include-html-classes !default;
         .hide-for-xlarge-up,
         .hide-for-xlarge-only,
         .show-for-xxlarge-up,
-        .show-for-xxlarge-only {
+        .show-for-xxlarge-only{
             display: none !important;
         }
     }
@@ -163,7 +163,7 @@ $include-html-visibility-classes: $include-html-classes !default;
         .show-for-large-up,
         .show-for-xlarge-up,
         .show-for-xxlarge-up,
-        .show-for-xxlarge-only {
+        .show-for-xxlarge-only{
             display: inherit !important;
         }
 
@@ -177,54 +177,54 @@ $include-html-visibility-classes: $include-html-classes !default;
         .hide-for-xlarge,
         .show-for-xlarge-only,
         .hide-for-xxlarge-up,
-        .hide-for-xxlarge-only {
+        .hide-for-xxlarge-only{
             display: none !important;
         }
     }
 
     /* Orientation targeting */
     .show-for-landscape,
-    .hide-for-portrait {
+    .hide-for-portrait{
         display: inherit !important;
     }
     .hide-for-landscape,
-    .show-for-portrait {
+    .show-for-portrait{
         display: none !important;
     }
 
     @media #{$landscape} {
         .show-for-landscape,
-        .hide-for-portrait {
+        .hide-for-portrait{
             display: inherit !important;
         }
         .hide-for-landscape,
-        .show-for-portrait {
+        .show-for-portrait{
             display: none !important;
         }
     }
 
     @media #{$portrait} {
         .show-for-portrait,
-        .hide-for-landscape {
+        .hide-for-landscape{
             display: inherit !important;
         }
         .hide-for-portrait,
-        .show-for-landscape {
+        .show-for-landscape{
             display: none !important;
         }
     }
 
     /* Touch-enabled device targeting */
-    .show-for-touch {
+    .show-for-touch{
         display: none !important;
     }
-    .hide-for-touch {
+    .hide-for-touch{
         display: inherit !important;
     }
-    .touch .show-for-touch {
+    .touch .show-for-touch{
         display: inherit !important;
     }
-    .touch .hide-for-touch {
+    .touch .hide-for-touch{
         display: none !important;
     }
 }

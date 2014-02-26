@@ -5,16 +5,16 @@ $dock-img-padding: 11px;
 $pretty-dock-height: 49px;
 $dock-z-index: 10;
 
-.umi-dock.zoom {
+.umi-dock.zoom{
     border-top: 1px solid #5c6472;
     padding: 0;
     height: $pretty-dock-height;
-    .dock-wrapper {
+    .dock-wrapper{
         background-image: linear-gradient(#404959, #181b21);
         position: relative;
         z-index: 10;
     }
-    .dock {
+    .dock{
         display: inline-block;
         vertical-align: top;
         position: relative;
@@ -26,96 +26,96 @@ $dock-z-index: 10;
         font-size: 0;
         z-index: 2;
         box-sizing: border-box;
-        &.active {
-            > li {
+        &.active{
+            .umi-dock-button{
                 opacity: 1
             }
         }
-        > li {
-            display: inline-block;
-            height: 100%;
-            border-left: 1px solid transparent;
-            border-right: 1px solid transparent;
-            vertical-align: top;
-            opacity: 0;
-            transition: opacity 0.3s linear;
-            .dock-module {
-                display: block;
-                font-size: 0;
-                text-decoration: none;
-                position: relative;
-                overflow: hidden;
-                img {
-                    vertical-align: middle;
-                    width: auto;
-                    height: 30px;
-                    margin: 9px $dock-img-padding 9px;
-                }
-                span {
-                    position: absolute;
-                    display: block;
-                    width: 100%;
-                    text-align: center;
-                    left: 0;
-                    top: 60px;
-                    opacity: 0;
-                    color: #afb2b7;
-                    font-size: 13px;
-                }
-            }
-            &:hover {
-                margin-top: -1px;
-                border-top: 1px solid #6d7480;
-                border-left: 1px solid transparent;
-                border-right: 1px solid transparent;
-                background-image: linear-gradient(#535c6a, #2b2d34);
-                span {
-                    color: #FFF;
-                }
-            }
-            &.active {
-                position: relative;
-                margin-top: -1px;
-                border-top: 1px solid #3a404a;
-                border-left: 1px solid #44474B;
-                border-right: 1px solid #44474B;
-                background-image: linear-gradient(#282e38, #101217);
-                & + li:hover {
-                    border-left: 1px solid transparent;
-                }
-                &.favorites {
-                    img + img {
-                        position: absolute;
-                        display: none;
-                        opacity: 0;
-                        left: 0;
-                        top: 0;
-                    }
-                }
-                &.disabled {
-                    opacity: 0.3;
-                }
-            }
-        }
-        &:hover, &.full {
-            .dock-module {
-                span {
+        &:hover, &.full{
+            .dock-module{
+                span{
                     top: 60px;
                     opacity: 1;
                 }
             }
         }
-        &.full {
-            + .dock-buffer {
+        &.full{
+            + .dock-buffer{
                 display: block;
             }
         }
     }
-    .f-dropdown {
+    .umi-dock-button{
+        display: inline-block;
+        height: 100%;
+        border-left: 1px solid transparent;
+        border-right: 1px solid transparent;
+        vertical-align: top;
+        opacity: 0;
+        transition: opacity 0.3s linear;
+        .dock-module{
+            display: block;
+            font-size: 0;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            img{
+                vertical-align: middle;
+                width: auto;
+                height: 30px;
+                margin: 9px $dock-img-padding 9px;
+            }
+            span{
+                position: absolute;
+                display: block;
+                width: 100%;
+                text-align: center;
+                left: 0;
+                top: 60px;
+                opacity: 0;
+                color: #afb2b7;
+                font-size: 13px;
+            }
+        }
+        &:hover{
+            margin-top: -1px;
+            border-top: 1px solid #6d7480;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+            background-image: linear-gradient(#535c6a, #2b2d34);
+            span{
+                color: #FFF;
+            }
+        }
+        &.active{
+            position: relative;
+            margin-top: -1px;
+            border-top: 1px solid #3a404a;
+            border-left: 1px solid #44474B;
+            border-right: 1px solid #44474B;
+            background-image: linear-gradient(#282e38, #101217);
+            & + li:hover{
+                border-left: 1px solid transparent;
+            }
+            &.favorites{
+                img + img{
+                    position: absolute;
+                    display: none;
+                    opacity: 0;
+                    left: 0;
+                    top: 0;
+                }
+            }
+            &.disabled{
+                opacity: 0.3;
+            }
+        }
+    }
+    .f-dropdown{
         padding: 0;
-        li {
+        li{
             padding: 0.5em 1em;
-            > span {
+            > span{
                 color: $body-font-color;
                 white-space: normal;
             }
@@ -123,7 +123,7 @@ $dock-z-index: 10;
     }
 }
 
-.dock-buffer {
+.dock-buffer{
     display: none;
     height: 40px;
     width: 100%;
@@ -131,12 +131,12 @@ $dock-z-index: 10;
     bottom: -40px;
     left: 0;
     z-index: 1;
-    &.active {
+    &.active{
         display: block;
     }
 }
 
-.pretty-dock-components {
+.pretty-dock-components{
     position: relative;
     padding-top: 4px;
     padding-bottom: 4px;
@@ -146,9 +146,9 @@ $dock-z-index: 10;
     .components-nav{
         display: none;
         &.active{
-           display: block;
+            display: block;
         }
-        a {
+        a{
             height: 22px;
             line-height: 22px;
             vertical-align: middle;
@@ -162,7 +162,7 @@ $dock-z-index: 10;
             margin-left: 15px;
             text-decoration: none;
             font-size: 0.9em;
-            &.active {
+            &.active{
                 background: #c4cbd1;
                 border: 1px solid #9ea9b4;
                 box-shadow: 0 0 1px 1px #e0e5e9;
