@@ -42,8 +42,8 @@ define([], function(){
                 var baseResource = UmiSettings.baseURL + '/api/settings.json';
                 return $.getJSON(baseResource).then(function(results){
                     var result = results.result;
-                    if(result.models){
-                        UMI.FactoryForModels(result.models);
+                    if(result.collections){
+                        UMI.FactoryForModels(result.collections);
                     }
                     if(result.records){
                         var model;
@@ -92,7 +92,7 @@ define([], function(){
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName){
                     var firstChild = this.controllerFor('dock').get('content.firstObject');
-                    return this.transitionTo('module', firstChild.get('name'));
+                    return this.transitionTo('module', 'news');//firstChild.get('name'));
                 }
             }
         });
@@ -110,8 +110,8 @@ define([], function(){
             },
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
-//                    var firstChild = model.get('componentList').get('firstObject');
-//                    return this.transitionTo('component', firstChild.get('slug'));
+                    var firstChild = model.get('components.firstObject');
+                    //return this.transitionTo('component', firstChild.get('name'));
                 }
             },
             serialize: function(model){
@@ -122,42 +122,46 @@ define([], function(){
         UMI.ComponentRoute = Ember.Route.extend({
             model: function(params, transition){
                 var self = this;
-                var components = self.modelFor('module').get('componentList');
+                var components = this.modelFor('module').get('components');
                 var model = components.findBy('slug', transition.params.component.component);
-                var componentResource = model.get('resource');
+                var componentResource = window.UmiSettings.baseURL + '/api/' + transition.params.module.module + '/' + transition.params.component.component + '/settings.json';
                 /**
                  * Получим ресурсы для компонента
                  */
                 return $.getJSON(componentResource).then(function(results){
-                    var nameModel;
-                    var modes;
-                    var hasTree;
+                    if(results.result.error){
 
-                    for(nameModel in results.records){
-                        if(results.records.hasOwnProperty(nameModel)){
-                            self.store.pushMany(nameModel, results.records[nameModel]);
+                    } else if(results.result){
+                        var nameModel;
+                        var modes;
+                        var hasTree;
+
+                        for(nameModel in results.records){
+                            if(results.records.hasOwnProperty(nameModel)){
+                                self.store.pushMany(nameModel, results.records[nameModel]);
+                            }
                         }
+                        hasTree = results.treeSettings ? true : false;
+                        self.controllerFor('component').set('hasTree', hasTree);
+                        if(hasTree){
+                            self.controllerFor('component').set('treeSettings', results.treeSettings);
+                            self.controllerFor('component').set('treeType', results.treeSettings.root.type);
+                        }
+                        /**
+                         * Установим режимы для компонента
+                         * */
+                        self.controllerFor('componentMode').set('id', results.treeSettings.root.ids[0]);
+                        modes = self.store.all('componentMode').findBy('id', model.get('id'));
+                        self.controllerFor('componentMode').set('modes', modes);
                     }
-                    hasTree = results.treeSettings ? true : false;
-                    self.controllerFor('component').set('hasTree', hasTree);
-                    if(hasTree){
-                        self.controllerFor('component').set('treeSettings', results.treeSettings);
-                        self.controllerFor('component').set('treeType', results.treeSettings.root.type);
-                    }
-                    /**
-                     * Установим режимы для компонента
-                     * */
-                    self.controllerFor('componentMode').set('id', results.treeSettings.root.ids[0]);
-                    modes = self.store.all('componentMode').findBy('id', model.get('id'));
-                    self.controllerFor('componentMode').set('modes', modes);
                     return model;
                 });
             },
 
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
-                    var rootTreeNode = this.store.all(this.controllerFor('component').get('treeType')).findBy('id', this.controllerFor('componentMode').get('id'));
-                    return this.transitionTo('treeActive', rootTreeNode);
+                    //var rootTreeNode = this.store.all(this.controllerFor('component').get('treeType')).findBy('id', this.controllerFor('componentMode').get('id'));
+                    //return this.transitionTo('treeActive', rootTreeNode);
                 }
             },
 

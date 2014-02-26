@@ -7,28 +7,34 @@ define(['App'], function(UMI){
         var delayResetActive;
 
         UMI.DockView = Ember.View.extend({
-            classNames: ['row' , 'umi-dock'],
-            mouseLeave: function(){
-                var self = this;
-                var resetActive = function(self){
-                    var content = self.get('controller.content');
-                    content.findBy('isActive', true).set('isActive', false);
-                    var activeModule = self.get('controller.activeModule');
-                    content.findBy('name', activeModule).set('isActive', true);
-                };
-                $('body').one('click', function(){
-                    resetActive(self);
-                });
-            },
-            mouseEnter: function(){
-                if(delayResetActive){
-                    clearTimeout(delayResetActive);
-                }
+            classNames: ['zoom', 'umi-dock'],
+//            mouseLeave: function(){
+//                var self = this;
+//                var resetActive = function(self){
+//                    var content = self.get('controller.content');
+//                    content.findBy('isActive', true).set('isActive', false);
+//                    var activeModule = self.get('controller.activeModule');
+//                    content.findBy('name', activeModule).set('isActive', true);
+//                };
+//                $('body').one('click', function(){
+//                    resetActive(self);
+//                });
+//            },
+//            mouseEnter: function(){
+//                if(delayResetActive){
+//                    clearTimeout(delayResetActive);
+//                }
+//            },
+            didInsertElement: function(){
+                var dock = this.$().find('.dock')[0];
+                dock.style.left = (dock.parentNode.offsetWidth - dock.offsetWidth) / 2 + 'px';
+                $(dock).addClass('active');
+                dockZoom.init(dock, false, this);
             }
         });
 
         UMI.DockModuleButtonView = Ember.View.extend({
-            tagName: 'dd',
+            tagName: 'li',
             classNameBindings: ['active'],
             active: function(){
                 return this.get('content.isActive');
@@ -46,19 +52,12 @@ define(['App'], function(UMI){
         });
 
         UMI.DockComponentsGroupView = Ember.View.extend({
-            tagName: 'dd',
-            classNames: ['content'],
+            tagName: 'nav',
+            classNames: ['components-nav'],
             classNameBindings: ['active'],
             active: function(){
                 return this.get('content.isActive');
             }.property('content.isActive')
-        });
-
-        UMI.DockZoomView = Ember.View.extend({
-            classNames: ['zoom', 'umi-dock'],
-            didInsertElement: function(){
-                dockZoom.init(this.$().find('.dock')[0], false, this);
-            }
         });
 
         var dockZoom = {
@@ -67,20 +66,13 @@ define(['App'], function(UMI){
                 dockZoom.opt = $.extend({}, dockZoom.opt, opt);
                 self.el = el;
                 self.$el = $(el);
-                self.update().addEvent();
+                self.addEvent();
                 self.buffer = document.createElement('div');
                 self.buffer.className = 'dock-buffer';
                 if(!self.el.style.marginLeft){
                     self.el.style.marginLeft = 0;
                 }
                 self.buffer = self.el.parentNode.appendChild(self.buffer);
-                window.onresize = function(){
-                    self.update();
-                };
-                //Костыль!
-                setTimeout(function(){
-                    self.update();
-                }, 200);
                 this.view = view;
             },
             opt: {

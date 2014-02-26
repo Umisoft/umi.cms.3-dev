@@ -1,25 +1,32 @@
-<dl class="tabs">
-    {{#each module in controller}}
-        {{#view 'dockModuleButton' contentBinding="module"}}
-                <span class="button large s-margin-clear">
-                    <img {{bind-attr src=module.img}} />
+<div class="dock-wrapper">
+    <ul class="dock navigation" data-dock>
+        {{#each module in controller}}
+            {{#view 'dockModuleButton' contentBinding="module"}}
+                <span class="dock-module">
+                    <img src="/resources/deploy/img/dock-icons/48-1.png" />
                     <span>{{module.name}}</span>
                 </span>
-        {{/view}}
-    {{/each}}
-</dl>
-<div class="tabs-content">
+            {{/view}}
+        {{/each}}
+        <li class="favorites">
+            <span class="dock-module" data-dropdown="dropdown-favorites">
+                <img src="/resources/deploy/img/dock-icons/48-9-shine.png"/>
+                <span>Избранное</span>
+            </span>
+            <ul id="dropdown-favorites" class="f-dropdown content" data-dropdown-content>
+                <li class="placeholder"><span>Вы ещё ничего не добавили в закладки</span></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="pretty-dock-components">
     {{#each module in controller}}
         {{#view 'dockComponentsGroup' contentBinding="module"}}
-            <ul class="button-group">
-                {{#each component in module.components}}
-                <li>
-                    {{#link-to 'component' module.name component.name classNames="button large s-margin-clear"}}
-                        {{component.name}}
-                    {{/link-to}}
-                </li>
-                {{/each}}
-            </ul>
+            {{#each component in module.components}}
+                {{#link-to 'component' module.name component.name}}
+                    {{component.name}}
+                {{/link-to}}
+            {{/each}}
         {{/view}}
     {{/each}}
 </div>
