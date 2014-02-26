@@ -1,163 +1,78 @@
-{
-    "models": [
+{"result": {
+    "modules": [
         {
-            "name": "Category",
-            "resource": "/resource/admin/modules/news/categories",
-            "properties": [
+            "name": "users",
+            "path": "project.admin.users",
+            "settings": [],
+            "components": [
                 {
-                    "name": "title",
-                    "type": "string"
-                },
-                {
-                    "name": "index",
-                    "type": "number"
-                },
-                {
-                    "name": "active",
-                    "type": "boolean"
-                },
-                {
-                    "name": "content"
-                },
-                {
-                    "name": "publishDate"
-                },
-                {
-                    "name": "viewCounter"
-                },
-                {
-                    "name": "hasChildren",
-                    "type": "boolean"
-                },
-                {
-                    "name": "parent",
-                    "type": "relationship",
-                    "relationship": {
-                        "type": "belongsTo",
-                        "name": "category",
-                        "params": {
-                            "inverse": "children"
-                        }
-                    }
-                },
-                {
-                    "name": "children",
-                    "type": "relationship",
-                    "relationship": {
-                        "type": "hasMany",
-                        "name": "category",
-                        "params": {
-                            "async": true,
-                            "inverse": "parent"
-                        }
-                    }
-                },
-                {
-                    "name": "news",
-                    "type": "relationship",
-                    "relationship": {
-                        "type": "hasMany",
-                        "name": "news",
-                        "params": {
-                            "async": true,
-                            "inverse": "category"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name": "News",
-            "resource": "/resource/admin/modules/news/news",
-            "properties": [
-                {
-                    "name": "title",
-                    "type": "string"
-                },
-                {
-                    "name": "content"
-                },
-                {
-                    "name": "publishDate"
-                },
-                {
-                    "name": "storyLine",
-                    "type": "relationship",
-                    "relationship": {
-                        "type": "hasMany",
-                        "name": "storyLine",
-                        "params": {
-                            "async": true,
-                            "inverse": "news"
-                        }
-                    }
-                },
-                {
-                    "name": "category",
-                    "type": "relationship",
-                    "relationship": {
-                        "type": "hasMany",
-                        "name": "category",
-                        "params": {
-                            "async": true,
-                            "inverse": "news"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name": "StoryLine",
-            "resource": "/resource/admin/modules/news/storyline",
-            "properties": [
-                {
-                    "name": "title",
-                    "type": "string"
-                },
-                {
-                    "name": "content"
-                },
-                {
-                    "name": "publishDate"
-                },
-                {
-                    "name": "news",
-                    "type": "relationship",
-                    "relationship": {
-                        "type": "hasMany",
-                        "name": "news",
-                        "params": {
-                            "async": true,
-                            "inverse": "storyLine"
-                        }
-                    }
+                    "name": "user",
+                    "path": "project.admin.users.user",
+                    "settings": []
                 }
             ]
         }
     ],
-    "records": {
-        "moduleList": [
-            {
-                "id": 1,
-                "slug": "news",
-                "title": "Новости",
-                "componentList": [1, 2]
-            }
-        ],
-
-        "componentList": [
-            {
-                "id": 1,
-                "slug": "categories",
-                "title": "Рубрики",
-                "resource": "/resources/modules/news/categories/settings.json"
-            },
-            {
-                "id": 2,
-                "slug": "news",
-                "title": "Новости",
-                "resource": "/resources/modules/news/news/settings.json"
-            }
-        ]
-    }
-}
+    "collections": [
+        {
+            "name": "Structure",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "identify",
+                    "readOnly": 0
+                },
+                {
+                    "name": "guid",
+                    "type": "guid",
+                    "readOnly": 0
+                },
+                {
+                    "name": "type",
+                    "type": "string",
+                    "readOnly": 1
+                },
+                {
+                    "name": "parent",
+                    "type": "belongsToRelation",
+                    "readOnly": 1,
+                    "targetCollection": "Structure"
+                }
+            ]
+        },
+        {
+            "name": "NewsItem",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "identify",
+                    "readOnly": 0
+                },
+                {
+                    "name": "guid",
+                    "type": "guid",
+                    "readOnly": 0
+                },
+                {
+                    "name": "type",
+                    "type": "string",
+                    "readOnly": 1
+                },
+                {
+                    "name": "subjects",
+                    "type": "manyToManyRelation",
+                    "readOnly": 0,
+                    "targetCollection": "NewsSubject",
+                    "targetFieldName": "subject",
+                    "bridgeCollection": "NewsItemSubject",
+                    "relatedField": "newsItem"
+                },
+                {
+                    "name": "date",
+                    "type": "dateTime",
+                    "readOnly": 0
+                }
+            ]
+        }
+    ]
+}}
