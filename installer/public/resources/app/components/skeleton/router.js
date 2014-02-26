@@ -43,7 +43,7 @@ define([], function(){
                 return $.getJSON(baseResource).then(function(results){
                     var result = results.result;
                     if(result.collections){
-                        UMI.FactoryForModels(result.collections);
+                        UMI.modelsFactory(result.collections);
                     }
                     if(result.records){
                         var model;

@@ -7,50 +7,64 @@ define([], function(){
          *
          * @param {array} Массив обьектов
          * */
-        UMI.FactoryForModels = function(models){
+        UMI.modelsFactory = function(collections){
             var i;
             var j;
-            var model;
-            var properties = {};
-            var propertyValue;
-            var relationshipParams;
+            var collection;
+            var fields = {};
+            var fieldValue;
+            var paramsRelation = {};
+            var relationName;
+            var lowerFirstLetter = function(string){
+                return string.charAt(0).toLowerCase() + string.slice(1);
+            };
 
-            for(j = 0; j < models.length; j++){
-                model = models[j];
+            for(j = 0; j < collections.length; j++){
+                collection = collections[j];
 
-                for(i = 0; i < model.properties.length; i++){
-                    switch(model.properties[i].type){
+                for(i = 0; i < collection.fields.length; i++){
+                    switch(collection.fields[i].type){
                         case 'string':
-                            propertyValue = DS.attr('string');
+                            fieldValue = DS.attr('string');
                             break;
-                        case 'number':
-                            propertyValue = DS.attr('number');
+                        case 'number': case 'counter':
+                            fieldValue = DS.attr('number');
                             break;
-                        case 'boolean':
-                            propertyValue = DS.attr('boolean');
+                        case 'bool':
+                            fieldValue = DS.attr('boolean');
                             break;
-                        case 'date':
-                            propertyValue = DS.attr('date');
+                        case 'dateTime':
+                            fieldValue = DS.attr('date');
                             break;
-                        case 'relationship':
-                            if(model.properties[i].relationship.params){
-                                propertyValue = DS[model.properties[i].relationship.type](model.properties[i].relationship.name, model.properties[i].relationship.params);
-                            } else{
-                                propertyValue = DS[model.properties[i].relationship.type](model.properties[i].relationship.name);
-                            }
+                        case 'belongsToRelation':
+                            paramsRelation = {async: true};
+                            relationName = lowerFirstLetter(collection.fields[i].targetCollection);
+                            fieldValue = DS.belongsTo(relationName, paramsRelation);
+                            break;
+                        case 'hasManyRelation':
+                            paramsRelation = {async: true, inverse: collection.fields[i].targetField};
+                            relationName = lowerFirstLetter(collection.fields[i].targetCollection);
+                            fieldValue = DS.hasMany(relationName, paramsRelation);
+                            break;
+                        case 'manyToManyRelation':
+                            paramsRelation = {async: true, inverse: collection.fields[i].targetFieldName};
+                            relationName = lowerFirstLetter(collection.fields[i].bridgeCollection);
+                            fieldValue = DS.hasMany(relationName, paramsRelation);
                             break;
                         default:
-                            propertyValue = DS.attr();
+                            fieldValue = DS.attr();
                             break;
                     }
-                    properties[model.properties[i].name] = propertyValue;
+                    if(collection.fields[i].type !== 'identify'){
+                        fields[collection.fields[i].name] = fieldValue;
+                    }
                 }
 
-                UMI[model.name] = DS.Model.extend(properties);
+                UMI[collection.name] = DS.Model.extend(fields);
 
-                if(model.resource){
-                    UMI[model.name + 'Adapter'] = UMI.RESTAdapter.extend({
-                        namespace: model.resource,
+                if(collection.resource){
+                    UMI[collection.name + 'Adapter'] = UMI.RESTAdapter.extend({
+                        namespace: collection.resource,
                         buildURL: function(record, suffix){
                             var s = this._super(record, suffix);
                             return s + ".php";
