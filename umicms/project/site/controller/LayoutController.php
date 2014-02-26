@@ -10,6 +10,7 @@ namespace umicms\project\site\controller;
 
 use umi\http\Response;
 use umicms\base\controller\BaseController;
+use umicms\project\module\structure\api\StructureApi;
 
 /**
  * Контроллер сетки сайта.
@@ -21,14 +22,20 @@ class LayoutController extends BaseController
      * @var Response $response содержимое страницы
      */
     protected $response;
+    /**
+     * @var StructureApi $structureApi
+     */
+    protected $structureApi;
 
     /**
      * Конструктор.
      * @param Response $response
+     * @param StructureApi $structureApi
      */
-    public function __construct(Response $response)
+    public function __construct(Response $response, StructureApi $structureApi)
     {
         $this->response = $response;
+        $this->structureApi = $structureApi;
     }
 
     /**
@@ -37,8 +44,11 @@ class LayoutController extends BaseController
     public function __invoke()
     {
 
+        $currentElement = $this->structureApi->getCurrentElement();
+        $layoutName = $this->structureApi->getElementLayout($currentElement)->fileName;
+
         $response = $this->createViewResponse(
-            'layout',
+            $layoutName,
             [
                 'content' => $this->response->getContent()
             ]

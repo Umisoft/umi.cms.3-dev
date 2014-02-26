@@ -45,7 +45,7 @@ return [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'pid',
             'accessor'   => 'getParent',
-            'target'     => 'blog_comment',
+            'target'     => 'BlogComment',
             'readOnly'   => true
         ],
         IHierarchicObject::FIELD_MPATH           => [
@@ -101,13 +101,13 @@ return [
         'post'                                   => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'post_id',
-            'target'     => 'blog_post'
+            'target'     => 'BlogPost'
         ],
         'content'                                => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
         'date'                                   => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'date'],
         'answers'                                => [
             'type'        => IField::TYPE_HAS_MANY,
-            'target'      => 'blog_comment',
+            'target'      => 'BlogComment',
             'targetField' => 'parent'
         ]
 

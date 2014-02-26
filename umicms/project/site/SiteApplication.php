@@ -38,6 +38,10 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
      */
     const SETTING_DEFAULT_PAGE_GUID = 'default-page';
     /**
+     * Имя настройки для задания guid главной страницы
+     */
+    const SETTING_DEFAULT_LAYOUT_GUID = 'default-layout';
+    /**
      * Имя настройки для задания постфикса всех URL
      */
     const SETTING_URL_POSTFIX = 'url-postfix';

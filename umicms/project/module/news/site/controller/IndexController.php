@@ -12,7 +12,7 @@ namespace umicms\project\module\news\site\controller;
 use umicms\base\controller\BaseController;
 use umicms\exception\RuntimeException;
 use umicms\project\module\structure\api\StructureApi;
-use umicms\project\module\structure\model\SystemPage;
+use umicms\project\module\structure\object\SystemPage;
 
 /**
  * Контроллер отображения системной страницы модуля "Новости".

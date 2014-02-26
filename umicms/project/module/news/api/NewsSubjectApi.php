@@ -22,7 +22,7 @@ class NewsSubjectApi extends BaseCollectionApi
     /**
      * {@inheritdoc}
      */
-    public $collectionName = 'news_subject';
+    public $collectionName = 'NewsSubject';
 
     /**
      * Возвращает сюжет по его GUID

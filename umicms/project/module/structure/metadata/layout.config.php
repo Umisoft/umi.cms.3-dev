@@ -6,72 +6,71 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\news\metadata;
+namespace umicms\project\module\structure\metadata;
 
 use umi\orm\metadata\field\IField;
-use umi\orm\object\IObject;
+use umicms\project\module\structure\object\Layout;
 
 return [
     'dataSource' => [
-        'sourceName' => 'umi_news_news_item_subject'
+        'sourceName' => 'umi_layout'
     ],
     'fields'     => [
-        IObject::FIELD_IDENTIFY => [
+
+        Layout::FIELD_IDENTIFY     => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
             'accessor'   => 'getId'
         ],
-        IObject::FIELD_GUID     => [
+        Layout::FIELD_GUID         => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
             'mutator'    => 'setGuid'
         ],
-        IObject::FIELD_TYPE     => [
+        Layout::FIELD_TYPE         => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
             'accessor'   => 'getType',
             'readOnly'   => true
         ],
-        IObject::FIELD_VERSION  => [
+        Layout::FIELD_VERSION      => [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
             'mutator'      => 'setVersion',
             'defaultValue' => 1
         ],
-        'displayName'           => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
-        'active'                => [
+        Layout::FIELD_DISPLAY_NAME => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
+        Layout::FIELD_ACTIVE       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'active',
             'defaultValue' => 1
         ],
-        'locked'                => [
+        Layout::FIELD_LOCKED       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
             'defaultValue' => 0
         ],
-        'created'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        'updated'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
-
-        'newsItem' => ['type' => IField::TYPE_BELONGS_TO, 'columnName' => 'news_item_id', 'target' => 'NewsItem'],
-        'subject' => ['type' => IField::TYPE_BELONGS_TO, 'columnName' => 'subject_id', 'target' => 'NewsSubject']
-
+        Layout::FIELD_CREATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
+        Layout::FIELD_UPDATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
+        Layout::FIELD_FILE_NAME    => ['type' => IField::TYPE_STRING, 'columnName' => 'file_name'],
 
     ],
     'types'      => [
         'base' => [
-            'fields' => [
-                'id',
-                'guid',
-                'type',
-                'version',
-                'active',
-                'locked',
-                'created',
-                'updated',
-                'displayName',
-                'newsItem',
+            'objectClass' => 'umicms\project\module\structure\object\Layout',
+            'fields'      => [
+                Layout::FIELD_IDENTIFY,
+                Layout::FIELD_GUID,
+                Layout::FIELD_TYPE,
+                Layout::FIELD_VERSION,
+                Layout::FIELD_DISPLAY_NAME,
+                Layout::FIELD_ACTIVE,
+                Layout::FIELD_LOCKED,
+                Layout::FIELD_CREATED,
+                Layout::FIELD_UPDATED,
+                Layout::FIELD_FILE_NAME
             ]
         ]
     ]

@@ -10,40 +10,12 @@
 namespace umicms\hmvc;
 
 use umi\hmvc\dispatcher\Dispatcher as FrameworkDispatcher;
-use umi\http\Request;
-use umi\http\Response;
 
 /**
  * {@inheritdoc}
  */
 class Dispatcher extends FrameworkDispatcher
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected function sendResponse(Response $response, Request $request, $content)
-    {
-        $this->setUmiHeaders($response);
 
-        $response->setETag(md5($content));
-        $response->setPublic();
-        $response->isNotModified($request);
-
-        parent::sendResponse($response, $request, $content);
-    }
-
-    /**
-     * Выставляет заголовки UMI.CMS.
-     * @param Response $response
-     */
-    protected function setUmiHeaders(Response $response)
-    {
-        global $umicmsStartTime;
-
-        $response->headers->set('X-Generated-By', 'UMI.CMS');
-        if ($umicmsStartTime > 0) {
-            $response->headers->set('X-Generation-Time', round(microtime(true) - $umicmsStartTime, 3));
-        }
-    }
 }
  

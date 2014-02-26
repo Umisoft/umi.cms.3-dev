@@ -9,27 +9,39 @@
 
 namespace umicms\project\module\structure\api;
 
-use umi\orm\exception\IException;
-use umicms\api\BaseHierarchicCollectionApi;
+use umicms\api\BaseComplexApi;
 use umicms\api\IPublicApi;
-use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
-use umicms\project\module\structure\model\StructureElement;
+use umicms\project\module\structure\object\Layout;
+use umicms\project\module\structure\object\StructureElement;
 
 /**
  * API для работы со структурой.
  */
-class StructureApi extends BaseHierarchicCollectionApi implements IPublicApi
+class StructureApi extends BaseComplexApi implements IPublicApi
 {
-    /**
-     * @var string $collectionName имя коллекции для хранения структуры
-     */
-    public $collectionName = 'structure';
-
     /**
      * @var StructureElement $currentElement
      */
     protected $currentElement;
+
+    /**
+     * Возвращает API для работы с элементами структуры.
+     * @return ElementApi
+     */
+    public function element()
+    {
+        return $this->getApi('umicms\project\module\structure\api\ElementApi');
+    }
+
+    /**
+     * Возвращает API для работы с шаблонами.
+     * @return LayoutApi
+     */
+    public function layout()
+    {
+        return $this->getApi('umicms\project\module\structure\api\LayoutApi');
+    }
 
     /**
      * Устанавливает текущий элемент структуры
@@ -63,25 +75,20 @@ class StructureApi extends BaseHierarchicCollectionApi implements IPublicApi
     }
 
     /**
-     * Возвращает элемент по GUID.
-     * @param string $guid
-     * @throws NonexistentEntityException если не удалось получить элемент
-     * @return StructureElement
+     * Возвращает шаблон сетки для элемента.
+     * @param StructureElement $element
+     * @return Layout
      */
-    public function getElement($guid)
+    public function getElementLayout(StructureElement $element)
     {
-        try {
-            return $this->getCollection()->get($guid);
-        } catch(IException $e) {
-            throw new NonexistentEntityException(
-                $this->translate(
-                    'Cannot find element by guid "{guid}".',
-                    ['guid' => $guid]
-                ),
-                0,
-                $e
-            );
+        if (!$element->layout) {
+            return $this->layout()->getDefaultLayout();
         }
+
+        return $element->layout;
     }
 
+
+
 }
+ 

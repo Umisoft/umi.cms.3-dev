@@ -18,20 +18,12 @@ return [
     ],
 
     Component::OPTION_CONTROLLERS => [
-        'settings' => __NAMESPACE__ . '\controller\SettingsController',
         'list' => __NAMESPACE__ . '\controller\ListController',
         'item' => __NAMESPACE__ . '\controller\ItemController',
+        'action' => __NAMESPACE__ . '\controller\ActionController',
     ],
 
     Component::OPTION_ROUTES      => [
-
-        'settings' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route'    => '/settings',
-            'defaults' => [
-                'controller' => 'settings'
-            ]
-        ],
 
         'list' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
@@ -46,6 +38,22 @@ return [
             'route'    => '/{guid:guid}',
             'defaults' => [
                 'controller' => 'item'
+            ]
+        ],
+
+        'itemAction' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{guid:guid}/{action}',
+            'defaults' => [
+                'controller' => 'action'
+            ]
+        ],
+
+        'action' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{action}',
+            'defaults' => [
+                'controller' => 'action'
             ]
         ]
     ]

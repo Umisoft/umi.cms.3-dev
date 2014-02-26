@@ -95,7 +95,7 @@ class Bootstrap implements IProjectConfigAware
         $project = $this->createProject();
 
         $baseUrl = isset($routeMatches['uri']) ? $routeMatches['uri'] : '';
-        $routePath = $routeResult->getUnmatchedUrl() ?: '/';
+        $routePath = $routeResult->getUnmatchedUrl() ? : '/';
 
         if (preg_match('|\.([\w]+)$|u', $routePath, $matches)) {
             $format = $matches[1];
@@ -108,7 +108,42 @@ class Bootstrap implements IProjectConfigAware
          */
         $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
         $this->initTemplateEngines($dispatcher);
-        $dispatcher->dispatchRequest($project, $request, $routePath, $baseUrl);
+        $dispatcher->setCurrentRequest($request);
+        $dispatcher->setInitialComponent($project);
+        $response = $dispatcher->dispatch($routePath, $baseUrl);
+
+        $this->sendResponse($response, $request);
+    }
+
+    /**
+     * Отправляет ответ.
+     * @param Response $response
+     * @param Request $request
+     */
+    protected function sendResponse(Response $response, Request $request)
+    {
+        $this->setUmiHeaders($response);
+
+        $response->setETag(md5($response->getContent()));
+        $response->setPublic();
+        $response->isNotModified($request);
+
+        $response->prepare($request)
+            ->send();
+    }
+
+    /**
+     * Выставляет заголовки UMI.CMS.
+     * @param Response $response
+     */
+    private function setUmiHeaders(Response $response)
+    {
+        global $umicmsStartTime;
+
+        $response->headers->set('X-Generated-By', 'UMI.CMS');
+        if ($umicmsStartTime > 0) {
+            $response->headers->set('X-Generation-Time', round(microtime(true) - $umicmsStartTime, 3));
+        }
     }
 
     /**

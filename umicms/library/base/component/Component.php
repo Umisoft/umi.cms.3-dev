@@ -9,7 +9,6 @@
 
 namespace umicms\base\component;
 
-use umi\config\entity\Config;
 use umi\config\entity\IConfig;
 use umi\hmvc\component\Component as FrameworkComponent;
 use umicms\exception\UnexpectedValueException;
@@ -47,7 +46,7 @@ class Component extends FrameworkComponent
      * Возвращает список имен дочерних компонентов.
      * @return array
      */
-    public function getChildComponentList()
+    public function getChildComponentNames()
     {
         if (isset($this->options[self::OPTION_COMPONENTS])) {
             return array_keys($this->configToArray($this->options[self::OPTION_COMPONENTS]));
@@ -55,4 +54,5 @@ class Component extends FrameworkComponent
 
         return [];
     }
+
 }

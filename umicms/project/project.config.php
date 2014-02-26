@@ -59,36 +59,39 @@ return [
                 ]
             ],
             'metadata'    => [
-                'structure' => '{#lazy:~/project/module/structure/metadata/structure.config.php}',
+                'Structure' => '{#lazy:~/project/module/structure/metadata/structure.config.php}',
+                'Layout' => '{#lazy:~/project/module/structure/metadata/layout.config.php}',
 
-                'news_rubric' => '{#lazy:~/project/module/news/metadata/rubric.config.php}',
-                'news_news_item' => '{#lazy:~/project/module/news/metadata/news_item.config.php}',
-                'news_news_item_subject' => '{#lazy:~/project/module/news/metadata/news_item_subject.config.php}',
-                'news_subject' => '{#lazy:~/project/module/news/metadata/subject.config.php}',
+                'NewsRubric' => '{#lazy:~/project/module/news/metadata/rubric.config.php}',
+                'NewsItem' => '{#lazy:~/project/module/news/metadata/news_item.config.php}',
+                'NewsItemSubject' => '{#lazy:~/project/module/news/metadata/news_item_subject.config.php}',
+                'NewsSubject' => '{#lazy:~/project/module/news/metadata/subject.config.php}',
 
-                'blog_category' => '{#lazy:~/project/module/blog/metadata/category.config.php}',
-                'blog_post' => '{#lazy:~/project/module/blog/metadata/post.config.php}',
-                'blog_comment' => '{#lazy:~/project/module/blog/metadata/comment.config.php}',
-                'blog_tag' => '{#lazy:~/project/module/blog/metadata/tag.config.php}',
-                'blog_post_tag' => '{#lazy:~/project/module/blog/metadata/post_tag.config.php}',
+                'BlogCategory' => '{#lazy:~/project/module/blog/metadata/category.config.php}',
+                'BlogPost' => '{#lazy:~/project/module/blog/metadata/post.config.php}',
+                'BlogComment' => '{#lazy:~/project/module/blog/metadata/comment.config.php}',
+                'BlogTag' => '{#lazy:~/project/module/blog/metadata/tag.config.php}',
+                'BlogPostTag' => '{#lazy:~/project/module/blog/metadata/post_tag.config.php}',
 
-                'user' => '{#lazy:~/project/module/users/metadata/user.config.php}',
+                'User' => '{#lazy:~/project/module/users/metadata/user.config.php}',
             ],
 
             'collections' => [
-                'structure'     => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'Structure'     => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'Layout'     => ['type' => ICollectionFactory::TYPE_SIMPLE],
 
-                'news_rubric' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
-                'news_news_item' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'news_news_item_subject' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'news_subject' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'NewsRubric' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'NewsItem' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'NewsItemSubject' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'NewsSubject' => ['type' => ICollectionFactory::TYPE_SIMPLE],
 
-                'blog_category' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
-                'blog_post' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'blog_comment' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
-                'blog_tag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'blog_post_tag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'user' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'BlogCategory' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'BlogPost' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'BlogComment' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'BlogTag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'BlogPostTag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+
+                'User' => ['type' => ICollectionFactory::TYPE_SIMPLE],
             ]
         ]
     ],

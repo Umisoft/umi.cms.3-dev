@@ -21,7 +21,7 @@ use umi\route\type\BaseRoute;
 use umicms\project\config\ISiteSettingsAware;
 use umicms\project\config\TSiteSettingsAware;
 use umicms\project\module\structure\api\StructureApi;
-use umicms\project\module\structure\model\StructureElement;
+use umicms\project\module\structure\object\StructureElement;
 
 /**
  * Правила роутинга для сайта.
@@ -79,7 +79,7 @@ class SiteRoute extends BaseRoute implements IHttpAware, ISiteSettingsAware
     protected function matchDefaultPage()
     {
         try {
-            $element = $this->structureApi->getElement($this->getSiteDefaultPageGuid());
+            $element = $this->structureApi->element()->get($this->getSiteDefaultPageGuid());
             $this->setCurrentElement($element);
 
             return 0;
@@ -95,7 +95,7 @@ class SiteRoute extends BaseRoute implements IHttpAware, ISiteSettingsAware
      */
     protected function matchPage($url)
     {
-        $selector = $this->structureApi->select();
+        $selector = $this->structureApi->element()->select();
         $urlParts = explode('/', $url);
 
         $selector->begin(IFieldConditionGroup::MODE_OR);
@@ -130,7 +130,7 @@ class SiteRoute extends BaseRoute implements IHttpAware, ISiteSettingsAware
     protected function setCurrentElement(StructureElement $element)
     {
         $this->structureApi->setCurrentElement($element);
-        $this->params[IComponent::MATCH_COMPONENT] = $element->module;
+        $this->params[IComponent::MATCH_COMPONENT] = $element->componentPath;
     }
 
 }

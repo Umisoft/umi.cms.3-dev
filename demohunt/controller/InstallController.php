@@ -21,7 +21,7 @@ use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\base\controller\BaseController;
-use umicms\project\module\structure\model\StaticPage;
+use umicms\project\module\structure\object\StaticPage;
 use umicms\project\module\users\api\UsersApi;
 use umicms\project\module\users\object\User;
 
@@ -43,6 +43,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     protected $usersApi;
 
+    protected $testLayout;
+
     public function __construct(IDbCluster $dbCluster, UsersApi $usersApi)
     {
         $this->dbCluster = $dbCluster;
@@ -58,7 +60,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->installDbStructure();
 
         $this->installUsers();
-        $this->installStaticPages();
+        $this->installStructure();
         $this->installNews();
         $this->installGratitude();
         $this->installBlog();
@@ -73,7 +75,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var SimpleCollection $userCollection
          */
-        $userCollection = $this->getCollectionManager()->getCollection('user');
+        $userCollection = $this->getCollectionManager()->getCollection('User');
 
         /**
          * @var User $sv
@@ -92,25 +94,25 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var SimpleHierarchicCollection $structureCollection
          */
-        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+        $structureCollection = $this->getCollectionManager()->getCollection('Structure');
         /**
          * @var SimpleHierarchicCollection $categoriesCollection
          */
-        $categoriesCollection = $this->getCollectionManager()->getCollection('blog_category');
+        $categoriesCollection = $this->getCollectionManager()->getCollection('BlogCategory');
         /**
          * @var SimpleCollection $postCollection
          */
-        $postCollection = $this->getCollectionManager()->getCollection('blog_post');
+        $postCollection = $this->getCollectionManager()->getCollection('BlogPost');
         /**
          * @var SimpleHierarchicCollection $commentCollection
          */
-        $commentCollection = $this->getCollectionManager()->getCollection('blog_comment');
+        $commentCollection = $this->getCollectionManager()->getCollection('BlogComment');
 
 
         $structureCollection->add('blog', 'system')
             ->setValue('displayName', 'Блог')
             ->setGUID('9aa6745f-f40d-5489-8043-d959594123ce')
-            ->getProperty('module')->setValue('blog');
+            ->getProperty('componentPath')->setValue('blog');
 
         $blog = $categoriesCollection->add('company')
             ->setValue('displayName', 'Блог')
@@ -167,20 +169,21 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var SimpleHierarchicCollection $structureCollection
          */
-        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+        $structureCollection = $this->getCollectionManager()->getCollection('Structure');
         /**
          * @var SimpleCollection $newsCollection
          */
-        $newsCollection = $this->getCollectionManager()->getCollection('news_news_item');
+        $newsCollection = $this->getCollectionManager()->getCollection('NewsItem');
         /**
          * @var SimpleHierarchicCollection $rubricCollection
          */
-        $rubricCollection = $this->getCollectionManager()->getCollection('news_rubric');
+        $rubricCollection = $this->getCollectionManager()->getCollection('NewsRubric');
 
         $structureCollection->add('news', 'system')
             ->setValue('displayName', 'Новости')
             ->setGUID('9ee6745f-f40d-46d8-8043-d959594628ce')
-            ->getProperty('module')->setValue('news');
+            ->setValue('layout', $this->testLayout)
+            ->getProperty('componentPath')->setValue('news');
 
         $rubric = $rubricCollection->add('company')
             ->setValue('displayName', 'Новости сайта')
@@ -229,11 +232,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var SimpleCollection $newsCollection
          */
-        $newsCollection = $this->getCollectionManager()->getCollection('news_news_item');
+        $newsCollection = $this->getCollectionManager()->getCollection('NewsItem');
         /**
          * @var SimpleHierarchicCollection $rubricCollection
          */
-        $rubricCollection = $this->getCollectionManager()->getCollection('news_rubric');
+        $rubricCollection = $this->getCollectionManager()->getCollection('NewsRubric');
 
         $gratitude = $rubricCollection->add('gratitude')
             ->setValue('displayName', 'Благодарности')
@@ -266,12 +269,25 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
     }
 
-    protected function installStaticPages()
+    protected function installStructure()
     {
         /**
          * @var SimpleHierarchicCollection $structureCollection
          */
-        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+        $structureCollection = $this->getCollectionManager()->getCollection('Structure');
+        /**
+         * @var SimpleCollection $structureCollection
+         */
+        $layoutCollection = $this->getCollectionManager()->getCollection('Layout');
+
+        $layoutCollection->add()
+            ->setValue('fileName', 'layout')
+            ->setValue('displayName', 'Основной')
+            ->setGUID('d6cb8b38-7e2d-4b36-8d15-9fe8947d66c7');
+
+        $this->testLayout = $layoutCollection->add()
+            ->setValue('fileName', 'test')
+            ->setValue('displayName', 'Тестовый');
 
         /**
          * @var StaticPage $about
@@ -283,7 +299,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('content', '<p>Мы &mdash; отряд Охотниц за привидениями. Цвет волос, уровень IQ, размер груди, длина ног и количество высших образований не оказывают существенного влияния при отборе кадров в наши подразделения.</p><p>Единственно значимым критерием является наличие у Охотницы следующих навыков:</p><blockquote>метод десятипальцевой печати;<br /> тайский массаж;<br /> метод левой руки;<br /> техника скорочтения;</blockquote><p>Миссия нашей компании: Спасение людей от привидений во имя спокойствия самих привидений.<br /><br /> 12 лет нашей работы доказали, что предлагаемые нами услуги востребованы человечеством. За это время мы получили:</p><blockquote>1588 искренних благодарностей от клиентов; <br /> 260080 комплиментов; <br /> 5 интересных предложений руки и сердца.</blockquote><p>Нам не только удалось пережить кризис августа 1998 года, но и выйти на новый, рекордный уровень рентабельности.<br /> В своей работе мы используем             <strong>сверхсекретные</strong> супер-пупер-технологии.</p>')
             ->setGUID('d534fd83-0f12-4a0d-9853-583b9181a948');
 
-        $about->getProperty('module')->setValue('structure');
+        $about->getProperty('componentPath')->setValue('structure');
 
         $structureCollection->add('no', 'static', $about)
             ->setValue('displayName', 'Работа, за которую мы никогда не возьмемся')
@@ -291,7 +307,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('h1', 'Работа, за которую мы никогда не возьмемся')
             ->setValue('content', '<ul><li>Безосновательный вызов призраков на дом</li><li>Гадания на картах, кофейной гуще, блюдечке</li><li>Толкование снов</li><li>Интим-услуги. Мы не такие!</li></ul>')
             ->setGUID('3d765c94-bb80-4e8f-b6d9-b66c3ea7a5a4')
-            ->getProperty('module')->setValue('structure');
+            ->getProperty('componentPath')->setValue('structure');
 
 
         $structureCollection->add('services', 'static')
@@ -300,7 +316,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('h1', 'Услуги')
             ->setValue('content', '<p><strong>Дипломатические переговоры с домовыми</strong></p><p>Домовые требуют особого подхода. Выгонять домового из дома категорически запрещено, т.к. его призвание &mdash; охранять дом. Однако, некоторые домовые приносят своим хозяевам немало хлопот из-за своенравного характера. <br /><br />Хорошие отношения с домовым &mdash; наша работы. Правильно провести дипломатические переговоры с домовым, с учетом его знака зодиака, типа температмента и других психографических характеристик, настроить его на позитивный лад, избавить от личных переживаний, разобраться в ваших разногласиях и провести результативные переговоры может грамотный специалист с широким набором характеристик и знаний.<br /><br /><em>Работает Охотница Ольга Карпова <br />Спецнавыки: паранормальная дипломатия, психология поведения духов и разрешение конфликтов</em></p><p><br /><br /><strong>Изгнание призраков царских кровей и других элитных духов<br /></strong><br />Вы купили замок? Хотите провести профилактические работы? Или уже столкнулись с присутствием призраков один на один?<br /><br />Вам &mdash; в наше элитное подразделение. Духи царских кровей отличаются кичливым поведением и высокомерием, однако до сих пор подразделение Охотниц в бикини всегда справлялось с поставленными задачами.<br /><br />Среди наших побед:</p><p>- тень отца Гамлета, вызвавшая переполох в женской раздевалке фитнес-клуба; <br />- призрак Ленина, пытающийся заказать роллы Калифорния на вынос; <br />- призрак Цезаря на неделе миланской моды в Москве.&nbsp; <br /><br /><em>Работает Охотница Елена&nbsp; Жарова <br />Спецнавыки: искусство душевного разговора</em></p>')
             ->setGUID('98751ebf-7f76-4edb-8210-c2c3305bd8a0')
-            ->getProperty('module')->setValue('structure');
+            ->getProperty('componentPath')->setValue('structure');
 
         $structureCollection->add('price', 'static')
             ->setValue('displayName', 'Тарифы и цены')
@@ -308,7 +324,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('h1', 'Тарифы и цены')
             ->setValue('content', '<p><strong>Если вас регулярно посещают привидения, призраки, НЛО, &laquo;Летучий голландец&raquo;, феномен черных рук, демоны, фантомы, вампиры и чупакабры...</strong></p><p>Мы предлагаем вам воспользоваться нашим <strong>тарифом абонентской платы</strong>, который составляет <span style="color: #ff6600;"><strong>1 995</strong></span> у.е. в год. Счастливый год без привидений!</p><p><strong>Если паранормальное явление появился в вашей жизни неожиданно, знакомьтесь с прайсом*:<br /></strong></p><blockquote>Дипломатические переговоры с домовым &ndash; <span style="color: #ff6600;"><strong>120</strong></span> у.е.<br />Нейтрализация вампира &ndash; <span style="color: #ff6600;"><strong>300</strong></span> у.е.<br />Изгнание привидения стандартного &ndash; <span style="color: #ff6600;"><strong>200</strong></span> у.е.<br />Изгнание привидений царей, принцев и принцесс, вождей революций и другой элиты &ndash; <span style="color: #ff6600;"><strong>1250</strong></span> у.е.<br />Борьба с НЛО &ndash; рассчитывается <span style="text-decoration: underline;">индивидуально</span>.</blockquote><p><strong>Специальная услуга: </strong>ВЫЗОВ ОТРЯДА В БИКИНИ</p><p><span style="font-size: x-small;"><em>Стандартные услуги в сочетании с эстетическим удовольствием!</em></span></p><p><strong>Скидки оптовым и постоянным клиентам:</strong><br />При заказе устранения от 5 духов (любого происхождения, включая элиту) предоставляется скидка 12% от общей цены. Скидки по акциям не суммируются.</p><p><span>*Цена за одну особь!</span></p>')
             ->setGUID('c81d6d87-25c6-4ab8-b213-ef3a0f044ce6')
-            ->getProperty('module')->setValue('structure');
+            ->getProperty('componentPath')->setValue('structure');
 
     }
 
@@ -321,7 +337,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $dialect = $connection->getDatabasePlatform();
         $connection->exec($dialect->getDisableForeignKeysSQL());
 
-        $this->installStructureTable();
+        $this->installStructureTables();
         $this->installNewsTables();
         $this->installBlogTables();
 
@@ -653,11 +669,34 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         );
     }
 
-    protected function installStructureTable()
+    protected function installStructureTables()
     {
         $connection = $this->dbCluster->getConnection();
 
         $connection->exec("DROP TABLE IF EXISTS `demohunt_structure`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_layout`");
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_layout` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255) DEFAULT NULL,
+                    `version` int(10) unsigned DEFAULT '1',
+                    `type` varchar(255) DEFAULT NULL,
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `file_name` varchar(255) DEFAULT NULL,
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `layout_guid` (`guid`),
+                    KEY `layout_type` (`type`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+
         $connection->exec(
             "
                 CREATE TABLE `demohunt_structure` (
@@ -682,7 +721,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
-                    `module` varchar(255) DEFAULT NULL,
+                    `component_path` varchar(255) DEFAULT NULL,
+                    `layout_id` bigint(20) unsigned DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `structure_guid` (`guid`),
                     UNIQUE KEY `structure_mpath` (`mpath`),
@@ -690,7 +730,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     KEY `structure_parent` (`pid`),
                     KEY `structure_parent_order` (`pid`,`order`),
                     KEY `structure_type` (`type`),
-                    CONSTRAINT `FK_structure_parent` FOREIGN KEY (`pid`) REFERENCES `demohunt_structure` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    KEY `structure_layout` (`layout_id`),
+                    CONSTRAINT `FK_structure_parent` FOREIGN KEY (`pid`) REFERENCES `demohunt_structure` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_structure_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );

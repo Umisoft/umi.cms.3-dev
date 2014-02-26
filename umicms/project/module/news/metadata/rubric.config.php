@@ -46,7 +46,7 @@ return [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'pid',
             'accessor'   => 'getParent',
-            'target'     => 'news_rubric',
+            'target'     => 'NewsRubric',
             'readOnly'   => true
         ],
         IHierarchicObject::FIELD_MPATH           => [

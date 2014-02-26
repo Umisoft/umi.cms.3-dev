@@ -7,16 +7,12 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\structure\model;
-
-use umicms\base\object\CmsElement;
+namespace umicms\project\module\structure\object;
 
 /**
- * Базовый элемент структуры.
- *
- * @property string $module имя модуля-обработчика
+ * Системная страница UMI.CMS.
  */
-abstract class StructureElement extends CmsElement
+class SystemPage extends StructureElement
 {
 
 }

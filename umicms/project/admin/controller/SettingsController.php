@@ -8,20 +8,56 @@
 
 namespace umicms\project\admin\controller;
 
+use umi\orm\collection\ICollectionManagerAware;
+use umi\orm\collection\TCollectionManagerAware;
 use umicms\base\component\Component;
 use umicms\base\controller\BaseController;
 
 /**
  * Контроллер настроек административной панели.
  */
-class SettingsController extends BaseController
+class SettingsController extends BaseController implements ICollectionManagerAware
 {
-
     const OPTION_ADMIN_INTERFACE = 'interface';
+
+    use TCollectionManagerAware;
+
     /**
      * {@inheritdoc}
      */
     public function __invoke()
+    {
+        return $this->createViewResponse(
+            'settings',
+            [
+                'modules' => $this->getModulesSettings(),
+                'collections' => $this->getCollectionsSettings()
+            ]
+        );
+    }
+
+    /**
+     * Возвращает настройки коллекций.
+     * @return array
+     */
+    protected function getCollectionsSettings()
+    {
+        $collectionNames = $this->getCollectionManager()->getList();
+
+        $collections = [];
+
+        foreach ($collectionNames as $collectionName) {
+            $collections[] = $this->getCollectionManager()->getCollection($collectionName);
+        }
+
+        return $collections;
+    }
+
+    /**
+     * Возвращает настройки модулей.
+     * @return array
+     */
+    protected function getModulesSettings()
     {
         $modules = [];
         /**
@@ -29,35 +65,36 @@ class SettingsController extends BaseController
          */
         $application = $this->getComponent();
 
-        foreach($application->getChildComponentList() as $moduleName) {
+        foreach ($application->getChildComponentNames() as $moduleName) {
             /**
              * @var Component $module
              */
             $module = $application->getChildComponent($moduleName);
 
             $components = [];
-            foreach ($module->getChildComponentList() as $componentName) {
+            foreach ($module->getChildComponentNames() as $componentName) {
                 $component = $module->getChildComponent($componentName);
                 /**
                  * @var Component $component
                  */
                 $components[] = [
-                    'name' => $componentName,
-                    'settings' => $component->getSettings()->get(self::OPTION_ADMIN_INTERFACE) ?: []
+                    'name'     => $componentName,
+                    'path'     => $component->getPath(),
+                    'settings' => $component->getSettings()
+                            ->get(self::OPTION_ADMIN_INTERFACE) ? : []
                 ];
             }
 
             $modules[] = [
-                'name' => $moduleName,
-                'settings' => $module->getSettings()->get(self::OPTION_ADMIN_INTERFACE) ?: [],
+                'name'       => $moduleName,
+                'path'       => $module->getPath(),
+                'settings'   => $module->getSettings()
+                        ->get(self::OPTION_ADMIN_INTERFACE) ? : [],
                 'components' => $components
             ];
         }
 
-        return $this->createViewResponse(
-            'settings',
-            ['modules' => $modules]
-        );
+        return $modules;
     }
 
 }

@@ -52,7 +52,7 @@ class ErrorController extends BaseController
 
         }
 
-        $code = HttpException::HTTP_INTERNAL_SERVER_ERROR;
+        $code = Response::HTTP_INTERNAL_SERVER_ERROR;
         if ($this->exception instanceof HttpException) {
             $code = $this->exception->getCode();
         }

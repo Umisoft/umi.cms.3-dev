@@ -66,8 +66,8 @@ return [
         ],
         'posts'                 => [
             'type'         => IField::TYPE_MANY_TO_MANY,
-            'target'       => 'blog_post',
-            'bridge'       => 'blog_post_tag',
+            'target'       => 'BlogPost',
+            'bridge'       => 'BlogPostTag',
             'relatedField' => 'tag',
             'targetField'  => 'post'
         ]

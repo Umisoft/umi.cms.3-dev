@@ -55,7 +55,11 @@ class SerializerFactory implements IFactory, ISerializerFactory
             'double' => 'umicms\serialization\json\ScalarSerializer',
             'string' => 'umicms\serialization\json\ScalarSerializer',
             // null
-            'NULL' => 'umicms\serialization\xml\NullSerializer',
+            'NULL' => 'umicms\serialization\json\NullSerializer',
+            // orm
+            'umi\orm\collection\BaseCollection' => 'umicms\serialization\json\orm\CollectionSerializer',
+            'umi\orm\metadata\Metadata' => 'umicms\serialization\json\orm\MetadataSerializer',
+            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\json\orm\field\FieldSerializer',
         ]
     ];
 
