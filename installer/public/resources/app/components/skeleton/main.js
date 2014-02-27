@@ -77,11 +77,27 @@ define(
             document: $(document)
         };
 
+        /**
+         @class UmiRESTAdapter
+         @constructor
+         @extends DS.RESTAdapter
+         **/
         DS.UmiRESTAdapter = DS.RESTAdapter.extend({
-            namespace: window.UmiSettings.baseUrl + '/api',
-            buildURL: function(record, suffix){
-                var s = this._super(record, suffix);
-                return s + ".json";
+            /**
+             Метод возвращает URI запроса для CRUD операций данной модели
+
+             @method buildURL
+             @return {String} CRUD ресурс для данной модели
+             **/
+            buildURL: function(type, id){
+                var url = [],
+                    host = Ember.get(this, 'host'),
+                    prefix = this.urlPrefix();
+                if (id) { url.push(id); }
+                if (prefix) { url.unshift(prefix); }
+                url = url.join('/');
+                if (!host && url) { url = '/' + url; }
+                return url + ".json";
             },
             ajaxOptions: function(url, type, hash){
                 hash = hash || {};
@@ -112,7 +128,6 @@ define(
                 }
 
                 return hash;
-
             }
         });
 
