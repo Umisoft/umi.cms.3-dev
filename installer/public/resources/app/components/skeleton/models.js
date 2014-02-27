@@ -62,18 +62,15 @@ define([], function(){
 
                 UMI[collection.name] = DS.Model.extend(fields);
 
-                if(collection.resource){
-                    UMI[collection.name + 'Adapter'] = UMI.RESTAdapter.extend({
-                        namespace: collection.resource,
-                        buildURL: function(record, suffix){
-                            var s = this._super(record, suffix);
-                            return s + ".php";
-                        }
-                    });
-                }
             }
+            setModelsNameSpace(collection.name);
         };
 
+       var setModelsNameSpace = function(namespace){
+            UMI[namespace + 'Adapter'] = DS.UmiRESTAdapter.extend({
+                namespace: window.UmiSettings.baseUrl + '/api/resource'
+            });
+       };
 
         UMI.ComponentMode = DS.Model.extend({
             modes: DS.attr()

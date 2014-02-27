@@ -77,7 +77,12 @@ define(
             document: $(document)
         };
 
-        UMI.RESTAdapter = DS.RESTAdapter.extend({
+        DS.UmiRESTAdapter = DS.RESTAdapter.extend({
+            namespace: window.UmiSettings.baseUrl + '/api',
+            buildURL: function(record, suffix){
+                var s = this._super(record, suffix);
+                return s + ".json";
+            },
             ajaxOptions: function(url, type, hash){
                 hash = hash || {};
                 hash.url = url;
@@ -111,9 +116,7 @@ define(
             }
         });
 
-        UMI.Store = DS.Store.extend({
-            adapter: 'UMI.RESTAdapter'
-        });
+        UMI.ApplicationAdapter = DS.UmiRESTAdapter;
 
         templates(UMI);
         models(UMI);
