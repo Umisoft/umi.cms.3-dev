@@ -29,7 +29,8 @@ class FieldSerializer extends BaseSerializer
         $info = [
             'name' => $field->getName(),
             'type' => $field->getType(),
-            'readOnly' => $field->getIsReadOnly()
+            'readOnly' => $field->getIsReadOnly(),
+            'default' => $field->getDefaultValue()
         ];
 
         if ($field instanceof IRelationField) {
@@ -45,6 +46,8 @@ class FieldSerializer extends BaseSerializer
             $info['bridgeCollection'] = $field->getBridgeCollectionName();
             $info['relatedField'] = $field->getRelatedFieldName();
         }
+
+
 
         $this->delegate(
             $info

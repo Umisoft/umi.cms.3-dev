@@ -12,12 +12,17 @@ namespace umicms\base\controller;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
+use umi\orm\persister\IObjectPersisterAware;
+use umi\orm\persister\TObjectPersisterAware;
+use umicms\base\object\ICmsObject;
 
 /**
  * Базовый контроллер действий над списком.
  */
-abstract class BaseRestListController extends BaseController
+abstract class BaseRestListController extends BaseController implements IObjectPersisterAware
 {
+    use TObjectPersisterAware;
+
     /**
      * Возвращает список.
      * @return \Traversable
@@ -26,9 +31,16 @@ abstract class BaseRestListController extends BaseController
 
     /**
      * Создает и возвращает объект списка.
-     * @return mixed
+     * @param array $data данные
+     * @return ICmsObject
      */
-    abstract protected function create();
+    abstract protected function create(array $data);
+
+    /**
+     * Возвращает имя коллекции.
+     * @return string
+     */
+    abstract protected function getCollectionName();
 
     /**
      * {@inheritdoc}
@@ -43,8 +55,9 @@ abstract class BaseRestListController extends BaseController
             }
             case 'PUT':
             case 'POST': {
+                $object = $this->create($this->getIncomingData());
                 return $this->createViewResponse(
-                    'list', ['item' => $this->create()]
+                    'item', [$this->getCollectionName() => $object]
                 );
             }
             case 'DELETE': {
@@ -61,6 +74,34 @@ abstract class BaseRestListController extends BaseController
                 );
             }
         }
+    }
+
+    /**
+     * Возвращает данные для изменения объекта.
+     * @throws HttpException если не удалось получить данные
+     * @return array
+     */
+    private function getIncomingData()
+    {
+        $inputData = file_get_contents('php://input');
+        if (!$inputData) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Request body is empty.');
+        }
+
+        $data = @json_decode($inputData, true);
+
+        if ($error = json_last_error()) {
+            if (function_exists('json_last_error_msg')) {
+                $error = json_last_error_msg();
+            }
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'JSON parse error: ' . $error);
+        }
+
+        if (!isset($data[$this->getCollectionName()]) || !is_array($data[$this->getCollectionName()])) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Object data not found.');
+        }
+
+        return $data[$this->getCollectionName()];
     }
 
 }

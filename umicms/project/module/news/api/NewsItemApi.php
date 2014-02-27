@@ -50,6 +50,15 @@ class NewsItemApi extends BaseCollectionApi
     }
 
     /**
+     * Помечает новость на удаление.
+     * @param NewsItem $item
+     */
+    public function delete(NewsItem $item) {
+
+        $this->getCollection()->delete($item);
+    }
+
+    /**
      * Возвращает новость по ее последней части ЧПУ.
      * @param string $slug последняя часть ЧПУ новости
      * @throws NonexistentEntityException если новость с заданной последней частью ЧПУ не существует

@@ -48,6 +48,16 @@ class Bootstrap implements IProjectConfigAware
     const OPTION_TOOLS_SETTINGS = 'settings';
 
     /**
+     * Тип контента в зависимости от формата запроса.
+     * @var array $contentTypes
+     */
+    public static $contentTypes = [
+        'html' => 'text/html; charset=utf8',
+        'json' => 'application/json; charset=utf8',
+        'xml' => 'text/xml; charset=utf8',
+    ];
+
+    /**
      * @var Environment $environment настройки окружения UMI.CMS
      */
     protected $environment;
@@ -127,6 +137,10 @@ class Bootstrap implements IProjectConfigAware
         $response->setETag(md5($response->getContent()));
         $response->setPublic();
         $response->isNotModified($request);
+
+        if (isset(static::$contentTypes[$request->getRequestFormat()])) {
+            $response->headers->set('Content-Type', static::$contentTypes[$request->getRequestFormat()]);
+        }
 
         $response->prepare($request)
             ->send();

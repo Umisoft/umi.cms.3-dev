@@ -12,30 +12,36 @@ namespace umicms\base\controller;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
+use umi\orm\persister\IObjectPersisterAware;
+use umi\orm\persister\TObjectPersisterAware;
+use umicms\base\object\ICmsObject;
 
 /**
  * Базовый контроллер Read-Update-Delete операций над объектом.
  */
-abstract class BaseRestItemController extends BaseController
+abstract class BaseRestItemController extends BaseController implements IObjectPersisterAware
 {
+    use TObjectPersisterAware;
+
     /**
      * Возвращает объект.
-     * @param string $guid GUID объекта
-     * @return mixed
+     * @return ICmsObject
      */
-    abstract protected function get($guid);
+    abstract protected function get();
 
     /**
      * Обновляет и возвращает объект.
-     * @return mixed
+     * @param ICmsObject $object
+     * @param array $data
+     * @return ICmsObject
      */
-    abstract protected function update();
+    abstract protected function update(ICmsObject $object, array $data);
 
     /**
      * Удаляет объект.
-     * @return mixed
+     * @param ICmsObject $object
      */
-    abstract protected function delete();
+    abstract protected function delete(ICmsObject $object);
 
     /**
      * {@inheritdoc}
@@ -44,18 +50,23 @@ abstract class BaseRestItemController extends BaseController
     {
         switch($this->getRequest()->getMethod()) {
             case 'GET': {
-                $guid = $this->getRouteVar('guid');
+                $object = $this->get();
                 return $this->createViewResponse(
-                    'item', ['item' => $this->get($guid)]
+                    'item', [$object->getCollectionName() => $object]
                 );
             }
             case 'PUT': {
+                $object = $this->get();
                 return $this->createViewResponse(
-                    'item', ['item' => $this->update()]
+                    'update',
+                    [
+                        $object->getCollectionName() => $this->update($object, $this->getIncomingData($object))
+                    ]
                 );
             }
             case 'DELETE': {
-
+                $this->delete($this->get());
+                return $this->createResponse('', Response::HTTP_NO_CONTENT);
             }
             case 'POST': {
                 throw new HttpMethodNotAllowed(
@@ -70,6 +81,36 @@ abstract class BaseRestItemController extends BaseController
                 );
             }
         }
+    }
+
+    /**
+     * Возвращает данные для изменения объекта.
+     * @param ICmsObject $object объект для изменения
+     * @throws HttpException если не удалось получить данные
+     * @return array
+     */
+    private function getIncomingData(ICmsObject $object)
+    {
+        $inputData = file_get_contents('php://input');
+        if (!$inputData) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Request body is empty.');
+        }
+
+        $data = @json_decode($inputData, true);
+
+        if ($error = json_last_error()) {
+            if (function_exists('json_last_error_msg')) {
+                $error = json_last_error_msg();
+            }
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'JSON parse error: ' . $error);
+        }
+
+        $collectionName = $object->getCollectionName();
+        if (!isset($data[$collectionName]) || !is_array($data[$collectionName])) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Object data not found.');
+        }
+
+        return $data[$collectionName];
     }
 
 }

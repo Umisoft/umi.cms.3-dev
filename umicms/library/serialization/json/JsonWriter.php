@@ -19,7 +19,7 @@ class JsonWriter
     /**
      * @var int $options опции сериализации в JSON
      */
-    protected $options = 0;
+    protected $options;
     /**
      * @var stdClass $rootElement
      */
@@ -33,7 +33,7 @@ class JsonWriter
      * Конструктор.
      * @param int $options опции сериализации в JSON (см. json_encode())
      */
-    public function __construct($options = 0)
+    public function __construct($options = JSON_UNESCAPED_UNICODE)
     {
         $this->options = $options;
         $this->init();
