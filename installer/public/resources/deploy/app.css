@@ -4997,12 +4997,6 @@ body {
   background: rgba(255, 255, 255, 0.76);
   color: #000000; }
 
-.umi-header {
-  height: auto; }
-  .umi-header ~ .s-full-height {
-    margin-top: -99px;
-    padding-top: 99px; }
-
 .off-canvas-wrap.move-right {
   width: -webkit-calc(100% - 250px);
   width: calc(100% - 250px);
@@ -5073,8 +5067,8 @@ body {
   height: auto;
   position: relative; }
   .umi-header ~ .s-full-height {
-    margin-top: -99px;
-    padding-top: 99px; }
+    margin-top: -109px;
+    padding-top: 109px; }
 
 .umi-top-bar {
   background: -webkit-linear-gradient(top, #3E4756 0%, #1C1F26 100%);
@@ -5092,17 +5086,17 @@ body {
 .top-bar-section ul li > a {
   width: auto; }
 
-.umi-dock.zoom {
+.umi-dock {
   border-top: 1px solid #5c6472;
   padding: 0;
-  height: 49px; }
-  .umi-dock.zoom .dock-wrapper {
+  height: 84px; }
+  .umi-dock .dock-wrapper {
     background-image: -webkit-linear-gradient(#404959, #181b21);
     background-image: -o-linear-gradient(#404959, #181b21);
     background-image: linear-gradient(#404959, #181b21);
     position: relative;
     z-index: 10; }
-  .umi-dock.zoom .dock {
+  .umi-dock .dock {
     display: inline-block;
     vertical-align: top;
     position: relative;
@@ -5115,14 +5109,14 @@ body {
     z-index: 2;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
-    .umi-dock.zoom .dock.active .umi-dock-button {
+    .umi-dock .dock.active .umi-dock-button {
       opacity: 1; }
-    .umi-dock.zoom .dock:hover .dock-module span, .umi-dock.zoom .dock.full .dock-module span {
-      top: 60px;
+    .umi-dock .dock:hover .dock-module span, .umi-dock .dock.full .dock-module span {
+      top: 56px;
       opacity: 1; }
-    .umi-dock.zoom .dock.full + .dock-buffer {
+    .umi-dock .dock.full + .dock-buffer {
       display: block; }
-  .umi-dock.zoom .umi-dock-button {
+  .umi-dock .umi-dock-button {
     display: inline-block;
     height: 100%;
     border-left: 1px solid transparent;
@@ -5132,28 +5126,28 @@ body {
     -webkit-transition: opacity 0.3s linear;
     -o-transition: opacity 0.3s linear;
     transition: opacity 0.3s linear; }
-    .umi-dock.zoom .umi-dock-button .dock-module {
+    .umi-dock .umi-dock-button .dock-module {
       display: block;
       font-size: 0;
       text-decoration: none;
       position: relative;
       overflow: hidden; }
-      .umi-dock.zoom .umi-dock-button .dock-module img {
+      .umi-dock .umi-dock-button .dock-module img {
         vertical-align: middle;
         width: auto;
         height: 30px;
         margin: 9px 11px 9px; }
-      .umi-dock.zoom .umi-dock-button .dock-module span {
+      .umi-dock .umi-dock-button .dock-module span {
         position: absolute;
         display: block;
         width: 100%;
         text-align: center;
         left: 0;
-        top: 60px;
+        top: 56px;
         opacity: 0;
         color: #afb2b7;
         font-size: 13px; }
-    .umi-dock.zoom .umi-dock-button:hover {
+    .umi-dock .umi-dock-button:hover {
       margin-top: -1px;
       border-top: 1px solid #6d7480;
       border-left: 1px solid transparent;
@@ -5161,9 +5155,9 @@ body {
       background-image: -webkit-linear-gradient(#535c6a, #2b2d34);
       background-image: -o-linear-gradient(#535c6a, #2b2d34);
       background-image: linear-gradient(#535c6a, #2b2d34); }
-      .umi-dock.zoom .umi-dock-button:hover span {
+      .umi-dock .umi-dock-button:hover span {
         color: #FFF; }
-    .umi-dock.zoom .umi-dock-button.active {
+    .umi-dock .umi-dock-button.active {
       position: relative;
       margin-top: -1px;
       border-top: 1px solid #3a404a;
@@ -5172,21 +5166,21 @@ body {
       background-image: -webkit-linear-gradient(#282e38, #101217);
       background-image: -o-linear-gradient(#282e38, #101217);
       background-image: linear-gradient(#282e38, #101217); }
-      .umi-dock.zoom .umi-dock-button.active + li:hover {
+      .umi-dock .umi-dock-button.active + li:hover {
         border-left: 1px solid transparent; }
-      .umi-dock.zoom .umi-dock-button.active.favorites img + img {
+      .umi-dock .umi-dock-button.active.favorites img + img {
         position: absolute;
         display: none;
         opacity: 0;
         left: 0;
         top: 0; }
-      .umi-dock.zoom .umi-dock-button.active.disabled {
+      .umi-dock .umi-dock-button.active.disabled {
         opacity: 0.3; }
-  .umi-dock.zoom .f-dropdown {
+  .umi-dock .f-dropdown {
     padding: 0; }
-    .umi-dock.zoom .f-dropdown li {
+    .umi-dock .f-dropdown li {
       padding: 0.5em 1em; }
-      .umi-dock.zoom .f-dropdown li > span {
+      .umi-dock .f-dropdown li > span {
         color: #222;
         white-space: normal; }
 
@@ -5201,37 +5195,40 @@ body {
   .dock-buffer.active {
     display: block; }
 
-.pretty-dock-components {
+.dock-components {
   position: relative;
-  padding-top: 4px;
-  padding-bottom: 4px;
   background: -webkit-linear-gradient(top, #FFFFFF 0%, #E0E4E7 100%);
   background: -o-linear-gradient(top, #FFFFFF 0%, #E0E4E7 100%);
   background: linear-gradient(top, #FFFFFF 0%, #E0E4E7 100%);
   border-bottom: 1px solid #98a0aa;
-  text-align: center; }
-  .pretty-dock-components .components-nav {
+  text-align: center;
+  height: 2.1875rem; }
+  .dock-components .components-nav {
     display: none; }
-    .pretty-dock-components .components-nav.active {
-      display: block; }
-    .pretty-dock-components .components-nav a {
-      height: 22px;
-      line-height: 22px;
+    .dock-components .components-nav.active {
+      display: inline-block; }
+    .dock-components .components-nav a {
+      height: 2.1875rem;
+      line-height: 2.1875rem;
       vertical-align: middle;
-      border-radius: 15px;
-      padding: 0 40px;
+      padding: 0 25px;
       color: #575e6c;
-      display: inline-block;
+      display: block;
+      float: left;
       font-weight: bold;
       text-size: 14px;
       cursor: default;
-      margin-left: 15px;
       text-decoration: none;
-      font-size: 0.9em; }
-      .pretty-dock-components .components-nav a.active {
-        background: #c4cbd1;
-        border: 1px solid #9ea9b4;
-        box-shadow: 0 0 1px 1px #e0e5e9; }
+      font-size: 0.9em;
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent; }
+      .dock-components .components-nav a:hover {
+        background: #d5dce2; }
+      .dock-components .components-nav a.active {
+        background: -webkit-linear-gradient(top, #259cec 0%, #1282cc 100%);
+        background: -o-linear-gradient(top, #259cec 0%, #1282cc 100%);
+        background: linear-gradient(top, #259cec 0%, #1282cc 100%);
+        color: #FFF; }
 
 .umi-tree-header {
   background: -webkit-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);

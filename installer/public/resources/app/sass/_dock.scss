@@ -2,13 +2,12 @@
 
 $umi-dock-z-index: 1;
 $dock-img-padding: 11px;
-$pretty-dock-height: 49px;
 $dock-z-index: 10;
 
-.umi-dock.zoom{
+.umi-dock{
     border-top: 1px solid #5c6472;
     padding: 0;
-    height: $pretty-dock-height;
+    height: $umi-dock-height - 1;
     .dock-wrapper{
         background-image: linear-gradient(#404959, #181b21);
         position: relative;
@@ -34,7 +33,7 @@ $dock-z-index: 10;
         &:hover, &.full{
             .dock-module{
                 span{
-                    top: 60px;
+                    top: 56px;
                     opacity: 1;
                 }
             }
@@ -71,7 +70,7 @@ $dock-z-index: 10;
                 width: 100%;
                 text-align: center;
                 left: 0;
-                top: 60px;
+                top: 56px;
                 opacity: 0;
                 color: #afb2b7;
                 font-size: 13px;
@@ -136,36 +135,38 @@ $dock-z-index: 10;
     }
 }
 
-.pretty-dock-components{
+.dock-components{
     position: relative;
-    padding-top: 4px;
-    padding-bottom: 4px;
     background: linear-gradient(top, #FFFFFF 0%, #E0E4E7 100%);
     border-bottom: 1px solid #98a0aa;
     text-align: center;
+    height: rem-calc(35);
     .components-nav{
         display: none;
         &.active{
-            display: block;
+            display: inline-block;
         }
         a{
-            height: 22px;
-            line-height: 22px;
+            height: rem-calc(35);
+            line-height: rem-calc(35);
             vertical-align: middle;
-            border-radius: 15px;
-            padding: 0 40px;
+            padding: 0 25px;
             color: #575e6c;
-            display: inline-block;
+            display: block;
+            float: left;
             font-weight: bold;
             text-size: 14px;
             cursor: default;
-            margin-left: 15px;
             text-decoration: none;
             font-size: 0.9em;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+            &:hover{
+                background: #d5dce2;
+            }
             &.active{
-                background: #c4cbd1;
-                border: 1px solid #9ea9b4;
-                box-shadow: 0 0 1px 1px #e0e5e9;
+                background: linear-gradient(top, $primary-color 0%, darken($primary-color, 10%) 100%);
+                color: #FFF;
             }
         }
     }

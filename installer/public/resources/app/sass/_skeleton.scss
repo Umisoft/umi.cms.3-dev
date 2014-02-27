@@ -1,3 +1,6 @@
+// Объявнение переменной намеренно вынесено, для расчета высоты $umi-header-height
+$umi-dock-height: 85px;
+
 html{
     height: 100%;
 }
@@ -39,16 +42,6 @@ body{
         text-align: center;
         background: rgba(255, 255, 255, 0.76);
         color: #000000;
-    }
-}
-
-$umi-dock-height: 75px + $topbar-height;
-//TODO: Заменить на сумму высот(отступов) элементов Dock
-.umi-header{
-    height: auto; //TODO: Комментируем пока есть версии дока. $umi-dock-height;
-    ~ .s-full-height{
-        margin-top: -$umi-dock-height;
-        padding-top: $umi-dock-height;
     }
 }
 
@@ -136,13 +129,13 @@ $umi-dock-height: 75px + $topbar-height;
     overflow: hidden;
 }
 
-$umi-dock-height: 75px + $topbar-height;
+$umi-header-height: $umi-dock-height + $topbar-height;
 //TODO: Заменить на сумму высот(отступов) элементов Dock
 .umi-header{
     height: auto; //TODO: Комментируем пока есть версии дока. $umi-dock-height;
     ~ .s-full-height{
-        margin-top: -$umi-dock-height;
-        padding-top: $umi-dock-height;
+        margin-top: -$umi-header-height;
+        padding-top: $umi-header-height;
     }
     position: relative;
     //overflow: hidden;
