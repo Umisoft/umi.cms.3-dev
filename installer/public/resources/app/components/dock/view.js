@@ -51,44 +51,43 @@ define(['App'], function(UMI){
                 }
                 var futureOffset;
 
-                $(dock).mousemove(function(e){
+                var moving = function(el, event){
+                    move.proccess = true;
+                    var isDropdown = $(event.target).closest('.dropdown-menu').size();
+                    var elOffsetLeft = el.offsetLeft;
+                    var elWidth = el.offsetWidth;
+                    var dockParentWidth = el.parentNode.offsetWidth;
+                    def.cur = event.clientX;
+                    if(def.old){
+                        def.def = def.old - def.cur;
+                    }
+                    if(Math.abs(elOffsetLeft) + elWidth > dockParentWidth && !isDropdown){
+                        if(def.def > 0){
+                            // move left
+                            def.coeff = Math.abs(elOffsetLeft) / (event.clientX);
+                            futureOffset = Math.round(parseInt(el.style.marginLeft, 10) + def.def * def.coeff);
+                            if(def.coeff > 0 && futureOffset + parseInt(el.style.left, 10) < -20){
+                                el.style.marginLeft = futureOffset + 'px';
+                            }
+                        } else if(def.def < 0){
+                            // move right
+                            def.coeff = Math.abs((elWidth - dockParentWidth + elOffsetLeft) / (dockParentWidth - event.clientX));
+                            futureOffset = Math.round(parseInt(el.style.marginLeft, 10) + def.def * def.coeff);
+
+                            if(def.coeff > 0 && dockParentWidth < elWidth - 20 + ( futureOffset + (parseInt(el.style.left, 10) ))){
+                                el.style.marginLeft = futureOffset + 'px';
+                            }
+                        }
+                    }
+                    def.old = event.clientX;
+                };
+                $(dock).mousemove(function(event){
                     if(!move.oldtime){
                         move.oldtime = new Date();
                     }
                     move.curtime = new Date();
                     if(move.curtime - move.oldtime > 700 || move.proccess){
-                        moving(this);
-                    }
-
-                    function moving(el){
-                        move.proccess = true;
-                        var isDropdown = $(e.target).closest('.dropdown-menu').size();
-                        var elOffsetLeft = el.offsetLeft;
-                        var elWidth = el.offsetWidth;
-                        var dockParentWidth = el.parentNode.offsetWidth;
-                        def.cur = e.clientX;
-                        if(def.old){
-                            def.def = def.old - def.cur;
-                        }
-                        if(Math.abs(elOffsetLeft) + elWidth > dockParentWidth && !isDropdown){
-                            if(def.def > 0){
-                                // move left
-                                def.coeff = Math.abs(elOffsetLeft) / (e.clientX);
-                                futureOffset = Math.round(parseInt(el.style.marginLeft) + def.def * def.coeff);
-                                if(def.coeff > 0 && futureOffset + parseInt(el.style.left) < -20){
-                                    el.style.marginLeft = futureOffset + 'px';
-                                }
-                            } else if(def.def < 0){
-                                // move right
-                                def.coeff = Math.abs((elWidth - dockParentWidth + elOffsetLeft) / (dockParentWidth - e.clientX));
-                                futureOffset = Math.round(parseInt(el.style.marginLeft) + def.def * def.coeff);
-
-                                if(def.coeff > 0 && dockParentWidth < elWidth - 20 + ( futureOffset + (parseInt(el.style.left) ))){
-                                    el.style.marginLeft = futureOffset + 'px';
-                                }
-                            }
-                        }
-                        def.old = e.clientX;
+                        moving(this, event);
                     }
                 });
             },
@@ -109,13 +108,14 @@ define(['App'], function(UMI){
                     }});
                 };
                 if(!event.relatedTarget){
+                    //TODO: Add unbind event for body
                     $(document.body).bind('mouseover', function(e){
                         if($(dock).hasClass('full') && !($(e.target).closest('.dock')).size()){
                             leaveDock(dock);
                         }
                         $(this).unbind('mouseover');
                     });
-                    return false;
+                    return;
                 }
                 leaveDock(dock);
                 var content = self.get('controller.content');
