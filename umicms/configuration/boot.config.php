@@ -34,18 +34,14 @@ return [
             'factories' => [
                 'route' => [
                     'types' => [
-                        'siteRoute' => 'umicms\project\route\SiteRoute'
+                        'SiteStaticPageRoute' => 'umicms\project\route\SiteStaticPageRoute',
+                        'SiteComponentRoute' => 'umicms\project\route\SiteComponentRoute',
                     ]
                 ]
             ]
         ],
         HmvcTools::NAME => [
-            'dispatcherClass' => 'umicms\hmvc\Dispatcher',
-            'factories' => [
-                'entity' => [
-                    'componentClass' => 'umicms\base\component\Component'
-                ]
-            ]
+            'dispatcherClass' => 'umicms\hmvc\Dispatcher'
         ]
     ]
 ];

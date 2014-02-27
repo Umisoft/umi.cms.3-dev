@@ -49,6 +49,23 @@ class NewsPublicApi extends BaseComplexApi implements IPublicApi
     }
 
     /**
+     * Возвращает селектор для выборки новостей.
+     * @param int $limit максимальное количество новостей
+     * @return ISelector
+     */
+    public function getNews($limit = null)
+    {
+        $news = $this->news()->select()
+            ->orderBy(NewsItem::FIELD_DATE, ISelector::ORDER_DESC);
+
+        if ($limit) {
+            $news->limit($limit);
+        }
+
+        return $news;
+    }
+
+    /**
      * Возвращает селектор для выборки новостей указанных рубрик.
      * @param array $rubricGuids список GUID рубрик новостей
      * @param int $limit максимальное количество новостей
@@ -56,16 +73,11 @@ class NewsPublicApi extends BaseComplexApi implements IPublicApi
      */
     public function getRubricNews($rubricGuids = [], $limit = null)
     {
-        $news = $this->news()->select()
-            ->orderBy(NewsItem::FIELD_DATE, ISelector::ORDER_DESC);
+        $news = $this->getNews($limit);
 
         if (count($rubricGuids)) {
             $news->where(NewsItem::FIELD_RUBRIC . ISelector::FIELD_SEPARATOR . NewsRubric::FIELD_GUID)
                 ->in($rubricGuids);
-        }
-
-        if ($limit) {
-            $news->limit($limit);
         }
 
         return $news;
@@ -79,16 +91,11 @@ class NewsPublicApi extends BaseComplexApi implements IPublicApi
      */
     public function getSubjectNews($subjectGuids = [], $limit = null)
     {
-        $news = $this->news()->select()
-            ->orderBy(NewsItem::FIELD_DATE, ISelector::ORDER_DESC);
+        $news = $this->getNews($limit);
 
         if (count($subjectGuids)) {
             $news->where(NewsItem::FIELD_SUBJECTS . ISelector::FIELD_SEPARATOR . NewsSubject::FIELD_GUID)
                 ->in($subjectGuids);
-        }
-
-        if ($limit) {
-            $news->limit($limit);
         }
 
         return $news;

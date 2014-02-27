@@ -179,11 +179,26 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $rubricCollection = $this->getCollectionManager()->getCollection('NewsRubric');
 
-        $structureCollection->add('news', 'system')
+        $newsPage = $structureCollection->add('news', 'system')
             ->setValue('displayName', 'Новости')
             ->setGUID('9ee6745f-f40d-46d8-8043-d959594628ce')
-            ->setValue('layout', $this->testLayout)
-            ->getProperty('componentPath')->setValue('news');
+            ->setValue('layout', $this->testLayout);
+        $newsPage->getProperty('componentPath')->setValue('news');
+
+        $structureCollection->add('rubric', 'system', $newsPage)
+            ->setValue('displayName', 'Новостная рубрика')
+            ->setGUID('9ee6745f-f40d-46d8-8043-d95959462811')
+            ->getProperty('componentPath')->setValue('rubric');
+
+        $structureCollection->add('subject', 'system', $newsPage)
+            ->setValue('displayName', 'Новостной сюжет')
+            ->setGUID('9ee6745f-f40d-46d8-8043-d95959462822')
+            ->getProperty('componentPath')->setValue('subject');
+
+        $structureCollection->add('item', 'system', $newsPage)
+            ->setValue('displayName', 'Новость')
+            ->setGUID('9ee6745f-f40d-46d8-8043-d95959462833')
+            ->getProperty('componentPath')->setValue('item');
 
         $rubric = $rubricCollection->add('company')
             ->setValue('displayName', 'Новости сайта')

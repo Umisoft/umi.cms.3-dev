@@ -6,7 +6,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\structure\site;
+namespace umicms\project\module\news\site\rubric;
 
 use umi\route\IRouteFactory;
 use umicms\base\component\SiteComponent;
@@ -14,9 +14,16 @@ use umicms\base\component\SiteComponent;
 return [
 
     SiteComponent::OPTION_CLASS => 'umicms\base\component\SiteComponent',
-
+    
     SiteComponent::OPTION_CONTROLLERS => [
-        'static' => 'umicms\project\module\structure\site\controller\StaticPageController',
+        'index' => __NAMESPACE__ . '\controller\IndexController',
+        'rubric' => __NAMESPACE__ . '\controller\RubricController',
+    ],
+
+    SiteComponent::OPTION_WIDGET => [
+        'view' => __NAMESPACE__ .  '\widget\RubricWidget',
+        'newsList' => __NAMESPACE__ . '\widget\RubricNewsListWidget',
+        'list' => __NAMESPACE__ .  '\widget\RubricListWidget',
     ],
 
     SiteComponent::OPTION_VIEW        => [
@@ -26,10 +33,17 @@ return [
     ],
 
     SiteComponent::OPTION_ROUTES      => [
-        'static' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
+        'rubric' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{url}',
             'defaults' => [
-                'controller' => 'static'
+                'controller' => 'rubric'
+            ]
+        ],
+        'index' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'defaults' => [
+                'controller' => 'index'
             ]
         ]
     ]

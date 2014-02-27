@@ -9,19 +9,19 @@
 namespace umicms\project\module\users\admin;
 
 use umi\route\IRouteFactory;
-use umicms\base\component\Component;
+use umicms\base\component\AdminComponent;
 
 return [
 
-    Component::OPTION_SETTINGS => [
+    AdminComponent::OPTION_CLASS => 'umicms\base\component\AdminComponent',
 
-    ],
+    AdminComponent::OPTION_SETTINGS => [],
 
-    Component::OPTION_COMPONENTS => [
+    AdminComponent::OPTION_COMPONENTS => [
         'user' => '{#lazy:~/project/module/users/admin/user/component.config.php}'
     ],
 
-    Component::OPTION_ROUTES      => [
+    AdminComponent::OPTION_ROUTES      => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{component}'

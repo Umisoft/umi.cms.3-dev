@@ -15,7 +15,7 @@ use umi\http\Request;
 use umi\http\Response;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
-use umicms\base\component\Component;
+use umicms\base\component\AdminComponent;
 use umicms\project\config\IAdminSettingsAware;
 use umicms\project\config\TAdminSettingsAware;
 use umicms\serialization\ISerializationAware;
@@ -24,7 +24,7 @@ use umicms\serialization\TSerializationAware;
 /**
  * Приложение административной панели.
  */
-class AdminApplication extends Component implements IAdminSettingsAware, IToolkitAware, ISerializationAware
+class AdminApplication extends AdminComponent implements IAdminSettingsAware, IToolkitAware, ISerializationAware
 {
     use TAdminSettingsAware;
     use TToolkitAware;
@@ -83,6 +83,8 @@ class AdminApplication extends Component implements IAdminSettingsAware, IToolki
             $serializer($result);
             $response->setContent($serializer->output());
         }
+
+        return $response;
     }
 
     /**

@@ -9,21 +9,23 @@
 namespace umicms\project\module\users\admin\user;
 
 use umi\route\IRouteFactory;
-use umicms\base\component\Component;
+use umicms\base\component\AdminComponent;
 
 return [
 
-    Component::OPTION_SETTINGS => [
+    AdminComponent::OPTION_CLASS => 'umicms\base\component\AdminComponent',
+
+    AdminComponent::OPTION_SETTINGS => [
 
     ],
 
-    Component::OPTION_CONTROLLERS => [
+    AdminComponent::OPTION_CONTROLLERS => [
         'list' => __NAMESPACE__ . '\controller\ListController',
         'item' => __NAMESPACE__ . '\controller\ItemController',
-        'action' => __NAMESPACE__ . '\controller\ActionController',
+        'action' => __NAMESPACE__ . '\controller\ActionController'
     ],
 
-    Component::OPTION_ROUTES      => [
+    AdminComponent::OPTION_ROUTES      => [
 
         'list' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,

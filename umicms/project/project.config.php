@@ -113,7 +113,6 @@ return [
 
         'site' => [
             'type' => IRouteFactory::ROUTE_FIXED,
-            'route' => '/',
             'defaults' => [
                 'component' => 'site'
             ]

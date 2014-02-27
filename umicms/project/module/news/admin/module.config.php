@@ -9,21 +9,23 @@
 namespace umicms\project\module\news\admin;
 
 use umi\route\IRouteFactory;
-use umicms\base\component\Component;
+use umicms\base\component\AdminComponent;
 
 return [
 
-    Component::OPTION_SETTINGS => [
+    AdminComponent::OPTION_CLASS => 'umicms\base\component\AdminComponent',
+
+    AdminComponent::OPTION_SETTINGS => [
 
     ],
 
-    Component::OPTION_COMPONENTS => [
+    AdminComponent::OPTION_COMPONENTS => [
         'rubric' => '{#lazy:~/project/module/news/admin/rubric/component.config.php}',
         'item' => '{#lazy:~/project/module/news/admin/item/component.config.php}',
         'subject' => '{#lazy:~/project/module/news/admin/subject/component.config.php}'
     ],
 
-    Component::OPTION_ROUTES      => [
+    AdminComponent::OPTION_ROUTES      => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{component}'

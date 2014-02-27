@@ -1,0 +1,10 @@
+<?php
+/**
+ * @var umicms\project\module\news\object\NewsRubric $rubric
+ */
+?>
+<h1><?= $rubric->h1 ?></h1>
+<?= $rubric->content ?>
+
+<?= $this->widget('list', ['parentGuid' => $rubric->guid, 'template' => 'list']); ?>
+<?= $this->widget('newsList', ['rubricGuids' => [$rubric->guid], 'template' => 'newsList']); ?>

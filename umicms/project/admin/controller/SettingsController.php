@@ -10,7 +10,7 @@ namespace umicms\project\admin\controller;
 
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
-use umicms\base\component\Component;
+use umicms\base\component\AdminComponent;
 use umicms\base\controller\BaseController;
 
 /**
@@ -61,13 +61,13 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
     {
         $modules = [];
         /**
-         * @var Component $application
+         * @var AdminComponent $application
          */
         $application = $this->getComponent();
 
         foreach ($application->getChildComponentNames() as $moduleName) {
             /**
-             * @var Component $module
+             * @var AdminComponent $module
              */
             $module = $application->getChildComponent($moduleName);
 
@@ -75,7 +75,7 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
             foreach ($module->getChildComponentNames() as $componentName) {
                 $component = $module->getChildComponent($componentName);
                 /**
-                 * @var Component $component
+                 * @var AdminComponent $component
                  */
                 $components[] = [
                     'name'     => $componentName,

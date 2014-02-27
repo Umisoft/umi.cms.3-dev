@@ -6,7 +6,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\structure\site;
+namespace umicms\project\module\news\site\item;
 
 use umi\route\IRouteFactory;
 use umicms\base\component\SiteComponent;
@@ -14,9 +14,15 @@ use umicms\base\component\SiteComponent;
 return [
 
     SiteComponent::OPTION_CLASS => 'umicms\base\component\SiteComponent',
-
+    
     SiteComponent::OPTION_CONTROLLERS => [
-        'static' => 'umicms\project\module\structure\site\controller\StaticPageController',
+        'index' => __NAMESPACE__ . '\controller\IndexController',
+        'item' => __NAMESPACE__ . '\controller\NewsItemController',
+    ],
+
+    SiteComponent::OPTION_WIDGET => [
+        'view' => __NAMESPACE__ . '\widget\NewsItemWidget',
+        'list' => __NAMESPACE__ . '\widget\NewsItemListWidget'
     ],
 
     SiteComponent::OPTION_VIEW        => [
@@ -26,10 +32,17 @@ return [
     ],
 
     SiteComponent::OPTION_ROUTES      => [
-        'static' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
+        'item' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{slug}',
             'defaults' => [
-                'controller' => 'static'
+                'controller' => 'item'
+            ]
+        ],
+        'index' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'defaults' => [
+                'controller' => 'index'
             ]
         ]
     ]

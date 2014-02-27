@@ -43,7 +43,7 @@ class IndexController extends BaseController
         }
 
         return $this->createViewResponse(
-            'system/view',
+            'index',
             [
                 'page' => $currentElement
             ]
