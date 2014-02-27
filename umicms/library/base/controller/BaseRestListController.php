@@ -50,7 +50,7 @@ abstract class BaseRestListController extends BaseController implements IObjectP
         switch($this->getRequest()->getMethod()) {
             case 'GET': {
                 return $this->createViewResponse(
-                    'list', ['list' => $this->getList()]
+                    'list', [$this->getCollectionName() => $this->getList()]
                 );
             }
             case 'PUT':

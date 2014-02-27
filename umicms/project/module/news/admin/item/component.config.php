@@ -16,7 +16,7 @@ return [
     AdminComponent::OPTION_CLASS => 'umicms\base\component\AdminComponent',
 
     AdminComponent::OPTION_SETTINGS => [
-
+        AdminComponent::OPTION_COLLECTION_NAME => 'NewsItem'
     ],
 
     AdminComponent::OPTION_CONTROLLERS => [
@@ -27,23 +27,16 @@ return [
 
     AdminComponent::OPTION_ROUTES      => [
 
-        'list' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/list',
-            'defaults' => [
-                'controller' => 'list'
-            ]
-        ],
-
         'item' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{guid:guid}',
+            'route'    => '/{collection}/{id:integer}',
             'defaults' => [
+                'collection' => 'NewsItem',
                 'controller' => 'item'
             ]
         ],
 
-        'itemAction' => [
+/*        'itemAction' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/{guid:guid}/{action}',
             'defaults' => [
@@ -56,6 +49,15 @@ return [
             'route'    => '/{action}',
             'defaults' => [
                 'controller' => 'action'
+            ]
+        ],*/
+
+        'list' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/{collection}',
+            'defaults' => [
+                'collection' => 'NewsItem',
+                'controller' => 'list'
             ]
         ]
     ]

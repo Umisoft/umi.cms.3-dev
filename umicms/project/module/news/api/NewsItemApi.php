@@ -50,6 +50,28 @@ class NewsItemApi extends BaseCollectionApi
     }
 
     /**
+     * Возвращает новость по ее id.
+     * @param int $id
+     * @throws NonexistentEntityException если не удалось получить новость
+     * @return NewsItem
+     */
+    public function getById($id) {
+
+        try {
+            return $this->getCollection()->getById($id);
+        } catch(IException $e) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find news item by id "{id}".',
+                    ['id' => $id]
+                ),
+                0,
+                $e
+            );
+        }
+    }
+
+    /**
      * Помечает новость на удаление.
      * @param NewsItem $item
      */

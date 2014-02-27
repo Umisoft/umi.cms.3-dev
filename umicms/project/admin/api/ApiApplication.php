@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\admin;
+namespace umicms\project\admin\api;
 
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpNotFound;
@@ -24,7 +24,7 @@ use umicms\serialization\TSerializationAware;
 /**
  * Приложение административной панели.
  */
-class AdminApplication extends AdminComponent implements IAdminSettingsAware, IToolkitAware, ISerializationAware
+class ApiApplication extends AdminComponent implements IAdminSettingsAware, IToolkitAware, ISerializationAware
 {
     use TAdminSettingsAware;
     use TToolkitAware;
@@ -60,9 +60,7 @@ class AdminApplication extends AdminComponent implements IAdminSettingsAware, IT
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        if (!isset($context->getRouteParams()['uri'])) {
-            $this->currentRequestFormat = $this->getRequestFormatByPostfix($request->getRequestFormat(null));
-        }
+        $this->currentRequestFormat = $this->getRequestFormatByPostfix($request->getRequestFormat(null));
 
         return null;
     }
@@ -72,17 +70,14 @@ class AdminApplication extends AdminComponent implements IAdminSettingsAware, IT
      */
     public function onDispatchResponse(IDispatchContext $context, Response $response)
     {
+        $result = [
+            'result' => $response->getContent()
+        ];
 
-        if (!isset($context->getRouteParams()['uri'])) {
-            $result = [
-                'result' => $response->getContent()
-            ];
-
-            $serializer = $this->getSerializer($this->currentRequestFormat, $result);
-            $serializer->init();
-            $serializer($result);
-            $response->setContent($serializer->output());
-        }
+        $serializer = $this->getSerializer($this->currentRequestFormat, $result);
+        $serializer->init();
+        $serializer($result);
+        $response->setContent($serializer->output());
 
         return $response;
     }

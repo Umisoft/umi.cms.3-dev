@@ -85,8 +85,8 @@ class ErrorController extends BaseController
             [
                 'error' => $this->exception
             ]
-        );
-        //  ->setStatusCode(Response::HTTP_NOT_FOUND); TODO: enable!
+        )
+        ->setStatusCode(Response::HTTP_NOT_FOUND);
     }
 
     /**

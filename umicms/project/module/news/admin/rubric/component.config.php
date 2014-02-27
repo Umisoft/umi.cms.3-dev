@@ -15,6 +15,6 @@ return [
     AdminComponent::OPTION_CLASS => 'umicms\base\component\AdminComponent',
 
     AdminComponent::OPTION_SETTINGS => [
-
+        AdminComponent::OPTION_COLLECTION_NAME => 'NewsRubric'
     ]
 ];

@@ -39,8 +39,8 @@ class ItemController extends BaseRestItemController
      */
     protected function get()
     {
-        $guid = $this->getRouteVar('guid');
-        return $this->api->news()->get($guid);
+        $id = $this->getRouteVar('id');
+        return $this->api->news()->getById($id);
     }
 
     /**

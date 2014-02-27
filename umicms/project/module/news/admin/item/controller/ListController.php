@@ -17,6 +17,7 @@ use umicms\project\module\news\api\NewsPublicApi;
  */
 class ListController extends BaseRestListController
 {
+
     /**
      * @var NewsPublicApi $api
      */
@@ -34,6 +35,14 @@ class ListController extends BaseRestListController
     /**
      * {@inheritdoc}
      */
+    protected function getCollectionName()
+    {
+        return $this->api->news()->collectionName;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function getList()
     {
         return  $this->api->news()->select(false);
@@ -42,7 +51,7 @@ class ListController extends BaseRestListController
     /**
      * {@inheritdoc}
      */
-    protected function create()
+    protected function create(array $data)
     {
         // TODO: Implement create() method.
     }

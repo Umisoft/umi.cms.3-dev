@@ -50,6 +50,7 @@ class DefaultController extends BaseController
             [
                 'content' => $this->response->getContent(),
                 'baseUrl' => $this->getContext()->getBaseUrl(),
+                'baseApiUrl' => $this->getComponent()->getRouter()->assemble('api'),
                 'authenticated' => $this->api->isAuthenticated()
             ]
         );

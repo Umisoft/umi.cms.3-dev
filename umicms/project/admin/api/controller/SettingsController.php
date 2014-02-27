@@ -6,7 +6,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\admin\controller;
+namespace umicms\project\admin\api\controller;
 
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
@@ -18,8 +18,6 @@ use umicms\base\controller\BaseController;
  */
 class SettingsController extends BaseController implements ICollectionManagerAware
 {
-    const OPTION_ADMIN_INTERFACE = 'interface';
-
     use TCollectionManagerAware;
 
     /**
@@ -27,11 +25,15 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
      */
     public function __invoke()
     {
+
+        list($modules, $resources) = $this->getModulesSettings();
+
         return $this->createViewResponse(
             'settings',
             [
-                'modules' => $this->getModulesSettings(),
-                'collections' => $this->getCollectionsSettings()
+                'modules' => $modules,
+                'collections' => $this->getCollectionsSettings(),
+                'resources' => $resources
             ]
         );
     }
@@ -60,6 +62,7 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
     protected function getModulesSettings()
     {
         $modules = [];
+        $resources = [];
         /**
          * @var AdminComponent $application
          */
@@ -81,20 +84,41 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
                     'name'     => $componentName,
                     'path'     => $component->getPath(),
                     'settings' => $component->getSettings()
-                            ->get(self::OPTION_ADMIN_INTERFACE) ? : []
+                            ->get(AdminComponent::OPTION_ADMIN_INTERFACE) ? : []
                 ];
+
+                if ($component->getSettings()->has(AdminComponent::OPTION_COLLECTION_NAME)) {
+                    $resources[] = [
+                        'collection' => $component->getSettings()->get(AdminComponent::OPTION_COLLECTION_NAME),
+                        'uri' => $this->assembleResourceUri($module, $component)
+                    ];
+                }
             }
 
             $modules[] = [
                 'name'       => $moduleName,
                 'path'       => $module->getPath(),
                 'settings'   => $module->getSettings()
-                        ->get(self::OPTION_ADMIN_INTERFACE) ? : [],
+                        ->get(AdminComponent::OPTION_ADMIN_INTERFACE) ? : [],
                 'components' => $components
             ];
         }
 
-        return $modules;
+        return [$modules, $resources];
+    }
+
+    protected function assembleResourceUri(AdminComponent $module, AdminComponent $component)
+    {
+
+        $moduleUri = $this->getComponent()->getRouter()->assemble('component', [
+            'component' => $module->getName()
+        ]);
+
+        $componentUri = $module->getRouter()->assemble('component', [
+            'component' => $component->getName()
+        ]);
+
+        return $this->getContext()->getBaseUrl() . $moduleUri . $componentUri;
     }
 
 }
