@@ -60,6 +60,8 @@ define(
          */
         var UMI = window.UMI = window.UMI || {};
 
+        Ember.Inflector.inflector = new Ember.Inflector();
+
         UMI = Ember.Application.create({
             rootElement: '#body',
             Resolver: Ember.DefaultResolver.extend({
@@ -77,6 +79,7 @@ define(
             document: $(document)
         };
 
+        var baseURL = window.UmiSettings.baseURL.slice(1);
         /**
          @class UmiRESTAdapter
          @constructor
@@ -84,7 +87,7 @@ define(
          **/
         DS.UmiRESTAdapter = DS.RESTAdapter.extend({
             /**
-             Метод возвращает URI запроса для CRUD операций данной модели
+             Метод возвращает URI запроса для CRUD операций данной модели.
 
              @method buildURL
              @return {String} CRUD ресурс для данной модели
@@ -93,12 +96,23 @@ define(
                 var url = [],
                     host = Ember.get(this, 'host'),
                     prefix = this.urlPrefix();
-                if (id) { url.push(id); }
-                if (prefix) { url.unshift(prefix); }
+                if (type){
+                    type = type.charAt(0).toUpperCase() + type.slice(1);
+                    url.push(type);
+                }
+                if(id){
+                    url.push(id);
+                }
+                if(prefix){
+                    url.unshift(prefix);
+                }
                 url = url.join('/');
-                if (!host && url) { url = '/' + url; }
+                if(!host && url){
+                    url = '/' + url;
+                }
                 return url + ".json";
             },
+            namespace: baseURL + '/api',
             ajaxOptions: function(url, type, hash){
                 hash = hash || {};
                 hash.url = url;
@@ -128,6 +142,22 @@ define(
                 }
 
                 return hash;
+            }
+        });
+
+        UMI.ApplicationSerializer = DS.RESTSerializer.extend({
+            typeForRoot: function(root) {
+                var camelized = Ember.String.camelize(root);
+                return camelized;
+            },
+            normalizePayload: function(type, payload) {
+                payload = payload.result;
+                return payload;
+            },
+            serializeIntoHash: function(hash, type, record, options) {
+                console.log(type.typeKey);
+                var root = type.typeKey;
+                hash[root] = this.serialize(record, options);
             }
         });
 
