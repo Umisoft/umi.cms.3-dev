@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\serialization\json\orm\field;
+namespace umicms\serialization\json\orm;
 
 use umi\orm\metadata\field\BaseField;
 use umi\orm\metadata\field\IRelationField;
@@ -46,8 +46,6 @@ class FieldSerializer extends BaseSerializer
             $info['bridgeCollection'] = $field->getBridgeCollectionName();
             $info['relatedField'] = $field->getRelatedFieldName();
         }
-
-
 
         $this->delegate(
             $info

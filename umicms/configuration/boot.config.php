@@ -9,7 +9,6 @@
 
 namespace umicms\configuration;
 
-use umi\hmvc\toolbox\HmvcTools;
 use umi\route\toolbox\RouteTools;
 use umicms\Bootstrap;
 
@@ -39,9 +38,6 @@ return [
                     ]
                 ]
             ]
-        ],
-        HmvcTools::NAME => [
-            'dispatcherClass' => 'umicms\hmvc\Dispatcher'
         ]
     ]
 ];

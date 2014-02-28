@@ -10,8 +10,8 @@
 namespace umicms\serialization\xml\object;
 
 use umi\orm\object\property\IProperty;
-use umicms\base\object\CmsElement;
-use umicms\base\object\ICmsObject;
+use umicms\orm\object\CmsElement;
+use umicms\orm\object\ICmsObject;
 use umicms\serialization\xml\BaseSerializer;
 
 /**

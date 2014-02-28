@@ -45,7 +45,7 @@ return [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'pid',
             'accessor'   => 'getParent',
-            'target'     => 'BlogCategory',
+            'target'     => 'blogCategory',
             'readOnly'   => true
         ],
         IHierarchicObject::FIELD_MPATH           => [
@@ -105,7 +105,7 @@ return [
         'content'                                => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
         'posts'                                  => [
             'type'        => IField::TYPE_HAS_MANY,
-            'target'      => 'BlogPost',
+            'target'      => 'blogPost',
             'targetField' => 'category'
         ]
 

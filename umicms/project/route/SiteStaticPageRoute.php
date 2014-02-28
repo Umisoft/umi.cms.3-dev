@@ -13,7 +13,7 @@ use umi\orm\exception\NonexistentEntityException;
 use umi\orm\metadata\field\special\UriField;
 use umi\orm\object\IHierarchicObject;
 use umi\route\type\BaseRoute;
-use umicms\base\component\BaseComponent;
+use umicms\hmvc\component\BaseComponent;
 use umicms\project\config\ISiteSettingsAware;
 use umicms\project\config\TSiteSettingsAware;
 use umicms\project\module\structure\api\StructureApi;

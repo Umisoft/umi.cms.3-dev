@@ -24,6 +24,7 @@ class CollectionSerializer extends BaseSerializer
     public function __invoke(BaseCollection $collection)
     {
         $this->writeElement('name', $collection->getName());
+
         $this->delegate($collection->getMetadata());
     }
 }

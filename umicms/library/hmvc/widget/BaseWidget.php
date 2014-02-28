@@ -7,17 +7,17 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\base\controller;
+namespace umicms\hmvc\widget;
 
-use umi\hmvc\controller\BaseController as FrameworkController;
+use umi\hmvc\widget\BaseWidget as FrameworkWidget;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 
 /**
- * Базовый контроллер UMI.CMS
+ * Базовый виджет UMI.CMS
  */
-abstract class BaseController extends FrameworkController implements ILocalizable
+abstract class BaseWidget extends FrameworkWidget implements ILocalizable
 {
     use TLocalizable;
-
 }
+ 

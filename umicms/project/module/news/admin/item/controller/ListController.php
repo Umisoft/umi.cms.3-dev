@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\news\admin\item\controller;
 
-use umicms\base\controller\BaseRestListController;
+use umicms\hmvc\controller\BaseRestListController;
 use umicms\project\module\news\api\NewsPublicApi;
 
 /**

@@ -9,7 +9,7 @@
 namespace umicms\project\site\controller;
 
 use umi\http\Response;
-use umicms\base\controller\BaseController;
+use umicms\hmvc\controller\BaseController;
 use umicms\project\module\structure\api\StructureApi;
 
 /**

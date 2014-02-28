@@ -9,8 +9,9 @@
 
 namespace umicms\project\module\news\admin\item\controller;
 
-use umicms\base\controller\BaseRestItemController;
-use umicms\base\object\ICmsObject;
+use umi\orm\object\property\datetime\IDateTimeProperty;
+use umicms\hmvc\controller\BaseRestItemController;
+use umicms\orm\object\ICmsObject;
 use umicms\project\module\news\api\NewsPublicApi;
 use umicms\project\module\news\object\NewsItem;
 
@@ -48,8 +49,13 @@ class ItemController extends BaseRestItemController
      */
     protected function update(ICmsObject $object, array $data)
     {
+        // TODO: forms
         foreach ($data as $propertyName => $value) {
-            if ($object->hasProperty($propertyName) && !$object->getProperty($propertyName)->getIsReadOnly()) {
+            if ($object->hasProperty($propertyName)
+                && !$object->getProperty($propertyName)->getIsReadOnly()
+                && !is_array($value)
+
+            ) {
                 $object->setValue($propertyName, $value);
             }
         }

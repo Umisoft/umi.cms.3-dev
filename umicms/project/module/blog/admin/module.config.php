@@ -8,11 +8,11 @@
 
 namespace umicms\project\module\blog\admin;
 
-use umicms\base\component\AdminComponent;
+use umicms\hmvc\component\AdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\base\component\AdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\AdminComponent',
 
     AdminComponent::OPTION_SETTINGS => [
 

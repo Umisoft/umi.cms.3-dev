@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\news\site\rubric\controller;
 
-use umicms\base\controller\BaseController;
+use umicms\hmvc\controller\BaseController;
 use umicms\project\module\news\api\NewsPublicApi;
 
 /**

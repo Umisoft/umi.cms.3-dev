@@ -20,7 +20,7 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\base\controller\BaseController;
+use umicms\hmvc\controller\BaseController;
 use umicms\project\module\structure\object\StaticPage;
 use umicms\project\module\users\api\UsersApi;
 use umicms\project\module\users\object\User;
@@ -75,7 +75,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var SimpleCollection $userCollection
          */
-        $userCollection = $this->getCollectionManager()->getCollection('User');
+        $userCollection = $this->getCollectionManager()->getCollection('user');
 
         /**
          * @var User $sv
@@ -94,19 +94,19 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var SimpleHierarchicCollection $structureCollection
          */
-        $structureCollection = $this->getCollectionManager()->getCollection('Structure');
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
         /**
          * @var SimpleHierarchicCollection $categoriesCollection
          */
-        $categoriesCollection = $this->getCollectionManager()->getCollection('BlogCategory');
+        $categoriesCollection = $this->getCollectionManager()->getCollection('blogCategory');
         /**
          * @var SimpleCollection $postCollection
          */
-        $postCollection = $this->getCollectionManager()->getCollection('BlogPost');
+        $postCollection = $this->getCollectionManager()->getCollection('blogPost');
         /**
          * @var SimpleHierarchicCollection $commentCollection
          */
-        $commentCollection = $this->getCollectionManager()->getCollection('BlogComment');
+        $commentCollection = $this->getCollectionManager()->getCollection('blogComment');
 
 
         $structureCollection->add('blog', 'system')
@@ -169,15 +169,25 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var SimpleHierarchicCollection $structureCollection
          */
-        $structureCollection = $this->getCollectionManager()->getCollection('Structure');
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
         /**
          * @var SimpleCollection $newsCollection
          */
-        $newsCollection = $this->getCollectionManager()->getCollection('NewsItem');
+        $newsCollection = $this->getCollectionManager()->getCollection('newsItem');
         /**
          * @var SimpleHierarchicCollection $rubricCollection
          */
-        $rubricCollection = $this->getCollectionManager()->getCollection('NewsRubric');
+        $rubricCollection = $this->getCollectionManager()->getCollection('newsRubric');
+        /**
+         * @var SimpleCollection $subjectCollection
+         */
+        $subjectCollection = $this->getCollectionManager()->getCollection('newsSubject');
+
+        $subject1 = $subjectCollection->add()
+            ->setValue('displayName', 'Призраки');
+
+        $subject2 = $subjectCollection->add()
+            ->setValue('displayName', 'Привидения');
 
         $newsPage = $structureCollection->add('news', 'system')
             ->setValue('displayName', 'Новости')
@@ -206,7 +216,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('h1', 'Новости сайта')
             ->setGUID('8650706f-04ca-49b6-a93d-966a42377a61');
 
-        $newsCollection->add()
+        $item = $newsCollection->add()
             ->setValue('displayName', 'Названа причина социопатии современных зомби')
             ->setValue('metaTitle', 'Названа причина социопатии современных зомби')
             ->setValue('h1', 'Названа причина социопатии современных зомби')
@@ -214,9 +224,12 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('content', '<p>По результатам исследования Ассоциации любителей и ненавистников зомби, главной причиной социопатии зомби является еда из ресторанов МакДональдс.  Ученые давно бьют тревогу по поводу образа жизни молодых зомби и сейчас активно занялись пропагандой спорта, фитнес-клубов, активных игр на воздухе и популяризацией вегетарианской пищи среди представителей этого вида.  Пока ученые занимаются всеми этими вещами, молодые зомби курят по подъездам, впадают в депрессивные состоянии, примыкают к эмо-группировкам и совершенно не хотят работать.  &laquo;А между тем, этих ребят еще можно спасти, &mdash; комментирует Виктория Евдокимова, Охотница за привидениями со стажем, &mdash; и это в силах каждого из нас. Если увидите на улице одинокого зомби, подойдите и поинтересуйтесь, как обстоят дела с его девчонкой, какие у него планы на выходные, и что он делал прошлым летом&raquo;.</p>')
             ->setValue('rubric', $rubric)
             ->setGUID('d6eb9ad1-667e-429d-a476-fa64c5eec115')
-            ->setValue('slug', 'zombi')
-            ->getValue('date')->setTimestamp(strtotime('2010-08-01 17:34:00'));
+            ->setValue('slug', 'zombi');
 
+        $item->getValue('date')->setTimestamp(strtotime('2010-08-01 17:34:00'));
+        $subjects = $item->getValue('subjects');
+        $subjects->attach($subject1);
+        $subjects->attach($subject2);
 
         $newsCollection->add()
             ->setValue('displayName', 'Смена состава в Отряде в бикини')
@@ -247,11 +260,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var SimpleCollection $newsCollection
          */
-        $newsCollection = $this->getCollectionManager()->getCollection('NewsItem');
+        $newsCollection = $this->getCollectionManager()->getCollection('newsItem');
         /**
          * @var SimpleHierarchicCollection $rubricCollection
          */
-        $rubricCollection = $this->getCollectionManager()->getCollection('NewsRubric');
+        $rubricCollection = $this->getCollectionManager()->getCollection('newsRubric');
 
         $gratitude = $rubricCollection->add('gratitude')
             ->setValue('displayName', 'Благодарности')
@@ -289,11 +302,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var SimpleHierarchicCollection $structureCollection
          */
-        $structureCollection = $this->getCollectionManager()->getCollection('Structure');
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
         /**
          * @var SimpleCollection $structureCollection
          */
-        $layoutCollection = $this->getCollectionManager()->getCollection('Layout');
+        $layoutCollection = $this->getCollectionManager()->getCollection('layout');
 
         $layoutCollection->add()
             ->setValue('fileName', 'layout')

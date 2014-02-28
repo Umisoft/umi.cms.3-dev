@@ -16,7 +16,7 @@ use umi\http\Response;
 use umi\http\THttpAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
-use umicms\base\component\SiteComponent;
+use umicms\hmvc\component\SiteComponent;
 use umicms\project\config\ISiteSettingsAware;
 use umicms\project\config\TSiteSettingsAware;
 use umicms\project\module\structure\api\StructureApi;

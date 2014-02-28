@@ -26,7 +26,7 @@ class LayoutApi extends BaseCollectionApi implements ISiteSettingsAware
     /**
      * {@inheritdoc}
      */
-    public $collectionName = 'Layout';
+    public $collectionName = 'layout';
 
     /**
      * Возвращает шаблон сайта по умолчанию

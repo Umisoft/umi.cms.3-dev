@@ -63,7 +63,7 @@ return [
         'category'              => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'category_id',
-            'target'     => 'BlogCategory'
+            'target'     => 'blogCategory'
         ],
         'slug'                  => [
             'type'       => IField::TYPE_SLUG,
@@ -73,7 +73,7 @@ return [
         ],
         'tags'                  => [
             'type'         => IField::TYPE_MANY_TO_MANY,
-            'target'       => 'BlogTag',
+            'target'       => 'blogTag',
             'bridge'       => 'PostTag',
             'relatedField' => 'post',
             'targetField'  => 'tag'

@@ -10,7 +10,7 @@
 namespace umicms\project\module\news\site\subject\widget;
 
 use umicms\project\module\news\api\NewsPublicApi;
-use umicms\base\widget\BaseWidget;
+use umicms\hmvc\widget\BaseWidget;
 
 /**
  * Виджет для вывода списка новостей по сюжетам

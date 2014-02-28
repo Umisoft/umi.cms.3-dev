@@ -11,7 +11,7 @@ namespace umicms\project\route;
 
 use umi\orm\object\IHierarchicObject;
 use umi\route\type\BaseRoute;
-use umicms\base\component\SiteComponent;
+use umicms\hmvc\component\SiteComponent;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\SystemPage;
 

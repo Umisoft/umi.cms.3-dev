@@ -19,6 +19,7 @@ return [
     ],
 
     ApiApplication::OPTION_CONTROLLERS => [
+        ApiApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
         'settings' => __NAMESPACE__ . '\controller\SettingsController',
     ],
 

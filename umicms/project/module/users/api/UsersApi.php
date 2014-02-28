@@ -30,7 +30,7 @@ class UsersApi extends BaseCollectionApi implements IPublicApi, IAuthenticationA
     /**
      * {@inheritdoc}
      */
-    public $collectionName = 'User';
+    public $collectionName = 'user';
     /**
      * @var string $passwordSalt маска соли для хэширования паролей
      */

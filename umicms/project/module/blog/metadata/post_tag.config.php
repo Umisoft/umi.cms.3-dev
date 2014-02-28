@@ -55,9 +55,9 @@ return [
         'updated'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
         'post'                  => ['type'       => IField::TYPE_BELONGS_TO,
                                     'columnName' => 'post_id',
-                                    'target'     => 'BlogPost'
+                                    'target'     => 'blogPost'
         ],
-        'tag'                   => ['type' => IField::TYPE_BELONGS_TO, 'columnName' => 'tag_id', 'target' => 'BlogTag']
+        'tag'                   => ['type' => IField::TYPE_BELONGS_TO, 'columnName' => 'tag_id', 'target' => 'blogTag']
 
     ],
     'types'      => [

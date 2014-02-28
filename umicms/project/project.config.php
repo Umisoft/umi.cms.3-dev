@@ -54,44 +54,84 @@ return [
         OrmTools::NAME => [
             'factories' => [
                 'object' => [
-                    'defaultObjectClass' => 'umicms\base\object\CmsObject',
-                    'defaultHierarchicObjectClass' => 'umicms\base\object\CmsElement'
+                    'defaultObjectClass' => 'umicms\orm\object\CmsObject',
+                    'defaultHierarchicObjectClass' => 'umicms\orm\object\CmsElement'
+                ],
+                'objectCollection' => [
+                    'defaultSimpleCollectionClass' => 'umicms\orm\collection\SimpleCollection',
+                    'defaultHierarchicCollectionClass' => 'umicms\orm\collection\SimpleHierarchicCollection',
+                    'defaultLinkedHierarchicCollectionClass' => 'umicms\orm\collection\LinkedHierarchicCollection',
+                    'defaultCommonHierarchyClass' => 'umicms\orm\collection\CommonHierarchy'
                 ]
             ],
             'metadata'    => [
-                'Structure' => '{#lazy:~/project/module/structure/metadata/structure.config.php}',
-                'Layout' => '{#lazy:~/project/module/structure/metadata/layout.config.php}',
+                'structure' => '{#lazy:~/project/module/structure/metadata/structure.config.php}',
+                'layout' => '{#lazy:~/project/module/structure/metadata/layout.config.php}',
 
-                'NewsRubric' => '{#lazy:~/project/module/news/metadata/rubric.config.php}',
-                'NewsItem' => '{#lazy:~/project/module/news/metadata/news_item.config.php}',
-                'NewsItemSubject' => '{#lazy:~/project/module/news/metadata/news_item_subject.config.php}',
-                'NewsSubject' => '{#lazy:~/project/module/news/metadata/subject.config.php}',
+                'newsRubric' => '{#lazy:~/project/module/news/metadata/rubric.config.php}',
+                'newsItem' => '{#lazy:~/project/module/news/metadata/news_item.config.php}',
+                'newsItemSubject' => '{#lazy:~/project/module/news/metadata/news_item_subject.config.php}',
+                'newsSubject' => '{#lazy:~/project/module/news/metadata/subject.config.php}',
 
-                'BlogCategory' => '{#lazy:~/project/module/blog/metadata/category.config.php}',
-                'BlogPost' => '{#lazy:~/project/module/blog/metadata/post.config.php}',
-                'BlogComment' => '{#lazy:~/project/module/blog/metadata/comment.config.php}',
-                'BlogTag' => '{#lazy:~/project/module/blog/metadata/tag.config.php}',
-                'BlogPostTag' => '{#lazy:~/project/module/blog/metadata/post_tag.config.php}',
+                'blogCategory' => '{#lazy:~/project/module/blog/metadata/category.config.php}',
+                'blogPost' => '{#lazy:~/project/module/blog/metadata/post.config.php}',
+                'blogComment' => '{#lazy:~/project/module/blog/metadata/comment.config.php}',
+                'blogTag' => '{#lazy:~/project/module/blog/metadata/tag.config.php}',
+                'blogPostTag' => '{#lazy:~/project/module/blog/metadata/post_tag.config.php}',
 
-                'User' => '{#lazy:~/project/module/users/metadata/user.config.php}',
+                'user' => '{#lazy:~/project/module/users/metadata/user.config.php}',
             ],
 
             'collections' => [
-                'Structure'     => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
-                'Layout'     => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'structure'     => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
+                    'handlers' => [
+                        'admin' => 'structure',
+                        'site' => 'structure'
+                    ]
+                ],
+                'layout'     => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE,
+                    'handlers' => [
+                        'admin' => 'structure',
+                        'site' => 'structure'
+                    ]
+                ],
 
-                'NewsRubric' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
-                'NewsItem' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'NewsItemSubject' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'NewsSubject' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'newsRubric' => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
+                    'handlers' => [
+                        'admin' => 'news.rubric',
+                        'site' => 'news.rubric'
+                    ]
+                ],
+                'newsItem' => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE,
+                    'handlers' => [
+                        'admin' => 'news.item',
+                        'site' => 'news.item'
+                    ]
+                ],
+                'newsItemSubject' => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE
+                ],
+                'newsSubject' => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE,
+                    'handlers' => [
+                        'admin' => 'news.subject',
+                        'site' => 'news.subject'
+                    ]
+                ],
 
-                'BlogCategory' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
-                'BlogPost' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'BlogComment' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
-                'BlogTag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'BlogPostTag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'blogCategory' => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC
+                ],
+                'blogPost' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'blogComment' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'blogTag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'blogPostTag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
 
-                'User' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'user' => ['type' => ICollectionFactory::TYPE_SIMPLE],
             ]
         ]
     ],

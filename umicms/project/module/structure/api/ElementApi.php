@@ -23,7 +23,7 @@ class ElementApi extends BaseHierarchicCollectionApi implements IPublicApi
     /**
      * @var string $collectionName имя коллекции для хранения структуры
      */
-    public $collectionName = 'Structure';
+    public $collectionName = 'structure';
 
     /**
      * Возвращает элемент по GUID.

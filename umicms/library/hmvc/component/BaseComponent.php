@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\base\component;
+namespace umicms\hmvc\component;
 
 use umi\config\entity\IConfig;
 use umi\hmvc\component\Component as FrameworkComponent;

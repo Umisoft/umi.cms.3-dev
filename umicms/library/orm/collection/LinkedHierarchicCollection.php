@@ -7,17 +7,14 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\base\widget;
+namespace umicms\orm\collection;
 
-use umi\hmvc\widget\BaseWidget as FrameworkWidget;
-use umi\i18n\ILocalizable;
-use umi\i18n\TLocalizable;
+use umi\orm\collection\LinkedHierarchicCollection as FrameworkLinkedHierarchicCollection;
 
 /**
- * Базовый виджет UMI.CMS
+ * {@inheritdoc}
  */
-abstract class BaseWidget extends FrameworkWidget implements ILocalizable
+class LinkedHierarchicCollection extends FrameworkLinkedHierarchicCollection implements IApplicationHandlersAware
 {
-    use TLocalizable;
+    use TApplicationHandlersAware;
 }
- 

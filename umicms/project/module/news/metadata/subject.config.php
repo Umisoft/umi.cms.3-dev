@@ -64,7 +64,14 @@ return [
                                     'columnName' => 'slug',
                                     'accessor'   => 'getSlug',
                                     'mutator'    => 'setSlug'
-        ]
+        ],
+        'newsItems'     => [
+            'type'         => IField::TYPE_MANY_TO_MANY,
+            'target'       => 'newsItem',
+            'bridge'       => 'newsItemSubject',
+            'relatedField' => 'subject',
+            'targetField'  => 'newsItem'
+        ],
 
     ],
     'types'      => [
@@ -85,7 +92,8 @@ return [
                 'metaKeywords',
                 'metaDescription',
                 'content',
-                'slug'
+                'slug',
+                'newsItems'
             ]
         ]
     ]

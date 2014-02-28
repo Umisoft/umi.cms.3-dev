@@ -9,11 +9,11 @@
 namespace umicms\project\module\news\site\subject;
 
 use umi\route\IRouteFactory;
-use umicms\base\component\SiteComponent;
+use umicms\hmvc\component\SiteComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\base\component\SiteComponent',
+    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\SiteComponent',
     
     SiteComponent::OPTION_CONTROLLERS => [
         'index' => __NAMESPACE__ . '\controller\IndexController',

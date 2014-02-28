@@ -10,12 +10,12 @@
 namespace umicms\project\admin\api;
 
 use umi\hmvc\dispatcher\IDispatchContext;
-use umi\hmvc\exception\http\HttpNotFound;
+use umi\hmvc\exception\http\HttpException;
 use umi\http\Request;
 use umi\http\Response;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
-use umicms\base\component\AdminComponent;
+use umicms\hmvc\component\AdminComponent;
 use umicms\project\config\IAdminSettingsAware;
 use umicms\project\config\TAdminSettingsAware;
 use umicms\serialization\ISerializationAware;
@@ -60,7 +60,20 @@ class ApiApplication extends AdminComponent implements IAdminSettingsAware, IToo
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        $this->currentRequestFormat = $this->getRequestFormatByPostfix($request->getRequestFormat(null));
+        $requestFormat = $request->getRequestFormat(self::DEFAULT_REQUEST_FORMAT);
+
+        if (!$this->isRequestFormatSupported($requestFormat)) {
+            $request->setRequestFormat(self::DEFAULT_REQUEST_FORMAT);
+
+            throw new HttpException(Response::HTTP_BAD_REQUEST, $this->translate(
+                'Request format "{format}" is not supported.',
+                ['format' => $requestFormat]
+            ));
+        }
+
+        $request->setRequestFormat($requestFormat);
+
+        $this->currentRequestFormat = $requestFormat;
 
         return null;
     }
@@ -83,21 +96,13 @@ class ApiApplication extends AdminComponent implements IAdminSettingsAware, IToo
     }
 
     /**
-     * Производит определение формата запроса по постфиксу
-     * @param string $postfix
-     * @throws HttpNotFound если постфикс запроса не поддерживается приложением
-     * @return string
+     * Проверяет, поддерживается ли указанный формат запроса
+     * @param string $format
+     * @return bool
      */
-    protected function getRequestFormatByPostfix($postfix)
+    protected function isRequestFormatSupported($format)
     {
-        if (!in_array($postfix, $this->supportedRequestPostfixes)) {
-            throw new HttpNotFound($this->translate(
-                'Url postfix "{postfix}" is not supported.',
-                ['postfix' => $postfix]
-            ));
-        }
-
-        return $postfix;
+        return in_array($format, $this->supportedRequestPostfixes);
     }
 
     /**

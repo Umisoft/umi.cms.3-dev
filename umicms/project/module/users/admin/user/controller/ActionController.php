@@ -10,7 +10,7 @@
 namespace umicms\project\module\users\admin\user\controller;
 
 use umi\hmvc\exception\http\HttpUnauthorized;
-use umicms\base\controller\BaseRestActionController;
+use umicms\hmvc\controller\BaseRestActionController;
 use umicms\project\module\users\api\UsersApi;
 
 /**

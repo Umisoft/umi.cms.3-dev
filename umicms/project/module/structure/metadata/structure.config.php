@@ -47,7 +47,7 @@ return [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'pid',
             'accessor'   => 'getParent',
-            'target'     => 'Structure',
+            'target'     => 'structure',
             'readOnly'   => true
         ],
         StructureElement::FIELD_MPATH           => [
@@ -108,7 +108,7 @@ return [
         StructureElement::FIELD_LAYOUT          => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'layout_id',
-            'target'     => 'Layout'
+            'target'     => 'layout'
         ],
         'h1'                                    => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
         'metaTitle'                             => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],

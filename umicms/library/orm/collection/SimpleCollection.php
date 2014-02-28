@@ -7,14 +7,14 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\base\object;
+namespace umicms\orm\collection;
 
-use umi\orm\object\Object;
+use umi\orm\collection\SimpleCollection as FrameworkSimpleCollection;
 
 /**
- * Класс простого объекта UMI.CMS.
+ * {@inheritdoc}
  */
-class CmsObject extends Object implements ICmsObject
+class SimpleCollection extends FrameworkSimpleCollection implements IApplicationHandlersAware
 {
-
+    use TApplicationHandlersAware;
 }

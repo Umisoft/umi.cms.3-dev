@@ -7,15 +7,14 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\hmvc;
+namespace umicms\orm\object;
 
-use umi\hmvc\dispatcher\Dispatcher as FrameworkDispatcher;
+use umi\orm\object\Object;
 
 /**
- * {@inheritdoc}
+ * Класс простого объекта UMI.CMS.
  */
-class Dispatcher extends FrameworkDispatcher
+class CmsObject extends Object implements ICmsObject
 {
 
 }
- 

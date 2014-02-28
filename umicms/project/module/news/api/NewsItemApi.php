@@ -25,7 +25,7 @@ class NewsItemApi extends BaseCollectionApi
     /**
      * {@inheritdoc}
      */
-    public $collectionName = 'NewsItem';
+    public $collectionName = 'newsItem';
 
     /**
      * Возвращает новость по ее GUID.

@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\structure\object;
 
-use umicms\base\object\CmsObject;
+use umicms\orm\object\CmsObject;
 
 /**
  * Шаблон.

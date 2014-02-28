@@ -10,8 +10,9 @@ namespace umicms\project\admin\api\controller;
 
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
-use umicms\base\component\AdminComponent;
-use umicms\base\controller\BaseController;
+use umicms\hmvc\component\AdminComponent;
+use umicms\hmvc\controller\BaseController;
+use umicms\orm\collection\IApplicationHandlersAware;
 
 /**
  * Контроллер настроек административной панели.
@@ -26,13 +27,12 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
     public function __invoke()
     {
 
-        list($modules, $resources) = $this->getModulesSettings();
-
+        list($collections, $resources) = $this->getCollectionsSettings();
         return $this->createViewResponse(
             'settings',
             [
-                'modules' => $modules,
-                'collections' => $this->getCollectionsSettings(),
+                'modules' => $this->getModulesSettings(),
+                'collections' => $collections,
                 'resources' => $resources
             ]
         );
@@ -47,12 +47,21 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
         $collectionNames = $this->getCollectionManager()->getList();
 
         $collections = [];
+        $resources = [];
 
         foreach ($collectionNames as $collectionName) {
-            $collections[] = $this->getCollectionManager()->getCollection($collectionName);
+            $collection = $this->getCollectionManager()->getCollection($collectionName);
+            $collections[] = $collection;
+            if ($collection instanceof IApplicationHandlersAware && $collection->hasHandler('admin')) {
+                $resources[] = [
+                    'collection' => $collectionName,
+                    'uri' => '/' . str_replace('.', '/', $collection->getHandlerPath('admin'))
+                ];
+            }
+
         }
 
-        return $collections;
+        return [$collections, $resources];
     }
 
     /**
@@ -62,7 +71,7 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
     protected function getModulesSettings()
     {
         $modules = [];
-        $resources = [];
+
         /**
          * @var AdminComponent $application
          */
@@ -86,13 +95,6 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
                     'settings' => $component->getSettings()
                             ->get(AdminComponent::OPTION_ADMIN_INTERFACE) ? : []
                 ];
-
-                if ($component->getSettings()->has(AdminComponent::OPTION_COLLECTION_NAME)) {
-                    $resources[] = [
-                        'collection' => $component->getSettings()->get(AdminComponent::OPTION_COLLECTION_NAME),
-                        'uri' => $this->assembleResourceUri($module, $component)
-                    ];
-                }
             }
 
             $modules[] = [
@@ -104,21 +106,21 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
             ];
         }
 
-        return [$modules, $resources];
+        return $modules;
     }
 
     protected function assembleResourceUri(AdminComponent $module, AdminComponent $component)
     {
 
         $moduleUri = $this->getComponent()->getRouter()->assemble('component', [
-            'component' => $module->getName()
-        ]);
+                'component' => $module->getName()
+            ]);
 
         $componentUri = $module->getRouter()->assemble('component', [
-            'component' => $component->getName()
-        ]);
+                'component' => $component->getName()
+            ]);
 
-        return $this->getContext()->getBaseUrl() . $moduleUri . $componentUri;
+        return $moduleUri . $componentUri;
     }
 
 }

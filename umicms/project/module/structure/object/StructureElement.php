@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\structure\object;
 
-use umicms\base\object\CmsElement;
+use umicms\orm\object\CmsElement;
 
 /**
  * Базовый элемент структуры.

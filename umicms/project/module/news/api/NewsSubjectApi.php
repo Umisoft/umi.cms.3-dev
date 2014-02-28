@@ -22,7 +22,7 @@ class NewsSubjectApi extends BaseCollectionApi
     /**
      * {@inheritdoc}
      */
-    public $collectionName = 'NewsSubject';
+    public $collectionName = 'newsSubject';
 
     /**
      * Возвращает сюжет по его GUID
@@ -38,6 +38,28 @@ class NewsSubjectApi extends BaseCollectionApi
                 $this->translate(
                     'Cannot find news item by guid "{guid}".',
                     ['guid' => $guid]
+                ),
+                0,
+                $e
+            );
+        }
+    }
+
+    /**
+     * Возвращает сюжет по его id.
+     * @param int $id
+     * @throws NonexistentEntityException если не удалось получить сюжет
+     * @return NewsSubject
+     */
+    public function getById($id) {
+
+        try {
+            return $this->getCollection()->getById($id);
+        } catch(IException $e) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find news subject by id "{id}".',
+                    ['id' => $id]
                 ),
                 0,
                 $e
@@ -66,5 +88,14 @@ class NewsSubjectApi extends BaseCollectionApi
         }
 
         return $subject;
+    }
+
+    /**
+     * Помечает сюжет на удаление.
+     * @param NewsSubject $subject
+     */
+    public function delete(NewsSubject $subject) {
+
+        $this->getCollection()->delete($subject);
     }
 }
