@@ -55,25 +55,19 @@ define(
         });
 
         /**
-         Для отключения "магии" переименования моделей Ember.Data
-         @class Ember.Inflector
-         @namespace Ember
-         **/
+         * Для отключения "магии" переименования моделей Ember.Data
+         * @class Inflector.inflector
+         */
         Ember.Inflector.inflector = new Ember.Inflector();
 
         var UMI = window.UMI = window.UMI || {};
 
-        //Кэширование селекторов
-        UMI.DOMCache = {
-            body: $('body'),
-            document: $(document)
-        };
-
         /**
-         Application namespace.
-         @namespace UMI
-         @extends Ember.Application
-         **/
+         * Umi application.
+         * @module UMI
+         * @extends Ember.Application
+         * @requires Ember
+         */
         UMI = Ember.Application.create({
             rootElement: '#body',
             Resolver: Ember.DefaultResolver.extend({
@@ -85,12 +79,28 @@ define(
         });
         UMI.deferReadiness();
 
+        /**
+         * Umi Utilities Class.
+         * @class Utils
+         * @static
+         */
+        UMI.Utils = {};
+
+        /**
+         * Кэширование селекторов
+         * @property DOMCache
+         * @type Object
+         */
+        UMI.Utils.DOMCache = {
+            body: $('body'),
+            document: $(document)
+        };
+
         var baseURL = window.UmiSettings.baseURL.slice(1);
         /**
-         @class UmiRESTAdapter
-         @constructor
-         @extends DS.RESTAdapter
-         **/
+         * @class UmiRESTAdapter
+         * @extends DS.RESTAdapter
+         */
         DS.UmiRESTAdapter = DS.RESTAdapter.extend({
             namespace: baseURL + '/api',
             ajaxOptions: function(url, type, hash){
@@ -109,7 +119,7 @@ define(
 
                 if(type === 'PUT' || type === 'DELETE'){
                     headers = headers || {};
-                    headers['x-real-request-method'] = type;
+                    headers['X-HTTP-METHOD-OVERRIDE'] = type;
                     hash.type = 'POST';
                 }
 
