@@ -387,6 +387,14 @@
                     "type": "text",
                     "readOnly": 0,
                     "default": null
+                },
+                {
+                    "name": "news",
+                    "type": "hasManyRelation",
+                    "readOnly": 0,
+                    "default": null,
+                    "targetCollection": "newsItem",
+                    "targetField": "rubric"
                 }
             ]
         },
@@ -504,7 +512,8 @@
                     "targetCollection": "newsSubject",
                     "targetFieldName": "subject",
                     "bridgeCollection": "newsItemSubject",
-                    "relatedField": "newsItem"
+                    "relatedField": "newsItem",
+                    "mirrorField": "newsItems"
                 },
                 {
                     "name": "date",
@@ -679,6 +688,17 @@
                     "type": "slug",
                     "readOnly": 0,
                     "default": null
+                },
+                {
+                    "name": "newsItems",
+                    "type": "manyToManyRelation",
+                    "readOnly": 0,
+                    "default": null,
+                    "targetCollection": "newsItem",
+                    "targetFieldName": "newsItem",
+                    "bridgeCollection": "newsItemSubject",
+                    "relatedField": "subject",
+                    "mirrorField": "subjects"
                 }
             ]
         },
@@ -935,8 +955,9 @@
                     "default": null,
                     "targetCollection": "blogTag",
                     "targetFieldName": "tag",
-                    "bridgeCollection": "PostTag",
-                    "relatedField": "post"
+                    "bridgeCollection": "blogPostTag",
+                    "relatedField": "post",
+                    "mirrorField": "posts"
                 },
                 {
                     "name": "date",
@@ -1176,7 +1197,8 @@
                     "targetCollection": "blogPost",
                     "targetFieldName": "post",
                     "bridgeCollection": "blogPostTag",
-                    "relatedField": "tag"
+                    "relatedField": "tag",
+                    "mirrorField": "tags"
                 }
             ]
         },
@@ -1338,6 +1360,14 @@
         }
     ],
     "resources": [
+        {
+            "collection": "structure",
+            "uri": "\/structure"
+        },
+        {
+            "collection": "layout",
+            "uri": "\/structure"
+        },
         {
             "collection": "newsRubric",
             "uri": "\/news\/rubric"
