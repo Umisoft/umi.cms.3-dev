@@ -3,15 +3,21 @@ define(['App'], function(UMI){
     return function(){
 
         UMI.TreeControlController = Ember.ObjectController.extend({
-            nodes: function(){
-                var root = this.get('root');
-                var nodes = this.store.findByIds(root.type, root.ids);
-                return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+            collection: null,
+            root: function(){
+                var root = Ember.Object.create(this.get('collection'));
+                root.set('root', true);
+                root.set('hasChildren', true);
+
+                var nodes = this.store.find(root.get('type'), {'parent': null});
+                var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: nodes,
-                    sortProperties: ['index', 'id'],
+                    sortProperties: ['order', 'id'],
                     sortAscending: true
                 });
-            }.property('root'),
+                root.set('children', children);
+                return root;
+            }.property('collection'),
             /**
              * При совпадении значения свойства в данном
              * */
