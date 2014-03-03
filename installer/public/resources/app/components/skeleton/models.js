@@ -4,72 +4,74 @@ define([], function(){
     return function(UMI){
         /**
          * Создает экземпляры DS.Model
-         *
-         * @param {array} Массив обьектов
-         * */
-        UMI.modelsFactory = function(collections){
+         * @method modelsFactory
+         * @param array Массив обьектов
+         */
+        UMI.Utils.modelsFactory = function(collections){
             var i;
             var j;
             var collection;
-            var fields = {};
             var fieldValue;
-            var paramsRelation = {};
-            var relationName;
-            var lowerFirstLetter = function(string){
-                return string.charAt(0).toLowerCase() + string.slice(1);
-            };
+            var params = {};
 
             for(j = 0; j < collections.length; j++){
+                var fields = {};
                 collection = collections[j];
 
                 for(i = 0; i < collection.fields.length; i++){
                     switch(collection.fields[i].type){
-                        case 'string':
-                            fieldValue = DS.attr('string');
-                            break;
+                        /*case 'string':
+                            params = {defaultValue: collection.fields[i]['default']};
+                            fieldValue = DS.attr('string', params);
+                            break;*/
                         case 'number': case 'counter':
-                            fieldValue = DS.attr('number');
+                            params = {defaultValue: collection.fields[i]['default']};
+                            fieldValue = DS.attr('number', params);
                             break;
-                        case 'bool':
-                            fieldValue = DS.attr('boolean');
+                       case 'bool':
+                           params = {defaultValue: collection.fields[i]['default']};
+                           fieldValue = DS.attr('boolean', params);
+                           break;
+                       case 'dateTime':
+                           params = {defaultValue: collection.fields[i]['default']};
+                           fieldValue = DS.attr('date', params);
+                           break;
+                       case 'belongsToRelation':
+                           params = {async: true};
+                           fieldValue = DS.belongsTo(collection.fields[i].targetCollection, params);
+                           break;
+                       case 'hasManyRelation':
+                           params = {async: true, inverse: collection.fields[i].targetField};
+                           fieldValue = DS.hasMany(collection.fields[i].targetCollection, params);
+                           break;
+                       case 'manyToManyRelation':
+                           params = {async: true, inverse: collection.fields[i].mirrorField};
+                           fieldValue = DS.hasMany(collection.fields[i].targetCollection, params);
                             break;
-                        case 'dateTime':
-                            fieldValue = DS.attr('date');
-                            break;
-                        case 'belongsToRelation':
-                            paramsRelation = {async: true};
-                            relationName = lowerFirstLetter(collection.fields[i].targetCollection);
-                            fieldValue = DS.belongsTo(relationName, paramsRelation);
-                            break;
-                        case 'hasManyRelation':
-                            paramsRelation = {async: true, inverse: collection.fields[i].targetField};
-                            relationName = lowerFirstLetter(collection.fields[i].targetCollection);
-                            fieldValue = DS.hasMany(relationName, paramsRelation);
-                            break;
-                        case 'manyToManyRelation':
-                            paramsRelation = {async: true, inverse: collection.fields[i].targetFieldName};
-                            relationName = lowerFirstLetter(collection.fields[i].bridgeCollection);
-                            fieldValue = DS.hasMany(relationName, paramsRelation);
-                            break;
-                        default:
-                            fieldValue = DS.attr();
-                            break;
+                       default:
+                           fieldValue = DS.attr();
+                           break;
                     }
                     if(collection.fields[i].type !== 'identify'){
                         fields[collection.fields[i].name] = fieldValue;
                     }
                 }
 
-                UMI[collection.name] = DS.Model.extend(fields);
-
+                UMI[collection.name.capitalize()] = DS.Model.extend(fields);
             }
-            setModelsNameSpace(collection.name);
         };
 
-       var setModelsNameSpace = function(namespace){
-            UMI[namespace + 'Adapter'] = DS.UmiRESTAdapter.extend({
-                namespace: window.UmiSettings.baseUrl + '/api/resource'
-            });
+        UMI.Utils.setModelsResources = function(resources){
+            //TODO: Костыль убирающий первый слэш. Написать регулярку.
+            var baseURL = window.UmiSettings.baseApiURL.slice(1);
+            var setNamespace = function(namespace, module, component){
+                UMI[namespace.capitalize() + 'Adapter'] = DS.UmiRESTAdapter.extend({
+                    namespace: baseURL + '/' + module + '/' + component
+                });
+            };
+            for(var i = 0; i < resources.length; i++){
+                setNamespace(resources[i].collection, resources[i].module, resources[i].component);
+            }
        };
 
         UMI.ComponentMode = DS.Model.extend({
@@ -77,11 +79,7 @@ define([], function(){
         });
 
         UMI.ComponentModeAdapter = DS.RESTAdapter.extend({
-            namespace: 'resource/admin/modules/news/categories',
-            buildURL: function(record, suffix){
-                var s = this._super(record, suffix);
-                return s + ".json";
-            }
+            namespace: 'resource/admin/modules/news/categories'
         });
     };
 });
