@@ -22,7 +22,7 @@ define(['App'], function(UMI){
                  *
                  */
                 var that = this;
-                UMI.DOMCache.body.append(function(){
+                UMI.Utils.DOMCache.body.append(function(){
                     var result = '';
                     //nth-of-type начинает отсчёт не с нуля, а с единицы
                     //TODO Оптимизировать селекторы
