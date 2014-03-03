@@ -36,8 +36,12 @@ define([], function(){
                            params = {defaultValue: collection.fields[i]['default']};
                            fieldValue = DS.attr('date', params);
                            break;
-                       case 'belongsToRelation':
+                        case 'belongsToRelation':
                            params = {async: true};
+                           //TODO: инверсия избыточна, но DS почему то без неё не может
+                           if(collection.fields[i].targetCollection === collection.name){
+                               params.inverse = 'children';
+                           }
                            fieldValue = DS.belongsTo(collection.fields[i].targetCollection, params);
                            break;
                        case 'hasManyRelation':

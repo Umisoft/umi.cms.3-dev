@@ -85,7 +85,7 @@ define(['App'], function(UMI){
             sortedChildren: function(){
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: this.get('children'),
-                    sortProperties: ['index', 'id'],
+                    sortProperties: ['order', 'id'],
                     sortAscending: true
                 });
             }.property('children'),
@@ -103,26 +103,6 @@ define(['App'], function(UMI){
             }.property('model', 'filters'),
             filters: Ember.computed.alias("controllers.treeControl.filterProperty"),
             needs: 'treeControl'
-            //			isExpandedChange: function(){
-            //				var self = this;
-            //				self.set('isLoaded', self.get('isExpanded'));
-            //				if(self.get('isExpanded')){
-            //					if(!self.get('children.length')){
-            //						return this.store.find(this.get('model').constructor.typeKey, {'parent': self.get('id')}).then(
-            //							function(children){
-            //								self.get('children').addObjects(children);
-            //								self.set('isLoaded', false);
-            //							}
-            //						);
-            //					}
-            //					self.set('isLoaded', false);
-            //				}
-            //			}.observes('isExpanded').on('init'),
-            //
-            //			childrenChange: function(){
-            //				// Костыль - исправить
-            //				this.set('isExpanded', false);
-            //			}.observes('children')
         });
     };
 });

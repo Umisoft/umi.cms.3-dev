@@ -1,7 +1,7 @@
 {{#if visible}}
     <li data-id="{{unbound node.id}}" {{bind-attr class="node.isDragged:hide node.root"}}>
         {{#view "treeItem" contentBinding="this"}}
-            {{#if node.hasChildren}}
+            {{#if node.childCount}}
                 <span {{action "expanded" node}} {{bind-attr class=":umi-expand-hover"}}>
                     {{#if node.isLoaded}}
                         <i class="animate animate-loader-20"></i>
@@ -71,7 +71,7 @@
             </ul>
         {{/view}}
         <div class="hover-bg"></div>
-        {{#if node.hasChildren}}
+        {{#if node.childCount}}
             {{#if node.isExpanded}}
                 <ul class="umi-tree-list" data-parent-id="{{unbound node.id}}">
                     {{#each node in sortedChildren itemController="treeItem"}}
