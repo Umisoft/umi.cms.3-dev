@@ -182,14 +182,12 @@ define([], function(){
                     return model;
                 });
             },
-
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
                     var defaultAction = this.controllerFor('component').get('contentControls.firstObject.name');
                     return this.transitionTo('action', defaultAction);
                 }
             },
-
             serialize: function(model){
                 return {component: model.get('name')};
             }
@@ -217,19 +215,15 @@ define([], function(){
         UMI.ContextRoute = Ember.Route.extend({
             model: function(params){
                 var model;
-                var oldContext = this.controllerFor('component').get('selectedContext');
                 this.controllerFor('component').set('selectedContext', params.context);
-
                 /**
                  * Редирект на Mode если контекст не имеет action
                  */
                 var activeMode = this.modelFor('action');
-                console.log(activeMode);
                 var firstAction = this.controllerFor('component').get('contentControls.firstObject');
                 if(firstAction.get('name') !== activeMode.get('name')){
                     return this.transitionTo('action', firstAction.get('name'));
                 }
-
                 if(params.context === 'root'){
                     model = Ember.Object.extend({
                         'id': 'root',
