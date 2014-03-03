@@ -5056,6 +5056,11 @@ body {
       padding: 0.5625rem 0.8125rem;
       margin: 0.3125rem 0.125rem 0; }
 
+input.umi-mode-search {
+  margin-bottom: 0;
+  height: 27px;
+  width: 300px; }
+
 .umi-component {
   border-left: 1px solid #ADB9C5; }
 

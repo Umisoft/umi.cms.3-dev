@@ -19,7 +19,15 @@ define([], function(){
                     }
                 }
                 return contentControls;
-            }.property('context', 'selectedContext')
+            }.property('context', 'selectedContext'),
+            searchQuery: null,
+            actions: {
+                search: function(searchQuery){
+                    if(searchQuery){
+                        this.transitionToRoute('component.search', searchQuery);
+                    }
+                }
+            }
         });
     };
 });

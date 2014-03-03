@@ -20,6 +20,7 @@ define([], function(){
                     this.resource('action', {path: '/:action'}, function(){
                         this.resource('context', {path: '/:context'});
                     });
+                    this.route('search');
                 });
             });
             this.route('logout', {path: '/auth/logout'});
@@ -244,6 +245,12 @@ define([], function(){
             renderTemplate: function(){
                 var templateType = this.modelFor('action').get('name');
                 this.render(templateType);
+            }
+        });
+
+        UMI.SearchRoute = Ember.Route.extend({
+            model: function(params){
+               console.log(params);
             }
         });
     };
