@@ -28,7 +28,7 @@ class SerializerFactory implements IFactory, ISerializerFactory
      */
     public $types = [
         self::TYPE_XML => [
-            //'umi\hmvc\view\View' => 'umicms\serialization\xml\hmvc\ViewXmlSerializer',
+
             'Exception' => 'umicms\serialization\xml\ExceptionSerializer',
             'object' => 'umicms\serialization\xml\ObjectSerializer',
             'array' => 'umicms\serialization\xml\ArraySerializer',
@@ -40,8 +40,8 @@ class SerializerFactory implements IFactory, ISerializerFactory
             // null
             'NULL' => 'umicms\serialization\xml\NullSerializer',
             // cms objects
-            'umicms\base\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
-            'umicms\base\object\CmsElement' => 'umicms\serialization\xml\object\CmsElementSerializer',
+            'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
+            'umicms\orm\object\CmsElement' => 'umicms\serialization\xml\object\CmsElementSerializer',
             'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\object\FieldSerializer'
 
         ],
@@ -55,7 +55,13 @@ class SerializerFactory implements IFactory, ISerializerFactory
             'double' => 'umicms\serialization\json\ScalarSerializer',
             'string' => 'umicms\serialization\json\ScalarSerializer',
             // null
-            'NULL' => 'umicms\serialization\xml\NullSerializer',
+            'NULL' => 'umicms\serialization\json\NullSerializer',
+            // orm
+            'umi\orm\collection\BaseCollection' => 'umicms\serialization\json\orm\CollectionSerializer',
+            'umi\orm\metadata\Metadata' => 'umicms\serialization\json\orm\MetadataSerializer',
+            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\json\orm\FieldSerializer',
+            'umicms\orm\object\CmsObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
+            'umicms\orm\object\CmsElement' => 'umicms\serialization\json\orm\CmsObjectSerializer',
         ]
     ];
 

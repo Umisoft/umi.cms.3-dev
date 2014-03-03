@@ -15,10 +15,11 @@ namespace umicms\serialization\json;
 class ArraySerializer extends BaseSerializer
 {
     /**
-     * Сериализует массив в XML.
+     * Сериализует массив в JSON.
      * @param array $array
      */
-    public function __invoke(array $array) {
+    public function __invoke(array $array)
+    {
 
         if (!empty($array)) {
             foreach ($array as $key => $value) {

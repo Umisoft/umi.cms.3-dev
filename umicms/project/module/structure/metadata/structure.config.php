@@ -9,7 +9,9 @@
 namespace umicms\project\module\structure\metadata;
 
 use umi\orm\metadata\field\IField;
-use umicms\project\module\structure\model\StructureElement;
+use umicms\project\module\structure\object\StaticPage;
+use umicms\project\module\structure\object\StructureElement;
+use umicms\project\module\structure\object\SystemPage;
 
 return [
     'dataSource' => [
@@ -85,21 +87,29 @@ return [
             'accessor'   => 'getLevel',
             'readOnly'   => true
         ],
-        'displayName'                           => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
-        'module'                                => ['type'       => IField::TYPE_STRING,
-                                                    'columnName' => 'module',
-                                                    'readOnly'   => true
+        StructureElement::FIELD_DISPLAY_NAME    => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
+        StructureElement::FIELD_COMPONENT_PATH  => [
+            'type'       => IField::TYPE_STRING,
+            'columnName' => 'component_path',
+            'readOnly'   => true
         ],
-        'active'                                => ['type'         => IField::TYPE_BOOL,
-                                                    'columnName'   => 'active',
-                                                    'defaultValue' => 1
+        StructureElement::FIELD_ACTIVE          => [
+            'type'         => IField::TYPE_BOOL,
+            'columnName'   => 'active',
+            'defaultValue' => 1
         ],
-        'locked'                                => ['type'         => IField::TYPE_BOOL,
-                                                    'columnName'   => 'locked',
-                                                    'defaultValue' => 0
+        StructureElement::FIELD_LOCKED          => [
+            'type'         => IField::TYPE_BOOL,
+            'columnName'   => 'locked',
+            'defaultValue' => 0
         ],
-        'created'                               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        'updated'                               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
+        StructureElement::FIELD_CREATED         => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
+        StructureElement::FIELD_UPDATED         => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
+        StructureElement::FIELD_LAYOUT          => [
+            'type'       => IField::TYPE_BELONGS_TO,
+            'columnName' => 'layout_id',
+            'target'     => 'layout'
+        ],
         'h1'                                    => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
         'metaTitle'                             => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
         'metaKeywords'                          => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
@@ -108,69 +118,72 @@ return [
     ],
     'types'      => [
         'base'   => [
-            'objectClass' => 'umicms\project\module\structure\model\StructureElement',
+            'objectClass' => 'umicms\project\module\structure\object\StructureElement',
             'fields'      => [
-                'id',
-                'guid',
-                'type',
-                'version',
-                'displayName',
-                'parent',
-                'mpath',
-                'slug',
-                'uri',
-                'level',
-                'order',
-                'childCount',
-                'active',
-                'locked',
-                'created',
-                'updated',
-                'module'
+                StructureElement::FIELD_IDENTIFY,
+                StructureElement::FIELD_GUID,
+                StructureElement::FIELD_TYPE,
+                StructureElement::FIELD_VERSION,
+                StructureElement::FIELD_DISPLAY_NAME,
+                StructureElement::FIELD_PARENT,
+                StructureElement::FIELD_MPATH,
+                StructureElement::FIELD_SLUG,
+                StructureElement::FIELD_URI,
+                StructureElement::FIELD_HIERARCHY_LEVEL,
+                StructureElement::FIELD_ORDER,
+                StructureElement::FIELD_CHILD_COUNT,
+                StructureElement::FIELD_ACTIVE,
+                StructureElement::FIELD_LOCKED,
+                StructureElement::FIELD_CREATED,
+                StructureElement::FIELD_UPDATED,
+                StructureElement::FIELD_COMPONENT_PATH,
+                StructureElement::FIELD_LAYOUT,
             ]
         ],
         'system' => [
-            'objectClass' => 'umicms\project\module\structure\model\SystemPage',
+            'objectClass' => 'umicms\project\module\structure\object\SystemPage',
             'fields'      => [
-                'id',
-                'guid',
-                'type',
-                'version',
-                'displayName',
-                'parent',
-                'mpath',
-                'slug',
-                'uri',
-                'level',
-                'order',
-                'childCount',
-                'active',
-                'locked',
-                'created',
-                'updated',
-                'module'
+                SystemPage::FIELD_IDENTIFY,
+                SystemPage::FIELD_GUID,
+                SystemPage::FIELD_TYPE,
+                SystemPage::FIELD_VERSION,
+                SystemPage::FIELD_DISPLAY_NAME,
+                SystemPage::FIELD_PARENT,
+                SystemPage::FIELD_MPATH,
+                SystemPage::FIELD_SLUG,
+                SystemPage::FIELD_URI,
+                SystemPage::FIELD_HIERARCHY_LEVEL,
+                SystemPage::FIELD_ORDER,
+                SystemPage::FIELD_CHILD_COUNT,
+                SystemPage::FIELD_ACTIVE,
+                SystemPage::FIELD_LOCKED,
+                SystemPage::FIELD_CREATED,
+                SystemPage::FIELD_UPDATED,
+                SystemPage::FIELD_COMPONENT_PATH,
+                SystemPage::FIELD_LAYOUT
             ]
         ],
         'static' => [
-            'objectClass' => 'umicms\project\module\structure\model\StaticPage',
+            'objectClass' => 'umicms\project\module\structure\object\StaticPage',
             'fields'      => [
-                'id',
-                'guid',
-                'type',
-                'version',
-                'displayName',
-                'parent',
-                'mpath',
-                'slug',
-                'uri',
-                'level',
-                'order',
-                'childCount',
-                'active',
-                'locked',
-                'created',
-                'updated',
-                'module',
+                StaticPage::FIELD_IDENTIFY,
+                StaticPage::FIELD_GUID,
+                StaticPage::FIELD_TYPE,
+                StaticPage::FIELD_VERSION,
+                StaticPage::FIELD_DISPLAY_NAME,
+                StaticPage::FIELD_PARENT,
+                StaticPage::FIELD_MPATH,
+                StaticPage::FIELD_SLUG,
+                StaticPage::FIELD_URI,
+                StaticPage::FIELD_HIERARCHY_LEVEL,
+                StaticPage::FIELD_ORDER,
+                StaticPage::FIELD_CHILD_COUNT,
+                StaticPage::FIELD_ACTIVE,
+                StaticPage::FIELD_LOCKED,
+                StaticPage::FIELD_CREATED,
+                StaticPage::FIELD_UPDATED,
+                StaticPage::FIELD_COMPONENT_PATH,
+                StaticPage::FIELD_LAYOUT,
                 'metaTitle',
                 'metaKeywords',
                 'metaDescription',

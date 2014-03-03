@@ -1,0 +1,16 @@
+<?php
+/**
+ * @var umi\orm\selector\ISelector $news
+ * @var umicms\project\module\news\object\NewsItem $newsItem
+ */
+?>
+<?php if ($news->getTotal()) :?>
+
+    <ul>
+        <?php foreach ($news as $newsItem) : ?>
+            <li>
+                <?= $this->widget('/news/item/view', ['guid' => $newsItem->guid, 'template' => 'shortView']); ?>
+            </li>
+        <?php endforeach;?>
+    </ul>
+<?php endif; ?>

@@ -1,7 +1,6 @@
 <?php
 /**
  * UMI.Framework (http://umi-framework.ru/)
- *
  * @link      http://github.com/Umisoft/framework for the canonical source repository
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
@@ -33,7 +32,8 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
     /**
      * {@inheritdoc}
      */
-    public function init() {
+    public function init()
+    {
         self::$jsonWriter = null;
 
         return $this;
@@ -42,18 +42,22 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
     /**
      * {@inheritdoc}
      */
-    public function output() {
-        return $this->getJsonWriter()->output();
+    public function output()
+    {
+        return $this->getJsonWriter()
+            ->output();
     }
 
     /**
      * Возвращает JsonWriter.
      * @return JsonWriter
      */
-    protected function getJsonWriter() {
+    protected function getJsonWriter()
+    {
         if (!self::$jsonWriter) {
             self::$jsonWriter = new JsonWriter();
         }
+
         return self::$jsonWriter;
     }
 
@@ -63,12 +67,15 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
      * @param mixed $value значение элемента
      * @throws UnexpectedValueException если текущий элемент не массив
      */
-    protected function writeElement($name, $value) {
-        $this->getJsonWriter()->startElement($name);
+    protected function writeElement($name, $value)
+    {
+        $this->getJsonWriter()
+            ->startElement($name);
 
         $this->delegate($value);
 
-        $this->getJsonWriter()->endElement();
+        $this->getJsonWriter()
+            ->endElement();
 
     }
 
@@ -76,8 +83,10 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
      * Создает значение json-элемента
      * @param $value
      */
-    protected function writeRaw($value) {
-        $this->getJsonWriter()->write($value);
+    protected function writeRaw($value)
+    {
+        $this->getJsonWriter()
+            ->write($value);
     }
 
     /**
@@ -85,7 +94,8 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
      * @param $value
      * @return ISerializer
      */
-    protected function delegate($value) {
+    protected function delegate($value)
+    {
         $serializer = $this->getSerializer(ISerializerFactory::TYPE_JSON, $value);
         $serializer($value);
     }

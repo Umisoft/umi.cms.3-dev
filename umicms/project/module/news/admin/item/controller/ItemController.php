@@ -9,8 +9,11 @@
 
 namespace umicms\project\module\news\admin\item\controller;
 
-use umicms\base\controller\BaseRestItemController;
+use umi\orm\object\property\datetime\IDateTimeProperty;
+use umicms\hmvc\controller\BaseRestItemController;
+use umicms\orm\object\ICmsObject;
 use umicms\project\module\news\api\NewsPublicApi;
+use umicms\project\module\news\object\NewsItem;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
@@ -35,25 +38,42 @@ class ItemController extends BaseRestItemController
     /**
      * {@inheritdoc}
      */
-    protected function get($guid)
+    protected function get()
     {
-        return $this->api->news()->get($guid);
+        $id = $this->getRouteVar('id');
+        return $this->api->news()->getById($id);
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function update()
+    protected function update(ICmsObject $object, array $data)
     {
-        // TODO: Implement update() method.
+        // TODO: forms
+        foreach ($data as $propertyName => $value) {
+            if ($object->hasProperty($propertyName)
+                && !$object->getProperty($propertyName)->getIsReadOnly()
+                && !is_array($value)
+
+            ) {
+                $object->setValue($propertyName, $value);
+            }
+        }
+
+        $this->getObjectPersister()->commit();
+
+        return $object;
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function delete()
+    protected function delete(ICmsObject $object)
     {
-        // TODO: Implement delete() method.
+        if ($object instanceof NewsItem) {
+            $this->api->news()->delete($object);
+            $this->getObjectPersister()->commit();
+        }
     }
 }
  

@@ -12,7 +12,7 @@ use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpForbidden;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
-use umicms\base\controller\BaseController;
+use umicms\hmvc\controller\BaseController;
 use umicms\exception\NonexistentEntityException;
 
 /**
@@ -85,8 +85,8 @@ class ErrorController extends BaseController
             [
                 'error' => $this->exception
             ]
-        );
-        //  ->setStatusCode(Response::HTTP_NOT_FOUND); TODO: enable!
+        )
+        ->setStatusCode(Response::HTTP_NOT_FOUND);
     }
 
     /**

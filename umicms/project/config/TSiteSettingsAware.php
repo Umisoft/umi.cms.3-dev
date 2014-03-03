@@ -65,4 +65,13 @@ trait TSiteSettingsAware
         return $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_PAGE_GUID);
     }
 
+    /**
+     * Возвращает GUID шаблона сайта по умолчанию.
+     * @return string
+     */
+    protected function getSiteDefaultLayoutGuid()
+    {
+        return $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_LAYOUT_GUID);
+    }
+
 }

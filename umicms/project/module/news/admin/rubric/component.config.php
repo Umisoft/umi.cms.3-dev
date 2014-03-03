@@ -8,11 +8,13 @@
 
 namespace umicms\project\module\news\admin\rubric;
 
-use umicms\base\component\Component;
+use umicms\hmvc\component\AdminComponent;
 
 return [
 
-    Component::OPTION_SETTINGS => [
+    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\AdminComponent',
 
+    AdminComponent::OPTION_SETTINGS => [
+        AdminComponent::OPTION_COLLECTION_NAME => 'newsRubric'
     ]
 ];

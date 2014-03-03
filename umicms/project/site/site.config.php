@@ -37,8 +37,11 @@ return [
     ],
 
     SiteApplication::OPTION_ROUTES => [
-        'siteRoute' => [
-            'type' => 'siteRoute'
+        'page' => [
+            'type' => 'SiteStaticPageRoute'
+        ],
+        'component' => [
+            'type' => 'SiteComponentRoute'
         ]
     ]
 ];

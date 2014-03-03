@@ -54,40 +54,83 @@ return [
         OrmTools::NAME => [
             'factories' => [
                 'object' => [
-                    'defaultObjectClass' => 'umicms\base\object\CmsObject',
-                    'defaultHierarchicObjectClass' => 'umicms\base\object\CmsElement'
+                    'defaultObjectClass' => 'umicms\orm\object\CmsObject',
+                    'defaultHierarchicObjectClass' => 'umicms\orm\object\CmsElement'
+                ],
+                'objectCollection' => [
+                    'defaultSimpleCollectionClass' => 'umicms\orm\collection\SimpleCollection',
+                    'defaultHierarchicCollectionClass' => 'umicms\orm\collection\SimpleHierarchicCollection',
+                    'defaultLinkedHierarchicCollectionClass' => 'umicms\orm\collection\LinkedHierarchicCollection',
+                    'defaultCommonHierarchyClass' => 'umicms\orm\collection\CommonHierarchy'
                 ]
             ],
             'metadata'    => [
                 'structure' => '{#lazy:~/project/module/structure/metadata/structure.config.php}',
+                'layout' => '{#lazy:~/project/module/structure/metadata/layout.config.php}',
 
-                'news_rubric' => '{#lazy:~/project/module/news/metadata/rubric.config.php}',
-                'news_news_item' => '{#lazy:~/project/module/news/metadata/news_item.config.php}',
-                'news_news_item_subject' => '{#lazy:~/project/module/news/metadata/news_item_subject.config.php}',
-                'news_subject' => '{#lazy:~/project/module/news/metadata/subject.config.php}',
+                'newsRubric' => '{#lazy:~/project/module/news/metadata/rubric.config.php}',
+                'newsItem' => '{#lazy:~/project/module/news/metadata/news_item.config.php}',
+                'newsItemSubject' => '{#lazy:~/project/module/news/metadata/news_item_subject.config.php}',
+                'newsSubject' => '{#lazy:~/project/module/news/metadata/subject.config.php}',
 
-                'blog_category' => '{#lazy:~/project/module/blog/metadata/category.config.php}',
-                'blog_post' => '{#lazy:~/project/module/blog/metadata/post.config.php}',
-                'blog_comment' => '{#lazy:~/project/module/blog/metadata/comment.config.php}',
-                'blog_tag' => '{#lazy:~/project/module/blog/metadata/tag.config.php}',
-                'blog_post_tag' => '{#lazy:~/project/module/blog/metadata/post_tag.config.php}',
+                'blogCategory' => '{#lazy:~/project/module/blog/metadata/category.config.php}',
+                'blogPost' => '{#lazy:~/project/module/blog/metadata/post.config.php}',
+                'blogComment' => '{#lazy:~/project/module/blog/metadata/comment.config.php}',
+                'blogTag' => '{#lazy:~/project/module/blog/metadata/tag.config.php}',
+                'blogPostTag' => '{#lazy:~/project/module/blog/metadata/post_tag.config.php}',
 
                 'user' => '{#lazy:~/project/module/users/metadata/user.config.php}',
             ],
 
             'collections' => [
-                'structure'     => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'structure'     => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
+                    'handlers' => [
+                        'admin' => 'structure',
+                        'site' => 'structure'
+                    ]
+                ],
+                'layout'     => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE,
+                    'handlers' => [
+                        'admin' => 'structure',
+                        'site' => 'structure'
+                    ]
+                ],
 
-                'news_rubric' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
-                'news_news_item' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'news_news_item_subject' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'news_subject' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'newsRubric' => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
+                    'handlers' => [
+                        'admin' => 'news.rubric',
+                        'site' => 'news.rubric'
+                    ]
+                ],
+                'newsItem' => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE,
+                    'handlers' => [
+                        'admin' => 'news.item',
+                        'site' => 'news.item'
+                    ]
+                ],
+                'newsItemSubject' => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE
+                ],
+                'newsSubject' => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE,
+                    'handlers' => [
+                        'admin' => 'news.subject',
+                        'site' => 'news.subject'
+                    ]
+                ],
 
-                'blog_category' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
-                'blog_post' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'blog_comment' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
-                'blog_tag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'blog_post_tag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'blogCategory' => [
+                    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC
+                ],
+                'blogPost' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'blogComment' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
+                'blogTag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'blogPostTag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+
                 'user' => ['type' => ICollectionFactory::TYPE_SIMPLE],
             ]
         ]
@@ -110,7 +153,6 @@ return [
 
         'site' => [
             'type' => IRouteFactory::ROUTE_FIXED,
-            'route' => '/',
             'defaults' => [
                 'component' => 'site'
             ]

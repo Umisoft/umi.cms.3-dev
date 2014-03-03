@@ -9,7 +9,7 @@
 namespace umicms\project\admin\controller;
 
 use umi\http\Response;
-use umicms\base\controller\BaseController;
+use umicms\hmvc\controller\BaseController;
 use umicms\project\module\users\api\UsersApi;
 
 /**
@@ -50,6 +50,7 @@ class DefaultController extends BaseController
             [
                 'content' => $this->response->getContent(),
                 'baseUrl' => $this->getContext()->getBaseUrl(),
+                'baseApiUrl' => $this->getContext()->getBaseUrl() . $this->getComponent()->getRouter()->assemble('api'),
                 'authenticated' => $this->api->isAuthenticated()
             ]
         );

@@ -1,0 +1,12 @@
+<?php
+/**
+ * @var umicms\project\module\news\object\NewsRubric $rubric
+ */
+?>
+<h2>
+    <a href="<?= $this->url('rubric', ['url' => ltrim($rubric->getURL(), '/')]); ?>">
+        <?= $rubric->h1 ?>
+    </a>
+</h2>
+<?= $this->widget('list', ['parentGuid' => $rubric->guid, 'template' => 'list']); ?>
+<?= $this->widget('newsList', ['rubricGuids' => [$rubric->guid], 'template' => 'newsList']); ?>

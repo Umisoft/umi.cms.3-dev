@@ -8,55 +8,33 @@
 
 namespace umicms\project\module\news\site;
 
-use umi\hmvc\component\IComponent;
 use umi\route\IRouteFactory;
+use umicms\hmvc\component\SiteComponent;
 
 return [
-    IComponent::OPTION_CONTROLLERS => [
-        'index' => 'umicms\project\module\news\site\controller\IndexController',
-        'rubric' => 'umicms\project\module\news\site\controller\RubricController',
-        'item' => 'umicms\project\module\news\site\controller\NewsItemController',
-        'subject' => 'umicms\project\module\news\site\controller\SubjectController'
+
+    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\SiteComponent',
+
+    SiteComponent::OPTION_COMPONENTS => [
+        'rubric' => '{#lazy:~/project/module/news/site/rubric/component.config.php}',
+        'item' => '{#lazy:~/project/module/news/site/item/component.config.php}',
+        'subject' => '{#lazy:~/project/module/news/site/subject/component.config.php}'
     ],
-    IComponent::OPTION_VIEW        => [
+
+    SiteComponent::OPTION_CONTROLLERS => [
+        'index' => 'umicms\project\module\news\site\controller\IndexController'
+    ],
+
+    SiteComponent::OPTION_VIEW        => [
         'type'      => 'php',
         'extension' => 'phtml',
         'directory' => __DIR__ . '/template/php',
     ],
 
-    IComponent::OPTION_WIDGET => [
-        'viewNewsItem' => 'umicms\project\module\news\site\widget\NewsItemWidget',
-        'viewRubric' => 'umicms\project\module\news\site\widget\RubricWidget',
-        'viewSubject' => 'umicms\project\module\news\site\widget\SubjectWidget',
+    SiteComponent::OPTION_ROUTES      => [
 
-        'rubricNewsList' => 'umicms\project\module\news\site\widget\RubricNewsListWidget',
-        'subjectNewsList' => 'umicms\project\module\news\site\widget\SubjectNewsListWidget',
-
-        'rubricList' => 'umicms\project\module\news\site\widget\RubricListWidget',
-        'subjectList' => 'umicms\project\module\news\site\widget\SubjectListWidget'
-    ],
-
-    IComponent::OPTION_ROUTES      => [
-        'rubric' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/rubric/{url}',
-            'defaults' => [
-                'controller' => 'rubric'
-            ]
-        ],
-        'item' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/item/{slug}',
-            'defaults' => [
-                'controller' => 'item'
-            ]
-        ],
-        'subject' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/subject/{slug}',
-            'defaults' => [
-                'controller' => 'subject'
-            ]
+        'component' => [
+            'type' => 'SiteComponentRoute'
         ],
         'index' => [
             'type' => IRouteFactory::ROUTE_FIXED,

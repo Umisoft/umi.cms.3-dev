@@ -9,43 +9,55 @@
 namespace umicms\project\module\news\admin\item;
 
 use umi\route\IRouteFactory;
-use umicms\base\component\Component;
+use umicms\hmvc\component\AdminComponent;
 
 return [
 
-    Component::OPTION_SETTINGS => [
+    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\AdminComponent',
 
+    AdminComponent::OPTION_SETTINGS => [
+        AdminComponent::OPTION_COLLECTION_NAME => 'newsItem'
     ],
 
-    Component::OPTION_CONTROLLERS => [
-        'settings' => __NAMESPACE__ . '\controller\SettingsController',
+    AdminComponent::OPTION_CONTROLLERS => [
         'list' => __NAMESPACE__ . '\controller\ListController',
         'item' => __NAMESPACE__ . '\controller\ItemController',
+        'action' => __NAMESPACE__ . '\controller\ActionController',
     ],
 
-    Component::OPTION_ROUTES      => [
-
-        'settings' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route'    => '/settings',
-            'defaults' => [
-                'controller' => 'settings'
-            ]
-        ],
-
-        'list' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/list',
-            'defaults' => [
-                'controller' => 'list'
-            ]
-        ],
+    AdminComponent::OPTION_ROUTES      => [
 
         'item' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{guid:guid}',
+            'route'    => '/{collection}/{id:integer}',
             'defaults' => [
+                'collection' => 'newsItem',
                 'controller' => 'item'
+            ]
+        ],
+
+/*        'itemAction' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{guid:guid}/{action}',
+            'defaults' => [
+                'controller' => 'action'
+            ]
+        ],
+
+        'action' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{action}',
+            'defaults' => [
+                'controller' => 'action'
+            ]
+        ],*/
+
+        'list' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/{collection}',
+            'defaults' => [
+                'collection' => 'newsItem',
+                'controller' => 'list'
             ]
         ]
     ]

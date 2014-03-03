@@ -9,55 +9,45 @@
 namespace umicms\project\admin;
 
 use umi\route\IRouteFactory;
+use umicms\hmvc\component\AdminComponent;
 
 return [
 
-    AdminApplication::OPTION_CLASS => 'umicms\project\admin\AdminApplication',
+    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\AdminComponent',
 
-    AdminApplication::OPTION_SETTINGS => [
+    AdminComponent::OPTION_SETTINGS => [
 
     ],
 
-    AdminApplication::OPTION_CONTROLLERS => [
-        AdminApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
-
+    AdminComponent::OPTION_CONTROLLERS => [
+        AdminComponent::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
         'default' => __NAMESPACE__ . '\controller\DefaultController',
-        'settings' => __NAMESPACE__ . '\controller\SettingsController',
     ],
 
-    AdminApplication::OPTION_COMPONENTS => [
-        'structure' => '{#lazy:~/project/module/structure/admin/module.config.php}',
-        'users' => '{#lazy:~/project/module/users/admin/module.config.php}',
-        'news' => '{#lazy:~/project/module/news/admin/module.config.php}',
-        'blog' => '{#lazy:~/project/module/blog/admin/module.config.php}'
+    AdminComponent::OPTION_COMPONENTS => [
+        'api' => '{#lazy:~/project/admin/api/api.config.php}',
     ],
 
-    AdminApplication::OPTION_VIEW        => [
+    AdminComponent::OPTION_VIEW        => [
         'type'      => 'php',
         'extension' => 'phtml',
         'directory' => __DIR__ . '/template/php'
     ],
 
-    AdminApplication::OPTION_ROUTES => [
+    AdminComponent::OPTION_ROUTES => [
 
-        'settings' => [
+        'api' => [
             'type'     => IRouteFactory::ROUTE_FIXED,
-            'route' => '/api/settings',
+            'route' => '/api',
             'defaults' => [
-                'controller' => 'settings'
+                'component' => 'api'
             ]
         ],
 
-        'api' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/api/{component}'
-        ],
-
         'default' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{uri}',
+            'type'     => IRouteFactory::ROUTE_REGEXP,
+            'route' => '.*',
             'defaults' => [
-                'uri' => '',
                 'controller' => 'default'
             ]
         ]

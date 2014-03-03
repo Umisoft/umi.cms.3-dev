@@ -29,7 +29,6 @@ abstract class BaseComplexApi implements ILocalizable, IFactory
     /**
      * Возвращает дочернее API.
      * @param string $apiClassName имя класса
-     * @param string|array $apiContractName имя контракта или список имен контрактов
      * @return object
      */
     protected function getApi($apiClassName)

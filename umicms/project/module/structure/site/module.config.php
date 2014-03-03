@@ -8,19 +8,24 @@
 
 namespace umicms\project\module\structure\site;
 
-use umi\hmvc\component\IComponent;
 use umi\route\IRouteFactory;
+use umicms\hmvc\component\SiteComponent;
 
 return [
-    IComponent::OPTION_CONTROLLERS => [
+
+    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\SiteComponent',
+
+    SiteComponent::OPTION_CONTROLLERS => [
         'static' => 'umicms\project\module\structure\site\controller\StaticPageController',
     ],
-    IComponent::OPTION_VIEW        => [
+
+    SiteComponent::OPTION_VIEW        => [
         'type'      => 'php',
         'extension' => 'phtml',
         'directory' => __DIR__ . '/template/php',
     ],
-    IComponent::OPTION_ROUTES      => [
+
+    SiteComponent::OPTION_ROUTES      => [
         'static' => [
             'type'     => IRouteFactory::ROUTE_FIXED,
             'defaults' => [

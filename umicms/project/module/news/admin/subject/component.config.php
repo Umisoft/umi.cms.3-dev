@@ -8,11 +8,39 @@
 
 namespace umicms\project\module\news\admin\subject;
 
-use umicms\base\component\Component;
+use umi\route\IRouteFactory;
+use umicms\hmvc\component\AdminComponent;
 
 return [
 
-    Component::OPTION_SETTINGS => [
+    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\AdminComponent',
 
+    AdminComponent::OPTION_SETTINGS => [
+    ],
+
+    AdminComponent::OPTION_CONTROLLERS => [
+        'list' => __NAMESPACE__ . '\controller\ListController',
+        'item' => __NAMESPACE__ . '\controller\ItemController'
+    ],
+
+    AdminComponent::OPTION_ROUTES      => [
+
+        'item' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{collection}/{id:integer}',
+            'defaults' => [
+                'collection' => 'newsItem',
+                'controller' => 'item'
+            ]
+        ],
+
+        'list' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/{collection}',
+            'defaults' => [
+                'collection' => 'newsItem',
+                'controller' => 'list'
+            ]
+        ]
     ]
 ];

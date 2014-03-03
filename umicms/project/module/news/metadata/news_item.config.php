@@ -63,7 +63,7 @@ return [
         NewsItem::FIELD_RUBRIC       => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'rubric_id',
-            'target'     => 'news_rubric'
+            'target'     => 'newsRubric'
         ],
         NewsItem::FIELD_SLUG         => [
             'type'       => IField::TYPE_SLUG,
@@ -73,8 +73,8 @@ return [
         ],
         NewsItem::FIELD_SUBJECTS     => [
             'type'         => IField::TYPE_MANY_TO_MANY,
-            'target'       => 'news_subject',
-            'bridge'       => 'news_item_subject',
+            'target'       => 'newsSubject',
+            'bridge'       => 'newsItemSubject',
             'relatedField' => 'newsItem',
             'targetField'  => 'subject'
         ],

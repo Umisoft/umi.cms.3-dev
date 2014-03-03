@@ -12,7 +12,7 @@ use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpForbidden;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
-use umicms\base\controller\BaseController;
+use umicms\hmvc\controller\BaseController;
 use umicms\exception\NonexistentEntityException;
 
 /**
@@ -52,7 +52,7 @@ class ErrorController extends BaseController
 
         }
 
-        $code = HttpException::HTTP_INTERNAL_SERVER_ERROR;
+        $code = Response::HTTP_INTERNAL_SERVER_ERROR;
         if ($this->exception instanceof HttpException) {
             $code = $this->exception->getCode();
         }

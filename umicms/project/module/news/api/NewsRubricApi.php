@@ -22,7 +22,7 @@ class NewsRubricApi extends BaseHierarchicCollectionApi
     /**
      * {@inheritdoc}
      */
-    public $collectionName = 'news_rubric';
+    public $collectionName = 'newsRubric';
 
     /**
      * Возвращает новостую рубрику по ее GUID

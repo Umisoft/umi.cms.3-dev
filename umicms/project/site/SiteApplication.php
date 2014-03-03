@@ -16,7 +16,7 @@ use umi\http\Response;
 use umi\http\THttpAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
-use umicms\base\component\Component;
+use umicms\hmvc\component\SiteComponent;
 use umicms\project\config\ISiteSettingsAware;
 use umicms\project\config\TSiteSettingsAware;
 use umicms\project\module\structure\api\StructureApi;
@@ -26,7 +26,7 @@ use umicms\serialization\TSerializationAware;
 /**
  * Приложение сайта.
  */
-class SiteApplication extends Component implements IHttpAware, IToolkitAware, ISiteSettingsAware, ISerializationAware
+class SiteApplication extends SiteComponent implements IHttpAware, IToolkitAware, ISiteSettingsAware, ISerializationAware
 {
     use TSiteSettingsAware;
     use THttpAware;
@@ -38,6 +38,10 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
      */
     const SETTING_DEFAULT_PAGE_GUID = 'default-page';
     /**
+     * Имя настройки для задания guid главной страницы
+     */
+    const SETTING_DEFAULT_LAYOUT_GUID = 'default-layout';
+    /**
      * Имя настройки для задания постфикса всех URL
      */
     const SETTING_URL_POSTFIX = 'url-postfix';
@@ -45,15 +49,6 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
      * Формат запроса по умолчанию.
      */
     const DEFAULT_REQUEST_FORMAT = 'html';
-
-    /**
-     * @var StructureApi $structureApi
-     */
-    protected $structureApi;
-    /**
-     * @var string $requestFormat формат запроса к приложению
-     */
-    protected $currentRequestFormat = self::DEFAULT_REQUEST_FORMAT;
 
     /**
      * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
@@ -66,9 +61,7 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
      */
     public function __construct($name, $path, array $options = [], StructureApi $structureApi)
     {
-        parent::__construct($name, $path, $options);
-
-        $this->structureApi = $structureApi;
+        parent::__construct($name, $path, $options, $structureApi);
 
         $this->registerSiteSettings();
     }
@@ -76,48 +69,38 @@ class SiteApplication extends Component implements IHttpAware, IToolkitAware, IS
     /**
      * {@inheritdoc}
      */
-    public function onDispatchRequest(IDispatchContext $context, Request $request)
+    public function onDispatchResponse(IDispatchContext $context, Response $response)
     {
-        if (!$this->structureApi->hasCurrentElement()) {
-            return null;
-        }
-
+        $request = $context->getDispatcher()->getCurrentRequest();
         $routePath = $request->getPathInfo();
         if ($suffix = $request->getRequestFormat(null)) {
             $routePath = substr($routePath, 0, -strlen($suffix) - 1);
         }
 
         $isRootPath = trim($routePath, '/') === trim($context->getBaseUrl(), '/');
-        $isMatchingComplete = $context->getRouteParams()['isMatchingComplete'];
 
-        if (!$isRootPath && $response = $this->processUrlPostfixRedirect($request)) {
-            return $response;
+        if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
+            return $redirectResponse;
         }
 
-        if ($isMatchingComplete && !$isRootPath && $response = $this->processDefaultPageRedirect($context)) {
-            return $response;
+        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect($context)) {
+            return $redirectResponse;
         }
 
-        $this->currentRequestFormat = $this->getRequestFormatByPostfix($request->getRequestFormat(null));
+        $requestFormat = $this->getRequestFormatByPostfix($request->getRequestFormat(null));
 
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function onDispatchResponse(IDispatchContext $context, Response $response)
-    {
-        if ($this->currentRequestFormat !== self::DEFAULT_REQUEST_FORMAT) {
+        if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
             $result = [
                 'result' => $response->getContent()
             ];
 
-            $serializer = $this->getSerializer($this->currentRequestFormat, $result);
+            $serializer = $this->getSerializer($requestFormat, $result);
             $serializer->init();
             $serializer($result);
             $response->setContent($serializer->output());
         }
+
+        return $response;
     }
 
     /**
