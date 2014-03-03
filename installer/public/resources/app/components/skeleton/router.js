@@ -1,7 +1,19 @@
 define([], function(){
     'use strict';
     return function(UMI){
+        /**
+         @module UMI
+         @submodule Router
+         **/
+        UMI.Router.reopen({
+            location: 'history',
+            rootURL: window.UmiSettings.baseURL
+        });
 
+        /**
+         @class map
+         @constructor
+         */
         UMI.Router.map(function(){
             this.resource('module', {path: '/:module'}, function(){
                 this.resource('component', {path: '/:component'}, function(){
@@ -11,11 +23,6 @@ define([], function(){
                 });
             });
             this.route('logout', {path: '/auth/logout'});
-        });
-
-        UMI.Router.reopen({
-            location: 'history',
-            rootURL: window.UmiSettings.baseURL
         });
 
         //		UMI.ErrorState = Ember.Mixin.create({//TODO: Обрабатывать все типы ошибок, и разные роуты
@@ -210,15 +217,17 @@ define([], function(){
         UMI.ContextRoute = Ember.Route.extend({
             model: function(params){
                 var model;
+                var oldContext = this.controllerFor('component').get('selectedContext');
                 this.controllerFor('component').set('selectedContext', params.context);
 
                 /**
                  * Редирект на Mode если контекст не имеет action
                  */
                 var activeMode = this.modelFor('action');
-                var contextActions = this.controllerFor('component').get('contentControls');
-                if(!contextActions.findBy('name', activeMode.get('name'))){
-                    return this.transitionTo('action', contextActions.get('firstObject.name'));
+                console.log(activeMode);
+                var firstAction = this.controllerFor('component').get('contentControls.firstObject');
+                if(firstAction.get('name') !== activeMode.get('name')){
+                    return this.transitionTo('action', firstAction.get('name'));
                 }
 
                 if(params.context === 'root'){
