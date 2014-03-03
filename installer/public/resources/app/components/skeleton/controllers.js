@@ -1,34 +1,25 @@
 define([], function(){
     'use strict';
-
     return function(UMI){
-
         UMI.ComponentController = Ember.ObjectController.extend({
-            treeSettings: false,
             treeType: null,
-            hasTree: false
-        });
-
-        UMI.ComponentModeController = Ember.ArrayController.extend({
-            content: function(){
-                var componentMode = this.get('modes');
-                if(componentMode){
-                    var buttons = [];
-                    componentMode = componentMode.get('modes')[this.get('id')];
-                    for(var i = 0; i < componentMode.titles.length; i++){
-                        buttons.push(Ember.Object.create({slug: componentMode.slug[i], title: componentMode.titles[i], contentType: componentMode.contentType[i], current: (componentMode.current === i ? true : false), resources: componentMode.resources[i]}));
+            hasTree: null,
+            controls: null,
+            context: null,
+            selectedContext: 'root',
+            contentControls: function(){
+                var allControls = this.get('controls');
+                var context = this.get('context');
+                var selectedContext  = this.get('selectedContext') === 'root' ? 'emptyContext' : 'selectedContext';
+                var controls = context[selectedContext].content.controls;
+                var contentControls = [];
+                for(var i = 0; i < allControls.length; i++){
+                    if(controls.indexOf(allControls[i].name) !== -1){
+                        contentControls.push(Ember.Object.create(allControls[i]));
                     }
-                    return buttons;
                 }
-            }.property('modes', 'id'),
-            modes: null,
-            id: null
-        });
-
-        UMI.ContentController = Ember.ObjectController.extend({
-            activeNode: '',
-            queryParams: ['objectId'],
-            objectId: null
+                return contentControls;
+            }.property('context', 'selectedContext')
         });
     };
 });

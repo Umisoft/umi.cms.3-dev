@@ -8,7 +8,7 @@ define(['App'], function(UMI){
                 var root = Ember.Object.create(this.get('collection'));
                 root.set('root', true);
                 root.set('hasChildren', true);
-
+                root.set('id', 'root');
                 var nodes = this.store.find(root.get('type'), {'parent': null});
                 var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: nodes,

@@ -33,7 +33,7 @@
                         <i class="icon icon-bottom"></i>
                     </span>
                     <i class="icon icon-document"></i>
-                    <span>{{root.name}}</span>
+                    {{#link-to 'context' root.id}}{{root.name}}{{/link-to}}</span>
                 </div>
                 <ul class="umi-tree-list umi-tree">
                     {{#each node in root.children itemController="treeItem"}}

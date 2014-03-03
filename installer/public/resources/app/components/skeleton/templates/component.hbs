@@ -1,10 +1,9 @@
 <div class="s-full-height">
-    <div
-    {{bind-attr class=":off-canvas-wrap :s-full-height hasTree:move-right"}}>
+    <div {{bind-attr class=":off-canvas-wrap :s-full-height hasTree:move-right"}}>
     <div class="inner-wrap s-full-height">
         {{#if hasTree}}
         <aside class="left-off-canvas-menu s-unselectable" style="overflow: hidden;">
-            {{render "treeControl" treeSettings}}
+            {{render "treeControl"}}
             <div class="umi-divider"></div>
         </aside>
         {{/if}}
@@ -13,9 +12,9 @@
         <div class="row s-full-height-before s-margin-clear umi-mode">
             <section class="left">
                 {{#if hasTree}}
-                <a class="left-off-canvas-toggle"><span class="icon icon-list"></span></a>
+                    <a class="left-off-canvas-toggle"><span class="icon icon-list"></span></a>
                 {{else}}
-                <a style="display:block; padding: 7px 9px; cursor:default;"><span
+                    <a style="display:block; padding: 7px 9px; cursor:default;"><span
                         class="icon icon-list white"></span></a>
                 {{/if}}
             </section>
@@ -34,13 +33,15 @@
                        placeholder='Введите запрос и нажмите "Enter"'>
             </div>
             <div style="float:left; margin:8px 10px;">
-                {{#link-to "content" "search"}}Найти{{/link-to}}
+                {{!#link-to "content" "search"}}Найти{{!/link-to}}
             </div>
-            <!--</h5>-->
 
-            {{render 'componentMode'}}
+            <ul class="button-group right">
+                {{#each control in controller.contentControls}}
+                    <li>{{#link-to 'action' control.name classNames="button"}}{{control.displayName}}{{/link-to}}</li>
+                {{/each}}
+            </ul>
         </div>
-
 
         <div class="row s-full-height umi-component">
             <div class="columns small-12 s-padding-clear">
