@@ -216,6 +216,36 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('h1', 'Новости сайта')
             ->setGUID('8650706f-04ca-49b6-a93d-966a42377a61');
 
+        $sport = $rubricCollection->add('sport')
+            ->setValue('displayName', 'Новости спорта')
+            ->setValue('metaTitle', 'Новости спорта')
+            ->setValue('h1', 'Новости спорта');
+
+        $winterSports = $rubricCollection->add('winter', IObjectType::BASE, $sport)
+            ->setValue('displayName', 'Зимний спорт')
+            ->setValue('metaTitle', 'Зимний спорт')
+            ->setValue('h1', 'Зимний спорт');
+
+        $summerSports = $rubricCollection->add('summer', IObjectType::BASE, $sport)
+            ->setValue('displayName', 'Летний спорт')
+            ->setValue('metaTitle', 'Летний спорт')
+            ->setValue('h1', 'Летний спорт');
+
+        $snowboard = $rubricCollection->add('snowboard', IObjectType::BASE, $winterSports)
+            ->setValue('displayName', 'Сноуборд')
+            ->setValue('metaTitle', 'Сноуборд')
+            ->setValue('h1', 'Сноуборд');
+
+        $ski = $rubricCollection->add('ski', IObjectType::BASE, $winterSports)
+            ->setValue('displayName', 'Лыжи')
+            ->setValue('metaTitle', 'Лыжи')
+            ->setValue('h1', 'Лыжи');
+
+        $volleyball = $rubricCollection->add('volleyball', IObjectType::BASE, $summerSports)
+            ->setValue('displayName', 'Волейбол')
+            ->setValue('metaTitle', 'Волейбол')
+            ->setValue('h1', 'Волейбол');
+
         $item = $newsCollection->add()
             ->setValue('displayName', 'Названа причина социопатии современных зомби')
             ->setValue('metaTitle', 'Названа причина социопатии современных зомби')

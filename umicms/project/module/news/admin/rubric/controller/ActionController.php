@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\news\admin\item\controller;
+namespace umicms\project\module\news\admin\rubric\controller;
 
 use umicms\hmvc\controller\BaseRestActionController;
 

@@ -74,7 +74,7 @@ return [
         'tags'                  => [
             'type'         => IField::TYPE_MANY_TO_MANY,
             'target'       => 'blogTag',
-            'bridge'       => 'PostTag',
+            'bridge'       => 'blogPostTag',
             'relatedField' => 'post',
             'targetField'  => 'tag'
         ],

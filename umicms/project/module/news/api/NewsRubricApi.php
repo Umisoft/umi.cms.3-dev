@@ -47,6 +47,28 @@ class NewsRubricApi extends BaseHierarchicCollectionApi
     }
 
     /**
+     * Возвращает рубрику по ее id.
+     * @param int $id
+     * @throws NonexistentEntityException если не удалось получить рубрику
+     * @return NewsRubric
+     */
+    public function getById($id) {
+
+        try {
+            return $this->getCollection()->getById($id);
+        } catch(IException $e) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find news rubric by id "{id}".',
+                    ['id' => $id]
+                ),
+                0,
+                $e
+            );
+        }
+    }
+
+    /**
      * Возвращает новостую рубрику по ее URL
      * @param string $url
      * @throws NonexistentEntityException если не удалось получить рубрику
@@ -67,6 +89,16 @@ class NewsRubricApi extends BaseHierarchicCollectionApi
             );
         }
     }
+
+    /**
+     * Помечает рубрику на удаление.
+     * @param NewsRubric $rubric
+     */
+    public function delete(NewsRubric $rubric) {
+
+        $this->getCollection()->delete($rubric);
+    }
+
 
 
 }

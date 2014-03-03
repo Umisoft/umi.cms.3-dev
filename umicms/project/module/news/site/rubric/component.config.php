@@ -34,8 +34,8 @@ return [
 
     SiteComponent::OPTION_ROUTES      => [
         'rubric' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{url}',
+            'type'     => IRouteFactory::ROUTE_REGEXP,
+            'route'    => '/(?P<url>.+)',
             'defaults' => [
                 'controller' => 'rubric'
             ]

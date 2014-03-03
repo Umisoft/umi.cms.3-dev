@@ -9,10 +9,12 @@
 
 namespace umicms\hmvc\controller;
 
+use umi\config\entity\IConfig;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
+use umicms\hmvc\component\AdminComponent;
 
 /**
  * Базовый контроллер действий над объектом.
@@ -63,6 +65,20 @@ abstract class BaseRestActionController extends BaseController
                 );
             }
         }
+    }
+
+    /**
+     * Возвращает настройки текущего компонента.
+     * @return IConfig
+     */
+    protected function actionSettings()
+    {
+        /**
+         * @var AdminComponent $component
+         */
+        $component = $this->getComponent();
+
+        return $component->getSettings();
     }
 
     /**

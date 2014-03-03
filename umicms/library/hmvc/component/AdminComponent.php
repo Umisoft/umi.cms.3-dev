@@ -14,14 +14,6 @@ namespace umicms\hmvc\component;
  */
 class AdminComponent extends BaseComponent
 {
-    /**
-     * Имя опции для настроек интерфейса компонента в административной панели
-     */
-    const OPTION_ADMIN_INTERFACE = 'interface';
-    /**
-     * Имя опции для задания имени коллекции, управляемой компонентом
-     */
-    const OPTION_COLLECTION_NAME = 'collectionName';
 
 }
  
