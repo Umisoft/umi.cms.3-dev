@@ -136,7 +136,7 @@ define(
         });
 
         UMI.ApplicationSerializer = DS.RESTSerializer.extend({
-            normalizePayload: function(type, payload) {
+            normalizePayload: function(type, payload){
                 payload = payload.result;
                 return payload;
             }
