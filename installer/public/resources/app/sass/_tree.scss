@@ -14,7 +14,7 @@ body{
     margin-top: rem-calc(8);
     font-size: rem-calc(13);
 
-    ul.f-dropdown{
+    ul.f-dropdown {
         padding-left: 0;
     }
 
@@ -59,29 +59,18 @@ body{
             }
         }
         &:hover{
-            .icon-right, .icon-bottom{
-                background-position-y: -19px;
-            }
             a{
-                color: #fff;
-                border-right: 0;
-            }
-            .umi-tree-context-menu{
-                display: block;
-            }
-            + .hover-bg{
-                display: block;
+                text-decoration: none;
+                border-bottom: 1px solid $umi-font-color;
             }
         }
     }
 
-    i {
-        margin: rem-calc(2 -2 2 0);
-    }
-
-    .move {
+    .umi-tree-type-icon{
+        margin: rem-calc(2 0 0 -2);
         cursor: move !important;
     }
+
 
     .umi-expand{
         display: inline-block;
@@ -91,19 +80,15 @@ body{
         position: absolute;
         margin-left: rem-calc(-20);
         margin-top: rem-calc(2);
-        left: -20px;
-        i {
-            margin: 0;
-        }
     }
 
-    .umi-tree-placeholder {
+    .umi-tree-placeholder{
         height: rem-calc(24);
         background: #C4D2DD;
         border-radius: rem-calc(12);
         margin-left: 15px;
         transition: background 0.2s linear;
-        &:hover, &:focus{
+        &:hover, &:focus {
             background: darken(#C4D2DD, 3%);
         }
     }
@@ -115,36 +100,24 @@ body{
     }
 
     &.drag-inside{
-        a, .icon, .move {
+        a, .icon, .move{
             cursor: default;
         }
     }
 
+
+
+    // Выпадающее меню --------------------------------------
     .umi-tree-context-menu{
-        display: none;
         position: absolute;
         right: rem-calc(8);
         margin: 0;
         padding: 0;
         margin-top: -24px;
     }
-
-    .hover-bg{
-        background: linear-gradient(to bottom, $primary-color 0%, darken($primary-color, 5%) 50%);
-        background: linear-gradient(top, $primary-color 0%, darken($primary-color, 5%) 50%);
-        position: absolute;
-        height: 24px;
-        right: 0;
-        min-width: 100%;
-        margin-left: -1000px;
-        padding-left: 1000px;
-        display: none;
-        margin-top: -24px;
-        z-index: 1;
-    }
 }
 
-.umi-tree-ghost{
+.umi-tree-ghost {
     height: rem-calc(24);
     color: #000000;
     border: none;
@@ -159,34 +132,34 @@ body{
 }
 
 // Вот тут говнокод
-.umi-tree-header{
-    .f-dropdown{
-        input{
+.umi-tree-header {
+    .f-dropdown {
+        input {
             display: block;
             margin-bottom: 0;
             float: left;
             margin-top: rem-calc(5);
         }
-        label{
+        label {
             margin-bottom: 0;
         }
-        li{
+        li {
             border-bottom: 1px solid #98A2AB;
             padding: rem-calc(5 8);
-            &:last-child{
+            &:last-child {
                 border-bottom: none;
             }
-            &:hover{
+            &:hover {
                 background: #FFF;
             }
-            .title{
+            .title {
                 display: block;
                 margin-left: rem-calc(20);
                 line-height: normal;
             }
-            div{
+            div {
                 margin-bottom: rem-calc(5);
-                &:last-child{
+                &:last-child {
                     margin-bottom: 0;
                 }
             }

@@ -1,5 +1,6 @@
 {{#if visible}}
     <li data-id="{{unbound node.id}}" {{bind-attr class="node.isDragged:hide node.root"}}>
+
         {{#view "treeItem" contentBinding="this"}} <!-- div -->
             {{#if node.childCount}}
                 <span {{action "expanded" node}} {{bind-attr class=":umi-expand"}}>
@@ -33,7 +34,7 @@
             </li>
         </ul>
 
-<script type="text/x-handlebars" id="umi-tree-menu">
+        <script type="text/x-handlebars" id="umi-tree-menu">
             <div class="umi-tree-drop-down s-unselectable">
                 <div class="umi-tree-drop-down-show-button">
                     <i class="icon black icon-top"></i>
@@ -82,7 +83,7 @@
         {{#if node.childCount}}
             {{#if node.isExpanded}}
                 <ul class="umi-tree-list" data-parent-id="{{unbound node.id}}">
-                    {{#each node in sortedChildren itemController="treeItem"}}
+                    {{#each node in node.sortedChildren itemController="treeItem"}}
                         {{partial "treeItem"}}
                     {{/each}}
                 </ul>

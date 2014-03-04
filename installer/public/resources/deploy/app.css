@@ -5345,18 +5345,11 @@ body {
       .umi-tree .umi-item.active a {
         color: #FFFFFF;
         border-bottom: none !important; }
-    .umi-tree .umi-item:hover .icon-right, .umi-tree .umi-item:hover .icon-bottom {
-      background-position-y: -19px; }
     .umi-tree .umi-item:hover a {
-      color: #fff;
-      border-right: 0; }
-    .umi-tree .umi-item:hover .umi-tree-context-menu {
-      display: block; }
-    .umi-tree .umi-item:hover + .hover-bg {
-      display: block; }
-  .umi-tree i {
-    margin: 0.125rem -0.125rem 0.125rem 0; }
-  .umi-tree .move {
+      text-decoration: none;
+      border-bottom: 1px solid #535E6D; }
+  .umi-tree .umi-tree-type-icon {
+    margin: 0.125rem 0 0 -0.125rem;
     cursor: move !important; }
   .umi-tree .umi-expand {
     display: inline-block;
@@ -5365,10 +5358,7 @@ body {
     cursor: hand;
     position: absolute;
     margin-left: -1.25rem;
-    margin-top: 0.125rem;
-    left: -20px; }
-    .umi-tree .umi-expand i {
-      margin: 0; }
+    margin-top: 0.125rem; }
   .umi-tree .umi-tree-placeholder {
     height: 1.5rem;
     background: #C4D2DD;
@@ -5384,26 +5374,11 @@ body {
   .umi-tree.drag-inside a, .umi-tree.drag-inside .icon, .umi-tree.drag-inside .move {
     cursor: default; }
   .umi-tree .umi-tree-context-menu {
-    display: none;
     position: absolute;
     right: 0.5rem;
     margin: 0;
     padding: 0;
     margin-top: -24px; }
-  .umi-tree .hover-bg {
-    background: -webkit-linear-gradient(top, #259cec 0%, #1491e4 50%);
-    background: -o-linear-gradient(top, #259cec 0%, #1491e4 50%);
-    background: linear-gradient(to bottom, #259cec 0%, #1491e4 50%);
-    background: linear-gradient(top, #259cec 0%, #1491e4 50%);
-    position: absolute;
-    height: 24px;
-    right: 0;
-    min-width: 100%;
-    margin-left: -1000px;
-    padding-left: 1000px;
-    display: none;
-    margin-top: -24px;
-    z-index: 1; }
 
 .umi-tree-ghost {
   height: 1.5rem;
