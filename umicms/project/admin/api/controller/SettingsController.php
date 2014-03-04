@@ -10,7 +10,7 @@ namespace umicms\project\admin\api\controller;
 
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
-use umicms\hmvc\component\AdminComponent;
+use umicms\project\admin\component\AdminComponent;
 use umicms\hmvc\controller\BaseController;
 use umicms\orm\collection\IApplicationHandlersAware;
 

@@ -7,41 +7,42 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\hmvc\controller;
+namespace umicms\project\admin\controller;
 
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umi\orm\selector\ISelector;
+use umicms\hmvc\controller\BaseController;
 use umicms\orm\object\ICmsObject;
 
 /**
- * Базовый контроллер действий над списком.
+ * Базовый контроллер Read-Update-Delete операций над объектом.
  */
-abstract class BaseRestListController extends BaseController implements IObjectPersisterAware
+abstract class BaseRestItemController extends BaseController implements IObjectPersisterAware
 {
     use TObjectPersisterAware;
 
     /**
-     * Возвращает список.
-     * @return ISelector
-     */
-    abstract protected function getList();
-
-    /**
-     * Создает и возвращает объект списка.
-     * @param array $data данные
+     * Возвращает объект.
      * @return ICmsObject
      */
-    abstract protected function create(array $data);
+    abstract protected function get();
 
     /**
-     * Возвращает имя коллекции.
-     * @return string
+     * Обновляет и возвращает объект.
+     * @param ICmsObject $object
+     * @param array $data
+     * @return ICmsObject
      */
-    abstract protected function getCollectionName();
+    abstract protected function update(ICmsObject $object, array $data);
+
+    /**
+     * Удаляет объект.
+     * @param ICmsObject $object
+     */
+    abstract protected function delete(ICmsObject $object);
 
     /**
      * {@inheritdoc}
@@ -50,31 +51,30 @@ abstract class BaseRestListController extends BaseController implements IObjectP
     {
         switch($this->getRequest()->getMethod()) {
             case 'GET': {
-                $list = $this->getList();
-
-                foreach($this->getAllQueryVars() as $name => $value) {
-                    if (!strlen($value)) $value = null;
-                    $list->where($name)->equals($value);
-                }
-
+                $object = $this->get();
                 return $this->createViewResponse(
-                    'list', [$this->getCollectionName() => $list]
+                    'item', [$object->getCollectionName() => $object]
                 );
             }
-            case 'PUT':
-            case 'POST': {
-                $object = $this->create($this->getIncomingData());
+            case 'PUT': {
+                $object = $this->get();
                 return $this->createViewResponse(
-                    'item', [$this->getCollectionName() => $object]
+                    'update',
+                    [
+                        $object->getCollectionName() => $this->update($object, $this->getIncomingData($object))
+                    ]
                 );
             }
             case 'DELETE': {
+                $this->delete($this->get());
+                return $this->createResponse('', Response::HTTP_NO_CONTENT);
+            }
+            case 'POST': {
                 throw new HttpMethodNotAllowed(
                     'HTTP method is not implemented.',
-                    ['GET', 'POST', 'PUT']
+                    ['GET', 'PUT', 'DELETE']
                 );
             }
-
             default: {
                 throw new HttpException(
                     Response::HTTP_NOT_IMPLEMENTED,
@@ -86,10 +86,11 @@ abstract class BaseRestListController extends BaseController implements IObjectP
 
     /**
      * Возвращает данные для изменения объекта.
+     * @param ICmsObject $object объект для изменения
      * @throws HttpException если не удалось получить данные
      * @return array
      */
-    private function getIncomingData()
+    private function getIncomingData(ICmsObject $object)
     {
         $inputData = file_get_contents('php://input');
         if (!$inputData) {
@@ -105,11 +106,12 @@ abstract class BaseRestListController extends BaseController implements IObjectP
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'JSON parse error: ' . $error);
         }
 
-        if (!isset($data[$this->getCollectionName()]) || !is_array($data[$this->getCollectionName()])) {
+        $collectionName = $object->getCollectionName();
+        if (!isset($data[$collectionName]) || !is_array($data[$collectionName])) {
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'Object data not found.');
         }
 
-        return $data[$this->getCollectionName()];
+        return $data[$collectionName];
     }
 
 }

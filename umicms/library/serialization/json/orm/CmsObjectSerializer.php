@@ -8,7 +8,6 @@
  */
 
 namespace umicms\serialization\json\orm;
-
 use umi\orm\collection\ICollection;
 use umi\orm\metadata\field\relation\BelongsToRelationField;
 use umi\orm\metadata\field\relation\HasManyRelationField;
@@ -24,7 +23,7 @@ use umicms\serialization\json\BaseSerializer;
 class CmsObjectSerializer extends BaseSerializer
 {
     /**
-     * Сериализует ICmsObject в XML.
+     * Сериализует ICmsObject в JSON.
      * @param ICmsObject $object
      */
     public function __invoke(ICmsObject $object)
@@ -40,7 +39,6 @@ class CmsObjectSerializer extends BaseSerializer
              * @var mixed $field
              */
             $field = $property->getField();
-
             switch(true) {
                 case $field instanceof BelongsToRelationField: {
 
@@ -57,7 +55,6 @@ class CmsObjectSerializer extends BaseSerializer
                     break;
                 }
                 case $field instanceof HasManyRelationField: {
-
                     $targetCollection = $field->getTargetCollection();
                     if ($targetCollection instanceof IApplicationHandlersAware && $targetCollection->hasHandler('admin')) {
                         $links[$name] = $this->getCollectionLink($targetCollection, $field->getTargetFieldName(), $object->getId());

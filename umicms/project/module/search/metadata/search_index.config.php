@@ -47,7 +47,7 @@ return [
         ],
         SearchIndex::FIELD_CONTENT => [
             'type' => IField::TYPE_TEXT,
-            'columnName' => 'content',
+            'columnName' => 'contents',
         ],
         SearchIndex::FIELD_COLLECTION_NAME => [
             'type' => IField::TYPE_STRING,

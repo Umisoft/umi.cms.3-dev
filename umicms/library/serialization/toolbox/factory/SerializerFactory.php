@@ -41,7 +41,7 @@ class SerializerFactory implements IFactory, ISerializerFactory
             'NULL' => 'umicms\serialization\xml\NullSerializer',
             // cms objects
             'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
-            'umicms\orm\object\CmsElement' => 'umicms\serialization\xml\object\CmsElementSerializer',
+            'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\object\CmsElementSerializer',
             'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\object\FieldSerializer'
 
         ],
@@ -62,7 +62,7 @@ class SerializerFactory implements IFactory, ISerializerFactory
             'umi\orm\metadata\ObjectType' => 'umicms\serialization\json\orm\ObjectTypeSerializer',
             'umi\orm\metadata\field\BaseField' => 'umicms\serialization\json\orm\FieldSerializer',
             'umicms\orm\object\CmsObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
-            'umicms\orm\object\CmsElement' => 'umicms\serialization\json\orm\CmsObjectSerializer',
+            'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
         ]
     ];
 

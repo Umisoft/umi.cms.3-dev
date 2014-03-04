@@ -7,14 +7,15 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\hmvc\controller;
+namespace umicms\project\admin\controller;
 
 use umi\config\entity\IConfig;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
-use umicms\hmvc\component\AdminComponent;
+use umicms\hmvc\controller\BaseController;
+use umicms\project\admin\component\AdminComponent;
 
 /**
  * Базовый контроллер действий над объектом.

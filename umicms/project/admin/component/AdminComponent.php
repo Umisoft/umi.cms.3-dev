@@ -7,7 +7,9 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\hmvc\component;
+namespace umicms\project\admin\component;
+
+use umicms\hmvc\component\BaseComponent;
 
 /**
  * Компонент административной панели.

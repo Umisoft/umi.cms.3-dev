@@ -9,13 +9,13 @@
 
 namespace umicms\project\module\news\site\item\controller;
 
-use umicms\hmvc\controller\BaseController;
+use umicms\project\site\controller\SitePageController;
 use umicms\project\module\news\api\NewsPublicApi;
 
 /**
  * Контроллер отображения новости.
  */
-class NewsItemController extends BaseController
+class NewsItemController extends SitePageController
 {
 
     /**
@@ -35,6 +35,8 @@ class NewsItemController extends BaseController
     {
         $slug = $this->getRouteVar('slug');
         $newsItem = $this->api->news()->getBySlug($slug);
+
+        $this->pushCurrentPage($newsItem);
 
         return $this->createViewResponse(
             'view',

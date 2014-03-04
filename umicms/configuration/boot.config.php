@@ -33,8 +33,8 @@ return [
             'factories' => [
                 'route' => [
                     'types' => [
-                        'SiteStaticPageRoute' => 'umicms\project\route\SiteStaticPageRoute',
-                        'SiteComponentRoute' => 'umicms\project\route\SiteComponentRoute',
+                        'SiteStaticPageRoute' => 'umicms\project\site\route\SiteStaticPageRoute',
+                        'SiteComponentRoute' => 'umicms\project\site\route\SiteComponentRoute',
                     ]
                 ]
             ]

@@ -12,8 +12,8 @@ namespace umicms\project\module\structure\api;
 use umi\orm\exception\IException;
 use umicms\api\BaseCollectionApi;
 use umicms\exception\NonexistentEntityException;
-use umicms\project\config\ISiteSettingsAware;
-use umicms\project\config\TSiteSettingsAware;
+use umicms\project\site\config\ISiteSettingsAware;
+use umicms\project\site\config\TSiteSettingsAware;
 use umicms\project\module\structure\object\Layout;
 
 /**

@@ -9,11 +9,11 @@
 namespace umicms\project\module\news\site;
 
 use umi\route\IRouteFactory;
-use umicms\hmvc\component\SiteComponent;
+use umicms\project\site\component\SiteComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\SiteComponent',
+    SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
 
     SiteComponent::OPTION_COMPONENTS => [
         'rubric' => '{#lazy:~/project/module/news/site/rubric/component.config.php}',

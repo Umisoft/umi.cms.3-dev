@@ -9,7 +9,7 @@
 
 namespace umicms\serialization\xml\object;
 
-use umicms\orm\object\CmsElement;
+use umicms\orm\object\CmsHierarchicObject;
 
 /**
  * XML-сериализатор для CmsObject.
@@ -21,14 +21,14 @@ class CmsElementSerializer extends CmsObjectSerializer
      * @var array $attributes
      */
     protected $attributes = [
-        CmsElement::FIELD_IDENTIFY,
-        CmsElement::FIELD_GUID,
-        CmsElement::FIELD_VERSION,
-        CmsElement::FIELD_ACTIVE,
-        CmsElement::FIELD_LOCKED,
-        CmsElement::FIELD_DISPLAY_NAME,
-        CmsElement::FIELD_SLUG,
-        CmsElement::FIELD_MPATH
+        CmsHierarchicObject::FIELD_IDENTIFY,
+        CmsHierarchicObject::FIELD_GUID,
+        CmsHierarchicObject::FIELD_VERSION,
+        CmsHierarchicObject::FIELD_ACTIVE,
+        CmsHierarchicObject::FIELD_LOCKED,
+        CmsHierarchicObject::FIELD_DISPLAY_NAME,
+        CmsHierarchicObject::FIELD_SLUG,
+        CmsHierarchicObject::FIELD_MPATH
     ];
 
 }

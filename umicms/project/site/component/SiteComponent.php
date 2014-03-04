@@ -7,22 +7,28 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\hmvc\component;
+namespace umicms\project\site\component;
 
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\http\Request;
+use umicms\hmvc\component\BaseComponent;
+use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\StructureElement;
+use umicms\project\site\callstack\IPageCallStackAware;
+use umicms\project\site\callstack\TPageCallStackAware;
 
 /**
  * Компонент сайта.
  */
-class SiteComponent extends BaseComponent
+class SiteComponent extends BaseComponent implements IPageCallStackAware
 {
+    use TPageCallStackAware;
+
     /**
      * Имя параметра маршрута для определения элемента структуры.
      */
-    const MATCH_ELEMENT = 'element';
+    const MATCH_STRUCTURE_ELEMENT = 'element';
 
     /**
      * @var StructureApi $structureApi
@@ -46,11 +52,11 @@ class SiteComponent extends BaseComponent
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
         $element = null;
-        if (isset($context->getRouteParams()[self::MATCH_ELEMENT])) {
-            $element = $context->getRouteParams()[self::MATCH_ELEMENT];
+        if (isset($context->getRouteParams()[self::MATCH_STRUCTURE_ELEMENT])) {
+            $element = $context->getRouteParams()[self::MATCH_STRUCTURE_ELEMENT];
 
-            if ($element instanceof StructureElement) {
-                $this->structureApi->setCurrentElement($element);
+            if ($element instanceof ICmsPage) {
+                $this->pushCurrentPage($element);
             }
         }
 

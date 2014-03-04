@@ -9,13 +9,13 @@
 namespace umicms\project\site\controller;
 
 use umi\http\Response;
-use umicms\hmvc\controller\BaseController;
+use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\api\StructureApi;
 
 /**
  * Контроллер сетки сайта.
  */
-class LayoutController extends BaseController
+class LayoutController extends SitePageController
 {
 
     /**
@@ -43,12 +43,13 @@ class LayoutController extends BaseController
      */
     public function __invoke()
     {
-        $layoutName = $this->structureApi->layout()->getDefaultLayout()->fileName;
-
         $response = $this->createViewResponse(
-            $layoutName,
+            $this->getLayoutName(),
             [
-                'content' => $this->response->getContent()
+                'title' => $this->getMetaTitle(),
+                'description' => $this->getMetaDescription(),
+                'keywords' => $this->getMetaKeywords(),
+                'contents' => $this->response->getContent()
             ]
         );
 
@@ -57,6 +58,73 @@ class LayoutController extends BaseController
 
         return $response;
     }
+
+
+    protected function getMetaTitle()
+    {
+        if ($this->hasCurrentPage()) {
+            /**
+             * @var ICmsPage $page
+             */
+            foreach ($this->getPageCallStack() as $page) {
+                if ($page->metaTitle) {
+                    return $page->metaTitle;
+                }
+            }
+        }
+        //TODO get default
+        return '';
+    }
+
+    protected function getMetaKeywords()
+    {
+        if ($this->hasCurrentPage()) {
+            /**
+             * @var ICmsPage $page
+             */
+            foreach ($this->getPageCallStack() as $page) {
+                if ($page->metaKeywords) {
+                    return $page->metaKeywords;
+                }
+            }
+        }
+        //TODO get default
+        return '';
+    }
+
+    protected function getMetaDescription()
+    {
+        if ($this->hasCurrentPage()) {
+            /**
+             * @var ICmsPage $page
+             */
+            foreach ($this->getPageCallStack() as $page) {
+                if ($page->metaDescription) {
+                    return $page->metaDescription;
+                }
+            }
+        }
+        //TODO get default
+        return '';
+    }
+
+    protected function getLayoutName()
+    {
+        if ($this->hasCurrentPage()) {
+            /**
+             * @var ICmsPage $page
+             */
+            foreach ($this->getPageCallStack() as $page) {
+                if ($page->layout) {
+                    return $page->layout->fileName;
+                }
+            }
+        }
+
+        return $this->structureApi->layout()->getDefaultLayout()->fileName;
+    }
+
+
 
 }
 

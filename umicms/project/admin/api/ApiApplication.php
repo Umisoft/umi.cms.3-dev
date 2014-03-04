@@ -15,9 +15,9 @@ use umi\http\Request;
 use umi\http\Response;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
-use umicms\hmvc\component\AdminComponent;
-use umicms\project\config\IAdminSettingsAware;
-use umicms\project\config\TAdminSettingsAware;
+use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\config\IAdminSettingsAware;
+use umicms\project\admin\config\TAdminSettingsAware;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\TSerializationAware;
 
@@ -114,7 +114,7 @@ class ApiApplication extends AdminComponent implements IAdminSettingsAware, IToo
         $this->setAdminSettings($this->getSettings());
 
         $this->getToolkit()->registerAwareInterface(
-            'umicms\project\config\IAdminSettingsAware',
+            'umicms\project\admin\config\IAdminSettingsAware',
             function ($object) {
                 if ($object instanceof IAdminSettingsAware) {
                     $object->setAdminSettings($this->getSettings());
