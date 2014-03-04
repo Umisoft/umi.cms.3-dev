@@ -1,16 +1,16 @@
 //TODO: Убрать этот недостойный код
-.umi-component {
+.umi-component{
     background: #f6f7f8;
-    > .columns {
+    > .columns{
         position: static;
     }
 }
 
-body {
+body{
     image-rendering: -webkit-optimize-contrast;
 }
 
-.magellan-menu {
+.magellan-menu{
     z-index: 10;
     position: absolute;
     width: 100%;
@@ -19,7 +19,7 @@ body {
     background: #FFFFFF;
     //    border-bottom: 1px solid #BFC4C8;
     box-sizing: border-box;
-    &::after {
+    &::after{
         content: "";
         position: absolute;
         float: left;
@@ -30,7 +30,7 @@ body {
         bottom: -3px;
         background: url(img/shadows/toBottomShadow.png);
     }
-    a {
+    a{
         position: relative;
         padding: rem-calc(0 18);
         border-right: 1px solid #BFC4C8;
@@ -41,9 +41,9 @@ body {
         font-size: 13px;
         font-weight: bold;
         color: #575E6C;
-        &:hover {
+        &:hover{
             color: #000000;
-            &::after {
+            &::after{
                 content: "";
                 position: absolute;
                 z-index: 20;
@@ -59,52 +59,52 @@ body {
     }
 }
 
-.magellan-menu-holder {
+.magellan-menu-holder{
     height: 34px;
 }
 
-form {
-    .input-icon {
+form{
+    .input-icon{
         position: relative;
         top: em-calc(12);
         margin-left: em-calc(6);
         vertical-align: top;
         display: block;
-        ~ input {
+        ~ input{
             padding-left: em-calc(32);
             margin-top: -15px;
-            &.collapse {
+            &.collapse{
                 margin-bottom: 0;
             }
         }
     }
 }
 
-fieldset {
+fieldset{
     border: none;
     border-top: 2px dotted #C0C8CF;
     padding: rem-calc(16 0 0);
     margin: rem-calc(10 25 0);
     position: relative;
 
-    &:last-of-type {
+    &:last-of-type{
         margin-bottom: rem-calc(25);
     }
 }
 
-.umi-form-control-fieldset-toggle {
+.umi-form-control-fieldset-toggle{
     margin: -3px -21px;
     position: absolute;
     display: block;
 }
 
-legend {
+legend{
     font-size: rem-calc(14);
     color: #575E6C;
     cursor: pointer;
 }
 
-label {
+label{
     font-size: rem-calc(13);
 }
 
@@ -114,8 +114,8 @@ label {
 //}
 //
 // Error style
-[data-abide] {
-    span.error, small.error {
+[data-abide]{
+    span.error, small.error{
         position: absolute;
         z-index: 2;
         margin-top: 16px;
@@ -125,7 +125,7 @@ label {
         transition: all 0.1s linear;
         opacity: 0.2;
         font-weight: normal;
-        &:before, &:after {
+        &:before, &:after{
             content: "";
             border: 8px solid transparent;
             border-bottom-color: darken($alert-color, 10%);
@@ -133,15 +133,15 @@ label {
             left: 10px;
             position: absolute;
         }
-        &:after {
+        &:after{
             top: -11px;
             left: 12px;
             border-width: 6px;
             border-bottom-color: $alert-color;
         }
     }
-    .error {
-        span.error, small.error {
+    .error{
+        span.error, small.error{
             margin-top: 8px;
             visibility: visible;
             opacity: 1;
@@ -150,11 +150,11 @@ label {
 }
 
 // Правый нижний блок кнопок ---------------------------------------------
-.umi-dropdown-button {
+.umi-dropdown-button{
     position: relative;
 }
 
-.umi-dropdown {
+.umi-dropdown{
     position: absolute;
     bottom: 34px;
     right: 0;
@@ -165,47 +165,47 @@ label {
     box-shadow: 0 0 3px 3px #6d7580;
 }
 
-.umi-dropdown-row {
+.umi-dropdown-row{
     float: left;
     width: 100%;
     height: 34px;
 }
 
-.umi-dropdown-row .right div {
+.umi-dropdown-row .right div{
     float: left;
     padding: 9px 10px;
 }
 
-.umi-dropdown-row:nth-child(even) {
+.umi-dropdown-row:nth-child(even){
     background: #EEF7FC;
 }
 
-.umi-dropdown-row-text {
+.umi-dropdown-row-text{
     float: left;
     padding: 0 10px;
     line-height: 34px;
 }
 
-.umi-dropdown-row-right {
+.umi-dropdown-row-right{
     float: right;
 }
 
-.umi-dropdown-row-right div {
+.umi-dropdown-row-right div{
     float: left;
     width: 34px;
 }
 
-.umi-form-drop-up {
+.umi-form-drop-up{
     position: absolute;
     bottom: 0;
     right: 0;
 }
 
-.umi-form-tabs-content {
+.umi-form-tabs-content{
     margin-bottom: -1px;
 }
 
-.umi-form-tab-content {
+.umi-form-tab-content{
     display: none;
     position: relative;
     float: left;
@@ -216,17 +216,17 @@ label {
     box-shadow: 0 0 5px 1px #6d7580;
 }
 
-.umi-form-tab-content.active {
+.umi-form-tab-content.active{
     display: block;
 }
 
-.umi-form-tabs {
+.umi-form-tabs{
     float: right;
     background: #FFFFFF;
     box-shadow: 0 0 2px 1px #8A8A8A;
 }
 
-.umi-form-save-button {
+.umi-form-save-button{
     float: left;
     height: 32px;
     padding: 0 30px;
@@ -240,21 +240,21 @@ label {
     cursor: pointer;
 }
 
-.umi-form-tab {
+.umi-form-tab{
     float: left;
     padding: 6px 8px;
     background: #FFFFFF;
     cursor: pointer;
 }
 
-.umi-form-tab.active {
+.umi-form-tab.active{
     z-index: 2;
     position: relative;
     top: -2px;
     padding: 8px 8px 4px;
 }
 
-.umi-form-tab.active:before {
+.umi-form-tab.active:before{
     content: "";
     position: absolute;
     display: block;
@@ -265,7 +265,7 @@ label {
     background: url(/resources/deploy/img/shadows/toLeftShadow.png);
 }
 
-.umi-form-tab.active:after {
+.umi-form-tab.active:after{
     content: "";
     position: absolute;
     display: block;
@@ -276,15 +276,15 @@ label {
     background: url(/resources/deploy/img/shadows/toRightShadow.png);
 }
 
-.umi-form-tab-content {
+.umi-form-tab-content{
     font-size: 13px;
 }
 
-.umi-form-tab-content input[type="text"] {
+.umi-form-tab-content input[type="text"]{
     margin: 10px;
     width: unquote("calc(100% - 20px)");
 }
 
-.umi-form-tab-content input[type="checkbox"] {
+.umi-form-tab-content input[type="checkbox"]{
     width: 20px;
 }

@@ -107,12 +107,12 @@ $microformat-abbr-font-decoration: none !default;
 //
 
 // These will throw a deprecation warning if used within a media query.
-%lead {
+%lead{
     font-size: $paragraph-font-size + rem-calc(3.5);
     line-height: 1.6;
 }
 
-%subheader {
+%subheader{
     line-height: $subheader-line-height;
     color: $subheader-font-color;
     font-weight: $subheader-font-weight;
@@ -120,8 +120,8 @@ $microformat-abbr-font-decoration: none !default;
     margin-bottom: $subheader-bottom-margin;
 }
 
-@include exports("type") {
-    @if $include-html-type-classes {
+@include exports("type"){
+    @if $include-html-type-classes{
 
         /* Typography resets */
         dl,
@@ -139,30 +139,30 @@ $microformat-abbr-font-decoration: none !default;
         pre,
         form,
         p,
-        blockquote {
+        blockquote{
             margin: 0;
             padding: 0;
             direction: $text-direction;
         }
 
         /* Default Link Styles */
-        a {
+        a{
             color: $anchor-font-color;
             text-decoration: $anchor-text-decoration;
             line-height: inherit;
 
             &:hover,
-            &:focus {
+            &:focus{
                 color: $anchor-font-color-hover;
             }
 
-            img {
+            img{
                 border: none;
             }
         }
 
         /* Default paragraph styles */
-        p {
+        p{
             font-family: $paragraph-font-family;
             font-weight: $paragraph-font-weight;
             font-size: $paragraph-font-size;
@@ -170,11 +170,11 @@ $microformat-abbr-font-decoration: none !default;
             margin-bottom: $paragraph-margin-bottom;
             text-rendering: $paragraph-text-rendering;
 
-            &.lead {
+            &.lead{
                 @extend %lead;
             }
 
-            & aside {
+            & aside{
                 font-size: $paragraph-aside-font-size;
                 line-height: $paragraph-aside-line-height;
                 font-style: $paragraph-aside-font-style;
@@ -182,7 +182,7 @@ $microformat-abbr-font-decoration: none !default;
         }
 
         /* Default header styles */
-        h1, h2, h3, h4, h5, h6 {
+        h1, h2, h3, h4, h5, h6{
             font-family: $header-font-family;
             font-weight: $header-font-weight;
             font-style: $header-font-style;
@@ -192,37 +192,37 @@ $microformat-abbr-font-decoration: none !default;
             margin-bottom: $header-bottom-margin;
             line-height: $header-line-height;
 
-            small {
+            small{
                 font-size: $small-font-size;
                 color: $small-font-color;
                 line-height: 0;
             }
         }
 
-        h1 {
+        h1{
             font-size: $h1-font-size - rem-calc(10);
         }
-        h2 {
+        h2{
             font-size: $h2-font-size - rem-calc(10);
         }
-        h3 {
+        h3{
             font-size: $h3-font-size - rem-calc(5);
         }
-        h4 {
+        h4{
             font-size: $h4-font-size - rem-calc(5);
         }
-        h5 {
+        h5{
             font-size: $h5-font-size;
         }
-        h6 {
+        h6{
             font-size: $h6-font-size;
         }
 
-        .subheader {
+        .subheader{
             @extend %subheader;
         }
 
-        hr {
+        hr{
             border: $hr-border-style $hr-border-color;
             border-width: $hr-border-width 0 0;
             clear: both;
@@ -232,23 +232,23 @@ $microformat-abbr-font-decoration: none !default;
 
         /* Helpful Typography Defaults */
         em,
-        i {
+        i{
             font-style: italic;
             line-height: inherit;
         }
 
         strong,
-        b {
+        b{
             font-weight: bold;
             line-height: inherit;
         }
 
-        small {
+        small{
             font-size: $small-font-size;
             line-height: inherit;
         }
 
-        code {
+        code{
             font-family: $code-font-family;
             font-weight: $code-font-weight;
             color: $code-color;
@@ -257,7 +257,7 @@ $microformat-abbr-font-decoration: none !default;
         /* Lists */
         ul,
         ol,
-        dl {
+        dl{
             font-size: $paragraph-font-size;
             line-height: $paragraph-line-height;
             margin-bottom: $paragraph-margin-bottom;
@@ -265,13 +265,13 @@ $microformat-abbr-font-decoration: none !default;
             font-family: $paragraph-font-family;
         }
 
-        ul {
+        ul{
             margin-#{$default-float}: $list-side-margin;
-            &.no-bullet {
+            &.no-bullet{
                 margin-#{$default-float}: $list-side-margin-no-bullet;
-                li {
+                li{
                     ul,
-                    ol {
+                    ol{
                         margin-#{$default-float}: $list-nested-margin;
                         margin-bottom: 0;
                         list-style: none;
@@ -281,10 +281,10 @@ $microformat-abbr-font-decoration: none !default;
         }
 
         /* Unordered Lists */
-        ul {
-            li {
+        ul{
+            li{
                 ul,
-                ol {
+                ol{
                     margin-#{$default-float}: $list-nested-margin;
                     margin-bottom: 0;
                     font-size: 1rem; /* Override nested font-size change */
@@ -292,35 +292,35 @@ $microformat-abbr-font-decoration: none !default;
             }
             &.square,
             &.circle,
-            &.disc {
-                li ul {
+            &.disc{
+                li ul{
                     list-style: inherit;
                 }
             }
 
-            &.square {
+            &.square{
                 list-style-type: square;
                 margin-#{$default-float}: $list-side-margin;
             }
-            &.circle {
+            &.circle{
                 list-style-type: circle;
                 margin-#{$default-float}: $list-side-margin;
             }
-            &.disc {
+            &.disc{
                 list-style-type: disc;
                 margin-#{$default-float}: $list-side-margin;
             }
-            &.no-bullet {
+            &.no-bullet{
                 list-style: none;
             }
         }
 
         /* Ordered Lists */
-        ol {
+        ol{
             margin-#{$default-float}: $list-ordered-side-margin;
-            li {
+            li{
                 ul,
-                ol {
+                ol{
                     margin-#{$default-float}: $list-nested-margin;
                     margin-bottom: 0;
                 }
@@ -328,78 +328,78 @@ $microformat-abbr-font-decoration: none !default;
         }
 
         /* Definition Lists */
-        dl {
-            dt {
+        dl{
+            dt{
                 margin-bottom: $definition-list-header-margin-bottom;
                 font-weight: $definition-list-header-weight;
             }
-            dd {
+            dd{
                 margin-bottom: $definition-list-margin-bottom;
             }
         }
 
         /* Abbreviations */
         abbr,
-        acronym {
+        acronym{
             text-transform: uppercase;
             font-size: 90%;
             color: $body-font-color;
             border-bottom: $acronym-underline;
             cursor: $cursor-help-value;
         }
-        abbr {
+        abbr{
             text-transform: none;
         }
 
         /* Blockquotes */
-        blockquote {
+        blockquote{
             margin: 0 0 $paragraph-margin-bottom;
             padding: $blockquote-padding;
             border-#{$default-float}: $blockquote-border;
 
-            cite {
+            cite{
                 display: block;
                 font-size: $blockquote-cite-font-size;
                 color: $blockquote-cite-font-color;
-                &:before {
+                &:before{
                     content: "\2014 \0020";
                 }
 
                 a,
-                a:visited {
+                a:visited{
                     color: $blockquote-cite-link-color;
                 }
             }
         }
         blockquote,
-        blockquote p {
+        blockquote p{
             line-height: $paragraph-line-height;
             color: $blockquote-font-color;
         }
 
         /* Microformats */
-        .vcard {
+        .vcard{
             display: inline-block;
             margin: $microformat-margin;
             border: $microformat-border-width $microformat-border-style $microformat-border-color;
             padding: $microformat-padding;
 
-            li {
+            li{
                 margin: 0;
                 display: block;
             }
-            .fn {
+            .fn{
                 font-weight: $microformat-fullname-font-weight;
                 font-size: $microformat-fullname-font-size;
             }
         }
 
-        .vevent {
-            .summary {
+        .vevent{
+            .summary{
                 font-weight: $microformat-summary-font-weight;
             }
 
-            abbr {
+            abbr{
                 cursor: $cursor-default-value;
                 text-decoration: $microformat-abbr-font-decoration;
                 font-weight: $microformat-abbr-font-weight;
@@ -409,36 +409,36 @@ $microformat-abbr-font-decoration: none !default;
         }
 
         @media #{$medium-up} {
-            h1, h2, h3, h4, h5, h6 {
+            h1, h2, h3, h4, h5, h6{
                 line-height: $header-line-height;
             }
-            h1 {
+            h1{
                 font-size: $h1-font-size;
             }
-            h2 {
+            h2{
                 font-size: $h2-font-size;
             }
-            h3 {
+            h3{
                 font-size: $h3-font-size;
             }
-            h4 {
+            h4{
                 font-size: $h4-font-size;
             }
         }
 
         // Only include these styles if you want them.
-        @if $include-print-styles {
+        @if $include-print-styles{
             /*
                * Print styles.
                *
                * Inlined to avoid required HTTP connection: www.phpied.com/delay-loading-your-print-css/
                * Credit to Paul Irish and HTML5 Boilerplate (html5boilerplate.com)
               */
-            .print-only {
+            .print-only{
                 display: none !important;
             }
-            @media print {
-                * {
+            @media print{
+                *{
                     background: transparent !important;
                     color: #000 !important; /* Black prints faster: h5bp.com/s */
                     box-shadow: none !important;
@@ -446,64 +446,64 @@ $microformat-abbr-font-decoration: none !default;
                 }
 
                 a,
-                a:visited {
+                a:visited{
                     text-decoration: underline;
                 }
-                a[href]:after {
+                a[href]:after{
                     content: " (" attr(href) ")";
                 }
 
-                abbr[title]:after {
+                abbr[title]:after{
                     content: " (" attr(title) ")";
                 }
 
                 // Don't show links for images, or javascript/internal links
                 .ir a:after,
                 a[href^="javascript:"]:after,
-                a[href^="#"]:after {
+                a[href^="#"]:after{
                     content: "";
                 }
 
                 pre,
-                blockquote {
+                blockquote{
                     border: 1px solid #999;
                     page-break-inside: avoid;
                 }
 
-                img {
+                img{
                     page-break-inside: avoid;
                 }
 
-                img {
+                img{
                     max-width: 100% !important;
                 }
 
-                @page {
+                @page{
                     margin: 0.5cm;
                 }
 
                 p,
                 h2,
-                h3 {
+                h3{
                     orphans: 3;
                     widows: 3;
                 }
 
                 h2,
-                h3 {
+                h3{
                     page-break-after: avoid;
                 }
 
-                .hide-on-print {
+                .hide-on-print{
                     display: none !important;
                 }
-                .print-only {
+                .print-only{
                     display: block !important;
                 }
-                .hide-for-print {
+                .hide-for-print{
                     display: none !important;
                 }
-                .show-for-print {
+                .show-for-print{
                     display: inherit !important;
                 }
             }

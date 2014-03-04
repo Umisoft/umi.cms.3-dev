@@ -1,12 +1,12 @@
 //
 // Umi-tree-column
 //
-.umi-tree-header {
+.umi-tree-header{
     @include s-gradient-grey();
     border-bottom: 1px solid #98A2AB;
 }
 
-.umi-tree {
+.umi-tree{
     padding: 0;
     box-sizing: border-box;
     border-right: 1px solid #CCD9E2;
@@ -14,66 +14,66 @@
     margin-top: 10px;
     font-size: rem-calc(13);
 
-    ul.f-dropdown {
+    ul.f-dropdown{
         padding-left: 0;
     }
 
-    ul {
+    ul{
         margin: 0;
         list-style: none;
         font-size: rem-calc(13);
         padding-left: rem-calc(20);
     }
 
-    li {
+    li{
         line-height: rem-calc(24);
-        a {
+        a{
             color: #000000;
-            &.active {
+            &.active{
                 color: $primary-color;
             }
         }
     }
-    span {
+    span{
         width: rem-calc(20);
         height: rem-calc(20);
     }
 
-    .umi-item {
+    .umi-item{
         position: relative;
         padding-left: 20px;
         white-space: nowrap;
         z-index: 2;
-        &.active {
+        &.active{
             background: linear-gradient(top, #35a9fc 0%, #0f8bd5 100%);
             color: #FFFFFF;
         }
-        &:hover {
-            .icon-right, .icon-bottom {
+        &:hover{
+            .icon-right, .icon-bottom{
                 background-position-y: -19px;
             }
-            a {
+            a{
                 color: #fff;
                 border-right: 0;
             }
-            .umi-tree-context-menu {
+            .umi-tree-context-menu{
                 display: block;
             }
-            + .hover-bg {
+            + .hover-bg{
                 display: block;
             }
         }
     }
 
-    i {
+    i{
         margin: rem-calc(2 -2 2 0);
     }
 
-    .move {
+    .move{
         cursor: move !important;
     }
 
-    .umi-expand-hover {
+    .umi-expand-hover{
         display: inline-block;
         width: rem-calc(20);
         height: rem-calc(20);
@@ -82,35 +82,35 @@
         margin-left: rem-calc(20);
         margin-top: rem-calc(2);
         left: -20px;
-        i {
+        i{
             margin: 0;
         }
     }
 
-    .umi-tree-placeholder {
+    .umi-tree-placeholder{
         height: rem-calc(24);
         background: #C4D2DD;
         border-radius: rem-calc(12);
         margin-left: 15px;
         transition: background 0.2s linear;
-        &:hover, &:focus {
+        &:hover, &:focus{
             background: darken(#C4D2DD, 3%);
         }
     }
 
-    .umi-tree-expand-hover {
-        > div a {
+    .umi-tree-expand-hover{
+        > div a{
             text-decoration: underline;
         }
     }
 
-    &.drag-inside {
-        a, .icon, .move {
+    &.drag-inside{
+        a, .icon, .move{
             cursor: default;
         }
     }
 
-    .umi-tree-context-menu {
+    .umi-tree-context-menu{
         display: none;
         position: absolute;
         right: rem-calc(6);
@@ -121,7 +121,7 @@
         background: linear-gradient(top, $primary-color 0%, darken($primary-color, 5%) 50%);
     }
 
-    .hover-bg {
+    .hover-bg{
         background: linear-gradient(to bottom, $primary-color 0%, darken($primary-color, 5%) 50%);
         background: linear-gradient(top, $primary-color 0%, darken($primary-color, 5%) 50%);
         position: absolute;
@@ -136,7 +136,7 @@
     }
 }
 
-.umi-tree-ghost {
+.umi-tree-ghost{
     height: rem-calc(24);
     color: #000000;
     border: none;
@@ -146,40 +146,40 @@
     display: inline-block;
     cursor: default;
     position: absolute;
-    i {
+    i{
         margin: rem-calc(2 -2 2 0);
     }
 }
 
 // Вот тут говнокод
-.umi-tree-header {
-    .f-dropdown {
-        input {
+.umi-tree-header{
+    .f-dropdown{
+        input{
             display: block;
             margin-bottom: 0;
             float: left;
             margin-top: rem-calc(5);
         }
-        label {
+        label{
             margin-bottom: 0;
         }
-        li {
+        li{
             border-bottom: 1px solid #98A2AB;
             padding: rem-calc(5 8);
-            &:last-child {
+            &:last-child{
                 border-bottom: none;
             }
-            &:hover {
+            &:hover{
                 background: #FFF;
             }
-            .title {
+            .title{
                 display: block;
                 margin-left: rem-calc(20);
                 line-height: normal;
             }
-            div {
+            div{
                 margin-bottom: rem-calc(5);
-                &:last-child {
+                &:last-child{
                     margin-bottom: 0;
                 }
             }

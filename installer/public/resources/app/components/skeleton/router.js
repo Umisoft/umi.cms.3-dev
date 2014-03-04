@@ -1,23 +1,29 @@
 define([], function(){
     'use strict';
-
     return function(UMI){
+        /**
+         @module UMI
+         @submodule Router
+         **/
+        UMI.Router.reopen({
+            location: 'history',
+            rootURL: window.UmiSettings.baseURL
+        });
+
+        /**
+         @class map
+         @constructor
+         */
         UMI.Router.map(function(){
             this.resource('module', {path: '/:module'}, function(){
                 this.resource('component', {path: '/:component'}, function(){
-                    this.resource('treeActive', {path: '/:treeActive'}, function(){
-                        this.resource('mode', {path: '/:mode'}, function(){
-                            this.resource('content', {path: '/:content'});
-                        });
+                    this.resource('action', {path: '/:action'}, function(){
+                        this.resource('context', {path: '/:context'});
                     });
+                    this.route('search');
                 });
             });
             this.route('logout', {path: '/auth/logout'});
-        });
-
-        UMI.Router.reopen({
-            location: 'history',
-            rootURL: UmiSettings.baseURL
         });
 
         //		UMI.ErrorState = Ember.Mixin.create({//TODO: Обрабатывать все типы ошибок, и разные роуты
@@ -29,26 +35,40 @@ define([], function(){
         //		});
 
         /**
-         * Application Route
-         *
-         * @instance
-         * */
+         * @class ApplicationRoute
+         * @extends Ember.Route
+         * @uses Utils.modelsFactory
+         */
         UMI.ApplicationRoute = Ember.Route.extend({
             /**
-             * Метод `model` инициализирует модели данных, модули и компоненты для Dock.
-             */
+             Инициализирует модели данных, модули и компоненты для Dock.
+
+             @method model
+             @return
+             **/
             model: function(){
                 var self = this;
-                var baseResource = '/resources/modules/baseResource.json';
+                var baseResource = UmiSettings.baseURL + '/api/settings.json';
                 return $.getJSON(baseResource).then(function(results){
-                    UMI.FactoryForModels(results.models);
-                    var model;
-                    for(model in results.records){
-                        if(results.records.hasOwnProperty(model)){
-                            self.store.pushMany(model, results.records[model]);
+                    var result = results.result;
+                    if(result.collections){
+                        UMI.Utils.modelsFactory(result.collections);
+                    }
+                    if(result.resources){
+                        UMI.Utils.setModelsResources(result.resources);
+                    }
+                    if(result.records){
+                        var model;
+                        for(model in result.records){
+                            if(result.records.hasOwnProperty(model)){
+                                self.store.pushMany(model, result.records[model]);
+                            }
                         }
                     }
-                    self.controllerFor('dock').set('content', self.store.all('moduleList'));
+
+                    if(result.modules){
+                        self.controllerFor('dock').set('modules', result);
+                    }
                 });
             },
             actions: {
@@ -56,7 +76,9 @@ define([], function(){
                  * Метод вызывается каждый раз при смене роута в приложении.
                  * При переходе на роут `logout` выполняется abort для перехода,
                  * приложение становится неактивным и происходит смена шаблона на шаблон авторизации.
-                 * */
+                 * @event willTransition
+                 * @param {Object} transition
+                 */
                 willTransition: function(transition){
                     if(transition.targetName === 'logout'){
                         transition.abort();
@@ -80,21 +102,34 @@ define([], function(){
             }
         });
 
+        /**
+         * @class IndexRoute
+         * @extends Ember.Route
+         */
         UMI.IndexRoute = Ember.Route.extend({
+            /**
+             Выполняет редирект на роут `Module`.
+             @method redirect
+             @return
+             **/
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName){
-                    var firstChild = this.store.all('moduleList').get('firstObject');
-                    return this.transitionTo('module', firstChild.get('slug'));
+                    var firstChild = this.controllerFor('dock').get('content.firstObject');
+                    return this.transitionTo('module', 'news');//firstChild.get('name'));
                 }
             }
         });
 
+        /**
+         * @class IndexRoute
+         * @extends Ember.Route
+         */
         UMI.ModuleRoute = Ember.Route.extend({
             model: function(params){
-                var modules = this.store.all('moduleList');
-                var module = modules.findBy('slug', params.module);
+                var modules = this.controllerFor('dock').get('content');
+                var module = modules.findBy('name', params.module);
                 // некрасивое решение
-                this.controllerFor('dock').set('activeModule', module.get('slug'));
+                this.controllerFor('dock').set('activeModule', module.get('name'));
                 modules.setEach('isActive', false);
                 // Для добавления класса active вкладке модуля в dock добавим атрибут isActive
                 module.set('isActive', true);
@@ -102,8 +137,8 @@ define([], function(){
             },
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
-                    var firstChild = model.get('componentList').get('firstObject');
-                    return this.transitionTo('component', firstChild.get('slug'));
+                    var firstChild = model.get('components.firstObject');
+                    return this.transitionTo('component', firstChild.get('name'));
                 }
             },
             serialize: function(model){
@@ -112,133 +147,126 @@ define([], function(){
         });
 
         UMI.ComponentRoute = Ember.Route.extend({
+            /**
+             * @method model
+             * @param params
+             * @param transition
+             * @returns {*}
+             */
             model: function(params, transition){
                 var self = this;
-                var components = self.modelFor('module').get('componentList');
-                var model = components.findBy('slug', transition.params.component.component);
-                var componentResource = model.get('resource');
-                /**
-                 * Получим ресурсы для компонента
-                 */
-                return $.getJSON(componentResource).then(function(results){
-                    var nameModel;
-                    var modes;
-                    var hasTree;
-
-                    for(nameModel in results.records){
-                        if(results.records.hasOwnProperty(nameModel)){
-                            self.store.pushMany(nameModel, results.records[nameModel]);
-                        }
+                var components = this.modelFor('module').get('components');
+                var model = components.findBy('name', transition.params.component.component);
+                var componentResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/' + model.get('collection') + '/settings';
+                return Ember.$.get(componentResource).then(function(results){
+                    if(results.result.error){
+                        throw 'Ресурс компонента не найден';
                     }
-                    hasTree = results.treeSettings ? true : false;
-                    self.controllerFor('component').set('hasTree', hasTree);
-                    if(hasTree){
-                        self.controllerFor('component').set('treeSettings', results.treeSettings);
-                        self.controllerFor('component').set('treeType', results.treeSettings.root.type);
+                    var componentController = self.controllerFor('component');
+                    var settings = results.result.settings;
+                    var tree = settings.controls.findBy('name', 'tree');
+                    componentController.set('hasTree', !!tree);
+                    if(!!tree){
+                        /**
+                         * Колекция для дерева
+                         */
+                        var treeControl = self.controllerFor('treeControl');
+                        treeControl.set('collection', {'type': model.get('collection'), 'name': tree.displayName});
                     }
                     /**
-                     * Установим режимы для компонента
-                     * */
-                    self.controllerFor('componentMode').set('id', results.treeSettings.root.ids[0]);
-                    modes = self.store.all('componentMode').findBy('id', model.get('id'));
-                    self.controllerFor('componentMode').set('modes', modes);
+                     * Режимы
+                     */
+                    var controls = settings.controls;
+                    var context = settings.layout;
+                    componentController.set('controls', controls);
+                    componentController.set('context', context);
+                    componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
                     return model;
                 });
             },
-
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
-                    var rootTreeNode = this.store.all(this.controllerFor('component').get('treeType')).findBy('id', this.controllerFor('componentMode').get('id'));
-                    return this.transitionTo('treeActive', rootTreeNode);
-                }
-            },
-
-            serialize: function(model){
-                return {component: model.get('slug')};
-            }
-        });
-
-        UMI.TreeActiveRoute = Ember.Route.extend({
-            model: function(params){
-                return this.store.find(this.controllerFor('component').get('treeType'), params.treeActive);
-            },
-            redirect: function(model, transition){
-                if(transition.targetName === this.routeName + '.index'){
-                    var modes = this.controllerFor('componentMode').get('content');
-                    var mode = modes.findBy('current', true);
-                    return this.transitionTo('mode', mode.get('slug'));
+                    var defaultAction = this.controllerFor('component').get('contentControls.firstObject.name');
+                    return this.transitionTo('action', defaultAction);
                 }
             },
             serialize: function(model){
-                if(model){
-                    return {treeActive: model.get('id')};
-                }
+                return {component: model.get('name')};
             }
         });
 
-        UMI.ModeRoute = Ember.Route.extend({
+        UMI.ActionRoute = Ember.Route.extend({
             model: function(params){
-                var modes = this.controllerFor('componentMode').get('content');
-                return modes.findBy('slug', params.mode);
+                var modes = this.controllerFor('component').get('contentControls');
+                return modes.findBy('name', params.action);
             },
             redirect: function(model, transition){
-                if(transition.targetName === this.routeName + '.index'){
-                    var self = this;
-                    var activeNode = this.modelFor('treeActive');
-
-                    /**
-                     * Сравниваем тип активного элемента в дереве с типом модели указанным в выбранном режиме
-                     * если совпадают: перенаправляем на contentRoute соответсвующий активному объекту в дереве
-                     * если не совпадают: перенаправляем на первый объект находящийся в указанной связи с выбранным объектом дерева
-                     * */
-                    if(activeNode.constructor.typeKey === this.modelFor('mode').get('contentType')){
-                        return self.transitionTo('content', activeNode.get('id'));
-                    } else{
-                        var objects = this.modelFor('treeActive').get(model.get('contentType'));
-                        return objects.then(function(objects){
-                            return self.transitionTo('content', objects.get('firstObject.id'));
-                        });
-                    }
+               if(transition.targetName === this.routeName + '.index'){
+                   var self = this;
+                   var contextId = this.controllerFor('component').get('selectedContext');
+                   return self.transitionTo('context', contextId);
                 }
             },
             serialize: function(model){
                 if(model){
-                    return {mode: model.get('slug')};
+                    return {action: model.get('name')};
                 }
             }
         });
 
-        UMI.ContentRoute = Ember.Route.extend({
-            model: function(params){
-                var self = this;
-                var activeMode = this.modelFor('mode');
-                var results = {};
-                return $.getJSON(activeMode.get('resources')).then(function(data){
-                    for(var object in data.objects){
-                        if(data.objects.hasOwnProperty(object)){
-                            self.store.pushMany(object, data.objects[object]);
-                        }
-                    }
-                    return self.store.find(self.modelFor('mode').get('contentType'), params.content).then(function(model){
-                        results.object = model;
-                        results.templateType = data.templateType;
-                        results.meta = data.meta;
-                        return results;
+        UMI.ContextRoute = Ember.Route.extend({
+            model: function(params, transition){
+                var model;
+                var routeData = {};
+                var oldContext = this.controllerFor('component').get('selectedContext');
+                this.controllerFor('component').set('selectedContext', params.context);
+                /**
+                 * Редирект на Action если контекст не имеет action
+                 */
+                var activeAction = this.modelFor('action');
+                var firstAction = this.controllerFor('component').get('contentControls.firstObject');
+                if(oldContext !== params.context && firstAction.get('name') !== activeAction.get('name')){
+                    return this.transitionTo('action', firstAction.get('name'));
+                }
+                if(params.context === 'root'){
+                    model = Ember.Object.extend({
+                        'id': 'root',
+                        children: function(){
+                            return this.store.find(this.modelFor('component').get('collection'), {'parent': null});
+                        }.property()
                     });
-                });
+                } else{
+                    model = this.store.find(this.modelFor('component').get('collection'), params.context);
+                }
+                routeData.object = model;
+                /**
+                 * Мета информация для action
+                 */
+                var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/' + this.modelFor('component').get('collection')  + '/' + transition.params.action.action;
+                if(transition.params.action.action === 'form'){
+                    return Ember.$.get(actionResource).then(function(results){
+                        var viewSettings = {};
+                        viewSettings[transition.params.action.action] = results.result[transition.params.action.action];
+                        routeData.viewSettings = viewSettings;
+                        return routeData;
+                    });
+                }
+                return routeData;
             },
-            serialize: function(results){
-                if(results){
-                    return {content: results.object.get('id')};
+            serialize: function(routeData){
+                if(routeData.object){
+                    return {context: routeData.object.get('id')};
                 }
             },
-            renderTemplate: function(controller, results){
-                this.render(results.templateType);
-            },
-            redirect: function(model, transition){
-                if(transition.params.content.content === 'search'){
-                    console.log('search');
-                }
+            renderTemplate: function(){
+                var templateType = this.modelFor('action').get('name');
+                this.render(templateType);
+            }
+        });
+
+        UMI.SearchRoute = Ember.Route.extend({
+            model: function(params){
+               console.log(params);
             }
         });
     };

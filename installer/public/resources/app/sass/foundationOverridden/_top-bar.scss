@@ -77,52 +77,52 @@ $topbar-arrows: true !default;
 // Used to provide media query values for javascript components.
 // This class is generated despite the value of $include-html-top-bar-classes
 // to ensure width calculations work correctly.
-meta.foundation-mq-topbar {
+meta.foundation-mq-topbar{
     font-family: "/" + unquote($topbar-media-query) + "/";
     width: $topbar-breakpoint;
 }
 
-@include exports("top-bar") {
-    @if $include-html-top-bar-classes {
+@include exports("top-bar"){
+    @if $include-html-top-bar-classes{
 
         /* Wrapped around .top-bar to contain to grid width */
-        .contain-to-grid {
+        .contain-to-grid{
             width: 100%;
             background: $topbar-bg;
 
-            .top-bar {
+            .top-bar{
                 margin-bottom: $topbar-margin-bottom;
             }
         }
 
         // Wrapped around .top-bar to make it stick to the top
-        .fixed {
+        .fixed{
             width: 100%;
             #{$default-float}: 0;
             position: fixed;
             top: 0;
             z-index: 99;
 
-            &.expanded:not(.top-bar) {
+            &.expanded:not(.top-bar){
                 overflow-y: auto;
                 height: auto;
                 width: 100%;
                 max-height: 100%;
 
-                .title-area {
+                .title-area{
                     position: fixed;
                     width: 100%;
                     z-index: 99;
                 }
                 // Ensure you can scroll the menu on small screens
-                .top-bar-section {
+                .top-bar-section{
                     z-index: 98;
                     margin-top: $topbar-height;
                 }
             }
         }
 
-        .top-bar {
+        .top-bar{
             overflow: hidden;
             height: $topbar-height;
             line-height: $topbar-height;
@@ -131,28 +131,28 @@ meta.foundation-mq-topbar {
             margin-bottom: $topbar-margin-bottom;
 
             // Topbar Global list Styles
-            ul {
+            ul{
                 margin-bottom: 0;
                 list-style: none;
             }
 
-            .row {
+            .row{
                 max-width: none;
             }
 
             form,
-            input {
+            input{
                 margin-bottom: 0;
             }
 
-            input {
+            input{
                 height: auto;
                 padding-top: .35rem;
                 padding-bottom: .35rem;
                 font-size: $topbar-button-font-size;
             }
 
-            .button {
+            .button{
                 padding-top: .45rem;
                 padding-bottom: .35rem;
                 margin-bottom: 0;
@@ -163,21 +163,21 @@ meta.foundation-mq-topbar {
             }
 
             // Title Area
-            .title-area {
+            .title-area{
                 position: relative;
                 margin: 0;
             }
 
-            .name {
+            .name{
                 height: $topbar-height;
                 margin: 0;
                 font-size: $rem-base;
 
-                h1 {
+                h1{
                     line-height: $topbar-height;
                     font-size: $topbar-title-font-size;
                     margin: 0;
-                    a {
+                    a{
                         font-weight: $topbar-title-weight;
                         color: $topbar-link-color;
                         width: 50%;
@@ -188,12 +188,12 @@ meta.foundation-mq-topbar {
             }
 
             // Menu toggle button on small devices
-            .toggle-topbar {
+            .toggle-topbar{
                 position: absolute;
                 #{$opposite-direction}: 0;
                 top: 0;
 
-                a {
+                a{
                     color: $topbar-link-color;
                     text-transform: $topbar-menu-link-transform;
                     font-size: $topbar-menu-link-font-size;
@@ -206,13 +206,13 @@ meta.foundation-mq-topbar {
                 }
 
                 // Adding the class "menu-icon" will add the 3-line icon people love and adore.
-                &.menu-icon {
+                &.menu-icon{
                     #{$opposite-direction}: $topbar-height / 3;
                     top: 50%;
                     margin-top: -16px;
                     padding-#{$default-float}: 40px;
 
-                    a {
+                    a{
                         text-indent: -48px;
                         width: 34px;
                         height: 34px;
@@ -220,14 +220,14 @@ meta.foundation-mq-topbar {
                         padding: 0;
                         color: $topbar-menu-link-color;
 
-                        span {
+                        span{
                             position: absolute;
                             #{$opposite-direction}: 0;
                             display: block;
                             width: 16px;
                             height: 0;
                             // Shh, don't tell, but box-shadows create the menu icon :)
-                            @if $experimental {
+                            @if $experimental{
                                 -webkit-box-shadow: 0 10px 0 1px $topbar-menu-icon-color, 0 16px 0 1px $topbar-menu-icon-color, 0 22px 0 1px $topbar-menu-icon-color;
                             }
                             box-shadow: 0 10px 0 1px $topbar-menu-icon-color, 0 16px 0 1px $topbar-menu-icon-color, 0 22px 0 1px $topbar-menu-icon-color;
@@ -237,20 +237,20 @@ meta.foundation-mq-topbar {
             }
 
             // Change things up when the top-bar is expanded
-            &.expanded {
+            &.expanded{
                 height: auto;
                 background: transparent;
 
-                .title-area {
+                .title-area{
                     background: $topbar-bg;
                 }
 
-                .toggle-topbar {
-                    a {
+                .toggle-topbar{
+                    a{
                         color: $topbar-menu-link-color-toggled;
-                        span {
+                        span{
                             // Shh, don't tell, but box-shadows create the menu icon :)
-                            @if $experimental {
+                            @if $experimental{
                                 -webkit-box-shadow: 0 10px 0 1px $topbar-menu-icon-color-toggled, 0 16px 0 1px $topbar-menu-icon-color-toggled, 0 22px 0 1px $topbar-menu-icon-color-toggled;
                             }
                             box-shadow: 0 10px 0 1px $topbar-menu-icon-color-toggled, 0 16px 0 1px $topbar-menu-icon-color-toggled, 0 22px 0 1px $topbar-menu-icon-color-toggled;
@@ -262,13 +262,13 @@ meta.foundation-mq-topbar {
         }
 
         // Right and Left Navigation that stacked by default
-        .top-bar-section {
+        .top-bar-section{
             #{$default-float}: 0;
             position: relative;
             width: auto;
             @include single-transition($default-float, $topbar-transition-speed);
 
-            ul {
+            ul{
                 width: 100%;
                 height: auto;
                 display: block;
@@ -278,15 +278,15 @@ meta.foundation-mq-topbar {
             }
 
             .divider,
-            [role="separator"] {
+            [role="separator"]{
                 border-top: $topbar-divider-border-top;
                 clear: both;
                 height: 1px;
                 width: 100%;
             }
 
-            ul li {
-                & > a {
+            ul li{
+                & > a{
                     display: block;
                     width: 100%;
                     color: $topbar-link-color;
@@ -297,30 +297,30 @@ meta.foundation-mq-topbar {
                     font-weight: $topbar-link-weight;
                     background: $topbar-dropdown-bg;
 
-                    &.button {
+                    &.button{
                         background: $primary-color;
                         font-size: $topbar-link-font-size;
                         padding-right: $topbar-height / 3;
                         padding-left: $topbar-height / 3;
-                        &:hover {
+                        &:hover{
                             background: darken($primary-color, 10%);
                         }
                     }
-                    &.button.secondary {
+                    &.button.secondary{
                         background: $secondary-color;
-                        &:hover {
+                        &:hover{
                             background: darken($secondary-color, 10%);
                         }
                     }
-                    &.button.success {
+                    &.button.success{
                         background: $success-color;
-                        &:hover {
+                        &:hover{
                             background: darken($success-color, 10%);
                         }
                     }
-                    &.button.alert {
+                    &.button.alert{
                         background: $alert-color;
-                        &:hover {
+                        &:hover{
                             background: darken($alert-color, 10%);
                         }
                     }
@@ -328,33 +328,33 @@ meta.foundation-mq-topbar {
                 }
 
                 // Apply the hover link color when it has that class
-                &:hover > a {
+                &:hover > a{
                     background: $topbar-link-bg-hover;
                     color: $topbar-link-color-hover;
 
                 }
 
                 // Apply the active link color when it has that class
-                &.active > a {
+                &.active > a{
                     background: $topbar-link-bg-active;
                     color: $topbar-link-color-active;
-                    &:hover {
+                    &:hover{
                         background: $topbar-link-bg-active-hover;
                     }
                 }
             }
 
             // Add some extra padding for list items contains buttons
-            .has-form {
+            .has-form{
                 padding: $topbar-height / 3;
             }
 
             // Styling for list items that have a dropdown within them.
-            .has-dropdown {
+            .has-dropdown{
                 position: relative;
 
-                & > a {
-                    &:after {
+                & > a{
+                    &:after{
                         @if ($topbar-arrows){
                             @include css-triangle($topbar-dropdown-toggle-size, rgba($topbar-dropdown-toggle-color, $topbar-dropdown-toggle-alpha), $default-float);
                         }
@@ -366,37 +366,37 @@ meta.foundation-mq-topbar {
                     }
                 }
 
-                &.moved {
+                &.moved{
                     position: static;
-                    & > .dropdown {
+                    & > .dropdown{
                         display: block;
                     }
                 }
             }
 
             // Styling elements inside of dropdowns
-            .dropdown {
+            .dropdown{
                 position: absolute;
                 #{$default-float}: 100%;
                 top: 0;
                 display: none;
                 z-index: 99;
 
-                li {
+                li{
                     width: 100%;
                     height: auto;
 
-                    a {
+                    a{
                         font-weight: normal;
                         padding: 8px $topbar-height / 3;
-                        &.parent-link {
+                        &.parent-link{
                             font-weight: $topbar-link-weight;
                         }
                     }
 
-                    &.title h5 {
+                    &.title h5{
                         margin-bottom: 0;
-                        a {
+                        a{
                             color: $topbar-link-color;
                             line-height: $topbar-height / 2;
                             display: block;
@@ -404,7 +404,7 @@ meta.foundation-mq-topbar {
                     }
                 }
 
-                label {
+                label{
                     padding: 8px $topbar-height / 3 2px;
                     margin-bottom: 0;
                     text-transform: $topbar-dropdown-label-text-transform;
@@ -415,87 +415,87 @@ meta.foundation-mq-topbar {
             }
         }
 
-        .js-generated {
+        .js-generated{
             display: block;
         }
 
         // Top Bar styles intended for screen sizes above the breakpoint.
         @media #{$topbar-media-query} {
-            .top-bar {
+            .top-bar{
                 background: $topbar-bg;
                 @include clearfix;
                 overflow: visible;
 
-                .toggle-topbar {
+                .toggle-topbar{
                     display: none;
                 }
 
-                .title-area {
+                .title-area{
                     float: $default-float;
                 }
-                .name h1 a {
+                .name h1 a{
                     width: auto;
                 }
 
                 input,
-                .button {
+                .button{
                     font-size: rem-calc(14);
                     position: relative;
                     top: 7px;
                 }
 
-                &.expanded {
+                &.expanded{
                     background: $topbar-bg;
                 }
             }
 
-            .contain-to-grid .top-bar {
+            .contain-to-grid .top-bar{
                 max-width: $row-width;
                 margin: 0 auto;
                 margin-bottom: $topbar-margin-bottom;
             }
 
-            .top-bar-section {
+            .top-bar-section{
                 @include single-transition(none, 0, 0);
                 #{$default-float}: 0 !important;
 
-                ul {
+                ul{
                     width: auto;
                     height: auto !important;
                     display: inline;
 
-                    li {
+                    li{
                         float: $default-float;
-                        .js-generated {
+                        .js-generated{
                             display: none;
                         }
                     }
                 }
 
-                li {
-                    &.hover {
-                        > a:not(.button) {
+                li{
+                    &.hover{
+                        > a:not(.button){
                             background: $topbar-link-bg-hover;
                             color: $topbar-link-color-hover;
                         }
                     }
-                    a:not(.button) {
+                    a:not(.button){
                         padding: 0 $topbar-height / 3;
                         line-height: $topbar-height;
                         background: $topbar-bg;
-                        &:hover {
+                        &:hover{
                             background: $topbar-link-bg-hover;
                         }
                     }
                 }
 
-                .has-dropdown {
+                .has-dropdown{
 
                     @if($topbar-arrows){
 
-                        & > a {
+                        & > a{
                             padding-#{$opposite-direction}: $topbar-height / 3 + 20 !important;
-                            &:after {
+                            &:after{
                                 @include css-triangle($topbar-dropdown-toggle-size, rgba($topbar-dropdown-toggle-color, $topbar-dropdown-toggle-alpha), top);
                                 margin-top: -($topbar-dropdown-toggle-size / 2);
                                 top: $topbar-height / 2;
@@ -504,22 +504,22 @@ meta.foundation-mq-topbar {
 
                     }
 
-                    &.moved {
+                    &.moved{
                         position: relative;
-                        & > .dropdown {
+                        & > .dropdown{
                             display: none;
                         }
                     }
 
-                    &.hover, &.not-click:hover {
-                        & > .dropdown {
+                    &.hover, &.not-click:hover{
+                        & > .dropdown{
                             display: block;
                         }
                     }
 
-                    .dropdown li.has-dropdown {
-                        & > a {
-                            &:after {
+                    .dropdown li.has-dropdown{
+                        & > a{
+                            &:after{
                                 border: none;
                                 content: "\00bb";
                                 top: 1rem;
@@ -531,14 +531,14 @@ meta.foundation-mq-topbar {
 
                 }
 
-                .dropdown {
+                .dropdown{
                     #{$default-float}: 0;
                     top: auto;
                     background: transparent;
                     min-width: 100%;
 
-                    li {
-                        a {
+                    li{
+                        a{
                             color: $topbar-dropdown-link-color;
                             line-height: 1;
                             white-space: nowrap;
@@ -546,13 +546,13 @@ meta.foundation-mq-topbar {
                             background: $topbar-dropdown-link-bg;
                         }
 
-                        label {
+                        label{
                             white-space: nowrap;
                             background: $topbar-dropdown-label-bg;
                         }
 
                         // Second Level Dropdowns
-                        .dropdown {
+                        .dropdown{
                             #{$default-float}: 100%;
                             top: 0;
                         }
@@ -560,7 +560,7 @@ meta.foundation-mq-topbar {
                 }
 
                 & > ul > .divider,
-                & > ul > [role="separator"] {
+                & > ul > [role="separator"]{
                     border-bottom: none;
                     border-top: none;
                     border-#{$opposite-direction}: $topbar-divider-border-bottom;
@@ -569,19 +569,19 @@ meta.foundation-mq-topbar {
                     width: 0;
                 }
 
-                .has-form {
+                .has-form{
                     background: $topbar-bg;
                     padding: 0 $topbar-height / 3;
                     height: $topbar-height;
                 }
 
                 // Position overrides for ul.right
-                ul.right {
-                    li .dropdown {
+                ul.right{
+                    li .dropdown{
                         left: auto;
                         right: 0;
 
-                        li .dropdown {
+                        li .dropdown{
                             right: 100%;
                         }
                     }
@@ -590,24 +590,24 @@ meta.foundation-mq-topbar {
 
             // Degrade gracefully when Javascript is disabled. Displays dropdown and changes
             // background & text color on hover.
-            .no-js .top-bar-section {
-                ul li {
+            .no-js .top-bar-section{
+                ul li{
                     // Apply the hover link color when it has that class
-                    &:hover > a {
+                    &:hover > a{
                         background: $topbar-link-bg-hover;
                         color: $topbar-link-color-hover;
                     }
 
                     // Apply the active link color when it has that class
-                    &:active > a {
+                    &:active > a{
                         background: $topbar-link-bg-active;
                         color: $topbar-link-color-active;
                     }
                 }
 
-                .has-dropdown {
-                    &:hover {
-                        & > .dropdown {
+                .has-dropdown{
+                    &:hover{
+                        & > .dropdown{
                             display: block;
                         }
                     }

@@ -1,17 +1,15 @@
 define(
     [
         'DS',
+        'Modernizr',
         'app/components/skeleton/templates',
         'app/components/skeleton/models',
         'app/components/skeleton/router',
         'app/components/skeleton/controllers',
         'app/components/skeleton/views'
     ],
-    function(DS, templates, models, router, controller, views){
+    function(DS, Modernizr, templates, models, router, controller, views){
         'use strict';
-
-       // var DS = require('DS');
-        var Modernizr = require('Modernizr');
 
         //Проверка браузера на мобильность
         window.mobileDetection = {
@@ -57,11 +55,19 @@ define(
         });
 
         /**
-         * Application namespace.
-         * @namespace UMI
+         * Для отключения "магии" переименования моделей Ember.Data
+         * @class Inflector.inflector
          */
+        Ember.Inflector.inflector = new Ember.Inflector();
+
         var UMI = window.UMI = window.UMI || {};
 
+        /**
+         * Umi application.
+         * @module UMI
+         * @extends Ember.Application
+         * @requires Ember
+         */
         UMI = Ember.Application.create({
             rootElement: '#body',
             Resolver: Ember.DefaultResolver.extend({
@@ -73,13 +79,30 @@ define(
         });
         UMI.deferReadiness();
 
-        //Кэширование селекторов
-        UMI.DOMCache = {
+        /**
+         * Umi Utilities Class.
+         * @class Utils
+         * @static
+         */
+        UMI.Utils = {};
+
+        /**
+         * Кэширование селекторов
+         * @property DOMCache
+         * @type Object
+         */
+        UMI.Utils.DOMCache = {
             body: $('body'),
             document: $(document)
         };
 
-        UMI.RESTAdapter = DS.RESTAdapter.extend({
+        var baseURL = window.UmiSettings.baseURL.slice(1);
+        /**
+         * @class UmiRESTAdapter
+         * @extends DS.RESTAdapter
+         */
+        DS.UmiRESTAdapter = DS.RESTAdapter.extend({
+            namespace: baseURL + '/api',
             ajaxOptions: function(url, type, hash){
                 hash = hash || {};
                 hash.url = url;
@@ -96,7 +119,7 @@ define(
 
                 if(type === 'PUT' || type === 'DELETE'){
                     headers = headers || {};
-                    headers['x-real-request-method'] = type;
+                    headers['X-HTTP-METHOD-OVERRIDE'] = type;
                     hash.type = 'POST';
                 }
 
@@ -109,13 +132,17 @@ define(
                 }
 
                 return hash;
-
             }
         });
 
-        UMI.Store = DS.Store.extend({
-            adapter: 'UMI.RESTAdapter'
+        UMI.ApplicationSerializer = DS.RESTSerializer.extend({
+            normalizePayload: function(type, payload){
+                payload = payload.result;
+                return payload;
+            }
         });
+
+        UMI.ApplicationAdapter = DS.UmiRESTAdapter;
 
         templates(UMI);
         models(UMI);

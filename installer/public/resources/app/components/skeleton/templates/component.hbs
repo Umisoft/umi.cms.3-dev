@@ -1,52 +1,48 @@
 <div class="s-full-height">
-    <div
-    {{bind-attr class=":off-canvas-wrap :s-full-height hasTree:move-right"}}>
-    <div class="inner-wrap s-full-height">
-        {{#if hasTree}}
-        <aside class="left-off-canvas-menu s-unselectable" style="overflow: hidden;">
-            {{render "treeControl" treeSettings}}
-            <div class="umi-divider"></div>
-        </aside>
-        {{/if}}
+    <div {{bind-attr class=":off-canvas-wrap :s-full-height hasTree:move-right"}}>
+        <div class="inner-wrap s-full-height">
+            {{#if hasTree}}
+                <aside class="left-off-canvas-menu s-unselectable" style="overflow: hidden;">
+                    {{render "treeControl"}}
+                    <div class="umi-divider"></div>
+                </aside>
+            {{/if}}
+            <div class="row s-full-height-before s-margin-clear umi-mode">
+                <section class="left">
+                    {{#if hasTree}}
+                        <a class="left-off-canvas-toggle"><span class="icon icon-list"></span></a>
+                    {{else}}
+                        <a style="display:block; padding: 7px 9px; cursor:default;"><span
+                            class="icon icon-list white"></span></a>
+                    {{/if}}
+                </section>
 
+                <!-- TODO Говнокод
+                     TODO Сделать запрет перехода на чужой домен -->
+                <i class="icon black icon-left-thin" style="float: left; margin: 7px 4px 4px;"
+                   onclick="window.history.back();"></i>
+                <i class="icon black icon-right-thin" style="float: left; margin: 7px 10px 4px 4px;"
+                   onclick="window.history.forward();"></i>
 
-        <div class="row s-full-height-before s-margin-clear umi-mode">
-            <section class="left">
-                {{#if hasTree}}
-                <a class="left-off-canvas-toggle"><span class="icon icon-list"></span></a>
-                {{else}}
-                <a style="display:block; padding: 7px 9px; cursor:default;"><span
-                        class="icon icon-list white"></span></a>
-                {{/if}}
-            </section>
+                <div style="padding: 3px 5px 3px 5px; margin: 0 0 -3px 0; background: linear-gradient(to bottom, #35a9fc 0%, #0f8bd5 50%); float: left;">
+                    {{input type="search" class="umi-mode-search" placeholder='Введите запрос и нажмите "Enter"' value=searchQuery}}
+                </div>
+                <div style="float:left; margin:8px 10px;">
+                    <a {{action "search" searchQuery}}>Найти</a>
+                </div>
 
-            <!-- TODO Говнокод
-                 TODO Сделать запрет перехода на чужой домен -->
-            <!--<h5 class="title left" style=" width: 450px;">-->
-            <i class="icon black icon-left-thin" style="float: left; margin: 7px 4px 4px;"
-               onclick="window.history.back();"></i>
-            <i class="icon black icon-right-thin" style="float: left; margin: 7px 10px 4px 4px;"
-               onclick="window.history.forward();"></i>
-
-            <div style="padding: 3px 5px 3px 5px; margin: 0 0 -3px 0; background: linear-gradient(to bottom, #35a9fc 0%, #0f8bd5 50%); float: left;">
-                <input type="search"
-                       style="margin-bottom: 0; height: 27px; width: 300px;/* border-top-left-radius: 15px 20px; */  /* border-bottom-left-radius: 15px 20px; */  /* border-top-right-radius: 15px 20px; */  /* border-bottom-right-radius: 15px 20px; *//* border-radius: 20px; */"
-                       placeholder='Введите запрос и нажмите "Enter"'>
+                <ul class="button-group right">
+                    {{#each control in controller.contentControls}}
+                        <li>{{#link-to 'action' control.name classNames="button"}}{{control.displayName}}{{/link-to}}</li>
+                    {{/each}}
+                </ul>
             </div>
-            <div style="float:left; margin:8px 10px;">
-                {{#link-to "content" "search"}}Найти{{/link-to}}
-            </div>
-            <!--</h5>-->
 
-            {{render 'componentMode'}}
-        </div>
-
-
-        <div class="row s-full-height umi-component">
-            <div class="columns small-12 s-padding-clear">
-                {{outlet}}
+            <div class="row s-full-height umi-component">
+                <div class="columns small-12 s-padding-clear">
+                    {{outlet}}
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>

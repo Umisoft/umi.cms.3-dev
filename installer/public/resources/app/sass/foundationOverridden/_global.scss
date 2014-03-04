@@ -31,8 +31,8 @@ $include-open-sans: true !default;
 // We use this to control border radius.
 // $radius - Default: $global-radius || 4px
 @mixin radius($radius: $global-radius) {
-    @if $radius {
-        @if $experimental {
+    @if $radius{
+        @if $experimental{
             -webkit-border-radius: $radius;
         }
         border-radius: $radius;
@@ -45,7 +45,7 @@ $include-open-sans: true !default;
 // $side - Options: left, right, top, bottom
 @mixin side-radius($side, $radius: $global-radius) {
     @if $side == left {
-        @if $experimental {
+        @if $experimental{
             -moz-border-radius-bottomleft: $radius;
             -moz-border-radius-topleft: $radius;
             -webkit-border-bottom-left-radius: $radius;
@@ -54,7 +54,7 @@ $include-open-sans: true !default;
         border-bottom-left-radius: $radius;
         border-top-left-radius: $radius;
     } @else if $side == right {
-        @if $experimental {
+        @if $experimental{
             -moz-border-radius-topright: $radius;
             -moz-border-radius-bottomright: $radius;
             -webkit-border-top-right-radius: $radius;
@@ -63,7 +63,7 @@ $include-open-sans: true !default;
         border-top-right-radius: $radius;
         border-bottom-right-radius: $radius;
     } @else if $side == top {
-        @if $experimental {
+        @if $experimental{
             -moz-border-radius-topright: $radius;
             -moz-border-radius-topleft: $radius;
             -webkit-border-top-right-radius: $radius;
@@ -72,7 +72,7 @@ $include-open-sans: true !default;
         border-top-right-radius: $radius;
         border-top-left-radius: $radius;
     } @else if $side == bottom {
-        @if $experimental {
+        @if $experimental{
             -moz-border-radius-bottomright: $radius;
             -moz-border-radius-bottomleft: $radius;
             -webkit-border-bottom-right-radius: $radius;
@@ -88,14 +88,14 @@ $include-open-sans: true !default;
 // We can control whether or not we have inset shadows edges.
 // $active - Default: true, Options: false
 @mixin inset-shadow($active: true) {
-    @if $experimental {
+    @if $experimental{
         -webkit-box-shadow: $shiny-edge-size $shiny-edge-color inset;
     }
     box-shadow: $shiny-edge-size $shiny-edge-color inset;
 
-    @if $active {
-        &:active {
-            @if $experimental {
+    @if $active{
+        &:active{
+            @if $experimental{
                 -webkit-box-shadow: $shiny-edge-size $shiny-edge-active-color inset;
             }
             box-shadow: $shiny-edge-size $shiny-edge-active-color inset;
@@ -110,7 +110,7 @@ $include-open-sans: true !default;
 // $speed - Default: 300ms
 // $ease - Default:ease-out, Options: http://css-tricks.com/almanac/properties/t/transition-timing-function/
 @mixin single-transition($property: all, $speed: 300ms, $ease: ease-out) {
-    @if $experimental {
+    @if $experimental{
         -webkit-transition: $property $speed $ease;
         -moz-transition: $property $speed $ease;
     }
@@ -121,7 +121,7 @@ $include-open-sans: true !default;
 //
 // We use this to add box-sizing across browser prefixes
 @mixin box-sizing($type: border-box) {
-    @if $experimental {
+    @if $experimental{
         -moz-box-sizing: $type;
         -webkit-box-sizing: $type;
     }
@@ -159,13 +159,13 @@ $include-open-sans: true !default;
 }
 
 // We use this to do clear floats
-@mixin clearfix {
+@mixin clearfix{
     *zoom: 1;
-    &:before, &:after {
+    &:before, &:after{
         content: " ";
         display: table;
     }
-    &:after {
+    &:after{
         clear: both;
     }
 }
@@ -177,14 +177,14 @@ $include-open-sans: true !default;
 // $fade-time - Default: 300ms
 // $glowing-effect-color - Default: fade-out($primary-color, .25)
 @mixin block-glowing-effect($selector: focus, $fade-time: 300ms, $glowing-effect-color: fade-out($primary-color, .25)) {
-    @if $experimental {
+    @if $experimental{
         -webkit-transition: -webkit-box-shadow $fade-time, border-color $fade-time ease-in-out;
         -moz-transition: -moz-box-shadow $fade-time, border-color $fade-time ease-in-out;
     }
     transition: box-shadow $fade-time, border-color $fade-time ease-in-out;
 
-    &:#{$selector} {
-        @if $experimental {
+    &:#{$selector}{
+        @if $experimental{
             -webkit-box-shadow: 0 0 5px $glowing-effect-color;
             -moz-box-shadow: 0 0 5px $glowing-effect-color;
         }
@@ -212,7 +212,7 @@ $opposite-direction: right !default;
 @if $text-direction == ltr {
     $default-float: left;
     $opposite-direction: right;
-} @else {
+} @else{
     $default-float: right;
     $opposite-direction: left;
 }
@@ -278,44 +278,44 @@ $cursor-pointer-value: pointer !default;
 $cursor-help-value: help !default;
 $cursor-text-value: text !default;
 
-@include exports("global") {
-    @if $include-open-sans {
+@include exports("global"){
+    @if $include-open-sans{
         @import url("//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700");
     }
     // Used to provide media query values for javascript components.
     // Forward slash placed around everything to convince PhantomJS to read the value.
-    meta.foundation-mq-small {
+    meta.foundation-mq-small{
         font-family: "/" + unquote($small-only) + "/";
         width: lower-bound($small-range);
     }
 
-    meta.foundation-mq-medium {
+    meta.foundation-mq-medium{
         font-family: "/" + unquote($medium-only) + "/";
         width: lower-bound($medium-range);
     }
 
-    meta.foundation-mq-large {
+    meta.foundation-mq-large{
         font-family: "/" + unquote($large-up) + "/";
         width: lower-bound($large-range);
     }
 
-    meta.foundation-mq-xlarge {
+    meta.foundation-mq-xlarge{
         font-family: "/" + unquote($xlarge-up) + "/";
         width: lower-bound($xlarge-range);
     }
 
-    meta.foundation-mq-xxlarge {
+    meta.foundation-mq-xxlarge{
         font-family: "/" + unquote($xxlarge-up) + "/";
         width: lower-bound($xxlarge-range);
     }
 
-    @if $include-html-global-classes {
+    @if $include-html-global-classes{
 
         //Set box-sizing globally to handle padding and border widths
-        .row, .columns, .button {
+        .row, .columns, .button{
             @include box-sizing(border-box);
             &:before,
-            &:after {
+            &:after{
                 @include box-sizing(border-box);
             }
         }
@@ -326,12 +326,12 @@ $cursor-text-value: text !default;
         //    }
 
         html,
-        body {
+        body{
             font-size: $base-font-size;
         }
 
         // Default body styles
-        body {
+        body{
             background: $body-bg;
             color: $body-font-color;
             padding: 0;
@@ -344,58 +344,58 @@ $cursor-text-value: text !default;
             cursor: $cursor-default-value;
         }
 
-        a:hover {
+        a:hover{
             cursor: $cursor-pointer-value;
         }
 
         // Grid Defaults to get images and embeds to work properly
         img,
         object,
-        embed {
+        embed{
             max-width: 100%;
             height: auto;
         }
 
         object,
-        embed {
+        embed{
             height: 100%;
         }
-        img {
+        img{
             -ms-interpolation-mode: bicubic;
         }
 
         #map_canvas,
-        .map_canvas {
+        .map_canvas{
             img,
             embed,
-            object {
+            object{
                 max-width: none !important;
             }
         }
 
         // Miscellaneous useful HTML classes
-        .left {
+        .left{
             float: left !important;
         }
-        .right {
+        .right{
             float: right !important;
         }
-        .clearfix {
+        .clearfix{
             @include clearfix;
         }
-        .text-left {
+        .text-left{
             text-align: left !important;
         }
-        .text-right {
+        .text-right{
             text-align: right !important;
         }
-        .text-center {
+        .text-center{
             text-align: center !important;
         }
-        .text-justify {
+        .text-justify{
             text-align: justify !important;
         }
-        .hide {
+        .hide{
             display: none;
         }
 
@@ -403,12 +403,12 @@ $cursor-text-value: text !default;
         // Antialiased font smoothing works best for light text on a dark background.
         // Apply to single elements instead of globally to body.
         // Note this only applies to webkit-based desktop browsers on the Mac.
-        .antialiased {
+        .antialiased{
             -webkit-font-smoothing: antialiased;
         }
 
         // Get rid of gap under images by making them display: inline-block; by default
-        img {
+        img{
             display: inline-block;
             vertical-align: middle;
         }
@@ -418,13 +418,13 @@ $cursor-text-value: text !default;
         //
 
         // Make sure textarea takes on height automatically
-        textarea {
+        textarea{
             height: auto;
             min-height: 50px;
         }
 
         // Make select elements 100% width by default
-        select {
+        select{
             width: 100%;
         }
     }

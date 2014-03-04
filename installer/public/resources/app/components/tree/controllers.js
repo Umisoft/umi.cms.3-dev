@@ -3,15 +3,21 @@ define(['App'], function(UMI){
     return function(){
 
         UMI.TreeControlController = Ember.ObjectController.extend({
-            nodes: function(){
-                var root = this.get('root');
-                var nodes = this.store.findByIds(root.type, root.ids);
-                return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+            collection: null,
+            root: function(){
+                var root = Ember.Object.create(this.get('collection'));
+                root.set('root', true);
+                root.set('hasChildren', true);
+                root.set('id', 'root');
+                var nodes = this.store.find(root.get('type'), {'parent': null});
+                var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: nodes,
-                    sortProperties: ['index', 'id'],
+                    sortProperties: ['order', 'id'],
                     sortAscending: true
                 });
-            }.property('root'),
+                root.set('children', children);
+                return root;
+            }.property('collection'),
             /**
              * При совпадении значения свойства в данном
              * */
@@ -79,7 +85,7 @@ define(['App'], function(UMI){
             sortedChildren: function(){
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: this.get('children'),
-                    sortProperties: ['index', 'id'],
+                    sortProperties: ['order', 'id'],
                     sortAscending: true
                 });
             }.property('children'),
@@ -97,26 +103,6 @@ define(['App'], function(UMI){
             }.property('model', 'filters'),
             filters: Ember.computed.alias("controllers.treeControl.filterProperty"),
             needs: 'treeControl'
-            //			isExpandedChange: function(){
-            //				var self = this;
-            //				self.set('isLoaded', self.get('isExpanded'));
-            //				if(self.get('isExpanded')){
-            //					if(!self.get('children.length')){
-            //						return this.store.find(this.get('model').constructor.typeKey, {'parent': self.get('id')}).then(
-            //							function(children){
-            //								self.get('children').addObjects(children);
-            //								self.set('isLoaded', false);
-            //							}
-            //						);
-            //					}
-            //					self.set('isLoaded', false);
-            //				}
-            //			}.observes('isExpanded').on('init'),
-            //
-            //			childrenChange: function(){
-            //				// Костыль - исправить
-            //				this.set('isExpanded', false);
-            //			}.observes('children')
         });
     };
 });

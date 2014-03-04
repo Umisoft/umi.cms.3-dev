@@ -1,15 +1,18 @@
-html {
+// Объявнение переменной намеренно вынесено, для расчета высоты $umi-header-height
+$umi-dock-height: 85px;
+
+html{
     height: 100%;
 }
 
-body {
+body{
     overflow: hidden;
     height: 100%;
     background: #f6f7f8;
 }
 
-.no-js {
-    body::after {
+.no-js{
+    body::after{
         content: "Для работы приложения необходимо включить JavaScript";
         position: absolute;
         float: left;
@@ -25,8 +28,8 @@ body {
     }
 }
 
-.no-csscalc {
-    body::after {
+.no-csscalc{
+    body::after{
         content: "Для работы Вам необходимо установить новую версию браузера";
         position: absolute;
         float: left;
@@ -42,25 +45,15 @@ body {
     }
 }
 
-$umi-dock-height: 75px + $topbar-height;
-//TODO: Заменить на сумму высот(отступов) элементов Dock
-.umi-header {
-    height: auto; //TODO: Комментируем пока есть версии дока. $umi-dock-height;
-    ~ .s-full-height {
-        margin-top: -$umi-dock-height;
-        padding-top: $umi-dock-height;
-    }
-}
-
-.off-canvas-wrap {
-    &.move-right {
+.off-canvas-wrap{
+    &.move-right{
         //TODO привязано к px, а не к rem-calc
         width: unquote("calc(100% - 250px)");
         overflow: visible;
     }
 }
 
-.umi-divider {
+.umi-divider{
     position: absolute;
     left: 245px;
     z-index: 100000;
@@ -70,24 +63,24 @@ $umi-dock-height: 75px + $topbar-height;
     background: #C7CED6;
     border-left: 1px solid #ADB9C5;
     //    opacity: 0;
-    &:hover {
+    &:hover{
         //        opacity: 1;
         cursor: e-resize;
     }
 }
 
-.umi-mode {
+.umi-mode{
     z-index: 10;
     @include s-gradient-grey();
     border-left: 1px solid #ADB9C5;
     border-bottom: 1px solid #98A2AB;
 
-    .left-off-canvas-toggle {
+    .left-off-canvas-toggle{
         display: block;
         padding: rem-calc(7 9);
     }
 
-    h5 {
+    h5{
         font-weight: bold;
         font-size: rem-calc(16);
         line-height: rem-calc(28);
@@ -95,11 +88,11 @@ $umi-dock-height: 75px + $topbar-height;
         color: #6d7580;
     }
 
-    ul {
+    ul{
         margin-right: 20px;
     }
 
-    .button {
+    .button{
         background: none;
         color: #aaadb4;
         font-size: rem-calc(13);
@@ -108,7 +101,7 @@ $umi-dock-height: 75px + $topbar-height;
         line-height: rem-calc(6);
         border: none;
 
-        &.active {
+        &.active{
             border-radius: 14px;
             background: linear-gradient(to bottom, #EEEEEE 0%, #EEEEEE 100%);
             background: linear-gradient(top, #EEEEEE 0%, #EEEEEE 100%);
@@ -127,22 +120,28 @@ $umi-dock-height: 75px + $topbar-height;
     //	}
 }
 
-.umi-component {
+input.umi-mode-search{
+    margin-bottom: 0;
+    height: 27px;
+    width: 300px;
+}
+
+.umi-component{
     border-left: 1px solid #ADB9C5;
 }
 
-#component {
+#component{
     position: relative;
     overflow: hidden;
 }
 
-$umi-dock-height: 75px + $topbar-height;
+$umi-header-height: $umi-dock-height + $topbar-height;
 //TODO: Заменить на сумму высот(отступов) элементов Dock
-.umi-header {
+.umi-header{
     height: auto; //TODO: Комментируем пока есть версии дока. $umi-dock-height;
-    ~ .s-full-height {
-        margin-top: -$umi-dock-height;
-        padding-top: $umi-dock-height;
+    ~ .s-full-height{
+        margin-top: -$umi-header-height;
+        padding-top: $umi-header-height;
     }
     position: relative;
     //overflow: hidden;

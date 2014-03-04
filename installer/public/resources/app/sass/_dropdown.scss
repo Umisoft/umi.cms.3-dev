@@ -2,20 +2,20 @@
 // Custom dropdown
 //
 
-.dropdown-hover {
-    .f-dropdown {
+.dropdown-hover{
+    .f-dropdown{
         max-width: none;
         top: auto;
         visibility: hidden;
         opacity: 0;
         transition: all 0.2s linear;
         margin-top: 10px;
-        &.right {
+        &.right{
             right: 0;
         }
     }
-    &:hover {
-        > .f-dropdown {
+    &:hover{
+        > .f-dropdown{
             opacity: 1;
             visibility: visible;
             margin-top: 0;
@@ -24,13 +24,13 @@
 }
 
 // TODO: Костыль
-.f-dropdown[data-align="right"] {
+.f-dropdown[data-align="right"]{
     margin-left: -170px;
-    &:before {
+    &:before{
         left: auto;
         right: 7px;
     }
-    &:after {
+    &:after{
         left: auto;
         right: 6px;
     }

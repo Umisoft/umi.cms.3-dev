@@ -14,32 +14,38 @@ namespace umicms\project\module\search\highlight;
 class Fragment
 {
     /**
-     * @var  $edgeLeft
+     * Массив слов с левой стороны от ключевой фразы
+     * @var array $edgeLeft
      */
     private $edgeLeft;
     /**
-     * @var  $edgeRight
+     * Массив слов с правой стороны от ключевой фразы
+     * @var array $edgeRight
      */
     private $edgeRight;
     /**
-     * @var string $keyword
+     * Ключевая фраза, является центром фрагмента
+     * @var string $center
      */
     private $center;
     /**
-     * @var  $startPos
+     * Начальная позиция всего фрагмента в тексте
+     * @var int $startPos
      */
     private $startPos;
     /**
-     * @var  $endPos
+     * Конечная позиция всего фрагмента в тексте
+     * @var int $endPos
      */
     private $endPos;
 
     /**
-     * @param $keyword
-     * @param $wordsLeft
-     * @param $wordsRight
-     * @param $startPos
-     * @param $endPos
+     * Конструктор фрагмента.
+     * @param string $keyword
+     * @param array $wordsLeft
+     * @param array $wordsRight
+     * @param int $startPos
+     * @param int $endPos
      */
     public function __construct($keyword, $wordsLeft, $wordsRight, $startPos, $endPos)
     {
@@ -51,7 +57,7 @@ class Fragment
     }
 
     /**
-     * Перекрывается ли фрагмент с другим
+     * Перекрывается ли фрагмент с другим.
      * @param Fragment $fragmentNext
      * @param int $limit
      * @return bool
@@ -69,7 +75,8 @@ class Fragment
     }
 
     /**
-     * @return mixed
+     * Возвращает {@see startPos}
+     * @return int
      */
     public function getStartPos()
     {
@@ -77,7 +84,8 @@ class Fragment
     }
 
     /**
-     * @return mixed
+     * Возвращает {@see endPos}
+     * @return int
      */
     public function getEndPos()
     {
@@ -85,7 +93,8 @@ class Fragment
     }
 
     /**
-     * @return mixed
+     * Возвращает {@see edgeLeft}
+     * @return array
      */
     public function getEdgeLeft()
     {
@@ -101,6 +110,7 @@ class Fragment
     }
 
     /**
+     * Возвращает {@see center}
      * @return string
      */
     public function getCenter()
@@ -109,9 +119,17 @@ class Fragment
     }
 
     /**
+     * Возвращает массив слов, попадающих в пересечение между двумя массивами слов — левый и правый.
+     * Вычисляется попадание последних слов левого массива в пересечение с первыми словами правого.
+     * При этом учитывается максимальный лимит (глубина) пересечения.
+     * <code>
+     * intersectEdges([a,b,c,d], [c,d,x,y,z], 2)
+     * // вернет [c,d]
+     * </code>
+     *
      * @param array $left
      * @param array $right
-     * @param $limit
+     * @param int $limit
      * @return array
      */
     public function intersectEdges($left, $right, $limit)
@@ -146,8 +164,10 @@ class Fragment
     }
 
     /**
-     * @param Fragment $next
-     * @return Fragment
+     * "Склеивает" фрагмент со следующим, создавая новый, итоговый фрагмент.
+     * Может объединить ключевые фразы, встречающиеся в пересечении фрагментов.
+     * @param Fragment $next Фрагмент, следующий за текущим
+     * @return Fragment Новый фрагмент
      */
     public function join(Fragment $next)
     {

@@ -2,20 +2,6 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
     'use strict';
     Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
 
-    // для хелперов инпутов не работает атрибут required. Исправим это ( костыль? )
-    Ember.TextField.reopen({
-        attributeBindings: ['required', 'pattern']
-    });
-
-    Ember.TextArea.reopen({
-        attributeBindings: ['required', 'pattern']
-    });
-
-    UMI.TableControlComponent = Ember.Component.extend({
-        classNames: ['umi-table-control']
-    });
-
-
     UMI.FormControlView = Ember.View.extend({
         tagName: 'form',
         templateName: 'formControl',
@@ -26,10 +12,6 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
         actions: {
             save: function(object){
                 //console.log(object.get('title'));
-                object.save();
-            },
-            delete: function(object){
-                object.deleteRecord();
                 object.save();
             }
         }
@@ -46,11 +28,11 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
             var meta = this.get('meta');
             var template;
             switch(meta.type){
-                case 'string':
-                    template = Ember.Handlebars.compile('{{input type="text" value=object.' + meta.name + '}}');
-                    break;
                 case 'text':
-                    template = Ember.Handlebars.compile('{{textarea value=object.' + meta.name + '}}');
+                    template = Ember.Handlebars.compile('{{input type="text" value=object.' + meta.name + ' placeholder=meta.placeholder}}');
+                    break;
+                case 'textarea':
+                    template = Ember.Handlebars.compile('{{textarea value=object.' + meta.name + ' placeholder=meta.placeholder}}');
                     break;
                 case 'html':
                     template = Ember.Handlebars.compile('{{textarea data-type="ckeditor" value=object.' + meta.name + '}}');
@@ -60,6 +42,9 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
                     break;
                 case 'number':
                     template = Ember.Handlebars.compile('{{input type="number" value=object.' + meta.name + '}}');
+                    break;
+                case 'checkbox':
+                    template = Ember.Handlebars.compile('{{input type="checkbox" checked=object.' + meta.name + '}}');
                     break;
             }
             return template;

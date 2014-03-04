@@ -1,19 +1,5 @@
 {
-    "templateType": "formTemplate",
-    "objects": {
-        "category": [
-            {
-                "id": "lj234-34l5jl-dfigj-dlkljl-dkgkl",
-                "title": "Спорт",
-                "content": "Это категория про спорт",
-                "publishDate": "12.12.2014",
-                "viewCounter": 456,
-                "hasChildren": true,
-                "children": ["lj234-34l5jl-dfigj-dlkljl-dkgdf", "lj234-34l5jl-dfigj-dlkljl-dkg33df"]
-            }
-        ]
-    },
-    "meta": {
+    "settings": {
         "fieldsets": [
             {
                 "legend": "Основные поля",

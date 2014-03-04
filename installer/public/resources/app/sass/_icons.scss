@@ -2,7 +2,7 @@
 // Icons
 //
 
-.animate {
+.animate{
     background-position: 0 0;
     position: relative;
     display: inline-block;
@@ -10,14 +10,14 @@
     background-color: transparent;
     background-repeat: no-repeat;
 
-    &.animate-loader-20 {
+    &.animate-loader-20{
         width: 20px;
         height: 20px;
         line-height: 16px;
         background: url("img/animate/loader-20.gif") center center no-repeat;
     }
 
-    &.animate-loader-40 {
+    &.animate-loader-40{
         width: 40px;
         height: 40px;
         line-height: 32px;
@@ -25,7 +25,7 @@
     }
 }
 
-.icon {
+.icon{
     vertical-align: top;
     width: 20px;
     height: 20px;
@@ -38,504 +38,504 @@
     background: url("img/icons.png") no-repeat;
     background-color: transparent;
 
-    &.icon-image {
+    &.icon-image{
         background-position: 0px 0;
     }
-    &.icon-letter {
+    &.icon-letter{
         background-position: -20px 0;
     }
-    &.icon-text {
+    &.icon-text{
         background-position: -40px 0;
     }
-    &.icon-1 {
+    &.icon-1{
         background-position: -60px 0;
     }
-    &.icon-2 {
+    &.icon-2{
         background-position: -80px 0;
     }
-    &.icon-undo {
+    &.icon-undo{
         background-position: -100px 0;
     }
-    &.icon-redo {
+    &.icon-redo{
         background-position: -120px 0;
     }
-    &.icon-cloud {
+    &.icon-cloud{
         background-position: -140px 0;
     }
-    &.icon-cut {
+    &.icon-cut{
         background-position: -160px 0;
     }
-    &.icon-download {
+    &.icon-download{
         background-position: -180px 0;
     }
-    &.icon-upload {
+    &.icon-upload{
         background-position: -200px 0;
     }
-    &.icon-list {
+    &.icon-list{
         background-position: -220px 0;
     }
-    &.icon-delete {
+    &.icon-delete{
         background-position: -240px 0;
     }
-    &.icon-pause {
+    &.icon-pause{
         background-position: -260px 0;
     }
-    &.icon-write {
+    &.icon-write{
         background-position: -280px 0;
     }
-    &.icon-search {
+    &.icon-search{
         background-position: -300px 0;
     }
-    &.icon-add {
+    &.icon-add{
         background-position: -320px 0;
     }
-    &.icon-plus {
+    &.icon-plus{
         background-position: -340px 0;
     }
-    &.icon-settings {
+    &.icon-settings{
         background-position: -360px 0;
     }
-    &.icon-eye {
+    &.icon-eye{
         background-position: -380px 0;
     }
-    &.icon-window {
+    &.icon-window{
         background-position: -400px 0;
     }
-    &.icon-arrow-top {
+    &.icon-arrow-top{
         background-position: -420px 0;
     }
-    &.icon-star {
+    &.icon-star{
         background-position: -440px 0;
     }
-    &.icon-open-folder {
+    &.icon-open-folder{
         background-position: -460px 0;
     }
-    &.icon-document {
+    &.icon-document{
         background-position: -480px 0;
     }
-    &.icon-folder {
+    &.icon-folder{
         background-position: -500px 0;
     }
-    &.icon-denied {
+    &.icon-denied{
         background-position: -520px 0;
     }
-    &.icon-user {
+    &.icon-user{
         background-position: -540px 0;
     }
-    &.icon-key {
+    &.icon-key{
         background-position: -560px 0;
     }
-    &.icon-pile {
+    &.icon-pile{
         background-position: -580px 0;
     }
-    &.icon-3 {
+    &.icon-3{
         background-position: -600px 0;
     }
-    &.icon-4 {
+    &.icon-4{
         background-position: -620px 0;
     }
-    &.icon-5 {
+    &.icon-5{
         background-position: -640px 0;
     }
-    &.icon-mail {
+    &.icon-mail{
         background-position: -660px 0;
     }
-    &.icon-6 {
+    &.icon-6{
         background-position: -680px 0;
     }
-    &.icon-renew {
+    &.icon-renew{
         background-position: -700px 0;
     }
-    &.icon-calendar {
+    &.icon-calendar{
         background-position: -720px 0;
     }
-    &.icon-accept {
+    &.icon-accept{
         background-position: -740px 0;
     }
-    &.icon-triangle {
+    &.icon-triangle{
         background-position: -760px 0;
     }
-    &.icon-7 {
+    &.icon-7{
         background-position: -780px 0;
     }
-    &.icon-8 {
+    &.icon-8{
         background-position: -800px 0;
     }
-    &.icon-9 {
+    &.icon-9{
         background-position: -820px 0;
     }
-    &.icon-top {
+    &.icon-top{
         background-position: -840px 0;
     }
-    &.icon-right {
+    &.icon-right{
         background-position: -860px 0;
     }
-    &.icon-bottom {
+    &.icon-bottom{
         background-position: -880px 0;
     }
-    &.icon-left {
+    &.icon-left{
         background-position: -900px 0;
     }
-    &.icon-exit {
+    &.icon-exit{
         background-position: -940px 0;
     }
-    &.icon-plus-thin {
+    &.icon-plus-thin{
         background-position: -960px 0;
     }
-    &.icon-minus-thin {
+    &.icon-minus-thin{
         background-position: -980px 0;
     }
-    &.icon-ok-thin {
+    &.icon-ok-thin{
         background-position: -1000px 0;
     }
-    &.icon-decline-thin {
+    &.icon-decline-thin{
         background-position: -1020px 0;
     }
-    &.icon-bottom-thin {
+    &.icon-bottom-thin{
         background-position: -1040px 0;
     }
-    &.icon-top-thin {
+    &.icon-top-thin{
         background-position: -1060px 0;
     }
-    &.icon-left-thin {
+    &.icon-left-thin{
         background-position: -1080px 0;
     }
-    &.icon-right-thin {
+    &.icon-right-thin{
         background-position: -1100px 0;
     }
 
-    &.white {
-        &.icon-image {
+    &.white{
+        &.icon-image{
             background-position: 0px -20px;
         }
-        &.icon-letter {
+        &.icon-letter{
             background-position: -20px -20px;
         }
-        &.icon-text {
+        &.icon-text{
             background-position: -40px -20px;
         }
-        &.icon-1 {
+        &.icon-1{
             background-position: -60px -20px;
         }
-        &.icon-2 {
+        &.icon-2{
             background-position: -80px -20px;
         }
-        &.icon-undo {
+        &.icon-undo{
             background-position: -100px -20px;
         }
-        &.icon-redo {
+        &.icon-redo{
             background-position: -120px -20px;
         }
-        &.icon-cloud {
+        &.icon-cloud{
             background-position: -140px -20px;
         }
-        &.icon-cut {
+        &.icon-cut{
             background-position: -160px -20px;
         }
-        &.icon-download {
+        &.icon-download{
             background-position: -180px -20px;
         }
-        &.icon-upload {
+        &.icon-upload{
             background-position: -200px -20px;
         }
-        &.icon-list {
+        &.icon-list{
             background-position: -220px -20px;
         }
-        &.icon-delete {
+        &.icon-delete{
             background-position: -240px -20px;
         }
-        &.icon-pause {
+        &.icon-pause{
             background-position: -260px -20px;
         }
-        &.icon-write {
+        &.icon-write{
             background-position: -280px -20px;
         }
-        &.icon-search {
+        &.icon-search{
             background-position: -300px -20px;
         }
-        &.icon-add {
+        &.icon-add{
             background-position: -320px -20px;
         }
-        &.icon-plus {
+        &.icon-plus{
             background-position: -340px -20px;
         }
-        &.icon-settings {
+        &.icon-settings{
             background-position: -360px -20px;
         }
-        &.icon-eye {
+        &.icon-eye{
             background-position: -380px -20px;
         }
-        &.icon-window {
+        &.icon-window{
             background-position: -400px -20px;
         }
-        &.icon-arrow-top {
+        &.icon-arrow-top{
             background-position: -420px -20px;
         }
-        &.icon-star {
+        &.icon-star{
             background-position: -440px -20px;
         }
-        &.icon-open-folder {
+        &.icon-open-folder{
             background-position: -460px -20px;
         }
-        &.icon-document {
+        &.icon-document{
             background-position: -480px -20px;
         }
-        &.icon-folder {
+        &.icon-folder{
             background-position: -500px -20px;
         }
-        &.icon-denied {
+        &.icon-denied{
             background-position: -520px -20px;
         }
-        &.icon-user {
+        &.icon-user{
             background-position: -540px -20px;
         }
-        &.icon-key {
+        &.icon-key{
             background-position: -560px -20px;
         }
-        &.icon-pile {
+        &.icon-pile{
             background-position: -580px -20px;
         }
-        &.icon-3 {
+        &.icon-3{
             background-position: -600px -20px;
         }
-        &.icon-4 {
+        &.icon-4{
             background-position: -620px -20px;
         }
-        &.icon-5 {
+        &.icon-5{
             background-position: -640px -20px;
         }
-        &.icon-mail {
+        &.icon-mail{
             background-position: -660px -20px;
         }
-        &.icon-6 {
+        &.icon-6{
             background-position: -680px -20px;
         }
-        &.icon-renew {
+        &.icon-renew{
             background-position: -700px -20px;
         }
-        &.icon-calendar {
+        &.icon-calendar{
             background-position: -720px -20px;
         }
-        &.icon-accept {
+        &.icon-accept{
             background-position: -740px -20px;
         }
-        &.icon-triangle {
+        &.icon-triangle{
             background-position: -760px -20px;
         }
-        &.icon-7 {
+        &.icon-7{
             background-position: -780px -20px;
         }
-        &.icon-8 {
+        &.icon-8{
             background-position: -800px -20px;
         }
-        &.icon-9 {
+        &.icon-9{
             background-position: -820px -20px;
         }
-        &.icon-top {
+        &.icon-top{
             background-position: -840px -20px;
         }
-        &.icon-right {
+        &.icon-right{
             background-position: -860px -20px;
         }
-        &.icon-bottom {
+        &.icon-bottom{
             background-position: -880px -20px;
         }
-        &.icon-left {
+        &.icon-left{
             background-position: -900px -20px;
         }
-        &.icon-exit {
+        &.icon-exit{
             background-position: -940px -20px;
         }
-        &.icon-plus-thin {
+        &.icon-plus-thin{
             background-position: -960px -20px;
         }
-        &.icon-minus-thin {
+        &.icon-minus-thin{
             background-position: -980px -20px;
         }
-        &.icon-ok-thin {
+        &.icon-ok-thin{
             background-position: -1000px -20px;
         }
-        &.icon-decline-thin {
+        &.icon-decline-thin{
             background-position: -1020px -20px;
         }
-        &.icon-bottom-thin {
+        &.icon-bottom-thin{
             background-position: -1040px -20px;
         }
-        &.icon-top-thin {
+        &.icon-top-thin{
             background-position: -1060px -20px;
         }
-        &.icon-left-thin {
+        &.icon-left-thin{
             background-position: -1080px -20px;
         }
-        &.icon-right-thin {
+        &.icon-right-thin{
             background-position: -1100px -20px;
         }
     }
 
-    &.black {
-        &.icon-image {
+    &.black{
+        &.icon-image{
             background-position: 0px -40px;
         }
-        &.icon-letter {
+        &.icon-letter{
             background-position: -20px -40px;
         }
-        &.icon-text {
+        &.icon-text{
             background-position: -40px -40px;
         }
-        &.icon-1 {
+        &.icon-1{
             background-position: -60px -40px;
         }
-        &.icon-2 {
+        &.icon-2{
             background-position: -80px -40px;
         }
-        &.icon-undo {
+        &.icon-undo{
             background-position: -100px -40px;
         }
-        &.icon-redo {
+        &.icon-redo{
             background-position: -120px -40px;
         }
-        &.icon-cloud {
+        &.icon-cloud{
             background-position: -140px -40px;
         }
-        &.icon-cut {
+        &.icon-cut{
             background-position: -160px -40px;
         }
-        &.icon-download {
+        &.icon-download{
             background-position: -180px -40px;
         }
-        &.icon-upload {
+        &.icon-upload{
             background-position: -200px -40px;
         }
-        &.icon-list {
+        &.icon-list{
             background-position: -220px -40px;
         }
-        &.icon-delete {
+        &.icon-delete{
             background-position: -240px -40px;
         }
-        &.icon-pause {
+        &.icon-pause{
             background-position: -260px -40px;
         }
-        &.icon-write {
+        &.icon-write{
             background-position: -280px -40px;
         }
-        &.icon-search {
+        &.icon-search{
             background-position: -300px -40px;
         }
-        &.icon-add {
+        &.icon-add{
             background-position: -320px -40px;
         }
-        &.icon-plus {
+        &.icon-plus{
             background-position: -340px -40px;
         }
-        &.icon-settings {
+        &.icon-settings{
             background-position: -360px -40px;
         }
-        &.icon-eye {
+        &.icon-eye{
             background-position: -380px -40px;
         }
-        &.icon-window {
+        &.icon-window{
             background-position: -400px -40px;
         }
-        &.icon-arrow-top {
+        &.icon-arrow-top{
             background-position: -420px -40px;
         }
-        &.icon-star {
+        &.icon-star{
             background-position: -440px -40px;
         }
-        &.icon-open-folder {
+        &.icon-open-folder{
             background-position: -460px -40px;
         }
-        &.icon-document {
+        &.icon-document{
             background-position: -480px -40px;
         }
-        &.icon-folder {
+        &.icon-folder{
             background-position: -500px -40px;
         }
-        &.icon-denied {
+        &.icon-denied{
             background-position: -520px -40px;
         }
-        &.icon-user {
+        &.icon-user{
             background-position: -540px -40px;
         }
-        &.icon-key {
+        &.icon-key{
             background-position: -560px -40px;
         }
-        &.icon-pile {
+        &.icon-pile{
             background-position: -580px -40px;
         }
-        &.icon-3 {
+        &.icon-3{
             background-position: -600px -40px;
         }
-        &.icon-4 {
+        &.icon-4{
             background-position: -620px -40px;
         }
-        &.icon-5 {
+        &.icon-5{
             background-position: -640px -40px;
         }
-        &.icon-mail {
+        &.icon-mail{
             background-position: -660px -40px;
         }
-        &.icon-6 {
+        &.icon-6{
             background-position: -680px -40px;
         }
-        &.icon-renew {
+        &.icon-renew{
             background-position: -700px -40px;
         }
-        &.icon-calendar {
+        &.icon-calendar{
             background-position: -720px -40px;
         }
-        &.icon-accept {
+        &.icon-accept{
             background-position: -740px -40px;
         }
-        &.icon-triangle {
+        &.icon-triangle{
             background-position: -760px -40px;
         }
-        &.icon-7 {
+        &.icon-7{
             background-position: -780px -40px;
         }
-        &.icon-8 {
+        &.icon-8{
             background-position: -800px -40px;
         }
-        &.icon-9 {
+        &.icon-9{
             background-position: -820px -40px;
         }
-        &.icon-top {
+        &.icon-top{
             background-position: -840px -40px;
         }
-        &.icon-right {
+        &.icon-right{
             background-position: -860px -40px;
         }
-        &.icon-bottom {
+        &.icon-bottom{
             background-position: -880px -40px;
         }
-        &.icon-left {
+        &.icon-left{
             background-position: -900px -40px;
         }
-        &.icon-exit {
+        &.icon-exit{
             background-position: -940px -40px;
         }
-        &.icon-plus-thin {
+        &.icon-plus-thin{
             background-position: -960px -40px;
         }
-        &.icon-minus-thin {
+        &.icon-minus-thin{
             background-position: -980px -40px;
         }
-        &.icon-ok-thin {
+        &.icon-ok-thin{
             background-position: -1000px -40px;
         }
-        &.icon-decline-thin {
+        &.icon-decline-thin{
             background-position: -1020px -40px;
         }
-        &.icon-bottom-thin {
+        &.icon-bottom-thin{
             background-position: -1040px -40px;
         }
-        &.icon-top-thin {
+        &.icon-top-thin{
             background-position: -1060px -40px;
         }
-        &.icon-left-thin {
+        &.icon-left-thin{
             background-position: -1080px -40px;
         }
-        &.icon-right-thin {
+        &.icon-right-thin{
             background-position: -1100px -40px;
         }
     }

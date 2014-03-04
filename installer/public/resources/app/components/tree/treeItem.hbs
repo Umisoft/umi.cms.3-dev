@@ -1,90 +1,86 @@
 {{#if visible}}
-<li data-id="{{unbound node.id}}" {{bind-attr class="node.isDragged:hide node.root"}}>
-{{#view "treeItem" contentBinding="this"}}
+    <li data-id="{{unbound node.id}}" {{bind-attr class="node.isDragged:hide node.root"}}>
+        {{#view "treeItem" contentBinding="this"}}
+            {{#if node.childCount}}
+                <span {{action "expanded" node}} {{bind-attr class=":umi-expand-hover"}}>
+                    {{#if node.isLoaded}}
+                        <i class="animate animate-loader-20"></i>
+                    {{else}}
+                        <i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>
+                    {{/if}}
+                </span>
+                <i {{bind-attr class=":icon :move :icon-document"}}></i>
+            {{else}}
+                <i {{bind-attr class=":icon :move :icon-document"}}></i>
+            {{/if}}
 
-{{#if node.hasChildren}}
-<span {{action "expanded" node}} {{bind-attr class=":umi-expand-hover"}}>
+            {{#link-to "context" node.id}}
+                {{node.displayName}}
+            {{/link-to}}
 
-{{#if node.isLoaded}}
-<i class="animate animate-loader-20"></i>
-{{else}}
-<i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>
-{{/if}}
+            <ul class="button-group umi-tree-context-menu right">
+                <li><a href="#" class="tiny button flat square s-margin-clear"><i class="icon white icon-ok-thin"></i></a></li>
 
-</span>
-<i {{bind-attr class=":icon :move :icon-document"}}></i>
-{{else}}
-<i {{bind-attr class=":icon :move :icon-document"}}></i>
-{{/if}}
+                <li class="umi-tree-drop-down-toggler">
+                    <a href="#" class="tiny button flat square s-margin-clear">
+                        <i class="icon black icon-plus-thin"></i>
+                        <i class="icon black icon-bottom-thin"></i>
+                    </a>
 
-{{#link-to "treeActive" node.id}}
-{{node.title}}
-{{/link-to}}
+                    <div class="umi-tree-drop-down s-unselectable">
 
-<ul class="button-group umi-tree-context-menu right">
-    <li><a href="#" class="tiny button flat square s-margin-clear"><i class="icon white icon-ok-thin"></i></a></li>
+                        <div class="umi-tree-tabs">
+                            <div class="umi-tree-tab active"><i class="icon icon-add"></i></div>
+                            <div class="umi-tree-tab"><i class="icon icon-pile"></i></div>
+                            <div class="umi-tree-tab"><i class="icon icon-write"></i></div>
+                            <div class="umi-tree-tab"><i class="icon icon-pause"></i></div>
+                            <div class="umi-tree-tab"><i class="icon icon-delete"></i></div>
+                        </div>
 
-    <li class="umi-tree-drop-down-toggler">
-        <a href="#" class="tiny button flat square s-margin-clear">
-            <i class="icon black icon-plus-thin"></i>
-            <i class="icon black icon-bottom-thin"></i>
-        </a>
+                        <div class="umi-tree-tabs-content">
+                            <div class="umi-tree-tab-content active">
+                                <ul>
+                                    <li>Добавить новость</li>
+                                    <li>Добавить рубрику</li>
+                                </ul>
+                            </div>
+                            <div class="umi-tree-tab-content">
+                                <ul>
+                                    <li>Создать копию</li>
+                                </ul>
+                            </div>
+                            <div class="umi-tree-tab-content">
+                                <ul>
+                                    <li>Редактировать</li>
+                                </ul>
+                            </div>
+                            <div class="umi-tree-tab-content">
+                                <ul>
+                                    <li>Снять активность</li>
+                                </ul>
+                            </div>
+                            <div class="umi-tree-tab-content">
+                                <ul>
+                                    <li>Удалить рубрику</li>
+                                </ul>
+                            </div>
+                        </div>
 
-        <div class="umi-tree-drop-down s-unselectable">
-
-            <div class="umi-tree-tabs">
-                <div class="umi-tree-tab active"><i class="icon icon-add"></i></div>
-                <div class="umi-tree-tab"><i class="icon icon-pile"></i></div>
-                <div class="umi-tree-tab"><i class="icon icon-write"></i></div>
-                <div class="umi-tree-tab"><i class="icon icon-pause"></i></div>
-                <div class="umi-tree-tab"><i class="icon icon-delete"></i></div>
-            </div>
-
-            <div class="umi-tree-tabs-content">
-                <div class="umi-tree-tab-content active">
-                    <ul>
-                        <li>Добавить новость</li>
-                        <li>Добавить рубрику</li>
-                    </ul>
-                </div>
-                <div class="umi-tree-tab-content">
-                    <ul>
-                        <li>Создать копию</li>
-                    </ul>
-                </div>
-                <div class="umi-tree-tab-content">
-                    <ul>
-                        <li>Редактировать</li>
-                    </ul>
-                </div>
-                <div class="umi-tree-tab-content">
-                    <ul>
-                        <li>Снять активность</li>
-                    </ul>
-                </div>
-                <div class="umi-tree-tab-content">
-                    <ul>
-                        <li>Удалить рубрику</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
+                    </div>
+                </li>
+            </ul>
+        {{/view}}
+        <div class="hover-bg"></div>
+        {{#if node.childCount}}
+            {{#if node.isExpanded}}
+                <ul class="umi-tree-list" data-parent-id="{{unbound node.id}}">
+                    {{#each node in sortedChildren itemController="treeItem"}}
+                        {{partial "treeItem"}}
+                    {{/each}}
+                </ul>
+            {{/if}}
+        {{/if}}
     </li>
-</ul>
-{{/view}}
-
-<div class="hover-bg"></div>
-{{#if node.hasChildren}}
-{{#if node.isExpanded}}
-<ul class="umi-tree-list" data-parent-id="{{unbound node.id}}">
-    {{#each node in sortedChildren itemController="treeItem"}}
-    {{partial "treeItem"}}
-    {{/each}}
-</ul>
-{{/if}}
-{{/if}}
-</li>
 {{/if}}
 
 <style>
