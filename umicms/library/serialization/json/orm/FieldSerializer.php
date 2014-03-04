@@ -45,6 +45,9 @@ class FieldSerializer extends BaseSerializer
             $info['targetFieldName'] = $field->getTargetFieldName();
             $info['bridgeCollection'] = $field->getBridgeCollectionName();
             $info['relatedField'] = $field->getRelatedFieldName();
+
+            $targetCollection = $field->getTargetCollection();
+            $info['mirrorField'] = $targetCollection->getMetadata()->getFieldByRelation($field->getTargetFieldName(), $field->getBridgeCollectionName())->getName();
         }
 
         $this->delegate(

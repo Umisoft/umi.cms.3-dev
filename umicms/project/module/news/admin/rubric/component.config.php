@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\news\admin\rubric;
 
+use umi\route\IRouteFactory;
 use umicms\hmvc\component\AdminComponent;
 
 return [
@@ -15,6 +16,94 @@ return [
     AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\AdminComponent',
 
     AdminComponent::OPTION_SETTINGS => [
-        AdminComponent::OPTION_COLLECTION_NAME => 'newsRubric'
+        'controls' => [
+            [
+                'name' => 'tree',
+                'displayName' => 'Новостные рубрики',
+            ],
+            [
+                'name' => 'filter',
+                'displayName' => 'Фильтр'
+            ],
+            [
+                'name' => 'children',
+                'displayName' => 'Дочерние рубрики'
+            ],
+            [
+                'name' => 'editor',
+                'displayName' => 'Редактирование'
+            ]
+        ],
+        'layout' => [
+            'defaultContext' => [
+                'tree' => [
+                    'controls' => ['tree']
+                ],
+                'content' => [
+                    'controls' => ['filter', 'children']
+                ]
+            ],
+            'context' => [
+                'tree' => [
+                    'controls' => ['tree']
+                ],
+                'content' => [
+                    'controls' => ['editor', 'children']
+                ]
+            ]
+        ]
+     ],
+
+    AdminComponent::OPTION_CONTROLLERS => [
+        'list' => __NAMESPACE__ . '\controller\ListController',
+        'item' => __NAMESPACE__ . '\controller\ItemController',
+        'action' => __NAMESPACE__ . '\controller\ActionController'
+    ],
+
+    AdminComponent::OPTION_ROUTES      => [
+
+        'settings' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route'    => '/settings',
+            'defaults' => [
+                'action' => 'settings',
+                'controller' => 'action'
+            ],
+        ],
+
+        'item' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{collection}/{id:integer}',
+            'defaults' => [
+                'collection' => 'newsRubric',
+                'controller' => 'item'
+            ],
+            'subroutes' => [
+                'action' => [
+                    'type'     => IRouteFactory::ROUTE_SIMPLE,
+                    'route'    => '/{action}',
+                    'defaults' => [
+                        'controller' => 'action'
+                    ]
+                ]
+            ]
+        ],
+        'list' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/{collection}',
+            'defaults' => [
+                'collection' => 'newsRubric',
+                'controller' => 'list'
+            ],
+            'subroutes' => [
+                'action' => [
+                    'type'     => IRouteFactory::ROUTE_SIMPLE,
+                    'route'    => '/{action}',
+                    'defaults' => [
+                        'controller' => 'action'
+                    ]
+                ]
+            ]
+        ]
     ]
 ];

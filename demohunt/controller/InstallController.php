@@ -21,6 +21,8 @@ use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseController;
+use umicms\project\module\search\api\SearchApi;
+use umicms\project\module\search\api\SearchIndexApi;
 use umicms\project\module\structure\object\StaticPage;
 use umicms\project\module\users\api\UsersApi;
 use umicms\project\module\users\object\User;
@@ -44,11 +46,16 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     protected $usersApi;
 
     protected $testLayout;
+    /**
+     * @var SearchApi $searchApi
+     */
+    private $searchIndexApi;
 
-    public function __construct(IDbCluster $dbCluster, UsersApi $usersApi)
+    public function __construct(IDbCluster $dbCluster, UsersApi $usersApi, SearchIndexApi $searchIndexApi)
     {
         $this->dbCluster = $dbCluster;
         $this->usersApi = $usersApi;
+        $this->searchIndexApi = $searchIndexApi;
     }
 
     /**
@@ -66,6 +73,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->installBlog();
 
         $this->getObjectPersister()->commit();
+        $this->installSearch();
 
         return $this->createResponse('Installed');
     }
@@ -215,6 +223,36 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('metaTitle', 'Новости сайта')
             ->setValue('h1', 'Новости сайта')
             ->setGUID('8650706f-04ca-49b6-a93d-966a42377a61');
+
+        $sport = $rubricCollection->add('sport')
+            ->setValue('displayName', 'Новости спорта')
+            ->setValue('metaTitle', 'Новости спорта')
+            ->setValue('h1', 'Новости спорта');
+
+        $winterSports = $rubricCollection->add('winter', IObjectType::BASE, $sport)
+            ->setValue('displayName', 'Зимний спорт')
+            ->setValue('metaTitle', 'Зимний спорт')
+            ->setValue('h1', 'Зимний спорт');
+
+        $summerSports = $rubricCollection->add('summer', IObjectType::BASE, $sport)
+            ->setValue('displayName', 'Летний спорт')
+            ->setValue('metaTitle', 'Летний спорт')
+            ->setValue('h1', 'Летний спорт');
+
+        $snowboard = $rubricCollection->add('snowboard', IObjectType::BASE, $winterSports)
+            ->setValue('displayName', 'Сноуборд')
+            ->setValue('metaTitle', 'Сноуборд')
+            ->setValue('h1', 'Сноуборд');
+
+        $ski = $rubricCollection->add('ski', IObjectType::BASE, $winterSports)
+            ->setValue('displayName', 'Лыжи')
+            ->setValue('metaTitle', 'Лыжи')
+            ->setValue('h1', 'Лыжи');
+
+        $volleyball = $rubricCollection->add('volleyball', IObjectType::BASE, $summerSports)
+            ->setValue('displayName', 'Волейбол')
+            ->setValue('metaTitle', 'Волейбол')
+            ->setValue('h1', 'Волейбол');
 
         $item = $newsCollection->add()
             ->setValue('displayName', 'Названа причина социопатии современных зомби')
@@ -764,5 +802,50 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
+    }
+
+    private function installSearch()
+    {
+        /**
+         * @var SimpleHierarchicCollection $structureCollection
+         */
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+        $searchRoot = $structureCollection->add('search', 'system');
+        $searchRoot->setValue('displayName', 'Поиск')
+            ->setGUID('9ee6745f-f40d-46d8-8043-d901234628ce')
+            ->setValue('layout', $this->testLayout);
+        $searchRoot->getProperty('componentPath')->setValue('search');
+
+        $connection = $this->dbCluster->getConnection();
+
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_search_index`");
+
+        $connection->exec(
+            "CREATE TABLE `demohunt_search_index` (
+                `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                `guid` varchar(255) DEFAULT NULL,
+                `version` int(10) unsigned DEFAULT '1',
+                `type` varchar(255) DEFAULT NULL,
+                `date_indexed` datetime DEFAULT NULL,
+                `collection_id` varchar(255) DEFAULT NULL,
+                `ref_guid` varchar(255) DEFAULT NULL,
+                `content` TEXT DEFAULT NULL,
+                PRIMARY KEY (`id`),
+                UNIQUE KEY `search_index_guid` (`guid`),
+                UNIQUE KEY `search_index_ref_guid` (`ref_guid`),
+                KEY `search_index_type` (`type`),
+                KEY `search_index_collection_id` (`collection_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8
+            "
+        );
+
+//        $this->searchIndexApi->buildIndex('structure');
+        $this->searchIndexApi->buildIndex('newsRubric');
+        $this->searchIndexApi->buildIndex('newsItem');
+        $this->searchIndexApi->buildIndex('newsSubject');
+        $this->searchIndexApi->buildIndex('blogCategory');
+        $this->searchIndexApi->buildIndex('blogPost');
+        $this->searchIndexApi->buildIndex('blogComment');
+        $this->getObjectPersister()->commit();
     }
 }

@@ -29,7 +29,7 @@ return [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/{collection}/{id:integer}',
             'defaults' => [
-                'collection' => 'newsItem',
+                'collection' => 'newsSubject',
                 'controller' => 'item'
             ]
         ],
@@ -38,7 +38,7 @@ return [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{collection}',
             'defaults' => [
-                'collection' => 'newsItem',
+                'collection' => 'newsSubject',
                 'controller' => 'list'
             ]
         ]

@@ -53,6 +53,7 @@ abstract class BaseRestListController extends BaseController implements IObjectP
                 $list = $this->getList();
 
                 foreach($this->getAllQueryVars() as $name => $value) {
+                    if (!strlen($value)) $value = null;
                     $list->where($name)->equals($value);
                 }
 

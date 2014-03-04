@@ -7,13 +7,10 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\hmvc\component;
+namespace demohunt\module\search\metadata;
 
-/**
- * Компонент административной панели.
- */
-class AdminComponent extends BaseComponent
-{
-
-}
- 
+return [
+    'dataSource' => [
+        'sourceName' => 'demohunt_search_index'
+    ],
+];

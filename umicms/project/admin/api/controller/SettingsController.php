@@ -53,9 +53,11 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
             $collection = $this->getCollectionManager()->getCollection($collectionName);
             $collections[] = $collection;
             if ($collection instanceof IApplicationHandlersAware && $collection->hasHandler('admin')) {
+                $componentInfo = explode('.', $collection->getHandlerPath('admin'));
                 $resources[] = [
                     'collection' => $collectionName,
-                    'uri' => '/' . str_replace('.', '/', $collection->getHandlerPath('admin'))
+                    'module' => isset($componentInfo[0]) ? $componentInfo[0] : null,
+                    'component' => isset($componentInfo[1]) ? $componentInfo[1] : null
                 ];
             }
 
@@ -91,17 +93,13 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
                  */
                 $components[] = [
                     'name'     => $componentName,
-                    'path'     => $component->getPath(),
-                    'settings' => $component->getSettings()
-                            ->get(AdminComponent::OPTION_ADMIN_INTERFACE) ? : []
+                    'path'     => $component->getPath()
                 ];
             }
 
             $modules[] = [
                 'name'       => $moduleName,
                 'path'       => $module->getPath(),
-                'settings'   => $module->getSettings()
-                        ->get(AdminComponent::OPTION_ADMIN_INTERFACE) ? : [],
                 'components' => $components
             ];
         }

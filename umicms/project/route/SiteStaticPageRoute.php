@@ -13,7 +13,7 @@ use umi\orm\exception\NonexistentEntityException;
 use umi\orm\metadata\field\special\UriField;
 use umi\orm\object\IHierarchicObject;
 use umi\route\type\BaseRoute;
-use umicms\hmvc\component\BaseComponent;
+use umicms\hmvc\component\SiteComponent;
 use umicms\project\config\ISiteSettingsAware;
 use umicms\project\config\TSiteSettingsAware;
 use umicms\project\module\structure\api\StructureApi;
@@ -47,7 +47,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
      */
     public function match($url)
     {
-        if (is_null($url)) {
+        if ($url === '/') {
             $matched = $this->matchDefaultPage();
         } else {
             $matched = $this->matchPage($url);
@@ -74,7 +74,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
             $element = $this->structureApi->element()->get($this->getSiteDefaultPageGuid());
             $this->setRouteParams($element);
 
-            return 0;
+            return 1;
         } catch(NonexistentEntityException $e) {
             return false;
         }
@@ -91,7 +91,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
             $this->structureApi->element()->select()
             ->types(['static'])
             ->where(IHierarchicObject::FIELD_URI)
-                ->equals(UriField::URI_START_SYMBOL . '/' . $url)
+                ->equals(UriField::URI_START_SYMBOL . $url)
             ->limit(1)
             ->result()
             ->fetch();
@@ -99,7 +99,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
         if ($element instanceof StructureElement) {
             $this->setRouteParams($element);
 
-            return strlen($element->getURL()) - 1;
+            return strlen($element->getURL());
         } else {
             return false;
         }
@@ -111,8 +111,8 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
      */
     protected function setRouteParams(StructureElement $element)
     {
-        $this->params[BaseComponent::MATCH_COMPONENT] = $element->componentPath;
-        $this->params[BaseComponent::MATCH_ELEMENT] = $element;
+        $this->params[SiteComponent::MATCH_COMPONENT] = $element->componentPath;
+        $this->params[SiteComponent::MATCH_ELEMENT] = $element;
     }
 
 }

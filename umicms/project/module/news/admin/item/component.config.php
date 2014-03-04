@@ -16,7 +16,7 @@ return [
     AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\AdminComponent',
 
     AdminComponent::OPTION_SETTINGS => [
-        AdminComponent::OPTION_COLLECTION_NAME => 'newsItem'
+
     ],
 
     AdminComponent::OPTION_CONTROLLERS => [
@@ -27,37 +27,47 @@ return [
 
     AdminComponent::OPTION_ROUTES      => [
 
+        'settings' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route'    => '/settings',
+            'defaults' => [
+                'action' => 'settings',
+                'controller' => 'action'
+            ],
+        ],
+
         'item' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/{collection}/{id:integer}',
             'defaults' => [
                 'collection' => 'newsItem',
                 'controller' => 'item'
+            ],
+            'subroutes' => [
+                'action' => [
+                    'type'     => IRouteFactory::ROUTE_SIMPLE,
+                    'route'    => '/{action}',
+                    'defaults' => [
+                        'controller' => 'action'
+                    ]
+                ]
             ]
         ],
-
-/*        'itemAction' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{guid:guid}/{action}',
-            'defaults' => [
-                'controller' => 'action'
-            ]
-        ],
-
-        'action' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{action}',
-            'defaults' => [
-                'controller' => 'action'
-            ]
-        ],*/
-
         'list' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{collection}',
             'defaults' => [
                 'collection' => 'newsItem',
                 'controller' => 'list'
+            ],
+            'subroutes' => [
+                'action' => [
+                    'type'     => IRouteFactory::ROUTE_SIMPLE,
+                    'route'    => '/{action}',
+                    'defaults' => [
+                        'controller' => 'action'
+                    ]
+                ]
             ]
         ]
     ]

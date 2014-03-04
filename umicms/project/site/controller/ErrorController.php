@@ -43,9 +43,9 @@ class ErrorController extends BaseController
 
         switch (true) {
             // 404
-            case $this->exception instanceof HttpNotFound:
+            /*case $this->exception instanceof HttpNotFound:
             case $this->exception instanceof NonexistentEntityException:
-                return $this->error404();
+                return $this->error404();*/
             // 403
             case $this->exception instanceof HttpForbidden:
                 return $this->error403();

@@ -15,6 +15,7 @@ use umi\hmvc\component\IComponent;
 use umi\orm\collection\ICollectionFactory;
 use umi\orm\toolbox\OrmTools;
 use umi\route\IRouteFactory;
+use umicms\api\toolbox\ApiTools;
 use umicms\Bootstrap;
 
 return [
@@ -24,6 +25,7 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/dbal/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/orm/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/authentication/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/stemming/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/api/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php')
     ],
@@ -49,6 +51,21 @@ return [
                     ]
                 ]
              ]
+        ],
+
+        ApiTools::NAME => [
+            'api' => [
+               'umicms\project\module\search\api\SearchIndexApi' => [
+                   'collectionsMap' => [
+                       'newsItem' => ['properties' => ['displayName', 'announcement']],
+                       'newsSubject' => ['properties' => ['displayName', 'h1', 'content']],
+                       'newsRubric' => ['properties' => ['displayName', 'h1', 'content']],
+                       'blogCategory' => ['properties' => ['displayName', 'h1', 'content']],
+                       'blogComment' => ['properties' => ['content']],
+                       'blogPost' => ['properties' => ['displayName', 'h1', 'announcement', 'content']],
+                   ]
+               ]
+            ]
         ],
 
         OrmTools::NAME => [
@@ -80,6 +97,7 @@ return [
                 'blogPostTag' => '{#lazy:~/project/module/blog/metadata/post_tag.config.php}',
 
                 'user' => '{#lazy:~/project/module/users/metadata/user.config.php}',
+                'searchIndex' => '{#lazy:~/project/module/search/metadata/search_index.config.php}',
             ],
 
             'collections' => [
@@ -132,6 +150,7 @@ return [
                 'blogPostTag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
 
                 'user' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'searchIndex' => ['type' => ICollectionFactory::TYPE_SIMPLE],
             ]
         ]
     ],

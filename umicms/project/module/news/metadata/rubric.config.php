@@ -104,7 +104,17 @@ return [
         'metaTitle'             => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
         'metaKeywords'          => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
         'metaDescription'       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
-        'content'               => ['type' => IField::TYPE_TEXT, 'columnName' => 'content']
+        'content'               => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
+        'news'                  => [
+            'type'        => IField::TYPE_HAS_MANY,
+            'target'      => 'newsItem',
+            'targetField' => 'rubric'
+        ],
+        'children'  => [
+            'type'        => IField::TYPE_HAS_MANY,
+            'target'      => 'newsRubric',
+            'targetField' => 'parent'
+        ],
 
     ],
     'types'      => [
@@ -131,7 +141,9 @@ return [
                 'metaTitle',
                 'metaKeywords',
                 'metaDescription',
-                'content'
+                'content',
+                'news',
+                'children'
             ]
         ]
     ]
