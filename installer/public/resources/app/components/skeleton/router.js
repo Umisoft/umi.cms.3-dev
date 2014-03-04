@@ -180,6 +180,7 @@ define([], function(){
                     var context = settings.layout;
                     componentController.set('controls', controls);
                     componentController.set('context', context);
+                    componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
                     return model;
                 });
             },
@@ -214,15 +215,17 @@ define([], function(){
         });
 
         UMI.ContextRoute = Ember.Route.extend({
-            model: function(params){
+            model: function(params, transition){
                 var model;
+                var routeData = {};
+                var oldContext = this.controllerFor('component').get('selectedContext');
                 this.controllerFor('component').set('selectedContext', params.context);
                 /**
-                 * Редирект на Mode если контекст не имеет action
+                 * Редирект на Action если контекст не имеет action
                  */
-                var activeMode = this.modelFor('action');
+                var activeAction = this.modelFor('action');
                 var firstAction = this.controllerFor('component').get('contentControls.firstObject');
-                if(firstAction.get('name') !== activeMode.get('name')){
+                if(oldContext !== params.context && firstAction.get('name') !== activeAction.get('name')){
                     return this.transitionTo('action', firstAction.get('name'));
                 }
                 if(params.context === 'root'){
@@ -235,11 +238,24 @@ define([], function(){
                 } else{
                     model = this.store.find(this.modelFor('component').get('collection'), params.context);
                 }
-                return model;
+                routeData.object = model;
+                /**
+                 * Мета информация для action
+                 */
+                var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/' + this.modelFor('component').get('collection')  + '/' + transition.params.action.action;
+                if(transition.params.action.action === 'form'){
+                    return Ember.$.get(actionResource).then(function(results){
+                        var viewSettings = {};
+                        viewSettings[transition.params.action.action] = results.result[transition.params.action.action];
+                        routeData.viewSettings = viewSettings;
+                        return routeData;
+                    });
+                }
+                return routeData;
             },
-            serialize: function(model){
-                if(model){
-                    return {context: model.get('id')};
+            serialize: function(routeData){
+                if(routeData.object){
+                    return {context: routeData.object.get('id')};
                 }
             },
             renderTemplate: function(){
