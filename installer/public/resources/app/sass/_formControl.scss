@@ -6,7 +6,7 @@
     }
 }
 
-body {
+body{
     image-rendering: -webkit-optimize-contrast;
 }
 
@@ -30,7 +30,7 @@ body {
         bottom: -3px;
         background: url(img/shadows/toBottomShadow.png);
     }
-    a {
+    a{
         position: relative;
         padding: rem-calc(0 18);
         border-right: 1px solid #BFC4C8;
@@ -42,7 +42,6 @@ body {
         font-weight: bold;
         color: #575E6C;
         &:hover {
-            color: #000000;
             &::after {
                 content: "";
                 position: absolute;
@@ -63,7 +62,7 @@ body {
     height: 34px;
 }
 
-form {
+form{
     .input-icon {
         position: relative;
         top: em-calc(12);
@@ -96,6 +95,10 @@ fieldset {
     margin: -3px -21px;
     position: absolute;
     display: block;
+}
+
+.umi-form-control-content{
+    padding-bottom: 30px;
 }
 
 legend {

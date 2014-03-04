@@ -17,8 +17,9 @@ define(['./app'], function(UMI){
 
         UMI.Router.reopen({
             location: 'history',
-            rootURL: UmiSettings.rootURL
+            rootURL: window.UmiSettings.baseUrl
         });
+
 
         //		UMI.ErrorState = Ember.Mixin.create({//TODO: Обрабатывать все типы ошибок, и разные роуты
         //			actions: {

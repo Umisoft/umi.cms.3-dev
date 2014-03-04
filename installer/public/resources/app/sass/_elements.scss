@@ -1,0 +1,19 @@
+// checkboxes ----------------------------------------------
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: -3px 0 0 -4px;
+    vertical-align: middle;
+    background: url(img/svg/checkbox.svg) left top no-repeat;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label{
+    background:url(img/svg/checkbox-checked.svg) left top no-repeat;
+}

@@ -7,8 +7,8 @@ module.exports = function(grunt){
 
         watch: {
             sass: {
-                files: ['app/sass/**/*.scss', 'app/foundationJs/*.js', 'app/foundationJs/components/*.js'],
-                tasks: ['sass', 'concat', 'autoprefixer']
+                files: ['app/sass/**/*.scss', 'app/foundationJs/*.js', 'app/foundationJs/components/*.js' ,'deploy/img/**/*.svg'],
+                tasks: ['sass', 'grunticon', 'concat', 'autoprefixer']
             }
         },
 
@@ -36,14 +36,20 @@ module.exports = function(grunt){
             options: {
                 separator: ''
             },
-            dist: {
+            js: {
                 src: [
-                    'libs/foundation/js/vendor/*.js', 'app/foundationJs/foundation.js',
+                    'libs/foundation/js/vendor/*.js',
+                    'app/foundationJs/foundation.js',
                     'app/foundationJs/components/*.js'
                 ],
                 dest: 'deploy/foundation.js'
+            },
+            //Объединяем стили с иконками
+            css: {
+                src: ['deploy/app.css','deploy/icons.data.svg.css'],
+                dest: 'deploy/app.css'
             }
-        }
+        },
         //
         //		csso: {
         //			compress: {
@@ -64,6 +70,24 @@ module.exports = function(grunt){
         //			}
         //		},
 
+        // Сохраняем svg в css
+        grunticon: {
+            myIcons: {
+                files: [{
+                    expand: true,
+                    cwd: 'deploy/img/svg',
+                    src: ['*.svg'],
+                    dest: "deploy"
+                }],
+                  options: {
+//                      datasvgcss: "icons.css",
+                      cssprefix: ".icon-",
+                      defaultWidth: "20px",
+                      defaultHeight: "20px"
+//                      previewTemplate: '<script>{{{loaderText}}} grunticon(["icons.css"]);</script>{{#each icons}}{{#with this}}<pre><code>{{prefix}}{{name}}:</code></pre><div class="{{prefixClass}}{{name}}" style="width: {{width}}px; height: {{height}}px;" ></div><hr/>{{/with}}{{/each}}'
+                  }
+            }
+        }
         //      yuidoc: {
         //            all: {
         //                name: '<%= pkg.name %>',
@@ -81,6 +105,7 @@ module.exports = function(grunt){
     //подгружаем необходимые плагины
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-grunticon');
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-concat');
     //    grunt.loadNpmTasks('grunt-contrib-uglify');

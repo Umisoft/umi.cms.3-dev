@@ -1,4 +1,4 @@
-define(['DS', 'Modernizr'], function(DS, Modernizr){
+define(['DS', 'Modernizr', 'datepicker'], function(DS, Modernizr){
     'use strict';
 
 
@@ -39,6 +39,22 @@ define(['DS', 'Modernizr'], function(DS, Modernizr){
         var el = document.createElement('div');
         el.style.cssText = prop + Modernizr._prefixes.join(value + prop);
         return !!el.style.length;
+    });
+
+    Modernizr.addTest('cssfilters', function() {
+        var el = document.createElement('div');
+        el.style.cssText = Modernizr._prefixes.join('filter' + ':blur(2px); ');
+        return !!el.style.length && ((document.documentMode === undefined || document.documentMode > 9));
+    });
+
+    Modernizr.addTest('svgfilters', function(){
+        var result = false;
+        try {
+            result = typeof SVGFEColorMatrixElement !== undefined &&
+                SVGFEColorMatrixElement.SVG_FECOLORMATRIX_TYPE_SATURATE == 2;
+        }
+        catch(e) {}
+        return result;
     });
 
     /**

@@ -85,7 +85,7 @@ define(['App'], function(UMI){
                         mouseWheel: true,
                         scrollbars: true,
                         bounce: false,
-                        click: false,
+                        click: true,
                         freeScroll: false,
                         keyBindings: true,
                         interactiveScrollbars: true
@@ -385,12 +385,12 @@ define(['App'], function(UMI){
 
 
                 //Переключение кнопки сортировки вверх-вниз
-                $('.umi-table-sort-column').click(function(){
+                $('.umi-table-sort-column').mousedown(function(){
                     $(this).toggleClass('icon-bottom-thin icon-top-thin');
                 });
 
                 //Выделение всех checkbox
-                $('.umi-table-title-div-left input').click(function(){
+                $('.umi-table-title-div-left input').mousedown(function(){
                     var $that = $(this);
                     $('.umi-table-left').find('input').prop("checked", function(){
                         return $that.prop("checked");

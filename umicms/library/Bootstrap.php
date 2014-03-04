@@ -108,6 +108,7 @@ class Bootstrap implements IProjectConfigAware
          */
         $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
         $this->initTemplateEngines($dispatcher);
+
         $dispatcher->dispatchRequest($project, $request, $routePath, $baseUrl);
     }
 

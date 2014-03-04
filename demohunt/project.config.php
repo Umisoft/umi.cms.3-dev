@@ -33,6 +33,9 @@ return [
     ],
 
     IComponent::OPTION_ROUTES => [
+        'admin' => [
+            'route' => '/admin'
+        ],
         'install' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'priority' => 0,
@@ -42,5 +45,4 @@ return [
             ]
         ]
     ]
-
 ];

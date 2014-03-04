@@ -11,7 +11,8 @@ require.config({
         Ember: 'libs/ember/ember',
         DS: 'libs/ember-data/ember-data',
         Foundation: 'deploy/foundation',
-        ckEditor: 'libs/ckeditor/ckeditor'
+        ckEditor: 'libs/ckeditor/ckeditor',
+        datepicker: 'libs/datepicker'
         //        qunit: 'libs/qunit/qunit/qunit',
         //        tests: 'tests/main'
     },
@@ -42,6 +43,11 @@ require.config({
 
         ckEditor: {
             exports: 'ckEditor'
+        },
+
+        datepicker: {
+            deps: ['jQuery'],
+            exports: 'datepicker'
         }
         //        qunit: {
         //            deps: ['jQuery'],
@@ -88,7 +94,7 @@ require.config({
 });
 
 
-if(UmiSettings.login){
+if(UmiSettings.authenticated){
     require(['app/main'], function(application){
         application();
     });

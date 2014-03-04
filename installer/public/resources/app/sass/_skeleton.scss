@@ -62,7 +62,6 @@ $umi-dock-height: 75px + $topbar-height;
 
 .umi-divider {
     position: absolute;
-    left: 245px;
     z-index: 100000;
     top: -1px;
     width: 4px;
@@ -108,7 +107,7 @@ $umi-dock-height: 75px + $topbar-height;
         line-height: rem-calc(6);
         border: none;
 
-        &.active {
+        &.active{
             border-radius: 14px;
             background: linear-gradient(to bottom, #EEEEEE 0%, #EEEEEE 100%);
             background: linear-gradient(top, #EEEEEE 0%, #EEEEEE 100%);
@@ -127,9 +126,14 @@ $umi-dock-height: 75px + $topbar-height;
     //	}
 }
 
+
 .umi-component {
     border-left: 1px solid #ADB9C5;
+    > div{
+        width: unquote("calc(100% - 10px)");
+    }
 }
+
 
 #component {
     position: relative;

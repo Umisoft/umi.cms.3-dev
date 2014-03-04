@@ -1,5 +1,9 @@
 <ul class="button-group right">
     {{#each mode in controller}}
-    <li>{{#link-to 'mode' mode.slug classNames="button"}}{{mode.title}}{{/link-to}}</li>
+        <li>
+            <!--TODO Изменить срабатывание ссылки с click на mousedown (проблема в отключении стандартного события)-->
+            <!--eventName="mouseDown"-->
+            {{#link-to 'mode' mode.slug classNames="button"}}{{mode.title}}{{/link-to}}
+        </li>
     {{/each}}
 </ul>

@@ -4,7 +4,7 @@ define(['App'], function(UMI){
 
         UMI.TreeItemView = Ember.View.extend({
             tagName: 'div',
-            handle: '.icon',
+            handle: '.icon', // Что это??
             classNames: ['umi-item'],
             classNameBindings: ['root'],
             root: function(){
@@ -16,9 +16,42 @@ define(['App'], function(UMI){
             tagName: 'div',
             classNames: ['row', 's-full-height'],
             didInsertElement: function(){
-                var self = this;
+                //При клике в области tree удаляем с текущего элемента класс active и добавляем класс active элементу, у которого есть потомок с active
+                //(Костыль. Ember проставляет класс active активной ссылке (тег a), а нам нужно проставлять родительскому блоку)
+                //TODO Убрать setTimeout, подумать над кешированием селекторов (DOM динамически меняется - селекторы могут стать не актуальными)
+                    setTimeout(function(){
+                        //Выполняеми после загрузки страницы
+                        $('.umi-item').has('.active').addClass('active');
+
+                        $('.umi-tree').on('mousedown', '.umi-item', function(){
+                            $('.umi-item').removeClass('active').has('.active').addClass('active');
+                        });
+                    }, 0);
+
                 //Выпадающее меню
-                self.$().on('click', '.umi-tree-tab', function(event){
+                $('.umi-tree').on('mousedown', '.umi-tree-drop-down-toggler', function(){
+                    event.stopPropagation();
+                    $('.umi-tree-drop-down').remove();
+
+                    var x = $(this).offset().left - 133;
+                    var y = $(this).offset().top + 24;
+
+                    $(this).append(document.querySelector('#umi-tree-menu').innerHTML);
+                    $('.umi-tree-drop-down').offset({top: y, left: x});
+                });
+
+                //Скрытие выпадающего меню при клике вне его области
+                $('html').on('mousedown', function(){
+                    $('.umi-tree-drop-down').remove();
+                });
+
+                $('.umi-tree-drop-down').mousedown(function(event){
+                    event.stopPropagation();
+                });
+
+
+                //Переключение табов в выпадающем меню
+                $('.umi-tree').on('mousedown', '.umi-tree-tab', function(event){
                     event.stopPropagation();
                     $('.umi-tree-tab, .umi-tree-tab-content').removeClass('active');
                     $(this).addClass('active');
@@ -27,12 +60,7 @@ define(['App'], function(UMI){
                     $('.umi-tree-tab-content').eq(i).addClass('active');
                 });
 
-                //Переключение кнопки сортировки вверх-вниз
-                this.$().on('click', '.umi-tree-drop-down-toggler a', function(){
-                    self.$().find('.icon-bottom-thin, .icon-top-thin').toggleClass('icon-bottom-thin icon-top-thin');
-                    $('.umi-tree-drop-down').toggle();
-                });
-
+                var self = this;
                 this.$().on('mousedown', '.icon.move', function(event){
                     var draggableNode = this.parentNode.parentNode;
                     var placeholder = document.createElement('li');

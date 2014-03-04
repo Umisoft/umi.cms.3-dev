@@ -519,7 +519,6 @@
 				this._execEvent('scroll');
 			}
 			/* REPLACE END: _move */
-
 		},
 
 		_end: function (e) {

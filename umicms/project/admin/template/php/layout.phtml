@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="/resources/libs/qunit/qunit/qunit.css">
     <script>
         window.UmiSettings = {
-            "login": <?= $authenticated ? 'true' : 'false' ?>,
-            "rootURL": '<?= $baseUrl ?>'
+            "authenticated": true,
+            "baseUrl": '<?= $baseUrl ?>'
         }
     </script>
 </head>
@@ -71,47 +71,6 @@
         </div>
         <div class="auth-mask"></div>
     </script>
-
-
-    <!-- if auth -->
-
-    <!-- else -->
-    <!--script data-main="resources/main" src="resources/libs/requirejs/require.js"></script-->
-
-    <!-- tests -->
-    <style>
-        .qunit-container-button {
-            position: absolute;
-            z-index: 100000;
-            top: 0;
-            left: 0;
-            height: 25px;
-            background: #008000;
-            color: #FFFFFF;
-            line-height: 25px;
-            padding: 0 5px;
-            font-size: 13px;
-        }
-
-        .qunit-container {
-            display: none;
-            position: absolute;
-            z-index: 100000;
-            width: 100%;
-            top: 24px;
-            left: 0;
-            border-bottom: 10px solid rgba(0, 0, 0, 0.73);
-        }
-    </style>
-
-    <div class="qunit-container-button">Результаты тестов</div>
-    <div class="qunit-container">
-        <div id="qunit"></div>
-        <div id="qunit-fixture"></div>
-    </div>
-
-    <!--script src="resources/libs/qunit/qunit/qunit.js"></script-->
-    <!--script src="resources/tests-front/test-main.js"></script-->
 
     <script data-main="/resources/main" src="/resources/libs/requirejs/require.js"></script>
 </body>

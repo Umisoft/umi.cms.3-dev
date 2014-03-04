@@ -1,4 +1,4 @@
-define(['App', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'jQuery'], function(UMI){
+define(['App', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'datepicker','jQuery'], function(UMI){
     'use strict';
 
     return function(){

@@ -16,6 +16,7 @@
         "grunt-contrib-concat": "latest",
         "grunt-contrib-jshint": "latest",
         "grunt-svgmin": "latest",
+        "grunt-grunticon": "latest",
         "qunitjs": "latest",
         "grunt-contrib-yuidoc": "latest",
         "karma": "latest",
