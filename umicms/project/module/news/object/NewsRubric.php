@@ -10,17 +10,12 @@
 namespace umicms\project\module\news\object;
 
 use umicms\orm\object\CmsElement;
+use umicms\orm\object\ICmsPage;
 
 /**
  * Новостная рубрика.
- *
- * @property string $metaKeywords мета-тег keywords
- * @property string $metaDescription мета-тег description
- * @property string $metaTitle мета-тег title
- * @property string $h1 заголовок
- * @property string $content содержание
  */
-class NewsRubric extends CmsElement
+class NewsRubric extends CmsElement implements ICmsPage
 {
 
 }

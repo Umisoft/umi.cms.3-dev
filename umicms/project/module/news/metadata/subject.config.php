@@ -9,63 +9,77 @@
 namespace umicms\project\module\news\metadata;
 
 use umi\orm\metadata\field\IField;
-use umi\orm\object\IObject;
+use umicms\project\module\news\object\NewsSubject;
 
 return [
     'dataSource' => [
         'sourceName' => 'umi_news_subject'
     ],
     'fields'     => [
-        IObject::FIELD_IDENTIFY => [
+        NewsSubject::FIELD_IDENTIFY     => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
             'accessor'   => 'getId',
             'readOnly'   => true
         ],
-        IObject::FIELD_GUID     => [
+        NewsSubject::FIELD_GUID         => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
             'readOnly'   => true
         ],
-        IObject::FIELD_TYPE     => [
+        NewsSubject::FIELD_TYPE         => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
             'accessor'   => 'getType',
             'readOnly'   => true
         ],
-        IObject::FIELD_VERSION  => [
+        NewsSubject::FIELD_VERSION      => [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
             'readOnly'     => true,
             'defaultValue' => 1
         ],
-        'displayName'           => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
-        'active'                => [
+        NewsSubject::FIELD_DISPLAY_NAME => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
+        NewsSubject::FIELD_ACTIVE       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'active',
             'defaultValue' => 1
         ],
-        'locked'                => [
+        NewsSubject::FIELD_LOCKED       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
             'defaultValue' => 0
         ],
-        'created'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created', 'readOnly' => true],
-        'updated'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly' => true],
-        'h1'                    => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
-        'metaTitle'             => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
-        'metaKeywords'          => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
-        'metaDescription'       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
-        'content'               => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
-        'slug'                  => [
-            'type'       => IField::TYPE_SLUG,
-            'columnName' => 'slug',
-            'accessor'   => 'getSlug',
-            'mutator'    => 'setSlug'
+        NewsSubject::FIELD_CREATED      => ['type'       => IField::TYPE_DATE_TIME,
+                                         'columnName' => 'created',
+                                         'readOnly'   => true
         ],
-        'newsItems'             => [
+        NewsSubject::FIELD_UPDATED      => ['type'       => IField::TYPE_DATE_TIME,
+                                         'columnName' => 'updated',
+                                         'readOnly'   => true
+        ],
+        NewsSubject::FIELD_PAGE_META_TITLE       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
+        NewsSubject::FIELD_PAGE_META_KEYWORDS    => ['type'       => IField::TYPE_STRING,
+                                                  'columnName' => 'meta_keywords'
+        ],
+        NewsSubject::FIELD_PAGE_META_DESCRIPTION => ['type'       => IField::TYPE_STRING,
+                                                  'columnName' => 'meta_description'
+        ],
+        NewsSubject::FIELD_PAGE_H1               => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
+        NewsSubject::FIELD_PAGE_CONTENT          => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
+        NewsSubject::FIELD_PAGE_LAYOUT           => [
+            'type'       => IField::TYPE_BELONGS_TO,
+            'columnName' => 'layout_id',
+            'target'     => 'layout'
+        ],
+        NewsSubject::FIELD_PAGE_SLUG         => [
+            'type'       => IField::TYPE_SLUG,
+            'columnName' => 'slug'
+        ],
+
+        'news'     => [
             'type'         => IField::TYPE_MANY_TO_MANY,
             'target'       => 'newsItem',
             'bridge'       => 'newsItemSubject',
@@ -79,22 +93,25 @@ return [
         'base' => [
             'objectClass' => 'umicms\project\module\news\object\NewsSubject',
             'fields'      => [
-                'id',
-                'guid',
-                'type',
-                'version',
-                'active',
-                'locked',
-                'created',
-                'updated',
-                'displayName',
-                'h1',
-                'metaTitle',
-                'metaKeywords',
-                'metaDescription',
-                'content',
-                'slug',
-                'newsItems'
+                NewsSubject::FIELD_IDENTIFY,
+                NewsSubject::FIELD_GUID,
+                NewsSubject::FIELD_TYPE,
+                NewsSubject::FIELD_VERSION,
+                NewsSubject::FIELD_ACTIVE,
+                NewsSubject::FIELD_LOCKED,
+                NewsSubject::FIELD_CREATED,
+                NewsSubject::FIELD_UPDATED,
+                NewsSubject::FIELD_DISPLAY_NAME,
+
+                NewsSubject::FIELD_PAGE_META_TITLE,
+                NewsSubject::FIELD_PAGE_META_KEYWORDS,
+                NewsSubject::FIELD_PAGE_META_DESCRIPTION,
+                NewsSubject::FIELD_PAGE_H1,
+                NewsSubject::FIELD_PAGE_CONTENT,
+                NewsSubject::FIELD_PAGE_LAYOUT,
+                NewsSubject::FIELD_PAGE_SLUG,
+
+                'news'
             ]
         ]
     ]

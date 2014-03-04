@@ -61,22 +61,29 @@ return [
                                          'columnName' => 'updated',
                                          'readOnly'   => true
         ],
-        'h1'                         => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
-        'metaTitle'                  => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
-        'metaKeywords'               => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
-        'metaDescription'            => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
-        'content'                    => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
+        NewsItem::FIELD_PAGE_META_TITLE       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
+        NewsItem::FIELD_PAGE_META_KEYWORDS    => ['type'       => IField::TYPE_STRING,
+                                                          'columnName' => 'meta_keywords'
+        ],
+        NewsItem::FIELD_PAGE_META_DESCRIPTION => ['type'       => IField::TYPE_STRING,
+                                                          'columnName' => 'meta_description'
+        ],
+        NewsItem::FIELD_PAGE_H1               => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
+        NewsItem::FIELD_PAGE_CONTENT          => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
+        NewsItem::FIELD_PAGE_LAYOUT           => [
+            'type'       => IField::TYPE_BELONGS_TO,
+            'columnName' => 'layout_id',
+            'target'     => 'layout'
+        ],
+        NewsItem::FIELD_PAGE_SLUG         => [
+            'type'       => IField::TYPE_SLUG,
+            'columnName' => 'slug'
+        ],
         NewsItem::FIELD_ANNOUNCEMENT => ['type' => IField::TYPE_TEXT, 'columnName' => 'announcement'],
         NewsItem::FIELD_RUBRIC       => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'rubric_id',
             'target'     => 'newsRubric'
-        ],
-        NewsItem::FIELD_SLUG         => [
-            'type'       => IField::TYPE_SLUG,
-            'columnName' => 'slug',
-            'accessor'   => 'getSlug',
-            'mutator'    => 'setSlug'
         ],
         NewsItem::FIELD_SUBJECTS     => [
             'type'         => IField::TYPE_MANY_TO_MANY,
@@ -102,13 +109,16 @@ return [
                 NewsItem::FIELD_CREATED,
                 NewsItem::FIELD_UPDATED,
                 NewsItem::FIELD_DISPLAY_NAME,
+
+                NewsItem::FIELD_PAGE_META_TITLE,
+                NewsItem::FIELD_PAGE_META_KEYWORDS,
+                NewsItem::FIELD_PAGE_META_DESCRIPTION,
+                NewsItem::FIELD_PAGE_H1,
+                NewsItem::FIELD_PAGE_CONTENT,
+                NewsItem::FIELD_PAGE_LAYOUT,
+                NewsItem::FIELD_PAGE_SLUG,
+
                 NewsItem::FIELD_RUBRIC,
-                NewsItem::FIELD_SLUG,
-                'h1',
-                'metaTitle',
-                'metaKeywords',
-                'metaDescription',
-                'content',
                 NewsItem::FIELD_ANNOUNCEMENT,
                 NewsItem::FIELD_SUBJECTS,
                 NewsItem::FIELD_DATE

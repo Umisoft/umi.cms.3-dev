@@ -9,7 +9,7 @@
 namespace umicms\project\module\news\metadata;
 
 use umi\orm\metadata\field\IField;
-use umi\orm\object\IHierarchicObject;
+use umicms\project\module\news\object\NewsRubric;
 
 return [
     'dataSource' => [
@@ -17,99 +17,108 @@ return [
     ],
     'fields'     => [
 
-        IHierarchicObject::FIELD_IDENTIFY        => [
+        NewsRubric::FIELD_IDENTIFY        => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
             'accessor'   => 'getId',
             'readOnly'   => true
         ],
-        IHierarchicObject::FIELD_GUID            => [
+        NewsRubric::FIELD_GUID            => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
             'readOnly'   => true
         ],
-        IHierarchicObject::FIELD_TYPE            => [
+        NewsRubric::FIELD_TYPE            => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
             'accessor'   => 'getType',
             'readOnly'   => true
         ],
-        IHierarchicObject::FIELD_VERSION         => [
+        NewsRubric::FIELD_VERSION         => [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
             'readOnly'     => true,
             'defaultValue' => 1
         ],
-        IHierarchicObject::FIELD_PARENT          => [
+        NewsRubric::FIELD_PARENT          => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'pid',
             'accessor'   => 'getParent',
             'target'     => 'newsRubric',
             'readOnly'   => true
         ],
-        IHierarchicObject::FIELD_MPATH           => [
+        NewsRubric::FIELD_MPATH           => [
             'type'       => IField::TYPE_MPATH,
             'columnName' => 'mpath',
             'accessor'   => 'getMaterializedPath',
             'readOnly'   => true
         ],
-        IHierarchicObject::FIELD_SLUG            => [
+        NewsRubric::FIELD_SLUG            => [
             'type'       => IField::TYPE_SLUG,
             'columnName' => 'slug',
             'accessor'   => 'getSlug',
             'readOnly'   => true
         ],
-        IHierarchicObject::FIELD_URI             => [
+        NewsRubric::FIELD_URI             => [
             'type'       => IField::TYPE_URI,
             'columnName' => 'uri',
             'accessor'   => 'getURI',
             'readOnly'   => true
         ],
-        IHierarchicObject::FIELD_CHILD_COUNT     => [
+        NewsRubric::FIELD_CHILD_COUNT     => [
             'type'         => IField::TYPE_COUNTER,
             'columnName'   => 'child_count',
             'accessor'     => 'getChildCount',
             'readOnly'     => true,
             'defaultValue' => 0
         ],
-        IHierarchicObject::FIELD_ORDER           => [
+        NewsRubric::FIELD_ORDER           => [
             'type'       => IField::TYPE_ORDER,
             'columnName' => 'order',
             'accessor'   => 'getOrder',
             'readOnly'   => true
         ],
-        IHierarchicObject::FIELD_HIERARCHY_LEVEL => [
+        NewsRubric::FIELD_HIERARCHY_LEVEL => [
             'type'       => IField::TYPE_LEVEL,
             'columnName' => 'level',
             'accessor'   => 'getLevel',
             'readOnly'   => true
         ],
-        'active'                                 => [
+        NewsRubric::FIELD_DISPLAY_NAME => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
+        NewsRubric::FIELD_ACTIVE       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'active',
             'defaultValue' => 1
         ],
-        'locked'                                 => [
+        NewsRubric::FIELD_LOCKED       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
             'defaultValue' => 0
         ],
-        'created'                                => ['type'       => IField::TYPE_DATE_TIME,
-                                                     'columnName' => 'created',
-                                                     'readOnly'   => true
+        NewsRubric::FIELD_CREATED      => ['type'       => IField::TYPE_DATE_TIME,
+                                            'columnName' => 'created',
+                                            'readOnly'   => true
         ],
-        'updated'                                => ['type'       => IField::TYPE_DATE_TIME,
-                                                     'columnName' => 'updated',
-                                                     'readOnly'   => true
+        NewsRubric::FIELD_UPDATED      => ['type'       => IField::TYPE_DATE_TIME,
+                                            'columnName' => 'updated',
+                                            'readOnly'   => true
         ],
-        'displayName'                            => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
-        'h1'                                     => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
-        'metaTitle'                              => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
-        'metaKeywords'                           => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
-        'metaDescription'                        => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
-        'content'                                => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
+        NewsRubric::FIELD_PAGE_META_TITLE       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
+        NewsRubric::FIELD_PAGE_META_KEYWORDS    => ['type'       => IField::TYPE_STRING,
+                                                     'columnName' => 'meta_keywords'
+        ],
+        NewsRubric::FIELD_PAGE_META_DESCRIPTION => ['type'       => IField::TYPE_STRING,
+                                                     'columnName' => 'meta_description'
+        ],
+        NewsRubric::FIELD_PAGE_H1               => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
+        NewsRubric::FIELD_PAGE_CONTENT          => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
+        NewsRubric::FIELD_PAGE_LAYOUT           => [
+            'type'       => IField::TYPE_BELONGS_TO,
+            'columnName' => 'layout_id',
+            'target'     => 'layout'
+        ],
         'news'                                   => [
             'type'        => IField::TYPE_HAS_MANY,
             'target'      => 'newsItem',
@@ -128,27 +137,28 @@ return [
         'base' => [
             'objectClass' => 'umicms\project\module\news\object\NewsRubric',
             'fields'      => [
-                'id',
-                'guid',
-                'type',
-                'version',
-                'parent',
-                'mpath',
-                'slug',
-                'uri',
-                'level',
-                'order',
-                'childCount',
-                'active',
-                'locked',
-                'created',
-                'updated',
-                'displayName',
-                'h1',
-                'metaTitle',
-                'metaKeywords',
-                'metaDescription',
-                'content',
+                NewsRubric::FIELD_IDENTIFY,
+                NewsRubric::FIELD_GUID,
+                NewsRubric::FIELD_TYPE,
+                NewsRubric::FIELD_VERSION,
+                NewsRubric::FIELD_DISPLAY_NAME,
+                NewsRubric::FIELD_PARENT,
+                NewsRubric::FIELD_MPATH,
+                NewsRubric::FIELD_SLUG,
+                NewsRubric::FIELD_URI,
+                NewsRubric::FIELD_HIERARCHY_LEVEL,
+                NewsRubric::FIELD_ORDER,
+                NewsRubric::FIELD_CHILD_COUNT,
+                NewsRubric::FIELD_ACTIVE,
+                NewsRubric::FIELD_LOCKED,
+                NewsRubric::FIELD_CREATED,
+                NewsRubric::FIELD_UPDATED,
+                NewsRubric::FIELD_PAGE_META_TITLE,
+                NewsRubric::FIELD_PAGE_META_KEYWORDS,
+                NewsRubric::FIELD_PAGE_META_DESCRIPTION,
+                NewsRubric::FIELD_PAGE_H1,
+                NewsRubric::FIELD_PAGE_CONTENT,
+                NewsRubric::FIELD_PAGE_LAYOUT,
                 'news',
                 'children'
             ]

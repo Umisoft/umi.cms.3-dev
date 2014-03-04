@@ -265,6 +265,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('slug', 'zombi');
 
         $item->getValue('date')->setTimestamp(strtotime('2010-08-01 17:34:00'));
+
         $subjects = $item->getValue('subjects');
         $subjects->attach($subject1);
         $subjects->attach($subject2);
@@ -642,12 +643,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
+                    `layout_id` bigint(20) unsigned DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_rubric_guid` (`guid`),
                     UNIQUE KEY `news_rubric_pid_slug` (`pid`, `slug`),
                     KEY `news_rubric_type` (`type`),
                     KEY `news_rubric_pid` (`pid`),
-                    CONSTRAINT `FK_news_rubric_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    KEY `news_rubric_layout` (`layout_id`),
+                    CONSTRAINT `FK_news_rubric_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_rubric_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -673,12 +677,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `rubric_id` bigint(20) unsigned DEFAULT NULL,
+                    `layout_id` bigint(20) unsigned DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_news_item_guid` (`guid`),
                     UNIQUE KEY `news_news_item_slug` (`slug`),
                     KEY `news_news_item_type` (`type`),
                     KEY `news_news_item_rubric` (`rubric_id`),
-                    CONSTRAINT `FK_news_news_item_rubric` FOREIGN KEY (`rubric_id`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    KEY `news_news_item_layout` (`layout_id`),
+                    CONSTRAINT `FK_news_news_item_rubric` FOREIGN KEY (`rubric_id`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_news_item_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -701,10 +708,13 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
+                    `layout_id` bigint(20) unsigned DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_subject_guid` (`guid`),
                     UNIQUE KEY `news_subject_slug` (`slug`),
-                    KEY `news_subject_type` (`type`)
+                    KEY `news_subject_type` (`type`),
+                    KEY `news_subject_layout` (`layout_id`),
+                    CONSTRAINT `FK_news_subject_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );

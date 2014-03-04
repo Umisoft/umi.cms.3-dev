@@ -12,11 +12,6 @@ namespace umicms\project\module\structure\object;
 /**
  * Простая статическая страница.
  *
- * @property string $metaKeywords мета-тег keywords
- * @property string $metaDescription мета-тег description
- * @property string $metaTitle мета-тег title
- * @property string $h1 заголовок страницы
- * @property string $content контент страницы
  */
 class StaticPage extends StructureElement
 {

@@ -19,6 +19,7 @@ use umicms\project\module\structure\object\Layout;
  * @property string $metaDescription описание страницы
  * @property string $content содержимое страницы
  * @property string $h1 заголовок страницы
+ * @property string $slug последней часть ЧПУ
  * @property Layout|null $layout шаблон для вывода
  */
 interface ICmsPage
@@ -26,26 +27,31 @@ interface ICmsPage
     /**
      *  Имя поля для хранения заголовка окна браузера
      */
-    const FIELD_META_TITLE = 'metaTitle';
+    const FIELD_PAGE_META_TITLE = 'metaTitle';
     /**
      * Имя поля для хранения ключевых слов страницы
      */
-    const FIELD_META_KEYWORDS = 'metaKeywords';
+    const FIELD_PAGE_META_KEYWORDS = 'metaKeywords';
     /**
      * Имя поля для хранения описания страницы
      */
-    const FIELD_META_DESCRIPTION = 'metaDescription';
+    const FIELD_PAGE_META_DESCRIPTION = 'metaDescription';
     /**
      * Имя поля для хранения заголовка страницы
      */
-    const FIELD_H1 = 'h1';
+    const FIELD_PAGE_H1 = 'h1';
     /**
      * Имя поля для хранения содержимого страницы
      */
-    const FIELD_CONTENT = 'content';
+    const FIELD_PAGE_CONTENT = 'content';
     /**
      *  Имя поля для хранения шаблона
      */
-    const FIELD_LAYOUT = 'layout';
+    const FIELD_PAGE_LAYOUT = 'layout';
+    /**
+     * Имя поля для хранения последней части ЧПУ
+     */
+    const FIELD_PAGE_SLUG = 'slug';
+
 }
  
