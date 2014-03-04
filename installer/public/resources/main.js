@@ -81,7 +81,7 @@ require.config({
 
 
 if(UmiSettings.login){
-    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll'], function(application){
+    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor'], function(application){
         "use strict";
         application();
     });
