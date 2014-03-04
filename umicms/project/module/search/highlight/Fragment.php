@@ -9,16 +9,16 @@
 namespace umicms\project\module\search\highlight;
 
 /**
- * Class Fragment
+ * Фрагмент поискового текста, состоящий из левой и правой частей и центральной, содержащей поисковое выражение.
  */
 class Fragment
 {
     /**
-     * @var  $startPos
+     * @var  $edgeLeft
      */
     private $edgeLeft;
     /**
-     * @var  $endPos
+     * @var  $edgeRight
      */
     private $edgeRight;
     /**
@@ -147,7 +147,6 @@ class Fragment
 
     /**
      * @param Fragment $next
-     * @param int $limit
      * @return Fragment
      */
     public function join(Fragment $next)

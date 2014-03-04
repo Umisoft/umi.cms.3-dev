@@ -27,10 +27,9 @@ class FragmenterTest extends SearchTestCase
     public function testRejoinFragments()
     {
         $fr = new Fragmenter('a X c d X e f', 'X');
-        $fr->fragmentize(3);
         $fragmentsMap = [];
         /** @var $frag Fragment */
-        foreach ($fr as $frag) {
+        foreach ($fr->fragmentize(3) as $frag) {
             $fragmentsMap[] = [$frag->getEdgeLeft(), $frag->getCenter(), $frag->getEdgeRight()];
         }
         $mapExpected = [

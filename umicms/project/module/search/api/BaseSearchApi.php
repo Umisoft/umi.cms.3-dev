@@ -10,12 +10,11 @@ namespace umicms\project\module\search\api;
 
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
-use umi\orm\object\IObject;
 use umi\stemming\IStemmingAware;
 use umi\stemming\TStemmingAware;
 
 /**
- * Class BaseSearchApi
+ * Базовый класс для API поиска, индексации и проч. бизнес-логики, связанной с поиском.
  */
 class BaseSearchApi implements ICollectionManagerAware, IStemmingAware
 {
@@ -23,8 +22,8 @@ class BaseSearchApi implements ICollectionManagerAware, IStemmingAware
     use TStemmingAware;
 
     /**
-     * Приводит текст к виду, пригодному для передачи в поисковый запрос
-     * @param $searchString
+     * Приводит текст к виду, пригодному для передачи в поисковый запрос.
+     * @param string $searchString
      * @return string
      */
     public function normalizeSearchString($searchString)
@@ -60,44 +59,28 @@ class BaseSearchApi implements ICollectionManagerAware, IStemmingAware
     }
 
     /**
-     * Извлекает из объекта текстовые данные, пригодные для помещения в поисковый индекс
-     * @param IObject $record
-     * @internal param array $propertyNames
-     * @return string
-     */
-    public function extractSearchableContent($record)
-    {
-        $content = '';
-        //todo configure fields
-        $propertyNames = [];
-        foreach ($propertyNames as $propName) {
-            $content .= " " . $record->getValue($propName);
-        }
-        return trim($content);
-    }
-
-    /**
-     * Приводит текст к виду, пригодному для сохранения в поисковый индекс
-     * @param $string
+     * Приводит текст к виду, пригодному для сохранения в поисковый индекс.
+     * @param string $string
      * @return string
      */
     public function normalizeIndexString($string)
     {
+        $string = html_entity_decode(strip_tags($string));
         $string = mb_strtoupper($string, 'utf-8');
         $string = trim($this->filterStopwords($string));
         $string = preg_replace('/\s+/u', ' ', $string);
-        $string = preg_replace('/[^0-1A-ZА-Я_ -]/u', '', $string);
+        $string = preg_replace('/[^0-9A-ZА-Я_ -]/u', '', $string);
         $string = preg_replace('/\s+/u', ' ', $string);
         return $this->filterStopwords($string);
     }
 
     /**
-     * Отбрасывает из текста слова, не представляющие ценности для поиска
+     * Отбрасывает из текста слова, не представляющие ценности для поиска.
      * @param string $string
      * @return string
      */
     protected function filterStopwords($string)
     {
-        return preg_replace('/\b[АОУИВСБЯ]\b/u', '', $string);
+        return preg_replace('/\b[АОУИВСБЯК]\b/u', '', $string);
     }
 }

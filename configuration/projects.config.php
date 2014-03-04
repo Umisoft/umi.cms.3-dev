@@ -1,11 +1,10 @@
 <?php
-
 use umi\route\IRouteFactory;
 
 return [
     'demohunt_en' => [
         'type' => IRouteFactory::ROUTE_EXTENDED,
-        'route' => 'http://realloc.srv09.megaserver.umisoft.ru{uri}',
+        'route' => 'http://localhost:8081/{uri}',
         'rules' => [
             'uri' => '/en'
         ],
@@ -17,7 +16,7 @@ return [
     ],
     'demohunt_ru' => [
         'type' => IRouteFactory::ROUTE_EXTENDED,
-        'route' => 'http://realloc.srv09.megaserver.umisoft.ru',
+        'route' => 'http://localhost:8081',
         'defaults' => [
             'destination' => '~/demohunt',
             'config' => '~/project/project.config.php',

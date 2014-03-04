@@ -9,34 +9,47 @@
 namespace umicms\project\module\search\highlight;
 
 /**
- * Class Fragmenter
+ * Фрагментатор текста по найденным в нем словам.
+ * Ограничивает найденные слова с обеих сторон по заданному количеству слов и собирает из них коллекцию фрагментов.
+ * Поддерживает непосредственное итерирование по фрагментам:
+ * <code>
+ * foreach($fragmentatorInstance->fragmentize(3) as $fragment) {
+ *     // операции с каждым фрагментом
+ * }
+ * </code>
  */
 class Fragmenter implements \Iterator
 {
     /**
+     * Текущая коллекция фрагментов
      * @var Fragment[] $fragments
      */
     protected $fragments = [];
     /**
+     * Указатель на текущий фрагмент в итерации
      * @var int $currentFragment
      */
     protected $currentFragment = 0;
     /**
+     * Подстроки, найденные в тексте по регулярнму выражению
      * @var array $foundMatches
      */
     protected $foundMatches = [];
     /**
+     * Текст, разбиваемый на фрагменты
      * @var string $text
      */
     private $text;
     /**
+     * Регулярное выражение, по которому ведется поиск фрагментов
      * @var string $searchRegexp
      */
     private $searchRegexp;
 
     /**
-     * @param string $text
-     * @param $keywordRegexp
+     * Конструктор фрагментатора.
+     * @param string $text Текст, разбиваемый на фрагменты
+     * @param string $keywordRegexp Регулярное выражение поиска по тексту
      * @throws \LogicException
      */
     public function __construct($text, $keywordRegexp)
@@ -54,17 +67,10 @@ class Fragmenter implements \Iterator
 
 
     /**
-     * @param $keyword
-     * @return mixed
-     */
-    public function highlightKeyword($keyword)
-    {
-        return $keyword;
-    }
-
-    /**
-     * @param $text
-     * @param $binaryPosition
+     * Приводит позицию подстроки из бинарной величины в уникодную
+     * см. {@link https://bugs.php.net/bug.php?id=37391}
+     * @param string $text
+     * @param int $binaryPosition
      * @return int
      */
     private function normalizeUtfMatchPos($text, $binaryPosition)
@@ -73,7 +79,10 @@ class Fragmenter implements \Iterator
     }
 
     /**
-     * @param $contextWordsLimit
+     * Разбивает текст на фрагменты по указанному лимиту слов с обеих сторон найденного слова.
+     * Дожен быть вызван до первого использования коллекции фрагментов.
+     * @param int $contextWordsLimit Сколько слов (максимум) может быть слева и справа от найденного
+     * @return $this
      */
     public function fragmentize($contextWordsLimit)
     {
@@ -102,10 +111,11 @@ class Fragmenter implements \Iterator
         $this->fragments = $this->rejoinFragments($contextWordsLimit, $fragments);
 
         $this->rewind();
+        return $this;
     }
 
     /**
-     * @return Fragment
+     * {@inheritdoc}
      */
     public function current()
     {
@@ -146,9 +156,9 @@ class Fragmenter implements \Iterator
 
     /**
      * Перегруппировывает фрагменты, «склеивая» пересекающиеся по краям в более крупные
-     * @param $limit
-     * @param $fragments
-     * @return array
+     * @param int $limit Максимальное число слов до и после ключевого выражения
+     * @param Fragment[] $fragments Соседние фрагменты на склейку
+     * @return Fragment[]
      */
     private function rejoinFragments($limit, $fragments)
     {
@@ -170,5 +180,4 @@ class Fragmenter implements \Iterator
         }
         return $joinedFragments;
     }
-
 }

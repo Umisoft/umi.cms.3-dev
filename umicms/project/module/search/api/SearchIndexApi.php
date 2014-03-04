@@ -8,81 +8,101 @@
  */
 namespace umicms\project\module\search\api;
 
+use umi\config\entity\IConfig;
 use umi\config\io\IConfigIOAware;
 use umi\config\io\TConfigIOAware;
+use umi\event\IEventObservant;
+use umi\event\TEventObservant;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\object\IObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
+use umi\spl\config\TConfigSupport;
 use umi\stemming\IStemmingAware;
 use umi\stemming\TStemmingAware;
 use umicms\api\IPublicApi;
+use umicms\project\module\search\object\SearchIndex;
 
 /**
- * Class SearchIndexApi
+ * Публичный интерфейс для индексирования модулей CMS для поиска.
  */
-class SearchIndexApi extends BaseSearchApi implements IPublicApi, IStemmingAware, IConfigIOAware, IObjectPersisterAware
+class SearchIndexApi extends BaseSearchApi implements IPublicApi, IStemmingAware, IConfigIOAware,
+    IObjectPersisterAware, IEventObservant
 {
     use TStemmingAware;
     use TConfigIOAware;
     use TObjectPersisterAware;
+    use TConfigSupport;
+    use TEventObservant;
 
     /**
-     * Перестраивает хранимый поисковый индекс
-     * @param $collectionId
+     * Конфигурация доступных для индексирования коллекций и их полей.
+     * @var array|IConfig $collectionsMap
      */
-    public function buildIndex($collectionId)
+    public $collectionsMap = [];
+
+    /**
+     * Перестраивает хранимый поисковый индекс для отдельной коллекции.
+     * @param string $collectionName
+     */
+    public function buildIndex($collectionName)
     {
+        $this->fireEvent('search.beforeIndex', ['collectionName' => $collectionName]);
+
         $indexCollection = $this->getCollectionManager()
             ->getCollection('searchIndex');
         $deleter = $indexCollection
             ->select()
-            ->fields(IObject::FIELD_IDENTIFY)
-            ->where('collectionId')
-            ->equals($collectionId);
+            ->fields([SearchIndex::FIELD_IDENTIFY, SearchIndex::FIELD_REF_GUID])
+            ->where(SearchIndex::FIELD_COLLECTION_NAME)
+            ->equals($collectionName);
         /** @var $record IObject */
         foreach ($deleter as $record) {
             $indexCollection->delete($record);
         }
 
-        $config = $this->getConfigForCollection($collectionId);
+        $config = $this->getConfigForCollection($collectionName);
         $collection = $this->getCollectionManager()
-            ->getCollection($collectionId);
+            ->getCollection($collectionName);
         $collectionRecords = $collection->select()
             ->fields($config['properties'])
             ->getResult();
 
         /** @var $record IObject */
         foreach ($collectionRecords as $record) {
-            $indexCollection->add()
-                ->setValue('collectionId', $collectionId)
-                ->setValue('content', $this->normalizeIndexString($this->extractSearchableContent($record)));
+            $newIndexRecord = $indexCollection->add();
+            $newIndexRecord
+                ->setValue(SearchIndex::FIELD_COLLECTION_NAME, $collectionName)
+                ->setValue(SearchIndex::FIELD_REF_GUID, $record->getGUID())
+                ->setValue(
+                    SearchIndex::FIELD_CONTENT,
+                    $this->normalizeIndexString($this->extractSearchableContent($record))
+                );
+            $newIndexRecord->getValue(SearchIndex::FIELD_DATE_INDEXED)->setTimestamp(time());
         }
-        $this->getObjectPersister()
-            ->commit();
     }
 
     /**
+     * Переиндексирует отдельный набор объектов.
      * @param IObject[] $objectList
      */
     public function buildIndexForObjects($objectList)
     {
+        $this->fireEvent('search.beforeIndex', ['objectList' => $objectList]);
+
         $indexCollection = $this->getCollectionManager()
             ->getCollection('searchIndex');
         $guidList = [];
         foreach ($objectList as $obj) {
             $guidList[] = $obj->getGUID();
         }
-        $collectionId = current($objectList)
-            ->getCollection()
-            ->getName();
-        $config = $this->getConfigForCollection($collectionId);
 
         /** @var $indexRecords IObject[] */
         $indexRecords = $indexCollection->select()
             ->where('targetGuid')
             ->in($guidList)
             ->getResult();
+
         foreach ($indexRecords as $indexRecord) {
             foreach ($objectList as $obj) {
                 if ($obj->getGUID() == $indexRecord->getValue('targetGuid')) {
@@ -93,18 +113,55 @@ class SearchIndexApi extends BaseSearchApi implements IPublicApi, IStemmingAware
                 }
             }
         }
-        $this->getObjectPersister()
-            ->commit();
     }
 
     /**
-     * @param $collectionId
-     * @return mixed|\umi\config\entity\IConfig
+     * Возвращает конфигурацию индексирования именованной коллекции.
+     * @param string $collectionName Имя коллекции
+     * @throws \UnexpectedValueException
+     * @return array
      */
-    protected function getConfigForCollection($collectionId)
+    protected function getConfigForCollection($collectionName)
     {
-        $config = $this->readConfig('~search')
-            ->get($collectionId);
-        return $config;
+        $config = $this->getIndexableCollectionsConfig();
+        if (!isset($config[$collectionName])) {
+            throw new \UnexpectedValueException("Collection $collectionName is not mapped for search index");
+        }
+        $fields = $config[$collectionName];
+        return $fields;
+    }
+
+    /**
+     * Извлекает из объекта текстовые данные, пригодные для помещения в поисковый индекс.
+     * @param IObject $object
+     * @return string
+     */
+    public function extractSearchableContent($object)
+    {
+        $content = '';
+        $propertyNames = $this->getConfigForCollection($object->getCollectionName())['properties'];
+        //todo remove duplicates
+        foreach ($propertyNames as $propName) {
+            $content .= " " . $object->getValue($propName);
+        }
+        return trim($content);
+    }
+
+    /**
+     * Возвращает список имен коллекций, которые участвуют в индексации и поиске
+     * @return array
+     */
+    public function getIndexableCollectionsNamesList()
+    {
+        return array_keys($this->getIndexableCollectionsConfig());
+    }
+
+    /**
+     * Возвращает конфигурацию индексируемых коллекций
+     * @return array
+     */
+    protected function getIndexableCollectionsConfig()
+    {
+        return $this->configToArray($this->collectionsMap);
     }
 }

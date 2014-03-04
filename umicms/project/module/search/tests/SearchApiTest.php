@@ -66,7 +66,11 @@ class SearchApiTest extends SearchTestCase
     public function testHighlightResults($search, $text, $result)
     {
         $api = $this->getSearchApi();
-        $this->assertEquals($result, $api->highlightResult($search, $text), 'Fragment must be marked correctly');
+        $this->assertEquals(
+            $result,
+            $api->highlightResult($search, $text, '<mark>', '</mark>'),
+            'Fragment must be marked correctly'
+        );
     }
 
     /**
@@ -146,7 +150,12 @@ class SearchApiTest extends SearchTestCase
             [
                 'кон',
                 'закончить не смогли вы кон, гоните бриллианты',
-                "за{$on}кон${off}чить не смогли вы {$on}кон,{$off} гоните бриллианты",
+                "за{$on}кон{$off}чить не смогли вы {$on}кон,{$off} гоните бриллианты",
+            ],
+            [
+                'выпросил корыто',
+                "Выпросил, дурачина, корыто!\n В корыте много ль корысти?",
+                "{$on}Выпросил,{$off} дурачина, {$on}корыто!{$off}\n В {$on}корыте{$off} много ль корысти?",
             ],
         ];
     }
@@ -223,7 +232,7 @@ class SearchApiTest extends SearchTestCase
                     [
                         ['это'],
                         'было давно, но, говорят, было.',
-                        ['Стиль,','как','справедливо',]
+                        ['Стиль,', 'как', 'справедливо',]
                     ],
                 ]
             ],

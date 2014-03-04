@@ -115,7 +115,6 @@ class SearchTestCase extends \PHPUnit_Framework_TestCase
             ]
         );
         $this->toolkit = $toolkit;
-        $this->setupFixtures();
     }
 
     /**
@@ -167,31 +166,5 @@ class SearchTestCase extends \PHPUnit_Framework_TestCase
             ->shouldReceive('getCollection')
             ->andReturn($collectionMock);
         return $managerMock;
-    }
-
-    protected function setupFixtures()
-    {
-        $rawData = [
-            [
-                'id' => 1,
-                'head' => 'Душа монаха',
-                'text' => 'Душа монаха-отшельника, не следует терять бдительности, возможно он тут не один'
-            ],
-            [
-                'id' => 2,
-                'head' => 'Заголовок ни о чем',
-                'text' => 'Если где и встречается «Душа монаха», то непременно либо дорогая, либо отъявленная паленка'
-            ],
-            [
-                'id' => 3,
-                'head' => 'Сноуборд новый сосновый',
-                'text' => 'Срочно куплю или продам в отл. состоянии для для самого безбашенного бординга'
-            ],
-            [
-                'id' => 4,
-                'head' => 'Продам кое-что',
-                'text' => 'А именно куплю себе новый сноуборд, старый соответственно продам'
-            ],
-        ];
     }
 }

@@ -7,20 +7,20 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\news\site\controller;
+namespace umicms\project\module\search\site\controller;
 
-use umicms\base\controller\BaseController;
-use umicms\project\module\news\api\NewsPublicApi;
+use umicms\hmvc\controller\BaseController;
 use umicms\project\module\search\api\SearchApi;
 
 /**
- * Контроллер запроса результатов поиска
+ * Контроллер запроса и вывода результатов поиска
  */
 class SearchController extends BaseController
 {
 
     /**
-     * @var NewsPublicApi $api
+     * API модуля "Поиск"
+     * @var SearchApi $api
      */
     protected $api;
 
@@ -39,11 +39,15 @@ class SearchController extends BaseController
     public function __invoke()
     {
         $query = $this->getQueryVar('query');
-        $resultSet = $this->api->search($query);
+
+        $resultSet = null;
+        if (!is_null($query)) {
+            $resultSet = $this->api->search($query);
+        }
         return $this->createViewResponse(
             'search/results',
             [
-                'result' => $resultSet,
+                'results' => $resultSet,
                 'query' => $query
             ]
         );

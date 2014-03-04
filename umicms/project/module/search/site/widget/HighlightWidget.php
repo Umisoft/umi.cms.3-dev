@@ -7,15 +7,15 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\search\widget;
+namespace umicms\project\module\search\site\widget;
 
 use umi\http\THttpAware;
-use umicms\base\widget\BaseWidget;
+use umicms\hmvc\widget\BaseWidget;
 use umicms\project\module\news\api\NewsPublicApi;
 use umicms\project\module\search\api\SearchApi;
 
 /**
- * Виджет вывода сюжета новостей
+ * Виджет, выделяющий подстроку с учетом морфологии в тексте
  */
 class HighlightWidget extends BaseWidget
 {
@@ -25,10 +25,12 @@ class HighlightWidget extends BaseWidget
     public $template = 'search/highlight';
 
     /**
+     * Текст, в котором требуется выделить фрагмент
      * @var string $text
      */
     public $text;
     /**
+     * Фрагмент текста, который нужно выделить
      * @var string $query
      */
     public $query;
@@ -45,13 +47,13 @@ class HighlightWidget extends BaseWidget
     public $highlightEnd = '</mark>';
 
     /**
-     * @var NewsPublicApi $api API модуля "Новости"
+     * @var NewsPublicApi $api API модуля "Поиск"
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param SearchApi $searchApi API модуля "Новости"
+     * @param SearchApi $searchApi API поиска
      * @internal param \umi\http\Request $request
      */
     public function __construct(SearchApi $searchApi)
