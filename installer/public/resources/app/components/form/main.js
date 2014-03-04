@@ -608,6 +608,9 @@ define(['App', 'text!./form.hbs','datepicker'], function(UMI, formTpl, datepicke
                 case 'file':
                     template = Ember.Handlebars.compile('<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.name + '}}<i class="icon icon-cloud"></i></div>');
                     break;
+                default:
+                    template = Ember.Handlebars.compile('<div>Для поля типа <b>' + meta.type + '</b> не предусмотрен шаблон.</div>');
+                    break;
             }
             return template;
         }.property('object', 'meta')
