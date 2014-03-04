@@ -1,76 +1,84 @@
 {{#if visible}}
     <li data-id="{{unbound node.id}}" {{bind-attr class="node.isDragged:hide node.root"}}>
-        {{#view "treeItem" contentBinding="this"}}
+        {{#view "treeItem" contentBinding="this"}} <!-- div -->
             {{#if node.childCount}}
-                <span {{action "expanded" node}} {{bind-attr class=":umi-expand-hover"}}>
+                <span {{action "expanded" node}} {{bind-attr class=":umi-expand"}}>
                     {{#if node.isLoaded}}
                         <i class="animate animate-loader-20"></i>
                     {{else}}
                         <i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>
                     {{/if}}
                 </span>
-                <i {{bind-attr class=":icon :move :icon-document"}}></i>
+                <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document"}}></i>
             {{else}}
-                <i {{bind-attr class=":icon :move :icon-document"}}></i>
+                <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document"}}></i>
             {{/if}}
 
             {{#link-to "context" node.id}}
                 {{node.displayName}}
             {{/link-to}}
-
-            <ul class="button-group umi-tree-context-menu right">
-                <li><a href="#" class="tiny button flat square s-margin-clear"><i class="icon white icon-ok-thin"></i></a></li>
-
-                <li class="umi-tree-drop-down-toggler">
-                    <a href="#" class="tiny button flat square s-margin-clear">
-                        <i class="icon black icon-plus-thin"></i>
-                        <i class="icon black icon-bottom-thin"></i>
-                    </a>
-
-                    <div class="umi-tree-drop-down s-unselectable">
-
-                        <div class="umi-tree-tabs">
-                            <div class="umi-tree-tab active"><i class="icon icon-add"></i></div>
-                            <div class="umi-tree-tab"><i class="icon icon-pile"></i></div>
-                            <div class="umi-tree-tab"><i class="icon icon-write"></i></div>
-                            <div class="umi-tree-tab"><i class="icon icon-pause"></i></div>
-                            <div class="umi-tree-tab"><i class="icon icon-delete"></i></div>
-                        </div>
-
-                        <div class="umi-tree-tabs-content">
-                            <div class="umi-tree-tab-content active">
-                                <ul>
-                                    <li>Добавить новость</li>
-                                    <li>Добавить рубрику</li>
-                                </ul>
-                            </div>
-                            <div class="umi-tree-tab-content">
-                                <ul>
-                                    <li>Создать копию</li>
-                                </ul>
-                            </div>
-                            <div class="umi-tree-tab-content">
-                                <ul>
-                                    <li>Редактировать</li>
-                                </ul>
-                            </div>
-                            <div class="umi-tree-tab-content">
-                                <ul>
-                                    <li>Снять активность</li>
-                                </ul>
-                            </div>
-                            <div class="umi-tree-tab-content">
-                                <ul>
-                                    <li>Удалить рубрику</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </li>
-            </ul>
         {{/view}}
-        <div class="hover-bg"></div>
+
+        <ul class="button-group umi-tree-context-menu right">
+            <!--<li>-->
+            <!--<a href="#">-->
+            <!--<i class="icon white icon-ok-thin"></i>-->
+            <!--</a>-->
+            <!--</li>-->
+        
+            <li class="umi-tree-drop-down-toggler">
+                <a href="#" class="tiny button flat square s-margin-clear">
+                    <i class="icon black icon-bottom"></i>
+                </a>
+            </li>
+        </ul>
+
+<script type="text/x-handlebars" id="umi-tree-menu">
+            <div class="umi-tree-drop-down s-unselectable">
+                <div class="umi-tree-drop-down-show-button">
+                    <i class="icon black icon-top"></i>
+                    <div class="umi-tree-drop-down-shadow-hide"></div>
+                </div>
+                <div class="umi-tree-tabs">
+                    <div class="umi-tree-tab active"><i class="icon icon-add"></i></div>
+                    <div class="umi-tree-tab"><i class="icon icon-pile"></i></div>
+                    <div class="umi-tree-tab"><i class="icon icon-write"></i></div>
+                    <div class="umi-tree-tab"><i class="icon icon-pause"></i></div>
+                    <div class="umi-tree-tab"><i class="icon icon-delete"></i></div>
+                </div>
+
+                <div class="umi-tree-tabs-content">
+                    <div class="umi-tree-tab-content active">
+                        <ul>
+                            <li>Добавить новость</li>
+                            <li>Добавить рубрику</li>
+                        </ul>
+                    </div>
+                    <div class="umi-tree-tab-content">
+                        <ul>
+                            <li>Создать копию</li>
+                        </ul>
+                    </div>
+                    <div class="umi-tree-tab-content">
+                        <ul>
+                            <li>Редактировать</li>
+                        </ul>
+                    </div>
+                    <div class="umi-tree-tab-content">
+                        <ul>
+                            <li>Снять активность</li>
+                        </ul>
+                    </div>
+                    <div class="umi-tree-tab-content">
+                        <ul>
+                            <li>Удалить рубрику</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </script>
+
         {{#if node.childCount}}
             {{#if node.isExpanded}}
                 <ul class="umi-tree-list" data-parent-id="{{unbound node.id}}">
@@ -82,133 +90,3 @@
         {{/if}}
     </li>
 {{/if}}
-
-<style>
-    .umi-tree-drop-down-toggler {
-        background: #ffffff;
-    }
-
-    .umi-tree-drop-down-toggler a {
-        z-index: 20;
-        position: relative;
-        display: block;
-        background: #FFFFFF !important;
-    }
-
-    .umi-tree-drop-down {
-        z-index: 10;
-        display: none;
-        position: absolute;
-        right: 0;
-        float: left;
-        width: 160px;
-        background: #FFFFFF;
-        box-shadow: 0 0 5px 1px #6d7580;
-    }
-
-    .umi-tree-tabs-content {
-        position: relative;
-        float: left;
-        width: 160px;
-        /*z-index: 10;*/
-    }
-
-    .umi-tree-tab-content ul {
-        list-style-type: none;
-        padding: 0 !important;
-        width: 100%;
-        height: 100%;
-    }
-
-    .umi-tree-tab-content li {
-        padding: 0 10px;
-        height: 28px;
-        line-height: 26px !important;
-    }
-
-    .umi-tree-tab-content li:nth-child(even) {
-        background: #E8EDEF;
-    }
-
-    .umi-tree-tab-content li:hover {
-        background: #BFE0F8;
-    }
-
-    .umi-tree-tab-content {
-        z-index: 10;
-        display: none;
-        position: relative;
-        float: left;
-        width: 160px;
-        height: 84px;
-    }
-
-    .umi-tree-tab-content.active {
-        display: block;
-        height: 100%;
-    }
-
-    .umi-tree-tabs {
-        float: right;
-        width: 160px;
-    }
-
-    .umi-tree-tab {
-        position: relative;
-        float: left;
-        padding: 4px 7px;
-        cursor: pointer;
-    }
-
-    .umi-tree-tab:after {
-        content: "";
-        position: absolute;
-        display: block;
-        width: 32px;
-        height: 6px;
-        top: 26px;
-        left: 0;
-        background: url(/resources/deploy/img/shadows/toTopShadow.png);
-    }
-
-    .umi-tree-tab.active {
-        padding: 3px 7px 4px;
-        border-top: 1px solid #6d7580;
-        /*box-shadow: 0 0 5px 1px #6d7580;*/
-    }
-
-    /*.umi-tree-tab.active:after{*/
-    /*content: none;*/
-    /*}*/
-
-    .umi-tree-tab.active:before {
-        content: "";
-        position: absolute;
-        display: block;
-        width: 6px;
-        height: 32px;
-        top: -1px;
-        left: -6px;
-        background: url(/resource/admin/deploy/img/shadows/toLeftShadow.png);
-    }
-
-    .umi-tree-tab:first-of-type.active:before {
-        display: none;
-    }
-
-    .umi-tree-tab.active:after {
-        content: "";
-        position: absolute;
-        display: block;
-        width: 6px;
-        height: 32px;
-        top: -1px;
-        left: auto;
-        right: -6px;
-        background: url(/resource/admin/deploy/img/shadows/toRightShadow.png);
-    }
-
-    .umi-tree-tab:last-of-type.active:after {
-        display: none;
-    }
-</style>

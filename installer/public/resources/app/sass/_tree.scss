@@ -1,9 +1,9 @@
-//
-// Umi-tree-column
-//
-.umi-tree-header{
-    @include s-gradient-grey();
-    border-bottom: 1px solid #98A2AB;
+$umi-hover-background: #A4DCF7;
+$umi-font-color: #535E6D;
+$umi-dark-border-color: #CCD9E2;
+
+body{
+    color: #535E6D!important;
 }
 
 .umi-tree{
@@ -11,7 +11,7 @@
     box-sizing: border-box;
     border-right: 1px solid #CCD9E2;
     margin-left: rem-calc(5);
-    margin-top: 10px;
+    margin-top: rem-calc(8);
     font-size: rem-calc(13);
 
     ul.f-dropdown{
@@ -28,8 +28,8 @@
     li{
         line-height: rem-calc(24);
         a{
-            color: #000000;
-            &.active{
+            color: $umi-font-color;
+            &.active {
                 color: $primary-color;
             }
         }
@@ -40,13 +40,23 @@
     }
 
     .umi-item{
-        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
         padding-left: 20px;
+        margin-right: 20px;
         white-space: nowrap;
-        z-index: 2;
         &.active{
+            background: linear-gradient(to bottom, #35a9fc 0%, #0f8bd5 100%);
             background: linear-gradient(top, #35a9fc 0%, #0f8bd5 100%);
+            margin-left: -10000px;
+            padding-left: 10020px;
+            margin-right: -1px;
+            padding-right: 10px;
             color: #FFFFFF;
+            a{
+                color: #FFFFFF;
+                border-bottom: none!important;
+            }
         }
         &:hover{
             .icon-right, .icon-bottom{
@@ -65,29 +75,29 @@
         }
     }
 
-    i{
+    i {
         margin: rem-calc(2 -2 2 0);
     }
 
-    .move{
+    .move {
         cursor: move !important;
     }
 
-    .umi-expand-hover{
+    .umi-expand{
         display: inline-block;
         width: rem-calc(20);
         height: rem-calc(20);
         cursor: hand;
         position: absolute;
-        margin-left: rem-calc(20);
+        margin-left: rem-calc(-20);
         margin-top: rem-calc(2);
         left: -20px;
-        i{
+        i {
             margin: 0;
         }
     }
 
-    .umi-tree-placeholder{
+    .umi-tree-placeholder {
         height: rem-calc(24);
         background: #C4D2DD;
         border-radius: rem-calc(12);
@@ -99,13 +109,13 @@
     }
 
     .umi-tree-expand-hover{
-        > div a{
+        > div a {
             text-decoration: underline;
         }
     }
 
     &.drag-inside{
-        a, .icon, .move{
+        a, .icon, .move {
             cursor: default;
         }
     }
@@ -113,12 +123,10 @@
     .umi-tree-context-menu{
         display: none;
         position: absolute;
-        right: rem-calc(6);
+        right: rem-calc(8);
         margin: 0;
         padding: 0;
         margin-top: -24px;
-        background: linear-gradient(to bottom, $primary-color 0%, darken($primary-color, 5%) 50%);
-        background: linear-gradient(top, $primary-color 0%, darken($primary-color, 5%) 50%);
     }
 
     .hover-bg{
@@ -140,7 +148,6 @@
     height: rem-calc(24);
     color: #000000;
     border: none;
-    z-index: 1000;
     line-height: rem-calc(24);
     font-size: rem-calc(13);
     display: inline-block;
@@ -185,4 +192,148 @@
             }
         }
     }
+}
+
+
+
+
+//tree li --------------------------------------------------------
+
+.umi-tree-drop-down-toggler a{
+    position: relative;
+    display: block;
+}
+
+.umi-tree-drop-down{
+    position: absolute;
+    z-index: 1;
+    float: left;
+    width: 160px;
+    background: #FFFFFF;
+    box-shadow: 0 0px 2px 0px #7C99AC;
+}
+
+.umi-tree-drop-down-show-button{
+    box-shadow: 0 0px 2px 0px #7C99AC;
+    position: absolute;
+    top: -26px;
+    right: 0;
+    padding: 2px 2px 0;
+    border-bottom: none;
+    background: #FFFFFF;
+}
+
+.umi-tree-drop-down-shadow-hide{
+    background: #FFFFFF;
+    width: 24px;
+    height: 3px;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+}
+
+.umi-tree-tabs-content {
+    position: relative;
+    float: left;
+    width: 160px;
+    padding-bottom: 4px;
+    color: $umi-font-color;
+}
+
+.umi-tree-tab-content ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.umi-tree-tab-content li {
+    padding: 0 10px;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+}
+
+.umi-tree-tab-content li:nth-child(even) {
+    background: #E8EDEF;
+}
+
+.umi-tree-tab-content li:hover {
+    background: $umi-hover-background;
+}
+
+.umi-tree-tab-content {
+    display: none;
+    position: relative;
+    float: left;
+    width: 160px;
+    height: 84px;
+    &.active {
+        display: block;
+        height: 100%;
+    }
+    ul{
+        font-size: 13px;
+    }
+}
+
+.umi-tree-tabs{
+    width: 160px;
+    height: 35px;
+}
+
+.umi-tree-tab {
+    position: relative;
+    float: left;
+    padding: 6px 6px 0;
+    cursor: pointer;
+}
+
+.umi-tree-tab:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 32px;
+    height: 3px;
+    top: 28px;
+    left: 0;
+    background: url(img/shadows/toTopShadow.png);
+}
+
+.umi-tree-tab.active {
+    margin-top: -1px;
+    padding: 6px 6px 0;
+    border-top: 1px solid #BEC9D0;
+}
+
+.umi-tree-tab.active:before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 3px;
+    height: 32px;
+    top: -1px;
+    left: -2px;
+    background: url(img/shadows/toLeftShadow.png);
+}
+
+.umi-tree-tab:first-of-type.active:before {
+    display: none;
+}
+
+.umi-tree-tab.active:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 3px;
+    height: 32px;
+    top: -1px;
+    left: auto;
+    right: -2px;
+    background: url(img/shadows/toRightShadow.png);
+}
+
+.umi-tree-tab:last-of-type.active:after {
+    display: none;
 }

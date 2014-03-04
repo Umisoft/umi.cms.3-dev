@@ -4,41 +4,82 @@
             {{#if hasTree}}
                 <aside class="left-off-canvas-menu s-unselectable" style="overflow: hidden;">
                     {{render "treeControl"}}
-                    <div class="umi-divider"></div>
                 </aside>
+                <div class="umi-divider"></div>
             {{/if}}
-            <div class="row s-full-height-before s-margin-clear umi-mode">
+    
+            <div class="row s-full-height-before s-margin-clear umi-mode" style="left:5px;">
                 <section class="left">
                     {{#if hasTree}}
-                        <a class="left-off-canvas-toggle"><span class="icon icon-list"></span></a>
+                        <a class="left-off-canvas-toggle">
+                            <span class="icon icon-list"></span>
+                        </a>
                     {{else}}
-                        <a style="display:block; padding: 7px 9px; cursor:default;"><span
-                            class="icon icon-list white"></span></a>
+                        <a style="display:block; padding: 7px 9px; cursor:default;">
+                            <span class="icon icon-list white"></span>
+                        </a>
                     {{/if}}
                 </section>
-
-                <!-- TODO Говнокод
-                     TODO Сделать запрет перехода на чужой домен -->
-                <i class="icon black icon-left-thin" style="float: left; margin: 7px 4px 4px;"
-                   onclick="window.history.back();"></i>
-                <i class="icon black icon-right-thin" style="float: left; margin: 7px 10px 4px 4px;"
-                   onclick="window.history.forward();"></i>
-
-                <div style="padding: 3px 5px 3px 5px; margin: 0 0 -3px 0; background: linear-gradient(to bottom, #35a9fc 0%, #0f8bd5 50%); float: left;">
-                    {{input type="search" class="umi-mode-search" placeholder='Введите запрос и нажмите "Enter"' value=searchQuery}}
+    
+                <i class="icon black icon-left-thin umi-history-back" style="float: left; margin: 7px 4px 4px; cursor: pointer;"></i>
+                <i class="icon black icon-right-thin umi-history-forward" style="float: left; margin: 7px 10px 4px 4px; cursor: pointer;"></i>
+    
+                <style>
+                    .umi-search{
+                        padding: 3px 5px 3px 5px;
+                        margin: 0 0 0 0;
+                        /*background: linear-gradient(to bottom, #35a9fc 0%, #0f8bd5 50%);*/
+                        float: left;
+                    }
+                    input[type="text"].umi-search-input{
+                        height: 28px;
+                        line-height: 28px;
+                        padding: 0 10px;
+                        margin: 0;
+                        border-radius: 2px;
+                        width: 300px;
+                    }
+                    .umi-search-button{
+                        float:left; margin:7px 3px 0 0;
+                    }
+                </style>
+    
+                <div class="umi-search">
+                    {{input type="text" class="umi-search-input" placeholder='Введите запрос и нажмите "Enter"' value=searchQuery}}
                 </div>
-                <div style="float:left; margin:8px 10px;">
-                    <a {{action "search" searchQuery}}>Найти</a>
+                <div class="umi-search-button">
+                    <a {{action "search" searchQuery}}><i class="icon icon-search"></i></a>
                 </div>
+    
+    
+                <script>
+                    //Хак-ускоритель переключение mode - переключает класс кнопки без задержки
+                    $('.button-group .button').mousedown(function(){
+                        $('.button-group .button').removeClass('active');
+                        $(this).addClass('active');
+                    });
+    
+                    //TODO сделать ограничение перехода по истории при нажатии на кнопки внутри приложения
+                    //Мы не должны выходить за пределы домена
+    
+                    $('.umi-history-back').mousedown(function(){
+                        window.history.back();
+                    });
+    
+                    $('.umi-history-forward').mousedown(function(){
+                        window.history.forward();
+                    });
+                </script>
 
                 <ul class="button-group right">
                     {{#each control in controller.contentControls}}
-                        <li>{{#link-to 'action' control.name classNames="button"}}{{control.displayName}}{{/link-to}}</li>
+                    <li>{{#link-to 'action' control.name classNames="button"}}{{control.displayName}}{{/link-to}}</li>
                     {{/each}}
                 </ul>
             </div>
-
-            <div class="row s-full-height umi-component">
+    
+    
+            <div class="row s-full-height umi-component" style="left:5px;">
                 <div class="columns small-12 s-padding-clear">
                     {{outlet}}
                 </div>

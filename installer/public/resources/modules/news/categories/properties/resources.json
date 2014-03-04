@@ -18,6 +18,13 @@
                         "required": true,
                         "title": "Описание категории",
                         "placeholder": "Введите описание категории"
+                    },
+                    {
+                        "name": "upload",
+                        "type": "file",
+                        "required": true,
+                        "title": "Описание категории",
+                        "placeholder": "Введите описание категории"
                     }
                 ]
             },
@@ -34,6 +41,12 @@
                     {
                         "name": "viewCounter",
                         "type": "number",
+                        "required": true,
+                        "title": "Количество просмотров"
+                    },
+                    {
+                        "name": "htmlContent",
+                        "type": "html",
                         "required": true,
                         "title": "Количество просмотров"
                     }
