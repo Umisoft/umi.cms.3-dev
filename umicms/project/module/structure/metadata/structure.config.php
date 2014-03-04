@@ -105,16 +105,17 @@ return [
         ],
         StructureElement::FIELD_CREATED         => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
         StructureElement::FIELD_UPDATED         => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
+       
+        StructureElement::FIELD_META_TITLE                             => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
+        StructureElement::FIELD_META_KEYWORDS                          => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
+        StructureElement::FIELD_META_DESCRIPTION                       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
+        StructureElement::FIELD_H1                                    => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
+        StructureElement::FIELD_CONTENT                               => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
         StructureElement::FIELD_LAYOUT          => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'layout_id',
             'target'     => 'layout'
         ],
-        'h1'                                    => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
-        'metaTitle'                             => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
-        'metaKeywords'                          => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
-        'metaDescription'                       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
-        'content'                               => ['type' => IField::TYPE_TEXT, 'columnName' => 'content']
     ],
     'types'      => [
         'base'   => [
@@ -137,7 +138,12 @@ return [
                 StructureElement::FIELD_CREATED,
                 StructureElement::FIELD_UPDATED,
                 StructureElement::FIELD_COMPONENT_PATH,
-                StructureElement::FIELD_LAYOUT,
+                StructureElement::FIELD_META_TITLE,
+                StructureElement::FIELD_META_KEYWORDS,
+                StructureElement::FIELD_META_DESCRIPTION,
+                StructureElement::FIELD_H1,
+                StructureElement::FIELD_CONTENT,
+                StructureElement::FIELD_LAYOUT
             ]
         ],
         'system' => [
@@ -160,6 +166,11 @@ return [
                 SystemPage::FIELD_CREATED,
                 SystemPage::FIELD_UPDATED,
                 SystemPage::FIELD_COMPONENT_PATH,
+                SystemPage::FIELD_META_TITLE,
+                SystemPage::FIELD_META_KEYWORDS,
+                SystemPage::FIELD_META_DESCRIPTION,
+                SystemPage::FIELD_H1,
+                SystemPage::FIELD_CONTENT,
                 SystemPage::FIELD_LAYOUT
             ]
         ],
@@ -183,12 +194,12 @@ return [
                 StaticPage::FIELD_CREATED,
                 StaticPage::FIELD_UPDATED,
                 StaticPage::FIELD_COMPONENT_PATH,
-                StaticPage::FIELD_LAYOUT,
-                'metaTitle',
-                'metaKeywords',
-                'metaDescription',
-                'h1',
-                'content'
+                StaticPage::FIELD_META_TITLE,
+                StaticPage::FIELD_META_KEYWORDS,
+                StaticPage::FIELD_META_DESCRIPTION,
+                StaticPage::FIELD_H1,
+                StaticPage::FIELD_CONTENT,
+                StaticPage::FIELD_LAYOUT
             ]
         ]
     ]

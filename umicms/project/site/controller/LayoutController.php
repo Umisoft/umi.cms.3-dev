@@ -43,9 +43,7 @@ class LayoutController extends BaseController
      */
     public function __invoke()
     {
-
-        $currentElement = $this->structureApi->getCurrentElement();
-        $layoutName = $this->structureApi->getElementLayout($currentElement)->fileName;
+        $layoutName = $this->structureApi->layout()->getDefaultLayout()->fileName;
 
         $response = $this->createViewResponse(
             $layoutName,

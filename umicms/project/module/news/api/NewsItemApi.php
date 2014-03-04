@@ -72,6 +72,15 @@ class NewsItemApi extends BaseCollectionApi
     }
 
     /**
+     * Добавляет новость.
+     * @return NewsItem
+     */
+    public function add()
+    {
+        return $this->getCollection()->add();
+    }
+
+    /**
      * Помечает новость на удаление.
      * @param NewsItem $item
      */

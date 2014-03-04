@@ -54,9 +54,10 @@ abstract class BaseCollectionApi implements ICollectionManagerAware, ILocalizabl
 
     /**
      * Возвращает коллекцию.
+     * @internal
      * @return ICommonHierarchy|IHierarchicCollection|ILinkedHierarchicCollection|ISimpleCollection
      */
-    protected function getCollection()
+    public function getCollection()
     {
         return $this->getCollectionManager()->getCollection($this->collectionName);
     }

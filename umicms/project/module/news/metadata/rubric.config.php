@@ -17,31 +17,31 @@ return [
     ],
     'fields'     => [
 
-        IHierarchicObject::FIELD_IDENTIFY => [
+        IHierarchicObject::FIELD_IDENTIFY        => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
-            'accessor'   => 'getId'
+            'accessor'   => 'getId',
+            'readOnly'   => true
         ],
-        IHierarchicObject::FIELD_GUID     => [
+        IHierarchicObject::FIELD_GUID            => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
-            'mutator'    => 'setGuid'
+            'readOnly'   => true
         ],
-        IHierarchicObject::FIELD_TYPE     => [
+        IHierarchicObject::FIELD_TYPE            => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
             'accessor'   => 'getType',
             'readOnly'   => true
         ],
-        IHierarchicObject::FIELD_VERSION  => [
+        IHierarchicObject::FIELD_VERSION         => [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
-            'mutator'      => 'setVersion',
+            'readOnly'     => true,
             'defaultValue' => 1
         ],
-
         IHierarchicObject::FIELD_PARENT          => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'pid',
@@ -86,41 +86,48 @@ return [
             'accessor'   => 'getLevel',
             'readOnly'   => true
         ],
-
-        'active'                => [
+        'active'                                 => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'active',
             'defaultValue' => 1
         ],
-        'locked'                => [
+        'locked'                                 => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
             'defaultValue' => 0
         ],
-        'created'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        'updated'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
-        'displayName'           => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
-        'h1'                    => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
-        'metaTitle'             => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
-        'metaKeywords'          => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
-        'metaDescription'       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
-        'content'               => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
-        'news'                  => [
+        'created'                                => ['type'       => IField::TYPE_DATE_TIME,
+                                                     'columnName' => 'created',
+                                                     'readOnly'   => true
+        ],
+        'updated'                                => ['type'       => IField::TYPE_DATE_TIME,
+                                                     'columnName' => 'updated',
+                                                     'readOnly'   => true
+        ],
+        'displayName'                            => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
+        'h1'                                     => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
+        'metaTitle'                              => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
+        'metaKeywords'                           => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
+        'metaDescription'                        => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
+        'content'                                => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
+        'news'                                   => [
             'type'        => IField::TYPE_HAS_MANY,
             'target'      => 'newsItem',
-            'targetField' => 'rubric'
+            'targetField' => 'rubric',
+            'readOnly'    => true
         ],
-        'children'  => [
+        'children'                               => [
             'type'        => IField::TYPE_HAS_MANY,
             'target'      => 'newsRubric',
-            'targetField' => 'parent'
+            'targetField' => 'parent',
+            'readOnly'    => true
         ],
 
     ],
     'types'      => [
         'base' => [
             'objectClass' => 'umicms\project\module\news\object\NewsRubric',
-            'fields' => [
+            'fields'      => [
                 'id',
                 'guid',
                 'type',

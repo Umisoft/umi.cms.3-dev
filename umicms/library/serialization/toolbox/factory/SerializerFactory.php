@@ -59,6 +59,7 @@ class SerializerFactory implements IFactory, ISerializerFactory
             // orm
             'umi\orm\collection\BaseCollection' => 'umicms\serialization\json\orm\CollectionSerializer',
             'umi\orm\metadata\Metadata' => 'umicms\serialization\json\orm\MetadataSerializer',
+            'umi\orm\metadata\ObjectType' => 'umicms\serialization\json\orm\ObjectTypeSerializer',
             'umi\orm\metadata\field\BaseField' => 'umicms\serialization\json\orm\FieldSerializer',
             'umicms\orm\object\CmsObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
             'umicms\orm\object\CmsElement' => 'umicms\serialization\json\orm\CmsObjectSerializer',

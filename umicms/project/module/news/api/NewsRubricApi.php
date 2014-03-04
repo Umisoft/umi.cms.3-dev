@@ -10,6 +10,7 @@
 namespace umicms\project\module\news\api;
 
 use umi\orm\exception\IException;
+use umi\orm\metadata\IObjectType;
 use umicms\api\BaseHierarchicCollectionApi;
 use umicms\exception\NonexistentEntityException;
 use umicms\project\module\news\object\NewsRubric;
@@ -88,6 +89,17 @@ class NewsRubricApi extends BaseHierarchicCollectionApi
                 $e
             );
         }
+    }
+
+    /**
+     * Добавляет рубрику новостей.
+     * @param string $slug
+     * @param NewsRubric $parent
+     * @return NewsRubric
+     */
+    public function add($slug, NewsRubric $parent = null)
+    {
+        return $this->getCollection()->add($slug, IObjectType::BASE, $parent);
     }
 
     /**

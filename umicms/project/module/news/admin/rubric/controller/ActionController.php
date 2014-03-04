@@ -10,6 +10,7 @@
 namespace umicms\project\module\news\admin\rubric\controller;
 
 use umicms\hmvc\controller\BaseRestActionController;
+use umicms\project\module\news\api\NewsPublicApi;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
@@ -18,11 +19,25 @@ class ActionController extends BaseRestActionController
 {
 
     /**
+     * @var NewsPublicApi $api
+     */
+    protected $api;
+
+    /**
+     * Конструктор.
+     * @param NewsPublicApi $api
+     */
+    public function __construct(NewsPublicApi $api)
+    {
+        $this->api = $api;
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function getQueryActions()
     {
-        return ['settings'];
+        return ['settings', 'form'];
     }
 
     /**
@@ -32,6 +47,16 @@ class ActionController extends BaseRestActionController
     {
         return [];
     }
+
+    /**
+     * Возвращает форму.
+     */
+    protected function actionForm()
+    {
+        // TODO: add form
+        return $this->api->rubric()->getCollection()->getMetadata()->getBaseType();
+    }
+
 
 }
  

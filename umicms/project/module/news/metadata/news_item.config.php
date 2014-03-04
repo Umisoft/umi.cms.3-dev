@@ -20,13 +20,14 @@ return [
         NewsItem::FIELD_IDENTIFY     => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
-            'accessor'   => 'getId'
+            'accessor'   => 'getId',
+            'readOnly'   => true
         ],
         NewsItem::FIELD_GUID         => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
-            'mutator'    => 'setGuid'
+            'readOnly'   => true
         ],
         NewsItem::FIELD_TYPE         => [
             'type'       => IField::TYPE_STRING,
@@ -38,7 +39,7 @@ return [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
-            'mutator'      => 'setVersion',
+            'readOnly'     => true,
             'defaultValue' => 1
         ],
         NewsItem::FIELD_DISPLAY_NAME => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
@@ -52,8 +53,14 @@ return [
             'columnName'   => 'locked',
             'defaultValue' => 0
         ],
-        NewsItem::FIELD_CREATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        NewsItem::FIELD_UPDATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
+        NewsItem::FIELD_CREATED      => ['type'       => IField::TYPE_DATE_TIME,
+                                         'columnName' => 'created',
+                                         'readOnly'   => true
+        ],
+        NewsItem::FIELD_UPDATED      => ['type'       => IField::TYPE_DATE_TIME,
+                                         'columnName' => 'updated',
+                                         'readOnly'   => true
+        ],
         'h1'                         => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
         'metaTitle'                  => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
         'metaKeywords'               => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
@@ -76,15 +83,16 @@ return [
             'target'       => 'newsSubject',
             'bridge'       => 'newsItemSubject',
             'relatedField' => 'newsItem',
-            'targetField'  => 'subject'
+            'targetField'  => 'subject',
+            'readOnly'     => true
         ],
         NewsItem::FIELD_DATE         => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'date']
 
     ],
     'types'      => [
-        'base'        => [
+        'base' => [
             'objectClass' => 'umicms\project\module\news\object\NewsItem',
-            'fields' => [
+            'fields'      => [
                 NewsItem::FIELD_IDENTIFY,
                 NewsItem::FIELD_GUID,
                 NewsItem::FIELD_TYPE,

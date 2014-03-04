@@ -19,13 +19,14 @@ return [
         IObject::FIELD_IDENTIFY => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
-            'accessor'   => 'getId'
+            'accessor'   => 'getId',
+            'readOnly'   => true
         ],
         IObject::FIELD_GUID     => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
-            'mutator'    => 'setGuid'
+            'readOnly'   => true
         ],
         IObject::FIELD_TYPE     => [
             'type'       => IField::TYPE_STRING,
@@ -37,7 +38,7 @@ return [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
-            'mutator'      => 'setVersion',
+            'readOnly'     => true,
             'defaultValue' => 1
         ],
         'displayName'           => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
@@ -51,33 +52,33 @@ return [
             'columnName'   => 'locked',
             'defaultValue' => 0
         ],
-        'created'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        'updated'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
-
+        'created'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created', 'readOnly' => true],
+        'updated'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly' => true],
         'h1'                    => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
         'metaTitle'             => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
         'metaKeywords'          => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
         'metaDescription'       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
         'content'               => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
-
-        'slug'                  => ['type'       => IField::TYPE_SLUG,
-                                    'columnName' => 'slug',
-                                    'accessor'   => 'getSlug',
-                                    'mutator'    => 'setSlug'
+        'slug'                  => [
+            'type'       => IField::TYPE_SLUG,
+            'columnName' => 'slug',
+            'accessor'   => 'getSlug',
+            'mutator'    => 'setSlug'
         ],
-        'newsItems'     => [
+        'newsItems'             => [
             'type'         => IField::TYPE_MANY_TO_MANY,
             'target'       => 'newsItem',
             'bridge'       => 'newsItemSubject',
             'relatedField' => 'subject',
-            'targetField'  => 'newsItem'
+            'targetField'  => 'newsItem',
+            'readOnly'     => true
         ],
 
     ],
     'types'      => [
         'base' => [
             'objectClass' => 'umicms\project\module\news\object\NewsSubject',
-            'fields' => [
+            'fields'      => [
                 'id',
                 'guid',
                 'type',

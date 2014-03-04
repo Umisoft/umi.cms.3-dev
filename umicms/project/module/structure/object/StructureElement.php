@@ -10,21 +10,18 @@
 namespace umicms\project\module\structure\object;
 
 use umicms\orm\object\CmsElement;
+use umicms\orm\object\ICmsPage;
 
 /**
  * Базовый элемент структуры.
  *
  * @property string $componentPath путь до компонента-обработчика
- * @property Layout|null $layout шаблон для вывода
  */
-abstract class StructureElement extends CmsElement
+abstract class StructureElement extends CmsElement implements ICmsPage
 {
     /**
      *  Имя поля для хранения пути компонента-обработчика
      */
     const FIELD_COMPONENT_PATH = 'componentPath';
-    /**
-     *  Имя поля для хранения шаблона
-     */
-    const FIELD_LAYOUT = 'layout';
+
 }
