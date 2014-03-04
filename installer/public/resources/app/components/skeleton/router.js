@@ -266,7 +266,7 @@ define([], function(){
 
         UMI.SearchRoute = Ember.Route.extend({
             model: function(params){
-                console.log(params);               console.log(params);
+                console.log(params);
             }
         });
     };
