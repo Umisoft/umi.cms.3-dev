@@ -19,13 +19,14 @@ return [
         IObject::FIELD_IDENTIFY => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
-            'accessor'   => 'getId'
+            'accessor'   => 'getId',
+            'readOnly'   => true
         ],
         IObject::FIELD_GUID     => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
-            'mutator'    => 'setGuid'
+            'readOnly'   => true
         ],
         IObject::FIELD_TYPE     => [
             'type'       => IField::TYPE_STRING,
@@ -37,7 +38,7 @@ return [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
-            'mutator'      => 'setVersion',
+            'readOnly'     => true,
             'defaultValue' => 1
         ],
         'displayName'           => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
@@ -51,12 +52,16 @@ return [
             'columnName'   => 'locked',
             'defaultValue' => 0
         ],
-        'created'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        'updated'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
-
-        'newsItem' => ['type' => IField::TYPE_BELONGS_TO, 'columnName' => 'news_item_id', 'target' => 'newsItem'],
-        'subject' => ['type' => IField::TYPE_BELONGS_TO, 'columnName' => 'subject_id', 'target' => 'newsSubject']
-
+        'created'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created', 'readOnly' => true],
+        'updated'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly' => true],
+        'newsItem'              => ['type'       => IField::TYPE_BELONGS_TO,
+                                    'columnName' => 'news_item_id',
+                                    'target'     => 'newsItem'
+        ],
+        'subject'               => ['type'       => IField::TYPE_BELONGS_TO,
+                                    'columnName' => 'subject_id',
+                                    'target'     => 'newsSubject'
+        ]
 
     ],
     'types'      => [

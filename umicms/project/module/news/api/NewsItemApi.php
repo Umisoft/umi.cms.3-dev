@@ -72,6 +72,15 @@ class NewsItemApi extends BaseCollectionApi
     }
 
     /**
+     * Добавляет новость.
+     * @return NewsItem
+     */
+    public function add()
+    {
+        return $this->getCollection()->add();
+    }
+
+    /**
      * Помечает новость на удаление.
      * @param NewsItem $item
      */
@@ -88,7 +97,7 @@ class NewsItemApi extends BaseCollectionApi
      */
     public function getBySlug($slug) {
         $selector = $this->select()
-            ->where(NewsItem::FIELD_SLUG)
+            ->where(NewsItem::FIELD_PAGE_SLUG)
             ->equals($slug);
 
         $item = $selector->getResult()->fetch();

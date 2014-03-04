@@ -75,7 +75,7 @@ class NewsSubjectApi extends BaseCollectionApi
      */
     public function getBySlug($slug) {
         $selector = $this->select()
-            ->where(NewsSubject::FIELD_SLUG)
+            ->where(NewsSubject::FIELD_PAGE_SLUG)
             ->equals($slug);
 
         $subject = $selector->getResult()->fetch();

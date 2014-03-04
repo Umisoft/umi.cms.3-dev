@@ -12,31 +12,22 @@ namespace umicms\project\module\news\object;
 use DateTime;
 use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\object\CmsObject;
+use umicms\orm\object\ICmsPage;
 
 /**
  * Новость.
  *
- * @property string $metaKeywords мета-тег keywords
- * @property string $metaDescription мета-тег description
- * @property string $metaTitle мета-тег title
- * @property string $h1 заголовок
- * @property string $content содержание
  * @property string $announcement анонс
- * @property string $slug последней часть ЧПУ
  * @property DateTime $date дата
  * @property NewsRubric|null $rubric рубрика, к которой относится новость
  * @property IManyToManyObjectSet $subjects сюжеты, в которые входит новость
  */
-class NewsItem extends CmsObject
+class NewsItem extends CmsObject implements ICmsPage
 {
     /**
      * Имя поля для хранения рубрики, к которой относится новость
      */
     const FIELD_RUBRIC = 'rubric';
-    /**
-     * Имя поля для хранения последней части ЧПУ новости
-     */
-    const FIELD_SLUG = 'slug';
     /**
      * Имя поля для хранения времени публикации новости
      */

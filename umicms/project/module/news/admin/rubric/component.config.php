@@ -30,12 +30,22 @@ return [
                 'displayName' => 'Дочерние рубрики'
             ],
             [
-                'name' => 'editor',
+                'name' => 'form',
                 'displayName' => 'Редактирование'
             ]
         ],
+        'actions' => [
+            [
+                'name' => 'delete',
+                'displayName' => 'Удалить',
+            ],
+            [
+                'name' => 'changeActivity',
+                'displayName' => 'Изменить активность',
+            ],
+        ],
         'layout' => [
-            'defaultContext' => [
+            'emptyContext' => [
                 'tree' => [
                     'controls' => ['tree']
                 ],
@@ -43,12 +53,13 @@ return [
                     'controls' => ['filter', 'children']
                 ]
             ],
-            'context' => [
+            'selectedContext' => [
                 'tree' => [
-                    'controls' => ['tree']
+                    'controls' => ['tree'],
+                    'actions' => ['delete', 'changeActivity']
                 ],
                 'content' => [
-                    'controls' => ['editor', 'children']
+                    'controls' => ['form', 'children']
                 ]
             ]
         ]

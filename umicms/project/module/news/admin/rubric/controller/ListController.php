@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\news\admin\rubric\controller;
 
+use umicms\exception\RuntimeException;
 use umicms\hmvc\controller\BaseRestListController;
 use umicms\project\module\news\api\NewsPublicApi;
 
@@ -53,7 +54,35 @@ class ListController extends BaseRestListController
      */
     protected function create(array $data)
     {
-        // TODO: Implement create() method.
+        // TODO: forms
+        if (!isset($data['slug'])) {
+            throw new RuntimeException('Slug is unknown');
+        }
+        $slug = $data['slug'];
+        unset($data['slug']);
+
+        if (!isset($data['parent'])) {
+            $parent = null;
+        } else {
+            $parent = $this->api->rubric()->getById($data['parent']);
+            unset($data['parent']);
+        }
+
+        $object = $this->api->rubric()->add($slug, $parent);
+
+        foreach ($data as $propertyName => $value) {
+            if ($object->hasProperty($propertyName)
+                && !$object->getProperty($propertyName)->getIsReadOnly()
+                && !is_array($value)
+
+            ) {
+                $object->setValue($propertyName, $value);
+            }
+        }
+
+        $this->getObjectPersister()->commit();
+
+        return $object;
     }
 }
  

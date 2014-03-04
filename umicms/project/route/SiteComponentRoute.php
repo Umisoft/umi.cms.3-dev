@@ -47,6 +47,7 @@ class SiteComponentRoute extends BaseRoute
         }
         list(, $slug) = $slugs;
 
+        //TODO учитывать предыдущий выбранный элемент
         $element =
             $this->structureApi->element()->select()
             ->types(['system'])

@@ -9,24 +9,14 @@
 
 namespace umicms\project\module\news\object;
 
-use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\object\CmsObject;
+use umicms\orm\object\ICmsPage;
 
 /**
  * Новостной сюжет.
- *
- * @property string $metaKeywords мета-тег keywords
- * @property string $metaDescription мета-тег description
- * @property string $metaTitle мета-тег title
- * @property string $h1 заголовок
- * @property string $content содержание
- * @property string $slug последней часть ЧПУ
  */
-class NewsSubject extends CmsObject
+class NewsSubject extends CmsObject implements ICmsPage
 {
-    /**
-     * Имя поля для хранения последней части ЧПУ сюжет
-     */
-    const FIELD_SLUG = 'slug';
+
 }
  

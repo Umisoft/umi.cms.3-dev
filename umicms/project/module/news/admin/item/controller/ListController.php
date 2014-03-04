@@ -53,7 +53,26 @@ class ListController extends BaseRestListController
      */
     protected function create(array $data)
     {
-        // TODO: Implement create() method.
+        $object = $this->api->news()->add();
+
+        // TODO: forms
+        if (isset($data['rubric'])) {
+            $rubric = $this->api->rubric()->getById($data['rubric']);
+            $data['rubric'] = $rubric;
+        }
+        foreach ($data as $propertyName => $value) {
+            if ($object->hasProperty($propertyName)
+                && !$object->getProperty($propertyName)->getIsReadOnly()
+                && !is_array($value)
+
+            ) {
+                $object->setValue($propertyName, $value);
+            }
+        }
+
+        $this->getObjectPersister()->commit();
+
+        return $object;
     }
 }
  

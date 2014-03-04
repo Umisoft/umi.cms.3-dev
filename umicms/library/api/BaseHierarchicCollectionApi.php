@@ -106,10 +106,11 @@ abstract class BaseHierarchicCollectionApi extends BaseCollectionApi
 
     /**
      * Возвращает простую иерархическую коллекцию.
+     * @internal
      * @throws UnexpectedValueException если коллекция не иерархическая
      * @return SimpleHierarchicCollection
      */
-    protected function getCollection()
+    public function getCollection()
     {
         $collection = $this->getCollectionManager()->getCollection($this->collectionName);
         if (!$collection instanceof SimpleHierarchicCollection) {
