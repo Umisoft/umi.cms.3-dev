@@ -7,8 +7,12 @@ define(['App'], function(UMI){
             columnsWidth: function(){
                 var meta = this.get('controller').get('content').meta;
                 var columnsWidthArray = [];
-                for(var i = 0; i < meta.columns.length; i++){
-                    columnsWidthArray.push(meta.columns[i].width);
+                if(!meta){
+                    throw new Error('Нет метаданных для таблицы.');
+                } else{
+                    for(var i = 0; i < meta.columns.length; i++){
+                        columnsWidthArray.push(meta.columns[i].width);
+                    }
                 }
                 return columnsWidthArray;
             }.property(),
