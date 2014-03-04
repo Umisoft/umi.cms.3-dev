@@ -53,14 +53,6 @@
     <div class="magellan-menu-holder"></div>
 {{/if}}
 
-<div class="magellan-menu s-full-height-before">
-    {{#each meta.fieldsets}}
-    <a href="#{{unbound id}}">{{legend}}</a>
-    {{/each}}
-</div>
-
-<div class="magellan-menu-holder"></div>
-
 <div class="umi-form-control-content">
     {{#with model.object as object}}
         {{#if viewSettings.form.fieldsets}}
