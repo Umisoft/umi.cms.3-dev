@@ -76,12 +76,20 @@
         {{else}}
             <fieldset>
                 {{#each model.viewSettings.form}}
-                    <label>
-                        {{title}}
-                        {{view "field" objectBinding="object" metaBinding="this"}}
-                    </label>
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <label>
+                                <span style="margin-bottom: 5px; display: inline-block;">{{title}}</span>
+                                {{view "field" objectBinding="object" metaBinding="this"}}
+                            </label>
+                        </div>
+                    </div>
                 {{/each}}
-                <a href="#" class="umi-show-popup">Попап</a>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <a href="#" class="umi-show-popup">Попап</a>
+                    </div>
+                <div>
             </fieldset>
         {{/if}}
     {{/with}}
