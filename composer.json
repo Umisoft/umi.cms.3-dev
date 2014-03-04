@@ -20,6 +20,9 @@
         "umi/framework-dev": "*",
         "symfony/form": "2.4.2"
     },
+    "require-dev":{
+        "mockery/mockery": "0.9.*"
+    },
     "repositories":[
         {
             "type": "git",
