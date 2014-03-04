@@ -1,5 +1,4 @@
 define([], function(){
-], function(){
     'use strict';
     return function(UMI){
         /**
