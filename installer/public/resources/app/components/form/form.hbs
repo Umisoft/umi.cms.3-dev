@@ -37,26 +37,35 @@
     });
 </script>
 
-
-<div class="magellan-menu s-full-height-before">
-    {{#each meta.fieldsets}}
-    <a href="#{{unbound id}}">{{legend}}</a>
-    {{/each}}
-</div>
-
-<div class="magellan-menu-holder"></div>
+{{#if viewSettings.form.fieldsets}}
+    <div class="magellan-menu s-full-height-before">
+        {{#each viewSettings.form.fieldsets}}
+            <a href="#{{unbound id}}">{{legend}}</a>
+        {{/each}}
+    </div>
+    <div class="magellan-menu-holder"></div>
+{{/if}}
 
 <div class="umi-form-control-content">
     {{#with model.object as object}}
-    {{#each meta.fieldsets}}
-    <a name="{{unbound id}}"></a>
-    <fieldset>
-        <legend><i class="icon icon-bottom umi-form-control-fieldset-toggle"></i>{{legend}}</legend>
-        {{#each fields}}
-        {{view "field" objectBinding="object" metaBinding="this"}}
-        {{/each}}
-    </fieldset>
-    {{/each}}
+        {{#if viewSettings.form.fieldsets}}
+            {{#each model.viewSettings.form.fieldsets}}
+                <a name="{{unbound id}}"></a>
+                <fieldset>
+                    <legend><i class="icon icon-bottom umi-form-control-fieldset-toggle"></i>{{legend}}</legend>
+                    {{#each fields}}
+                        {{view "field" objectBinding="object" metaBinding="this"}}
+                    {{/each}}
+                </fieldset>
+            {{/each}}
+        {{else}}
+            {{#each model.viewSettings.form}}
+                <label>
+                    {{title}}
+                    {{view "field" objectBinding="object" metaBinding="this"}}
+                </label>
+            {{/each}}
+        {{/if}}
     {{/with}}
 </div>
 
