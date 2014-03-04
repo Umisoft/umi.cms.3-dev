@@ -19,14 +19,7 @@ define(['App'], function(UMI){
                 //При клике в области tree удаляем с текущего элемента класс active и добавляем класс active элементу, у которого есть потомок с active
                 //(Костыль. Ember проставляет класс active активной ссылке (тег a), а нам нужно проставлять родительскому блоку)
                 //TODO Убрать setTimeout, подумать над кешированием селекторов (DOM динамически меняется - селекторы могут стать не актуальными)
-                    setTimeout(function(){
-                        //Выполняеми после загрузки страницы
-                        $('.umi-item').has('.active').addClass('active');
 
-                        $('.umi-tree').on('mousedown', '.umi-item', function(){
-                            $('.umi-item').removeClass('active').has('.active').addClass('active');
-                        });
-                    }, 0);
 
                 //Выпадающее меню
                 $('.umi-tree').on('mousedown', '.umi-tree-drop-down-toggler', function(){
