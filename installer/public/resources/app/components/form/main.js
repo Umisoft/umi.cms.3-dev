@@ -11,8 +11,9 @@ define(['App', 'text!./form.hbs','datepicker'], function(UMI, formTpl, datepicke
         abide: 'ajax',
         actions: {
             save: function(object){
-                //console.log(object.get('title'));
-                object.save();
+                object.then(function(object){
+                    object.save();
+                });
             }
         }
     });
