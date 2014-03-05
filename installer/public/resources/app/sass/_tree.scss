@@ -93,7 +93,7 @@ body{
         }
     }
 
-    .umi-tree-expand-hover{
+    .umi-tree-expand{
         > div a {
             text-decoration: underline;
         }
@@ -117,7 +117,7 @@ body{
     }
 }
 
-.umi-tree-ghost {
+.umi-tree-ghost{
     height: rem-calc(24);
     color: #000000;
     border: none;
@@ -126,6 +126,7 @@ body{
     display: inline-block;
     cursor: default;
     position: absolute;
+    z-index: 100;
     i{
         margin: rem-calc(2 -2 2 0);
     }

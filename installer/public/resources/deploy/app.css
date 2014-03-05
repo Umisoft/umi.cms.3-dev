@@ -5369,7 +5369,7 @@ body {
     transition: background 0.2s linear; }
     .umi-tree .umi-tree-placeholder:hover, .umi-tree .umi-tree-placeholder:focus {
       background: #bacbd7; }
-  .umi-tree .umi-tree-expand-hover > div a {
+  .umi-tree .umi-tree-expand > div a {
     text-decoration: underline; }
   .umi-tree.drag-inside a, .umi-tree.drag-inside .icon, .umi-tree.drag-inside .move {
     cursor: default; }
@@ -5388,7 +5388,8 @@ body {
   font-size: 0.8125rem;
   display: inline-block;
   cursor: default;
-  position: absolute; }
+  position: absolute;
+  z-index: 100; }
   .umi-tree-ghost i {
     margin: 0.125rem -0.125rem 0.125rem 0; }
 

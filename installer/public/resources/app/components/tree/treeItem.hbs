@@ -10,9 +10,9 @@
                         <i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>
                     {{/if}}
                 </span>
-                <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document"}}></i>
+                <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document :move"}}></i>
             {{else}}
-                <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document"}}></i>
+                <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document :move"}}></i>
             {{/if}}
 
             {{#link-to "context" node.id}}
@@ -20,19 +20,19 @@
             {{/link-to}}
         {{/view}}
 
-        <ul class="button-group umi-tree-context-menu right">
-            <!--<li>-->
-            <!--<a href="#">-->
-            <!--<i class="icon white icon-ok-thin"></i>-->
-            <!--</a>-->
-            <!--</li>-->
+        <!--<ul class="button-group umi-tree-context-menu right">
+            &lt;!&ndash;<li>&ndash;&gt;
+            &lt;!&ndash;<a href="#">&ndash;&gt;
+            &lt;!&ndash;<i class="icon white icon-ok-thin"></i>&ndash;&gt;
+            &lt;!&ndash;</a>&ndash;&gt;
+            &lt;!&ndash;</li>&ndash;&gt;
         
             <li class="umi-tree-drop-down-toggler">
                 <a href="#" class="tiny button flat square s-margin-clear">
                     <i class="icon black icon-bottom"></i>
                 </a>
             </li>
-        </ul>
+        </ul>-->
 
         <script type="text/x-handlebars" id="umi-tree-menu">
             <div class="umi-tree-drop-down s-unselectable">
