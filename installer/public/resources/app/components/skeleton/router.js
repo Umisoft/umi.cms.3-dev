@@ -251,6 +251,13 @@ define([], function(){
                         return routeData;
                     });
                 }
+                // Временное решение для таблицы
+                if(transition.params.action.action === 'children'){
+                    return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
+                        routeData.viewSettings = results.settings;
+                        return routeData;
+                    });
+                }
                 return routeData;
             },
             serialize: function(routeData){

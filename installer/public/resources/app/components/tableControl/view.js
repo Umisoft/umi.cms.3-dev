@@ -5,7 +5,7 @@ define(['App'], function(UMI){
             templateName: 'tableControl',
             classNames: ['umi-table-control'],
             columnsWidth: function(){
-                var meta = this.get('controller').get('content').meta;
+                var meta = this.get('controller').get('content').viewSettings;
                 var columnsWidthArray = [];
                 if(!meta){
                     throw new Error('Нет метаданных для таблицы.');

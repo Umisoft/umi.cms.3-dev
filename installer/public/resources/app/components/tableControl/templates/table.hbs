@@ -21,7 +21,7 @@
     <div class="umi-table-control-header-center">
         <table class="umi-table-header s-unselectable">
             <tr class="umi-table-titles">
-                {{#each meta.columns}}
+                {{#each content.viewSettings.columns}}
                     <td class="umi-table-header-column">
                         <div class="umi-table-title-div">{{title}}</div>
                         <div class="umi-table-column-resizer"></div>
@@ -36,7 +36,7 @@
             </tr>
 
             <tr class="umi-table-filters">
-                {{#each meta.columns}}
+                {{#each content.viewSettings.columns}}
                     <td class="umi-table-filter-column">
                         <div class="umi-table-filter-div">
                             <div class="umi-table-filter-button umi-table-filter-button-left"><i class="icon black icon-left-thin umi-table-pin-column"></i></div>
@@ -68,7 +68,7 @@
     <div class="umi-table-control-content-left">
         <table class="umi-table-left">
             <tbody>
-                {{#each object in object.children}}
+                {{#each object in content.object.children}}
                     <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
                         <td>
                             <div class="umi-table-left-div">
@@ -85,10 +85,10 @@
     <div class="umi-table-control-content-center">
         <table cellpadding="0" class="umi-table">
             <tbody>
-                {{#each object in object.children}}
+                {{#each object in content.object.children}}
                     <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
 
-                        {{#each meta.columns}}
+                        {{#each content.viewSettings.columns}}
                         <td class="umi-table-cell-td">
                             {{view "tableCell" objectBinding="object" metaBinding="this"}}
                         </td>
