@@ -14,7 +14,10 @@ use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
+use umi\orm\selector\condition\IFieldCondition;
 use umi\orm\selector\ISelector;
+use umicms\exception\OutOfBoundsException;
+use umicms\exception\UnexpectedValueException;
 use umicms\hmvc\controller\BaseController;
 use umicms\orm\object\ICmsObject;
 
@@ -51,15 +54,9 @@ abstract class BaseRestListController extends BaseController implements IObjectP
     {
         switch($this->getRequest()->getMethod()) {
             case 'GET': {
-                $list = $this->getList();
-
-                foreach($this->getAllQueryVars() as $name => $value) {
-                    if (!strlen($value)) $value = null;
-                    $list->where($name)->equals($value);
-                }
-
                 return $this->createViewResponse(
-                    'list', [$this->getCollectionName() => $list]
+                    'list',
+                    [$this->getCollectionName() => $this->applyQueryFilters($this->getList())]
                 );
             }
             case 'PUT':
@@ -85,12 +82,13 @@ abstract class BaseRestListController extends BaseController implements IObjectP
         }
     }
 
+
     /**
      * Возвращает данные для изменения объекта.
      * @throws HttpException если не удалось получить данные
      * @return array
      */
-    private function getIncomingData()
+    protected function getIncomingData()
     {
         $inputData = file_get_contents('php://input');
         if (!$inputData) {
@@ -112,6 +110,170 @@ abstract class BaseRestListController extends BaseController implements IObjectP
 
         return $data[$this->getCollectionName()];
     }
+
+    /**
+     * Применяет фильтры к списку из GET-параметров.
+     * @param ISelector $selector
+     * @return ISelector
+     */
+    protected function applyQueryFilters(ISelector $selector)
+    {
+        foreach($this->getAllQueryVars() as $name => $value) {
+            $name = str_replace('_', '.', $name);
+            $this->applyConditionFilter($selector, $name, $value);
+        }
+
+        return $selector;
+    }
+
+    /**
+     * Применяет фильтр "равно".
+     * @param IFieldCondition $condition условие для поля фильтра
+     * @param string $value значения фильтра
+     * @return ISelector
+     */
+    protected function applyEqualsFilter(IFieldCondition $condition, $value)
+    {
+        return $condition->in(explode(',', $value));
+    }
+
+    /**
+     * Применяет фильтр "не равно".
+     * @param IFieldCondition $condition условие для поля фильтра
+     * @param string $value значения фильтра
+     * @return ISelector
+     */
+    protected function applyNotEqualsFilter(IFieldCondition $condition, $value)
+    {
+        return $condition->notIn(explode(',', $value));
+    }
+
+    /**
+     * Применяет фильтр "больше".
+     * @param IFieldCondition $condition условие для поля фильтра
+     * @param string $value значения фильтра
+     * @return ISelector
+     */
+    protected function applyMoreFilter(IFieldCondition $condition, $value)
+    {
+        return $condition->more($value);
+    }
+
+    /**
+     * Применяет фильтр "больше или равно".
+     * @param IFieldCondition $condition условие для поля фильтра
+     * @param string $value значения фильтра
+     * @return ISelector
+     */
+    protected function applyEqualsOrMoreFilter(IFieldCondition $condition, $value)
+    {
+        return $condition->equalsOrMore($value);
+    }
+
+    /**
+     * Применяет фильтр "меньше".
+     * @param IFieldCondition $condition условие для поля фильтра
+     * @param string $value значения фильтра
+     * @return ISelector
+     */
+    protected function applyLessFilter(IFieldCondition $condition, $value)
+    {
+        return $condition->less($value);
+    }
+
+    /**
+     * Применяет фильтр "меньше или равно".
+     * @param IFieldCondition $condition условие для поля фильтра
+     * @param string $value значения фильтра
+     * @return ISelector
+     */
+    protected function applyEqualsOrLessFilter(IFieldCondition $condition, $value)
+    {
+        return $condition->equalsOrLess($value);
+    }
+
+    /**
+     * Применяет фильтр "между".
+     * @param IFieldCondition $condition условие для поля фильтра
+     * @param string $value значения фильтра
+     * @throws UnexpectedValueException если невозможно определить границы фильтра
+     * @return ISelector
+     */
+    protected function applyBetweenFilter(IFieldCondition $condition, $value)
+    {
+        $values = explode(',', $value);
+
+        if (count($values) < 2) {
+            throw new UnexpectedValueException(
+                $this->translate(
+                    'Selection is not possible. For "between"  field "{field}" condition minimal and max values expected',
+                    ['field' => $condition->getField()->getName()]
+                )
+            );
+        }
+
+        return $condition->between($values[0], $values[1]);
+    }
+
+    /**
+     * Применяет фильтр "похоже".
+     * @param IFieldCondition $condition условие для поля фильтра
+     * @param string $value значения фильтра
+     * @return ISelector
+     */
+    protected function applyLikeFilter(IFieldCondition $condition, $value)
+    {
+        return $condition->like($value);
+    }
+
+    /**
+     * Применяет фильтр поля на список.
+     * @param ISelector $selector список
+     * @param string $name путь поля
+     * @param string $value информация о фильтре
+     * @throws OutOfBoundsException если не удалось определить тип фильтра
+     * @return ISelector
+     */
+    protected function applyConditionFilter(ISelector $selector, $name, $value)
+    {
+        $condition = $selector->where($name);
+        if (preg_match('|^(?P<expression>\w+)\((?P<value>.*)\)$|i', $value, $matches)) {
+            switch (strtolower($matches['expression'])) {
+                case 'notequals':
+                    return $this->applyNotEqualsFilter($condition, $matches['value']);
+                case 'equals':
+                case 'in':
+                    return $this->applyEqualsFilter($condition, $matches['value']);
+                case 'equalsorless':
+                    return $this->applyEqualsOrLessFilter($condition, $matches['value']);
+                case 'equalsormore':
+                    return $this->applyEqualsOrMoreFilter($condition, $matches['value']);
+                case 'more':
+                    return $this->applyMoreFilter($condition, $matches['value']);
+                case 'less':
+                    return $this->applyLessFilter($condition, $matches['value']);
+                case 'like':
+                    return $this->applyLikeFilter($condition, $matches['value']);
+                case 'between':
+                    return $this->applyBetweenFilter($condition, $matches['value']);
+                case 'null':
+                    return $condition->isNull();
+                case 'notnull':
+                    return $condition->notNull();
+                default:
+                    throw new OutOfBoundsException(
+                        $this->translate(
+                            'Selection is not possible. Unknown condition type for field "{field}".',
+                            ['field' => $name]
+                        )
+                    );
+            }
+        }
+
+        return $condition->equals($value);
+    }
+
+
 
 }
  

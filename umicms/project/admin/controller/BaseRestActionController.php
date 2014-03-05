@@ -90,10 +90,16 @@ abstract class BaseRestActionController extends BaseController
     protected function callAction($action)
     {
         $methodName = 'action' . ucfirst($action);
-        return $this->createViewResponse(
-            $action,
-            [$action => $this->{$methodName}()]
-        );
+        $actionResult = $this->{$methodName}();
+
+        if (!$actionResult) {
+            return $this->createResponse('', Response::HTTP_NO_CONTENT);
+        } else {
+            return $this->createViewResponse(
+                $action,
+                [$action => $actionResult]
+            );
+        }
     }
 
     /**

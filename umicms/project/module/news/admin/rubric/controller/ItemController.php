@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\news\admin\rubric\controller;
 
+use umicms\exception\RuntimeException;
 use umicms\project\admin\controller\BaseRestItemController;
 use umicms\orm\object\ICmsObject;
 use umicms\project\module\news\api\NewsPublicApi;
@@ -47,6 +48,12 @@ class ItemController extends BaseRestItemController
      */
     protected function update(ICmsObject $object, array $data)
     {
+        if (!isset($data[NewsRubric::FIELD_VERSION])) {
+            throw new RuntimeException('Cannot save object. Object version is unknown');
+        }
+
+        $object->setVersion($data[NewsRubric::FIELD_VERSION]);
+
         // TODO: forms
         foreach ($data as $propertyName => $value) {
             if ($object->hasProperty($propertyName)
