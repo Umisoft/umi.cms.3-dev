@@ -16,11 +16,6 @@ define(['App'], function(UMI){
             tagName: 'div',
             classNames: ['row', 's-full-height'],
             didInsertElement: function(){
-                //При клике в области tree удаляем с текущего элемента класс active и добавляем класс active элементу, у которого есть потомок с active
-                //(Костыль. Ember проставляет класс active активной ссылке (тег a), а нам нужно проставлять родительскому блоку)
-                //TODO Убрать setTimeout, подумать над кешированием селекторов (DOM динамически меняется - селекторы могут стать не актуальными)
-
-
                 //Выпадающее меню
                 $('.umi-tree').on('mousedown', '.umi-tree-drop-down-toggler', function(){
                     event.stopPropagation();
@@ -153,7 +148,7 @@ define(['App'], function(UMI){
 
                     $(document).on('mouseup', function(event){
                         var elem = document.elementFromPoint(event.clientX, event.clientY);
-                        var indexes = [];
+                        var siblingId = null;
                         var list = $(elem).closest('.umi-tree-list')[0];
 
                         // Удаляем обработчик события
@@ -164,11 +159,16 @@ define(['App'], function(UMI){
 
                         // Если курсор над плейсхолдером считаем что перемещение удачное
                         if(list){
-                            var parentList = placeholder.parentNode;
-                            $(parentList).children('li:not(.hide)').each(function(index){
-                                indexes[jQuery(this).data('id')] = index + 1;// Index начнется с 1
-                            });
-                            self.get('controller').send('updateSortOrder', indexes, placeholder.getAttribute('data-id'), list.getAttribute('data-parent-id'));
+                            //var parentList = placeholder.parentNode;
+                            (function findFirstSibling(el){
+                                var sibling = el.previousElementSibling;
+                                if(sibling && ($(sibling).hasClass('hide') || sibling.tagName !== 'LI')){
+                                    findFirstSibling(sibling);
+                                } else{
+                                    siblingId = sibling ? sibling.getAttribute('data-id') : null;
+                                }
+                            }(placeholder));
+                            self.get('controller').send('updateSortOrder', placeholder.getAttribute('data-id'), list.getAttribute('data-parent-id'), siblingId);
                         }
                         // Удаление плэйсхолдера
                         if(placeholder.parentNode){

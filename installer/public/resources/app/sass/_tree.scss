@@ -133,7 +133,9 @@ body{
 }
 
 // Вот тут говнокод
-.umi-tree-header {
+.umi-tree-header{
+    @include s-gradient-grey;
+    border-bottom: 1px solid #98A2AB;
     .f-dropdown {
         input {
             display: block;

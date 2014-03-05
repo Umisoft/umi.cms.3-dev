@@ -32,42 +32,32 @@ define(['App'], function(UMI){
                  * Сохранение результата drag and drop
                  * @params
                  * */
-                updateSortOrder: function(indexes, id, parentId){
-                    var type = this.get('content.firstObject').constructor.typeKey;
-                    var node = this.store.find(type, id);
-                    var parent = this.store.find(type, parentId);
-                    var self = this;
-                    var oldParent;
-                    var nodes = [];
-                    var dirtyNodes;
+                updateSortOrder: function(id, parentId, siblingId){
+                    var type = this.get('collection').type;
+                    var promises = [];
+                    var moveParams = {
+                        'object': id,
+                        'branch': parentId,
+                        'sibling': siblingId
+                    };
 
-                    Ember.RSVP.Promise.all([node, parent]).then(function(values){
-                        node = values[0];
-                        parent = values[1];
-                        oldParent = node.get('parent');
-                        /**В результате перемещения ноды находящиеся перед перемещаемым элементом должны изменить индекс*/
-                        var listNodes = self.store.all(type);
-                        for(var key in indexes){
-                            if(indexes.hasOwnProperty(key)){
-                                nodes.push(listNodes.findBy('id', key).set('index', indexes[key]));
-                            }
+                    var node = this.store.find(type, id);
+                    promises.push(node);
+                    console.log(this);
+                    /*if(parentId){
+                        var parent = this.store.find(type, parentId);
+                        promises.push(parent);
+                    }
+                    $.post('/admin/api/news/rubric/newsRubric/move', moveParams).then(
+                        function(){
+                            Ember.RSVP.Promise.all(promises).then(function(values){
+                                values[0].reload();
+                                if(parentId){
+                                    values[1].reload();
+                                }
+                            });
                         }
-                        // При перемещении ноды в другого родителя
-                        // изменим связи belongsTo и hasMany для
-                        // соответствующих нод
-                        if(parent.get('id') !== oldParent.get('id')){
-                            if(oldParent){
-                                oldParent.get('children').removeObject(node);// удаляем связь hasMany
-                            }
-                            //console.log(parent);
-                            node.set('parent', parent); // добавляем связь belongTo
-                            if(parent){
-                                parent.get('children').addObject(node); // добавляем связь hasMany
-                            }
-                        }
-                        dirtyNodes = nodes.filterBy('isDirty', true);
-                        //dirtyNodes.invoke('save');
-                    });
+                    );*/
                 }
             }
         });
