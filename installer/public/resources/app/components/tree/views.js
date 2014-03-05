@@ -62,6 +62,7 @@ define(['App'], function(UMI){
                     // Добавим плейсхолдер на место перемещаемой ноды
                     placeholder.className = 'umi-tree-placeholder';
                     placeholder.setAttribute('data-id', this.parentNode.parentNode.getAttribute('data-id'));
+                    placeholder.setAttribute('data-index', this.parentNode.parentNode.getAttribute('data-index') || 0);
                     $(draggableNode).addClass('hide');
                     placeholder = draggableNode.parentNode.insertBefore(placeholder, draggableNode);
 
@@ -159,7 +160,9 @@ define(['App'], function(UMI){
 
                         // Если курсор над плейсхолдером считаем что перемещение удачное
                         if(list){
-                            //var parentList = placeholder.parentNode;
+                            /**
+                             * Находим предыдущего соседа
+                             */
                             (function findFirstSibling(el){
                                 var sibling = el.previousElementSibling;
                                 if(sibling && ($(sibling).hasClass('hide') || sibling.tagName !== 'LI')){
@@ -168,7 +171,26 @@ define(['App'], function(UMI){
                                     siblingId = sibling ? sibling.getAttribute('data-id') : null;
                                 }
                             }(placeholder));
-                            self.get('controller').send('updateSortOrder', placeholder.getAttribute('data-id'), list.getAttribute('data-parent-id'), siblingId);
+
+                            var i;
+                            var ids = [];
+                            var children = [];
+                            var allChild = placeholder.parentNode.children;
+                            /**
+                             * Фильтр элементов списка
+                             */
+                            for(i = 0; i < allChild.length; i++){
+                                if(allChild[i].tagName === 'LI' && !$(allChild[i]).hasClass('hide')){
+                                    children.push(allChild[i]);
+                                }
+                            }
+                            for(i = 0; i < children.length; i++){
+                                if(parseInt(children[i].getAttribute('data-index'), 10) !== i){
+                                    ids.push(children[i].getAttribute('data-id'));
+                                }
+                            }
+
+                            self.get('controller').send('updateSortOrder', placeholder.getAttribute('data-id'), list.getAttribute('data-parent-id'), siblingId, ids);
                         }
                         // Удаление плэйсхолдера
                         if(placeholder.parentNode){

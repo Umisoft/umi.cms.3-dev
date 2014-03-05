@@ -172,6 +172,7 @@ define([], function(){
                          */
                         var treeControl = self.controllerFor('treeControl');
                         treeControl.set('collection', {'type': model.get('collection'), 'name': tree.displayName});
+                        treeControl.set('routeParams', transition.params);
                     }
                     /**
                      * Режимы

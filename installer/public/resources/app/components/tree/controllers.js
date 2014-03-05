@@ -3,6 +3,13 @@ define(['App'], function(UMI){
     return function(){
 
         UMI.TreeControlController = Ember.ObjectController.extend({
+            /**
+             Query params для текущего роута 'Component'
+             @property routeParams
+             @type Object
+             @default null
+             */
+            routeParams: null,
             collection: null,
             root: function(){
                 var root = Ember.Object.create(this.get('collection'));
@@ -29,41 +36,75 @@ define(['App'], function(UMI){
 
                 },
                 /**
-                 * Сохранение результата drag and drop
-                 * @params
-                 * */
-                updateSortOrder: function(id, parentId, siblingId){
+                 Сохранение результата drag and drop
+                 @method updateSortOrder
+                 @param String id ID перемещаемого объекта
+                 @param String id ID нового родителя перемещаемого объекта
+                 @param String id ID элемента после которого вставлен перемещаемый объект
+                 @param Array Массив id элементов которые в результате перемещения поменяли свой индекс
+                 */
+                updateSortOrder: function(id, parentId, siblingId, ids){
+                    var self = this;
+                    ids = ids || [];
                     var type = this.get('collection').type;
-                    var promises = [];
-                    var moveParams = {
-                        'object': id,
-                        'branch': parentId,
-                        'sibling': siblingId
-                    };
-
-                    var node = this.store.find(type, id);
-                    promises.push(node);
-                    console.log(this);
-                    /*if(parentId){
-                        var parent = this.store.find(type, parentId);
-                        promises.push(parent);
+                    var needNodes = [];
+                    needNodes.push(id);
+                    if(siblingId){
+                        needNodes.push(siblingId);
                     }
-                    $.post('/admin/api/news/rubric/newsRubric/move', moveParams).then(
-                        function(){
-                            Ember.RSVP.Promise.all(promises).then(function(values){
-                                values[0].reload();
-                                if(parentId){
-                                    values[1].reload();
+                    var parentId = node.get('parent.id');
+                    if(parentId){
+                        needNodes.push(parentId);
+                    }
+                    self.store.find(type, needNodes).then(function(models){
+                        var node = models[0];
+                        var parent = models[1];
+                        var sibling = models[2];
+
+                        var moveParams = {
+                            'object': {'id': node.get('id'), 'version': node.get('version')},
+                            //'branch': node.get('parent') ? node.get('parent').toJSON() : null,
+                            'sibling': models[1] ? {'id': models[1].get('id'), 'version': models[1].get('version')} : null
+                        };
+                        console.log();
+                        var resource = [window.UmiSettings.baseApiURL];
+                        resource.push(self.get('routeParams').module.module);
+                        resource.push(self.get('routeParams').component.component);
+                        resource.push(type);
+                        resource.push('move');
+                        resource = resource.join('/');
+
+                        $.post(resource, moveParams).then(
+                            function(){
+                                var oldParentId = node.get('parent.id');
+
+                                if(ids.indexOf(node.get('id')) === -1){
+                                    ids.push(node.get('id'));
                                 }
-                            });
-                        }
-                    );*/
+
+                                if(parentId !== oldParentId){
+                                    if(parentId){
+                                        ids.push(parentId);
+                                    }
+                                    if(oldParentId){
+                                        ids.push(oldParentId);
+                                    }
+                                }
+                                self.store.findByIds(type, ids).then(function(nodes){
+                                    nodes.invoke('reload');
+                                });
+                            }
+                        );
+                    });
                 }
             }
         });
 
         UMI.TreeItemController = Ember.ObjectController.extend({
             isLoaded: false,
+            index: function(){
+                return this.get('target').indexOf(this);
+            }.property('target.[]'),
             actions: {
                 expanded: function(){
                     this.set('isExpanded', !this.get('isExpanded'));
