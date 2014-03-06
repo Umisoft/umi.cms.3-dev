@@ -30,6 +30,7 @@ define(['App'], function(UMI){
 
                 //Скрытие выпадающего меню при клике вне его области
                 $('html').on('mousedown', function(){
+                    console.log('Это событие будет всегда вызываться, делай unbind');
                     $('.umi-tree-drop-down').remove();
                 });
 
