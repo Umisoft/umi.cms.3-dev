@@ -48,7 +48,7 @@ define([], function(){
              **/
             model: function(){
                 var self = this;
-                var baseResource = UmiSettings.baseURL + '/api/settings.json';
+                var baseResource = UmiSettings.baseURL + '/api/settings';
                 return $.getJSON(baseResource).then(function(results){
                     var result = results.result;
                     if(result.collections){
@@ -254,7 +254,7 @@ define([], function(){
                 }
                 // Временное решение для таблицы
                 if(transition.params.action.action === 'children'){
-                    return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
+                    return Ember.$.getJSON('/resources/modules/news/categories/children/resources').then(function(results){
                         routeData.viewSettings = results.settings;
                         return routeData;
                     });
