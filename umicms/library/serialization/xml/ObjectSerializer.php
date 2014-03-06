@@ -19,9 +19,10 @@ class ObjectSerializer extends BaseSerializer
     /**
      * Сериализует объект в XML.
      * @param object $object
+     * @param array $options опции сериализации
      * @throws UnexpectedValueException если передан не объект
      */
-    public function __invoke($object)
+    public function __invoke($object, array $options = [])
     {
         if (!is_object($object)) {
             throw new UnexpectedValueException($this->translate(

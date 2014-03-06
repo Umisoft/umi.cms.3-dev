@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\structure\site\controller;
 
-use umicms\hmvc\controller\BaseController;
+use umicms\project\site\controller\SitePageController;
 use umicms\exception\RuntimeException;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\StaticPage;
@@ -17,7 +17,7 @@ use umicms\project\module\structure\object\StaticPage;
 /**
  * Контроллер для вывода простой страницы.
  */
-class StaticPageController extends BaseController
+class StaticPageController extends SitePageController
 {
     /**
      * @var StructureApi $structureApi
@@ -33,18 +33,10 @@ class StaticPageController extends BaseController
      */
     public function __invoke()
     {
-        $currentElement = $this->structureApi->getCurrentElement();
-
-        if (!$currentElement instanceof StaticPage) {
-            throw new RuntimeException($this->translate(
-                'Current structure element is not static page.'
-            ));
-        }
-
         return $this->createViewResponse(
             'page',
             [
-                'page' => $currentElement
+                'page' => $this->getCurrentPage()
             ]
         );
     }

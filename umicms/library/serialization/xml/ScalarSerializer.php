@@ -18,9 +18,10 @@ class ScalarSerializer extends BaseSerializer
     /**
      * Сериализует скаляр в XML.
      * @param string $scalar
+     * @param array $options опции сериализации
      * @throws UnexpectedValueException если передан не скаляр
      */
-    public function __invoke($scalar)
+    public function __invoke($scalar, array $options = [])
     {
         if (!is_scalar($scalar)) {
             throw new UnexpectedValueException($this->translate(

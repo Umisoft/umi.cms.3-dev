@@ -107,7 +107,7 @@ class SearchIndexApi extends BaseSearchApi implements IPublicApi, IStemmingAware
             foreach ($objectList as $obj) {
                 if ($obj->getGUID() == $indexRecord->getValue('targetGuid')) {
                     $indexRecord->setValue(
-                        'content',
+                        'contents',
                         $this->normalizeIndexString($this->extractSearchableContent($obj))
                     );
                 }

@@ -20,8 +20,9 @@ class MetadataSerializer extends BaseSerializer
     /**
      * Сериализует метаданные в JSON.
      * @param Metadata $metadata
+     * @param array $options опции сериализации
      */
-    public function __invoke(Metadata $metadata)
+    public function __invoke(Metadata $metadata, array $options = [])
     {
         $this->getJsonWriter()->startElement('fields');
         $this->delegate(array_values($metadata->getFields()));

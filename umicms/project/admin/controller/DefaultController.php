@@ -48,7 +48,7 @@ class DefaultController extends BaseController
         $response = $this->createViewResponse(
             'layout',
             [
-                'content' => $this->response->getContent(),
+                'contents' => $this->response->getContent(),
                 'baseUrl' => $this->getContext()->getBaseUrl(),
                 'baseApiUrl' => $this->getContext()->getBaseUrl() . $this->getComponent()->getRouter()->assemble('api'),
                 'authenticated' => $this->api->isAuthenticated()

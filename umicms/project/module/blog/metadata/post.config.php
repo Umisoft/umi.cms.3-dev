@@ -58,7 +58,7 @@ return [
         'metaTitle'             => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
         'metaKeywords'          => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
         'metaDescription'       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
-        'content'               => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
+        'contents'               => ['type' => IField::TYPE_TEXT, 'columnName' => 'contents'],
         'announcement'          => ['type' => IField::TYPE_TEXT, 'columnName' => 'announcement'],
         'category'              => [
             'type'       => IField::TYPE_BELONGS_TO,
@@ -100,7 +100,7 @@ return [
                 'metaKeywords',
                 'metaDescription',
                 'announcement',
-                'content',
+                'contents',
                 'tags',
                 'date'
             ]

@@ -8,6 +8,8 @@
 
 namespace umicms\project\site;
 
+use SplDoublyLinkedList;
+use SplStack;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\IHttpAware;
@@ -16,9 +18,10 @@ use umi\http\Response;
 use umi\http\THttpAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
-use umicms\hmvc\component\SiteComponent;
-use umicms\project\config\ISiteSettingsAware;
-use umicms\project\config\TSiteSettingsAware;
+use umicms\project\site\callstack\IPageCallStackAware;
+use umicms\project\site\component\SiteComponent;
+use umicms\project\site\config\ISiteSettingsAware;
+use umicms\project\site\config\TSiteSettingsAware;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\TSerializationAware;
@@ -54,6 +57,10 @@ class SiteApplication extends SiteComponent implements IHttpAware, IToolkitAware
      * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
      */
     protected $supportedRequestPostfixes = ['json', 'xml'];
+    /**
+     * @var SplStack $pageCallStack стек вызова страниц
+     */
+    protected $pageCallStack;
 
     /**
      * {@inheritdoc}
@@ -64,6 +71,19 @@ class SiteApplication extends SiteComponent implements IHttpAware, IToolkitAware
         parent::__construct($name, $path, $options, $structureApi);
 
         $this->registerSiteSettings();
+        $this->registerPageCallStack();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function onDispatchRequest(IDispatchContext $context, Request $request)
+    {
+        while (!$this->pageCallStack->isEmpty()) {
+            $this->pageCallStack->pop();
+        }
+
+        return parent::onDispatchRequest($context, $request);
     }
 
     /**
@@ -161,8 +181,7 @@ class SiteApplication extends SiteComponent implements IHttpAware, IToolkitAware
      */
     protected function processDefaultPageRedirect(IDispatchContext $context)
     {
-        $currentElement = $this->structureApi->getCurrentElement();
-        if ($currentElement->getGUID() === $this->getSiteDefaultPageGuid()) {
+        if ($this->hasCurrentPage() && $this->getCurrentPage()->getGUID() === $this->getSiteDefaultPageGuid()) {
 
             $response = $this->createHttpResponse();
             $response->headers->set('Location', $context->getBaseUrl());
@@ -184,13 +203,34 @@ class SiteApplication extends SiteComponent implements IHttpAware, IToolkitAware
 
         $this->getToolkit()
             ->registerAwareInterface(
-            'umicms\project\config\ISiteSettingsAware',
+            'umicms\project\site\config\ISiteSettingsAware',
             function ($object) {
                 if ($object instanceof ISiteSettingsAware) {
                     $object->setSiteSettings($this->getSettings());
                 }
             }
         );
+    }
+
+    /**
+     * Регистрирует стек вызова страниц.
+     */
+    protected function registerPageCallStack()
+    {
+        $this->pageCallStack = new SplStack();
+        $this->pageCallStack->setIteratorMode(SplDoublyLinkedList::IT_MODE_LIFO);
+
+        $this->setPageCallStack($this->pageCallStack);
+
+        $this->getToolkit()
+            ->registerAwareInterface(
+                'umicms\project\site\callstack\IPageCallStackAware',
+                function ($object) {
+                    if ($object instanceof IPageCallStackAware) {
+                        $object->setPageCallStack($this->pageCallStack);
+                    }
+                }
+            );
     }
 
 }

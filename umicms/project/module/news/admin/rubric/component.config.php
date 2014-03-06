@@ -9,11 +9,11 @@
 namespace umicms\project\module\news\admin\rubric;
 
 use umi\route\IRouteFactory;
-use umicms\hmvc\component\AdminComponent;
+use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\AdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
     AdminComponent::OPTION_SETTINGS => [
         'controls' => [
@@ -49,7 +49,7 @@ return [
                 'tree' => [
                     'controls' => ['tree']
                 ],
-                'content' => [
+                'contents' => [
                     'controls' => ['filter', 'children']
                 ]
             ],
@@ -58,7 +58,7 @@ return [
                     'controls' => ['tree'],
                     'actions' => ['delete', 'changeActivity']
                 ],
-                'content' => [
+                'contents' => [
                     'controls' => ['form', 'children']
                 ]
             ]

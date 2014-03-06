@@ -105,10 +105,11 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
     /**
      * Запускает вложенную сериализацию
      * @param $object
+     * @param array $options опции сериализации
      */
-    protected function delegate($object) {
+    protected function delegate($object, array $options = []) {
         $serializer = $this->getSerializer(ISerializerFactory::TYPE_XML, $object);
-        $serializer($object);
+        $serializer($object, $options);
     }
 
 }

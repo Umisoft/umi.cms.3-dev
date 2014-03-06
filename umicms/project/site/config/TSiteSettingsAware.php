@@ -6,7 +6,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\config;
+namespace umicms\project\site\config;
 
 use umi\config\entity\IConfig;
 use umicms\exception\RequiredDependencyException;

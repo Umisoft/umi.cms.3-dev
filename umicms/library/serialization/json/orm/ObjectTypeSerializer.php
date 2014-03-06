@@ -22,8 +22,9 @@ class ObjectTypeSerializer extends BaseSerializer
     /**
      * Сериализует тип в JSON.
      * @param ObjectType $objectType
+     * @param array $options опции сериализации
      */
-    public function __invoke(ObjectType $objectType)
+    public function __invoke(ObjectType $objectType, array $options = [])
     {
         $fields = [];
         foreach ($objectType->getFields() as $field) {

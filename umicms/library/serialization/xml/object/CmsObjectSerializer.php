@@ -10,7 +10,7 @@
 namespace umicms\serialization\xml\object;
 
 use umi\orm\object\property\IProperty;
-use umicms\orm\object\CmsElement;
+use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\serialization\xml\BaseSerializer;
 
@@ -24,7 +24,7 @@ class CmsObjectSerializer extends BaseSerializer
      * @var array $attributes
      */
     protected $attributes = [
-        CmsElement::FIELD_IDENTIFY,
+        CmsHierarchicObject::FIELD_IDENTIFY,
         ICmsObject::FIELD_GUID,
         ICmsObject::FIELD_VERSION,
         ICmsObject::FIELD_ACTIVE,
@@ -35,8 +35,10 @@ class CmsObjectSerializer extends BaseSerializer
     /**
      * Сериализует CmsObject в XML.
      * @param ICmsObject $object
+     * @param array $options опции сериализации
      */
-    public function __invoke(ICmsObject $object) {
+    public function __invoke(ICmsObject $object, array $options = [])
+    {
         /**
          * @var IProperty[] $attributes
          * @var IProperty[] $properties

@@ -7,11 +7,11 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\route;
+namespace umicms\project\site\route;
 
 use umi\orm\object\IHierarchicObject;
 use umi\route\type\BaseRoute;
-use umicms\hmvc\component\SiteComponent;
+use umicms\project\site\component\SiteComponent;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\SystemPage;
 
@@ -60,7 +60,7 @@ class SiteComponentRoute extends BaseRoute
         if ($element instanceof SystemPage) {
 
             $this->params[SiteComponent::MATCH_COMPONENT] = $element->componentPath;
-            $this->params[SiteComponent::MATCH_ELEMENT] = $element;
+            $this->params[SiteComponent::MATCH_STRUCTURE_ELEMENT] = $element;
 
             return strlen($slug) + 1;
         } else {

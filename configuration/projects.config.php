@@ -1,4 +1,5 @@
 <?php
+
 use umi\route\IRouteFactory;
 
 return [

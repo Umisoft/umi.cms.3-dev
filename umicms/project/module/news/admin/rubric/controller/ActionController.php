@@ -9,7 +9,8 @@
 
 namespace umicms\project\module\news\admin\rubric\controller;
 
-use umicms\hmvc\controller\BaseRestActionController;
+use umi\orm\object\IObject;
+use umicms\project\admin\controller\BaseRestActionController;
 use umicms\project\module\news\api\NewsPublicApi;
 
 /**
@@ -45,7 +46,7 @@ class ActionController extends BaseRestActionController
      */
     protected function getModifyActions()
     {
-        return [];
+        return ['move'];
     }
 
     /**
@@ -55,6 +56,36 @@ class ActionController extends BaseRestActionController
     {
         // TODO: add form
         return $this->api->rubric()->getCollection()->getMetadata()->getBaseType();
+    }
+
+    protected function actionMove()
+    {
+
+        if ($objectInfo = $this->getPostVar('object')) {
+            $object = $this->api->rubric()->getById($objectInfo[IObject::FIELD_IDENTIFY]);
+            $object->setVersion($objectInfo[IObject::FIELD_VERSION]);
+        } else {
+            $object = null;
+        }
+
+        if ($branchInfo = $this->getPostVar('branch')) {
+            $branch = $this->api->rubric()->getById($branchInfo[IObject::FIELD_IDENTIFY]);
+            $branch->setVersion($branchInfo[IObject::FIELD_VERSION]);
+        } else {
+            $branch = null;
+        }
+
+        if ($previousSiblingInfo = $this->getPostVar('sibling')) {
+            $previousSibling = $this->api->rubric()->getById($previousSiblingInfo[IObject::FIELD_IDENTIFY]);
+            $previousSibling->setVersion($previousSiblingInfo[IObject::FIELD_VERSION]);
+        } else {
+            $previousSibling = null;
+        }
+
+
+        $this->api->rubric()->getCollection()->move($object, $branch, $previousSibling);
+
+        return '';
     }
 
 

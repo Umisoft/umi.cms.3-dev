@@ -17,12 +17,12 @@ use umicms\project\module\structure\object\Layout;
  * @property string $metaTitle заголовок окна браузера
  * @property string $metaKeywords ключевые слова
  * @property string $metaDescription описание страницы
- * @property string $content содержимое страницы
+ * @property string $contents содержимое страницы
  * @property string $h1 заголовок страницы
  * @property string $slug последней часть ЧПУ
  * @property Layout|null $layout шаблон для вывода
  */
-interface ICmsPage
+interface ICmsPage extends ICmsObject
 {
     /**
      *  Имя поля для хранения заголовка окна браузера
@@ -43,7 +43,7 @@ interface ICmsPage
     /**
      * Имя поля для хранения содержимого страницы
      */
-    const FIELD_PAGE_CONTENT = 'content';
+    const FIELD_PAGE_CONTENTS = 'contents';
     /**
      *  Имя поля для хранения шаблона
      */

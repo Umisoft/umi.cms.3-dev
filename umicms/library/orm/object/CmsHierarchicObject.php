@@ -13,14 +13,14 @@ use umi\orm\object\HierarchicObject;
 
 /**
  * Класс иерархического объекта UMI.CMS.
- *
+
  * @property string $slug последняя часть ЧПУ
  * @property int $level уровень вложенности в иерархии
  * @property int $order порядок следования в иерархии
- * @property CmsElement|null $parent родительский элемент
+ * @property CmsHierarchicObject|null $parent родительский элемент
  * @property int $childCount количество дочерних элементов
  */
-class CmsElement extends HierarchicObject implements ICmsObject
+class CmsHierarchicObject extends HierarchicObject implements ICmsObject
 {
 
 }

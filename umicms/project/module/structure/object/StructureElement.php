@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\structure\object;
 
-use umicms\orm\object\CmsElement;
+use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 
 /**
@@ -17,7 +17,7 @@ use umicms\orm\object\ICmsPage;
  *
  * @property string $componentPath путь до компонента-обработчика
  */
-abstract class StructureElement extends CmsElement implements ICmsPage
+abstract class StructureElement extends CmsHierarchicObject implements ICmsPage
 {
     /**
      *  Имя поля для хранения пути компонента-обработчика

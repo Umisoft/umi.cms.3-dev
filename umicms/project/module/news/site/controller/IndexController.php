@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\news\site\controller;
 
-use umicms\hmvc\controller\BaseController;
+use umicms\project\site\controller\SitePageController;
 use umicms\exception\RuntimeException;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\SystemPage;
@@ -17,7 +17,7 @@ use umicms\project\module\structure\object\SystemPage;
 /**
  * Контроллер отображения системной страницы модуля "Новости".
  */
-class IndexController extends BaseController
+class IndexController extends SitePageController
 {
 
     /**
@@ -34,18 +34,10 @@ class IndexController extends BaseController
      */
     public function __invoke()
     {
-        $currentElement = $this->structureApi->getCurrentElement();
-
-        if (!$currentElement instanceof SystemPage) {
-            throw new RuntimeException($this->translate(
-                'Current structure element is not system module page.'
-            ));
-        }
-
         return $this->createViewResponse(
             'index',
             [
-                'page' => $currentElement
+                'page' => $this->getCurrentPage()
             ]
         );
     }

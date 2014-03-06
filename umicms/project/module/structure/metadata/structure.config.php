@@ -115,7 +115,7 @@ return [
                                                           'columnName' => 'meta_description'
         ],
         StructureElement::FIELD_PAGE_H1               => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
-        StructureElement::FIELD_PAGE_CONTENT          => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
+        StructureElement::FIELD_PAGE_CONTENTS          => ['type' => IField::TYPE_TEXT, 'columnName' => 'contents'],
         StructureElement::FIELD_PAGE_LAYOUT           => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'layout_id',
@@ -147,7 +147,7 @@ return [
                 StructureElement::FIELD_PAGE_META_KEYWORDS,
                 StructureElement::FIELD_PAGE_META_DESCRIPTION,
                 StructureElement::FIELD_PAGE_H1,
-                StructureElement::FIELD_PAGE_CONTENT,
+                StructureElement::FIELD_PAGE_CONTENTS,
                 StructureElement::FIELD_PAGE_LAYOUT
             ]
         ],
@@ -175,7 +175,7 @@ return [
                 SystemPage::FIELD_PAGE_META_KEYWORDS,
                 SystemPage::FIELD_PAGE_META_DESCRIPTION,
                 SystemPage::FIELD_PAGE_H1,
-                SystemPage::FIELD_PAGE_CONTENT,
+                SystemPage::FIELD_PAGE_CONTENTS,
                 SystemPage::FIELD_PAGE_LAYOUT
             ]
         ],
@@ -203,7 +203,7 @@ return [
                 StaticPage::FIELD_PAGE_META_KEYWORDS,
                 StaticPage::FIELD_PAGE_META_DESCRIPTION,
                 StaticPage::FIELD_PAGE_H1,
-                StaticPage::FIELD_PAGE_CONTENT,
+                StaticPage::FIELD_PAGE_CONTENTS,
                 StaticPage::FIELD_PAGE_LAYOUT
             ]
         ]

@@ -57,7 +57,7 @@ return [
         'metaTitle'             => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
         'metaKeywords'          => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
         'metaDescription'       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
-        'content'               => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
+        'contents'               => ['type' => IField::TYPE_TEXT, 'columnName' => 'contents'],
         'slug'                  => [
             'type'       => IField::TYPE_SLUG,
             'columnName' => 'slug',
@@ -89,7 +89,7 @@ return [
                 'metaTitle',
                 'metaKeywords',
                 'metaDescription',
-                'content',
+                'contents',
                 'slug',
                 'posts'
             ]

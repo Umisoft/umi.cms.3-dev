@@ -8,8 +8,8 @@
  */
 
 namespace umicms\serialization\json\orm;
-
 use umi\orm\collection\ICollection;
+use umi\orm\metadata\field\IField;
 use umi\orm\metadata\field\relation\BelongsToRelationField;
 use umi\orm\metadata\field\relation\HasManyRelationField;
 use umi\orm\metadata\field\relation\ManyToManyRelationField;
@@ -24,23 +24,27 @@ use umicms\serialization\json\BaseSerializer;
 class CmsObjectSerializer extends BaseSerializer
 {
     /**
-     * Сериализует ICmsObject в XML.
+     * Сериализует ICmsObject в JSON.
      * @param ICmsObject $object
+     * @param array $options опции сериализации - список полей, которые должны быть отображены
      */
-    public function __invoke(ICmsObject $object)
+    public function __invoke(ICmsObject $object, array $options = [])
     {
         $properties = [];
         $links = [];
+
+        $selectedFields = isset($options['fields']) ? $options['fields'] : [];
+        $usedProperties = $this->getUsedProperties($object, $selectedFields);
+
         /**
          * @var IProperty $property
          */
-        foreach ($object->getAllProperties() as $property) {
+        foreach ($usedProperties as $property) {
             $name = $property->getName();
             /**
              * @var mixed $field
              */
             $field = $property->getField();
-
             switch(true) {
                 case $field instanceof BelongsToRelationField: {
 
@@ -57,7 +61,6 @@ class CmsObjectSerializer extends BaseSerializer
                     break;
                 }
                 case $field instanceof HasManyRelationField: {
-
                     $targetCollection = $field->getTargetCollection();
                     if ($targetCollection instanceof IApplicationHandlersAware && $targetCollection->hasHandler('admin')) {
                         $links[$name] = $this->getCollectionLink($targetCollection, $field->getTargetFieldName(), $object->getId());
@@ -88,10 +91,33 @@ class CmsObjectSerializer extends BaseSerializer
         $this->delegate($properties);
     }
 
+    /**
+     * Возвращает список свойств объекта для отображения
+     * @param ICmsObject $object
+     * @param IField[] $fields
+     * @return IProperty[]
+     */
+    protected function getUsedProperties(ICmsObject $object, array $fields = [])
+    {
+        if (!$fields) {
+            return $object->getAllProperties();
+        }
+
+        $fields = array_merge($fields, $object->getCollection()->getForcedFieldsToLoad());
+
+        $properties = [];
+        foreach($fields as $fieldName => $field) {
+            $properties[$fieldName] = $object->getProperty($fieldName);
+        }
+
+        return $properties;
+    }
+
+    //TODO переделать
     protected function getCollectionLink(IApplicationHandlersAware $collection, $filterName, $filterValue)
     {
         $link = '/admin/api/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
-        $link .= '/' . $collection->getName() . '?' . http_build_query([$filterName => $filterValue]);
+        $link .= '/' . $collection->getName() . '?' . http_build_query(['filters' => [$filterName => $filterValue]]);
 
         return $link;
     }

@@ -17,13 +17,20 @@ class ArraySerializer extends BaseSerializer
     /**
      * Сериализует массив в JSON.
      * @param array $array
+     * @param array $options опции сериализации
      */
-    public function __invoke(array $array)
+    public function __invoke(array $array, array $options = [])
     {
-
         if (!empty($array)) {
             foreach ($array as $key => $value) {
-                $this->writeElement($key, $value);
+
+                $this->getJsonWriter()
+                    ->startElement($key);
+
+                $this->delegate($value, $options);
+
+                $this->getJsonWriter()
+                    ->endElement();
             }
         } else {
             $this->writeRaw([]);

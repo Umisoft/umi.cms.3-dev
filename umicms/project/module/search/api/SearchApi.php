@@ -190,7 +190,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
         $selectBuilder = $selectBuilder
             ->where()
             ->expr(':match', 'AGAINST', ":against")
-            ->bindExpression(':match', 'MATCH(`content`)')
+            ->bindExpression(':match', 'MATCH(`contents`)')
             ->bindExpression(
                 ':against',
                 "(" . $this->getDbCluster()

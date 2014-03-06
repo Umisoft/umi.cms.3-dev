@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\news\admin\item\controller;
 
-use umicms\hmvc\controller\BaseRestActionController;
+use umicms\project\admin\controller\BaseRestActionController;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
