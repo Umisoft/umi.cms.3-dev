@@ -45,6 +45,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     protected $usersApi;
 
+    /**
+     * @var string $testLayout
+     */
     protected $testLayout;
     /**
      * @var SearchApi $searchApi
@@ -834,7 +837,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 UNIQUE KEY `search_index_guid` (`guid`),
                 UNIQUE KEY `search_index_ref_guid` (`ref_guid`),
                 KEY `search_index_type` (`type`),
-                KEY `search_index_collection_id` (`collection_id`)
+                KEY `search_index_collection_id` (`collection_id`),
+                FULLTEXT(`content`)
             ) ENGINE=MyISAM DEFAULT CHARSET=utf8
             "
         );
