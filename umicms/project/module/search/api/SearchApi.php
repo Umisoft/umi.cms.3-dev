@@ -123,7 +123,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
      */
     public function getResultFragmented($query, $content)
     {
-        $searchReParts = $this->extractSearchRegexpForms($query, $content);
+        $searchReParts = $this->extractSearchRegexpForms($query, $content, false);
         $wordsRegexp = '(' . implode("|", $searchReParts) . ')';
         return new Fragmenter($content, $wordsRegexp);
     }
@@ -165,9 +165,10 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
      *
      * @param string $word Слово для поиска
      * @param string $text Текст, в котором происходит поиск
+     * @param bool $includeExact Добавить ли проверку на точное отдельное вхождение исходного слова
      * @return array
      */
-    protected function extractSearchRegexpForms($word, $text)
+    protected function extractSearchRegexpForms($word, $text, $includeExact = true)
     {
         $baseForm = $this->getStemming()
             ->getCommonRoot($word);
@@ -184,10 +185,10 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
 
         $searchReParts = [];
         foreach ($foundWords as $foundWord) {
-            if ($foundWord == $word) {
-                $searchReParts[] = '[?.!,:…“”«»"\';_-]*' . $foundWord . '[?.!,:…“”«»"\';_-]*';
+            if ($includeExact && ($foundWord == $word)) {
+                $searchReParts[] = '[[:punct:]]*' . $foundWord . '[[:punct:]]*';
             } else {
-                $searchReParts[] = '\w*' . $foundWord . '\w*';
+                $searchReParts[] = '[[:punct:][:word:]]*' . $foundWord . '[[:punct:][:word:]]*';
             }
         }
         return $searchReParts;

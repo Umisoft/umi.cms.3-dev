@@ -30,7 +30,7 @@ class SearchIndexApiTest extends SearchTestCase
         $this->searchIndexApi = $api;
     }
     /**
-     * @return SearchApi
+     * @return SearchIndexApi
      */
     protected function getSearchIndexApi()
     {
@@ -49,7 +49,25 @@ class SearchIndexApiTest extends SearchTestCase
      */
     public function testNormalizeIndexString($raw, $expect)
     {
-        $this->assertEquals($expect, $this->getSearchIndexApi()->normalizeIndexString($raw));
+        $this->assertEquals(
+            $expect,
+            $this->getSearchIndexApi()->normalizeIndexString($raw),
+            'Wrong index text normalizing'
+        );
+    }
+
+    /**
+     * @param string $text
+     * @param string $expect
+     * @dataProvider provideFilterSearchStrings
+     */
+    public function testFilterSearchableText($text, $expect)
+    {
+        $this->assertEquals(
+            $expect,
+            $this->getSearchIndexApi()->filterSearchableText($text),
+            'Wrong search text filtering'
+        );
     }
 
     /**
@@ -79,5 +97,16 @@ class SearchIndexApiTest extends SearchTestCase
         ];
     }
 
-
+    /**
+     * @return array
+     */
+    public function provideFilterSearchStrings()
+    {
+        return [
+            [
+                'Примерная <a href="blablabla">структура </a> маркетингового исследования,<br>конечно, парадоксально детерминирует креатив',
+                'Примерная структура  маркетингового исследования, конечно, парадоксально детерминирует креатив',
+            ]
+        ];
+    }
 }
