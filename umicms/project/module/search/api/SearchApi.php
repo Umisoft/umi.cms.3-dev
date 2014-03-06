@@ -58,9 +58,6 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
             ->getColumnName();
 
         $selectBuilder = $this->buildQueryCondition(
-            $searchCollection->select()
-                ->getSelectBuilder()
-                ->select([$collectionNameCol, $refGuidCol]),
             $this->normalizeSearchString($searchString),
             $this->detectWordBases($searchString)
         );
@@ -197,35 +194,45 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
      * Собирает условие поиска в бд по полнотекстовому индексу, в зависимости от используемой бд.
      * Позволяет модифицировать это условие после формирования, с помощью подписки на событие search.buildCondition.
      *
-     * @param ISelectBuilder $select Построитель запросов, используемый для поиска
      * @param array $words Искомые слова
      * @param array $wordBases Базовые формы искомых слов для второстепенных совпадений
      * @return ISelectBuilder
      */
-    protected function buildQueryCondition(ISelectBuilder $select, $words, $wordBases)
+    protected function buildQueryCondition($words, array $wordBases)
     {
-        $contentColumnName = $this->getSearchIndexCollection()
-            ->getMetadata()
-            ->getField(SearchIndex::FIELD_CONTENT)
+        $searchMetadata = $this->getSearchIndexCollection()
+            ->getMetadata();
+        $collectionNameColumn = $searchMetadata->getField(SearchIndex::FIELD_COLLECTION_NAME)
+            ->getColumnName();
+        $refGuidColumn = $searchMetadata->getField(SearchIndex::FIELD_REF_GUID)
+            ->getColumnName();
+        $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)
             ->getColumnName();
 
         //todo mysql/postgresql/sphinx adapters
-        $dbConnection = $select->getConnection();
-        $select->select(array_merge($select->getSelectColumns(), [[':searchMatchExpression', 'searchRelevance']]))
+        $db = $this->getDbCluster()
+            ->getConnection();
+        $select = $this->getDbCluster()
+            ->select([$collectionNameColumn, $refGuidColumn, [':searchMatchExpression', 'searchRelevance']])
             ->distinct()
+            ->from(
+                $searchMetadata->getCollectionDataSource()
+                    ->getSourceName()
+            )
             ->orderBy('searchRelevance', 'DESC')
             ->where(IExpressionGroup::MODE_OR)
-            ->begin(IExpressionGroup::MODE_OR)
             ->expr(':searchMatchExpression', '>', ':minimumSearchRelevance')
-            ->expr($contentColumnName, 'LIKE', ":searchLikeCondition")
-            ->end()
             ->bindExpression(
                 ':searchMatchExpression',
-                'MATCH(' . $dbConnection->quoteIdentifier($contentColumnName)
-                . ') AGAINST ' . "(" . $dbConnection->quote($words) . ")"
+                'MATCH(' . $db->quoteIdentifier($contentColumnName) . ') AGAINST (' . $db->quote($words) . ')'
             )
-            ->bindString(':searchLikeCondition', "%" . implode('%', $wordBases) . "%")
             ->bindInt(':minimumSearchRelevance', 0);
+        if (count($wordBases)) {
+            $select->begin(IExpressionGroup::MODE_OR)
+                ->expr($contentColumnName, 'LIKE', ":searchLikeCondition")
+                ->end()
+                ->bindString(':searchLikeCondition', "%" . implode('%', $wordBases) . "%");
+        }
         $this->fireEvent('search.buildCondition', ['selectBuilder' => $select]);
         return $select;
     }
