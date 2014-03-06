@@ -62,7 +62,6 @@ define(['App'], function(UMI){
                     // Добавим плейсхолдер на место перемещаемой ноды
                     placeholder.className = 'umi-tree-placeholder';
                     placeholder.setAttribute('data-id', this.parentNode.parentNode.getAttribute('data-id'));
-                    placeholder.setAttribute('data-index', this.parentNode.parentNode.getAttribute('data-index') || 0);
                     $(draggableNode).addClass('hide');
                     placeholder = draggableNode.parentNode.insertBefore(placeholder, draggableNode);
 
@@ -149,7 +148,7 @@ define(['App'], function(UMI){
 
                     $(document).on('mouseup', function(event){
                         var elem = document.elementFromPoint(event.clientX, event.clientY);
-                        var siblingId = null;
+                        var prevSiblingId = null;
                         var list = $(elem).closest('.umi-tree-list')[0];
 
                         // Удаляем обработчик события
@@ -163,34 +162,31 @@ define(['App'], function(UMI){
                             /**
                              * Находим предыдущего соседа
                              */
-                            (function findFirstSibling(el){
+                            (function findPrevSibling(el){
                                 var sibling = el.previousElementSibling;
                                 if(sibling && ($(sibling).hasClass('hide') || sibling.tagName !== 'LI')){
-                                    findFirstSibling(sibling);
+                                    findPrevSibling(sibling);
                                 } else{
-                                    siblingId = sibling ? sibling.getAttribute('data-id') : null;
+                                    prevSiblingId = sibling ? sibling.getAttribute('data-id') : null;
                                 }
                             }(placeholder));
 
-                            var i;
-                            var ids = [];
-                            var children = [];
-                            var allChild = placeholder.parentNode.children;
+                            var nextSibling = [];
                             /**
                              * Фильтр элементов списка
                              */
-                            for(i = 0; i < allChild.length; i++){
-                                if(allChild[i].tagName === 'LI' && !$(allChild[i]).hasClass('hide')){
-                                    children.push(allChild[i]);
+                            (function findNextSibling(element){
+                                var sibling = element.nextElementSibling;
+                                if(sibling){
+                                    if($(sibling).hasClass('hide') || sibling.tagName !== 'LI'){
+                                        findNextSibling(sibling);
+                                    } else{
+                                        nextSibling.push(sibling.getAttribute('data-id'));
+                                    }
                                 }
-                            }
-                            for(i = 0; i < children.length; i++){
-                                if(parseInt(children[i].getAttribute('data-index'), 10) !== i){
-                                    ids.push(children[i].getAttribute('data-id'));
-                                }
-                            }
+                            }(placeholder));
 
-                            self.get('controller').send('updateSortOrder', placeholder.getAttribute('data-id'), list.getAttribute('data-parent-id'), siblingId, ids);
+                            self.get('controller').send('updateSortOrder', placeholder.getAttribute('data-id'), list.getAttribute('data-parent-id'), prevSiblingId, nextSibling);
                         }
                         // Удаление плэйсхолдера
                         if(placeholder.parentNode){
