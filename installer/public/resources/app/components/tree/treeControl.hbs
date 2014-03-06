@@ -1,35 +1,55 @@
-<div class="columns small-12">
+<script>
+    setTimeout(function(){
+        var formControlScroll = new IScroll('.umi-tree-wrapper', {
+            scrollX: true,
+            probeType: 3,
+            mouseWheel: true,
+            scrollbars: true,
+            bounce: false,
+            click: false,
+            freeScroll: false,
+            keyBindings: true,
+            interactiveScrollbars: true
+        });
+    }, 0);
+</script>
+
+<div class="columns small-12" style="overflow: hidden;">
+
     <div class="row s-full-height-before umi-tree-header">
-        {{#if filters}}
+        {{!#if filters}}
         <a href="#" data-dropdown="drop" class="button flat square s-margin-clear right">
             <i class="icon icon-settings"></i>
         </a>
         <ul id="drop" data-dropdown-content class="f-dropdown" data-align="right">
-            {{#each filters}}
-            <li>
-                {{#if checkbox}}
-                <label><input type="checkbox" name=name checked=checked {{action 'filter' name}}/> <span class="title">{{title}}</span></label>
-                {{/if}}
-                {{#if radio}}
-                {{#each element in elements}}
-                <div>
-                    <label>
-                        <input type="radio" name=name value=element.value checked=element.checked {{action 'filter' name
-                        element}}/> <span class="title">{{element.title}}</span>
-                    </label>
-                </div>
-                {{/each}}
-                {{/if}}
-            </li>
-            {{/each}}
+            {{!#each filters}}
+                <li>
+                    {{!#if checkbox}}
+                        <label>
+                            <input type="checkbox" name=name checked=checked {{!action 'filter' name}}/>
+                            <span class="title">{{title}}</span>
+                        </label>
+                    {{!/if}}
+                    {{!#if radio}}
+                        {{!#each element in elements}}
+                        <div>
+                            <label>
+                                <input type="radio" name=name value=element.value checked=element.checked {{!action 'filter' name element}}/> <span class="title">{{!element.title}}</span>
+                            </label>
+                        </div>
+                        {{!/each}}
+                    {{!/if}}
+                </li>
+            {{!/each}}
         </ul>
-        {{/if}}
+        {{!/if}}
     </div>
-    <div class="row s-full-height">
-        <ul class="umi-tree-list umi-tree">
+
+    <div class="row s-full-height umi-tree-wrapper">
+        <ul class="umi-tree-list umi-tree" style="margin-bottom: 34px!important;">
             <li class="root">
                 <div class="umi-item">
-                    <span class="umi-expand-hover">
+                    <span class="umi-expand">
                         <i class="icon icon-bottom"></i>
                     </span>
                     <i class="icon icon-document"></i>
@@ -43,4 +63,35 @@
             </li>
         </ul>
     </div>
+</div>
+
+<!-- TODO Заменить на тень -->
+<!--<div style="position:absolute; right: 0; width:30px; height:100%; background: linear-gradient(to right, rgba(214, 224, 233, 0) 0%, #D6E0E9 67%); background: linear-gradient(left, rgba(214, 224, 233, 0) 0%, #D6E0E9 67%);"></div>-->
+
+<div style="position:absolute; bottom: 0; width:100%; height:34px; border-top: 1px solid #D6E0E9; background: linear-gradient(to bottom, rgba(214, 224, 233, .6) 0%, #D6E0E9 120%); background: linear-gradient(top, rgba(214, 224, 233, .6) 0%, #D6E0E9 120%);">
+    {{#if filters}}
+        <a href="#" data-dropdown="drop" class="button flat square s-margin-clear right" style="padding:0; margin: 7px 10px 10px 10px!important;">
+            <i class="icon icon-settings"></i>
+        </a>
+        <ul id="drop" data-dropdown-content class="f-dropdown" data-align="right">
+            {{#each filters}}
+                <li>
+                    {{#if checkbox}}
+                        <label><input type="checkbox" name=name checked=checked {{action 'filter' name}}/> <span class="title">{{title}}</span></label>
+                    {{/if}}
+
+                    {{#if radio}}
+                        {{#each element in elements}}
+                            <div>
+                                <label>
+                                    <input type="radio" name=name value=element.value checked=element.checked {{action 'filter' name element}}/>
+                                    <span class="title">{{element.title}}</span>
+                                </label>
+                            </div>
+                        {{/each}}
+                    {{/if}}
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
 </div>

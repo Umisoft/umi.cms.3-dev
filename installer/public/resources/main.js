@@ -12,6 +12,7 @@ require.config({
         DS: 'libs/ember-data/ember-data',
         Foundation: 'deploy/foundation',
         ckEditor: 'libs/ckeditor/ckeditor',
+        datepicker: 'libs/datepicker',
         App: 'app/components/skeleton/main'
     },
 
@@ -41,7 +42,12 @@ require.config({
 
         ckEditor: {
             exports: 'ckEditor'
-        }
+        },
+
+        datepicker: {
+            deps: ['jQuery'],
+            exports: 'datepicker'
+        }    
     },
 
     packages: [
@@ -75,7 +81,7 @@ require.config({
 
 
 if(UmiSettings.login){
-    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll'], function(application){
+    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor'], function(application){
         "use strict";
         application();
     });

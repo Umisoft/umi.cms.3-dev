@@ -6,7 +6,7 @@
     }
 }
 
-body{
+body {
     image-rendering: -webkit-optimize-contrast;
 }
 
@@ -41,9 +41,8 @@ body{
         font-size: 13px;
         font-weight: bold;
         color: #575E6C;
-        &:hover{
-            color: #000000;
-            &::after{
+        &:hover {
+            &::after {
                 content: "";
                 position: absolute;
                 z-index: 20;
@@ -96,6 +95,10 @@ fieldset{
     margin: -3px -21px;
     position: absolute;
     display: block;
+}
+
+.umi-form-control-content{
+    padding-bottom: 30px;
 }
 
 legend{

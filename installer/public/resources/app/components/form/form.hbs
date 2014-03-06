@@ -1,25 +1,32 @@
+<style>
+    .calendar{
+        position: relative;
+    }
+    .datepicker{
+        position: absolute;
+        z-index: 1;
+        background: #FFFFFF;
+        border: 1px solid #6d7580;
+    }
+</style>
 <script>
-    $('legend').click(function(){
-        $(this).find('i').toggleClass("icon-top icon-bottom");
-        $(this).parent().find('div').toggle();
-    });
-
     //Функция вызывается после выполнения всего didInsertelement
-    setTimeout(function(){
-        var formControlScroll = new IScroll('.umi-table-control-content-center', {
-            scrollX: true,
-            probeType: 3,
-            mouseWheel: true,
-            scrollbars: true,
-            bounce: false,
-            click: false,
-            freeScroll: false,
-            keyBindings: true,
-            interactiveScrollbars: true
-        });
-    }, 0);
+    //TODO Добавить родителя для form минуя metamorph
+//    setTimeout(function(){
+//        var formControlScroll = new IScroll('.umi-table-control-content-center', {
+//            scrollX: true,
+//            probeType: 3,
+//            mouseWheel: true,
+//            scrollbars: true,
+//            bounce: false,
+//            click: false,
+//            freeScroll: false,
+//            keyBindings: true,
+//            interactiveScrollbars: true
+//        });
+//    }, 0);
 
-    $('.umi-form-tab').click(function(event){
+    $('.umi-form-tab').mousedown(function(event){
         event.stopPropagation();
         $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
         $(this).addClass('active');
@@ -28,11 +35,11 @@
         $('.umi-form-tab-content').eq(i).addClass('active');
     });
 
-    $('html').on('click', function(event){
+    $('html').on('mousedown', function(event){
         $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
     });
 
-    $('.umi-form-tabs-content').click(function(event){
+    $('.umi-form-tabs-content').mousedown(function(event){
         event.stopPropagation();
     });
 </script>
@@ -59,12 +66,23 @@
                 </fieldset>
             {{/each}}
         {{else}}
-            {{#each model.viewSettings.form}}
-                <label>
-                    {{title}}
-                    {{view "field" objectBinding="object" metaBinding="this"}}
-                </label>
-            {{/each}}
+            <fieldset>
+                {{#each model.viewSettings.form}}
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <label>
+                                <span style="margin-bottom: 5px; display: inline-block;">{{title}}</span>
+                                {{view "field" objectBinding="object" metaBinding="this"}}
+                            </label>
+                        </div>
+                    </div>
+                {{/each}}
+                <div class="row">
+                    <div class="large-12 columns">
+                        <a href="#" class="umi-show-popup">Попап</a>
+                    </div>
+                <div>
+            </fieldset>
         {{/if}}
     {{/with}}
 </div>
@@ -166,12 +184,50 @@
     </div>
 
     <div class="umi-form-tabs">
-        <div class="umi-form-save-button"
-        {{action 'save' model.object target="view"}}>Сохранить
+        <div class="umi-form-save-button" {{action 'save' model.object target="view"}}>Сохранить</div>
+        <div class="umi-form-tab"><i class="icon icon-pause"></i></div>
+        <div class="umi-form-tab"><i class="icon icon-6"></i></div>
+        <div class="button secondary s-margin-clear"><i class="icon icon-delete"></i></div>
     </div>
-    <div class="umi-form-tab"><i class="icon icon-pause"></i></div>
-    <div class="umi-form-tab"><i class="icon icon-6"></i></div>
-    <div class="button secondary s-margin-clear"
-    {{action 'delete' model.object target="view"}}><i class="icon icon-delete"></i></div>
 </div>
-</div>
+
+<script type="text/x-handlebars" id="umi-popup">
+    <div class="umi-popup">
+        <h1>Content</h1>
+        <p>
+            Предсерийный образец нового хот-хэтча Honda Civic Type R японцы уже показывали минувшей осенью, но до конвейерного автомобиля дело пока не дошло: на автосалоне в Женевe компания представила концепт-кар Civic Type R Concept. Японцы подчёркивают: шоу-кар — явное указание на стиль будущей конвейерной «зажигалки», которая появится в Европе в 2015 году. И, конечно, уже можно делать первые выводы о её начинке.
+        </p>
+        <p>
+            Расширенные крылья концепта вмещают 20-дюймовые колёсные диски, а воздуховоды спроектированы с прицелом на лучшее охлаждение тормозных механизмов.
+        </p>
+    </div>
+</script>
+
+<script>
+    $('.umi-show-popup').click(function(){
+        if($('html').hasClass('cssfilters') || $('html').hasClass('svgfilters')){
+            console.log('blur');
+            $('.umi-main-view').addClass('umi-blur');
+            $('body').append('<div class="umi-overlay"></div>');
+        }else{
+            console.log('white');
+            $('body').append('<div class="umi-overlay-white"></div>');
+        }
+
+        $('body').append(document.querySelector('#umi-popup').innerHTML);
+        var x = $(window).width()/2 - 300;
+        var y = $(window).height()/2 - 250;
+        $('.umi-popup').offset({left:x, top:y})
+    });
+
+    $('html').on('mousedown', function(event){
+        $('.umi-main-view').removeClass('umi-blur');
+        $('.umi-overlay').remove();
+        $('.umi-overlay-white').remove();
+        $('.umi-popup').remove();
+    });
+
+    $('.umi-popup').mousedown(function(event){
+        event.stopPropagation();
+    });
+</script>

@@ -1,5 +1,4 @@
-;
-(function($, window, document, undefined){
+;(function($, window, document, undefined){
     'use strict';
 
     Foundation.libs.offcanvas = {
@@ -29,34 +28,37 @@
             });
         },
 
-        reflow: function(){
+            reflow: function(){
         }
     };
-}(jQuery, this, this.document));
 
+$(document).ready(function(){
+    $('.umi-divider').on('mousedown', function(event){
+        console.log('umi-divider');
+        var $that = $(this);
+        $('html').addClass('s-unselectable');
 
-$('.umi-divider').on('mousedown', function(event){
-    var $that = $(this);
-    $('html').addClass('s-unselectable');
+        $('html').on('mousemove', function(event){
+            event.preventDefault();
+            if(event.pageX > 0 && event.pageX < $(window).width() / 2){
+                $that.offset({"left": event.pageX - 5});
+                $('.left-off-canvas-menu').width(event.pageX);
+                $('.off-canvas-wrap.move-right').width('calc(100% - ' + event.pageX + 'px)');
+                $('.inner-wrap').css({"-webkit-transform": 'translate3d(' + event.pageX + 'px, 0, 0)'});
+            }
+        });
 
-    $('html').on('mousemove', function(event){
-        event.preventDefault();
-        if(event.pageX > 0 && event.pageX < $(window).width() / 2){
-            $that.offset({"left": event.pageX - 5});
-            $('.left-off-canvas-menu').width(event.pageX);
-            $('.off-canvas-wrap.move-right').width('calc(100% - ' + event.pageX + 'px)');
-            $('.inner-wrap').css({"-webkit-transform": 'translate3d(' + event.pageX + 'px, 0, 0)'});
-        }
-    });
-
-    $('html').on('mouseup', function(event){
-        if(event.pageX < 100){
-            $that.offset({"left": 0});
-            $('.left-off-canvas-menu').width(0);
-            $('.off-canvas-wrap.move-right').width('calc(100% - ' + 0 + 'px)');
-            $('.inner-wrap').css({"-webkit-transform": 'translate3d(' + 0 + 'px, 0, 0)'});
-        }
-        $('html').off('mousemove');
-        $('html').removeClass('s-unselectable');
+        $('html').on('mouseup', function(event){
+            if(event.pageX < 100){
+                $that.offset({"left": 0});
+                $('.left-off-canvas-menu').width(0);
+                $('.off-canvas-wrap.move-right').width('calc(100% - ' + 0 + 'px)');
+                $('.inner-wrap').css({"-webkit-transform": 'translate3d(' + 0 + 'px, 0, 0)'});
+            }
+            $('html').off('mousemove');
+            $('html').removeClass('s-unselectable');
+        });
     });
 });
+
+}(jQuery, this, this.document));

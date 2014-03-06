@@ -201,10 +201,10 @@ define([], function(){
                 return modes.findBy('name', params.action);
             },
             redirect: function(model, transition){
-               if(transition.targetName === this.routeName + '.index'){
-                   var self = this;
-                   var contextId = this.controllerFor('component').get('selectedContext');
-                   return self.transitionTo('context', contextId);
+                if(transition.targetName === this.routeName + '.index'){
+                    var self = this;
+                    var contextId = this.controllerFor('component').get('selectedContext');
+                    return self.transitionTo('context', contextId);
                 }
             },
             serialize: function(model){
@@ -251,6 +251,13 @@ define([], function(){
                         return routeData;
                     });
                 }
+                // Временное решение для таблицы
+                if(transition.params.action.action === 'children'){
+                    return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
+                        routeData.viewSettings = results.settings;
+                        return routeData;
+                    });
+                }
                 return routeData;
             },
             serialize: function(routeData){
@@ -266,7 +273,7 @@ define([], function(){
 
         UMI.SearchRoute = Ember.Route.extend({
             model: function(params){
-               console.log(params);
+                console.log(params);
             }
         });
     };

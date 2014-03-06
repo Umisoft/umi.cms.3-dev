@@ -719,7 +719,7 @@ meta.foundation-mq-topbar {
   width: 100%; }
 
 .left-off-canvas-menu, .right-off-canvas-menu {
-  width: 250px;
+  width: 255px;
   top: 0;
   bottom: 0;
   height: 100%;
@@ -845,10 +845,10 @@ ul.off-canvas-list {
     border-bottom: 1px solid #c5d4e0; }
 
 .move-right > .inner-wrap {
-  -webkit-transform: translate3d(250px, 0, 0);
-  -ms-transform: translate3d(250px, 0, 0);
-  -o-transform: translate3d(250px, 0, 0);
-  transform: translate3d(250px, 0, 0); }
+  -webkit-transform: translate3d(255px, 0, 0);
+  -ms-transform: translate3d(255px, 0, 0);
+  -o-transform: translate3d(255px, 0, 0);
+  transform: translate3d(255px, 0, 0); }
 .move-right a.exit-off-canvas {
   -webkit-transition: background 300ms ease;
   -o-transition: background 300ms ease;
@@ -868,10 +868,10 @@ ul.off-canvas-list {
       background: rgba(255, 255, 255, 0.05); } }
 
 .move-left > .inner-wrap {
-  -webkit-transform: translate3d(-250px, 0, 0);
-  -ms-transform: translate3d(-250px, 0, 0);
-  -o-transform: translate3d(-250px, 0, 0);
-  transform: translate3d(-250px, 0, 0); }
+  -webkit-transform: translate3d(-255px, 0, 0);
+  -ms-transform: translate3d(-255px, 0, 0);
+  -o-transform: translate3d(-255px, 0, 0);
+  transform: translate3d(-255px, 0, 0); }
 .move-left a.exit-off-canvas {
   -webkit-transition: background 300ms ease;
   -o-transition: background 300ms ease;
@@ -891,13 +891,13 @@ ul.off-canvas-list {
       background: rgba(255, 255, 255, 0.05); } }
 
 .lt-ie10 .left-off-canvas-menu {
-  left: -250px; }
+  left: -255px; }
 .lt-ie10 .right-off-canvas-menu {
-  right: -250px; }
+  right: -255px; }
 .lt-ie10 .move-left > .inner-wrap {
-  right: 250px; }
+  right: 255px; }
 .lt-ie10 .move-right > .inner-wrap {
-  left: 250px; }
+  left: 255px; }
 
 .switch {
   position: relative;
@@ -4371,6 +4371,97 @@ ul.pagination {
   .button .icon, button .icon {
     vertical-align: middle; }
 
+input[type="date"], input[type="number"], input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"] {
+  height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+  border-radius: 2px;
+  font-size: 13px;
+  max-width: 400px; }
+
+textarea {
+  border-radius: 2px;
+  font-size: 13px;
+  width: 400px;
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none; }
+
+.umi-input-wrapper-date {
+  position: relative;
+  height: 32px;
+  border-radius: 2px;
+  font-size: 13px;
+  background: #FFFFFF;
+  border: 1px solid #d3d7da;
+  padding-right: 30px;
+  margin-right: 25px;
+  margin-bottom: 1rem;
+  max-width: 400px; }
+  .umi-input-wrapper-date input {
+    border: none !important;
+    box-shadow: none !important;
+    background: #FFFFFF !important; }
+    .umi-input-wrapper-date input:hover {
+      border: none !important;
+      box-shadow: none !important; }
+    .umi-input-wrapper-date input:active {
+      border: none !important;
+      box-shadow: none !important;
+      background: #FFFFFF !important; }
+  .umi-input-wrapper-date i {
+    position: absolute;
+    top: 6px;
+    right: 8px; }
+
+.umi-input-wrapper-number {
+  position: relative;
+  height: 32px;
+  border-radius: 2px;
+  font-size: 13px;
+  background: #FFFFFF;
+  border: 1px solid #d3d7da;
+  padding-right: 30px;
+  margin-right: 25px;
+  max-width: 400px; }
+  .umi-input-wrapper-number i {
+    position: absolute;
+    top: 6px;
+    right: 8px; }
+
+@-moz-document url-prefix() {
+  .umi-input-wrapper-file input {
+    position: relative;
+    top: -1px; } }
+
+.umi-input-wrapper-file {
+  position: relative;
+  height: 32px;
+  border-radius: 2px;
+  font-size: 13px;
+  line-height: 32px;
+  background: #FFFFFF;
+  border: 1px solid #d3d7da;
+  padding: 0 30px 0 5px;
+  margin-right: 25px;
+  margin-bottom: 1rem;
+  max-width: 400px; }
+  .umi-input-wrapper-file input {
+    border: none !important;
+    box-shadow: none !important;
+    background: #FFFFFF !important; }
+    .umi-input-wrapper-file input:hover {
+      border: none !important;
+      box-shadow: none !important; }
+    .umi-input-wrapper-file input:active {
+      border: none !important;
+      box-shadow: none !important;
+      background: #FFFFFF !important; }
+  .umi-input-wrapper-file i {
+    position: absolute;
+    top: 6px;
+    right: 8px; }
+
 .animate {
   background-position: 0 0;
   position: relative;
@@ -4483,14 +4574,6 @@ ul.pagination {
     background-position: -800px 0; }
   .icon.icon-9 {
     background-position: -820px 0; }
-  .icon.icon-top {
-    background-position: -840px 0; }
-  .icon.icon-right {
-    background-position: -860px 0; }
-  .icon.icon-bottom {
-    background-position: -880px 0; }
-  .icon.icon-left {
-    background-position: -900px 0; }
   .icon.icon-exit {
     background-position: -940px 0; }
   .icon.icon-plus-thin {
@@ -4593,14 +4676,6 @@ ul.pagination {
     background-position: -800px -20px; }
   .icon.white.icon-9 {
     background-position: -820px -20px; }
-  .icon.white.icon-top {
-    background-position: -840px -20px; }
-  .icon.white.icon-right {
-    background-position: -860px -20px; }
-  .icon.white.icon-bottom {
-    background-position: -880px -20px; }
-  .icon.white.icon-left {
-    background-position: -900px -20px; }
   .icon.white.icon-exit {
     background-position: -940px -20px; }
   .icon.white.icon-plus-thin {
@@ -4703,14 +4778,6 @@ ul.pagination {
     background-position: -800px -40px; }
   .icon.black.icon-9 {
     background-position: -820px -40px; }
-  .icon.black.icon-top {
-    background-position: -840px -40px; }
-  .icon.black.icon-right {
-    background-position: -860px -40px; }
-  .icon.black.icon-bottom {
-    background-position: -880px -40px; }
-  .icon.black.icon-left {
-    background-position: -900px -40px; }
   .icon.black.icon-exit {
     background-position: -940px -40px; }
   .icon.black.icon-plus-thin {
@@ -5004,7 +5071,6 @@ body {
 
 .umi-divider {
   position: absolute;
-  left: 245px;
   z-index: 100000;
   top: -1px;
   width: 4px;
@@ -5056,13 +5122,11 @@ body {
       padding: 0.5625rem 0.8125rem;
       margin: 0.3125rem 0.125rem 0; }
 
-input.umi-mode-search {
-  margin-bottom: 0;
-  height: 27px;
-  width: 300px; }
-
 .umi-component {
   border-left: 1px solid #ADB9C5; }
+  .umi-component > div {
+    width: -webkit-calc(100% - 10px);
+    width: calc(100% - 10px); }
 
 #component {
   position: relative;
@@ -5235,12 +5299,8 @@ input.umi-mode-search {
         background: linear-gradient(top, #259cec 0%, #1282cc 100%);
         color: #FFF; }
 
-.umi-tree-header {
-  background: -webkit-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
-  background: -o-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
-  background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);
-  background: linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
-  border-bottom: 1px solid #98A2AB; }
+body {
+  color: #535E6D !important; }
 
 .umi-tree {
   padding: 0;
@@ -5248,7 +5308,7 @@ input.umi-mode-search {
   box-sizing: border-box;
   border-right: 1px solid #CCD9E2;
   margin-left: 0.3125rem;
-  margin-top: 10px;
+  margin-top: 0.5rem;
   font-size: 0.8125rem; }
   .umi-tree ul.f-dropdown {
     padding-left: 0; }
@@ -5260,46 +5320,45 @@ input.umi-mode-search {
   .umi-tree li {
     line-height: 1.5rem; }
     .umi-tree li a {
-      color: #000000; }
+      color: #535E6D; }
       .umi-tree li a.active {
         color: #259cec; }
   .umi-tree span {
     width: 1.25rem;
     height: 1.25rem; }
   .umi-tree .umi-item {
-    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
     padding-left: 20px;
-    white-space: nowrap;
-    z-index: 2; }
+    margin-right: 20px;
+    white-space: nowrap; }
     .umi-tree .umi-item.active {
       background: -webkit-linear-gradient(top, #35a9fc 0%, #0f8bd5 100%);
       background: -o-linear-gradient(top, #35a9fc 0%, #0f8bd5 100%);
+      background: linear-gradient(to bottom, #35a9fc 0%, #0f8bd5 100%);
       background: linear-gradient(top, #35a9fc 0%, #0f8bd5 100%);
+      margin-left: -10000px;
+      padding-left: 10020px;
+      margin-right: -1px;
+      padding-right: 10px;
       color: #FFFFFF; }
-    .umi-tree .umi-item:hover .icon-right, .umi-tree .umi-item:hover .icon-bottom {
-      background-position-y: -19px; }
+      .umi-tree .umi-item.active a {
+        color: #FFFFFF;
+        border-bottom: none !important; }
     .umi-tree .umi-item:hover a {
-      color: #fff;
-      border-right: 0; }
-    .umi-tree .umi-item:hover .umi-tree-context-menu {
-      display: block; }
-    .umi-tree .umi-item:hover + .hover-bg {
-      display: block; }
-  .umi-tree i {
-    margin: 0.125rem -0.125rem 0.125rem 0; }
-  .umi-tree .move {
+      text-decoration: none;
+      border-bottom: 1px solid #535E6D; }
+  .umi-tree .umi-tree-type-icon {
+    margin: 0.125rem 0 0 -0.125rem;
     cursor: move !important; }
-  .umi-tree .umi-expand-hover {
+  .umi-tree .umi-expand {
     display: inline-block;
     width: 1.25rem;
     height: 1.25rem;
     cursor: hand;
     position: absolute;
-    margin-left: 1.25rem;
-    margin-top: 0.125rem;
-    left: -20px; }
-    .umi-tree .umi-expand-hover i {
-      margin: 0; }
+    margin-left: -1.25rem;
+    margin-top: 0.125rem; }
   .umi-tree .umi-tree-placeholder {
     height: 1.5rem;
     background: #C4D2DD;
@@ -5310,71 +5369,177 @@ input.umi-mode-search {
     transition: background 0.2s linear; }
     .umi-tree .umi-tree-placeholder:hover, .umi-tree .umi-tree-placeholder:focus {
       background: #bacbd7; }
-  .umi-tree .umi-tree-expand-hover > div a {
+  .umi-tree .umi-tree-expand > div a {
     text-decoration: underline; }
   .umi-tree.drag-inside a, .umi-tree.drag-inside .icon, .umi-tree.drag-inside .move {
     cursor: default; }
   .umi-tree .umi-tree-context-menu {
-    display: none;
     position: absolute;
-    right: 0.375rem;
+    right: 0.5rem;
     margin: 0;
     padding: 0;
-    margin-top: -24px;
-    background: -webkit-linear-gradient(top, #259cec 0%, #1491e4 50%);
-    background: -o-linear-gradient(top, #259cec 0%, #1491e4 50%);
-    background: linear-gradient(to bottom, #259cec 0%, #1491e4 50%);
-    background: linear-gradient(top, #259cec 0%, #1491e4 50%); }
-  .umi-tree .hover-bg {
-    background: -webkit-linear-gradient(top, #259cec 0%, #1491e4 50%);
-    background: -o-linear-gradient(top, #259cec 0%, #1491e4 50%);
-    background: linear-gradient(to bottom, #259cec 0%, #1491e4 50%);
-    background: linear-gradient(top, #259cec 0%, #1491e4 50%);
-    position: absolute;
-    height: 24px;
-    right: 0;
-    min-width: 100%;
-    margin-left: -1000px;
-    padding-left: 1000px;
-    display: none;
-    margin-top: -24px;
-    z-index: 1; }
+    margin-top: -24px; }
 
 .umi-tree-ghost {
   height: 1.5rem;
   color: #000000;
   border: none;
-  z-index: 1000;
   line-height: 1.5rem;
   font-size: 0.8125rem;
   display: inline-block;
   cursor: default;
-  position: absolute; }
+  position: absolute;
+  z-index: 100; }
   .umi-tree-ghost i {
     margin: 0.125rem -0.125rem 0.125rem 0; }
 
-.umi-tree-header .f-dropdown input {
-  display: block;
-  margin-bottom: 0;
-  float: left;
-  margin-top: 0.3125rem; }
-.umi-tree-header .f-dropdown label {
-  margin-bottom: 0; }
-.umi-tree-header .f-dropdown li {
-  border-bottom: 1px solid #98A2AB;
-  padding: 0.3125rem 0.5rem; }
-  .umi-tree-header .f-dropdown li:last-child {
-    border-bottom: none; }
-  .umi-tree-header .f-dropdown li:hover {
-    background: #FFF; }
-  .umi-tree-header .f-dropdown li .title {
+.umi-tree-header {
+  background: -webkit-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
+  background: -o-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
+  background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);
+  background: linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
+  border-bottom: 1px solid #98A2AB; }
+  .umi-tree-header .f-dropdown input {
     display: block;
-    margin-left: 1.25rem;
-    line-height: normal; }
-  .umi-tree-header .f-dropdown li div {
-    margin-bottom: 0.3125rem; }
-    .umi-tree-header .f-dropdown li div:last-child {
-      margin-bottom: 0; }
+    margin-bottom: 0;
+    float: left;
+    margin-top: 0.3125rem; }
+  .umi-tree-header .f-dropdown label {
+    margin-bottom: 0; }
+  .umi-tree-header .f-dropdown li {
+    border-bottom: 1px solid #98A2AB;
+    padding: 0.3125rem 0.5rem; }
+    .umi-tree-header .f-dropdown li:last-child {
+      border-bottom: none; }
+    .umi-tree-header .f-dropdown li:hover {
+      background: #FFF; }
+    .umi-tree-header .f-dropdown li .title {
+      display: block;
+      margin-left: 1.25rem;
+      line-height: normal; }
+    .umi-tree-header .f-dropdown li div {
+      margin-bottom: 0.3125rem; }
+      .umi-tree-header .f-dropdown li div:last-child {
+        margin-bottom: 0; }
+
+.umi-tree-drop-down-toggler a {
+  position: relative;
+  display: block; }
+
+.umi-tree-drop-down {
+  position: absolute;
+  z-index: 1;
+  float: left;
+  width: 160px;
+  background: #FFFFFF;
+  box-shadow: 0 0px 2px 0px #7C99AC; }
+
+.umi-tree-drop-down-show-button {
+  box-shadow: 0 0px 2px 0px #7C99AC;
+  position: absolute;
+  top: -26px;
+  right: 0;
+  padding: 2px 2px 0;
+  border-bottom: none;
+  background: #FFFFFF; }
+
+.umi-tree-drop-down-shadow-hide {
+  background: #FFFFFF;
+  width: 24px;
+  height: 3px;
+  position: absolute;
+  right: 0;
+  bottom: -3px; }
+
+.umi-tree-tabs-content {
+  position: relative;
+  float: left;
+  width: 160px;
+  padding-bottom: 4px;
+  color: #535E6D; }
+
+.umi-tree-tab-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%; }
+
+.umi-tree-tab-content li {
+  padding: 0 10px;
+  height: 28px;
+  line-height: 28px;
+  cursor: pointer; }
+
+.umi-tree-tab-content li:nth-child(even) {
+  background: #E8EDEF; }
+
+.umi-tree-tab-content li:hover {
+  background: #A4DCF7; }
+
+.umi-tree-tab-content {
+  display: none;
+  position: relative;
+  float: left;
+  width: 160px;
+  height: 84px; }
+  .umi-tree-tab-content.active {
+    display: block;
+    height: 100%; }
+  .umi-tree-tab-content ul {
+    font-size: 13px; }
+
+.umi-tree-tabs {
+  width: 160px;
+  height: 35px; }
+
+.umi-tree-tab {
+  position: relative;
+  float: left;
+  padding: 6px 6px 0;
+  cursor: pointer; }
+
+.umi-tree-tab:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 32px;
+  height: 3px;
+  top: 28px;
+  left: 0;
+  background: url(img/shadows/toTopShadow.png); }
+
+.umi-tree-tab.active {
+  margin-top: -1px;
+  padding: 6px 6px 0;
+  border-top: 1px solid #BEC9D0; }
+
+.umi-tree-tab.active:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 3px;
+  height: 32px;
+  top: -1px;
+  left: -2px;
+  background: url(img/shadows/toLeftShadow.png); }
+
+.umi-tree-tab:first-of-type.active:before {
+  display: none; }
+
+.umi-tree-tab.active:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 3px;
+  height: 32px;
+  top: -1px;
+  left: auto;
+  right: -2px;
+  background: url(img/shadows/toRightShadow.png); }
+
+.umi-tree-tab:last-of-type.active:after {
+  display: none; }
 
 .umi-table-control {
   font-size: 0.8125rem;
@@ -5787,20 +5952,18 @@ body {
     font-size: 13px;
     font-weight: bold;
     color: #575E6C; }
-    .magellan-menu a:hover {
-      color: #000000; }
-      .magellan-menu a:hover::after {
-        content: "";
-        position: absolute;
-        z-index: 20;
-        float: left;
-        display: block;
-        width: 20px;
-        height: 10px;
-        left: -webkit-calc(50% - 10px);
-        left: calc(50% - 10px);
-        bottom: -10px;
-        background: url(img/shadows/arrowBottom.png); }
+    .magellan-menu a:hover::after {
+      content: "";
+      position: absolute;
+      z-index: 20;
+      float: left;
+      display: block;
+      width: 20px;
+      height: 10px;
+      left: -webkit-calc(50% - 10px);
+      left: calc(50% - 10px);
+      bottom: -10px;
+      background: url(img/shadows/arrowBottom.png); }
 
 .magellan-menu-holder {
   height: 34px; }
@@ -5830,6 +5993,9 @@ fieldset {
   margin: -3px -21px;
   position: absolute;
   display: block; }
+
+.umi-form-control-content {
+  padding-bottom: 30px; }
 
 legend {
   font-size: 0.875rem;
@@ -6014,27 +6180,235 @@ label {
     left: auto;
     right: 6px; }
 
-.qunit-container-button {
-  position: absolute;
-  z-index: 100000;
-  top: 0;
-  left: 0;
-  height: 23px;
-  background: #008000;
-  color: #FFFFFF;
-  line-height: 23px;
-  padding: 0 5px;
-  font-size: 13px;
-  border: 1px solid #2A9949; }
+input[type="checkbox"] {
+  display: none; }
 
-.qunit-container {
+input[type="checkbox"] + label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: -3px 0 0 -4px;
+  vertical-align: middle;
+  background: url(img/svg/checkbox.svg) left top no-repeat;
+  cursor: pointer; }
+
+input[type="checkbox"]:checked + label {
+  background: url(img/svg/checkbox-checked.svg) left top no-repeat; }
+
+.jdpicker_w .date_selector * {
+  width: auto;
+  height: auto;
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+  font-size: 12px; }
+
+.jdpicker_w .date_selector {
   display: none;
   position: absolute;
   z-index: 100000;
+  top: 32px;
+  right: 32px;
+  padding: 5px;
+  margin: 0;
+  width: 210px;
+  background: #FFFFFF;
+  border: 1px solid #d3d7da;
+  border-top: none;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px; }
+
+.jdpicker_w .date_selector table {
+  width: 210px;
+  margin-left: 3px; }
+
+.jdpicker_w .date_clearer {
+  color: #a00;
+  padding-left: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: sans-serif; }
+
+.jdpicker_w .date_selector_ieframe {
+  position: absolute;
+  z-index: 99999;
+  display: none; }
+
+.jdpicker_w .error_msg {
+  display: none;
+  text-align: center;
+  font-size: 0.8em;
+  color: #666; }
+
+.jdpicker_w .date_selector .nav {
+  width: 17.5em;
+  /* 7 * 2.5em */ }
+
+.jdpicker_w .date_selector .month_nav, .jdpicker_w .date_selector .year_nav {
+  margin: 0 0 3px 0;
+  padding: 0;
+  display: block;
+  position: relative;
+  text-align: center; }
+
+.jdpicker_w .date_selector .month_nav {
+  float: left;
+  width: 56%; }
+
+.jdpicker_w .date_selector .year_nav {
+  float: right;
+  width: 37%;
+  position: relative; }
+
+.jdpicker_w .date_selector .month_nav select {
+  width: 75px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  position: relative;
+  top: 1px; }
+
+.jdpicker_w .date_selector .year_nav .year_input {
+  text-align: center;
+  width: 36px;
+  border: 1px solid #ccc;
+  position: relative;
+  top: 2px; }
+
+.jdpicker_w .date_selector .month_name, .jdpicker_w .date_selector .year_name {
+  font-weight: bold;
+  line-height: 20px; }
+
+.jdpicker_w .date_selector .button {
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  line-height: 17px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  font-size: 120%;
+  overflow: hidden;
+  cursor: pointer; }
+
+.jdpicker_w .date_selector .button:hover, .jdpicker_w .date_selector .button.hover {
+  background: none;
+  color: #333;
+  cursor: pointer;
+  border-color: #ccc; }
+
+.jdpicker_w .date_selector .prev {
+  left: 0; }
+
+.jdpicker_w .date_selector .next {
+  right: 0; }
+
+.jdpicker_w .date_selector table {
+  margin: 0 auto;
+  border-spacing: 1px;
+  clear: both; }
+
+.jdpicker_w .date_selector th {
+  padding-top: 5px; }
+
+.jdpicker_w .date_selector th, .jdpicker_w .date_selector td {
+  text-align: center;
+  color: black; }
+
+.jdpicker_w .date_selector th.week_label {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 80%;
+  width: 25px; }
+
+.jdpicker_w .date_selector .week_num, .jdpicker_w .date_selector .hover .week_num, .jdpicker_w .date_selector .selected .week_num {
+  font-style: italic;
+  color: #333 !important;
+  vertical-align: bottom !important;
+  text-align: right;
+  border: none !important;
+  font-size: 70%;
+  background: #FCFCFC !important;
+  padding-right: 4px; }
+
+.jdpicker_w .date_selector td {
+  line-height: 2em;
+  text-align: center;
+  white-space: nowrap;
+  color: #003C78;
+  background: white; }
+
+.jdpicker_w .date_selector td.today {
+  background: #F6F7F8; }
+
+.jdpicker_w .date_selector td.unselected_month {
+  color: #ccc; }
+
+.jdpicker_w .date_selector td.selectable_day, .jdpicker_w .date_selector tr.selectable_week td {
+  cursor: pointer;
+  border: 1px dotted #aaa;
+  border-radius: 3px;
+  color: #333; }
+
+.jdpicker_w .date_selector td.selected, .jdpicker_w .date_selector tr.selected td {
+  background: -webkit-linear-gradient(top, #35a9fc 0%, #0f8bd5 50%);
+  background: -o-linear-gradient(top, #35a9fc 0%, #0f8bd5 50%);
+  background: linear-gradient(to bottom, #35a9fc 0%, #0f8bd5 50%);
+  font-weight: bold;
+  color: #FFFFFF;
+  border: none; }
+
+.jdpicker_w .date_selector tr.selectable_week.hover td, .jdpicker_w .date_selector td.selectable_day.hover {
+  background: #D6E0E9;
+  color: #000000; }
+
+.umi-overlay {
+  position: absolute;
+  z-index: 9000;
   width: 100%;
-  top: 24px;
+  height: 100%;
+  top: 0; }
+
+.umi-overlay-white {
+  position: absolute;
+  z-index: 9000;
+  background: #FFFFFF;
+  opacity: 0.7;
+  width: 100%;
+  height: 100%;
+  top: 0; }
+
+.umi-blur {
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+  -webkit-filter: url('/resources/deploy/filters.svg#blur');
+  filter: url('/resources/deploy/filters.svg#blur');
+  -webkit-filter: blur(4px);
+  filter: blur(4px); }
+
+.umi-popup {
+  float: left;
+  position: absolute;
+  z-index: 10000;
+  top: 300px;
   left: 0;
-  border-bottom: 10px solid rgba(0, 0, 0, 0.73); }
+  margin: 0 auto;
+  width: 600px;
+  height: 400px;
+  background: #FFFFFF;
+  box-shadow: 0 0 3px 0 #000000;
+  padding: 25px; }
+
+.iScrollIndicator {
+  background: rgba(123, 137, 156, 0.9) !important;
+  border-color: #F6F7F8; }
+
+.iScrollVerticalScrollbar {
+  top: 10px !important;
+  bottom: 10px !important; }
 
 .cke_chrome {
   border-radius: 5px;
@@ -6056,3 +6430,15 @@ label {
   background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%) !important;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px; }
+.icon-bottom { background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22%D0%A1%D0%BB%D0%BE%D0%B9_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20viewBox%3D%220%200%2020%2020%22%20enable-background%3D%22new%200%200%2020%2020%22%20xml%3Aspace%3D%22preserve%22%3E%3Cg%3E%20%3Cg%20opacity%3D%220.5%22%3E%20%20%3Cpolygon%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23FFFFFF%22%20points%3D%2210%2C13%206%2C9%2014%2C9%20%20%20%22%2F%3E%20%20%3Cdefs%3E%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%226%22%20y%3D%229%22%20width%3D%228%22%20height%3D%224%22%3E%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20%20type%3D%22matrix%22%20values%3D%22-1%200%200%200%201%20%200%20-1%200%200%201%20%200%200%20-1%200%201%20%200%200%200%201%200%22%20color-interpolation-filters%3D%22sRGB%22%20result%3D%22source%22%2F%3E%20%20%20%3C%2Ffilter%3E%20%20%3C%2Fdefs%3E%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%226%22%20y%3D%229%22%20width%3D%228%22%20height%3D%224%22%20id%3D%22SVGID_1_%22%3E%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter)%22%3E%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%2213%22%20height%3D%229%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAGCAAABlgAAAeL%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIAAoADgMBIgACEQEDEQH%2FxAB1AAEBAQAAAAAAAAAAAAAAAAAEAwYBAQAAAAAAAAAAAAAAAAAAAAAQAAMAAwAAAAAAAAAAAAAAAAADBAI0BREAAQIEBAcBAAAAAAAAAAAAAgEDABEyBCFhNAUxwRJiFCQ1RRIBAAAAAAAAAAAAAAAAAAAAAP%2FaAAwDAQACEQMRAAAAzSZsP%2F%2FaAAgBAgABBQA%2F%2F9oACAEDAAEFAD%2F%2F2gAIAQEAAQUA41SaG8%2BxWTiHW%2F%2FaAAgBAgIGPwB%2F%2F9oACAEDAgY%2FAH%2F%2F2gAIAQEBBj8AVrcLx9vCYGjpIi5cY3QfKfWyG2GRq4SkntWw9SY5x%2BTG4%2FM040U6hivt5yj%2F2Q%3D%3D%22%20transform%3D%22matrix(1%200%200%201%203.0302%206.5)%22%3E%20%20%20%20%3C%2Fimage%3E%20%20%20%3C%2Fg%3E%20%20%3C%2Fmask%3E%20%20%3Cpolygon%20opacity%3D%220.5%22%20mask%3D%22url(%23SVGID_1_)%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23FFFFFF%22%20points%3D%2210%2C13%206%2C9%2014%2C9%20%20%20%20%20%20%22%2F%3E%20%3C%2Fg%3E%20%3Cg%3E%20%20%3Cg%3E%20%20%20%3ClinearGradient%20id%3D%22SVGID_2_%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%2210%22%20y1%3D%2212%22%20x2%3D%2210%22%20y2%3D%228%22%3E%20%20%20%20%3Cstop%20%20offset%3D%220%22%20style%3D%22stop-color%3A%23576678%22%2F%3E%20%20%20%20%3Cstop%20%20offset%3D%221%22%20style%3D%22stop-color%3A%2373869E%3Bstop-opacity%3A0.6%22%2F%3E%20%20%20%3C%2FlinearGradient%3E%20%20%20%3Cpolygon%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22url(%23SVGID_2_)%22%20points%3D%2210%2C12%206%2C8%2014%2C8%20%20%20%20%22%2F%3E%20%20%20%3Cdefs%3E%20%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter_1_%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%226%22%20y%3D%228%22%20width%3D%228%22%20height%3D%224%22%3E%20%20%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20%20type%3D%22matrix%22%20values%3D%22-1%200%200%200%201%20%200%20-1%200%200%201%20%200%200%20-1%200%201%20%200%200%200%201%200%22%20color-interpolation-filters%3D%22sRGB%22%20result%3D%22source%22%2F%3E%20%20%20%20%3C%2Ffilter%3E%20%20%20%3C%2Fdefs%3E%20%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%226%22%20y%3D%228%22%20width%3D%228%22%20height%3D%224%22%20id%3D%22SVGID_3_%22%3E%20%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter_1_)%22%3E%20%20%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%2213%22%20height%3D%229%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAGCAAABlgAAAeL%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIAAoADgMBIgACEQEDEQH%2FxAB1AAEBAQAAAAAAAAAAAAAAAAAEAwYBAQAAAAAAAAAAAAAAAAAAAAAQAAMAAwAAAAAAAAAAAAAAAAADBAI0BREAAQIEBAcBAAAAAAAAAAAAAgEDABEyBCFhNAUxwRJiFCQ1RRIBAAAAAAAAAAAAAAAAAAAAAP%2FaAAwDAQACEQMRAAAAzSZsP%2F%2FaAAgBAgABBQA%2F%2F9oACAEDAAEFAD%2F%2F2gAIAQEAAQUA41SaG8%2BxWTiHW%2F%2FaAAgBAgIGPwB%2F%2F9oACAEDAgY%2FAH%2F%2F2gAIAQEBBj8AVrcLx9vCYGjpIi5cY3QfKfWyG2GRq4SkntWw9SY5x%2BTG4%2FM040U6hivt5yj%2F2Q%3D%3D%22%20transform%3D%22matrix(1%200%200%201%203.0302%205.5)%22%3E%20%20%20%20%20%3C%2Fimage%3E%20%20%20%20%3C%2Fg%3E%20%20%20%3C%2Fmask%3E%20%20%20%3Cpolygon%20opacity%3D%220.5%22%20mask%3D%22url(%23SVGID_3_)%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20points%3D%2210%2C12%206%2C8%2014%2C8%20%20%20%20%22%2F%3E%20%20%3C%2Fg%3E%20%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; }
+
+.icon-checkbox-checked { background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22%D0%A1%D0%BB%D0%BE%D0%B9_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20viewBox%3D%220%200%2020%2020%22%20enable-background%3D%22new%200%200%2020%2020%22%20xml%3Aspace%3D%22preserve%22%3E%3Cg%3E%20%3Cg%3E%20%20%3Cg%3E%20%20%20%3Cg%20opacity%3D%220.25%22%3E%20%20%20%20%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M6%2C18c-1.7%2C0-3-1.4-3-3V7c0-1.7%2C1.3-3%2C3-3h8c1.6%2C0%2C3%2C1.3%2C3%2C3v8c0%2C1.6-1.4%2C3-3%2C3H6z%22%2F%3E%20%20%20%3C%2Fg%3E%20%20%20%3ClinearGradient%20id%3D%22SVGID_1_%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%2210%22%20y1%3D%223%22%20x2%3D%2210%22%20y2%3D%2217%22%3E%20%20%20%20%3Cstop%20%20offset%3D%220%22%20style%3D%22stop-color%3A%23B4BEC6%22%2F%3E%20%20%20%20%3Cstop%20%20offset%3D%221%22%20style%3D%22stop-color%3A%23B4BEC6%3Bstop-opacity%3A0.5%22%2F%3E%20%20%20%3C%2FlinearGradient%3E%20%20%20%3Cpath%20fill%3D%22url(%23SVGID_1_)%22%20d%3D%22M6%2C17c-1.7%2C0-3-1.4-3-3V6c0-1.7%2C1.3-3%2C3-3h8c1.6%2C0%2C3%2C1.3%2C3%2C3v8c0%2C1.6-1.4%2C3-3%2C3H6z%22%2F%3E%20%20%3C%2Fg%3E%20%20%3ClinearGradient%20id%3D%22SVGID_2_%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%2210%22%20y1%3D%2215.2791%22%20x2%3D%2210%22%20y2%3D%224.8745%22%3E%20%20%20%3Cstop%20%20offset%3D%220%22%20style%3D%22stop-color%3A%23E0E4E7%22%2F%3E%20%20%20%3Cstop%20%20offset%3D%221%22%20style%3D%22stop-color%3A%23B4BEC6%22%2F%3E%20%20%3C%2FlinearGradient%3E%20%20%3Cpath%20fill%3D%22url(%23SVGID_2_)%22%20d%3D%22M6%2C16c-1.1%2C0-2-0.9-2-2V6c0-1.1%2C0.9-2%2C2-2h8c1.1%2C0%2C2%2C0.9%2C2%2C2v8c0%2C1.1-0.9%2C2-2%2C2H6z%22%2F%3E%20%20%3Cg%3E%20%20%20%3Cdefs%3E%20%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%224%22%20y%3D%224%22%20width%3D%2212%22%20height%3D%2212%22%3E%20%20%20%20%20%3CfeFlood%20%20style%3D%22flood-color%3Awhite%3Bflood-opacity%3A1%22%20result%3D%22back%22%2F%3E%20%20%20%20%20%3CfeBlend%20%20in%3D%22SourceGraphic%22%20in2%3D%22back%22%20mode%3D%22normal%22%2F%3E%20%20%20%20%3C%2Ffilter%3E%20%20%20%3C%2Fdefs%3E%20%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%224%22%20y%3D%224%22%20width%3D%2212%22%20height%3D%2212%22%20id%3D%22SVGID_3_%22%3E%20%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter)%22%3E%20%20%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%2216%22%20height%3D%2216%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAF7AAABmAAAAer%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIABEAEQMBIgACEQEDEQH%2FxABsAAEBAQAAAAAAAAAAAAAAAAAAAgcBAQAAAAAAAAAAAAAAAAAAAAAQAQEBAQAAAAAAAAAAAAAAAAUGIAARAQABBAIDAQAAAAAAAAAAAAIBESIDBABBECAhQhIBAAAAAAAAAAAAAAAAAAAAIP%2FaAAwDAQACEQMRAAAAi4GhgAA%2F%2F9oACAECAAEFAMf%2F2gAIAQMAAQUAx%2F%2FaAAgBAQABBQCQkB1h6yQDKG6QrxyR6%2BvHWHx%2F%2F9oACAECAgY%2FAB%2F%2F2gAIAQMCBj8AH%2F%2FaAAgBAQEGPwAbu6GsibNrRihUx1PMu7qjIMokk3yvqmn6nwNLdbGQNq0JRRKvXHpaTbyNhXBGKFV79f%2FZ%22%20transform%3D%22matrix(1%200%200%201%202%202)%22%3E%20%20%20%20%20%3C%2Fimage%3E%20%20%20%20%3C%2Fg%3E%20%20%20%3C%2Fmask%3E%20%20%20%3Cpath%20mask%3D%22url(%23SVGID_3_)%22%20fill%3D%22%23FFFFFF%22%20d%3D%22M6%2C16c-1.1%2C0-2-0.9-2-2V6c0-1.1%2C0.9-2%2C2-2h8c1.1%2C0%2C2%2C0.9%2C2%2C2v8c0%2C1.1-0.9%2C2-2%2C2H6z%20%20%20%20%22%2F%3E%20%20%3C%2Fg%3E%20%3C%2Fg%3E%20%20%20%3Cpolyline%20fill%3D%22none%22%20stroke%3D%22%23575E6C%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-miterlimit%3D%2210%22%20points%3D%22%20%207%2C11%209%2C13%2014%2C7%20%20%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; }
+
+.icon-checkbox { background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22%D0%A1%D0%BB%D0%BE%D0%B9_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20viewBox%3D%220%200%2020%2020%22%20enable-background%3D%22new%200%200%2020%2020%22%20xml%3Aspace%3D%22preserve%22%3E%3Cg%3E%20%3Cg%3E%20%20%3Cg%3E%20%20%20%3Cg%20opacity%3D%220.25%22%3E%20%20%20%20%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M6%2C18c-1.7%2C0-3-1.4-3-3V7c0-1.7%2C1.3-3%2C3-3h8c1.6%2C0%2C3%2C1.3%2C3%2C3v8c0%2C1.6-1.4%2C3-3%2C3H6z%22%2F%3E%20%20%20%3C%2Fg%3E%20%20%20%3ClinearGradient%20id%3D%22SVGID_1_%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%2210%22%20y1%3D%223%22%20x2%3D%2210%22%20y2%3D%2217%22%3E%20%20%20%20%3Cstop%20%20offset%3D%220%22%20style%3D%22stop-color%3A%23B4BEC6%22%2F%3E%20%20%20%20%3Cstop%20%20offset%3D%221%22%20style%3D%22stop-color%3A%23B4BEC6%3Bstop-opacity%3A0.5%22%2F%3E%20%20%20%3C%2FlinearGradient%3E%20%20%20%3Cpath%20fill%3D%22url(%23SVGID_1_)%22%20d%3D%22M6%2C17c-1.7%2C0-3-1.4-3-3V6c0-1.7%2C1.3-3%2C3-3h8c1.6%2C0%2C3%2C1.3%2C3%2C3v8c0%2C1.6-1.4%2C3-3%2C3H6z%22%2F%3E%20%20%3C%2Fg%3E%20%20%3ClinearGradient%20id%3D%22SVGID_2_%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%2210%22%20y1%3D%2215.2791%22%20x2%3D%2210%22%20y2%3D%224.8745%22%3E%20%20%20%3Cstop%20%20offset%3D%220%22%20style%3D%22stop-color%3A%23E0E4E7%22%2F%3E%20%20%20%3Cstop%20%20offset%3D%221%22%20style%3D%22stop-color%3A%23B4BEC6%22%2F%3E%20%20%3C%2FlinearGradient%3E%20%20%3Cpath%20fill%3D%22url(%23SVGID_2_)%22%20d%3D%22M6%2C16c-1.1%2C0-2-0.9-2-2V6c0-1.1%2C0.9-2%2C2-2h8c1.1%2C0%2C2%2C0.9%2C2%2C2v8c0%2C1.1-0.9%2C2-2%2C2H6z%22%2F%3E%20%20%3Cg%3E%20%20%20%3Cdefs%3E%20%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%224%22%20y%3D%224%22%20width%3D%2212%22%20height%3D%2212%22%3E%20%20%20%20%20%3CfeFlood%20%20style%3D%22flood-color%3Awhite%3Bflood-opacity%3A1%22%20result%3D%22back%22%2F%3E%20%20%20%20%20%3CfeBlend%20%20in%3D%22SourceGraphic%22%20in2%3D%22back%22%20mode%3D%22normal%22%2F%3E%20%20%20%20%3C%2Ffilter%3E%20%20%20%3C%2Fdefs%3E%20%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%224%22%20y%3D%224%22%20width%3D%2212%22%20height%3D%2212%22%20id%3D%22SVGID_3_%22%3E%20%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter)%22%3E%20%20%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%2216%22%20height%3D%2216%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAF7AAABmAAAAer%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIABEAEQMBIgACEQEDEQH%2FxABsAAEBAQAAAAAAAAAAAAAAAAAAAgcBAQAAAAAAAAAAAAAAAAAAAAAQAQEBAQAAAAAAAAAAAAAAAAUGIAARAQABBAIDAQAAAAAAAAAAAAIBESIDBABBECAhQhIBAAAAAAAAAAAAAAAAAAAAIP%2FaAAwDAQACEQMRAAAAi4GhgAA%2F%2F9oACAECAAEFAMf%2F2gAIAQMAAQUAx%2F%2FaAAgBAQABBQCQkB1h6yQDKG6QrxyR6%2BvHWHx%2F%2F9oACAECAgY%2FAB%2F%2F2gAIAQMCBj8AH%2F%2FaAAgBAQEGPwAbu6GsibNrRihUx1PMu7qjIMokk3yvqmn6nwNLdbGQNq0JRRKvXHpaTbyNhXBGKFV79f%2FZ%22%20transform%3D%22matrix(1%200%200%201%202%202)%22%3E%20%20%20%20%20%3C%2Fimage%3E%20%20%20%20%3C%2Fg%3E%20%20%20%3C%2Fmask%3E%20%20%20%3Cpath%20mask%3D%22url(%23SVGID_3_)%22%20fill%3D%22%23FFFFFF%22%20d%3D%22M6%2C16c-1.1%2C0-2-0.9-2-2V6c0-1.1%2C0.9-2%2C2-2h8c1.1%2C0%2C2%2C0.9%2C2%2C2v8c0%2C1.1-0.9%2C2-2%2C2H6z%20%20%20%20%22%2F%3E%20%20%3C%2Fg%3E%20%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; }
+
+.icon-left { background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22%D0%A1%D0%BB%D0%BE%D0%B9_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20viewBox%3D%220%200%2020%2020%22%20enable-background%3D%22new%200%200%2020%2020%22%20xml%3Aspace%3D%22preserve%22%3E%3Cg%3E%20%3Cg%20opacity%3D%220.5%22%3E%20%20%3Cpolygon%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23FFFFFF%22%20points%3D%228%2C11%2012%2C7%2012%2C15%20%20%20%22%2F%3E%20%20%3Cdefs%3E%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%227%22%20width%3D%224%22%20height%3D%228%22%3E%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20%20type%3D%22matrix%22%20values%3D%22-1%200%200%200%201%20%200%20-1%200%200%201%20%200%200%20-1%200%201%20%200%200%200%201%200%22%20color-interpolation-filters%3D%22sRGB%22%20result%3D%22source%22%2F%3E%20%20%20%3C%2Ffilter%3E%20%20%3C%2Fdefs%3E%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%227%22%20width%3D%224%22%20height%3D%228%22%20id%3D%22SVGID_1_%22%3E%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter)%22%3E%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%229%22%20height%3D%2212%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAF5AAABiQAAAbv%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIAAwACQMBIgACEQEDEQH%2FxABtAAEBAQAAAAAAAAAAAAAAAAACBAYBAQAAAAAAAAAAAAAAAAAAAAAQAAMBAQAAAAAAAAAAAAAAAAACBBATEQACAQMFAQAAAAAAAAAAAAABAhEQQROxEjJSAwQSAQAAAAAAAAAAAAAAAAAAAAD%2F2gAMAwEAAhEDEQAAAMXGif%2FaAAgBAgABBQA%2F%2F9oACAEDAAEFAD%2F%2F2gAIAQEAAQUAjiWicTpn%2F9oACAECAgY%2FAH%2F%2F2gAIAQMCBj8Af%2F%2FaAAgBAQEGPwD6PdnAwIWCXJjSjY54ndHW80%2F%2F2Q%3D%3D%22%20transform%3D%22matrix(1%200%200%201%205%205)%22%3E%20%20%20%20%3C%2Fimage%3E%20%20%20%3C%2Fg%3E%20%20%3C%2Fmask%3E%20%20%3Cpolygon%20opacity%3D%220.5%22%20mask%3D%22url(%23SVGID_1_)%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23FFFFFF%22%20points%3D%228%2C11%2012%2C7%2012%2C15%20%20%20%20%20%20%22%2F%3E%20%3C%2Fg%3E%20%3Cg%3E%20%20%3Cg%3E%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22SVGID_2_%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%2210%22%20y1%3D%2212%22%20x2%3D%2210%22%20y2%3D%228%22%20gradientTransform%3D%22matrix(4.489659e-011%201%20-1%204.489659e-011%2020%200)%22%3E%20%20%20%20%3Cstop%20%20offset%3D%220%22%20style%3D%22stop-color%3A%23576678%22%2F%3E%20%20%20%20%3Cstop%20%20offset%3D%221%22%20style%3D%22stop-color%3A%2373869E%3Bstop-opacity%3A0.6%22%2F%3E%20%20%20%3C%2FlinearGradient%3E%20%20%20%3Cpolygon%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22url(%23SVGID_2_)%22%20points%3D%228%2C10%2012%2C6%2012%2C14%20%20%20%20%22%2F%3E%20%20%20%3Cdefs%3E%20%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter_1_%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%226%22%20width%3D%224%22%20height%3D%228%22%3E%20%20%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20%20type%3D%22matrix%22%20values%3D%22-1%200%200%200%201%20%200%20-1%200%200%201%20%200%200%20-1%200%201%20%200%200%200%201%200%22%20color-interpolation-filters%3D%22sRGB%22%20result%3D%22source%22%2F%3E%20%20%20%20%3C%2Ffilter%3E%20%20%20%3C%2Fdefs%3E%20%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%226%22%20width%3D%224%22%20height%3D%228%22%20id%3D%22SVGID_3_%22%3E%20%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter_1_)%22%3E%20%20%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%229%22%20height%3D%2212%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAF5AAABiQAAAbv%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIAAwACQMBIgACEQEDEQH%2FxABtAAEBAQAAAAAAAAAAAAAAAAACBAYBAQAAAAAAAAAAAAAAAAAAAAAQAAMBAQAAAAAAAAAAAAAAAAACBBATEQACAQMFAQAAAAAAAAAAAAABAhEQQROxEjJSAwQSAQAAAAAAAAAAAAAAAAAAAAD%2F2gAMAwEAAhEDEQAAAMXGif%2FaAAgBAgABBQA%2F%2F9oACAEDAAEFAD%2F%2F2gAIAQEAAQUAjiWicTpn%2F9oACAECAgY%2FAH%2F%2F2gAIAQMCBj8Af%2F%2FaAAgBAQEGPwD6PdnAwIWCXJjSjY54ndHW80%2F%2F2Q%3D%3D%22%20transform%3D%22matrix(1%200%200%201%205%204)%22%3E%20%20%20%20%20%3C%2Fimage%3E%20%20%20%20%3C%2Fg%3E%20%20%20%3C%2Fmask%3E%20%20%20%3Cpolygon%20opacity%3D%220.5%22%20mask%3D%22url(%23SVGID_3_)%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20points%3D%228%2C10%2012%2C6%2012%2C14%20%20%20%20%22%2F%3E%20%20%3C%2Fg%3E%20%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; }
+
+.icon-right { background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22%D0%A1%D0%BB%D0%BE%D0%B9_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20viewBox%3D%220%200%2020%2020%22%20enable-background%3D%22new%200%200%2020%2020%22%20xml%3Aspace%3D%22preserve%22%3E%3Cg%3E%20%3Cg%20opacity%3D%220.5%22%3E%20%20%3Cpolygon%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23FFFFFF%22%20points%3D%2212%2C11%208%2C15%208%2C7%20%20%20%22%2F%3E%20%20%3Cdefs%3E%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%227%22%20width%3D%224%22%20height%3D%228%22%3E%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20%20type%3D%22matrix%22%20values%3D%22-1%200%200%200%201%20%200%20-1%200%200%201%20%200%200%20-1%200%201%20%200%200%200%201%200%22%20color-interpolation-filters%3D%22sRGB%22%20result%3D%22source%22%2F%3E%20%20%20%3C%2Ffilter%3E%20%20%3C%2Fdefs%3E%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%227%22%20width%3D%224%22%20height%3D%228%22%20id%3D%22SVGID_1_%22%3E%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter)%22%3E%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%229%22%20height%3D%2213%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAF8AAABjQAAAb7%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIAA0ACQMBIgACEQEDEQH%2FxABwAAEBAQAAAAAAAAAAAAAAAAACBAYBAQAAAAAAAAAAAAAAAAAAAAAQAQABBQAAAAAAAAAAAAAAAAADAhMjBAURAAAFAwUAAAAAAAAAAAAAABABEQISMQMTQWGBQgQSAQAAAAAAAAAAAAAAAAAAAAD%2F2gAMAwEAAhEDEQAAAMXGif%2FaAAgBAgABBQB%2F%2F9oACAEDAAEFAH%2F%2F2gAIAQEAAQUAi0aZeeyW3%2F%2FaAAgBAgIGPwB%2F%2F9oACAEDAgY%2FAH%2F%2F2gAIAQEBBj8Au%2BvITXWnxifYkKm4a45cSQP%2F2Q%3D%3D%22%20transform%3D%22matrix(1%200%200%201%205%205)%22%3E%20%20%20%20%3C%2Fimage%3E%20%20%20%3C%2Fg%3E%20%20%3C%2Fmask%3E%20%20%3Cpolygon%20opacity%3D%220.5%22%20mask%3D%22url(%23SVGID_1_)%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23FFFFFF%22%20points%3D%2212%2C11%208%2C15%208%2C7%20%20%20%20%20%20%22%2F%3E%20%3C%2Fg%3E%20%3Cg%3E%20%20%3Cg%3E%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22SVGID_2_%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%2210%22%20y1%3D%2212%22%20x2%3D%2210%22%20y2%3D%228%22%20gradientTransform%3D%22matrix(-4.489659e-011%20-1%201%20-4.489659e-011%200%2020)%22%3E%20%20%20%20%3Cstop%20%20offset%3D%220%22%20style%3D%22stop-color%3A%23576678%22%2F%3E%20%20%20%20%3Cstop%20%20offset%3D%221%22%20style%3D%22stop-color%3A%2373869E%3Bstop-opacity%3A0.6%22%2F%3E%20%20%20%3C%2FlinearGradient%3E%20%20%20%3Cpolygon%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22url(%23SVGID_2_)%22%20points%3D%2212%2C10%208%2C14%208%2C6%20%20%20%20%22%2F%3E%20%20%20%3Cdefs%3E%20%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter_1_%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%226%22%20width%3D%224%22%20height%3D%228%22%3E%20%20%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20%20type%3D%22matrix%22%20values%3D%22-1%200%200%200%201%20%200%20-1%200%200%201%20%200%200%20-1%200%201%20%200%200%200%201%200%22%20color-interpolation-filters%3D%22sRGB%22%20result%3D%22source%22%2F%3E%20%20%20%20%3C%2Ffilter%3E%20%20%20%3C%2Fdefs%3E%20%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%226%22%20width%3D%224%22%20height%3D%228%22%20id%3D%22SVGID_3_%22%3E%20%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter_1_)%22%3E%20%20%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%229%22%20height%3D%2213%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAF8AAABjQAAAb7%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIAA0ACQMBIgACEQEDEQH%2FxABwAAEBAQAAAAAAAAAAAAAAAAACBAYBAQAAAAAAAAAAAAAAAAAAAAAQAQABBQAAAAAAAAAAAAAAAAADAhMjBAURAAAFAwUAAAAAAAAAAAAAABABEQISMQMTQWGBQgQSAQAAAAAAAAAAAAAAAAAAAAD%2F2gAMAwEAAhEDEQAAAMXGif%2FaAAgBAgABBQB%2F%2F9oACAEDAAEFAH%2F%2F2gAIAQEAAQUAi0aZeeyW3%2F%2FaAAgBAgIGPwB%2F%2F9oACAEDAgY%2FAH%2F%2F2gAIAQEBBj8Au%2BvITXWnxifYkKm4a45cSQP%2F2Q%3D%3D%22%20transform%3D%22matrix(1%200%200%201%205%204)%22%3E%20%20%20%20%20%3C%2Fimage%3E%20%20%20%20%3C%2Fg%3E%20%20%20%3C%2Fmask%3E%20%20%20%3Cpolygon%20opacity%3D%220.5%22%20mask%3D%22url(%23SVGID_3_)%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20points%3D%2212%2C10%208%2C14%208%2C6%20%20%20%20%22%2F%3E%20%20%3C%2Fg%3E%20%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; }
+
+.icon-top { background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22%D0%A1%D0%BB%D0%BE%D0%B9_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20viewBox%3D%220%200%2020%2020%22%20enable-background%3D%22new%200%200%2020%2020%22%20xml%3Aspace%3D%22preserve%22%3E%3Cg%3E%20%3Cg%20opacity%3D%220.5%22%3E%20%20%3Cpolygon%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23FFFFFF%22%20points%3D%2210%2C9%2014%2C13%206%2C13%20%20%20%22%2F%3E%20%20%3Cdefs%3E%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%226%22%20y%3D%229%22%20width%3D%228%22%20height%3D%224%22%3E%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20%20type%3D%22matrix%22%20values%3D%22-1%200%200%200%201%20%200%20-1%200%200%201%20%200%200%20-1%200%201%20%200%200%200%201%200%22%20color-interpolation-filters%3D%22sRGB%22%20result%3D%22source%22%2F%3E%20%20%20%3C%2Ffilter%3E%20%20%3C%2Fdefs%3E%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%226%22%20y%3D%229%22%20width%3D%228%22%20height%3D%224%22%20id%3D%22SVGID_1_%22%3E%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter)%22%3E%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%2213%22%20height%3D%228%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAF8AAABjAAAAcD%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIAAgADQMBIgACEQEDEQH%2FxABwAAEBAQAAAAAAAAAAAAAAAAAAAwYBAQAAAAAAAAAAAAAAAAAAAAAQAAMAAwAAAAAAAAAAAAAAAAACBAMTFBEBAAAEBgMAAAAAAAAAAAAAAQARAhIhUXGBAxMzBBQSAQAAAAAAAAAAAAAAAAAAAAD%2F2gAMAwEAAhEDEQAAAMTMP%2F%2FaAAgBAgABBQA%2F%2F9oACAEDAAEFAD%2F%2F2gAIAQEAAQUAgSFsuubp%2F9oACAECAgY%2FAH%2F%2F2gAIAQMCBj8Af%2F%2FaAAgBAQEGPwBfe5GjjDApFV2iztfnn5JN1umcf%2F%2FZ%22%20transform%3D%22matrix(1%200%200%201%203%207)%22%3E%20%20%20%20%3C%2Fimage%3E%20%20%20%3C%2Fg%3E%20%20%3C%2Fmask%3E%20%20%3Cpolygon%20opacity%3D%220.5%22%20mask%3D%22url(%23SVGID_1_)%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23FFFFFF%22%20points%3D%2210%2C9%2014%2C13%206%2C13%20%20%20%20%20%20%22%2F%3E%20%3C%2Fg%3E%20%3Cg%3E%20%20%3Cg%3E%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22SVGID_2_%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%2210%22%20y1%3D%2212%22%20x2%3D%2210%22%20y2%3D%228%22%20gradientTransform%3D%22matrix(-1%200%200%20-1%2020%2020)%22%3E%20%20%20%20%3Cstop%20%20offset%3D%220%22%20style%3D%22stop-color%3A%23576678%22%2F%3E%20%20%20%20%3Cstop%20%20offset%3D%221%22%20style%3D%22stop-color%3A%2373869E%3Bstop-opacity%3A0.6%22%2F%3E%20%20%20%3C%2FlinearGradient%3E%20%20%20%3Cpolygon%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22url(%23SVGID_2_)%22%20points%3D%2210%2C8%2014%2C12%206%2C12%20%20%20%20%22%2F%3E%20%20%20%3Cdefs%3E%20%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter_1_%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%226%22%20y%3D%228%22%20width%3D%228%22%20height%3D%224%22%3E%20%20%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20%20type%3D%22matrix%22%20values%3D%22-1%200%200%200%201%20%200%20-1%200%200%201%20%200%200%20-1%200%201%20%200%200%200%201%200%22%20color-interpolation-filters%3D%22sRGB%22%20result%3D%22source%22%2F%3E%20%20%20%20%3C%2Ffilter%3E%20%20%20%3C%2Fdefs%3E%20%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%226%22%20y%3D%228%22%20width%3D%228%22%20height%3D%224%22%20id%3D%22SVGID_3_%22%3E%20%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter_1_)%22%3E%20%20%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%2213%22%20height%3D%228%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAF8AAABjAAAAcD%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIAAgADQMBIgACEQEDEQH%2FxABwAAEBAQAAAAAAAAAAAAAAAAAAAwYBAQAAAAAAAAAAAAAAAAAAAAAQAAMAAwAAAAAAAAAAAAAAAAACBAMTFBEBAAAEBgMAAAAAAAAAAAAAAQARAhIhUXGBAxMzBBQSAQAAAAAAAAAAAAAAAAAAAAD%2F2gAMAwEAAhEDEQAAAMTMP%2F%2FaAAgBAgABBQA%2F%2F9oACAEDAAEFAD%2F%2F2gAIAQEAAQUAgSFsuubp%2F9oACAECAgY%2FAH%2F%2F2gAIAQMCBj8Af%2F%2FaAAgBAQEGPwBfe5GjjDApFV2iztfnn5JN1umcf%2F%2FZ%22%20transform%3D%22matrix(1%200%200%201%203%206)%22%3E%20%20%20%20%20%3C%2Fimage%3E%20%20%20%20%3C%2Fg%3E%20%20%20%3C%2Fmask%3E%20%20%20%3Cpolygon%20opacity%3D%220.5%22%20mask%3D%22url(%23SVGID_3_)%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20points%3D%2210%2C8%2014%2C12%206%2C12%20%20%20%20%22%2F%3E%20%20%3C%2Fg%3E%20%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; }
+

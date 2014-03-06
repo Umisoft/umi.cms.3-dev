@@ -3,8 +3,10 @@
         <table class="umi-table-header-left s-unselectable">
             <tr class="umi-table-header-left-title">
                 <td class="umi-table-header-column-left">
-                    <div class="umi-table-title-div-left">
-                        <input type="checkbox" class="s-margin-clear"/>
+                    <div class="umi-table-title-div-left" style="padding: 0 7px 1px 10px;">
+                        <!--TODO Сделать динамический id для checkbox-->
+                        <input type="checkbox" id="checkbox-id" class="s-margin-clear" style="margin-top: -5px;" />
+                        <label for="checkbox-id"></label>
                     </div>
                 </td>
             </tr>
@@ -19,11 +21,11 @@
     <div class="umi-table-control-header-center">
         <table class="umi-table-header s-unselectable">
             <tr class="umi-table-titles">
-                {{#each meta.columns}}
-                <td class="umi-table-header-column">
-                    <div class="umi-table-title-div">{{title}}</div>
-                    <div class="umi-table-column-resizer"></div>
-                </td>
+                {{#each content.viewSettings.columns}}
+                    <td class="umi-table-header-column">
+                        <div class="umi-table-title-div">{{title}}</div>
+                        <div class="umi-table-column-resizer"></div>
+                    </td>
                 {{/each}}
                 <!-- Пустая строка над кнопкой удаления -->
                 <td class="umi-table-header-column umi-table-header-column-fixed">
@@ -34,16 +36,16 @@
             </tr>
 
             <tr class="umi-table-filters">
-                {{#each meta.columns}}
-                <td class="umi-table-filter-column">
-                    <div class="umi-table-filter-div">
-                        <div class="umi-table-filter-button umi-table-filter-button-left"><i
-                                class="icon black icon-left-thin umi-table-pin-column"></i></div>
-                        <div class="umi-table-filter-input"><input type="text" class="s-margin-clear"/></div>
-                        <div class="umi-table-filter-button umi-table-filter-button-right"><i
-                                class="icon black icon-bottom-thin umi-table-sort-column"></i></div>
-                    </div>
-                </td>
+                {{#each content.viewSettings.columns}}
+                    <td class="umi-table-filter-column">
+                        <div class="umi-table-filter-div">
+                            <div class="umi-table-filter-button umi-table-filter-button-left"><i class="icon black icon-left-thin umi-table-pin-column"></i></div>
+                            <div class="umi-table-filter-input">
+                                <input type="text" class="s-margin-clear"/>
+                            </div>
+                            <div class="umi-table-filter-button umi-table-filter-button-right"><i class="icon black icon-bottom-thin umi-table-sort-column"></i></div>
+                        </div>
+                    </td>
                 {{/each}}
 
                 <td class="umi-table-filter-column umi-icon-square">
@@ -66,15 +68,16 @@
     <div class="umi-table-control-content-left">
         <table class="umi-table-left">
             <tbody>
-            {{#each object in object.children}}
-            <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
-                <td>
-                    <div class="umi-table-left-div">
-                        {{input type="checkbox" class="s-margin-clear" action="check"}}
-                    </div>
-                </td>
-            </tr>
-            {{/each}}
+                {{#each object in content.object.children}}
+                    <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
+                        <td>
+                            <div class="umi-table-left-div">
+                                {{input type="checkbox" class="s-margin-clear" action="check" id=object.id}}
+                                <label for="{{unbound object.id}}"></label>
+                            </div>
+                        </td>
+                    </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>
@@ -82,31 +85,30 @@
     <div class="umi-table-control-content-center">
         <table cellpadding="0" class="umi-table">
             <tbody>
-            {{#each object in object.children}}
-            <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
+                {{#each object in content.object.children}}
+                    <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
 
-                {{#each meta.columns}}
-                <td class="umi-table-cell-td">
-                    {{view "tableCell" objectBinding="object" metaBinding="this"}}
-                </td>
+                        {{#each content.viewSettings.columns}}
+                        <td class="umi-table-cell-td">
+                            {{view "tableCell" objectBinding="object" metaBinding="this"}}
+                        </td>
+                        {{/each}}
+
+                        <td class="umi-table-cell-td">
+                            <div class="umi-table-cell-div">
+                                <a href="#" class="umi-table-remove-button" data-object-id="{{unbound object.id}}"><i class="icon icon-delete"></i></a>
+                            </div>
+                        </td>
+                        <td class="umi-table-empty-column"></td>
+                    </tr>
+                {{else}}
+                    <!-- TODO Допилить дизайн-->
+                    <tr>
+                        <td class="umi-table-empty-result">
+                            Нет записей
+                        </td>
+                    </tr>
                 {{/each}}
-
-                <td class="umi-table-cell-td">
-                    <div class="umi-table-cell-div">
-                        <a href="#" class="umi-table-remove-button" data-object-id="{{unbound object.id}}"><i
-                                class="icon icon-delete"></i></a>
-                    </div>
-                </td>
-                <td class="umi-table-empty-column"></td>
-            </tr>
-            {{else}}
-            <!-- TODO Допилить дизайн-->
-            <tr>
-                <td class="umi-table-empty-result">
-                    Нет записей
-                </td>
-            </tr>
-            {{/each}}
             </tbody>
         </table>
     </div>

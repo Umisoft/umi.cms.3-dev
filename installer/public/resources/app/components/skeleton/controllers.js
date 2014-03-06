@@ -62,7 +62,7 @@ define([], function(){
                 var allControls = this.get('controls');
                 var context = this.get('context');
                 var selectedContext  = this.get('selectedContext') === 'root' ? 'emptyContext' : 'selectedContext';
-                var controls = context[selectedContext].content.controls;
+                var controls = context[selectedContext].contents.controls;
                 var contentControls = [];
                 for(var i = 0; i < controls.length; i++){
                     contentControls.push(Ember.Object.create(allControls.findBy('name', controls[i])));

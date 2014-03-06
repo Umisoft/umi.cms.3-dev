@@ -5,7 +5,7 @@
                 "title": "Имя категории",
                 "width": 200,
                 "type": "string",
-                "name": "title"
+                "name": "displayName"
             },
             {
                 "title": "Дата публикации",
@@ -14,10 +14,10 @@
                 "name": "publishDate"
             },
             {
-                "title": "Количество просмотров",
+                "title": "Slug",
                 "width": 80,
-                "type": "number",
-                "name": "viewCounter"
+                "type": "string",
+                "name": "slug"
             }
         ]
     }
