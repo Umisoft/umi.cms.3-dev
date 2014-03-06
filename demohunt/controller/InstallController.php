@@ -20,12 +20,12 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\project\site\controller\SitePageController;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchIndexApi;
 use umicms\project\module\structure\object\StaticPage;
 use umicms\project\module\users\api\UsersApi;
 use umicms\project\module\users\object\User;
+use umicms\project\site\controller\SitePageController;
 
 /**
  * Class InstallController

@@ -11,11 +11,12 @@ use umicms\project\module\search\highlight\Fragmenter;
     <?=$this->widget('search', ['query'=>$query])?>
     <?
     /** @var $results ICmsObject[] */
-    if(is_null($results)){
-        ?>
-    <p>No query</p>
-    <? } else {
-        foreach ($results as $result) { ?>
+    if (is_null($results)) { ?>
+        <p>No query</p>
+    <? } elseif(empty($results)) {?>
+        <p>No results</p>
+    <?} else {?>
+        <? foreach ($results as $result) { ?>
         <div class="mod-search-result-list-item">
             <h3><a href="<?= $result->getGUID() ?>"><?= $result->displayName ?></a></h3>
             <?=$this->widget('fragments', ['query' => $query, 'result' => $result]);?>
