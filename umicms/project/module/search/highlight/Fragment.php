@@ -132,8 +132,11 @@ class Fragment
      * @param int $limit
      * @return array
      */
-    public function intersectEdges($left, $right, $limit)
+    public function intersectEdges($left, $right, $limit = null)
     {
+        if (is_null($limit)) {
+            $limit = min(count($left), count($right));
+        }
         $intersections = [];
         end($left);
         $lastLeftWord = current($left);
@@ -171,8 +174,9 @@ class Fragment
      */
     public function join(Fragment $next)
     {
-        $balance = count($this->getEdgeRight()) - count($next->getEdgeLeft());
-        $wordsMiddle = ($balance >= 0) ? $this->getEdgeRight() : $next->getEdgeLeft();
+        $edgePrev = $this->getEdgeRight();
+        $edgeNext = $next->getEdgeLeft();
+        $wordsMiddle = $this->joinEdges($edgePrev, $edgeNext);
         $keywordList = array_merge([$this->getCenter()], $wordsMiddle, [$next->getCenter()]);
         return new Fragment(
             implode(' ', $keywordList),
@@ -181,5 +185,19 @@ class Fragment
             $this->getStartPos(),
             $next->getEndPos()
         );
+    }
+
+    /**
+     * @param $edgePrev
+     * @param $edgeNext
+     * @return array
+     */
+    protected function joinEdges($edgePrev, $edgeNext)
+    {
+        $intersection = $this->intersectEdges($edgePrev, $edgeNext);
+        $intersectWidth = count($intersection);
+        $leftPart = array_slice($edgePrev, 0, count($edgePrev)-$intersectWidth);
+        $rightPart = array_slice($edgeNext, $intersectWidth);
+        return array_merge($leftPart, $intersection, $rightPart);
     }
 }

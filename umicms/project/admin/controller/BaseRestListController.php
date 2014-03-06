@@ -56,7 +56,7 @@ abstract class BaseRestListController extends BaseController implements IObjectP
             case 'GET': {
                 return $this->createViewResponse(
                     'list',
-                    [$this->getCollectionName() => $this->applySelectorConditions($this->getList())]
+                    ['collection' => $this->applySelectorConditions($this->getList())]
                 );
             }
             case 'PUT':
@@ -327,7 +327,7 @@ abstract class BaseRestListController extends BaseController implements IObjectP
      */
     private function normalizeFieldPath($path)
     {
-        return str_replace('_',ISelector::FIELD_SEPARATOR, $path);
+        return str_replace('_', ISelector::FIELD_SEPARATOR, $path);
     }
 
 

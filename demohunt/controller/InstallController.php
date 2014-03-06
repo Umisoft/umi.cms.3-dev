@@ -45,6 +45,9 @@ class InstallController extends SitePageController implements ICollectionManager
      */
     protected $usersApi;
 
+    /**
+     * @var string $testLayout
+     */
     protected $testLayout;
     /**
      * @var SearchApi $searchApi
@@ -248,6 +251,15 @@ class InstallController extends SitePageController implements ICollectionManager
             ->setValue('displayName', 'Лыжи')
             ->setValue('metaTitle', 'Лыжи')
             ->setValue('h1', 'Лыжи');
+
+        $item = $newsCollection->add()
+            ->setValue('displayName', 'Российские биатлонисты взяли первые три места')
+            ->setValue('metaTitle', 'Российские биатлонисты взяли первые три места')
+            ->setValue('h1', 'Российские биатлонисты взяли первые три места')
+            ->setValue('announcement', '<p>Чудо на олимпиаде в Сочи</p>')
+            ->setValue('contents', '<p>На олимпиаде в Сочи российские биатлонисты взяли все медали.</p>')
+            ->setValue('rubric', $ski)
+            ->setValue('slug', 'biathlon');
 
         $volleyball = $rubricCollection->add('volleyball', IObjectType::BASE, $summerSports)
             ->setValue('displayName', 'Волейбол')
@@ -844,7 +856,8 @@ class InstallController extends SitePageController implements ICollectionManager
                 UNIQUE KEY `search_index_guid` (`guid`),
                 UNIQUE KEY `search_index_ref_guid` (`ref_guid`),
                 KEY `search_index_type` (`type`),
-                KEY `search_index_collection_id` (`collection_id`)
+                KEY `search_index_collection_id` (`collection_id`),
+                FULLTEXT(`content`)
             ) ENGINE=MyISAM DEFAULT CHARSET=utf8
             "
         );
