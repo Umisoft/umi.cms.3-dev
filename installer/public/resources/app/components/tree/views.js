@@ -185,8 +185,8 @@ define(['App'], function(UMI){
                                     }
                                 }
                             }(placeholder));
-
-                            self.get('controller').send('updateSortOrder', placeholder.getAttribute('data-id'), list.getAttribute('data-parent-id'), prevSiblingId, nextSibling);
+                            var parentId = list.getAttribute('data-parent-id');
+                            self.get('controller').send('updateSortOrder', placeholder.getAttribute('data-id'), parentId, prevSiblingId, nextSibling);
                         }
                         // Удаление плэйсхолдера
                         if(placeholder.parentNode){

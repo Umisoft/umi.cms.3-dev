@@ -5349,8 +5349,9 @@ body {
       text-decoration: none;
       border-bottom: 1px solid #535E6D; }
   .umi-tree .umi-tree-type-icon {
-    margin: 0.125rem 0 0 -0.125rem;
-    cursor: move !important; }
+    margin: 0.125rem 0 0 -0.125rem; }
+    .umi-tree .umi-tree-type-icon.move {
+      cursor: move !important; }
   .umi-tree .umi-expand {
     display: inline-block;
     width: 1.25rem;

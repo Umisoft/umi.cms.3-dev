@@ -68,7 +68,9 @@ body{
 
     .umi-tree-type-icon{
         margin: rem-calc(2 0 0 -2);
-        cursor: move !important;
+        &.move{
+            cursor: move !important;
+        }
     }
 
 

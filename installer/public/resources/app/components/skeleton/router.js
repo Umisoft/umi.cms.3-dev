@@ -171,7 +171,7 @@ define([], function(){
                          * Колекция для дерева
                          */
                         var treeControl = self.controllerFor('treeControl');
-                        treeControl.set('collection', {'type': model.get('collection'), 'name': tree.displayName});
+                        treeControl.set('collections', [{'type': model.get('collection'), 'displayName': tree.displayName}]);
                         treeControl.set('routeParams', transition.params);
                     }
                     /**

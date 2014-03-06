@@ -9,9 +9,9 @@
                         <i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>
                     {{/if}}
                 </span>
-                <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document :move"}}></i>
+                <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document node.root::move"}}></i>
             {{else}}
-                <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document :move"}}></i>
+                <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document node.root::move"}}></i>
             {{/if}}
 
             {{#link-to "context" node.id}}
