@@ -56,7 +56,7 @@ abstract class BaseRestListController extends BaseController implements IObjectP
             case 'GET': {
                 return $this->createViewResponse(
                     'list',
-                    [$this->getCollectionName() => $this->applyQueryFilters($this->getList())]
+                    [$this->getCollectionName() => $this->applySelectorQueryFilters($this->getList())]
                 );
             }
             case 'PUT':
@@ -116,14 +116,36 @@ abstract class BaseRestListController extends BaseController implements IObjectP
      * @param ISelector $selector
      * @return ISelector
      */
-    protected function applyQueryFilters(ISelector $selector)
+    protected function applySelectorQueryFilters(ISelector $selector)
     {
-        foreach($this->getAllQueryVars() as $name => $value) {
-            $name = str_replace('_', '.', $name);
-            $this->applyConditionFilter($selector, $name, $value);
+        if ($fields = $this->getQueryVar('fields')) {
+            $this->applySelectorFieldFilter($selector, $fields);
+        }
+
+        if (is_array($this->getQueryVar('filters'))) {
+            foreach($this->getQueryVar('filters') as $name => $value) {
+                $name = str_replace('_',ISelector::FIELD_SEPARATOR, $name);
+                $value = (array) $value;
+
+                foreach ($value as $val) {
+                    $this->applySelectorConditionFilter($selector, $name, $val);
+                }
+            }
         }
 
         return $selector;
+    }
+
+    /**
+     * Применяет фильтр к выбираемым полям.
+     * @param ISelector $selector
+     * @param string $fields
+     * @return ISelector
+     */
+    protected function applySelectorFieldFilter(ISelector $selector, $fields)
+    {
+        $fieldNames = explode(',', $fields);
+        return $selector->fields($fieldNames);
     }
 
     /**
@@ -234,7 +256,7 @@ abstract class BaseRestListController extends BaseController implements IObjectP
      * @throws OutOfBoundsException если не удалось определить тип фильтра
      * @return ISelector
      */
-    protected function applyConditionFilter(ISelector $selector, $name, $value)
+    protected function applySelectorConditionFilter(ISelector $selector, $name, $value)
     {
         $condition = $selector->where($name);
         if (preg_match('|^(?P<expression>\w+)\((?P<value>.*)\)$|i', $value, $matches)) {

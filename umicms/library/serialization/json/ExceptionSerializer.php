@@ -16,8 +16,9 @@ class ExceptionSerializer extends BaseSerializer
     /**
      * Сериализует исключение в JSON.
      * @param \Exception $exception
+     * @param array $options опции сериализации
      */
-    public function __invoke(\Exception $exception)
+    public function __invoke(\Exception $exception, array $options = [])
     {
         $info = [
             'message' => $exception->getMessage(),

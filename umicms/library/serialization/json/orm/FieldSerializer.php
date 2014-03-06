@@ -23,8 +23,9 @@ class FieldSerializer extends BaseSerializer
     /**
      * Сериализует поле в JSON.
      * @param BaseField $field
+     * @param array $options опции сериализации
      */
-    public function __invoke(BaseField $field)
+    public function __invoke(BaseField $field, array $options = [])
     {
         $info = [
             'name' => $field->getName(),

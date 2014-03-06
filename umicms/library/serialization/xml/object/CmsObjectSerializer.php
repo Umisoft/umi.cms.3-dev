@@ -35,8 +35,10 @@ class CmsObjectSerializer extends BaseSerializer
     /**
      * Сериализует CmsObject в XML.
      * @param ICmsObject $object
+     * @param array $options опции сериализации
      */
-    public function __invoke(ICmsObject $object) {
+    public function __invoke(ICmsObject $object, array $options = [])
+    {
         /**
          * @var IProperty[] $attributes
          * @var IProperty[] $properties

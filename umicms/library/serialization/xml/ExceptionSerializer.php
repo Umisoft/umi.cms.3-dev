@@ -16,8 +16,9 @@ class ExceptionSerializer extends BaseSerializer
     /**
      * Сериализует исключение в XML.
      * @param \Exception $exception
+     * @param array $options опции сериализации
      */
-    public function __invoke(\Exception $exception)
+    public function __invoke(\Exception $exception, array $options = [])
     {
         $this->writeAttribute('message', $exception->getMessage());
         $this->writeAttribute('code', $exception->getCode());

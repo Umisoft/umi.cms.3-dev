@@ -89,7 +89,10 @@ class ApiApplication extends AdminComponent implements IAdminSettingsAware, IToo
 
         $serializer = $this->getSerializer($this->currentRequestFormat, $result);
         $serializer->init();
-        $serializer($result);
+
+        $options = [];
+
+        $serializer($result, $options);
         $response->setContent($serializer->output());
 
         return $response;

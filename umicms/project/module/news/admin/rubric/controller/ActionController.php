@@ -63,21 +63,21 @@ class ActionController extends BaseRestActionController
 
         if ($objectInfo = $this->getPostVar('object')) {
             $object = $this->api->rubric()->getById($objectInfo[IObject::FIELD_IDENTIFY]);
-            $object->setVersion($objectInfo[$objectInfo[IObject::FIELD_VERSION]]);
+            $object->setVersion($objectInfo[IObject::FIELD_VERSION]);
         } else {
             $object = null;
         }
 
         if ($branchInfo = $this->getPostVar('branch')) {
             $branch = $this->api->rubric()->getById($branchInfo[IObject::FIELD_IDENTIFY]);
-            $branch->setVersion($objectInfo[$branchInfo[IObject::FIELD_VERSION]]);
+            $branch->setVersion($branchInfo[IObject::FIELD_VERSION]);
         } else {
             $branch = null;
         }
 
         if ($previousSiblingInfo = $this->getPostVar('sibling')) {
             $previousSibling = $this->api->rubric()->getById($previousSiblingInfo[IObject::FIELD_IDENTIFY]);
-            $previousSibling->setVersion($previousSiblingInfo[$objectInfo[IObject::FIELD_VERSION]]);
+            $previousSibling->setVersion($previousSiblingInfo[IObject::FIELD_VERSION]);
         } else {
             $previousSibling = null;
         }

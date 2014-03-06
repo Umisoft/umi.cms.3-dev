@@ -20,10 +20,14 @@ class CollectionSerializer extends BaseSerializer
     /**
      * Сериализует коллекцию в JSON.
      * @param BaseCollection $collection
+     * @param array $options опции сериализации
      */
-    public function __invoke(BaseCollection $collection)
+    public function __invoke(BaseCollection $collection, array $options = [])
     {
-        $this->writeElement('name', $collection->getName());
+
+        $this->getJsonWriter()->startElement('name');
+        $this->writeRaw($collection->getName());
+        $this->getJsonWriter()->endElement();
 
         $this->delegate($collection->getMetadata());
     }

@@ -21,8 +21,10 @@ class FieldSerializer extends BaseSerializer
     /**
      * Сериализует поле в XML.
      * @param BaseField $field
+     * @param array $options опции сериализации
      */
-    public function __invoke(BaseField $field) {
+    public function __invoke(BaseField $field, array $options = [])
+    {
         $this->writeElement('field', [
             'type' => $field->getType(),
             'dateType' => '111'

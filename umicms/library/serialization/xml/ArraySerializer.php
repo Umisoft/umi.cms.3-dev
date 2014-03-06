@@ -22,8 +22,10 @@ class ArraySerializer extends BaseSerializer
     /**
      * Сериализует массив в XML.
      * @param array $array
+     * @param array $options опции сериализации
      */
-    public function __invoke(array $array) {
+    public function __invoke(array $array, array $options = [])
+    {
         foreach ($array as $key => $value) {
             if (is_numeric($key)) {
                 $key = $this->listElementName;
