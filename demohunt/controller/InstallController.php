@@ -249,6 +249,15 @@ class InstallController extends SitePageController implements ICollectionManager
             ->setValue('metaTitle', 'Лыжи')
             ->setValue('h1', 'Лыжи');
 
+        $item = $newsCollection->add()
+            ->setValue('displayName', 'Российские биатлонисты взяли первые три места')
+            ->setValue('metaTitle', 'Российские биатлонисты взяли первые три места')
+            ->setValue('h1', 'Российские биатлонисты взяли первые три места')
+            ->setValue('announcement', '<p>Чудо на олимпиаде в Сочи</p>')
+            ->setValue('contents', '<p>На олимпиаде в Сочи российские биатлонисты взяли все медали.</p>')
+            ->setValue('rubric', $ski)
+            ->setValue('slug', 'biathlon');
+
         $volleyball = $rubricCollection->add('volleyball', IObjectType::BASE, $summerSports)
             ->setValue('displayName', 'Волейбол')
             ->setValue('metaTitle', 'Волейбол')

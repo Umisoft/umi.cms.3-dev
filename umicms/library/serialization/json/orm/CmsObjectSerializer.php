@@ -41,6 +41,12 @@ class CmsObjectSerializer extends BaseSerializer
          */
         foreach ($usedProperties as $property) {
             $name = $property->getName();
+
+            if ($name == ICmsObject::FIELD_TYPE) {
+                $properties[$name] = $object->getType()->getName(); //TODO убрать, когда будут формы для админки
+                continue;
+            }
+
             /**
              * @var mixed $field
              */
@@ -50,12 +56,17 @@ class CmsObjectSerializer extends BaseSerializer
 
                     $value = $property->getDbValue();
                     if ($value) {
-                        /**
-                         * @var ICollection|IApplicationHandlersAware $targetCollection
-                         */
-                        $targetCollection = $field->getTargetCollection();
-                        if ($targetCollection instanceof IApplicationHandlersAware && $targetCollection->hasHandler('admin')) {
-                            $links[$name] = $this->getCollectionLink($targetCollection, $targetCollection->getIdentifyField()->getName(), $value);
+
+                        if ($property->getIsValuePrepared()) {
+                            $properties[$name] = (int) $value;
+                        } else {
+                            /**
+                             * @var ICollection|IApplicationHandlersAware $targetCollection
+                             */
+                            $targetCollection = $field->getTargetCollection();
+                            if ($targetCollection instanceof IApplicationHandlersAware && $targetCollection->hasHandler('admin')) {
+                                $links[$name] = $this->getCollectionLink($targetCollection, $targetCollection->getIdentifyField()->getName(), $value);
+                            }
                         }
                     }
                     break;
