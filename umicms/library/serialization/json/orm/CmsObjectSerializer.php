@@ -33,7 +33,8 @@ class CmsObjectSerializer extends BaseSerializer
         $properties = [];
         $links = [];
 
-        $usedProperties = $this->getUsedProperties($object, $options);
+        $selectedFields = isset($options['fields']) ? $options['fields'] : [];
+        $usedProperties = $this->getUsedProperties($object, $selectedFields);
 
         /**
          * @var IProperty $property
@@ -116,7 +117,7 @@ class CmsObjectSerializer extends BaseSerializer
     protected function getCollectionLink(IApplicationHandlersAware $collection, $filterName, $filterValue)
     {
         $link = '/admin/api/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
-        $link .= '/' . $collection->getName() . '?' . http_build_query([$filterName => $filterValue]);
+        $link .= '/' . $collection->getName() . '?' . http_build_query(['filters' => [$filterName => $filterValue]]);
 
         return $link;
     }

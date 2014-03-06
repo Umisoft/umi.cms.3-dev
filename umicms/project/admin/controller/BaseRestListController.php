@@ -56,7 +56,7 @@ abstract class BaseRestListController extends BaseController implements IObjectP
             case 'GET': {
                 return $this->createViewResponse(
                     'list',
-                    [$this->getCollectionName() => $this->applySelectorQueryFilters($this->getList())]
+                    [$this->getCollectionName() => $this->applySelectorConditions($this->getList())]
                 );
             }
             case 'PUT':
@@ -112,25 +112,49 @@ abstract class BaseRestListController extends BaseController implements IObjectP
     }
 
     /**
-     * Применяет фильтры к списку из GET-параметров.
+     * Применяет условия выборки.
      * @param ISelector $selector
      * @return ISelector
      */
-    protected function applySelectorQueryFilters(ISelector $selector)
+    protected function applySelectorConditions(ISelector $selector)
     {
+
+        $selector->limit($this->getQueryVar('limit'), $this->getQueryVar('offset'));
+
         if ($fields = $this->getQueryVar('fields')) {
             $this->applySelectorFieldFilter($selector, $fields);
         }
 
+        if (is_array($this->getQueryVar('with'))) {
+            $this->applySelectorWith($selector, $this->getQueryVar('with'));
+        }
+
         if (is_array($this->getQueryVar('filters'))) {
             foreach($this->getQueryVar('filters') as $name => $value) {
-                $name = str_replace('_',ISelector::FIELD_SEPARATOR, $name);
+                $name = $this->normalizeFieldPath($name);
                 $value = (array) $value;
 
                 foreach ($value as $val) {
                     $this->applySelectorConditionFilter($selector, $name, $val);
                 }
             }
+        }
+
+        return $selector;
+    }
+
+    /**
+     * Применяет фильтр к связанным выбираемым полям.
+     * @param ISelector $selector
+     * @param array $with
+     * @return ISelector
+     */
+    protected function applySelectorWith(ISelector $selector, array $with)
+    {
+        foreach ($with as $fieldPath => $fieldList) {
+            $fieldPath = $this->normalizeFieldPath($fieldPath);
+            $fields = $fieldList ? explode(',', $fieldList) : [];
+            $selector->with($fieldPath, $fields);
         }
 
         return $selector;
@@ -145,6 +169,7 @@ abstract class BaseRestListController extends BaseController implements IObjectP
     protected function applySelectorFieldFilter(ISelector $selector, $fields)
     {
         $fieldNames = explode(',', $fields);
+
         return $selector->fields($fieldNames);
     }
 
@@ -293,6 +318,16 @@ abstract class BaseRestListController extends BaseController implements IObjectP
         }
 
         return $condition->equals($value);
+    }
+
+    /**
+     * Нормализует путь поля для условий выборки.
+     * @param string $path
+     * @return string
+     */
+    private function normalizeFieldPath($path)
+    {
+        return str_replace('_',ISelector::FIELD_SEPARATOR, $path);
     }
 
 

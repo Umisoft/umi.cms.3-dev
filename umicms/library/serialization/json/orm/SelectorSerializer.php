@@ -26,7 +26,7 @@ class SelectorSerializer extends BaseSerializer
     {
         $fields = $selector->getFields();
 
-        $this->delegate($selector->getResult()->fetchAll(), $fields);
+        $this->delegate($selector->getResult()->fetchAll(), ['fields' => $fields]);
     }
 
 }
