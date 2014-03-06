@@ -8,18 +8,18 @@
  */
 namespace umicms\project\module\search\api;
 
+use umi\dbal\builder\IExpressionGroup;
 use umi\dbal\builder\ISelectBuilder;
 use umi\dbal\cluster\IDbClusterAware;
 use umi\dbal\cluster\TDbClusterAware;
 use umi\event\IEventObservant;
 use umi\event\TEventObservant;
 use umi\orm\collection\TCollectionManagerAware;
-use umi\orm\object\IObject;
 use umi\orm\objectset\IObjectSet;
-use umi\orm\selector\ISelector;
 use umi\spl\config\TConfigSupport;
 use umi\stemming\TStemmingAware;
 use umicms\api\IPublicApi;
+use umicms\orm\object\ICmsObject;
 use umicms\project\module\search\adapter\BaseAdapter;
 use umicms\project\module\search\highlight\Fragmenter;
 use umicms\project\module\search\object\SearchIndex;
@@ -40,32 +40,39 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     protected $searchAdapter;
 
     /**
-     * Ищет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
+     * �?щет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
+     *
      * @param string $searchString
      * @return IObjectSet
      */
     public function search($searchString)
     {
         $this->fireEvent('search.before', ['query' => $searchString]);
-        $words = $this->normalizeSearchString($searchString);
+        $searchCollection = $this->getCollectionManager()
+            ->getCollection('searchIndex');
 
-        $search = $this->getCollectionManager()
-            ->getCollection('searchIndex')
-            ->select();
+        $collectionNameCol = $searchCollection->getMetadata()
+            ->getField(SearchIndex::FIELD_COLLECTION_NAME)
+            ->getColumnName();
+        $refGuidCol = $searchCollection->getMetadata()
+            ->getField(SearchIndex::FIELD_REF_GUID)
+            ->getColumnName();
 
-        /** @var $search ISelector */
-        $selectBuilder = $this->buildQueryCondition($search->getSelectBuilder(), $words);
-        $this->fireEvent('search.buildCondition', ['selectBuilder' => $selectBuilder]);
+        $selectBuilder = $this->buildQueryCondition(
+            $searchCollection->select()
+                ->getSelectBuilder()
+                ->select([$collectionNameCol, $refGuidCol]),
+            $this->normalizeSearchString($searchString),
+            $this->detectWordBases($searchString)
+        );
         $result = [];
-        foreach ($search->getResult() as $searchResult) {
-            /** @var $searchResult IObject */
+        foreach ($selectBuilder->execute() as $searchResult) {
+            /** @var $searchResult ICmsObject */
             $result[] = $this->getCollectionManager()
-                ->getCollection($searchResult->getValue(SearchIndex::FIELD_COLLECTION_NAME))
-                ->get(
-                    $searchResult->getValue(SearchIndex::FIELD_REF_GUID)
-                );
+                ->getCollection($searchResult[$collectionNameCol])
+                ->get($searchResult[$refGuidCol]);
         }
-        ;
+
         $this->fireEvent(
             'search.after',
             [
@@ -74,13 +81,15 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
                 'result' => $result
             ]
         );
+        //todo pagination after filtering results
         return $result;
     }
 
     /**
      * Выделяет подстроку во всех возможных формах.
      * Возвращает текст с подстроками, выделенными сконфигурированными маркерами.
-     * @param string $query Исходный запрос
+     *
+     * @param string $query �?сходный запрос
      * @param string $text Текст, в котором нужно выделить найденные подстроки
      * @param string $highlightStart Маркер начала выделения подстроки
      * @param string $highlightEnd Маркер окончания выделения подстроки
@@ -92,7 +101,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
         $searchGroups = [];
         foreach ($queryWords as $queryWord) {
             $searchReWords = $this->extractSearchRegexpForms($queryWord, $text);
-            $searchGroups[]= '(' . implode("|", $searchReWords) . ')';
+            $searchGroups[] = '(' . implode("|", $searchReWords) . ')';
         }
         $searchRe = '(' . implode("|", $searchGroups) . ')+';
         $highlight = preg_replace(
@@ -107,22 +116,24 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
      * Выделение подстроки во всех возможных формах.
      * Возвращает коллекцию объектов-фрагментов (фрагментатор),
      * которую затем можно будет разбить на подстроки-фрагменты.
+     *
      * @param string $query
      * @param string $content
      * @return Fragmenter
      */
     public function getResultFragmented($query, $content)
     {
-        $searchReParts = $this->extractSearchRegexpForms($query, $content);
+        $searchReParts = $this->extractSearchRegexpForms($query, $content, false);
         $wordsRegexp = '(' . implode("|", $searchReParts) . ')';
         return new Fragmenter($content, $wordsRegexp);
     }
 
     /**
      * Собирает все возможные вариации искомого слова, встречающиеся в тексте.
+     *
      * @param string $word Слово для поиска
      * @param string $text Текст, в котором происходит поиск
-     * @param bool $exact Искать ли только точные совпадения
+     * @param bool $exact �?скать ли только точные совпадения
      * @return array
      */
     protected function collectPossibleMatches($word, $text, $exact = false)
@@ -151,11 +162,13 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
 
     /**
      * Формирует все возможные регулярные выражения для поиска по тексту.
+     *
      * @param string $word Слово для поиска
      * @param string $text Текст, в котором происходит поиск
+     * @param bool $includeExact Добавить ли проверку на точное отдельное вхождение исходного слова
      * @return array
      */
-    protected function extractSearchRegexpForms($word, $text)
+    protected function extractSearchRegexpForms($word, $text, $includeExact = true)
     {
         $baseForm = $this->getStemming()
             ->getCommonRoot($word);
@@ -163,16 +176,19 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
         $foundWords = array_merge($foundWords, $this->collectPossibleMatches($word, $text, true));
         $foundWords = array_merge($foundWords, $this->collectPossibleMatches($word, $baseForm));
         $foundWords = array_unique($foundWords);
-        usort($foundWords, function ($word1, $word2) {
-            return mb_strlen($word2, 'utf-8') - mb_strlen($word1, 'utf-8');
-        });
+        usort(
+            $foundWords,
+            function ($word1, $word2) {
+                return mb_strlen($word2, 'utf-8') - mb_strlen($word1, 'utf-8');
+            }
+        );
 
         $searchReParts = [];
         foreach ($foundWords as $foundWord) {
-            if ($foundWord == $word) {
-                $searchReParts[] = '[\.,:…«»"\';_-]*' . $foundWord . '[\.,:…«»"\';_-]*';
+            if ($includeExact && ($foundWord == $word)) {
+                $searchReParts[] = '[[:punct:]]*' . $foundWord . '[[:punct:]]*';
             } else {
-                $searchReParts[] = '\w*' . $foundWord . '\w*';
+                $searchReParts[] = '[[:punct:][:word:]]*' . $foundWord . '[[:punct:][:word:]]*';
             }
         }
         return $searchReParts;
@@ -180,31 +196,66 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
 
     /**
      * Собирает условие поиска в бд по полнотекстовому индексу, в зависимости от используемой бд.
+     * Позволяет модифицировать это условие после формирования, с помощью подписки на событие search.buildCondition.
+     *
      * @param ISelectBuilder $selectBuilder Построитель запросов, используемый для поиска
-     * @param array $words Искомые слова
+     * @param array $words �?скомые слова
+     * @param array $wordBases Базовые формы искомых слов для второстепенных совпадений
      * @return ISelectBuilder
      */
-    protected function buildQueryCondition(ISelectBuilder $selectBuilder, $words)
+    protected function buildQueryCondition(ISelectBuilder $selectBuilder, $words, $wordBases)
     {
         //todo mysql/postgresql/sphinx adapters
-        $selectBuilder = $selectBuilder
-            ->where()
-            ->expr(':match', 'AGAINST', ":against")
-            ->bindExpression(':match', 'MATCH(`contents`)')
-            ->bindExpression(
-                ':against',
-                "(" . $this->getDbCluster()
-                    ->getConnection()
-                    ->quote($words) . " IN BOOLEAN MODE)"
-            );
+        /** @var $selectColumns string */
+        $matchValue = "("
+            . $this->getDbCluster()
+                ->getConnection()
+                ->quote($words)
+            . ")";
+
+        $selectBuilder->select(
+            array_merge($selectBuilder->getSelectColumns(), [[':searchMatchExpression', 'searchRelevance']])
+        );
+        $selectBuilder->orderBy('searchRelevance', 'DESC');
+        $selectBuilder->where(IExpressionGroup::MODE_OR)
+            ->begin(IExpressionGroup::MODE_OR)
+                ->expr(':searchMatchExpression', '>', ':minimumSearchRelevance')
+                ->expr('content', 'LIKE', ":searchLikeCondition")
+            ->end()
+            ->bindExpression(':searchMatchExpression', 'MATCH(content) AGAINST ' . $matchValue)
+            ->bindString(':searchLikeCondition', "%" . implode('%', $wordBases) . "%")
+            ->bindInt(':minimumSearchRelevance', 0);
+        $selectBuilder->distinct();
+        $this->fireEvent('search.buildCondition', ['selectBuilder' => $selectBuilder]);
         return $selectBuilder;
     }
 
     /**
+     * Возвращает {@see $searchAdapter}
      * @return BaseAdapter
      */
     public function getSearchAdapter()
     {
         return $this->searchAdapter;
+    }
+
+    /**
+     * Преобразует слова к их базовым формам, например "масло" » "масл"
+     * @param string $phrase
+     * @return array
+     */
+    private function detectWordBases($phrase)
+    {
+        $bases = [];
+        $parts = preg_split('/s+/u', $phrase);
+        foreach ($parts as &$part) {
+            $partBase = $this->getStemming()
+                ->getCommonRoot($part);
+            //todo configure word length limit?
+            if (mb_strlen($partBase) > 4) {
+                $bases[] = $partBase;
+            }
+        }
+        return $bases;
     }
 }

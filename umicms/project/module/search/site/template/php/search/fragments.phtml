@@ -5,6 +5,7 @@
  */
 use umicms\project\module\search\highlight\Fragment;
 use umicms\project\module\search\highlight\Fragmenter;
+
 ?>
 <div class="mod-search mod-search-result-list">
     <?
@@ -14,15 +15,9 @@ use umicms\project\module\search\highlight\Fragmenter;
         $textAfter = implode(' ', $fragment->getEdgeRight());
     ?>
     <span class="mod-search-fragment">
-        <span class="before">
-            ...<?= $this->widget('highlight', ['text' => $textBefore,'query' => $query,]) ?>
-        </span>
-        <span class="keyword">
-            <?= $this->widget('highlight', ['text' => $fragment->getCenter(),'query' => $query,]) ?>
-        </span>
-        <span class="after">
-            <?= $this->widget('highlight', ['text' => $textAfter,'query' => $query,]) ?>...
-        </span>
+        <span class="before">...<?= $this->widget('highlight', ['text' => $textBefore,'query' => $query,]) ?></span>
+        <span class="keyword"><?= $this->widget('highlight', ['text' => $fragment->getCenter(),'query' => $query,]) ?></span>
+        <span class="after"><?= $this->widget('highlight', ['text' => $textAfter,'query' => $query,]) ?>...</span>
     </span>
     <?}?>
 </div>
