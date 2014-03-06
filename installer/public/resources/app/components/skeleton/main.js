@@ -144,6 +144,27 @@ define(
 
         UMI.ApplicationAdapter = DS.UmiRESTAdapter;
 
+        /**
+         Временное решение для обновления связи hasMany указанной в links
+         Вопрос на stackoverflow: http://stackoverflow.com/questions/19983483/how-to-reload-an-async-with-links-hasmany-relationship
+         Решение предложенное в коробку но пока не одобренное: https://github.com/emberjs/data/pull/1539
+         @class ManyArray
+         @namespace DS
+         @extends DS.RecordArray
+         */
+        DS.ManyArray.reopen({
+            reloadLinks: function() {
+                var get = Ember.get;
+                var store = get(this, 'store');
+                var owner = get(this, 'owner');
+                var name = get(this, 'name');
+                var resolver = Ember.RSVP.defer();
+                var meta = owner.constructor.metaForProperty(name);
+                var link = owner._data.links[meta.key];
+                store.findHasMany(owner, link, meta, resolver);
+            }
+        });
+
         templates(UMI);
         models(UMI);
         router(UMI);

@@ -97,7 +97,7 @@ define(['App'], function(UMI){
                     resource = resource.join('/');
 
                     $.post(resource, moveParams).then(
-                        function(result, content, header){
+                        function(){
                             ids.push(id);
                             var parentsUpdateRelation = [];
                             if(parentId !== oldParentId){
@@ -111,13 +111,14 @@ define(['App'], function(UMI){
                                 }
                             }
                             self.store.findByIds(type, ids).then(function(nodes){
-                                /*var parent;
-                                for(var i = 0; i < ids.length; i++){
-                                    var item = models.findBy('id', ids[i]);
-                                    self.store.unloadRecord(item);
-                                }*/
-                                //self.store.findByIds(type, ids);
                                 nodes.invoke('reload');
+                                var parent;
+                                for(var i = 0; i < parentsUpdateRelation.length; i++){
+                                    parent = models.findBy('id', parentsUpdateRelation[i]);
+                                    parent.get('children').then(function(children){
+                                        children.reloadLinks();
+                                    });
+                                }
                             });
                         }
                     );
@@ -136,13 +137,12 @@ define(['App'], function(UMI){
                 return !!this.get('root');
             }.property(),
             sortedChildren: function(){
-                console.log(this);
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: this.get('children'),
                     sortProperties: ['order', 'id'],
                     sortAscending: true
                 });
-            }.property('children', 'childCount'),
+            }.property('children'),
             visible: function(){
                 var counter = 0;
                 var filters = this.get('filters');
