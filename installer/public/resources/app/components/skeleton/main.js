@@ -138,6 +138,9 @@ define(
         UMI.ApplicationSerializer = DS.RESTSerializer.extend({
             normalizePayload: function(type, payload){
                 payload = payload.result;
+                if(payload.hasOwnProperty('collection')){
+                    payload = payload.collection;
+                }
                 return payload;
             }
         });
