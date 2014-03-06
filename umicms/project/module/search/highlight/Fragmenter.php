@@ -99,7 +99,10 @@ class Fragmenter implements \Iterator
             $leftPosTo = $matchPair['pos'];
             $rightPosFrom = $leftPosTo + mb_strlen($word, 'utf-8');
             $rightPosTo = isset($this->foundMatches[$i + 1]) ? $this->foundMatches[$i + 1]['pos'] : $textLength;
-            $leftWords = preg_split('/\s+/u', mb_substr($this->text, $leftPosFrom, $leftPosTo - $leftPosFrom, 'utf-8'));
+            $leftWords = preg_split(
+                '/\s+/u',
+                mb_substr($this->text, $leftPosFrom, $leftPosTo - $leftPosFrom, 'utf-8')
+            );
             $rightWords = preg_split(
                 '/\s+/u',
                 mb_substr($this->text, $rightPosFrom, $rightPosTo - $rightPosFrom, 'utf-8')
