@@ -50,8 +50,8 @@ define(['App'], function(UMI){
                 });
 
                 var self = this;
-                this.$().on('mousedown', '.icon.move', function(event){
-                    var draggableNode = this.parentNode.parentNode;
+                var dragAndDrop = function(event, el){
+                    var draggableNode = el.parentNode.parentNode;
                     var placeholder = document.createElement('li');
                     var ghost = document.createElement('span');
                     // Смещение призрака относительно курсора
@@ -62,13 +62,13 @@ define(['App'], function(UMI){
                     self.$().addClass('drag-inside');
                     // Добавим плейсхолдер на место перемещаемой ноды
                     placeholder.className = 'umi-tree-placeholder';
-                    placeholder.setAttribute('data-id', this.parentNode.parentNode.getAttribute('data-id'));
+                    placeholder.setAttribute('data-id', el.parentNode.parentNode.getAttribute('data-id'));
                     $(draggableNode).addClass('hide');
                     placeholder = draggableNode.parentNode.insertBefore(placeholder, draggableNode);
 
                     // Добавим призрак
                     ghost.className = 'umi-tree-ghost';
-                    ghost.innerHTML = '<i class="' + this.className + '"></i>' + $(this.parentNode).children('a').text();
+                    ghost.innerHTML = '<i class="' + el.className + '"></i>' + $(el.parentNode).children('a').text();
                     ghost = document.body.appendChild(ghost);
 
                     /**
@@ -196,6 +196,21 @@ define(['App'], function(UMI){
                         $(draggableNode).removeClass('hide');
                         $('html').removeClass('s-unselectable');
                     });
+                };
+                var timeoutForDrag;
+                this.$().on('mousedown', '.icon.move', function(event){
+                    if(event.originalEvent.which !== 1){
+                        return;
+                    }
+                    var el = this;
+                    timeoutForDrag = setTimeout(function(){
+                        dragAndDrop(event, el);
+                    }, 200);
+                });
+                this.$().on('mouseup', '.icon.move', function(event){
+                    if(timeoutForDrag){
+                        clearTimeout(timeoutForDrag);
+                    }
                 });
             }
         });
