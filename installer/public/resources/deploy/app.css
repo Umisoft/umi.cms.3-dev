@@ -5913,6 +5913,27 @@ body {
   border-top: 0;
   border-bottom: 0; }
 
+.umi-table-cell-div input {
+  margin-bottom: 0 !important;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  width: 180px;
+  display: none; }
+  .umi-table-cell-div input.edit {
+    display: inline-block; }
+.umi-table-cell-div .icon-inside-hover {
+  position: relative; }
+  .umi-table-cell-div .icon-inside-hover .icon {
+    background-color: #F7F7F7;
+    padding: 1px;
+    position: absolute;
+    right: -10px;
+    top: 6px;
+    display: none;
+    box-shadow: -1px 0 1px 2px #D3D3D3; }
+  .umi-table-cell-div .icon-inside-hover:hover .icon {
+    display: inline-block; }
+
 .umi-component {
   background: #f6f7f8; }
   .umi-component > .columns {
