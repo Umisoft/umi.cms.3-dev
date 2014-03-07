@@ -69,6 +69,8 @@ define([], function(){
                     if(result.modules){
                         self.controllerFor('dock').set('modules', result);
                     }
+                }, function(error){
+                    throw new Error('Не получен ресурс приложения ' + baseResource + '.' + error);
                 });
             },
             actions: {
@@ -183,6 +185,8 @@ define([], function(){
                     componentController.set('context', context);
                     componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
                     return model;
+                }, function(error){
+                    throw new Error('Не получен ресурс компонета ' + componentResource + '.' + error);
                 });
             },
             redirect: function(model, transition){
@@ -251,6 +255,8 @@ define([], function(){
                         viewSettings[transition.params.action.action] = results.result[transition.params.action.action];
                         routeData.viewSettings = viewSettings;
                         return routeData;
+                    }, function(error){
+                        throw new Error('Не получена мета информация для action form ' + actionResource + '.' + error);
                     });
                 }
                 // Временное решение для таблицы
