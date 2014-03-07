@@ -133,7 +133,7 @@ define(['App'], function(UMI){
                 return this.get('model.isActive');
             }.property('model.isActive'),
             icon: function(){
-                return '/resources/modules/' + this.get('model.name') + '/icon.png';
+                return '/resources/modules/' + this.get('model.name') + '/icon.svg';
             }.property('model.name'),
             mouseEnter: function(){
                 var dock = this.$().closest('.dock');

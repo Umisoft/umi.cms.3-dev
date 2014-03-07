@@ -59,6 +59,9 @@ body{
             }
         }
         &:hover{
+            .umi-tree-context-menu{
+                display: block;
+            }
             a{
                 text-decoration: none;
                 border-bottom: 1px solid $umi-font-color;
@@ -68,7 +71,9 @@ body{
 
     .umi-tree-type-icon{
         margin: rem-calc(2 0 0 -2);
-        cursor: move !important;
+        &.move{
+            cursor: move !important;
+        }
     }
 
 
@@ -109,11 +114,16 @@ body{
 
     // Выпадающее меню --------------------------------------
     .umi-tree-context-menu{
+        display: none;
         position: absolute;
         right: rem-calc(8);
         margin: 0;
         padding: 0;
         margin-top: -24px;
+        a{
+            text-decoration: none !important;
+            border-bottom: none !important;
+        }
     }
 }
 

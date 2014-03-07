@@ -189,23 +189,18 @@
         <div class="umi-form-tab"><i class="icon icon-6"></i></div>
         <div class="button secondary s-margin-clear"><i class="icon icon-delete"></i></div>
     </div>
+
 </div>
 
 <script type="text/x-handlebars" id="umi-popup">
     <div class="umi-popup">
-        <h1>Content</h1>
-        <p>
-            Предсерийный образец нового хот-хэтча Honda Civic Type R японцы уже показывали минувшей осенью, но до конвейерного автомобиля дело пока не дошло: на автосалоне в Женевe компания представила концепт-кар Civic Type R Concept. Японцы подчёркивают: шоу-кар — явное указание на стиль будущей конвейерной «зажигалки», которая появится в Европе в 2015 году. И, конечно, уже можно делать первые выводы о её начинке.
-        </p>
-        <p>
-            Расширенные крылья концепта вмещают 20-дюймовые колёсные диски, а воздуховоды спроектированы с прицелом на лучшее охлаждение тормозных механизмов.
-        </p>
+        <div id="elfinder"></div>
     </div>
 </script>
 
 <script>
     $('.umi-show-popup').click(function(){
-        if($('html').hasClass('cssfilters') || $('html').hasClass('svgfilters')){
+        if($('html').hasClass('cssfilters')){
             console.log('blur');
             $('.umi-main-view').addClass('umi-blur');
             $('body').append('<div class="umi-overlay"></div>');
@@ -217,17 +212,25 @@
         $('body').append(document.querySelector('#umi-popup').innerHTML);
         var x = $(window).width()/2 - 300;
         var y = $(window).height()/2 - 250;
-        $('.umi-popup').offset({left:x, top:y})
+        $('.umi-popup').offset({left:x, top:y});
+
+        $().ready(function(){
+            var elf = $('#elfinder').elfinder({
+                url : '/resources/libs/elfinder/php/connector.php'  // connector URL (REQUIRED)
+                // lang: 'ru',             // language (OPTIONAL)
+            }).elfinder('instance');
+        });
     });
 
-    $('html').on('mousedown', function(event){
-        $('.umi-main-view').removeClass('umi-blur');
-        $('.umi-overlay').remove();
-        $('.umi-overlay-white').remove();
-        $('.umi-popup').remove();
-    });
-
-    $('.umi-popup').mousedown(function(event){
-        event.stopPropagation();
-    });
+//    $('body').on('mousedown', function(event){
+//        $('.umi-main-view').removeClass('umi-blur');
+//        $('.umi-overlay').remove();
+//        $('.umi-overlay-white').remove();
+//        $('.umi-popup').remove();
+//    });
+//
+//    $('body').on('.umi-popup', 'mousedown', function(event){
+////        console.log('close');
+//        event.stopPropagation();
+//    });
 </script>

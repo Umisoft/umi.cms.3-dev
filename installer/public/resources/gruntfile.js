@@ -7,7 +7,7 @@ module.exports = function(grunt){
 
         watch: {
             sass: {
-                files: ['app/sass/**/*.scss', 'app/foundationJs/**/*.js'],
+                files: ['app/sass/**/*.scss', 'app/foundationJs/**/*.js', 'app/components/elFinder/**/*.*'],
                 tasks: ['sass', /*'grunticon', */'concat', 'autoprefixer']
             }
         },
@@ -36,16 +36,31 @@ module.exports = function(grunt){
             options: {
                 separator: ''
             },
-            js: {
+            foundation: {
                 src: [
                     'app/foundationJs/foundation.js',
                     'app/foundationJs/components/*.js'
                 ],
                 dest: 'deploy/foundation.js'
             },
+            elFinder: {
+                options: {
+                    separator: ';'
+                },
+                src: [
+                    'app/components/elFinder/js/elFinder.js',
+                    'app/components/elFinder/js/**/*.js',
+                    'app/components/elFinder/jquery/jquery-ui-1.10.4.custom.min.js'
+                ],
+                dest: 'deploy/elFinder.js'
+            },
             //Объединяем стили с иконками
             css: {
-                src: ['deploy/app.css','deploy/icons.data.svg.css'],
+                src: [
+                    'deploy/app.css',
+                    'deploy/icons.data.svg.css',
+                    'app/components/elFinder/**/*.css'
+                ],
                 dest: 'deploy/app.css'
             }
         },

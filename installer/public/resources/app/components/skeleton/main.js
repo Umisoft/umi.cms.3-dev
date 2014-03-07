@@ -41,6 +41,9 @@ define(
             console.log('Минимальная поддерживаемая ширина экрана - 800px');
         }
 
+
+
+
         //Проверка браузера на современность - проверка поддержки calc()
         Modernizr.addTest('csscalc', function(){
             var prop = 'width:';
@@ -49,6 +52,14 @@ define(
             el.style.cssText = prop + Modernizr._prefixes.join(value + prop);
             return !!el.style.length;
         });
+
+
+        Modernizr.addTest('cssfilters', function() {
+            var el = document.createElement('div');
+            el.style.cssText = Modernizr._prefixes.join('filter' + ':blur(2px); ');
+            return !!el.style.length && ((document.documentMode === undefined || document.documentMode > 9));
+        });
+
 
         $('.qunit-container-button').click(function(){
             $('.qunit-container').toggle();
@@ -138,11 +149,35 @@ define(
         UMI.ApplicationSerializer = DS.RESTSerializer.extend({
             normalizePayload: function(type, payload){
                 payload = payload.result;
+                if(payload.hasOwnProperty('collection')){
+                    payload = payload.collection;
+                }
                 return payload;
             }
         });
 
         UMI.ApplicationAdapter = DS.UmiRESTAdapter;
+
+        /**
+         Временное решение для обновления связи hasMany указанной в links
+         Вопрос на stackoverflow: http://stackoverflow.com/questions/19983483/how-to-reload-an-async-with-links-hasmany-relationship
+         Решение предложенное в коробку но пока не одобренное: https://github.com/emberjs/data/pull/1539
+         @class ManyArray
+         @namespace DS
+         @extends DS.RecordArray
+         */
+        DS.ManyArray.reopen({
+            reloadLinks: function() {
+                var get = Ember.get;
+                var store = get(this, 'store');
+                var owner = get(this, 'owner');
+                var name = get(this, 'name');
+                var resolver = Ember.RSVP.defer();
+                var meta = owner.constructor.metaForProperty(name);
+                var link = owner._data.links[meta.key];
+                store.findHasMany(owner, link, meta, resolver);
+            }
+        });
 
         templates(UMI);
         models(UMI);
