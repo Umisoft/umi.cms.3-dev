@@ -59,6 +59,9 @@ define(['App'], function(UMI){
                 filter: function(name, element){
 
                 },
+                expandBranch: function(object){
+                    console.log(object);
+                },
                 /**
                  Сохранение результата drag and drop
                  @method updateSortOrder
@@ -146,14 +149,6 @@ define(['App'], function(UMI){
 
         UMI.TreeItemController = Ember.ObjectController.extend({
             isLoaded: false,
-            actions: {
-                expanded: function(){
-                    this.set('isExpanded', !this.get('isExpanded'));
-                }
-            },
-            isExpanded: function(){
-                return !!this.get('root');
-            }.property(),
             sortedChildren: function(){
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: this.get('children'),
@@ -174,7 +169,18 @@ define(['App'], function(UMI){
                 return (counter ? false : true);
             }.property('model', 'filters'),
             filters: Ember.computed.alias("controllers.treeControl.filterProperty"),
-            needs: 'treeControl'
+            needs: 'treeControl',
+            isExpanded: function(){
+                return !!this.get('root');
+            }.property(),
+            actions: {
+                expanded: function(){
+                    this.set('isExpanded', !this.get('isExpanded'));
+                },
+                setExpand: function(object){
+
+                }
+            }
         });
     };
 });

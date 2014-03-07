@@ -4,12 +4,11 @@ define(['App'], function(UMI){
 
         UMI.TreeItemView = Ember.View.extend({
             tagName: 'div',
-            handle: '.icon', // Что это??
             classNames: ['umi-item'],
             classNameBindings: ['root'],
             root: function(){
-                return this.get('controller.model.root');
-            }.property('controller.model')
+                return this.get('model.id') === 'root';
+            }.property('model')
         });
 
         UMI.TreeControlView = Ember.View.extend({
@@ -207,7 +206,7 @@ define(['App'], function(UMI){
                         dragAndDrop(event, el);
                     }, 200);
                 });
-                this.$().on('mouseup', '.icon.move', function(event){
+                this.$().on('mouseup', '.icon.move', function(){
                     if(timeoutForDrag){
                         clearTimeout(timeoutForDrag);
                     }
