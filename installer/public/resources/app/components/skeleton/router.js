@@ -217,6 +217,7 @@ define([], function(){
 
         UMI.ContextRoute = Ember.Route.extend({
             model: function(params, transition){
+                var self = this;
                 var model;
                 var routeData = {};
                 var oldContext = this.controllerFor('component').get('selectedContext');
@@ -233,7 +234,7 @@ define([], function(){
                     model = Ember.Object.extend({
                         'id': 'root',
                         children: function(){
-                            return this.store.find(this.modelFor('component').get('collection'), {'parent': null});
+                            return this.store.find(self.modelFor('component').get('collection'), {'filters[parent]': 'null()'});
                         }.property()
                     });
                 } else{
@@ -254,7 +255,7 @@ define([], function(){
                 }
                 // Временное решение для таблицы
                 if(transition.params.action.action === 'children'){
-                    return Ember.$.getJSON('/resources/modules/news/categories/children/resources').then(function(results){
+                    return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
                         routeData.viewSettings = results.settings;
                         return routeData;
                     });
