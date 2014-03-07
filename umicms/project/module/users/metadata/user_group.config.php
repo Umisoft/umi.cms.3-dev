@@ -58,7 +58,7 @@ return [
         Group::FIELD_UPDATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly'   => true],
         Group::FIELD_USERS     => [
             'type'         => IField::TYPE_MANY_TO_MANY,
-            'target'       => 'userGroup',
+            'target'       => 'user',
             'bridge'       => 'userUserGroup',
             'relatedField' => 'userGroup',
             'targetField'  => 'user',
