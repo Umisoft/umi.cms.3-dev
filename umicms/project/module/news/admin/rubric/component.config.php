@@ -34,16 +34,6 @@ return [
                 'displayName' => 'Редактирование'
             ]
         ],
-        'actions' => [
-            [
-                'name' => 'delete',
-                'displayName' => 'Удалить',
-            ],
-            [
-                'name' => 'changeActivity',
-                'displayName' => 'Изменить активность',
-            ],
-        ],
         'layout' => [
             'emptyContext' => [
                 'tree' => [
@@ -55,8 +45,7 @@ return [
             ],
             'selectedContext' => [
                 'tree' => [
-                    'controls' => ['tree'],
-                    'actions' => ['delete', 'changeActivity']
+                    'controls' => ['tree']
                 ],
                 'contents' => [
                     'controls' => ['form', 'children']

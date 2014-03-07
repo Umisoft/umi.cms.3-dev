@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\news\admin\subject\controller;
 
-use umicms\project\admin\controller\BaseRestListController;
+use umicms\project\admin\api\controller\BaseRestListController;
 use umicms\project\module\news\api\NewsPublicApi;
 
 /**
@@ -53,7 +53,23 @@ class ListController extends BaseRestListController
      */
     protected function create(array $data)
     {
-        // TODO: Implement create() method.
+        $object = $this->api->news()->add();
+
+        // TODO: forms
+
+        foreach ($data as $propertyName => $value) {
+            if ($object->hasProperty($propertyName)
+                && !$object->getProperty($propertyName)->getIsReadOnly()
+                && !is_array($value)
+
+            ) {
+                $object->setValue($propertyName, $value);
+            }
+        }
+
+        $this->getObjectPersister()->commit();
+
+        return $object;
     }
 }
  

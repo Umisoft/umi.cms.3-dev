@@ -50,6 +50,7 @@ return [
         'locked'                => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
+            'readOnly'   => true,
             'defaultValue' => 0
         ],
         'created'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created', 'readOnly' => true],

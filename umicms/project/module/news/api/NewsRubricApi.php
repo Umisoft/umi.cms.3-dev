@@ -110,8 +110,5 @@ class NewsRubricApi extends BaseHierarchicCollectionApi
 
         $this->getCollection()->delete($rubric);
     }
-
-
-
 }
  

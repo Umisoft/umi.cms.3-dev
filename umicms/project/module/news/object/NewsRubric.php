@@ -9,14 +9,20 @@
 
 namespace umicms\project\module\news\object;
 
+use umi\orm\objectset\IObjectSet;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 
 /**
  * Новостная рубрика.
+ *
+ * @property IObjectSet $news новости рубрики
  */
 class NewsRubric extends CmsHierarchicObject implements ICmsPage
 {
-
+    /**
+     *  Имя поля для хранения новостей
+     */
+    const FIELD_NEWS = 'news';
 }
  

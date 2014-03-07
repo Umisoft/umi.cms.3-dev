@@ -13,8 +13,10 @@ use umi\orm\metadata\field\IField;
 use umi\orm\metadata\field\relation\BelongsToRelationField;
 use umi\orm\metadata\field\relation\HasManyRelationField;
 use umi\orm\metadata\field\relation\ManyToManyRelationField;
+use umi\orm\metadata\field\special\MaterializedPathField;
 use umi\orm\object\property\IProperty;
 use umicms\orm\collection\IApplicationHandlersAware;
+use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\serialization\json\BaseSerializer;
 
@@ -44,6 +46,17 @@ class CmsObjectSerializer extends BaseSerializer
 
             if ($name == ICmsObject::FIELD_TYPE) {
                 $properties[$name] = $object->getType()->getName(); //TODO убрать, когда будут формы для админки
+                continue;
+            }
+
+            if ($name == CmsHierarchicObject::FIELD_MPATH && $object instanceof CmsHierarchicObject) {
+
+                $value = explode(
+                    MaterializedPathField::MPATH_SEPARATOR,
+                    trim($object->getMaterializedPath(), MaterializedPathField::MPATH_START_SYMBOL)
+                );
+
+                $properties[$name] = array_map('intval', $value);
                 continue;
             }
 

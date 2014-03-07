@@ -10,6 +10,7 @@
 namespace umicms\project\module\structure\api;
 
 use umi\orm\exception\IException;
+use umi\orm\metadata\IObjectType;
 use umicms\api\BaseHierarchicCollectionApi;
 use umicms\api\IPublicApi;
 use umicms\exception\NonexistentEntityException;
@@ -45,6 +46,70 @@ class ElementApi extends BaseHierarchicCollectionApi implements IPublicApi
                 $e
             );
         }
+    }
+
+    /**
+     * Возвращает элемент по id.
+     * @param int $id
+     * @throws NonexistentEntityException если не удалось получить элемент
+     * @return StructureElement
+     */
+    public function getById($id) {
+
+        try {
+            return $this->getCollection()->getById($id);
+        } catch(IException $e) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find element by id "{id}".',
+                    ['id' => $id]
+                ),
+                0,
+                $e
+            );
+        }
+    }
+
+    /**
+     * Возвращает элемент по URL.
+     * @param string $url
+     * @throws NonexistentEntityException если не удалось получить элемент
+     * @return StructureElement
+     */
+    public function getByUrl($url)
+    {
+        try {
+            return $this->getElementByUrl($url);
+        } catch(IException $e) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find element by url "{url}".',
+                    ['url' => $url]
+                ),
+                0,
+                $e
+            );
+        }
+    }
+
+    /**
+     * Добавляет элемент.
+     * @param string $slug
+     * @param StructureElement $parent
+     * @return StructureElement
+     */
+    public function add($slug, StructureElement $parent = null)
+    {
+        return $this->getCollection()->add($slug, IObjectType::BASE, $parent);
+    }
+
+    /**
+     * Помечает элемент на удаление.
+     * @param StructureElement $element
+     */
+    public function delete(StructureElement $element) {
+
+        $this->getCollection()->delete($element);
     }
 
 }

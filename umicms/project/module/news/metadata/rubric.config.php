@@ -9,6 +9,7 @@
 namespace umicms\project\module\news\metadata;
 
 use umi\orm\metadata\field\IField;
+use umicms\project\module\news\object\NewsItem;
 use umicms\project\module\news\object\NewsRubric;
 
 return [
@@ -17,121 +18,125 @@ return [
     ],
     'fields'     => [
 
-        NewsRubric::FIELD_IDENTIFY        => [
+        NewsRubric::FIELD_IDENTIFY              => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
             'accessor'   => 'getId',
             'readOnly'   => true
         ],
-        NewsRubric::FIELD_GUID            => [
+        NewsRubric::FIELD_GUID                  => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
             'readOnly'   => true
         ],
-        NewsRubric::FIELD_TYPE            => [
+        NewsRubric::FIELD_TYPE                  => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
             'accessor'   => 'getType',
             'readOnly'   => true
         ],
-        NewsRubric::FIELD_VERSION         => [
+        NewsRubric::FIELD_VERSION               => [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
             'readOnly'     => true,
             'defaultValue' => 1
         ],
-        NewsRubric::FIELD_PARENT          => [
+        NewsRubric::FIELD_PARENT                => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'pid',
             'accessor'   => 'getParent',
             'target'     => 'newsRubric',
             'readOnly'   => true
         ],
-        NewsRubric::FIELD_MPATH           => [
+        NewsRubric::FIELD_MPATH                 => [
             'type'       => IField::TYPE_MPATH,
             'columnName' => 'mpath',
             'accessor'   => 'getMaterializedPath',
             'readOnly'   => true
         ],
-        NewsRubric::FIELD_SLUG            => [
+        NewsRubric::FIELD_SLUG                  => [
             'type'       => IField::TYPE_SLUG,
             'columnName' => 'slug',
             'accessor'   => 'getSlug',
             'readOnly'   => true
         ],
-        NewsRubric::FIELD_URI             => [
+        NewsRubric::FIELD_URI                   => [
             'type'       => IField::TYPE_URI,
             'columnName' => 'uri',
             'accessor'   => 'getURI',
             'readOnly'   => true
         ],
-        NewsRubric::FIELD_CHILD_COUNT     => [
+        NewsRubric::FIELD_CHILD_COUNT           => [
             'type'         => IField::TYPE_COUNTER,
             'columnName'   => 'child_count',
             'accessor'     => 'getChildCount',
             'readOnly'     => true,
             'defaultValue' => 0
         ],
-        NewsRubric::FIELD_ORDER           => [
+        NewsRubric::FIELD_ORDER                 => [
             'type'       => IField::TYPE_ORDER,
             'columnName' => 'order',
             'accessor'   => 'getOrder',
             'readOnly'   => true
         ],
-        NewsRubric::FIELD_HIERARCHY_LEVEL => [
+        NewsRubric::FIELD_HIERARCHY_LEVEL       => [
             'type'       => IField::TYPE_LEVEL,
             'columnName' => 'level',
             'accessor'   => 'getLevel',
             'readOnly'   => true
         ],
-        NewsRubric::FIELD_DISPLAY_NAME => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
-        NewsRubric::FIELD_ACTIVE       => [
+        NewsRubric::FIELD_DISPLAY_NAME          => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
+        NewsRubric::FIELD_ACTIVE                => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'active',
             'defaultValue' => 1
         ],
-        NewsRubric::FIELD_LOCKED       => [
+        NewsRubric::FIELD_LOCKED                => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
+            'readOnly'   => true,
             'defaultValue' => 0
         ],
-        NewsRubric::FIELD_CREATED      => ['type'       => IField::TYPE_DATE_TIME,
-                                            'columnName' => 'created',
-                                            'readOnly'   => true
+        NewsRubric::FIELD_CREATED               => [
+            'type'       => IField::TYPE_DATE_TIME,
+            'columnName' => 'created',
+            'readOnly'   => true
         ],
-        NewsRubric::FIELD_UPDATED      => ['type'       => IField::TYPE_DATE_TIME,
-                                            'columnName' => 'updated',
-                                            'readOnly'   => true
+        NewsRubric::FIELD_UPDATED               => [
+            'type'       => IField::TYPE_DATE_TIME,
+            'columnName' => 'updated',
+            'readOnly'   => true
         ],
         NewsRubric::FIELD_PAGE_META_TITLE       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
-        NewsRubric::FIELD_PAGE_META_KEYWORDS    => ['type'       => IField::TYPE_STRING,
-                                                     'columnName' => 'meta_keywords'
+        NewsRubric::FIELD_PAGE_META_KEYWORDS    => [
+            'type'       => IField::TYPE_STRING,
+            'columnName' => 'meta_keywords'
         ],
-        NewsRubric::FIELD_PAGE_META_DESCRIPTION => ['type'       => IField::TYPE_STRING,
-                                                     'columnName' => 'meta_description'
+        NewsRubric::FIELD_PAGE_META_DESCRIPTION => [
+            'type'       => IField::TYPE_STRING,
+            'columnName' => 'meta_description'
         ],
         NewsRubric::FIELD_PAGE_H1               => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
-        NewsRubric::FIELD_PAGE_CONTENTS          => ['type' => IField::TYPE_TEXT, 'columnName' => 'contents'],
+        NewsRubric::FIELD_PAGE_CONTENTS         => ['type' => IField::TYPE_TEXT, 'columnName' => 'contents'],
         NewsRubric::FIELD_PAGE_LAYOUT           => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'layout_id',
             'target'     => 'layout'
         ],
-        'news'                                   => [
+        NewsRubric::FIELD_NEWS                  => [
             'type'        => IField::TYPE_HAS_MANY,
             'target'      => 'newsItem',
-            'targetField' => 'rubric',
+            'targetField' => NewsItem::FIELD_RUBRIC,
             'readOnly'    => true
         ],
-        'children'                               => [
+        NewsRubric::FIELD_CHILDREN              => [
             'type'        => IField::TYPE_HAS_MANY,
             'target'      => 'newsRubric',
-            'targetField' => 'parent',
+            'targetField' => NewsRubric::FIELD_PARENT,
             'readOnly'    => true
-        ],
-
+        ]
     ],
     'types'      => [
         'base' => [
@@ -159,8 +164,8 @@ return [
                 NewsRubric::FIELD_PAGE_H1,
                 NewsRubric::FIELD_PAGE_CONTENTS,
                 NewsRubric::FIELD_PAGE_LAYOUT,
-                'news',
-                'children'
+                NewsRubric::FIELD_NEWS,
+                NewsRubric::FIELD_CHILDREN
             ]
         ]
     ]

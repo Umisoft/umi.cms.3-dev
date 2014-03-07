@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\admin\controller;
+namespace umicms\project\admin\api\controller;
 
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
@@ -18,13 +18,12 @@ use umi\orm\selector\condition\IFieldCondition;
 use umi\orm\selector\ISelector;
 use umicms\exception\OutOfBoundsException;
 use umicms\exception\UnexpectedValueException;
-use umicms\hmvc\controller\BaseController;
 use umicms\orm\object\ICmsObject;
 
 /**
  * Базовый контроллер действий над списком.
  */
-abstract class BaseRestListController extends BaseController implements IObjectPersisterAware
+abstract class BaseRestListController extends BaseRestController implements IObjectPersisterAware
 {
     use TObjectPersisterAware;
 
@@ -61,7 +60,7 @@ abstract class BaseRestListController extends BaseController implements IObjectP
             }
             case 'PUT':
             case 'POST': {
-                $object = $this->create($this->getIncomingData());
+                $object = $this->create($this->getIncomingDataForList());
                 return $this->createViewResponse(
                     'item', [$this->getCollectionName() => $object]
                 );
@@ -84,25 +83,13 @@ abstract class BaseRestListController extends BaseController implements IObjectP
 
 
     /**
-     * Возвращает данные для изменения объекта.
+     * Возвращает данные для создания объекта.
      * @throws HttpException если не удалось получить данные
      * @return array
      */
-    protected function getIncomingData()
+    protected function getIncomingDataForList()
     {
-        $inputData = file_get_contents('php://input');
-        if (!$inputData) {
-            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Request body is empty.');
-        }
-
-        $data = @json_decode($inputData, true);
-
-        if ($error = json_last_error()) {
-            if (function_exists('json_last_error_msg')) {
-                $error = json_last_error_msg();
-            }
-            throw new HttpException(Response::HTTP_BAD_REQUEST, 'JSON parse error: ' . $error);
-        }
+        $data = $this->getIncomingData();
 
         if (!isset($data[$this->getCollectionName()]) || !is_array($data[$this->getCollectionName()])) {
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'Object data not found.');
@@ -127,6 +114,13 @@ abstract class BaseRestListController extends BaseController implements IObjectP
 
         if (is_array($this->getQueryVar('with'))) {
             $this->applySelectorWith($selector, $this->getQueryVar('with'));
+        }
+
+        if (is_array($this->getQueryVar('orderBy'))) {
+            foreach($this->getQueryVar('orderBy') as $fieldPath => $direction) {
+                $fieldPath = $this->normalizeFieldPath($fieldPath);
+                $selector->orderBy($fieldPath, $direction);
+            }
         }
 
         if (is_array($this->getQueryVar('filters'))) {

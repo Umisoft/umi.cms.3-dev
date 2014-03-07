@@ -9,12 +9,14 @@
 
 namespace umicms\project\module\news\admin\rubric\controller;
 
+use umi\hmvc\exception\http\HttpException;
+use umi\http\Response;
 use umi\orm\object\IObject;
-use umicms\project\admin\controller\BaseRestActionController;
+use umicms\project\admin\api\controller\BaseRestActionController;
 use umicms\project\module\news\api\NewsPublicApi;
 
 /**
- * Контроллер Read-Update-Delete операций над объектом.
+ * Контроллер операций.
  */
 class ActionController extends BaseRestActionController
 {
@@ -60,28 +62,28 @@ class ActionController extends BaseRestActionController
 
     protected function actionMove()
     {
+        $data = $this->getIncomingData();
 
-        if ($objectInfo = $this->getPostVar('object')) {
-            $object = $this->api->rubric()->getById($objectInfo[IObject::FIELD_IDENTIFY]);
-            $object->setVersion($objectInfo[IObject::FIELD_VERSION]);
-        } else {
-            $object = null;
+        if (!isset($data['object'])) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot get object to move.');
         }
 
-        if ($branchInfo = $this->getPostVar('branch')) {
-            $branch = $this->api->rubric()->getById($branchInfo[IObject::FIELD_IDENTIFY]);
-            $branch->setVersion($branchInfo[IObject::FIELD_VERSION]);
+        $object = $this->api->rubric()->getById($data['object'][IObject::FIELD_IDENTIFY]);
+        $object->setVersion($data['object'][IObject::FIELD_VERSION]);
+
+        if (isset($data['branch'])) {
+            $branch = $this->api->rubric()->getById($data['branch'][IObject::FIELD_IDENTIFY]);
+            $branch->setVersion($data['branch'][IObject::FIELD_VERSION]);
         } else {
             $branch = null;
         }
 
-        if ($previousSiblingInfo = $this->getPostVar('sibling')) {
-            $previousSibling = $this->api->rubric()->getById($previousSiblingInfo[IObject::FIELD_IDENTIFY]);
-            $previousSibling->setVersion($previousSiblingInfo[IObject::FIELD_VERSION]);
+        if (isset($data['sibling'])) {
+            $previousSibling = $this->api->rubric()->getById($data['sibling'][IObject::FIELD_IDENTIFY]);
+            $previousSibling->setVersion($data['sibling'][IObject::FIELD_VERSION]);
         } else {
             $previousSibling = null;
         }
-
 
         $this->api->rubric()->getCollection()->move($object, $branch, $previousSibling);
 

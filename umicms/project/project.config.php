@@ -104,7 +104,7 @@ return [
                 'structure'     => [
                     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
                     'handlers' => [
-                        'admin' => 'structure',
+                        'admin' => 'structure.page',
                         'site' => 'structure'
                     ]
                 ],

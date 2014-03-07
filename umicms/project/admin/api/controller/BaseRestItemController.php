@@ -7,20 +7,19 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\admin\controller;
+namespace umicms\project\admin\api\controller;
 
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseController;
 use umicms\orm\object\ICmsObject;
 
 /**
  * Базовый контроллер Read-Update-Delete операций над объектом.
  */
-abstract class BaseRestItemController extends BaseController implements IObjectPersisterAware
+abstract class BaseRestItemController extends BaseRestController implements IObjectPersisterAware
 {
     use TObjectPersisterAware;
 
@@ -61,7 +60,7 @@ abstract class BaseRestItemController extends BaseController implements IObjectP
                 return $this->createViewResponse(
                     'update',
                     [
-                        $object->getCollectionName() => $this->update($object, $this->getIncomingData($object))
+                        $object->getCollectionName() => $this->update($object, $this->getIncomingDataForObject($object))
                     ]
                 );
             }
@@ -90,21 +89,9 @@ abstract class BaseRestItemController extends BaseController implements IObjectP
      * @throws HttpException если не удалось получить данные
      * @return array
      */
-    private function getIncomingData(ICmsObject $object)
+    private function getIncomingDataForObject(ICmsObject $object)
     {
-        $inputData = file_get_contents('php://input');
-        if (!$inputData) {
-            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Request body is empty.');
-        }
-
-        $data = @json_decode($inputData, true);
-
-        if ($error = json_last_error()) {
-            if (function_exists('json_last_error_msg')) {
-                $error = json_last_error_msg();
-            }
-            throw new HttpException(Response::HTTP_BAD_REQUEST, 'JSON parse error: ' . $error);
-        }
+        $data = $this->getIncomingData();
 
         $collectionName = $object->getCollectionName();
         if (!isset($data[$collectionName]) || !is_array($data[$collectionName])) {
