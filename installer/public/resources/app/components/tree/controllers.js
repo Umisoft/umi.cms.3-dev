@@ -176,7 +176,12 @@ define(['App'], function(UMI){
                     return true;
                 } else{
                     var activeContext = this.get('controllers.treeControl.activeContext');
-                    console.log(this.get('id'), activeContext.get('mpath'));
+                    var contains = activeContext.get('mpath').contains(parseFloat(this.get('id')));
+                    if(contains && activeContext.get('id') !== this.get('id')){
+                        return true;
+                    } else{
+                        return false;
+                    }
                 }
             }.property('root'),
             actions: {
