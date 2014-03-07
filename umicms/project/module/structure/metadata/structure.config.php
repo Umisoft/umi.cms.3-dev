@@ -22,13 +22,14 @@ return [
         StructureElement::FIELD_IDENTIFY              => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
-            'accessor'   => 'getId'
+            'accessor'   => 'getId',
+            'readOnly'   => true
         ],
         StructureElement::FIELD_GUID                  => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
-            'mutator'    => 'setGuid'
+            'readOnly'   => true
         ],
         StructureElement::FIELD_TYPE                  => [
             'type'       => IField::TYPE_STRING,
@@ -40,7 +41,7 @@ return [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
-            'mutator'      => 'setVersion',
+            'readOnly'   => true,
             'defaultValue' => 1
         ],
         StructureElement::FIELD_PARENT                => [
@@ -103,6 +104,7 @@ return [
         StructureElement::FIELD_LOCKED                => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
+            'readOnly'   => true,
             'defaultValue' => 0
         ],
         StructureElement::FIELD_CREATED               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
@@ -121,6 +123,12 @@ return [
             'columnName' => 'layout_id',
             'target'     => 'layout'
         ],
+        StructureElement::FIELD_CHILDREN              => [
+            'type'        => IField::TYPE_HAS_MANY,
+            'target'      => 'structure',
+            'targetField' => StructureElement::FIELD_PARENT,
+            'readOnly'    => true
+        ]
     ],
     'types'      => [
         'base'   => [
@@ -148,7 +156,8 @@ return [
                 StructureElement::FIELD_PAGE_META_DESCRIPTION,
                 StructureElement::FIELD_PAGE_H1,
                 StructureElement::FIELD_PAGE_CONTENTS,
-                StructureElement::FIELD_PAGE_LAYOUT
+                StructureElement::FIELD_PAGE_LAYOUT,
+                StructureElement::FIELD_CHILDREN
             ]
         ],
         'system' => [
@@ -176,7 +185,8 @@ return [
                 SystemPage::FIELD_PAGE_META_DESCRIPTION,
                 SystemPage::FIELD_PAGE_H1,
                 SystemPage::FIELD_PAGE_CONTENTS,
-                SystemPage::FIELD_PAGE_LAYOUT
+                SystemPage::FIELD_PAGE_LAYOUT,
+                SystemPage::FIELD_CHILDREN
             ]
         ],
         'static' => [
@@ -204,7 +214,8 @@ return [
                 StaticPage::FIELD_PAGE_META_DESCRIPTION,
                 StaticPage::FIELD_PAGE_H1,
                 StaticPage::FIELD_PAGE_CONTENTS,
-                StaticPage::FIELD_PAGE_LAYOUT
+                StaticPage::FIELD_PAGE_LAYOUT,
+                StaticPage::FIELD_CHILDREN
             ]
         ]
     ]

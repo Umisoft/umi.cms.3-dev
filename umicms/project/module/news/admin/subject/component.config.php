@@ -16,14 +16,46 @@ return [
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
     AdminComponent::OPTION_SETTINGS => [
+        'controls' => [
+            [
+                'name' => 'filter',
+                'displayName' => 'Сюжеты'
+            ],
+            [
+                'name' => 'form',
+                'displayName' => 'Редактирование'
+            ]
+        ],
+        'layout' => [
+            'emptyContext' => [
+                'contents' => [
+                    'controls' => ['filter']
+                ]
+            ],
+            'selectedContext' => [
+                'contents' => [
+                    'controls' => ['form']
+                ]
+            ]
+        ]
     ],
 
     AdminComponent::OPTION_CONTROLLERS => [
         'list' => __NAMESPACE__ . '\controller\ListController',
-        'item' => __NAMESPACE__ . '\controller\ItemController'
+        'item' => __NAMESPACE__ . '\controller\ItemController',
+        'action' => __NAMESPACE__ . '\controller\ActionController',
     ],
 
     AdminComponent::OPTION_ROUTES      => [
+
+        'settings' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route'    => '/settings',
+            'defaults' => [
+                'action' => 'settings',
+                'controller' => 'action'
+            ],
+        ],
 
         'item' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
@@ -31,15 +63,32 @@ return [
             'defaults' => [
                 'collection' => 'newsSubject',
                 'controller' => 'item'
+            ],
+            'subroutes' => [
+                'action' => [
+                    'type'     => IRouteFactory::ROUTE_SIMPLE,
+                    'route'    => '/{action}',
+                    'defaults' => [
+                        'controller' => 'action'
+                    ]
+                ]
             ]
         ],
-
         'list' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{collection}',
             'defaults' => [
                 'collection' => 'newsSubject',
                 'controller' => 'list'
+            ],
+            'subroutes' => [
+                'action' => [
+                    'type'     => IRouteFactory::ROUTE_SIMPLE,
+                    'route'    => '/{action}',
+                    'defaults' => [
+                        'controller' => 'action'
+                    ]
+                ]
             ]
         ]
     ]

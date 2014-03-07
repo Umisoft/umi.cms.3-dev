@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\structure\admin;
 
+use umi\route\IRouteFactory;
 use umicms\project\admin\component\AdminComponent;
 
 return [
@@ -16,5 +17,17 @@ return [
 
     AdminComponent::OPTION_SETTINGS => [
 
+    ],
+
+
+    AdminComponent::OPTION_COMPONENTS => [
+        'page' => '{#lazy:~/project/module/structure/admin/page/component.config.php}'
+    ],
+
+    AdminComponent::OPTION_ROUTES      => [
+        'component' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/{component}'
+        ]
     ]
 ];

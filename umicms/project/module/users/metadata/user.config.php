@@ -20,13 +20,14 @@ return [
         User::FIELD_IDENTIFY      => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
-            'accessor'   => 'getId'
+            'accessor'   => 'getId',
+            'readOnly'   => true
         ],
         User::FIELD_GUID          => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
-            'mutator'    => 'setGuid'
+            'readOnly'   => true
         ],
         User::FIELD_TYPE          => [
             'type'       => IField::TYPE_STRING,
@@ -38,7 +39,7 @@ return [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
-            'mutator'      => 'setVersion',
+            'readOnly'   => true,
             'defaultValue' => 1
         ],
         User::FIELD_DISPLAY_NAME  => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
@@ -50,17 +51,26 @@ return [
         User::FIELD_LOCKED        => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
+            'readOnly'   => true,
             'defaultValue' => 0
         ],
-        User::FIELD_CREATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        User::FIELD_UPDATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
+        User::FIELD_CREATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created', 'readOnly'   => true],
+        User::FIELD_UPDATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly'   => true],
         User::FIELD_LOGIN         => ['type' => IField::TYPE_STRING, 'columnName' => 'login'],
         User::FIELD_EMAIL         => ['type' => IField::TYPE_STRING, 'columnName' => 'email'],
         User::FIELD_PASSWORD      => ['type' => IField::TYPE_STRING, 'columnName' => 'password', 'readOnly' => true],
         User::FIELD_PASSWORD_SALT => ['type'       => IField::TYPE_STRING,
                                       'columnName' => 'password_salt',
                                       'readOnly'   => true
-        ]
+        ],
+        User::FIELD_GROUPS     => [
+            'type'         => IField::TYPE_MANY_TO_MANY,
+            'target'       => 'userGroup',
+            'bridge'       => 'userUserGroup',
+            'relatedField' => 'user',
+            'targetField'  => 'userGroup',
+            'readOnly'     => true
+        ],
 
     ],
     'types'      => [
@@ -79,7 +89,8 @@ return [
                 User::FIELD_LOGIN,
                 User::FIELD_EMAIL,
                 User::FIELD_PASSWORD,
-                User::FIELD_PASSWORD_SALT
+                User::FIELD_PASSWORD_SALT,
+                User::FIELD_GROUPS
             ]
         ]
     ]

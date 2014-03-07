@@ -10,11 +10,11 @@
 namespace umicms\project\module\users\admin\user\controller;
 
 use umi\hmvc\exception\http\HttpUnauthorized;
-use umicms\project\admin\controller\BaseRestActionController;
+use umicms\project\admin\api\controller\BaseRestActionController;
 use umicms\project\module\users\api\UsersApi;
 
 /**
- * Контроллер Read-Update-Delete операций над объектом.
+ * Контроллер операций.
  */
 class ActionController extends BaseRestActionController
 {

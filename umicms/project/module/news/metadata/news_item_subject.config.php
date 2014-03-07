@@ -9,73 +9,82 @@
 namespace umicms\project\module\news\metadata;
 
 use umi\orm\metadata\field\IField;
-use umi\orm\object\IObject;
+use umicms\orm\object\CmsObject;
 
 return [
     'dataSource' => [
         'sourceName' => 'umi_news_news_item_subject'
     ],
     'fields'     => [
-        IObject::FIELD_IDENTIFY => [
+        CmsObject::FIELD_IDENTIFY     => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
             'accessor'   => 'getId',
             'readOnly'   => true
         ],
-        IObject::FIELD_GUID     => [
+        CmsObject::FIELD_GUID         => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
             'readOnly'   => true
         ],
-        IObject::FIELD_TYPE     => [
+        CmsObject::FIELD_TYPE         => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
             'accessor'   => 'getType',
             'readOnly'   => true
         ],
-        IObject::FIELD_VERSION  => [
+        CmsObject::FIELD_VERSION      => [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
             'readOnly'     => true,
             'defaultValue' => 1
         ],
-        'displayName'           => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
-        'active'                => [
+        CmsObject::FIELD_DISPLAY_NAME => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
+        CmsObject::FIELD_ACTIVE       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'active',
             'defaultValue' => 1
         ],
-        'locked'                => [
+        CmsObject::FIELD_LOCKED       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
+            'readOnly'     => true,
             'defaultValue' => 0
         ],
-        'created'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created', 'readOnly' => true],
-        'updated'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly' => true],
-        'newsItem'              => ['type'       => IField::TYPE_BELONGS_TO,
-                                    'columnName' => 'news_item_id',
-                                    'target'     => 'newsItem'
+        CmsObject::FIELD_CREATED      => ['type'       => IField::TYPE_DATE_TIME,
+                                          'columnName' => 'created',
+                                          'readOnly'   => true
         ],
-        'subject'               => ['type'       => IField::TYPE_BELONGS_TO,
-                                    'columnName' => 'subject_id',
-                                    'target'     => 'newsSubject'
+        CmsObject::FIELD_UPDATED      => ['type'       => IField::TYPE_DATE_TIME,
+                                          'columnName' => 'updated',
+                                          'readOnly'   => true
+        ],
+        'newsItem'                    => [
+            'type'       => IField::TYPE_BELONGS_TO,
+            'columnName' => 'news_item_id',
+            'target'     => 'newsItem'
+        ],
+        'subject'                     => [
+            'type'       => IField::TYPE_BELONGS_TO,
+            'columnName' => 'subject_id',
+            'target'     => 'newsSubject'
         ]
 
     ],
     'types'      => [
         'base' => [
             'fields' => [
-                'id',
-                'guid',
-                'type',
-                'version',
-                'active',
-                'locked',
-                'created',
-                'updated',
-                'displayName',
+                CmsObject::FIELD_IDENTIFY,
+                CmsObject::FIELD_GUID,
+                CmsObject::FIELD_TYPE,
+                CmsObject::FIELD_VERSION,
+                CmsObject::FIELD_ACTIVE,
+                CmsObject::FIELD_LOCKED,
+                CmsObject::FIELD_CREATED,
+                CmsObject::FIELD_UPDATED,
+                CmsObject::FIELD_DISPLAY_NAME,
                 'newsItem',
                 'subject'
             ]

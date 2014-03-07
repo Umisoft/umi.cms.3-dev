@@ -10,7 +10,7 @@
 namespace umicms\project\module\news\admin\rubric\controller;
 
 use umicms\exception\RuntimeException;
-use umicms\project\admin\controller\BaseRestListController;
+use umicms\project\admin\api\controller\BaseRestListController;
 use umicms\project\module\news\api\NewsPublicApi;
 
 /**

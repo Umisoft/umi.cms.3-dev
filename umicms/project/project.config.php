@@ -97,6 +97,9 @@ return [
                 'blogPostTag' => '{#lazy:~/project/module/blog/metadata/post_tag.config.php}',
 
                 'user' => '{#lazy:~/project/module/users/metadata/user.config.php}',
+                'userGroup' => '{#lazy:~/project/module/users/metadata/user_group.config.php}',
+                'userUserGroup' => '{#lazy:~/project/module/users/metadata/user_user_group.config.php}',
+
                 'searchIndex' => '{#lazy:~/project/module/search/metadata/search_index.config.php}',
             ],
 
@@ -104,7 +107,7 @@ return [
                 'structure'     => [
                     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
                     'handlers' => [
-                        'admin' => 'structure',
+                        'admin' => 'structure.page',
                         'site' => 'structure'
                     ]
                 ],
@@ -150,6 +153,9 @@ return [
                 'blogPostTag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
 
                 'user' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'userGroup' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'userUserGroup' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+
                 'searchIndex' => ['type' => ICollectionFactory::TYPE_SIMPLE],
             ]
         ]

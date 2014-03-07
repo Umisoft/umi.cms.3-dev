@@ -430,6 +430,8 @@ class InstallController extends SitePageController implements ICollectionManager
         $connection = $this->dbCluster->getConnection();
 
         $connection->exec("DROP TABLE IF EXISTS `demohunt_user`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_user_group`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_user_user_group`");
 
         $connection->exec(
             "
@@ -451,7 +453,51 @@ class InstallController extends SitePageController implements ICollectionManager
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `user_guid` (`guid`),
                     KEY `user_type` (`type`),
-                    KEY `user_login` (`login`)
+                    UNIQUE KEY `user_login` (`login`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_user_group` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255) DEFAULT NULL,
+                    `type` varchar(255) DEFAULT NULL,
+                    `version` int(10) unsigned DEFAULT '1',
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `group_guid` (`guid`),
+                    KEY `group_type` (`type`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_user_user_group` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255) DEFAULT NULL,
+                    `type` varchar(255) DEFAULT NULL,
+                    `version` int(10) unsigned DEFAULT '1',
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `user_id` bigint(20) unsigned,
+                    `user_group_id` bigint(20) unsigned,
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `user_user_group_guid` (`guid`),
+                    KEY `user_user_group_type` (`type`),
+                    KEY `user_user_group_user` (`user_id`),
+                    KEY `user_user_group_group` (`user_group_id`),
+                    CONSTRAINT `FK_user_user_group_user` FOREIGN KEY (`user_id`) REFERENCES `demohunt_user_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_user_user_group_group` FOREIGN KEY (`user_group_id`) REFERENCES `demohunt_user_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );

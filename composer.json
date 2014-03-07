@@ -10,7 +10,8 @@
             "umicms\\": "umicms/library",
             "umicms\\project\\" : "umicms/project",
             "demohunt\\" : "demohunt"
-        }
+        },
+        "classmap": ["umicms/project/module/files/admin/manager/elfinder"]
     },
     "replace": {
         "umi/cms" : "self.version"

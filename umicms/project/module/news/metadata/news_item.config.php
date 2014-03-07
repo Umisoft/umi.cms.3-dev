@@ -51,6 +51,7 @@ return [
         NewsItem::FIELD_LOCKED       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
+            'readOnly'   => true,
             'defaultValue' => 0
         ],
         NewsItem::FIELD_CREATED      => ['type'       => IField::TYPE_DATE_TIME,

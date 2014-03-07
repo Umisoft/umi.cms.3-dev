@@ -49,6 +49,7 @@ $toolkitPath = $directoryProjects . '/vendor/umi/framework-dev/library';
 
 defined('CMS_LIBRARY_DIR') or define('CMS_LIBRARY_DIR', $directoryCms . '/library');
 defined('FRAMEWORK_LIBRARY_DIR') or define('FRAMEWORK_LIBRARY_DIR', $toolkitPath);
+defined('PUBLIC_DIR') or define('PUBLIC_DIR', __DIR__);
 
 $env->bootConfigMaster = $directoryCms . '/configuration/boot.config.php';
 $env->bootConfigLocal = $directoryProjects . '/configuration/boot.config.php';

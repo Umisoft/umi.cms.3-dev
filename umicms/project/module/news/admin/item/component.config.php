@@ -16,7 +16,28 @@ return [
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
     AdminComponent::OPTION_SETTINGS => [
-
+        'controls' => [
+            [
+                'name' => 'filter',
+                'displayName' => 'Новости'
+            ],
+            [
+                'name' => 'form',
+                'displayName' => 'Редактирование'
+            ]
+        ],
+        'layout' => [
+            'emptyContext' => [
+                'contents' => [
+                    'controls' => ['filter']
+                ]
+            ],
+            'selectedContext' => [
+                'contents' => [
+                    'controls' => ['form']
+                ]
+            ]
+        ]
     ],
 
     AdminComponent::OPTION_CONTROLLERS => [

@@ -10,6 +10,7 @@
 namespace umicms\orm\object;
 
 use umi\orm\object\HierarchicObject;
+use umi\orm\objectset\IObjectSet;
 
 /**
  * Класс иерархического объекта UMI.CMS.
@@ -19,8 +20,12 @@ use umi\orm\object\HierarchicObject;
  * @property int $order порядок следования в иерархии
  * @property CmsHierarchicObject|null $parent родительский элемент
  * @property int $childCount количество дочерних элементов
+ * @property IObjectSet $children дочерние элементы
  */
 class CmsHierarchicObject extends HierarchicObject implements ICmsObject
 {
-
+    /**
+     *  Имя поля для хранения дочерних элементов
+     */
+    const FIELD_CHILDREN = 'children';
 }
