@@ -857,7 +857,7 @@ class InstallController extends SitePageController implements ICollectionManager
                 UNIQUE KEY `search_index_ref_guid` (`ref_guid`),
                 KEY `search_index_type` (`type`),
                 KEY `search_index_collection_id` (`collection_id`),
-                FULLTEXT(`content`)
+                FULLTEXT(`contents`)
             ) ENGINE=MyISAM DEFAULT CHARSET=utf8
             "
         );
