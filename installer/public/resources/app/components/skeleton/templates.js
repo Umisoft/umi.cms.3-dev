@@ -1,6 +1,10 @@
 define([
-    'text!./templates/application.hbs', 'text!./templates/component.hbs',
-    'text!./templates/error.hbs', 'text!./templates/children.hbs', 'text!./templates/form.hbs'
+    'text!./templates/application.hbs',
+    'text!./templates/component.hbs',
+    'text!./templates/actions/error.hbs',
+    'text!./templates/actions/children.hbs',
+    'text!./templates/actions/form.hbs',
+    'text!./templates/actions/files.hbs'
 ], function(applicationTpl, componentTpl, errorTpl, childrenTpl, formTpl){
     'use strict';
     return function(){

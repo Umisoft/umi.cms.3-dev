@@ -41,6 +41,9 @@ define(
             console.log('Минимальная поддерживаемая ширина экрана - 800px');
         }
 
+
+
+
         //Проверка браузера на современность - проверка поддержки calc()
         Modernizr.addTest('csscalc', function(){
             var prop = 'width:';
@@ -49,6 +52,14 @@ define(
             el.style.cssText = prop + Modernizr._prefixes.join(value + prop);
             return !!el.style.length;
         });
+
+
+        Modernizr.addTest('cssfilters', function() {
+            var el = document.createElement('div');
+            el.style.cssText = Modernizr._prefixes.join('filter' + ':blur(2px); ');
+            return !!el.style.length && ((document.documentMode === undefined || document.documentMode > 9));
+        });
+
 
         $('.qunit-container-button').click(function(){
             $('.qunit-container').toggle();
