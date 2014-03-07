@@ -36,14 +36,23 @@ module.exports = function(grunt){
             options: {
                 separator: ''
             },
-            js: {
+            foundation: {
                 src: [
                     'app/foundationJs/foundation.js',
-                    'app/foundationJs/components/*.js',
+                    'app/foundationJs/components/*.js'
+                ],
+                dest: 'deploy/foundation.js'
+            },
+            elFinder: {
+                options: {
+                    separator: ';'
+                },
+                src: [
+                    'app/components/elFinder/js/elFinder.js',
                     'app/components/elFinder/js/**/*.js',
                     'app/components/elFinder/jquery/jquery-ui-1.10.4.custom.min.js'
                 ],
-                dest: 'deploy/foundation.js'
+                dest: 'deploy/elFinder.js'
             },
             //Объединяем стили с иконками
             css: {

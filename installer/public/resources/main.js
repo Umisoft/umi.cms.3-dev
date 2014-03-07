@@ -13,9 +13,9 @@ require.config({
         Foundation: 'deploy/foundation',
         ckEditor: 'libs/ckeditor/ckeditor',
         datepicker: 'libs/datepicker',
-        App: 'app/components/skeleton/main'
+        App: 'app/components/skeleton/main',
         //jQueryUI: 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min'
-        //elFinder: 'libs/elfinder/js/elfinder.min'
+        elFinder: 'deploy/elFinder'
     },
 
     shim: {
@@ -34,8 +34,8 @@ require.config({
         },*/
 
         elFinder: {
-            deps: ['jQuery', 'jQueryUI'],
-            exports: 'jQueryUI'
+            deps: ['jQuery'],
+            exports: 'elFinder'
         },
 
         Ember: {
@@ -94,7 +94,7 @@ require.config({
 
 
 if(UmiSettings.login){
-    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor'], function(application){
+    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder'], function(application){
         "use strict";
         application();
     });
