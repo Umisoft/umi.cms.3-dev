@@ -404,7 +404,7 @@ define(['App'], function(UMI){
                 var that = this;
                 $('.umi-table').on('click', '.umi-table-tr', function(){
                     var objectId = $(this).data('object-id');
-                    that.get('controller').transitionToRoute('content', 'properties', objectId);
+                    that.get('controller').transitionToRoute('context', objectId);
                 });
 
                 //TODO После вынесения столбца с кнопками удаления в отдельную колонку, изменить селектор на .umi-table-control-content-right
