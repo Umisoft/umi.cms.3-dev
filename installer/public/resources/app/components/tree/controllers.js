@@ -108,8 +108,7 @@ define(['App'], function(UMI){
                     resource.push(type);
                     resource.push('move');
                     resource = resource.join('/');
-
-                    $.post(resource, moveParams).then(
+                    $.ajax({'type': 'POST', 'url': resource, 'data': JSON.stringify(moveParams), 'dataType': 'json', 'contentType': 'application/json'}).then(
                         function(){
                             ids.push(id);
                             var parentsUpdateRelation = [];
