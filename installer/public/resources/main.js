@@ -14,8 +14,8 @@ require.config({
         ckEditor: 'libs/ckeditor/ckeditor',
         datepicker: 'libs/datepicker',
         App: 'app/components/skeleton/main',
-        jQueryUI: 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min',
-        elFinder: 'libs/elfinder/js/elfinder.min'
+        //jQueryUI: 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min'
+        elFinder: 'deploy/elFinder'
     },
 
     shim: {
@@ -28,14 +28,14 @@ require.config({
         },
 
         //Требует elFinder
-        jQueryUI: {
+        /*jQueryUI: {
             deps: ['jQuery'],
             exports: 'jQueryUI'
-        },
+        },*/
 
         elFinder: {
-            deps: ['jQuery', 'jQueryUI'],
-            exports: 'jQueryUI'
+            deps: ['jQuery'],
+            exports: 'elFinder'
         },
 
         Ember: {

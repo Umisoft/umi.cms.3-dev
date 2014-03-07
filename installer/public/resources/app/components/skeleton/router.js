@@ -69,6 +69,8 @@ define([], function(){
                     if(result.modules){
                         self.controllerFor('dock').set('modules', result);
                     }
+                }, function(error){
+                    throw new Error('Не получен ресурс приложения ' + baseResource + '.' + error);
                 });
             },
             actions: {
@@ -183,6 +185,8 @@ define([], function(){
                     componentController.set('context', context);
                     componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
                     return model;
+                }, function(error){
+                    throw new Error('Не получен ресурс компонета ' + componentResource + '.' + error);
                 });
             },
             redirect: function(model, transition){
@@ -217,6 +221,7 @@ define([], function(){
 
         UMI.ContextRoute = Ember.Route.extend({
             model: function(params, transition){
+                var self = this;
                 var model;
                 var routeData = {};
                 var oldContext = this.controllerFor('component').get('selectedContext');
@@ -233,7 +238,7 @@ define([], function(){
                     model = Ember.Object.extend({
                         'id': 'root',
                         children: function(){
-                            return this.store.find(this.modelFor('component').get('collection'), {'parent': null});
+                            return this.store.find(self.modelFor('component').get('collection'), {'filters[parent]': 'null()'});
                         }.property()
                     });
                 } else{
@@ -250,11 +255,13 @@ define([], function(){
                         viewSettings[transition.params.action.action] = results.result[transition.params.action.action];
                         routeData.viewSettings = viewSettings;
                         return routeData;
+                    }, function(error){
+                        throw new Error('Не получена мета информация для action form ' + actionResource + '.' + error);
                     });
                 }
                 // Временное решение для таблицы
                 if(transition.params.action.action === 'children'){
-                    return Ember.$.getJSON('/resources/modules/news/categories/children/resources').then(function(results){
+                    return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
                         routeData.viewSettings = results.settings;
                         return routeData;
                     });
