@@ -103,7 +103,7 @@ return [
             'columnName' => 'post_id',
             'target'     => 'blogPost'
         ],
-        'content'                                => ['type' => IField::TYPE_TEXT, 'columnName' => 'content'],
+        'contents'                                => ['type' => IField::TYPE_TEXT, 'columnName' => 'contents'],
         'date'                                   => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'date'],
         'answers'                                => [
             'type'        => IField::TYPE_HAS_MANY,
@@ -132,7 +132,7 @@ return [
                 'updated',
                 'displayName',
                 'post',
-                'content',
+                'contents',
                 'date',
                 'answers'
             ]

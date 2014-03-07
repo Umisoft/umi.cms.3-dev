@@ -15,7 +15,7 @@ use umi\orm\metadata\field\special\MaterializedPathField;
 use umi\orm\selector\ISelector;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\UnexpectedValueException;
-use umicms\orm\object\CmsElement;
+use umicms\orm\object\CmsHierarchicObject;
 
 /**
  * Базовый класс API для работы с простой иерархической ORM-коллекцией.
@@ -24,24 +24,24 @@ abstract class BaseHierarchicCollectionApi extends BaseCollectionApi
 {
     /**
      * Возвращает селектор для выбора детей указанного элемента, либо от корня (на один уровень вложенности).
-     * @param CmsElement|null $element эелемент, либо null, если нужна выборка от корня
+     * @param CmsHierarchicObject|null $element эелемент, либо null, если нужна выборка от корня
      * @param bool $onlyActive учитывать активность
      * @return ISelector
      */
-    public function selectChildren(CmsElement $element = null, $onlyActive = true)
+    public function selectChildren(CmsHierarchicObject $element = null, $onlyActive = true)
     {
         return $this
             ->select($onlyActive)
-            ->where(CmsElement::FIELD_PARENT)->equals($element)
-            ->orderBy(CmsElement::FIELD_ORDER);
+            ->where(CmsHierarchicObject::FIELD_PARENT)->equals($element)
+            ->orderBy(CmsHierarchicObject::FIELD_ORDER);
     }
 
     /**
      * Возвращает селектор для выбора родителей элемента.
-     * @param CmsElement $element
+     * @param CmsHierarchicObject $element
      * @return ISelector
      */
-    public function selectAncestry(CmsElement $element)
+    public function selectAncestry(CmsHierarchicObject $element)
     {
         return $this
             ->getCollection()
@@ -50,13 +50,13 @@ abstract class BaseHierarchicCollectionApi extends BaseCollectionApi
 
     /**
      * Возвращает селектор для выбора потомков указанного элемента, либо от корня.
-     * @param CmsElement|null $element эелемент, либо null, если нужна выборка от корня
+     * @param CmsHierarchicObject|null $element эелемент, либо null, если нужна выборка от корня
      * @param int|null $depth глубина выбора потомков, по умолчанию выбираются на всю глубину
      * @param bool $onlyActive учитывать активность
      * @throws InvalidArgumentException
      * @return ISelector
      */
-    public function selectDescendants(CmsElement $element = null, $depth = null, $onlyActive = true)
+    public function selectDescendants(CmsHierarchicObject $element = null, $depth = null, $onlyActive = true)
     {
         if (!is_null($depth) && !is_int($depth) && $depth < 0) {
             throw new InvalidArgumentException($this->translate(
@@ -72,16 +72,16 @@ abstract class BaseHierarchicCollectionApi extends BaseCollectionApi
 
         if ($element) {
             $selector
-                ->where(CmsElement::FIELD_MPATH)
+                ->where(CmsHierarchicObject::FIELD_MPATH)
                 ->like($element->getMaterializedPath() . MaterializedPathField::MPATH_SEPARATOR . '%');
         }
 
         if ($depth) {
             $selector
-                ->where(CmsElement::FIELD_HIERARCHY_LEVEL)
+                ->where(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL)
                 ->equalsOrLess($element->getLevel() + $depth);
         }
-        $selector->orderBy(CmsElement::FIELD_ORDER);
+        $selector->orderBy(CmsHierarchicObject::FIELD_ORDER);
 
         return $selector;
     }
@@ -90,12 +90,12 @@ abstract class BaseHierarchicCollectionApi extends BaseCollectionApi
      * Перемещает элемент в ветку после указанного.
      * Если ветка не указана, элемент будет помещен в корень.
      * Если предшественник не указан, элемент будет помещен в начало ветки.
-     * @param CmsElement $element перемещаемый элемент
-     * @param CmsElement|null $branch ветка, в которую будет перемещен элемент
-     * @param CmsElement|null $previousSibling элемент, предшествующий перемещаемому
+     * @param CmsHierarchicObject $element перемещаемый элемент
+     * @param CmsHierarchicObject|null $branch ветка, в которую будет перемещен элемент
+     * @param CmsHierarchicObject|null $previousSibling элемент, предшествующий перемещаемому
      * @return self
      */
-    public function move(CmsElement $element, CmsElement $branch = null, CmsElement $previousSibling = null)
+    public function move(CmsHierarchicObject $element, CmsHierarchicObject $branch = null, CmsHierarchicObject $previousSibling = null)
     {
         $this
             ->getCollection()
@@ -129,7 +129,7 @@ abstract class BaseHierarchicCollectionApi extends BaseCollectionApi
      * Возвращает элемент по его URL
      * @param string $url URL элемента без начального слеша
      * @throws NonexistentEntityException если элемент не найден
-     * @return CmsElement
+     * @return CmsHierarchicObject
      */
     protected function getElementByUrl($url)
     {

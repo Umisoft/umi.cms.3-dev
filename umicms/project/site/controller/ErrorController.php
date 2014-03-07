@@ -12,13 +12,12 @@ use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpForbidden;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
-use umicms\hmvc\controller\BaseController;
 use umicms\exception\NonexistentEntityException;
 
 /**
  * Контроллер ошибок для сайта.
  */
-class ErrorController extends BaseController
+class ErrorController extends SitePageController
 {
 
     /**

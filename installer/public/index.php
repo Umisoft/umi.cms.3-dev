@@ -7,6 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use Composer\Autoload\ClassLoader;
 use umicms\Bootstrap;
 use umicms\Environment;
 
@@ -34,7 +35,10 @@ if (!file_exists($autoLoaderPath)) {
 }
 
 /** @noinspection PhpIncludeInspection */
-require $autoLoaderPath;
+/** @var $loader ClassLoader */
+$loader = require $autoLoaderPath;
+// add sql logger autoload
+$loader->addPsr4('utest\dbal\\', $vendorDirectory.'/umi/framework-dev/tests/utest/dbal/');
 
 $env = new Environment;
 

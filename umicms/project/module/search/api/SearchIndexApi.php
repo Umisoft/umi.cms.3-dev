@@ -107,7 +107,7 @@ class SearchIndexApi extends BaseSearchApi implements IPublicApi, IStemmingAware
             foreach ($objectList as $obj) {
                 if ($obj->getGUID() == $indexRecord->getValue('targetGuid')) {
                     $indexRecord->setValue(
-                        'content',
+                        'contents',
                         $this->normalizeIndexString($this->extractSearchableContent($obj))
                     );
                 }
@@ -142,7 +142,11 @@ class SearchIndexApi extends BaseSearchApi implements IPublicApi, IStemmingAware
         $propertyNames = $this->getConfigForCollection($object->getCollectionName())['properties'];
         //todo remove duplicates
         foreach ($propertyNames as $propName) {
-            $content .= " " . $object->getValue($propName);
+            $val = $object->getValue($propName);
+            if (!is_string($val)) {
+                continue;
+            }
+            $content .= " " . $this->filterSearchableText($val);
         }
         return trim($content);
     }
@@ -163,5 +167,19 @@ class SearchIndexApi extends BaseSearchApi implements IPublicApi, IStemmingAware
     protected function getIndexableCollectionsConfig()
     {
         return $this->configToArray($this->collectionsMap);
+    }
+
+    /**
+     * Очищает текст от разметки и прочей нетекстовой информации.
+     * В отличие от {@see normalizeIndexString()}, не удаляет пунктуацию и не меняет регистр символов,
+     * полученный текст можно использовать для цитирования, например, в результатах поиска.
+     *
+     * @param string $textRaw
+     * @return string
+     */
+    public function filterSearchableText($textRaw)
+    {
+        $nobr = preg_replace('#<br\s*/?>#uim', ' ', $textRaw);
+        return html_entity_decode(strip_tags($nobr));
     }
 }

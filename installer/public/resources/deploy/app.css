@@ -5345,12 +5345,15 @@ body {
       .umi-tree .umi-item.active a {
         color: #FFFFFF;
         border-bottom: none !important; }
+    .umi-tree .umi-item:hover .umi-tree-context-menu {
+      display: block; }
     .umi-tree .umi-item:hover a {
       text-decoration: none;
       border-bottom: 1px solid #535E6D; }
   .umi-tree .umi-tree-type-icon {
-    margin: 0.125rem 0 0 -0.125rem;
-    cursor: move !important; }
+    margin: 0.125rem 0 0 -0.125rem; }
+    .umi-tree .umi-tree-type-icon.move {
+      cursor: move !important; }
   .umi-tree .umi-expand {
     display: inline-block;
     width: 1.25rem;
@@ -5374,11 +5377,15 @@ body {
   .umi-tree.drag-inside a, .umi-tree.drag-inside .icon, .umi-tree.drag-inside .move {
     cursor: default; }
   .umi-tree .umi-tree-context-menu {
+    display: none;
     position: absolute;
     right: 0.5rem;
     margin: 0;
     padding: 0;
     margin-top: -24px; }
+    .umi-tree .umi-tree-context-menu a {
+      text-decoration: none !important;
+      border-bottom: none !important; }
 
 .umi-tree-ghost {
   height: 1.5rem;
@@ -5912,6 +5919,27 @@ body {
   border-right: 1px solid #ADB9C5 !important;
   border-top: 0;
   border-bottom: 0; }
+
+.umi-table-cell-div input {
+  margin-bottom: 0 !important;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  width: 180px;
+  display: none; }
+  .umi-table-cell-div input.edit {
+    display: inline-block; }
+.umi-table-cell-div .icon-inside-hover {
+  position: relative; }
+  .umi-table-cell-div .icon-inside-hover .icon {
+    background-color: #F7F7F7;
+    padding: 1px;
+    position: absolute;
+    right: -10px;
+    top: 6px;
+    display: none;
+    box-shadow: -1px 0 1px 2px #D3D3D3; }
+  .umi-table-cell-div .icon-inside-hover:hover .icon {
+    display: inline-block; }
 
 .umi-component {
   background: #f6f7f8; }

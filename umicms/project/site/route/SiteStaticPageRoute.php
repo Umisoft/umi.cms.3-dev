@@ -7,24 +7,28 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\route;
+namespace umicms\project\site\route;
 
 use umi\orm\exception\NonexistentEntityException;
 use umi\orm\metadata\field\special\UriField;
 use umi\orm\object\IHierarchicObject;
 use umi\route\type\BaseRoute;
-use umicms\hmvc\component\SiteComponent;
-use umicms\project\config\ISiteSettingsAware;
-use umicms\project\config\TSiteSettingsAware;
+use umicms\orm\object\CmsHierarchicObject;
+use umicms\project\site\callstack\IPageCallStackAware;
+use umicms\project\site\callstack\TPageCallStackAware;
+use umicms\project\site\component\SiteComponent;
+use umicms\project\site\config\ISiteSettingsAware;
+use umicms\project\site\config\TSiteSettingsAware;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\StructureElement;
 
 /**
  * Правила роутинга для сайта.
  */
-class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
+class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware, IPageCallStackAware
 {
     use TSiteSettingsAware;
+    use TPageCallStackAware;
 
     /**
      * @var StructureApi $systemApi API работы со структурой
@@ -87,11 +91,16 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
      */
     protected function matchPage($url)
     {
+
+        $parent = $this->hasCurrentPage() ? $this->getCurrentPage() : null;
+
         $element =
             $this->structureApi->element()->select()
             ->types(['static'])
-            ->where(IHierarchicObject::FIELD_URI)
+            ->where(CmsHierarchicObject::FIELD_URI)
                 ->equals(UriField::URI_START_SYMBOL . $url)
+            ->where(CmsHierarchicObject::FIELD_PARENT)
+                ->equals($parent)
             ->limit(1)
             ->result()
             ->fetch();
@@ -112,7 +121,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
     protected function setRouteParams(StructureElement $element)
     {
         $this->params[SiteComponent::MATCH_COMPONENT] = $element->componentPath;
-        $this->params[SiteComponent::MATCH_ELEMENT] = $element;
+        $this->params[SiteComponent::MATCH_STRUCTURE_ELEMENT] = $element;
     }
 
 }

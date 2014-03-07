@@ -9,13 +9,13 @@
 
 namespace umicms\project\module\news\object;
 
-use umicms\orm\object\CmsElement;
+use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 
 /**
  * Новостная рубрика.
  */
-class NewsRubric extends CmsElement implements ICmsPage
+class NewsRubric extends CmsHierarchicObject implements ICmsPage
 {
 
 }

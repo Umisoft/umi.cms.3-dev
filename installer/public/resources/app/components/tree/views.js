@@ -30,6 +30,7 @@ define(['App'], function(UMI){
 
                 //Скрытие выпадающего меню при клике вне его области
                 $('html').on('mousedown', function(){
+                    console.log('Это событие будет всегда вызываться, делай unbind');
                     $('.umi-tree-drop-down').remove();
                 });
 
@@ -49,8 +50,8 @@ define(['App'], function(UMI){
                 });
 
                 var self = this;
-                this.$().on('mousedown', '.icon.move', function(event){
-                    var draggableNode = this.parentNode.parentNode;
+                var dragAndDrop = function(event, el){
+                    var draggableNode = el.parentNode.parentNode;
                     var placeholder = document.createElement('li');
                     var ghost = document.createElement('span');
                     // Смещение призрака относительно курсора
@@ -61,13 +62,13 @@ define(['App'], function(UMI){
                     self.$().addClass('drag-inside');
                     // Добавим плейсхолдер на место перемещаемой ноды
                     placeholder.className = 'umi-tree-placeholder';
-                    placeholder.setAttribute('data-id', this.parentNode.parentNode.getAttribute('data-id'));
+                    placeholder.setAttribute('data-id', el.parentNode.parentNode.getAttribute('data-id'));
                     $(draggableNode).addClass('hide');
                     placeholder = draggableNode.parentNode.insertBefore(placeholder, draggableNode);
 
                     // Добавим призрак
                     ghost.className = 'umi-tree-ghost';
-                    ghost.innerHTML = '<i class="' + this.className + '"></i>' + $(this.parentNode).children('a').text();
+                    ghost.innerHTML = '<i class="' + el.className + '"></i>' + $(el.parentNode).children('a').text();
                     ghost = document.body.appendChild(ghost);
 
                     /**
@@ -148,7 +149,7 @@ define(['App'], function(UMI){
 
                     $(document).on('mouseup', function(event){
                         var elem = document.elementFromPoint(event.clientX, event.clientY);
-                        var siblingId = null;
+                        var prevSiblingId = null;
                         var list = $(elem).closest('.umi-tree-list')[0];
 
                         // Удаляем обработчик события
@@ -159,16 +160,34 @@ define(['App'], function(UMI){
 
                         // Если курсор над плейсхолдером считаем что перемещение удачное
                         if(list){
-                            //var parentList = placeholder.parentNode;
-                            (function findFirstSibling(el){
+                            /**
+                             * Находим предыдущего соседа
+                             */
+                            (function findPrevSibling(el){
                                 var sibling = el.previousElementSibling;
                                 if(sibling && ($(sibling).hasClass('hide') || sibling.tagName !== 'LI')){
-                                    findFirstSibling(sibling);
+                                    findPrevSibling(sibling);
                                 } else{
-                                    siblingId = sibling ? sibling.getAttribute('data-id') : null;
+                                    prevSiblingId = sibling ? sibling.getAttribute('data-id') : null;
                                 }
                             }(placeholder));
-                            self.get('controller').send('updateSortOrder', placeholder.getAttribute('data-id'), list.getAttribute('data-parent-id'), siblingId);
+
+                            var nextSibling = [];
+                            /**
+                             * Фильтр элементов списка
+                             */
+                            (function findNextSibling(element){
+                                var sibling = element.nextElementSibling;
+                                if(sibling){
+                                    if($(sibling).hasClass('hide') || sibling.tagName !== 'LI'){
+                                        findNextSibling(sibling);
+                                    } else{
+                                        nextSibling.push(sibling.getAttribute('data-id'));
+                                    }
+                                }
+                            }(placeholder));
+                            var parentId = list.getAttribute('data-parent-id');
+                            self.get('controller').send('updateSortOrder', placeholder.getAttribute('data-id'), parentId, prevSiblingId, nextSibling);
                         }
                         // Удаление плэйсхолдера
                         if(placeholder.parentNode){
@@ -177,6 +196,21 @@ define(['App'], function(UMI){
                         $(draggableNode).removeClass('hide');
                         $('html').removeClass('s-unselectable');
                     });
+                };
+                var timeoutForDrag;
+                this.$().on('mousedown', '.icon.move', function(event){
+                    if(event.originalEvent.which !== 1){
+                        return;
+                    }
+                    var el = this;
+                    timeoutForDrag = setTimeout(function(){
+                        dragAndDrop(event, el);
+                    }, 200);
+                });
+                this.$().on('mouseup', '.icon.move', function(event){
+                    if(timeoutForDrag){
+                        clearTimeout(timeoutForDrag);
+                    }
                 });
             }
         });

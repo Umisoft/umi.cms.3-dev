@@ -46,21 +46,10 @@
     </div>
 
     <div class="row s-full-height umi-tree-wrapper">
-        <ul class="umi-tree-list umi-tree" style="margin-bottom: 34px!important;">
-            <li class="root">
-                <div class="umi-item">
-                    <span class="umi-expand">
-                        <i class="icon icon-bottom"></i>
-                    </span>
-                    <i class="icon icon-document"></i>
-                    {{#link-to 'context' root.id}}{{root.name}}{{/link-to}}</span>
-                </div>
-                <ul class="umi-tree-list umi-tree">
-                    {{#each node in root.children itemController="treeItem"}}
-                        {{partial "treeItem"}}
-                    {{/each}}
-                </ul>
-            </li>
+        <ul class="umi-tree-list umi-tree">
+            {{#each node in root itemController="treeItem"}}
+                {{partial "treeItem"}}
+            {{/each}}
         </ul>
     </div>
 </div>

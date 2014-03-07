@@ -58,11 +58,11 @@ return [
                'umicms\project\module\search\api\SearchIndexApi' => [
                    'collectionsMap' => [
                        'newsItem' => ['properties' => ['displayName', 'announcement']],
-                       'newsSubject' => ['properties' => ['displayName', 'h1', 'content']],
-                       'newsRubric' => ['properties' => ['displayName', 'h1', 'content']],
-                       'blogCategory' => ['properties' => ['displayName', 'h1', 'content']],
-                       'blogComment' => ['properties' => ['content']],
-                       'blogPost' => ['properties' => ['displayName', 'h1', 'announcement', 'content']],
+                       'newsSubject' => ['properties' => ['displayName', 'h1', 'contents']],
+                       'newsRubric' => ['properties' => ['displayName', 'h1', 'contents']],
+                       'blogCategory' => ['properties' => ['displayName', 'h1', 'contents']],
+                       'blogComment' => ['properties' => ['contents']],
+                       'blogPost' => ['properties' => ['displayName', 'h1', 'announcement', 'contents']],
                    ]
                ]
             ]
@@ -72,7 +72,7 @@ return [
             'factories' => [
                 'object' => [
                     'defaultObjectClass' => 'umicms\orm\object\CmsObject',
-                    'defaultHierarchicObjectClass' => 'umicms\orm\object\CmsElement'
+                    'defaultHierarchicObjectClass' => 'umicms\orm\object\CmsHierarchicObject'
                 ],
                 'objectCollection' => [
                     'defaultSimpleCollectionClass' => 'umicms\orm\collection\SimpleCollection',

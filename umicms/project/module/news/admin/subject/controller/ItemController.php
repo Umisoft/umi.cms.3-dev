@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\news\admin\subject\controller;
 
-use umicms\hmvc\controller\BaseRestItemController;
+use umicms\project\admin\controller\BaseRestItemController;
 use umicms\orm\object\ICmsObject;
 use umicms\project\module\news\api\NewsPublicApi;
 use umicms\project\module\news\object\NewsSubject;

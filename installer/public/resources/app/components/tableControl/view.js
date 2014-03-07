@@ -440,6 +440,10 @@ define(['App'], function(UMI){
 
         UMI.TableCellView = Ember.View.extend({
             classNames: ['umi-table-cell-div'],
+//            edit: false,
+//            editToggle: function(){
+//                this.set('edit', !this.get('edit'));
+//            },
             template: function(){
                 var meta = this.get('meta');
                 var object = this.get('object');
@@ -464,6 +468,7 @@ define(['App'], function(UMI){
                 //						}
                 //
                 //					}else{
+//                template = Ember.Handlebars.compile('<div {{bind-attr class=":icon-inside-hover view.edit:hide"}}>' + object.get(meta.name) + '<i class="icon icon-write" {{action "editToggle" target="view"}}></i></div>{{input type="text" value=object.' + meta.name +' class=view.edit }}');
                 template = Ember.Handlebars.compile(object.get(meta.name) + '&nbsp;');
                 //					}
                 return template;

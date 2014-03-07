@@ -44,37 +44,6 @@ class StructureApi extends BaseComplexApi implements IPublicApi
     }
 
     /**
-     * Устанавливает текущий элемент структуры
-     * @internal
-     * @param StructureElement $element
-     */
-    public function setCurrentElement(StructureElement $element) {
-        $this->currentElement = $element;
-    }
-
-    /**
-     * Возвращает текущий элемент структуры.
-     * @throws RuntimeException если текущий элемент не был установлен
-     * @return StructureElement
-     */
-    public function getCurrentElement() {
-        if (!$this->currentElement) {
-            throw new RuntimeException($this->translate(
-                'Current structure element is not detected.'
-            ));
-        }
-        return $this->currentElement;
-    }
-
-    /**
-     * Проверяет, был ли установлен текущий элемент структуры.
-     * @return bool
-     */
-    public function hasCurrentElement() {
-        return !is_null($this->currentElement);
-    }
-
-    /**
      * Возвращает шаблон сетки для элемента.
      * @param StructureElement $element
      * @return Layout

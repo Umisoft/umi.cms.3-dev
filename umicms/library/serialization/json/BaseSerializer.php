@@ -62,24 +62,6 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
     }
 
     /**
-     * Создает json-элемент.
-     * @param string $name имя элемента
-     * @param mixed $value значение элемента
-     * @throws UnexpectedValueException если текущий элемент не массив
-     */
-    protected function writeElement($name, $value)
-    {
-        $this->getJsonWriter()
-            ->startElement($name);
-
-        $this->delegate($value);
-
-        $this->getJsonWriter()
-            ->endElement();
-
-    }
-
-    /**
      * Создает значение json-элемента
      * @param $value
      */
@@ -92,11 +74,12 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
     /**
      * Делегирует сериализацию.
      * @param $value
+     * @param array $options опции сериализации
      * @return ISerializer
      */
-    protected function delegate($value)
+    protected function delegate($value, array $options = [])
     {
         $serializer = $this->getSerializer(ISerializerFactory::TYPE_JSON, $value);
-        $serializer($value);
+        $serializer($value, $options);
     }
 }

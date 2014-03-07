@@ -18,9 +18,10 @@ class NullSerializer extends BaseSerializer
     /**
      * Сериализует null в JSON.
      * @param string $null
-     * @throws UnexpectedValueException если передан не скаляр
+     * @param array $options опции сериализации
+     * @throws UnexpectedValueException
      */
-    public function __invoke($null)
+    public function __invoke($null, array $options = [])
     {
         if (!is_null($null)) {
             throw new UnexpectedValueException($this->translate(

@@ -9,13 +9,13 @@
 
 namespace umicms\project\module\news\site\rubric\controller;
 
-use umicms\hmvc\controller\BaseController;
+use umicms\project\site\controller\SitePageController;
 use umicms\project\module\news\api\NewsPublicApi;
 
 /**
  * Контроллер отображения новостной рубрики
  */
-class RubricController extends BaseController
+class RubricController extends SitePageController
 {
 
     /**
@@ -35,6 +35,8 @@ class RubricController extends BaseController
     {
         $url = $this->getRouteVar('url');
         $rubric = $this->api->rubric()->getByUrl($url);
+
+        $this->pushCurrentPage($rubric);
 
         return $this->createViewResponse(
             'view',

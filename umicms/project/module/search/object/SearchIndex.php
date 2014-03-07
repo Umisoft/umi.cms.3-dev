@@ -23,7 +23,7 @@ class SearchIndex extends CmsObject
     /**
      * Имя поля для индексированного контента
      */
-    const FIELD_CONTENT = 'content';
+    const FIELD_CONTENT = 'contents';
     /**
      * Ссылка на GUID проиндексированного объекта
      */
