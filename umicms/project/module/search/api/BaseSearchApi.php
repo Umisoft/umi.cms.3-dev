@@ -42,7 +42,9 @@ class BaseSearchApi implements ICollectionManagerAware, IStemmingAware
             if (($pos = array_search($match, $baseForms) !== false)) {
                 unset($baseForms[$pos]);
             }
-            $variationGroups[] = $baseForms;
+            if ($baseForms) {
+                $variationGroups[] = $baseForms;
+            }
         }
         $stringVariations = '';
         foreach ($variationGroups as $group) {

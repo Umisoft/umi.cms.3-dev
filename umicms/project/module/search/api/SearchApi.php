@@ -40,7 +40,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     protected $searchAdapter;
 
     /**
-     * �?щет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
+     * Ищет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
      *
      * @param string $searchString
      * @return IObjectSet
@@ -85,7 +85,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
      * Выделяет подстроку во всех возможных формах.
      * Возвращает текст с подстроками, выделенными сконфигурированными маркерами.
      *
-     * @param string $query �?сходный запрос
+     * @param string $query Исходный запрос
      * @param string $text Текст, в котором нужно выделить найденные подстроки
      * @param string $highlightStart Маркер начала выделения подстроки
      * @param string $highlightEnd Маркер окончания выделения подстроки
@@ -129,7 +129,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
      *
      * @param string $word Слово для поиска
      * @param string $text Текст, в котором происходит поиск
-     * @param bool $exact �?скать ли только точные совпадения
+     * @param bool $exact Искать ли только точные совпадения
      * @return array
      */
     protected function collectPossibleMatches($word, $text, $exact = false)
@@ -138,19 +138,19 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
         $lastMatches = [];
         while (mb_strlen($word, 'utf-8') > 2) {
             if ($exact) {
-                $matched = preg_match('/(' . $word . ')/ui', $text, $matchesTmp);
+                $matched = preg_match('/(' . $word . ')/ui', $text, $currentMatches);
             } else {
-                $matched = preg_match('/(\w+' . $word . '\w+)/ui', $text, $matchesTmp);
+                $matched = preg_match('/(\w+' . $word . '\w+)/ui', $text, $currentMatches);
             }
             if ($matched) {
-                if ($lastMatches == $matchesTmp) {
+                if ($lastMatches == $currentMatches) {
                     break;
                 } else {
                     array_shift($foundWords);
                 }
-                $foundWords[] = $matchesTmp[1];
+                $foundWords[] = $currentMatches[1];
             }
-            $lastMatches = $matchesTmp;
+            $lastMatches = $currentMatches;
             $word = mb_substr($word, 0, mb_strlen($word, 'utf-8') - 1, 'utf-8');
         }
         return $foundWords;
@@ -166,12 +166,21 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
      */
     protected function extractSearchRegexpForms($word, $text, $includeExact = true)
     {
-        $baseForm = $this->getStemming()
-            ->getCommonRoot($word);
+        $possibleWordBases = $this->getStemming()->getBaseForm($word);
+
+        $root = $this->getStemming()
+            ->getSearchableRoot($word, 3);
         $foundWords = [$word];
-        $foundWords = array_merge($foundWords, $this->collectPossibleMatches($word, $text, true));
-        $foundWords = array_merge($foundWords, $this->collectPossibleMatches($word, $baseForm));
-        $foundWords = array_unique($foundWords);
+        if ($includeExact) {
+            $foundWords = array_merge($foundWords, $this->collectPossibleMatches($word, $text, true));
+        }
+        $foundWords = array_merge($foundWords, $this->collectPossibleMatches($word, $root));
+
+        $foundWords = array_filter(array_unique($foundWords), function($foundWord) use ($possibleWordBases){
+            $possibleFoundBases = $this->getStemming()->getBaseForm($foundWord);
+            return count(array_intersect($possibleWordBases, $possibleFoundBases)) > 0;
+        });
+        array_push($foundWords, $root);
         usort(
             $foundWords,
             function ($word1, $word2) {
@@ -267,7 +276,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     }
 
     /**
-     * @return \umi\orm\collection\ICommonHierarchy|\umi\orm\collection\IHierarchicCollection|\umi\orm\collection\ILinkedHierarchicCollection|\umi\orm\collection\ISimpleCollection
+     * @return \umi\orm\collection\ICollection
      */
     protected function getSearchIndexCollection()
     {
