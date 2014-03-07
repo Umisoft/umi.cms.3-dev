@@ -13,7 +13,7 @@ use umicms\orm\object\CmsObject;
 
 return [
     'dataSource' => [
-        'sourceName' => 'umi_news_news_item_subject'
+        'sourceName' => 'umi_user_user_groups'
     ],
     'fields'     => [
         CmsObject::FIELD_IDENTIFY     => [
@@ -61,15 +61,15 @@ return [
                                           'columnName' => 'updated',
                                           'readOnly'   => true
         ],
-        'newsItem'                    => [
+        'user'                        => [
             'type'       => IField::TYPE_BELONGS_TO,
-            'columnName' => 'news_item_id',
-            'target'     => 'newsItem'
+            'columnName' => 'user_id',
+            'target'     => 'user'
         ],
-        'subject'                     => [
+        'userGroup'                   => [
             'type'       => IField::TYPE_BELONGS_TO,
-            'columnName' => 'subject_id',
-            'target'     => 'newsSubject'
+            'columnName' => 'user_group_id',
+            'target'     => 'userGroup'
         ]
 
     ],
@@ -85,8 +85,8 @@ return [
                 CmsObject::FIELD_CREATED,
                 CmsObject::FIELD_UPDATED,
                 CmsObject::FIELD_DISPLAY_NAME,
-                'newsItem',
-                'subject'
+                'user',
+                'userGroup'
             ]
         ]
     ]
