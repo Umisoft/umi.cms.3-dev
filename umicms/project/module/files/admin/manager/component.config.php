@@ -50,6 +50,7 @@ return [
 
         'connector' => [
             'type' => IRouteFactory::ROUTE_FIXED,
+            'route'    => '/connector',
             'defaults' => [
                 'controller' => 'connector'
             ]
