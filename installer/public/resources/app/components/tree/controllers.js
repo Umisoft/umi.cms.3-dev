@@ -55,12 +55,13 @@ define(['App'], function(UMI){
             filterProperty: {
                 type: 'component'
             },
+            /**
+             Активный контекст
+             */
+            activeContext: null,
             actions: {
                 filter: function(name, element){
 
-                },
-                expandBranch: function(object){
-                    console.log(object);
                 },
                 /**
                  Сохранение результата drag and drop
@@ -171,14 +172,16 @@ define(['App'], function(UMI){
             filters: Ember.computed.alias("controllers.treeControl.filterProperty"),
             needs: 'treeControl',
             isExpanded: function(){
-                return !!this.get('root');
-            }.property(),
+                if(this.get('root')){
+                    return true;
+                } else{
+                    var activeContext = this.get('controllers.treeControl.activeContext');
+                    console.log(this.get('id'), activeContext.get('mpath'));
+                }
+            }.property('root'),
             actions: {
                 expanded: function(){
                     this.set('isExpanded', !this.get('isExpanded'));
-                },
-                setExpand: function(object){
-
                 }
             }
         });
