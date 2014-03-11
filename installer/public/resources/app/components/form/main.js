@@ -16,39 +16,7 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
         }
     });
 
-    /*Ember.TEMPLATES['UMI/field/string'] = Ember.Handlebars.compile('{{input type="text" va}}');
-    Ember.TEMPLATES['UMI/field/text'] = Ember.Handlebars.compile(formTpl);
-     Ember.TEMPLATES['UMI/field/html'] = Ember.Handlebars.compile(formTpl);
-     Ember.TEMPLATES['UMI/field/data'] = Ember.Handlebars.compile(formTpl);
-     Ember.TEMPLATES['UMI/field/number'] = Ember.Handlebars.compile(formTpl);*/
-
-
     UMI.FieldView = Ember.View.extend({
-        didInsertElement: function(){
-            //console.log('Form didInsertElement');
-            //TODO Вставка элемента формы на страницу - последенее событие. Ведь так?
-            //Этот код вызывается для каждой отрисованой формы(и это действительно ужасно), хотя должен только после последнего и желательно только когда есть Date
-            //Вопрос: куда его можно перенести? Круто было бы к добавить соответствующему template, но не сработает.
-            //jdPicker ищет элемент по классу (а как ещё?), а в другие моменты времени элемента не существует
-            //Может с on пошаманить?
-            //Или сделать отдельный компонент для Date и связывать с ним календарь по id?
-            //Оставляйте комментарии, подписывайтесь, ставьте лайки
-            /*$($.jdPicker.initialize);*/
-
-
-//            Те же проблемы
-           // CKEDITOR.replace('ckeditor-1'); //Здесь id передаётся
-
-            /*$('legend').mousedown(function(){
-                $(this).find('i').toggleClass("icon-top icon-bottom");
-                $(this).parent().find('div').toggle();
-            });*/
-
-            /*Ember.run.scheduleOnce('afterRender', this, function(){
-                $($.jdPicker.initialize);
-            });*/
-        },
-
         template: function(){
             var meta = this.get('meta');
             var template;
@@ -62,8 +30,8 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
                 case 'textarea': case 'html':
                     template = Ember.Handlebars.compile('{{html-editor object=object property="' + meta.name + '"}}');
                     break;
-                case 'date':
-                    template = Ember.Handlebars.compile('<div class="umi-input-wrapper-date">{{input type="text" class="umi-date" value=object.' + meta.name + '}}<i class="icon icon-calendar"></i></div>');
+                case 'datetime':
+                    template = Ember.Handlebars.compile('{{date-picker object=object property="' + meta.name + '"}}');
                     break;
                 case 'number':
                     template = Ember.Handlebars.compile('{{input type="number" value=object.' + meta.name + '}}');
@@ -110,5 +78,20 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
         }
     });
 
+    UMI.DatePickerComponent = Ember.Component.extend({
+        tagName: 'div',
+        classNames: ['umi-input-wrapper-date'],
+        object: null,
+        property: null,
+        valueObject: function(){
+            return this.get('object.' + this.get("property") + '.date');
+        }.property('object', 'property'),
+        layout: Ember.Handlebars.compile('{{input type="text" class="umi-date" value=valueObject}}<i class="icon icon-calendar"></i>'),
+        didInsertElement: function(){
+            var self = this;
+            var el = this.$().children('.umi-date');
+            el.jdPicker({});
+        }
+    });
     //TODO: Для форм нужно не забыть в шаблоне, и в остальных местах биндить все возможные атрибуты
 });
