@@ -235,43 +235,48 @@ define([], function(){
                 if(oldContext !== params.context && firstAction.get('name') !== activeAction.get('name')){
                     return this.transitionTo('action', firstAction.get('name'));
                 }
+
                 if(params.context === 'root'){
                     var RootModel = Ember.Object.extend({
                         children: function(){
                             return self.store.find(collectionName, {'filters[parent]': 'null()'});
                         }.property()
                     });
-                    model = RootModel.create({'id': 'root'});
+                    model = new Ember.RSVP.Promise(function(resolve, reject){
+                        resolve(RootModel.create({'id': 'root'}));
+                    });
                 } else{
                     model = this.store.find(collectionName, params.context);
                 }
-                routeData.object = model;
-                /**
-                 * Раскрытие текущей ветки в дереве
-                 */
-                this.controllerFor('treeControl').set('activeContext', model);
-                /**
-                 * Мета информация для action
-                 */
-                var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/' + this.modelFor('component').get('collection')  + '/' + transition.params.action.action;
-                if(transition.params.action.action === 'form'){
-                    return Ember.$.get(actionResource).then(function(results){
-                        var viewSettings = {};
-                        viewSettings[transition.params.action.action] = results.result[transition.params.action.action];
-                        routeData.viewSettings = viewSettings;
-                        return routeData;
-                    }, function(error){
-                        throw new Error('Не получена мета информация для action form ' + actionResource + '.' + error);
-                    });
-                }
-                // Временное решение для таблицы
-                if(transition.params.action.action === 'children'){
-                    return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
-                        routeData.viewSettings = results.settings;
-                        return routeData;
-                    });
-                }
-                return routeData;
+                return model.then(function(model){
+                    routeData.object = model;
+                    /**
+                     * Раскрытие текущей ветки в дереве
+                     */
+                    self.controllerFor('treeControl').set('activeContext', model);
+                    /**
+                     * Мета информация для action
+                     */
+                    var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/' + self.modelFor('component').get('collection')  + '/' + transition.params.action.action;
+                    if(transition.params.action.action === 'form'){
+                        return Ember.$.get(actionResource).then(function(results){
+                            var viewSettings = {};
+                            viewSettings[transition.params.action.action] = results.result[transition.params.action.action];
+                            routeData.viewSettings = viewSettings;
+                            return routeData;
+                        }, function(error){
+                            throw new Error('Не получена мета информация для action form ' + actionResource + '.' + error);
+                        });
+                    }
+                    // Временное решение для таблицы
+                    if(transition.params.action.action === 'children'){
+                        return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
+                            routeData.viewSettings = results.settings;
+                            return routeData;
+                        });
+                    }
+                    return routeData;
+                });
             },
             serialize: function(routeData){
                 if(routeData.object){
