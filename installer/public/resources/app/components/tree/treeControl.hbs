@@ -17,32 +17,32 @@
 <div class="columns small-12" style="overflow: hidden;">
 
     <div class="row s-full-height-before umi-tree-header">
-        {{!#if filters}}
+        {{#if filters}}
         <a href="#" data-dropdown="drop" class="button flat square s-margin-clear right">
             <i class="icon icon-settings"></i>
         </a>
         <ul id="drop" data-dropdown-content class="f-dropdown" data-align="right">
-            {{!#each filters}}
+            {{#each filters}}
                 <li>
-                    {{!#if checkbox}}
+                    {{#if checkbox}}
                         <label>
-                            <input type="checkbox" name=name checked=checked {{!action 'filter' name}}/>
+                            <input type="checkbox" name=name checked=checked {{action 'filter' name}}/>
                             <span class="title">{{title}}</span>
                         </label>
-                    {{!/if}}
-                    {{!#if radio}}
-                        {{!#each element in elements}}
+                    {{/if}}
+                    {{#if radio}}
+                        {{#each element in elements}}
                         <div>
                             <label>
-                                <input type="radio" name=name value=element.value checked=element.checked {{!action 'filter' name element}}/> <span class="title">{{!element.title}}</span>
+                                <input type="radio" name=name value=element.value checked=element.checked {{action 'filter' name element}}/> <span class="title">{{element.title}}</span>
                             </label>
                         </div>
-                        {{!/each}}
-                    {{!/if}}
+                        {{/each}}
+                    {{/if}}
                 </li>
-            {{!/each}}
+            {{/each}}
         </ul>
-        {{!/if}}
+        {{/if}}
     </div>
 
     <div class="row s-full-height umi-tree-wrapper">

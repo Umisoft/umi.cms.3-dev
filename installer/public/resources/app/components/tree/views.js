@@ -5,10 +5,13 @@ define(['App'], function(UMI){
         UMI.TreeItemView = Ember.View.extend({
             tagName: 'div',
             classNames: ['umi-item'],
-            classNameBindings: ['root'],
+            classNameBindings: ['root', 'inActive'],
             root: function(){
                 return this.get('model.id') === 'root';
-            }.property('model')
+            }.property('model'),
+            inActive: function(){
+                return !this.get('model.active');
+            }.property('model.active')
         });
 
         UMI.TreeControlView = Ember.View.extend({

@@ -58,6 +58,9 @@ body{
                 border-bottom: none!important;
             }
         }
+        &.in-active{
+            opacity: 0.65;
+        }
         &:hover{
             .umi-tree-context-menu{
                 display: block;

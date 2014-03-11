@@ -33,6 +33,7 @@ define(['App'], function(UMI){
                     root.set('root', true);
                     root.set('hasChildren', true);
                     root.set('id', 'root');
+                    root.set('active', true);
                     root.reopen({
                         childCount: function(){
                             return this.get('children.length');
@@ -49,6 +50,37 @@ define(['App'], function(UMI){
                 }
                 return results;
             }.property('collections', 'root.childCount'),
+            filters: function(){
+                return [
+                    {
+                        "checkbox": true,
+                        "title": "Показывать неактивные страницы",
+                        "property": "active",
+                        "checked": "checked",
+                        "name": "inactive"
+                    },
+                    {
+                        "radio": true,
+                        "name": "modulePages",
+                        "property": "type",
+                        "elements": [
+                            {
+                                "title": "Не показывать страницы модулей",
+                                "value": "hideMode",
+                                "checked": "checked"
+                            },
+                            {
+                                "title": "Показывать страницы модулей",
+                                "value": "showMode"
+                            },
+                            {
+                                "title": "Показывать страницы модулей и компонетов",
+                                "value": "showAll"
+                            }
+                        ]
+                    }
+                ];
+            }.property(),
             /**
              * При совпадении значения свойства в данном
              * */
