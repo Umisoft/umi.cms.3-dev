@@ -224,6 +224,7 @@ define([], function(){
                 var self = this;
                 var model;
                 var routeData = {};
+                var collectionName = self.modelFor('component').get('collection');
                 var oldContext = this.controllerFor('component').get('selectedContext');
                 this.controllerFor('component').set('selectedContext', params.context);
                 /**
@@ -237,12 +238,12 @@ define([], function(){
                 if(params.context === 'root'){
                     var RootModel = Ember.Object.extend({
                         children: function(){
-                            return this.store.find(self.modelFor('component').get('collection'), {'filters[parent]': 'null()'});
+                            return self.store.find(collectionName, {'filters[parent]': 'null()'});
                         }.property()
                     });
                     model = RootModel.create({'id': 'root'});
                 } else{
-                    model = this.store.find(this.modelFor('component').get('collection'), params.context);
+                    model = this.store.find(collectionName, params.context);
                 }
                 routeData.object = model;
                 /**

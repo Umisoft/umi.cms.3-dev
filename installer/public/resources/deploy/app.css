@@ -5342,7 +5342,7 @@ body {
       .umi-tree .umi-item.active a {
         color: #FFFFFF;
         border-bottom: none !important; }
-    .umi-tree .umi-item.in-active .umi-tree-type-icon, .umi-tree .umi-item.in-active a {
+    .umi-tree .umi-item.in-active .umi-tree-type-icon, .umi-tree .umi-item.in-active .tree-item-link {
       opacity: 0.65; }
     .umi-tree .umi-item:hover .umi-tree-context-menu {
       display: block; }
