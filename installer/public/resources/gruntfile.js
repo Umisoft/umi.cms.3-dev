@@ -48,9 +48,35 @@ module.exports = function(grunt){
                     separator: ';'
                 },
                 src: [
+                    'app/components/elFinder/jquery/jquery-ui-1.10.4.custom.min.js',
+
                     'app/components/elFinder/js/elFinder.js',
-                    'app/components/elFinder/js/**/*.js',
-                    'app/components/elFinder/jquery/jquery-ui-1.10.4.custom.min.js'
+                    'app/components/elFinder/js/jquery.elfinder.js',
+                    'app/components/elFinder/js/elFinder.resources.js',
+                    'app/components/elFinder/js/elFinder.options.js',
+                    'app/components/elFinder/js/elFinder.history.js',
+                    'app/components/elFinder/js/elFinder.command.js',
+
+                    'app/components/elFinder/js/ui/overlay.js',
+                    'app/components/elFinder/js/ui/workzone.js',
+                    'app/components/elFinder/js/ui/navbar.js',
+                    'app/components/elFinder/js/ui/dialog.js',
+                    'app/components/elFinder/js/ui/tree.js',
+                    'app/components/elFinder/js/ui/cwd.js',
+                    'app/components/elFinder/js/ui/toolbar.js',
+                    'app/components/elFinder/js/ui/button.js',
+                    'app/components/elFinder/js/ui/uploadButton.js',
+                    'app/components/elFinder/js/ui/viewbutton.js',
+                    'app/components/elFinder/js/ui/searchbutton.js',
+                    'app/components/elFinder/js/ui/sortbutton.js',
+                    'app/components/elFinder/js/ui/panel.js',
+                    'app/components/elFinder/js/ui/contextmenu.js',
+                    'app/components/elFinder/js/ui/path.js',
+                    'app/components/elFinder/js/ui/stat.js',
+                    'app/components/elFinder/js/ui/places.js',
+
+                    'app/components/elFinder/js/commands/*.js',
+                    'app/components/elFinder/js/i18n/elfinder.ru.js'
                 ],
                 dest: 'deploy/elFinder.js'
             },

@@ -248,6 +248,7 @@ define([], function(){
                 /**
                  * Раскрытие текущей ветки в дереве
                  */
+                console.log(model);
                 this.controllerFor('treeControl').set('activeContext', model);
                 /**
                  * Мета информация для action
@@ -279,6 +280,7 @@ define([], function(){
             },
             renderTemplate: function(){
                 var templateType = this.modelFor('action').get('name');
+                console.log(templateType);
                 this.render(templateType);
             }
         });

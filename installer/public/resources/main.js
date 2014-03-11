@@ -86,6 +86,10 @@ require.config({
             location: "app/components/form"
         },
         {
+            name: 'fileManager',
+            location: "app/components/fileManager"
+        },
+        {
             name: 'search',
             location: "app/components/search"
         }
@@ -94,7 +98,7 @@ require.config({
 
 
 if(UmiSettings.login){
-    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder'], function(application){
+    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder', 'datepicker'], function(application){
         "use strict";
         application();
     });

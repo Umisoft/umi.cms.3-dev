@@ -4394,9 +4394,7 @@ textarea {
   background: #FFFFFF;
   border: 1px solid #d3d7da;
   padding-right: 30px;
-  margin-right: 25px;
-  margin-bottom: 1rem;
-  max-width: 400px; }
+  margin-bottom: 1rem; }
   .umi-input-wrapper-date input {
     border: none !important;
     box-shadow: none !important;
@@ -5342,7 +5340,7 @@ body {
       .umi-tree .umi-item.active a {
         color: #FFFFFF;
         border-bottom: none !important; }
-    .umi-tree .umi-item.in-active .umi-tree-type-icon, .umi-tree .umi-item.in-active a {
+    .umi-tree .umi-item.in-active .umi-tree-type-icon, .umi-tree .umi-item.in-active .tree-item-link {
       opacity: 0.65; }
     .umi-tree .umi-item:hover .umi-tree-context-menu {
       display: block; }
@@ -5568,15 +5566,13 @@ body {
 .umi-table-control-header-center {
   position: absolute;
   left: 2.125rem;
-  right: 0; }
+  right: 2.125rem; }
 
 .umi-table-control-header-right {
   position: absolute;
-  width: 2rem;
-  height: 4.25rem;
   right: 0;
-  background: #045684;
-  opacity: 0.4; }
+  z-index: 2;
+  border: 0; }
 
 .umi-table-control-content {
   position: relative;
@@ -5593,22 +5589,21 @@ body {
   top: 0;
   bottom: 2.125rem;
   left: 2.125rem;
-  right: 0; }
+  right: 2.125rem; }
 
 .umi-table-control-content-right {
   position: absolute;
-  width: 2rem;
+  z-index: 9;
+  width: 2.125rem;
   top: 0;
   bottom: 6.25rem;
-  right: 0;
-  background: #045684;
-  opacity: 0.4; }
+  right: 0; }
 
 .umi-table-control-footer {
   position: absolute;
   width: 100%;
   bottom: 0px;
-  opacity: 0.4;
+  opacity: 0.7;
   z-index: 20;
   height: 2.125rem;
   background: #FFFFFF; }
@@ -5643,6 +5638,12 @@ body {
   border-collapse: collapse;
   border: 0;
   border-right: 1px solid #E2E3E4; }
+
+.umi-table-header-right {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 0;
+  border-left: 1px solid #E2E3E4; }
 
 .umi-table-header-div {
   border-left: 1px solid #E2E3E4; }
@@ -5750,6 +5751,10 @@ body {
   width: 2.1875rem;
   background: #F7F8F9; }
 
+.umi-table-left-div {
+  line-height: 2rem;
+  padding-left: 0.625rem; }
+
 .umi-table-header-left-title {
   background: #FFFFFF;
   border-bottom: 1px solid #E3E4E5; }
@@ -5799,9 +5804,64 @@ body {
   border-left: 1px solid #E3E4E5;
   padding: 0 0.625rem; }
 
-.umi-table-left-div {
+.umi-table-right {
+  border: 0;
+  border-collapse: collapse;
+  border-right: 1px solid #E2E3E4;
+  width: 2.1875rem;
+  background: #F7F8F9;
+  border-left: 1px solid #E2E3E4; }
+
+.umi-table-right-div {
   line-height: 2rem;
-  padding-left: 0.625rem; }
+  padding-left: 0.3125rem; }
+
+.umi-table-header-right-title {
+  background: #FFFFFF;
+  border-bottom: 1px solid #E3E4E5; }
+
+.umi-table-header-right-filter {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 2.125rem;
+  background: #F7F8F9;
+  border-bottom: 1px solid #E3E4E5; }
+
+.umi-table-header-column-right {
+  table-layout: fixed;
+  position: relative;
+  padding: 0;
+  line-height: 1.375rem;
+  border-bottom: 1px solid #E2E3E4; }
+
+.umi-table-title-div-right {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 1.6875rem;
+  height: 1.6875rem;
+  padding: 0.4375rem 0 0 0.375rem; }
+
+.umi-table-filter-div-right {
+  height: 2.0625rem;
+  line-height: 2.0625rem;
+  padding: 0 0.625rem; }
+
+.umi-table-title-column-right {
+  padding: 0; }
+
+.umi-table-filter-column-right {
+  padding: 0; }
+  .umi-table-filter-column-right:after {
+    content: "";
+    position: absolute;
+    float: left;
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: url(img/shadows/toBottomShadow.png); }
 
 .umi-table {
   float: left;
@@ -5842,7 +5902,6 @@ body {
   background: #D6E0E9; }
 
 .ghost {
-  border: 0;
   border-collapse: collapse;
   font-size: 0.8125rem;
   overflow: hidden;
@@ -6494,7 +6553,7 @@ input[type="checkbox"]:checked + label {
 .elfinder-resize-handle-hline,
 .elfinder-resize-handle-vline {
 	position:absolute;
-	background-image:url("../img/crop.gif");
+	background-image:url("img/elfinder/img/crop.gif");
 }
 
 .elfinder-resize-handle-hline {
@@ -6579,7 +6638,7 @@ input[type="checkbox"]:checked + label {
 	left:50%;
 	margin-left:-100px;
 	text-align:center;
-	background:url(../img/progress.gif) center bottom repeat-x;
+	background:url(img/elfinder/img/progress.gif) center bottom repeat-x;
 }
 
 .elfinder-resize-row { margin-bottom:7px; position:relative;}
@@ -6661,7 +6720,7 @@ input[type="checkbox"]:checked + label {
 	height:96px;
 	float:left;
 	margin-right:1em;
-	background:url('../img/logo.png') center center no-repeat;
+	background:url('img/elfinder/img/logo.png') center center no-repeat;
 }
 
 .elfinder-help h3 { font-size:1.5em; margin:.2em 0 .3em 0; }
@@ -6742,7 +6801,7 @@ input[type="checkbox"]:checked + label {
 	position:absolute;
 	width:16px;
 	height:16px;
-	background-image:url(../img/toolbar.png);
+	background-image:url(img/elfinder/img/toolbar.png);
 	background-repeat:no-repeat;
 	background-position:0 -528px;
 }
@@ -6773,7 +6832,7 @@ input[type="checkbox"]:checked + label {
 	height:16px;
 	left:43px;
 	top:55px;
-	background:url('../img/toolbar.png') 0 -544px no-repeat;
+	background:url('img/elfinder/img/toolbar.png') 0 -544px no-repeat;
 	display:none;
 }
 
@@ -6866,7 +6925,7 @@ input[type="checkbox"]:checked + label {
 .elfinder-contextmenu-arrow {
 	width:16px;
 	height:16px;
-	background:url('../img/arrows-normal.png') 5px 4px no-repeat;
+	background:url('img/elfinder/img/arrows-normal.png') 5px 4px no-repeat;
 }
 
 /* arrow icon in rtl/ltr enviroment */
@@ -6965,7 +7024,6 @@ input[type="checkbox"]:checked + label {
     white-space: pre;
     overflow: hidden;
     text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
     margin: 3px 1px 0 1px;
     padding: 1px;
     border-radius: 8px;
@@ -6988,7 +7046,7 @@ input[type="checkbox"]:checked + label {
     width: 48px;
     height: 48px;
     margin: 0 auto;
-    background: url('../img/icons-big.png') 0 0 no-repeat;
+    background: url('img/elfinder/img/icons-big.png') 0 0 no-repeat;
     background-clip: padding-box;
 }
 
@@ -7159,7 +7217,7 @@ input[type="checkbox"]:checked + label {
 /* textfield inside icon */
 .elfinder-cwd input {
     width: 100%;
-    border: 0px solid;
+    border: 0 solid;
     margin: 0;
     padding: 0;
 }
@@ -7262,7 +7320,7 @@ input[type="checkbox"]:checked + label {
     position: absolute;
     top: 50%;
     margin-top: -8px;
-    background-image: url(../img/icons-small.png);
+    background-image: url(img/elfinder/img/icons-small.png);
 }
 
 /* icon in ltr/rtl enviroment */
@@ -7273,8 +7331,6 @@ input[type="checkbox"]:checked + label {
 .elfinder-rtl .elfinder-cwd-view-list .elfinder-cwd-icon {
     right: 0;
 }
-
-
 /*********************************************/
 /*                DIALOGS STYLES             */
 /*********************************************/
@@ -7291,8 +7347,8 @@ input[type="checkbox"]:checked + label {
 .std42-dialog .ui-dialog-titlebar {
 	border-left:0 solid transparent;
 	border-top:0 solid transparent;
-	border-right:0 solid transparent; 
-	border-bottom-left-radius: 0; 
+	border-right:0 solid transparent;
+	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 	font-weight:normal;
 	padding:.2em 1em;
@@ -7332,7 +7388,7 @@ input[type="checkbox"]:checked + label {
 	left:12px;
 	top:50%;
 	margin-top:-15px;
-	background:url("../img/dialogs.png") 0 0 no-repeat;
+	background:url("img/elfinder/img/dialogs.png") 0 0 no-repeat;
 }
 
 .elfinder-rtl .elfinder-dialog-icon { left:auto; right:12px;}
@@ -7380,10 +7436,10 @@ input[type="checkbox"]:checked + label {
 .elfinder-notify-progress {
 	width:100%;
 	height:8px;
-	background:url(../img/progress.gif) center center repeat-x;
+	background:url(img/elfinder/img/progress.gif) center center repeat-x;
 }
 
-.elfinder-notify-progressbar, .elfinder-notify-progress { 
+.elfinder-notify-progressbar, .elfinder-notify-progress {
 	border-radius: 2px;
 }
 
@@ -7447,7 +7503,7 @@ input[type="checkbox"]:checked + label {
 	width:14px;
 	height:14px;
 	float:left;
-	background: url("../img/spinner-mini.gif") center center no-repeat;
+	background: url("img/elfinder/img/spinner-mini.gif") center center no-repeat;
 	margin:0 5px; 
 }
 
@@ -7610,13 +7666,12 @@ input[type="checkbox"]:checked + label {
     display: none;
     top: 50%;
     margin-top: -8px;
-    background-image: url("../img/arrows-normal.png");
-    background-repeat: no-repeat;
+    background: url("img/elfinder/img/arrows-normal.png") no-repeat;
     /*	border:1px solid #111;*/
 }
 
 .ui-state-active .elfinder-navbar-arrow {
-    background-image: url("../img/arrows-active.png");
+    background-image: url("img/elfinder/img/arrows-active.png");
 }
 
 /* collapsed/expanded arrow view */
@@ -7647,7 +7702,7 @@ input[type="checkbox"]:checked + label {
     position: absolute;
     top: 50%;
     margin-top: -8px;
-    background-image: url("../img/toolbar.png");
+    background-image: url("img/elfinder/img/toolbar.png");
     background-repeat: no-repeat;
     background-position: 0 -16px;
 }
@@ -7699,7 +7754,7 @@ input[type="checkbox"]:checked + label {
     display: block;
     top: 50%;
     margin-top: -7px;
-    background: url("../img/spinner-mini.gif") center center no-repeat;
+    background: url("img/elfinder/img/spinner-mini.gif") center center no-repeat;
 }
 
 /* spinner ltr/rtl enviroment */
@@ -7773,8 +7828,6 @@ input[type="checkbox"]:checked + label {
 	display:none;
 	overflow:hidden;
 	border-radius:7px;
-	-moz-border-radius:7px;
-	-webkit-border-radius:7px;
 	padding:20px 0 40px 0;
 }
 
@@ -7788,10 +7841,7 @@ input[type="checkbox"]:checked + label {
 /* quicklook fullscreen window */
 .elfinder-quicklook-fullscreen {
 	border-radius:0;
-	-moz-border-radius:0;
-	-webkit-border-radius:0;
-	-webkit-background-clip: padding-box;
-/*	background-clip:padding-box;*/
+	background-clip:padding-box;
 	padding:0;
 	background:#000;
 	z-index:90000;
@@ -7811,8 +7861,8 @@ input[type="checkbox"]:checked + label {
 	left:0;
 	top:0;
 	width:100%;
-	height:20px; 
-	border-top-left-radius: 7px; 
+	height:20px;
+	border-top-left-radius: 7px;
 	border-top-right-radius: 7px;
 	cursor:move;
 }
@@ -7895,12 +7945,10 @@ input[type="checkbox"]:checked + label {
 	bottom:4px;
 	width:140px;
 	height:32px;
-	padding:0px;
+	padding:0;
 	margin-left:-70px;
 	border:1px solid transparent;
 	border-radius:19px;
-	-moz-border-radius:19px;
-	-webkit-border-radius:19px;
 }
 
 /* navigation bar in fullscreen mode */
@@ -8052,7 +8100,6 @@ embed.elfinder-quicklook-preview-audio {
 	white-space:nowrap;
 	overflow:hidden;
 	text-overflow:ellipsis;
-    -o-text-overflow:ellipsis;
 }
 .elfinder-ltr .elfinder-path { float:left;  }
 .elfinder-rtl .elfinder-path { float:right; }
@@ -8155,12 +8202,12 @@ embed.elfinder-quicklook-preview-audio {
 }
 
 .elfinder-contextmenu .ui-state-hover .elfinder-contextmenu-arrow {
-    background-image: url('../img/arrows-active.png');
+    background-image: url('img/elfinder/img/arrows-active.png');
 }/*********************************************/
 /*               TOOLBAR STYLES              */
 /*********************************************/
 /* toolbar container */
-.elfinder-toolbar { 
+.elfinder-toolbar {
 	/*padding:4px 0 3px 0; */
 	border-left:0 solid transparent;
 	border-top:0 solid transparent;
@@ -8237,7 +8284,7 @@ embed.elfinder-quicklook-preview-audio {
 	width:16px;
 	height:16px;
 	display:block;
-	background:url('../img/toolbar.png')  no-repeat;
+	background:url('img/elfinder/img/toolbar.png') no-repeat;
 }
 
 /* buttons icons */
@@ -8246,7 +8293,7 @@ embed.elfinder-quicklook-preview-audio {
 .elfinder-button-icon-forward   { background-position: 0 -128px; }
 .elfinder-button-icon-up        { background-position: 0 -144px; }
 .elfinder-button-icon-reload    { background-position: 0 -160px; }
-.elfinder-button-icon-open      { background-position: 0 -176px; } 
+.elfinder-button-icon-open      { background-position: 0 -176px; }
 .elfinder-button-icon-mkdir     { background-position: 0 -192px; }
 .elfinder-button-icon-mkfile    { background-position: 0 -208px; }
 .elfinder-button-icon-rm        { background-position: 0 -224px; }
@@ -8321,7 +8368,7 @@ embed.elfinder-quicklook-preview-audio {
 	cursor: pointer;
 }
 
-.elfinder .elfinder-button form input { background:transparent; cursor: default;}
+.elfinder .elfinder-button form input { background:transparent; cursor: default; margin: 0;}
 
 /* search "button" */
 .elfinder .elfinder-button-search {
@@ -8345,9 +8392,9 @@ embed.elfinder-quicklook-preview-audio {
 	height:22px;
 	padding:0 20px;
 	line-height: 22px;
-	border:0 solid;
 	border:1px solid #DDE3E6;
 	outline:0 solid;
+    margin: 2px 0 0;
 }
 
 .elfinder-rtl .elfinder-button-search input { direction:rtl; }
@@ -8358,7 +8405,7 @@ embed.elfinder-quicklook-preview-audio {
 	height:18px;
 	top: 50%;
 	margin:-9px 4px 0 4px;
-	opacity: .6; 
+	opacity: .6;
 	filter:Alpha(Opacity=60);
 }
 
@@ -8366,14 +8413,7 @@ embed.elfinder-quicklook-preview-audio {
 .elfinder-ltr .elfinder-button-search .ui-icon-search { left:0;}
 .elfinder-rtl .elfinder-button-search .ui-icon-search { right:0;}
 .elfinder-ltr .elfinder-button-search .ui-icon-close { right:0;}
-.elfinder-rtl .elfinder-button-search .ui-icon-close { left:0;}
-
-
-
-
-
-
-/*!
+.elfinder-rtl .elfinder-button-search .ui-icon-close { left:0;}/*!
  * jQuery UI CSS Framework 1.8.23
  *
  * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)

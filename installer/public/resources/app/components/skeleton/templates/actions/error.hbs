@@ -2,21 +2,23 @@
     <div class="row">
         <div class="small-12 columns">
             {{#if header}}
-            <h2>{{header}}</h2>
+                <h2>{{header}}</h2>
             {{else}}
-            <h2>Произошла ошибка загрузки приложения по указаному url.</h2>
+                <h2>Произошла ошибка загрузки приложения по указаному url.</h2>
             {{/if}}
+
             {{#if text}}
-            <p>{{text}}</p>
+                <p>{{text}}</p>
             {{/if}}
+
             {{#if lists}}
-            <div class="alert-box error">
-                <ul>
-                    {{#each lists}}
-                    <li>{{error}}</li>
-                    {{/each}}
-                </ul>
-            </div>
+                <div class="alert-box error">
+                    <ul>
+                        {{#each lists}}
+                            <li>{{error}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
             {{/if}}
         </div>
     </div>
