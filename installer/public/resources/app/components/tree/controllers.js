@@ -53,40 +53,14 @@ define(['App'], function(UMI){
             filters: function(){
                 return [
                     {
-                        "checkbox": true,
                         "title": "Показывать неактивные страницы",
                         "property": "active",
                         "checked": "checked",
                         "name": "inactive"
-                    },
-                    {
-                        "radio": true,
-                        "name": "modulePages",
-                        "property": "type",
-                        "elements": [
-                            {
-                                "title": "Не показывать страницы модулей",
-                                "value": "hideMode",
-                                "checked": "checked"
-                            },
-                            {
-                                "title": "Показывать страницы модулей",
-                                "value": "showMode"
-                            },
-                            {
-                                "title": "Показывать страницы модулей и компонетов",
-                                "value": "showAll"
-                            }
-                        ]
                     }
                 ];
             }.property(),
-            /**
-             * При совпадении значения свойства в данном
-             * */
-            filterProperty: {
-                type: 'component'
-            },
+            hideFilters: {},
             /**
              Активный контекст
              */
@@ -201,7 +175,7 @@ define(['App'], function(UMI){
                 }
                 return (counter ? false : true);
             }.property('model', 'filters'),
-            filters: Ember.computed.alias("controllers.treeControl.filterProperty"),
+            filters: Ember.computed.alias("controllers.treeControl.hideFilters"),
             needs: 'treeControl',
             isExpanded: function(){
                 var activeContext = this.get('controllers.treeControl.activeContext');

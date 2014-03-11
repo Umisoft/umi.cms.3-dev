@@ -24,21 +24,10 @@
         <ul id="drop" data-dropdown-content class="f-dropdown" data-align="right">
             {{#each filters}}
                 <li>
-                    {{#if checkbox}}
-                        <label>
-                            <input type="checkbox" name=name checked=checked {{action 'filter' name}}/>
-                            <span class="title">{{title}}</span>
-                        </label>
-                    {{/if}}
-                    {{#if radio}}
-                        {{#each element in elements}}
-                        <div>
-                            <label>
-                                <input type="radio" name=name value=element.value checked=element.checked {{action 'filter' name element}}/> <span class="title">{{element.title}}</span>
-                            </label>
-                        </div>
-                        {{/each}}
-                    {{/if}}
+                    <label>
+                        {{view Ember.Checkbox checkedBinding="view.isDone"}}
+                        <span class="title">{{title}}</span>
+                    </label>
                 </li>
             {{/each}}
         </ul>
