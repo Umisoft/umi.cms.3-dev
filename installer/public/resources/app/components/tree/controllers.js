@@ -219,6 +219,9 @@ define(['App'], function(UMI){
             actions: {
                 expanded: function(){
                     this.set('isExpanded', !this.get('isExpanded'));
+                },
+                fastAction: function(){
+                    this.transitionToRoute('context', 'add');
                 }
             }
         });

@@ -235,12 +235,13 @@ define([], function(){
                     return this.transitionTo('action', firstAction.get('name'));
                 }
                 if(params.context === 'root'){
-                    model = Ember.Object.extend({
+                    var RootModel = Ember.Object.extend({
                         'id': 'root',
                         children: function(){
                             return this.store.find(self.modelFor('component').get('collection'), {'filters[parent]': 'null()'});
                         }.property()
                     });
+                    model = RootModel.create();
                 } else{
                     model = this.store.find(this.modelFor('component').get('collection'), params.context);
                 }
