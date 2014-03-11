@@ -57,7 +57,7 @@ body{
             }
         }
         &.in-active{
-            .umi-tree-type-icon, a{
+            .umi-tree-type-icon, .tree-item-link{
                 opacity: 0.65;
             }
         }

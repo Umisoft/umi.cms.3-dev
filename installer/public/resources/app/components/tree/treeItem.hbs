@@ -14,7 +14,7 @@
                 <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document node.root::move"}}></i>
             {{/if}}
 
-            {{#link-to "context" node.id}}
+            {{#link-to "context" node.id class="tree-item-link"}}
                 {{node.displayName}}
             {{/link-to}}
             <ul class="button-group umi-tree-context-menu right">
