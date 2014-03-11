@@ -236,12 +236,11 @@ define([], function(){
                 }
                 if(params.context === 'root'){
                     var RootModel = Ember.Object.extend({
-                        'id': 'root',
                         children: function(){
                             return this.store.find(self.modelFor('component').get('collection'), {'filters[parent]': 'null()'});
                         }.property()
                     });
-                    model = RootModel.create();
+                    model = RootModel.create({'id': 'root'});
                 } else{
                     model = this.store.find(this.modelFor('component').get('collection'), params.context);
                 }

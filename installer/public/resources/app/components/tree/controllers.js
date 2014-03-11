@@ -39,7 +39,7 @@ define(['App'], function(UMI){
                             return this.get('children.length');
                         }.property('children.length')
                     });
-                    var nodes = this.store.find(root.get('type'), {'filters[parent]': 'null()', 'fields': 'displayName,order,childCount,children,parent'});
+                    var nodes = this.store.find(root.get('type'), {'filters[parent]': 'null()', 'fields': 'displayName,order,active,childCount,children,parent'});
                     var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                         content: nodes,
                         sortProperties: ['order', 'id'],
@@ -204,10 +204,13 @@ define(['App'], function(UMI){
             filters: Ember.computed.alias("controllers.treeControl.filterProperty"),
             needs: 'treeControl',
             isExpanded: function(){
-                if(this.get('root')){
+                var activeContext = this.get('controllers.treeControl.activeContext');
+                if(this.get('id') === 'root'){
                     return true;
                 } else{
-                    var activeContext = this.get('controllers.treeControl.activeContext');
+                    if(activeContext.get('id') === 'root'){
+                        return false;
+                    }
                     var contains = activeContext.get('mpath').contains(parseFloat(this.get('id')));
                     if(contains && activeContext.get('id') !== this.get('id')){
                         return true;
