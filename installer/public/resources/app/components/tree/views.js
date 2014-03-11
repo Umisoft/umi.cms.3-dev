@@ -158,7 +158,7 @@ define(['App'], function(UMI){
                         ghost.parentNode.removeChild(ghost);
 
                         // Если курсор над плейсхолдером считаем что перемещение удачное
-                        if(list){
+                        if(list && !$(list).hasClass('umi-tree')){
                             /**
                              * Находим предыдущего соседа
                              */
