@@ -179,6 +179,19 @@ define(
             }
         });
 
+        /**
+         * DS.attr('raw')
+         * @type {*|void|Object}
+         */
+        UMI.RawTransform = DS.Transform.extend({
+            serialize: function(deserialized) {
+                return deserialized;
+            },
+            deserialize: function(serialized) {
+                return serialized;
+            }
+        });
+
         templates(UMI);
         models(UMI);
         router(UMI);

@@ -34,7 +34,7 @@ define([], function(){
                            break;
                        case 'dateTime':
                            params = {defaultValue: collection.fields[i]['default']};
-                           fieldValue = DS.attr('date', params);
+                           fieldValue = DS.attr('raw', params);
                            break;
                         case 'belongsToRelation':
                            params = {async: true};
@@ -52,8 +52,8 @@ define([], function(){
                            params = {async: true, inverse: collection.fields[i].mirrorField};
                            fieldValue = DS.hasMany(collection.fields[i].targetCollection, params);
                             break;
-                       default:
-                           fieldValue = DS.attr();
+                        default:
+                           fieldValue = DS.attr();// TODO: заменить на raw
                            break;
                     }
                     if(collection.fields[i].type !== 'identify'){
