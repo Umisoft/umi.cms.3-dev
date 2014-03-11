@@ -31,8 +31,8 @@ return [
         NewsSubject::FIELD_TYPE         => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
-            'accessor'   => 'getType',
-            'readOnly'   => true
+            'accessor' => 'getType',
+            'readOnly' => true
         ],
         NewsSubject::FIELD_VERSION      => [
             'type'         => IField::TYPE_VERSION,
@@ -51,6 +51,11 @@ return [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
             'readOnly'   => true,
+            'defaultValue' => 0
+        ],
+        NewsSubject::FIELD_TRASHED => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'trashed',
             'defaultValue' => 0
         ],
         NewsSubject::FIELD_CREATED      => ['type'       => IField::TYPE_DATE_TIME,
@@ -90,7 +95,7 @@ return [
         ],
 
     ],
-    'types'      => [
+    'types' => [
         'base' => [
             'objectClass' => 'umicms\project\module\news\object\NewsSubject',
             'fields'      => [

@@ -107,8 +107,13 @@ return [
             'readOnly'   => true,
             'defaultValue' => 0
         ],
-        StructureElement::FIELD_CREATED               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        StructureElement::FIELD_UPDATED               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
+        StructureElement::FIELD_TRASHED          => [
+            'type'         => IField::TYPE_BOOL,
+            'columnName'   => 'trashed',
+            'defaultValue' => 0
+        ],
+        StructureElement::FIELD_CREATED         => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
+        StructureElement::FIELD_UPDATED         => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
         StructureElement::FIELD_PAGE_META_TITLE       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
         StructureElement::FIELD_PAGE_META_KEYWORDS    => ['type'       => IField::TYPE_STRING,
                                                           'columnName' => 'meta_keywords'

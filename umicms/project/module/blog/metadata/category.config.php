@@ -95,6 +95,11 @@ return [
             'columnName'   => 'locked',
             'defaultValue' => 0
         ],
+        'trashed'                                 => [
+            'type'         => IField::TYPE_BOOL,
+            'columnName'   => 'trashed',
+            'defaultValue' => 0
+        ],
         'created'                                => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
         'updated'                                => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
         'displayName'                            => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],

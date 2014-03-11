@@ -54,6 +54,11 @@ return [
             'readOnly'   => true,
             'defaultValue' => 0
         ],
+        User::FIELD_TRASHED        => [
+            'type'         => IField::TYPE_BOOL,
+            'columnName'   => 'trashed',
+            'defaultValue' => 0
+        ],
         User::FIELD_CREATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created', 'readOnly'   => true],
         User::FIELD_UPDATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly'   => true],
         User::FIELD_LOGIN         => ['type' => IField::TYPE_STRING, 'columnName' => 'login'],
