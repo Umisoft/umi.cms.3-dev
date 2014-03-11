@@ -2,7 +2,7 @@
 /*               TOOLBAR STYLES              */
 /*********************************************/
 /* toolbar container */
-.elfinder-toolbar { 
+.elfinder-toolbar {
 	/*padding:4px 0 3px 0; */
 	border-left:0 solid transparent;
 	border-top:0 solid transparent;
@@ -78,7 +78,7 @@
 	width:16px;
 	height:16px;
 	display:block;
-	background:url('../img/toolbar.png')  no-repeat;
+	background:url('img/elfinder/img/toolbar.png') no-repeat;
 }
 
 /* buttons icons */
@@ -87,7 +87,7 @@
 .elfinder-button-icon-forward   { background-position: 0 -128px; }
 .elfinder-button-icon-up        { background-position: 0 -144px; }
 .elfinder-button-icon-reload    { background-position: 0 -160px; }
-.elfinder-button-icon-open      { background-position: 0 -176px; } 
+.elfinder-button-icon-open      { background-position: 0 -176px; }
 .elfinder-button-icon-mkdir     { background-position: 0 -192px; }
 .elfinder-button-icon-mkfile    { background-position: 0 -208px; }
 .elfinder-button-icon-rm        { background-position: 0 -224px; }
@@ -162,7 +162,7 @@
 	cursor: pointer;
 }
 
-.elfinder .elfinder-button form input { background:transparent; cursor: default;}
+.elfinder .elfinder-button form input { background:transparent; cursor: default; margin: 0;}
 
 /* search "button" */
 .elfinder .elfinder-button-search {
@@ -186,9 +186,9 @@
 	height:22px;
 	padding:0 20px;
 	line-height: 22px;
-	border:0 solid;
 	border:1px solid #DDE3E6;
 	outline:0 solid;
+    margin: 2px 0 0;
 }
 
 .elfinder-rtl .elfinder-button-search input { direction:rtl; }
@@ -199,7 +199,7 @@
 	height:18px;
 	top: 50%;
 	margin:-9px 4px 0 4px;
-	opacity: .6; 
+	opacity: .6;
 	filter:Alpha(Opacity=60);
 }
 
@@ -208,9 +208,3 @@
 .elfinder-rtl .elfinder-button-search .ui-icon-search { right:0;}
 .elfinder-ltr .elfinder-button-search .ui-icon-close { right:0;}
 .elfinder-rtl .elfinder-button-search .ui-icon-close { left:0;}
-
-
-
-
-
-

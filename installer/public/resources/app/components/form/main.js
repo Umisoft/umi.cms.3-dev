@@ -1,4 +1,4 @@
-define(['App', 'text!./form.hbs','datepicker'], function(UMI, formTpl, datepicker){
+define(['App', 'text!./form.hbs'], function(UMI, formTpl){
     'use strict';
     Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
 
@@ -35,21 +35,21 @@ define(['App', 'text!./form.hbs','datepicker'], function(UMI, formTpl, datepicke
             //Может с on пошаманить?
             //Или сделать отдельный компонент для Date и связывать с ним календарь по id?
             //Оставляйте комментарии, подписывайтесь, ставьте лайки
-//            $($.jdPicker.initialize);
+            $($.jdPicker.initialize);
 
 
-            //Те же проблемы
-//            CKEDITOR.replace('ckeditor-1'); //Здесь id передаётся
+//            Те же проблемы
+            CKEDITOR.replace('ckeditor-1'); //Здесь id передаётся
 
-//            $('legend').mousedown(function(){
-//                $(this).find('i').toggleClass("icon-top icon-bottom");
-//                $(this).parent().find('div').toggle();
-//            });
+            $('legend').mousedown(function(){
+                $(this).find('i').toggleClass("icon-top icon-bottom");
+                $(this).parent().find('div').toggle();
+            });
 
-//            Ember.run.scheduleOnce('afterRender', this, function(){
-//                console.log('Form afterRender');
-//                $($.jdPicker.initialize);
-//            });
+            Ember.run.scheduleOnce('afterRender', this, function(){
+                console.log('Form afterRender');
+                $($.jdPicker.initialize);
+            });
         },
 
         template: function(){

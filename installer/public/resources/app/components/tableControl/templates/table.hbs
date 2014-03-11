@@ -27,10 +27,7 @@
                         <div class="umi-table-column-resizer"></div>
                     </td>
                 {{/each}}
-                <!-- Пустая строка над кнопкой удаления -->
-                <td class="umi-table-header-column umi-table-header-column-fixed">
-                    <div class="umi-table-title-div">&nbsp;</div>
-                </td>
+
                 <!-- TODO Перенести в CSS. float:none - перебиваем лишний стиль от Foundation -->
                 <td class="umi-table-header-column-fixed" style="float:none; width: 100%;"></td>
             </tr>
@@ -48,11 +45,6 @@
                     </td>
                 {{/each}}
 
-                <td class="umi-table-filter-column umi-icon-square">
-                    <div class="umi-table-filter-div">
-                        <a href="#" {{action "removeRecords"}}><i class="icon icon-delete"></i></a>
-                    </div>
-                </td>
                 <td class="umi-table-filter-column" style="float:none; width: 100%;">
                     <div class="umi-table-filter-div umi-empty-column">&nbsp;</div>
                 </td>
@@ -60,7 +52,23 @@
         </table>
     </div>
 
-    <div class="umi-table-control-header-right"></div>
+    <div class="umi-table-control-header-right">
+        <table class="umi-table-header-right s-unselectable">
+            <tr class="umi-table-header-right-title">
+                <td class="umi-table-header-column-right">
+                    <div class="umi-table-title-div-right">
+                        <a href="#" data-object-id="{{unbound object.id}}"><i class="icon icon-delete"></i></a>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="umi-table-header-right-filter">
+                <td class="umi-table-filter-column-right">
+                    <div class="umi-table-filter-div-right"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 
@@ -89,16 +97,11 @@
                     <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
 
                         {{#each content.viewSettings.columns}}
-                        <td class="umi-table-cell-td">
-                            {{view "tableCell" objectBinding="object" metaBinding="this"}}
-                        </td>
+                            <td class="umi-table-cell-td">
+                                {{view "tableCell" objectBinding="object" metaBinding="this"}}
+                            </td>
                         {{/each}}
 
-                        <td class="umi-table-cell-td">
-                            <div class="umi-table-cell-div">
-                                <a href="#" class="umi-table-remove-button" data-object-id="{{unbound object.id}}"><i class="icon icon-delete"></i></a>
-                            </div>
-                        </td>
                         <td class="umi-table-empty-column"></td>
                     </tr>
                 {{else}}
@@ -113,7 +116,21 @@
         </table>
     </div>
 
-    <div class="umi-table-control-content-right"></div>
+    <div class="umi-table-control-content-right">
+        <table class="umi-table-right">
+            <tbody>
+                {{#each object in content.object.children}}
+                    <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
+                        <td>
+                            <div class="umi-table-right-div">
+                                <a href="#" data-object-id="{{unbound object.id}}"><i class="icon icon-delete"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <div class="umi-table-control-footer">

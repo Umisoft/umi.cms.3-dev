@@ -199,38 +199,38 @@
 </script>
 
 <script>
-    $('.umi-show-popup').click(function(){
-        if($('html').hasClass('cssfilters')){
-            console.log('blur');
-            $('.umi-main-view').addClass('umi-blur');
-            $('body').append('<div class="umi-overlay"></div>');
-        }else{
-            console.log('white');
-            $('body').append('<div class="umi-overlay-white"></div>');
-        }
-
-        $('body').append(document.querySelector('#umi-popup').innerHTML);
-        var x = $(window).width()/2 - 300;
-        var y = $(window).height()/2 - 250;
-        $('.umi-popup').offset({left:x, top:y});
-
-        $().ready(function(){
-            var elf = $('#elfinder').elfinder({
-                url : '/resources/libs/elfinder/php/connector.php'  // connector URL (REQUIRED)
-                // lang: 'ru',             // language (OPTIONAL)
-            }).elfinder('instance');
-        });
-    });
-
-//    $('body').on('mousedown', function(event){
-//        $('.umi-main-view').removeClass('umi-blur');
-//        $('.umi-overlay').remove();
-//        $('.umi-overlay-white').remove();
-//        $('.umi-popup').remove();
-//    });
+//    $('.umi-show-popup').click(function(){
+//        if($('html').hasClass('cssfilters')){
+//            console.log('blur');
+//            $('.umi-main-view').addClass('umi-blur');
+//            $('body').append('<div class="umi-overlay"></div>');
+//        }else{
+//            console.log('white');
+//            $('body').append('<div class="umi-overlay-white"></div>');
+//        }
 //
-//    $('body').on('.umi-popup', 'mousedown', function(event){
-////        console.log('close');
-//        event.stopPropagation();
+//        $('body').append(document.querySelector('#umi-popup').innerHTML);
+//        var x = $(window).width()/2 - 300;
+//        var y = $(window).height()/2 - 250;
+//        $('.umi-popup').offset({left:x, top:y});
+//
+//        $().ready(function(){
+//            var elf = $('#elfinder').elfinder({
+//                url : '/resources/libs/elfinder/php/connector.php'  // connector URL (REQUIRED)
+//                // lang: 'ru',             // language (OPTIONAL)
+//            }).elfinder('instance');
+//        });
+//
+//        $('body').on('mousedown', function(event){
+//            $('.umi-main-view').removeClass('umi-blur');
+//            $('.umi-overlay').remove();
+//            $('.umi-overlay-white').remove();
+//            $('.umi-popup').remove();
+//        });
+//
+//        $('body').on('.umi-popup', 'mousedown', function(event){
+//            //        console.log('close');
+//            event.stopImmediatePropagation();
+//        });
 //    });
 </script>

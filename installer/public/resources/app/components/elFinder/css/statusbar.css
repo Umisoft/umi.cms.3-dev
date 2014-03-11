@@ -24,7 +24,6 @@
 	white-space:nowrap;
 	overflow:hidden;
 	text-overflow:ellipsis;
-    -o-text-overflow:ellipsis;
 }
 .elfinder-ltr .elfinder-path { float:left;  }
 .elfinder-rtl .elfinder-path { float:right; }

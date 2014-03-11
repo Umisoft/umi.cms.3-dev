@@ -77,11 +77,8 @@
     white-space: pre;
     overflow: hidden;
     text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
     margin: 3px 1px 0 1px;
     padding: 1px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
     border-radius: 8px;
 }
 
@@ -102,9 +99,7 @@
     width: 48px;
     height: 48px;
     margin: 0 auto;
-    background: url('../img/icons-big.png') 0 0 no-repeat;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
+    background: url('img/elfinder/img/icons-big.png') 0 0 no-repeat;
     background-clip: padding-box;
 }
 
@@ -275,7 +270,7 @@
 /* textfield inside icon */
 .elfinder-cwd input {
     width: 100%;
-    border: 0px solid;
+    border: 0 solid;
     margin: 0;
     padding: 0;
 }
@@ -378,7 +373,7 @@
     position: absolute;
     top: 50%;
     margin-top: -8px;
-    background-image: url(../img/icons-small.png);
+    background-image: url(img/elfinder/img/icons-small.png);
 }
 
 /* icon in ltr/rtl enviroment */
@@ -389,5 +384,3 @@
 .elfinder-rtl .elfinder-cwd-view-list .elfinder-cwd-icon {
     right: 0;
 }
-
-

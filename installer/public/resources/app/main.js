@@ -4,6 +4,7 @@ define(
         'topBar',
         'dock',
         'tableControl',
+        'fileManager',
         'tree',
         'form',
         'search',
