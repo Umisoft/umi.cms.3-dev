@@ -5263,6 +5263,7 @@ body {
 
 .dock-components {
   position: relative;
+  background-color: #e7ebee;
   background: -webkit-linear-gradient(top, #FFFFFF 0%, #E0E4E7 100%);
   background: -o-linear-gradient(top, #FFFFFF 0%, #E0E4E7 100%);
   background: linear-gradient(top, #FFFFFF 0%, #E0E4E7 100%);

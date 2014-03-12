@@ -2,7 +2,7 @@
 @import "_settings";
 //@import "foundation";
 //Переделаываем компоненты Foundation
-@import "foundationOverridden/_global";
+@import "foundationOverridden/_global";// Для чего переопределен global?
 @import "foundationOverridden/_type";
 @import "foundationOverridden/_top-bar";
 @import "foundationOverridden/_offcanvas";

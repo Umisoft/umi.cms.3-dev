@@ -137,6 +137,7 @@ $dock-z-index: 10;
 
 .dock-components{
     position: relative;
+    background-color: #e7ebee;// Временный фикс для FF в OS X
     background: linear-gradient(top, #FFFFFF 0%, #E0E4E7 100%);
     border-bottom: 1px solid #98a0aa;
     text-align: center;
