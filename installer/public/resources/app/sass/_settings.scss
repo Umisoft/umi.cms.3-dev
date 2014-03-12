@@ -56,9 +56,7 @@ $topbar-height: 24px;
 //
 // Forms
 //
-$form-spacing: rem-calc(16);
-$input-border-color: #d3d7da;
-
+$form-spacing: rem-calc(13);
 $form-label-font-color: #787b84;
 
 $fieldset-border-style: dashed;
@@ -69,13 +67,17 @@ $legend-bg: none;
 $legend-font-weight: bold;
 $legend-padding: rem-calc(0 3);
 
-$input-error-message-padding: rem-calc(6 9 9) !default;
+$input-font-size: rem-calc(13);
+$input-border-radius: 3px;
+$input-border-color: #d3d7da;
+
+$input-error-message-padding: rem-calc(6 9 9);
 $input-error-message-top: -1px;
-$input-error-message-font-size: rem-calc(12) !default;
-$input-error-message-font-weight: bold !default;
-$input-error-message-font-style: normal !default;
-$input-error-message-font-color: #fff !default;
-$input-error-message-font-color-alt: #333 !default;
+$input-error-message-font-size: rem-calc(12);
+$input-error-message-font-weight: bold;
+$input-error-message-font-style: normal;
+$input-error-message-font-color: #fff;
+$input-error-message-font-color-alt: #333;
 
 //
 // Reveal
