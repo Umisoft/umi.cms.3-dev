@@ -4294,6 +4294,17 @@ ul.pagination {
   .show-all-version .version-list .button {
     float: left; }
 
+.umi-columns {
+  position: relative;
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+  float: none;
+  display: inline-block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  vertical-align: top;
+  margin: 0 -0.1em; }
+
 .button, button {
   background-image: -webkit-linear-gradient(top, #3aadff, #0087d4);
   background-image: -o-linear-gradient(top, #3aadff, #0087d4);
@@ -5975,6 +5986,9 @@ legend {
 
 label {
   font-size: 0.8125rem; }
+
+.umi-form-label {
+  display: inline-block; }
 
 [data-abide] span.error, [data-abide] small.error {
   position: absolute;

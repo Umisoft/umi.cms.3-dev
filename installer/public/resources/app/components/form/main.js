@@ -5,7 +5,6 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
     UMI.FormControlView = Ember.View.extend({
         tagName: 'form',
         templateName: 'formControl',
-        classNames: ['s-full-height'],
         classNameBindings: ['class:data.class'],
         attributeBindings: ['abide:data-abide'],
         abide: 'ajax',
@@ -17,15 +16,16 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
     });
 
     UMI.FieldView = Ember.View.extend({
-        classNames: ['columns'],
-        classNameBindings: ['wide:large-12:large-4'],
+        classNames: ['umi-columns'],
+        classNameBindings: ['wide'],
         wide: function(){
-            return this.get('meta.type') === 'textarea';
+            return this.get('meta.type') === 'textarea' ? 'small-12' : 'large-4 medium-12';
         }.property('meta.type'),
-        layout: Ember.Handlebars.compile('<label><span style="margin-bottom: 3px; display: inline-block;">{{title}}</span></label>{{yield}}'),
+        layout: Ember.Handlebars.compile('<div><label class="umi-form-label" for="">{{title}}</label></div>{{yield}}'),
         template: function(){
             var meta = this.get('meta');
             var template;
+
             switch(meta.type){
                 case 'text':
                     template = Ember.Handlebars.compile('{{input type="text" value=object.' + meta.name + ' placeholder=meta.placeholder}}');
