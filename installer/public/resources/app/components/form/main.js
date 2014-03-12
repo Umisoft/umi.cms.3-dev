@@ -21,7 +21,7 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
         wide: function(){
             return this.get('meta.type') === 'textarea' ? 'small-12' : 'large-4 medium-12';
         }.property('meta.type'),
-        layout: Ember.Handlebars.compile('<div><label class="umi-form-label" for="">{{title}}</label></div>{{yield}}'),
+        layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{title}}</label></div>{{yield}}'),
         template: function(){
             var meta = this.get('meta');
             var template;

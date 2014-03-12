@@ -79,7 +79,9 @@ label{
 }
 
 .umi-form-label{
+    font-size: rem-calc(13);
     display: inline-block;
+    margin-bottom: $form-label-bottom-margin;
 }
 
 //select:focus{
