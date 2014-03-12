@@ -11,7 +11,6 @@ namespace umicms\project\module\structure\api;
 
 use umicms\api\BaseComplexApi;
 use umicms\api\IPublicApi;
-use umicms\exception\RuntimeException;
 use umicms\project\module\structure\object\Layout;
 use umicms\project\module\structure\object\StructureElement;
 
@@ -56,8 +55,4 @@ class StructureApi extends BaseComplexApi implements IPublicApi
 
         return $element->layout;
     }
-
-
-
 }
- 

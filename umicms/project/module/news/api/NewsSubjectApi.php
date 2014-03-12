@@ -12,6 +12,7 @@ namespace umicms\project\module\news\api;
 use umi\orm\exception\IException;
 use umicms\api\BaseCollectionApi;
 use umicms\exception\NonexistentEntityException;
+use umicms\project\admin\api\TTrashAware;
 use umicms\project\module\news\object\NewsSubject;
 
 /**
@@ -19,6 +20,8 @@ use umicms\project\module\news\object\NewsSubject;
  */
 class NewsSubjectApi extends BaseCollectionApi
 {
+    use \umicms\project\admin\api\TTrashAware;
+
     /**
      * {@inheritdoc}
      */

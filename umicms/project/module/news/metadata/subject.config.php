@@ -56,7 +56,8 @@ return [
         NewsSubject::FIELD_TRASHED => [
             'type' => IField::TYPE_BOOL,
             'columnName' => 'trashed',
-            'defaultValue' => 0
+            'defaultValue' => 0,
+            'readOnly'   => true,
         ],
         NewsSubject::FIELD_CREATED      => ['type'       => IField::TYPE_DATE_TIME,
                                          'columnName' => 'created',

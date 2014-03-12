@@ -57,7 +57,8 @@ return [
         User::FIELD_TRASHED        => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'trashed',
-            'defaultValue' => 0
+            'defaultValue' => 0,
+            'readOnly'   => true,
         ],
         User::FIELD_CREATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created', 'readOnly'   => true],
         User::FIELD_UPDATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly'   => true],

@@ -13,6 +13,7 @@ use umi\orm\exception\IException;
 use umi\orm\metadata\IObjectType;
 use umicms\api\BaseHierarchicCollectionApi;
 use umicms\exception\NonexistentEntityException;
+use umicms\project\admin\api\TTrashAware;
 use umicms\project\module\news\object\NewsRubric;
 
 /**
@@ -20,6 +21,8 @@ use umicms\project\module\news\object\NewsRubric;
  */
 class NewsRubricApi extends BaseHierarchicCollectionApi
 {
+    use \umicms\project\admin\api\TTrashAware;
+
     /**
      * {@inheritdoc}
      */
@@ -111,4 +114,3 @@ class NewsRubricApi extends BaseHierarchicCollectionApi
         $this->getCollection()->delete($rubric);
     }
 }
- 

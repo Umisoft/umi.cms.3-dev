@@ -13,6 +13,7 @@ use umi\orm\exception\IException;
 use umi\orm\selector\ISelector;
 use umicms\api\BaseCollectionApi;
 use umicms\exception\NonexistentEntityException;
+use umicms\project\admin\api\TTrashAware;
 use umicms\project\module\news\object\NewsItem;
 use umicms\project\module\news\object\NewsRubric;
 use umicms\project\module\news\object\NewsSubject;
@@ -22,6 +23,8 @@ use umicms\project\module\news\object\NewsSubject;
  */
 class NewsItemApi extends BaseCollectionApi
 {
+    use \umicms\project\admin\api\TTrashAware;
+
     /**
      * {@inheritdoc}
      */
@@ -33,11 +36,12 @@ class NewsItemApi extends BaseCollectionApi
      * @throws NonexistentEntityException если не удалось получить новость
      * @return NewsItem
      */
-    public function get($guid) {
-
+    public function get($guid)
+    {
         try {
-            return $this->getCollection()->get($guid);
-        } catch(IException $e) {
+            return $this->getCollection()
+                ->get($guid);
+        } catch (IException $e) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find news item by guid "{guid}".',
@@ -55,11 +59,13 @@ class NewsItemApi extends BaseCollectionApi
      * @throws NonexistentEntityException если не удалось получить новость
      * @return NewsItem
      */
-    public function getById($id) {
+    public function getById($id)
+    {
 
         try {
-            return $this->getCollection()->getById($id);
-        } catch(IException $e) {
+            return $this->getCollection()
+                ->getById($id);
+        } catch (IException $e) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find news item by id "{id}".',
@@ -77,16 +83,19 @@ class NewsItemApi extends BaseCollectionApi
      */
     public function add()
     {
-        return $this->getCollection()->add();
+        return $this->getCollection()
+            ->add();
     }
 
     /**
      * Помечает новость на удаление.
      * @param NewsItem $item
      */
-    public function delete(NewsItem $item) {
+    public function delete(NewsItem $item)
+    {
 
-        $this->getCollection()->delete($item);
+        $this->getCollection()
+            ->delete($item);
     }
 
     /**
@@ -95,12 +104,14 @@ class NewsItemApi extends BaseCollectionApi
      * @throws NonexistentEntityException если новость с заданной последней частью ЧПУ не существует
      * @return NewsItem
      */
-    public function getBySlug($slug) {
+    public function getBySlug($slug)
+    {
         $selector = $this->select()
             ->where(NewsItem::FIELD_PAGE_SLUG)
             ->equals($slug);
 
-        $item = $selector->getResult()->fetch();
+        $item = $selector->getResult()
+            ->fetch();
 
         if (!$item instanceof NewsItem) {
             throw new NonexistentEntityException(
@@ -123,7 +134,8 @@ class NewsItemApi extends BaseCollectionApi
     public function getNewsByRubric(NewsRubric $rubric, $onlyActive = true)
     {
         return $this->select($onlyActive)
-            ->where(NewsItem::FIELD_RUBRIC)->equals($rubric);
+            ->where(NewsItem::FIELD_RUBRIC)
+            ->equals($rubric);
     }
 
     /**
@@ -135,6 +147,7 @@ class NewsItemApi extends BaseCollectionApi
     public function getNewsBySubject(NewsSubject $subject, $onlyActive = true)
     {
         return $this->select($onlyActive)
-            ->where(NewsItem::FIELD_SUBJECTS)->equals($subject);
+            ->where(NewsItem::FIELD_SUBJECTS)
+            ->equals($subject);
     }
 }

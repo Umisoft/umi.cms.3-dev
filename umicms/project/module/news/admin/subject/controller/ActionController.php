@@ -9,13 +9,28 @@
 
 namespace umicms\project\module\news\admin\subject\controller;
 
+use umicms\orm\object\ITrashableObject;
 use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\module\news\api\NewsPublicApi;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
  */
 class ActionController extends BaseRestActionController
 {
+    /**
+     * @var NewsPublicApi $api
+     */
+    protected $api;
+
+    /**
+     * Конструктор.
+     * @param NewsPublicApi $api
+     */
+    public function __construct(NewsPublicApi $api)
+    {
+        $this->api = $api;
+    }
 
     /**
      * {@inheritdoc}
@@ -30,8 +45,34 @@ class ActionController extends BaseRestActionController
      */
     protected function getModifyActions()
     {
-        return [];
+        return ['trash','untrash','emptyTrash'];
+    }
+
+
+    /**
+     * @param ITrashableObject $object
+     */
+    public function actionTrash(ITrashableObject $object)
+    {
+        $this->api->subject()->trash($object);
+        $this->getObjectPersister()->commit();
+    }
+
+    /**
+     * @param ITrashableObject $object
+     */
+    public function actionUntrash(ITrashableObject $object)
+    {
+        $this->api->subject()->untrash($object);
+        $this->getObjectPersister()->commit();
+    }
+
+    /**
+     *
+     */
+    public function actionEmptyTrash()
+    {
+        $this->api->subject()->emptyTrash();
     }
 
 }
- 

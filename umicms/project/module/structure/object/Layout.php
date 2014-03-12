@@ -10,17 +10,17 @@
 namespace umicms\project\module\structure\object;
 
 use umicms\orm\object\CmsObject;
+use umicms\orm\object\ITrashableObject;
 
 /**
  * Шаблон.
  *
  * @property string $fileName имя файла шаблона
  */
-class Layout extends CmsObject
+class Layout extends CmsObject implements ITrashableObject
 {
     /**
      * Имя поля для хранения имени файла шаблона
      */
     const FIELD_FILE_NAME = 'fileName';
 }
- 

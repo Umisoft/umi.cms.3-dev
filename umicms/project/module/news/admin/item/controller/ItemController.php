@@ -9,8 +9,9 @@
 
 namespace umicms\project\module\news\admin\item\controller;
 
-use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\orm\object\ICmsObject;
+use umicms\project\admin\api\controller\BaseRestItemController;
+use umicms\project\admin\api\controller\TTrashController;
 use umicms\project\module\news\api\NewsPublicApi;
 use umicms\project\module\news\object\NewsItem;
 
@@ -19,7 +20,6 @@ use umicms\project\module\news\object\NewsItem;
  */
 class ItemController extends BaseRestItemController
 {
-
     /**
      * @var NewsPublicApi $api
      */
@@ -75,4 +75,3 @@ class ItemController extends BaseRestItemController
         }
     }
 }
- 

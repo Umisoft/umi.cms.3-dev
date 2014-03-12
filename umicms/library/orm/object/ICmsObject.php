@@ -39,7 +39,7 @@ interface ICmsObject extends IObject
     /**
      *  Имя поля для хранения состояния "удален"
      */
-    const FIELD_TRASHED = 'deleted';
+    const FIELD_TRASHED = 'trashed';
     /**
      *  Имя поля для хранения времени создания объекта
      */

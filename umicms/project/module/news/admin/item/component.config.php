@@ -57,6 +57,15 @@ return [
             ],
         ],
 
+        'trash' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route'    => '/trash',
+            'defaults' => [
+                'action' => 'trash',
+                'controller' => 'action'
+            ],
+        ],
+
         'item' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/{collection}/{id:integer}',
