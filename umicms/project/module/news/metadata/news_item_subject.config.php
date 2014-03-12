@@ -31,8 +31,8 @@ return [
         CmsObject::FIELD_TYPE         => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
-            'accessor'   => 'getType',
-            'readOnly'   => true
+            'accessor' => 'getType',
+            'readOnly' => true
         ],
         CmsObject::FIELD_VERSION      => [
             'type'         => IField::TYPE_VERSION,
@@ -52,6 +52,12 @@ return [
             'columnName'   => 'locked',
             'readOnly'     => true,
             'defaultValue' => 0
+        ],
+        CmsObject::FIELD_TRASHED => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'trashed',
+            'defaultValue' => 0,
+            'readOnly'   => true,
         ],
         CmsObject::FIELD_CREATED      => ['type'       => IField::TYPE_DATE_TIME,
                                           'columnName' => 'created',
@@ -73,7 +79,7 @@ return [
         ]
 
     ],
-    'types'      => [
+    'types' => [
         'base' => [
             'fields' => [
                 CmsObject::FIELD_IDENTIFY,

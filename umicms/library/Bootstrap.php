@@ -24,11 +24,11 @@ use umi\templating\engine\php\TemplatingPhpExtension;
 use umi\templating\engine\php\ViewPhpExtension;
 use umi\toolkit\IToolkit;
 use umi\toolkit\Toolkit;
-use umicms\project\config\IProjectConfigAware;
-use umicms\project\config\TProjectConfigAware;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
+use umicms\project\config\IProjectConfigAware;
+use umicms\project\config\TProjectConfigAware;
 
 /**
  * Загрузчик приложений UMI.CMS
@@ -134,9 +134,9 @@ class Bootstrap implements IProjectConfigAware
     {
         $this->setUmiHeaders($response);
 
-        $response->setETag(md5($response->getContent()));
-        $response->setPublic();
-        $response->isNotModified($request);
+        //$response->setETag(md5($response->getContent()));
+        //$response->setPublic();
+        //$response->isNotModified($request);
 
         if (isset(static::$contentTypes[$request->getRequestFormat()])) {
             $response->headers->set('Content-Type', static::$contentTypes[$request->getRequestFormat()]);

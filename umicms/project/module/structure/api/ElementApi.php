@@ -14,6 +14,7 @@ use umi\orm\metadata\IObjectType;
 use umicms\api\BaseHierarchicCollectionApi;
 use umicms\api\IPublicApi;
 use umicms\exception\NonexistentEntityException;
+use umicms\project\admin\api\TTrashAware;
 use umicms\project\module\structure\object\StructureElement;
 
 /**
@@ -21,6 +22,8 @@ use umicms\project\module\structure\object\StructureElement;
  */
 class ElementApi extends BaseHierarchicCollectionApi implements IPublicApi
 {
+    use \umicms\project\admin\api\TTrashAware;
+
     /**
      * @var string $collectionName имя коллекции для хранения структуры
      */

@@ -53,6 +53,12 @@ return [
             'readOnly'   => true,
             'defaultValue' => 0
         ],
+        Layout::FIELD_TRASHED          => [
+            'type'         => IField::TYPE_BOOL,
+            'columnName'   => 'trashed',
+            'defaultValue' => 0,
+            'readOnly'   => true,
+        ],
         Layout::FIELD_CREATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
         Layout::FIELD_UPDATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
         Layout::FIELD_FILE_NAME    => ['type' => IField::TYPE_STRING, 'columnName' => 'file_name'],

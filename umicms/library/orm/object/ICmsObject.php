@@ -22,6 +22,7 @@ use umi\orm\object\IObject;
  * @property int $version версия
  * @property bool $active признак активности
  * @property bool $locked признак заблокированности элемента на удаление
+ * @property bool $trashed Состояние "в корзине"
  * @property DateTime $created время создания элемента
  * @property DateTime $updated время обновления элемента
  */
@@ -35,6 +36,10 @@ interface ICmsObject extends IObject
      *  Имя поля для хранения состояния заблокированности объекта на удаление
      */
     const FIELD_LOCKED = 'locked';
+    /**
+     *  Имя поля для хранения состояния "удален"
+     */
+    const FIELD_TRASHED = 'trashed';
     /**
      *  Имя поля для хранения времени создания объекта
      */

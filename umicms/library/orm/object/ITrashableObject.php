@@ -6,17 +6,12 @@
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
-
-namespace umicms\project\module\news\object;
-
-use umicms\orm\object\CmsObject;
-use umicms\orm\object\ICmsPage;
-use umicms\orm\object\ITrashableObject;
+namespace umicms\orm\object;
 
 /**
- * Новостной сюжет.
+ * Объект, который можно помещать в корзину и восстанавливать из неё.
  */
-class NewsSubject extends CmsObject implements ICmsPage, ITrashableObject
+interface ITrashableObject extends ICmsObject
 {
 
 }

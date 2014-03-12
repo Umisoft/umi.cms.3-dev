@@ -12,6 +12,7 @@ namespace umicms\project\module\news\admin\rubric\controller;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umi\orm\object\IObject;
+use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\admin\api\controller\BaseRestActionController;
 use umicms\project\module\news\api\NewsPublicApi;
 
@@ -20,7 +21,6 @@ use umicms\project\module\news\api\NewsPublicApi;
  */
 class ActionController extends BaseRestActionController
 {
-
     /**
      * @var NewsPublicApi $api
      */
@@ -48,7 +48,7 @@ class ActionController extends BaseRestActionController
      */
     protected function getModifyActions()
     {
-        return ['move'];
+        return ['move', 'trash', 'untrash', 'emptyTrash'];
     }
 
     /**
@@ -90,6 +90,28 @@ class ActionController extends BaseRestActionController
         return '';
     }
 
+    public function actionTrash()
+    {
+        $object = $this->api->rubric()->getCollection()->getById($this->getQueryVar('id'));
+        $this->api->news()->trash($object);
+        $this->getObjectPersister()->commit();
 
+        return '';
+    }
+
+    public function actionUntrash()
+    {
+        $object = $this->api->rubric()->getCollection()->getById($this->getQueryVar('id'));
+        $this->api->news()->untrash($object);
+        $this->getObjectPersister()->commit();
+
+        return '';
+    }
+
+    public function actionEmptyTrash()
+    {
+        $this->api->rubric()->emptyTrash();
+
+        return '';
+    }
 }
- 

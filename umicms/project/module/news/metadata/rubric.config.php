@@ -99,6 +99,12 @@ return [
             'readOnly'   => true,
             'defaultValue' => 0
         ],
+        NewsRubric::FIELD_TRASHED          => [
+            'type'         => IField::TYPE_BOOL,
+            'columnName'   => 'trashed',
+            'defaultValue' => 0,
+            'readOnly'   => true,
+        ],
         NewsRubric::FIELD_CREATED               => [
             'type'       => IField::TYPE_DATE_TIME,
             'columnName' => 'created',
@@ -156,6 +162,7 @@ return [
                 NewsRubric::FIELD_CHILD_COUNT,
                 NewsRubric::FIELD_ACTIVE,
                 NewsRubric::FIELD_LOCKED,
+                NewsRubric::FIELD_TRASHED,
                 NewsRubric::FIELD_CREATED,
                 NewsRubric::FIELD_UPDATED,
                 NewsRubric::FIELD_PAGE_META_TITLE,
