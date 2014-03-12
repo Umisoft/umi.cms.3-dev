@@ -46,7 +46,7 @@ class ActionController extends BaseRestActionController
      */
     protected function getModifyActions()
     {
-        return ['login', 'logout'];
+        return ['login', 'logout', 'trash', 'untrash', 'emptyTrash'];
     }
 
     protected function actionLogin()
@@ -68,5 +68,45 @@ class ActionController extends BaseRestActionController
 
         return '';
     }
+
+    /**
+     * Удаляет объект в корзину
+     * @return string
+     */
+    public function actionTrash()
+    {
+        $object = $this->api->getCollection()
+            ->getById($this->getQueryVar('id'));
+        $this->api->trash($object);
+        $this->getObjectPersister()
+            ->commit();
+
+        return '';
+    }
+
+    /**
+     * Восстанавливает объект из корзины
+     * @return string
+     */
+    public function actionUntrash()
+    {
+        $object = $this->api->getCollection()
+            ->getById($this->getQueryVar('id'));
+        $this->api->untrash($object);
+        $this->getObjectPersister()
+            ->commit();
+
+        return '';
+    }
+
+    /**
+     * Очищает корзину
+     * @return string
+     */
+    public function actionEmptyTrash()
+    {
+        $this->api->emptyTrash();
+
+        return '';
+    }
 }
- 

@@ -57,7 +57,33 @@ return [
             'defaults' => [
                 'controller' => 'action'
             ]
-        ]
+        ],
 
+        'trash' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route'    => '/trash',
+            'defaults' => [
+                'action' => 'trash',
+                'controller' => 'action'
+            ],
+        ],
+
+        'untrash' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route'    => '/untrash',
+            'defaults' => [
+                'action' => 'untrash',
+                'controller' => 'action'
+            ],
+        ],
+
+        'emptyTrash' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route'    => '/emptyTrash',
+            'defaults' => [
+                'action' => 'emptyTrash',
+                'controller' => 'action'
+            ],
+        ],
     ]
 ];

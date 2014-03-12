@@ -9,7 +9,6 @@
 
 namespace umicms\project\module\news\admin\subject\controller;
 
-use umicms\orm\object\ITrashableObject;
 use umicms\project\admin\api\controller\BaseRestActionController;
 use umicms\project\module\news\api\NewsPublicApi;
 
@@ -50,29 +49,48 @@ class ActionController extends BaseRestActionController
 
 
     /**
-     * @param ITrashableObject $object
+     * Удаляет объект в корзину
+     * @return string
      */
-    public function actionTrash(ITrashableObject $object)
+    public function actionTrash()
     {
-        $this->api->subject()->trash($object);
-        $this->getObjectPersister()->commit();
+        $object = $this->api->subject()
+            ->getCollection()
+            ->getById($this->getQueryVar('id'));
+        $this->api->news()
+            ->trash($object);
+        $this->getObjectPersister()
+            ->commit();
+
+        return '';
     }
 
     /**
-     * @param ITrashableObject $object
+     * Восстанавливает объект из корзины
+     * @return string
      */
-    public function actionUntrash(ITrashableObject $object)
+    public function actionUntrash()
     {
-        $this->api->subject()->untrash($object);
-        $this->getObjectPersister()->commit();
+        $object = $this->api->subject()
+            ->getCollection()
+            ->getById($this->getQueryVar('id'));
+        $this->api->news()
+            ->untrash($object);
+        $this->getObjectPersister()
+            ->commit();
+
+        return '';
     }
 
     /**
-     *
+     * Очищает корзину
+     * @return string
      */
     public function actionEmptyTrash()
     {
-        $this->api->subject()->emptyTrash();
-    }
+        $this->api->subject()
+            ->emptyTrash();
 
+        return '';
+    }
 }

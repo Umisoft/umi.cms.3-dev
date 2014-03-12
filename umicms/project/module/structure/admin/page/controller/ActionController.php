@@ -48,7 +48,7 @@ class ActionController extends BaseRestActionController
      */
     protected function getModifyActions()
     {
-        return ['move'];
+        return ['move', 'trash', 'untrash', 'emptyTrash'];
     }
 
     /**
@@ -90,6 +90,49 @@ class ActionController extends BaseRestActionController
         return '';
     }
 
+    /**
+     * Удаляет объект в корзину
+     * @return string
+     */
+    public function actionTrash()
+    {
+        $object = $this->api->element()
+            ->getCollection()
+            ->getById($this->getQueryVar('id'));
+        $this->api->element()
+            ->trash($object);
+        $this->getObjectPersister()
+            ->commit();
 
+        return '';
+    }
+
+    /**
+     * Восстанавливает объект из корзины
+     * @return string
+     */
+    public function actionUntrash()
+    {
+        $object = $this->api->element()
+            ->getCollection()
+            ->getById($this->getQueryVar('id'));
+        $this->api->element()
+            ->untrash($object);
+        $this->getObjectPersister()
+            ->commit();
+
+        return '';
+    }
+
+    /**
+     * Очищает корзину
+     * @return string
+     */
+    public function actionEmptyTrash()
+    {
+        $this->api->element()
+            ->emptyTrash();
+
+        return '';
+    }
 }
- 

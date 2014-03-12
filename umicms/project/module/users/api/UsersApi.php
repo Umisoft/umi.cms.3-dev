@@ -17,6 +17,7 @@ use umi\orm\exception\IException;
 use umicms\api\BaseCollectionApi;
 use umicms\api\IPublicApi;
 use umicms\exception\NonexistentEntityException;
+use umicms\project\admin\api\TTrashAware;
 use umicms\project\module\users\object\User;
 
 /**
@@ -24,8 +25,8 @@ use umicms\project\module\users\object\User;
  */
 class UsersApi extends BaseCollectionApi implements IPublicApi, IAuthenticationAware
 {
-
     use TAuthenticationAware;
+    use TTrashAware;
 
     /**
      * {@inheritdoc}
@@ -126,5 +127,4 @@ class UsersApi extends BaseCollectionApi implements IPublicApi, IAuthenticationA
         $this->getDefaultAuthManager()
             ->forget();
     }
-
 }
