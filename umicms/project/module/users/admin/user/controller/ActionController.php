@@ -106,7 +106,8 @@ class ActionController extends BaseRestActionController
     public function actionEmptyTrash()
     {
         $this->api->emptyTrash();
-
+        $this->getObjectPersister()
+            ->commit();
         return '';
     }
 }

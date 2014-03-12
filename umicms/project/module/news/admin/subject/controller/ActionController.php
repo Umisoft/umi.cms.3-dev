@@ -90,7 +90,8 @@ class ActionController extends BaseRestActionController
     {
         $this->api->subject()
             ->emptyTrash();
-
+        $this->getObjectPersister()
+            ->commit();
         return '';
     }
 }

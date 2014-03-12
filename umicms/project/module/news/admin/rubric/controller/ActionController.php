@@ -132,7 +132,8 @@ class ActionController extends BaseRestActionController
     {
         $this->api->rubric()
             ->emptyTrash();
-
+        $this->getObjectPersister()
+            ->commit();
         return '';
     }
 }
