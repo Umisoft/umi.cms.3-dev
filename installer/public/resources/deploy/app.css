@@ -4371,94 +4371,6 @@ ul.pagination {
   .button .icon, button .icon {
     vertical-align: middle; }
 
-input[type="date"], input[type="number"], input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"] {
-  height: 32px;
-  line-height: 32px;
-  padding: 0 10px;
-  border-radius: 2px;
-  font-size: 13px; }
-
-textarea {
-  border-radius: 2px;
-  font-size: 13px;
-  width: 400px;
-  -webkit-transition: none;
-  -o-transition: none;
-  transition: none; }
-
-.umi-input-wrapper-date {
-  position: relative;
-  height: 32px;
-  border-radius: 2px;
-  font-size: 13px;
-  background: #FFFFFF;
-  border: 1px solid #d3d7da;
-  padding-right: 30px;
-  margin-bottom: 1rem; }
-  .umi-input-wrapper-date input {
-    border: none !important;
-    box-shadow: none !important;
-    background: #FFFFFF !important; }
-    .umi-input-wrapper-date input:hover {
-      border: none !important;
-      box-shadow: none !important; }
-    .umi-input-wrapper-date input:active {
-      border: none !important;
-      box-shadow: none !important;
-      background: #FFFFFF !important; }
-  .umi-input-wrapper-date i {
-    position: absolute;
-    top: 6px;
-    right: 8px; }
-
-.umi-input-wrapper-number {
-  position: relative;
-  height: 32px;
-  border-radius: 2px;
-  font-size: 13px;
-  background: #FFFFFF;
-  border: 1px solid #d3d7da;
-  padding-right: 30px;
-  margin-right: 25px;
-  max-width: 400px; }
-  .umi-input-wrapper-number i {
-    position: absolute;
-    top: 6px;
-    right: 8px; }
-
-@-moz-document url-prefix() {
-  .umi-input-wrapper-file input {
-    position: relative;
-    top: -1px; } }
-
-.umi-input-wrapper-file {
-  position: relative;
-  height: 32px;
-  border-radius: 2px;
-  font-size: 13px;
-  line-height: 32px;
-  background: #FFFFFF;
-  border: 1px solid #d3d7da;
-  padding: 0 30px 0 5px;
-  margin-right: 25px;
-  margin-bottom: 1rem;
-  max-width: 400px; }
-  .umi-input-wrapper-file input {
-    border: none !important;
-    box-shadow: none !important;
-    background: #FFFFFF !important; }
-    .umi-input-wrapper-file input:hover {
-      border: none !important;
-      box-shadow: none !important; }
-    .umi-input-wrapper-file input:active {
-      border: none !important;
-      box-shadow: none !important;
-      background: #FFFFFF !important; }
-  .umi-input-wrapper-file i {
-    position: absolute;
-    top: 6px;
-    right: 8px; }
-
 .animate {
   background-position: 0 0;
   position: relative;
@@ -5031,7 +4943,8 @@ html {
 body {
   overflow: hidden;
   height: 100%;
-  background: #f6f7f8; }
+  background: #f6f7f8;
+  image-rendering: -webkit-optimize-contrast; }
 
 .no-js body::after {
   content: "Для работы приложения необходимо включить JavaScript";
@@ -6005,56 +5918,21 @@ body {
   .umi-component > .columns {
     position: static; }
 
-body {
-  image-rendering: -webkit-optimize-contrast; }
-
-.magellan-menu {
-  z-index: 10;
-  position: absolute;
-  width: 100%;
-  height: 34px;
-  top: 34px;
-  background: #FFFFFF;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-  .magellan-menu::after {
-    content: "";
-    position: absolute;
-    float: left;
-    display: block;
-    height: 3px;
-    width: -webkit-calc(100% + 1px);
-    width: calc(100% + 1px);
-    left: 0;
-    bottom: -3px;
-    background: url(img/shadows/toBottomShadow.png); }
-  .magellan-menu a {
-    position: relative;
-    padding: 0 1.125rem;
-    border-right: 1px solid #BFC4C8;
-    display: block;
-    height: 100%;
-    float: left;
-    line-height: 33px;
+/*input[type="date"]{
+    height: 32px;
+    line-height: 32px;
+    padding: 0 10px;
+    border-radius: 2px;
     font-size: 13px;
-    font-weight: bold;
-    color: #575E6C; }
-    .magellan-menu a:hover::after {
-      content: "";
-      position: absolute;
-      z-index: 20;
-      float: left;
-      display: block;
-      width: 20px;
-      height: 10px;
-      left: -webkit-calc(50% - 10px);
-      left: calc(50% - 10px);
-      bottom: -10px;
-      background: url(img/shadows/arrowBottom.png); }
+}
 
-.magellan-menu-holder {
-  height: 34px; }
-
+textarea{
+    border-radius: 2px;
+    font-size: 13px;
+    width: 400px;
+    transition: none;
+}
+*/
 form .input-icon {
   position: relative;
   top: 0.75rem;
@@ -6241,6 +6119,79 @@ label {
 
 .umi-form-tab-content input[type="checkbox"] {
   width: 20px; }
+
+.umi-input-wrapper-date {
+  position: relative;
+  height: 32px;
+  border-radius: 2px;
+  font-size: 13px;
+  background: #FFFFFF;
+  border: 1px solid #d3d7da;
+  padding-right: 30px;
+  margin-bottom: 1rem; }
+  .umi-input-wrapper-date input {
+    border: none !important;
+    box-shadow: none !important;
+    background: #FFFFFF !important; }
+    .umi-input-wrapper-date input:hover {
+      border: none !important;
+      box-shadow: none !important; }
+    .umi-input-wrapper-date input:active {
+      border: none !important;
+      box-shadow: none !important;
+      background: #FFFFFF !important; }
+  .umi-input-wrapper-date i {
+    position: absolute;
+    top: 6px;
+    right: 8px; }
+
+.umi-input-wrapper-number {
+  position: relative;
+  height: 32px;
+  border-radius: 2px;
+  font-size: 13px;
+  background: #FFFFFF;
+  border: 1px solid #d3d7da;
+  padding-right: 30px;
+  margin-right: 25px;
+  max-width: 400px; }
+  .umi-input-wrapper-number i {
+    position: absolute;
+    top: 6px;
+    right: 8px; }
+
+@-moz-document url-prefix() {
+  .umi-input-wrapper-file input {
+    position: relative;
+    top: -1px; } }
+
+.umi-input-wrapper-file {
+  position: relative;
+  height: 32px;
+  border-radius: 2px;
+  font-size: 13px;
+  line-height: 32px;
+  background: #FFFFFF;
+  border: 1px solid #d3d7da;
+  padding: 0 30px 0 5px;
+  margin-right: 25px;
+  margin-bottom: 1rem;
+  max-width: 400px; }
+  .umi-input-wrapper-file input {
+    border: none !important;
+    box-shadow: none !important;
+    background: #FFFFFF !important; }
+    .umi-input-wrapper-file input:hover {
+      border: none !important;
+      box-shadow: none !important; }
+    .umi-input-wrapper-file input:active {
+      border: none !important;
+      box-shadow: none !important;
+      background: #FFFFFF !important; }
+  .umi-input-wrapper-file i {
+    position: absolute;
+    top: 6px;
+    right: 8px; }
 
 .dropdown-hover .f-dropdown {
   max-width: none;

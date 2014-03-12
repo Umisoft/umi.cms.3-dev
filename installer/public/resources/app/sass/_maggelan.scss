@@ -1,0 +1,51 @@
+.magellan-menu{
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    height: 34px;
+    top: 34px;
+    background: #FFFFFF;
+    //    border-bottom: 1px solid #BFC4C8;
+    box-sizing: border-box;
+    &::after{
+        content: "";
+        position: absolute;
+        float: left;
+        display: block;
+        height: 3px;
+        width: unquote("calc(100% + 1px)");
+        left: 0;
+        bottom: -3px;
+        background: url(img/shadows/toBottomShadow.png);
+    }
+    a{
+        position: relative;
+        padding: rem-calc(0 18);
+        border-right: 1px solid #BFC4C8;
+        display: block;
+        height: 100%;
+        float: left;
+        line-height: 33px;
+        font-size: 13px;
+        font-weight: bold;
+        color: #575E6C;
+        &:hover {
+            &::after {
+                content: "";
+                position: absolute;
+                z-index: 20;
+                float: left;
+                display: block;
+                width: 20px;
+                height: 10px;
+                left: unquote("calc(50% - 10px)");
+                bottom: -10px;
+                background: url(img/shadows/arrowBottom.png);
+            }
+        }
+    }
+}
+
+.magellan-menu-holder{
+    height: 34px;
+}
