@@ -46,7 +46,7 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
                     template = Ember.Handlebars.compile('{{input type="checkbox" checked=object.' + meta.name + ' name=name}}<label for="' + meta.name + '"></label>');
                     break;
                 case 'choice':
-                    console.log(meta.name);
+                    template = Ember.Handlebars.compile('{{view Ember.Select name=' + meta.name + ' content=object.' + meta.name + ' optionValuePath="content.id" optionLabelPath="content.displayName" prompt=placeholder}}');
                     break;
                 case 'file':
                     template = Ember.Handlebars.compile('<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.name + '}}<i class="icon icon-cloud"></i></div>');

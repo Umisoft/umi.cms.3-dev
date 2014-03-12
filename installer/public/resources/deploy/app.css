@@ -5992,6 +5992,10 @@ label {
   display: inline-block;
   margin-bottom: 0.5rem; }
 
+select:focus {
+  box-shadow: 0 0 5px #999999;
+  outline: none; }
+
 [data-abide] span.error, [data-abide] small.error {
   position: absolute;
   z-index: 2;

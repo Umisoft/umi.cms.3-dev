@@ -84,10 +84,11 @@ label{
     margin-bottom: $form-label-bottom-margin;
 }
 
-//select:focus{
-//	box-shadow: 0 0 5px #999999;
-//	outline: none;
-//}
+select:focus{
+    box-shadow: 0 0 5px #999999;
+    outline: none;
+}
+
 //
 // Error style
 [data-abide]{
