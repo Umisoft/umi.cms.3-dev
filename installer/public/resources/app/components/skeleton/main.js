@@ -205,7 +205,7 @@ define(
                 return deserialized;
             },
             deserialize: function(serialized){
-                serialized.date = moment(serialized.date).format('MM/DD/YYYY');
+                serialized.date = moment(serialized.date).format('DD/MM/YYYY');
                 return serialized;
             }
         });
