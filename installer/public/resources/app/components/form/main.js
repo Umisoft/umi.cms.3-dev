@@ -17,6 +17,12 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
     });
 
     UMI.FieldView = Ember.View.extend({
+        classNames: ['columns'],
+        classNameBindings: ['wide:large-12:large-4'],
+        wide: function(){
+            return this.get('meta.type') === 'textarea';
+        }.property('meta.type'),
+        layout: Ember.Handlebars.compile('<label><span style="margin-bottom: 3px; display: inline-block;">{{title}}</span></label>{{yield}}'),
         template: function(){
             var meta = this.get('meta');
             var template;
@@ -37,7 +43,10 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
                     template = Ember.Handlebars.compile('{{input type="number" value=object.' + meta.name + '}}');
                     break;
                 case 'checkbox':
-                    template = Ember.Handlebars.compile('{{input type="checkbox" checked=object.' + meta.name + '}}');
+                    template = Ember.Handlebars.compile('{{input type="checkbox" checked=object.' + meta.name + ' name=name}}<label for="' + meta.name + '"></label>');
+                    break;
+                case 'choice':
+                    console.log(meta.name);
                     break;
                 case 'file':
                     template = Ember.Handlebars.compile('<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.name + '}}<i class="icon icon-cloud"></i></div>');
@@ -90,7 +99,7 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
         didInsertElement: function(){
             var self = this;
             var el = this.$().children('.umi-date');
-            el.jdPicker({});
+            el.jdPicker({date_format: "dd/mm/YYYY"});
         }
     });
     //TODO: Для форм нужно не забыть в шаблоне, и в остальных местах биндить все возможные атрибуты

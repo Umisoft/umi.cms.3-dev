@@ -34,7 +34,7 @@ define([], function(){
                            break;
                        case 'dateTime':
                            params = {defaultValue: collection.fields[i]['default']};
-                           fieldValue = DS.attr('raw', params);
+                           fieldValue = DS.attr('date', params);
                            break;
                         case 'belongsToRelation':
                            params = {async: true};

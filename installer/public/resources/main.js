@@ -13,7 +13,7 @@ require.config({
         Foundation: 'deploy/foundation',
         ckEditor: 'libs/ckeditor/ckeditor',
         datepicker: 'libs/datepicker',
-        momentjs: 'libs/momentjs/min/moment-with-langs.min',
+        moment: 'libs/momentjs/min/moment-with-langs.min',
         App: 'app/components/skeleton/main',
         //jQueryUI: 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min'
         elFinder: 'deploy/elFinder'
@@ -61,7 +61,7 @@ require.config({
         datepicker: {
             deps: ['jQuery'],
             exports: 'datepicker'
-        }    
+        }
     },
 
     packages: [
@@ -99,7 +99,7 @@ require.config({
 
 
 if(UmiSettings.login){
-    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder', 'datepicker', 'momentjs'], function(application){
+    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder', 'datepicker', 'moment'], function(application){
         "use strict";
         application();
     });
