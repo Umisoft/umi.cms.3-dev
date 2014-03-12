@@ -35,30 +35,6 @@ return [
             ]
         ],
 
-        'item' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{guid:guid}',
-            'defaults' => [
-                'controller' => 'item'
-            ]
-        ],
-
-        'itemAction' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{guid:guid}/{action}',
-            'defaults' => [
-                'controller' => 'action'
-            ]
-        ],
-
-        'action' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{action}',
-            'defaults' => [
-                'controller' => 'action'
-            ]
-        ],
-
         'trash' => [
             'type'     => IRouteFactory::ROUTE_FIXED,
             'route'    => '/trash',
@@ -85,5 +61,30 @@ return [
                 'controller' => 'action'
             ],
         ],
+
+        'item' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{guid:guid}',
+            'defaults' => [
+                'controller' => 'item'
+            ]
+        ],
+
+        'itemAction' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{guid:guid}/{action}',
+            'defaults' => [
+                'controller' => 'action'
+            ]
+        ],
+
+        'action' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{action}',
+            'defaults' => [
+                'controller' => 'action'
+            ]
+        ],
+
     ]
 ];

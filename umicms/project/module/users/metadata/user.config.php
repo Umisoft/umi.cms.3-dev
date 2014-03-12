@@ -89,6 +89,7 @@ return [
                 User::FIELD_VERSION,
                 User::FIELD_ACTIVE,
                 User::FIELD_LOCKED,
+                User::FIELD_TRASHED,
                 User::FIELD_CREATED,
                 User::FIELD_UPDATED,
                 User::FIELD_DISPLAY_NAME,

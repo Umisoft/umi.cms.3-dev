@@ -22,7 +22,7 @@ use umicms\project\module\structure\object\StructureElement;
  */
 class ElementApi extends BaseHierarchicCollectionApi implements IPublicApi
 {
-    use \umicms\project\admin\api\TTrashAware;
+    use TTrashAware;
 
     /**
      * @var string $collectionName имя коллекции для хранения структуры
@@ -38,8 +38,9 @@ class ElementApi extends BaseHierarchicCollectionApi implements IPublicApi
     public function get($guid)
     {
         try {
-            return $this->getCollection()->get($guid);
-        } catch(IException $e) {
+            return $this->getCollection()
+                ->get($guid);
+        } catch (IException $e) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find element by guid "{guid}".',
@@ -57,11 +58,12 @@ class ElementApi extends BaseHierarchicCollectionApi implements IPublicApi
      * @throws NonexistentEntityException если не удалось получить элемент
      * @return StructureElement
      */
-    public function getById($id) {
-
+    public function getById($id)
+    {
         try {
-            return $this->getCollection()->getById($id);
-        } catch(IException $e) {
+            return $this->getCollection()
+                ->getById($id);
+        } catch (IException $e) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find element by id "{id}".',
@@ -83,7 +85,7 @@ class ElementApi extends BaseHierarchicCollectionApi implements IPublicApi
     {
         try {
             return $this->getElementByUrl($url);
-        } catch(IException $e) {
+        } catch (IException $e) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find element by url "{url}".',
@@ -103,16 +105,19 @@ class ElementApi extends BaseHierarchicCollectionApi implements IPublicApi
      */
     public function add($slug, StructureElement $parent = null)
     {
-        return $this->getCollection()->add($slug, IObjectType::BASE, $parent);
+        return $this->getCollection()
+            ->add($slug, IObjectType::BASE, $parent);
     }
 
     /**
      * Помечает элемент на удаление.
      * @param StructureElement $element
      */
-    public function delete(StructureElement $element) {
+    public function delete(StructureElement $element)
+    {
 
-        $this->getCollection()->delete($element);
+        $this->getCollection()
+            ->delete($element);
     }
 
 }

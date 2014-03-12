@@ -83,6 +83,7 @@ return [
                 Group::FIELD_VERSION,
                 Group::FIELD_ACTIVE,
                 Group::FIELD_LOCKED,
+                Group::FIELD_TRASHED,
                 Group::FIELD_CREATED,
                 Group::FIELD_UPDATED,
                 Group::FIELD_DISPLAY_NAME,
