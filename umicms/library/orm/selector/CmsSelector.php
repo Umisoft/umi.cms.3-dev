@@ -6,12 +6,15 @@
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
-namespace umicms\orm\object;
+
+namespace umicms\orm\selector;
+
+use umi\orm\selector\Selector;
 
 /**
- * Объект, который можно помещать в корзину и восстанавливать из неё.
+ * {@inheritdoc}
  */
-interface ITrashableObject extends ICmsObject
+class CmsSelector extends Selector
 {
 
 }

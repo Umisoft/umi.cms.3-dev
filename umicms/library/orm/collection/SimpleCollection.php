@@ -14,7 +14,8 @@ use umi\orm\collection\SimpleCollection as FrameworkSimpleCollection;
 /**
  * {@inheritdoc}
  */
-class SimpleCollection extends FrameworkSimpleCollection implements IApplicationHandlersAware
+class SimpleCollection extends FrameworkSimpleCollection implements IApplicationHandlersAware, ICmsCollection
 {
     use TApplicationHandlersAware;
+
 }

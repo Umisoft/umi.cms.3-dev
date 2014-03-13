@@ -79,6 +79,9 @@ return [
                     'defaultHierarchicCollectionClass' => 'umicms\orm\collection\SimpleHierarchicCollection',
                     'defaultLinkedHierarchicCollectionClass' => 'umicms\orm\collection\LinkedHierarchicCollection',
                     'defaultCommonHierarchyClass' => 'umicms\orm\collection\CommonHierarchy'
+                ],
+                'selector' => [
+                    'selectorClass' => 'umicms\orm\selector\CmsSelector'
                 ]
             ],
             'metadata'    => [

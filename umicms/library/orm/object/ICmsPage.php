@@ -22,7 +22,7 @@ use umicms\project\module\structure\object\Layout;
  * @property string $slug последней часть ЧПУ
  * @property Layout|null $layout шаблон для вывода
  */
-interface ICmsPage extends ICmsObject
+interface ICmsPage extends ICmsObject, IRecyclableObject
 {
     /**
      *  Имя поля для хранения заголовка окна браузера

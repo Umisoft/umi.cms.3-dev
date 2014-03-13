@@ -14,7 +14,7 @@ use umi\http\Response;
 use umi\orm\object\IObject;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\module\news\api\NewsPublicApi;
+use umicms\project\module\news\api\NewsApi;
 
 /**
  * Контроллер операций.
@@ -22,15 +22,15 @@ use umicms\project\module\news\api\NewsPublicApi;
 class ActionController extends BaseRestActionController
 {
     /**
-     * @var NewsPublicApi $api
+     * @var NewsApi $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param NewsPublicApi $api
+     * @param NewsApi $api
      */
-    public function __construct(NewsPublicApi $api)
+    public function __construct(NewsApi $api)
     {
         $this->api = $api;
     }
@@ -85,14 +85,14 @@ class ActionController extends BaseRestActionController
             $previousSibling = null;
         }
 
-        $this->api->rubric()->getCollection()->move($object, $branch, $previousSibling);
+        $this->api->rubric()->move($object, $branch, $previousSibling);
 
         return '';
     }
 
     public function actionTrash()
     {
-        $object = $this->api->rubric()->getCollection()->getById($this->getQueryVar('id'));
+        $object = $this->api->rubric()->getById($this->getQueryVar('id'));
         $this->api->news()->trash($object);
         $this->getObjectPersister()->commit();
 
@@ -101,7 +101,7 @@ class ActionController extends BaseRestActionController
 
     public function actionUntrash()
     {
-        $object = $this->api->rubric()->getCollection()->getById($this->getQueryVar('id'));
+        $object = $this->api->rubric()->getById($this->getQueryVar('id'));
         $this->api->news()->untrash($object);
         $this->getObjectPersister()->commit();
 

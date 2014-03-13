@@ -11,7 +11,7 @@ namespace umicms\project\module\users\object;
 
 use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\object\CmsObject;
-use umicms\orm\object\ITrashableObject;
+use umicms\orm\object\IRecyclableObject;
 
 /**
  * Пользователь.
@@ -21,7 +21,7 @@ use umicms\orm\object\ITrashableObject;
  * @property string $password пароль
  * @property IManyToManyObjectSet $groups группы, в которые входит пользователь
  */
-class User extends CmsObject implements ITrashableObject
+class User extends CmsObject implements IRecyclableObject
 {
     /**
      * Имя поля для хранения логина

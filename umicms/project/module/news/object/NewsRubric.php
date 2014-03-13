@@ -12,14 +12,14 @@ namespace umicms\project\module\news\object;
 use umi\orm\objectset\IObjectSet;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
-use umicms\orm\object\ITrashableObject;
+use umicms\orm\object\IRecyclableObject;
 
 /**
  * Новостная рубрика.
  *
  * @property IObjectSet $news новости рубрики
  */
-class NewsRubric extends CmsHierarchicObject implements ICmsPage, ITrashableObject
+class NewsRubric extends CmsHierarchicObject implements ICmsPage
 {
     /**
      *  Имя поля для хранения новостей

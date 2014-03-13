@@ -10,7 +10,7 @@
 namespace umicms\project\module\news\admin\subject\controller;
 
 use umicms\project\admin\api\controller\BaseRestListController;
-use umicms\project\module\news\api\NewsPublicApi;
+use umicms\project\module\news\api\NewsApi;
 
 /**
  * Контроллер действий над списком.
@@ -19,15 +19,15 @@ class ListController extends BaseRestListController
 {
 
     /**
-     * @var NewsPublicApi $api
+     * @var NewsApi $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param NewsPublicApi $api
+     * @param NewsApi $api
      */
-    public function __construct(NewsPublicApi $api)
+    public function __construct(NewsApi $api)
     {
         $this->api = $api;
     }

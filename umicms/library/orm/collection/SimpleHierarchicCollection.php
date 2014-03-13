@@ -14,7 +14,7 @@ use umi\orm\collection\SimpleHierarchicCollection as FrameworkSimpleHierarchicCo
 /**
  * {@inheritdoc}
  */
-class SimpleHierarchicCollection extends FrameworkSimpleHierarchicCollection implements IApplicationHandlersAware
+class SimpleHierarchicCollection extends FrameworkSimpleHierarchicCollection implements IApplicationHandlersAware, ICmsCollection
 {
     use TApplicationHandlersAware;
 }

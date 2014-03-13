@@ -9,18 +9,18 @@
 
 namespace umicms\project\module\news\api;
 
-use umi\orm\exception\IException;
-use umicms\api\BaseCollectionApi;
+use umicms\api\repository\BaseObjectRepository;
+use umicms\api\repository\TRecycleAwareRepository;
 use umicms\exception\NonexistentEntityException;
-use umicms\project\admin\api\TTrashAware;
+use umicms\orm\selector\CmsSelector;
 use umicms\project\module\news\object\NewsSubject;
 
 /**
- * API для работы с новостными сюжетами.
+ * Репозиторий для работы с новостными сюжетами.
  */
-class NewsSubjectApi extends BaseCollectionApi
+class NewsSubjectRepository extends BaseObjectRepository
 {
-    use \umicms\project\admin\api\TTrashAware;
+    use TRecycleAwareRepository;
 
     /**
      * {@inheritdoc}
@@ -28,18 +28,28 @@ class NewsSubjectApi extends BaseCollectionApi
     public $collectionName = 'newsSubject';
 
     /**
+     * Возвращает селектор для выбора сюжетов.
+     * @param bool $onlyPublic выбирать только публично доступные объекты
+     * @return CmsSelector|NewsSubject[]
+     */
+    public function select($onlyPublic = true) {
+        return $this->selectAll($onlyPublic);
+    }
+
+    /**
      * Возвращает сюжет по его GUID
      * @param string $guid
+     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException если не удалось получить сюжет
      * @return NewsSubject
      */
-    public function get($guid) {
+    public function get($guid, $onlyPublic = true) {
         try {
-            return $this->getCollection()->get($guid);
-        } catch(IException $e) {
+            return $this->selectByGuid($guid, $onlyPublic);
+        } catch(\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(
-                    'Cannot find news item by guid "{guid}".',
+                    'Cannot find news subject by guid "{guid}".',
                     ['guid' => $guid]
                 ),
                 0,
@@ -51,14 +61,15 @@ class NewsSubjectApi extends BaseCollectionApi
     /**
      * Возвращает сюжет по его id.
      * @param int $id
+     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException если не удалось получить сюжет
      * @return NewsSubject
      */
-    public function getById($id) {
+    public function getById($id, $onlyPublic = true) {
 
         try {
-            return $this->getCollection()->getById($id);
-        } catch(IException $e) {
+            return $this->selectById($id, $onlyPublic);
+        } catch(\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find news subject by id "{id}".',
@@ -73,11 +84,12 @@ class NewsSubjectApi extends BaseCollectionApi
     /**
      * Возвращает сюжет по его последней части ЧПУ
      * @param string $slug последняя часть ЧПУ
+     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException если не удалось получить сюжет
      * @return NewsSubject
      */
-    public function getBySlug($slug) {
-        $selector = $this->select()
+    public function getBySlug($slug, $onlyPublic = true) {
+        $selector = $this->select($onlyPublic)
             ->where(NewsSubject::FIELD_PAGE_SLUG)
             ->equals($slug);
 
@@ -96,9 +108,12 @@ class NewsSubjectApi extends BaseCollectionApi
     /**
      * Помечает сюжет на удаление.
      * @param NewsSubject $subject
+     * @return $this
      */
     public function delete(NewsSubject $subject) {
 
         $this->getCollection()->delete($subject);
+
+        return $this;
     }
 }

@@ -13,16 +13,14 @@ use umi\authentication\exception\RuntimeException;
 use umi\authentication\IAuthenticationAware;
 use umi\authentication\IAuthenticationFactory;
 use umi\authentication\TAuthenticationAware;
-use umi\orm\exception\IException;
-use umicms\api\BaseCollectionApi;
+use umicms\api\BaseComplexApi;
 use umicms\api\IPublicApi;
-use umicms\exception\NonexistentEntityException;
 use umicms\project\module\users\object\User;
 
 /**
  * API для работы с пользователями.
  */
-class UsersApi extends BaseCollectionApi implements IPublicApi, IAuthenticationAware
+class UsersApi extends BaseComplexApi implements IPublicApi, IAuthenticationAware
 {
 
     use TAuthenticationAware;
@@ -37,25 +35,12 @@ class UsersApi extends BaseCollectionApi implements IPublicApi, IAuthenticationA
     public $passwordSaltMask = '$2a$09${salt}$';
 
     /**
-     * Возвращает пользователя по его GUID.
-     * @param string $guid
-     * @throws NonexistentEntityException если не удалось получить пользователя
-     * @return User
+     * Возвращает репозиторий для работы с пользователями.
+     * @return UserRepository
      */
-    public function get($guid) {
-
-        try {
-            return $this->getCollection()->get($guid);
-        } catch(IException $e) {
-            throw new NonexistentEntityException(
-                $this->translate(
-                    'Cannot find user by guid "{guid}".',
-                    ['guid' => $guid]
-                ),
-                0,
-                $e
-            );
-        }
+    public function user()
+    {
+        return $this->getApi('umicms\project\module\users\api\UserRepository');
     }
 
     /**

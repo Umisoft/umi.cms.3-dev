@@ -10,14 +10,14 @@
 namespace umicms\project\module\structure\object;
 
 use umicms\orm\object\CmsObject;
-use umicms\orm\object\ITrashableObject;
+use umicms\orm\object\IRecyclableObject;
 
 /**
  * Шаблон.
  *
  * @property string $fileName имя файла шаблона
  */
-class Layout extends CmsObject implements ITrashableObject
+class Layout extends CmsObject implements IRecyclableObject
 {
     /**
      * Имя поля для хранения имени файла шаблона

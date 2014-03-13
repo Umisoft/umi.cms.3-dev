@@ -13,7 +13,6 @@ use DateTime;
 use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
-use umicms\orm\object\ITrashableObject;
 
 /**
  * Новость.
@@ -23,7 +22,7 @@ use umicms\orm\object\ITrashableObject;
  * @property NewsRubric|null $rubric рубрика, к которой относится новость
  * @property IManyToManyObjectSet $subjects сюжеты, в которые входит новость
  */
-class NewsItem extends CmsObject implements ICmsPage, ITrashableObject
+class NewsItem extends CmsObject implements ICmsPage
 {
     /**
      * Имя поля для хранения рубрики, к которой относится новость

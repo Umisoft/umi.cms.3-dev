@@ -11,14 +11,14 @@ namespace umicms\project\module\users\object;
 
 use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\object\CmsObject;
-use umicms\orm\object\ITrashableObject;
+use umicms\orm\object\IRecyclableObject;
 
 /**
  * Группа пользователей.
  *
  * @property IManyToManyObjectSet $users пользователи, входящие в группу
  */
-class Group extends CmsObject implements ITrashableObject
+class Group extends CmsObject implements IRecyclableObject
 {
     /**
      * Имя поля для хранения пользователей, входящих в группу

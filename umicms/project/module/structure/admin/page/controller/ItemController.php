@@ -11,7 +11,7 @@ namespace umicms\project\module\structure\admin\page\controller;
 
 use umicms\exception\RuntimeException;
 use umicms\orm\object\ICmsObject;
-use umicms\orm\object\ITrashableObject;
+use umicms\orm\object\IRecyclableObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\project\admin\api\controller\TTrashController;
 use umicms\project\module\structure\api\StructureApi;
@@ -85,18 +85,18 @@ class ItemController extends BaseRestItemController
     }
 
     /**
-     * @param ITrashableObject $object
+     * @param IRecyclableObject $object
      */
-    public function actionTrash(ITrashableObject $object)
+    public function actionTrash(IRecyclableObject $object)
     {
         $this->api->element()->trash($object);
         $this->getObjectPersister()->commit();
     }
 
     /**
-     * @param ITrashableObject $object
+     * @param IRecyclableObject $object
      */
-    public function actionUntrash(ITrashableObject $object)
+    public function actionUntrash(IRecyclableObject $object)
     {
         $this->api->element()->untrash($object);
         $this->getObjectPersister()->commit();

@@ -25,21 +25,21 @@ class StructureApi extends BaseComplexApi implements IPublicApi
     protected $currentElement;
 
     /**
-     * Возвращает API для работы с элементами структуры.
-     * @return ElementApi
+     * Возвращает репозиторий для работы с элементами структуры.
+     * @return ElementRepository
      */
     public function element()
     {
-        return $this->getApi('umicms\project\module\structure\api\ElementApi');
+        return $this->getApi('umicms\project\module\structure\api\ElementRepository');
     }
 
     /**
-     * Возвращает API для работы с шаблонами.
-     * @return LayoutApi
+     * Возвращает репозиторий для работы с шаблонами.
+     * @return LayoutRepository
      */
     public function layout()
     {
-        return $this->getApi('umicms\project\module\structure\api\LayoutApi');
+        return $this->getApi('umicms\project\module\structure\api\LayoutRepository');
     }
 
     /**

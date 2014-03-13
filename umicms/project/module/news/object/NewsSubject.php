@@ -11,12 +11,11 @@ namespace umicms\project\module\news\object;
 
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
-use umicms\orm\object\ITrashableObject;
 
 /**
  * Новостной сюжет.
  */
-class NewsSubject extends CmsObject implements ICmsPage, ITrashableObject
+class NewsSubject extends CmsObject implements ICmsPage
 {
 
 }

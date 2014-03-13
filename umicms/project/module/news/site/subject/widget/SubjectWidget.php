@@ -9,7 +9,7 @@
 
 namespace umicms\project\module\news\site\subject\widget;
 
-use umicms\project\module\news\api\NewsPublicApi;
+use umicms\project\module\news\api\NewsApi;
 use umicms\hmvc\widget\BaseWidget;
 
 /**
@@ -27,15 +27,15 @@ class SubjectWidget extends BaseWidget
     public $guid;
 
     /**
-     * @var NewsPublicApi $api API модуля "Новости"
+     * @var NewsApi $api API модуля "Новости"
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param NewsPublicApi $newsApi API модуля "Новости"
+     * @param NewsApi $newsApi API модуля "Новости"
      */
-    public function __construct(NewsPublicApi $newsApi)
+    public function __construct(NewsApi $newsApi)
     {
         $this->api = $newsApi;
     }

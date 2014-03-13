@@ -53,12 +53,6 @@ return [
             'readOnly'     => true,
             'defaultValue' => 0
         ],
-        CmsObject::FIELD_TRASHED       => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'trashed',
-            'readOnly'     => true,
-            'defaultValue' => 0
-        ],
         CmsObject::FIELD_CREATED      => ['type'       => IField::TYPE_DATE_TIME,
                                           'columnName' => 'created',
                                           'readOnly'   => true

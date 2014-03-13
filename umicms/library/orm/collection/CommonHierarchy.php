@@ -15,7 +15,7 @@ use umi\orm\collection\CommonHierarchy as FrameworkCommonHierarchy;
 /**
  * {@inheritdoc}
  */
-class CommonHierarchy extends FrameworkCommonHierarchy implements IApplicationHandlersAware
+class CommonHierarchy extends FrameworkCommonHierarchy implements ICmsCollection, IApplicationHandlersAware
 {
     use TApplicationHandlersAware;
 }

@@ -19,33 +19,33 @@ use umicms\project\module\news\object\NewsSubject;
 /**
  * Публичное API модуля "Новости"
  */
-class NewsPublicApi extends BaseComplexApi implements IPublicApi
+class NewsApi extends BaseComplexApi implements IPublicApi
 {
     /**
-     * Возвращает API для работы с новостями.
-     * @return NewsItemApi
+     * Возвращает репозиторий для работы с новостями.
+     * @return NewsItemRepository
      */
     public function news()
     {
-        return $this->getApi('umicms\project\module\news\api\NewsItemApi');
+        return $this->getApi('umicms\project\module\news\api\NewsItemRepository');
     }
 
     /**
-     * Возвращает API для работы с новостными рубриками.
-     * @return NewsRubricApi
+     * Возвращает репозиторий для работы с новостными рубриками.
+     * @return NewsRubricRepository
      */
     public function rubric()
     {
-        return $this->getApi('umicms\project\module\news\api\NewsRubricApi');
+        return $this->getApi('umicms\project\module\news\api\NewsRubricRepository');
     }
 
     /**
-     * Возвращает API для работы с новостными сюжетами.
-     * @return NewsSubjectApi
+     * Возвращает репозиторий для работы с новостными сюжетами.
+     * @return NewsSubjectRepository
      */
     public function subject()
     {
-        return $this->getApi('umicms\project\module\news\api\NewsSubjectApi');
+        return $this->getApi('umicms\project\module\news\api\NewsSubjectRepository');
     }
 
     /**

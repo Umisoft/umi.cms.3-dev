@@ -6,15 +6,14 @@
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
-
 namespace umicms\orm\collection;
 
-use umi\orm\collection\LinkedHierarchicCollection as FrameworkLinkedHierarchicCollection;
+use umi\orm\collection\ICollection;
 
 /**
- * {@inheritdoc}
+ * Интерфейс коллекции объектов UMI.CMS
  */
-class LinkedHierarchicCollection extends FrameworkLinkedHierarchicCollection implements ICmsCollection, IApplicationHandlersAware
+interface ICmsCollection extends ICollection
 {
-    use TApplicationHandlersAware;
+
 }
