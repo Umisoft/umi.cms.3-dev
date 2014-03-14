@@ -115,6 +115,7 @@ return [
                 NewsItem::FIELD_VERSION,
                 NewsItem::FIELD_ACTIVE,
                 NewsItem::FIELD_LOCKED,
+                NewsItem::FIELD_TRASHED,
                 NewsItem::FIELD_CREATED,
                 NewsItem::FIELD_UPDATED,
                 NewsItem::FIELD_DISPLAY_NAME,

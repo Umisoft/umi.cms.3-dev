@@ -50,6 +50,7 @@ class ActionController extends BaseRestActionController
 
 
     /**
+     * Удаляет объект в корзину
      * @param IRecyclableObject $object
      */
     public function actionTrash(IRecyclableObject $object)
@@ -59,20 +60,27 @@ class ActionController extends BaseRestActionController
     }
 
     /**
+     * Восстанавливает объект из корзины
      * @param IRecyclableObject $object
      */
     public function actionUntrash(IRecyclableObject $object)
     {
-        $this->api->subject()->untrash($object);
-        $this->getObjectPersister()->commit();
+        $this->api->news()
+            ->untrash($object);
+        $this->getObjectPersister()
+            ->commit();
     }
 
     /**
-     *
+     * Очищает корзину
+     * @return string
      */
     public function actionEmptyTrash()
     {
-        $this->api->subject()->emptyTrash();
+        $this->api->subject()
+            ->emptyTrash();
+        $this->getObjectPersister()
+            ->commit();
+        return '';
     }
-
 }

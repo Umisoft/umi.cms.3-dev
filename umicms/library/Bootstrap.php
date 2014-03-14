@@ -134,9 +134,9 @@ class Bootstrap implements IProjectConfigAware
     {
         $this->setUmiHeaders($response);
 
-        //$response->setETag(md5($response->getContent()));
-        //$response->setPublic();
-        //$response->isNotModified($request);
+        $response->setETag(md5($response->getContent()));
+        $response->setPublic();
+        $response->isNotModified($request);
 
         if (isset(static::$contentTypes[$request->getRequestFormat()])) {
             $response->headers->set('Content-Type', static::$contentTypes[$request->getRequestFormat()]);
