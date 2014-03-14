@@ -16,5 +16,8 @@ return [
 
     AdminComponent::OPTION_SETTINGS => [
 
-    ]
+    ],
+    AdminComponent::OPTION_COMPONENTS => [
+        'page' => '{#lazy:~/project/module/statistics/admin/metrika/component.config.php}'
+    ],
 ];
