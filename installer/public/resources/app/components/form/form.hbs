@@ -85,7 +85,18 @@
     </div>
 
     <div class="umi-form-tabs">
-        <div class="umi-form-save-button" {{action 'save' model.object target="view"}}>Сохранить</div>
+        {{#view "saveButton" class="button s-margin-clear wide left" model=model.object}}
+            {{#if model.object.isSaving}}
+                Сохранено
+            {{else}}
+                {{#if model.object.isDirty}}
+                    Сохранить
+                {{else}}
+                    Сохранено
+                {{/if}}
+            {{/if}}
+
+        {{/view}}
         <div class="umi-form-tab"><i class="icon icon-pause"></i></div>
         <div class="umi-form-tab"><i class="icon icon-6"></i></div>
         <div class="button secondary s-margin-clear"><i class="icon icon-delete"></i></div>

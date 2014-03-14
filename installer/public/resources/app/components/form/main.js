@@ -7,12 +7,7 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
         templateName: 'formControl',
         classNameBindings: ['class:data.class'],
         attributeBindings: ['abide:data-abide'],
-        abide: 'ajax',
-        actions: {
-            save: function(object){
-                 object.save();
-            }
-        }
+        abide: 'ajax'
     });
 
     UMI.FieldView = Ember.View.extend({
@@ -108,4 +103,22 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
         }
     });
     //TODO: Для форм нужно не забыть в шаблоне, и в остальных местах биндить все возможные атрибуты
+
+    //TODO: Кнопка ни как не связана с формой- можно вынести в отдельный компонент
+    UMI.SaveButtonView = Ember.View.extend({
+        tagName: 'button',
+        classNameBindings: ['model.isDirty::disabled'],
+        click: function(event){
+            if(this.get('model.isDirty')){
+                var button = this.$();
+                var model = this.get('model');
+                button.addClass('loading');
+                var params = {
+                    object: model,
+                    handler: button[0]
+                };
+                this.get('controller').send('save', params);
+            }
+        }
+    });
 });

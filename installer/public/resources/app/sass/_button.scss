@@ -57,4 +57,40 @@
     .icon{
         vertical-align: middle;
     }
+    &.loading{
+        animation: animate-bg-primary 2s linear infinite;
+        position: relative;
+        background-position-y: 0;
+        transition: none;
+        opacity: 1;
+        &:before{
+            position: absolute;
+            content: "";
+            width: 20px;
+            height: 20px;
+            line-height: 16px;
+            left: 10px;
+            top: 50%;
+            margin-top: -10px;
+            background: url("img/animate/loader-20.gif") center center no-repeat;
+        }
+    }
+    &.disabled{
+        &:hover{
+            background-position-y: 0;
+        }
+        background-position-y: 0;
+    }
+}
+
+@keyframes animate-bg-primary{
+    20%{
+        background: darken($primary-color, 5%);
+    }
+    50%{
+        background: darken($primary-color, 15%);
+    }
+    80%{
+        background: darken($primary-color, 5%);
+    }
 }

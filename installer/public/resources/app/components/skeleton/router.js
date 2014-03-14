@@ -100,6 +100,34 @@ define([], function(){
                             }, 2000);
                         });
                     }
+                },
+                /**
+                 Сохраняет обьект
+
+                 @method save
+                 @param {Object} params Объект аргументов
+                        params.object - сохраняемый объект
+                        params.handler - элемент (кнопка) вызвавший событие сохранение
+                 */
+                save: function(params){
+                    params.object.save().then(
+                        function(){
+                            if(params.handler){
+                                $(params.handler).removeClass('loading');
+                            }
+                            /*UMI.notification.create({
+                                type: 'success',
+                                text: 'Изменения успешно сохранены.',
+                                duration: 3000
+                            });*/
+                        },
+                        function(){
+                            UMI.notification.create({
+                                type: 'alert',
+                                text: 'Не удалось сохранить изменения.'
+                            });
+                        }
+                    );
                 }
             }
         });
