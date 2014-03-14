@@ -1,0 +1,52 @@
+$umi-alert-wrapper-index: 1000;
+
+.alert-box{
+    opacity: .8;
+    box-shadow: 0 0 6px 1px #E6E6E6;
+    &.primary{
+        background-color: lighten($primary-color, 40%);
+    }
+    &.success{
+        background-color: lighten($success-color, 40%);
+        .close{
+            color: darken($success-color, 30%);
+        }
+    }
+    &.alert{
+        background-color: lighten($alert-color, 40%);
+        .close{
+            color: darken($alert-color, 30%);
+        }
+    }
+    &.secondary{
+        background-color: lighten($secondary-color, 40%);
+        .close{
+            color: darken($secondary-color, 30%);
+        }
+    }
+    &.warning{
+        background-color: lighten($warning-color, 40%);
+        .close{
+            color: darken($warning-color, 30%);
+        }
+    }
+    &.info{
+        background-color: lighten($info-color, 40%);
+        .close{
+            color: darken($info-color, 30%);
+        }
+    }
+    .subheader{
+        color: #000;
+    }
+}
+
+.umi-alert-wrapper{
+    position: absolute;
+    z-index: $umi-alert-wrapper-index;
+    right: rem-calc(10);
+    top: $umi-header-height + $s-full-height-before-height + 6;
+    .alert-box{
+        margin-bottom: .6rem;
+    }
+}

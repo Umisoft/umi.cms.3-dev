@@ -93,6 +93,10 @@ require.config({
         {
             name: 'search',
             location: "app/components/search"
+        },
+        {
+            name: 'notification',
+            location: "app/components/notification"
         }
     ]
 });

@@ -8,6 +8,7 @@ define(
         'tree',
         'form',
         'search',
+        'notification',
         'DS'
     ],
     function(UMI){

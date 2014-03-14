@@ -1936,19 +1936,19 @@ ul.off-canvas-list {
   font-size: 0.8125rem;
   background-color: #259cec;
   border-color: #1389d8;
-  color: #fff; }
+  color: #000; }
   .alert-box .close {
     font-size: 1.375rem;
     padding: 9px 6px 4px;
     line-height: 0;
     position: absolute;
-    top: 50%;
+    top: 1.25rem;
     margin-top: -0.6875rem;
     right: 0.25rem;
-    color: #333;
-    opacity: 0.3; }
+    color: #0a466e;
+    opacity: 1; }
     .alert-box .close:hover, .alert-box .close:focus {
-      opacity: 0.5; }
+      opacity: 0.8; }
   .alert-box.radius {
     border-radius: 3px; }
   .alert-box.round {
@@ -1956,23 +1956,23 @@ ul.off-canvas-list {
   .alert-box.success {
     background-color: #43AC6A;
     border-color: #3a945b;
-    color: #fff; }
+    color: #000; }
   .alert-box.alert {
     background-color: #b94a48;
     border-color: #a03f3d;
-    color: #fff; }
+    color: #000; }
   .alert-box.secondary {
     background-color: #F5F5F5;
     border-color: #d3d3d3;
-    color: #535353; }
+    color: #000; }
   .alert-box.warning {
     background-color: #f08a24;
     border-color: #de770f;
-    color: #fff; }
+    color: #000; }
   .alert-box.info {
     background-color: #a0d3e8;
     border-color: #74bfdd;
-    color: #535353; }
+    color: #000; }
 
 [class*="block-grid-"] {
   display: block;
@@ -4381,6 +4381,60 @@ ul.pagination {
       color: #333; }
   .button .icon, button .icon {
     vertical-align: middle; }
+  .button.loading, button.loading {
+    -webkit-animation: animate-bg-primary 2s linear infinite;
+    -o-animation: animate-bg-primary 2s linear infinite;
+    animation: animate-bg-primary 2s linear infinite;
+    position: relative;
+    background-position-y: 0;
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+    opacity: 1; }
+    .button.loading:before, button.loading:before {
+      position: absolute;
+      content: "";
+      width: 20px;
+      height: 20px;
+      line-height: 16px;
+      left: 10px;
+      top: 50%;
+      margin-top: -10px;
+      background: url("img/animate/loader-20.gif") center center no-repeat; }
+  .button.disabled, button.disabled {
+    background-position-y: 0; }
+    .button.disabled:hover, button.disabled:hover {
+      background-position-y: 0; }
+
+@-webkit-keyframes animate-bg-primary {
+  20% {
+    background: #1491e4; }
+
+  50% {
+    background: #1073b5; }
+
+  80% {
+    background: #1491e4; } }
+
+@-o-keyframes animate-bg-primary {
+  20% {
+    background: #1491e4; }
+
+  50% {
+    background: #1073b5; }
+
+  80% {
+    background: #1491e4; } }
+
+@keyframes animate-bg-primary {
+  20% {
+    background: #1491e4; }
+
+  50% {
+    background: #1073b5; }
+
+  80% {
+    background: #1491e4; } }
 
 .animate {
   background-position: 0 0;
@@ -6520,6 +6574,42 @@ input[type="checkbox"]:checked + label {
   height: 400px;
   background: #FFFFFF;
   box-shadow: 0 0 3px 0 #000000; }
+
+.alert-box {
+  opacity: 0.8;
+  box-shadow: 0 0 6px 1px #E6E6E6; }
+  .alert-box.primary {
+    background-color: #e1f1fc; }
+  .alert-box.success {
+    background-color: #cfecda; }
+    .alert-box.success .close {
+      color: #183e26; }
+  .alert-box.alert {
+    background-color: #f1dcdc; }
+    .alert-box.alert .close {
+      color: #4b1e1d; }
+  .alert-box.secondary {
+    background-color: white; }
+    .alert-box.secondary .close {
+      color: #a9a9a9; }
+  .alert-box.warning {
+    background-color: #fdf0e3; }
+    .alert-box.warning .close {
+      color: #733e08; }
+  .alert-box.info {
+    background-color: white; }
+    .alert-box.info .close {
+      color: #2f97c0; }
+  .alert-box .subheader {
+    color: #000; }
+
+.umi-alert-wrapper {
+  position: absolute;
+  z-index: 1000;
+  right: 0.625rem;
+  top: 149px; }
+  .umi-alert-wrapper .alert-box {
+    margin-bottom: 0.6rem; }
 
 .iScrollIndicator {
   background: rgba(123, 137, 156, 0.9) !important;

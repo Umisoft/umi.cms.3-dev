@@ -1,0 +1,7 @@
+{{#if view.content.title}}
+    <h5 class="subheader">{{view.content.title}}</h5>
+{{/if}}
+{{{view.content.text}}}
+{{#if view.content.close}}
+    <a href="" {{action 'close' view.content target="view"}} class="close">&times;</a>
+{{/if}}
