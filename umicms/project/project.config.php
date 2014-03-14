@@ -85,81 +85,47 @@ return [
                 ]
             ],
             'metadata'    => [
-                'structure' => '{#lazy:~/project/module/structure/metadata/structure.config.php}',
-                'layout' => '{#lazy:~/project/module/structure/metadata/layout.config.php}',
+                'structure' => '{#lazy:~/project/module/structure/orm/structure/metadata.config.php}',
+                'layout' => '{#lazy:~/project/module/structure/orm/layout/metadata.config.php}',
 
-                'newsRubric' => '{#lazy:~/project/module/news/metadata/rubric.config.php}',
-                'newsItem' => '{#lazy:~/project/module/news/metadata/news_item.config.php}',
-                'newsItemSubject' => '{#lazy:~/project/module/news/metadata/news_item_subject.config.php}',
-                'newsSubject' => '{#lazy:~/project/module/news/metadata/subject.config.php}',
+                'newsRubric' => '{#lazy:~/project/module/news/orm/rubric/metadata.config.php}',
+                'newsItem' => '{#lazy:~/project/module/news/orm/item/metadata.config.php}',
+                'newsItemSubject' => '{#lazy:~/project/module/news/orm/itemsubject/metadata.config.php}',
+                'newsSubject' => '{#lazy:~/project/module/news/orm/subject/metadata.config.php}',
 
-                'blogCategory' => '{#lazy:~/project/module/blog/metadata/category.config.php}',
-                'blogPost' => '{#lazy:~/project/module/blog/metadata/post.config.php}',
-                'blogComment' => '{#lazy:~/project/module/blog/metadata/comment.config.php}',
-                'blogTag' => '{#lazy:~/project/module/blog/metadata/tag.config.php}',
-                'blogPostTag' => '{#lazy:~/project/module/blog/metadata/post_tag.config.php}',
+                'blogCategory' => '{#lazy:~/project/module/blog/orm/category/metadata.config.php}',
+                'blogPost' => '{#lazy:~/project/module/blog/orm/post/metadata.config.php}',
+                'blogComment' => '{#lazy:~/project/module/blog/orm/comment/metadata.config.php}',
+                'blogTag' => '{#lazy:~/project/module/blog/orm/tag/metadata.config.php}',
+                'blogPostTag' => '{#lazy:~/project/module/blog/orm/posttag/metadata.config.php}',
 
-                'user' => '{#lazy:~/project/module/users/metadata/user.config.php}',
-                'userGroup' => '{#lazy:~/project/module/users/metadata/user_group.config.php}',
-                'userUserGroup' => '{#lazy:~/project/module/users/metadata/user_user_group.config.php}',
+                'user' => '{#lazy:~/project/module/users/orm/user/metadata.config.php}',
+                'userGroup' => '{#lazy:~/project/module/users/orm/group/metadata.config.php}',
+                'userUserGroup' => '{#lazy:~/project/module/users/orm/usergroup/metadata.config.php}',
 
-                'searchIndex' => '{#lazy:~/project/module/search/metadata/search_index.config.php}',
+                'searchIndex' => '{#lazy:~/project/module/search/orm/index/metadata.config.php}',
             ],
 
             'collections' => [
-                'structure'     => [
-                    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
-                    'handlers' => [
-                        'admin' => 'structure.page',
-                        'site' => 'structure'
-                    ]
-                ],
-                'layout'     => [
-                    'type' => ICollectionFactory::TYPE_SIMPLE,
-                    'handlers' => [
-                        'admin' => 'structure',
-                        'site' => 'structure'
-                    ]
-                ],
+                'structure'     => '{#lazy:~/project/module/structure/orm/structure/collection.config.php}',
+                'layout'     => '{#lazy:~/project/module/structure/orm/layout/collection.config.php}',
 
-                'newsRubric' => [
-                    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
-                    'handlers' => [
-                        'admin' => 'news.rubric',
-                        'site' => 'news.rubric'
-                    ]
-                ],
-                'newsItem' => [
-                    'type' => ICollectionFactory::TYPE_SIMPLE,
-                    'handlers' => [
-                        'admin' => 'news.item',
-                        'site' => 'news.item'
-                    ]
-                ],
-                'newsItemSubject' => [
-                    'type' => ICollectionFactory::TYPE_SIMPLE
-                ],
-                'newsSubject' => [
-                    'type' => ICollectionFactory::TYPE_SIMPLE,
-                    'handlers' => [
-                        'admin' => 'news.subject',
-                        'site' => 'news.subject'
-                    ]
-                ],
+                'newsRubric' => '{#lazy:~/project/module/news/orm/rubric/collection.config.php}',
+                'newsItem' => '{#lazy:~/project/module/news/orm/item/collection.config.php}',
+                'newsItemSubject' => '{#lazy:~/project/module/news/orm/itemsubject/collection.config.php}',
+                'newsSubject' => '{#lazy:~/project/module/news/orm/subject/collection.config.php}',
 
-                'blogCategory' => [
-                    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC
-                ],
-                'blogPost' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'blogComment' => ['type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC],
-                'blogTag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'blogPostTag' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'blogCategory' => '{#lazy:~/project/module/blog/orm/category/collection.config.php}',
+                'blogPost' => '{#lazy:~/project/module/blog/orm/post/collection.config.php}',
+                'blogComment' => '{#lazy:~/project/module/blog/orm/comment/collection.config.php}',
+                'blogTag' => '{#lazy:~/project/module/blog/orm/tag/collection.config.php}',
+                'blogPostTag' => '{#lazy:~/project/module/blog/orm/posttag/collection.config.php}',
 
-                'user' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'userGroup' => ['type' => ICollectionFactory::TYPE_SIMPLE],
-                'userUserGroup' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'user' => '{#lazy:~/project/module/users/orm/user/collection.config.php}',
+                'userGroup' => '{#lazy:~/project/module/users/orm/group/collection.config.php}',
+                'userUserGroup' => '{#lazy:~/project/module/users/orm/usergroup/collection.config.php}',
 
-                'searchIndex' => ['type' => ICollectionFactory::TYPE_SIMPLE],
+                'searchIndex' => '{#lazy:~/project/module/search/orm/index/collection.config.php}',
             ]
         ]
     ],

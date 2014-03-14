@@ -27,35 +27,41 @@ return [
 
     AdminComponent::OPTION_ROUTES      => [
 
-        'list' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/list',
-            'defaults' => [
-                'controller' => 'list'
-            ]
-        ],
-
-        'item' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{guid:guid}',
-            'defaults' => [
-                'controller' => 'item'
-            ]
-        ],
-
-        'itemAction' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{guid:guid}/{action}',
-            'defaults' => [
-                'controller' => 'action'
-            ]
-        ],
-
         'action' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{action}',
+            'route'    => '/action/{action}',
             'defaults' => [
                 'controller' => 'action'
+            ],
+            'subroutes' => [
+                'form' => [
+                    'type'     => IRouteFactory::ROUTE_SIMPLE,
+                    'route'    => '/{collection}/{type}/{form}',
+                    'defaults' => [
+                        'controller' => 'action'
+                    ]
+                ],
+            ]
+        ],
+
+        'collection' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route'    => '/collection',
+            'subroutes' => [
+                'item' => [
+                    'type'     => IRouteFactory::ROUTE_SIMPLE,
+                    'route'    => '/{collection}/{id:integer}',
+                    'defaults' => [
+                        'controller' => 'item'
+                    ]
+                ],
+                'list' => [
+                    'type'     => IRouteFactory::ROUTE_SIMPLE,
+                    'route'    => '/{collection}',
+                    'defaults' => [
+                        'controller' => 'list'
+                    ]
+                ]
             ]
         ]
 

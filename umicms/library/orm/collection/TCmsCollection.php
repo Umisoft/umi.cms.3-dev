@@ -9,7 +9,11 @@
 
 namespace umicms\orm\collection;
 
+use umi\form\TFormAware;
+use umi\spl\config\TConfigSupport;
+use umicms\exception\NonexistentEntityException;
 use umicms\exception\OutOfBoundsException;
+use umicms\orm\object\CmsObject;
 use umicms\orm\selector\CmsSelector;
 
 /**
@@ -18,6 +22,9 @@ use umicms\orm\selector\CmsSelector;
  */
 trait TCmsCollection
 {
+
+    use TFormAware;
+    use TConfigSupport;
 
     /**
      * @var callable $selectorInitializer инициализатор для селектора
@@ -51,6 +58,43 @@ trait TCmsCollection
         }
 
         return $selector;
+    }
+
+    /**
+     * @see ICmsCollection::getForm()
+     */
+    public function getForm($typeName, $formName, CmsObject $object = null)
+    {
+        if (!$this->hasForm($typeName, $formName)) {
+            throw new NonexistentEntityException(
+                sprintf(
+                    'Form "%s" for collection "%s" and type "%s" is not registered.',
+                    $formName,
+                    $this->getName(),
+                    $typeName
+                )
+            );
+        }
+
+        $formConfig = $this->configToArray($this->traitGetConfig()['forms'][$typeName][$formName], true);
+
+        return $this->createForm($formConfig, $object);
+    }
+
+    /**
+     * @see ICmsCollection::hasForm()
+     */
+    public function hasForm($typeName, $formName)
+    {
+        if (!$this->getMetadata()->getTypeExists($typeName)) {
+            return false;
+        }
+
+        if (!isset($this->traitGetConfig()['forms'][$typeName][$formName])) {
+            return false;
+        }
+
+        return true;
     }
 
 

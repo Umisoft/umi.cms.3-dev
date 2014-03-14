@@ -9,14 +9,37 @@
 
 namespace umicms\orm\collection;
 
+use umi\form\IForm;
+use umi\form\IFormAware;
 use umi\orm\collection\ICollection;
+use umicms\exception\NonexistentEntityException;
 use umicms\exception\OutOfBoundsException;
+use umicms\orm\object\CmsObject;
 
 /**
  * Интерфейс коллекции объектов UMI.CMS
  */
-interface ICmsCollection extends ICollection
+interface ICmsCollection extends ICollection, IFormAware
 {
+
+    /**
+     * Возвращает форму для типа объектов коллекции.
+     * @param string $typeName имя типа
+     * @param string $formName имя формы
+     * @param CmsObject $object объект, для которого создается форма
+     * @throws NonexistentEntityException если форма не зарегистрирована
+     * @return IForm
+     */
+    public function getForm($typeName, $formName, CmsObject $object = null);
+
+    /**
+     * Проверяет, зарегистрирована ли форма для типа объектов коллекции.
+     * @param string $typeName имя типа
+     * @param string $formName имя формы
+     * @return bool
+     */
+    public function hasForm($typeName, $formName);
+
     /**
      * Возвращает путь к компоненту, обрабатывающему коллекцию.
      * @param string $applicationName имя приложения
