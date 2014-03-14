@@ -121,10 +121,22 @@ define([], function(){
                                 duration: 3000
                             });*/
                         },
-                        function(){
+                        function(results){
+                            if(params.handler){
+                                $(params.handler).removeClass('loading');
+                            }
+                            var message;
+                            var fullMessage;
+                            if(results.responseJSON.result.error){
+                                message = results.responseJSON.result.error.message;
+                            }
+                            if(results.responseJSON.result.stack){
+                                fullMessage = results.responseJSON.result.stack.message;
+                            }
                             UMI.notification.create({
                                 type: 'alert',
-                                text: 'Не удалось сохранить изменения.'
+                                text: message,
+                                fullText: fullMessage
                             });
                         }
                     );
