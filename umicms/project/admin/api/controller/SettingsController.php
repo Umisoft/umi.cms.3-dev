@@ -12,7 +12,6 @@ use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
 use umicms\project\admin\component\AdminComponent;
 use umicms\hmvc\controller\BaseController;
-use umicms\orm\collection\IApplicationHandlersAware;
 
 /**
  * Контроллер настроек административной панели.
@@ -50,9 +49,12 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
         $resources = [];
 
         foreach ($collectionNames as $collectionName) {
+            /**
+             * @var ICmsCollection $collection
+             */
             $collection = $this->getCollectionManager()->getCollection($collectionName);
             $collections[] = $collection;
-            if ($collection instanceof IApplicationHandlersAware && $collection->hasHandler('admin')) {
+            if ($collection->hasHandler('admin')) {
                 $componentInfo = explode('.', $collection->getHandlerPath('admin'));
                 $resources[] = [
                     'collection' => $collectionName,

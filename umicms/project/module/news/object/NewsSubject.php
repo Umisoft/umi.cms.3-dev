@@ -19,4 +19,3 @@ class NewsSubject extends CmsObject implements ICmsPage
 {
 
 }
- 

@@ -15,6 +15,9 @@ use umi\http\Request;
 use umi\http\Response;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
+use umicms\orm\collection\TCmsCollection;
+use umicms\orm\object\IRecyclableObject;
+use umicms\orm\selector\CmsSelector;
 use umicms\project\admin\component\AdminComponent;
 use umicms\project\admin\config\IAdminSettingsAware;
 use umicms\project\admin\config\TAdminSettingsAware;
@@ -52,6 +55,7 @@ class ApiApplication extends AdminComponent implements IAdminSettingsAware, IToo
     {
         parent::__construct($name, $path, $options);
 
+        $this->registerSelectorInitializer();
         $this->registerAdminSettings();
     }
 
@@ -124,6 +128,22 @@ class ApiApplication extends AdminComponent implements IAdminSettingsAware, IToo
                 }
             }
         );
+    }
+
+    /**
+     * Регистрирует иницициализотор для всех селекторов.
+     */
+    protected function registerSelectorInitializer()
+    {
+        TCmsCollection::setSelectorInitializer(function(CmsSelector $selector) {
+
+            $type = $selector->getCollection()->getMetadata()->getBaseType();
+
+            if ($type->getFieldExists(IRecyclableObject::FIELD_TRASHED)) {
+                $selector->where(IRecyclableObject::FIELD_TRASHED)->notEquals(true);
+            }
+
+        });
     }
 
 }

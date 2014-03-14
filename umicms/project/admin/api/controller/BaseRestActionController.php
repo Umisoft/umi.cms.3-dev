@@ -14,13 +14,17 @@ use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
+use umi\orm\persister\IObjectPersisterAware;
+use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\admin\component\AdminComponent;
 
 /**
  * Базовый контроллер действий над объектом.
  */
-abstract class BaseRestActionController extends BaseRestController
+abstract class BaseRestActionController extends BaseRestController implements IObjectPersisterAware
 {
+    use TObjectPersisterAware;
+
     /**
      * Возвращает список доступных действий на запрос данных.
      * @return array
@@ -115,4 +119,3 @@ abstract class BaseRestActionController extends BaseRestController
     }
 
 }
- 

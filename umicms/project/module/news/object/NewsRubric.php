@@ -12,6 +12,7 @@ namespace umicms\project\module\news\object;
 use umi\orm\objectset\IObjectSet;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
+use umicms\orm\object\IRecyclableObject;
 
 /**
  * Новостная рубрика.
@@ -25,4 +26,3 @@ class NewsRubric extends CmsHierarchicObject implements ICmsPage
      */
     const FIELD_NEWS = 'news';
 }
- 

@@ -39,13 +39,12 @@ return [
 
     AdminComponent::OPTION_ROUTES      => [
 
-        'settings' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route'    => '/settings',
+        'action' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/action/{action}',
             'defaults' => [
-                'action' => 'settings',
                 'controller' => 'action'
-            ],
+            ]
         ],
 
         'connector' => [
