@@ -9,6 +9,7 @@ define(
         'form',
         'search',
         'notification',
+        'dialog',
         'DS'
     ],
     function(UMI){

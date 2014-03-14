@@ -6611,6 +6611,35 @@ input[type="checkbox"]:checked + label {
   .umi-alert-wrapper .alert-box {
     margin-bottom: 0.6rem; }
 
+.umi-dialog {
+  position: absolute;
+  visibility: hidden;
+  -webkit-transition: visibility 0.3 linear;
+  -o-transition: visibility 0.3 linear;
+  transition: visibility 0.3 linear;
+  background: #FFF;
+  width: 300px;
+  top: 50%;
+  left: 50%;
+  margin-left: -170px;
+  padding: 15px;
+  box-shadow: 0 0 3px 0 #000000;
+  z-index: 10000; }
+  .umi-dialog.visible {
+    visibility: visible; }
+  .umi-dialog .close {
+    color: #333;
+    position: absolute;
+    right: 7px;
+    top: 4px;
+    font-size: 1.125rem; }
+  .umi-dialog .button {
+    margin-bottom: 0; }
+  .umi-dialog .umi-dialog-header {
+    margin: 5px 0 20px; }
+  .umi-dialog .umi-dialog-content {
+    margin-bottom: 20px; }
+
 .iScrollIndicator {
   background: rgba(123, 137, 156, 0.9) !important;
   border-color: #F6F7F8; }

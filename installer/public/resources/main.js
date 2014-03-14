@@ -97,6 +97,10 @@ require.config({
         {
             name: 'notification',
             location: "app/components/notification"
+        },
+        {
+            name: 'dialog',
+            location: "app/components/dialog"
         }
     ]
 });
