@@ -199,7 +199,7 @@ define([], function(){
                 var self = this;
                 var components = this.modelFor('module').get('components');
                 var model = components.findBy('name', transition.params.component.component);
-                var componentResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/settings';
+                var componentResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/settings';
                 return Ember.$.get(componentResource).then(function(results){
                     if(results.result.error){
                         throw 'Ресурс компонента не найден';
@@ -297,7 +297,7 @@ define([], function(){
                     /**
                      * Мета информация для action
                      */
-                    var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/' + self.modelFor('component').get('collection')  + '/' + transition.params.action.action;
+                    var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/'  + transition.params.action.action + '/' + self.modelFor('component').get('collection') + '/' + model.get('type') + '/edit';
                     if(transition.params.action.action === 'form'){
                         return Ember.$.get(actionResource).then(function(results){
                             var viewSettings = {};

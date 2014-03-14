@@ -115,6 +115,7 @@ define(['App'], function(UMI){
                     resource = [window.UmiSettings.baseApiURL];
                     resource.push(self.get('routeParams').module.module);
                     resource.push(self.get('routeParams').component.component);
+                    resource.push('collection');
                     resource.push(type);
                     resource.push('move');
                     resource = resource.join('/');
