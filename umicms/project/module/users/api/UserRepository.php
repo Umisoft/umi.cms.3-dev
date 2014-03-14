@@ -6,6 +6,7 @@
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
+
 namespace umicms\project\module\users\api;
 
 use umicms\api\repository\BaseObjectRepository;
@@ -28,23 +29,21 @@ class UserRepository extends BaseObjectRepository
 
     /**
      * Возвращает селектор для выбора сюжетов.
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @return CmsSelector|User[]
      */
-    public function select($onlyPublic = true) {
-        return $this->selectAll($onlyPublic);
+    public function select() {
+        return $this->getCollection()->select();
     }
 
     /**
      * Возвращает пользователя по его GUID
      * @param string $guid
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException если не удалось получить пользователя
      * @return User
      */
-    public function get($guid, $onlyPublic = true) {
+    public function get($guid) {
         try {
-            return $this->selectByGuid($guid, $onlyPublic);
+            return $this->getCollection()->get($guid);
         } catch(\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(
@@ -60,14 +59,13 @@ class UserRepository extends BaseObjectRepository
     /**
      * Возвращает пользователя по его id.
      * @param int $id
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException если не удалось получить пользователя
      * @return User
      */
-    public function getById($id, $onlyPublic = true) {
+    public function getById($id) {
 
         try {
-            return $this->selectById($id, $onlyPublic);
+            return $this->getCollection()->getById($id);
         } catch(\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(

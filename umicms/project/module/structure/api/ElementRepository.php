@@ -32,24 +32,22 @@ class ElementRepository extends BaseObjectRepository
 
     /**
      * Возвращает селектор для выбора элементов структуры.
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @return CmsSelector|StructureElement[]
      */
-    public function select($onlyPublic = true) {
-        return $this->selectAll($onlyPublic);
+    public function select() {
+        return $this->getCollection()->select();
     }
 
     /**
      * Возвращает элемент по GUID.
      * @param string $guid
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException если не удалось получить элемент
      * @return StructureElement
      */
-    public function get($guid, $onlyPublic = true)
+    public function get($guid)
     {
         try {
-            return $this->selectByGuid($guid, $onlyPublic);
+            return $this->getCollection()->get($guid);
         } catch(\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(
@@ -65,14 +63,13 @@ class ElementRepository extends BaseObjectRepository
     /**
      * Возвращает элемент по id.
      * @param int $id
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException если не удалось получить элемент
      * @return StructureElement
      */
-    public function getById($id, $onlyPublic = true) {
+    public function getById($id) {
 
         try {
-            return $this->selectById($id, $onlyPublic);
+            return $this->getCollection()->getById($id);
         } catch(\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(

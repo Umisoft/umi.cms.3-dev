@@ -10,20 +10,52 @@
 namespace umicms\orm\collection;
 
 use umicms\exception\OutOfBoundsException;
+use umicms\orm\selector\CmsSelector;
 
 /**
- * Трейт для получения обработчиков коллекций
+ * Трейт коллекции объектов UMI.CMS
+ * @mixin ICmsCollection
  */
-trait TApplicationHandlersAware
+trait TCmsCollection
 {
 
     /**
-     * @see \umi\orm\collection\ICollection::getName()
+     * @var callable $selectorInitializer инициализатор для селектора
      */
-    abstract public function getName();
+    protected static $selectorInitializer;
 
     /**
-     * @see IApplicationHandlersAware::getHandlerPath()
+     * Устанавливает инициализатор для селектора
+     * @param callable $initializer
+     */
+    public static function setSelectorInitializer(callable $initializer = null)
+    {
+        self::$selectorInitializer = $initializer;
+    }
+
+    /**
+     * Возвращает новый селектор для формирования выборки объектов коллекции.
+     * @return CmsSelector
+     */
+    public function select()
+    {
+        /**
+         * @var CmsSelector $selector
+         */
+        /** @noinspection PhpUndefinedMethodInspection */
+        /** @noinspection PhpUndefinedClassInspection */
+        $selector = parent::select();
+
+        if ($initializer = self::$selectorInitializer) {
+            $initializer($selector);
+        }
+
+        return $selector;
+    }
+
+
+    /**
+     * @see ICmsCollection::getHandlerPath()
      */
     public function getHandlerPath($applicationName)
     {
@@ -41,7 +73,7 @@ trait TApplicationHandlersAware
     }
 
     /**
-     * @see IApplicationHandlersAware::getHandlerList()
+     * @see ICmsCollection::getHandlerList()
      */
     public function getHandlerList()
     {
@@ -49,7 +81,7 @@ trait TApplicationHandlersAware
     }
 
     /**
-     * @see IApplicationHandlersAware::hasHandler()
+     * @see ICmsCollection::hasHandler()
      */
     public function hasHandler($applicationName)
     {

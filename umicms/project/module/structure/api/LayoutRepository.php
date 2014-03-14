@@ -30,11 +30,10 @@ class LayoutRepository extends BaseObjectRepository implements ISiteSettingsAwar
 
     /**
      * Возвращает селектор для выбора шаблонов.
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @return CmsSelector|Layout[]
      */
-    public function select($onlyPublic = true) {
-        return $this->selectAll($onlyPublic);
+    public function select() {
+        return $this->getCollection()->select();
     }
 
     /**
@@ -49,14 +48,13 @@ class LayoutRepository extends BaseObjectRepository implements ISiteSettingsAwar
     /**
      * Возвращает шаблон по GUID.
      * @param string $guid
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException если не удалось получить шаблон
      * @return Layout
      */
-    public function get($guid, $onlyPublic = true)
+    public function get($guid)
     {
         try {
-            return $this->selectByGuid($guid, $onlyPublic);
+            return $this->getCollection()->get($guid);
         } catch(\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(
@@ -72,14 +70,13 @@ class LayoutRepository extends BaseObjectRepository implements ISiteSettingsAwar
     /**
      * Возвращает шаблон по id.
      * @param int $id
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException если не удалось получить шаблон
      * @return Layout
      */
-    public function getById($id, $onlyPublic = true) {
+    public function getById($id) {
 
         try {
-            return $this->selectById($id, $onlyPublic);
+            return $this->getCollection()->getById($id);
         } catch(\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(

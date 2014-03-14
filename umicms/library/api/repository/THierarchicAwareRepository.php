@@ -33,10 +33,9 @@ trait THierarchicAwareRepository
 
     /**
      * Возвращает селектор для выбора объектов из репозитория.
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @return CmsSelector
      */
-    abstract protected function select($onlyPublic = true);
+    abstract protected function select();
 
     /**
      * Возвращает сообщение из указанного словаря, переведенное для текущей или указанной локали.

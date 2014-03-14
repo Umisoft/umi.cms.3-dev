@@ -31,24 +31,22 @@ class NewsItemRepository extends BaseObjectRepository
 
     /**
      * Возвращает селектор для выбора новостей.
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @return CmsSelector|NewsItem[]
      */
-    public function select($onlyPublic = true) {
-        return $this->selectAll($onlyPublic);
+    public function select() {
+        return $this->getCollection()->select();
     }
 
     /**
      * Возвращает новость по ее GUID.
      * @param string $guid
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException
      * @return NewsItem
      */
-    public function get($guid, $onlyPublic = true)
+    public function get($guid)
     {
         try {
-            return $this->selectByGuid($guid, $onlyPublic);
+            return $this->getCollection()->get($guid);
         } catch (\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(
@@ -64,15 +62,14 @@ class NewsItemRepository extends BaseObjectRepository
     /**
      * Возвращает новость по ее id.
      * @param int $id
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException если не удалось получить новость
      * @return NewsItem
      */
-    public function getById($id, $onlyPublic = true)
+    public function getById($id)
     {
 
         try {
-            return $this->selectById($id, $onlyPublic);
+            return $this->getCollection()->getById($id);
         } catch (\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(

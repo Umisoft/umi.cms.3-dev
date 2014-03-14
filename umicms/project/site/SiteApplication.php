@@ -18,6 +18,10 @@ use umi\http\Response;
 use umi\http\THttpAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
+use umicms\orm\collection\TCmsCollection;
+use umicms\orm\object\ICmsObject;
+use umicms\orm\object\IRecyclableObject;
+use umicms\orm\selector\CmsSelector;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
@@ -70,6 +74,7 @@ class SiteApplication extends SiteComponent implements IHttpAware, IToolkitAware
     {
         parent::__construct($name, $path, $options, $structureApi);
 
+        $this->registerSelectorInitializer();
         $this->registerSiteSettings();
         $this->registerPageCallStack();
     }
@@ -231,6 +236,26 @@ class SiteApplication extends SiteComponent implements IHttpAware, IToolkitAware
                     }
                 }
             );
+    }
+
+    /**
+     * Регистрирует иницициализотор для всех селекторов.
+     */
+    protected function registerSelectorInitializer()
+    {
+        TCmsCollection::setSelectorInitializer(function(CmsSelector $selector) {
+
+            $type = $selector->getCollection()->getMetadata()->getBaseType();
+
+            if ($type->getFieldExists(IRecyclableObject::FIELD_TRASHED)) {
+                $selector->where(IRecyclableObject::FIELD_TRASHED)->notEquals(true);
+            }
+
+            if ($type->getFieldExists(ICmsObject::FIELD_ACTIVE)) {
+                $selector->where(ICmsObject::FIELD_ACTIVE)->equals(true);
+            }
+
+        });
     }
 
 }

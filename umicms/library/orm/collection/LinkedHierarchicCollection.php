@@ -14,7 +14,7 @@ use umi\orm\collection\LinkedHierarchicCollection as FrameworkLinkedHierarchicCo
 /**
  * {@inheritdoc}
  */
-class LinkedHierarchicCollection extends FrameworkLinkedHierarchicCollection implements ICmsCollection, IApplicationHandlersAware
+class LinkedHierarchicCollection extends FrameworkLinkedHierarchicCollection implements ICmsCollection
 {
-    use TApplicationHandlersAware;
+    use TCmsCollection;
 }
