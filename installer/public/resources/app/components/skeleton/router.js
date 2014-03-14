@@ -326,6 +326,36 @@ define([], function(){
             renderTemplate: function(){
                 var templateType = this.modelFor('action').get('name');
                 this.render(templateType);
+            },
+            actions: {
+                /**
+                 Метод вызывается при уходе с роута.
+                 @event willTransition
+                 @param {Object} transition
+                 */
+                willTransition: function(transition){
+                    var model = this.modelFor('context').object;
+
+                    if(model.get('isDirty')){
+                        transition.abort();
+                        var data = {
+                            'close': false,
+                            'title': 'Изменения не были сохранены',
+                            'content': 'Остаться на странице и сохранить изменения?',
+                            'confirm': 'Остаться на странице',
+                            'reject': 'Плевать'
+                        };
+                        return UMI.dialog.open(data).then(
+                            function(){
+                                console.log('Ты выбрал сохранить данные');
+                            },
+                            function(){
+                                model.rollback();
+                                transition.retry();
+                            }
+                        );
+                    }
+                }
             }
         });
 
