@@ -20,7 +20,6 @@ use umi\spl\config\TConfigSupport;
 use umi\stemming\TStemmingAware;
 use umicms\api\IPublicApi;
 use umicms\orm\object\ICmsObject;
-use umicms\project\module\search\adapter\BaseAdapter;
 use umicms\project\module\search\highlight\Fragmenter;
 use umicms\project\module\search\object\SearchIndex;
 use utest\event\TEventSupport;

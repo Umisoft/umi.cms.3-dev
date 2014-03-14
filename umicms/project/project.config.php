@@ -64,7 +64,10 @@ return [
                        'blogComment' => ['properties' => ['contents']],
                        'blogPost' => ['properties' => ['displayName', 'h1', 'announcement', 'contents']],
                    ]
-               ]
+               ],
+                'umicms\project\module\statistics\api\MetrikaApi' => [
+                    'oauthToken' => '4d4d45a7d4dd462ca9f83e4a8f4bd16b'
+                ]
             ]
         ],
 
