@@ -24,6 +24,7 @@ define([], function(){
                 });
             });
             this.route('logout', {path: '/auth/logout'});
+            this.route('site', {path: '/:link'});
         });
 
         //		UMI.ErrorState = Ember.Mixin.create({//TODO: Обрабатывать все типы ошибок, и разные роуты
@@ -362,6 +363,15 @@ define([], function(){
         UMI.SearchRoute = Ember.Route.extend({
             model: function(params){
                 //console.log(params);
+            }
+        });
+
+        UMI.SiteRoute = Ember.Route.extend({
+            beforeModel: function(transition){
+                var url = '//' + window.location.host + '/' + transition.params.site.link.replace(/^..\//g, '');
+                var tab = window.open(url, '_blank');
+                tab.focus();
+                transition.abort();
             }
         });
     };
