@@ -5171,6 +5171,8 @@ body {
     line-height: 1.375rem !important;
     height: 1.5rem;
     border-bottom: 1px solid #000000; }
+  .umi-top-bar .icon {
+    margin-top: 2px; }
 
 .top-bar-section ul li > a {
   width: auto; }
