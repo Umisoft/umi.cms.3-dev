@@ -10,6 +10,7 @@
         opacity: 0;
         transition: all 0.2s linear;
         margin-top: 10px;
+        left: 0;
         &.right{
             right: 0;
         }
@@ -23,15 +24,43 @@
     }
 }
 
-// TODO: Костыль
-.f-dropdown[data-align="right"]{
-    margin-left: -170px;
-    &:before{
-        left: auto;
-        right: 7px;
+
+.f-dropdown{
+   &.right{// TODO: Костыль
+       margin-left: -170px;
+       &:before{
+           left: auto;
+           right: 7px;
+       }
+       &:after{
+           left: auto;
+           right: 6px;
+       }
+   }
+    &.center{
+        &:before{
+            left: 50%;
+            margin-left: -6px;
+        }
+        &:after{
+            left: 50%;
+            margin-left: -7px;
+        }
     }
-    &:after{
-        left: auto;
-        right: 6px;
+    &.dark{
+        background: linear-gradient(#3d4554, #181b21);
+        border-color: #333;
+        &:before{
+            border-bottom-color: #333;
+        }
+        &:after{
+            border-bottom-color: #353535;
+        }
+        li:hover, li:focus{
+            background: #3E4752;
+        }
+        a{
+            color: #FFF;
+        }
     }
 }

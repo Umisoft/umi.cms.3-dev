@@ -1,14 +1,25 @@
 <div class="dock-wrapper">
-    <ul class="dock navigation">
-        {{#each module in controller}}
-            {{#view 'dockModuleButton' modelBinding="module"}}
-                <span class="dock-module">
-                    <img {{bind-attr src=view.icon}} />
-                    <span>{{module.name}}</span>
-                </span>
-            {{/view}}
-        {{/each}}
-    </ul>
+    <div class="dock-wrapper-bg">
+        <ul class="dock navigation">
+            {{#each module in controller}}
+                {{#view 'dockModuleButton' modelBinding="module"}}
+                    <span class="dock-module">
+                        <img {{bind-attr src=view.icon}} />
+                        <span>{{module.name}}</span>
+                    </span>
+                    <ul class="f-dropdown dark center">
+                        {{#each component in module.components}}
+                            <li>
+                                {{#link-to 'component' module.name component.name}}
+                                    {{component.name}}
+                                {{/link-to}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                {{/view}}
+            {{/each}}
+        </ul>
+    </div>
 </div>
 <div class="dock-components">
     {{#each module in controller}}

@@ -11,41 +11,9 @@ define(['App'], function(UMI){
             classNames: ['umi-dock'],
             didInsertElement: function(){
                 var self = this;
-                var moduleImages = [];
-                var promiseImages = [];
                 var dock = self.$().find('.dock')[0];
-                /**
-                 * Метод загружает изображения формируя массив promise
-                 * */
-                var imageLoad = function(src){
-                    var deferred = Ember.RSVP.defer();
-                    promiseImages.push(deferred.promise);
-                    var image = document.createElement('img');
-                    image.onload = function(){
-                        this.parentNode.removeChild(this);
-                        deferred.resolve('loaded');
-                    };
-                    image.src = src;
-                    document.body.appendChild(image);
-                };
-
-                this.get('childViews').filter(function(view){
-                    var icon = view.get('icon');
-                    if(icon){
-                        moduleImages.push(icon);
-                    }
-                });
-
-                for(var i = 0; i < moduleImages.length; i++){
-                    imageLoad(moduleImages[i]);
-                }
-                Ember.RSVP.all(promiseImages).then(
-                    function(){
-                        dock.style.left = (dock.parentNode.offsetWidth - dock.offsetWidth) / 2 + 'px';
-                        $(dock).addClass('active');
-                    }
-                );
-
+                dock.style.left = (dock.parentNode.offsetWidth - dock.offsetWidth) / 2 + 'px';
+                $(dock).addClass('active');
                 if(!dock.style.marginLeft){
                     dock.style.marginLeft = 0;
                 }
@@ -127,7 +95,7 @@ define(['App'], function(UMI){
 
         UMI.DockModuleButtonView = Ember.View.extend({
             tagName: 'li',
-            classNames: ['umi-dock-button'],
+            classNames: ['umi-dock-button', 'dropdown-hover'],
             classNameBindings: ['active'],
             active: function(){
                 return this.get('model.isActive');
@@ -143,7 +111,7 @@ define(['App'], function(UMI){
                     move.proccess = false;
                     var posBegin = $el.position().left + $el[0].offsetWidth / 2 + (parseInt(dock[0].style.marginLeft, 10) || 0);
 
-                    $($el[0].parentNode).find('img').stop().animate({height: 48, margin: '6px 36px 28px'}, {
+                    $($el[0].parentNode).find('img').stop().animate({height: 48, margin: '8px 36px 28px'}, {
                         duration: 280,
                         step: function(n, o){
                             if(this.parentNode.parentNode === $el[0]){
