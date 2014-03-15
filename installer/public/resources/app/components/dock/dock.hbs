@@ -22,13 +22,15 @@
     </div>
 </div>
 <div class="dock-components">
-    {{#each module in controller}}
-        {{#view 'dockComponentsGroup' contentBinding="module"}}
-            {{#each component in module.components}}
-                {{#link-to 'component' module.name component.name}}
-                    {{component.name}}
-                {{/link-to}}
-            {{/each}}
-        {{/view}}
-    {{/each}}
+    <nav class="components-nav">
+        {{#if controller.activeModule}}
+            {{#with controller.activeModule as module}}
+                {{#each component in module.components}}
+                    {{#link-to 'component' module.name component.name}}
+                        {{component.name}}
+                    {{/link-to}}
+                {{/each}}
+            {{/with}}
+        {{/if}}
+    </nav>
 </div>

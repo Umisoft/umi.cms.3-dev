@@ -76,7 +76,6 @@ define(['App'], function(UMI){
                     }});
                 };
                 if(!event.relatedTarget){
-                    //TODO: Add unbind event for body
                     $(document.body).bind('mouseover', function(e){
                         if($(dock).hasClass('full') && !($(e.target).closest('.dock')).size()){
                             leaveDock(dock);
@@ -86,10 +85,6 @@ define(['App'], function(UMI){
                     return;
                 }
                 leaveDock(dock);
-                var content = self.get('controller.content');
-                content.findBy('isActive', true).set('isActive', false);
-                var activeModule = self.get('controller.activeModule');
-                content.findBy('name', activeModule).set('isActive', true);
             }
         });
 
@@ -98,8 +93,8 @@ define(['App'], function(UMI){
             classNames: ['umi-dock-button', 'dropdown-hover'],
             classNameBindings: ['active'],
             active: function(){
-                return this.get('model.isActive');
-            }.property('model.isActive'),
+                return this.get('model.name') === this.get('controller.activeModule.name');
+            }.property('controller.activeModule'),
             icon: function(){
                 return '/resources/modules/' + this.get('model.name') + '/icon.svg';
             }.property('model.name'),
@@ -124,24 +119,7 @@ define(['App'], function(UMI){
                         }
                     });
                 }
-                var setActive = function(self){
-                    if(!self.get('active')){
-                        self.get('parentView.controller.content').findBy('isActive', true).set('isActive', false);
-                    }
-                    self.get('model').set('isActive', true);
-                };
-                var self = this;
-                setActive(self);
             }
-        });
-
-        UMI.DockComponentsGroupView = Ember.View.extend({
-            tagName: 'nav',
-            classNames: ['components-nav'],
-            classNameBindings: ['active'],
-            active: function(){
-                return this.get('content.isActive');
-            }.property('content.isActive')
         });
     };
 });

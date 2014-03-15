@@ -171,11 +171,7 @@ define([], function(){
             model: function(params){
                 var modules = this.controllerFor('dock').get('content');
                 var module = modules.findBy('name', params.module);
-                // некрасивое решение
-                this.controllerFor('dock').set('activeModule', module.get('name'));
-                modules.setEach('isActive', false);
-                // Для добавления класса active вкладке модуля в dock добавим атрибут isActive
-                module.set('isActive', true);
+                this.controllerFor('dock').set('activeModule', module);
                 return module;
             },
             redirect: function(model, transition){

@@ -5281,6 +5281,8 @@ body {
     .umi-dock .f-dropdown li > span {
       color: #222;
       white-space: normal; }
+    .umi-dock .f-dropdown li .active {
+      background: #1C1E24; }
 
 .dock-buffer {
   display: none;
@@ -5303,9 +5305,7 @@ body {
   text-align: center;
   height: 2.1875rem; }
   .dock-components .components-nav {
-    display: none; }
-    .dock-components .components-nav.active {
-      display: inline-block; }
+    display: inline-block; }
     .dock-components .components-nav a {
       height: 2.1875rem;
       line-height: 2.1875rem;

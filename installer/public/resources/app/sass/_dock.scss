@@ -123,6 +123,9 @@ $dock-z-index: 10;
                 color: $body-font-color;
                 white-space: normal;
             }
+            .active{
+                background: #1C1E24;
+            }
         }
     }
 }
@@ -148,10 +151,7 @@ $dock-z-index: 10;
     text-align: center;
     height: rem-calc(35);
     .components-nav{
-        display: none;
-        &.active{
-            display: inline-block;
-        }
+        display: inline-block;
         a{
             height: rem-calc(35);
             line-height: rem-calc(35);
