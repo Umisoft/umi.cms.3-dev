@@ -279,7 +279,9 @@ define([], function(){
                 if(params.context === 'root'){
                     var RootModel = Ember.Object.extend({
                         children: function(){
-                            return self.store.find(collectionName, {'filters[parent]': 'null()'});
+                            if(collectionName){
+                                return self.store.find(collectionName, {'filters[parent]': 'null()'});
+                            }
                         }.property()
                     });
                     model = new Ember.RSVP.Promise(function(resolve, reject){
