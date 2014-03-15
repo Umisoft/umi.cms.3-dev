@@ -1932,7 +1932,7 @@ ul.off-canvas-list {
   font-weight: normal;
   margin-bottom: 1.25rem;
   position: relative;
-  padding: 0.875rem 1.5rem 0.875rem 0.875rem;
+  padding: 0.5rem 1.125rem 0.5rem 0.5rem;
   font-size: 0.8125rem;
   background-color: #259cec;
   border-color: #1389d8;
@@ -5171,6 +5171,8 @@ body {
     line-height: 1.375rem !important;
     height: 1.5rem;
     border-bottom: 1px solid #000000; }
+    .umi-top-bar li a.active {
+      background: #272727; }
   .umi-top-bar .icon {
     margin-top: 2px; }
 
@@ -6623,8 +6625,7 @@ input[type="checkbox"]:checked + label {
   box-shadow: 0 0 3px 0 #000000; }
 
 .alert-box {
-  opacity: 0.8;
-  box-shadow: 0 0 6px 1px #E6E6E6; }
+  opacity: 0.8; }
   .alert-box.primary {
     background-color: #e1f1fc; }
   .alert-box.success {
@@ -6654,7 +6655,7 @@ input[type="checkbox"]:checked + label {
   position: absolute;
   z-index: 1000;
   right: 0.625rem;
-  top: 149px; }
+  top: 29px; }
   .umi-alert-wrapper .alert-box {
     margin-bottom: 0.6rem; }
 

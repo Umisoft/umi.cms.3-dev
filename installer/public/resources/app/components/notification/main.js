@@ -37,7 +37,7 @@ define(['App', 'text!./alert-box.hbs'], function(UMI, alertBoxTpl){
                 this.set('closeAll', true);
                 this.get('content').pushObject(
                     Ember.Object.create({
-                        id: 99,
+                        id: 'closeAll',
                         type: 'secondary',
                         text: 'Закрыть все'
                     })
@@ -84,4 +84,31 @@ define(['App', 'text!./alert-box.hbs'], function(UMI, alertBoxTpl){
         contentBinding: 'controller.content',
         controller: UMI.notificationList
     });
+
+    UMI.NotificationView = Ember.ContainerView.extend({
+        childViews: ['iconView', 'listView'],
+        listView: UMI.NotificationListView,
+        iconView: Ember.View.extend({
+            active: false,
+            layout: Ember.Handlebars.compile('<a {{action "showNotify" target="view"}} {{bind-attr class="view.active"}}><i class="icon white icon-mail"></i></a>'),
+            actions: {
+                showNotify: function(){
+                    UMI.notification.create({
+                        type: 'info',
+                        text: 'UMI.CMS is ready to update',
+                        duration: false
+                    });
+                }
+            }
+        }),
+        cons: function(){
+            if(this.get('listView.content.length')){
+                this.get('iconView').set('active', true);
+            } else{
+                this.get('iconView').set('active', false);
+            }
+        }.observes('listView.content.length')
+    });
+
+
 });

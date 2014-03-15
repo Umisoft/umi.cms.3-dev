@@ -2,7 +2,6 @@ $umi-alert-wrapper-index: 1000;
 
 .alert-box{
     opacity: .8;
-    box-shadow: 0 0 6px 1px #E6E6E6;
     &.primary{
         background-color: lighten($primary-color, 40%);
     }
@@ -45,7 +44,7 @@ $umi-alert-wrapper-index: 1000;
     position: absolute;
     z-index: $umi-alert-wrapper-index;
     right: rem-calc(10);
-    top: $umi-header-height + $s-full-height-before-height + 6;
+    top: $topbar-height + 5;
     .alert-box{
         margin-bottom: .6rem;
     }
