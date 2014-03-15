@@ -7,9 +7,9 @@
     {{/if}}
 </div>
 {{#if model.confirm}}
-    <button class="button left" {{action 'confirm' target="view"}}>{{model.confirm}}</button>
+    <button class="button small secondary left" {{action 'confirm' target="view"}}>{{model.confirm}}</button>
 {{/if}}
 {{#if model.reject}}
-    <button class="button right" {{action 'close' target="view"}}>{{model.reject}}</button>
+    <button class="button small secondary right" {{action 'close' target="view"}}>{{model.reject}}</button>
 {{/if}}
 
