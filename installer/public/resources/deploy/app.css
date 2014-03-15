@@ -6374,7 +6374,7 @@ select:focus {
 .magellan-menu-holder {
   height: 34px; }
 
-.dropdown-hover .f-dropdown {
+.f-dropdown {
   max-width: none;
   top: auto;
   visibility: hidden;
@@ -6384,9 +6384,15 @@ select:focus {
   transition: all 0.2s linear;
   margin-top: 10px;
   left: 0; }
-  .dropdown-hover .f-dropdown.right {
+  .f-dropdown.right {
     right: 0; }
+
 .dropdown-hover:hover > .f-dropdown {
+  opacity: 1;
+  visibility: visible;
+  margin-top: 0; }
+
+.dropdown.open > .f-dropdown {
   opacity: 1;
   visibility: visible;
   margin-top: 0; }

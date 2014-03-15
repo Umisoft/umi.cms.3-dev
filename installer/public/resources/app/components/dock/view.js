@@ -88,10 +88,12 @@ define(['App'], function(UMI){
             }
         });
 
+        var dropDownTimeout;
         UMI.DockModuleButtonView = Ember.View.extend({
             tagName: 'li',
-            classNames: ['umi-dock-button', 'dropdown-hover'],
-            classNameBindings: ['active'],
+            classNames: ['umi-dock-button', 'dropdown'],
+            classNameBindings: ['active', 'open'],
+            open: false,
             active: function(){
                 return this.get('model.name') === this.get('controller.activeModule.name');
             }.property('controller.activeModule'),
@@ -101,6 +103,13 @@ define(['App'], function(UMI){
             mouseEnter: function(){
                 var dock = this.$().closest('.dock');
                 var $el = this.$();
+                var self = this;
+                dropDownTimeout = setTimeout(
+                    function(){
+                        self.set('open', true);
+                    }, 380
+                );
+
                 if(!expanded){
                     expanded = true;
                     move.proccess = false;
@@ -119,6 +128,13 @@ define(['App'], function(UMI){
                         }
                     });
                 }
+            },
+            mouseLeave: function(){
+                var $el = this.$();
+                if(dropDownTimeout){
+                    clearInterval(dropDownTimeout);
+                }
+                this.set('open', false);
             }
         });
     };
