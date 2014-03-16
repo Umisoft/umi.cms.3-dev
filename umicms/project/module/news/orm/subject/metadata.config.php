@@ -109,6 +109,7 @@ return [
                 NewsSubject::FIELD_LOCKED,
                 NewsSubject::FIELD_CREATED,
                 NewsSubject::FIELD_UPDATED,
+                NewsSubject::FIELD_TRASHED,
                 NewsSubject::FIELD_DISPLAY_NAME,
                 NewsSubject::FIELD_PAGE_META_TITLE,
                 NewsSubject::FIELD_PAGE_META_KEYWORDS,
@@ -117,7 +118,7 @@ return [
                 NewsSubject::FIELD_PAGE_CONTENTS,
                 NewsSubject::FIELD_PAGE_LAYOUT,
                 NewsSubject::FIELD_PAGE_SLUG,
-                'news'
+                NewsSubject::FIELD_NEWS
             ]
         ]
     ]

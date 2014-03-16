@@ -52,12 +52,6 @@ return [
             'readOnly'   => true,
             'defaultValue' => 0
         ],
-        Group::FIELD_TRASHED        => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'trashed',
-            'readOnly'   => true,
-            'defaultValue' => 0
-        ],
         Group::FIELD_CREATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created', 'readOnly'   => true],
         Group::FIELD_UPDATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly'   => true],
         Group::FIELD_USERS     => [
@@ -84,7 +78,6 @@ return [
                 Group::FIELD_CREATED,
                 Group::FIELD_UPDATED,
                 Group::FIELD_DISPLAY_NAME,
-
             ]
         ]
     ]

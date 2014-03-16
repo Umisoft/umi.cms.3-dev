@@ -154,6 +154,7 @@ return [
                 StructureElement::FIELD_LOCKED,
                 StructureElement::FIELD_CREATED,
                 StructureElement::FIELD_UPDATED,
+                StructureElement::FIELD_TRASHED,
                 StructureElement::FIELD_COMPONENT_PATH,
                 StructureElement::FIELD_PAGE_META_TITLE,
                 StructureElement::FIELD_PAGE_META_KEYWORDS,
@@ -161,7 +162,7 @@ return [
                 StructureElement::FIELD_PAGE_H1,
                 StructureElement::FIELD_PAGE_CONTENTS,
                 StructureElement::FIELD_PAGE_LAYOUT,
-                StructureElement::FIELD_CHILDREN
+                StructureElement::FIELD_CHILDREN,
             ]
         ],
         'system' => [
@@ -183,6 +184,7 @@ return [
                 SystemPage::FIELD_LOCKED,
                 SystemPage::FIELD_CREATED,
                 SystemPage::FIELD_UPDATED,
+                SystemPage::FIELD_TRASHED,
                 SystemPage::FIELD_COMPONENT_PATH,
                 SystemPage::FIELD_PAGE_META_TITLE,
                 SystemPage::FIELD_PAGE_META_KEYWORDS,
@@ -212,6 +214,7 @@ return [
                 StaticPage::FIELD_LOCKED,
                 StaticPage::FIELD_CREATED,
                 StaticPage::FIELD_UPDATED,
+                StaticPage::FIELD_TRASHED,
                 StaticPage::FIELD_COMPONENT_PATH,
                 StaticPage::FIELD_PAGE_META_TITLE,
                 StaticPage::FIELD_PAGE_META_KEYWORDS,

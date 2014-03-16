@@ -128,7 +128,8 @@ return [
                 NewsItem::FIELD_RUBRIC,
                 NewsItem::FIELD_ANNOUNCEMENT,
                 NewsItem::FIELD_SUBJECTS,
-                NewsItem::FIELD_DATE
+                NewsItem::FIELD_DATE,
+                NewsItem::FIELD_TRASHED
             ]
         ]
     ]
