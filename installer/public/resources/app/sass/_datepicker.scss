@@ -184,3 +184,14 @@
     background: #D6E0E9;
     color: #000000;
 }
+
+// Стили вынесенные из шаблона формы
+.calendar{
+    position: relative;
+}
+.datepicker{
+    position: absolute;
+    z-index: 1;
+    background: #FFFFFF;
+    border: 1px solid #6d7580;
+}

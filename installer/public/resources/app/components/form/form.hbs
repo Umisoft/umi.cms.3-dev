@@ -1,49 +1,3 @@
-<style>
-    .calendar{
-        position: relative;
-    }
-    .datepicker{
-        position: absolute;
-        z-index: 1;
-        background: #FFFFFF;
-        border: 1px solid #6d7580;
-    }
-</style>
-<script>
-    //Функция вызывается после выполнения всего didInsertelement
-    //TODO Добавить родителя для form минуя metamorph
-//    setTimeout(function(){
-//        var formControlScroll = new IScroll('.umi-table-control-content-center', {
-//            scrollX: true,
-//            probeType: 3,
-//            mouseWheel: true,
-//            scrollbars: true,
-//            bounce: false,
-//            click: false,
-//            freeScroll: false,
-//            keyBindings: true,
-//            interactiveScrollbars: true
-//        });
-//    }, 0);
-
-    $('.umi-form-tab').mousedown(function(event){
-        event.stopPropagation();
-        $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
-        $(this).addClass('active');
-
-        var i = $(this).index('.umi-form-drop-up .umi-form-tab');
-        $('.umi-form-tab-content').eq(i).addClass('active');
-    });
-
-    $('html').on('mousedown', function(event){
-        $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
-    });
-
-    $('.umi-form-tabs-content').mousedown(function(event){
-        event.stopPropagation();
-    });
-</script>
-
 {{#if viewSettings.form.fieldsets}}
     <div class="magellan-menu s-full-height-before">
         {{#each viewSettings.form.fieldsets}}
@@ -67,21 +21,14 @@
             {{/each}}
         {{else}}
             <fieldset>
-                {{#each model.viewSettings.form}}
-                    <div class="row">
-                        <div class="large-12 columns">
-                            <label>
-                                <span style="margin-bottom: 5px; display: inline-block;">{{title}}</span>
-                                {{view "field" objectBinding="object" metaBinding="this"}}
-                            </label>
-                        </div>
-                    </div>
-                {{/each}}
                 <div class="row">
-                    <div class="large-12 columns">
+                    {{#each model.viewSettings.form}}
+                        {{view "field" objectBinding="object" metaBinding="this"}}
+                    {{/each}}
+                    <!--<div class="large-12 columns">
                         <a href="#" class="umi-show-popup">Попап</a>
-                    </div>
-                <div>
+                    </div>-->
+                </div>
             </fieldset>
         {{/if}}
     {{/with}}
@@ -135,59 +82,24 @@
                 <input type="text" placeholder="Добавить пользователя"/>
             </div>
         </div>
-
-        <div class="umi-form-tab-content">
-            <div class="umi-dropdown-row">
-                <div class="umi-dropdown-row-text" style="padding: 7px 10px;"><i class="icon icon-user"></i></div>
-                <div class="right">
-                    <div><i class="icon icon-key black"></i></div>
-                    <div><i class="icon icon-key white"></i></div>
-                    <div><i class="icon icon-key black"></i></div>
-                    <div><i class="icon icon-key white"></i></div>
-                    <div><i class="icon icon-key"></i></div>
-                </div>
-            </div>
-            <div class="umi-dropdown-row">
-                <div class="umi-dropdown-row-text">Виталий</div>
-                <div class="right">
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox"/></div>
-                </div>
-            </div>
-            <div class="umi-dropdown-row">
-                <div class="umi-dropdown-row-text">Кирилл</div>
-                <div class="right">
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox"/></div>
-                </div>
-            </div>
-            <div class="umi-dropdown-row">
-                <div class="umi-dropdown-row-text">Семён</div>
-                <div class="right">
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox"/></div>
-                </div>
-            </div>
-            <div class="umi-dropdown-row">
-                <input type="text" placeholder="Добавить пользователя"/>
-            </div>
-        </div>
     </div>
 
     <div class="umi-form-tabs">
-        <div class="umi-form-save-button" {{action 'save' model.object target="view"}}>Сохранить</div>
+        {{#view "saveButton" class="button s-margin-clear wide left" model=model.object}}
+            {{#if model.object.isSaving}}
+                Сохранено
+            {{else}}
+                {{#if model.object.isDirty}}
+                    Сохранить
+                {{else}}
+                    Сохранено
+                {{/if}}
+            {{/if}}
+
+        {{/view}}
         <div class="umi-form-tab"><i class="icon icon-pause"></i></div>
         <div class="umi-form-tab"><i class="icon icon-6"></i></div>
-        <div class="button secondary s-margin-clear"><i class="icon icon-delete"></i></div>
+        <div class="button white s-margin-clear"><i class="icon icon-delete"></i></div>
     </div>
 
 </div>
@@ -233,4 +145,39 @@
 //            event.stopImmediatePropagation();
 //        });
 //    });
+</script>
+
+<script>
+    //Функция вызывается после выполнения всего didInsertelement
+    //TODO Добавить родителя для form минуя metamorph
+    //    setTimeout(function(){
+    //        var formControlScroll = new IScroll('.umi-table-control-content-center', {
+    //            scrollX: true,
+    //            probeType: 3,
+    //            mouseWheel: true,
+    //            scrollbars: true,
+    //            bounce: false,
+    //            click: false,
+    //            freeScroll: false,
+    //            keyBindings: true,
+    //            interactiveScrollbars: true
+    //        });
+    //    }, 0);
+
+    $('.umi-form-tab').mousedown(function(event){
+        event.stopPropagation();
+        $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
+        $(this).addClass('active');
+
+        var i = $(this).index('.umi-form-drop-up .umi-form-tab');
+        $('.umi-form-tab-content').eq(i).addClass('active');
+    });
+
+    $('html').on('mousedown', function(event){
+        $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
+    });
+
+    $('.umi-form-tabs-content').mousedown(function(event){
+        event.stopPropagation();
+    });
 </script>

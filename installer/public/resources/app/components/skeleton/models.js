@@ -52,8 +52,8 @@ define([], function(){
                            params = {async: true, inverse: collection.fields[i].mirrorField};
                            fieldValue = DS.hasMany(collection.fields[i].targetCollection, params);
                             break;
-                       default:
-                           fieldValue = DS.attr();
+                        default:
+                           fieldValue = DS.attr();// TODO: заменить на raw
                            break;
                     }
                     if(collection.fields[i].type !== 'identify'){
@@ -70,20 +70,12 @@ define([], function(){
             var baseURL = window.UmiSettings.baseApiURL.slice(1);
             var setNamespace = function(namespace, module, component){
                 UMI[namespace.capitalize() + 'Adapter'] = DS.UmiRESTAdapter.extend({
-                    namespace: baseURL + '/' + module + '/' + component
+                    namespace: baseURL + '/' + module + '/' + component + '/collection'
                 });
             };
             for(var i = 0; i < resources.length; i++){
                 setNamespace(resources[i].collection, resources[i].module, resources[i].component);
             }
        };
-
-        UMI.ComponentMode = DS.Model.extend({
-            modes: DS.attr()
-        });
-
-        UMI.ComponentModeAdapter = DS.RESTAdapter.extend({
-            namespace: 'resource/admin/modules/news/categories'
-        });
     };
 });
