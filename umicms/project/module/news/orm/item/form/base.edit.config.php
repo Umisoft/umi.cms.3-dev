@@ -17,6 +17,8 @@ use umicms\project\module\news\object\NewsItem;
 
 return [
 
+    'options' => [],
+
     'elements' => [
 
         'common' => [

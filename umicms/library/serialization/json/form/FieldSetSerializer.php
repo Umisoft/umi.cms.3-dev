@@ -10,6 +10,7 @@
 namespace umicms\serialization\json\form;
 
 use umi\form\fieldset\FieldSet;
+use umi\i18n\translator\ITranslator;
 use umicms\serialization\json\BaseSerializer;
 
 /**
@@ -18,6 +19,20 @@ use umicms\serialization\json\BaseSerializer;
 class FieldSetSerializer extends BaseSerializer
 {
     /**
+     * @var ITranslator $translator транслятор для перевода лейблов элементов
+     */
+    protected $translator;
+
+    /**
+     * Конструктор.
+     * @param ITranslator $translator
+     */
+    public function __construct(ITranslator $translator)
+    {
+        $this->translator = $translator;
+    }
+
+    /**
      * Сериализует набор сущностей формы в JSON.
      * @param FieldSet $fieldSet
      * @param array $options опции сериализации
@@ -25,9 +40,17 @@ class FieldSetSerializer extends BaseSerializer
     public function __invoke(FieldSet $fieldSet, array $options = [])
     {
 
+        if (!isset($options['dictionaries'])) {
+            $options['dictionaries'] = $this->getLabelDictionaries($fieldSet);
+        }
+
         $result = [
             'type' => $fieldSet::TYPE_NAME
         ];
+
+        if ($label = $fieldSet->getLabel()) {
+            $result['label'] = $this->translator->translate($options['dictionaries'], $label);
+        }
 
         if ($name = $fieldSet->getName()) {
             $result['name'] = $name;
@@ -41,7 +64,17 @@ class FieldSetSerializer extends BaseSerializer
             $result['elements'] = $elements;
         }
 
-        $this->delegate($result);
+        $this->delegate($result, $options);
+    }
+
+    /**
+     * Возвращает словари для перевода лейблов сущностей
+     * @param FieldSet $fieldSet
+     * @return array
+     */
+    protected function getLabelDictionaries(FieldSet $fieldSet)
+    {
+        return [];
     }
 }
  

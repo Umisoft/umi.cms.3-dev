@@ -13,6 +13,7 @@ use umi\authentication\IAuthenticationFactory;
 use umi\authentication\toolbox\AuthenticationTools;
 use umi\form\toolbox\FormTools;
 use umi\hmvc\component\IComponent;
+use umi\i18n\toolbox\I18nTools;
 use umi\orm\toolbox\OrmTools;
 use umi\route\IRouteFactory;
 use umicms\api\toolbox\ApiTools;
@@ -138,6 +139,13 @@ return [
                 'userUserGroup' => '{#lazy:~/project/module/users/orm/usergroup/collection.config.php}',
 
                 'searchIndex' => '{#lazy:~/project/module/search/orm/index/collection.config.php}',
+            ]
+        ],
+
+        I18nTools::NAME => [
+            'translatorDictionaries' => [
+                'en-US' => '{#lazy:~/project/i18n/en-US.config.php}',
+                'ru-RU' => '{#lazy:~/project/i18n/ru-RU.config.php}'
             ]
         ]
     ],

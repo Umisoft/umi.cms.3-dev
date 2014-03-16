@@ -10,6 +10,7 @@
 namespace umicms\serialization\json\form;
 
 use umi\form\element\BaseFormElement;
+use umi\i18n\translator\ITranslator;
 use umicms\serialization\json\BaseSerializer;
 
 /**
@@ -18,17 +19,34 @@ use umicms\serialization\json\BaseSerializer;
 class BaseFormElementSerializer extends BaseSerializer
 {
     /**
+     * @var ITranslator $translator транслятор для перевода лейблов элементов
+     */
+    protected $translator;
+    /**
+     * Конструктор.
+     * @param ITranslator $translator
+     */
+    public function __construct(ITranslator $translator)
+    {
+        $this->translator = $translator;
+    }
+
+    /**
      * Сериализует элемент формы в JSON.
      * @param BaseFormElement $element
      * @param array $options опции сериализации
      */
     public function __invoke(BaseFormElement $element, array $options = [])
     {
-
         $result = [
             'type' => $element::TYPE_NAME,
             'name' => $element->getName()
         ];
+
+        if ($label = $element->getLabel()) {
+            $labelDictionaries = isset($options['dictionaries']) ? $options['dictionaries'] : [];
+            $result['label'] = $this->translator->translate($labelDictionaries, $label);
+        }
 
         if ($attributes = $element->getAttributes()) {
             $result['attributes'] = $attributes;

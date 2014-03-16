@@ -10,14 +10,11 @@
 namespace umicms\hmvc\controller;
 
 use umi\hmvc\controller\BaseController as FrameworkController;
-use umi\i18n\ILocalizable;
-use umi\i18n\TLocalizable;
 
 /**
  * Базовый контроллер UMI.CMS
  */
-abstract class BaseController extends FrameworkController implements ILocalizable
+abstract class BaseController extends FrameworkController
 {
-    use TLocalizable;
 
 }
