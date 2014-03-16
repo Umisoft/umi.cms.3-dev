@@ -140,7 +140,7 @@ class CmsObjectSerializer extends BaseSerializer
     protected function getCollectionLink(ICmsCollection $collection, $filterName, $filterValue)
     {
         $link = '/admin/api/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
-        $link .= '/' . $collection->getName() . '?' . http_build_query(['filters' => [$filterName => $filterValue]]);
+        $link .= '/collection/' . $collection->getName() . '?' . http_build_query(['filters' => [$filterName => $filterValue]]);
 
         return $link;
     }
