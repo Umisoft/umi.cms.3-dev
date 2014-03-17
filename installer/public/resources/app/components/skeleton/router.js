@@ -295,21 +295,18 @@ define([], function(){
                      * Мета информация для action
                      */
                     var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/'  + transition.params.action.action + '/' + self.modelFor('component').get('collection') + '/' + model.get('type') + '/edit';
-                    if(transition.params.action.action === 'form'){
-                        return Ember.$.get(actionResource).then(function(results){
-                            var viewSettings = {};
-                            viewSettings[transition.params.action.action] = results.result[transition.params.action.action];
-                            routeData.viewSettings = viewSettings;
-                            return routeData;
-                        }, function(error){
-                            throw new Error('Не получена мета информация для action form ' + actionResource + '.' + error);
-                        });
-                    }
                     // Временное решение для таблицы
                     if(transition.params.action.action === 'children'){
                         return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
                             routeData.viewSettings = results.settings;
                             return routeData;
+                        });
+                    } else if(transition.params.action.action === 'form'){
+                        return Ember.$.get(actionResource).then(function(results){
+                            routeData.viewSettings = results.result;
+                            return routeData;
+                        }, function(error){
+                            throw new Error('Не получена мета информация для action form ' + actionResource + '.' + error);
                         });
                     }
                     return routeData;
