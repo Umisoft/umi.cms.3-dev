@@ -36,6 +36,8 @@ abstract class BaseController extends FrameworkController
                 )
             );
         }
+
+        return $value;
     }
 
 }
