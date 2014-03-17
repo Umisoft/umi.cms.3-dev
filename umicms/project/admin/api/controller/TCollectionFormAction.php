@@ -10,6 +10,7 @@
 namespace umicms\project\admin\api\controller;
 
 use umi\form\IForm;
+use umi\hmvc\exception\http\HttpException;
 use umicms\orm\collection\ICmsCollection;
 
 /**
@@ -26,9 +27,12 @@ trait TCollectionFormAction
     abstract protected function getCollection($collectionName);
 
     /**
-     * @see BaseRestActionController::getRouteVar()
+     * Возвращает значение параметра из GET-параметров запроса.
+     * @param string $name имя параметра
+     * @throws HttpException если значение не найдено
+     * @return mixed
      */
-    abstract protected function getRouteVar($name, $default = null);
+    abstract protected function getRequiredQueryVar($name);
 
     /**
      * Возвращает форму для объектного типа коллекции.
@@ -36,9 +40,9 @@ trait TCollectionFormAction
      */
     protected function actionForm()
     {
-        $collectionName = $this->getRouteVar('collection');
-        $typeName = $this->getRouteVar('type');
-        $formName = $this->getRouteVar('form');
+        $collectionName = $this->getRequiredQueryVar('collection');
+        $typeName = $this->getRequiredQueryVar('type');
+        $formName = $this->getRequiredQueryVar('form');
 
         return $this->getCollection($collectionName)->getForm($typeName, $formName);
     }

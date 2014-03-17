@@ -32,15 +32,6 @@ return [
             'route'    => '/action/{action}',
             'defaults' => [
                 'controller' => 'action'
-            ],
-            'subroutes' => [
-                'form' => [
-                    'type'     => IRouteFactory::ROUTE_SIMPLE,
-                    'route'    => '/{collection}/{type}/{form}',
-                    'defaults' => [
-                        'controller' => 'action'
-                    ]
-                ],
             ]
         ],
 
