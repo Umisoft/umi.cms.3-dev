@@ -50,7 +50,7 @@ class ActionController extends BaseRestActionController
      */
     protected function getModifyActions()
     {
-        return [];
+        return ['trash', 'untrash', 'emptyTrash'];
     }
 
     /**
@@ -88,6 +88,7 @@ class ActionController extends BaseRestActionController
     }
 
     /**
+     * Очищает корзину
      *
      */
     public function actionEmptyTrash()

@@ -118,6 +118,7 @@ return [
                 NewsSubject::FIELD_VERSION,
                 NewsSubject::FIELD_ACTIVE,
                 NewsSubject::FIELD_LOCKED,
+                NewsSubject::FIELD_TRASHED,
                 NewsSubject::FIELD_CREATED,
                 NewsSubject::FIELD_UPDATED,
                 NewsSubject::FIELD_TRASHED,

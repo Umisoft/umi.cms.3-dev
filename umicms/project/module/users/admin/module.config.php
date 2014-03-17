@@ -25,6 +25,6 @@ return [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{component}'
-        ]
+        ],
     ]
 ];
