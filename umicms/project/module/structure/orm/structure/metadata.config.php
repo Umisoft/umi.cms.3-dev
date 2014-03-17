@@ -6,7 +6,9 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\structure\object\StaticPage;
 use umicms\project\module\structure\object\StructureElement;
 use umicms\project\module\structure\object\SystemPage;
@@ -39,7 +41,7 @@ return [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
-            'readOnly'   => true,
+            'readOnly'     => true,
             'defaultValue' => 1
         ],
         StructureElement::FIELD_PARENT                => [
@@ -86,8 +88,15 @@ return [
             'accessor'   => 'getLevel',
             'readOnly'   => true
         ],
-        StructureElement::FIELD_DISPLAY_NAME          => ['type'       => IField::TYPE_STRING,
-                                                          'columnName' => 'display_name'
+        StructureElement::FIELD_DISPLAY_NAME          => [
+            'type'       => IField::TYPE_STRING,
+            'columnName' => 'display_name',
+            'filters'    => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         StructureElement::FIELD_COMPONENT_PATH        => [
             'type'       => IField::TYPE_STRING,
@@ -102,26 +111,28 @@ return [
         StructureElement::FIELD_LOCKED                => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
-            'readOnly'   => true,
+            'readOnly'     => true,
             'defaultValue' => 0
         ],
-        StructureElement::FIELD_TRASHED          => [
+        StructureElement::FIELD_TRASHED               => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'trashed',
             'defaultValue' => 0,
-            'readOnly'   => true,
+            'readOnly'     => true,
         ],
-        StructureElement::FIELD_CREATED         => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        StructureElement::FIELD_UPDATED         => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
+        StructureElement::FIELD_CREATED               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
+        StructureElement::FIELD_UPDATED               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
         StructureElement::FIELD_PAGE_META_TITLE       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
-        StructureElement::FIELD_PAGE_META_KEYWORDS    => ['type'       => IField::TYPE_STRING,
-                                                          'columnName' => 'meta_keywords'
+        StructureElement::FIELD_PAGE_META_KEYWORDS    => [
+            'type'       => IField::TYPE_STRING,
+            'columnName' => 'meta_keywords'
         ],
-        StructureElement::FIELD_PAGE_META_DESCRIPTION => ['type'       => IField::TYPE_STRING,
-                                                          'columnName' => 'meta_description'
+        StructureElement::FIELD_PAGE_META_DESCRIPTION => [
+            'type'       => IField::TYPE_STRING,
+            'columnName' => 'meta_description'
         ],
         StructureElement::FIELD_PAGE_H1               => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
-        StructureElement::FIELD_PAGE_CONTENTS          => ['type' => IField::TYPE_TEXT, 'columnName' => 'contents'],
+        StructureElement::FIELD_PAGE_CONTENTS         => ['type' => IField::TYPE_TEXT, 'columnName' => 'contents'],
         StructureElement::FIELD_PAGE_LAYOUT           => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'layout_id',

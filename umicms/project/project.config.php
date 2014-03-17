@@ -145,10 +145,7 @@ return [
         ],
 
         I18nTools::NAME => [
-            'translatorDictionaries' => [
-                'en-US' => '{#lazy:~/project/i18n/en-US.config.php}',
-                'ru-RU' => '{#lazy:~/project/i18n/ru-RU.config.php}'
-            ]
+            'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
         ]
     ],
 

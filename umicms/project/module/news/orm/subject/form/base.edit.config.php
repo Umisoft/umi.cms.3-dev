@@ -15,6 +15,12 @@ use umicms\project\module\news\object\NewsSubject;
 
 return [
 
+    'options' => [
+        'dictionaries' => [
+            'collection\newsSubject', 'collection'
+        ]
+    ],
+
     'elements' => [
 
         'common' => [
