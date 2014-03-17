@@ -76,33 +76,6 @@ define([], function(){
             },
             actions: {
                 /**
-                 * Метод вызывается каждый раз при смене роута в приложении.
-                 * При переходе на роут `logout` выполняется abort для перехода,
-                 * приложение становится неактивным и происходит смена шаблона на шаблон авторизации.
-                 * @event willTransition
-                 * @param {Object} transition
-                 */
-                willTransition: function(transition){
-                    if(transition.targetName === 'logout'){
-                        transition.abort();
-                        var applicationLayout = document.querySelector('.umi-main-view');
-                        var maskLayout = document.createElement('div');
-                        maskLayout.className = 'auth-mask';
-                        maskLayout = document.body.appendChild(maskLayout);
-                        $(applicationLayout).addClass('off');
-                        $.post('/admin/api/users/user/action/logout');
-                        require(['auth/main'], function(auth){
-                            auth();
-                            $(applicationLayout).addClass('fade-out');
-                            Ember.run.later('', function(){
-                                UMI.reset();
-                                UMI.deferReadiness();
-                                maskLayout.parentNode.removeChild(maskLayout);
-                            }, 2000);
-                        });
-                    }
-                },
-                /**
                  Сохраняет обьект
 
                  @method save
@@ -142,6 +115,27 @@ define([], function(){
                         }
                     );
                 }
+            }
+        });
+
+        UMI.LogoutRoute = Ember.Route.extend({
+            beforeModel: function(transition){
+                transition.abort();
+                var applicationLayout = document.querySelector('.umi-main-view');
+                var maskLayout = document.createElement('div');
+                maskLayout.className = 'auth-mask';
+                maskLayout = document.body.appendChild(maskLayout);
+                $(applicationLayout).addClass('off');
+                $.post('/admin/api/users/user/action/logout');
+                require(['auth/main'], function(auth){
+                    auth();
+                    $(applicationLayout).addClass('fade-out');
+                    Ember.run.later('', function(){
+                        UMI.reset();
+                        UMI.deferReadiness();
+                        maskLayout.parentNode.removeChild(maskLayout);
+                    }, 2000);
+                });
             }
         });
 
