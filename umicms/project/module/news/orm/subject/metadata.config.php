@@ -6,7 +6,9 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\news\object\NewsSubject;
 
 return [
@@ -39,7 +41,16 @@ return [
             'readOnly'     => true,
             'defaultValue' => 1
         ],
-        NewsSubject::FIELD_DISPLAY_NAME          => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
+        NewsSubject::FIELD_DISPLAY_NAME          => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'display_name',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
+        ],
         NewsSubject::FIELD_ACTIVE                => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'active',
@@ -110,6 +121,7 @@ return [
                 NewsSubject::FIELD_TRASHED,
                 NewsSubject::FIELD_CREATED,
                 NewsSubject::FIELD_UPDATED,
+                NewsSubject::FIELD_TRASHED,
                 NewsSubject::FIELD_DISPLAY_NAME,
                 NewsSubject::FIELD_PAGE_META_TITLE,
                 NewsSubject::FIELD_PAGE_META_KEYWORDS,
@@ -118,7 +130,7 @@ return [
                 NewsSubject::FIELD_PAGE_CONTENTS,
                 NewsSubject::FIELD_PAGE_LAYOUT,
                 NewsSubject::FIELD_PAGE_SLUG,
-                'news'
+                NewsSubject::FIELD_NEWS
             ]
         ]
     ]

@@ -53,6 +53,7 @@ defined('PUBLIC_DIR') or define('PUBLIC_DIR', __DIR__);
 
 $env->bootConfigMaster = $directoryCms . '/configuration/boot.config.php';
 $env->bootConfigLocal = $directoryProjects . '/configuration/boot.config.php';
+
 $env->projectConfiguration =  $directoryProjects . '/configuration/projects.config.php';
 $env->directoryCms = $directoryCms;
 $env->directoryCmsProject = $directoryCms . '/project';

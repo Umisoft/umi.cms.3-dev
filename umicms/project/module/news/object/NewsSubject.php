@@ -9,13 +9,19 @@
 
 namespace umicms\project\module\news\object;
 
+use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
 
 /**
  * Новостной сюжет.
+ *
+ * @property IManyToManyObjectSet $news новости рубрики
  */
 class NewsSubject extends CmsObject implements ICmsPage
 {
-
+    /**
+     *  Имя поля для хранения новостей
+     */
+    const FIELD_NEWS = 'news';
 }

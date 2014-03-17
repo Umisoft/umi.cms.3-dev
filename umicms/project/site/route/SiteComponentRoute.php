@@ -16,7 +16,7 @@ use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\SystemPage;
 
 /**
- * Правила роутинга для сайта.
+ * Правила маршрутизации компонентов для сайта.
  */
 class SiteComponentRoute extends BaseRoute
 {

@@ -11,12 +11,14 @@ namespace umicms\project;
 use umi\authentication\adapter\ORMAdapter;
 use umi\authentication\IAuthenticationFactory;
 use umi\authentication\toolbox\AuthenticationTools;
+use umi\form\toolbox\FormTools;
 use umi\hmvc\component\IComponent;
-use umi\orm\collection\ICollectionFactory;
+use umi\i18n\toolbox\I18nTools;
 use umi\orm\toolbox\OrmTools;
 use umi\route\IRouteFactory;
 use umicms\api\toolbox\ApiTools;
 use umicms\Bootstrap;
+use umicms\form\element\Wysiwyg;
 
 return [
 
@@ -24,6 +26,9 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/i18n/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/dbal/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/orm/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/form/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/filter/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/validation/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/authentication/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/stemming/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/api/toolbox/config.php'),
@@ -51,6 +56,16 @@ return [
                     ]
                 ]
              ]
+        ],
+
+        FormTools::NAME => [
+            'factories' => [
+                'entity' => [
+                    'elementTypes' => [
+                        Wysiwyg::TYPE_NAME => 'umicms\form\element\Wysiwyg'
+                    ]
+                ]
+            ]
         ],
 
         ApiTools::NAME => [
@@ -130,6 +145,10 @@ return [
 
                 'searchIndex' => '{#lazy:~/project/module/search/orm/index/collection.config.php}',
             ]
+        ],
+
+        I18nTools::NAME => [
+            'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
         ]
     ],
 

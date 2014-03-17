@@ -13,6 +13,7 @@ use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umi\orm\object\IObject;
 use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\admin\api\controller\TCollectionFormAction;
 use umicms\project\module\structure\api\StructureApi;
 
 /**
@@ -20,6 +21,8 @@ use umicms\project\module\structure\api\StructureApi;
  */
 class ActionController extends BaseRestActionController
 {
+
+    use TCollectionFormAction;
 
     /**
      * @var StructureApi $api
@@ -38,6 +41,18 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
+    protected function getCollection($collectionName)
+    {
+        if ($collectionName != $this->api->element()->collectionName) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
+        }
+
+        return $this->api->element()->getCollection();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function getQueryActions()
     {
         return ['settings', 'form'];
@@ -48,16 +63,7 @@ class ActionController extends BaseRestActionController
      */
     protected function getModifyActions()
     {
-        return ['move', 'trash', 'untrash', 'emptyTrash'];
-    }
-
-    /**
-     * Возвращает форму.
-     */
-    protected function actionForm()
-    {
-        // TODO: add form
-        return $this->api->element()->getCollection()->getMetadata()->getBaseType();
+        return ['move'];
     }
 
     protected function actionMove()
@@ -90,51 +96,4 @@ class ActionController extends BaseRestActionController
         return '';
     }
 
-    /**
-     * Удаляет объект в корзину
-     * @return string
-     */
-    public function actionTrash()
-    {
-        $object = $this->api->element()
-            ->getCollection()
-            ->getById($this->getQueryVar('id'));
-        $this->api->element()
-            ->trash($object);
-        $this->getObjectPersister()
-            ->commit();
-
-        return '';
-    }
-
-    /**
-     * Восстанавливает объект из корзины
-     * @return string
-     */
-    public function actionUntrash()
-    {
-        $object = $this->api->element()
-            ->getCollection()
-            ->getById($this->getQueryVar('id'));
-        $this->api->element()
-            ->untrash($object);
-        $this->getObjectPersister()
-            ->commit();
-
-        return '';
-    }
-
-    /**
-     * Очищает корзину
-     * @return string
-     */
-    public function actionEmptyTrash()
-    {
-        $this->api->element()
-            ->emptyTrash();
-        $this->getObjectPersister()
-            ->commit();
-
-        return '';
-    }
 }

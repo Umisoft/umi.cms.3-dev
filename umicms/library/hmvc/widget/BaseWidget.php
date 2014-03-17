@@ -10,14 +10,12 @@
 namespace umicms\hmvc\widget;
 
 use umi\hmvc\widget\BaseWidget as FrameworkWidget;
-use umi\i18n\ILocalizable;
-use umi\i18n\TLocalizable;
 
 /**
  * Базовый виджет UMI.CMS
  */
-abstract class BaseWidget extends FrameworkWidget implements ILocalizable
+abstract class BaseWidget extends FrameworkWidget
 {
-    use TLocalizable;
+
 }
  
