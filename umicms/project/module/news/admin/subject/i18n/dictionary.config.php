@@ -10,11 +10,11 @@
 return [
 
     'en-US' => [
-        'subject:displayName' => 'Subjects'
+        'subject:component:displayName' => 'Subjects'
     ],
 
     'ru-RU' => [
-        'subject:displayName' => 'Новостные сюжеты'
+        'subject:component:displayName' => 'Новостные сюжеты'
     ]
 
 ];

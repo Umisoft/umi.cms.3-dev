@@ -13,6 +13,8 @@ use umicms\orm\object\ICmsPage;
 
 return [
 
+        'project\admin\api' => '{#lazy:~/project/admin/api/i18n/dictionary.config.php}',
+
         'project\admin\api\news' => '{#lazy:~/project/module/news/admin/i18n/dictionary.config.php}',
         'project\admin\api\news\item' => '{#lazy:~/project/module/news/admin/item/i18n/dictionary.config.php}',
         'project\admin\api\news\rubric' => '{#lazy:~/project/module/news/admin/rubric/i18n/dictionary.config.php}',

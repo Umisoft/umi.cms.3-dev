@@ -9,6 +9,7 @@
 
 namespace umicms\serialization\json\orm;
 
+use umi\i18n\translator\ITranslator;
 use umi\orm\metadata\field\BaseField;
 use umi\orm\metadata\field\IRelationField;
 use umi\orm\metadata\field\relation\HasManyRelationField;
@@ -20,6 +21,20 @@ use umicms\serialization\json\BaseSerializer;
  */
 class FieldSerializer extends BaseSerializer
 {
+
+    /**
+     * @var ITranslator $translator транслятор для перевода лейблов элементов
+     */
+    protected $translator;
+    /**
+     * Конструктор.
+     * @param ITranslator $translator
+     */
+    public function __construct(ITranslator $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * Сериализует поле в JSON.
      * @param BaseField $field
@@ -27,8 +42,11 @@ class FieldSerializer extends BaseSerializer
      */
     public function __invoke(BaseField $field, array $options = [])
     {
+        $dictionaries = isset($options['dictionaries']) ? $options['dictionaries'] : [];
+
         $info = [
             'name' => $field->getName(),
+            'displayName' => $this->translator->translate($dictionaries, $field->getName()),
             'type' => $field->getType(),
             'readOnly' => $field->getIsReadOnly(),
             'default' => $field->getDefaultValue()

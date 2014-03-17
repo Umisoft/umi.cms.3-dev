@@ -10,11 +10,11 @@
 return [
 
     'en-US' => [
-        'item:displayName' => 'News items'
+        'item:component:displayName' => 'News items'
     ],
 
     'ru-RU' => [
-        'item:displayName' => 'Новости'
+        'item:component:displayName' => 'Новости'
     ]
 
 ];

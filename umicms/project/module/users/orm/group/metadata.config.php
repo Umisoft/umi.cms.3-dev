@@ -73,8 +73,6 @@ return [
             'targetField'  => 'user',
             'readOnly'     => true
         ],
-
-
     ],
     'types'      => [
         'base' => [
