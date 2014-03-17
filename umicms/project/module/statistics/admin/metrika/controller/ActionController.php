@@ -37,7 +37,7 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    protected function getQueryActions()
+    public function getQueryActions()
     {
         return ['counter', 'viewCounter'];
     }
@@ -45,7 +45,7 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    protected function getModifyActions()
+    public function getModifyActions()
     {
         return [];
     }

@@ -20,7 +20,7 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    protected function getQueryActions()
+    public function getQueryActions()
     {
         return ['settings'];
     }
@@ -28,7 +28,7 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    protected function getModifyActions()
+    public function getModifyActions()
     {
         return [];
     }
