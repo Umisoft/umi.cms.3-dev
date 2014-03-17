@@ -39,19 +39,19 @@ return [
 
     AdminComponent::OPTION_ROUTES      => [
 
+        'connector' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'route'    => '/action/connector',
+            'defaults' => [
+                'controller' => 'connector'
+            ]
+        ],
+
         'action' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/action/{action}',
             'defaults' => [
                 'controller' => 'action'
-            ]
-        ],
-
-        'connector' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'route'    => '/connector',
-            'defaults' => [
-                'controller' => 'connector'
             ]
         ]
     ]
