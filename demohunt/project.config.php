@@ -3,6 +3,7 @@ namespace demohunt;
 
 use umi\dbal\toolbox\DbalTools;
 use umi\hmvc\component\IComponent;
+use umi\i18n\toolbox\I18nTools;
 use umi\route\IRouteFactory;
 use umicms\Bootstrap;
 
@@ -25,6 +26,9 @@ return [
                     ]
                 ]
             ]
+        ],
+        I18nTools::NAME => [
+            'defaultLocale' => 'ru-RU'
         ]
     ],
 

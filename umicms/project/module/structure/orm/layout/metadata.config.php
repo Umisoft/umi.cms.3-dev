@@ -6,7 +6,9 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\structure\object\Layout;
 
 return [
@@ -39,7 +41,16 @@ return [
             'mutator'      => 'setVersion',
             'defaultValue' => 1
         ],
-        Layout::FIELD_DISPLAY_NAME => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
+        Layout::FIELD_DISPLAY_NAME => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'display_name',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
+        ],
         Layout::FIELD_ACTIVE       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'active',

@@ -10,7 +10,6 @@ namespace umicms\serialization\json;
 
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
-use umicms\serialization\exception\UnexpectedValueException;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\ISerializer;
 use umicms\serialization\ISerializerFactory;

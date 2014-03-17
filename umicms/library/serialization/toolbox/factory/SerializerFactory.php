@@ -64,6 +64,9 @@ class SerializerFactory implements IFactory, ISerializerFactory
             'umicms\orm\object\CmsObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
             'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
             'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer',
+            // form
+            'umi\form\fieldset\FieldSet' => 'umicms\serialization\json\form\FieldSetSerializer',
+            'umi\form\element\BaseFormElement' => 'umicms\serialization\json\form\BaseFormElementSerializer',
         ]
     ];
 

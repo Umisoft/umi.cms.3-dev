@@ -14,6 +14,7 @@ use umi\http\Response;
 use umi\orm\object\IObject;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\admin\api\controller\TCollectionFormAction;
 use umicms\project\module\news\api\NewsApi;
 
 /**
@@ -21,6 +22,8 @@ use umicms\project\module\news\api\NewsApi;
  */
 class ActionController extends BaseRestActionController
 {
+    use TCollectionFormAction;
+
     /**
      * @var NewsApi $api
      */
@@ -52,12 +55,15 @@ class ActionController extends BaseRestActionController
     }
 
     /**
-     * Возвращает форму.
+     * {@inheritdoc}
      */
-    protected function actionForm()
+    protected function getCollection($collectionName)
     {
-        // TODO: add form
-        return $this->api->rubric()->getCollection()->getMetadata()->getBaseType();
+        if ($collectionName != $this->api->rubric()->collectionName) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
+        }
+
+        return $this->api->rubric()->getCollection();
     }
 
     protected function actionMove()

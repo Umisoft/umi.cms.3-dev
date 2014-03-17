@@ -24,6 +24,7 @@ define([], function(){
                 });
             });
             this.route('logout', {path: '/auth/logout'});
+            this.route('site', {path: '/:link'});
         });
 
         //		UMI.ErrorState = Ember.Mixin.create({//TODO: Обрабатывать все типы ошибок, и разные роуты
@@ -100,6 +101,46 @@ define([], function(){
                             }, 2000);
                         });
                     }
+                },
+                /**
+                 Сохраняет обьект
+
+                 @method save
+                 @param {Object} params Объект аргументов
+                        params.object - сохраняемый объект
+                        params.handler - элемент (кнопка) вызвавший событие сохранение
+                 */
+                save: function(params){
+                    params.object.save().then(
+                        function(){
+                            if(params.handler){
+                                $(params.handler).removeClass('loading');
+                            }
+                            /*UMI.notification.create({
+                                type: 'success',
+                                text: 'Изменения успешно сохранены.',
+                                duration: 3000
+                            });*/
+                        },
+                        function(results){
+                            if(params.handler){
+                                $(params.handler).removeClass('loading');
+                            }
+                            var message;
+                            var fullMessage;
+                            if(results.responseJSON.result.error){
+                                message = results.responseJSON.result.error.message;
+                            }
+                            if(results.responseJSON.result.stack){
+                                fullMessage = results.responseJSON.result.stack.message;
+                            }
+                            UMI.notification.create({
+                                type: 'alert',
+                                text: message,
+                                fullText: fullMessage
+                            });
+                        }
+                    );
                 }
             }
         });
@@ -130,11 +171,7 @@ define([], function(){
             model: function(params){
                 var modules = this.controllerFor('dock').get('content');
                 var module = modules.findBy('name', params.module);
-                // некрасивое решение
-                this.controllerFor('dock').set('activeModule', module.get('name'));
-                modules.setEach('isActive', false);
-                // Для добавления класса active вкладке модуля в dock добавим атрибут isActive
-                module.set('isActive', true);
+                this.controllerFor('dock').set('activeModule', module);
                 return module;
             },
             redirect: function(model, transition){
@@ -159,7 +196,7 @@ define([], function(){
                 var self = this;
                 var components = this.modelFor('module').get('components');
                 var model = components.findBy('name', transition.params.component.component);
-                var componentResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/settings';
+                var componentResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/settings';
                 return Ember.$.get(componentResource).then(function(results){
                     if(results.result.error){
                         throw 'Ресурс компонента не найден';
@@ -235,44 +272,50 @@ define([], function(){
                 if(oldContext !== params.context && firstAction.get('name') !== activeAction.get('name')){
                     return this.transitionTo('action', firstAction.get('name'));
                 }
+
                 if(params.context === 'root'){
                     var RootModel = Ember.Object.extend({
                         children: function(){
-                            return self.store.find(collectionName, {'filters[parent]': 'null()'});
+                            if(collectionName){
+                                return self.store.find(collectionName, {'filters[parent]': 'null()'});
+                            }
                         }.property()
                     });
-                    model = RootModel.create({'id': 'root'});
+                    model = new Ember.RSVP.Promise(function(resolve, reject){
+                        resolve(RootModel.create({'id': 'root'}));
+                    });
                 } else{
                     model = this.store.find(collectionName, params.context);
                 }
-                routeData.object = model;
-                /**
-                 * Раскрытие текущей ветки в дереве
-                 */
-                console.log(model);
-                this.controllerFor('treeControl').set('activeContext', model);
-                /**
-                 * Мета информация для action
-                 */
-                var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/' + this.modelFor('component').get('collection')  + '/' + transition.params.action.action;
-                if(transition.params.action.action === 'form'){
-                    return Ember.$.get(actionResource).then(function(results){
-                        var viewSettings = {};
-                        viewSettings[transition.params.action.action] = results.result[transition.params.action.action];
-                        routeData.viewSettings = viewSettings;
-                        return routeData;
-                    }, function(error){
-                        throw new Error('Не получена мета информация для action form ' + actionResource + '.' + error);
-                    });
-                }
-                // Временное решение для таблицы
-                if(transition.params.action.action === 'children'){
-                    return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
-                        routeData.viewSettings = results.settings;
-                        return routeData;
-                    });
-                }
-                return routeData;
+                return model.then(function(model){
+                    routeData.object = model;
+                    /**
+                     * Раскрытие текущей ветки в дереве
+                     */
+                    self.controllerFor('treeControl').set('activeContext', model);
+                    /**
+                     * Мета информация для action
+                     */
+                    var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/'  + transition.params.action.action + '/' + self.modelFor('component').get('collection') + '/' + model.get('type') + '/edit';
+                    if(transition.params.action.action === 'form'){
+                        return Ember.$.get(actionResource).then(function(results){
+                            var viewSettings = {};
+                            viewSettings[transition.params.action.action] = results.result[transition.params.action.action];
+                            routeData.viewSettings = viewSettings;
+                            return routeData;
+                        }, function(error){
+                            throw new Error('Не получена мета информация для action form ' + actionResource + '.' + error);
+                        });
+                    }
+                    // Временное решение для таблицы
+                    if(transition.params.action.action === 'children'){
+                        return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
+                            routeData.viewSettings = results.settings;
+                            return routeData;
+                        });
+                    }
+                    return routeData;
+                });
             },
             serialize: function(routeData){
                 if(routeData.object){
@@ -281,14 +324,50 @@ define([], function(){
             },
             renderTemplate: function(){
                 var templateType = this.modelFor('action').get('name');
-                console.log(templateType);
                 this.render(templateType);
+            },
+            actions: {
+                /**
+                 Метод вызывается при уходе с роута.
+                 @event willTransition
+                 @param {Object} transition
+                 */
+                willTransition: function(transition){
+                    var model = this.modelFor('context').object;
+
+                    if(model.get('isDirty')){
+                        transition.abort();
+                        var data = {
+                            'close': false,
+                            'title': 'Изменения не были сохранены.',
+                            'content': 'Переход на другую страницу вызовет потерю несохраненых изменений. Остаться на странице чтобы сохранить изменения?',
+                            'confirm': 'Остаться на странице',
+                            'reject': 'Продолжить без сохранения'
+                        };
+                        return UMI.dialog.open(data).then(
+                            function(){/*При положительном ответе делать ничего не нужно*/ },
+                            function(){
+                                model.rollback();
+                                transition.retry();
+                            }
+                        );
+                    }
+                }
             }
         });
 
         UMI.SearchRoute = Ember.Route.extend({
             model: function(params){
-                console.log(params);
+                //console.log(params);
+            }
+        });
+
+        UMI.SiteRoute = Ember.Route.extend({
+            beforeModel: function(transition){
+                var url = '//' + window.location.host + '/' + transition.params.site.link.replace(/^..\//g, '');
+                var tab = window.open(url, '_blank');
+                tab.focus();
+                transition.abort();
             }
         });
     };

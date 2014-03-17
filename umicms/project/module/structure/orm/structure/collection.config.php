@@ -7,6 +7,7 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
+use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
@@ -16,7 +17,7 @@ return [
     ],
     'forms' => [
         'base' => [
-            'edit' => '{#lazy:~/project/module/structure/orm/structure/form/base.edit.config.php}'
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/orm/structure/form/base.edit.config.php}'
         ]
     ]
 ];
