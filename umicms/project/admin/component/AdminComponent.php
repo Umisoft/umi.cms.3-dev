@@ -38,7 +38,7 @@ class AdminComponent extends BaseComponent
     /**
      * Контроллер для выполнения CRUD-операций над списком объектом
      */
-    const LIST_CONTROLLER = 'item';
+    const LIST_CONTROLLER = 'list';
 
     /**
      * Возвращает информацию о контролах компонента.
