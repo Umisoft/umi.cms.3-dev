@@ -7,11 +7,17 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
+use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
     'handlers' => [
         'admin' => 'news.item',
         'site' => 'news.item'
+    ],
+    'forms' => [
+        'base' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/news/orm/item/form/base.edit.config.php}'
+        ]
     ]
 ];

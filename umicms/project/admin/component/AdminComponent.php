@@ -17,5 +17,34 @@ use umicms\hmvc\component\BaseComponent;
 class AdminComponent extends BaseComponent
 {
 
+    /**
+     * Возвращает информацию о компоненте и дочерних компонентах на всю глубину.
+     * @return array
+     */
+    public function getComponentInfo()
+    {
+        $componentInfo = [
+            'name'        => $this->getName(),
+            'displayName' => $this->translate($this->getName() . ':displayName'),
+            'path'        => $this->getPath()
+        ];
+
+        $components = [];
+
+        foreach ($this->getChildComponentNames() as $componentName) {
+            /**
+             * @var AdminComponent $component
+             */
+            $component = $this->getChildComponent($componentName);
+            $components[] = $component->getComponentInfo();
+        }
+
+        if ($components) {
+            $componentInfo['components'] = $components;
+        }
+
+        return $componentInfo;
+    }
+
 }
  

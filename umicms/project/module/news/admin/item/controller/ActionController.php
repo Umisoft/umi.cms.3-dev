@@ -9,8 +9,11 @@
 
 namespace umicms\project\module\news\admin\item\controller;
 
+use umi\hmvc\exception\http\HttpException;
+use umi\http\Response;
 use umicms\orm\object\IRecyclableObject;
 use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\admin\api\controller\TCollectionFormAction;
 use umicms\project\module\news\api\NewsApi;
 
 /**
@@ -18,6 +21,8 @@ use umicms\project\module\news\api\NewsApi;
  */
 class ActionController extends BaseRestActionController
 {
+    use TCollectionFormAction;
+
     /**
      * @var NewsApi $api
      */
@@ -37,7 +42,7 @@ class ActionController extends BaseRestActionController
      */
     protected function getQueryActions()
     {
-        return ['settings'];
+        return ['settings', 'form'];
     }
 
     /**
@@ -46,6 +51,18 @@ class ActionController extends BaseRestActionController
     protected function getModifyActions()
     {
         return ['trash', 'untrash', 'emptyTrash'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getCollection($collectionName)
+    {
+        if ($collectionName != $this->api->news()->collectionName) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
+        }
+
+        return $this->api->news()->getCollection();
     }
 
     /**

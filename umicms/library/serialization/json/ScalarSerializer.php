@@ -30,10 +30,6 @@ class ScalarSerializer extends BaseSerializer
             ));
         }
 
-        if (is_bool($scalar)) {
-            $scalar = (int) $scalar;
-        }
-
         $this->writeRaw($scalar);
     }
 }

@@ -23,6 +23,11 @@ interface ICmsCollection extends ICollection, IFormAware
 {
 
     /**
+     * Имя формы для редактирования объектов по умолчанию
+     */
+    const FORM_EDIT = 'edit';
+
+    /**
      * Возвращает форму для типа объектов коллекции.
      * @param string $typeName имя типа
      * @param string $formName имя формы

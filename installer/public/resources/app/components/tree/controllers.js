@@ -39,7 +39,7 @@ define(['App'], function(UMI){
                             return this.get('children.length');
                         }.property('children.length')
                     });
-                    var nodes = this.store.find(root.get('type'), {'filters[parent]': 'null()', 'fields': 'displayName,order,active,childCount,children,parent'});
+                    var nodes = this.store.find(root.get('type'), {'filters[parent]': 'null()'/*, 'fields': 'displayName,order,active,childCount,children,parent'*/});
                     var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                         content: nodes,
                         sortProperties: ['order', 'id'],
@@ -115,6 +115,7 @@ define(['App'], function(UMI){
                     resource = [window.UmiSettings.baseApiURL];
                     resource.push(self.get('routeParams').module.module);
                     resource.push(self.get('routeParams').component.component);
+                    resource.push('collection');
                     resource.push(type);
                     resource.push('move');
                     resource = resource.join('/');

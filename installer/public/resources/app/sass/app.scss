@@ -2,7 +2,7 @@
 @import "_settings";
 //@import "foundation";
 //Переделаываем компоненты Foundation
-@import "foundationOverridden/_global";
+@import "foundationOverridden/_global";// Для чего переопределен global?
 @import "foundationOverridden/_type";
 @import "foundationOverridden/_top-bar";
 @import "foundationOverridden/_offcanvas";
@@ -44,8 +44,8 @@
 //@import "foundation/components/_visibility";
 //Добавляем стили
 @import "_snippets";
+@import "_grid";
 @import "_button";
-@import "foundationOverridden/_forms";
 @import "_icons";
 @import "_login";
 @import "_skeleton";
@@ -53,12 +53,14 @@
 @import "_dock";
 @import "_tree";
 @import "_tableControl";
-@import "_formControl";
+@import "_forms";
+@import "_maggelan";
 @import "_dropdown";
 @import "_elements";
 @import "_datepicker";
 @import "_popup";
-
+@import "_alert-boxes";
+@import "_dialog";
 //Перебиваем стили сторонних модулей
 @import "antiVendor/_iScroll";
 @import "antiVendor/_ckEditor";

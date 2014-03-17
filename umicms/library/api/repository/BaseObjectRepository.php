@@ -29,7 +29,7 @@ abstract class BaseObjectRepository implements ICollectionManagerAware, ILocaliz
     /**
      * @var string $collectionName имя коллекции
      */
-    protected $collectionName;
+    public $collectionName;
 
     /**
      * Возвращает коллекцию с которой связан репозиторий.

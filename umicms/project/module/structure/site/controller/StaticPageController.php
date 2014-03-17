@@ -10,9 +10,7 @@
 namespace umicms\project\module\structure\site\controller;
 
 use umicms\project\site\controller\SitePageController;
-use umicms\exception\RuntimeException;
 use umicms\project\module\structure\api\StructureApi;
-use umicms\project\module\structure\object\StaticPage;
 
 /**
  * Контроллер для вывода простой страницы.
