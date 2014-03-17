@@ -27,6 +27,8 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/dbal/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/orm/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/form/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/filter/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/validation/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/authentication/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/stemming/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/api/toolbox/config.php'),
