@@ -67,21 +67,14 @@
             {{/each}}
         {{else}}
             <fieldset>
-                {{#each model.viewSettings.form}}
-                    <div class="row">
-                        <div class="large-12 columns">
-                            <label>
-                                <span style="margin-bottom: 5px; display: inline-block;">{{title}}</span>
-                                {{view "field" objectBinding="object" metaBinding="this"}}
-                            </label>
-                        </div>
-                    </div>
-                {{/each}}
                 <div class="row">
-                    <div class="large-12 columns">
+                    {{#each model.viewSettings.form}}
+                        {{view "field" objectBinding="object" metaBinding="this"}}
+                    {{/each}}
+                    <!--<div class="large-12 columns">
                         <a href="#" class="umi-show-popup">Попап</a>
-                    </div>
-                <div>
+                    </div>-->
+                </div>
             </fieldset>
         {{/if}}
     {{/with}}
@@ -135,104 +128,91 @@
                 <input type="text" placeholder="Добавить пользователя"/>
             </div>
         </div>
-
-        <div class="umi-form-tab-content">
-            <div class="umi-dropdown-row">
-                <div class="umi-dropdown-row-text" style="padding: 7px 10px;"><i class="icon icon-user"></i></div>
-                <div class="right">
-                    <div><i class="icon icon-key black"></i></div>
-                    <div><i class="icon icon-key white"></i></div>
-                    <div><i class="icon icon-key black"></i></div>
-                    <div><i class="icon icon-key white"></i></div>
-                    <div><i class="icon icon-key"></i></div>
-                </div>
-            </div>
-            <div class="umi-dropdown-row">
-                <div class="umi-dropdown-row-text">Виталий</div>
-                <div class="right">
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox"/></div>
-                </div>
-            </div>
-            <div class="umi-dropdown-row">
-                <div class="umi-dropdown-row-text">Кирилл</div>
-                <div class="right">
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox"/></div>
-                </div>
-            </div>
-            <div class="umi-dropdown-row">
-                <div class="umi-dropdown-row-text">Семён</div>
-                <div class="right">
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox"/></div>
-                </div>
-            </div>
-            <div class="umi-dropdown-row">
-                <input type="text" placeholder="Добавить пользователя"/>
-            </div>
-        </div>
     </div>
 
     <div class="umi-form-tabs">
-        <a href="#" class="umi-form-save-button" {{action 'save' model.object target="view"}}>Сохранить</a>
-        <a href="#" class="umi-form-tab"><i class="icon icon-pause"></i></a>
-        <a href="#" class="umi-form-tab"><i class="icon icon-6"></i></a>
-        <a href="#" class="button secondary s-margin-clear"><i class="icon icon-delete"></i></a>
+        <div class="umi-form-save-button" {{action 'save' model.object target="view"}}>Сохранить</div>
+        <div class="umi-form-tab"><i class="icon icon-pause"></i></div>
+        <div class="umi-form-tab"><i class="icon icon-6"></i></div>
+        <div class="button secondary s-margin-clear"><i class="icon icon-delete"></i></div>
     </div>
 
 </div>
 
-
-
-
-<!-- Попап -->
 <script type="text/x-handlebars" id="umi-popup">
-    <div class="umi-popup" style="padding-bottom: 35px;">
-        <div style="float: left; width: 100%; height: 30px; border-bottom: 1px solid #DDE3E6;">
-            <a href="#" class="umi-popup-close-button" style="float: right;"><i class="icon icon-delete" style="margin: 5px 10px;"></i></a>
-        </div>
-        <div id="elfinder" style="float: left;"></div>
+    <div class="umi-popup">
+        <div id="elfinder"></div>
     </div>
 </script>
 
 <script>
-    $('.umi-show-popup').click(function(){
-        if($('html').hasClass('cssfilters')){
-            console.log('blur');
-            $('.umi-main-view').addClass('umi-blur');
-            $('body').append('<div class="umi-overlay"></div>');
-        }else{
-            console.log('white');
-            $('body').append('<div class="umi-overlay-white"></div>');
-        }
+//    $('.umi-show-popup').click(function(){
+//        if($('html').hasClass('cssfilters')){
+//            console.log('blur');
+//            $('.umi-main-view').addClass('umi-blur');
+//            $('body').append('<div class="umi-overlay"></div>');
+//        }else{
+//            console.log('white');
+//            $('body').append('<div class="umi-overlay-white"></div>');
+//        }
+//
+//        $('body').append(document.querySelector('#umi-popup').innerHTML);
+//        var x = $(window).width()/2 - 300;
+//        var y = $(window).height()/2 - 250;
+//        $('.umi-popup').offset({left:x, top:y});
+//
+//        $().ready(function(){
+//            var elf = $('#elfinder').elfinder({
+//                url : '/resources/libs/elfinder/php/connector.php'  // connector URL (REQUIRED)
+//                // lang: 'ru',             // language (OPTIONAL)
+//            }).elfinder('instance');
+//        });
+//
+//        $('body').on('mousedown', function(event){
+//            $('.umi-main-view').removeClass('umi-blur');
+//            $('.umi-overlay').remove();
+//            $('.umi-overlay-white').remove();
+//            $('.umi-popup').remove();
+//        });
+//
+//        $('body').on('.umi-popup', 'mousedown', function(event){
+//            //        console.log('close');
+//            event.stopImmediatePropagation();
+//        });
+//    });
+</script>
 
-        $('body').append(document.querySelector('#umi-popup').innerHTML);
-        var x = $(window).width()/2 - 300;
-        var y = $(window).height()/2 - 250;
-        $('.umi-popup').offset({left:x, top:y});
+<script>
+    //Функция вызывается после выполнения всего didInsertelement
+    //TODO Добавить родителя для form минуя metamorph
+    //    setTimeout(function(){
+    //        var formControlScroll = new IScroll('.umi-table-control-content-center', {
+    //            scrollX: true,
+    //            probeType: 3,
+    //            mouseWheel: true,
+    //            scrollbars: true,
+    //            bounce: false,
+    //            click: false,
+    //            freeScroll: false,
+    //            keyBindings: true,
+    //            interactiveScrollbars: true
+    //        });
+    //    }, 0);
 
-        $().ready(function(){
-            var elf = $('#elfinder').elfinder({
-                url : '/resources/libs/elfinder/php/connector.php'  // connector URL (REQUIRED)
-                // lang: 'ru',             // language (OPTIONAL)
-            }).elfinder('instance');
-        });
+    $('.umi-form-tab').mousedown(function(event){
+        event.stopPropagation();
+        $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
+        $(this).addClass('active');
 
-        $('.umi-popup-close-button').on('mousedown', function(event){
-            $('.umi-main-view').removeClass('umi-blur');
-            $('.umi-overlay').remove();
-            $('.umi-overlay-white').remove();
-            $('.umi-popup').remove();
-        });
+        var i = $(this).index('.umi-form-drop-up .umi-form-tab');
+        $('.umi-form-tab-content').eq(i).addClass('active');
+    });
+
+    $('html').on('mousedown', function(event){
+        $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
+    });
+
+    $('.umi-form-tabs-content').mousedown(function(event){
+        event.stopPropagation();
     });
 </script>

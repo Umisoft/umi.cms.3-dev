@@ -11,41 +11,9 @@ define(['App'], function(UMI){
             classNames: ['umi-dock'],
             didInsertElement: function(){
                 var self = this;
-                var moduleImages = [];
-                var promiseImages = [];
                 var dock = self.$().find('.dock')[0];
-                /**
-                 * Метод загружает изображения формируя массив promise
-                 * */
-                var imageLoad = function(src){
-                    var deferred = Ember.RSVP.defer();
-                    promiseImages.push(deferred.promise);
-                    var image = document.createElement('img');
-                    image.onload = function(){
-                        this.parentNode.removeChild(this);
-                        deferred.resolve('loaded');
-                    };
-                    image.src = src;
-                    document.body.appendChild(image);
-                };
-
-                this.get('childViews').filter(function(view){
-                    var icon = view.get('icon');
-                    if(icon){
-                        moduleImages.push(icon);
-                    }
-                });
-
-                for(var i = 0; i < moduleImages.length; i++){
-                    imageLoad(moduleImages[i]);
-                }
-                Ember.RSVP.all(promiseImages).then(
-                    function(){
-                        dock.style.left = (dock.parentNode.offsetWidth - dock.offsetWidth) / 2 + 'px';
-                        $(dock).addClass('active');
-                    }
-                );
-
+                dock.style.left = (dock.parentNode.offsetWidth - dock.offsetWidth) / 2 + 'px';
+                $(dock).addClass('active');
                 if(!dock.style.marginLeft){
                     dock.style.marginLeft = 0;
                 }
@@ -108,7 +76,6 @@ define(['App'], function(UMI){
                     }});
                 };
                 if(!event.relatedTarget){
-                    //TODO: Add unbind event for body
                     $(document.body).bind('mouseover', function(e){
                         if($(dock).hasClass('full') && !($(e.target).closest('.dock')).size()){
                             leaveDock(dock);
@@ -118,32 +85,37 @@ define(['App'], function(UMI){
                     return;
                 }
                 leaveDock(dock);
-                var content = self.get('controller.content');
-                content.findBy('isActive', true).set('isActive', false);
-                var activeModule = self.get('controller.activeModule');
-                content.findBy('name', activeModule).set('isActive', true);
             }
         });
 
+        var dropDownTimeout;
         UMI.DockModuleButtonView = Ember.View.extend({
             tagName: 'li',
-            classNames: ['umi-dock-button'],
-            classNameBindings: ['active'],
+            classNames: ['umi-dock-button', 'dropdown'],
+            classNameBindings: ['active', 'open'],
+            open: false,
             active: function(){
-                return this.get('model.isActive');
-            }.property('model.isActive'),
+                return this.get('model.name') === this.get('controller.activeModule.name');
+            }.property('controller.activeModule'),
             icon: function(){
                 return '/resources/modules/' + this.get('model.name') + '/icon.svg';
             }.property('model.name'),
             mouseEnter: function(){
                 var dock = this.$().closest('.dock');
                 var $el = this.$();
+                var self = this;
+                dropDownTimeout = setTimeout(
+                    function(){
+                        self.set('open', true);
+                    }, 380
+                );
+
                 if(!expanded){
                     expanded = true;
                     move.proccess = false;
                     var posBegin = $el.position().left + $el[0].offsetWidth / 2 + (parseInt(dock[0].style.marginLeft, 10) || 0);
 
-                    $($el[0].parentNode).find('img').stop().animate({height: 48, margin: '6px 36px 28px'}, {
+                    $($el[0].parentNode).find('img').stop().animate({height: 48, margin: '8px 36px 28px'}, {
                         duration: 280,
                         step: function(n, o){
                             if(this.parentNode.parentNode === $el[0]){
@@ -156,24 +128,14 @@ define(['App'], function(UMI){
                         }
                     });
                 }
-                var setActive = function(self){
-                    if(!self.get('active')){
-                        self.get('parentView.controller.content').findBy('isActive', true).set('isActive', false);
-                    }
-                    self.get('model').set('isActive', true);
-                };
-                var self = this;
-                setActive(self);
+            },
+            mouseLeave: function(){
+                var $el = this.$();
+                if(dropDownTimeout){
+                    clearInterval(dropDownTimeout);
+                }
+                this.set('open', false);
             }
-        });
-
-        UMI.DockComponentsGroupView = Ember.View.extend({
-            tagName: 'nav',
-            classNames: ['components-nav'],
-            classNameBindings: ['active'],
-            active: function(){
-                return this.get('content.isActive');
-            }.property('content.isActive')
         });
     };
 });

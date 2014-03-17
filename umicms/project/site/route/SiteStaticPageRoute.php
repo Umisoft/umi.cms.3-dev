@@ -11,7 +11,6 @@ namespace umicms\project\site\route;
 
 use umi\orm\exception\NonexistentEntityException;
 use umi\orm\metadata\field\special\UriField;
-use umi\orm\object\IHierarchicObject;
 use umi\route\type\BaseRoute;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\project\site\callstack\IPageCallStackAware;
@@ -23,7 +22,7 @@ use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\StructureElement;
 
 /**
- * Правила роутинга для сайта.
+ * Правила маршрутизации статичных страниц для сайта.
  */
 class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware, IPageCallStackAware
 {

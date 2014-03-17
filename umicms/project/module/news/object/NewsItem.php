@@ -41,4 +41,3 @@ class NewsItem extends CmsObject implements ICmsPage
      */
     const FIELD_ANNOUNCEMENT = 'announcement';
 }
- 

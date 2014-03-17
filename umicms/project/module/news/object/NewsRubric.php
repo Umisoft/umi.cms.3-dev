@@ -25,4 +25,3 @@ class NewsRubric extends CmsHierarchicObject implements ICmsPage
      */
     const FIELD_NEWS = 'news';
 }
- 

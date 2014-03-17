@@ -8,6 +8,8 @@ define(
         'tree',
         'form',
         'search',
+        'notification',
+        'dialog',
         'popup',
         'chartControl',
         'DS'

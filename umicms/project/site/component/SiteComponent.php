@@ -14,7 +14,6 @@ use umi\http\Request;
 use umicms\hmvc\component\BaseComponent;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\api\StructureApi;
-use umicms\project\module\structure\object\StructureElement;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
 

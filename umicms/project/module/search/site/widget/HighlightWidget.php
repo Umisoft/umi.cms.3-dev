@@ -11,7 +11,6 @@ namespace umicms\project\module\search\site\widget;
 
 use umi\http\THttpAware;
 use umicms\hmvc\widget\BaseWidget;
-use umicms\project\module\news\api\NewsPublicApi;
 use umicms\project\module\search\api\SearchApi;
 
 /**
@@ -47,7 +46,7 @@ class HighlightWidget extends BaseWidget
     public $highlightEnd = '</mark>';
 
     /**
-     * @var NewsPublicApi $api API модуля "Поиск"
+     * @var SearchApi $api API модуля "Поиск"
      */
     protected $api;
 

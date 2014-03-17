@@ -48,45 +48,39 @@ return [
 
     AdminComponent::OPTION_ROUTES      => [
 
-        'settings' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route'    => '/settings',
+        'action' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/action/{action}',
             'defaults' => [
-                'action' => 'settings',
                 'controller' => 'action'
             ],
-        ],
-
-        'item' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{collection}/{id:integer}',
-            'defaults' => [
-                'collection' => 'newsItem',
-                'controller' => 'item'
-            ],
             'subroutes' => [
-                'action' => [
+                'form' => [
                     'type'     => IRouteFactory::ROUTE_SIMPLE,
-                    'route'    => '/{action}',
+                    'route'    => '/{collection}/{type}/{form}',
                     'defaults' => [
                         'controller' => 'action'
                     ]
-                ]
+                ],
             ]
         ],
-        'list' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/{collection}',
-            'defaults' => [
-                'collection' => 'newsItem',
-                'controller' => 'list'
-            ],
+
+        'collection' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route'    => '/collection',
             'subroutes' => [
-                'action' => [
+                'item' => [
                     'type'     => IRouteFactory::ROUTE_SIMPLE,
-                    'route'    => '/{action}',
+                    'route'    => '/{collection}/{id:integer}',
                     'defaults' => [
-                        'controller' => 'action'
+                        'controller' => 'item'
+                    ]
+                ],
+                'list' => [
+                    'type'     => IRouteFactory::ROUTE_SIMPLE,
+                    'route'    => '/{collection}',
+                    'defaults' => [
+                        'controller' => 'list'
                     ]
                 ]
             ]

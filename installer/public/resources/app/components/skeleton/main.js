@@ -11,6 +11,9 @@ define(
     function(DS, Modernizr, templates, models, router, controller, views){
         'use strict';
 
+        var moment = require('moment');
+        moment.lang('ru');
+
         //Проверка браузера на мобильность
         window.mobileDetection = {
             Android: function(){
@@ -172,6 +175,34 @@ define(
                 var meta = owner.constructor.metaForProperty(name);
                 var link = owner._data.links[meta.key];
                 store.findHasMany(owner, link, meta, resolver);
+            }
+        });
+
+        /**
+         * DS.attr('raw')
+         * @type {*|void|Object}
+         */
+        UMI.RawTransform = DS.Transform.extend({
+            serialize: function(deserialized){
+                return deserialized;
+            },
+            deserialize: function(serialized){
+                return serialized;
+            }
+        });
+
+        /**
+         * DS.attr('date')
+         * @type {*|void|Object}
+         */
+        UMI.DateTransform = DS.Transform.extend({
+            serialize: function(deserialized){
+                deserialized.date = moment(deserialized.date).format('YYYY-MM-DD h:mm:ss');
+                return deserialized;
+            },
+            deserialize: function(serialized){
+                serialized.date = moment(serialized.date).format('DD/MM/YYYY');
+                return serialized;
             }
         });
 

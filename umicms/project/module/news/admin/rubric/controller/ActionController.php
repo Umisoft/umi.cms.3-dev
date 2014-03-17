@@ -12,25 +12,28 @@ namespace umicms\project\module\news\admin\rubric\controller;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umi\orm\object\IObject;
+use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\module\news\api\NewsPublicApi;
+use umicms\project\admin\api\controller\TCollectionFormAction;
+use umicms\project\module\news\api\NewsApi;
 
 /**
  * Контроллер операций.
  */
 class ActionController extends BaseRestActionController
 {
+    use TCollectionFormAction;
 
     /**
-     * @var NewsPublicApi $api
+     * @var NewsApi $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param NewsPublicApi $api
+     * @param NewsApi $api
      */
-    public function __construct(NewsPublicApi $api)
+    public function __construct(NewsApi $api)
     {
         $this->api = $api;
     }
@@ -48,16 +51,19 @@ class ActionController extends BaseRestActionController
      */
     protected function getModifyActions()
     {
-        return ['move'];
+        return ['move', 'trash', 'untrash', 'emptyTrash'];
     }
 
     /**
-     * Возвращает форму.
+     * {@inheritdoc}
      */
-    protected function actionForm()
+    protected function getCollection($collectionName)
     {
-        // TODO: add form
-        return $this->api->rubric()->getCollection()->getMetadata()->getBaseType();
+        if ($collectionName != $this->api->rubric()->collectionName) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
+        }
+
+        return $this->api->rubric()->getCollection();
     }
 
     protected function actionMove()
@@ -85,11 +91,33 @@ class ActionController extends BaseRestActionController
             $previousSibling = null;
         }
 
-        $this->api->rubric()->getCollection()->move($object, $branch, $previousSibling);
+        $this->api->rubric()->move($object, $branch, $previousSibling);
 
         return '';
     }
 
+    public function actionTrash()
+    {
+        $object = $this->api->rubric()->getById($this->getQueryVar('id'));
+        $this->api->news()->trash($object);
+        $this->getObjectPersister()->commit();
 
+        return '';
+    }
+
+    public function actionUntrash()
+    {
+        $object = $this->api->rubric()->getById($this->getQueryVar('id'));
+        $this->api->news()->untrash($object);
+        $this->getObjectPersister()->commit();
+
+        return '';
+    }
+
+    public function actionEmptyTrash()
+    {
+        $this->api->rubric()->emptyTrash();
+
+        return '';
+    }
 }
- 

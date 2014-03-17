@@ -9,6 +9,7 @@
         "foundation": "~5.0.2",
         "ckeditor": "#stable/full",
         "qunit": "latest",
+        "momentjs": "latest",
         "chartjs": "latest"
     }
 }

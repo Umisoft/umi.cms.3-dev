@@ -3,22 +3,36 @@
     background-repeat: repeat-x;
     background-color: darken($color-end, 1%);
     transition: background-position 0.1s linear;
-//    &:hover, &:focus{
-//        background-position-y: - $button-med*2;
-//        background-color: darken($color-end, 1%);
-//    }
+    &:hover, &:focus{
+        background-position-y: - $button-med*2;
+        background-color: darken($color-end, 1%);
+    }
     &:focus{
         background-color: darken($color-end, 2%);
     }
 }
 
 .button, button{
-    // TODO: Подумать над кнопками
+    border: 1px solid;
     @include button-bg-gradient(#3aadff, #0087d4);
     vertical-align: top;
     &.secondary{
-        // Временное решение
-        @include button-bg-gradient(#ffffff, #ffffff);
+        @include button-bg-gradient(#FDFDFD, #F5F5F5);
+    }
+    &.success{
+        @include button-bg-gradient($success-color, darken($success-color, 10%));
+    }
+    &.alert{
+        @include button-bg-gradient($alert-color, darken($alert-color, 10%));
+    }
+    &.white{
+        @include button($padding: $button-med, $bg: #FFF);
+        @include button-bg-gradient(#FFF, #FFF);
+    }
+    &.flat{
+        background: none;
+        border-color: transparent;
+        color: $button-font-color-alt;
     }
     &.wide{
         padding-left: rem-calc(40);
@@ -45,17 +59,46 @@
             padding-right: $button-tny;
         }
     }
-    // Может быть secondary будет белой? Я не видел до сих пор на макете серой кнопки
-    &.flat{
-        background: none;
-        color: $button-font-color-alt;
-    }
-
-    &.white{
-        @include button-bg-gradient(#F5F6F7, #F7F8F9);
-        color: #535E6D;
-    }
     .icon{
         vertical-align: middle;
+    }
+    &.loading{
+        animation: animate-bg-primary 2s linear infinite;
+        position: relative;
+        background-position-y: 0;
+        transition: none;
+        opacity: 1;
+        &:before{
+            position: absolute;
+            content: "";
+            width: 20px;
+            height: 20px;
+            line-height: 16px;
+            left: 10px;
+            top: 50%;
+            margin-top: -10px;
+            background: url("img/animate/loader-20.gif") center center no-repeat;
+        }
+    }
+    &:focus{
+        outline: none;
+    }
+    &.disabled{
+        &:hover{
+            background-position-y: 0;
+        }
+        background-position-y: 0;
+    }
+}
+
+@keyframes animate-bg-primary{
+    20%{
+        background: darken($primary-color, 5%);
+    }
+    50%{
+        background: darken($primary-color, 15%);
+    }
+    80%{
+        background: darken($primary-color, 5%);
     }
 }

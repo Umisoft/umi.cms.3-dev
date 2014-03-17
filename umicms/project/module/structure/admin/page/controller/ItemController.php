@@ -10,8 +10,10 @@
 namespace umicms\project\module\structure\admin\page\controller;
 
 use umicms\exception\RuntimeException;
-use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\object\IRecyclableObject;
+use umicms\project\admin\api\controller\BaseRestItemController;
+use umicms\project\admin\api\controller\TTrashController;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\StructureElement;
 
@@ -20,7 +22,6 @@ use umicms\project\module\structure\object\StructureElement;
  */
 class ItemController extends BaseRestItemController
 {
-
     /**
      * @var StructureApi $api
      */
@@ -82,5 +83,30 @@ class ItemController extends BaseRestItemController
             $this->getObjectPersister()->commit();
         }
     }
+
+    /**
+     * @param IRecyclableObject $object
+     */
+    public function actionTrash(IRecyclableObject $object)
+    {
+        $this->api->element()->trash($object);
+        $this->getObjectPersister()->commit();
+    }
+
+    /**
+     * @param IRecyclableObject $object
+     */
+    public function actionUntrash(IRecyclableObject $object)
+    {
+        $this->api->element()->untrash($object);
+        $this->getObjectPersister()->commit();
+    }
+
+    /**
+     *
+     */
+    public function actionEmptyTrash()
+    {
+        $this->api->element()->emptyTrash();
+    }
 }
- 

@@ -8,6 +8,7 @@
 
 namespace umicms\project\admin\controller;
 
+use umi\hmvc\dispatcher\IDispatchContext;
 use umi\http\Response;
 use umicms\hmvc\controller\BaseController;
 use umicms\project\module\users\api\UsersApi;
@@ -51,6 +52,7 @@ class DefaultController extends BaseController
                 'contents' => $this->response->getContent(),
                 'baseUrl' => $this->getContext()->getBaseUrl(),
                 'baseApiUrl' => $this->getContext()->getBaseUrl() . $this->getComponent()->getRouter()->assemble('api'),
+                'baseSiteUrl' => $this->getBaseSiteUrl(),
                 'authenticated' => $this->api->isAuthenticated()
             ]
         );
@@ -59,6 +61,26 @@ class DefaultController extends BaseController
         $response->headers->replace($this->response->headers->all());
 
         return $response;
+    }
+
+    /**
+     * Возвращает базовый URL текущего сайта
+     * @return string
+     */
+    protected function getBaseSiteUrl()
+    {
+        $stack = clone($this->getContext()->getCallStack());
+
+        $siteBaseUrl = '';
+        /**
+         * @var IDispatchContext $context
+         */
+        foreach ($stack as $context) {
+            $siteBaseUrl = $context->getBaseUrl();
+        }
+
+        return $siteBaseUrl ?: '/';
+
     }
 
 }

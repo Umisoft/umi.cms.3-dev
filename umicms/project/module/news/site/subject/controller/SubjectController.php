@@ -10,7 +10,7 @@
 namespace umicms\project\module\news\site\subject\controller;
 
 use umicms\project\site\controller\SitePageController;
-use umicms\project\module\news\api\NewsPublicApi;
+use umicms\project\module\news\api\NewsApi;
 
 /**
  * Контроллер отображения новостного сюжета
@@ -18,11 +18,11 @@ use umicms\project\module\news\api\NewsPublicApi;
 class SubjectController extends SitePageController
 {
     /**
-     * @var NewsPublicApi $api
+     * @var NewsApi $api
      */
     protected $api;
 
-    public function __construct(NewsPublicApi $api)
+    public function __construct(NewsApi $api)
     {
         $this->api = $api;
     }

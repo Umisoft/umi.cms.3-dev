@@ -5,7 +5,6 @@ require.config({
         Modernizr: 'libs/modernizr/modernizr',
         text: 'libs/requirejs-text/text',
         jQuery: 'libs/jquery/jquery',
-        underscoreJs: 'libs/underscorejs/underscore-1.6.0',
         mouseWheel: 'libs/jquery-mousewheel/jquery.mousewheel',
         iscroll: 'libs/iscroll-probe-5.1.1',
         Handlebars: 'libs/handlebars/handlebars',
@@ -14,6 +13,7 @@ require.config({
         Foundation: 'deploy/foundation',
         ckEditor: 'libs/ckeditor/ckeditor',
         datepicker: 'libs/datepicker',
+        moment: 'libs/momentjs/min/moment-with-langs.min',
         App: 'app/components/skeleton/main',
         //jQueryUI: 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min'
         elFinder: 'deploy/elFinder',
@@ -27,10 +27,6 @@ require.config({
 
         jQuery: {
             exports: 'jQuery'
-        },
-
-        underscoreJs: {
-            exports: 'underscoreJs'
         },
 
         //Требует elFinder
@@ -86,6 +82,7 @@ require.config({
             name: 'tableControl',
             location: "app/components/tableControl"
         },
+
         {
             name: 'tree',
             location: "app/components/tree"
@@ -109,13 +106,21 @@ require.config({
         {
             name: 'popup',
             location: "app/components/popup"
+        },
+        {
+            name: 'notification',
+            location: "app/components/notification"
+        },
+        {
+            name: 'dialog',
+            location: "app/components/dialog"
         }
     ]
 });
 
 
 if(UmiSettings.login){
-    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder', 'datepicker', 'chartJs', 'underscoreJs'], function(application){
+    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder', 'datepicker', 'moment', 'chartJs'], function(application){
         "use strict";
         application();
     });

@@ -8,14 +8,13 @@
  */
 
 namespace umicms\serialization\json\orm;
-use umi\orm\collection\ICollection;
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\field\relation\BelongsToRelationField;
 use umi\orm\metadata\field\relation\HasManyRelationField;
 use umi\orm\metadata\field\relation\ManyToManyRelationField;
 use umi\orm\metadata\field\special\MaterializedPathField;
 use umi\orm\object\property\IProperty;
-use umicms\orm\collection\IApplicationHandlersAware;
+use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\serialization\json\BaseSerializer;
@@ -74,10 +73,10 @@ class CmsObjectSerializer extends BaseSerializer
                             $properties[$name] = (int) $value;
                         } else {
                             /**
-                             * @var ICollection|IApplicationHandlersAware $targetCollection
+                             * @var ICmsCollection $targetCollection
                              */
                             $targetCollection = $field->getTargetCollection();
-                            if ($targetCollection instanceof IApplicationHandlersAware && $targetCollection->hasHandler('admin')) {
+                            if ($targetCollection->hasHandler('admin')) {
                                 $links[$name] = $this->getCollectionLink($targetCollection, $targetCollection->getIdentifyField()->getName(), $value);
                             }
                         }
@@ -86,7 +85,7 @@ class CmsObjectSerializer extends BaseSerializer
                 }
                 case $field instanceof HasManyRelationField: {
                     $targetCollection = $field->getTargetCollection();
-                    if ($targetCollection instanceof IApplicationHandlersAware && $targetCollection->hasHandler('admin')) {
+                    if ($targetCollection->hasHandler('admin')) {
                         $links[$name] = $this->getCollectionLink($targetCollection, $field->getTargetFieldName(), $object->getId());
                     }
                     break;
@@ -95,7 +94,7 @@ class CmsObjectSerializer extends BaseSerializer
                     $targetCollection = $field->getTargetCollection();
                     $mirrorFieldName = $targetCollection->getMetadata()->getFieldByRelation($field->getTargetFieldName(), $field->getBridgeCollectionName())->getName();
 
-                    if ($targetCollection instanceof IApplicationHandlersAware && $targetCollection->hasHandler('admin')) {
+                    if ($targetCollection->hasHandler('admin')) {
                         $links[$name] = $this->getCollectionLink($targetCollection, $mirrorFieldName, $object->getId());
                     }
 
@@ -138,10 +137,10 @@ class CmsObjectSerializer extends BaseSerializer
     }
 
     //TODO переделать
-    protected function getCollectionLink(IApplicationHandlersAware $collection, $filterName, $filterValue)
+    protected function getCollectionLink(ICmsCollection $collection, $filterName, $filterValue)
     {
         $link = '/admin/api/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
-        $link .= '/' . $collection->getName() . '?' . http_build_query(['filters' => [$filterName => $filterValue]]);
+        $link .= '/collection/' . $collection->getName() . '?' . http_build_query(['filters' => [$filterName => $filterValue]]);
 
         return $link;
     }

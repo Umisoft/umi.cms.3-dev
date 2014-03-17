@@ -23,6 +23,4 @@ class Group extends CmsObject
      * Имя поля для хранения пользователей, входящих в группу
      */
     const FIELD_USERS = 'users';
-
 }
- 

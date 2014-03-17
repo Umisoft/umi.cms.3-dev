@@ -34,6 +34,26 @@ class FieldSerializer extends BaseSerializer
             'default' => $field->getDefaultValue()
         ];
 
+        if ($validatorsConfig = $field->getValidatorsConfig()) {
+            $info['validators'] = [];
+            foreach ($validatorsConfig as $validatorType => $validatorOptions) {
+                $info['validators'][] = [
+                    'type' => $validatorType,
+                    'options' => $validatorOptions
+                ];
+            }
+        }
+
+        if ($filtersConfig = $field->getFiltersConfig()) {
+            $info['filters'] = [];
+            foreach ($filtersConfig as $filterType => $filterOptions) {
+                $info['filters'][] = [
+                    'type' => $filterType,
+                    'options' => $filterOptions
+                ];
+            }
+        }
+
         if ($field instanceof IRelationField) {
             $info['targetCollection'] = $field->getTargetCollectionName();
         }

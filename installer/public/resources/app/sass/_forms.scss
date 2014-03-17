@@ -1,0 +1,359 @@
+//TODO: Убрать этот недостойный код
+.umi-component{
+    background: #f6f7f8;
+    > .columns{
+        position: static;
+    }
+}
+/*input[type="date"]{
+    height: 32px;
+    line-height: 32px;
+    padding: 0 10px;
+    border-radius: 2px;
+    font-size: 13px;
+}
+
+textarea{
+    border-radius: 2px;
+    font-size: 13px;
+    width: 400px;
+    transition: none;
+}
+*/
+form{
+    .input-icon{
+        position: relative;
+        top: em-calc(12);
+        margin-left: em-calc(6);
+        vertical-align: top;
+        display: block;
+        ~ input{
+            padding-left: em-calc(32);
+            margin-top: -15px;
+            &.collapse{
+                margin-bottom: 0;
+            }
+        }
+    }
+    fieldset{// Костыль пока в форме один fieldset
+        border-top:none;
+    }
+    input[type="checkbox"]{//Костыль: почему то в форме чекбокс не работает как надо
+        display: inline-block;
+        + label{
+            display: none;
+        }
+    }
+}
+
+fieldset{
+    border: none;
+    border-top: 2px dotted #C0C8CF;
+    padding: rem-calc(16 0 0);
+    margin: rem-calc(10 25 0);
+    position: relative;
+
+    &:last-of-type{
+        margin-bottom: rem-calc(25);
+    }
+}
+
+.umi-form-control-fieldset-toggle{
+    margin: -3px -21px;
+    position: absolute;
+    display: block;
+}
+
+.umi-form-control-content{
+    padding-bottom: 30px;
+}
+
+legend{
+    font-size: rem-calc(14);
+    color: #575E6C;
+    cursor: pointer;
+}
+
+label{
+    font-size: rem-calc(13);
+}
+
+.umi-form-label{
+    font-size: rem-calc(13);
+    display: inline-block;
+    margin-bottom: $form-label-bottom-margin;
+}
+
+select:focus{
+    box-shadow: 0 0 5px #999999;
+    outline: none;
+}
+
+//
+// Error style
+[data-abide]{
+    span.error, small.error{
+        position: absolute;
+        z-index: 2;
+        margin-top: 16px;
+        border: 1px solid darken($alert-color, 10%);
+        display: block;
+        visibility: hidden; // только для того чтобы работала анимация
+        transition: all 0.1s linear;
+        opacity: 0.2;
+        font-weight: normal;
+        &:before, &:after{
+            content: "";
+            border: 8px solid transparent;
+            border-bottom-color: darken($alert-color, 10%);
+            top: -15px;
+            left: 10px;
+            position: absolute;
+        }
+        &:after{
+            top: -11px;
+            left: 12px;
+            border-width: 6px;
+            border-bottom-color: $alert-color;
+        }
+    }
+    .error{
+        span.error, small.error{
+            margin-top: 8px;
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+// Правый нижний блок кнопок ---------------------------------------------
+.umi-dropdown-button{
+    position: relative;
+}
+
+.umi-dropdown{
+    position: absolute;
+    bottom: 34px;
+    right: 0;
+    width: 400px;
+    background: #FFFFFF;
+    font-size: 13px;
+    color: #6d7580;
+    box-shadow: 0 0 3px 3px #6d7580;
+}
+
+.umi-dropdown-row{
+    float: left;
+    width: 100%;
+    height: 34px;
+}
+
+.umi-dropdown-row .right div{
+    float: left;
+    padding: 9px 10px;
+}
+
+.umi-dropdown-row:nth-child(even){
+    background: #EEF7FC;
+}
+
+.umi-dropdown-row-text{
+    float: left;
+    padding: 0 10px;
+    line-height: 34px;
+}
+
+.umi-dropdown-row-right{
+    float: right;
+}
+
+.umi-dropdown-row-right div{
+    float: left;
+    width: 34px;
+}
+
+.umi-form-drop-up{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.umi-form-tabs-content{
+    margin-bottom: -1px;
+}
+
+.umi-form-tab-content{
+    display: none;
+    position: relative;
+    float: left;
+    width: 400px;
+    height: 190px;
+    background: #FFFFFF;
+    border: 1px solid #d8d5d6;
+    box-shadow: 0 0 5px 1px #6d7580;
+}
+
+.umi-form-tab-content.active{
+    display: block;
+}
+
+.umi-form-tabs{
+    float: right;
+    background: #FFFFFF;
+    box-shadow: 0 0 2px 1px #8A8A8A;
+}
+
+.umi-form-save-button{
+    float: left;
+    height: 32px;
+    padding: 0 30px;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 32px;
+    color: #FFFFFF;
+    text-shadow: 0 -1px 1px #1e73b3;
+    background: linear-gradient(to bottom, #35a9fc 0%, #0f8bd5 50%);
+    background: linear-gradient(top, #35a9fc 0%, #0f8bd5 50%);
+    cursor: pointer;
+}
+
+.umi-form-tab{
+    float: left;
+    padding: 6px 8px;
+    background: #FFFFFF;
+    cursor: pointer;
+}
+
+.umi-form-tab.active{
+    z-index: 2;
+    position: relative;
+    top: -2px;
+    padding: 8px 8px 4px;
+}
+
+.umi-form-tab.active:before{
+    content: "";
+    position: absolute;
+    display: block;
+    width: 6px;
+    height: 100%;
+    top: 2px;
+    left: -6px;
+    background: url(/resources/deploy/img/shadows/toLeftShadow.png);
+}
+
+.umi-form-tab.active:after{
+    content: "";
+    position: absolute;
+    display: block;
+    width: 6px;
+    height: 100%;
+    top: 2px;
+    right: -6px;
+    background: url(/resources/deploy/img/shadows/toRightShadow.png);
+}
+
+.umi-form-tab-content{
+    font-size: 13px;
+}
+
+.umi-form-tab-content input[type="text"]{
+    margin: 10px;
+    width: unquote("calc(100% - 20px)");
+}
+
+.umi-form-tab-content input[type="checkbox"]{
+    width: 20px;
+}
+
+// ------------------- Custom inputs ---------------------------------------------
+
+.umi-input-wrapper-date{
+    position: relative;
+    height: 32px;
+    border-radius: 2px;
+    font-size: 13px;
+    background: #FFFFFF;
+    border: 1px solid #d3d7da;
+    padding-right: 30px;
+    //     margin-right: 25px;
+    margin-bottom: rem-calc(16);
+    //     max-width: 400px;
+    input{ //TODO Костыльные стили переопределить нормальным образом для foundation
+        border: none!important;
+        box-shadow: none!important;
+        background: #FFFFFF!important;
+        &:hover{
+            border: none!important;
+            box-shadow: none!important;
+        }
+        &:active{
+            border: none!important;
+            box-shadow: none!important;
+            background: #FFFFFF!important;
+        }
+    }
+    i{
+        position: absolute;
+        top: 6px;
+        right: 8px;
+    }
+}
+
+.umi-input-wrapper-number{
+    position: relative;
+    height: 32px;
+    border-radius: 2px;
+    font-size: 13px;
+    background: #FFFFFF;
+    border: 1px solid #d3d7da;
+    padding-right: 30px;
+    margin-right: 25px;
+    max-width: 400px;
+    i{
+        position: absolute;
+        top: 6px;
+        right: 8px;
+    }
+}
+
+//Хак для Firefox input file на один пискел выше
+@-moz-document url-prefix() {
+    .umi-input-wrapper-file input{
+        position: relative;
+        top: -1px;
+    }
+}
+
+.umi-input-wrapper-file{
+    position: relative;
+    height: 32px;
+    border-radius: 2px;
+    font-size: 13px;
+    line-height: 32px;
+    background: #FFFFFF;
+    border: 1px solid #d3d7da;
+    padding: 0 30px 0 5px;
+    margin-right: 25px;
+    margin-bottom: rem-calc(16);
+    max-width: 400px;
+    input{ //TODO Костыльные стили переопределить нормальным образом для foundation
+        border: none!important;
+        box-shadow: none!important;
+        background: #FFFFFF!important;
+        &:hover{
+            border: none!important;
+            box-shadow: none!important;
+        }
+        &:active{
+            border: none!important;
+            box-shadow: none!important;
+            background: #FFFFFF!important;
+        }
+    }
+    i{
+        position: absolute;
+        top: 6px;
+        right: 8px;
+    }
+}
