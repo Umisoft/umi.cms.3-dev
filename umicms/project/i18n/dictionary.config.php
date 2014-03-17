@@ -10,6 +10,7 @@
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
+use umicms\orm\object\IRecyclableObject;
 
 return [
 
@@ -19,6 +20,15 @@ return [
         'project\admin\api\news\item' => '{#lazy:~/project/module/news/admin/item/i18n/dictionary.config.php}',
         'project\admin\api\news\rubric' => '{#lazy:~/project/module/news/admin/rubric/i18n/dictionary.config.php}',
         'project\admin\api\news\subject' => '{#lazy:~/project/module/news/admin/subject/i18n/dictionary.config.php}',
+
+        'project\admin\api\files' => '{#lazy:~/project/module/files/admin/i18n/dictionary.config.php}',
+        'project\admin\api\files\manager' => '{#lazy:~/project/module/files/admin/manager/i18n/dictionary.config.php}',
+
+        'project\admin\api\users' => '{#lazy:~/project/module/users/admin/i18n/dictionary.config.php}',
+        'project\admin\api\users\user' => '{#lazy:~/project/module/users/admin/user/i18n/dictionary.config.php}',
+
+        'project\admin\api\structure' => '{#lazy:~/project/module/structure/admin/i18n/dictionary.config.php}',
+        'project\admin\api\structure\page' => '{#lazy:~/project/module/structure/admin/page/i18n/dictionary.config.php}',
 
         'collection' => [
 
@@ -47,7 +57,9 @@ return [
                 ICmsPage::FIELD_PAGE_META_DESCRIPTION => 'Meta description',
                 ICmsPage::FIELD_PAGE_META_KEYWORDS => 'Meta keywords',
                 ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
-                ICmsPage::FIELD_PAGE_SLUG => 'Slug'
+                ICmsPage::FIELD_PAGE_SLUG => 'Slug',
+
+                IRecyclableObject::FIELD_TRASHED => 'Trashed'
             ],
 
             'ru-RU' => [
@@ -75,7 +87,9 @@ return [
                 ICmsPage::FIELD_PAGE_META_DESCRIPTION => 'Meta description',
                 ICmsPage::FIELD_PAGE_META_KEYWORDS => 'Meta keywords',
                 ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
-                ICmsPage::FIELD_PAGE_SLUG => 'Последняя часть ЧПУ'
+                ICmsPage::FIELD_PAGE_SLUG => 'Псевдостатический адрес',
+
+                IRecyclableObject::FIELD_TRASHED => 'В корзине'
             ]
         ],
 

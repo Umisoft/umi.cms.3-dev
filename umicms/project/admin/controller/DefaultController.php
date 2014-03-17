@@ -10,14 +10,18 @@ namespace umicms\project\admin\controller;
 
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\http\Response;
+use umi\i18n\ILocalesAware;
+use umi\i18n\TLocalesAware;
 use umicms\hmvc\controller\BaseController;
 use umicms\project\module\users\api\UsersApi;
 
 /**
  * Контроллер интерфейса административной панели.
  */
-class DefaultController extends BaseController
+class DefaultController extends BaseController implements ILocalesAware
 {
+
+    use TLocalesAware;
 
     /**
      * @var Response $response содержимое страницы
@@ -53,6 +57,7 @@ class DefaultController extends BaseController
                 'baseUrl' => $this->getContext()->getBaseUrl(),
                 'baseApiUrl' => $this->getContext()->getBaseUrl() . $this->getComponent()->getRouter()->assemble('api'),
                 'baseSiteUrl' => $this->getBaseSiteUrl(),
+                'locale' => $this->getCurrentLocale(),
                 'authenticated' => $this->api->isAuthenticated()
             ]
         );
