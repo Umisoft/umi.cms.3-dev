@@ -29,13 +29,13 @@ abstract class BaseRestActionController extends BaseRestController implements IO
      * Возвращает список доступных действий на запрос данных.
      * @return array
      */
-    abstract protected function getQueryActions();
+    abstract public function getQueryActions();
 
     /**
      * Возвращает список доступных действий на изменение данных.
      * @return array
      */
-    abstract protected function getModifyActions();
+    abstract public function getModifyActions();
 
     /**
      * {@inheritdoc}
@@ -82,7 +82,11 @@ abstract class BaseRestActionController extends BaseRestController implements IO
          */
         $component = $this->getComponent();
 
-        return $component->getSettings();
+        return [
+            AdminComponent::OPTION_CONTROLS => $component->getControlsInfo(),
+            AdminComponent::OPTION_INTERFACE => $component->getInterfaceInfo(),
+            'actions' => $component->getActionsInfo()
+        ];
     }
 
     /**

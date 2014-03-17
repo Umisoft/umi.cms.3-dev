@@ -41,7 +41,7 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    protected function getQueryActions()
+    public function getQueryActions()
     {
         return ['settings', 'form'];
     }
@@ -49,7 +49,7 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    protected function getModifyActions()
+    public function getModifyActions()
     {
         return ['move', 'trash', 'untrash', 'emptyTrash'];
     }

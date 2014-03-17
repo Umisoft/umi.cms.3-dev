@@ -36,7 +36,7 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    protected function getQueryActions()
+    public function getQueryActions()
     {
         return [];
     }
@@ -44,7 +44,7 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    protected function getModifyActions()
+    public function getModifyActions()
     {
         return ['login', 'logout', 'trash', 'untrash', 'emptyTrash'];
     }

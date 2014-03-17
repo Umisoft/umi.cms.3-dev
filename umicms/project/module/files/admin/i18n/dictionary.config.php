@@ -10,11 +10,11 @@
 return [
 
     'en-US' => [
-        'subject:component:displayName' => 'Subjects'
+        'files:component:displayName' => 'File system'
     ],
 
     'ru-RU' => [
-        'subject:component:displayName' => 'Новостные сюжеты'
+        'files:component:displayName' => 'Файловая система'
     ]
 
 ];

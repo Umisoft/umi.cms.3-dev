@@ -15,49 +15,36 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    AdminComponent::OPTION_SETTINGS => [
-        'controls' => [
-            [
-                'name' => 'tree',
-                'displayName' => 'Новостные рубрики',
+    AdminComponent::OPTION_CONTROLS => [
+        'tree' => [],
+        'children' => [],
+        'filter' => [],
+        'form' => [],
+    ],
+
+    AdminComponent::OPTION_INTERFACE => [
+        'emptyContext' => [
+            'tree' => [
+                'controls' => ['tree']
             ],
-            [
-                'name' => 'filter',
-                'displayName' => 'Фильтр'
-            ],
-            [
-                'name' => 'children',
-                'displayName' => 'Дочерние рубрики'
-            ],
-            [
-                'name' => 'form',
-                'displayName' => 'Редактирование'
+            'contents' => [
+                'controls' => ['filter', 'children']
             ]
         ],
-        'layout' => [
-            'emptyContext' => [
-                'tree' => [
-                    'controls' => ['tree']
-                ],
-                'contents' => [
-                    'controls' => ['filter', 'children']
-                ]
+        'selectedContext' => [
+            'tree' => [
+                'controls' => ['tree']
             ],
-            'selectedContext' => [
-                'tree' => [
-                    'controls' => ['tree']
-                ],
-                'contents' => [
-                    'controls' => ['form', 'children']
-                ]
+            'contents' => [
+                'controls' => ['form', 'children']
             ]
         ]
-     ],
+    ],
 
     AdminComponent::OPTION_CONTROLLERS => [
-        'list' => __NAMESPACE__ . '\controller\ListController',
-        'item' => __NAMESPACE__ . '\controller\ItemController',
-        'action' => __NAMESPACE__ . '\controller\ActionController'
+        AdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
+        AdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
+        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
     ],
 
     AdminComponent::OPTION_ROUTES      => [
@@ -66,14 +53,14 @@ return [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/action/{action}',
             'defaults' => [
-                'controller' => 'action'
+                'controller' => AdminComponent::ACTION_CONTROLLER
             ],
             'subroutes' => [
                 'form' => [
                     'type'     => IRouteFactory::ROUTE_SIMPLE,
                     'route'    => '/{collection}/{type}/{form}',
                     'defaults' => [
-                        'controller' => 'action'
+                        'controller' => AdminComponent::ACTION_CONTROLLER
                     ]
                 ],
             ]
@@ -87,14 +74,14 @@ return [
                     'type'     => IRouteFactory::ROUTE_SIMPLE,
                     'route'    => '/{collection}/{id:integer}',
                     'defaults' => [
-                        'controller' => 'item'
+                        'controller' => AdminComponent::ITEM_CONTROLLER
                     ]
                 ],
                 'list' => [
                     'type'     => IRouteFactory::ROUTE_SIMPLE,
                     'route'    => '/{collection}',
                     'defaults' => [
-                        'controller' => 'list'
+                        'controller' => AdminComponent::LIST_CONTROLLER
                     ]
                 ]
             ]

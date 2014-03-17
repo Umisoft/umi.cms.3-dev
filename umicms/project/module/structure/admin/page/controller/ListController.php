@@ -46,7 +46,7 @@ class ListController extends BaseRestListController
      */
     protected function getList()
     {
-        return $this->api->element()->select(false);
+        return $this->api->element()->select();
     }
 
     /**

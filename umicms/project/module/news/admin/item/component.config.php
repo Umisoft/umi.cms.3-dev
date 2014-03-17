@@ -15,35 +15,28 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    AdminComponent::OPTION_SETTINGS => [
-        'controls' => [
-            [
-                'name' => 'filter',
-                'displayName' => 'Новости'
-            ],
-            [
-                'name' => 'form',
-                'displayName' => 'Редактирование'
+    AdminComponent::OPTION_CONTROLS => [
+        'filter' => [],
+        'form' => [],
+    ],
+
+    AdminComponent::OPTION_INTERFACE => [
+        'emptyContext' => [
+            'contents' => [
+                'controls' => ['filter']
             ]
         ],
-        'layout' => [
-            'emptyContext' => [
-                'contents' => [
-                    'controls' => ['filter']
-                ]
-            ],
-            'selectedContext' => [
-                'contents' => [
-                    'controls' => ['form']
-                ]
+        'selectedContext' => [
+            'contents' => [
+                'controls' => ['form']
             ]
         ]
     ],
 
     AdminComponent::OPTION_CONTROLLERS => [
-        'list' => __NAMESPACE__ . '\controller\ListController',
-        'item' => __NAMESPACE__ . '\controller\ItemController',
-        'action' => __NAMESPACE__ . '\controller\ActionController',
+        AdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
+        AdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
+        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
     ],
 
     AdminComponent::OPTION_ROUTES      => [
@@ -52,14 +45,14 @@ return [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/action/{action}',
             'defaults' => [
-                'controller' => 'action'
+                'controller' => AdminComponent::ACTION_CONTROLLER
             ],
             'subroutes' => [
                 'form' => [
                     'type'     => IRouteFactory::ROUTE_SIMPLE,
                     'route'    => '/{collection}/{type}/{form}',
                     'defaults' => [
-                        'controller' => 'action'
+                        'controller' => AdminComponent::ACTION_CONTROLLER
                     ]
                 ],
             ]
@@ -73,14 +66,14 @@ return [
                     'type'     => IRouteFactory::ROUTE_SIMPLE,
                     'route'    => '/{collection}/{id:integer}',
                     'defaults' => [
-                        'controller' => 'item'
+                        'controller' => AdminComponent::ITEM_CONTROLLER
                     ]
                 ],
                 'list' => [
                     'type'     => IRouteFactory::ROUTE_SIMPLE,
                     'route'    => '/{collection}',
                     'defaults' => [
-                        'controller' => 'list'
+                        'controller' => AdminComponent::LIST_CONTROLLER
                     ]
                 ]
             ]

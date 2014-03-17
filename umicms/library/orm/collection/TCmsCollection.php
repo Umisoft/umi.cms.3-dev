@@ -133,6 +133,17 @@ trait TCmsCollection
     }
 
     /**
+     * @see ICmsCollection::getDictionaryNames()
+     */
+    public function getDictionaryNames()
+    {
+        $dictionaries = isset($this->traitGetConfig()['dictionaries']) ? $this->traitGetConfig()['dictionaries'] : [];
+        $dictionaries = $this->configToArray($dictionaries);
+
+        return $dictionaries;
+    }
+
+    /**
      * Возвращает конфигурацию коллекции.
      * @return array
      */
