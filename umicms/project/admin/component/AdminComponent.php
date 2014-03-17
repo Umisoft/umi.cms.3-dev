@@ -36,7 +36,7 @@ class AdminComponent extends BaseComponent
      */
     const ITEM_CONTROLLER = 'item';
     /**
-     * Контроллер для выполнения CRUD-операций над списком объектом
+     * Контроллер для выполнения CRUD-операций над списком объектов
      */
     const LIST_CONTROLLER = 'list';
 
@@ -70,17 +70,27 @@ class AdminComponent extends BaseComponent
         return isset($this->options[self::OPTION_INTERFACE]) ? $this->options[self::OPTION_INTERFACE] : [];
     }
 
+    /**
+     * Возвращает информацию о доступных действиях компонентов.
+     * @return array
+     */
     public function getActionsInfo()
     {
+        $actions = [];
+
         if ($this->hasController(self::ACTION_CONTROLLER)) {
-
             $controller = $this->getController(self::ACTION_CONTROLLER);
-
             if ($controller instanceof BaseRestActionController) {
-
+                if ($queryActions = $controller->getQueryActions()) {
+                    $actions['query'] = $queryActions;
+                }
+                if ($modifyActions = $controller->getModifyActions()) {
+                    $actions['modify'] = $modifyActions;
+                }
             }
-
         }
+
+        return $actions;
     }
 
     /**
