@@ -23,7 +23,7 @@ define([], function(){
                     this.route('search');
                 });
             });
-            this.route('logout', {path: '/auth/logout'});
+            this.route('logout', {path: '/api/users/user/action/logout'});
             this.route('site', {path: '/:link'});
         });
 
@@ -90,7 +90,7 @@ define([], function(){
                         maskLayout.className = 'auth-mask';
                         maskLayout = document.body.appendChild(maskLayout);
                         $(applicationLayout).addClass('off');
-                        $.post('/admin/api/users/user/logout.json');
+                        $.post('/admin/api/users/user/action/logout');
                         require(['auth/main'], function(auth){
                             auth();
                             $(applicationLayout).addClass('fade-out');
