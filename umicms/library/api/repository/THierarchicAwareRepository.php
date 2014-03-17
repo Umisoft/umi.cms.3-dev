@@ -51,12 +51,11 @@ trait THierarchicAwareRepository
     /**
      * Возвращает селектор для выбора дочерних объектов для указанного.
      * @param CmsHierarchicObject|null $object объект, либо null, если нужна выборка от корня
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @return CmsSelector
      */
-    public function selectChildren(CmsHierarchicObject $object = null, $onlyPublic = true)
+    public function selectChildren(CmsHierarchicObject $object = null)
     {
-        return $this->select($onlyPublic)
+        return $this->select()
             ->where(CmsHierarchicObject::FIELD_PARENT)->equals($object)
             ->orderBy(CmsHierarchicObject::FIELD_ORDER);
     }
@@ -65,11 +64,10 @@ trait THierarchicAwareRepository
      * Возвращает селектор для выбора потомков указанного объекта, либо от корня.
      * @param CmsHierarchicObject|null $object объект, либо null, если нужна выборка от корня
      * @param int|null $depth глубина выбора потомков, по умолчанию выбираются на всю глубину
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws InvalidArgumentException если глубина указана не верно
      * @return CmsSelector
      */
-    public function selectDescendants(CmsHierarchicObject $object = null, $depth = null, $onlyPublic = true)
+    public function selectDescendants(CmsHierarchicObject $object = null, $depth = null)
     {
         if (!is_null($depth) && !is_int($depth) && $depth < 0) {
             throw new InvalidArgumentException($this->translate(
@@ -78,10 +76,10 @@ trait THierarchicAwareRepository
         }
 
         if ($depth == 1) {
-            return $this->selectChildren($object, $onlyPublic);
+            return $this->selectChildren($object);
         }
 
-        $selector = $this->select($onlyPublic);
+        $selector = $this->select();
 
         if ($object) {
             $selector

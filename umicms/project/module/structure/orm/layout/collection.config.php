@@ -13,5 +13,8 @@ return [
     'handlers' => [
         'admin' => 'structure',
         'site' => 'structure'
+    ],
+    'dictionaries' => [
+        'collection\layout', 'collection'
     ]
 ];
