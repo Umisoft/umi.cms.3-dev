@@ -4307,6 +4307,7 @@ ul.pagination {
 
 .button, button {
   border: 1px solid;
+  border-color: #4D9ED8;
   background-image: -webkit-linear-gradient(top, #3aadff, #0087d4);
   background-image: -o-linear-gradient(top, #3aadff, #0087d4);
   background-image: linear-gradient(to bottom, #3aadff, #0087d4);
@@ -4915,11 +4916,10 @@ html {
     height: 2.875rem;
     font-size: 1.125rem;
     border-radius: 3px; }
-  .auth-layout .button.simple {
-    background: none;
+  .auth-layout .button.flat {
     margin: 0;
     padding: 0;
-    text-shadow: 0 1px 1px #195096; }
+    color: #FFF; }
   .auth-layout .lang-case {
     font-size: 14px;
     text-align: center;
@@ -4973,7 +4973,7 @@ html {
       margin-left: -16px;
       top: 16px; }
   .auth-layout .error input[type="text"], .auth-layout .error input[type="email"], .auth-layout .error input[type="password"] {
-    margin-bottom: 1rem; }
+    margin-bottom: 0.875rem; }
   .auth-layout .error span.error {
     margin-right: -156px;
     opacity: 1; }

@@ -14,6 +14,7 @@
 
 .button, button{
     border: 1px solid;
+    border-color: #4D9ED8;
     @include button-bg-gradient(#3aadff, #0087d4);
     vertical-align: top;
     &.secondary{

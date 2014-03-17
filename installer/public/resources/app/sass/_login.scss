@@ -110,11 +110,10 @@ html{
         border-radius: 3px;
     }
     .button{
-        &.simple{
-            background: none;
+        &.flat{
             margin: 0;
             padding: 0;
-            text-shadow: 0 1px 1px #195096;
+            color: #FFF;
         }
     }
     .lang-case{
@@ -174,7 +173,7 @@ html{
     }
     .error{
         input[type="text"], input[type="email"], input[type="password"]{
-            margin-bottom: rem-calc(16);
+            margin-bottom: rem-calc(14);
         }
         span.error{
             margin-right: -156px;
