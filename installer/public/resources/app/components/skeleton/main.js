@@ -146,6 +146,16 @@ define(
                 }
 
                 return hash;
+            },
+            ajaxError: function(jqXHR){
+                var error = this._super(jqXHR);
+
+                if (jqXHR && jqXHR.status === 500) {
+                    var jsonErrors = jqXHR.responseJSON.result.error.message;
+                    return new DS.InvalidError(jsonErrors);
+                } else {
+                    return error;
+                }
             }
         });
 

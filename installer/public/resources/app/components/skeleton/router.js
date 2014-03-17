@@ -84,6 +84,7 @@ define([], function(){
                         params.handler - элемент (кнопка) вызвавший событие сохранение
                  */
                 save: function(params){
+                    console.log(params.object.get('currentState.stateName'));
                     params.object.save().then(
                         function(){
                             if(params.handler){
@@ -96,22 +97,25 @@ define([], function(){
                             });*/
                         },
                         function(results){
+                            var self = this;
                             if(params.handler){
                                 $(params.handler).removeClass('loading');
                             }
-                            var message;
-                            var fullMessage;
-                            if(results.responseJSON.result.error){
-                                message = results.responseJSON.result.error.message;
-                            }
-                            if(results.responseJSON.result.stack){
-                                fullMessage = results.responseJSON.result.stack.message;
-                            }
-                            UMI.notification.create({
-                                type: 'alert',
-                                text: message,
-                                fullText: fullMessage
-                            });
+                            var data = {
+                                'close': false,
+                                'title': results.errors,
+                                'content': results.message,
+                                'confirm': 'Загрузить объект с сервера'
+                            };
+                            return UMI.dialog.open(data).then(
+                                function(){
+                                    //https://github.com/emberjs/data/issues/1632
+                                    //params.object.transitionTo('updated.uncommitted');
+                                    console.log(params.object.get('currentState.stateName'), results, self);
+                                   /* params.object.rollback();
+                                    params.object.reload();*/
+                                }
+                            );
                         }
                     );
                 }
