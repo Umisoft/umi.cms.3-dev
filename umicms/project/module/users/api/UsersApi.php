@@ -22,7 +22,6 @@ use umicms\project\module\users\object\User;
  */
 class UsersApi extends BaseComplexApi implements IPublicApi, IAuthenticationAware
 {
-
     use TAuthenticationAware;
 
     /**
@@ -111,5 +110,4 @@ class UsersApi extends BaseComplexApi implements IPublicApi, IAuthenticationAwar
         $this->getDefaultAuthManager()
             ->forget();
     }
-
 }

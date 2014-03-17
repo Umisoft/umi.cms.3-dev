@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\statistics\admin;
 
+use umi\route\IRouteFactory;
 use umicms\project\admin\component\AdminComponent;
 
 return [
@@ -15,6 +16,27 @@ return [
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
     AdminComponent::OPTION_SETTINGS => [
-
+        'controls' => [
+            [
+                'name' => 'form',
+                'displayName' => 'Отчет'
+            ]
+        ],
+        'layout' => [
+            'selectedContext' => [
+                'contents' => [
+                    'controls' => ['form']
+                ]
+            ]
+        ]
+    ],
+    AdminComponent::OPTION_COMPONENTS => [
+        'metrika' => '{#lazy:~/project/module/statistics/admin/metrika/component.config.php}'
+    ],
+    AdminComponent::OPTION_ROUTES      => [
+        'component' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/{component}'
+        ]
     ]
 ];

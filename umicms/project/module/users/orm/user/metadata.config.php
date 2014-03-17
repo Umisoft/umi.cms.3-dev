@@ -6,7 +6,9 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\users\object\User;
 
 return [
@@ -40,7 +42,16 @@ return [
             'readOnly'   => true,
             'defaultValue' => 1
         ],
-        User::FIELD_DISPLAY_NAME  => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
+        User::FIELD_DISPLAY_NAME  => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'display_name',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
+        ],
         User::FIELD_ACTIVE        => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'active',
@@ -87,6 +98,7 @@ return [
                 User::FIELD_VERSION,
                 User::FIELD_ACTIVE,
                 User::FIELD_LOCKED,
+                User::FIELD_TRASHED,
                 User::FIELD_CREATED,
                 User::FIELD_UPDATED,
                 User::FIELD_TRASHED,

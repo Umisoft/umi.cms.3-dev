@@ -15,6 +15,7 @@ use umi\hmvc\dispatcher\IDispatcher;
 use umi\hmvc\IMvcEntityFactory;
 use umi\http\Request;
 use umi\http\Response;
+use umi\i18n\ILocalesService;
 use umi\route\IRouteFactory;
 use umi\route\result\IRouteResult;
 use umi\spl\config\TConfigSupport;
@@ -104,6 +105,14 @@ class Bootstrap implements IProjectConfigAware
 
         $project = $this->createProject();
 
+        if (isset($routeMatches['locale'])) {
+            /**
+             * @var ILocalesService $localesService
+             */
+            $localesService = $this->toolkit->getService('umi\i18n\ILocalesService');
+            $localesService->setCurrentLocale($routeMatches['locale']);
+        }
+
         $baseUrl = isset($routeMatches['uri']) ? $routeMatches['uri'] : '';
         $routePath = $routeResult->getUnmatchedUrl() ? : '/';
 
@@ -134,9 +143,9 @@ class Bootstrap implements IProjectConfigAware
     {
         $this->setUmiHeaders($response);
 
-        //$response->setETag(md5($response->getContent()));
-        //$response->setPublic();
-        //$response->isNotModified($request);
+        $response->setETag(md5($response->getContent()));
+        $response->setPublic();
+        $response->isNotModified($request);
 
         if (isset(static::$contentTypes[$request->getRequestFormat()])) {
             $response->headers->set('Content-Type', static::$contentTypes[$request->getRequestFormat()]);
@@ -283,7 +292,7 @@ class Bootstrap implements IProjectConfigAware
 
     /**
      * Создает и конфигурирует контейнер сервисов.
-     * @throws exception\RuntimeException
+     * @throws RuntimeException
      * @return IToolkit
      */
     protected function configureToolkit()

@@ -79,7 +79,11 @@ return [
                        'blogComment' => ['properties' => ['contents']],
                        'blogPost' => ['properties' => ['displayName', 'h1', 'announcement', 'contents']],
                    ]
-               ]
+               ],
+                'umicms\project\module\statistics\api\MetrikaApi' => [
+                    'oauthToken' => '4d4d45a7d4dd462ca9f83e4a8f4bd16b',
+                    'apiResources'=>'{#lazy:~/project/module/statistics/admin/metrika/api-resources.config.php}'
+                ]
             ]
         ],
 
@@ -145,10 +149,7 @@ return [
         ],
 
         I18nTools::NAME => [
-            'translatorDictionaries' => [
-                'en-US' => '{#lazy:~/project/i18n/en-US.config.php}',
-                'ru-RU' => '{#lazy:~/project/i18n/ru-RU.config.php}'
-            ]
+            'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
         ]
     ],
 

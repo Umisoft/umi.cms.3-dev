@@ -66,8 +66,8 @@ class ElementRepository extends BaseObjectRepository
      * @throws NonexistentEntityException если не удалось получить элемент
      * @return StructureElement
      */
-    public function getById($id) {
-
+    public function getById($id)
+    {
         try {
             return $this->getCollection()->getById($id);
         } catch(\Exception $e) {
@@ -113,7 +113,8 @@ class ElementRepository extends BaseObjectRepository
      */
     public function add($slug, StructureElement $parent = null)
     {
-        return $this->getCollection()->add($slug, IObjectType::BASE, $parent);
+        return $this->getCollection()
+            ->add($slug, IObjectType::BASE, $parent);
     }
 
     /**
@@ -121,7 +122,8 @@ class ElementRepository extends BaseObjectRepository
      * @param StructureElement $element
      * @return $this
      */
-    public function delete(StructureElement $element) {
+    public function delete(StructureElement $element)
+    {
 
         $this->getCollection()->delete($element);
 
