@@ -34,11 +34,6 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     use TConfigSupport;
 
     /**
-     * @var BaseAdapter $searchAdapter
-     */
-    protected $searchAdapter;
-
-    /**
      * Ищет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
      *
      * @param string $searchString
@@ -277,7 +272,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     /**
      * @return \umi\orm\collection\ICollection
      */
-    protected function getSearchIndexCollection()
+    public function getSearchIndexCollection()
     {
         return $this->getCollectionManager()
             ->getCollection('searchIndex');
