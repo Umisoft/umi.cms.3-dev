@@ -82,7 +82,10 @@ abstract class BaseRestActionController extends BaseRestController implements IO
          */
         $component = $this->getComponent();
 
-        return $component->getSettings();
+        return [
+            AdminComponent::OPTION_CONTROLS => $component->getControlsInfo(),
+            AdminComponent::OPTION_INTERFACE => $component->getInterfaceInfo()
+        ];
     }
 
     /**

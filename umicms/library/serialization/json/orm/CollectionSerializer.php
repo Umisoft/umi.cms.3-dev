@@ -10,6 +10,7 @@
 namespace umicms\serialization\json\orm;
 
 use umi\orm\collection\BaseCollection;
+use umicms\orm\collection\ICmsCollection;
 use umicms\serialization\json\BaseSerializer;
 
 /**
@@ -25,11 +26,15 @@ class CollectionSerializer extends BaseSerializer
     public function __invoke(BaseCollection $collection, array $options = [])
     {
 
+        if ($collection instanceof ICmsCollection) {
+            $options['dictionaries'] = $collection->getDictionaryNames();
+        }
+
         $this->getJsonWriter()->startElement('name');
         $this->writeRaw($collection->getName());
         $this->getJsonWriter()->endElement();
 
-        $this->delegate($collection->getMetadata());
+        $this->delegate($collection->getMetadata(), $options);
     }
 }
  

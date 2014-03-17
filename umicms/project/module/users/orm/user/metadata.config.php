@@ -101,7 +101,6 @@ return [
                 User::FIELD_TRASHED,
                 User::FIELD_CREATED,
                 User::FIELD_UPDATED,
-                User::FIELD_TRASHED,
                 User::FIELD_DISPLAY_NAME,
                 User::FIELD_LOGIN,
                 User::FIELD_EMAIL,
