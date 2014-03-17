@@ -227,6 +227,7 @@ define([], function(){
                 var collectionName = self.modelFor('component').get('collection');
                 var oldContext = this.controllerFor('component').get('selectedContext');
                 this.controllerFor('component').set('selectedContext', params.context);
+
                 /**
                  * Редирект на Action если контекст не имеет action
                  */
@@ -246,11 +247,12 @@ define([], function(){
                     model = this.store.find(collectionName, params.context);
                 }
                 routeData.object = model;
+
                 /**
                  * Раскрытие текущей ветки в дереве
                  */
-                console.log(model);
                 this.controllerFor('treeControl').set('activeContext', model);
+
                 /**
                  * Мета информация для action
                  */
@@ -265,13 +267,15 @@ define([], function(){
                         throw new Error('Не получена мета информация для action form ' + actionResource + '.' + error);
                     });
                 }
+
                 // Временное решение для таблицы
                 if(transition.params.action.action === 'children'){
-                    return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
+                    return Ember.$.getJSON('/resources/modules/statistics/resources.json').then(function(results){
                         routeData.viewSettings = results.settings;
                         return routeData;
                     });
                 }
+
                 return routeData;
             },
             serialize: function(routeData){
@@ -281,14 +285,12 @@ define([], function(){
             },
             renderTemplate: function(){
                 var templateType = this.modelFor('action').get('name');
-                console.log(templateType);
                 this.render(templateType);
             }
         });
 
         UMI.SearchRoute = Ember.Route.extend({
             model: function(params){
-                console.log(params);
             }
         });
     };

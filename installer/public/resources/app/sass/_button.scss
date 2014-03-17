@@ -3,10 +3,10 @@
     background-repeat: repeat-x;
     background-color: darken($color-end, 1%);
     transition: background-position 0.1s linear;
-    &:hover, &:focus{
-        background-position-y: - $button-med*2;
-        background-color: darken($color-end, 1%);
-    }
+//    &:hover, &:focus{
+//        background-position-y: - $button-med*2;
+//        background-color: darken($color-end, 1%);
+//    }
     &:focus{
         background-color: darken($color-end, 2%);
     }
@@ -52,7 +52,8 @@
     }
 
     &.white{
-        @include button($padding: $button-med, $bg: #FFF);
+        @include button-bg-gradient(#F5F6F7, #F7F8F9);
+        color: #535E6D;
     }
     .icon{
         vertical-align: middle;

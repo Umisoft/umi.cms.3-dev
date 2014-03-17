@@ -8,6 +8,8 @@ define(
         'tree',
         'form',
         'search',
+        'popup',
+        'chartControl',
         'DS'
     ],
     function(UMI){

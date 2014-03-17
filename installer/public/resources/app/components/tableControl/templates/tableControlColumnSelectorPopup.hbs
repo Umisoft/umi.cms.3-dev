@@ -1,0 +1,173 @@
+<style>
+    .umi-table-control-column-list{
+        border: 0;
+        border-collapse: collapse;
+    }
+    .umi-table-control-column-list tr{
+        height: 34px;
+        cursor: pointer;
+    }
+
+    .umi-table-control-column-list td{
+        padding: 0 10px;
+    }
+
+    .umi-table-control-column-list tr:nth-child(odd){
+        background: #E9F1F7;
+    }
+
+    .umi-table-control-column-list-wrapper{
+        position: relative;
+    }
+
+    .umi-table-control-column-list-wrapper:before{
+        content: "";
+        position: absolute;
+        float: left;
+        z-index: 1;
+        display: block;
+        height: 3px;
+        width: calc(100% + 1px);
+        left: 0;
+        top: 0;
+        background: url(/resources/deploy/img/shadows/toBottomShadow.png);
+    }
+
+    .umi-table-control-column-list-wrapper:after{
+        content: "";
+        position: absolute;
+        float: left;
+        display: block;
+        height: 3px;
+        width: calc(100% + 1px);
+        left: 0;
+        bottom: 0;
+        background: url(/resources/deploy/img/shadows/toTopShadow.png);
+    }
+</style>
+
+
+<script type="text/x-handlebars" id="umi-popup">
+    <div class="umi-popup" style="padding-bottom: 35px;">
+        <div style="float: left; width: 100%; height: 30px; border-bottom: 1px solid #DDE3E6;">
+            <a href="#" class="umi-popup-close-button" style="float: right;"><i class="icon icon-delete" style="margin: 5px 10px;"></i></a>
+        </div>
+
+        <div class="umi-table-control-column-list-wrapper" style="float: left; width:100%; height: 200px; margin: 30px 0; overflow: hidden;">
+            <table class="umi-table-control-column-list" style="width: 100%;">
+                <tr>
+                    <td>
+                        <input id="demo_box_1" class="css-checkbox" type="checkbox" />
+                        <label for="demo_box_1" class="css-label">Option #1</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="demo_box_2" class="css-checkbox" type="checkbox" />
+                        <label for="demo_box_2" class="css-label">Option #1</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="demo_box_3" type="checkbox" />
+                        <label for="demo_box_3">Option #1</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="demo_box_4" type="checkbox" />
+                        <label for="demo_box_4">Option #1</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="demo_box_5" type="checkbox" />
+                        <label for="demo_box_5">Option #1</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="demo_box_6" type="checkbox" />
+                        <label for="demo_box_6">Option #1</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="demo_box_7" type="checkbox" />
+                        <label for="demo_box_7">Option #1</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="demo_box_8" type="checkbox" />
+                        <label for="demo_box_8">Option #1</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="demo_box_9" type="checkbox" />
+                        <label for="demo_box_9">Option #1</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="demo_box_10" type="checkbox" />
+                        <label for="demo_box_10">Option #1</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <a href="#" class="button" style="float:right">Сохранить</a>
+        <a href="#" class="button white" style="float:right">Отмена</a>
+    </div>
+</script>
+
+<script>
+    $('.icon-settings').click(function(){
+        if($('html').hasClass('cssfilters')){
+            console.log('blur');
+            $('.umi-main-view').addClass('umi-blur');
+            $('body').append('<div class="umi-overlay"></div>');
+        }else{
+            console.log('white');
+            $('body').append('<div class="umi-overlay-white"></div>');
+        }
+
+
+        $('body').append(document.querySelector('#umi-popup').innerHTML);
+        var x = $(window).width() / 2 - ($('.umi-popup').width() / 2);
+        var y = $(window).height() / 2 - ($('.umi-popup').height() / 2);
+        $('.umi-popup').offset({left:x, top:y});
+
+
+        $().ready(function(){
+            var elf = $('#elfinder').elfinder({
+                url : '/resources/libs/elfinder/php/connector.php'  // connector URL (REQUIRED)
+                // lang: 'ru',             // language (OPTIONAL)
+            }).elfinder('instance');
+        });
+
+
+        $('.umi-popup-close-button').on('mousedown', function(event){
+            $('.umi-main-view').removeClass('umi-blur');
+            $('.umi-overlay').remove();
+            $('.umi-overlay-white').remove();
+            $('.umi-popup').remove();
+        });
+
+
+        setTimeout(function(){
+            var tableControlColumnListScroll = new IScroll('.umi-table-control-column-list-wrapper', {
+                scrollX: true,
+                probeType: 3,
+                mouseWheel: true,
+                scrollbars: true,
+                bounce: false,
+                freeScroll: false,
+                keyBindings: true,
+                interactiveScrollbars: true
+            });
+        }, 0);
+    });
+</script>

@@ -1,0 +1,9 @@
+<?php
+/**
+ * @var umicms\project\module\news\object\NewsSubject $subject
+ */
+?>
+<h1><?= $subject->h1 ?></h1>
+<?= $subject->content ?>
+
+<?= $this->widget('subjectNewsList', ['subjectGuids' => [$subject->guid], 'template' => 'item/list']); ?>

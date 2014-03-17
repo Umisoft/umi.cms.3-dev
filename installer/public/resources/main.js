@@ -5,6 +5,7 @@ require.config({
         Modernizr: 'libs/modernizr/modernizr',
         text: 'libs/requirejs-text/text',
         jQuery: 'libs/jquery/jquery',
+        underscoreJs: 'libs/underscorejs/underscore-1.6.0',
         mouseWheel: 'libs/jquery-mousewheel/jquery.mousewheel',
         iscroll: 'libs/iscroll-probe-5.1.1',
         Handlebars: 'libs/handlebars/handlebars',
@@ -15,7 +16,8 @@ require.config({
         datepicker: 'libs/datepicker',
         App: 'app/components/skeleton/main',
         //jQueryUI: 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min'
-        elFinder: 'deploy/elFinder'
+        elFinder: 'deploy/elFinder',
+        chartJs: 'libs/chartjs/Chart'
     },
 
     shim: {
@@ -25,6 +27,10 @@ require.config({
 
         jQuery: {
             exports: 'jQuery'
+        },
+
+        underscoreJs: {
+            exports: 'underscoreJs'
         },
 
         //Требует elFinder
@@ -60,7 +66,11 @@ require.config({
         datepicker: {
             deps: ['jQuery'],
             exports: 'datepicker'
-        }    
+        },
+
+        chartJs: {
+            exports: 'chartJs'
+        }
     },
 
     packages: [
@@ -76,7 +86,6 @@ require.config({
             name: 'tableControl',
             location: "app/components/tableControl"
         },
-
         {
             name: 'tree',
             location: "app/components/tree"
@@ -92,13 +101,21 @@ require.config({
         {
             name: 'search',
             location: "app/components/search"
+        },
+        {
+            name: 'chartControl',
+            location: "app/components/chartControl"
+        },
+        {
+            name: 'popup',
+            location: "app/components/popup"
         }
     ]
 });
 
 
 if(UmiSettings.login){
-    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder', 'datepicker'], function(application){
+    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder', 'datepicker', 'chartJs', 'underscoreJs'], function(application){
         "use strict";
         application();
     });

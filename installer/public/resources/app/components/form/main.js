@@ -1,6 +1,6 @@
-define(['App', 'text!./form.hbs'], function(UMI, formTpl){
+define(['text!./templates/formControl.hbs', 'App'], function(formControlTpl, UMI){
     'use strict';
-    Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
+    Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formControlTpl);
 
     UMI.FormControlView = Ember.View.extend({
         tagName: 'form',
@@ -27,7 +27,6 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
 
     UMI.FieldView = Ember.View.extend({
         didInsertElement: function(){
-            console.log('Form didInsertElement');
             //TODO Вставка элемента формы на страницу - последенее событие. Ведь так?
             //Этот код вызывается для каждой отрисованой формы(и это действительно ужасно), хотя должен только после последнего и желательно только когда есть Date
             //Вопрос: куда его можно перенести? Круто было бы к добавить соответствующему template, но не сработает.
@@ -47,7 +46,6 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
             });
 
             Ember.run.scheduleOnce('afterRender', this, function(){
-                console.log('Form afterRender');
                 $($.jdPicker.initialize);
             });
         },
