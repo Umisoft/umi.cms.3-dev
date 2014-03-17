@@ -22,23 +22,21 @@ return [
     ],
 
     AdminComponent::OPTION_ROUTES      => [
-
-        'settings' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route'    => '/settings',
-            'defaults' => [
-                'action' => 'settings',
-                'controller' => 'action'
-            ],
-        ],
-
-        'viewCounter' => [
+        'action' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/counter/{counterId:integer}',
+            'route'    => '/action/{action}',
             'defaults' => [
                 'controller' => 'action',
-                'action' => 'viewCounter'
             ],
+            'subroutes' => [
+                'counter' => [
+                    'type'     => IRouteFactory::ROUTE_SIMPLE,
+                    'route'    => '/{counterId:integer}',
+                    'defaults' => [
+                        'controller' => 'action',
+                    ]
+                ],
+            ]
         ],
-    ]
+    ],
 ];

@@ -11,12 +11,13 @@ namespace umicms\project\module\statistics\api;
 use umi\config\io\IConfigIOAware;
 use umi\config\io\TConfigIOAware;
 use umi\spl\config\TConfigSupport;
+use umicms\api\IPublicApi;
 use umicms\exception\InvalidArgumentException;
 
 /**
  * Class MetrikaApi
  */
-class MetrikaApi implements IConfigIOAware
+class MetrikaApi implements IConfigIOAware, IPublicApi
 {
     use TConfigIOAware;
     use TConfigSupport;
@@ -25,7 +26,26 @@ class MetrikaApi implements IConfigIOAware
      * @var string $oauthToken
      */
     public $oauthToken;
+    /**
+     * @var array $apiResources
+     */
+    public $apiResources;
 
+    /**
+     * Список счетчиков статистики, каждый - массив вида
+     * <code>
+     * [
+     *   'site' => string
+     *   'code_status' => string
+     *   'permission' => string
+     *   'name' => null|string
+     *   'id' => string
+     *   'type' => string
+     *   'owner_login' => string
+     * ]
+     * </code>
+     * @return array
+     */
     public function listCounters()
     {
         return $this->apiRequest('counters');
@@ -62,462 +82,7 @@ class MetrikaApi implements IConfigIOAware
      */
     public function listResources()
     {
-        return [
-            [
-                'title' => 'Трафик',
-                'methods' => [
-                    [
-                        'title' => 'Посещаемость',
-                        'name' => 'stat/traffic/summary',
-                        'fields' => [
-                            'visits',
-                            'page_views',
-                            'visitors',
-                            'new_visitors',
-                            'new_visitors_perc',
-                            'denial',
-                            'depth',
-                            'visit_time',
-                        ],
-                        'reports' => [
-                            'name' => 'data',
-                            'title' => 'Посещаемость',
-                            'fields' => [
-                                ['name' => 'wday', 'title' => 'День недели', 'type' => 'int'], // 0-6
-                            ]
-                        ]
-                    ],
-                    [
-                        'title' => 'Вовлечение',
-                        'name' => 'stat/traffic/deepness',
-                        'fields' => [
-                            'denial',
-                            'visits',
-                            'visits_percent',
-                            'depth',
-                            //'visit_time',
-                        ],
-                        'reports' => [
-                            [
-                                'name' => 'data_depth',
-                                'title' => 'Глубина просмотра',
-                                'fields' => []
-                            ],
-                            [
-                                'name' => 'data_time',
-                                'title' => 'Время, проведенное на сайте',
-                                'fields' => [
-                                    ['name' => 'name', 'title' => 'Длительность', 'type' => 'string'],
-                                ]
-                            ],
-                        ],
-                    ],
-                    [
-                        'title' => 'По времени суток',
-                        'name' => 'stat/traffic/hourly',
-                        'fields' => [
-                            ['denial', 'avg_visits', 'depth', 'visit_time'],
-                        ],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'По времени суток',
-                                'fields' => [
-                                    ['name' => 'hours', 'title' => 'Время', 'type' => 'string'],
-                                ]
-                            ],
-                        ],
-                    ],
-                    [
-                        'title' => 'Нагрузка на сайт',
-                        'name' => 'stat/traffic/load',
-                        'fields' => [
-                            ['max_rps', 'max_users'],
-                        ],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Нагрузка на сайт',
-                                'fields' => [
-                                    [
-                                        'name' => 'max_rps_time',
-                                        'title' => 'Время наибольшей нагрузки',
-                                        'type' => 'string'
-                                    ],
-                                    [
-                                        'name' => 'max_rps_date',
-                                        'title' => 'Дата наибольшей нагрузки',
-                                        'type' => 'string'
-                                    ],
-                                    [
-                                        'name' => 'max_users_date',
-                                        'title' => 'Дата наибольшей посещаемости',
-                                        'type' => 'string'
-                                    ],
-                                    [
-                                        'name' => 'max_users_time',
-                                        'title' => 'Время наибольшей посещаемости',
-                                        'type' => 'string'
-                                    ],
-                                    ['name' => 'date', 'title' => 'Дата', 'type' => 'string'],
-                                ]
-                            ],
-                        ],
-                    ],
-                ]
-            ],
-            [
-                'title' => 'Источники',
-                'methods' => [
-                    [
-                        'title' => 'Сводка',
-                        'name' => 'stat/sources/summary',
-                        'fields' => ['denial', 'visits', 'page_views', 'visits_delayed', 'visit_time', 'depth'],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Нагрузка на сайт',
-                                'fields' => []
-                            ],
-                        ],
-                    ],
-                    [
-                        'title' => 'Сайты',
-                        'name' => 'stat/sources/sites',
-                        'fields' => ['denial', 'visits', 'page_views', 'visit_time', 'depth'],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Сайты',
-                                'fields' => [
-                                    [
-                                        'name' => 'url',
-                                        'title' => 'URL сайта-источника',
-                                        'type' => 'string'
-                                    ],
-                                ]
-                            ],
-                        ],
-                    ],
-                    [
-                        'title' => 'Поисковые системы',
-                        'name' => 'stat/sources/search_engines',
-                        'fields' => ['denial', 'visits', 'page_views', 'visit_time', 'depth'],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Поисковые системы',
-                                'fields' => [
-                                    [
-                                        'name' => 'name',
-                                        'title' => 'Название системы',
-                                        'type' => 'string'
-                                    ]
-                                ],
-                            ]
-                        ],
-                    ],
-                    [
-                        'title' => 'Поисковые фразы',
-                        'name' => 'stat/sources/phrases',
-                        'fields' => ['denial', 'visits', 'page_views', 'visit_time', 'depth'],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Поисковые системы',
-                                'fields' => [
-                                    [
-                                        'name' => 'phrase',
-                                        'title' => 'Фраза',
-                                        'type' => 'string'
-                                    ],
-                                    [
-                                        'name' => 'search_engines',
-                                        'title' => 'Фраза',
-                                        'type' => 'object',
-                                        'fields' => [
-                                            [
-                                                'name' => 'se_name',
-                                                'title' => 'Имя поисковой системы',
-                                                'type' => 'string'
-                                            ],
-                                            [
-                                                'name' => 'se_page',
-                                                'title' => 'Номер страницы результатов поиска',
-                                                'type' => 'int'
-                                            ],
-                                            [
-                                                'name' => 'se_url',
-                                                'title' => 'Ссылка на поисковую систему',
-                                                'type' => 'string'
-                                            ],
-                                        ]
-                                    ],
-
-                                ],
-                            ]
-                        ],
-                    ],
-                ]
-            ],
-            [
-                'title' => 'Содержание',
-                'methods' => [
-                    [
-                        'title' => 'Популярное содержание',
-                        'name' => 'stat/content/popular',
-                        'fields' => [
-                            'page_views',
-                            'exit',
-                            'entrance',
-                        ],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Популярное содержание',
-                                'fields' => [
-                                    [
-                                        'name' => 'url',
-                                        'title' => 'URL страницы',
-                                        'type' => 'string'
-                                    ],
-                                ],
-                            ]
-                        ],
-                    ],
-                    [
-                        'title' => 'Страницы входа',
-                        'name' => 'stat/content/entrance',
-                        'fields' => [
-                            'denial',
-                            'visits',
-                            'page_views',
-                            'visit_time',
-                            'depth',
-                        ],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Страницы входа',
-                                'fields' => [
-                                    [
-                                        'name' => 'url',
-                                        'title' => 'URL страницы сайта',
-                                        'type' => 'string'
-                                    ],
-                                ],
-                            ]
-                        ],
-                    ],
-                    [
-                        'title' => 'Страницы выхода',
-                        'name' => 'stat/content/exit',
-                        'fields' => [
-                            'denial',
-                            'visits',
-                            'page_views',
-                            'visit_time',
-                            'depth',
-                        ],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Страницы выхода',
-                                'fields' => [
-                                    [
-                                        'name' => 'url',
-                                        'title' => 'URL страницы сайта',
-                                        'type' => 'string'
-                                    ],
-                                ],
-                            ]
-                        ],
-                    ],
-                    [
-                        'title' => 'Заголовки страниц',
-                        'name' => 'stat/content/titles',
-                        'fields' => ['page_views'],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Заголовки страниц',
-                                'fields' => [
-                                    [
-                                        'name' => 'name',
-                                        'title' => 'Заголовок',
-                                        'type' => 'string'
-                                    ],
-                                ],
-                            ]
-                        ],
-                    ],
-                ]
-            ],
-            [
-                'title' => 'Компьютеры',
-                'methods' => [
-                    [
-                        'title' => 'Браузеры',
-                        'name' => 'stat/tech/browsers',
-                        'fields' => [
-                            'denial',
-                            'visits',
-                            'page_views',
-                            'visit_time',
-                            'depth',
-                        ],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Браузеры',
-                                'fields' => [
-                                    [
-                                        'name' => 'version',
-                                        'title' => 'Версия',
-                                        'type' => 'string'
-                                    ],
-                                    [
-                                        'name' => 'name',
-                                        'title' => 'Браузер',
-                                        'type' => 'string'
-                                    ],
-                                ],
-                            ]
-                        ],
-                    ],
-                    [
-                        'title' => 'Операционные системы',
-                        'name' => 'stat/tech/os',
-                        'fields' => [
-                            'denial',
-                            'visits',
-                            'page_views',
-                            'visit_time',
-                            'depth',
-                        ],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Операционные системы',
-                                'fields' => [
-                                    [
-                                        'name' => 'name',
-                                        'title' => 'Операционная система',
-                                        'type' => 'string'
-                                    ],
-                                ],
-                            ]
-                        ],
-                    ],
-                    [
-                        'title' => 'Мобильные устройства',
-                        'name' => 'stat/tech/mobile',
-                        'fields' => [
-                            'denial',
-                            'visits',
-                            'page_views',
-                            'visit_time',
-                            'depth',
-                        ],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Мобильные устройства',
-                                'fields' => [
-                                    [
-                                        'name' => 'name',
-                                        'title' => 'Название',
-                                        'type' => 'string'
-                                    ],
-                                ],
-                            ]
-                        ],
-                    ],
-                    [
-                        'title' => 'Версии Flash',
-                        'name' => 'stat/tech/flash',
-                        'fields' => [
-                            'denial',
-                            'visits',
-                            'page_views',
-                            'visit_time',
-                            'depth',
-                        ],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Версии Flash',
-                                'fields' => [
-                                    [
-                                        'name' => 'name',
-                                        'title' => 'Версия',
-                                        'type' => 'string'
-                                    ],
-                                ],
-                            ]
-                        ],
-                    ],
-                    [
-                        'title' => 'Наличие JavaScript',
-                        'name' => 'stat/tech/javascript',
-                        'fields' => [
-                            'denial',
-                            'visits',
-                            'page_views',
-                            'visit_time',
-                            'depth',
-                        ],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Наличие JavaScript',
-                                'fields' => [
-                                    [
-                                        'name' => 'name',
-                                        'title' => 'Статус',
-                                        'type' => 'string'
-                                    ],
-                                ],
-                            ]
-                        ],
-                    ],
-                ]
-            ],
-            [
-                'title' => 'География',
-                'methods' => [
-                    [
-                        'title' => 'Отчет по Странам мира',
-                        'name' => 'stat/geo',
-                        'fields' => [
-                            'denial',
-                            'visits',
-                            'page_views',
-                            'visit_time',
-                            'depth',
-                        ],
-                        'reports' => [
-                            [
-                                'name' => 'data',
-                                'title' => 'Отчет по Странам мира',
-                                'fields' => [
-                                    [
-                                        'name' => 'region_type',
-                                        'title' => 'Тип региона',
-                                        'type' => 'string'
-                                    ],
-                                    [
-                                        'name' => 'name',
-                                        'title' => 'Регион',
-                                        'type' => 'string'
-                                    ],
-                                ],
-                            ]
-                        ],
-                    ],
-                ]
-            ],
-        ];
+        return $this->apiResources;
     }
 
     /**
@@ -559,7 +124,7 @@ class MetrikaApi implements IConfigIOAware
      * @return null
      * @throws InvalidArgumentException
      */
-    protected function findResourceConfig($resourceName)
+    private function findResourceConfig($resourceName)
     {
         $dataConfig = null;
         foreach ($this->listResources() as $resourceConfig) {
@@ -590,7 +155,10 @@ class MetrikaApi implements IConfigIOAware
             'denial' => ['title' => 'Отказы', 'type' => 'percent'],
             'depth' => ['title' => 'Глубина просмотра', 'type' => 'float'],
             'visit_time' => ['title' => 'Время, проведенное на сайте, сек', 'type' => 'int'],
-            'visit_time' => ['title' => 'Время, проведенное на сайте, сек', 'type' => 'int'],
+            'avg_visits' => ['title' => 'Среднее число визитов', 'type' => 'float'],
+            'visits_delayed' => ['title' => 'visits_delayed', 'type' => 'int'],
+            'entrance' => ['title' => 'Входов', 'type' => 'int'],
+            'exit' => ['title' => 'Выходов', 'type' => 'int'],
         ];
     }
 
@@ -624,12 +192,71 @@ class MetrikaApi implements IConfigIOAware
         $reports = $dataConfig['reports'];
 
         foreach ($reports as $report) {
-            $reportData[$report] = [
+            $reportData[] = [
                 'name' => $report['name'],
                 'data' => $apiData[$report['name']],
                 'title' => $report['title'],
             ];
         }
         return $reportData;
+    }
+
+    /**
+     *
+     * @param $resourceName
+     * @return array
+     */
+    public function extractFieldsMetadata($resourceName)
+    {
+        $metadata = [];
+
+        $resourceConfig = $this->findResourceConfig($resourceName);
+        foreach ($resourceConfig['fields'] as $resourceField) {
+            $metadata[$resourceField] = [
+                'title' => $this->fieldTitle($resourceField),
+                'type' => $this->fieldType($resourceField),
+            ];
+        }
+
+        $reports = $resourceConfig['reports'];
+
+        foreach ($reports as $report) {
+            foreach ($report['fields'] as $reportField) {
+                $metadata[$reportField['name']] = ['title' => $reportField['title'], 'type' => $reportField['type']];
+            }
+        }
+        return $metadata;
+    }
+
+    /**
+     * Нормализует и форматирует начальную дату отчета.
+     * Если дата не указана, использует текущую и проводит к началу месяца.
+     * @param string|null $dateString
+     * @return string
+     */
+    public function normalizeDateFrom($dateString)
+    {
+        if(is_null($dateString)){
+            $dateString = 'now';
+        }
+        //todo system timezone
+        $date = new \DateTime($dateString);
+        return $date->modify('first day of this month')->format('Ymd');
+    }
+
+    /**
+     * Нормализует и форматирует конечную дату отчета.
+     * Если дата не указана, использует текущую и проводит к концу месяца.
+     * @param string|null $dateString
+     * @return string
+     */
+    public function normalizeDateTo($dateString = null)
+    {
+        if(is_null($dateString)){
+            $dateString = 'now';
+        }
+        //todo system timezone
+        $date = new \DateTime($dateString);
+        return $date->modify('last day of this month')->format('Ymd');
     }
 }

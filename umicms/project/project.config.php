@@ -12,7 +12,6 @@ use umi\authentication\adapter\ORMAdapter;
 use umi\authentication\IAuthenticationFactory;
 use umi\authentication\toolbox\AuthenticationTools;
 use umi\hmvc\component\IComponent;
-use umi\orm\collection\ICollectionFactory;
 use umi\orm\toolbox\OrmTools;
 use umi\route\IRouteFactory;
 use umicms\api\toolbox\ApiTools;
@@ -66,7 +65,8 @@ return [
                    ]
                ],
                 'umicms\project\module\statistics\api\MetrikaApi' => [
-                    'oauthToken' => '4d4d45a7d4dd462ca9f83e4a8f4bd16b'
+                    'oauthToken' => '4d4d45a7d4dd462ca9f83e4a8f4bd16b',
+                    'apiResources'=>'{#lazy:~/project/module/statistics/admin/metrika/api-resources.config.php}'
                 ]
             ]
         ],

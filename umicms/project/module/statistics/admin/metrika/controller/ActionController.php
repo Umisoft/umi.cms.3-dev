@@ -39,7 +39,7 @@ class ActionController extends BaseRestActionController
      */
     protected function getQueryActions()
     {
-        return ['viewCounter'];
+        return ['counter', 'viewCounter'];
     }
 
     /**
@@ -55,10 +55,12 @@ class ActionController extends BaseRestActionController
      * @return Response
      * @throws InvalidArgumentException
      */
-    public function actionViewCounter()
+    public function actionCounter()
     {
-        $counterId = $this->getQueryVar('counterId');
+        $counterId = $this->getRouteVar('counterId');
         $resource = $this->getQueryVar('resource');
+        $dateFrom = $this->api->normalizeDateFrom($this->getQueryVar('date1'));
+        $dateTo = $this->api->normalizeDateTo($this->getQueryVar('date2'));
         if (is_null($counterId)) {
             throw new InvalidArgumentException("Incorrect Metrika counter id");
         }
@@ -69,20 +71,21 @@ class ActionController extends BaseRestActionController
         $apiData = $this->api->statQuery(
             $resource,
             $counterId,
-            $this->getQueryVar('date1'),
-            $this->getQueryVar('date2'),
-            $this->getQueryVar('sort')
+            $dateFrom,
+            $dateTo,
+            $this->getQueryVar('sort', 'id')
         );
 
         $response = [
             'api_data' => [
-                'totals' => $this->api->extractChartData($resource, $apiData),
-                'report'=>$this->api->extractReportData($resource, $apiData),
-                'max'=>$apiData,
-                'min'=>$apiData,
+                'totals' => $apiData['totals'],
+                'metadata' => $this->api->extractFieldsMetadata($resource),
+                'report' => $this->api->extractReportData($resource, $apiData),
+                'max' => $apiData['max'],
+                'min' => $apiData['min'],
             ],
         ];
-        return $this->createResponse(json_encode($response));
+        return $response;
     }
 
     /**
@@ -91,6 +94,6 @@ class ActionController extends BaseRestActionController
     public function actionCounters()
     {
         $counters = $this->api->listCounters();
-        return $this->createResponse(json_encode($counters));
+        return $counters;
     }
 }
