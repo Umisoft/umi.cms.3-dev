@@ -17,9 +17,9 @@ return [
                         'type' => DbalTools::CONNECTION_TYPE_PDOMYSQL,
                         'options' => [
                             'dbname' => 'srv09realloc',
-                            'user' => 'root',
-                            'password' => 'root',
-                            'host' => 'localhost',
+                            'user' => 'srv09realloc',
+                            'password' => 'srv09realloc',
+                            'host' => 'srv01.megaserver.umisoft.ru',
                             'charset' => 'utf8'
                         ]
                     ]
