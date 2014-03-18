@@ -80,7 +80,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
      * К каким ресурсам можно производить запросы
      * @return array
      */
-    public function listResources()
+    public function getResourcesMap()
     {
         return $this->apiResources;
     }
@@ -127,7 +127,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     private function findResourceConfig($resourceName)
     {
         $dataConfig = null;
-        foreach ($this->listResources() as $resourceConfig) {
+        foreach ($this->getResourcesMap() as $resourceConfig) {
             foreach ($resourceConfig['methods'] as $methodConfig) {
                 if ($methodConfig['name'] == $resourceName) {
                     $dataConfig = $methodConfig;

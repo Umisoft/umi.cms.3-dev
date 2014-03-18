@@ -142,6 +142,16 @@ define(
                 }
 
                 return hash;
+            },
+            ajaxError: function(jqXHR){
+                var error = this._super(jqXHR);
+
+                if (jqXHR && jqXHR.status === 500) {
+                    var jsonErrors = jqXHR.responseJSON.result.error.message;
+                    return new DS.InvalidError(jsonErrors);
+                } else {
+                    return error;
+                }
             }
         });
 
@@ -152,6 +162,23 @@ define(
                     payload = payload.collection;
                 }
                 return payload;
+            },
+            serializeBelongsTo: function(record, json, relationship) {
+                var key = relationship.key;
+
+                var belongsTo = Ember.get(record, key);
+
+                key = this.keyForRelationship ? this.keyForRelationship(key, "belongsTo") : key;
+
+                if (Ember.isNone(belongsTo)) {
+                    json[key] = belongsTo;
+                } else {
+                    json[key] = +Ember.get(belongsTo, 'id');//Все отличие от стандартной реализации метода в приведении ID к числу.
+                }
+
+                if (relationship.options.polymorphic) {
+                    this.serializePolymorphicType(record, json, relationship);
+                }
             }
         });
 

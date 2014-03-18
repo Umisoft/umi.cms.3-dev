@@ -14,8 +14,10 @@ define(['App'], function(UMI){
                 var results = [];
                 for(var j = 0; j < modules.length; j++){
                     var components = [];
-                    for(i = 0; i < modules[j].components.length; i++){
-                        components.push(Ember.Object.create(modules[j].components[i]));
+                    if(modules[j].hasOwnProperty('components')){
+                        for(i = 0; i < modules[j].components.length; i++){
+                            components.push(Ember.Object.create(modules[j].components[i]));
+                        }
                     }
                     modules[j].components = components;
                     results.push(Ember.Object.create(modules[j]));

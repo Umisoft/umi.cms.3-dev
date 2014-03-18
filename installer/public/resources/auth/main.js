@@ -125,7 +125,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
             var submit = this.elements.submit;
             submit.setAttribute('disabled', 'disabled');
             var data = $(this).serialize();
-            var action = UmiSettings.baseURL + '/api/users/user/login.json';
+            var action = UmiSettings.baseURL + '/api/users/user/action/login';
             var deffer = $.post(action, data);
             deffer.done(function(data){
                 window.UmiSettings.baseUrl = data.result.baseUrl;
