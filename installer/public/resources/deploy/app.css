@@ -6063,8 +6063,6 @@ form .input-icon {
     margin-top: -15px; }
     form .input-icon ~ input.collapse {
       margin-bottom: 0; }
-form fieldset {
-  border-top: none; }
 form input[type="checkbox"] {
   display: inline-block; }
   form input[type="checkbox"] + label {

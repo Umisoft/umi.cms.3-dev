@@ -2,6 +2,18 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
     'use strict';
     Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
 
+    UMI.FormControlController = Ember.ObjectController.extend({
+        hasFieldsets: function(){
+            return this.get('content.viewSettings.form.elements').isAny('type', 'fieldset');
+        }.property()
+    });
+
+    UMI.FormElementController = Ember.ObjectController.extend({
+        isFieldset: function(){
+            return this.get('content.type') === 'fieldset';
+        }.property()
+    });
+
     UMI.FormControlView = Ember.View.extend({
         tagName: 'form',
         templateName: 'formControl',
@@ -14,37 +26,37 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
         classNames: ['umi-columns'],
         classNameBindings: ['wide'],
         wide: function(){
-            return this.get('meta.type') === 'textarea' ? 'small-12' : 'large-4 medium-12';
+            return this.get('meta.type') === 'wysiwyg' ? 'small-12' : 'large-4 medium-12';
         }.property('meta.type'),
-        layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{title}}</label></div>{{yield}}'),
+        layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{name}}</label></div>{{yield}}'),
         template: function(){
             var meta = this.get('meta');
             var template;
 
             switch(meta.type){
                 case 'text':
-                    template = Ember.Handlebars.compile('{{input type="text" value=object.' + meta.name + ' placeholder=placeholder}}');
+                    template = Ember.Handlebars.compile('{{input type="text" value=object.' + meta.dataSource + ' placeholder=placeholder}}');
                     break;
-                /*case 'textarea':
-                    template = Ember.Handlebars.compile('{{textarea value=object.' + meta.name + ' placeholder=meta.placeholder}}');
-                    break;*/
-                case 'textarea': case 'html':
-                    template = Ember.Handlebars.compile('{{html-editor object=object property="' + meta.name + '"}}');
+                case 'textarea':
+                    template = Ember.Handlebars.compile('{{textarea value=object.' + meta.dataSource + ' placeholder=meta.placeholder}}');
+                    break;
+                case 'wysiwyg':
+                    template = Ember.Handlebars.compile('{{html-editor object=object property="' + meta.dataSource + '"}}');
                     break;
                 case 'datetime':
-                    template = Ember.Handlebars.compile('{{date-picker object=object property="' + meta.name + '"}}');
+                    template = Ember.Handlebars.compile('{{date-picker object=object property="' + meta.dataSource + '"}}');
                     break;
                 case 'number':
-                    template = Ember.Handlebars.compile('{{input type="number" value=object.' + meta.name + '}}');
+                    template = Ember.Handlebars.compile('{{input type="number" value=object.' + meta.dataSource + '}}');
                     break;
                 case 'checkbox':
-                    template = Ember.Handlebars.compile('{{input type="checkbox" checked=object.' + meta.name + ' name=name}}<label for="' + meta.name + '"></label>');
+                    template = Ember.Handlebars.compile('{{input type="checkbox" checked=object.' + meta.dataSource + ' name=name}}<label for="' + meta.name + '"></label>');
                     break;
-                case 'choice':
-                    template = Ember.Handlebars.compile('{{view Ember.Select name=' + meta.name + ' content=object.' + meta.name + ' optionValuePath="content.id" optionLabelPath="content.displayName" prompt=placeholder}}');
+                case 'select':
+                    template = Ember.Handlebars.compile('{{view "select" object=object meta=this}}');
                     break;
                 case 'file':
-                    template = Ember.Handlebars.compile('<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.name + '}}<i class="icon icon-cloud"></i></div>');
+                    template = Ember.Handlebars.compile('<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.dataSource + '}}<i class="icon icon-cloud"></i></div>');
                     break;
                 default:
                     template = Ember.Handlebars.compile('<div>Для поля типа <b>' + meta.type + '</b> не предусмотрен шаблон.</div>');
@@ -118,6 +130,59 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
                     handler: button[0]
                 };
                 this.get('controller').send('save', params);
+            }
+        }
+    });
+
+    UMI.SelectView = Ember.Select.extend({
+        attributeBindings: ['meta.dataSource:name'],
+        optionLabelPath: 'content.displayName',
+        optionValuePath: 'content.id',
+        prompt: 'Ничего не выбрано',
+        content: function(){
+            var self = this;
+            var store = self.get('controller.store');
+            var property = this.get('meta.dataSource');
+            var object = this.get('object');
+            var collection;
+            var getCollection = function(relation){
+                collection = store.findAll(relation.type);
+            };
+            object.eachRelationship(function(name, relation){
+                if(name === property){
+                    getCollection(relation);
+                }
+            });
+            return collection;
+        }.property(),
+        changeValue: function(){
+            var selectObject = this.get('selection');
+            var object = this.get('object');
+            var property = this.get('meta.dataSource');
+            var oldId = selectObject.get('id') || false;
+            var newId = this.get('selectObject.id') || false;
+            if(oldId !== newId){
+                object.set(property, selectObject);
+                object.send('becomeDirty');//TODO: Перенести в ядро REST Adapter
+            }
+        }.observes('value'),
+        /**
+         Связанный объект
+         */
+        selectObject: null,
+        init: function(){
+            this._super();
+            var self = this;
+            var object = this.get('object');
+            var property = this.get('meta.dataSource');
+            var promise = object.get(property);
+            if(promise){
+               return promise.then(function(selectObject){
+                    if(selectObject){
+                        self.set('selectObject', selectObject);
+                        self.set('selection', selectObject);
+                    }
+                });
             }
         }
     });

@@ -35,9 +35,6 @@ form{
             }
         }
     }
-    fieldset{// Костыль пока в форме один fieldset
-        border-top:none;
-    }
     input[type="checkbox"]{//Костыль: почему то в форме чекбокс не работает как надо
         display: inline-block;
         + label{
