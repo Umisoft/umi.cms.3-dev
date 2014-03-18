@@ -82,10 +82,17 @@ require.config({
             name: 'tableControl',
             location: "app/components/tableControl"
         },
-
+        {
+            name: 'table', //Аналог tableControl получающий данные по AJAX
+            location: "app/components/table"
+        },
         {
             name: 'tree',
             location: "app/components/tree"
+        },
+        {
+            name: 'accordion',
+            location: "app/components/accordion"
         },
         {
             name: 'form',
