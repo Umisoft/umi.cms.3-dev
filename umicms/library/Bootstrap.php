@@ -127,7 +127,7 @@ class Bootstrap implements IProjectConfigAware
          * @var IUrlManager $urlManager
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
-        $urlManager->setBaseUrl($baseUrl . '/');
+        $urlManager->setBaseUrl($baseUrl);
 
         /**
          * @var IDispatcher $dispatcher

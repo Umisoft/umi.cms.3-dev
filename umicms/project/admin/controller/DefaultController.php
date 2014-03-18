@@ -13,15 +13,18 @@ use umi\http\Response;
 use umi\i18n\ILocalesAware;
 use umi\i18n\TLocalesAware;
 use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\users\api\UsersApi;
 
 /**
  * Контроллер интерфейса административной панели.
  */
-class DefaultController extends BaseController implements ILocalesAware
+class DefaultController extends BaseController implements ILocalesAware, IUrlManagerAware
 {
 
     use TLocalesAware;
+    use TUrlManagerAware;
 
     /**
      * @var Response $response содержимое страницы
@@ -56,7 +59,7 @@ class DefaultController extends BaseController implements ILocalesAware
                 'contents' => $this->response->getContent(),
                 'baseUrl' => $this->getContext()->getBaseUrl(),
                 'baseApiUrl' => $this->getContext()->getBaseUrl() . $this->getComponent()->getRouter()->assemble('api'),
-                'baseSiteUrl' => $this->getBaseSiteUrl(),
+                'baseSiteUrl' => $this->getUrlManager()->getBaseUrl(),
                 'locale' => $this->getCurrentLocale(),
                 'authenticated' => $this->api->isAuthenticated()
             ]
@@ -66,26 +69,6 @@ class DefaultController extends BaseController implements ILocalesAware
         $response->headers->replace($this->response->headers->all());
 
         return $response;
-    }
-
-    /**
-     * Возвращает базовый URL текущего сайта
-     * @return string
-     */
-    protected function getBaseSiteUrl()
-    {
-        $stack = clone($this->getContext()->getCallStack());
-
-        $siteBaseUrl = '';
-        /**
-         * @var IDispatchContext $context
-         */
-        foreach ($stack as $context) {
-            $siteBaseUrl = $context->getBaseUrl();
-        }
-
-        return $siteBaseUrl ?: '/';
-
     }
 
 }

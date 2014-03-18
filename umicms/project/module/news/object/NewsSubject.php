@@ -12,6 +12,7 @@ namespace umicms\project\module\news\object;
 use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
+use umicms\orm\object\TCmsPage;
 
 /**
  * Новостной сюжет.
@@ -20,6 +21,8 @@ use umicms\orm\object\ICmsPage;
  */
 class NewsSubject extends CmsObject implements ICmsPage
 {
+    use TCmsPage;
+
     /**
      *  Имя поля для хранения новостей
      */

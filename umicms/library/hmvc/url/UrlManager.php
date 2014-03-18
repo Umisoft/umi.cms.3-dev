@@ -60,7 +60,7 @@ class UrlManager implements IUrlManager
      */
     public function getBaseUrl()
     {
-        return $this->baseUrl;
+        return $this->baseUrl ?: '/';
     }
 
 
@@ -71,7 +71,7 @@ class UrlManager implements IUrlManager
     {
 
         if ($page instanceof StructureElement) {
-            return $this->baseUrl . $page->getURL();
+            return $this->baseUrl . '/' . $page->getURL();
         }
 
         /**
@@ -87,7 +87,7 @@ class UrlManager implements IUrlManager
 
         $systemPage = $this->structureApi->element()->getSystemPageByComponentPath($handler);
 
-        return $this->baseUrl . $systemPage->getURL() . $component->getPageUri($page);
+        return $this->baseUrl . '/' . $systemPage->getURL() . $component->getPageUri($page);
 
     }
 }
