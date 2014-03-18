@@ -76,7 +76,8 @@ define([], function(){
                         this.transitionToRoute('component.search', searchQuery);
                     }
                 }
-            }
+            },
+            treeComponent: null // Костыль
         });
     };
 });

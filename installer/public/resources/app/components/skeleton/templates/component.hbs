@@ -2,10 +2,7 @@
     <div {{bind-attr class=":off-canvas-wrap :s-full-height hasTree:move-right"}}>
         <div class="inner-wrap s-full-height">
             {{#if hasTree}}
-                <aside class="left-off-canvas-menu s-unselectable" style="overflow: hidden;">
-                    {{render "treeControl"}}
-                </aside>
-                <div class="umi-divider"></div>
+                {{outlet 'tree'}}
             {{/if}}
     
             <div class="row s-full-height-before s-margin-clear umi-mode" style="left:5px;">

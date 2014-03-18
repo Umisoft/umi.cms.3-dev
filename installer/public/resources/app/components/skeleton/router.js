@@ -201,9 +201,17 @@ define([], function(){
                     }
                     var componentController = self.controllerFor('component');
                     var settings = results.result.settings;
-                    var tree = settings.controls.findBy('name', 'tree');
-                    componentController.set('hasTree', !!tree);
-                    if(!!tree){
+
+                    // Определим содержит ли компонент область дерева
+                    var hasTree = settings.layout.hasOwnProperty('emptyContext') && settings.layout.emptyContext.hasOwnProperty('tree');
+                    // этот флаг костыль, нужно будет убрать
+                    if(hasTree){
+                        componentController.set('treeComponent', settings.layout.emptyContext.tree.controls[0]);
+                    }
+                    componentController.set('hasTree', hasTree);
+                    // Ниже очевидный костыль
+                    var tree = results.result.settings.controls.findBy('name', 'tree');
+                    if(hasTree && tree){
                         /**
                          * Колекция для дерева
                          */
@@ -232,6 +240,16 @@ define([], function(){
             },
             serialize: function(model){
                 return {component: model.get('name')};
+            },
+            renderTemplate: function(controller, model){
+                if(controller.get('hasTree')){
+                    this.render();
+                    var componentName = controller.get('treeComponent');
+                    this.render(componentName, {
+                        into: 'component',
+                        outlet: 'tree'
+                    });
+                }
             }
         });
 
