@@ -58,7 +58,7 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
-    public function getBaseUrl()
+    public function getProjectUrl()
     {
         return $this->baseUrl ?: '/';
     }
@@ -67,7 +67,7 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
-    public function getSiteUrl(ICmsPage $page)
+    public function getSitePageUrl(ICmsPage $page)
     {
 
         if ($page instanceof StructureElement) {
