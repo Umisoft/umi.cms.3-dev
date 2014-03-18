@@ -16,11 +16,12 @@ use umicms\project\admin\api\controller\BaseRestActionController;
 use umicms\project\module\statistics\api\MetrikaApi;
 
 /**
- * Контроллер операций.
+ * Контроллер операций компонента Метрики.
  */
 class ActionController extends BaseRestActionController
 {
     /**
+     * API для запросов к Яндекс.Метрике
      * @var MetrikaApi $api
      */
     protected $api;
@@ -39,7 +40,7 @@ class ActionController extends BaseRestActionController
      */
     public function getQueryActions()
     {
-        return ['counter', 'viewCounter'];
+        return ['counter', 'counters', 'settings', 'navigation'];
     }
 
     /**
@@ -57,8 +58,8 @@ class ActionController extends BaseRestActionController
      */
     public function actionCounter()
     {
-        $counterId = $this->getRouteVar('counterId');
-        $resource = $this->getQueryVar('resource');
+        $counterId = $this->getRequiredQueryVar('counterId');
+        $resource = $this->getRequiredQueryVar('resource');
         $dateFrom = $this->api->normalizeDateFrom($this->getQueryVar('date1'));
         $dateTo = $this->api->normalizeDateTo($this->getQueryVar('date2'));
         if (is_null($counterId)) {
@@ -89,11 +90,38 @@ class ActionController extends BaseRestActionController
     }
 
     /**
+     * Возвращает список доступных счетчиков Метрики.
      * @return Response
      */
     public function actionCounters()
     {
         $counters = $this->api->listCounters();
         return $counters;
+    }
+
+    /**
+     * Возвращает список доступных отчетов.
+     * @return array
+     */
+    public function actionNavigation()
+    {
+        $counterId = $this->getRequiredQueryVar('counterId');
+        $navigation = [];
+        $apiResourceGroups = $this->api->getResourcesMap();
+        foreach ($apiResourceGroups as $resourceGroup) {
+            $navigationGroup = [];
+            $navigationGroup['title'] = $resourceGroup['title'];
+            $navigationGroup['children'] = [];
+            foreach ($resourceGroup['methods'] as $resource) {
+                $query = ['counterId'=>$counterId, 'resource'=>$resource['name']];
+                $navigationGroup['children'][] = [
+                    'title' => $resource['title'],
+                    'uri' => '/counter/?' . http_build_query($query),
+                    'resource' => $resource['name'],
+                ];
+            }
+            $navigation[] = $navigationGroup;
+        }
+        return $navigation;
     }
 }

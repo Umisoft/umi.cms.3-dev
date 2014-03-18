@@ -15,7 +15,22 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    AdminComponent::OPTION_SETTINGS => [],
+    AdminComponent::OPTION_CONTROLS => [
+        'chart' => [],
+    ],
+
+    AdminComponent::OPTION_INTERFACE => [
+        'emptyContext' => [
+            'contents' => [
+                'controls' => ['table']
+            ]
+        ],
+        'selectedContext' => [
+            'contents' => [
+                'controls' => ['chart']
+            ]
+        ]
+    ],
 
     AdminComponent::OPTION_CONTROLLERS => [
         'action' => __NAMESPACE__ . '\controller\ActionController'
@@ -28,15 +43,6 @@ return [
             'defaults' => [
                 'controller' => 'action',
             ],
-            'subroutes' => [
-                'counter' => [
-                    'type'     => IRouteFactory::ROUTE_SIMPLE,
-                    'route'    => '/{counterId:integer}',
-                    'defaults' => [
-                        'controller' => 'action',
-                    ]
-                ],
-            ]
         ],
     ],
 ];
