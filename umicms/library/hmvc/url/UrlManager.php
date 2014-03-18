@@ -11,6 +11,7 @@ namespace umicms\hmvc\url;
 
 use umicms\hmvc\dispatcher\Dispatcher;
 use umicms\orm\collection\ICmsCollection;
+use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\StructureElement;
@@ -30,9 +31,17 @@ class UrlManager implements IUrlManager
      */
     protected $structureApi;
     /**
-     * @var string $baseUrl базовый урл
+     * @var string $baseUrl базовый URL проекта
      */
     protected $baseUrl = '/';
+    /**
+     * @var string $baseRestUrl базовый URL для REST-запросов
+     */
+    protected $baseRestUrl = '/';
+    /**
+     * @var string $baseAdminUrl базовый URL для административной панели
+     */
+    protected $baseAdminUrl;
 
     /**
      * Конструктор.
@@ -58,9 +67,45 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
+    public function setBaseRestUrl($baseRestUrl)
+    {
+        $this->baseRestUrl = $baseRestUrl;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setBaseAdminUrl($baseAdminUrl)
+    {
+        $this->baseAdminUrl = $baseAdminUrl;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getProjectUrl()
     {
         return $this->baseUrl ?: '/';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBaseRestUrl()
+    {
+        return $this->baseRestUrl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBaseAdminUrl()
+    {
+        return $this->baseAdminUrl;
     }
 
 
@@ -89,6 +134,22 @@ class UrlManager implements IUrlManager
 
         return $this->baseUrl . '/' . $systemPage->getURL() . $component->getPageUri($page);
 
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRestResourceUrl(ICmsCollection $collection, ICmsObject $object = null)
+    {
+        $restResourceUrl = $this->baseRestUrl;
+        $restResourceUrl .= '/' . implode('/', explode('.', $collection->getHandlerPath('admin')));
+        $restResourceUrl .= '/collection/' . $collection->getName();
+
+        if ($object) {
+            $restResourceUrl .= '/' . $object->getId();
+        }
+
+        return  $restResourceUrl;
     }
 }
  

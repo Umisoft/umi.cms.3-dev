@@ -90,7 +90,6 @@ class SiteApplication extends SiteComponent implements IHttpAware, IToolkitAware
     {
         parent::__construct($name, $path, $options, $structureApi);
 
-        $this->registerSelectorInitializer();
         $this->registerSiteSettings();
         $this->registerPageCallStack();
     }
@@ -100,6 +99,8 @@ class SiteApplication extends SiteComponent implements IHttpAware, IToolkitAware
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
+        $this->registerSelectorInitializer();
+
         while (!$this->pageCallStack->isEmpty()) {
             $this->pageCallStack->pop();
         }

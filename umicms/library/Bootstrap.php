@@ -114,7 +114,7 @@ class Bootstrap implements IProjectConfigAware
             $localesService->setCurrentLocale($routeMatches['locale']);
         }
 
-        $baseUrl = isset($routeMatches['uri']) ? $routeMatches['uri'] : '';
+        $baseProjectUrl = isset($routeMatches['uri']) ? $routeMatches['uri'] : '';
         $routePath = $routeResult->getUnmatchedUrl() ? : '/';
 
         if (preg_match('|\.([\w]+)$|u', $routePath, $matches)) {
@@ -127,7 +127,13 @@ class Bootstrap implements IProjectConfigAware
          * @var IUrlManager $urlManager
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
-        $urlManager->setBaseUrl($baseUrl);
+        $urlManager->setBaseUrl($baseProjectUrl);
+
+        $baseAdminUrl = $baseProjectUrl . $project->getRouter()->assemble('admin');
+        $adminComponent = $project->getChildComponent('admin');
+
+        $urlManager->setBaseAdminUrl($baseAdminUrl);
+        $urlManager->setBaseRestUrl($baseAdminUrl . $adminComponent->getRouter()->assemble('api'));
 
         /**
          * @var IDispatcher $dispatcher
@@ -136,7 +142,7 @@ class Bootstrap implements IProjectConfigAware
         $this->initTemplateEngines($dispatcher);
         $dispatcher->setCurrentRequest($request);
         $dispatcher->setInitialComponent($project);
-        $response = $dispatcher->dispatch($routePath, $baseUrl);
+        $response = $dispatcher->dispatch($routePath, $baseProjectUrl);
 
         $this->sendResponse($response, $request);
     }

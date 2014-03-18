@@ -9,6 +9,8 @@
 
 namespace umicms\hmvc\url;
 
+use umicms\orm\collection\ICmsCollection;
+use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 
 /**
@@ -18,11 +20,25 @@ interface IUrlManager
 {
 
     /**
-     * Устанавливает базовый URL.
+     * Устанавливает базовый URL проекта.
      * @param string $baseUrl
      * @return self
      */
     public function setBaseUrl($baseUrl);
+
+    /**
+     * Устанавливает базовый URL для REST-запросов.
+     * @param string $baseRestUrl
+     * @return self
+     */
+    public function setBaseRestUrl($baseRestUrl);
+
+    /**
+     * Устанавливает базовый URL для административной панели.
+     * @param string $baseAdminUrl
+     * @return self
+     */
+    public function setBaseAdminUrl($baseAdminUrl);
 
     /**
      * Возвращает базовый URL проекта.
@@ -31,11 +47,31 @@ interface IUrlManager
     public function getProjectUrl();
 
     /**
+     * Возвращает базовый URL для REST-запросов.
+     * @return string
+     */
+    public function getBaseRestUrl();
+
+    /**
+     * Возвращает базовый URL для административной панели.
+     * @return string
+     */
+    public function getBaseAdminUrl();
+
+    /**
      * Возвращает URL страницы для отображения на сайте.
      * @param ICmsPage $page страница
      * @return string
      */
     public function getSitePageUrl(ICmsPage $page);
+
+    /**
+     * Возвращает URL ресурса коллекции
+     * @param ICmsCollection $collection коллекция
+     * @param ICmsObject|null $object
+     * @return string
+     */
+    public function getRestResourceUrl(ICmsCollection $collection, ICmsObject $object = null);
 
 }
  

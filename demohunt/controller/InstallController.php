@@ -904,8 +904,7 @@ class InstallController extends SitePageController implements ICollectionManager
         $structureCollection = $this->getCollectionManager()->getCollection('structure');
         $searchRoot = $structureCollection->add('search', 'system');
         $searchRoot->setValue('displayName', 'Поиск')
-            ->setGUID('9ee6745f-f40d-46d8-8043-d901234628ce')
-            ->setValue('layout', $this->testLayout);
+            ->setGUID('9ee6745f-f40d-46d8-8043-d901234628ce');
         $searchRoot->getProperty('componentName')->setValue('search');
         $searchRoot->getProperty('componentPath')->setValue('search');
 

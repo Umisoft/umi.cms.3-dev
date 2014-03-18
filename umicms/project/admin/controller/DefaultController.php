@@ -57,8 +57,8 @@ class DefaultController extends BaseController implements ILocalesAware, IUrlMan
             'layout',
             [
                 'contents' => $this->response->getContent(),
-                'baseUrl' => $this->getContext()->getBaseUrl(),
-                'baseApiUrl' => $this->getContext()->getBaseUrl() . $this->getComponent()->getRouter()->assemble('api'),
+                'baseUrl' => $this->getUrlManager()->getBaseAdminUrl(),
+                'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
                 'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
                 'locale' => $this->getCurrentLocale(),
                 'authenticated' => $this->api->isAuthenticated()

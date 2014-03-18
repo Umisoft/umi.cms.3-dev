@@ -55,7 +55,6 @@ class ApiApplication extends AdminComponent implements IAdminSettingsAware, IToo
     {
         parent::__construct($name, $path, $options);
 
-        $this->registerSelectorInitializer();
         $this->registerAdminSettings();
     }
 
@@ -64,6 +63,8 @@ class ApiApplication extends AdminComponent implements IAdminSettingsAware, IToo
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
+        $this->registerSelectorInitializer();
+
         $requestFormat = $request->getRequestFormat(self::DEFAULT_REQUEST_FORMAT);
 
         if (!$this->isRequestFormatSupported($requestFormat)) {
