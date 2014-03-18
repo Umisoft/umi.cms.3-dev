@@ -12,7 +12,9 @@ define(
         'dialog',
         'popup',
         'chartControl',
-        'DS'
+        'DS',
+        'table',
+        'accordion'
     ],
     function(UMI){
         'use strict';
