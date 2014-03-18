@@ -4,8 +4,9 @@ define([
     'text!./templates/actions/error.hbs',
     'text!./templates/actions/children.hbs',
     'text!./templates/actions/form.hbs',
-    'text!./templates/actions/files.hbs'
-], function(applicationTpl, componentTpl, errorTpl, childrenTpl, formTpl, filesTpl){
+    'text!./templates/actions/files.hbs',
+    'text!./templates/actions/chart.hbs'
+], function(applicationTpl, componentTpl, errorTpl, childrenTpl, formTpl, filesTpl, chartTpl){
     'use strict';
     return function(){
         Ember.TEMPLATES['UMI/application'] = Ember.Handlebars.compile(applicationTpl);
@@ -15,5 +16,6 @@ define([
         Ember.TEMPLATES['UMI/form'] = Ember.Handlebars.compile(formTpl);
         Ember.TEMPLATES['UMI/filter'] = Ember.Handlebars.compile(childrenTpl);
         Ember.TEMPLATES['UMI/fileManager'] = Ember.Handlebars.compile(filesTpl);
+        Ember.TEMPLATES['UMI/chart'] = Ember.Handlebars.compile(chartTpl);
     };
 });

@@ -1,3 +1,10 @@
-define(['App', 'text!./popup.hbs'], function(UMI, formTpl, datepicker){
+define([
+    'text!./templates/popup.hbs',
+    './view',
+    'App'
+], function(popupTpl, view){
     'use strict';
+
+    Ember.TEMPLATES['UMI/popup'] = Ember.Handlebars.compile(popupTpl);
+    view();
 });

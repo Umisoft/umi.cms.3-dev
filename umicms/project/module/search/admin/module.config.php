@@ -8,13 +8,25 @@
 
 namespace umicms\project\module\search\admin;
 
+use umi\route\IRouteFactory;
 use umicms\project\admin\component\AdminComponent;
 
 return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
-
     AdminComponent::OPTION_SETTINGS => [
 
-    ]
+    ],
+    AdminComponent::OPTION_CONTROLLERS => [
+        'action' => __NAMESPACE__ . '\controller\ActionController'
+    ],
+    AdminComponent::OPTION_ROUTES => [
+        'action' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/action/{action}',
+            'defaults' => [
+                'controller' => 'action',
+            ],
+        ],
+    ],
 ];

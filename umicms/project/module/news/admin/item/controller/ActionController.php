@@ -40,7 +40,7 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    protected function getQueryActions()
+    public function getQueryActions()
     {
         return ['settings', 'form'];
     }
@@ -48,9 +48,9 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    protected function getModifyActions()
+    public function getModifyActions()
     {
-        return [];
+        return ['trash', 'untrash', 'emptyTrash'];
     }
 
     /**
@@ -88,6 +88,7 @@ class ActionController extends BaseRestActionController
     }
 
     /**
+     * Очищает корзину
      *
      */
     public function actionEmptyTrash()

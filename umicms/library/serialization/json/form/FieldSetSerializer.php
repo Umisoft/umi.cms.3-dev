@@ -74,7 +74,9 @@ class FieldSetSerializer extends BaseSerializer
      */
     protected function getLabelDictionaries(FieldSet $fieldSet)
     {
-        return [];
+        $options = $fieldSet->getOptions();
+
+        return isset($options['dictionaries']) ? $options['dictionaries'] : [];
     }
 }
  

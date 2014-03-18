@@ -20,7 +20,6 @@ use umi\spl\config\TConfigSupport;
 use umi\stemming\TStemmingAware;
 use umicms\api\IPublicApi;
 use umicms\orm\object\ICmsObject;
-use umicms\project\module\search\adapter\BaseAdapter;
 use umicms\project\module\search\highlight\Fragmenter;
 use umicms\project\module\search\object\SearchIndex;
 use utest\event\TEventSupport;
@@ -33,11 +32,6 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     use TDbClusterAware;
     use TEventObservant;
     use TConfigSupport;
-
-    /**
-     * @var BaseAdapter $searchAdapter
-     */
-    protected $searchAdapter;
 
     /**
      * Ищет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
@@ -278,7 +272,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     /**
      * @return \umi\orm\collection\ICollection
      */
-    protected function getSearchIndexCollection()
+    public function getSearchIndexCollection()
     {
         return $this->getCollectionManager()
             ->getCollection('searchIndex');

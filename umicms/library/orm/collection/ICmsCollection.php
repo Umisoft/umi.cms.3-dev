@@ -65,4 +65,10 @@ interface ICmsCollection extends ICollection, IFormAware
      * @return bool
      */
     public function hasHandler($applicationName);
+
+    /**
+     * Возвращает список имен словарей для перевода лейблов коллекции
+     * @return array
+     */
+    public function getDictionaryNames();
 }

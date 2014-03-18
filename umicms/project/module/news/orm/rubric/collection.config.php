@@ -19,5 +19,8 @@ return [
         'base' => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/news/orm/rubric/form/base.edit.config.php}'
         ]
+    ],
+    'dictionaries' => [
+        'collection\newsRubric', 'collection'
     ]
 ];

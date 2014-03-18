@@ -1,7 +1,26 @@
 define(['App'], function(UMI){
     'use strict';
     return function(){
+        var insertElementCounter = 0;
+        var testCounter = 0;
+
         UMI.TableControlView = Ember.View.extend({
+            actions: {
+                removeRecord: function(){
+                    console.log('removeRecord');
+//                    var objectId = this.$();
+//                    console.log(objectId);
+                },
+
+                removeRecords: function(){
+                    console.log('removeRecords');
+                },
+
+                sortDirection: function(){
+                    console.log('sortDirection');
+                }
+            },
+
             templateName: 'tableControl',
             classNames: ['umi-table-control'],
             columnsWidth: function(){
@@ -21,12 +40,13 @@ define(['App'], function(UMI){
                 /**
                  * Секретный хак.
                  *
-                 * Ширина колонок таблицы задаётся через JS. При загрузке происходит отрисовка таблицы, а потом повторная перерисовка после присвоения ширины колонкам.
+                 * Ширина колонок таблицы задаётся через JS.
+                 * При загрузке происходит отрисовка таблицы, а потом повторная перерисовка после присвоения ширины колонкам.
                  * Чтобы предотвратить двойную отрисовку, перед отрисовкой таблицы генерируем необходимые стили и вставляем их в body, а потом отрисовываем таблицу.
                  *
                  */
                 var that = this;
-                UMI.Utils.DOMCache.body.append(function(){
+                $('body').append(function(){
                     var result = '';
                     //nth-of-type начинает отсчёт не с нуля, а с единицы
                     //TODO Оптимизировать селекторы
@@ -41,7 +61,8 @@ define(['App'], function(UMI){
                 });
             },
 
-            didInsertElement: function(){
+            fakeDidInsertElement: function(){
+
                 window.RAF = (function(){
                     return window.requestAnimationFrame || //                        window.webkitRequestAnimationFrame ||
                         //                        window.mozRequestAnimationFrame    ||
@@ -53,35 +74,36 @@ define(['App'], function(UMI){
                 })();
 
                 var columnsWidth = this.get('columnsWidth');
-                var cols = columnsWidth.length - 1;
-                var rows = document.querySelectorAll('.umi-table tr').length;
-                var tableControlScroll;
+                var cols = columnsWidth.length - 1; //Количество колонок. Отсчёт от 0
 
                 // Установка ширины колонок при загрузке.
                 // Дублирут по функционалу сгенериванный CSS в willInsertElement.
                 // Устраняет проблему связанную с тем, что сгенерированный CSS перечисляет колонки подряд по nth-of-type.
                 // При перестановке колонок выставляется ширина колонки в соответствии со сгенерированным CSS, вместо собственной ширины колонки
                 var setColumnsSize = function(){
+
                     var headersCache = document.querySelector('.umi-table-titles').querySelectorAll('.umi-table-title-div');
                     var filtersCache = document.querySelector('.umi-table-filters').querySelectorAll('.umi-table-filter-div');
-                    //TODO В этой строке возникает баг при отсутвии записей в таблице
-                    if(document.querySelector('.umi-table-cell-div')){
-                        var rowsLengthNotNull = true;
-                        var colsCache = document.querySelector('.umi-table').querySelector('.umi-table-tr').querySelectorAll('.umi-table-cell-div');
-                    }
+                    var firstRow = document.querySelector('.umi-table-tr').querySelectorAll('.umi-table-cell-div');
 
                     for(var i = 0; i < cols + 1; i++){
                         headersCache[i].style.width = columnsWidth[i] + 'px';
                         filtersCache[i].style.width = columnsWidth[i] + 'px';
-                        if(rowsLengthNotNull){
-                            colsCache[i].style.width = columnsWidth[i] + 'px';
-                        }
+                        firstRow[i].style.width = columnsWidth[i] + 'px';
                     }
+
+//                    document.querySelector('.umi-table-titles').querySelectorAll('.umi-table-title-div')[columnNumber].style.width = columnWidth + 'px';
+//                    document.querySelector('.umi-table-filters').querySelectorAll('.umi-table-filter-div')[columnNumber].style.width = columnWidth + 'px';
+//                    for(var i = 0; i < rows; i++){
+//                        document.querySelector('.umi-table').querySelectorAll('.umi-table-tr')[i].querySelectorAll('.umi-table-cell-div')[columnNumber].style.width = columnWidth + 'px';
+//                    }
+
+                    //Удаляем хак-стили для ширины, чтобы небыло бага ширины столбцов при перестановке
                     $('#tableControlWidthStyles').remove();
                 };
 
                 //Функция вызывается после выполнения всего didInsertelement
-                setTimeout(function(){
+                var tableControlScroll;
                     setColumnsSize();
                     tableControlScroll = new IScroll('.umi-table-control-content-center', {
                         scrollX: true,
@@ -101,7 +123,7 @@ define(['App'], function(UMI){
                         umiTableLeft.style.marginTop = this.y + 'px';
                         umiTableHeader.style.marginLeft = this.x + 'px';
                     });
-                }, 0);
+
 
                 //------------------------------------------------------------------------------------------------------
 
@@ -116,6 +138,7 @@ define(['App'], function(UMI){
 
                     $('.umi-table-header-column').not('.umi-table-header-column-fixed').on('mousedown', function(event){
                         if(event.button === 0){ //Проверка на нажатие левой кнопки мыши
+
                             $('html').addClass('s-unselectable');
 
                             currentColumnWidth = $(this).find('.umi-table-title-div').width();
@@ -153,7 +176,7 @@ define(['App'], function(UMI){
                             //Вставка колонки
                             var columnInsert = function(currentColumn){
                                 //Вставляем элемент перед выбранной колонкой
-                                //TODO Сделать код универсальным - перебор строк, а не для кажой по-отдельности
+                                //TODO Сделать код универсальным - перебор строк в заголовке, а не для кажой по-отдельности
                                 $('.umi-table-header-column').before(function(){
                                     if($(this).index('.umi-table-header-column') === currentColumn){
                                         return detachHeaderTitleCells.shift();
@@ -177,8 +200,7 @@ define(['App'], function(UMI){
                             //Добавление плавающего призрака
                             var addGhost = function(){
                                 $('body').append(function(){
-                                    var ghost = '<div class="ghost"><table class="umi-table-ghost-header">' + detachHeaderCellsGhost + '</table><table class="umi-table-ghost-content">' + detachTableCellsGhost + '</table></div>';
-                                    return ghost;
+                                     return '<div class="ghost"><table class="umi-table-ghost-header">' + detachHeaderCellsGhost + '</table><table class="umi-table-ghost-content">' + detachTableCellsGhost + '</table></div>';
                                 });
                                 document.querySelectorAll('.ghost div')[0].style.width = currentColumnWidth + 'px';
                                 document.querySelector('.ghost').style.width = currentColumnWidth + 20 + 'px';
@@ -195,7 +217,6 @@ define(['App'], function(UMI){
                                     ghost.left = x;
                                 });
                             };
-
 
                             addGhost();
                             ghostPosition(event);
@@ -295,7 +316,7 @@ define(['App'], function(UMI){
                 dragColumn();
 
                 //Подсветка строки при наведении курсора мыши
-                $('.umi-table').find('.umi-table-tr').on('mouseenter', function(){
+                $('.umi-table').filter('.umi-table-tr').on('mouseenter', function(){
                     var row = $(this);
                     var trBackground = row.css('background');
                     row.css({'background': '#BFE0F8'});
@@ -316,6 +337,8 @@ define(['App'], function(UMI){
                     var columnWidth;
                     var parentLeft = $(this).parent().offset().left;
 
+                    var rows = document.querySelectorAll('.umi-table tr').length;
+
                     $('body').on('mousemove', this, function(event){
                         columnWidth = event.pageX - parentLeft - 20; // -20 - компенсация padding
                         if(columnWidth > 59){
@@ -328,7 +351,7 @@ define(['App'], function(UMI){
                             });
                         }
                         //Сохраняем новую ширину колонки в массив ширин колонок
-                        self.get('controller').get('content').meta.columns[columnNumber].width = columnWidth;
+//                        self.get('controller').get('content').meta.columns[columnNumber].width = columnWidth;
                         //TODO допилить API для добавления возможности сохранения
                         //self.get('controller').get('model').save();
                     });
@@ -391,88 +414,111 @@ define(['App'], function(UMI){
                 //Переключение кнопки сортировки вверх-вниз
                 $('.umi-table-sort-column').mousedown(function(){
                     $(this).toggleClass('icon-bottom-thin icon-top-thin');
+
                 });
 
                 //Выделение всех checkbox
-                $('.umi-table-title-div-left input').mousedown(function(){
+                $('.umi-table-title-div-left input').click(function(){
                     var $that = $(this);
                     $('.umi-table-left').find('input').prop("checked", function(){
                         return $that.prop("checked");
                     });
                 });
 
+                //Переход по клику в строке на форму редактирования объекта
                 var that = this;
                 $('.umi-table').on('click', '.umi-table-tr', function(){
                     var objectId = $(this).data('object-id');
                     that.get('controller').transitionToRoute('context', objectId);
                 });
 
-                //TODO После вынесения столбца с кнопками удаления в отдельную колонку, изменить селектор на .umi-table-control-content-right
-                $('.umi-table-control-content-center').on('click', '.umi-table-remove-button', function(){
-                    var objectId = $(this).data('object-id');
-                    var object = that.get('controller').get('content').removeObject();
-                    console.log(object);
-                });
+                      //Удаление записи
+//                    //TODO После вынесения столбца с кнопками удаления в отдельную колонку, изменить селектор на .umi-table-control-content-right
+//                    $('.umi-table-control-content-right').on('click', '.icon-delete', function(){
+//                        console.log('remove button');
+//                        var objectId = $(this).data('object-id');
+//                        var object = that.get('controller').get('content').removeObject();
+//                        console.log(object);
+//                    });
+//
+                      //Определение выделенных объектов
+//                    $('.umi-table-left').on('click', 'input[type="checkbox"]', function(){
+//                        var objectId = $(this).parent().parent().parent().data('object-id');
+//                        console.log(objectId);
+//                    });
 
-                $('.umi-table-left').on('click', 'input[type="checkbox"]', function(){
-                    var objectId = $(this).parent().parent().parent().data('object-id');
-                    console.log(objectId);
-                });
 
-                //Подсветка выделенной строки
-                //					$('.umi-table-left').find('input').click(function(){
-                //						var backgroundColor;
-                //						var elemIndex = $(this).parent().parent().parent().index('.umi-table-left tr');
-                //						if($(this).prop("checked")){
-                //							backgroundColor = $(this).parent().parent().css("background");
-                ////                        $(this).parent().parent().css({"background":"#A4DCF7", "border-bottom":"1px solid #E3E4E5", "height":"30px"});
-                //							$('.umi-table tr').eq(elemIndex).find('td').css({"background":"#A4DCF7", "border-bottom":"1px solid #E3E4E5"});
-                //							$('.umi-table tr').eq(elemIndex).find('div').css({"height":"33px"});
-                //						}else{
-                ////                        $(this).parent().parent().css({"background":"none", "border-bottom":"none", "height":"32px"});
-                //							$('.umi-table tr').eq(elemIndex).find('td').css({"background":"none", "border-bottom":"none"});
-                //							$('.umi-table tr').eq(elemIndex).find('div').css({"height":"34px"});
-                //						}
-                //					});
+                //Подсветка выделенных строк
+                $('.umi-table-title-div-left, .umi-table-left').on('click', 'input',function(){
+                    $('.umi-table-left input[type="checkbox"]').each(function(index, element){
+                        if($(this).prop("checked")){
+
+                            $('.umi-table-left tr').eq(index).find('td').css({"background":"#A4DCF7"});
+                                 $('.umi-table tr').eq(index).find('td').css({"background":"#A4DCF7"});
+                           $('.umi-table-right tr').eq(index).find('td').css({"background":"#A4DCF7"});
+
+                        } else{
+
+                            $('.umi-table-left tr').eq(index).find('td').css({"background":"none"});
+                                 $('.umi-table tr').eq(index).find('td').css({"background":"none"});
+                           $('.umi-table-right tr').eq(index).find('td').css({"background":"none"});
+
+                        }
+                    });
+                });
             }
+
         });
 
 
         UMI.TableCellView = Ember.View.extend({
+
+            didInsertElement: function(){
+                console.log('cell');
+                // После отрисовки первой ЯЧЕЙКИ
+                insertElementCounter++;
+                if(insertElementCounter === 1){
+                    this.get('parentView').fakeDidInsertElement();
+                    console.log('fakeDidInsertElement');
+                }
+            },
+
             classNames: ['umi-table-cell-div'],
-//            edit: false,
-//            editToggle: function(){
-//                this.set('edit', !this.get('edit'));
-//            },
+////            edit: false,
+////            editToggle: function(){
+////                this.set('edit', !this.get('edit'));
+////            },
+//
             template: function(){
+                console.log('template');
                 var meta = this.get('meta');
                 var object = this.get('object');
                 var template;
-                //					if(editMode){
-                //						switch(meta.type){
-                //							case 'string':
-                //								template = Ember.Handlebars.compile('{{input type="text" value=object.' + meta.name + '}}');
-                //								break;
-                //							case 'text':
-                //								template = Ember.Handlebars.compile('{{textarea value=object.' + meta.name + '}}');
-                //								break;
-                //							case 'html':
-                //								template = Ember.Handlebars.compile('{{textarea data-type="ckeditor" value=object.' + meta.name + '}}');
-                //								break;
-                //							case 'date':
-                //								template = Ember.Handlebars.compile('{{input type="date" value=object.' + meta.name + '}}');
-                //								break;
-                //							case 'number':
-                //								template = Ember.Handlebars.compile('{{input type="number" value=object.' + meta.name + '}}');
-                //								break;
-                //						}
-                //
-                //					}else{
-//                template = Ember.Handlebars.compile('<div {{bind-attr class=":icon-inside-hover view.edit:hide"}}>' + object.get(meta.name) + '<i class="icon icon-write" {{action "editToggle" target="view"}}></i></div>{{input type="text" value=object.' + meta.name +' class=view.edit }}');
+//                					if(editMode){
+//                						switch(meta.type){
+//                							case 'string':
+//                								template = Ember.Handlebars.compile('{{input type="text" value=object.' + meta.name + '}}');
+//                								break;
+//                							case 'text':
+//                								template = Ember.Handlebars.compile('{{textarea value=object.' + meta.name + '}}');
+//                								break;
+//                							case 'html':
+//                								template = Ember.Handlebars.compile('{{textarea data-type="ckeditor" value=object.' + meta.name + '}}');
+//                								break;
+//                							case 'date':
+//                								template = Ember.Handlebars.compile('{{input type="date" value=object.' + meta.name + '}}');
+//                								break;
+//                							case 'number':
+//                								template = Ember.Handlebars.compile('{{input type="number" value=object.' + meta.name + '}}');
+//                								break;
+//                						}
+//
+//                					}else{
+////                template = Ember.Handlebars.compile('<div {{bind-attr class=":icon-inside-hover view.edit:hide"}}>' + object.get(meta.name) + '<i class="icon icon-write" {{action "editToggle" target="view"}}></i></div>{{input type="text" value=object.' + meta.name +' class=view.edit }}');
                 template = Ember.Handlebars.compile(object.get(meta.name) + '&nbsp;');
-                //					}
+//                					}
                 return template;
-            }.property('object', 'meta')
+            }.property('object','meta')
         });
     };
 });

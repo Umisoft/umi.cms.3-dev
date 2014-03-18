@@ -10,6 +10,7 @@ namespace umicms\project\admin\api\controller;
 
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
+use umicms\orm\collection\ICmsCollection;
 use umicms\project\admin\component\AdminComponent;
 use umicms\hmvc\controller\BaseController;
 
@@ -25,14 +26,21 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
      */
     public function __invoke()
     {
+        /**
+         * @var AdminComponent $application
+         */
+        $application = $this->getComponent();
+        $applicationInfo = $application->getComponentInfo();
+        $modules = isset($applicationInfo['components']) ? $applicationInfo['components'] : [];
 
         list($collections, $resources) = $this->getCollectionsSettings();
+
         return $this->createViewResponse(
             'settings',
             [
-                'modules' => $this->getModulesSettings(),
+                'modules'     => $modules,
                 'collections' => $collections,
-                'resources' => $resources
+                'resources'   => $resources
             ]
         );
     }
@@ -43,7 +51,8 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
      */
     protected function getCollectionsSettings()
     {
-        $collectionNames = $this->getCollectionManager()->getList();
+        $collectionNames = $this->getCollectionManager()
+            ->getList();
 
         $collections = [];
         $resources = [];
@@ -52,14 +61,15 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
             /**
              * @var ICmsCollection $collection
              */
-            $collection = $this->getCollectionManager()->getCollection($collectionName);
+            $collection = $this->getCollectionManager()
+                ->getCollection($collectionName);
             $collections[] = $collection;
             if ($collection->hasHandler('admin')) {
                 $componentInfo = explode('.', $collection->getHandlerPath('admin'));
                 $resources[] = [
                     'collection' => $collectionName,
-                    'module' => isset($componentInfo[0]) ? $componentInfo[0] : null,
-                    'component' => isset($componentInfo[1]) ? $componentInfo[1] : null
+                    'module'     => isset($componentInfo[0]) ? $componentInfo[0] : null,
+                    'component'  => isset($componentInfo[1]) ? $componentInfo[1] : null
                 ];
             }
 
@@ -68,57 +78,25 @@ class SettingsController extends BaseController implements ICollectionManagerAwa
         return [$collections, $resources];
     }
 
-    /**
-     * Возвращает настройки модулей.
-     * @return array
-     */
-    protected function getModulesSettings()
-    {
-        $modules = [];
-
-        /**
-         * @var AdminComponent $application
-         */
-        $application = $this->getComponent();
-
-        foreach ($application->getChildComponentNames() as $moduleName) {
-            /**
-             * @var AdminComponent $module
-             */
-            $module = $application->getChildComponent($moduleName);
-
-            $components = [];
-            foreach ($module->getChildComponentNames() as $componentName) {
-                $component = $module->getChildComponent($componentName);
-                /**
-                 * @var AdminComponent $component
-                 */
-                $components[] = [
-                    'name'     => $componentName,
-                    'path'     => $component->getPath()
-                ];
-            }
-
-            $modules[] = [
-                'name'       => $moduleName,
-                'path'       => $module->getPath(),
-                'components' => $components
-            ];
-        }
-
-        return $modules;
-    }
-
     protected function assembleResourceUri(AdminComponent $module, AdminComponent $component)
     {
 
-        $moduleUri = $this->getComponent()->getRouter()->assemble('component', [
+        $moduleUri = $this->getComponent()
+            ->getRouter()
+            ->assemble(
+            'component',
+            [
                 'component' => $module->getName()
-            ]);
+            ]
+        );
 
-        $componentUri = $module->getRouter()->assemble('component', [
+        $componentUri = $module->getRouter()
+            ->assemble(
+            'component',
+            [
                 'component' => $component->getName()
-            ]);
+            ]
+        );
 
         return $moduleUri . $componentUri;
     }

@@ -15,44 +15,31 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    AdminComponent::OPTION_SETTINGS => [
-        'controls' => [
-            [
-                'name' => 'tree',
-                'displayName' => 'Структура сайта',
+    AdminComponent::OPTION_CONTROLS => [
+        'tree' => [],
+        'children' => [],
+        'filter' => [],
+        'form' => [],
+    ],
+
+    AdminComponent::OPTION_INTERFACE => [
+        'emptyContext' => [
+            'tree' => [
+                'controls' => ['tree']
             ],
-            [
-                'name' => 'filter',
-                'displayName' => 'Фильтр'
-            ],
-            [
-                'name' => 'children',
-                'displayName' => 'Дочерние страницы'
-            ],
-            [
-                'name' => 'form',
-                'displayName' => 'Редактирование'
+            'contents' => [
+                'controls' => ['filter', 'children']
             ]
         ],
-        'layout' => [
-            'emptyContext' => [
-                'tree' => [
-                    'controls' => ['tree']
-                ],
-                'contents' => [
-                    'controls' => ['filter', 'children']
-                ]
+        'selectedContext' => [
+            'tree' => [
+                'controls' => ['tree']
             ],
-            'selectedContext' => [
-                'tree' => [
-                    'controls' => ['tree']
-                ],
-                'contents' => [
-                    'controls' => ['form', 'children']
-                ]
+            'contents' => [
+                'controls' => ['form', 'children']
             ]
         ]
-     ],
+    ],
 
     AdminComponent::OPTION_CONTROLLERS => [
         'list' => __NAMESPACE__ . '\controller\ListController',
@@ -67,15 +54,6 @@ return [
             'route'    => '/action/{action}',
             'defaults' => [
                 'controller' => 'action'
-            ],
-            'subroutes' => [
-                'form' => [
-                    'type'     => IRouteFactory::ROUTE_SIMPLE,
-                    'route'    => '/{collection}/{type}/{form}',
-                    'defaults' => [
-                        'controller' => 'action'
-                    ]
-                ],
             ]
         ],
 
@@ -98,6 +76,6 @@ return [
                     ]
                 ]
             ]
-        ]
+        ],
     ]
 ];

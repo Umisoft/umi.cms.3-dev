@@ -25,7 +25,7 @@ class MetadataSerializer extends BaseSerializer
     public function __invoke(Metadata $metadata, array $options = [])
     {
         $this->getJsonWriter()->startElement('fields');
-        $this->delegate(array_values($metadata->getFields()));
+        $this->delegate(array_values($metadata->getFields()), $options);
         $this->getJsonWriter()->endElement();
     }
 }

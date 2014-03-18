@@ -17,12 +17,6 @@
         "grunt-contrib-jshint": "latest",
         "grunt-svgmin": "latest",
         "grunt-grunticon": "latest",
-        "qunitjs": "latest",
-        "grunt-contrib-yuidoc": "latest",
-        "karma": "latest",
-        "karma-qunit": "latest",
-        "karma-ember-preprocessor": "latest",
-        "karma-firefox-launcher": "latest",
-        "karma-ie-launcher": "latest"
+        "grunt-contrib-yuidoc": "latest"
     }
 }

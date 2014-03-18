@@ -41,7 +41,7 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    protected function getQueryActions()
+    public function getQueryActions()
     {
         return ['settings', 'form'];
     }
@@ -49,7 +49,7 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    protected function getModifyActions()
+    public function getModifyActions()
     {
         return ['move', 'trash', 'untrash', 'emptyTrash'];
     }
@@ -96,28 +96,50 @@ class ActionController extends BaseRestActionController
         return '';
     }
 
+    /**
+     * Удаляет объект в корзину
+     * @return string
+     */
     public function actionTrash()
     {
-        $object = $this->api->rubric()->getById($this->getQueryVar('id'));
-        $this->api->news()->trash($object);
-        $this->getObjectPersister()->commit();
+        $object = $this->api->rubric()
+            ->getCollection()
+            ->getById($this->getQueryVar('id'));
+        $this->api->news()
+            ->trash($object);
+        $this->getObjectPersister()
+            ->commit();
 
         return '';
     }
 
+    /**
+     * Восстанавливает объект из корзины
+     * @return string
+     */
     public function actionUntrash()
     {
-        $object = $this->api->rubric()->getById($this->getQueryVar('id'));
-        $this->api->news()->untrash($object);
-        $this->getObjectPersister()->commit();
+        $object = $this->api->rubric()
+            ->getCollection()
+            ->getById($this->getQueryVar('id'));
+        $this->api->news()
+            ->untrash($object);
+        $this->getObjectPersister()
+            ->commit();
 
         return '';
     }
 
+    /**
+     * Очищает корзину
+     * @return string
+     */
     public function actionEmptyTrash()
     {
-        $this->api->rubric()->emptyTrash();
-
+        $this->api->rubric()
+            ->emptyTrash();
+        $this->getObjectPersister()
+            ->commit();
         return '';
     }
 }

@@ -1,0 +1,24 @@
+{
+    "settings": {
+        "columns": [
+            {
+                "title": "Имя категории",
+                "width": 200,
+                "type": "string",
+                "name": "displayName"
+            },
+            {
+                "title": "Дата публикации",
+                "width": 140,
+                "type": "date",
+                "name": "publishDate"
+            },
+            {
+                "title": "Slug",
+                "width": 80,
+                "type": "string",
+                "name": "slug"
+            }
+        ]
+    }
+}

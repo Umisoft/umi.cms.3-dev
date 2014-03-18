@@ -1,9 +1,17 @@
 .iScrollIndicator{
     background: rgba(123, 137, 156, 0.9)!important;
     border-color: #F6F7F8;
+    cursor: pointer;
 }
 
 .iScrollVerticalScrollbar{
     top: 10px!important;
     bottom: 10px!important;
+    right: 5px!important;
+}
+
+.iScrollHorizontalScrollbar{
+    left: -25px!important;
+    right: -25px!important;
+    bottom: 5px!important;
 }
