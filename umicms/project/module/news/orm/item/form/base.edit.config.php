@@ -7,8 +7,8 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-use umi\form\element\CheckboxGroup;
 use umi\form\element\html5\DateTime;
+use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
@@ -95,7 +95,7 @@ return [
                 ],
 
                 NewsItem::FIELD_SUBJECTS => [
-                    'type' => CheckboxGroup::TYPE_NAME,
+                    'type' => MultiSelect::TYPE_NAME,
                     'label' => NewsItem::FIELD_SUBJECTS,
                     'options' => [
                         'dataSource' => NewsItem::FIELD_SUBJECTS
