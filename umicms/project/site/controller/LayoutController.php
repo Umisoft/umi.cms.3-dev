@@ -11,12 +11,16 @@ namespace umicms\project\site\controller;
 use umi\http\Response;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\api\StructureApi;
+use umicms\project\site\config\ISiteSettingsAware;
+use umicms\project\site\config\TSiteSettingsAware;
 
 /**
  * Контроллер сетки сайта.
  */
-class LayoutController extends SitePageController
+class LayoutController extends SitePageController implements ISiteSettingsAware
 {
+
+    use TSiteSettingsAware;
 
     /**
      * @var Response $response содержимое страницы
@@ -62,18 +66,20 @@ class LayoutController extends SitePageController
 
     protected function getMetaTitle()
     {
+        $titlePrefix = $this->getSiteTitlePrefix();
+
         if ($this->hasCurrentPage()) {
             /**
              * @var ICmsPage $page
              */
             foreach ($this->getPageCallStack() as $page) {
                 if ($page->metaTitle) {
-                    return $page->metaTitle;
+                    return $titlePrefix . $page->metaTitle;
                 }
             }
         }
-        //TODO get default
-        return '';
+
+        return $titlePrefix . $this->getSiteDefaultTitle();
     }
 
     protected function getMetaKeywords()
@@ -88,8 +94,8 @@ class LayoutController extends SitePageController
                 }
             }
         }
-        //TODO get default
-        return '';
+
+        return $this->getSiteDefaultKeywords();
     }
 
     protected function getMetaDescription()
@@ -104,8 +110,8 @@ class LayoutController extends SitePageController
                 }
             }
         }
-        //TODO get default
-        return '';
+
+        return $this->getSiteDefaultDescription();
     }
 
     protected function getLayoutName()
@@ -123,8 +129,6 @@ class LayoutController extends SitePageController
 
         return $this->structureApi->layout()->getDefaultLayout()->fileName;
     }
-
-
 
 }
 
