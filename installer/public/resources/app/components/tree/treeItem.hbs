@@ -3,7 +3,7 @@
         {{#view "treeItem" modelBinding="node"}} <!-- div -->
             {{#if node.childCount}}
                 <span {{action "expanded"}} {{bind-attr class=":umi-expand"}}>
-                    {{#if node.isLoaded}}
+                    {{#if node.isLoaded}} <!-- Логично переименовать в node.Loading -->
                         <i class="animate animate-loader-20"></i>
                     {{else}}
                         <i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>
