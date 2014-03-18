@@ -71,7 +71,6 @@ class ActionController extends BaseRestActionController
     public function actionTrash()
     {
         $object = $this->api->news()
-            ->getCollection()
             ->getById($this->getQueryVar('id'));
         $this->api->news()
             ->trash($object);
@@ -88,7 +87,6 @@ class ActionController extends BaseRestActionController
     public function actionUntrash()
     {
         $object = $this->api->news()
-            ->getCollection()
             ->getById($this->getQueryVar('id'));
         $this->api->news()
             ->untrash($object);

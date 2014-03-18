@@ -103,7 +103,6 @@ class ActionController extends BaseRestActionController
     public function actionTrash()
     {
         $object = $this->api->rubric()
-            ->getCollection()
             ->getById($this->getQueryVar('id'));
         $this->api->rubric()
             ->trash($object);
@@ -120,7 +119,6 @@ class ActionController extends BaseRestActionController
     public function actionUntrash()
     {
         $object = $this->api->rubric()
-            ->getCollection()
             ->getById($this->getQueryVar('id'));
         $this->api->rubric()
             ->untrash($object);

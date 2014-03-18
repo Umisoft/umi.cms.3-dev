@@ -8,7 +8,6 @@
 
 namespace umicms\project\admin\controller;
 
-use umi\hmvc\dispatcher\IDispatchContext;
 use umi\http\Response;
 use umi\i18n\ILocalesAware;
 use umi\i18n\TLocalesAware;
