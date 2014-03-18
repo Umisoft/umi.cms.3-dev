@@ -14,32 +14,33 @@ use umicms\project\admin\component\AdminComponent;
 return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
-
     AdminComponent::OPTION_CONTROLS => [
         'chart' => [],
+        'table' => [],
+        'accordion' => [],
     ],
-
     AdminComponent::OPTION_INTERFACE => [
         'emptyContext' => [
+            'tree' => [
+                'controls' => ['accordion']
+            ],
             'contents' => [
                 'controls' => ['table']
             ]
         ],
         'selectedContext' => [
             'contents' => [
-                'controls' => ['chart']
+                'controls' => ['chart', 'accordion']
             ]
         ]
     ],
-
     AdminComponent::OPTION_CONTROLLERS => [
         'action' => __NAMESPACE__ . '\controller\ActionController'
     ],
-
-    AdminComponent::OPTION_ROUTES      => [
+    AdminComponent::OPTION_ROUTES => [
         'action' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/action/{action}',
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/action/{action}',
             'defaults' => [
                 'controller' => 'action',
             ],

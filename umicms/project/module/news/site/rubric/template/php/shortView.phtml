@@ -4,7 +4,7 @@
  */
 ?>
 <h2>
-    <a href="<?= $this->url('rubric', ['url' => ltrim($rubric->getURL(), '/')]); ?>">
+    <a href="<?= $rubric->getPageUrl() ?>">
         <?= $rubric->h1 ?>
     </a>
 </h2>

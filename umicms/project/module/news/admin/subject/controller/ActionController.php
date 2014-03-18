@@ -11,7 +11,6 @@ namespace umicms\project\module\news\admin\subject\controller;
 
 use HttpException;
 use umi\http\Response;
-use umicms\orm\object\IRecyclableObject;
 use umicms\project\admin\api\controller\BaseRestActionController;
 use umicms\project\admin\api\controller\TCollectionFormAction;
 use umicms\project\module\news\api\NewsApi;
@@ -69,24 +68,36 @@ class ActionController extends BaseRestActionController
 
     /**
      * Удаляет объект в корзину
-     * @param IRecyclableObject $object
+     * @return string
      */
-    public function actionTrash(IRecyclableObject $object)
+    public function actionTrash()
     {
-        $this->api->subject()->trash($object);
-        $this->getObjectPersister()->commit();
+        $object = $this->api->subject()
+            ->getCollection()
+            ->getById($this->getQueryVar('id'));
+        $this->api->subject()
+            ->trash($object);
+        $this->getObjectPersister()
+            ->commit();
+
+        return '';
     }
 
     /**
      * Восстанавливает объект из корзины
-     * @param IRecyclableObject $object
+     * @return string
      */
-    public function actionUntrash(IRecyclableObject $object)
+    public function actionUntrash()
     {
-        $this->api->news()
+        $object = $this->api->subject()
+            ->getCollection()
+            ->getById($this->getQueryVar('id'));
+        $this->api->subject()
             ->untrash($object);
         $this->getObjectPersister()
             ->commit();
+
+        return '';
     }
 
     /**

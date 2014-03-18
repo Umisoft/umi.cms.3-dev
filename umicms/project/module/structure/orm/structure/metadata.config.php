@@ -103,6 +103,11 @@ return [
             'columnName' => 'component_path',
             'readOnly'   => true
         ],
+        StructureElement::FIELD_COMPONENT_NAME        => [
+            'type'       => IField::TYPE_STRING,
+            'columnName' => 'component_name',
+            'readOnly'   => true
+        ],
         StructureElement::FIELD_ACTIVE                => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'active',
@@ -168,6 +173,7 @@ return [
                 StructureElement::FIELD_UPDATED,
                 StructureElement::FIELD_TRASHED,
                 StructureElement::FIELD_COMPONENT_PATH,
+                StructureElement::FIELD_COMPONENT_NAME,
                 StructureElement::FIELD_PAGE_META_TITLE,
                 StructureElement::FIELD_PAGE_META_KEYWORDS,
                 StructureElement::FIELD_PAGE_META_DESCRIPTION,
@@ -199,6 +205,7 @@ return [
                 SystemPage::FIELD_UPDATED,
                 SystemPage::FIELD_TRASHED,
                 SystemPage::FIELD_COMPONENT_PATH,
+                SystemPage::FIELD_COMPONENT_NAME,
                 SystemPage::FIELD_PAGE_META_TITLE,
                 SystemPage::FIELD_PAGE_META_KEYWORDS,
                 SystemPage::FIELD_PAGE_META_DESCRIPTION,
@@ -230,6 +237,7 @@ return [
                 StaticPage::FIELD_UPDATED,
                 StaticPage::FIELD_TRASHED,
                 StaticPage::FIELD_COMPONENT_PATH,
+                StaticPage::FIELD_COMPONENT_NAME,
                 StaticPage::FIELD_PAGE_META_TITLE,
                 StaticPage::FIELD_PAGE_META_KEYWORDS,
                 StaticPage::FIELD_PAGE_META_DESCRIPTION,

@@ -12,6 +12,7 @@ namespace umicms\project\module\news\object;
 use umi\orm\objectset\IObjectSet;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
+use umicms\orm\object\TCmsPage;
 
 /**
  * Новостная рубрика.
@@ -24,4 +25,7 @@ class NewsRubric extends CmsHierarchicObject implements ICmsPage
      *  Имя поля для хранения новостей
      */
     const FIELD_NEWS = 'news';
+
+    use TCmsPage;
+
 }

@@ -9,6 +9,7 @@
 
 namespace umicms\orm\object;
 
+use umicms\hmvc\url\IUrlManagerAware;
 use umicms\project\module\structure\object\Layout;
 
 /**
@@ -22,7 +23,7 @@ use umicms\project\module\structure\object\Layout;
  * @property string $slug последней часть ЧПУ
  * @property Layout|null $layout шаблон для вывода
  */
-interface ICmsPage extends ICmsObject, IRecyclableObject
+interface ICmsPage extends ICmsObject, IRecyclableObject, IUrlManagerAware
 {
     /**
      *  Имя поля для хранения заголовка окна браузера
@@ -52,6 +53,12 @@ interface ICmsPage extends ICmsObject, IRecyclableObject
      * Имя поля для хранения последней части ЧПУ
      */
     const FIELD_PAGE_SLUG = 'slug';
+
+    /**
+     * Возвращает URL страницы для отображения на сайте.
+     * @return string
+     */
+    public function getPageUrl();
 
 }
  

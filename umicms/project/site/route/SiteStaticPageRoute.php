@@ -119,7 +119,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware, IPage
      */
     protected function setRouteParams(StructureElement $element)
     {
-        $this->params[SiteComponent::MATCH_COMPONENT] = $element->componentPath;
+        $this->params[SiteComponent::MATCH_COMPONENT] = $element->componentName;
         $this->params[SiteComponent::MATCH_STRUCTURE_ELEMENT] = $element;
     }
 

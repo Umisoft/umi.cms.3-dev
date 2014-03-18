@@ -4,7 +4,7 @@
  */
 ?>
 <h3>
-    <a href="<?= $this->url('item', ['slug' => $newsItem->slug]); ?>">
+    <a href="<?= $newsItem->getPageUrl() ?>">
         <?= $newsItem->h1 ?>
     </a>
 </h3>

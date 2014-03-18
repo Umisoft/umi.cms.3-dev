@@ -28,6 +28,7 @@ use umi\toolkit\Toolkit;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
+use umicms\hmvc\url\IUrlManager;
 use umicms\project\config\IProjectConfigAware;
 use umicms\project\config\TProjectConfigAware;
 
@@ -121,6 +122,12 @@ class Bootstrap implements IProjectConfigAware
             $routePath = substr($routePath, 0, -strlen($format) - 1);
             $request->setRequestFormat($format);
         }
+
+        /**
+         * @var IUrlManager $urlManager
+         */
+        $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
+        $urlManager->setBaseUrl($baseUrl);
 
         /**
          * @var IDispatcher $dispatcher

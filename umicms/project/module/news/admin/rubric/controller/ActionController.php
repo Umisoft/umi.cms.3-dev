@@ -105,7 +105,7 @@ class ActionController extends BaseRestActionController
         $object = $this->api->rubric()
             ->getCollection()
             ->getById($this->getQueryVar('id'));
-        $this->api->news()
+        $this->api->rubric()
             ->trash($object);
         $this->getObjectPersister()
             ->commit();
@@ -122,7 +122,7 @@ class ActionController extends BaseRestActionController
         $object = $this->api->rubric()
             ->getCollection()
             ->getById($this->getQueryVar('id'));
-        $this->api->news()
+        $this->api->rubric()
             ->untrash($object);
         $this->getObjectPersister()
             ->commit();
