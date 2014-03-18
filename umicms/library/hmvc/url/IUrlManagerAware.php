@@ -7,16 +7,17 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\structure\model;
-
-use umicms\base\object\CmsElement;
+namespace umicms\hmvc\url;
 
 /**
- * Базовый элемент структуры.
- *
- * @property string $module имя модуля-обработчика
+ * Интерфейс для доступа к URL-менеджеру.
  */
-abstract class StructureElement extends CmsElement
+interface IUrlManagerAware
 {
-
+    /**
+     * Устанавливает URL-менеджер
+     * @param IUrlManager $urlManager
+     */
+    public function setUrlManager(IUrlManager $urlManager);
 }
+ 

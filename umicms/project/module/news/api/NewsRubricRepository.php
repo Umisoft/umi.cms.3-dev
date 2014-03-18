@@ -85,14 +85,13 @@ class NewsRubricRepository extends BaseObjectRepository
     /**
      * Возвращает новостую рубрику по ее Uri
      * @param string $uri
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException
      * @return NewsRubric
      */
-    public function getByUri($uri, $onlyPublic = true)
+    public function getByUri($uri)
     {
         try {
-            return $this->selectByUri($uri, $onlyPublic);
+            return $this->selectByUri($uri);
         } catch(\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(
