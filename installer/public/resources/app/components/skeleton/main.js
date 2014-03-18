@@ -64,10 +64,6 @@ define(
         });
 
 
-        $('.qunit-container-button').click(function(){
-            $('.qunit-container').toggle();
-        });
-
         /**
          * Для отключения "магии" переименования моделей Ember.Data
          * @class Inflector.inflector

@@ -107,8 +107,8 @@ define([], function(){
 
                  @method save
                  @param {Object} params Объект аргументов
-                        params.object - сохраняемый объект
-                        params.handler - элемент (кнопка) вызвавший событие сохранение
+                 params.object - сохраняемый объект
+                 params.handler - элемент (кнопка) вызвавший событие сохранение
                  */
                 save: function(params){
                     params.object.save().then(
@@ -117,10 +117,10 @@ define([], function(){
                                 $(params.handler).removeClass('loading');
                             }
                             /*UMI.notification.create({
-                                type: 'success',
-                                text: 'Изменения успешно сохранены.',
-                                duration: 3000
-                            });*/
+                             type: 'success',
+                             text: 'Изменения успешно сохранены.',
+                             duration: 3000
+                             });*/
                         },
                         function(results){
                             if(params.handler){

@@ -16,7 +16,8 @@ require.config({
         moment: 'libs/momentjs/min/moment-with-langs.min',
         App: 'app/components/skeleton/main',
         //jQueryUI: 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min'
-        elFinder: 'deploy/elFinder'
+        elFinder: 'deploy/elFinder',
+        chartJs: 'libs/chartjs/Chart'
     },
 
     shim: {
@@ -61,6 +62,10 @@ require.config({
         datepicker: {
             deps: ['jQuery'],
             exports: 'datepicker'
+        },
+
+        chartJs: {
+            exports: 'chartJs'
         }
     },
 
@@ -95,6 +100,14 @@ require.config({
             location: "app/components/search"
         },
         {
+            name: 'chartControl',
+            location: "app/components/chartControl"
+        },
+        {
+            name: 'popup',
+            location: "app/components/popup"
+        },
+        {
             name: 'notification',
             location: "app/components/notification"
         },
@@ -107,7 +120,7 @@ require.config({
 
 
 if(UmiSettings.login){
-    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder', 'datepicker', 'moment'], function(application){
+    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder', 'datepicker', 'moment', 'chartJs'], function(application){
         "use strict";
         application();
     });

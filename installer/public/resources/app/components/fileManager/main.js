@@ -13,9 +13,8 @@ define(['App'], function(UMI){
         template: Ember.Handlebars.compile('<div id="elfinder"></div>'),
         didInsertElement: function(){
 //            http://localhost/admin/api/files/manager/settings
-            var action = '/connector';//this.controller.get('data');
-            console.log(action);
-            $('#elfinder').elfinder({url : action}).elfinder('instance');
+            var action = '/admin/api/files/manager/fileManager/connector';//this.controller.get('data');
+            $('#elfinder').elfinder({url : '/resources/libs/elfinder/php/connector.php'}).elfinder('instance');
         }
     });
 });

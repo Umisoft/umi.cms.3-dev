@@ -1,0 +1,17 @@
+<?php
+/**
+ * @var umicms\project\module\news\object\NewsRubric $rubric
+ * @var umi\orm\selector\ISelector $rubrics
+ */
+?>
+
+<?php if ($rubrics->getTotal()) :?>
+
+    <ul>
+        <?php foreach ($rubrics as $rubric) : ?>
+            <li>
+                <?= $this->widget('viewRubric', ['guid' => $rubric->guid, 'template' => 'rubric/shortView']); ?>
+            </li>
+        <?php endforeach;?>
+    </ul>
+<?php endif; ?>

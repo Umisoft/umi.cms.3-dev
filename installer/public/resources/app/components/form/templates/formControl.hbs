@@ -1,3 +1,49 @@
+<style>
+    .calendar{
+        position: relative;
+    }
+    .datepicker{
+        position: absolute;
+        z-index: 1;
+        background: #FFFFFF;
+        border: 1px solid #6d7580;
+    }
+</style>
+<script>
+    //Функция вызывается после выполнения всего didInsertelement
+    //TODO Добавить родителя для form минуя metamorph
+//    setTimeout(function(){
+//        var formControlScroll = new IScroll('.umi-table-control-content-center', {
+//            scrollX: true,
+//            probeType: 3,
+//            mouseWheel: true,
+//            scrollbars: true,
+//            bounce: false,
+//            click: false,
+//            freeScroll: false,
+//            keyBindings: true,
+//            interactiveScrollbars: true
+//        });
+//    }, 0);
+
+    $('.umi-form-tab').mousedown(function(event){
+        event.stopPropagation();
+        $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
+        $(this).addClass('active');
+
+        var i = $(this).index('.umi-form-drop-up .umi-form-tab');
+        $('.umi-form-tab-content').eq(i).addClass('active');
+    });
+
+    $('html').on('mousedown', function(event){
+        $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
+    });
+
+    $('.umi-form-tabs-content').mousedown(function(event){
+        event.stopPropagation();
+    });
+</script>
+
 {{#if viewSettings.form.fieldsets}}
     <div class="magellan-menu s-full-height-before">
         {{#each viewSettings.form.fieldsets}}
@@ -85,21 +131,10 @@
     </div>
 
     <div class="umi-form-tabs">
-        {{#view "saveButton" class="button s-margin-clear wide left" model=model.object}}
-            {{#if model.object.isSaving}}
-                Сохранено
-            {{else}}
-                {{#if model.object.isDirty}}
-                    Сохранить
-                {{else}}
-                    Сохранено
-                {{/if}}
-            {{/if}}
-
-        {{/view}}
+        <div class="umi-form-save-button" {{action 'save' model.object target="view"}}>Сохранить</div>
         <div class="umi-form-tab"><i class="icon icon-pause"></i></div>
         <div class="umi-form-tab"><i class="icon icon-6"></i></div>
-        <div class="button white s-margin-clear"><i class="icon icon-delete"></i></div>
+        <div class="button secondary s-margin-clear"><i class="icon icon-delete"></i></div>
     </div>
 
 </div>

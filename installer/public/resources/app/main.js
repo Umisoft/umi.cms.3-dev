@@ -10,6 +10,8 @@ define(
         'search',
         'notification',
         'dialog',
+        'popup',
+        'chartControl',
         'DS'
     ],
     function(UMI){
