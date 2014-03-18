@@ -17,6 +17,7 @@ use umi\orm\object\property\IProperty;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\object\ICmsPage;
 use umicms\serialization\json\BaseSerializer;
 
 /**
@@ -109,6 +110,10 @@ class CmsObjectSerializer extends BaseSerializer
 
         if ($links) {
             $properties['links'] = $links;
+        }
+
+        if ($object instanceof ICmsPage) {
+            $properties['meta'] = ['pageUrl' => $object->getPageUrl()];
         }
 
         $this->delegate($properties);

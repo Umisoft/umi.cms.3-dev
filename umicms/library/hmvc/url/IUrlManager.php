@@ -25,17 +25,17 @@ interface IUrlManager
     public function setBaseUrl($baseUrl);
 
     /**
-     * Возвращает базовый URL.
+     * Возвращает базовый URL проекта.
      * @return string
      */
-    public function getBaseUrl();
+    public function getProjectUrl();
 
     /**
      * Возвращает URL страницы для отображения на сайте.
      * @param ICmsPage $page страница
      * @return string
      */
-    public function getSiteUrl(ICmsPage $page);
+    public function getSitePageUrl(ICmsPage $page);
 
 }
  
