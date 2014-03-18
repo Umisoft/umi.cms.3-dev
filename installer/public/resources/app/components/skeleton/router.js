@@ -275,7 +275,11 @@ define([], function(){
                     var RootModel = Ember.Object.extend({
                         children: function(){
                             if(collectionName){
-                                return self.store.find(collectionName, {'filters[parent]': 'null()'});
+                                if(self.controllerFor('component').get('hasTree')){
+                                    return self.store.find(collectionName, {'filters[parent]': 'null()'});
+                                } else{
+                                    return self.store.find(collectionName);
+                                }
                             }
                         }.property()
                     });
@@ -296,7 +300,7 @@ define([], function(){
                      */
                     var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/'  + transition.params.action.action + '/' + self.modelFor('component').get('collection') + '/' + model.get('type') + '/edit';
                     // Временное решение для таблицы
-                    if(transition.params.action.action === 'children'){
+                    if(transition.params.action.action === 'children' || transition.params.action.action === 'filter'){
                         return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
                             routeData.viewSettings = results.settings;
                             return routeData;
