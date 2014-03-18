@@ -20,38 +20,14 @@
                         </a>
                     {{/if}}
                 </section>
+
+
     
                 <i class="icon black icon-left-thin umi-history-back" style="float: left; margin: 7px 4px 4px; cursor: pointer;"></i>
                 <i class="icon black icon-right-thin umi-history-forward" style="float: left; margin: 7px 10px 4px 4px; cursor: pointer;"></i>
-    
-                <style>
-                    .umi-search{
-                        padding: 3px 5px 3px 5px;
-                        margin: 0 0 0 0;
-                        /*background: linear-gradient(to bottom, #35a9fc 0%, #0f8bd5 50%);*/
-                        float: left;
-                    }
-                    input[type="text"].umi-search-input{
-                        height: 28px;
-                        line-height: 28px;
-                        padding: 0 10px;
-                        margin: 0;
-                        border-radius: 2px;
-                        width: 300px;
-                    }
-                    .umi-search-button{
-                        float:left; margin:7px 3px 0 0;
-                    }
-                </style>
-    
-                <div class="umi-search">
-                    {{input type="text" class="umi-search-input" placeholder='Введите запрос и нажмите "Enter"' value=searchQuery}}
-                </div>
-                <div class="umi-search-button">
-                    <a {{action "search" searchQuery}}><i class="icon icon-search"></i></a>
-                </div>
-    
-    
+
+
+
                 <script>
                     //Хак-ускоритель переключения mode - переключает класс кнопки без задержки
                     $('.button-group .button').mousedown(function(){
