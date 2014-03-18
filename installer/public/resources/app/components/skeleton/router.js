@@ -23,7 +23,7 @@ define([], function(){
                     this.route('search');
                 });
             });
-            this.route('logout', {path: '/auth/logout'});
+            this.route('logout', {path: '/api/users/user/action/logout'});
             this.route('site', {path: '/:link'});
         });
 
@@ -76,33 +76,6 @@ define([], function(){
             },
             actions: {
                 /**
-                 * Метод вызывается каждый раз при смене роута в приложении.
-                 * При переходе на роут `logout` выполняется abort для перехода,
-                 * приложение становится неактивным и происходит смена шаблона на шаблон авторизации.
-                 * @event willTransition
-                 * @param {Object} transition
-                 */
-                willTransition: function(transition){
-                    if(transition.targetName === 'logout'){
-                        transition.abort();
-                        var applicationLayout = document.querySelector('.umi-main-view');
-                        var maskLayout = document.createElement('div');
-                        maskLayout.className = 'auth-mask';
-                        maskLayout = document.body.appendChild(maskLayout);
-                        $(applicationLayout).addClass('off');
-                        $.post('/admin/api/users/user/logout.json');
-                        require(['auth/main'], function(auth){
-                            auth();
-                            $(applicationLayout).addClass('fade-out');
-                            Ember.run.later('', function(){
-                                UMI.reset();
-                                UMI.deferReadiness();
-                                maskLayout.parentNode.removeChild(maskLayout);
-                            }, 2000);
-                        });
-                    }
-                },
-                /**
                  Сохраняет обьект
 
                  @method save
@@ -111,6 +84,7 @@ define([], function(){
                  params.handler - элемент (кнопка) вызвавший событие сохранение
                  */
                 save: function(params){
+                    console.log(params.object.get('currentState.stateName'));
                     params.object.save().then(
                         function(){
                             if(params.handler){
@@ -123,25 +97,49 @@ define([], function(){
                              });*/
                         },
                         function(results){
+                            var self = this;
                             if(params.handler){
                                 $(params.handler).removeClass('loading');
                             }
-                            var message;
-                            var fullMessage;
-                            if(results.responseJSON.result.error){
-                                message = results.responseJSON.result.error.message;
-                            }
-                            if(results.responseJSON.result.stack){
-                                fullMessage = results.responseJSON.result.stack.message;
-                            }
-                            UMI.notification.create({
-                                type: 'alert',
-                                text: message,
-                                fullText: fullMessage
-                            });
+                            var data = {
+                                'close': false,
+                                'title': results.errors,
+                                'content': results.message,
+                                'confirm': 'Загрузить объект с сервера'
+                            };
+                            return UMI.dialog.open(data).then(
+                                function(){
+                                    //https://github.com/emberjs/data/issues/1632
+                                    //params.object.transitionTo('updated.uncommitted');
+                                    console.log(params.object.get('currentState.stateName'), results, self);
+                                   /* params.object.rollback();
+                                    params.object.reload();*/
+                                }
+                            );
                         }
                     );
                 }
+            }
+        });
+
+        UMI.LogoutRoute = Ember.Route.extend({
+            beforeModel: function(transition){
+                transition.abort();
+                var applicationLayout = document.querySelector('.umi-main-view');
+                var maskLayout = document.createElement('div');
+                maskLayout.className = 'auth-mask';
+                maskLayout = document.body.appendChild(maskLayout);
+                $(applicationLayout).addClass('off');
+                $.post('/admin/api/users/user/action/logout');
+                require(['auth/main'], function(auth){
+                    auth();
+                    $(applicationLayout).addClass('fade-out');
+                    Ember.run.later('', function(){
+                        UMI.reset();
+                        UMI.deferReadiness();
+                        maskLayout.parentNode.removeChild(maskLayout);
+                    }, 2000);
+                });
             }
         });
 
@@ -277,7 +275,11 @@ define([], function(){
                     var RootModel = Ember.Object.extend({
                         children: function(){
                             if(collectionName){
-                                return self.store.find(collectionName, {'filters[parent]': 'null()'});
+                                if(self.controllerFor('component').get('hasTree')){
+                                    return self.store.find(collectionName, {'filters[parent]': 'null()'});
+                                } else{
+                                    return self.store.find(collectionName);
+                                }
                             }
                         }.property()
                     });
@@ -296,22 +298,32 @@ define([], function(){
                     /**
                      * Мета информация для action
                      */
-                    var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/'  + transition.params.action.action + '/' + self.modelFor('component').get('collection') + '/' + model.get('type') + '/edit';
-                    if(transition.params.action.action === 'form'){
-                        return Ember.$.get(actionResource).then(function(results){
-                            var viewSettings = {};
-                            viewSettings[transition.params.action.action] = results.result[transition.params.action.action];
-                            routeData.viewSettings = viewSettings;
-                            return routeData;
-                        }, function(error){
-                            throw new Error('Не получена мета информация для action form ' + actionResource + '.' + error);
-                        });
+                    var actionName = transition.params.action.action;
+                    var actionParams = {};//'/' +  + '/' + model.get('type') + '/edit';
+                    var collectionName = self.modelFor('component').get('collection');
+                    if(collectionName){
+                        actionParams.collection = collectionName;
                     }
+                    if(actionName === 'form'){
+                        actionParams.form = 'edit';
+                    }
+                    if(model.get('type')){
+                        actionParams.type = model.get('type');
+                    }
+                    actionParams = actionParams ? '?' + $.param(actionParams) : '';
+                    var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/'  + actionName + actionParams;
                     // Временное решение для таблицы
-                    if(transition.params.action.action === 'children'){
+                    if(actionName === 'children' || actionName === 'filter'){
                         return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
                             routeData.viewSettings = results.settings;
                             return routeData;
+                        });
+                    } else if(actionName === 'form'){
+                        return Ember.$.get(actionResource).then(function(results){
+                            routeData.viewSettings = results.result;
+                            return routeData;
+                        }, function(error){
+                            throw new Error('Не получена мета информация для action form ' + actionResource + '.' + error);
                         });
                     }
                     return routeData;
