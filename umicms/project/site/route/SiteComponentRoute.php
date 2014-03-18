@@ -59,7 +59,7 @@ class SiteComponentRoute extends BaseRoute
 
         if ($element instanceof SystemPage) {
 
-            $this->params[SiteComponent::MATCH_COMPONENT] = $element->componentPath;
+            $this->params[SiteComponent::MATCH_COMPONENT] = $element->componentName;
             $this->params[SiteComponent::MATCH_STRUCTURE_ELEMENT] = $element;
 
             return strlen($slug) + 1;

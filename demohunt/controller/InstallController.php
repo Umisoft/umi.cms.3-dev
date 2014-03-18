@@ -123,7 +123,7 @@ class InstallController extends SitePageController implements ICollectionManager
         $structureCollection->add('blog', 'system')
             ->setValue('displayName', 'Блог')
             ->setGUID('9aa6745f-f40d-5489-8043-d959594123ce')
-            ->getProperty('componentPath')->setValue('blog');
+            ->getProperty('componentName')->setValue('blog');
 
         $blog = $categoriesCollection->add('company')
             ->setValue('displayName', 'Блог')
@@ -204,22 +204,29 @@ class InstallController extends SitePageController implements ICollectionManager
             ->setValue('displayName', 'Новости')
             ->setGUID('9ee6745f-f40d-46d8-8043-d959594628ce')
             ->setValue('layout', $this->testLayout);
+        $newsPage->getProperty('componentName')->setValue('news');
         $newsPage->getProperty('componentPath')->setValue('news');
 
-        $structureCollection->add('rubric', 'system', $newsPage)
+        $rubric = $structureCollection->add('rubric', 'system', $newsPage)
             ->setValue('displayName', 'Новостная рубрика')
-            ->setGUID('9ee6745f-f40d-46d8-8043-d95959462811')
-            ->getProperty('componentPath')->setValue('rubric');
+            ->setGUID('9ee6745f-f40d-46d8-8043-d95959462811');
 
-        $structureCollection->add('subject', 'system', $newsPage)
+        $rubric->getProperty('componentName')->setValue('rubric');
+        $rubric->getProperty('componentPath')->setValue('news.rubric');
+
+        $subject = $structureCollection->add('subject', 'system', $newsPage)
             ->setValue('displayName', 'Новостной сюжет')
-            ->setGUID('9ee6745f-f40d-46d8-8043-d95959462822')
-            ->getProperty('componentPath')->setValue('subject');
+            ->setGUID('9ee6745f-f40d-46d8-8043-d95959462822');
 
-        $structureCollection->add('item', 'system', $newsPage)
+        $subject->getProperty('componentName')->setValue('subject');
+        $subject->getProperty('componentPath')->setValue('news.subject');
+
+        $item = $structureCollection->add('item', 'system', $newsPage)
             ->setValue('displayName', 'Новость')
-            ->setGUID('9ee6745f-f40d-46d8-8043-d95959462833')
-            ->getProperty('componentPath')->setValue('item');
+            ->setGUID('9ee6745f-f40d-46d8-8043-d95959462833');
+
+        $item->getProperty('componentName')->setValue('item');
+        $item->getProperty('componentPath')->setValue('news.item');
 
         $rubric = $rubricCollection->add('company')
             ->setValue('displayName', 'Новости сайта')
@@ -378,32 +385,36 @@ class InstallController extends SitePageController implements ICollectionManager
             ->setValue('contents', '<p>Мы &mdash; отряд Охотниц за привидениями. Цвет волос, уровень IQ, размер груди, длина ног и количество высших образований не оказывают существенного влияния при отборе кадров в наши подразделения.</p><p>Единственно значимым критерием является наличие у Охотницы следующих навыков:</p><blockquote>метод десятипальцевой печати;<br /> тайский массаж;<br /> метод левой руки;<br /> техника скорочтения;</blockquote><p>Миссия нашей компании: Спасение людей от привидений во имя спокойствия самих привидений.<br /><br /> 12 лет нашей работы доказали, что предлагаемые нами услуги востребованы человечеством. За это время мы получили:</p><blockquote>1588 искренних благодарностей от клиентов; <br /> 260080 комплиментов; <br /> 5 интересных предложений руки и сердца.</blockquote><p>Нам не только удалось пережить кризис августа 1998 года, но и выйти на новый, рекордный уровень рентабельности.<br /> В своей работе мы используем             <strong>сверхсекретные</strong> супер-пупер-технологии.</p>')
             ->setGUID('d534fd83-0f12-4a0d-9853-583b9181a948');
 
+        $about->getProperty('componentName')->setValue('structure');
         $about->getProperty('componentPath')->setValue('structure');
 
-        $structureCollection->add('no', 'static', $about)
+        $no = $structureCollection->add('no', 'static', $about)
             ->setValue('displayName', 'Работа, за которую мы никогда не возьмемся')
             ->setValue('metaTitle', 'Работа, за которую мы никогда не возьмемся')
             ->setValue('h1', 'Работа, за которую мы никогда не возьмемся')
             ->setValue('contents', '<ul><li>Безосновательный вызов призраков на дом</li><li>Гадания на картах, кофейной гуще, блюдечке</li><li>Толкование снов</li><li>Интим-услуги. Мы не такие!</li></ul>')
-            ->setGUID('3d765c94-bb80-4e8f-b6d9-b66c3ea7a5a4')
-            ->getProperty('componentPath')->setValue('structure');
+            ->setGUID('3d765c94-bb80-4e8f-b6d9-b66c3ea7a5a4');
+        $no->getProperty('componentName')->setValue('structure');
+        $no->getProperty('componentPath')->setValue('structure');
 
 
-        $structureCollection->add('services', 'static')
+        $service = $structureCollection->add('services', 'static')
             ->setValue('displayName', 'Услуги')
             ->setValue('metaTitle', 'Услуги')
             ->setValue('h1', 'Услуги')
             ->setValue('contents', '<p><strong>Дипломатические переговоры с домовыми</strong></p><p>Домовые требуют особого подхода. Выгонять домового из дома категорически запрещено, т.к. его призвание &mdash; охранять дом. Однако, некоторые домовые приносят своим хозяевам немало хлопот из-за своенравного характера. <br /><br />Хорошие отношения с домовым &mdash; наша работы. Правильно провести дипломатические переговоры с домовым, с учетом его знака зодиака, типа температмента и других психографических характеристик, настроить его на позитивный лад, избавить от личных переживаний, разобраться в ваших разногласиях и провести результативные переговоры может грамотный специалист с широким набором характеристик и знаний.<br /><br /><em>Работает Охотница Ольга Карпова <br />Спецнавыки: паранормальная дипломатия, психология поведения духов и разрешение конфликтов</em></p><p><br /><br /><strong>Изгнание призраков царских кровей и других элитных духов<br /></strong><br />Вы купили замок? Хотите провести профилактические работы? Или уже столкнулись с присутствием призраков один на один?<br /><br />Вам &mdash; в наше элитное подразделение. Духи царских кровей отличаются кичливым поведением и высокомерием, однако до сих пор подразделение Охотниц в бикини всегда справлялось с поставленными задачами.<br /><br />Среди наших побед:</p><p>- тень отца Гамлета, вызвавшая переполох в женской раздевалке фитнес-клуба; <br />- призрак Ленина, пытающийся заказать роллы Калифорния на вынос; <br />- призрак Цезаря на неделе миланской моды в Москве.&nbsp; <br /><br /><em>Работает Охотница Елена&nbsp; Жарова <br />Спецнавыки: искусство душевного разговора</em></p>')
-            ->setGUID('98751ebf-7f76-4edb-8210-c2c3305bd8a0')
-            ->getProperty('componentPath')->setValue('structure');
+            ->setGUID('98751ebf-7f76-4edb-8210-c2c3305bd8a0');
+        $service->getProperty('componentName')->setValue('structure');
+        $service->getProperty('componentPath')->setValue('structure');
 
-        $structureCollection->add('price', 'static')
+        $price = $structureCollection->add('price', 'static')
             ->setValue('displayName', 'Тарифы и цены')
             ->setValue('metaTitle', 'Тарифы и цены')
             ->setValue('h1', 'Тарифы и цены')
             ->setValue('contents', '<p><strong>Если вас регулярно посещают привидения, призраки, НЛО, &laquo;Летучий голландец&raquo;, феномен черных рук, демоны, фантомы, вампиры и чупакабры...</strong></p><p>Мы предлагаем вам воспользоваться нашим <strong>тарифом абонентской платы</strong>, который составляет <span style="color: #ff6600;"><strong>1 995</strong></span> у.е. в год. Счастливый год без привидений!</p><p><strong>Если паранормальное явление появился в вашей жизни неожиданно, знакомьтесь с прайсом*:<br /></strong></p><blockquote>Дипломатические переговоры с домовым &ndash; <span style="color: #ff6600;"><strong>120</strong></span> у.е.<br />Нейтрализация вампира &ndash; <span style="color: #ff6600;"><strong>300</strong></span> у.е.<br />Изгнание привидения стандартного &ndash; <span style="color: #ff6600;"><strong>200</strong></span> у.е.<br />Изгнание привидений царей, принцев и принцесс, вождей революций и другой элиты &ndash; <span style="color: #ff6600;"><strong>1250</strong></span> у.е.<br />Борьба с НЛО &ndash; рассчитывается <span style="text-decoration: underline;">индивидуально</span>.</blockquote><p><strong>Специальная услуга: </strong>ВЫЗОВ ОТРЯДА В БИКИНИ</p><p><span style="font-size: x-small;"><em>Стандартные услуги в сочетании с эстетическим удовольствием!</em></span></p><p><strong>Скидки оптовым и постоянным клиентам:</strong><br />При заказе устранения от 5 духов (любого происхождения, включая элиту) предоставляется скидка 12% от общей цены. Скидки по акциям не суммируются.</p><p><span>*Цена за одну особь!</span></p>')
-            ->setGUID('c81d6d87-25c6-4ab8-b213-ef3a0f044ce6')
-            ->getProperty('componentPath')->setValue('structure');
+            ->setGUID('c81d6d87-25c6-4ab8-b213-ef3a0f044ce6');
+        $price->getProperty('componentName')->setValue('structure');
+        $price->getProperty('componentPath')->setValue('structure');
 
     }
 
@@ -866,6 +877,7 @@ class InstallController extends SitePageController implements ICollectionManager
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `component_path` varchar(255) DEFAULT NULL,
+                    `component_name` varchar(255) DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `structure_guid` (`guid`),
@@ -875,6 +887,8 @@ class InstallController extends SitePageController implements ICollectionManager
                     KEY `structure_parent_order` (`pid`,`order`),
                     KEY `structure_type` (`type`),
                     KEY `structure_layout` (`layout_id`),
+                    KEY `component_path` (`component_path`),
+                    KEY `component_name` (`component_name`),
                     CONSTRAINT `FK_structure_parent` FOREIGN KEY (`pid`) REFERENCES `demohunt_structure` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_structure_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
@@ -892,6 +906,7 @@ class InstallController extends SitePageController implements ICollectionManager
         $searchRoot->setValue('displayName', 'Поиск')
             ->setGUID('9ee6745f-f40d-46d8-8043-d901234628ce')
             ->setValue('layout', $this->testLayout);
+        $searchRoot->getProperty('componentName')->setValue('search');
         $searchRoot->getProperty('componentPath')->setValue('search');
 
         $connection = $this->dbCluster->getConnection();

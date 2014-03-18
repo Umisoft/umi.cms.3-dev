@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\structure\object;
 
+use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 
@@ -16,12 +17,27 @@ use umicms\orm\object\ICmsPage;
  * Базовый элемент структуры.
  *
  * @property string $componentPath путь до компонента-обработчика
+ * @property string $componentName имя компонента-обработчика
  */
 abstract class StructureElement extends CmsHierarchicObject implements ICmsPage
 {
+    use TUrlManagerAware;
+
     /**
      *  Имя поля для хранения пути компонента-обработчика
      */
     const FIELD_COMPONENT_PATH = 'componentPath';
+    /**
+     * Имя поля для хранения имени компонента-обработчика
+     */
+    const FIELD_COMPONENT_NAME = 'componentName';
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPageUrl()
+    {
+        return $this->getURL();
+    }
 
 }

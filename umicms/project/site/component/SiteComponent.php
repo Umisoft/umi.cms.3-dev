@@ -11,6 +11,7 @@ namespace umicms\project\site\component;
 
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\http\Request;
+use umicms\exception\RuntimeException;
 use umicms\hmvc\component\BaseComponent;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\api\StructureApi;
@@ -33,6 +34,21 @@ class SiteComponent extends BaseComponent implements IPageCallStackAware
      * @var StructureApi $structureApi
      */
     protected $structureApi;
+
+    /**
+     * Возвращает URI страницы относительно компонента.
+     * @param ICmsPage $page страница
+     * @throws RuntimeException если невозможно получить URI
+     */
+    public function getPageUri(ICmsPage $page) {
+
+        throw new RuntimeException(
+            $this->translate(
+                'Component "{path}" does not support URI generation.',
+                ['path' => $this->getPath()]
+            )
+        );
+    }
 
     /**
      * {@inheritdoc}

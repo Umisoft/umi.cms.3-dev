@@ -11,8 +11,10 @@ namespace umicms\project\module\news\object;
 
 use DateTime;
 use umi\orm\objectset\IManyToManyObjectSet;
+use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
+use umicms\orm\object\TCmsPage;
 
 /**
  * Новость.
@@ -24,6 +26,8 @@ use umicms\orm\object\ICmsPage;
  */
 class NewsItem extends CmsObject implements ICmsPage
 {
+    use TCmsPage;
+
     /**
      * Имя поля для хранения рубрики, к которой относится новость
      */
@@ -40,4 +44,6 @@ class NewsItem extends CmsObject implements ICmsPage
      * Имя поля для хранения анонса новости
      */
     const FIELD_ANNOUNCEMENT = 'announcement';
+
+
 }

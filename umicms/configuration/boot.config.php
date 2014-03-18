@@ -12,7 +12,6 @@ namespace umicms\configuration;
 use umi\route\toolbox\RouteTools;
 use umicms\Bootstrap;
 
-
 return [
     /**
      * Конфигурация для регистрации наборов инструментов.
@@ -22,13 +21,15 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/http/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/route/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/session/toolbox/config.php'),
-        require(FRAMEWORK_LIBRARY_DIR . '/hmvc/toolbox/config.php'),
-        require(FRAMEWORK_LIBRARY_DIR . '/templating/toolbox/config.php')
+        require(FRAMEWORK_LIBRARY_DIR . '/templating/toolbox/config.php'),
+
+        require(CMS_LIBRARY_DIR . '/hmvc/toolbox/config.php'),
     ],
     /**
      * Настройки инструментов.
      */
     Bootstrap::OPTION_TOOLS_SETTINGS => [
+
         RouteTools::NAME => [
             'factories' => [
                 'route' => [

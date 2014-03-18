@@ -10,12 +10,14 @@
 namespace umicms\project\module\structure\api;
 
 use umi\orm\metadata\IObjectType;
+use umi\orm\selector\ISelector;
 use umicms\api\repository\BaseObjectRepository;
 use umicms\api\repository\THierarchicAwareRepository;
 use umicms\api\repository\TRecycleAwareRepository;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\structure\object\StructureElement;
+use umicms\project\module\structure\object\SystemPage;
 
 /**
  * Репозиторий для работы с элементами структуры.
@@ -106,6 +108,33 @@ class ElementRepository extends BaseObjectRepository
     }
 
     /**
+     * Возвращает системную страницу по пути ее компонента-обработчика
+     * @param string $componentPath путь ее компонента-обработчика
+     * @throws NonexistentEntityException если такой страницы нет
+     * @return SystemPage
+     */
+    public function getSystemPageByComponentPath($componentPath)
+    {
+        $page = $this->selectSystem()
+            ->where(SystemPage::FIELD_COMPONENT_PATH)
+            ->equals($componentPath)
+            ->limit(1)
+            ->getResult()
+            ->fetch();
+
+        if (!$page instanceof SystemPage) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find element by component path "{path}".',
+                    ['path' => $componentPath]
+                )
+            );
+        }
+
+        return $page;
+    }
+
+    /**
      * Добавляет элемент.
      * @param string $slug
      * @param StructureElement $parent
@@ -144,6 +173,15 @@ class ElementRepository extends BaseObjectRepository
         $this->getCollection()->move($element, $branch, $previousSibling);
 
         return $this;
+    }
+
+    /**
+     * Возвращает селектор для выбора системных страниц.
+     * @return ISelector|SystemPage[]
+     */
+    public function selectSystem()
+    {
+        return $this->select()->types(['system']);
     }
 
 }

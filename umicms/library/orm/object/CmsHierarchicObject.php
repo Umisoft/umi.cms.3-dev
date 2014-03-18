@@ -28,4 +28,23 @@ class CmsHierarchicObject extends HierarchicObject implements ICmsObject
      *  Имя поля для хранения дочерних элементов
      */
     const FIELD_CHILDREN = 'children';
+
+    /**
+     * @var string $normalizedURL нормализованный url объекта
+     */
+    private $normalizedUrl;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getURL()
+    {
+        if (is_null($this->normalizedUrl)) {
+            $url = $this->getProperty(self::FIELD_URI)
+                ->getValue();
+            $this->normalizedUrl = substr($url, 2);
+        }
+
+        return $this->normalizedUrl;
+    }
 }
