@@ -28,7 +28,7 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
         wide: function(){
             return this.get('meta.type') === 'wysiwyg' ? 'small-12' : 'large-4 medium-12';
         }.property('meta.type'),
-        layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{name}}</label></div>{{yield}}'),
+        layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{label}}</label></div>{{yield}}'),
         template: function(){
             var meta = this.get('meta');
             var template;
