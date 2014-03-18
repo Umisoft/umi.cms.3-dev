@@ -1,4 +1,4 @@
-define(['App', 'text!./form.hbs'], function(UMI, formTpl){
+define(['App', 'text!./form.hbs', 'app/components/form/components/multiSelect/main'], function(UMI, formTpl){
     'use strict';
     Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
 
@@ -54,6 +54,9 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
                     break;
                 case 'select':
                     template = Ember.Handlebars.compile('{{view "select" object=object meta=this}}');
+                    break;
+                case 'multi-checkbox':
+                    template = Ember.Handlebars.compile('{{multi-select object=object meta=this}}');
                     break;
                 case 'file':
                     template = Ember.Handlebars.compile('<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.dataSource + '}}<i class="icon icon-cloud"></i></div>');
