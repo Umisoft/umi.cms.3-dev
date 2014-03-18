@@ -20,7 +20,7 @@ return [
                             'dbname' => 'srv09realloc',
                             'user' => 'srv09realloc',
                             'password' => 'srv09realloc',
-                            'host' => 'localhost',
+                            'host' => 'srv01.megaserver.umisoft.ru',
                             'charset' => 'utf8'
                         ]
                     ]

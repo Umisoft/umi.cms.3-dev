@@ -45,9 +45,25 @@ class SiteApplication extends SiteComponent implements IHttpAware, IToolkitAware
      */
     const SETTING_DEFAULT_PAGE_GUID = 'default-page';
     /**
-     * Имя настройки для задания guid главной страницы
+     * Имя настройки для задания guid шаблона по умолчанию
      */
     const SETTING_DEFAULT_LAYOUT_GUID = 'default-layout';
+    /**
+     * Имя настройки для задания title страниц по умолчанию
+     */
+    const SETTING_DEFAULT_TITLE = 'default-meta-title';
+    /**
+     * Имя настройки для задания префикса title страниц
+     */
+    const SETTING_TITLE_PREFIX = 'meta-title-prefix';
+    /**
+     * Имя настройки для задания keywords страниц по умолчанию
+     */
+    const SETTING_DEFAULT_KEYWORDS = 'default-meta-keywords';
+    /**
+     * Имя настройки для задания description страниц по умолчанию
+     */
+    const SETTING_DEFAULT_DESCRIPTION = 'default-meta-description';
     /**
      * Имя настройки для задания постфикса всех URL
      */

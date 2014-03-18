@@ -74,4 +74,42 @@ trait TSiteSettingsAware
         return $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_LAYOUT_GUID);
     }
 
+    /**
+     * Возвращает title страниц по умолчанию.
+     * @return string
+     */
+    protected function getSiteDefaultTitle()
+    {
+        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_TITLE);
+    }
+
+    /**
+     * Возвращает префикс для title страниц.
+     * @return string
+     */
+    protected function getSiteTitlePrefix()
+    {
+        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_TITLE_PREFIX);
+    }
+
+    /**
+     * Возвращает keywords страниц по умолчанию.
+     * @return string
+     */
+    protected function getSiteDefaultKeywords()
+    {
+        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_KEYWORDS);
+    }
+
+    /**
+     * Возвращает description страниц по умолчанию.
+     * @return string
+     */
+    protected function getSiteDefaultDescription()
+    {
+        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_DESCRIPTION);
+    }
+
+
+
 }
