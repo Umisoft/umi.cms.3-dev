@@ -17,6 +17,7 @@ return [
 
     AdminComponent::OPTION_CONTROLS => [
         'chart' => [],
+        'table' => [],
     ],
 
     AdminComponent::OPTION_INTERFACE => [
