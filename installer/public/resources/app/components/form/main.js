@@ -1,4 +1,4 @@
-define(['App', 'text!./form.hbs'], function(UMI, formTpl){
+define(['App', 'text!./form.hbs', 'app/components/form/components/multiSelect/main'], function(UMI, formTpl){
     'use strict';
     Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
 
@@ -28,7 +28,7 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
         wide: function(){
             return this.get('meta.type') === 'wysiwyg' ? 'small-12' : 'large-4 medium-12';
         }.property('meta.type'),
-        layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{name}}</label></div>{{yield}}'),
+        layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{label}}</label></div>{{yield}}'),
         template: function(){
             var meta = this.get('meta');
             var template;
@@ -54,6 +54,9 @@ define(['App', 'text!./form.hbs'], function(UMI, formTpl){
                     break;
                 case 'select':
                     template = Ember.Handlebars.compile('{{view "select" object=object meta=this}}');
+                    break;
+                case 'multi-checkbox':
+                    template = Ember.Handlebars.compile('{{multi-select object=object meta=this}}');
                     break;
                 case 'file':
                     template = Ember.Handlebars.compile('<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.dataSource + '}}<i class="icon icon-cloud"></i></div>');
