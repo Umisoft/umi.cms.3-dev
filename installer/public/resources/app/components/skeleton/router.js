@@ -298,14 +298,27 @@ define([], function(){
                     /**
                      * Мета информация для action
                      */
-                    var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/'  + transition.params.action.action + '/' + self.modelFor('component').get('collection') + '/' + model.get('type') + '/edit';
+                    var actionName = transition.params.action.action;
+                    var actionParams = {};//'/' +  + '/' + model.get('type') + '/edit';
+                    var collectionName = self.modelFor('component').get('collection');
+                    if(collectionName){
+                        actionParams.collection = collectionName;
+                    }
+                    if(actionName === 'form'){
+                        actionParams.form = 'edit';
+                    }
+                    if(model.get('type')){
+                        actionParams.type = model.get('type');
+                    }
+                    actionParams = actionParams ? '?' + $.param(actionParams) : '';
+                    var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/'  + actionName + actionParams;
                     // Временное решение для таблицы
-                    if(transition.params.action.action === 'children' || transition.params.action.action === 'filter'){
+                    if(actionName === 'children' || actionName === 'filter'){
                         return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
                             routeData.viewSettings = results.settings;
                             return routeData;
                         });
-                    } else if(transition.params.action.action === 'form'){
+                    } else if(actionName === 'form'){
                         return Ember.$.get(actionResource).then(function(results){
                             routeData.viewSettings = results.result;
                             return routeData;
