@@ -154,7 +154,7 @@ class CmsObjectSerializer extends BaseSerializer implements IUrlManagerAware
      */
     protected function getCollectionResourceUri(ICmsCollection $collection, $filterName, $filterValue)
     {
-        $link = $this->getUrlManager()->getRestResourceUrl($collection);
+        $link = $this->getUrlManager()->getCollectionResourceUrl($collection);
         $link .= '?' . http_build_query(['filters' => [$filterName => $filterValue]]);
 
         return $link;

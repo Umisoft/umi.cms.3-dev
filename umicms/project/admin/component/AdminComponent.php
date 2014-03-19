@@ -10,13 +10,17 @@
 namespace umicms\project\admin\component;
 
 use umicms\hmvc\component\BaseComponent;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\admin\api\controller\BaseRestActionController;
 
 /**
  * Компонент административной панели.
  */
-class AdminComponent extends BaseComponent
+class AdminComponent extends BaseComponent implements IUrlManagerAware
 {
+
+    use TUrlManagerAware;
 
     /**
      * Имя опции для задания контролов компонента.
@@ -31,6 +35,10 @@ class AdminComponent extends BaseComponent
      * Контроллер для выполнения действий
      */
     const ACTION_CONTROLLER = 'action';
+    /**
+     * Контроллер для отображеня настроек компонента
+     */
+    const SETTINGS_CONTROLLER = 'settings';
     /**
      * Контроллер для выполнения RUD-операций над объектом
      */
@@ -102,7 +110,7 @@ class AdminComponent extends BaseComponent
         $componentInfo = [
             'name'        => $this->getName(),
             'displayName' => $this->translate($this->getName() . ':component:displayName'),
-            'path'        => $this->getPath()
+            'resource' => $this->getUrlManager()->getComponentResourceUrl($this)
         ];
 
         $components = [];

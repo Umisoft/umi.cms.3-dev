@@ -40,7 +40,7 @@ class ActionController extends BaseRestActionController
      */
     public function getQueryActions()
     {
-        return ['counter', 'counters', 'settings', 'navigation'];
+        return ['counter', 'counters', 'navigation'];
     }
 
     /**

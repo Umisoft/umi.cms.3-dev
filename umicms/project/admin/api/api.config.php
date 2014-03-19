@@ -20,7 +20,7 @@ return [
 
     ApiApplication::OPTION_CONTROLLERS => [
         ApiApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
-        'settings' => __NAMESPACE__ . '\controller\SettingsController',
+        ApiApplication::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\ApiSettingsController',
     ],
 
     ApiApplication::OPTION_COMPONENTS => [
@@ -39,18 +39,20 @@ return [
 
     ApiApplication::OPTION_ROUTES => [
 
-        'settings' => [
+        'index' => [
             'type'     => IRouteFactory::ROUTE_FIXED,
-            'route' => '/settings',
             'defaults' => [
-                'controller' => 'settings'
+                'controller' => ApiApplication::SETTINGS_CONTROLLER
+            ],
+            'subroutes' => [
+                'component' => [
+                    'type'     => IRouteFactory::ROUTE_SIMPLE,
+                    'route' => '/{component}'
+                ]
             ]
         ],
 
-        'component' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/{component}'
-        ]
+
     ]
 
 ];

@@ -13,6 +13,7 @@ use umicms\hmvc\dispatcher\Dispatcher;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
+use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\StructureElement;
 use umicms\project\site\component\SiteComponent;
@@ -139,17 +140,28 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
-    public function getRestResourceUrl(ICmsCollection $collection, ICmsObject $object = null)
+    public function getCollectionResourceUrl(ICmsCollection $collection, ICmsObject $object = null)
     {
-        $restResourceUrl = $this->baseRestUrl;
-        $restResourceUrl .= '/' . implode('/', explode('.', $collection->getHandlerPath('admin')));
-        $restResourceUrl .= '/collection/' . $collection->getName();
+        $collectionResourceUrl = $this->baseRestUrl;
+        $collectionResourceUrl .= '/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
+        $collectionResourceUrl .= '/collection/' . $collection->getName();
 
         if ($object) {
-            $restResourceUrl .= '/' . $object->getId();
+            $collectionResourceUrl .= '/' . $object->getId();
         }
 
-        return  $restResourceUrl;
+        return $collectionResourceUrl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getComponentResourceUrl(AdminComponent $component)
+    {
+        $componentResourceUrl = $this->baseRestUrl;
+        $componentResourceUrl .= str_replace(AdminComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 17));
+
+        return $componentResourceUrl;
     }
 }
  

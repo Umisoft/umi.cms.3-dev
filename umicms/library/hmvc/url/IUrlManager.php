@@ -12,6 +12,7 @@ namespace umicms\hmvc\url;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
+use umicms\project\admin\component\AdminComponent;
 
 /**
  * Интерфейс URL-менеджера.
@@ -71,7 +72,16 @@ interface IUrlManager
      * @param ICmsObject|null $object
      * @return string
      */
-    public function getRestResourceUrl(ICmsCollection $collection, ICmsObject $object = null);
+    public function getCollectionResourceUrl(ICmsCollection $collection, ICmsObject $object = null);
+
+    /**
+     * Возвращает URL ресурса компонента
+     * @param AdminComponent $component
+     * @return string
+     */
+    public function getComponentResourceUrl(AdminComponent $component);
+
+
 
 }
  

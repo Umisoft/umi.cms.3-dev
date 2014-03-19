@@ -37,6 +37,8 @@ return [
         AdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
         AdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
         AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
+
+        AdminComponent::SETTINGS_CONTROLLER => 'umicms\project\admin\api\controller\SettingsController'
     ],
 
     AdminComponent::OPTION_ROUTES      => [
@@ -67,6 +69,13 @@ return [
                         'controller' => AdminComponent::LIST_CONTROLLER
                     ]
                 ]
+            ]
+        ],
+
+        'settings' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'defaults' => [
+                'controller' => AdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]
