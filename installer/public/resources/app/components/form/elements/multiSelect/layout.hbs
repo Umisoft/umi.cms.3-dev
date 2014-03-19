@@ -1,0 +1,38 @@
+<div class="small-12 columns">
+    {{view view.inputView}}
+    <span class="postfix radius" {{action "toggleList" target="view"}}>
+        <i class="triangle"></i>
+    </span>
+    {{#if view.isOpen}}
+        <ul class="umi-multi-select-list">
+            {{#if view.filter}}
+                {{#each view.filter.result}}
+                    <li {{action "select" id target="view"}}>
+                        {{displayName}}
+                    </li>
+                {{else}}
+                    <li>
+                        Совпадений не найдено
+                    </li>
+                {{/each}}
+            {{else}}
+                {{#each view.notSelectedObjects}}
+                    <li {{action "select" id target="view"}}>
+                        {{displayName}}
+                    </li>
+                {{else}}
+                    <li>
+                        Все уже выбрано
+                    </li>
+                {{/each}}
+            {{/if}}
+        </ul>
+    {{/if}}
+</div>
+{{#if view.selectedObjects.length}}
+    <div class="selected-list">
+        {{#each view.selectedObjects}}
+            <div class="item" {{action "unSelect" id target="view"}}>{{displayName}} <i class="close">&times;</i></div>
+        {{/each}}
+    </div>
+{{/if}}

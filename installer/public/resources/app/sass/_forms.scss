@@ -68,6 +68,7 @@ label{
 }
 
 select{
+    border-radius: $input-border-radius;
     box-sizing: border-box;
     &:focus{
         box-shadow: 0 0 5px #999999;
@@ -352,5 +353,55 @@ select{
 
 // umi-multi-select
 .umi-multi-select{
+    position: relative;
+    .postfix{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 36px;
+        background: transparent;
+    }
+    .selected-list{
+        margin-bottom: $form-spacing / 2;
+        .item{
+            display: inline-block;
+            padding: 5px 5px;
+            background:#FCFCFC;
+            font-size: $input-font-size;
+            border: 1px solid #DFDFDF;
+        }
+    }
+}
+.umi-multi-select-input{
+    border-radius: $input-border-radius;
     @include form-element;
+    margin-bottom: $form-spacing / 2;
+    padding-right: 36px;
+    &:focus{
+        ~ .postfix{
+            border-left: 1px solid #A0A0A0;
+        }
+    }
+}
+
+.umi-multi-select-list{
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    list-style: none;
+    margin: 0;
+    font-size: $input-font-size;
+    margin-top: -$form-spacing;
+    z-index: $umi-multi-select-list-z-index;
+    li{
+        padding: rem-calc(5);
+        &:hover, &.hover{
+            background: $primary-color;
+            color: #fff;
+        }
+    }
 }

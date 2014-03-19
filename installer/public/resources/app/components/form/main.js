@@ -56,7 +56,7 @@ define(['App', 'text!./form.hbs', 'app/components/form/elements/multiSelect/main
                     template = Ember.Handlebars.compile('{{view "select" object=object meta=this}}');
                     break;
                 case 'multi-select':
-                    template = Ember.Handlebars.compile('{{multi-select object=object meta=this}}');
+                    template = Ember.Handlebars.compile('{{view "multiSelect" object=object meta=this}}');
                     break;
                 case 'file':
                     template = Ember.Handlebars.compile('<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.dataSource + '}}<i class="icon icon-cloud"></i></div>');
