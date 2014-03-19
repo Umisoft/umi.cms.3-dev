@@ -10,7 +10,6 @@
 namespace umicms\project\site\route;
 
 use umi\orm\metadata\field\special\UriField;
-use umi\orm\object\IHierarchicObject;
 use umi\route\type\BaseRoute;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
