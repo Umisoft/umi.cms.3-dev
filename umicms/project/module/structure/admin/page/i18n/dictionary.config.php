@@ -10,11 +10,11 @@
 return [
 
     'en-US' => [
-        'page:component:displayName' => 'Pages'
+        'component:page:displayName' => 'Pages'
     ],
 
     'ru-RU' => [
-        'page:component:displayName' => 'Страницы'
+        'component:page:displayName' => 'Страницы'
     ]
 
 ];

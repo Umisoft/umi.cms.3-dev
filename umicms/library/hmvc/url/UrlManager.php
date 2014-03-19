@@ -109,17 +109,14 @@ class UrlManager implements IUrlManager
         return $this->baseAdminUrl;
     }
 
-
     /**
      * {@inheritdoc}
      */
     public function getSitePageUrl(ICmsPage $page)
     {
-
         if ($page instanceof StructureElement) {
-            return $this->baseUrl . '/' . $page->getURL();
+            return $this->baseUrl . '/' . $page->getPageUrl();
         }
-
         /**
          * @var ICmsCollection $collection
          */
@@ -129,12 +126,21 @@ class UrlManager implements IUrlManager
         /**
          * @var SiteComponent $component
          */
-        $component = $this->dispatcher->getComponentByPath('project.site.' . $handler);
+        $component = $this->dispatcher->getSiteComponentByPath($handler);
 
-        $systemPage = $this->structureApi->element()->getSystemPageByComponentPath($handler);
+        return $this->getSystemPageUrl($handler) . $component->getPageUri($page);
 
-        return $this->baseUrl . '/' . $systemPage->getURL() . $component->getPageUri($page);
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getSystemPageUrl($componentPath)
+    {
+        $pageUrl = $this->baseUrl . '/';
+        $pageUrl .= $this->structureApi->element()->getSystemPageByComponentPath($componentPath)->getPageUrl();
+
+        return $pageUrl;
     }
 
     /**
@@ -156,12 +162,23 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
-    public function getComponentResourceUrl(AdminComponent $component)
+    public function getAdminComponentResourceUrl(AdminComponent $component)
     {
         $componentResourceUrl = $this->baseRestUrl;
         $componentResourceUrl .= str_replace(AdminComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 17));
 
         return $componentResourceUrl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAdminComponentActionUrl(AdminComponent $component, $actionName)
+    {
+        $actionUrl = $this->getAdminComponentResourceUrl($component);
+        $actionUrl .= $component->getRouter()->assemble('action', ['action' => $actionName]);
+
+        return $actionUrl;
     }
 }
  

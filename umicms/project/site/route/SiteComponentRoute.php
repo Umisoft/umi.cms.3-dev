@@ -41,7 +41,7 @@ class SiteComponentRoute extends BaseRoute
      */
     public function match($url)
     {
-        $slugs = explode('/', $url);
+        $slugs = explode('/', $url); //
         if (count($slugs) < 2) {
             return false;
         }

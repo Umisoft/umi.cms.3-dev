@@ -10,17 +10,17 @@
 return [
 
     'en-US' => [
-        'tree:control:displayName' => 'Tree',
-        'children:control:displayName' => 'Children',
-        'filter:control:displayName' => 'Filter',
-        'form:control:displayName' => 'Edit',
+        'control:tree:displayName' => 'Tree',
+        'control:children:displayName' => 'Children',
+        'control:filter:displayName' => 'Filter',
+        'control:form:displayName' => 'Edit',
     ],
 
     'ru-RU' => [
-        'tree:control:displayName' => 'Дерево',
-        'children:control:displayName' => 'Дочерние элементы',
-        'filter:control:displayName' => 'Фильтр',
-        'form:control:displayName' => 'Редактирование',
+        'control:tree:displayName' => 'Дерево',
+        'control:children:displayName' => 'Дочерние элементы',
+        'control:filter:displayName' => 'Фильтр',
+        'control:form:displayName' => 'Редактирование',
     ]
 
 ];

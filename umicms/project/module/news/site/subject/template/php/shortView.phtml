@@ -8,4 +8,4 @@
         <?= $subject->h1 ?>
     </a>
 </h2>
-<?= $this->widget('newsList', ['subjectGuids' => [$subject->guid], 'template' => 'newsList']); ?>
+<?= $this->widget('news.subject.newsList', ['subjectGuids' => [$subject->guid], 'template' => 'newsList']); ?>

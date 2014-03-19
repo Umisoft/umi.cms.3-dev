@@ -60,10 +60,8 @@ class AdminComponent extends BaseComponent implements IUrlManagerAware
         $controlsInfo = [];
 
         foreach($controls as $controlName => $options) {
-            $options['name'] = $controlName;
-            $options['displayName'] = $this->translate($controlName . ':control:displayName');
-
-            $controlsInfo[] = $options;
+            $options['displayName'] = $this->translate('control:' . $controlName . ':displayName');
+            $controlsInfo[$controlName] = $options;
         }
 
         return $controlsInfo;
@@ -89,11 +87,21 @@ class AdminComponent extends BaseComponent implements IUrlManagerAware
         if ($this->hasController(self::ACTION_CONTROLLER)) {
             $controller = $this->getController(self::ACTION_CONTROLLER);
             if ($controller instanceof BaseRestActionController) {
-                if ($queryActions = $controller->getQueryActions()) {
-                    $actions['query'] = $queryActions;
+
+                foreach ($controller->getQueryActions() as $actionName) {
+                    $actions[$actionName] = [
+                        'type' => 'query',
+                        'displayName' => $this->translate('action:' . $actionName . ':displayName'),
+                        'source' => $this->getUrlManager()->getAdminComponentActionUrl($this, $actionName)
+                    ];
                 }
-                if ($modifyActions = $controller->getModifyActions()) {
-                    $actions['modify'] = $modifyActions;
+
+                foreach ($controller->getModifyActions() as $actionName) {
+                    $actions[$actionName] = [
+                        'type' => 'modify',
+                        'displayName' => $this->translate('action:' . $actionName . ':displayName'),
+                        'source' => $this->getUrlManager()->getAdminComponentActionUrl($this, $actionName)
+                    ];
                 }
             }
         }
@@ -109,8 +117,8 @@ class AdminComponent extends BaseComponent implements IUrlManagerAware
     {
         $componentInfo = [
             'name'        => $this->getName(),
-            'displayName' => $this->translate($this->getName() . ':component:displayName'),
-            'resource' => $this->getUrlManager()->getComponentResourceUrl($this)
+            'displayName' => $this->translate('component:' . $this->getName() . ':displayName'),
+            'resource' => $this->getUrlManager()->getAdminComponentResourceUrl($this)
         ];
 
         $components = [];

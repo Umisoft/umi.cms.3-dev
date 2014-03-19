@@ -9,6 +9,7 @@
 
 namespace umicms\hmvc\url;
 
+use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
@@ -67,6 +68,14 @@ interface IUrlManager
     public function getSitePageUrl(ICmsPage $page);
 
     /**
+     * Возвращает URL системной страницы по пути ее компонента-обработчика
+     * @param string $componentPath путь ее компонента-обработчика
+     * @throws NonexistentEntityException если такой страницы нет
+     * @return string
+     */
+    public function getSystemPageUrl($componentPath);
+
+    /**
      * Возвращает URL ресурса коллекции
      * @param ICmsCollection $collection коллекция
      * @param ICmsObject|null $object
@@ -79,9 +88,15 @@ interface IUrlManager
      * @param AdminComponent $component
      * @return string
      */
-    public function getComponentResourceUrl(AdminComponent $component);
+    public function getAdminComponentResourceUrl(AdminComponent $component);
 
-
+    /**
+     * Возвращает URL действия компонента
+     * @param AdminComponent $component
+     * @param string $actionName имя действия
+     * @return string
+     */
+    public function getAdminComponentActionUrl(AdminComponent $component, $actionName);
 
 }
  
