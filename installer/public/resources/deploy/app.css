@@ -6035,21 +6035,6 @@ body {
   .umi-component > .columns {
     position: static; }
 
-/*input[type="date"]{
-    height: 32px;
-    line-height: 32px;
-    padding: 0 10px;
-    border-radius: 2px;
-    font-size: 13px;
-}
-
-textarea{
-    border-radius: 2px;
-    font-size: 13px;
-    width: 400px;
-    transition: none;
-}
-*/
 form .input-icon {
   position: relative;
   top: 0.75rem;
@@ -6096,9 +6081,12 @@ label {
   display: inline-block;
   margin-bottom: 0.5rem; }
 
-select:focus {
-  box-shadow: 0 0 5px #999999;
-  outline: none; }
+select {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+  select:focus {
+    box-shadow: 0 0 5px #999999;
+    outline: none; }
 
 .prefix, .postfix {
   height: 1.84688rem;
@@ -6266,7 +6254,9 @@ select:focus {
   .umi-input-wrapper-date input {
     border: none !important;
     box-shadow: none !important;
-    background: #FFFFFF !important; }
+    background: #FFFFFF !important;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
     .umi-input-wrapper-date input:hover {
       border: none !important;
       box-shadow: none !important; }
@@ -6780,6 +6770,100 @@ label {
   .umi-dialog .umi-dialog-content {
     margin-bottom: 20px;
     line-height: normal; }
+
+.triangle {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  border: 5px solid transparent;
+  content: "";
+  position: relative;
+  border-top-color: #222; }
+
+.triangle-top {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  border: 5px solid transparent;
+  content: "";
+  position: relative;
+  border-bottom-color: #222; }
+
+.triangle-top-white {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  border: 5px solid transparent;
+  content: "";
+  position: relative;
+  border-bottom-color: #FFF; }
+
+.triangle-right {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  border: 5px solid transparent;
+  content: "";
+  position: relative;
+  border-left-color: #222; }
+
+.triangle-right-white {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  border: 5px solid transparent;
+  content: "";
+  position: relative;
+  border-left-color: #FFF; }
+
+.triangle-bottom {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  border: 5px solid transparent;
+  content: "";
+  position: relative;
+  border-top-color: #222; }
+
+.triangle-bottom-white {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  border: 5px solid transparent;
+  content: "";
+  position: relative;
+  border-top-color: #FFF; }
+
+.triangle-left {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  border: 5px solid transparent;
+  content: "";
+  position: relative;
+  border-right-color: #222; }
+
+.triangle-left-white {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  border: 5px solid transparent;
+  content: "";
+  position: relative;
+  border-right-color: #FFF; }
+
+.prefix .triangle, .postfix .triangle {
+  top: 50%;
+  margin-top: -2.5px; }
 
 .iScrollIndicator {
   background: rgba(123, 137, 156, 0.9) !important;

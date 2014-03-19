@@ -5,21 +5,7 @@
         position: static;
     }
 }
-/*input[type="date"]{
-    height: 32px;
-    line-height: 32px;
-    padding: 0 10px;
-    border-radius: 2px;
-    font-size: 13px;
-}
 
-textarea{
-    border-radius: 2px;
-    font-size: 13px;
-    width: 400px;
-    transition: none;
-}
-*/
 form{
     .input-icon{
         position: relative;
@@ -81,9 +67,12 @@ label{
     margin-bottom: $form-label-bottom-margin;
 }
 
-select:focus{
-    box-shadow: 0 0 5px #999999;
-    outline: none;
+select{
+    box-sizing: border-box;
+    &:focus{
+        box-shadow: 0 0 5px #999999;
+        outline: none;
+    }
 }
 
 .prefix,
@@ -285,6 +274,7 @@ select:focus{
         border: none!important;
         box-shadow: none!important;
         background: #FFFFFF!important;
+        box-sizing: border-box;
         &:hover{
             border: none!important;
             box-shadow: none!important;
