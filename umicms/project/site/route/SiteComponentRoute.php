@@ -9,8 +9,11 @@
 
 namespace umicms\project\site\route;
 
+use umi\orm\metadata\field\special\UriField;
 use umi\orm\object\IHierarchicObject;
 use umi\route\type\BaseRoute;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\SystemPage;
@@ -18,8 +21,11 @@ use umicms\project\module\structure\object\SystemPage;
 /**
  * Правила маршрутизации компонентов для сайта.
  */
-class SiteComponentRoute extends BaseRoute
+class SiteComponentRoute extends BaseRoute implements IUrlManagerAware
 {
+
+    use TUrlManagerAware;
+
     /**
      * @var StructureApi $systemApi API работы со структурой
      */
@@ -39,23 +45,21 @@ class SiteComponentRoute extends BaseRoute
     /**
      * {@inheritdoc}
      */
-    public function match($url)
+    public function match($url, $baseUrl = null)
     {
-        $slugs = explode('/', $url); //
+        $slugs = explode('/', $url);
         if (count($slugs) < 2) {
             return false;
         }
         list(, $slug) = $slugs;
 
-        //TODO учитывать предыдущий выбранный элемент
-        $element =
-            $this->structureApi->element()->select()
-            ->types(['system'])
-            ->where(IHierarchicObject::FIELD_SLUG)
-                ->equals($slug)
+        $pageUri = UriField::URI_START_SYMBOL . $baseUrl . '/' . $slug;
+
+        $element = $this->structureApi->element()->selectSystem()
+            ->where(SystemPage::FIELD_URI)
+                ->equals($pageUri)
             ->limit(1)
-            ->result()
-            ->fetch();
+            ->result()->fetch();
 
         if ($element instanceof SystemPage) {
 

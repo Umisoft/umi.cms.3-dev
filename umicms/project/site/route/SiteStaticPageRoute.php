@@ -48,7 +48,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware, IPage
     /**
      * {@inheritdoc}
      */
-    public function match($url)
+    public function match($url, $baseUrl = null)
     {
         if ($url === '/') {
             $matched = $this->matchDefaultPage();
