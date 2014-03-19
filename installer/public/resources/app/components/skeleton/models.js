@@ -61,6 +61,7 @@ define([], function(){
                     }
                 }
 
+                fields.meta = DS.attr('raw', {readOnly: true});
                 UMI[collection.name.capitalize()] = DS.Model.extend(fields);
             }
         };
