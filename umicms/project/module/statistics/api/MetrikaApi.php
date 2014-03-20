@@ -28,6 +28,11 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
      */
     public $oauthToken;
     /**
+     * Идентификатор счетчика, используемого по умолчанию в проекте
+     * @var int $defaultCounter
+     */
+    public $defaultCounterId;
+    /**
      * Доступные для вызова методы статистики
      * @var array $apiResources
      */

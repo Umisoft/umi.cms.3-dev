@@ -46,7 +46,11 @@ class CounterWidget extends BaseWidget
     public function __invoke()
     {
         if (!is_int($this->counterId)) {
-            throw new InvalidArgumentException($this->translate("Counter id is required"));
+            if (is_int($this->api->defaultCounterId)) {
+                $this->counterId = $this->api->defaultCounterId;
+            } else {
+                return '';
+            }
         }
         return $this->api->counterData($this->counterId)['code'];
     }
