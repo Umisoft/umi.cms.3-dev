@@ -9,7 +9,11 @@
 
 namespace umicms\hmvc\url;
 
+use umicms\exception\NonexistentEntityException;
+use umicms\orm\collection\ICmsCollection;
+use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
+use umicms\project\admin\component\AdminComponent;
 
 /**
  * Интерфейс URL-менеджера.
@@ -18,11 +22,25 @@ interface IUrlManager
 {
 
     /**
-     * Устанавливает базовый URL.
+     * Устанавливает базовый URL проекта.
      * @param string $baseUrl
      * @return self
      */
     public function setBaseUrl($baseUrl);
+
+    /**
+     * Устанавливает базовый URL для REST-запросов.
+     * @param string $baseRestUrl
+     * @return self
+     */
+    public function setBaseRestUrl($baseRestUrl);
+
+    /**
+     * Устанавливает базовый URL для административной панели.
+     * @param string $baseAdminUrl
+     * @return self
+     */
+    public function setBaseAdminUrl($baseAdminUrl);
 
     /**
      * Возвращает базовый URL проекта.
@@ -31,11 +49,54 @@ interface IUrlManager
     public function getProjectUrl();
 
     /**
+     * Возвращает базовый URL для REST-запросов.
+     * @return string
+     */
+    public function getBaseRestUrl();
+
+    /**
+     * Возвращает базовый URL для административной панели.
+     * @return string
+     */
+    public function getBaseAdminUrl();
+
+    /**
      * Возвращает URL страницы для отображения на сайте.
      * @param ICmsPage $page страница
      * @return string
      */
     public function getSitePageUrl(ICmsPage $page);
+
+    /**
+     * Возвращает URL системной страницы по пути ее компонента-обработчика
+     * @param string $componentPath путь ее компонента-обработчика
+     * @throws NonexistentEntityException если такой страницы нет
+     * @return string
+     */
+    public function getSystemPageUrl($componentPath);
+
+    /**
+     * Возвращает URL ресурса коллекции
+     * @param ICmsCollection $collection коллекция
+     * @param ICmsObject|null $object
+     * @return string
+     */
+    public function getCollectionResourceUrl(ICmsCollection $collection, ICmsObject $object = null);
+
+    /**
+     * Возвращает URL ресурса компонента
+     * @param AdminComponent $component
+     * @return string
+     */
+    public function getAdminComponentResourceUrl(AdminComponent $component);
+
+    /**
+     * Возвращает URL действия компонента
+     * @param AdminComponent $component
+     * @param string $actionName имя действия
+     * @return string
+     */
+    public function getAdminComponentActionUrl(AdminComponent $component, $actionName);
 
 }
  

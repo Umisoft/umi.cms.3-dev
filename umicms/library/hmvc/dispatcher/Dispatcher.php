@@ -11,13 +11,23 @@ namespace umicms\hmvc\dispatcher;
 
 use umi\hmvc\component\IComponent;
 use umi\hmvc\dispatcher\Dispatcher as FrameworkDispatcher;
+use umi\hmvc\view\IView;
+use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
 
 /**
  * {@inheritdoc}
  */
-class Dispatcher extends FrameworkDispatcher
+class Dispatcher extends FrameworkDispatcher implements IUrlManagerAware
 {
+    use TUrlManagerAware;
+
+    /**
+     * Начальный путь компонентов сайта
+     */
+    const SITE_COMPONENT_PATH = 'project.site';
 
     /**
      * Возвращает компонент по его пути.
@@ -25,8 +35,10 @@ class Dispatcher extends FrameworkDispatcher
      * @throws RuntimeException если не удалось определить компонент
      * @return IComponent
      */
-    public function getComponentByPath($componentPath)
+    public function getSiteComponentByPath($componentPath)
     {
+        $componentPath = self::SITE_COMPONENT_PATH . IComponent::PATH_SEPARATOR . $componentPath;
+
         $componentPathParts = explode(IComponent::PATH_SEPARATOR, $componentPath);
         $component = $this->getInitialComponent();
 
@@ -44,6 +56,31 @@ class Dispatcher extends FrameworkDispatcher
         }
 
         return $component;
+    }
+
+    /**
+     * Обрабатывает вызов виджета.
+     * @param string $widgetPath путь виджета
+     * @param array $params параметры вызова виджета
+     * @throws InvalidArgumentException при неверном вызове виджета
+     * @return string|IView
+     */
+    public function executeWidgetByPath($widgetPath, array $params = [])
+    {
+        $widgetPathParts = explode(IComponent::PATH_SEPARATOR, $widgetPath);
+        if (count($widgetPathParts) < 2) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Cannot resolve widget path "{path}".',
+                    ['path' => $widgetPath]
+                )
+            );
+        }
+
+        $widgetName = array_pop($widgetPathParts);
+        $componentPageUrl = $this->getUrlManager()->getSystemPageUrl(implode(IComponent::PATH_SEPARATOR, $widgetPathParts));
+
+        return $this->executeWidget($componentPageUrl . '/' . $widgetName, $params);
     }
 
 }

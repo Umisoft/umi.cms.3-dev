@@ -11,7 +11,9 @@ namespace umicms\hmvc\url;
 
 use umicms\hmvc\dispatcher\Dispatcher;
 use umicms\orm\collection\ICmsCollection;
+use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
+use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\StructureElement;
 use umicms\project\site\component\SiteComponent;
@@ -30,9 +32,17 @@ class UrlManager implements IUrlManager
      */
     protected $structureApi;
     /**
-     * @var string $baseUrl базовый урл
+     * @var string $baseUrl базовый URL проекта
      */
     protected $baseUrl = '/';
+    /**
+     * @var string $baseRestUrl базовый URL для REST-запросов
+     */
+    protected $baseRestUrl = '/';
+    /**
+     * @var string $baseAdminUrl базовый URL для административной панели
+     */
+    protected $baseAdminUrl;
 
     /**
      * Конструктор.
@@ -58,22 +68,55 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
+    public function setBaseRestUrl($baseRestUrl)
+    {
+        $this->baseRestUrl = $baseRestUrl;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setBaseAdminUrl($baseAdminUrl)
+    {
+        $this->baseAdminUrl = $baseAdminUrl;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getProjectUrl()
     {
         return $this->baseUrl ?: '/';
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getBaseRestUrl()
+    {
+        return $this->baseRestUrl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBaseAdminUrl()
+    {
+        return $this->baseAdminUrl;
+    }
 
     /**
      * {@inheritdoc}
      */
     public function getSitePageUrl(ICmsPage $page)
     {
-
         if ($page instanceof StructureElement) {
-            return $this->baseUrl . '/' . $page->getURL();
+            return $this->baseUrl . '/' . $page->getPageUrl();
         }
-
         /**
          * @var ICmsCollection $collection
          */
@@ -83,12 +126,59 @@ class UrlManager implements IUrlManager
         /**
          * @var SiteComponent $component
          */
-        $component = $this->dispatcher->getComponentByPath('project.site.' . $handler);
+        $component = $this->dispatcher->getSiteComponentByPath($handler);
 
-        $systemPage = $this->structureApi->element()->getSystemPageByComponentPath($handler);
+        return $this->getSystemPageUrl($handler) . $component->getPageUri($page);
 
-        return $this->baseUrl . '/' . $systemPage->getURL() . $component->getPageUri($page);
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getSystemPageUrl($componentPath)
+    {
+        $pageUrl = $this->baseUrl . '/';
+        $pageUrl .= $this->structureApi->element()->getSystemPageByComponentPath($componentPath)->getPageUrl();
+
+        return $pageUrl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCollectionResourceUrl(ICmsCollection $collection, ICmsObject $object = null)
+    {
+        $collectionResourceUrl = $this->baseRestUrl;
+        $collectionResourceUrl .= '/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
+        $collectionResourceUrl .= '/collection/' . $collection->getName();
+
+        if ($object) {
+            $collectionResourceUrl .= '/' . $object->getId();
+        }
+
+        return $collectionResourceUrl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAdminComponentResourceUrl(AdminComponent $component)
+    {
+        $componentResourceUrl = $this->baseRestUrl;
+        $componentResourceUrl .= str_replace(AdminComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 17));
+
+        return $componentResourceUrl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAdminComponentActionUrl(AdminComponent $component, $actionName)
+    {
+        $actionUrl = $this->getAdminComponentResourceUrl($component);
+        $actionUrl .= $component->getRouter()->assemble('action', ['action' => $actionName]);
+
+        return $actionUrl;
     }
 }
  

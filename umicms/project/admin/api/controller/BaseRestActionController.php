@@ -72,24 +72,6 @@ abstract class BaseRestActionController extends BaseRestController implements IO
     }
 
     /**
-     * Возвращает настройки текущего компонента.
-     * @return IConfig
-     */
-    protected function actionSettings()
-    {
-        /**
-         * @var AdminComponent $component
-         */
-        $component = $this->getComponent();
-
-        return [
-            AdminComponent::OPTION_CONTROLS => $component->getControlsInfo(),
-            AdminComponent::OPTION_INTERFACE => $component->getInterfaceInfo(),
-            'actions' => $component->getActionsInfo()
-        ];
-    }
-
-    /**
      * Вызывает действие.
      * @param string $action имя действия
      * @return Response

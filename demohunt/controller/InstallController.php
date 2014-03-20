@@ -200,21 +200,21 @@ class InstallController extends SitePageController implements ICollectionManager
         $subject2 = $subjectCollection->add()
             ->setValue('displayName', 'Привидения');
 
-        $newsPage = $structureCollection->add('news', 'system')
+        $newsPage = $structureCollection->add('novosti', 'system')
             ->setValue('displayName', 'Новости')
             ->setGUID('9ee6745f-f40d-46d8-8043-d959594628ce')
             ->setValue('layout', $this->testLayout);
         $newsPage->getProperty('componentName')->setValue('news');
         $newsPage->getProperty('componentPath')->setValue('news');
 
-        $rubric = $structureCollection->add('rubric', 'system', $newsPage)
+        $rubric = $structureCollection->add('rubriki', 'system', $newsPage)
             ->setValue('displayName', 'Новостная рубрика')
             ->setGUID('9ee6745f-f40d-46d8-8043-d95959462811');
 
         $rubric->getProperty('componentName')->setValue('rubric');
         $rubric->getProperty('componentPath')->setValue('news.rubric');
 
-        $subject = $structureCollection->add('subject', 'system', $newsPage)
+        $subject = $structureCollection->add('syuzhety', 'system', $newsPage)
             ->setValue('displayName', 'Новостной сюжет')
             ->setGUID('9ee6745f-f40d-46d8-8043-d95959462822');
 
@@ -904,8 +904,7 @@ class InstallController extends SitePageController implements ICollectionManager
         $structureCollection = $this->getCollectionManager()->getCollection('structure');
         $searchRoot = $structureCollection->add('search', 'system');
         $searchRoot->setValue('displayName', 'Поиск')
-            ->setGUID('9ee6745f-f40d-46d8-8043-d901234628ce')
-            ->setValue('layout', $this->testLayout);
+            ->setGUID('9ee6745f-f40d-46d8-8043-d901234628ce');
         $searchRoot->getProperty('componentName')->setValue('search');
         $searchRoot->getProperty('componentPath')->setValue('search');
 

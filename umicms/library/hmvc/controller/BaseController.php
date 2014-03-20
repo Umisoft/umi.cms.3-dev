@@ -31,7 +31,7 @@ abstract class BaseController extends FrameworkController
         if (is_null($value)) {
             throw new HttpException(Response::HTTP_BAD_REQUEST,
                 $this->translate(
-                    'Query parameter "param" required.',
+                    'Query parameter "{param}" required.',
                     ['param' => $name]
                 )
             );

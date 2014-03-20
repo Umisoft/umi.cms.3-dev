@@ -22,7 +22,6 @@ use umi\spl\config\TConfigSupport;
 use umi\templating\engine\ITemplateEngineFactory;
 use umi\templating\engine\php\PhpTemplateEngine;
 use umi\templating\engine\php\TemplatingPhpExtension;
-use umi\templating\engine\php\ViewPhpExtension;
 use umi\toolkit\IToolkit;
 use umi\toolkit\Toolkit;
 use umicms\exception\InvalidArgumentException;
@@ -31,6 +30,7 @@ use umicms\exception\UnexpectedValueException;
 use umicms\hmvc\url\IUrlManager;
 use umicms\project\config\IProjectConfigAware;
 use umicms\project\config\TProjectConfigAware;
+use umicms\templating\engine\php\ViewPhpExtension;
 
 /**
  * Загрузчик приложений UMI.CMS
@@ -114,7 +114,7 @@ class Bootstrap implements IProjectConfigAware
             $localesService->setCurrentLocale($routeMatches['locale']);
         }
 
-        $baseUrl = isset($routeMatches['uri']) ? $routeMatches['uri'] : '';
+        $baseProjectUrl = isset($routeMatches['uri']) ? $routeMatches['uri'] : '';
         $routePath = $routeResult->getUnmatchedUrl() ? : '/';
 
         if (preg_match('|\.([\w]+)$|u', $routePath, $matches)) {
@@ -127,7 +127,13 @@ class Bootstrap implements IProjectConfigAware
          * @var IUrlManager $urlManager
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
-        $urlManager->setBaseUrl($baseUrl);
+        $urlManager->setBaseUrl($baseProjectUrl);
+
+        $baseAdminUrl = $baseProjectUrl . $project->getRouter()->assemble('admin');
+        $adminComponent = $project->getChildComponent('admin');
+
+        $urlManager->setBaseAdminUrl($baseAdminUrl);
+        $urlManager->setBaseRestUrl($baseAdminUrl . $adminComponent->getRouter()->assemble('api'));
 
         /**
          * @var IDispatcher $dispatcher
@@ -136,7 +142,7 @@ class Bootstrap implements IProjectConfigAware
         $this->initTemplateEngines($dispatcher);
         $dispatcher->setCurrentRequest($request);
         $dispatcher->setInitialComponent($project);
-        $response = $dispatcher->dispatch($routePath, $baseUrl);
+        $response = $dispatcher->dispatch($routePath, $baseProjectUrl);
 
         $this->sendResponse($response, $request);
     }

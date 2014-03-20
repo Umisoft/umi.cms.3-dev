@@ -10,13 +10,17 @@
 namespace umicms\project\admin\component;
 
 use umicms\hmvc\component\BaseComponent;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\admin\api\controller\BaseRestActionController;
 
 /**
  * Компонент административной панели.
  */
-class AdminComponent extends BaseComponent
+class AdminComponent extends BaseComponent implements IUrlManagerAware
 {
+
+    use TUrlManagerAware;
 
     /**
      * Имя опции для задания контролов компонента.
@@ -31,6 +35,10 @@ class AdminComponent extends BaseComponent
      * Контроллер для выполнения действий
      */
     const ACTION_CONTROLLER = 'action';
+    /**
+     * Контроллер для отображеня настроек компонента
+     */
+    const SETTINGS_CONTROLLER = 'settings';
     /**
      * Контроллер для выполнения RUD-операций над объектом
      */
@@ -52,10 +60,8 @@ class AdminComponent extends BaseComponent
         $controlsInfo = [];
 
         foreach($controls as $controlName => $options) {
-            $options['name'] = $controlName;
-            $options['displayName'] = $this->translate($controlName . ':control:displayName');
-
-            $controlsInfo[] = $options;
+            $options['displayName'] = $this->translate('control:' . $controlName . ':displayName');
+            $controlsInfo[$controlName] = $options;
         }
 
         return $controlsInfo;
@@ -81,11 +87,21 @@ class AdminComponent extends BaseComponent
         if ($this->hasController(self::ACTION_CONTROLLER)) {
             $controller = $this->getController(self::ACTION_CONTROLLER);
             if ($controller instanceof BaseRestActionController) {
-                if ($queryActions = $controller->getQueryActions()) {
-                    $actions['query'] = $queryActions;
+
+                foreach ($controller->getQueryActions() as $actionName) {
+                    $actions[$actionName] = [
+                        'type' => 'query',
+                        'displayName' => $this->translate('action:' . $actionName . ':displayName'),
+                        'source' => $this->getUrlManager()->getAdminComponentActionUrl($this, $actionName)
+                    ];
                 }
-                if ($modifyActions = $controller->getModifyActions()) {
-                    $actions['modify'] = $modifyActions;
+
+                foreach ($controller->getModifyActions() as $actionName) {
+                    $actions[$actionName] = [
+                        'type' => 'modify',
+                        'displayName' => $this->translate('action:' . $actionName . ':displayName'),
+                        'source' => $this->getUrlManager()->getAdminComponentActionUrl($this, $actionName)
+                    ];
                 }
             }
         }
@@ -101,8 +117,8 @@ class AdminComponent extends BaseComponent
     {
         $componentInfo = [
             'name'        => $this->getName(),
-            'displayName' => $this->translate($this->getName() . ':component:displayName'),
-            'path'        => $this->getPath()
+            'displayName' => $this->translate('component:' . $this->getName() . ':displayName'),
+            'resource' => $this->getUrlManager()->getAdminComponentResourceUrl($this)
         ];
 
         $components = [];

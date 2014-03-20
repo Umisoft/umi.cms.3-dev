@@ -10,14 +10,18 @@
 namespace umicms\serialization\json\orm;
 
 use umi\orm\collection\BaseCollection;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\ICmsCollection;
 use umicms\serialization\json\BaseSerializer;
 
 /**
  * JSON-сериализатор для коллекции объектов.
  */
-class CollectionSerializer extends BaseSerializer
+class CollectionSerializer extends BaseSerializer implements IUrlManagerAware
 {
+    use TUrlManagerAware;
+
     /**
      * Сериализует коллекцию в JSON.
      * @param BaseCollection $collection
@@ -33,6 +37,12 @@ class CollectionSerializer extends BaseSerializer
         $this->getJsonWriter()->startElement('name');
         $this->writeRaw($collection->getName());
         $this->getJsonWriter()->endElement();
+
+        if ($collection instanceof ICmsCollection && $collection->hasHandler('admin')) {
+            $this->getJsonWriter()->startElement('source');
+            $this->writeRaw($this->getUrlManager()->getCollectionResourceUrl($collection));
+            $this->getJsonWriter()->endElement();
+        }
 
         $this->delegate($collection->getMetadata(), $options);
     }

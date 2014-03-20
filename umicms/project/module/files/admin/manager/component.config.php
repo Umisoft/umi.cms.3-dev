@@ -15,26 +15,23 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    AdminComponent::OPTION_SETTINGS => [
-        'controls' => [
-            [
-                'name' => 'fileManager',
-                'displayName' => 'Файловый менеджер',
-                'action' => '/connector'
-            ]
+    AdminComponent::OPTION_CONTROLS => [
+        'fileManager' => [
+            'action' => '/connector'
         ],
-        'layout' => [
-            'emptyContext' => [
-                'contents' => [
-                    'controls' => ['fileManager']
-                ]
+    ],
+
+    AdminComponent::OPTION_INTERFACE => [
+        'emptyContext' => [
+            'contents' => [
+                'controls' => ['fileManager']
             ]
         ]
     ],
 
     AdminComponent::OPTION_CONTROLLERS => [
         'connector' => __NAMESPACE__ . '\controller\ConnectorController',
-        'action' => __NAMESPACE__ . '\controller\ActionController'
+        AdminComponent::SETTINGS_CONTROLLER => 'umicms\project\admin\api\controller\SettingsController'
     ],
 
     AdminComponent::OPTION_ROUTES      => [
@@ -47,11 +44,10 @@ return [
             ]
         ],
 
-        'action' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/action/{action}',
+        'settings' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => 'action'
+                'controller' => AdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]

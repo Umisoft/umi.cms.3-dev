@@ -8,7 +8,6 @@
 
 namespace umicms\project\admin\controller;
 
-use umi\hmvc\dispatcher\IDispatchContext;
 use umi\http\Response;
 use umi\i18n\ILocalesAware;
 use umi\i18n\TLocalesAware;
@@ -57,8 +56,8 @@ class DefaultController extends BaseController implements ILocalesAware, IUrlMan
             'layout',
             [
                 'contents' => $this->response->getContent(),
-                'baseUrl' => $this->getContext()->getBaseUrl(),
-                'baseApiUrl' => $this->getContext()->getBaseUrl() . $this->getComponent()->getRouter()->assemble('api'),
+                'baseUrl' => $this->getUrlManager()->getBaseAdminUrl(),
+                'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
                 'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
                 'locale' => $this->getCurrentLocale(),
                 'authenticated' => $this->api->isAuthenticated()
