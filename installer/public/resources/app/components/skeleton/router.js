@@ -242,8 +242,8 @@ define([], function(){
                 return {component: model.get('name')};
             },
             renderTemplate: function(controller, model){
+                this.render();
                 if(controller.get('hasTree')){
-                    this.render();
                     var componentName = controller.get('treeComponent');
                     this.render(componentName, {
                         into: 'component',

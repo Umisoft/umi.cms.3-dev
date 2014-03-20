@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>app\components\elFinder\js\ui\dialog.js - umi-cms-3</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="umi-cms-3"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/ApplicationRoute.html">ApplicationRoute</a></li>
+            
+                <li><a href="../classes/ComponentController.html">ComponentController</a></li>
+            
+                <li><a href="../classes/dialogelfinder - open elFinder in dialog window.html">dialogelfinder - open elFinder in dialog window</a></li>
+            
+                <li><a href="../classes/DS.ManyArray.html">DS.ManyArray</a></li>
+            
+                <li><a href="../classes/elFinder - file manager for web.html">elFinder - file manager for web</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;archive&quot;
+Archive selected files.html">elFinder command &quot;archive&quot;
+Archive selected files</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;back&quot;
+Open last visited folder.html">elFinder command &quot;back&quot;
+Open last visited folder</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;copy&quot;.
+Put files in filemanager clipboard..html">elFinder command &quot;copy&quot;.
+Put files in filemanager clipboard.</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;download&quot;. 
+Download selected files.
+Only for new api.html">elFinder command &quot;download&quot;. 
+Download selected files.
+Only for new api</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;duplicate&quot;
+Create file/folder copy with suffix &quot;copy Number&quot;.html">elFinder command &quot;duplicate&quot;
+Create file/folder copy with suffix &quot;copy Number&quot;</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;edit&quot;. 
+Edit text file in dialog window.html">elFinder command &quot;edit&quot;. 
+Edit text file in dialog window</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;extract&quot;
+Extract files from archive.html">elFinder command &quot;extract&quot;
+Extract files from archive</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;forward&quot;
+Open next visited folder.html">elFinder command &quot;forward&quot;
+Open next visited folder</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;getfile&quot;. 
+Return selected files info into outer callback.
+For use elFinder with wysiwyg editors etc..html">elFinder command &quot;getfile&quot;. 
+Return selected files info into outer callback.
+For use elFinder with wysiwyg editors etc.</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;help&quot;
+&quot;About&quot; dialog.html">elFinder command &quot;help&quot;
+&quot;About&quot; dialog</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;info&quot;. 
+Display dialog with file properties..html">elFinder command &quot;info&quot;. 
+Display dialog with file properties.</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;mkdir&quot;
+Create new folder.html">elFinder command &quot;mkdir&quot;
+Create new folder</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;mkfile&quot;
+Create new empty file.html">elFinder command &quot;mkfile&quot;
+Create new empty file</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;netmount&quot;
+Mount network volume with user credentials..html">elFinder command &quot;netmount&quot;
+Mount network volume with user credentials.</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;open&quot;
+Enter folder or open files in new windows.html">elFinder command &quot;open&quot;
+Enter folder or open files in new windows</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;paste&quot;
+Paste filesfrom clipboard into directory.
+If files pasted in its parent directory - files duplicates will created.html">elFinder command &quot;paste&quot;
+Paste filesfrom clipboard into directory.
+If files pasted in its parent directory - files duplicates will created</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;quicklook&quot;
+Fast preview for some files types.html">elFinder command &quot;quicklook&quot;
+Fast preview for some files types</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;reload&quot;
+Sync files and folders.html">elFinder command &quot;reload&quot;
+Sync files and folders</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;rename&quot;. 
+Rename selected file..html">elFinder command &quot;rename&quot;. 
+Rename selected file.</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;resize&quot;
+Open dialog to resize image.html">elFinder command &quot;resize&quot;
+Open dialog to resize image</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;rm&quot;
+Delete files.html">elFinder command &quot;rm&quot;
+Delete files</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;search&quot;
+Find files.html">elFinder command &quot;search&quot;
+Find files</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;sort&quot;
+Change sort files rule.html">elFinder command &quot;sort&quot;
+Change sort files rule</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;up&quot;
+Go into parent directory.html">elFinder command &quot;up&quot;
+Go into parent directory</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;upload&quot;
+Upload files using iframe or XMLHttpRequest &amp; FormData.
+Dialog allow to send files using drag and drop.html">elFinder command &quot;upload&quot;
+Upload files using iframe or XMLHttpRequest &amp; FormData.
+Dialog allow to send files using drag and drop</a></li>
+            
+                <li><a href="../classes/elFinder command &quot;view&quot;
+Change current directory view (icons/list).html">elFinder command &quot;view&quot;
+Change current directory view (icons/list)</a></li>
+            
+                <li><a href="../classes/elFinder contextmenu.html">elFinder contextmenu</a></li>
+            
+                <li><a href="../classes/elFinder dialog.html">elFinder dialog</a></li>
+            
+                <li><a href="../classes/elFinder folders tree.html">elFinder folders tree</a></li>
+            
+                <li><a href="../classes/elFinder places/favorites ui.html">elFinder places/favorites ui</a></li>
+            
+                <li><a href="../classes/elFinder toolbar.html">elFinder toolbar</a></li>
+            
+                <li><a href="../classes/elFinder toolbar button menu with sort variants..html">elFinder toolbar button menu with sort variants.</a></li>
+            
+                <li><a href="../classes/elFinder toolbar button to switch current directory view..html">elFinder toolbar button to switch current directory view.</a></li>
+            
+                <li><a href="../classes/elFinder toolbar button widget.
+If command has variants - create menu.html">elFinder toolbar button widget.
+If command has variants - create menu</a></li>
+            
+                <li><a href="../classes/elFinder toolbar search button widget..html">elFinder toolbar search button widget.</a></li>
+            
+                <li><a href="../classes/elFinder toolbar&#x27;s button tor upload file.html">elFinder toolbar&#x27;s button tor upload file</a></li>
+            
+                <li><a href="../classes/elFinder ui
+Display current folder path in statusbar.
+Click on folder name in path - open folder.html">elFinder ui
+Display current folder path in statusbar.
+Click on folder name in path - open folder</a></li>
+            
+                <li><a href="../classes/elFinder ui
+Display number of files/selected files and its size in statusbar.html">elFinder ui
+Display number of files/selected files and its size in statusbar</a></li>
+            
+                <li><a href="../classes/elFinder.history
+Store visited folders
+and provide &quot;back&quot; and &quot;forward&quot; methods.html">elFinder.history
+Store visited folders
+and provide &quot;back&quot; and &quot;forward&quot; methods</a></li>
+            
+                <li><a href="../classes/elfindernav - elFinder container for diretories tree and places.html">elfindernav - elFinder container for diretories tree and places</a></li>
+            
+                <li><a href="../classes/elfinderworkzone - elFinder container for nav and current directory.html">elfinderworkzone - elFinder container for nav and current directory</a></li>
+            
+                <li><a href="../classes/IndexRoute.html">IndexRoute</a></li>
+            
+                <li><a href="../classes/Inflector.inflector.html">Inflector.inflector</a></li>
+            
+                <li><a href="../classes/map.html">map</a></li>
+            
+                <li><a href="../classes/UmiRESTAdapter.html">UmiRESTAdapter</a></li>
+            
+                <li><a href="../classes/Utils.html">Utils</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Router.html">Router</a></li>
+            
+                <li><a href="../modules/UMI.html">UMI</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: app\components\elFinder\js\ui\dialog.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&quot;use strict&quot;;
+/**
+ * @class  elFinder dialog
+ *
+ * @author Dmitry (dio) Levashov
+ **/
+$.fn.elfinderdialog = function(opts) {
+	var dialog;
+	
+	if (typeof(opts) == &#x27;string&#x27; &amp;&amp; (dialog = this.closest(&#x27;.ui-dialog&#x27;)).length) {
+		if (opts == &#x27;open&#x27;) {
+			dialog.css(&#x27;display&#x27;) == &#x27;none&#x27; &amp;&amp; dialog.fadeIn(120, function() {
+				dialog.trigger(&#x27;open&#x27;);
+			});
+		} else if (opts == &#x27;close&#x27;) {
+			dialog.css(&#x27;display&#x27;) != &#x27;none&#x27; &amp;&amp; dialog.hide().trigger(&#x27;close&#x27;);
+		} else if (opts == &#x27;destroy&#x27;) {
+			dialog.hide().remove();
+		} else if (opts == &#x27;toTop&#x27;) {
+			dialog.trigger(&#x27;totop&#x27;);
+		}
+	}
+	
+	opts = $.extend({}, $.fn.elfinderdialog.defaults, opts);
+
+	this.filter(&#x27;:not(.ui-dialog-content)&#x27;).each(function() {
+		var self       = $(this).addClass(&#x27;ui-dialog-content ui-widget-content&#x27;),
+			parent     = self.parent(),
+			clactive   = &#x27;elfinder-dialog-active&#x27;,
+			cldialog   = &#x27;elfinder-dialog&#x27;,
+			clnotify   = &#x27;elfinder-dialog-notify&#x27;,
+			clhover    = &#x27;ui-state-hover&#x27;,
+			id         = parseInt(Math.random()*1000000),
+			overlay    = parent.children(&#x27;.elfinder-overlay&#x27;),
+			buttonset  = $(&#x27;&lt;div class=&quot;ui-dialog-buttonset&quot;/&gt;&#x27;),
+			buttonpane = $(&#x27;&lt;div class=&quot; ui-helper-clearfix ui-dialog-buttonpane ui-widget-content&quot;/&gt;&#x27;)
+				.append(buttonset),
+			
+			dialog = $(&#x27;&lt;div class=&quot;ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable std42-dialog  &#x27;+cldialog+&#x27; &#x27;+opts.cssClass+&#x27;&quot;/&gt;&#x27;)
+				.hide()
+				.append(self)
+				.appendTo(parent)
+				.draggable({ handle : &#x27;.ui-dialog-titlebar&#x27;,
+					     containment : &#x27;document&#x27; })
+				.css({
+					width  : opts.width,
+					height : opts.height
+				})
+				.mousedown(function(e) {
+					e.stopPropagation();
+					
+					$(document).mousedown();
+
+					if (!dialog.is(&#x27;.&#x27;+clactive)) {
+						parent.find(&#x27;.&#x27;+cldialog+&#x27;:visible&#x27;).removeClass(clactive);
+						dialog.addClass(clactive).zIndex(maxZIndex() + 1);
+					}
+				})
+				.bind(&#x27;open&#x27;, function() {
+					dialog.trigger(&#x27;totop&#x27;);
+					typeof(opts.open) == &#x27;function&#x27; &amp;&amp; $.proxy(opts.open, self[0])();
+
+					if (!dialog.is(&#x27;.&#x27;+clnotify)) {
+						
+						parent.find(&#x27;.&#x27;+cldialog+&#x27;:visible&#x27;).not(&#x27;.&#x27;+clnotify).each(function() {
+							var d     = $(this),
+								top   = parseInt(d.css(&#x27;top&#x27;)),
+								left  = parseInt(d.css(&#x27;left&#x27;)),
+								_top  = parseInt(dialog.css(&#x27;top&#x27;)),
+								_left = parseInt(dialog.css(&#x27;left&#x27;))
+								;
+
+							if (d[0] != dialog[0] &amp;&amp; (top == _top || left == _left)) {
+								dialog.css({
+									top  : (top+10)+&#x27;px&#x27;,
+									left : (left+10)+&#x27;px&#x27;
+								});
+							}
+						});
+					} 
+				})
+				.bind(&#x27;close&#x27;, function() {
+					var dialogs = parent.find(&#x27;.elfinder-dialog:visible&#x27;),
+						z = maxZIndex();
+					
+					$(this).data(&#x27;modal&#x27;) &amp;&amp; overlay.elfinderoverlay(&#x27;hide&#x27;);
+					
+					// get focus to next dialog
+					if (dialogs.length) {
+						dialogs.each(function() {
+							var d = $(this);
+							if (d.zIndex() &gt;= z) {
+								d.trigger(&#x27;totop&#x27;);
+								return false;
+							}
+						})
+					} else {
+						// return focus to parent
+						setTimeout(function() {
+							parent.mousedown().click();
+						}, 10);
+						
+					}
+					
+					if (typeof(opts.close) == &#x27;function&#x27;) {
+						$.proxy(opts.close, self[0])();
+					} else if (opts.destroyOnClose) {
+						dialog.hide().remove();
+					}
+				})
+				.bind(&#x27;totop&#x27;, function() {
+					$(this).mousedown().find(&#x27;.ui-button:first&#x27;).focus().end().find(&#x27;:text:first&#x27;).focus();
+					$(this).data(&#x27;modal&#x27;) &amp;&amp; overlay.elfinderoverlay(&#x27;show&#x27;);
+					overlay.zIndex($(this).zIndex());
+				})
+				.data({modal: opts.modal}),
+				maxZIndex = function() {
+					var z = parent.zIndex() + 10;
+					parent.find(&#x27;.&#x27;+cldialog+&#x27;:visible&#x27;).each(function() {
+						var _z;
+						if (this != dialog[0]) {
+							_z = $(this).zIndex();
+							if (_z &gt; z) {
+								z = _z;
+							}
+						}
+					})
+					return z;
+				},
+				top
+			;
+		
+		if (!opts.position) {
+			top = parseInt((parent.height() - dialog.outerHeight())/2 - 42);
+			opts.position = {
+				top  : (top &gt; 0 ? top : 0)+&#x27;px&#x27;,
+				left : parseInt((parent.width() - dialog.outerWidth())/2)+&#x27;px&#x27;
+			}
+		} 
+			
+		dialog.css(opts.position);
+
+		if (opts.closeOnEscape) {
+			$(document).bind(&#x27;keyup.&#x27;+id, function(e) {
+				if (e.keyCode == $.ui.keyCode.ESCAPE &amp;&amp; dialog.is(&#x27;.&#x27;+clactive)) {
+					self.elfinderdialog(&#x27;close&#x27;);
+					$(document).unbind(&#x27;keyup.&#x27;+id);
+				}
+			})
+		}
+		dialog.prepend(
+			$(&#x27;&lt;div class=&quot;ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix&quot;&gt;&#x27;+opts.title+&#x27;&lt;/div&gt;&#x27;)
+				.prepend($(&#x27;&lt;a href=&quot;#&quot; class=&quot;ui-dialog-titlebar-close ui-corner-all&quot;&gt;&lt;span class=&quot;ui-icon ui-icon-closethick&quot;/&gt;&lt;/a&gt;&#x27;)
+					.mousedown(function(e) {
+						e.preventDefault();
+						self.elfinderdialog(&#x27;close&#x27;);
+					}))
+
+		);
+			
+		
+			
+		$.each(opts.buttons, function(name, cb) {
+			var button = $(&#x27;&lt;button type=&quot;button&quot; class=&quot;ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only&quot;&gt;&lt;span class=&quot;ui-button-text&quot;&gt;&#x27;+name+&#x27;&lt;/span&gt;&lt;/button&gt;&#x27;)
+				.click($.proxy(cb, self[0]))
+				.hover(function(e) { $(this)[e.type == &#x27;mouseenter&#x27; ? &#x27;focus&#x27; : &#x27;blur&#x27;]() })
+				.focus(function() { $(this).addClass(clhover) })
+				.blur(function() { $(this).removeClass(clhover) })
+				.keydown(function(e) { 
+					var next;
+					
+					if (e.keyCode == $.ui.keyCode.ENTER) {
+						$(this).click();
+					}  else if (e.keyCode == $.ui.keyCode.TAB) {
+						next = $(this).next(&#x27;.ui-button&#x27;);
+						next.length ? next.focus() : $(this).parent().children(&#x27;.ui-button:first&#x27;).focus()
+					}
+				})
+			buttonset.append(button);
+		})
+			
+		buttonset.children().length &amp;&amp; dialog.append(buttonpane);
+		if (opts.resizable &amp;&amp; $.fn.resizable) {
+			dialog.resizable({
+					minWidth   : opts.minWidth,
+					minHeight  : opts.minHeight,
+					alsoResize : this
+				});
+		} 
+			
+		typeof(opts.create) == &#x27;function&#x27; &amp;&amp; $.proxy(opts.create, this)();
+			
+		opts.autoOpen &amp;&amp; self.elfinderdialog(&#x27;open&#x27;);
+
+	});
+	
+	return this;
+}
+
+$.fn.elfinderdialog.defaults = {
+	cssClass  : &#x27;&#x27;,
+	title     : &#x27;&#x27;,
+	modal     : false,
+	resizable : true,
+	autoOpen  : true,
+	closeOnEscape : true,
+	destroyOnClose : false,
+	buttons   : {},
+	position  : null,
+	width     : 320,
+	height    : &#x27;auto&#x27;,
+	minWidth  : 200,
+	minHeight : 110
+}
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

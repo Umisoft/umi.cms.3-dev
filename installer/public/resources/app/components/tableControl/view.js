@@ -178,8 +178,12 @@ define(['App'], function(UMI){
                                 //Вставляем элемент перед выбранной колонкой
                                 //TODO Сделать код универсальным - перебор строк в заголовке, а не для кажой по-отдельности
                                 $('.umi-table-header-column').before(function(){
+                                    console.log('index', $(this).index('.umi-table-header-column'));
+                                    console.log('currentColumn', currentColumn);
                                     if($(this).index('.umi-table-header-column') === currentColumn){
                                         return detachHeaderTitleCells.shift();
+                                    } else {
+                                        console.log('Условие не отработало');
                                     }
                                 });
 

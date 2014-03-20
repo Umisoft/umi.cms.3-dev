@@ -1,166 +1,55 @@
-<!-- Потестить на iOS - говорят, label не отрабатывает. Вариант решения - добавить пустой onclick: <label for="elementid" onclick="">Label</label> -->
+<div class="umi-table-ajax-control-content">
+    <div class="umi-table-ajax-control-content-center">
+        <table cellpadding="0" class="umi-table-ajax-content">
+            <thead>
+                <tr class="umi-table-ajax-titles">
 
-<div class="umi-table-control-header">
-    <div class="umi-table-control-header-left">
-        <table class="umi-table-header-left s-unselectable">
-            <tr class="umi-table-header-left-title">
-                <td class="umi-table-header-column-left">
-                    <div class="umi-table-title-div-left">
-                        <!--TODO Сделать динамический id для checkbox-->
-                        <input type="checkbox" id="checkbox-id" class="s-margin-clear" style="margin-top: -5px;" />
-                        <label for="checkbox-id"></label>
-                    </div>
-                </td>
-            </tr>
-            <tr class="umi-table-header-left-filter">
-                <td class="umi-table-filter-column-left">
-                    <div class="umi-table-filter-div-left"></div>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="umi-table-control-header-center">
-        <table class="umi-table-header s-unselectable">
-            <tr class="umi-table-titles">
-                {{#each content.viewSettings.columns}}
-                    <td class="umi-table-header-column">
-                        <div class="umi-table-title-div">{{title}}</div>
-                        <div class="umi-table-column-resizer"></div>
+                    <td class="umi-table-ajax-header-column">
+                        <div class="umi-table-ajax-title-div">Заголовок</div>
                     </td>
-                {{/each}}
 
-                <!--&lt;!&ndash; TODO Перенести в CSS. float:none - перебиваем лишний стиль от Foundation &ndash;&gt;-->
-                <!--<td class="umi-table-header-column-fixed" style="float:none; width: 100%;"></td>-->
-
-                <td class="umi-table-empty-header-column"></td>
-            </tr>
-
-            <tr class="umi-table-filters">
-                {{#each content.viewSettings.columns}}
-                    <td class="umi-table-filter-column">
-                        <div class="umi-table-filter-div">
-                            <!--<div class="umi-table-filter-button umi-table-filter-button-left"><i class="icon black icon-left-thin umi-table-pin-column"></i></div>-->
-                            <div class="umi-table-filter-input">
-                                <input type="text" class="s-margin-clear"/>
-                            </div>
-                            <div class="umi-table-filter-button umi-table-filter-button-right" {{action "sortDirection" target="view"}}><i class="icon black icon-bottom-thin umi-table-sort-column"></i></div>
-                        </div>
+                    <td class="umi-table-ajax-header-column">
+                        <div class="umi-table-ajax-title-div">Заголовок</div>
                     </td>
-                {{/each}}
 
-                <!--<td class="umi-table-filter-column" style="float:none; width: 100%;">-->
-                    <!--<div class="umi-table-control-empty"></div>-->
-                <!--</td>-->
+                    <td class="umi-table-ajax-header-column">
+                        <div class="umi-table-ajax-title-div">Заголовок</div>
+                    </td>
 
-                <td class="umi-table-empty-filter-column"></td>
-            </tr>
-        </table>
-    </div>
+                    <td class="umi-table-ajax-empty-header-column"></td>
+                </tr>
+            </thead>
 
-    <div class="umi-table-control-header-right">
-        <table class="umi-table-header-right s-unselectable">
-            <tr class="umi-table-header-right-title">
-                <td class="umi-table-header-column-right">
-                    <div class="umi-table-title-div-right">
-                        <a href="#"><i class="icon icon-settings"></i></a>
-                    </div>
-                </td>
-            </tr>
-
-            <tr class="umi-table-header-right-filter">
-                <td class="umi-table-filter-column-right">
-                    <div class="umi-table-filter-div-right"></div>
-                </td>
-            </tr>
-        </table>
-    </div>
-</div>
-
-
-<div class="umi-table-control-content">
-    <div class="umi-table-control-content-left">
-        <table class="umi-table-left">
             <tbody>
-                {{#each object in content.object.children}}
-                    <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
-                        <td>
-                            <div class="umi-table-left-div">
-                                {{input type="checkbox" class="s-margin-clear" action="check" id=object.id}}
-                                <label for="{{unbound object.id}}"></label>
-                            </div>
-                        </td>
-                    </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
+                <tr class="umi-table-ajax-tr" data-object-id="">
+                    <td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">Контент</div></td>
+                    <td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">Контент</div></td>
+                    <td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">Контент</div></td>
 
-    <div class="umi-table-control-content-center">
-        <table cellpadding="0" class="umi-table">
-            <tbody>
-                {{#each object in content.object.children}}
-                    <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
+                    <td class="umi-table-ajax-empty-column"></td>
+                </tr>
 
-                        {{#each content.viewSettings.columns}}
-                            <td class="umi-table-cell-td">
-                                {{view "tableCell" objectBinding="object" metaBinding="this"}}
-                            </td>
-                        {{/each}}
+                <tr class="umi-table-ajax-tr" data-object-id="">
+                    <td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">Контент</div></td>
+                    <td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">Контент</div></td>
+                    <td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">Контент</div></td>
 
-                        <td class="umi-table-empty-column"></td>
-                    </tr>
-                {{else}}
-                    <!-- TODO Допилить дизайн-->
-                    <tr>
-                        <td class="umi-table-empty-result">
-                            Нет записей
-                        </td>
-                    </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
+                    <td class="umi-table-ajax-empty-column"></td>
+                </tr>
 
-    <div class="umi-table-control-content-right">
-        <table class="umi-table-right">
-            <tbody>
-                {{#each object in content.object.children}}
-                    <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
-                        <td>
-                            <div class="umi-table-right-div">
-                                <a href="#" data-object-id="{{unbound object.id}}" {{action "removeRecord" target="view"}}><i class="icon icon-delete"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                {{/each}}
+                <tr class="umi-table-ajax-tr" data-object-id="">
+                    <td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">Контент</div></td>
+                    <td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">Контент</div></td>
+                    <td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">Контент</div></td>
+
+                    <td class="umi-table-ajax-empty-column"></td>
+                </tr>
+                <!--<tr>-->
+                    <!--<td class="umi-table-ajax-empty-result">-->
+                        <!--Нет записей-->
+                    <!--</td>-->
+                <!--</tr>-->
             </tbody>
         </table>
     </div>
 </div>
-
-<div class="umi-table-control-footer">
-    <!-- TODO Допилить. Инлайновые стили, т.к. не известно что здесь конкретно будет -->
-    <!--<div class="left" style="width:300px;">-->
-        <!--<a href="#" style="color:#5E667C!important;"><i class="icon icon-download"></i> Экспорт в CSV</a>&nbsp;&nbsp;&nbsp;&nbsp;-->
-        <!--<a href="#" style="color:#5E667C!important;"><i class="icon icon-upload"></i> Импорт из CSV</a>-->
-    <!--</div>-->
-
-    <div class="right" style="width:65px; line-height: 20px!important;">
-        {{input type="text" value="100" class="s-margin-clear"}}
-    </div>
-
-    <div class="right" style="width:150px;">Строк на странице:</div>
-</div>
-
-
-<div class="umi-form-drop-up s-unselectable">
-    <div class="umi-form-tabs">
-        <div class="umi-form-save-button" {{action 'save' model.object target="view"}}>Сохранить</div>
-        <div class="umi-form-tab"><i class="icon icon-pause"></i></div>
-        <div class="umi-form-tab"><i class="icon icon-6"></i></div>
-        <div class="button secondary s-margin-clear"><i class="icon icon-delete"></i></div>
-    </div>
-</div>
-
-{{render "tableControlColumnSelectorPopup"}}
