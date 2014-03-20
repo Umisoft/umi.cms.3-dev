@@ -16,7 +16,7 @@ return [
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
     AdminComponent::OPTION_INTERFACE_CONTROLS => [
-        'tree' => [],
+        'sideBar' => [],
         'children' => [],
         'filter' => [],
         'form' => [],
@@ -25,16 +25,16 @@ return [
     AdminComponent::OPTION_INTERFACE_LAYOUT => [
         'collection' => 'newsRubric',
         'emptyContext' => [
-            'tree' => [
-                'controls' => ['tree']
+            'sideBar' => [
+                'controls' => ['sideBar']
             ],
             'contents' => [
                 'controls' => ['filter', 'children']
             ]
         ],
         'selectedContext' => [
-            'tree' => [
-                'controls' => ['tree']
+            'sideBar' => [
+                'controls' => ['sideBar']
             ],
             'contents' => [
                 'controls' => ['form', 'children']
