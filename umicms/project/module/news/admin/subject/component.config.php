@@ -15,12 +15,13 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    AdminComponent::OPTION_CONTROLS => [
+    AdminComponent::OPTION_INTERFACE_CONTROLS => [
         'filter' => [],
         'form' => [],
     ],
 
-    AdminComponent::OPTION_INTERFACE => [
+    AdminComponent::OPTION_INTERFACE_LAYOUT => [
+        'collection' => 'newsSubject',
         'emptyContext' => [
             'contents' => [
                 'controls' => ['filter']
