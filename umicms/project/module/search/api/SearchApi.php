@@ -235,7 +235,6 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
         $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)
             ->getColumnName();
 
-        //todo refactor to mysql/postgresql/sphinx adapters
         $db = $this->getDbCluster()
             ->getConnection();
 
