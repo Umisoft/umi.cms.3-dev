@@ -14,10 +14,6 @@
                         <a class="left-off-canvas-toggle">
                             <span class="icon icon-list"></span>
                         </a>
-                    {{else}}
-                        <a style="display:block; padding: 7px 9px; cursor:default;">
-                            <span class="icon icon-list white"></span>
-                        </a>
                     {{/if}}
                 </section>
 
@@ -34,6 +30,8 @@
                         <li>{{#link-to 'action' control.name classNames="button"}}{{control.displayName}}{{/link-to}}</li>
                     {{/each}}
                 </ul>
+
+                <h5>{{displayName}}</h5>
             </div>
     
     
