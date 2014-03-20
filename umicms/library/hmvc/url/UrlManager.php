@@ -115,7 +115,7 @@ class UrlManager implements IUrlManager
     public function getSitePageUrl(ICmsPage $page)
     {
         if ($page instanceof StructureElement) {
-            return $this->baseUrl . '/' . $page->getPageUrl();
+            return $this->baseUrl . '/' . $page->getURL();
         }
         /**
          * @var ICmsCollection $collection
@@ -138,7 +138,7 @@ class UrlManager implements IUrlManager
     public function getSystemPageUrl($componentPath)
     {
         $pageUrl = $this->baseUrl . '/';
-        $pageUrl .= $this->structureApi->element()->getSystemPageByComponentPath($componentPath)->getPageUrl();
+        $pageUrl .= $this->structureApi->element()->getSystemPageByComponentPath($componentPath)->getURL();
 
         return $pageUrl;
     }

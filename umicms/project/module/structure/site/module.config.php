@@ -15,6 +15,10 @@ return [
 
     SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
 
+    SiteComponent::OPTION_COMPONENTS => [
+        'menu' => '{#lazy:~/project/module/structure/site/menu/component.config.php}'
+    ],
+
     SiteComponent::OPTION_CONTROLLERS => [
         'static' => 'umicms\project\module\structure\site\controller\StaticPageController',
     ],
@@ -26,11 +30,14 @@ return [
     ],
 
     SiteComponent::OPTION_ROUTES      => [
+        'component' => [
+            'type' => 'SiteComponentRoute'
+        ],
         'static' => [
             'type'     => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
                 'controller' => 'static'
             ]
-        ]
+        ],
     ]
 ];
