@@ -15,7 +15,7 @@ use umicms\api\IPublicApi;
 use umicms\exception\InvalidArgumentException;
 
 /**
- * API Яндекс.Метрики
+ * API Яндекс.Метрики. Производит запросы к Метрике, получает статистические отчеты, информацию о счетчиках и пр.
  */
 class MetrikaApi implements IConfigIOAware, IPublicApi
 {
@@ -29,7 +29,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     public $oauthToken;
     /**
      * Идентификатор счетчика, используемого по умолчанию в проекте
-     * @var int $defaultCounter
+     * @var int $defaultCounterId
      */
     public $defaultCounterId;
     /**
@@ -88,7 +88,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     }
 
     /**
-     * Возвращает {@see apiResources}
+     * Возвращает {@see apiResources}.
      * @return array
      */
     public function getApiResources()
@@ -132,7 +132,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     }
 
     /**
-     * Возвращает конфигурацию ресурса статистики по названию
+     * Возвращает конфигурацию ресурса статистики по названию.
      * @param string $resourceName
      * @return array
      * @throws InvalidArgumentException
@@ -187,7 +187,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     }
 
     /**
-     * Возвращает тип данных поля (int|float|percent|string)
+     * Возвращает тип данных поля (int|float|percent|string).
      * @param $field
      * @return string
      */
@@ -219,7 +219,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     }
 
     /**
-     * Возвращает свойства всех полей ресурса статистики
+     * Возвращает свойства всех полей ресурса статистики.
      * @param string $resourceName
      * @return array
      */
