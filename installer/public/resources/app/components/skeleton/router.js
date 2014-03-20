@@ -67,7 +67,13 @@ define([], function(){
                         self.controllerFor('dock').set('modules', result.modules);
                     }
                 }, function(error){
-                    throw new Error('Не получен ресурс приложения ' + baseResource + '.' + error);
+                    var data = {
+                        'close': true,
+                        'title': 'Не получен ресурс приложения.',
+                        'content': 'Запрос API ресурса ' + UmiSettings.baseApiURL + ' завершился неудачей. Обратитесь за помощью к разработчикам.',
+                        'reject': 'Исправить самостоятельно'
+                    };
+                    return UMI.dialog.open(data).then();
                 });
             },
             actions: {
