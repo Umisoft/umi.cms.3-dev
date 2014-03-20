@@ -15,25 +15,26 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    AdminComponent::OPTION_CONTROLS => [
-        'tree' => [],
+    AdminComponent::OPTION_INTERFACE_CONTROLS => [
+        'sideBar' => [],
         'children' => [],
         'filter' => [],
         'form' => [],
     ],
 
-    AdminComponent::OPTION_INTERFACE => [
+    AdminComponent::OPTION_INTERFACE_LAYOUT => [
+        'collection' => 'structure',
         'emptyContext' => [
-            'tree' => [
-                'controls' => ['tree']
+            'sideBar' => [
+                'controls' => ['sideBar']
             ],
             'contents' => [
                 'controls' => ['filter', 'children']
             ]
         ],
         'selectedContext' => [
-            'tree' => [
-                'controls' => ['tree']
+            'sideBar' => [
+                'controls' => ['sideBar']
             ],
             'contents' => [
                 'controls' => ['form', 'children']
