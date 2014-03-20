@@ -18,6 +18,8 @@ use umi\http\Response;
 use umi\http\THttpAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\TCmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\IRecyclableObject;
@@ -33,12 +35,14 @@ use umicms\serialization\TSerializationAware;
 /**
  * Приложение сайта.
  */
-class SiteApplication extends SiteComponent implements IHttpAware, IToolkitAware, ISiteSettingsAware, ISerializationAware
+class SiteApplication extends SiteComponent
+    implements IHttpAware, IToolkitAware, ISiteSettingsAware, ISerializationAware, IUrlManagerAware
 {
     use TSiteSettingsAware;
     use THttpAware;
     use TToolkitAware;
     use TSerializationAware;
+    use TUrlManagerAware;
 
     /**
      * Имя настройки для задания guid главной страницы
@@ -119,13 +123,13 @@ class SiteApplication extends SiteComponent implements IHttpAware, IToolkitAware
             $routePath = substr($routePath, 0, -strlen($suffix) - 1);
         }
 
-        $isRootPath = trim($routePath, '/') === trim($context->getBaseUrl(), '/');
+        $isRootPath = $routePath === $this->getUrlManager()->getProjectUrl();
 
         if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
             return $redirectResponse;
         }
 
-        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect($context)) {
+        if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect()) {
             return $redirectResponse;
         }
 
@@ -198,15 +202,13 @@ class SiteApplication extends SiteComponent implements IHttpAware, IToolkitAware
     /**
      * Выполняет редирект на базовый url, если пользователь запрашивает станицу по умолчанию
      * по ее прямому url.
-     * @param IDispatchContext $context
      * @return Response|null
      */
-    protected function processDefaultPageRedirect(IDispatchContext $context)
+    protected function processDefaultPageRedirect()
     {
         if ($this->hasCurrentPage() && $this->getCurrentPage()->getGUID() === $this->getSiteDefaultPageGuid()) {
-
             $response = $this->createHttpResponse();
-            $response->headers->set('Location', $context->getBaseUrl());
+            $response->headers->set('Location', $this->getUrlManager()->getProjectUrl());
             $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY);
             $response->setIsCompleted();
 

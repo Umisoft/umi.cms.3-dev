@@ -10,7 +10,7 @@
     <ul>
         <?php foreach ($rubrics as $rubric) : ?>
             <li>
-                <?= $this->widget('view', ['guid' => $rubric->guid, 'template' => 'shortView']); ?>
+                <?= $this->widget('news.rubric.view', ['guid' => $rubric->guid, 'template' => 'shortView']); ?>
             </li>
         <?php endforeach;?>
     </ul>

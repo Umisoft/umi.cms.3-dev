@@ -22,7 +22,6 @@ use umi\spl\config\TConfigSupport;
 use umi\templating\engine\ITemplateEngineFactory;
 use umi\templating\engine\php\PhpTemplateEngine;
 use umi\templating\engine\php\TemplatingPhpExtension;
-use umi\templating\engine\php\ViewPhpExtension;
 use umi\toolkit\IToolkit;
 use umi\toolkit\Toolkit;
 use umicms\exception\InvalidArgumentException;
@@ -31,6 +30,7 @@ use umicms\exception\UnexpectedValueException;
 use umicms\hmvc\url\IUrlManager;
 use umicms\project\config\IProjectConfigAware;
 use umicms\project\config\TProjectConfigAware;
+use umicms\templating\engine\php\ViewPhpExtension;
 
 /**
  * Загрузчик приложений UMI.CMS

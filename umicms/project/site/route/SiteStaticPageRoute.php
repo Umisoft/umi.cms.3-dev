@@ -48,7 +48,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware, IPage
     /**
      * {@inheritdoc}
      */
-    public function match($url)
+    public function match($url, $baseUrl = null)
     {
         if ($url === '/') {
             $matched = $this->matchDefaultPage();
@@ -90,16 +90,11 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware, IPage
      */
     protected function matchPage($url)
     {
-
-        $parent = $this->hasCurrentPage() ? $this->getCurrentPage() : null;
-
         $element =
             $this->structureApi->element()->select()
             ->types(['static'])
             ->where(CmsHierarchicObject::FIELD_URI)
                 ->equals(UriField::URI_START_SYMBOL . $url)
-            ->where(CmsHierarchicObject::FIELD_PARENT)
-                ->equals($parent)
             ->limit(1)
             ->result()
             ->fetch();
@@ -107,7 +102,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware, IPage
         if ($element instanceof StructureElement) {
             $this->setRouteParams($element);
 
-            return strlen($element->getURL());
+            return strlen($element->getURL()) + 1;
         } else {
             return false;
         }

@@ -10,11 +10,11 @@
 return [
 
     'en-US' => [
-        'structure:component:displayName' => 'Structure'
+        'component:structure:displayName' => 'Structure'
     ],
 
     'ru-RU' => [
-        'structure:component:displayName' => 'Структура'
+        'component:structure:displayName' => 'Структура'
     ]
 
 ];
