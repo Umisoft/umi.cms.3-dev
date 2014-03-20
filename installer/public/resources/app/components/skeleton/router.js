@@ -54,15 +54,6 @@ define([], function(){
                     if(result.collections){
                         UMI.Utils.modelsFactory(result.collections);
                     }
-                    if(result.records){
-                        var model;
-                        for(model in result.records){
-                            if(result.records.hasOwnProperty(model)){
-                                self.store.pushMany(model, result.records[model]);
-                            }
-                        }
-                    }
-
                     if(result.modules){
                         self.controllerFor('dock').set('modules', result.modules);
                     }
