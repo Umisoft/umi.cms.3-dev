@@ -66,7 +66,7 @@ define([], function(){
 
                 if(collection.source){
                     UMI[collection.name.capitalize() + 'Adapter'] = DS.UmiRESTAdapter.extend({
-                        namespace: collection.source
+                        namespace: collection.source.replace( /^\//g, '')
                     });
                 }
             }

@@ -6,6 +6,12 @@ define([], function(){
          * @extends Ember.ObjectController
          */
         UMI.ComponentController = Ember.ObjectController.extend({
+            collectionName: function(){
+                var settings = this.get('settings');
+                if(settings){
+                    return settings.layout.collection;
+                }
+            }.property('settings'),
             settings: null,
             /**
              Выбранный контекcт, соответствующий модели роута 'Context'
@@ -25,8 +31,11 @@ define([], function(){
                 if(settings){
                     var selectedContext = this.get('selectedContext') === 'root' ? 'emptyContext' : 'selectedContext';
                     var controls = settings.layout[selectedContext].contents.controls;
+                    var control;
                     for(var i = 0; i < controls.length; i++){
-                        contentControls.push(Ember.Object.create(settings.controls[controls[i]]));
+                        control = settings.controls[controls[i]];
+                        control.name = controls[i];
+                        contentControls.push(Ember.Object.create(control));
                     }
                 }
                 return contentControls;
@@ -40,9 +49,11 @@ define([], function(){
             sideBarControl: function(){
                 var sideBarControl;
                 var settings = this.get('settings');
-                if(settings){
-                    var control = settings.layout.emptyContext.tree.controls[0];// TODO: А может ли быть несколько контролов
+                if(settings && settings.layout.emptyContext.hasOwnProperty('sideBar')){
+                    var control = settings.layout.emptyContext.sideBar.controls[0];// TODO: А может ли быть несколько контролов
                     sideBarControl = settings.controls[control];
+                    sideBarControl.name = control;
+                    sideBarControl = Ember.Object.create(sideBarControl);
                 }
                 return sideBarControl;
             }.property('settings', 'selectedContext')

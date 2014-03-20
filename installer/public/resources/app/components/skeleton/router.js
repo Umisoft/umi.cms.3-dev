@@ -214,7 +214,7 @@ define([], function(){
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
                     var defaultAction = this.controllerFor('component').get('contentControls.firstObject.name');
-                    //return this.transitionTo('action', defaultAction);
+                    return this.transitionTo('action', defaultAction);
                 }
             },
             serialize: function(model){
@@ -223,8 +223,7 @@ define([], function(){
             renderTemplate: function(controller, model){
                 this.render();
                 if(controller.get('sideBarControl')){
-                    var componentName = controller.get('sideBarControl');
-                    this.render(componentName, {
+                    this.render(controller.get('sideBarControl.name'), {
                         into: 'component',
                         outlet: 'sideBar'
                     });
@@ -239,9 +238,8 @@ define([], function(){
             },
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
-                    var self = this;
                     var contextId = this.controllerFor('component').get('selectedContext');
-                    return self.transitionTo('context', contextId);
+                    return this.transitionTo('context', contextId);
                 }
             },
             serialize: function(model){
@@ -256,23 +254,25 @@ define([], function(){
                 var self = this;
                 var model;
                 var routeData = {};
-                var collectionName = self.modelFor('component').get('collection');
-                var oldContext = this.controllerFor('component').get('selectedContext');
-                this.controllerFor('component').set('selectedContext', params.context);
+                var componentController = this.controllerFor('component');
+                var collectionName = componentController.get('collectionName');
+                var oldContext = componentController.get('selectedContext');
+                componentController.set('selectedContext', params.context);
                 /**
                  * Редирект на Action если контекст не имеет action
                  */
                 var activeAction = this.modelFor('action');
-                var firstAction = this.controllerFor('component').get('contentControls.firstObject');
+                var firstAction = componentController.get('contentControls.firstObject');
                 if(oldContext !== params.context && firstAction.get('name') !== activeAction.get('name')){
                     return this.transitionTo('action', firstAction.get('name'));
                 }
 
+                // Вот это место мне особенно не нравится
                 if(params.context === 'root'){
                     var RootModel = Ember.Object.extend({
                         children: function(){
                             if(collectionName){
-                                if(self.controllerFor('component').get('hasTree')){
+                                if(componentController.get('sideBarControl') && componentController.get('sideBarControl').get('name') === 'tree'){
                                     return self.store.find(collectionName, {'filters[parent]': 'null()'});
                                 } else{
                                     return self.store.find(collectionName);
@@ -289,15 +289,11 @@ define([], function(){
                 return model.then(function(model){
                     routeData.object = model;
                     /**
-                     * Раскрытие текущей ветки в дереве
-                     */
-                    self.controllerFor('treeControl').set('activeContext', model);
-                    /**
                      * Мета информация для action
                      */
                     var actionName = transition.params.action.action;
-                    var actionParams = {};//'/' +  + '/' + model.get('type') + '/edit';
-                    var collectionName = self.modelFor('component').get('collection');
+                    var actionParams = {};
+                    var collectionName = componentController.get('collectionName');
                     if(collectionName){
                         actionParams.collection = collectionName;
                     }
@@ -307,8 +303,7 @@ define([], function(){
                     if(model.get('type')){
                         actionParams.type = model.get('type');
                     }
-                    actionParams = actionParams ? '?' + $.param(actionParams) : '';
-                    var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/'  + actionName + actionParams;
+
                     // Временное решение для таблицы
                     if(actionName === 'children' || actionName === 'filter'){
                         return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
@@ -316,6 +311,9 @@ define([], function(){
                             return routeData;
                         });
                     } else if(actionName === 'form'){
+                        actionParams = actionParams ? '?' + $.param(actionParams) : '';
+                        var actionResource = componentController.get('settings').actions[actionName].source + actionParams;
+
                         return Ember.$.get(actionResource).then(function(results){
                             routeData.viewSettings = results.result;
                             return routeData;

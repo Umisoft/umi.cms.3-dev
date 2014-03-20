@@ -1,5 +1,5 @@
 <div class="s-full-height">
-    <div {{bind-attr class=":off-canvas-wrap :s-full-height hasTree:move-right"}}>
+    <div {{bind-attr class=":off-canvas-wrap :s-full-height sideBarControl:move-right"}}>
         <div class="inner-wrap s-full-height">
             {{#if sideBarControl}}
                 <aside class="left-off-canvas-menu s-unselectable" style="overflow: hidden;">
@@ -49,7 +49,7 @@
 
                 <ul class="button-group right">
                     {{#each control in controller.contentControls}}
-                    <li>{{#link-to 'action' control.name classNames="button"}}{{control.displayName}}{{/link-to}}</li>
+                        <li>{{#link-to 'action' control.name classNames="button"}}{{control.displayName}}{{/link-to}}</li>
                     {{/each}}
                 </ul>
             </div>
