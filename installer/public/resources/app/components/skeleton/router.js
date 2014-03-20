@@ -49,14 +49,10 @@ define([], function(){
              **/
             model: function(){
                 var self = this;
-                var baseResource = UmiSettings.baseURL + '/api/settings';
-                return $.getJSON(baseResource).then(function(results){
+                return $.getJSON(UmiSettings.baseApiURL).then(function(results){
                     var result = results.result;
                     if(result.collections){
                         UMI.Utils.modelsFactory(result.collections);
-                    }
-                    if(result.resources){
-                        UMI.Utils.setModelsResources(result.resources);
                     }
                     if(result.records){
                         var model;
@@ -68,7 +64,7 @@ define([], function(){
                     }
 
                     if(result.modules){
-                        self.controllerFor('dock').set('modules', result);
+                        self.controllerFor('dock').set('modules', result.modules);
                     }
                 }, function(error){
                     throw new Error('Не получен ресурс приложения ' + baseResource + '.' + error);

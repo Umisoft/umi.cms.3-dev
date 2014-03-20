@@ -63,20 +63,13 @@ define([], function(){
 
                 fields.meta = DS.attr('raw', {readOnly: true});
                 UMI[collection.name.capitalize()] = DS.Model.extend(fields);
+
+                if(collection.source){
+                    UMI[collection.name.capitalize() + 'Adapter'] = DS.UmiRESTAdapter.extend({
+                        namespace: collection.source
+                    });
+                }
             }
         };
-
-        UMI.Utils.setModelsResources = function(resources){
-            //TODO: Костыль убирающий первый слэш. Написать регулярку.
-            var baseURL = window.UmiSettings.baseApiURL.slice(1);
-            var setNamespace = function(namespace, module, component){
-                UMI[namespace.capitalize() + 'Adapter'] = DS.UmiRESTAdapter.extend({
-                    namespace: baseURL + '/' + module + '/' + component + '/collection'
-                });
-            };
-            for(var i = 0; i < resources.length; i++){
-                setNamespace(resources[i].collection, resources[i].module, resources[i].component);
-            }
-       };
     };
 });
