@@ -369,9 +369,11 @@ select{
             background:#FCFCFC;
             font-size: $input-font-size;
             border: 1px solid #DFDFDF;
+            margin-bottom: 4px;
         }
     }
 }
+
 .umi-multi-select-input{
     border-radius: $input-border-radius;
     @include form-element;
@@ -395,8 +397,10 @@ select{
     list-style: none;
     margin: 0;
     font-size: $input-font-size;
-    margin-top: -$form-spacing;
+    margin-top: -$form-spacing / 2;
     z-index: $umi-multi-select-list-z-index;
+    max-height: 200px;
+    overflow-y: auto;
     li{
         padding: rem-calc(5);
         &:hover, &.hover{

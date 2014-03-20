@@ -5,27 +5,15 @@
     </span>
     {{#if view.isOpen}}
         <ul class="umi-multi-select-list">
-            {{#if view.filter}}
-                {{#each view.filter.result}}
-                    <li {{action "select" id target="view"}}>
-                        {{displayName}}
-                    </li>
-                {{else}}
-                    <li>
-                        Совпадений не найдено
-                    </li>
-                {{/each}}
+            {{#each view.notSelectedObjects}}
+                <li {{action "select" id target="view"}} {{bind-attr class="hover"}}>
+                    {{displayName}}
+                </li>
             {{else}}
-                {{#each view.notSelectedObjects}}
-                    <li {{action "select" id target="view"}}>
-                        {{displayName}}
-                    </li>
-                {{else}}
-                    <li>
-                        Все уже выбрано
-                    </li>
-                {{/each}}
-            {{/if}}
+                <li class="placeholder">
+                    Ничего не найдено
+                </li>
+            {{/each}}
         </ul>
     {{/if}}
 </div>

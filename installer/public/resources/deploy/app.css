@@ -6333,7 +6333,8 @@ select {
       padding: 5px 5px;
       background: #FCFCFC;
       font-size: 0.8125rem;
-      border: 1px solid #DFDFDF; }
+      border: 1px solid #DFDFDF;
+      margin-bottom: 4px; }
 
 .umi-multi-select-input {
   border-radius: 3px;
@@ -6379,8 +6380,10 @@ select {
   list-style: none;
   margin: 0;
   font-size: 0.8125rem;
-  margin-top: -0.8125rem;
-  z-index: 100; }
+  margin-top: -0.40625rem;
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto; }
   .umi-multi-select-list li {
     padding: 0.3125rem; }
     .umi-multi-select-list li:hover, .umi-multi-select-list li.hover {
