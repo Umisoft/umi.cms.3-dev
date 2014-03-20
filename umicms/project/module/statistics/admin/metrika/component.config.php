@@ -21,7 +21,7 @@ return [
     ],
     AdminComponent::OPTION_INTERFACE_LAYOUT => [
         'emptyContext' => [
-            'tree' => [
+            'sideBar' => [
                 'controls' => ['accordion']
             ],
             'contents' => [
