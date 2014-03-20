@@ -12,7 +12,7 @@ namespace umicms\project\site\route;
 use umi\orm\exception\NonexistentEntityException;
 use umi\orm\metadata\field\special\UriField;
 use umi\route\type\BaseRoute;
-use umicms\orm\object\CmsHierarchicObject;
+use umicms\project\module\structure\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
@@ -93,7 +93,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware, IPage
         $element =
             $this->structureApi->element()->select()
             ->types(['static'])
-            ->where(CmsHierarchicObject::FIELD_URI)
+            ->where(StaticPage::FIELD_URI)
                 ->equals(UriField::URI_START_SYMBOL . $url)
             ->limit(1)
             ->result()

@@ -1,0 +1,14 @@
+<?php
+use umicms\project\module\structure\object\StructureElement;
+/** @var StructureElement $page */
+?>
+<?php if (count($menu)) : ?>
+    <ul>
+    <?php foreach ($menu as $pageInfo) : ?>
+        <?php $page = $pageInfo['page'];?>
+        <?= '<li ' . ($pageInfo['active'] ? 'class="current"' : '') . '><a href="' . $page->getPageUrl() . '">' . $page->displayName . '</a>' ?>
+        <?= $this->render('auto.phtml', ['menu' => $pageInfo['children']]); ?>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+<?php endif;?>

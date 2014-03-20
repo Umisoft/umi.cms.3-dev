@@ -23,6 +23,7 @@ use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchIndexApi;
 use umicms\project\module\structure\object\StaticPage;
+use umicms\project\module\structure\object\StructureElement;
 use umicms\project\module\users\api\UsersApi;
 use umicms\project\module\users\object\User;
 use umicms\project\site\controller\SitePageController;
@@ -203,6 +204,8 @@ class InstallController extends SitePageController implements ICollectionManager
         $newsPage = $structureCollection->add('novosti', 'system')
             ->setValue('displayName', 'Новости')
             ->setGUID('9ee6745f-f40d-46d8-8043-d959594628ce')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN)
             ->setValue('layout', $this->testLayout);
         $newsPage->getProperty('componentName')->setValue('news');
         $newsPage->getProperty('componentPath')->setValue('news');
@@ -375,6 +378,16 @@ class InstallController extends SitePageController implements ICollectionManager
             ->setValue('fileName', 'test')
             ->setValue('displayName', 'Тестовый');
 
+        $structurePage = $structureCollection->add('structure', 'system')
+            ->setValue('displayName', 'Структура');
+        $structurePage->getProperty('componentName')->setValue('structure');
+        $structurePage->getProperty('componentPath')->setValue('structure');
+
+        $menuPage = $structureCollection->add('menu', 'system', $structurePage)
+            ->setValue('displayName', 'Меню');
+        $menuPage->getProperty('componentName')->setValue('menu');
+        $menuPage->getProperty('componentPath')->setValue('structure.menu');
+
         /**
          * @var StaticPage $about
          */
@@ -383,6 +396,8 @@ class InstallController extends SitePageController implements ICollectionManager
             ->setValue('metaTitle', 'Об отряде')
             ->setValue('h1', 'Об отряде')
             ->setValue('contents', '<p>Мы &mdash; отряд Охотниц за привидениями. Цвет волос, уровень IQ, размер груди, длина ног и количество высших образований не оказывают существенного влияния при отборе кадров в наши подразделения.</p><p>Единственно значимым критерием является наличие у Охотницы следующих навыков:</p><blockquote>метод десятипальцевой печати;<br /> тайский массаж;<br /> метод левой руки;<br /> техника скорочтения;</blockquote><p>Миссия нашей компании: Спасение людей от привидений во имя спокойствия самих привидений.<br /><br /> 12 лет нашей работы доказали, что предлагаемые нами услуги востребованы человечеством. За это время мы получили:</p><blockquote>1588 искренних благодарностей от клиентов; <br /> 260080 комплиментов; <br /> 5 интересных предложений руки и сердца.</blockquote><p>Нам не только удалось пережить кризис августа 1998 года, но и выйти на новый, рекордный уровень рентабельности.<br /> В своей работе мы используем             <strong>сверхсекретные</strong> супер-пупер-технологии.</p>')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_CURRENT_SHOWN)
             ->setGUID('d534fd83-0f12-4a0d-9853-583b9181a948');
 
         $about->getProperty('componentName')->setValue('structure');
@@ -879,6 +894,8 @@ class InstallController extends SitePageController implements ICollectionManager
                     `component_path` varchar(255) DEFAULT NULL,
                     `component_name` varchar(255) DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
+                    `in_menu` tinyint(1) unsigned DEFAULT 0,
+                    `submenu_state` tinyint(1) unsigned DEFAULT 0,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `structure_guid` (`guid`),
                     UNIQUE KEY `structure_mpath` (`mpath`),

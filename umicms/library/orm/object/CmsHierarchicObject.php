@@ -47,4 +47,13 @@ class CmsHierarchicObject extends HierarchicObject implements ICmsObject
 
         return $this->normalizedUrl;
     }
+
+    /**
+     * Возвращает селектор для выбора родителей страницы.
+     * @return ISelector
+     */
+    public function getAncestry()
+    {
+        return $this->getCollection()->selectAncestry($this);
+    }
 }

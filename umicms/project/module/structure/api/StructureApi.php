@@ -43,6 +43,15 @@ class StructureApi extends BaseComplexApi implements IPublicApi
     }
 
     /**
+     * Возвращает API для работы с автогенерируемым меню структуры
+     * @return AutoMenu
+     */
+    public function structureMenu()
+    {
+        return $this->getApi('umicms\project\module\structure\api\AutoMenu');
+    }
+
+    /**
      * Возвращает шаблон сетки для элемента.
      * @param StructureElement $element
      * @return Layout

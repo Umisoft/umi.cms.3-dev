@@ -148,6 +148,16 @@ return [
             'target'      => 'structure',
             'targetField' => StructureElement::FIELD_PARENT,
             'readOnly'    => true
+        ],
+        StructureElement::FIELD_IN_MENU                => [
+            'type'        => IField::TYPE_BOOL,
+            'columnName'  => 'in_menu',
+            'defaultValue' => 0
+        ],
+        StructureElement::FIELD_SUBMENU_STATE          => [
+            'type'        => IField::TYPE_INTEGER,
+            'columnName'  => 'submenu_state',
+            'defaultValue' => 0
         ]
     ],
     'types'      => [
@@ -181,6 +191,8 @@ return [
                 StructureElement::FIELD_PAGE_CONTENTS,
                 StructureElement::FIELD_PAGE_LAYOUT,
                 StructureElement::FIELD_CHILDREN,
+                StructureElement::FIELD_IN_MENU,
+                StructureElement::FIELD_SUBMENU_STATE
             ]
         ],
         'system' => [
@@ -212,7 +224,9 @@ return [
                 SystemPage::FIELD_PAGE_H1,
                 SystemPage::FIELD_PAGE_CONTENTS,
                 SystemPage::FIELD_PAGE_LAYOUT,
-                SystemPage::FIELD_CHILDREN
+                SystemPage::FIELD_CHILDREN,
+                SystemPage::FIELD_IN_MENU,
+                SystemPage::FIELD_SUBMENU_STATE
             ]
         ],
         'static' => [
@@ -244,7 +258,9 @@ return [
                 StaticPage::FIELD_PAGE_H1,
                 StaticPage::FIELD_PAGE_CONTENTS,
                 StaticPage::FIELD_PAGE_LAYOUT,
-                StaticPage::FIELD_CHILDREN
+                StaticPage::FIELD_CHILDREN,
+                StaticPage::FIELD_IN_MENU,
+                StaticPage::FIELD_SUBMENU_STATE
             ]
         ]
     ]

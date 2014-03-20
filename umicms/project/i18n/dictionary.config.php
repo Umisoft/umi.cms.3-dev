@@ -30,6 +30,8 @@ return [
         'project\admin\api\structure' => '{#lazy:~/project/module/structure/admin/i18n/dictionary.config.php}',
         'project\admin\api\structure\page' => '{#lazy:~/project/module/structure/admin/page/i18n/dictionary.config.php}',
 
+        'project\admin\api\statistics\metrika' => '{#lazy:~/project/module/statistics/admin/metrika/i18n/dictionary.config.php}',
+
         'collection' => [
 
             'en-US' => [
