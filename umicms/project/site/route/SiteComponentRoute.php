@@ -52,6 +52,10 @@ class SiteComponentRoute extends BaseRoute implements IUrlManagerAware
         }
         list(, $slug) = $slugs;
 
+        $projectUrl = $this->getUrlManager()->getProjectUrl();
+        if ($projectUrl != '/' && strpos($baseUrl, $projectUrl) === 0) {
+            $baseUrl = substr_replace($baseUrl, '', 0, strlen($projectUrl));
+        }
         $pageUri = UriField::URI_START_SYMBOL . $baseUrl . '/' . $slug;
 
         $element = $this->structureApi->element()->selectSystem()

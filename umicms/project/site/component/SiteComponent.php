@@ -15,6 +15,7 @@ use umicms\exception\RuntimeException;
 use umicms\hmvc\component\BaseComponent;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
 
@@ -71,6 +72,13 @@ class SiteComponent extends BaseComponent implements IPageCallStackAware
             $element = $context->getRouteParams()[self::MATCH_STRUCTURE_ELEMENT];
 
             if ($element instanceof ICmsPage) {
+
+                if ($element instanceof StaticPage) {
+                    foreach ($element->getAncestry() as $parent) {
+                        $this->pushCurrentPage($parent);
+                    }
+                }
+
                 $this->pushCurrentPage($element);
             }
         }

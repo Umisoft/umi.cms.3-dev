@@ -74,5 +74,19 @@ trait TPageCallStackAware
 
         return $this->traitPageCallStack;
     }
+
+    /**
+     * Проверяет наличие страницы в стеке текущих страниц.
+     * @param ICmsPage $page
+     * @return bool
+     */
+    protected function hasPage(ICmsPage $page) {
+        foreach ($this->getPageCallStack() as $stackPage) {
+            if ($stackPage === $page) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
  
