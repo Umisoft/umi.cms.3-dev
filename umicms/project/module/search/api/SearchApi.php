@@ -37,7 +37,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
      * Минимальная длина слова в поисковом запросе
      * @var int $minimumWordLength
      */
-    public $minimumWordLength;
+    public $minimumPhraseLength;
 
     /**
      * Ищет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
@@ -48,6 +48,10 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     public function search($searchString)
     {
         $this->fireEvent('search.before', ['query' => $searchString]);
+        if (mb_strlen($searchString, 'utf-8') < $this->minimumPhraseLength) {
+            return [];
+        }
+
         $searchCollection = $this->getSearchIndexCollection();
 
         $collectionNameCol = $searchCollection->getMetadata()
@@ -166,7 +170,8 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
      */
     protected function extractSearchRegexpForms($word, $text, $includeExact = true)
     {
-        $possibleWordBases = $this->getStemming()->getBaseForm($word);
+        $possibleWordBases = $this->getStemming()
+            ->getBaseForm($word);
 
         $root = $this->getStemming()
             ->getSearchableRoot($word, 3);
@@ -176,10 +181,14 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
         }
         $foundWords = array_merge($foundWords, $this->collectPossibleMatches($word, $root));
 
-        $foundWords = array_filter(array_unique($foundWords), function($foundWord) use ($possibleWordBases){
-            $possibleFoundBases = $this->getStemming()->getBaseForm($foundWord);
-            return count(array_intersect($possibleWordBases, $possibleFoundBases)) > 0;
-        });
+        $foundWords = array_filter(
+            array_unique($foundWords),
+            function ($foundWord) use ($possibleWordBases) {
+                $possibleFoundBases = $this->getStemming()
+                    ->getBaseForm($foundWord);
+                return count(array_intersect($possibleWordBases, $possibleFoundBases)) > 0;
+            }
+        );
         array_push($foundWords, $root);
         usort(
             $foundWords,
@@ -240,7 +249,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
             $select->begin(IExpressionGroup::MODE_OR)
                 ->expr($contentColumnName, 'LIKE', ":searchLikeCondition")
                 ->end()
-                ->bindString(':searchLikeCondition', "%" . implode('%', $wordBases) . "%");
+                ->bindString(':searchLikeCondition', "%" . $this->buildLikeQueryPart($wordBases) . "%");
         }
         $this->fireEvent('search.buildCondition', ['selectBuilder' => $select]);
         return $select;
@@ -267,7 +276,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
         foreach ($parts as &$part) {
             $partBase = $this->getStemming()
                 ->getCommonRoot($part);
-            if (mb_strlen($partBase) <= $this->minimumWordLength) {
+            if (mb_strlen($partBase) >= 4) {
                 $bases[] = $partBase;
             }
         }
@@ -281,5 +290,20 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     {
         return $this->getCollectionManager()
             ->getCollection('searchIndex');
+    }
+
+    /**
+     * @param array $wordBases
+     * @return string
+     */
+    protected function buildLikeQueryPart(array $wordBases)
+    {
+//        foreach ($wordBases as &$base) {
+//            if(mb_strlen($base < 4)){
+//                $base = " $base ";
+//            }
+//        }
+
+        return implode('%', $wordBases);
     }
 }
