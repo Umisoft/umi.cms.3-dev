@@ -34,6 +34,12 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     use TConfigSupport;
 
     /**
+     * Минимальная длина слова в поисковом запросе
+     * @var int $minimumWordLength
+     */
+    public $minimumWordLength;
+
+    /**
      * Ищет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
      *
      * @param string $searchString
@@ -261,8 +267,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
         foreach ($parts as &$part) {
             $partBase = $this->getStemming()
                 ->getCommonRoot($part);
-            //todo configure word length limit?
-            if (mb_strlen($partBase) > 4) {
+            if (mb_strlen($partBase) <= $this->minimumWordLength) {
                 $bases[] = $partBase;
             }
         }
