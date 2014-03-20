@@ -1,0 +1,69 @@
+//
+// Arrow/caret
+//
+$triangle-size: 3px;
+$triangle-border-color: $body-font-color;
+$triangle-border-color-opposite: #FFF;
+
+@mixin triangle($size: $triangle-size) {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align: top;
+    border: $size solid transparent;
+    content: "";
+    position: relative;
+}
+
+.triangle{
+    @include triangle;
+    border-top-color: $triangle-border-color;
+}
+
+.triangle-top{
+    @include triangle;
+    border-bottom-color: $triangle-border-color;
+}
+
+.triangle-top-white{
+    @include triangle;
+    border-bottom-color: $triangle-border-color-opposite;
+}
+
+.triangle-right{
+    @include triangle;
+    border-left-color: $triangle-border-color;
+}
+
+.triangle-right-white{
+    @include triangle;
+    border-left-color: $triangle-border-color-opposite;
+}
+
+.triangle-bottom{
+    @include triangle;
+    border-top-color: $triangle-border-color;
+}
+
+.triangle-bottom-white{
+    @include triangle;
+    border-top-color: $triangle-border-color-opposite;
+}
+
+.triangle-left{
+    @include triangle;
+    border-right-color: $triangle-border-color;
+}
+
+.triangle-left-white{
+    @include triangle;
+    border-right-color: $triangle-border-color-opposite;
+}
+
+.prefix,
+.postfix{
+    .triangle{
+        top: 50%;
+        margin-top: -$triangle-size / 2;
+    }
+}

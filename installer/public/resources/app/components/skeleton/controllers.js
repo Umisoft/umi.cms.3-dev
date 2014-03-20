@@ -6,46 +6,13 @@ define([], function(){
          * @extends Ember.ObjectController
          */
         UMI.ComponentController = Ember.ObjectController.extend({
-            /**
-             Имеет компонент дерево или нет
-             @property hasTree
-             @type Boolean
-             @default false
-             */
-            hasTree: false,
-            /**
-             Массив view конторолов для компонента
-             @property controls
-             @type Array
-             @default null
-             @example
-                 [
-                    {"name":"tree","displayName":"Новостные рубрики"},
-                    {"name":"filter","displayName":"Фильтр"},
-                    {"name":"children","displayName":"Дочерние рубрики"},
-                    {"name":"form","displayName":"Редактирование"}
-                 ]
-             */
-            controls: null,
-            /**
-             Обьект содержащий имена view контролов для emptyContext и selectedContext
-             @property context
-             @type Object
-             @default null
-             @example
-                    {
-                        "emptyContext":{
-                            "tree":{"controls":["tree"]},
-                            "content":{"controls":["filter","children"]}
-                        },
-                        "selectedContext":{
-                            "tree":{"controls":["tree"],
-                            "actions":["delete","changeActivity"]},
-                            "content":{"controls":["form","children"]
-                        }
-                   }
-          */
-            context: null,
+            collectionName: function(){
+                var settings = this.get('settings');
+                if(settings){
+                    return settings.layout.collection;
+                }
+            }.property('settings'),
+            settings: null,
             /**
              Выбранный контекcт, соответствующий модели роута 'Context'
              @property selectedContext
@@ -59,25 +26,37 @@ define([], function(){
              @return Array Массив
              */
             contentControls: function(){
-                var allControls = this.get('controls');
-                var context = this.get('context');
-                var selectedContext  = this.get('selectedContext') === 'root' ? 'emptyContext' : 'selectedContext';
-                var controls = context[selectedContext].contents.controls;
+                var settings = this.get('settings');
                 var contentControls = [];
-                for(var i = 0; i < controls.length; i++){
-                    contentControls.push(Ember.Object.create(allControls.findBy('name', controls[i])));
-                }
-                return contentControls;
-            }.property('context', 'selectedContext'),
-            searchQuery: null,
-            actions: {
-                search: function(searchQuery){
-                    if(searchQuery){
-                        this.transitionToRoute('component.search', searchQuery);
+                if(settings){
+                    var selectedContext = this.get('selectedContext') === 'root' ? 'emptyContext' : 'selectedContext';
+                    var controls = settings.layout[selectedContext].contents.controls;
+                    var control;
+                    for(var i = 0; i < controls.length; i++){
+                        control = settings.controls[controls[i]];
+                        control.name = controls[i];
+                        contentControls.push(Ember.Object.create(control));
                     }
                 }
-            },
-            treeComponent: null // Костыль
+                return contentControls;
+            }.property('settings', 'selectedContext'),
+            /**
+             Контрол компонента в области сайд бара
+             @property sideBarControl
+             @type Boolean
+             @default false
+             */
+            sideBarControl: function(){
+                var sideBarControl;
+                var settings = this.get('settings');
+                if(settings && settings.layout.emptyContext.hasOwnProperty('sideBar')){
+                    var control = settings.layout.emptyContext.sideBar.controls[0];// TODO: А может ли быть несколько контролов
+                    sideBarControl = settings.controls[control];
+                    sideBarControl.name = control;
+                    sideBarControl = Ember.Object.create(sideBarControl);
+                }
+                return sideBarControl;
+            }.property('settings', 'selectedContext')
         });
     };
 });

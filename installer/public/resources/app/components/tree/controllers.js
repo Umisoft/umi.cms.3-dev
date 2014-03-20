@@ -11,45 +11,38 @@ define(['App'], function(UMI){
              */
             routeParams: null,
             /**
-             Массив коллекций объектов
-             @property collections
-             @type Object
-             @default null
-             @example
-                [{type: "newsRubric", name: "Новостные рубрики"}]
-             */
-            collections: null,
-            /**
              Возвращает корневой элемент
              @property root
              @type Object
              @return
              */
             root: function(){
-                var results = [];
-                var collections = this.get('collections');
-                for(var i =0; i < collections.length; i++){
-                    var root = Ember.Object.create(collections[i]);
-                    root.set('root', true);
-                    root.set('hasChildren', true);
-                    root.set('id', 'root');
-                    root.set('active', true);
-                    root.reopen({
-                        childCount: function(){
-                            return this.get('children.length');
-                        }.property('children.length')
-                    });
-                    var nodes = this.store.find(root.get('type'), {'filters[parent]': 'null()'/*, 'fields': 'displayName,order,active,childCount,children,parent'*/});
-                    var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-                        content: nodes,
-                        sortProperties: ['order', 'id'],
-                        sortAscending: true
-                    });
-                    root.set('children', children);
-                    results.push(root);
+                var collectionName = this.get('controllers.component.collectionName');
+                var sideBarControl = this.get('controllers.component.sideBarControl');
+                if(!sideBarControl){
+                    return;
                 }
-                return results;
-            }.property('collections', 'root.childCount'),
+                 var Root = Ember.Object.extend({
+                    displayName: sideBarControl.displayName,
+                    root: true,
+                    hasChildren: true,
+                    id: 'root',
+                    active: true,
+                    type: 'base',
+                    childCount: function(){
+                        return this.get('children.length');
+                    }.property('children.length')
+                });
+                var nodes = this.store.find(collectionName, {'filters[parent]': 'null()'/*, 'fields': 'displayName,order,active,childCount,children,parent'*/});
+                var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+                    content: nodes,
+                    sortProperties: ['order', 'id'],
+                    sortAscending: true
+                });
+                var root = Root.create({});
+                root.set('children', children);
+                return [root];// Намеренно возвращается значение в виде массива, так как шаблон ожидает именно такой формат
+            }.property('root.childCount'),
             filters: function(){
                 return [
                     {
@@ -64,7 +57,8 @@ define(['App'], function(UMI){
             /**
              Активный контекст
              */
-            activeContext: null,
+            activeContextBinding: 'controllers.context.model.object',
+            needs: ['component', 'context'],
             actions: {
                 filter: function(name, element){
 
@@ -183,7 +177,7 @@ define(['App'], function(UMI){
                 if(this.get('id') === 'root'){
                     return true;
                 } else{
-                    if(activeContext.get('id') === 'root'){
+                    if(!activeContext || activeContext.get('id') === 'root'){
                         return false;
                     }
                     var contains = activeContext.get('mpath').contains(parseFloat(this.get('id')));
