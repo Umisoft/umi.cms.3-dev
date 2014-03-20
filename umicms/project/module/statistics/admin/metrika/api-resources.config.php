@@ -1,10 +1,10 @@
 <?php
 return [
     [
-        'title' => 'Трафик',
+        'displayName' => 'component:metrika:traffic',
         'methods' => [
             [
-                'title' => 'Посещаемость',
+                'displayName' => 'component:metrika:trafficSummary',
                 'name' => 'stat/traffic/summary',
                 'fields' => [
                     'visits',
@@ -19,15 +19,19 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Посещаемость',
+                        'displayName' => 'component:metrika:trafficSummaryData',
                         'fields' => [
-                            ['name' => 'wday', 'title' => 'День недели', 'type' => 'int'], // 0-6
+                            [
+                                'name' => 'wday',
+                                'displayName' => 'component:metrika:wday',
+                                'type' => 'int'
+                            ], // 0-6
                         ]
                     ]
                 ]
             ],
             [
-                'title' => 'Вовлечение',
+                'displayName' => 'component:metrika:trafficDeepness',
                 'name' => 'stat/traffic/deepness',
                 'fields' => [
                     'denial',
@@ -39,20 +43,20 @@ return [
                 'reports' => [
                     [
                         'name' => 'data_depth',
-                        'title' => 'Глубина просмотра',
+                        'displayName' => 'Глубина просмотра',
                         'fields' => []
                     ],
                     [
                         'name' => 'data_time',
-                        'title' => 'Время, проведенное на сайте',
+                        'displayName' => 'Время, проведенное на сайте',
                         'fields' => [
-                            ['name' => 'name', 'title' => 'Длительность', 'type' => 'string'],
+                            ['name' => 'name', 'displayName' => 'Длительность', 'type' => 'string'],
                         ]
                     ],
                 ],
             ],
             [
-                'title' => 'По времени суток',
+                'displayName' => 'По времени суток',
                 'name' => 'stat/traffic/hourly',
                 'fields' => [
                     ['denial', 'avg_visits', 'depth', 'visit_time'],
@@ -60,15 +64,15 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'По времени суток',
+                        'displayName' => 'По времени суток',
                         'fields' => [
-                            ['name' => 'hours', 'title' => 'Время', 'type' => 'string'],
+                            ['name' => 'hours', 'displayName' => 'Время', 'type' => 'string'],
                         ]
                     ],
                 ],
             ],
             [
-                'title' => 'Нагрузка на сайт',
+                'displayName' => 'Нагрузка на сайт',
                 'name' => 'stat/traffic/load',
                 'fields' => [
                     ['max_rps', 'max_users'],
@@ -76,29 +80,29 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Нагрузка на сайт',
+                        'displayName' => 'Нагрузка на сайт',
                         'fields' => [
                             [
                                 'name' => 'max_rps_time',
-                                'title' => 'Время наибольшей нагрузки',
+                                'displayName' => 'Время наибольшей нагрузки',
                                 'type' => 'string'
                             ],
                             [
                                 'name' => 'max_rps_date',
-                                'title' => 'Дата наибольшей нагрузки',
+                                'displayName' => 'Дата наибольшей нагрузки',
                                 'type' => 'string'
                             ],
                             [
                                 'name' => 'max_users_date',
-                                'title' => 'Дата наибольшей посещаемости',
+                                'displayName' => 'Дата наибольшей посещаемости',
                                 'type' => 'string'
                             ],
                             [
                                 'name' => 'max_users_time',
-                                'title' => 'Время наибольшей посещаемости',
+                                'displayName' => 'Время наибольшей посещаемости',
                                 'type' => 'string'
                             ],
-                            ['name' => 'date', 'title' => 'Дата', 'type' => 'string'],
+                            ['name' => 'date', 'displayName' => 'Дата', 'type' => 'string'],
                         ]
                     ],
                 ],
@@ -106,32 +110,32 @@ return [
         ]
     ],
     [
-        'title' => 'Источники',
+        'displayName' => 'Источники',
         'methods' => [
             [
-                'title' => 'Сводка',
+                'displayName' => 'Сводка',
                 'name' => 'stat/sources/summary',
                 'fields' => ['denial', 'visits', 'page_views', 'visits_delayed', 'visit_time', 'depth'],
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Нагрузка на сайт',
+                        'displayName' => 'Нагрузка на сайт',
                         'fields' => []
                     ],
                 ],
             ],
             [
-                'title' => 'Сайты',
+                'displayName' => 'Сайты',
                 'name' => 'stat/sources/sites',
                 'fields' => ['denial', 'visits', 'page_views', 'visit_time', 'depth'],
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Сайты',
+                        'displayName' => 'Сайты',
                         'fields' => [
                             [
                                 'name' => 'url',
-                                'title' => 'URL сайта-источника',
+                                'displayName' => 'URL сайта-источника',
                                 'type' => 'string'
                             ],
                         ]
@@ -139,17 +143,17 @@ return [
                 ],
             ],
             [
-                'title' => 'Поисковые системы',
+                'displayName' => 'Поисковые системы',
                 'name' => 'stat/sources/search_engines',
                 'fields' => ['denial', 'visits', 'page_views', 'visit_time', 'depth'],
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Поисковые системы',
+                        'displayName' => 'Поисковые системы',
                         'fields' => [
                             [
                                 'name' => 'name',
-                                'title' => 'Название системы',
+                                'displayName' => 'Название системы',
                                 'type' => 'string'
                             ]
                         ],
@@ -157,37 +161,37 @@ return [
                 ],
             ],
             [
-                'title' => 'Поисковые фразы',
+                'displayName' => 'Поисковые фразы',
                 'name' => 'stat/sources/phrases',
                 'fields' => ['denial', 'visits', 'page_views', 'visit_time', 'depth'],
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Поисковые системы',
+                        'displayName' => 'Поисковые системы',
                         'fields' => [
                             [
                                 'name' => 'phrase',
-                                'title' => 'Фраза',
+                                'displayName' => 'Фраза',
                                 'type' => 'string'
                             ],
                             [
                                 'name' => 'search_engines',
-                                'title' => 'Фраза',
+                                'displayName' => 'Фраза',
                                 'type' => 'object',
                                 'fields' => [
                                     [
                                         'name' => 'se_name',
-                                        'title' => 'Имя поисковой системы',
+                                        'displayName' => 'Имя поисковой системы',
                                         'type' => 'string'
                                     ],
                                     [
                                         'name' => 'se_page',
-                                        'title' => 'Номер страницы результатов поиска',
+                                        'displayName' => 'Номер страницы результатов поиска',
                                         'type' => 'int'
                                     ],
                                     [
                                         'name' => 'se_url',
-                                        'title' => 'Ссылка на поисковую систему',
+                                        'displayName' => 'Ссылка на поисковую систему',
                                         'type' => 'string'
                                     ],
                                 ]
@@ -200,10 +204,10 @@ return [
         ]
     ],
     [
-        'title' => 'Содержание',
+        'displayName' => 'Содержание',
         'methods' => [
             [
-                'title' => 'Популярное содержание',
+                'displayName' => 'Популярное содержание',
                 'name' => 'stat/content/popular',
                 'fields' => [
                     'page_views',
@@ -213,11 +217,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Популярное содержание',
+                        'displayName' => 'Популярное содержание',
                         'fields' => [
                             [
                                 'name' => 'url',
-                                'title' => 'URL страницы',
+                                'displayName' => 'URL страницы',
                                 'type' => 'string'
                             ],
                         ],
@@ -225,7 +229,7 @@ return [
                 ],
             ],
             [
-                'title' => 'Страницы входа',
+                'displayName' => 'Страницы входа',
                 'name' => 'stat/content/entrance',
                 'fields' => [
                     'denial',
@@ -237,11 +241,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Страницы входа',
+                        'displayName' => 'Страницы входа',
                         'fields' => [
                             [
                                 'name' => 'url',
-                                'title' => 'URL страницы сайта',
+                                'displayName' => 'URL страницы сайта',
                                 'type' => 'string'
                             ],
                         ],
@@ -249,7 +253,7 @@ return [
                 ],
             ],
             [
-                'title' => 'Страницы выхода',
+                'displayName' => 'Страницы выхода',
                 'name' => 'stat/content/exit',
                 'fields' => [
                     'denial',
@@ -261,11 +265,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Страницы выхода',
+                        'displayName' => 'Страницы выхода',
                         'fields' => [
                             [
                                 'name' => 'url',
-                                'title' => 'URL страницы сайта',
+                                'displayName' => 'URL страницы сайта',
                                 'type' => 'string'
                             ],
                         ],
@@ -273,17 +277,17 @@ return [
                 ],
             ],
             [
-                'title' => 'Заголовки страниц',
+                'displayName' => 'Заголовки страниц',
                 'name' => 'stat/content/titles',
                 'fields' => ['page_views'],
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Заголовки страниц',
+                        'displayName' => 'Заголовки страниц',
                         'fields' => [
                             [
                                 'name' => 'name',
-                                'title' => 'Заголовок',
+                                'displayName' => 'Заголовок',
                                 'type' => 'string'
                             ],
                         ],
@@ -293,10 +297,10 @@ return [
         ]
     ],
     [
-        'title' => 'Компьютеры',
+        'displayName' => 'Компьютеры',
         'methods' => [
             [
-                'title' => 'Браузеры',
+                'displayName' => 'Браузеры',
                 'name' => 'stat/tech/browsers',
                 'fields' => [
                     'denial',
@@ -308,16 +312,16 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Браузеры',
+                        'displayName' => 'Браузеры',
                         'fields' => [
                             [
                                 'name' => 'version',
-                                'title' => 'Версия',
+                                'displayName' => 'Версия',
                                 'type' => 'string'
                             ],
                             [
                                 'name' => 'name',
-                                'title' => 'Браузер',
+                                'displayName' => 'Браузер',
                                 'type' => 'string'
                             ],
                         ],
@@ -325,7 +329,7 @@ return [
                 ],
             ],
             [
-                'title' => 'Операционные системы',
+                'displayName' => 'Операционные системы',
                 'name' => 'stat/tech/os',
                 'fields' => [
                     'denial',
@@ -337,11 +341,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Операционные системы',
+                        'displayName' => 'Операционные системы',
                         'fields' => [
                             [
                                 'name' => 'name',
-                                'title' => 'Операционная система',
+                                'displayName' => 'Операционная система',
                                 'type' => 'string'
                             ],
                         ],
@@ -349,7 +353,7 @@ return [
                 ],
             ],
             [
-                'title' => 'Мобильные устройства',
+                'displayName' => 'Мобильные устройства',
                 'name' => 'stat/tech/mobile',
                 'fields' => [
                     'denial',
@@ -361,11 +365,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Мобильные устройства',
+                        'displayName' => 'Мобильные устройства',
                         'fields' => [
                             [
                                 'name' => 'name',
-                                'title' => 'Название',
+                                'displayName' => 'Название',
                                 'type' => 'string'
                             ],
                         ],
@@ -373,7 +377,7 @@ return [
                 ],
             ],
             [
-                'title' => 'Версии Flash',
+                'displayName' => 'Версии Flash',
                 'name' => 'stat/tech/flash',
                 'fields' => [
                     'denial',
@@ -385,11 +389,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Версии Flash',
+                        'displayName' => 'Версии Flash',
                         'fields' => [
                             [
                                 'name' => 'name',
-                                'title' => 'Версия',
+                                'displayName' => 'Версия',
                                 'type' => 'string'
                             ],
                         ],
@@ -397,7 +401,7 @@ return [
                 ],
             ],
             [
-                'title' => 'Наличие JavaScript',
+                'displayName' => 'Наличие JavaScript',
                 'name' => 'stat/tech/javascript',
                 'fields' => [
                     'denial',
@@ -409,11 +413,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Наличие JavaScript',
+                        'displayName' => 'Наличие JavaScript',
                         'fields' => [
                             [
                                 'name' => 'name',
-                                'title' => 'Статус',
+                                'displayName' => 'Статус',
                                 'type' => 'string'
                             ],
                         ],
@@ -423,10 +427,10 @@ return [
         ]
     ],
     [
-        'title' => 'География',
+        'displayName' => 'География',
         'methods' => [
             [
-                'title' => 'Отчет по Странам мира',
+                'displayName' => 'Отчет по Странам мира',
                 'name' => 'stat/geo',
                 'fields' => [
                     'denial',
@@ -438,16 +442,16 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'title' => 'Отчет по Странам мира',
+                        'displayName' => 'Отчет по Странам мира',
                         'fields' => [
                             [
                                 'name' => 'region_type',
-                                'title' => 'Тип региона',
+                                'displayName' => 'Тип региона',
                                 'type' => 'string'
                             ],
                             [
                                 'name' => 'name',
-                                'title' => 'Регион',
+                                'displayName' => 'Регион',
                                 'type' => 'string'
                             ],
                         ],

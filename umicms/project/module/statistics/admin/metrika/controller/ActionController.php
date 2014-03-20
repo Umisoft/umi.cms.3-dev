@@ -110,12 +110,12 @@ class ActionController extends BaseRestActionController
         $apiResourceGroups = $this->api->getResourcesMap();
         foreach ($apiResourceGroups as $resourceGroup) {
             $navigationGroup = [];
-            $navigationGroup['title'] = $resourceGroup['title'];
+            $navigationGroup['displayName'] = $this->translate($resourceGroup['displayName']);
             $navigationGroup['children'] = [];
             foreach ($resourceGroup['methods'] as $resource) {
                 $query = ['counterId'=>$counterId, 'resource'=>$resource['name']];
                 $navigationGroup['children'][] = [
-                    'title' => $resource['title'],
+                    'displayName' => $this->translate($resource['displayName']),
                     'uri' => '/counter/?' . http_build_query($query),
                     'resource' => $resource['name'],
                 ];
