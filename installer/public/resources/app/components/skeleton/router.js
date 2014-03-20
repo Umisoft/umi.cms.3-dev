@@ -194,31 +194,7 @@ define([], function(){
                 return Ember.$.get(model.get('resource')).then(function(results){
                     var componentController = self.controllerFor('component');
                     var settings = results.result.settings;
-
-                    // Определим содержит ли компонент область дерева
-                    var hasTree = settings.layout.hasOwnProperty('emptyContext') && settings.layout.emptyContext.hasOwnProperty('tree');
-                    // этот флаг костыль, нужно будет убрать
-                    if(hasTree){
-                        componentController.set('treeComponent', settings.layout.emptyContext.tree.controls[0]);
-                    }
-                    componentController.set('hasTree', hasTree);
-                    // Ниже очевидный костыль
-                    var tree = results.result.settings.controls.findBy('name', 'tree');
-                    if(hasTree && tree){
-                        /**
-                         * Колекция для дерева
-                         */
-                        var treeControl = self.controllerFor('treeControl');
-                        treeControl.set('collections', [{'type': model.get('collection'), 'displayName': tree.displayName}]);
-                        treeControl.set('routeParams', transition.params);
-                    }
-                    /**
-                     * Режимы
-                     */
-                    var controls = settings.controls;
-                    var context = settings.layout;
-                    componentController.set('controls', controls);
-                    componentController.set('context', context);
+                    componentController.set('settings', settings);
                     componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
                     return model;
                 }, function(error){
@@ -238,7 +214,7 @@ define([], function(){
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
                     var defaultAction = this.controllerFor('component').get('contentControls.firstObject.name');
-                    return this.transitionTo('action', defaultAction);
+                    //return this.transitionTo('action', defaultAction);
                 }
             },
             serialize: function(model){
@@ -246,11 +222,11 @@ define([], function(){
             },
             renderTemplate: function(controller, model){
                 this.render();
-                if(controller.get('hasTree')){
-                    var componentName = controller.get('treeComponent');
+                if(controller.get('sideBarControl')){
+                    var componentName = controller.get('sideBarControl');
                     this.render(componentName, {
                         into: 'component',
-                        outlet: 'tree'
+                        outlet: 'sideBar'
                     });
                 }
             }
