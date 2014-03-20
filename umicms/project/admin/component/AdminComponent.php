@@ -25,11 +25,11 @@ class AdminComponent extends BaseComponent implements IUrlManagerAware
     /**
      * Имя опции для задания контролов компонента.
      */
-    const OPTION_CONTROLS = 'controls';
+    const OPTION_INTERFACE_CONTROLS = 'controls';
     /**
      * Имя опции для задания настроек интерфейсного отображения контролов
      */
-    const OPTION_INTERFACE = 'layout';
+    const OPTION_INTERFACE_LAYOUT = 'layout';
 
     /**
      * Контроллер для выполнения действий
@@ -54,7 +54,7 @@ class AdminComponent extends BaseComponent implements IUrlManagerAware
      */
     public function getControlsInfo()
     {
-        $controls = isset($this->options[self::OPTION_CONTROLS]) ? $this->options[self::OPTION_CONTROLS] : [];
+        $controls = isset($this->options[self::OPTION_INTERFACE_CONTROLS]) ? $this->options[self::OPTION_INTERFACE_CONTROLS] : [];
         $controls = $this->configToArray($controls, true);
 
         $controlsInfo = [];
@@ -73,7 +73,7 @@ class AdminComponent extends BaseComponent implements IUrlManagerAware
      */
     public function getInterfaceInfo()
     {
-        return isset($this->options[self::OPTION_INTERFACE]) ? $this->options[self::OPTION_INTERFACE] : [];
+        return isset($this->options[self::OPTION_INTERFACE_LAYOUT]) ? $this->options[self::OPTION_INTERFACE_LAYOUT] : [];
     }
 
     /**

@@ -15,13 +15,13 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    AdminComponent::OPTION_CONTROLS => [
+    AdminComponent::OPTION_INTERFACE_CONTROLS => [
         'fileManager' => [
             'action' => '/connector'
         ],
     ],
 
-    AdminComponent::OPTION_INTERFACE => [
+    AdminComponent::OPTION_INTERFACE_LAYOUT => [
         'emptyContext' => [
             'contents' => [
                 'controls' => ['fileManager']
