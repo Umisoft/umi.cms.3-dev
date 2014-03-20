@@ -3,6 +3,7 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
 
     UMI.MultiSelectView = Ember.View.extend({
         classNames: ['row', 'collapse', 'umi-multi-select'],
+        classNameBindings: ['isOpen:opened'],
         template: Ember.Handlebars.compile(layoutTpl),
         isOpen: false,
         placeholder: '',
