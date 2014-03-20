@@ -61,10 +61,14 @@ define([], function(){
                     var data = {
                         'close': true,
                         'title': 'Не получен ресурс приложения.',
-                        'content': 'Запрос API ресурса ' + UmiSettings.baseApiURL + ' завершился неудачей. Обратитесь за помощью к разработчикам.',
-                        'reject': 'Исправить самостоятельно'
+                        'content': 'Запрос API ресурса "' + UmiSettings.baseApiURL + '" завершился неудачей. Обратитесь за помощью к разработчикам.',
+                        'confirm': 'Перезагрузить страницу'
                     };
-                    return UMI.dialog.open(data).then();
+                    return UMI.dialog.open(data).then(
+                        function(){
+                            window.location.href = window.location.href;
+                        }
+                    );
                 });
             },
             actions: {
@@ -187,11 +191,7 @@ define([], function(){
                 var self = this;
                 var components = this.modelFor('module').get('components');
                 var model = components.findBy('name', transition.params.component.component);
-                var componentResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/settings';
-                return Ember.$.get(componentResource).then(function(results){
-                    if(results.result.error){
-                        throw 'Ресурс компонента не найден';
-                    }
+                return Ember.$.get(model.get('resource')).then(function(results){
                     var componentController = self.controllerFor('component');
                     var settings = results.result.settings;
 
@@ -222,7 +222,17 @@ define([], function(){
                     componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
                     return model;
                 }, function(error){
-                    throw new Error('Не получен ресурс компонета ' + componentResource + '.' + error);
+                    var data = {
+                        'close': true,
+                        'title': 'Не получен ресурс компонета.',
+                        'content': 'Запрос API ресурса компонента "' + model.get('resource') + '" завершился неудачей. Обратитесь за помощью к разработчикам.',
+                        'confirm': 'Перезагрузить страницу'
+                    };
+                    return UMI.dialog.open(data).then(
+                        function(){
+                            window.location.href = window.location.href;
+                        }
+                    );
                 });
             },
             redirect: function(model, transition){
