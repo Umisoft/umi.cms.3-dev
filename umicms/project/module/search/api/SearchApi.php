@@ -267,9 +267,10 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
         foreach ($parts as &$part) {
             $partBase = $this->getStemming()
                 ->getCommonRoot($part);
-            if (mb_strlen($partBase) <= $this->minimumWordLength) {
+            //todo respect search word length
+//            if (mb_strlen($phrase) <= $this->minimumWordLength) {
                 $bases[] = $partBase;
-            }
+//            }
         }
         return $bases;
     }
