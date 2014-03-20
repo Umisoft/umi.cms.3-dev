@@ -27,7 +27,7 @@ class ActionController extends BaseRestActionController
     protected $api;
 
     /**
-     * Конструктор.
+     * Конструктор. Внедряет {@see $api API Метрики}.
      * @param MetrikaApi $api
      */
     public function __construct(MetrikaApi $api)
@@ -52,7 +52,7 @@ class ActionController extends BaseRestActionController
     }
 
     /**
-     * Возвращает данные статистики для ресурса, собранные по указанному счетчику
+     * Возвращает данные статистики для ресурса, собранные по указанному счетчику.
      * @return Response
      * @throws InvalidArgumentException
      */
@@ -107,7 +107,7 @@ class ActionController extends BaseRestActionController
     {
         $counterId = $this->getRequiredQueryVar('counterId');
         $navigation = [];
-        $apiResourceGroups = $this->api->getResourcesMap();
+        $apiResourceGroups = $this->api->getApiResources();
         foreach ($apiResourceGroups as $resourceGroup) {
             $navigationGroup = [];
             $navigationGroup['displayName'] = $this->translate($resourceGroup['displayName']);

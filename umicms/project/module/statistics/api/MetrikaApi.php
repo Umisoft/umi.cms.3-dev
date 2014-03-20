@@ -15,7 +15,7 @@ use umicms\api\IPublicApi;
 use umicms\exception\InvalidArgumentException;
 
 /**
- * Class MetrikaApi
+ * API Яндекс.Метрики. Производит запросы к Метрике, получает статистические отчеты, информацию о счетчиках и пр.
  */
 class MetrikaApi implements IConfigIOAware, IPublicApi
 {
@@ -23,27 +23,25 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     use TConfigSupport;
 
     /**
+     * Токен OAuth авторизации для отправки запросов к API
      * @var string $oauthToken
      */
     public $oauthToken;
     /**
+     * Идентификатор счетчика, используемого по умолчанию в проекте
+     * @var int $defaultCounterId
+     */
+    public $defaultCounterId;
+    /**
+     * Доступные для вызова методы статистики
      * @var array $apiResources
      */
     public $apiResources;
 
     /**
-     * Список счетчиков статистики, каждый - массив вида
-     * <code>
-     * [
-     *   'site' => string
-     *   'code_status' => string
-     *   'permission' => string
-     *   'name' => null|string
-     *   'id' => string
-     *   'type' => string
-     *   'owner_login' => string
-     * ]
-     * </code>
+     * Список счетчиков статистики,
+     * Возвращаемые поля описаны
+     * в {@link http://api.yandex.ru/metrika/doc/ref/reference/get-counter-list.xml документации}.
      * @return array
      */
     public function listCounters()
@@ -52,11 +50,24 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     }
 
     /**
-     * @param $resource
-     * @param $counterId
-     * @param null $dateFrom
-     * @param null $dateTo
-     * @param null $sort
+     * Информация о счетчике, включая код для вставки на сайт.
+     * Данные описаны в {@link http://api.yandex.ru/metrika/doc/ref/reference/get-counter.xml документации}
+     * @param int $counterId
+     * @return array
+     */
+    public function counterData($counterId)
+    {
+        return $this->apiRequest('/counter/' . $counterId);
+    }
+
+    /**
+     * Отправляет запрос статистики и возвращает ответ в формате,
+     * описанном в {@link http://api.yandex.ru/metrika/doc/ref/stat/ документации Метрики}
+     * @param string $resource Тип отчета, например traffic/summary
+     * @param int $counterId Идентификатор счетчика Метрики
+     * @param string $dateFrom Начальная дата отчета в формате YYYYMMDD
+     * @param string $dateTo Конечная дата отчета в формате YYYYMMDD
+     * @param string $sort Поле, по которому производится сортировка
      * @return array
      */
     public function statQuery($resource, $counterId, $dateFrom = null, $dateTo = null, $sort = null)
@@ -77,36 +88,37 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     }
 
     /**
-     * К каким ресурсам можно производить запросы
+     * Возвращает {@see apiResources}.
      * @return array
      */
-    public function getResourcesMap()
+    public function getApiResources()
     {
         return $this->apiResources;
     }
 
     /**
-     * @param $path
+     * Посылает запрос к API Метрики.
+     * @param string $resource
      * @param array $params
      * @return array
      */
-    private function apiRequest($path, array $params = [])
+    private function apiRequest($resource, array $params = [])
     {
         $query = array_merge(['oauth_token' => $this->oauthToken], $params);
-        $result = file_get_contents('http://api-metrika.yandex.ru/' . $path . '.json?' . http_build_query($query));
-        //todo errors
+        $result = file_get_contents('http://api-metrika.yandex.ru/' . $resource . '.json?' . http_build_query($query));
         return json_decode($result, true);
     }
 
     /**
-     * @param $resourceName
+     * Извлекает из ответа Метрики суммарные данные для вывода в график.
+     * @param string $resource
      * @param array $apiData
      * @return array
      */
-    public function extractChartData($resourceName, array $apiData)
+    public function extractChartData($resource, array $apiData)
     {
         $chartData = [];
-        $dataConfig = $this->findResourceConfig($resourceName);
+        $dataConfig = $this->findResourceConfig($resource);
         $fields = $dataConfig['fields'];
         foreach ($fields as $field) {
             $chartData[$field] = [
@@ -120,14 +132,15 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     }
 
     /**
-     * @param $resourceName
-     * @return null
+     * Возвращает конфигурацию ресурса статистики по названию.
+     * @param string $resourceName
+     * @return array
      * @throws InvalidArgumentException
      */
     private function findResourceConfig($resourceName)
     {
         $dataConfig = null;
-        foreach ($this->getResourcesMap() as $resourceConfig) {
+        foreach ($this->getApiResources() as $resourceConfig) {
             foreach ($resourceConfig['methods'] as $methodConfig) {
                 if ($methodConfig['name'] == $resourceName) {
                     $dataConfig = $methodConfig;
@@ -142,6 +155,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     }
 
     /**
+     * Возвращает свойства общих полей отчетов Метрики.
      * @return array
      */
     public function getFieldsMapping()
@@ -163,6 +177,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     }
 
     /**
+     * Возвращает текстовую метку поля.
      * @param $field
      * @return string
      */
@@ -172,6 +187,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     }
 
     /**
+     * Возвращает тип данных поля (int|float|percent|string).
      * @param $field
      * @return string
      */
@@ -181,8 +197,9 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     }
 
     /**
-     * @param $resourceName
-     * @param $apiData
+     * Извлекает подробные данные всех предусмотренных в ресурсе отчетов.
+     * @param string $resourceName
+     * @param array $apiData
      * @return array
      */
     public function extractReportData($resourceName, $apiData)
@@ -202,8 +219,8 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     }
 
     /**
-     *
-     * @param $resourceName
+     * Возвращает свойства всех полей ресурса статистики.
+     * @param string $resourceName
      * @return array
      */
     public function extractFieldsMetadata($resourceName)

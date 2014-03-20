@@ -32,8 +32,8 @@ class SettingsController extends BaseController
             'settings',
             [
                 'settings' => [
-                    AdminComponent::OPTION_CONTROLS => $component->getControlsInfo(),
-                    AdminComponent::OPTION_INTERFACE => $component->getInterfaceInfo(),
+                    AdminComponent::OPTION_INTERFACE_CONTROLS => $component->getControlsInfo(),
+                    AdminComponent::OPTION_INTERFACE_LAYOUT => $component->getInterfaceInfo(),
                     'actions' => $component->getActionsInfo()
                 ]
             ]
