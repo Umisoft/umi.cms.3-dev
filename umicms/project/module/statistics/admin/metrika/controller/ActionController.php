@@ -107,7 +107,7 @@ class ActionController extends BaseRestActionController
     {
         $counterId = $this->getRequiredQueryVar('counterId');
         $navigation = [];
-        $apiResourceGroups = $this->api->getResourcesMap();
+        $apiResourceGroups = $this->api->getApiResources();
         foreach ($apiResourceGroups as $resourceGroup) {
             $navigationGroup = [];
             $navigationGroup['title'] = $resourceGroup['title'];
