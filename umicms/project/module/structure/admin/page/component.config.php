@@ -25,7 +25,7 @@ return [
     AdminComponent::OPTION_INTERFACE_LAYOUT => [
         'collection' => 'structure',
         'emptyContext' => [
-            'sideBar' => [
+            'tree' => [
                 'controls' => ['sideBar']
             ],
             'contents' => [
@@ -33,7 +33,7 @@ return [
             ]
         ],
         'selectedContext' => [
-            'sideBar' => [
+            'tree' => [
                 'controls' => ['sideBar']
             ],
             'contents' => [
