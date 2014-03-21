@@ -16,7 +16,8 @@ return [
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
     AdminComponent::OPTION_COMPONENTS => [
-        'megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/component.config.php}'
+        'megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/component.config.php}',
+        'yandex' => '{#lazy:~/project/module/seo/admin/yandex/component.config.php}',
     ],
     AdminComponent::OPTION_ROUTES      => [
         'component' => [
