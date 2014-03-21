@@ -17,6 +17,13 @@ return [
     AdminComponent::OPTION_MODELS => [
         'umicms\project\module\seo\model\MegaindexModel'
     ],
+    AdminComponent::OPTION_SETTINGS => [
+        'options' => [
+            'login' => 'megaindex@umisoft.ru',
+            'password' => 'et676e5rj',
+            'siteUrl' => 'umi-cms.ru',
+        ]
+    ],
     AdminComponent::OPTION_INTERFACE_CONTROLS => [
         /*'chart' => [],
         'counters' => [],
@@ -49,7 +56,6 @@ return [
                 'controller' => 'action',
             ],
         ],
-
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
