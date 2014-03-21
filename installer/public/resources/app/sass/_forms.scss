@@ -1,10 +1,10 @@
 //TODO: Убрать этот недостойный код
-.umi-component{
+/*.umi-component{
     background: #f6f7f8;
     > .columns{
         position: static;
     }
-}
+}*/
 
 form{
     .input-icon{
@@ -122,6 +122,13 @@ select{
 }
 
 // Правый нижний блок кнопок ---------------------------------------------
+.umi-form-drop-up{
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    z-index: 10;
+}
+
 .umi-dropdown-button{
     position: relative;
 }
@@ -165,12 +172,6 @@ select{
 .umi-dropdown-row-right div{
     float: left;
     width: 34px;
-}
-
-.umi-form-drop-up{
-    position: absolute;
-    bottom: 0;
-    right: 0;
 }
 
 .umi-form-tabs-content{

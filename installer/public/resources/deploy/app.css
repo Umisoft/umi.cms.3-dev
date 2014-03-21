@@ -4265,6 +4265,8 @@ ul.pagination {
     position: relative;
     margin-top: -34px;
     padding-top: 34px; }
+    .s-full-height-before ~ .s-full-height.row.collapse {
+      margin-top: -34px; }
 
 .s-blur {
   -webkit-filter: blur(4px); }
@@ -5056,20 +5058,6 @@ body {
   background: #f6f7f8;
   image-rendering: -webkit-optimize-contrast; }
 
-.no-js body::after {
-  content: "Для работы приложения необходимо включить JavaScript";
-  position: absolute;
-  float: left;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding-top: 200px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.76);
-  color: #000000; }
-
 .no-csscalc body::after {
   content: "Для работы Вам необходимо установить новую версию браузера";
   position: absolute;
@@ -5093,6 +5081,7 @@ body {
   position: absolute;
   z-index: 100000;
   top: -1px;
+  margin-left: -5px;
   width: 4px;
   height: -webkit-calc(100% + 1px);
   height: calc(100% + 1px);
@@ -5145,9 +5134,6 @@ body {
 
 .umi-component {
   border-left: 1px solid #ADB9C5; }
-  .umi-component > div {
-    width: -webkit-calc(100% - 10px);
-    width: calc(100% - 10px); }
 
 #component {
   position: relative;
@@ -6031,11 +6017,12 @@ body {
   border-top: 0;
   border-bottom: 0; }
 
-.umi-component {
-  background: #f6f7f8; }
-  .umi-component > .columns {
-    position: static; }
-
+/*.umi-component{
+    background: #f6f7f8;
+    > .columns{
+        position: static;
+    }
+}*/
 form .input-icon {
   position: relative;
   top: 0.75rem;
@@ -6125,6 +6112,12 @@ select {
   visibility: visible;
   opacity: 1; }
 
+.umi-form-drop-up {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  z-index: 10; }
+
 .umi-dropdown-button {
   position: relative; }
 
@@ -6161,11 +6154,6 @@ select {
 .umi-dropdown-row-right div {
   float: left;
   width: 34px; }
-
-.umi-form-drop-up {
-  position: absolute;
-  bottom: 0;
-  right: 0; }
 
 .umi-form-tabs-content {
   margin-bottom: -1px; }
@@ -6404,10 +6392,6 @@ select {
 
 .magellan-menu {
   z-index: 10;
-  position: absolute;
-  width: 100%;
-  height: 34px;
-  top: 34px;
   background: #FFFFFF;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
@@ -6433,18 +6417,26 @@ select {
     font-size: 13px;
     font-weight: bold;
     color: #575E6C; }
-    .magellan-menu a:hover::after {
+    .magellan-menu a:hover:before, .magellan-menu a:hover:after, .magellan-menu a.focus:before, .magellan-menu a.focus:after {
       content: "";
       position: absolute;
       z-index: 20;
-      float: left;
       display: block;
-      width: 20px;
-      height: 10px;
-      left: -webkit-calc(50% - 10px);
-      left: calc(50% - 10px);
-      bottom: -10px;
-      background: url(img/shadows/arrowBottom.png); }
+      left: 50%;
+      margin-left: -8px;
+      top: 100%;
+      border: 8px solid transparent;
+      border-top-color: #BFC4C8; }
+    .magellan-menu a:hover:after, .magellan-menu a.focus:after {
+      margin-left: -6px;
+      border-top-color: #FFF;
+      border-width: 6px; }
+    .magellan-menu a.focus {
+      background: #F7F7F7; }
+      .magellan-menu a.focus:before {
+        border-top-color: #BFC4C8; }
+      .magellan-menu a.focus:after {
+        border-top-color: #F7F7F7; }
 
 .magellan-menu-holder {
   height: 34px; }
