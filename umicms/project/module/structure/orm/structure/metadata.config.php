@@ -158,6 +158,14 @@ return [
             'type'        => IField::TYPE_INTEGER,
             'columnName'  => 'submenu_state',
             'defaultValue' => 0
+        ],
+        StructureElement::FIELD_OWNER => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'owner_id',
+        ],
+        StructureElement::FIELD_EDITOR => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'editor_id',
         ]
     ],
     'types'      => [
@@ -192,7 +200,9 @@ return [
                 StructureElement::FIELD_PAGE_LAYOUT,
                 StructureElement::FIELD_CHILDREN,
                 StructureElement::FIELD_IN_MENU,
-                StructureElement::FIELD_SUBMENU_STATE
+                StructureElement::FIELD_SUBMENU_STATE,
+                StructureElement::FIELD_OWNER,
+                StructureElement::FIELD_EDITOR
             ]
         ],
         'system' => [
@@ -226,7 +236,9 @@ return [
                 SystemPage::FIELD_PAGE_LAYOUT,
                 SystemPage::FIELD_CHILDREN,
                 SystemPage::FIELD_IN_MENU,
-                SystemPage::FIELD_SUBMENU_STATE
+                SystemPage::FIELD_SUBMENU_STATE,
+                SystemPage::FIELD_OWNER,
+                SystemPage::FIELD_EDITOR
             ]
         ],
         'static' => [
@@ -260,7 +272,9 @@ return [
                 StaticPage::FIELD_PAGE_LAYOUT,
                 StaticPage::FIELD_CHILDREN,
                 StaticPage::FIELD_IN_MENU,
-                StaticPage::FIELD_SUBMENU_STATE
+                StaticPage::FIELD_SUBMENU_STATE,
+                StaticPage::FIELD_OWNER,
+                StaticPage::FIELD_EDITOR
             ]
         ]
     ]

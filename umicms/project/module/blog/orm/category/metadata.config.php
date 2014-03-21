@@ -8,6 +8,7 @@
 
 use umi\orm\metadata\field\IField;
 use umi\orm\object\IHierarchicObject;
+use umicms\orm\object\CmsObject;
 
 return [
     'dataSource' => [
@@ -83,6 +84,14 @@ return [
             'accessor'   => 'getLevel',
             'readOnly'   => true
         ],
+        CmsObject::FIELD_OWNER => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'owner_id',
+        ],
+        CmsObject::FIELD_EDITOR => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'editor_id',
+        ],
         'active'                                 => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'active',
@@ -127,6 +136,8 @@ return [
                 'level',
                 'order',
                 'childCount',
+                CmsObject::FIELD_OWNER,
+                CmsObject::FIELD_EDITOR,
                 'active',
                 'locked',
                 'created',
