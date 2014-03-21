@@ -109,8 +109,9 @@ define(
                 return this.get('model.name') === this.get('parentView.focusName');
             }.property('parentView.focusName'),
             click: function(){
+                var delta = 5;
                 var fieldset = document.getElementById('fieldset-' + this.get('model.name'));
-                $(fieldset).closest('.maggelan-content').animate({'scrollTop': fieldset.offsetTop}, 0);
+                $(fieldset).closest('.maggelan-content').animate({'scrollTop': fieldset.offsetTop - delta}, 0);
             }
         }),
         init: function(){
@@ -127,13 +128,14 @@ define(
                 return;
             }
             scrollArea.on('scroll.umi.magellan', function(){
+                var delta = 5;
                 var scrollOffset = $(this).scrollTop();
                 var focusField;
                 var fieldset = $(this).children('fieldset');
                 var scrollElement;
                 for(var i = 0; i < fieldset.length; i++){
                     scrollElement = fieldset[i].offsetTop;
-                    if(scrollElement <= scrollOffset && scrollOffset <= scrollElement + fieldset[i].offsetHeight){
+                    if(scrollElement - delta <= scrollOffset && scrollOffset <= scrollElement + fieldset[i].offsetHeight){
                         focusField = fieldset[i];
                     }
                 }
