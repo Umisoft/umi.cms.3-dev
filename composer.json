@@ -19,6 +19,7 @@
     "require": {
         "php": ">=5.4.0",
         "umi/framework-dev": "*",
+        "guzzlehttp/guzzle": "4.*",
         "twig/twig": "1.*"
     },
     "require-dev":{

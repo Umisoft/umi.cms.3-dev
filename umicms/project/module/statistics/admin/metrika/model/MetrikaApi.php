@@ -105,8 +105,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     private function apiRequest($resource, array $params = [])
     {
         $query = array_merge(['oauth_token' => $this->oauthToken], $params);
-        $result = file_get_contents('http://api-metrika.yandex.ru/' . $resource . '.json?' . http_build_query($query));
-        return json_decode($result, true);
+        return \GuzzleHttp\get('http://api-metrika.yandex.ru/' . $resource . '.json', ['query' => $query])->json();
     }
 
     /**
@@ -123,8 +122,8 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
         foreach ($fields as $field) {
             $chartData[$field] = [
                 'name' => $field,
-                'title' => $this->fieldTitle($field),
-                'type' => $this->fieldType($field),
+                'displayName' => $this->fieldDisplayName($field),
+                'type' => $this->fieldDataType($field),
                 'value' => $apiData['totals'][$field]
             ];
         }
@@ -161,18 +160,18 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     public function getFieldsMapping()
     {
         return [
-            'visits' => ['title' => 'Визиты', 'type' => 'int'],
-            'page_views' => ['title' => 'Просмотры', 'type' => 'int'],
-            'visitors' => ['title' => 'Посетители', 'type' => 'int'],
-            'new_visitors' => ['title' => 'Новые посетители', 'type' => 'int'],
-            'new_visitors_perc' => ['title' => 'Процент новых посетителей', 'type' => 'percent'],
-            'denial' => ['title' => 'Отказы', 'type' => 'percent'],
-            'depth' => ['title' => 'Глубина просмотра', 'type' => 'float'],
-            'visit_time' => ['title' => 'Время, проведенное на сайте, сек', 'type' => 'int'],
-            'avg_visits' => ['title' => 'Среднее число визитов', 'type' => 'float'],
-            'visits_delayed' => ['title' => 'visits_delayed', 'type' => 'int'],
-            'entrance' => ['title' => 'Входов', 'type' => 'int'],
-            'exit' => ['title' => 'Выходов', 'type' => 'int'],
+            'visits' => ['displayName' => 'Визиты', 'type' => 'int'],
+            'page_views' => ['displayName' => 'Просмотры', 'type' => 'int'],
+            'visitors' => ['displayName' => 'Посетители', 'type' => 'int'],
+            'new_visitors' => ['displayName' => 'Новые посетители', 'type' => 'int'],
+            'new_visitors_perc' => ['displayName' => 'Процент новых посетителей', 'type' => 'percent'],
+            'denial' => ['displayName' => 'Отказы', 'type' => 'percent'],
+            'depth' => ['displayName' => 'Глубина просмотра', 'type' => 'float'],
+            'visit_time' => ['displayName' => 'Время, проведенное на сайте, сек', 'type' => 'int'],
+            'avg_visits' => ['displayName' => 'Среднее число визитов', 'type' => 'float'],
+            'visits_delayed' => ['displayName' => 'visits_delayed', 'type' => 'int'],
+            'entrance' => ['displayName' => 'Входов', 'type' => 'int'],
+            'exit' => ['displayName' => 'Выходов', 'type' => 'int'],
         ];
     }
 
@@ -181,9 +180,9 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
      * @param $field
      * @return string
      */
-    private function fieldTitle($field)
+    private function fieldDisplayName($field)
     {
-        return $this->getFieldsMapping()[$field]['title'];
+        return $this->getFieldsMapping()[$field]['displayName'];
     }
 
     /**
@@ -191,7 +190,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
      * @param $field
      * @return string
      */
-    private function fieldType($field)
+    private function fieldDataType($field)
     {
         return $this->getFieldsMapping()[$field]['type'];
     }
@@ -212,7 +211,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
             $reportData[] = [
                 'name' => $report['name'],
                 'data' => $apiData[$report['name']],
-                'title' => $report['title'],
+                'displayName' => $report['displayName'],
             ];
         }
         return $reportData;
@@ -230,8 +229,8 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
         $resourceConfig = $this->findResourceConfig($resourceName);
         foreach ($resourceConfig['fields'] as $resourceField) {
             $metadata[$resourceField] = [
-                'title' => $this->fieldTitle($resourceField),
-                'type' => $this->fieldType($resourceField),
+                'displayName' => $this->fieldDisplayName($resourceField),
+                'type' => $this->fieldDataType($resourceField),
             ];
         }
 
@@ -239,7 +238,8 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
 
         foreach ($reports as $report) {
             foreach ($report['fields'] as $reportField) {
-                $metadata[$reportField['name']] = ['title' => $reportField['title'], 'type' => $reportField['type']];
+                $metadata[$reportField['name']]
+                    = ['displayName' => $reportField['displayName'], 'type' => $reportField['type']];
             }
         }
         return $metadata;
