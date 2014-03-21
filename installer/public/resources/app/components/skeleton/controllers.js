@@ -1,6 +1,10 @@
 define([], function(){
     'use strict';
     return function(UMI){
+        UMI.ApplicationController = Ember.ObjectController.extend({
+            settings: null
+        });
+
         /**
          * @class ComponentController
          * @extends Ember.ObjectController

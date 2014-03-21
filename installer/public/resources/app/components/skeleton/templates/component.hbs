@@ -14,36 +14,14 @@
                         <a class="left-off-canvas-toggle">
                             <span class="icon icon-list"></span>
                         </a>
-                    {{else}}
-                        <a style="display:block; padding: 7px 9px; cursor:default;">
-                            <span class="icon icon-list white"></span>
-                        </a>
                     {{/if}}
                 </section>
-
-
-    
-                <i class="icon black icon-left-thin umi-history-back" style="float: left; margin: 7px 4px 4px; cursor: pointer;"></i>
-                <i class="icon black icon-right-thin umi-history-forward" style="float: left; margin: 7px 10px 4px 4px; cursor: pointer;"></i>
-
-
 
                 <script>
                     //Хак-ускоритель переключения mode - переключает класс кнопки без задержки
                     $('.button-group .button').mousedown(function(){
                         $('.button-group .button').removeClass('active');
                         $(this).addClass('active');
-                    });
-    
-                    //TODO сделать ограничение перехода по истории при нажатии на кнопки внутри приложения
-                    //Мы не должны выходить за пределы домена
-    
-                    $('.umi-history-back').mousedown(function(){
-                        window.history.back();
-                    });
-    
-                    $('.umi-history-forward').mousedown(function(){
-                        window.history.forward();
                     });
                 </script>
 
@@ -52,6 +30,8 @@
                         <li>{{#link-to 'action' control.name classNames="button"}}{{control.displayName}}{{/link-to}}</li>
                     {{/each}}
                 </ul>
+
+                <h5>{{displayName}}</h5>
             </div>
     
     

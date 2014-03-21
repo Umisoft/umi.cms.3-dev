@@ -43,20 +43,24 @@ return [
                 'reports' => [
                     [
                         'name' => 'data_depth',
-                        'displayName' => 'Глубина просмотра',
+                        'displayName' => 'component:metrika:deepnesDatadepth',
                         'fields' => []
                     ],
                     [
                         'name' => 'data_time',
-                        'displayName' => 'Время, проведенное на сайте',
+                        'displayName' => 'component:metrika:deepnesDatatime',
                         'fields' => [
-                            ['name' => 'name', 'displayName' => 'Длительность', 'type' => 'string'],
+                            [
+                                'name' => 'name',
+                                'displayName' => 'component:metrika:deepnesLong',
+                                'type' => 'string'
+                            ],
                         ]
                     ],
                 ],
             ],
             [
-                'displayName' => 'По времени суток',
+                'displayName' => 'component:metrika:trafficHourly',
                 'name' => 'stat/traffic/hourly',
                 'fields' => [
                     ['denial', 'avg_visits', 'depth', 'visit_time'],
@@ -64,15 +68,19 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'По времени суток',
+                        'displayName' => 'component:metrika:trafficHourlyReport',
                         'fields' => [
-                            ['name' => 'hours', 'displayName' => 'Время', 'type' => 'string'],
+                            [
+                                'name' => 'hours',
+                                'displayName' => 'component:metrika:trafficHourlyTime',
+                                'type' => 'string'
+                            ],
                         ]
                     ],
                 ],
             ],
             [
-                'displayName' => 'Нагрузка на сайт',
+                'displayName' => 'component:metrika:trafficLoad',
                 'name' => 'stat/traffic/load',
                 'fields' => [
                     ['max_rps', 'max_users'],
@@ -80,29 +88,33 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Нагрузка на сайт',
+                        'displayName' => 'component:metrika:trafficLoadReport',
                         'fields' => [
                             [
                                 'name' => 'max_rps_time',
-                                'displayName' => 'Время наибольшей нагрузки',
+                                'displayName' => 'component:metrika:trafficLoadMaxRpsTime',
                                 'type' => 'string'
                             ],
                             [
                                 'name' => 'max_rps_date',
-                                'displayName' => 'Дата наибольшей нагрузки',
+                                'displayName' => 'component:metrika:trafficLoadMaxRpsDate',
                                 'type' => 'string'
                             ],
                             [
                                 'name' => 'max_users_date',
-                                'displayName' => 'Дата наибольшей посещаемости',
+                                'displayName' => 'component:metrika:trafficLoadMaxUsersDate',
                                 'type' => 'string'
                             ],
                             [
                                 'name' => 'max_users_time',
-                                'displayName' => 'Время наибольшей посещаемости',
+                                'displayName' => 'component:metrika:trafficLoadMaxUsersTime',
                                 'type' => 'string'
                             ],
-                            ['name' => 'date', 'displayName' => 'Дата', 'type' => 'string'],
+                            [
+                                'name' => 'date',
+                                'displayName' => 'component:metrika:trafficLoadReportDate',
+                                'type' => 'string'
+                            ],
                         ]
                     ],
                 ],
@@ -110,32 +122,32 @@ return [
         ]
     ],
     [
-        'displayName' => 'Источники',
+        'displayName' => 'component:metrika:sources',
         'methods' => [
             [
-                'displayName' => 'Сводка',
+                'displayName' => 'component:metrika:sourcesSummary',
                 'name' => 'stat/sources/summary',
                 'fields' => ['denial', 'visits', 'page_views', 'visits_delayed', 'visit_time', 'depth'],
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Нагрузка на сайт',
+                        'displayName' => 'component:metrika:sourcesSummaryReport',
                         'fields' => []
                     ],
                 ],
             ],
             [
-                'displayName' => 'Сайты',
+                'displayName' => 'component:metrika:sourcesSites',
                 'name' => 'stat/sources/sites',
                 'fields' => ['denial', 'visits', 'page_views', 'visit_time', 'depth'],
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Сайты',
+                        'displayName' => 'component:metrika:sourcesSitesReport',
                         'fields' => [
                             [
                                 'name' => 'url',
-                                'displayName' => 'URL сайта-источника',
+                                'displayName' => 'component:metrika:sourcesSitesReportUrl',
                                 'type' => 'string'
                             ],
                         ]
@@ -143,17 +155,17 @@ return [
                 ],
             ],
             [
-                'displayName' => 'Поисковые системы',
+                'displayName' => 'component:metrika:sourcesSearchEngines',
                 'name' => 'stat/sources/search_engines',
                 'fields' => ['denial', 'visits', 'page_views', 'visit_time', 'depth'],
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Поисковые системы',
+                        'displayName' => 'component:metrika:sourcesSearchEnginesReport',
                         'fields' => [
                             [
                                 'name' => 'name',
-                                'displayName' => 'Название системы',
+                                'displayName' => 'component:metrika:sourcesSearchEngineName',
                                 'type' => 'string'
                             ]
                         ],
@@ -161,37 +173,37 @@ return [
                 ],
             ],
             [
-                'displayName' => 'Поисковые фразы',
+                'displayName' => 'component:metrika:sourcesPhrase',
                 'name' => 'stat/sources/phrases',
                 'fields' => ['denial', 'visits', 'page_views', 'visit_time', 'depth'],
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Поисковые системы',
+                        'displayName' => 'component:metrika:sourcesPhraseReport',
                         'fields' => [
                             [
                                 'name' => 'phrase',
-                                'displayName' => 'Фраза',
+                                'displayName' => 'component:metrika:sourcesPhraseReportPhrase',
                                 'type' => 'string'
                             ],
                             [
                                 'name' => 'search_engines',
-                                'displayName' => 'Фраза',
+                                'displayName' => 'component:metrika:sourcesPhraseReportSearchEngine',
                                 'type' => 'object',
                                 'fields' => [
                                     [
                                         'name' => 'se_name',
-                                        'displayName' => 'Имя поисковой системы',
+                                        'displayName' => 'component:metrika:sourcesSeName',
                                         'type' => 'string'
                                     ],
                                     [
                                         'name' => 'se_page',
-                                        'displayName' => 'Номер страницы результатов поиска',
+                                        'displayName' => 'component:metrika:sourcesSePage',
                                         'type' => 'int'
                                     ],
                                     [
                                         'name' => 'se_url',
-                                        'displayName' => 'Ссылка на поисковую систему',
+                                        'displayName' => 'component:metrika:sourcesSeUrl',
                                         'type' => 'string'
                                     ],
                                 ]
@@ -204,10 +216,10 @@ return [
         ]
     ],
     [
-        'displayName' => 'Содержание',
+        'displayName' => 'component:metrika:content',
         'methods' => [
             [
-                'displayName' => 'Популярное содержание',
+                'displayName' => 'component:metrika:contentPopular',
                 'name' => 'stat/content/popular',
                 'fields' => [
                     'page_views',
@@ -217,11 +229,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Популярное содержание',
+                        'displayName' => 'component:metrika:contentReportName',
                         'fields' => [
                             [
                                 'name' => 'url',
-                                'displayName' => 'URL страницы',
+                                'displayName' => 'component:metrika:contentReportUrl',
                                 'type' => 'string'
                             ],
                         ],
@@ -229,7 +241,7 @@ return [
                 ],
             ],
             [
-                'displayName' => 'Страницы входа',
+                'displayName' => 'component:metrika:contentEntrance',
                 'name' => 'stat/content/entrance',
                 'fields' => [
                     'denial',
@@ -241,11 +253,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Страницы входа',
+                        'displayName' => 'component:metrika:contentEntranceReport',
                         'fields' => [
                             [
                                 'name' => 'url',
-                                'displayName' => 'URL страницы сайта',
+                                'displayName' => 'component:metrika:contentEntranceReportUrl',
                                 'type' => 'string'
                             ],
                         ],
@@ -253,7 +265,7 @@ return [
                 ],
             ],
             [
-                'displayName' => 'Страницы выхода',
+                'displayName' => 'component:metrika:contentExit',
                 'name' => 'stat/content/exit',
                 'fields' => [
                     'denial',
@@ -265,11 +277,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Страницы выхода',
+                        'displayName' => 'component:metrika:contentExitReport',
                         'fields' => [
                             [
                                 'name' => 'url',
-                                'displayName' => 'URL страницы сайта',
+                                'displayName' => 'component:metrika:contentExitReportUrl',
                                 'type' => 'string'
                             ],
                         ],
@@ -277,17 +289,17 @@ return [
                 ],
             ],
             [
-                'displayName' => 'Заголовки страниц',
+                'displayName' => 'component:metrika:contentTitles',
                 'name' => 'stat/content/titles',
                 'fields' => ['page_views'],
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Заголовки страниц',
+                        'displayName' => 'component:metrika:contentTitlesReport',
                         'fields' => [
                             [
                                 'name' => 'name',
-                                'displayName' => 'Заголовок',
+                                'displayName' => 'component:metrika:contentTitlesReportTitle',
                                 'type' => 'string'
                             ],
                         ],
@@ -297,10 +309,10 @@ return [
         ]
     ],
     [
-        'displayName' => 'Компьютеры',
+        'displayName' => 'component:metrika:computers',
         'methods' => [
             [
-                'displayName' => 'Браузеры',
+                'displayName' => 'component:metrika:techBrowser',
                 'name' => 'stat/tech/browsers',
                 'fields' => [
                     'denial',
@@ -312,16 +324,16 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Браузеры',
+                        'displayName' => 'component:metrika:techBrowserReport',
                         'fields' => [
                             [
                                 'name' => 'version',
-                                'displayName' => 'Версия',
+                                'displayName' => 'component:metrika:techBrowserReportVersion',
                                 'type' => 'string'
                             ],
                             [
                                 'name' => 'name',
-                                'displayName' => 'Браузер',
+                                'displayName' => 'component:metrika:techBrowserReportName',
                                 'type' => 'string'
                             ],
                         ],
@@ -329,7 +341,7 @@ return [
                 ],
             ],
             [
-                'displayName' => 'Операционные системы',
+                'displayName' => 'component:metrika:techOs',
                 'name' => 'stat/tech/os',
                 'fields' => [
                     'denial',
@@ -341,11 +353,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Операционные системы',
+                        'displayName' => 'component:metrika:techOsReport',
                         'fields' => [
                             [
                                 'name' => 'name',
-                                'displayName' => 'Операционная система',
+                                'displayName' => 'component:metrika:techOsReportName',
                                 'type' => 'string'
                             ],
                         ],
@@ -353,7 +365,7 @@ return [
                 ],
             ],
             [
-                'displayName' => 'Мобильные устройства',
+                'displayName' => 'component:metrika:techMobile',
                 'name' => 'stat/tech/mobile',
                 'fields' => [
                     'denial',
@@ -365,11 +377,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Мобильные устройства',
+                        'displayName' => 'component:metrika:techMobileReport',
                         'fields' => [
                             [
                                 'name' => 'name',
-                                'displayName' => 'Название',
+                                'displayName' => 'component:metrika:techMobileReportName',
                                 'type' => 'string'
                             ],
                         ],
@@ -377,7 +389,7 @@ return [
                 ],
             ],
             [
-                'displayName' => 'Версии Flash',
+                'displayName' => 'component:metrika:techFlash',
                 'name' => 'stat/tech/flash',
                 'fields' => [
                     'denial',
@@ -389,11 +401,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Версии Flash',
+                        'displayName' => 'component:metrika:techFlashReport',
                         'fields' => [
                             [
                                 'name' => 'name',
-                                'displayName' => 'Версия',
+                                'displayName' => 'component:metrika:techFlashReportName',
                                 'type' => 'string'
                             ],
                         ],
@@ -401,7 +413,7 @@ return [
                 ],
             ],
             [
-                'displayName' => 'Наличие JavaScript',
+                'displayName' => 'component:metrika:techJavascript',
                 'name' => 'stat/tech/javascript',
                 'fields' => [
                     'denial',
@@ -413,11 +425,11 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Наличие JavaScript',
+                        'displayName' => 'component:metrika:techJavascriptReport',
                         'fields' => [
                             [
                                 'name' => 'name',
-                                'displayName' => 'Статус',
+                                'displayName' => 'component:metrika:techJavascriptReportName',
                                 'type' => 'string'
                             ],
                         ],
@@ -427,10 +439,10 @@ return [
         ]
     ],
     [
-        'displayName' => 'География',
+        'displayName' => 'component:metrika:geo',
         'methods' => [
             [
-                'displayName' => 'Отчет по Странам мира',
+                'displayName' => 'component:metrika:statGeo',
                 'name' => 'stat/geo',
                 'fields' => [
                     'denial',
@@ -442,16 +454,16 @@ return [
                 'reports' => [
                     [
                         'name' => 'data',
-                        'displayName' => 'Отчет по Странам мира',
+                        'displayName' => 'component:metrika:statGeoReport',
                         'fields' => [
                             [
                                 'name' => 'region_type',
-                                'displayName' => 'Тип региона',
+                                'displayName' => 'component:metrika:statGeoReportRegionType',
                                 'type' => 'string'
                             ],
                             [
                                 'name' => 'name',
-                                'displayName' => 'Регион',
+                                'displayName' => 'component:metrika:statGeoReportRegion',
                                 'type' => 'string'
                             ],
                         ],
