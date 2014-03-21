@@ -49,29 +49,27 @@ define([], function(){
              **/
             model: function(){
                 var self = this;
-                var baseResource = UmiSettings.baseURL + '/api/settings';
-                return $.getJSON(baseResource).then(function(results){
+                return $.getJSON(UmiSettings.baseApiURL).then(function(results){
                     var result = results.result;
+                    self.controllerFor('application').set('settings', result);
                     if(result.collections){
                         UMI.Utils.modelsFactory(result.collections);
                     }
-                    if(result.resources){
-                        UMI.Utils.setModelsResources(result.resources);
-                    }
-                    if(result.records){
-                        var model;
-                        for(model in result.records){
-                            if(result.records.hasOwnProperty(model)){
-                                self.store.pushMany(model, result.records[model]);
-                            }
-                        }
-                    }
-
                     if(result.modules){
-                        self.controllerFor('dock').set('modules', result);
+                        self.controllerFor('dock').set('modules', result.modules);
                     }
                 }, function(error){
-                    throw new Error('Не получен ресурс приложения ' + baseResource + '.' + error);
+                    var data = {
+                        'close': true,
+                        'title': 'Не получен ресурс приложения.',
+                        'content': 'Запрос API ресурса "' + UmiSettings.baseApiURL + '" завершился неудачей. Обратитесь за помощью к разработчикам.',
+                        'confirm': 'Перезагрузить страницу'
+                    };
+                    return UMI.dialog.open(data).then(
+                        function(){
+                            window.location.href = window.location.href;
+                        }
+                    );
                 });
             },
             actions: {
@@ -194,42 +192,24 @@ define([], function(){
                 var self = this;
                 var components = this.modelFor('module').get('components');
                 var model = components.findBy('name', transition.params.component.component);
-                var componentResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/settings';
-                return Ember.$.get(componentResource).then(function(results){
-                    if(results.result.error){
-                        throw 'Ресурс компонента не найден';
-                    }
+                return Ember.$.get(model.get('resource')).then(function(results){
                     var componentController = self.controllerFor('component');
                     var settings = results.result.settings;
-
-                    // Определим содержит ли компонент область дерева
-                    var hasTree = settings.layout.hasOwnProperty('emptyContext') && settings.layout.emptyContext.hasOwnProperty('tree');
-                    // этот флаг костыль, нужно будет убрать
-                    if(hasTree){
-                        componentController.set('treeComponent', settings.layout.emptyContext.tree.controls[0]);
-                    }
-                    componentController.set('hasTree', hasTree);
-                    // Ниже очевидный костыль
-                    var tree = results.result.settings.controls.findBy('name', 'tree');
-                    if(hasTree && tree){
-                        /**
-                         * Колекция для дерева
-                         */
-                        var treeControl = self.controllerFor('treeControl');
-                        treeControl.set('collections', [{'type': model.get('collection'), 'displayName': tree.displayName}]);
-                        treeControl.set('routeParams', transition.params);
-                    }
-                    /**
-                     * Режимы
-                     */
-                    var controls = settings.controls;
-                    var context = settings.layout;
-                    componentController.set('controls', controls);
-                    componentController.set('context', context);
+                    componentController.set('settings', settings);
                     componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
                     return model;
                 }, function(error){
-                    throw new Error('Не получен ресурс компонета ' + componentResource + '.' + error);
+                    var data = {
+                        'close': true,
+                        'title': 'Не получен ресурс компонета.',
+                        'content': 'Запрос API ресурса компонента "' + model.get('resource') + '" завершился неудачей. Обратитесь за помощью к разработчикам.',
+                        'confirm': 'Перезагрузить страницу'
+                    };
+                    return UMI.dialog.open(data).then(
+                        function(){
+                            window.location.href = window.location.href;
+                        }
+                    );
                 });
             },
             redirect: function(model, transition){
@@ -242,12 +222,11 @@ define([], function(){
                 return {component: model.get('name')};
             },
             renderTemplate: function(controller, model){
-                if(controller.get('hasTree')){
-                    this.render();
-                    var componentName = controller.get('treeComponent');
-                    this.render(componentName, {
+                this.render();
+                if(controller.get('sideBarControl')){
+                    this.render(controller.get('sideBarControl.name'), {
                         into: 'component',
-                        outlet: 'tree'
+                        outlet: 'sideBar'
                     });
                 }
             }
@@ -260,9 +239,8 @@ define([], function(){
             },
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
-                    var self = this;
                     var contextId = this.controllerFor('component').get('selectedContext');
-                    return self.transitionTo('context', contextId);
+                    return this.transitionTo('context', contextId);
                 }
             },
             serialize: function(model){
@@ -277,23 +255,25 @@ define([], function(){
                 var self = this;
                 var model;
                 var routeData = {};
-                var collectionName = self.modelFor('component').get('collection');
-                var oldContext = this.controllerFor('component').get('selectedContext');
-                this.controllerFor('component').set('selectedContext', params.context);
+                var componentController = this.controllerFor('component');
+                var collectionName = componentController.get('collectionName');
+                var oldContext = componentController.get('selectedContext');
+                componentController.set('selectedContext', params.context);
                 /**
                  * Редирект на Action если контекст не имеет action
                  */
                 var activeAction = this.modelFor('action');
-                var firstAction = this.controllerFor('component').get('contentControls.firstObject');
+                var firstAction = componentController.get('contentControls.firstObject');
                 if(oldContext !== params.context && firstAction.get('name') !== activeAction.get('name')){
                     return this.transitionTo('action', firstAction.get('name'));
                 }
 
+                // Вот это место мне особенно не нравится
                 if(params.context === 'root'){
                     var RootModel = Ember.Object.extend({
                         children: function(){
                             if(collectionName){
-                                if(self.controllerFor('component').get('hasTree')){
+                                if(componentController.get('sideBarControl') && componentController.get('sideBarControl').get('name') === 'tree'){
                                     return self.store.find(collectionName, {'filters[parent]': 'null()'});
                                 } else{
                                     return self.store.find(collectionName);
@@ -310,15 +290,11 @@ define([], function(){
                 return model.then(function(model){
                     routeData.object = model;
                     /**
-                     * Раскрытие текущей ветки в дереве
-                     */
-                    self.controllerFor('treeControl').set('activeContext', model);
-                    /**
                      * Мета информация для action
                      */
                     var actionName = transition.params.action.action;
-                    var actionParams = {};//'/' +  + '/' + model.get('type') + '/edit';
-                    var collectionName = self.modelFor('component').get('collection');
+                    var actionParams = {};
+                    var collectionName = componentController.get('collectionName');
                     if(collectionName){
                         actionParams.collection = collectionName;
                     }
@@ -328,8 +304,7 @@ define([], function(){
                     if(model.get('type')){
                         actionParams.type = model.get('type');
                     }
-                    actionParams = actionParams ? '?' + $.param(actionParams) : '';
-                    var actionResource = window.UmiSettings.baseApiURL + '/' + transition.params.module.module + '/' + transition.params.component.component + '/action/'  + actionName + actionParams;
+
                     // Временное решение для таблицы
                     if(actionName === 'children' || actionName === 'filter'){
                         return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
@@ -337,6 +312,9 @@ define([], function(){
                             return routeData;
                         });
                     } else if(actionName === 'form'){
+                        actionParams = actionParams ? '?' + $.param(actionParams) : '';
+                        var actionResource = componentController.get('settings').actions[actionName].source + actionParams;
+
                         return Ember.$.get(actionResource).then(function(results){
                             routeData.viewSettings = results.result;
                             return routeData;

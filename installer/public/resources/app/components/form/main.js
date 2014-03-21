@@ -1,5 +1,15 @@
-define(['App', 'text!./form.hbs', 'app/components/form/components/multiSelect/main'], function(UMI, formTpl){
+define(
+    [
+        'App',
+        'text!./form.hbs',
+        'app/components/form/elements/select/main',
+        'app/components/form/elements/multiSelect/main',
+        'app/components/form/elements/datepicker/main',
+        'app/components/form/elements/htmlEditor/main'
+    ],
+    function(UMI, formTpl){
     'use strict';
+
     Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
 
     UMI.FormControlController = Ember.ObjectController.extend({
@@ -55,8 +65,8 @@ define(['App', 'text!./form.hbs', 'app/components/form/components/multiSelect/ma
                 case 'select':
                     template = Ember.Handlebars.compile('{{view "select" object=object meta=this}}');
                     break;
-                case 'multi-checkbox':
-                    template = Ember.Handlebars.compile('{{multi-select object=object meta=this}}');
+                case 'multi-select':
+                    template = Ember.Handlebars.compile('{{view "multiSelect" object=object meta=this}}');
                     break;
                 case 'file':
                     template = Ember.Handlebars.compile('<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.dataSource + '}}<i class="icon icon-cloud"></i></div>');
@@ -67,55 +77,6 @@ define(['App', 'text!./form.hbs', 'app/components/form/components/multiSelect/ma
             }
             return template;
         }.property('object', 'meta')
-    });
-
-
-    UMI.HtmlEditorComponent = Ember.Component.extend({
-        tagName: 'div',
-        object: null,
-        property: null,
-        valueObject: function(){
-            return this.get('object.' + this.get("property"));
-        }.property('object', 'property'),
-        classNames: ['ckeditor-row'],
-        layout: Ember.Handlebars.compile('{{textarea value=valueObject placeholder=meta.placeholder}}'),
-        didInsertElement: function(){
-            var self = this;
-            var el = this.$().children('textarea');
-            var edit = CKEDITOR.replace(el[0].id);
-            var updateContent = function(event){
-                if(event.editor.checkDirty()){
-                    self.get('object').set(self.get('property'), edit.getData());
-                }
-            };
-            edit.on('blur', function(event){
-                updateContent(event);
-            });
-            edit.on('key', function(event){// TODO: Это событие было добавлено только из-за того, что событие save срабатывает быстрее blur. Кажется можно сделать лучше.
-                updateContent(event);
-            });
-        }
-    });
-
-    UMI.DatePickerComponent = Ember.Component.extend({
-        tagName: 'div',
-        classNames: ['umi-input-wrapper-date'],
-        object: null,
-        property: null,
-        valueObject: function(){
-            return this.get('object.' + this.get("property") + '.date');
-        }.property('object', 'property'),
-        changeValueObject: function(){
-            var property = this.get('object.' + this.get("property"));
-            property.date = this.get('valueObject');
-            this.get('object').set(this.get('property'), property);
-        }.observes('valueObject'),
-        layout: Ember.Handlebars.compile('{{input type="text" class="umi-date" value=valueObject}}<i class="icon icon-calendar"></i>'),
-        didInsertElement: function(){
-            var self = this;
-            var el = this.$().children('.umi-date');
-            el.jdPicker({date_format: "dd/mm/YYYY"});
-        }
     });
     //TODO: Для форм нужно не забыть в шаблоне, и в остальных местах биндить все возможные атрибуты
 
@@ -133,59 +94,6 @@ define(['App', 'text!./form.hbs', 'app/components/form/components/multiSelect/ma
                     handler: button[0]
                 };
                 this.get('controller').send('save', params);
-            }
-        }
-    });
-
-    UMI.SelectView = Ember.Select.extend({
-        attributeBindings: ['meta.dataSource:name'],
-        optionLabelPath: 'content.displayName',
-        optionValuePath: 'content.id',
-        prompt: 'Ничего не выбрано',
-        content: function(){
-            var self = this;
-            var store = self.get('controller.store');
-            var property = this.get('meta.dataSource');
-            var object = this.get('object');
-            var collection;
-            var getCollection = function(relation){
-                collection = store.findAll(relation.type);
-            };
-            object.eachRelationship(function(name, relation){
-                if(name === property){
-                    getCollection(relation);
-                }
-            });
-            return collection;
-        }.property(),
-        changeValue: function(){
-            var selectObject = this.get('selection');
-            var object = this.get('object');
-            var property = this.get('meta.dataSource');
-            var oldId = selectObject.get('id') || false;
-            var newId = this.get('selectObject.id') || false;
-            if(oldId !== newId){
-                object.set(property, selectObject);
-                object.send('becomeDirty');//TODO: Перенести в ядро REST Adapter
-            }
-        }.observes('value'),
-        /**
-         Связанный объект
-         */
-        selectObject: null,
-        init: function(){
-            this._super();
-            var self = this;
-            var object = this.get('object');
-            var property = this.get('meta.dataSource');
-            var promise = object.get(property);
-            if(promise){
-               return promise.then(function(selectObject){
-                    if(selectObject){
-                        self.set('selectObject', selectObject);
-                        self.set('selection', selectObject);
-                    }
-                });
             }
         }
     });

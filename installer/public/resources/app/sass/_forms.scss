@@ -5,21 +5,7 @@
         position: static;
     }
 }
-/*input[type="date"]{
-    height: 32px;
-    line-height: 32px;
-    padding: 0 10px;
-    border-radius: 2px;
-    font-size: 13px;
-}
 
-textarea{
-    border-radius: 2px;
-    font-size: 13px;
-    width: 400px;
-    transition: none;
-}
-*/
 form{
     .input-icon{
         position: relative;
@@ -81,9 +67,16 @@ label{
     margin-bottom: $form-label-bottom-margin;
 }
 
-select:focus{
-    box-shadow: 0 0 5px #999999;
-    outline: none;
+select{
+    border-radius: $input-border-radius;
+    box-sizing: border-box;
+    &:focus{
+        box-shadow: 0 0 5px #999999;
+        outline: none;
+    }
+    option{
+        line-height: normal;
+    }
 }
 
 .prefix,
@@ -285,6 +278,7 @@ select:focus{
         border: none!important;
         box-shadow: none!important;
         background: #FFFFFF!important;
+        box-sizing: border-box;
         &:hover{
             border: none!important;
             box-shadow: none!important;
@@ -362,5 +356,73 @@ select:focus{
 
 // umi-multi-select
 .umi-multi-select{
+    position: relative;
+    .postfix{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 36px;
+        background: transparent;
+    }
+    .selected-list{
+        margin-bottom: $form-spacing / 2;
+        .item{
+            display: inline-block;
+            padding: 5px 5px;
+            background:#FCFCFC;
+            font-size: $input-font-size;
+            border: 1px solid #DFDFDF;
+            margin-bottom: 4px;
+        }
+    }
+    &.opened{
+        .umi-multi-select-input{
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            &:focus{
+                background: #fff;
+            }
+        }
+        .postfix{
+            border-bottom-right-radius: 0;
+        }
+    }
+}
+
+.umi-multi-select-input{
+    border-radius: $input-border-radius;
     @include form-element;
+    margin-bottom: $form-spacing / 2;
+    padding-right: 36px;
+    position: relative;
+    &:focus{
+        ~ .postfix{
+            border-left: 1px solid #E6E3E3;
+        }
+    }
+}
+
+.umi-multi-select-list{
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #D5D2D2;
+    box-sizing: border-box;
+    list-style: none;
+    margin: 0;
+    font-size: $input-font-size;
+    margin-top: -$form-spacing / 2 - rem-calc(1);
+    z-index: $umi-multi-select-list-z-index;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 3px 6px 1px #DADADA;
+    li{
+        padding: rem-calc(5);
+        &:hover, &.hover{
+            background: $primary-color;
+            color: #fff;
+        }
+    }
 }

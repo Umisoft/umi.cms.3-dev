@@ -106,13 +106,32 @@ define(
             document: $(document)
         };
 
-        var baseURL = window.UmiSettings.baseURL.slice(1);
         /**
          * @class UmiRESTAdapter
          * @extends DS.RESTAdapter
          */
         DS.UmiRESTAdapter = DS.RESTAdapter.extend({
-            namespace: baseURL + '/api',
+            /**
+             Метод возвращает URI запроса для CRUD операций данной модели.
+
+             @method buildURL
+             @return {String} CRUD ресурс для данной модели
+             **/
+            buildURL: function(type, id) {
+                var url = [],
+                    host = Ember.get(this, 'host'),
+                    prefix = this.urlPrefix();
+
+                if (id) { url.push(id); }
+
+                if (prefix) { url.unshift(prefix); }
+
+                url = url.join('/');
+                if (!host && url) { url = '/' + url; }
+
+                return url;
+            },
+            namespace: window.UmiSettings.baseApiURL.replace( /^\//g, ''),
             ajaxOptions: function(url, type, hash){
                 hash = hash || {};
                 hash.url = url;
