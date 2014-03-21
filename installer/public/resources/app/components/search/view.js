@@ -2,6 +2,7 @@ define(['App'], function(UMI){
     'use strict';
 
     return function(){
+
         UMI.SearchView = Ember.View.extend({
             didInsertElement: function(){
 

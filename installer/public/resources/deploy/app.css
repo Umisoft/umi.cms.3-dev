@@ -4576,8 +4576,6 @@ ul.pagination {
     background-position: -620px 0; }
   .icon.icon-5 {
     background-position: -640px 0; }
-  .icon.icon-mail {
-    background-position: -660px 0; }
   .icon.icon-6 {
     background-position: -680px 0; }
   .icon.icon-renew {
@@ -4678,8 +4676,6 @@ ul.pagination {
     background-position: -620px -20px; }
   .icon.white.icon-5 {
     background-position: -640px -20px; }
-  .icon.white.icon-mail {
-    background-position: -660px -20px; }
   .icon.white.icon-6 {
     background-position: -680px -20px; }
   .icon.white.icon-renew {
@@ -4780,8 +4776,6 @@ ul.pagination {
     background-position: -620px -40px; }
   .icon.black.icon-5 {
     background-position: -640px -40px; }
-  .icon.black.icon-mail {
-    background-position: -660px -40px; }
   .icon.black.icon-6 {
     background-position: -680px -40px; }
   .icon.black.icon-renew {
@@ -5160,25 +5154,18 @@ body {
     margin-top: -109px;
     padding-top: 109px; }
 
-.umi-top-bar {
+.top-bar-section > ul > li {
   background: -webkit-linear-gradient(top, #3E4756 0%, #1C1F26 100%);
   background: -o-linear-gradient(top, #3E4756 0%, #1C1F26 100%);
   background: linear-gradient(to bottom, #3E4756 0%, #1C1F26 100%);
   background: linear-gradient(top, #3E4756 0%, #1C1F26 100%);
-  border-bottom: 1px solid #000000; }
-  .umi-top-bar li a {
+  margin: 0;
+  height: 24px; }
+  .top-bar-section > ul > li a {
     color: #D5D6D8 !important;
     font-weight: bold !important;
     line-height: 1.375rem !important;
-    height: 1.5rem;
-    border-bottom: 1px solid #000000; }
-    .umi-top-bar li a.active {
-      background: #272727; }
-  .umi-top-bar .icon {
-    margin-top: 2px; }
-
-.top-bar-section ul li > a {
-  width: auto; }
+    height: 1.5rem; }
 
 .umi-dock {
   border-top: 1px solid #5c6472;
@@ -5941,13 +5928,26 @@ body {
   float: none;
   width: 100%;
   right: 0;
-  border-left: 1px solid #E3E4E5; }
+  border-left: 1px solid #E3E4E5;
+  border-bottom: 1px solid #E2E3E4; }
 
 .umi-table-empty-filter-column {
   float: none;
   width: 100%;
   right: 0;
-  border-left: 1px solid #E3E4E5; }
+  border-left: 1px solid #E3E4E5;
+  position: relative; }
+  .umi-table-empty-filter-column:after {
+    content: "";
+    position: absolute;
+    float: left;
+    display: block;
+    height: 3px;
+    width: -webkit-calc(100% + 1px);
+    width: calc(100% + 1px);
+    left: 0;
+    bottom: -3px;
+    background: url(img/shadows/toBottomShadow.png); }
 
 .umi-table-empty-column {
   float: none;
@@ -6500,6 +6500,22 @@ select {
   .f-dropdown.dark a {
     color: #FFF; }
 
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #9BA7B3; }
+
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #9BA7B3; }
+
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #9BA7B3; }
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #9BA7B3; }
+
 input[type="checkbox"] {
   position: absolute;
   overflow: hidden;
@@ -6510,7 +6526,7 @@ input[type="checkbox"] {
   padding: 0;
   border: 0; }
 
-input[type=checkbox] + label {
+input[type="checkbox"] + label {
   padding-left: 24px;
   height: 20px;
   display: inline-block;
@@ -6519,7 +6535,7 @@ input[type=checkbox] + label {
   vertical-align: middle;
   cursor: pointer; }
 
-input[type=checkbox]:checked + label {
+input[type="checkbox"]:checked + label {
   background: url(img/svg/checkbox-checked.svg) left top no-repeat; }
 
 label {
@@ -6923,6 +6939,274 @@ label {
   top: 50%;
   margin-top: -1.5px; }
 
+.umi-search-component {
+  position: relative;
+  padding: 0 20px; }
+  .umi-search-component form {
+    position: relative;
+    z-index: 21;
+    float: left; }
+    .umi-search-component form i {
+      float: right;
+      top: -17px;
+      right: 7px; }
+
+input[type="text"].umi-search-input {
+  background: #4E5461;
+  box-shadow: none;
+  width: 200px;
+  border-radius: 10px;
+  padding: 0 10px;
+  margin: 0;
+  height: 19px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  line-height: 15px;
+  top: 3px;
+  -webkit-animation: none;
+  -o-animation: none;
+  animation: none;
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+  color: #D5D6D8; }
+
+input[type="text"].umi-search-input.active {
+  background: #FFFFFF;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  border: 1px solid #d3d7da;
+  color: #535E6D; }
+
+.umi-search-drop-down {
+  display: none;
+  position: absolute;
+  z-index: 20;
+  padding: 30px 0 10px;
+  margin-left: -10px;
+  width: 220px;
+  background: #ffffff;
+  box-shadow: 0 0 3px 0 #000000; }
+
+.umi-search-result li {
+  padding: 5px 10px;
+  width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 11px; }
+
+.umi-search-result li:not(.umi-search-empty):hover {
+  background: #F5F6F7;
+  cursor: pointer; }
+
+.umi-accordion {
+  margin: 0;
+  font-size: 0.8125rem;
+  list-style-type: none; }
+  .umi-accordion span {
+    display: block;
+    height: 33px;
+    line-height: 34px;
+    padding: 0 1.25rem;
+    background: -webkit-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
+    background: -o-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
+    background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);
+    background: linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
+    border-bottom: 1px solid #98A2AB;
+    cursor: pointer; }
+    .umi-accordion span:hover {
+      background: #EEEEEE;
+      color: #000000; }
+  .umi-accordion ul {
+    margin: 0; }
+
+.umi-accordion-trigger li {
+  height: 24px;
+  padding-left: 30px;
+  font-size: 13px;
+  display: none; }
+  .umi-accordion-trigger li a {
+    text-decoration: none;
+    color: #535E6D; }
+    .umi-accordion-trigger li a:hover {
+      border-bottom: 1px solid #535E6D; }
+
+.umi-accordion-trigger.active li {
+  display: block; }
+
+.umi-table-ajax {
+  font-size: 0.8125rem;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #D6E0E9;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+  .umi-table-ajax thead {
+    position: relative; }
+    .umi-table-ajax thead:after {
+      content: "";
+      position: absolute;
+      float: left;
+      display: block;
+      height: 3px;
+      width: 100%;
+      left: 0;
+      top: 33px;
+      background: url(img/shadows/toBottomShadow.png); }
+
+.umi-table-ajax-control-header {
+  position: relative;
+  z-index: 10; }
+
+.umi-table-ajax-control-header-center {
+  position: absolute; }
+
+.umi-table-ajax-control-content {
+  position: relative;
+  height: 100%; }
+
+.umi-table-ajax-control-content-center {
+  position: absolute;
+  height: -webkit-calc(100% - 102px);
+  height: calc(100% - 102px);
+  top: 0;
+  bottom: 2.125rem; }
+
+.umi-table-ajax-control-footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  z-index: 20;
+  height: 2.125rem;
+  background: #FFFFFF; }
+  .umi-table-ajax-control-footer:after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 3px;
+    width: 100%;
+    top: -3px;
+    background: url(img/shadows/toTopShadow.png); }
+  .umi-table-ajax-control-footer .left i {
+    margin-top: 0.375rem;
+    margin-left: 0.375rem;
+    line-height: 1.375rem; }
+  .umi-table-ajax-control-footer .left a {
+    line-height: 2rem; }
+  .umi-table-ajax-control-footer .right {
+    padding: 0.3125rem 0.625rem;
+    line-height: 1.375rem; }
+    .umi-table-ajax-control-footer .right input {
+      padding: 0;
+      height: 1.375rem; }
+
+.umi-table-ajax-header {
+  table-layout: fixed;
+  border: 0;
+  border-collapse: collapse; }
+
+.umi-table-ajax-header-div {
+  border-left: 1px solid #E2E3E4; }
+
+.umi-table-ajax-titles {
+  width: 100%;
+  font-weight: bold;
+  color: #575E6C;
+  background: #FFFFFF; }
+
+.umi-table-ajax-column-resizer {
+  position: absolute;
+  float: left;
+  z-index: 100;
+  width: 7px;
+  height: 69px;
+  top: 0;
+  right: -4px;
+  border: 0; }
+
+.umi-table-ajax-column-resizer:hover {
+  background: #444444; }
+
+.umi-table-ajax-title-div {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 2.0625rem;
+  line-height: 2.0625rem;
+  padding: 0 0.625rem;
+  border-left: 1px solid #E3E4E5; }
+
+.umi-table-ajax-control-empty {
+  position: relative;
+  height: 33px; }
+
+.umi-table-ajax-control-empty:after {
+  content: "";
+  position: absolute;
+  float: left;
+  display: block;
+  height: 3px;
+  width: -webkit-calc(100% + 1px);
+  width: calc(100% + 1px);
+  left: 0;
+  bottom: -3px;
+  background: url(img/shadows/toBottomShadow.png); }
+
+.umi-table-ajax-header-column {
+  table-layout: fixed;
+  position: relative;
+  padding: 0;
+  line-height: 1.375rem; }
+
+.umi-table-ajax-header-column-fixed {
+  table-layout: fixed;
+  position: relative;
+  padding: 0;
+  line-height: 1.375rem;
+  border-bottom: 1px solid #E2E3E4;
+  border-left: 1px solid #E3E4E5; }
+
+.umi-table-ajax-content {
+  float: left;
+  border-collapse: collapse;
+  table-layout: fixed;
+  border: 0;
+  background: #F5F6F7; }
+
+.umi-table-ajax-tr {
+  height: 2rem; }
+  .umi-table-ajax-tr:nth-child(odd) {
+    background: #E9F1F7; }
+  .umi-table-ajax-tr.checked {
+    color: #FFFFFF;
+    background: #8B95A5; }
+  .umi-table-ajax-tr:last-of-type td {
+    border-bottom: 1px solid #A7B9C5; }
+
+.umi-table-ajax-cell-div {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 2.125rem;
+  border-left: 1px solid #E3E4E5;
+  padding: 0 10px; }
+
+.umi-table-ajax-empty-header-column {
+  float: none !important;
+  width: 100%;
+  right: 0;
+  border-left: 1px solid #E3E4E5;
+  border-bottom: 1px solid #E2E3E4; }
+
+.umi-table-ajax-empty-column {
+  float: none;
+  width: 100%;
+  right: 0;
+  border-left: 1px solid #E3E4E5; }
+
+.umi-table-ajax-empty-result {
+  padding: 20px;
+  background: #D6E0E9; }
+
 .iScrollIndicator {
   background: rgba(123, 137, 156, 0.9) !important;
   border-color: #F6F7F8;
@@ -6965,6 +7249,8 @@ label {
 .icon-checkbox { background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22%D0%A1%D0%BB%D0%BE%D0%B9_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20viewBox%3D%220%200%2020%2020%22%20enable-background%3D%22new%200%200%2020%2020%22%20xml%3Aspace%3D%22preserve%22%3E%3Cg%3E%20%3Cg%3E%20%20%3Cg%3E%20%20%20%3Cg%20opacity%3D%220.25%22%3E%20%20%20%20%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M6%2C18c-1.7%2C0-3-1.4-3-3V7c0-1.7%2C1.3-3%2C3-3h8c1.6%2C0%2C3%2C1.3%2C3%2C3v8c0%2C1.6-1.4%2C3-3%2C3H6z%22%2F%3E%20%20%20%3C%2Fg%3E%20%20%20%3ClinearGradient%20id%3D%22SVGID_1_%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%2210%22%20y1%3D%223%22%20x2%3D%2210%22%20y2%3D%2217%22%3E%20%20%20%20%3Cstop%20%20offset%3D%220%22%20style%3D%22stop-color%3A%23B4BEC6%22%2F%3E%20%20%20%20%3Cstop%20%20offset%3D%221%22%20style%3D%22stop-color%3A%23B4BEC6%3Bstop-opacity%3A0.5%22%2F%3E%20%20%20%3C%2FlinearGradient%3E%20%20%20%3Cpath%20fill%3D%22url(%23SVGID_1_)%22%20d%3D%22M6%2C17c-1.7%2C0-3-1.4-3-3V6c0-1.7%2C1.3-3%2C3-3h8c1.6%2C0%2C3%2C1.3%2C3%2C3v8c0%2C1.6-1.4%2C3-3%2C3H6z%22%2F%3E%20%20%3C%2Fg%3E%20%20%3ClinearGradient%20id%3D%22SVGID_2_%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%2210%22%20y1%3D%2215.2791%22%20x2%3D%2210%22%20y2%3D%224.8745%22%3E%20%20%20%3Cstop%20%20offset%3D%220%22%20style%3D%22stop-color%3A%23E0E4E7%22%2F%3E%20%20%20%3Cstop%20%20offset%3D%221%22%20style%3D%22stop-color%3A%23B4BEC6%22%2F%3E%20%20%3C%2FlinearGradient%3E%20%20%3Cpath%20fill%3D%22url(%23SVGID_2_)%22%20d%3D%22M6%2C16c-1.1%2C0-2-0.9-2-2V6c0-1.1%2C0.9-2%2C2-2h8c1.1%2C0%2C2%2C0.9%2C2%2C2v8c0%2C1.1-0.9%2C2-2%2C2H6z%22%2F%3E%20%20%3Cg%3E%20%20%20%3Cdefs%3E%20%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%224%22%20y%3D%224%22%20width%3D%2212%22%20height%3D%2212%22%3E%20%20%20%20%20%3CfeFlood%20%20style%3D%22flood-color%3Awhite%3Bflood-opacity%3A1%22%20result%3D%22back%22%2F%3E%20%20%20%20%20%3CfeBlend%20%20in%3D%22SourceGraphic%22%20in2%3D%22back%22%20mode%3D%22normal%22%2F%3E%20%20%20%20%3C%2Ffilter%3E%20%20%20%3C%2Fdefs%3E%20%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%224%22%20y%3D%224%22%20width%3D%2212%22%20height%3D%2212%22%20id%3D%22SVGID_3_%22%3E%20%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter)%22%3E%20%20%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%2216%22%20height%3D%2216%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAF7AAABmAAAAer%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIABEAEQMBIgACEQEDEQH%2FxABsAAEBAQAAAAAAAAAAAAAAAAAAAgcBAQAAAAAAAAAAAAAAAAAAAAAQAQEBAQAAAAAAAAAAAAAAAAUGIAARAQABBAIDAQAAAAAAAAAAAAIBESIDBABBECAhQhIBAAAAAAAAAAAAAAAAAAAAIP%2FaAAwDAQACEQMRAAAAi4GhgAA%2F%2F9oACAECAAEFAMf%2F2gAIAQMAAQUAx%2F%2FaAAgBAQABBQCQkB1h6yQDKG6QrxyR6%2BvHWHx%2F%2F9oACAECAgY%2FAB%2F%2F2gAIAQMCBj8AH%2F%2FaAAgBAQEGPwAbu6GsibNrRihUx1PMu7qjIMokk3yvqmn6nwNLdbGQNq0JRRKvXHpaTbyNhXBGKFV79f%2FZ%22%20transform%3D%22matrix(1%200%200%201%202%202)%22%3E%20%20%20%20%20%3C%2Fimage%3E%20%20%20%20%3C%2Fg%3E%20%20%20%3C%2Fmask%3E%20%20%20%3Cpath%20mask%3D%22url(%23SVGID_3_)%22%20fill%3D%22%23FFFFFF%22%20d%3D%22M6%2C16c-1.1%2C0-2-0.9-2-2V6c0-1.1%2C0.9-2%2C2-2h8c1.1%2C0%2C2%2C0.9%2C2%2C2v8c0%2C1.1-0.9%2C2-2%2C2H6z%20%20%20%20%22%2F%3E%20%20%3C%2Fg%3E%20%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; }
 
 .icon-left { background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22%D0%A1%D0%BB%D0%BE%D0%B9_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20viewBox%3D%220%200%2020%2020%22%20enable-background%3D%22new%200%200%2020%2020%22%20xml%3Aspace%3D%22preserve%22%3E%3Cg%3E%20%3Cg%20opacity%3D%220.5%22%3E%20%20%3Cpolygon%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23FFFFFF%22%20points%3D%228%2C11%2012%2C7%2012%2C15%20%20%20%22%2F%3E%20%20%3Cdefs%3E%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%227%22%20width%3D%224%22%20height%3D%228%22%3E%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20%20type%3D%22matrix%22%20values%3D%22-1%200%200%200%201%20%200%20-1%200%200%201%20%200%200%20-1%200%201%20%200%200%200%201%200%22%20color-interpolation-filters%3D%22sRGB%22%20result%3D%22source%22%2F%3E%20%20%20%3C%2Ffilter%3E%20%20%3C%2Fdefs%3E%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%227%22%20width%3D%224%22%20height%3D%228%22%20id%3D%22SVGID_1_%22%3E%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter)%22%3E%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%229%22%20height%3D%2212%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAF5AAABiQAAAbv%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIAAwACQMBIgACEQEDEQH%2FxABtAAEBAQAAAAAAAAAAAAAAAAACBAYBAQAAAAAAAAAAAAAAAAAAAAAQAAMBAQAAAAAAAAAAAAAAAAACBBATEQACAQMFAQAAAAAAAAAAAAABAhEQQROxEjJSAwQSAQAAAAAAAAAAAAAAAAAAAAD%2F2gAMAwEAAhEDEQAAAMXGif%2FaAAgBAgABBQA%2F%2F9oACAEDAAEFAD%2F%2F2gAIAQEAAQUAjiWicTpn%2F9oACAECAgY%2FAH%2F%2F2gAIAQMCBj8Af%2F%2FaAAgBAQEGPwD6PdnAwIWCXJjSjY54ndHW80%2F%2F2Q%3D%3D%22%20transform%3D%22matrix(1%200%200%201%205%205)%22%3E%20%20%20%20%3C%2Fimage%3E%20%20%20%3C%2Fg%3E%20%20%3C%2Fmask%3E%20%20%3Cpolygon%20opacity%3D%220.5%22%20mask%3D%22url(%23SVGID_1_)%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23FFFFFF%22%20points%3D%228%2C11%2012%2C7%2012%2C15%20%20%20%20%20%20%22%2F%3E%20%3C%2Fg%3E%20%3Cg%3E%20%20%3Cg%3E%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22SVGID_2_%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%2210%22%20y1%3D%2212%22%20x2%3D%2210%22%20y2%3D%228%22%20gradientTransform%3D%22matrix(4.489659e-011%201%20-1%204.489659e-011%2020%200)%22%3E%20%20%20%20%3Cstop%20%20offset%3D%220%22%20style%3D%22stop-color%3A%23576678%22%2F%3E%20%20%20%20%3Cstop%20%20offset%3D%221%22%20style%3D%22stop-color%3A%2373869E%3Bstop-opacity%3A0.6%22%2F%3E%20%20%20%3C%2FlinearGradient%3E%20%20%20%3Cpolygon%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22url(%23SVGID_2_)%22%20points%3D%228%2C10%2012%2C6%2012%2C14%20%20%20%20%22%2F%3E%20%20%20%3Cdefs%3E%20%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter_1_%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%226%22%20width%3D%224%22%20height%3D%228%22%3E%20%20%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20%20type%3D%22matrix%22%20values%3D%22-1%200%200%200%201%20%200%20-1%200%200%201%20%200%200%20-1%200%201%20%200%200%200%201%200%22%20color-interpolation-filters%3D%22sRGB%22%20result%3D%22source%22%2F%3E%20%20%20%20%3C%2Ffilter%3E%20%20%20%3C%2Fdefs%3E%20%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%226%22%20width%3D%224%22%20height%3D%228%22%20id%3D%22SVGID_3_%22%3E%20%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter_1_)%22%3E%20%20%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%229%22%20height%3D%2212%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAF5AAABiQAAAbv%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIAAwACQMBIgACEQEDEQH%2FxABtAAEBAQAAAAAAAAAAAAAAAAACBAYBAQAAAAAAAAAAAAAAAAAAAAAQAAMBAQAAAAAAAAAAAAAAAAACBBATEQACAQMFAQAAAAAAAAAAAAABAhEQQROxEjJSAwQSAQAAAAAAAAAAAAAAAAAAAAD%2F2gAMAwEAAhEDEQAAAMXGif%2FaAAgBAgABBQA%2F%2F9oACAEDAAEFAD%2F%2F2gAIAQEAAQUAjiWicTpn%2F9oACAECAgY%2FAH%2F%2F2gAIAQMCBj8Af%2F%2FaAAgBAQEGPwD6PdnAwIWCXJjSjY54ndHW80%2F%2F2Q%3D%3D%22%20transform%3D%22matrix(1%200%200%201%205%204)%22%3E%20%20%20%20%20%3C%2Fimage%3E%20%20%20%20%3C%2Fg%3E%20%20%20%3C%2Fmask%3E%20%20%20%3Cpolygon%20opacity%3D%220.5%22%20mask%3D%22url(%23SVGID_3_)%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20points%3D%228%2C10%2012%2C6%2012%2C14%20%20%20%20%22%2F%3E%20%20%3C%2Fg%3E%20%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; }
+
+.icon-mail { background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22%D0%A1%D0%BB%D0%BE%D0%B9_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20viewBox%3D%220%200%2049%2049%22%20enable-background%3D%22new%200%200%2049%2049%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M38.8%2C9.9H10.2C8.4%2C9.9%2C7%2C11.3%2C7%2C13.1v19.5c0%2C1.8%2C1.4%2C3.2%2C3.2%2C3.2h28.7c1.8%2C0%2C3.2-1.4%2C3.2-3.2V13.1%20C42%2C11.3%2C40.6%2C9.9%2C38.8%2C9.9z%20M38.5%2C12.1C33.7%2C15.5%2C29%2C19%2C24.2%2C22.4c-4.8-3.4-9.5-6.8-14.3-10.3c0.1%2C0%2C0.2%2C0%2C0.2%2C0%20C10.2%2C12.1%2C38.5%2C12.1%2C38.5%2C12.1z%20M38.8%2C33.6H10.2c-0.5%2C0-1-0.4-1-1V14.3c4.8%2C3.4%2C9.6%2C6.9%2C14.4%2C10.3l0%2C0c0.1%2C0.1%2C0.3%2C0.2%2C0.4%2C0.2%20c0%2C0%2C0%2C0%2C0.1%2C0c0%2C0%2C0.1%2C0%2C0.1%2C0c0%2C0%2C0.1%2C0%2C0.1%2C0c0%2C0%2C0%2C0%2C0.1%2C0c0.2%2C0%2C0.3-0.1%2C0.4-0.2l0%2C0c5-3.6%2C10-7.2%2C15-10.8v18.7%20C39.8%2C33.1%2C39.4%2C33.6%2C38.8%2C33.6z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; }
 
 .icon-right { background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22%D0%A1%D0%BB%D0%BE%D0%B9_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20viewBox%3D%220%200%2020%2020%22%20enable-background%3D%22new%200%200%2020%2020%22%20xml%3Aspace%3D%22preserve%22%3E%3Cg%3E%20%3Cg%20opacity%3D%220.5%22%3E%20%20%3Cpolygon%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23FFFFFF%22%20points%3D%2212%2C11%208%2C15%208%2C7%20%20%20%22%2F%3E%20%20%3Cdefs%3E%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%227%22%20width%3D%224%22%20height%3D%228%22%3E%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20%20type%3D%22matrix%22%20values%3D%22-1%200%200%200%201%20%200%20-1%200%200%201%20%200%200%20-1%200%201%20%200%200%200%201%200%22%20color-interpolation-filters%3D%22sRGB%22%20result%3D%22source%22%2F%3E%20%20%20%3C%2Ffilter%3E%20%20%3C%2Fdefs%3E%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%227%22%20width%3D%224%22%20height%3D%228%22%20id%3D%22SVGID_1_%22%3E%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter)%22%3E%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%229%22%20height%3D%2213%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAF8AAABjQAAAb7%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIAA0ACQMBIgACEQEDEQH%2FxABwAAEBAQAAAAAAAAAAAAAAAAACBAYBAQAAAAAAAAAAAAAAAAAAAAAQAQABBQAAAAAAAAAAAAAAAAADAhMjBAURAAAFAwUAAAAAAAAAAAAAABABEQISMQMTQWGBQgQSAQAAAAAAAAAAAAAAAAAAAAD%2F2gAMAwEAAhEDEQAAAMXGif%2FaAAgBAgABBQB%2F%2F9oACAEDAAEFAH%2F%2F2gAIAQEAAQUAi0aZeeyW3%2F%2FaAAgBAgIGPwB%2F%2F9oACAEDAgY%2FAH%2F%2F2gAIAQEBBj8Au%2BvITXWnxifYkKm4a45cSQP%2F2Q%3D%3D%22%20transform%3D%22matrix(1%200%200%201%205%205)%22%3E%20%20%20%20%3C%2Fimage%3E%20%20%20%3C%2Fg%3E%20%20%3C%2Fmask%3E%20%20%3Cpolygon%20opacity%3D%220.5%22%20mask%3D%22url(%23SVGID_1_)%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22%23FFFFFF%22%20points%3D%2212%2C11%208%2C15%208%2C7%20%20%20%20%20%20%22%2F%3E%20%3C%2Fg%3E%20%3Cg%3E%20%20%3Cg%3E%20%20%20%20%20%20%20%3ClinearGradient%20id%3D%22SVGID_2_%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%2210%22%20y1%3D%2212%22%20x2%3D%2210%22%20y2%3D%228%22%20gradientTransform%3D%22matrix(-4.489659e-011%20-1%201%20-4.489659e-011%200%2020)%22%3E%20%20%20%20%3Cstop%20%20offset%3D%220%22%20style%3D%22stop-color%3A%23576678%22%2F%3E%20%20%20%20%3Cstop%20%20offset%3D%221%22%20style%3D%22stop-color%3A%2373869E%3Bstop-opacity%3A0.6%22%2F%3E%20%20%20%3C%2FlinearGradient%3E%20%20%20%3Cpolygon%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22url(%23SVGID_2_)%22%20points%3D%2212%2C10%208%2C14%208%2C6%20%20%20%20%22%2F%3E%20%20%20%3Cdefs%3E%20%20%20%20%3Cfilter%20id%3D%22Adobe_OpacityMaskFilter_1_%22%20filterUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%226%22%20width%3D%224%22%20height%3D%228%22%3E%20%20%20%20%20%20%20%20%20%20%20%3CfeColorMatrix%20%20type%3D%22matrix%22%20values%3D%22-1%200%200%200%201%20%200%20-1%200%200%201%20%200%200%20-1%200%201%20%200%200%200%201%200%22%20color-interpolation-filters%3D%22sRGB%22%20result%3D%22source%22%2F%3E%20%20%20%20%3C%2Ffilter%3E%20%20%20%3C%2Fdefs%3E%20%20%20%3Cmask%20maskUnits%3D%22userSpaceOnUse%22%20x%3D%228%22%20y%3D%226%22%20width%3D%224%22%20height%3D%228%22%20id%3D%22SVGID_3_%22%3E%20%20%20%20%3Cg%20filter%3D%22url(%23Adobe_OpacityMaskFilter_1_)%22%3E%20%20%20%20%20%20%20%20%20%20%20%3Cimage%20overflow%3D%22visible%22%20width%3D%229%22%20height%3D%2213%22%20xlink%3Ahref%3D%22data%3Aimage%2Fjpeg%3Bbase64%2C%2F9j%2F4AAQSkZJRgABAgEASABIAAD%2F7AARRHVja3kAAQAEAAAAHgAA%2F%2B4AIUFkb2JlAGTAAAAAAQMAEAMCAwYAAAF8AAABjQAAAb7%2F2wCEABALCwsMCxAMDBAXDw0PFxsUEBAUGx8XFxcXFx8eFxoaGhoXHh4jJSclIx4vLzMzLy9AQEBAQEBAQEBAQEBAQEABEQ8PERMRFRISFRQRFBEUGhQWFhQaJhoaHBoaJjAjHh4eHiMwKy4nJycuKzU1MDA1NUBAP0BAQEBAQEBAQEBAQP%2FCABEIAA0ACQMBIgACEQEDEQH%2FxABwAAEBAQAAAAAAAAAAAAAAAAACBAYBAQAAAAAAAAAAAAAAAAAAAAAQAQABBQAAAAAAAAAAAAAAAAADAhMjBAURAAAFAwUAAAAAAAAAAAAAABABEQISMQMTQWGBQgQSAQAAAAAAAAAAAAAAAAAAAAD%2F2gAMAwEAAhEDEQAAAMXGif%2FaAAgBAgABBQB%2F%2F9oACAEDAAEFAH%2F%2F2gAIAQEAAQUAi0aZeeyW3%2F%2FaAAgBAgIGPwB%2F%2F9oACAEDAgY%2FAH%2F%2F2gAIAQEBBj8Au%2BvITXWnxifYkKm4a45cSQP%2F2Q%3D%3D%22%20transform%3D%22matrix(1%200%200%201%205%204)%22%3E%20%20%20%20%20%3C%2Fimage%3E%20%20%20%20%3C%2Fg%3E%20%20%20%3C%2Fmask%3E%20%20%20%3Cpolygon%20opacity%3D%220.5%22%20mask%3D%22url(%23SVGID_3_)%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20points%3D%2212%2C10%208%2C14%208%2C6%20%20%20%20%22%2F%3E%20%20%3C%2Fg%3E%20%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; }
 
