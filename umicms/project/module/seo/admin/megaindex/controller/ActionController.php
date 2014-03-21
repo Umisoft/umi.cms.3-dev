@@ -8,7 +8,9 @@
  */
 namespace umicms\project\module\seo\admin\megaindex\controller;
 
+use umicms\exception\InvalidArgumentException;
 use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\seo\model\MegaindexModel;
 
 /**
@@ -17,24 +19,11 @@ use umicms\project\module\seo\model\MegaindexModel;
 class ActionController extends BaseRestActionController
 {
     /**
-     * @var MegaindexModel $model
-     */
-    private $model;
-
-    /**
-     * @param MegaindexModel $model
-     */
-    public function __construct(MegaindexModel $model)
-    {
-        $this->model = $model;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getQueryActions()
     {
-        return ['method'];
+        return ['siteAnalyze', 'scanYandex'];
     }
 
     /**
@@ -46,14 +35,49 @@ class ActionController extends BaseRestActionController
     }
 
     /**
-     * Вызывает метод API Мегаиндекса
+     * Возвращает данные отчета {@link http://api.megaindex.ru/description/siteAnalyze «Видимость сайта»}
      * @return array
      */
-    public function actionMethod()
+    public function actionSiteAnalyze()
     {
-        $method = $this->getRequiredQueryVar('method');
-        $vars = $this->getAllQueryVars();
-        unset($vars['method']);
-        return $this->model->queryApi($method, $vars);
+        return $this->getModel()->queryApi('siteAnalyze', []);
+    }
+
+    /**
+     * Возвращает данные отчета
+     * {@link http://api.megaindex.ru/description/scan_yandex_position «Получение позиций Яндекс»}
+     * @return array
+     */
+    public function actionScanYandex()
+    {
+        return $this->getModel()->queryApi('scan_yandex_position', []);
+    }
+
+    /**
+     * Создает и возвращает модель для отправки запросов к API Мегаиндекса
+     * @return MegaindexModel
+     * @throws InvalidArgumentException
+     */
+    protected function getModel()
+    {
+        /** @var $component AdminComponent */
+        $component = $this->getComponent();
+        $options = $component->getSettings()['options'];
+        if (!isset($options['login'])) {
+            throw new InvalidArgumentException($this->translate("Option {option} is required", ['option' => 'login']));
+        }
+        if (!isset($options['password'])) {
+            throw new InvalidArgumentException($this->translate(
+                "Option {option} is required",
+                ['option' => 'password']
+            ));
+        }
+        if (!isset($options['siteUrl'])) {
+            throw new InvalidArgumentException($this->translate(
+                "Option {option} is required",
+                ['option' => 'siteUrl']
+            ));
+        }
+        return new MegaindexModel($options['login'], $options['password'], $options['siteUrl']);
     }
 }

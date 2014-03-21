@@ -19,9 +19,9 @@ return [
 
     ],
 
-
     AdminComponent::OPTION_COMPONENTS => [
-        'page' => '{#lazy:~/project/module/structure/admin/page/component.config.php}'
+        'page' => '{#lazy:~/project/module/structure/admin/page/component.config.php}',
+        'layout' => '{#lazy:~/project/module/structure/admin/layout/component.config.php}',
     ],
 
     AdminComponent::OPTION_ROUTES      => [

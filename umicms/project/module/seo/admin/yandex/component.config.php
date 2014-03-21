@@ -6,7 +6,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\seo\admin\megaindex;
+namespace umicms\project\module\seo\admin\yandex;
 
 use umi\route\IRouteFactory;
 use umicms\project\admin\component\AdminComponent;
@@ -15,22 +15,21 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
     AdminComponent::OPTION_MODELS => [
-        'umicms\project\module\seo\model\MegaindexModel'
+        'umicms\project\module\seo\model\YandexModel'
     ],
     AdminComponent::OPTION_SETTINGS => [
         'options' => [
-            'login' => 'megaindex@umisoft.ru',
-            'password' => 'et676e5rj',
-            'siteUrl' => 'umi-cms.ru',
+            'hostId' => '3478487',
+            'oauthToken' => '26ccbadbc7494266a7a0b2981a47d27d',
         ]
     ],
     AdminComponent::OPTION_INTERFACE_CONTROLS => [
-        'megaindexReport' => [],
+        'yandexWebmasterReport' => [],
     ],
     AdminComponent::OPTION_INTERFACE_LAYOUT => [
         'emptyContext' => [
             'contents' => [
-                'controls' => ['megaindexReport']
+                'controls' => ['yandexWebmasterReport']
             ]
         ],
     ],
@@ -46,6 +45,7 @@ return [
                 'controller' => 'action',
             ],
         ],
+
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
