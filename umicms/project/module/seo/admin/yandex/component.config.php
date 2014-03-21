@@ -24,24 +24,14 @@ return [
         ]
     ],
     AdminComponent::OPTION_INTERFACE_CONTROLS => [
-        /*'chart' => [],
-        'counters' => [],
-        'accordion' => [],*/
+        'yandexWebmasterReport' => [],
     ],
     AdminComponent::OPTION_INTERFACE_LAYOUT => [
         'emptyContext' => [
-            /*'tree' => [
-                'controls' => ['accordion']
-            ],
             'contents' => [
-                'controls' => ['counters']
-            ]*/
+                'controls' => ['yandexWebmasterReport']
+            ]
         ],
-        'selectedContext' => [
-            /*'contents' => [
-                'controls' => ['chart', 'accordion']
-            ]*/
-        ]
     ],
     AdminComponent::OPTION_CONTROLLERS => [
         AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',

@@ -25,24 +25,14 @@ return [
         ]
     ],
     AdminComponent::OPTION_INTERFACE_CONTROLS => [
-        /*'chart' => [],
-        'counters' => [],
-        'accordion' => [],*/
+        'megaindexReport' => [],
     ],
     AdminComponent::OPTION_INTERFACE_LAYOUT => [
         'emptyContext' => [
-            /*'tree' => [
-                'controls' => ['accordion']
-            ],
             'contents' => [
-                'controls' => ['counters']
-            ]*/
+                'controls' => ['megaindexReport']
+            ]
         ],
-        'selectedContext' => [
-            /*'contents' => [
-                'controls' => ['chart', 'accordion']
-            ]*/
-        ]
     ],
     AdminComponent::OPTION_CONTROLLERS => [
         AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
