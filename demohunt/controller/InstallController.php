@@ -196,10 +196,12 @@ class InstallController extends SitePageController implements ICollectionManager
         $subjectCollection = $this->getCollectionManager()->getCollection('newsSubject');
 
         $subject1 = $subjectCollection->add()
-            ->setValue('displayName', 'Призраки');
+            ->setValue('displayName', 'Призраки')
+            ->setValue('slug','prizraki');
 
         $subject2 = $subjectCollection->add()
-            ->setValue('displayName', 'Привидения');
+            ->setValue('displayName', 'Привидения')
+            ->setValue('slug','privideniya');
 
         $newsPage = $structureCollection->add('novosti', 'system')
             ->setValue('displayName', 'Новости')
@@ -466,8 +468,8 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_user` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
@@ -492,8 +494,8 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_user_group` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
@@ -512,8 +514,8 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_user_user_group` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
@@ -548,14 +550,14 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_blog_category` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
 
                     `pid` bigint(20) unsigned DEFAULT NULL,
                     `mpath` varchar(255) DEFAULT NULL,
                     `uri` text,
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `order` int(10) unsigned DEFAULT NULL,
                     `level` int(10) unsigned DEFAULT NULL,
                     `child_count` int(10) unsigned DEFAULT '0',
@@ -585,10 +587,10 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_blog_post` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
@@ -617,10 +619,10 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_blog_tag` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
@@ -644,8 +646,8 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_blog_post_tag` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
@@ -669,13 +671,13 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_blog_comment` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `pid` bigint(20) unsigned DEFAULT NULL,
                     `mpath` varchar(255) DEFAULT NULL,
                     `uri` text,
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `order` int(10) unsigned DEFAULT NULL,
                     `level` int(10) unsigned DEFAULT NULL,
                     `child_count` int(10) unsigned DEFAULT '0',
@@ -714,14 +716,14 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_news_rubric` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
 
                     `pid` bigint(20) unsigned DEFAULT NULL,
                     `mpath` varchar(255) DEFAULT NULL,
                     `uri` text,
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `order` int(10) unsigned DEFAULT NULL,
                     `level` int(10) unsigned DEFAULT NULL,
                     `child_count` int(10) unsigned DEFAULT '0',
@@ -754,10 +756,10 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_news_news_item` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
@@ -789,10 +791,10 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_news_subject` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
@@ -819,8 +821,8 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_news_news_item_subject` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
@@ -852,9 +854,9 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_layout` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
-                    `type` varchar(255) DEFAULT NULL,
+                    `type` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
@@ -873,13 +875,13 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_structure` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
-                    `type` varchar(255) DEFAULT NULL,
+                    `type` varchar(255),
                     `pid` bigint(20) unsigned DEFAULT NULL,
                     `mpath` varchar(255) DEFAULT NULL,
                     `uri` text,
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `order` int(10) unsigned DEFAULT NULL,
                     `level` int(10) unsigned DEFAULT NULL,
                     `child_count` int(10) unsigned DEFAULT '0',
@@ -935,9 +937,9 @@ class InstallController extends SitePageController implements ICollectionManager
         $connection->exec(
             "CREATE TABLE `demohunt_search_index` (
                 `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                `guid` varchar(255) DEFAULT NULL,
+                `guid` varchar(255),
                 `version` int(10) unsigned DEFAULT '1',
-                `type` varchar(255) DEFAULT NULL,
+                `type` varchar(255),
                 `date_indexed` datetime DEFAULT NULL,
                 `collection_id` varchar(255) DEFAULT NULL,
                 `ref_guid` varchar(255) DEFAULT NULL,
