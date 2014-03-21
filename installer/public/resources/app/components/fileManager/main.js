@@ -14,7 +14,10 @@ define(['App'], function(UMI){
         didInsertElement: function(){
             //            http://localhost/admin/api/files/manager/settings
             var action = '/admin/api/files/manager/fileManager/connector';//this.controller.get('data');
-            $('#elfinder').elfinder({url : '/admin/api/files/manager/connector'}).elfinder('instance');
+            $('#elfinder').elfinder({
+                url : '/admin/api/files/manager/connector',
+                lang: 'ru'
+            }).elfinder('instance');
         }
     });
 });

@@ -49,10 +49,10 @@
 @import "_icons";
 @import "_login";
 @import "_skeleton";
-@import "_topBar";
+@import "_top-bar";
 @import "_dock";
 @import "_tree";
-@import "_tableControl";
+@import "_table-control";
 @import "_forms";
 @import "_maggelan";
 @import "_dropdown";
@@ -62,6 +62,9 @@
 @import "_alert-boxes";
 @import "_dialog";
 @import "_triangle";
+@import "_search";
+@import "_accordion";
+@import "_table";
 //Перебиваем стили сторонних модулей
 @import "antiVendor/_iScroll";
 @import "antiVendor/_ckEditor";
