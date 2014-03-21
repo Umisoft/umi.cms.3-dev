@@ -36,7 +36,7 @@ define(
         classNames: ['umi-columns'],
         classNameBindings: ['wide'],
         wide: function(){
-            return this.get('meta.type') === 'wysiwyg' ? 'small-12' : 'large-4 medium-12';
+            return this.get('meta.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12';
         }.property('meta.type'),
         layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{label}}</label></div>{{yield}}'),
         template: function(){
@@ -53,10 +53,7 @@ define(
                 case 'wysiwyg':
                     template = Ember.Handlebars.compile('{{html-editor object=object property="' + meta.dataSource + '"}}');
                     break;
-                case 'datetime':
-                    template = Ember.Handlebars.compile('{{date-picker object=object property="' + meta.dataSource + '"}}');
-                    break;
-                case 'number':
+                case 'number': // TODO: Поле типа "number" в firefox не работает
                     template = Ember.Handlebars.compile('{{input type="number" value=object.' + meta.dataSource + '}}');
                     break;
                 case 'checkbox':
@@ -67,6 +64,9 @@ define(
                     break;
                 case 'multi-select':
                     template = Ember.Handlebars.compile('{{view "multiSelect" object=object meta=this}}');
+                    break;
+                case 'datetime':
+                    template = Ember.Handlebars.compile('{{date-picker object=object property="' + meta.dataSource + '"}}');
                     break;
                 case 'file':
                     template = Ember.Handlebars.compile('<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.dataSource + '}}<i class="icon icon-cloud"></i></div>');
