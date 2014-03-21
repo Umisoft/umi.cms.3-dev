@@ -33,7 +33,7 @@ return [
     AdminComponent::OPTION_CONTROLLERS => [
 
         AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        AdminComponent::SETTINGS_CONTROLLER => 'umicms\project\admin\api\controller\SettingsController'
+        AdminComponent::SETTINGS_CONTROLLER =>  __NAMESPACE__ . '\controller\SettingsController'
     ],
     AdminComponent::OPTION_ROUTES => [
         'action' => [

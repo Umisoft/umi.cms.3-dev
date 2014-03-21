@@ -9,14 +9,12 @@
 
 namespace umicms\project\admin\api\controller;
 
-use umi\config\entity\IConfig;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\project\admin\component\AdminComponent;
 
 /**
  * Базовый контроллер действий над объектом.

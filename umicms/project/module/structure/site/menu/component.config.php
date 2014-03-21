@@ -20,7 +20,7 @@ return [
 
     SiteComponent::OPTION_VIEW        => [
         'type'      => 'twig',
-        'extension' => 'tpl.twig',
+        'extension' => 'twig',
         'directory' => __DIR__ . '/template/twig'
     ],
 ];
