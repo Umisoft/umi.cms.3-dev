@@ -23,7 +23,7 @@ class ActionController extends BaseRestActionController
      */
     public function getQueryActions()
     {
-        return ['siteAnalyze', 'scanYandex'];
+        return ['siteAnalyze', 'getBacklinks'];
     }
 
     /**
@@ -40,17 +40,16 @@ class ActionController extends BaseRestActionController
      */
     public function actionSiteAnalyze()
     {
-        return $this->getModel()->queryApi('siteAnalyze', []);
+        return $this->getModel()->queryApi('siteAnalyze');
     }
 
     /**
-     * Возвращает данные отчета
-     * {@link http://api.megaindex.ru/description/scan_yandex_position «Получение позиций Яндекс»}
+     * Возвращает данные отчета {@link http://api.megaindex.ru/description/get_backlinks «Получение ссылок на сайт»}
      * @return array
      */
-    public function actionScanYandex()
+    public function actionGetBacklinks()
     {
-        return $this->getModel()->queryApi('scan_yandex_position', []);
+        return $this->getModel()->queryApi('get_backlinks');
     }
 
     /**
