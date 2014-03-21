@@ -82,6 +82,7 @@ return [
                ],
                 'umicms\project\module\search\api\SearchApi' => [
                     'minimumPhraseLength' => 3,
+                    'minimumWordRootLength' => 3,
                 ],
                 'umicms\project\module\statistics\admin\metrika\model\MetrikaApi' => [
                     'oauthToken' => '4d4d45a7d4dd462ca9f83e4a8f4bd16b',
