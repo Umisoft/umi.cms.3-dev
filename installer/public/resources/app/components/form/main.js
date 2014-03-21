@@ -4,7 +4,7 @@ define(
         'text!./form.hbs',
         'app/components/form/elements/select/main',
         'app/components/form/elements/multiSelect/main',
-        'app/components/form/elements/datepicker/main',
+        'app/components/form/elements/datePicker/main',
         'app/components/form/elements/htmlEditor/main'
     ],
     function(UMI, formTpl){
