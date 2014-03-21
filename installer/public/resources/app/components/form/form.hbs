@@ -1,20 +1,18 @@
 {{#if controller.hasFieldsets}}
-    <div class="magellan-menu s-full-height-before">
-        {{#each formElements in model.viewSettings.form.elements itemController="FormElement"}}
+    {{#view "magellan" elements=model.viewSettings.form.elements}}
+        {{#each formElement in model.viewSettings.form.elements itemController="FormElement"}}
             {{#if controller.isFieldset}}
-                <a href="#{{unbound formElements.name}}">{{formElements.label}}</a>
+                {{#view view.buttonView model=formElement}}{{formElement.label}}{{/view}}
             {{/if}}
         {{/each}}
-    </div>
-    <div class="magellan-menu-holder"></div>
+    {{/view}}
 {{/if}}
-
-<div class="umi-form-control-content">
-    {{#with model.object as object}}
+<div class="row s-full-height collapse">
+    <div class="columns small-12 maggelan-content">
+        {{#with model.object as object}}
             {{#each formElements in model.viewSettings.form.elements itemController="FormElement"}}
                 {{#if controller.isFieldset}}
-                    <a name="{{unbound formElements.name}}"></a>
-                    <fieldset>
+                    <fieldset id="fieldset-{{unbound formElements.name}}">
                         <legend><i class="icon icon-bottom umi-form-control-fieldset-toggle"></i>{{formElements.label}}</legend>
                         {{#each formElements.elements}}
                             {{view "field" objectBinding="object" metaBinding="this"}}
@@ -24,7 +22,8 @@
                     {{view "field" objectBinding="object" metaBinding="this"}}
                 {{/if}}
             {{/each}}
-    {{/with}}
+        {{/with}}
+    </div>
 </div>
 
 <div class="umi-form-drop-up s-unselectable">
@@ -96,49 +95,6 @@
     </div>
 
 </div>
-
-<script type="text/x-handlebars" id="umi-popup">
-    <div class="umi-popup">
-        <div id="elfinder"></div>
-    </div>
-</script>
-
-<script>
-//    $('.umi-show-popup').click(function(){
-//        if($('html').hasClass('cssfilters')){
-//            console.log('blur');
-//            $('.umi-main-view').addClass('umi-blur');
-//            $('body').append('<div class="umi-overlay"></div>');
-//        }else{
-//            console.log('white');
-//            $('body').append('<div class="umi-overlay-white"></div>');
-//        }
-//
-//        $('body').append(document.querySelector('#umi-popup').innerHTML);
-//        var x = $(window).width()/2 - 300;
-//        var y = $(window).height()/2 - 250;
-//        $('.umi-popup').offset({left:x, top:y});
-//
-//        $().ready(function(){
-//            var elf = $('#elfinder').elfinder({
-//                url : '/resources/libs/elfinder/php/connector.php'  // connector URL (REQUIRED)
-//                // lang: 'ru',             // language (OPTIONAL)
-//            }).elfinder('instance');
-//        });
-//
-//        $('body').on('mousedown', function(event){
-//            $('.umi-main-view').removeClass('umi-blur');
-//            $('.umi-overlay').remove();
-//            $('.umi-overlay-white').remove();
-//            $('.umi-popup').remove();
-//        });
-//
-//        $('body').on('.umi-popup', 'mousedown', function(event){
-//            //        console.log('close');
-//            event.stopImmediatePropagation();
-//        });
-//    });
-</script>
 
 <script>
     //Функция вызывается после выполнения всего didInsertelement
