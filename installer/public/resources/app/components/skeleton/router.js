@@ -51,6 +51,7 @@ define([], function(){
                 var self = this;
                 return $.getJSON(UmiSettings.baseApiURL).then(function(results){
                     var result = results.result;
+                    self.controllerFor('application').set('settings', result);
                     if(result.collections){
                         UMI.Utils.modelsFactory(result.collections);
                     }
