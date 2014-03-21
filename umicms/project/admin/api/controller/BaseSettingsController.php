@@ -15,7 +15,7 @@ use umicms\project\admin\component\AdminComponent;
 /**
  * Контроллер вывода настроек компонента
  */
-class SettingsController extends BaseController
+abstract class BaseSettingsController extends BaseController
 {
 
     /**

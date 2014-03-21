@@ -31,7 +31,7 @@ return [
 
     AdminComponent::OPTION_CONTROLLERS => [
         'connector' => __NAMESPACE__ . '\controller\ConnectorController',
-        AdminComponent::SETTINGS_CONTROLLER => 'umicms\project\admin\api\controller\SettingsController'
+        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
     ],
 
     AdminComponent::OPTION_ROUTES      => [
