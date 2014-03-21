@@ -1,0 +1,31 @@
+{% import 'macros.twig' as menuMacro%}
+
+{% if (menu) %}
+
+    {% block body %}
+        {% block start %}
+        {% endblock %}
+            {% for branch in menu %}
+                {% block item_start %}{% endblock %}
+                    {% if branch.active %}
+                        {% block item_active %}{% endblock %}
+                    {% else %}
+                        {% block item %}{% endblock %}
+                    {% endif %}
+                    {% block item_end %}
+                {% endblock %}
+            {% endfor %}
+        {% block end %}
+        {% endblock %}
+    {% endblock %}
+
+    {{ menuMacro.test(true) }}
+
+{% else %}
+    {% block empty %}
+    {% endblock %}
+{% endif %}
+
+{% block start_test %}
+    <p>test1</p>
+{% endblock %}

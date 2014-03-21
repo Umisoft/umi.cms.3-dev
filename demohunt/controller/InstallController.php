@@ -431,6 +431,49 @@ class InstallController extends SitePageController implements ICollectionManager
         $price->getProperty('componentName')->setValue('structure');
         $price->getProperty('componentPath')->setValue('structure');
 
+
+        $menuItem1 = $structureCollection->add('menu_item_1', 'static')
+            ->setValue('displayName', 'Menu Item 1')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
+        $menuItem1->getProperty('componentName')->setValue('structure');
+        $menuItem1->getProperty('componentPath')->setValue('structure');
+
+        $menuItem11 = $structureCollection->add('menu_item_1_1', 'static', $menuItem1)
+            ->setValue('displayName', 'Menu Item 1.1')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
+        $menuItem11->getProperty('componentName')->setValue('structure');
+        $menuItem11->getProperty('componentPath')->setValue('structure');
+
+        $menuItem12 = $structureCollection->add('menu_item_1_2', 'static', $menuItem1)
+            ->setValue('displayName', 'Menu Item 1.2')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
+        $menuItem12->getProperty('componentName')->setValue('structure');
+        $menuItem12->getProperty('componentPath')->setValue('structure');
+
+        $menuItem121 = $structureCollection->add('menu_item_1_2_1', 'static', $menuItem12)
+            ->setValue('displayName', 'Menu Item 1.2.1')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
+        $menuItem121->getProperty('componentName')->setValue('structure');
+        $menuItem121->getProperty('componentPath')->setValue('structure');
+
+        $menuItem122 = $structureCollection->add('menu_item_1_2_2', 'static', $menuItem12)
+            ->setValue('displayName', 'Menu Item 1.2.2')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
+        $menuItem122->getProperty('componentName')->setValue('structure');
+        $menuItem122->getProperty('componentPath')->setValue('structure');
+
+        $menuItem1221 = $structureCollection->add('menu_item_1_2_2_1', 'static', $menuItem122)
+            ->setValue('displayName', 'Menu Item 1.2.2.1')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
+        $menuItem1221->getProperty('componentName')->setValue('structure');
+        $menuItem1221->getProperty('componentPath')->setValue('structure');
+
     }
 
     protected function installDbStructure()

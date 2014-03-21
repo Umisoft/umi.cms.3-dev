@@ -19,8 +19,8 @@ return [
     ],
 
     SiteComponent::OPTION_VIEW        => [
-        'type'      => 'php',
-        'extension' => 'phtml',
-        'directory' => __DIR__ . '/template/php'
-    ]
+        'type'      => 'twig',
+        'extension' => 'tpl.twig',
+        'directory' => __DIR__ . '/template/twig'
+    ],
 ];

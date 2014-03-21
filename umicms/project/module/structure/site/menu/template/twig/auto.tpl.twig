@@ -1,0 +1,21 @@
+{% extends "auto.twig" %}
+
+{% block start %}
+    <ul>
+{% endblock %}
+
+{% block end %}
+    </ul>
+{% endblock %}
+
+{% block item_start %}<li>{% endblock %}
+{% block item_end %}</li>{% endblock %}
+
+{% block item %}
+    <a href="{{ branch.page.getPageUrl() }}">{{ branch.page.displayName }}</a>
+{% endblock %}
+
+{% block item_active %}
+      {{ branch.page.displayName }}
+{% endblock %}
+
