@@ -15,22 +15,18 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
     AdminComponent::OPTION_INTERFACE_CONTROLS => [
-        'chart' => [],
         'counters' => [],
-        'accordion' => [],
+        'counter' => [],
     ],
     AdminComponent::OPTION_INTERFACE_LAYOUT => [
         'emptyContext' => [
-            'tree' => [
-                'controls' => ['accordion']
-            ],
             'contents' => [
                 'controls' => ['counters']
             ]
         ],
         'selectedContext' => [
             'contents' => [
-                'controls' => ['chart', 'accordion']
+                'controls' => ['counter']
             ]
         ]
     ],
