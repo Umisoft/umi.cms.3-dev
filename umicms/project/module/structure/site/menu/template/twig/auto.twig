@@ -1,31 +1,24 @@
-{% import 'macros.twig' as menuMacro%}
+{% extends "auto.base.twig" %}
 
-{% if (menu) %}
+{% block start %}
+    <ul>
+{% endblock %}
 
-    {% block body %}
-        {% block start %}
-        {% endblock %}
-            {% for branch in menu %}
-                {% block item_start %}{% endblock %}
-                    {% if branch.active %}
-                        {% block item_active %}{% endblock %}
-                    {% else %}
-                        {% block item %}{% endblock %}
-                    {% endif %}
-                    {% block item_end %}
-                {% endblock %}
-            {% endfor %}
-        {% block end %}
-        {% endblock %}
-    {% endblock %}
+{% block end %}
+    </ul>
+{% endblock %}
 
-    {{ menuMacro.test(true) }}
+{% block item_start %}<li>{% endblock %}
+{% block item_end %}</li>{% endblock %}
 
-{% else %}
-    {% block empty %}
-    {% endblock %}
-{% endif %}
+{% block item_default %}
+    <a href="{{ branch.page.getPageUrl() }}">{{ branch.page.displayName }}</a>
+{% endblock %}
 
-{% block start_test %}
-    <p>test1</p>
+{% block item_active %}
+    <a href="{{ branch.page.getPageUrl() }}" class="active">{{ branch.page.displayName }}</a>
+{% endblock %}
+
+{% block item_current %}
+    {{ branch.page.displayName }}
 {% endblock %}
