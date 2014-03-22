@@ -51,7 +51,7 @@ class MegaindexModel implements IModel
      * @param array $params Дополнительные параметры запроса
      * @return array
      */
-    public function queryApi($method, $params)
+    public function queryApi($method, $params = [])
     {
         $paramsMerged = array_merge(
             [
@@ -62,6 +62,7 @@ class MegaindexModel implements IModel
             $params
         );
         $paramsMerged['method'] = $method;
-        return \GuzzleHttp\get('http://api.megaindex.ru/', ['query' => $paramsMerged])->json(['object'=>false]);
+        return \GuzzleHttp\get('http://api.megaindex.ru/', ['query' => $paramsMerged])
+            ->json(['object' => false]);
     }
 }

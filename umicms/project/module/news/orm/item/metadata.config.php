@@ -113,8 +113,18 @@ return [
             'targetField'  => 'subject',
             'readOnly'     => true
         ],
-        NewsItem::FIELD_DATE                  => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'date']
-
+        NewsItem::FIELD_DATE                  => [
+            'type' => IField::TYPE_DATE_TIME,
+            'columnName' => 'date'
+        ],
+        NewsItem::FIELD_OWNER => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'owner_id',
+        ],
+        NewsItem::FIELD_EDITOR => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'editor_id',
+        ]
     ],
     'types'      => [
         'base' => [
@@ -141,7 +151,9 @@ return [
                 NewsItem::FIELD_ANNOUNCEMENT,
                 NewsItem::FIELD_SUBJECTS,
                 NewsItem::FIELD_DATE,
-                NewsItem::FIELD_TRASHED
+                NewsItem::FIELD_TRASHED,
+                NewsItem::FIELD_OWNER,
+                NewsItem::FIELD_EDITOR
             ]
         ]
     ]

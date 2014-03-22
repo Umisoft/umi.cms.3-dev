@@ -65,7 +65,14 @@ return [
         Layout::FIELD_CREATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
         Layout::FIELD_UPDATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
         Layout::FIELD_FILE_NAME    => ['type' => IField::TYPE_STRING, 'columnName' => 'file_name'],
-
+        Layout::FIELD_OWNER => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'owner_id',
+        ],
+        Layout::FIELD_EDITOR => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'editor_id',
+        ]
     ],
     'types'      => [
         'base' => [
@@ -80,7 +87,9 @@ return [
                 Layout::FIELD_LOCKED,
                 Layout::FIELD_CREATED,
                 Layout::FIELD_UPDATED,
-                Layout::FIELD_FILE_NAME
+                Layout::FIELD_FILE_NAME,
+                Layout::FIELD_OWNER,
+                Layout::FIELD_EDITOR
             ]
         ]
     ]
