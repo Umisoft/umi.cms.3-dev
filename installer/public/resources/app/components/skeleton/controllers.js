@@ -60,7 +60,7 @@ define([], function(){
                     sideBarControl = Ember.Object.create(sideBarControl);
                 }
                 return sideBarControl;
-            }.property('settings', 'selectedContext')
+            }.property('settings')
         });
     };
 });
