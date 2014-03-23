@@ -329,7 +329,6 @@ var jdPicker = (function($){
         },
 
         show: function(){
-            console.log('show');
             $('.error_msg', this.rootLayers).css('display', 'none');
             this.rootLayers.show();
             $([window, document.body]).on('click.umi.datepicker', this.hideIfClickOutside);
