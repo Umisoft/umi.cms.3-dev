@@ -180,7 +180,7 @@ class Bootstrap implements IProjectConfigAware
         global $umicmsStartTime;
 
         $response->headers->set('X-Generated-By', 'UMI.CMS');
-        $response->headers->set('X-Memory-Usage', memory_get_usage(true));
+        $response->headers->set('X-Memory-Usage', round(memory_get_usage(true) / 1048576, 2) . ' Mib');
         if ($umicmsStartTime > 0) {
             $response->headers->set('X-Generation-Time', round(microtime(true) - $umicmsStartTime, 3));
         }
