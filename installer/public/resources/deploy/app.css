@@ -2861,7 +2861,7 @@ button, .button {
 
 .dropdown.button {
   position: relative;
-  padding-right: 3.5625rem; }
+  padding-right: 1.6875rem; }
   .dropdown.button:before {
     position: absolute;
     content: "";
@@ -2872,9 +2872,9 @@ button, .button {
     border-color: #fff transparent transparent transparent;
     top: 50%; }
   .dropdown.button:before {
-    border-width: 0.375rem;
-    right: 1.40625rem;
-    margin-top: -0.15625rem; }
+    border-width: 4px;
+    right: 0.75rem;
+    margin-top: -0.125rem; }
   .dropdown.button:before {
     border-color: #fff transparent transparent transparent; }
   .dropdown.button.tiny {
@@ -3946,7 +3946,7 @@ ul.pagination {
 
 .split.button {
   position: relative;
-  padding-right: 5.0625rem; }
+  padding-right: 4.5rem; }
   .split.button span {
     display: block;
     height: 100%;
@@ -3968,10 +3968,10 @@ ul.pagination {
   .split.button span {
     border-left-color: rgba(255, 255, 255, 0.5); }
   .split.button span {
-    width: 3.09375rem; }
+    width: 2.75rem; }
     .split.button span:before {
       border-top-style: solid;
-      border-width: 0.375rem;
+      border-width: 0.3125rem;
       top: 48%;
       margin-left: -0.375rem; }
   .split.button span:before {
@@ -6112,29 +6112,20 @@ select {
   visibility: visible;
   opacity: 1; }
 
-.umi-form-drop-up {
+.umi-form-control-buttons {
   position: fixed;
   bottom: 0;
-  right: 20px;
-  z-index: 10; }
-
-.umi-dropdown-button {
-  position: relative; }
-
-.umi-dropdown {
-  position: absolute;
-  bottom: 34px;
-  right: 0;
-  width: 400px;
-  background: #FFFFFF;
-  font-size: 13px;
-  color: #6d7580;
-  box-shadow: 0 0 3px 3px #6d7580; }
-
-.umi-dropdown-row {
-  float: left;
-  width: 100%;
-  height: 34px; }
+  right: 15px;
+  z-index: 10;
+  background: #fff;
+  box-shadow: 0 0 6px 1px #D1D1D1; }
+  .umi-form-control-buttons > li > .button {
+    margin-bottom: 0;
+    border-color: rgba(141, 141, 141, 0.5);
+    border-left-width: 1px;
+    border-right: 0; }
+    .umi-form-control-buttons > li > .button:last-child {
+      border-right-width: 1px; }
 
 .umi-dropdown-row .right div {
   float: left;
@@ -6492,6 +6483,35 @@ select {
   .f-dropdown.dark a {
     color: #FFF; }
 
+.umi-dropup {
+  position: absolute;
+  bottom: 100%; }
+
+.button.dropup {
+  position: relative;
+  padding-right: 1.6875rem;
+  border-color: transparent;
+  border-bottom-color: #fff; }
+  .button.dropup:before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    display: block;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+    top: 50%; }
+  .button.dropup:before {
+    border-width: 4px;
+    right: 0.75rem;
+    margin-top: -0.125rem; }
+  .button.dropup:before {
+    border-color: #fff transparent transparent transparent; }
+  .button.dropup:before {
+    margin-top: -0.375rem; }
+  .button.dropup.white:before {
+    border-bottom-color: #333; }
+
 input[type="checkbox"] {
   position: absolute;
   overflow: hidden;
@@ -6826,7 +6846,7 @@ label {
   width: 0;
   height: 0;
   vertical-align: top;
-  border: 3px solid transparent;
+  border: 4px solid transparent;
   content: "";
   position: relative;
   border-top-color: #222; }
@@ -6836,7 +6856,7 @@ label {
   width: 0;
   height: 0;
   vertical-align: top;
-  border: 3px solid transparent;
+  border: 4px solid transparent;
   content: "";
   position: relative;
   border-bottom-color: #222; }
@@ -6846,7 +6866,7 @@ label {
   width: 0;
   height: 0;
   vertical-align: top;
-  border: 3px solid transparent;
+  border: 4px solid transparent;
   content: "";
   position: relative;
   border-bottom-color: #FFF; }
@@ -6856,7 +6876,7 @@ label {
   width: 0;
   height: 0;
   vertical-align: top;
-  border: 3px solid transparent;
+  border: 4px solid transparent;
   content: "";
   position: relative;
   border-left-color: #222; }
@@ -6866,7 +6886,7 @@ label {
   width: 0;
   height: 0;
   vertical-align: top;
-  border: 3px solid transparent;
+  border: 4px solid transparent;
   content: "";
   position: relative;
   border-left-color: #FFF; }
@@ -6876,7 +6896,7 @@ label {
   width: 0;
   height: 0;
   vertical-align: top;
-  border: 3px solid transparent;
+  border: 4px solid transparent;
   content: "";
   position: relative;
   border-top-color: #222; }
@@ -6886,7 +6906,7 @@ label {
   width: 0;
   height: 0;
   vertical-align: top;
-  border: 3px solid transparent;
+  border: 4px solid transparent;
   content: "";
   position: relative;
   border-top-color: #FFF; }
@@ -6896,7 +6916,7 @@ label {
   width: 0;
   height: 0;
   vertical-align: top;
-  border: 3px solid transparent;
+  border: 4px solid transparent;
   content: "";
   position: relative;
   border-right-color: #222; }
@@ -6906,14 +6926,21 @@ label {
   width: 0;
   height: 0;
   vertical-align: top;
-  border: 3px solid transparent;
+  border: 4px solid transparent;
   content: "";
   position: relative;
   border-right-color: #FFF; }
 
 .prefix .triangle, .postfix .triangle {
   top: 50%;
-  margin-top: -1.5px; }
+  margin-top: -2px; }
+
+.button .triangle {
+  margin-top: 6px; }
+.button .triangle-top, .button .triangle-top-white {
+  margin-top: 3px; }
+.button .triangle-right, .button .triangle-right-white, .button .triangle-left, .button .triangle-left-white {
+  margin-top: 3px; }
 
 .iScrollIndicator {
   background: rgba(123, 137, 156, 0.9) !important;

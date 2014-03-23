@@ -74,6 +74,11 @@
     }
 }
 
+.umi-dropup{
+    position: absolute;
+    bottom: 100%;
+}
+
 $dropup-button-pip-top-med: -$button-pip-med;
 
 .button.dropup{
