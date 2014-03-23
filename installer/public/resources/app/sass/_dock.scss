@@ -3,6 +3,7 @@
 $umi-dock-z-index: 1;
 $dock-img-padding: 11px;
 $dock-z-index: 10;
+$dock-components-height: 35;
 
 .umi-dock{
     border-top: 1px solid #5c6472;
@@ -11,7 +12,7 @@ $dock-z-index: 10;
         background-image: linear-gradient(#404959, #181b21);
         position: relative;
         z-index: 10;
-        height: $umi-dock-height - 36;
+        height: $umi-dock-height - $dock-components-height - 3;
     }
     .dock-wrapper-bg{
         background-image: linear-gradient(#404959, #181b21);
@@ -149,12 +150,12 @@ $dock-z-index: 10;
     background: linear-gradient(#FFFFFF, #E0E4E7);
     border-bottom: 1px solid #98a0aa;
     text-align: center;
-    height: rem-calc(35);
+    height: rem-calc($dock-components-height);
     .components-nav{
         display: inline-block;
         a{
-            height: rem-calc(35);
-            line-height: rem-calc(35);
+            height: rem-calc($dock-components-height);
+            line-height: rem-calc($dock-components-height);
             vertical-align: middle;
             padding: 0 25px;
             color: #575e6c;

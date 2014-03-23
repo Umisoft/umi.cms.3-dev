@@ -32,7 +32,7 @@ body{
 .off-canvas-wrap{
     &.move-right{
         //TODO привязано к px, а не к rem-calc
-        width: unquote("calc(100% - 250px)");
+        width: unquote("calc(100% - 255px)");
         overflow: visible;
     }
 }
