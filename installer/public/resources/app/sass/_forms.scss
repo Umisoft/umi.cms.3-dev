@@ -258,34 +258,13 @@ select{
 
 .umi-input-wrapper-date{
     position: relative;
-    height: 32px;
-    border-radius: 2px;
-    font-size: 13px;
-    background: #FFFFFF;
-    border: 1px solid #d3d7da;
-    padding-right: 30px;
-    //     margin-right: 25px;
-    margin-bottom: rem-calc(16);
-    //     max-width: 400px;
-    input{ //TODO Костыльные стили переопределить нормальным образом для foundation
-        border: none!important;
-        box-shadow: none!important;
-        background: #FFFFFF!important;
-        box-sizing: border-box;
-        &:hover{
-            border: none!important;
-            box-shadow: none!important;
-        }
-        &:active{
-            border: none!important;
-            box-shadow: none!important;
-            background: #FFFFFF!important;
-        }
+    input{
+        cursor: default !important;
     }
-    i{
+    .icon{
         position: absolute;
-        top: 6px;
-        right: 8px;
+        right: 10px;
+        top: 5px;
     }
 }
 

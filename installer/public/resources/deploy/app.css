@@ -6226,31 +6226,13 @@ select {
   width: 20px; }
 
 .umi-input-wrapper-date {
-  position: relative;
-  height: 32px;
-  border-radius: 2px;
-  font-size: 13px;
-  background: #FFFFFF;
-  border: 1px solid #d3d7da;
-  padding-right: 30px;
-  margin-bottom: 1rem; }
+  position: relative; }
   .umi-input-wrapper-date input {
-    border: none !important;
-    box-shadow: none !important;
-    background: #FFFFFF !important;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box; }
-    .umi-input-wrapper-date input:hover {
-      border: none !important;
-      box-shadow: none !important; }
-    .umi-input-wrapper-date input:active {
-      border: none !important;
-      box-shadow: none !important;
-      background: #FFFFFF !important; }
-  .umi-input-wrapper-date i {
+    cursor: default !important; }
+  .umi-input-wrapper-date .icon {
     position: absolute;
-    top: 6px;
-    right: 8px; }
+    right: 10px;
+    top: 5px; }
 
 .umi-input-wrapper-number {
   position: relative;
