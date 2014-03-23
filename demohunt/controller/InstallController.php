@@ -529,8 +529,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
-
                     `login` varchar(255) DEFAULT NULL,
                     `email` varchar(255) DEFAULT NULL,
                     `password` varchar(255) DEFAULT NULL,
@@ -558,7 +556,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `group_guid` (`guid`),
@@ -581,7 +578,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `user_id` bigint(20) unsigned,
                     `user_group_id` bigint(20) unsigned,
@@ -631,7 +627,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
@@ -665,7 +660,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `date` datetime DEFAULT NULL,
                     `contents` text,
@@ -702,7 +696,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
@@ -732,7 +725,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `post_id` bigint(20) unsigned,
                     `tag_id` bigint(20) unsigned,
@@ -770,7 +762,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `contents` text,
                     `post_id` bigint(20) unsigned,
@@ -822,7 +813,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
@@ -859,7 +849,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `date` datetime DEFAULT NULL,
                     `contents` text,
@@ -898,7 +887,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
@@ -931,7 +919,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `news_item_id` bigint(20) unsigned,
                     `subject_id` bigint(20) unsigned,
@@ -969,7 +956,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `file_name` varchar(255) DEFAULT NULL,
 
@@ -1003,7 +989,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
@@ -1062,7 +1047,6 @@ class InstallController extends SitePageController implements ICollectionManager
                 `updated` datetime DEFAULT NULL,
                 `owner_id` bigint(20) unsigned DEFAULT NULL,
                 `editor_id` bigint(20) unsigned DEFAULT NULL,
-                `permissions` int(10) unsigned DEFAULT 0,
 
                 `date_indexed` datetime DEFAULT NULL,
                 `collection_id` varchar(255) DEFAULT NULL,
