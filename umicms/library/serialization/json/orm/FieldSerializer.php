@@ -14,13 +14,17 @@ use umi\orm\metadata\field\BaseField;
 use umi\orm\metadata\field\IRelationField;
 use umi\orm\metadata\field\relation\HasManyRelationField;
 use umi\orm\metadata\field\relation\ManyToManyRelationField;
+use umi\validation\IValidationAware;
+use umi\validation\TValidationAware;
 use umicms\serialization\json\BaseSerializer;
 
 /**
  * JSON-сериализатор для поля объекта.
  */
-class FieldSerializer extends BaseSerializer
+class FieldSerializer extends BaseSerializer implements IValidationAware
 {
+
+    use TValidationAware;
 
     /**
      * @var ITranslator $translator транслятор для перевода лейблов элементов
@@ -53,10 +57,13 @@ class FieldSerializer extends BaseSerializer
         ];
 
         if ($validatorsConfig = $field->getValidatorsConfig()) {
+
             $info['validators'] = [];
             foreach ($validatorsConfig as $validatorType => $validatorOptions) {
+                $validator = $this->createValidator($validatorType, $validatorOptions);
                 $info['validators'][] = [
                     'type' => $validatorType,
+                    'message' => $this->translator->translate($dictionaries, $validator->getErrorLabel()),
                     'options' => $validatorOptions
                 ];
             }
