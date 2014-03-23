@@ -13,6 +13,7 @@ use umicms\hmvc\url\TUrlManagerAware;
 
 /**
  * Трейт для поддержки страниц.
+ * @mixin ICmsPage
  */
 trait TCmsPage
 {
