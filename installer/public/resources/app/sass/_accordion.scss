@@ -1,0 +1,46 @@
+.umi-accordion{
+    margin: 0;
+    font-size: rem-calc(13);
+    list-style-type: none;
+    span{
+        display: block;
+        height: 33px;
+        line-height: 34px;
+        padding: rem-calc(0 20);
+        background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);
+        background: linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
+        border-bottom: 1px solid #98A2AB;
+        cursor: pointer;
+        &:hover{
+            background: #EEEEEE;
+            color: #000000;
+        }
+    }
+    ul{
+        margin: 0;
+    }
+}
+
+.umi-accordion-trigger li{
+    height: 24px;
+    padding-left: 30px;
+    font-size: 13px;
+    display: none;
+//    &:first-of-type{
+//        padding-top: 10px;
+//    }
+//    &:last-of-type{
+//        padding-bottom: 10px;
+//    }
+    a{
+        text-decoration: none;
+        color: #535E6D;
+        &:hover{
+            border-bottom: 1px solid #535E6D;
+        }
+    }
+}
+
+.umi-accordion-trigger.active li{
+    display: block;
+}

@@ -11,6 +11,7 @@ namespace umicms\orm\object;
 
 use umi\orm\object\HierarchicObject;
 use umi\orm\objectset\IObjectSet;
+use umi\orm\selector\ISelector;
 
 /**
  * Класс иерархического объекта UMI.CMS.

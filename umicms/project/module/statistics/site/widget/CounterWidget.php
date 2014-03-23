@@ -10,7 +10,7 @@ namespace umicms\project\module\statistics\site\widget;
 
 use InvalidArgumentException;
 use umicms\hmvc\widget\BaseWidget;
-use umicms\project\module\statistics\api\MetrikaApi;
+use umicms\project\module\statistics\admin\metrika\model\MetrikaApi;
 
 /**
  * Получает от Яндекс.Метрики и выводит HTML-код счетчика,

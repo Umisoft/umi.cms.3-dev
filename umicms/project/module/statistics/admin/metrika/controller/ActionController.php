@@ -13,7 +13,7 @@ use umi\http\Response;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\InvalidArgumentException;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\module\statistics\api\MetrikaApi;
+use umicms\project\module\statistics\admin\metrika\model\MetrikaApi;
 
 /**
  * Контроллер операций компонента Метрики.
@@ -96,6 +96,19 @@ class ActionController extends BaseRestActionController
     public function actionCounters()
     {
         $counters = $this->api->listCounters();
+        $counters['labels'] = [
+            'site' => $this->translate('component:metrika:countersSite'),
+            'code_status' => $this->translate('component:metrika:countersCodeStatus'),
+            'permission' => $this->translate('component:metrika:countersPermission'),
+            'name' => $this->translate('component:metrika:countersName'),
+            'id' => $this->translate('component:metrika:countersId'),
+            'type' => $this->translate('component:metrika:countersType'),
+            'owner_login' => $this->translate('component:metrika:countersOwnerLogin')
+        ];
+        foreach ($counters['counters'] as &$counter) {
+            $counter['code_status'] = $this->translate($counter['code_status']);
+        }
+
         return $counters;
     }
 

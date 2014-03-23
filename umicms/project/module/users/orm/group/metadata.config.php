@@ -73,6 +73,14 @@ return [
             'targetField'  => 'user',
             'readOnly'     => true
         ],
+        Group::FIELD_OWNER => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'owner_id',
+        ],
+        Group::FIELD_EDITOR => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'editor_id',
+        ],
     ],
     'types'      => [
         'base' => [
@@ -87,6 +95,8 @@ return [
                 Group::FIELD_CREATED,
                 Group::FIELD_UPDATED,
                 Group::FIELD_DISPLAY_NAME,
+                Group::FIELD_OWNER,
+                Group::FIELD_EDITOR,
             ]
         ]
     ]

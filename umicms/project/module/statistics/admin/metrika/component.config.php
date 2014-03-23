@@ -15,29 +15,25 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
     AdminComponent::OPTION_INTERFACE_CONTROLS => [
-        'chart' => [],
         'counters' => [],
-        'accordion' => [],
+        'counter' => [],
     ],
     AdminComponent::OPTION_INTERFACE_LAYOUT => [
         'emptyContext' => [
-            'tree' => [
-                'controls' => ['accordion']
-            ],
             'contents' => [
                 'controls' => ['counters']
             ]
         ],
         'selectedContext' => [
             'contents' => [
-                'controls' => ['chart', 'accordion']
+                'controls' => ['counter']
             ]
         ]
     ],
     AdminComponent::OPTION_CONTROLLERS => [
 
         AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        AdminComponent::SETTINGS_CONTROLLER => 'umicms\project\admin\api\controller\SettingsController'
+        AdminComponent::SETTINGS_CONTROLLER =>  __NAMESPACE__ . '\controller\SettingsController'
     ],
     AdminComponent::OPTION_ROUTES => [
         'action' => [

@@ -26,9 +26,11 @@ define(['App'], function(UMI){
             columnsWidth: function(){
                 var meta = this.get('controller').get('content').viewSettings;
                 var columnsWidthArray = [];
+
                 if(!meta){
                     throw new Error('Нет метаданных для таблицы.');
                 } else{
+                    //Получаем массив с ширинами столбцов таблицы
                     for(var i = 0; i < meta.columns.length; i++){
                         columnsWidthArray.push(meta.columns[i].width);
                     }
@@ -46,6 +48,7 @@ define(['App'], function(UMI){
                  *
                  */
                 var that = this;
+
                 $('body').append(function(){
                     var result = '';
                     //nth-of-type начинает отсчёт не с нуля, а с единицы
@@ -63,6 +66,7 @@ define(['App'], function(UMI){
 
             fakeDidInsertElement: function(){
 
+                //TODO Вынести в библиотеку
                 window.RAF = (function(){
                     return window.requestAnimationFrame || //                        window.webkitRequestAnimationFrame ||
                         //                        window.mozRequestAnimationFrame    ||
@@ -178,8 +182,12 @@ define(['App'], function(UMI){
                                 //Вставляем элемент перед выбранной колонкой
                                 //TODO Сделать код универсальным - перебор строк в заголовке, а не для кажой по-отдельности
                                 $('.umi-table-header-column').before(function(){
+                                    console.log('index', $(this).index('.umi-table-header-column'));
+                                    console.log('currentColumn', currentColumn);
                                     if($(this).index('.umi-table-header-column') === currentColumn){
                                         return detachHeaderTitleCells.shift();
+                                    } else {
+                                        console.log('Условие не отработало');
                                     }
                                 });
 
@@ -335,18 +343,24 @@ define(['App'], function(UMI){
                     $(this).css({'background': '#444444'});
                     var columnNumber = $(this).index('.umi-table-column-resizer');
                     var columnWidth;
-                    var parentLeft = $(this).parent().offset().left;
-
+                    var columnOffsetLeft = $(this).parent().offset().left;
+                    var tableContentLeft = $('.umi-table').offset().left;
+                    var tableContentRightBorder = tableContentLeft + $('.umi-table').width() - 30;
                     var rows = document.querySelectorAll('.umi-table tr').length;
+                    var y = tableControlScroll.y;
 
                     $('body').on('mousemove', this, function(event){
-                        columnWidth = event.pageX - parentLeft - 20; // -20 - компенсация padding
+                        columnWidth = event.pageX - columnOffsetLeft - 20; // -20 - компенсация padding
                         if(columnWidth > 59){
                             window.RAF(function(){
                                 document.querySelector('.umi-table-titles').querySelectorAll('.umi-table-title-div')[columnNumber].style.width = columnWidth + 'px';
                                 document.querySelector('.umi-table-filters').querySelectorAll('.umi-table-filter-div')[columnNumber].style.width = columnWidth + 'px';
                                 for(var i = 0; i < rows; i++){
                                     document.querySelector('.umi-table').querySelectorAll('.umi-table-tr')[i].querySelectorAll('.umi-table-cell-div')[columnNumber].style.width = columnWidth + 'px';
+                                }
+                                if(event.pageX > tableContentRightBorder && columnWidth < 500){
+                                    var x = tableContentLeft + columnOffsetLeft + columnWidth + 30;
+                                    tableControlScroll.scrollTo(x, y);
                                 }
                             });
                         }
@@ -414,7 +428,6 @@ define(['App'], function(UMI){
                 //Переключение кнопки сортировки вверх-вниз
                 $('.umi-table-sort-column').mousedown(function(){
                     $(this).toggleClass('icon-bottom-thin icon-top-thin');
-
                 });
 
                 //Выделение всех checkbox

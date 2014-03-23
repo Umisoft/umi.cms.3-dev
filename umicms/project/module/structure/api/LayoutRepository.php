@@ -89,4 +89,16 @@ class LayoutRepository extends BaseObjectRepository implements ISiteSettingsAwar
         }
     }
 
+    /**
+     * Помечает шаблон на удаление.
+     * @param Layout $layout
+     * @return $this
+     */
+    public function delete(Layout $layout)
+    {
+        $this->getCollection()->delete($layout);
+
+        return $this;
+    }
+
 }

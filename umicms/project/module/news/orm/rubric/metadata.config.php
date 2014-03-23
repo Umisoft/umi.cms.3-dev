@@ -151,6 +151,14 @@ return [
             'target'      => 'newsRubric',
             'targetField' => NewsRubric::FIELD_PARENT,
             'readOnly'    => true
+        ],
+        NewsRubric::FIELD_OWNER => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'owner_id',
+        ],
+        NewsRubric::FIELD_EDITOR => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'editor_id',
         ]
     ],
     'types'      => [
@@ -182,7 +190,9 @@ return [
                 NewsRubric::FIELD_PAGE_LAYOUT,
                 NewsRubric::FIELD_NEWS,
                 NewsRubric::FIELD_CHILDREN,
-                NewsRubric::FIELD_TRASHED
+                NewsRubric::FIELD_TRASHED,
+                NewsRubric::FIELD_OWNER,
+                NewsRubric::FIELD_EDITOR
             ]
         ]
     ]

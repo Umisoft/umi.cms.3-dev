@@ -74,6 +74,9 @@ select{
         box-shadow: 0 0 5px #999999;
         outline: none;
     }
+    option{
+        line-height: normal;
+    }
 }
 
 .prefix,
@@ -372,6 +375,18 @@ select{
             margin-bottom: 4px;
         }
     }
+    &.opened{
+        .umi-multi-select-input{
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            &:focus{
+                background: #fff;
+            }
+        }
+        .postfix{
+            border-bottom-right-radius: 0;
+        }
+    }
 }
 
 .umi-multi-select-input{
@@ -379,9 +394,10 @@ select{
     @include form-element;
     margin-bottom: $form-spacing / 2;
     padding-right: 36px;
+    position: relative;
     &:focus{
         ~ .postfix{
-            border-left: 1px solid #A0A0A0;
+            border-left: 1px solid #E6E3E3;
         }
     }
 }
@@ -392,15 +408,16 @@ select{
     top: 100%;
     left: 0;
     background: #fff;
-    border: 1px solid #eee;
+    border: 1px solid #D5D2D2;
     box-sizing: border-box;
     list-style: none;
     margin: 0;
     font-size: $input-font-size;
-    margin-top: -$form-spacing / 2;
+    margin-top: -$form-spacing / 2 - rem-calc(1);
     z-index: $umi-multi-select-list-z-index;
     max-height: 200px;
     overflow-y: auto;
+    box-shadow: 0 3px 6px 1px #DADADA;
     li{
         padding: rem-calc(5);
         &:hover, &.hover{

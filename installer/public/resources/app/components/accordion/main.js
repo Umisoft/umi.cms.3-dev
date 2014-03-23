@@ -5,6 +5,5 @@ define([
 ], function(UMI, accordion, view){
     'use strict';
     Ember.TEMPLATES['UMI/accordion'] = Ember.Handlebars.compile(accordion);
-
     view();
 });

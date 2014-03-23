@@ -55,6 +55,14 @@ return [
             'type' => IField::TYPE_DATE_TIME,
             'columnName' => 'date_indexed',
         ],
+        SearchIndex::FIELD_OWNER => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'owner_id',
+        ],
+        SearchIndex::FIELD_EDITOR => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'editor_id',
+        ]
     ],
     'types' => [
         'base' => [
@@ -67,6 +75,8 @@ return [
                 SearchIndex::FIELD_CONTENT,
                 SearchIndex::FIELD_COLLECTION_NAME,
                 SearchIndex::FIELD_DATE_INDEXED,
+                SearchIndex::FIELD_OWNER,
+                SearchIndex::FIELD_EDITOR
             ]
         ]
     ]
