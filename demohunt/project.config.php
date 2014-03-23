@@ -17,10 +17,10 @@ return [
                     'connection' => [
                         'type' => DbalTools::CONNECTION_TYPE_PDOMYSQL,
                         'options' => [
-                            'dbname' => 'srv09realloc',
-                            'user' => 'srv09realloc',
-                            'password' => 'srv09realloc',
-                            'host' => 'srv01.megaserver.umisoft.ru',
+                            'dbname' => 'umicms3',
+                            'user' => 'pma',
+                            'password' => 'pma',
+                            'host' => 'localhost',
                             'charset' => 'utf8'
                         ]
                     ]

@@ -11,25 +11,58 @@ namespace umicms\project\module\seo\model;
 use umi\hmvc\model\IModel;
 
 /**
- * Class MegaindexModel
+ * Модель, получающая данные от API Мегаиндекса.
  */
 class MegaindexModel implements IModel
 {
-    public $password;
+    /**
+     * Логин в системе Мегаиндекс
+     * @var string $login
+     */
+    protected $login;
+    /**
+     * Пароль в системе Мегаиндекс
+     * @var string $password
+     */
+    protected $password;
+    /**
+     * Ссылка на сайт (домен) проекта
+     * @var string $siteUrl
+     */
+    protected $siteUrl;
 
-    public function queryApi($method, $params)
+    /**
+     * Конструктор модели, получает необходимые настройки для работы с Мегаиндексом.
+     * @param string $login
+     * @param string $password
+     * @param string $siteUrl
+     */
+    public function __construct($login, $password, $siteUrl)
     {
-        return json_decode(file_get_contents(
-            'http://api.megaindex.ru/?' . http_build_query(
-                [
-                    'method' => $method,
-                    'login' => 'megaindex-api-test@megaindex.ru',
-                    'password' => 123456,
-                    'lr' => 2,
-                    'url' => 'megaindex.ru',
-                    'date' => '2012-07-20'
-                ]
-            )
-        ), true);
+        $this->login = $login;
+        $this->password = $password;
+        $this->siteUrl = $siteUrl;
+    }
+
+    /**
+     * Универсальный метод, запрашивающий данные через API Мегаиндекса.
+     * Возвращает массив данных
+     * @param string $method Имя метода, методы перечислены в {@link http://api.megaindex.ru/description/ документации}
+     * @param array $params Дополнительные параметры запроса
+     * @return array
+     */
+    public function queryApi($method, $params = [])
+    {
+        $paramsMerged = array_merge(
+            [
+                'login' => $this->login,
+                'password' => $this->password,
+                'url' => $this->siteUrl,
+            ],
+            $params
+        );
+        $paramsMerged['method'] = $method;
+        return \GuzzleHttp\get('http://api.megaindex.ru/', ['query' => $paramsMerged])
+            ->json(['object' => false]);
     }
 }

@@ -61,6 +61,14 @@ return [
             'columnName' => 'updated',
             'readOnly'   => true
         ],
+        CmsObject::FIELD_OWNER => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'owner_id',
+        ],
+        CmsObject::FIELD_EDITOR => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'editor_id',
+        ],
         'newsItem'                    => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'news_item_id',
@@ -85,6 +93,8 @@ return [
                 CmsObject::FIELD_CREATED,
                 CmsObject::FIELD_UPDATED,
                 CmsObject::FIELD_DISPLAY_NAME,
+                CmsObject::FIELD_OWNER,
+                CmsObject::FIELD_EDITOR,
                 'newsItem',
                 'subject'
             ]

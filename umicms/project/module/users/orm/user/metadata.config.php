@@ -86,6 +86,14 @@ return [
             'targetField'  => 'userGroup',
             'readOnly'     => true
         ],
+        User::FIELD_OWNER => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'owner_id',
+        ],
+        User::FIELD_EDITOR => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'editor_id',
+        ],
 
     ],
     'types'      => [
@@ -106,7 +114,9 @@ return [
                 User::FIELD_EMAIL,
                 User::FIELD_PASSWORD,
                 User::FIELD_PASSWORD_SALT,
-                User::FIELD_GROUPS
+                User::FIELD_GROUPS,
+                User::FIELD_OWNER,
+                User::FIELD_EDITOR,
             ]
         ]
     ]
