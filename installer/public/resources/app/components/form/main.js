@@ -5,7 +5,8 @@ define(
         'app/components/form/elements/select/main',
         'app/components/form/elements/multiSelect/main',
         'app/components/form/elements/datepicker/main',
-        'app/components/form/elements/htmlEditor/main'
+        'app/components/form/elements/htmlEditor/main',
+        'app/components/form/elements/magellan/main'
     ],
     function(UMI, formTpl){
     'use strict';
@@ -13,7 +14,7 @@ define(
     Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
 
     UMI.FormControlController = Ember.ObjectController.extend({
-        hasFieldsets: function(){
+        hasFieldset: function(){
             return this.get('content.viewSettings.form.elements').isAny('type', 'fieldset');
         }.property()
     });
@@ -21,7 +22,13 @@ define(
     UMI.FormElementController = Ember.ObjectController.extend({
         isFieldset: function(){
             return this.get('content.type') === 'fieldset';
-        }.property()
+        }.property(),
+        isExpanded: true,
+        actions: {
+            expand: function(){
+                this.toggleProperty('isExpanded');
+            }
+        }
     });
 
     UMI.FormControlView = Ember.View.extend({
@@ -96,53 +103,6 @@ define(
                 };
                 this.get('controller').send('save', params);
             }
-        }
-    });
-
-    UMI.MagellanView = Ember.View.extend({
-        classNames: ['magellan-menu', 's-full-height-before'],
-        focusName: null,
-        buttonView: Ember.View.extend({
-            tagName: 'a',
-            classNameBindings: ['isFocus:focus'],
-            isFocus: function(){
-                return this.get('model.name') === this.get('parentView.focusName');
-            }.property('parentView.focusName'),
-            click: function(){
-                var delta = 5;
-                var fieldset = document.getElementById('fieldset-' + this.get('model.name'));
-                $(fieldset).closest('.maggelan-content').animate({'scrollTop': fieldset.offsetTop - delta}, 0);
-            }
-        }),
-        init: function(){
-            var elements = this.get('elements');
-            elements = elements.filter(function(item){
-                return item.type === 'fieldset';
-            });
-            this.set('focusName', elements.get('firstObject.name'));
-        },
-        didInsertElement: function(){
-            var self = this;
-            var scrollArea = $('.magellan-menu').parent().find('.maggelan-content');//TODO: По хорошему нужно выбирать элемент через this.$()
-            if(!scrollArea.length){
-                return;
-            }
-            scrollArea.on('scroll.umi.magellan', function(){
-                var delta = 5;
-                var scrollOffset = $(this).scrollTop();
-                var focusField;
-                var fieldset = $(this).children('fieldset');
-                var scrollElement;
-                for(var i = 0; i < fieldset.length; i++){
-                    scrollElement = fieldset[i].offsetTop;
-                    if(scrollElement - delta <= scrollOffset && scrollOffset <= scrollElement + fieldset[i].offsetHeight){
-                        focusField = fieldset[i];
-                    }
-                }
-                if(focusField){
-                    self.set('focusName', focusField.id.replace(/^fieldset-/g, ''));
-                }
-            });
         }
     });
 });

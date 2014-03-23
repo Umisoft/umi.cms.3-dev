@@ -1,4 +1,4 @@
-{{#if controller.hasFieldsets}}
+{{#if controller.hasFieldset}}
     {{#view "magellan" elements=model.viewSettings.form.elements}}
         {{#each formElement in model.viewSettings.form.elements itemController="FormElement"}}
             {{#if controller.isFieldset}}
@@ -11,12 +11,14 @@
     <div class="columns small-12 maggelan-content">
         {{#with model.object as object}}
             {{#each formElements in model.viewSettings.form.elements itemController="FormElement"}}
-                {{#if controller.isFieldset}}
+                {{#if isFieldset}}
                     <fieldset id="fieldset-{{unbound formElements.name}}">
-                        <legend><i class="icon icon-bottom umi-form-control-fieldset-toggle"></i>{{formElements.label}}</legend>
-                        {{#each formElements.elements}}
-                            {{view "field" objectBinding="object" metaBinding="this"}}
-                        {{/each}}
+                        <legend {{action 'expand'}}><i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>{{formElements.label}}</legend>
+                        {{#if isExpanded}}
+                            {{#each formElements.elements}}
+                                {{view "field" objectBinding="object" metaBinding="this"}}
+                            {{/each}}
+                        {{/if}}
                     </fieldset>
                 {{else}}
                     {{view "field" objectBinding="object" metaBinding="this"}}
