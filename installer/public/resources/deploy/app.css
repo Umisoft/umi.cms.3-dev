@@ -4566,9 +4566,9 @@ ul.pagination {
     background-position: -500px 0; }
   .icon.icon-denied {
     background-position: -520px 0; }
-  .icon.icon-user {
+  .icon.icon-user, .icon.icon-login {
     background-position: -540px 0; }
-  .icon.icon-key {
+  .icon.icon-key, .icon.icon-password {
     background-position: -560px 0; }
   .icon.icon-pile {
     background-position: -580px 0; }
@@ -4935,7 +4935,7 @@ html {
       background-image: linear-gradient(#4A94B1, #005E89);
       border-radius: 3px;
       cursor: default; }
-  .auth-layout [data-abide] span.error {
+  .auth-layout .umi-validator span.error {
     background: #fff;
     background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4yIiBiYXNlUHJvZmlsZT0idGlueSIgaWQ9ItCh0LvQvtC5XzEiDQoJIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMzIuNSAzMy41Ig0KCSBvdmVyZmxvdz0ic2Nyb2xsIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxsaW5lYXJHcmFkaWVudCBpZD0iU1ZHSURfMV8iIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMTYuMjUiIHkxPSIwLjUiIHgyPSIxNi4yNSIgeTI9IjMyLjUiPg0KCTxzdG9wICBvZmZzZXQ9IjAiIHN0eWxlPSJzdG9wLWNvbG9yOiMzQUFERkYiLz4NCgk8c3RvcCAgb2Zmc2V0PSIxIiBzdHlsZT0ic3RvcC1jb2xvcjojMDA4N0Q0Ii8+DQo8L2xpbmVhckdyYWRpZW50Pg0KPHBhdGggZmlsbD0idXJsKCNTVkdJRF8xXykiIGQ9Ik0xNi4yNSwwLjVjLTguODM2LDAtMTYsNy4xNjQtMTYsMTZjMCw4LjgzNyw3LjE2NCwxNiwxNiwxNnMxNi03LjE2MywxNi0xNg0KCUMzMi4yNSw3LjY2NCwyNS4wODYsMC41LDE2LjI1LDAuNXogTTIzLjQ2OSwyMS45ODZsLTEuNzMzLDEuNzMyYy0wLjMxNywwLjMxOC0wLjgzNywwLjMxOC0xLjE1MywwbC00LjMzMi00LjMzbC00LjMyOSw0LjMzDQoJYy0wLjMxOSwwLjMxOC0wLjgzNywwLjMxOC0xLjE1NS0wLjAwM2wtMS43MzQtMS43MjljLTAuMzE2LTAuMzE5LTAuMzE2LTAuODM1LDAtMS4xNTZsNC4zMzEtNC4zM2wtNC4zMjktNC4zMjkNCgljLTAuMzE4LTAuMzE5LTAuMzE4LTAuODM5LDAtMS4xNTRsMS43MzItMS43MzNjMC4zMTgtMC4zMjEsMC44MzgtMC4zMjEsMS4xNTUsMGw0LjMyOSw0LjMzMWw0LjMzLTQuMzMxDQoJYzAuMzE4LTAuMzIxLDAuODM4LTAuMzIxLDEuMTU0LDBsMS43MzIsMS43M2MwLjMxNywwLjMxOCwwLjMxNywwLjgzOCwwLjAwMiwxLjE1N2wtNC4zMzEsNC4zMjlsNC4zMzEsNC4zMw0KCUMyMy43ODQsMjEuMTUxLDIzLjc4NCwyMS42NjcsMjMuNDY5LDIxLjk4NnoiLz4NCjwvc3ZnPg0K);
     background-repeat: no-repeat;
@@ -4954,14 +4954,14 @@ html {
     font-size: 0.9375rem;
     opacity: 0;
     margin-right: -176px; }
-    .auth-layout [data-abide] span.error:before {
+    .auth-layout .umi-validator span.error:before {
       left: 0;
       border-bottom-color: transparent;
       border-right-color: #E7E6E6;
       border-width: 10px;
       margin-left: -20px;
       top: 14px; }
-    .auth-layout [data-abide] span.error:after {
+    .auth-layout .umi-validator span.error:after {
       left: 0;
       border-bottom-color: transparent;
       border-width: 8px;

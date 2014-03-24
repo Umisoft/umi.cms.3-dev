@@ -128,7 +128,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
 
                     var errorsBlock = document.querySelector('.errors-list');
 
-                    $(document).on('submit', 'form', function(){
+                    $(document).on('submit.umi.auth', 'form', function(){
                         if(!Auth.validator.check(this)){
                             return false;
                         }
@@ -137,10 +137,9 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                         var submit = this.elements.submit;
                         submit.setAttribute('disabled', 'disabled');
                         var data = $(this).serialize();
-                        var action = UmiSettings.baseURL + '/api/users/user/action/login';
+                        var action = this.getAttribute('action');
                         var deffer = $.post(action, data);
                         deffer.done(function(data){
-                            window.UmiSettings.baseUrl = data.result.baseUrl;
                             Auth.transition();
                         });
                         deffer.fail(function(error){
