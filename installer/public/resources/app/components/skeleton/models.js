@@ -4,6 +4,7 @@ define([], function(){
     return function(UMI){
 
         DS.Model.reopen({
+            validErrors: null,
             filterProperty: function(propertyName){
                 console.log(propertyName);
             },
@@ -11,8 +12,9 @@ define([], function(){
                 if(this.get('validators').hasOwnProperty(propertyName)){
                     var validators = this.get('validators')[propertyName];
                     var i;
-                    var value = this.get('value');
+                    var value = this.get(propertyName);
                     var errors = [];
+                    var activeErrors;
                     for(i = 0; i < validators.length; i++){
                         switch(validators[i].type){
                             case "required":
@@ -20,8 +22,9 @@ define([], function(){
                                     errors.push({'message': validators[i].message});
                                 }
                                 break;
-                            case  "regexp":
-                                if(!validators[i].options.pattern.test(value)){
+                            case "regexp":
+                                var pattern = new RegExp(validators[i].options.pattern.slice(1, -1));
+                                if(!pattern.test(value)){
                                     errors.push({'message': validators[i].message});
                                 }
                                 break;
@@ -32,8 +35,42 @@ define([], function(){
                                 console.log('Тип валидатора ' + validators[i].type + ' не обрабатывается.');
                                 break;
                         }
-                        console.log(errors);
+
+                        if(errors.length){
+                            activeErrors = this.get('validErrors');
+                            if(activeErrors){
+                                this.set('validErrors.' + propertyName, errors);
+                            } else{
+                                activeErrors = {};
+                                activeErrors[propertyName] = errors;
+                                this.set('validErrors',activeErrors);
+                            }
+                            if(this.get('isValid')){
+                                this.send('becameInvalid');
+                            }
+                        } else if(!this.get('isValid')){
+                            activeErrors = this.get('validErrors');
+                            if(activeErrors.hasOwnProperty(propertyName)){
+                                delete activeErrors[propertyName];
+                            }
+                            // Объект пересобирается без свойств прототипа
+                            i = 0;
+                            for(var error in activeErrors){
+                                if(activeErrors.hasOwnProperty(error)){
+                                    ++i;
+                                }
+                            }
+                            activeErrors = i ? activeErrors : null;
+                            this.set('validErrors', activeErrors);
+                            this.send('becameValid');
+                        }
                     }
+                }
+            },
+            stopValidateProperty: function(){
+                this.set('validErrors', null);
+                if(!this.get('isValid')){
+                    this.send('becameValid');
                 }
             }
         });

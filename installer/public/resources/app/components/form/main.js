@@ -35,12 +35,19 @@ define(
     UMI.FormControlView = Ember.View.extend({
         tagName: 'form',
         templateName: 'formControl',
-        classNames: ['s-margin-clear', 's-full-height']
+        classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control'],
+        submit: function(){
+            return false;
+        }
     });
 
     UMI.FieldView = Ember.View.extend({
         classNames: ['umi-columns'],
-        classNameBindings: ['wide'],
+        classNameBindings: ['wide', 'isError:error'],
+        isError: function(){
+            var meta = this.get('meta');
+            return !!this.get('object.validErrors.' + meta.dataSource);
+        }.property('object.validErrors'),
         wide: function(){
             return this.get('meta.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12';
         }.property('meta.type'),
@@ -51,41 +58,47 @@ define(
 
             switch(meta.type){
                 case 'text':
-                    template = Ember.Handlebars.compile('{{input type="text" value=object.' + meta.dataSource + ' placeholder=placeholder validator="collection" dataSource=dataSource}}');
+                    template = '{{input type="text" value=object.' + meta.dataSource + ' placeholder=placeholder validator="collection" dataSource=dataSource}}';
                     break;
                 case 'textarea':
-                    template = Ember.Handlebars.compile('{{textarea value=object.' + meta.dataSource + ' placeholder=meta.placeholder}}');
+                    template = '{{textarea value=object.' + meta.dataSource + ' placeholder=meta.placeholder}}';
                     break;
                 case 'wysiwyg':
-                    template = Ember.Handlebars.compile('{{html-editor object=object property="' + meta.dataSource + '"}}');
+                    template = '{{html-editor object=object property="' + meta.dataSource + '"}}';
                     break;
                 case 'number': // TODO: Поле типа "number" в firefox не работает
-                    template = Ember.Handlebars.compile('{{input type="number" value=object.' + meta.dataSource + '}}');
+                    template = '{{input type="number" value=object.' + meta.dataSource + '}}';
                     break;
                 case 'checkbox':
-                    template = Ember.Handlebars.compile('{{input type="checkbox" checked=object.' + meta.dataSource + ' name=name}}<label for="' + meta.name + '"></label>');
+                    template = '{{input type="checkbox" checked=object.' + meta.dataSource + ' name=name}}<label for="' + meta.name + '"></label>';
                     break;
                 case 'select':
-                    template = Ember.Handlebars.compile('{{view "select" object=object meta=this}}');
+                    template = '{{view "select" object=object meta=this}}';
                     break;
                 case 'multi-select':
-                    template = Ember.Handlebars.compile('{{view "multiSelect" object=object meta=this}}');
+                    template = '{{view "multiSelect" object=object meta=this}}';
                     break;
                 case 'datetime':
-                    template = Ember.Handlebars.compile('{{date-picker object=object property="' + meta.dataSource + '"}}');
+                    template = '{{date-picker object=object property="' + meta.dataSource + '"}}';
                     break;
                 case 'file':
-                    template = Ember.Handlebars.compile('<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.dataSource + '}}<i class="icon icon-cloud"></i></div>');
+                    template = '<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.dataSource + '}}<i class="icon icon-cloud"></i></div>';
                     break;
                 default:
-                    template = Ember.Handlebars.compile('<div>Для поля типа <b>' + meta.type + '</b> не предусмотрен шаблон.</div>');
+                    template = '<div>Для поля типа <b>' + meta.type + '</b> не предусмотрен шаблон.</div>';
                     break;
             }
+            template+= '{{#if object.validErrors.' + meta.dataSource + '}}' +
+                '<small class="error">' +
+                '   {{#each error in object.validErrors.' + meta.dataSource + '}}' +
+                '       {{error.message}}' +
+                '   {{/each}}' +
+                '</small>' +
+            '{{/if}}';
+            template = Ember.Handlebars.compile(template);
             return template;
-        }.property('object', 'meta'),
-
+        }.property('object', 'meta')
     });
-    //TODO: Для форм нужно не забыть в шаблоне, и в остальных местах биндить все возможные атрибуты
 
     //TODO: Кнопка ни как не связана с формой- можно вынести в отдельный компонент
     UMI.SaveButtonView = Ember.View.extend({

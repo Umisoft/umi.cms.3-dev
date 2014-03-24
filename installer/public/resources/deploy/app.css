@@ -6089,7 +6089,7 @@ select {
   height: 1.84688rem;
   line-height: 1.84688rem; }
 
-[data-abide] span.error, [data-abide] small.error {
+.umi-validator span.error, .umi-validator small.error {
   position: absolute;
   z-index: 2;
   margin-top: 16px;
@@ -6101,22 +6101,27 @@ select {
   transition: all 0.1s linear;
   opacity: 0.2;
   font-weight: normal; }
-  [data-abide] span.error:before, [data-abide] span.error:after, [data-abide] small.error:before, [data-abide] small.error:after {
+  .umi-validator span.error:before, .umi-validator span.error:after, .umi-validator small.error:before, .umi-validator small.error:after {
     content: "";
     border: 8px solid transparent;
     border-bottom-color: #953b39;
     top: -15px;
     left: 10px;
     position: absolute; }
-  [data-abide] span.error:after, [data-abide] small.error:after {
+  .umi-validator span.error:after, .umi-validator small.error:after {
     top: -11px;
     left: 12px;
     border-width: 6px;
     border-bottom-color: #b94a48; }
-[data-abide] .error span.error, [data-abide] .error small.error {
+.umi-validator .error span.error, .umi-validator .error small.error {
   margin-top: 8px;
   visibility: visible;
   opacity: 1; }
+.umi-validator .error .umi-form-label {
+  color: #b94a48; }
+
+.umi-form-control {
+  background: #f5f6f7; }
 
 .umi-form-control-buttons {
   position: fixed;
