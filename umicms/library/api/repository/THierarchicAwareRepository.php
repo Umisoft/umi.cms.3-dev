@@ -6,17 +6,16 @@
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
+
 namespace umicms\api\repository;
 
 use umi\orm\metadata\field\special\MaterializedPathField;
 use umicms\exception\InvalidArgumentException;
-use umicms\exception\RuntimeException;
 use umicms\orm\collection\CommonHierarchy;
 use umicms\orm\collection\LinkedHierarchicCollection;
 use umicms\orm\collection\SimpleCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\orm\object\CmsHierarchicObject;
-use umicms\orm\object\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
 
 /**
@@ -113,24 +112,11 @@ trait THierarchicAwareRepository
     /**
      * Возвращает объект по его Uri
      * @param string $uri Uri объекта
-     * @throws \Exception если не удалось выбрать объект по каким-либо причинам
      * @return CmsHierarchicObject
      */
     protected function selectByUri($uri)
     {
-        /**
-         * @var CmsHierarchicObject|IRecyclableObject $object
-         */
-        $object = $this->getCollection()->getByUri('/' . ltrim($uri, '/'));
-
-        if ($object instanceof IRecyclableObject && $object->trashed) {
-            throw new RuntimeException($this->translate(
-                'Cannot select object by uri "{uri}". Object in trash.',
-                ['uri' => $uri]
-            ));
-        }
-
-        return $object;
+        return $this->getCollection()->getByUri('/' . ltrim($uri, '/'));
     }
 
 }

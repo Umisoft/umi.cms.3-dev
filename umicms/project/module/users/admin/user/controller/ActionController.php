@@ -10,7 +10,6 @@
 namespace umicms\project\module\users\admin\user\controller;
 
 use umi\hmvc\exception\http\HttpException;
-use umi\hmvc\exception\http\HttpUnauthorized;
 use umi\http\Response;
 use umicms\project\admin\api\controller\BaseRestActionController;
 use umicms\project\admin\api\controller\TCollectionFormAction;
