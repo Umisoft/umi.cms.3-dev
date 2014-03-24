@@ -14,7 +14,10 @@ use umi\hmvc\controller\BaseController;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\hmvc\exception\http\HttpUnauthorized;
 use umi\http\Response;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\ICmsCollection;
+use umicms\project\admin\api\ApiApplication;
 use umicms\project\admin\api\controller\TCollectionFormAction;
 use umicms\project\module\users\api\UsersApi;
 use umicms\project\module\users\object\AuthorizedUser;
@@ -22,8 +25,10 @@ use umicms\project\module\users\object\AuthorizedUser;
 /**
  * Контроллер действий авторизации пользователя в административной панели.
  */
-class ActionController extends BaseController
+class ActionController extends BaseController implements IUrlManagerAware
 {
+    use TUrlManagerAware;
+
     /**
      * @var UsersApi $api
      */
@@ -109,8 +114,15 @@ class ActionController extends BaseController
          * @var ICmsCollection $collection
          */
         $collection = $this->api->user()->getCollection();
+        $form = $collection->getForm('authorized', 'login');
+        /**
+         * @var ApiApplication $component
+         */
+        $component = $this->getComponent();
 
-        return $collection->getForm('authorized', 'login');
+        $form->setAction($this->getUrlManager()->getAdminComponentActionUrl($component, 'login'));
+
+        return $form;
     }
 
 }

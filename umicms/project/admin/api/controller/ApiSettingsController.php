@@ -10,14 +10,14 @@ namespace umicms\project\admin\api\controller;
 
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
+use umicms\hmvc\controller\BaseSecureController;
 use umicms\orm\collection\ICmsCollection;
 use umicms\project\admin\api\ApiApplication;
-use umicms\hmvc\controller\BaseController;
 
 /**
  * Контроллер настроек административной панели.
  */
-class ApiSettingsController extends BaseController implements ICollectionManagerAware
+class ApiSettingsController extends BaseSecureController implements ICollectionManagerAware
 {
     use TCollectionManagerAware;
 

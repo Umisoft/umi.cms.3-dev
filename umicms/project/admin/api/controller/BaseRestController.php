@@ -11,12 +11,12 @@ namespace umicms\project\admin\api\controller;
 
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\controller\BaseSecureController;
 
 /**
  * Базовый REST-контроллер
  */
-abstract class BaseRestController extends BaseController
+abstract class BaseRestController extends BaseSecureController
 {
     /**
      * Возвращает данные, полученные в теле POST- или PUT-запроса, в виде массива.
