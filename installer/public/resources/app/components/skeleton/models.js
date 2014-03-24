@@ -23,16 +23,10 @@ define([], function(){
                                 }
                                 break;
                             case "regexp":
-                                var pattern = new RegExp(validators[i].options.pattern.slice(1, -1));
+                                var pattern = eval(validators[i].options.pattern); //TODO: Заменить eval
                                 if(!pattern.test(value)){
                                     errors.push({'message': validators[i].message});
                                 }
-                                break;
-                            case "email":
-
-                                break;
-                            default:
-                                console.log('Тип валидатора ' + validators[i].type + ' не обрабатывается.');
                                 break;
                         }
 
