@@ -103,9 +103,9 @@ define(
     //TODO: Кнопка ни как не связана с формой- можно вынести в отдельный компонент
     UMI.SaveButtonView = Ember.View.extend({
         tagName: 'button',
-        classNameBindings: ['model.isDirty::disabled'],
+        classNameBindings: ['model.isDirty::disabled', 'model.isValid::disabled'],
         click: function(event){
-            if(this.get('model.isDirty')){
+            if(this.get('model.isDirty') && this.get('model.isValid')){
                 var button = this.$();
                 var model = this.get('model');
                 button.addClass('loading');

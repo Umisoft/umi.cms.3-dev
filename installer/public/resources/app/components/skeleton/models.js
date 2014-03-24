@@ -50,7 +50,7 @@ define([], function(){
                             }
                         } else if(!this.get('isValid')){
                             activeErrors = this.get('validErrors');
-                            if(activeErrors.hasOwnProperty(propertyName)){
+                            if(activeErrors && activeErrors.hasOwnProperty(propertyName)){
                                 delete activeErrors[propertyName];
                             }
                             // Объект пересобирается без свойств прототипа

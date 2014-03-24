@@ -82,7 +82,12 @@ define([], function(){
                  params.handler - элемент (кнопка) вызвавший событие сохранение
                  */
                 save: function(params){
-                    console.log(params.object.get('currentState.stateName'));
+                    if(!params.object.get('isValid')){
+                        if(params.handler){
+                            $(params.handler).removeClass('loading');
+                        }
+                        return;
+                    }
                     params.object.save().then(
                         function(){
                             if(params.handler){
