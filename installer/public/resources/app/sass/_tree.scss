@@ -86,8 +86,12 @@ body{
         height: rem-calc(20);
         cursor: hand;
         position: absolute;
-        margin-left: rem-calc(-20);
+        margin-left: rem-calc(-22);
         margin-top: rem-calc(2);
+        &:hover{
+            background: #FFFFFF;
+            box-shadow: 0 0px 2px 0px #7C99AC;
+        }
     }
 
     .umi-tree-placeholder{
@@ -117,7 +121,7 @@ body{
 
     // Выпадающее меню --------------------------------------
     .umi-tree-context-menu{
-        display: none;
+//        display: none;
         position: absolute;
         right: rem-calc(8);
         margin: 0;

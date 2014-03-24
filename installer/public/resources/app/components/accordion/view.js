@@ -3,25 +3,12 @@ define(['App'], function(UMI){
     return function(){
 
         UMI.AccordionView = Ember.View.extend({
-
+            templateName: 'accordion',
+            classNames: 'umi-accordion-side-bar',
             didInsertElement: function(){
-
-                //Получаем список счётчиков
-                (function getCounters(){
-                    $.ajax({
-                        type: "GET",
-                        url: "/admin/api/statistics/metrika/action/counters",
-                        data: {},
-                        cache: false,
-                        success: function(response){
-                            var counterLength = response.result.counters.counters.length;
-                            for(var k = 0; k < counterLength; k++){
-                                var counterId = response.result.counters.counters[k].id;
-                                getNavigation(counterId);
-                            }
-                        }
-                    });
-                })();
+                var that = this;
+                var counterId = this.get('controller.model.object.id');
+                getNavigation(counterId);
 
                 //Получаем меню для выбранного счётчика
                 function getNavigation(counterId){
@@ -33,12 +20,40 @@ define(['App'], function(UMI){
                         },
                         cache: false,
                         success: function(response){
-                            //                                console.log(response.result.navigation);
                             getCounter(counterId, response);
-//                            renderNavigation(response)
+                            renderNavigation(response)
                         }
                     });
                 }
+
+//              http://localhost/admin/api/statistics/metrika/action/counter?counterId=1062209&resource=stat/traffic/summary
+
+                function renderNavigation(response){
+                    var firstLevelLength = response.result.navigation.length;
+                    var secondLevelLength = '';
+                    var firstLevel = '';
+                    var secondLevel = '';
+
+                    for(var j = 0; j < firstLevelLength; j++){
+                        secondLevelLength = response.result.navigation[j].children.length;
+
+                        for(var i = 0; i < secondLevelLength; i++){
+                            secondLevel = secondLevel + '<ul class="umi-accordion-trigger"><li><a href="#" class="umi-metrica-second-level-button" data-resource="' + response.result.navigation[j].children[i].resource + '">' + response.result.navigation[j].children[i].displayName + '</a></li></ul>';
+                        }
+
+                        firstLevel = firstLevel + '<li><span>' + response.result.navigation[j].displayName + '</span>' + secondLevel + '</li>';
+                        secondLevel = '';
+                    }
+
+                    $('.umi-accordion').html(firstLevel);
+
+                    $('.umi-accordion').on('mousedown', '.umi-metrica-second-level-button', function(){
+                        var navigationResponse = $(this).data('resource');
+                        var counterId = that.get('controller.model.object.id');
+                        getCounter(counterId, navigationResponse);
+                    });
+                }
+
 
                 function getCounter(counterId, navigationResponse){
                     $.ajax({
@@ -55,33 +70,6 @@ define(['App'], function(UMI){
                     });
                 }
 
-
-//              http://localhost/admin/api/statistics/metrika/action/counter?counterId=1062209&resource=stat/traffic/summary
-
-
-
-
-
-
-                function renderNavigation(response){
-                    var firstLevelLength = response.result.navigation.length;
-                    var secondLevelLength = '';
-                    var firstLevel = '';
-                    var secondLevel = '';
-
-                    for(var j = 0; j < firstLevelLength; j++){
-                        secondLevelLength = response.result.navigation[j].children.length;
-
-                        for(var i = 0; i < secondLevelLength; i++){
-                            secondLevel = secondLevel + '<ul class="umi-accordion-trigger"><li><a href="#">' + response.result.navigation[j].children[i].title + '</a></li></ul>';
-                        }
-
-                        firstLevel = firstLevel + '<li><span>' + response.result.navigation[j].title + '</span>' + secondLevel + '</li>';
-                        secondLevel = '';
-                    }
-
-                    $('.umi-accordion').html(firstLevel);
-                }
 
                 $('.umi-accordion').on('mousedown', 'span', function(){
                     $('.umi-accordion-trigger').removeClass('active');

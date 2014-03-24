@@ -4,9 +4,10 @@ define(['App'], function(UMI){
     return function(){
         UMI.ChartControlView = Ember.View.extend({
             tagName: 'div',
-            template: Ember.Handlebars.compile('<canvas id="canvas" height="450" width="600"></canvas>'),
+            templateName: 'chartControl',
+            classNames: 'umi-metrika-right',
             didInsertElement: function(){
-                console.log('chartShow');
+                console.log(this.get('controller.model.object.id'));
                 var lineChartData = {
                     labels : ["January","February","March","April","May","June","July"],
                     datasets : [

@@ -6,6 +6,7 @@ define(['App'], function(UMI){
             templateName: 'table',
             classNames: ['umi-table-ajax'],
             didInsertElement: function(){
+                var that = this;
 
                 //Получаем список счётчиков
                 (function getCounters(){
@@ -14,66 +15,99 @@ define(['App'], function(UMI){
                         url: "/admin/api/statistics/metrika/action/counters",
                         data: {},
                         cache: false,
+
+                        beforeSend: function(){
+                            $('.umi-component').css({'position':'relative'}).append(function(){
+                                return '<div class="umi-loader" style="position: absolute; padding: 30px; background: rgba(214,224,233,.7);"><h3>Идёт загрузка данных...</h3></div>';
+                            });
+                        },
+
                         success: function(response){
-
-                            var counterLength = response.result.counters.counters.length;
-                            for(var k = 0; k < counterLength; k++){
-                                var counterId = response.result.counters.counters[k].id;
-                                var counterName = response.result.counters.counters[k].name;
-                                var counterSite = response.result.counters.counters[k].site;
-                                var counterCodeStatus = response.result.counters.counters[k]['code_status'];
-
-                                var cell1, cell2, cell3;
-                                cell1 = '<td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">' + counterName + '</div></td>';
-                                cell2 = '<td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">' + counterSite + '</div></td>';
-                                cell3 = '<td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">' + counterCodeStatus+ '</div></td>';
-
-                                var rows;
-                                $('.umi-table-ajax-content tbody').append(function(){
-                                    rows = rows + '<tr class="umi-table-ajax-tr" data-object-id="counterId">' + cell1 + cell2 + cell3 + '<td class="umi-table-ajax-empty-column"></td></tr>';
-                                    return rows;
-                                });
-
-                                $('.umi-table-ajax-tr').click(function(){
-                                    var counterId = $(this).data('object-id');
-                                    $('.umi-table-ajax-control-content').hide();
-                                    $('#piechart').show();
-
-                                    var pieData = [
-                                        {
-                                            value: 30,
-                                            color:"#F38630"
-                                        },
-                                        {
-                                            value : 50,
-                                            color : "#E0E4CC"
-                                        },
-                                        {
-                                            value : 100,
-                                            color : "#69D2E7"
-                                        }
-                                    ];
-
-                                    var pieOptions = {
-                                        //Boolean - Whether we should show a stroke on each segment
-                                        segmentShowStroke : true,
-                                        segmentStrokeColor : none,
-                                        segmentStrokeWidth : 2,
-                                        animation : false,
-                                        animationSteps : 100,
-                                        animationEasing : "easeOutBounce",
-                                        animateRotate : true,
-                                        animateScale : false,
-                                        onAnimationComplete : null
-                                    }
-
-                                    var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData, pieOptions);
-
+                            $('.umi-loader').remove();
+                            if(!response){
+                                $('.umi-component').css({'position':'relative'}).append(function(){
+                                    return '<div class="umi-loader" style="position: absolute; padding: 30px; background: rgba(214,224,233,.7);"><h3>Данные отсутствуют</h3></div>';
                                 });
                             }
+
+                            var headers = [];
+                            headers.push(response.result.counters.labels.name, response.result.counters.labels.site, response.result.counters.labels['code_status']);
+
+                            var rows = response.result.counters.counters;
+                            var rowsLength = rows.length;
+                            var result = [];
+
+                            for(var i = 0; i < rowsLength; i++){
+                                result.push([rows[i].id, rows[i].site, rows[i].name, rows[i]['code_status']]);
+                            }
+                            renderCounters(headers, result);
+                        },
+
+                        error: function(code){
+                            $('.umi-loader').remove();
+                            $('.umi-component').css({'position':'relative'}).append(function(){
+                                return '<div class="umi-loader" style="position: absolute; padding: 30px; background: rgba(214,224,233,.7);"><h3>Не удалось загрузить данные</h3></div>';
+                            });
                         }
                     });
                 })();
+
+
+                //Выводим таблицу со списком счётчиков
+                //headers - массив
+                //rows - двумерный массив
+                function renderCounters(headers, rows){
+                    var headersLength = headers.length;
+                    var rowsLength = rows.length;
+
+                    if(headersLength){
+                        //Выводим заголовки
+                        $('.umi-table-ajax-titles').prepend(function(){
+                            var result = '';
+                            for(var i = 0; i < headersLength; i++){
+                                result = result + '<td class="umi-table-ajax-header-column"><div class="umi-table-ajax-title-div">' + headers[i] + '</div></td>';
+                            }
+                            return result;
+                        });
+                    }
+
+                    if(rowsLength){
+                        //Выводим содержимое таблицы
+                        var result = '';
+                        var row = [];
+
+                        for(var j = 0; j < rowsLength; j++){
+                            for(var i = 1; i < headersLength + 1; i++){
+                                row.push('<td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">' + rows[j][i] + '</div></td>');
+                            }
+                            result = result + '<tr class="umi-table-ajax-tr" data-object-id="' + rows[j][0] + '">' + row + '<td class="umi-table-ajax-empty-column"></td></tr>';
+                            row = [];
+                        }
+
+                        $('.umi-table-ajax-content tbody').append(function(){
+                            return result;
+                        });
+
+                    } else{
+                        $('.umi-metrika-empty-row').show();
+                    }
+
+                    setTimeout(function(){
+                        var metrikaTableScroll = new IScroll('.umi-table-ajax-control-content-center', UMI.Utils.defaultIScroll);
+                    }, 0);
+                }
+
+
+                $('.umi-table-ajax').on('click','.umi-table-ajax-tr',function(){
+//                    $('.umi-table-ajax-control-content').hide();
+//                    $('.umi-counter-info').show();
+
+                    var counterId = $(this).data('object-id');
+
+                    that.get('controller').transitionToRoute('context', counterId);
+//                    getNavigation(counterId);
+                });
+
             }
         });
     };
