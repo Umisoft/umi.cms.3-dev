@@ -67,11 +67,21 @@ define([], function(){
                     }
                 }
             },
-            stopValidateProperty: function(){
-                this.set('validErrors', null);
-                if(!this.get('isValid')){
-                    this.send('becameValid');
+            clearValidateForProperty: function(propertyName){
+                var i;
+                var activeErrors = this.get('validErrors');
+                if(activeErrors && activeErrors.hasOwnProperty(propertyName)){
+                    delete activeErrors[propertyName];
                 }
+                // Объект пересобирается без свойств прототипа
+                i = 0;
+                for(var error in activeErrors){
+                    if(activeErrors.hasOwnProperty(error)){
+                        ++i;
+                    }
+                }
+                activeErrors = i ? activeErrors : null;
+                this.set('validErrors', activeErrors);
             }
         });
 

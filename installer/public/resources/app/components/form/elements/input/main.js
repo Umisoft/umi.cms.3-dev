@@ -10,7 +10,7 @@ define(['App'], function(UMI){
         },
         focusIn: function(){
             if(this.get('validator') === 'collection'){
-                this.get('templateData.keywords.object').stopValidateProperty();
+                this.get('templateData.keywords.object').clearValidateForProperty(this.get('dataSource'));
             }
         }
     });
