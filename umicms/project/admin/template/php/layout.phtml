@@ -16,58 +16,6 @@
         </script>
     </head>
     <body id="body">
-        <script type="text/template" id="auth">
-            <div class="auth-layout">
-                <div class="bubbles"></div>
-                <div class="bubbles-front"></div>
-                <div class="row vertical-center">
-                    <div class="large-centered columns large-3">
-                        <p class="text-center">
-                            <img src="/resources/deploy/img/auth-logo.png"/>
-                        </p>
-
-                        <div>
-                            <div class="panel pretty radius shake-it">
-                                <form>
-                                    <div class="errors-list"></div>
-                                    <div class="row">
-                                        <div class="small-12 columns">
-                                            <i class="icon icon-user input-icon"></i>
-                                            <input type="text" name="login" placeholder="Введите логин"/>
-                                            <span class="error">Поле не заполнено</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="small-12 columns">
-                                            <i class="icon icon-key input-icon"></i>
-                                            <input type="text" name="password" placeholder="Введите пароль"/>
-                                            <span class="error">Поле не заполнено</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="small-7 columns">
-                                            <label class="left">
-                                                <input type="checkbox" name="rememberMe"/>
-                                                Запомнить меня
-                                            </label>
-                                        </div>
-                                        <div class="small-5 columns">
-                                            <input type="submit" value="Войти">
-                                            <span class="loader"></span>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="text-center">
-                                <a href="lostPassword" class="button simple" data-handler="forgetPass">Забыли пароль?</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="auth-mask"></div>
-        </script>
-
         <script data-main="/resources/main" src="/resources/libs/requirejs/require.js"></script>
 
         <noscript>

@@ -32,11 +32,15 @@
         {{#view "saveButton" class="button s-margin-clear wide left" model=model.object}}
             {{#if model.object.isSaving}}
                 Сохранено
-                {{else}}
+            {{else}}
+                {{#if model.object.isValid}}
                     {{#if model.object.isDirty}}
                         Сохранить
                     {{else}}
                         Сохранено
+                    {{/if}}
+                {{else}}
+                    Введены некоректные данные
                 {{/if}}
             {{/if}}
         {{/view}}
