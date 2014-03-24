@@ -105,6 +105,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $visitors->roles = [
             'project.site.structure' => ['staticPageViewer'],
             'project.site.structure.menu' => ['menuViewer'],
+            'project.site.news' => ['newsViewer'],
+            'project.site.news.item' => ['newsItemViewer'],
+            'project.site.news.rubric' => ['rubricViewer'],
         ];
 
         /**

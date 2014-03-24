@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\news\site\rubric;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\SiteComponent;
 
@@ -24,6 +25,28 @@ return [
         'view' => __NAMESPACE__ .  '\widget\RubricWidget',
         'newsList' => __NAMESPACE__ . '\widget\RubricNewsListWidget',
         'list' => __NAMESPACE__ .  '\widget\RubricListWidget',
+    ],
+
+    SiteComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'rubricViewer' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'controller:index',
+            'controller:rubric',
+            'widget:view',
+            'widget:list',
+            'widget:newsList'
+        ],
+        IAclFactory::OPTION_RULES => [
+            'rubricViewer' => [
+                'controller:index' => [],
+                'controller:rubric' => [],
+                'widget:view' => [],
+                'widget:list' => [],
+                'widget:newsList' => []
+            ]
+        ]
     ],
 
     SiteComponent::OPTION_VIEW        => [

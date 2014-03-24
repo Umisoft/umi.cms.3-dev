@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\news\site\item;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\SiteComponent;
 
@@ -29,6 +30,26 @@ return [
         'type'      => 'php',
         'extension' => 'phtml',
         'directory' => __DIR__ . '/template/php',
+    ],
+
+    SiteComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'newsItemViewer' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'controller:index',
+            'controller:item',
+            'widget:view',
+            'widget:list'
+        ],
+        IAclFactory::OPTION_RULES => [
+            'newsItemViewer' => [
+                'controller:index' => [],
+                'controller:item' => [],
+                'widget:view' => [],
+                'widget:list' => []
+            ]
+        ]
     ],
 
     SiteComponent::OPTION_ROUTES      => [
