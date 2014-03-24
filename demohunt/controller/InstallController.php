@@ -538,7 +538,9 @@ class InstallController extends SitePageController implements ICollectionManager
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `user_guid` (`guid`),
                     KEY `user_type` (`type`),
-                    UNIQUE KEY `user_login` (`login`)
+                    UNIQUE KEY `user_login` (`login`),
+                    CONSTRAINT `FK_user_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_user_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -562,7 +564,9 @@ class InstallController extends SitePageController implements ICollectionManager
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `group_guid` (`guid`),
-                    KEY `group_type` (`type`)
+                    KEY `group_type` (`type`),
+                    CONSTRAINT `FK_user_group_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_user_group_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -591,7 +595,9 @@ class InstallController extends SitePageController implements ICollectionManager
                     KEY `user_user_group_user` (`user_id`),
                     KEY `user_user_group_group` (`user_group_id`),
                     CONSTRAINT `FK_user_user_group_user` FOREIGN KEY (`user_id`) REFERENCES `demohunt_user_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_user_user_group_group` FOREIGN KEY (`user_group_id`) REFERENCES `demohunt_user_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    CONSTRAINT `FK_user_user_group_group` FOREIGN KEY (`user_group_id`) REFERENCES `demohunt_user_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_user_user_group_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_user_user_group_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -644,7 +650,9 @@ class InstallController extends SitePageController implements ICollectionManager
                     UNIQUE KEY `blog_category_pid_slug` (`pid`, `slug`),
                     KEY `blog_category_type` (`type`),
                     KEY `blog_category_pid` (`pid`),
-                    CONSTRAINT `FK_blog_category_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    CONSTRAINT `FK_blog_category_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_category_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_category_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -681,7 +689,9 @@ class InstallController extends SitePageController implements ICollectionManager
                     UNIQUE KEY `blog_post_slug` (`slug`),
                     KEY `blog_post_type` (`type`),
                     KEY `blog_post_category` (`category_id`),
-                    CONSTRAINT `FK_blog_post_category` FOREIGN KEY (`category_id`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    CONSTRAINT `FK_blog_post_category` FOREIGN KEY (`category_id`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_post_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_post_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -713,7 +723,9 @@ class InstallController extends SitePageController implements ICollectionManager
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_tag_guid` (`guid`),
                     UNIQUE KEY `blog_tag_slug` (`slug`),
-                    KEY `blog_tag_type` (`type`)
+                    KEY `blog_tag_type` (`type`),
+                    CONSTRAINT `FK_blog_tag_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_tag_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -743,7 +755,9 @@ class InstallController extends SitePageController implements ICollectionManager
                     KEY `post_tag_tag` (`tag_id`),
                     KEY `post_tag_post` (`post_id`),
                     CONSTRAINT `FK_post_tag_tag` FOREIGN KEY (`tag_id`) REFERENCES `demohunt_blog_tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_post_tag_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    CONSTRAINT `FK_post_tag_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_post_tag_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_post_tag_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -783,7 +797,9 @@ class InstallController extends SitePageController implements ICollectionManager
                     KEY `blog_comment_pid` (`pid`),
                     KEY `blog_comment_post` (`post_id`),
                     CONSTRAINT `FK_blog_comment_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_blog_comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_comment_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    CONSTRAINT `FK_blog_comment_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_comment_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_comment_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -838,7 +854,9 @@ class InstallController extends SitePageController implements ICollectionManager
                     KEY `news_rubric_pid` (`pid`),
                     KEY `news_rubric_layout` (`layout_id`),
                     CONSTRAINT `FK_news_rubric_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_rubric_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                    CONSTRAINT `FK_news_rubric_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_rubric_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_rubric_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -877,7 +895,9 @@ class InstallController extends SitePageController implements ICollectionManager
                     KEY `news_news_item_rubric` (`rubric_id`),
                     KEY `news_news_item_layout` (`layout_id`),
                     CONSTRAINT `FK_news_news_item_rubric` FOREIGN KEY (`rubric_id`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_news_item_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                    CONSTRAINT `FK_news_news_item_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_news_item_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_news_item_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -912,7 +932,9 @@ class InstallController extends SitePageController implements ICollectionManager
                     UNIQUE KEY `news_subject_slug` (`slug`),
                     KEY `news_subject_type` (`type`),
                     KEY `news_subject_layout` (`layout_id`),
-                    CONSTRAINT `FK_news_subject_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                    CONSTRAINT `FK_news_subject_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -942,7 +964,9 @@ class InstallController extends SitePageController implements ICollectionManager
                     KEY `news_news_item_subject_item` (`news_item_id`),
                     KEY `news_news_item_subject_subject` (`subject_id`),
                     CONSTRAINT `FK_news_news_item_subject_item` FOREIGN KEY (`news_item_id`) REFERENCES `demohunt_news_news_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_news_item_subject_subject` FOREIGN KEY (`subject_id`) REFERENCES `demohunt_news_subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    CONSTRAINT `FK_news_news_item_subject_subject` FOREIGN KEY (`subject_id`) REFERENCES `demohunt_news_subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_news_item_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_news_item_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -975,7 +999,9 @@ class InstallController extends SitePageController implements ICollectionManager
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `layout_guid` (`guid`),
-                    KEY `layout_type` (`type`)
+                    KEY `layout_type` (`type`),
+                    CONSTRAINT `FK_layout_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_layout_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -1027,7 +1053,9 @@ class InstallController extends SitePageController implements ICollectionManager
                     KEY `component_path` (`component_path`),
                     KEY `component_name` (`component_name`),
                     CONSTRAINT `FK_structure_parent` FOREIGN KEY (`pid`) REFERENCES `demohunt_structure` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_structure_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                    CONSTRAINT `FK_structure_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_structure_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_structure_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -1074,7 +1102,9 @@ class InstallController extends SitePageController implements ICollectionManager
                 UNIQUE KEY `search_index_ref_guid` (`ref_guid`),
                 KEY `search_index_type` (`type`),
                 KEY `search_index_collection_id` (`collection_id`),
-                FULLTEXT(`contents`)
+                FULLTEXT(`contents`),
+                CONSTRAINT `FK_search_index_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                CONSTRAINT `FK_search_index_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
             ) ENGINE=MyISAM DEFAULT CHARSET=utf8
             "
         );
