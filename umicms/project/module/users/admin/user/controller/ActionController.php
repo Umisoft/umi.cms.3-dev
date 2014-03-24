@@ -73,7 +73,7 @@ class ActionController extends BaseRestActionController
     {
         $object = $this->api->user()
             ->getById($this->getQueryVar('id'));
-        $this->api->trash($object);
+        $this->api->user()->trash($object);
         $this->getObjectPersister()
             ->commit();
 
@@ -88,7 +88,7 @@ class ActionController extends BaseRestActionController
     {
         $object = $this->api->user()
             ->getById($this->getQueryVar('id'));
-        $this->api->untrash($object);
+        $this->api->user()->untrash($object);
         $this->getObjectPersister()
             ->commit();
 
@@ -101,7 +101,7 @@ class ActionController extends BaseRestActionController
      */
     public function actionEmptyTrash()
     {
-        $this->api->emptyTrash();
+        $this->api->user()->emptyTrash();
         $this->getObjectPersister()
             ->commit();
         return '';

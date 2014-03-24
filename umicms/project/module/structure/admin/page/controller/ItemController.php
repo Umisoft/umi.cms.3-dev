@@ -13,7 +13,6 @@ use umicms\exception\RuntimeException;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\IRecyclableObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
-use umicms\project\admin\api\controller\TTrashController;
 use umicms\project\module\structure\api\StructureApi;
 use umicms\project\module\structure\object\StructureElement;
 

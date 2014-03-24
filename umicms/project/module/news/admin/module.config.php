@@ -15,10 +15,6 @@ return [
 
     SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
 
-    SecureAdminComponent::OPTION_SETTINGS => [
-
-    ],
-
     SecureAdminComponent::OPTION_COMPONENTS => [
         'rubric' => '{#lazy:~/project/module/news/admin/rubric/component.config.php}',
         'item' => '{#lazy:~/project/module/news/admin/item/component.config.php}',
