@@ -2,10 +2,12 @@ define(
     [
         'App',
         'text!./form.hbs',
+        'app/components/form/elements/input/main',
         'app/components/form/elements/select/main',
         'app/components/form/elements/multiSelect/main',
-        'app/components/form/elements/datePicker/main',
-        'app/components/form/elements/htmlEditor/main'
+        'app/components/form/elements/datepicker/main',
+        'app/components/form/elements/htmlEditor/main',
+        'app/components/form/elements/magellan/main'
     ],
     function(UMI, formTpl){
     'use strict';
@@ -13,7 +15,7 @@ define(
     Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
 
     UMI.FormControlController = Ember.ObjectController.extend({
-        hasFieldsets: function(){
+        hasFieldset: function(){
             return this.get('content.viewSettings.form.elements').isAny('type', 'fieldset');
         }.property()
     });
@@ -21,22 +23,26 @@ define(
     UMI.FormElementController = Ember.ObjectController.extend({
         isFieldset: function(){
             return this.get('content.type') === 'fieldset';
-        }.property()
+        }.property(),
+        isExpanded: true,
+        actions: {
+            expand: function(){
+                this.toggleProperty('isExpanded');
+            }
+        }
     });
 
     UMI.FormControlView = Ember.View.extend({
         tagName: 'form',
         templateName: 'formControl',
-        classNameBindings: ['class:data.class'],
-        attributeBindings: ['abide:data-abide'],
-        abide: 'ajax'
+        classNames: ['s-margin-clear', 's-full-height']
     });
 
     UMI.FieldView = Ember.View.extend({
         classNames: ['umi-columns'],
         classNameBindings: ['wide'],
         wide: function(){
-            return this.get('meta.type') === 'wysiwyg' ? 'small-12' : 'large-4 medium-12';
+            return this.get('meta.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12';
         }.property('meta.type'),
         layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{label}}</label></div>{{yield}}'),
         template: function(){
@@ -45,7 +51,7 @@ define(
 
             switch(meta.type){
                 case 'text':
-                    template = Ember.Handlebars.compile('{{input type="text" value=object.' + meta.dataSource + ' placeholder=placeholder}}');
+                    template = Ember.Handlebars.compile('{{input type="text" value=object.' + meta.dataSource + ' placeholder=placeholder validator="collection" dataSource=dataSource}}');
                     break;
                 case 'textarea':
                     template = Ember.Handlebars.compile('{{textarea value=object.' + meta.dataSource + ' placeholder=meta.placeholder}}');
@@ -53,10 +59,7 @@ define(
                 case 'wysiwyg':
                     template = Ember.Handlebars.compile('{{html-editor object=object property="' + meta.dataSource + '"}}');
                     break;
-                case 'datetime':
-                    template = Ember.Handlebars.compile('{{date-picker object=object property="' + meta.dataSource + '"}}');
-                    break;
-                case 'number':
+                case 'number': // TODO: Поле типа "number" в firefox не работает
                     template = Ember.Handlebars.compile('{{input type="number" value=object.' + meta.dataSource + '}}');
                     break;
                 case 'checkbox':
@@ -68,6 +71,9 @@ define(
                 case 'multi-select':
                     template = Ember.Handlebars.compile('{{view "multiSelect" object=object meta=this}}');
                     break;
+                case 'datetime':
+                    template = Ember.Handlebars.compile('{{date-picker object=object property="' + meta.dataSource + '"}}');
+                    break;
                 case 'file':
                     template = Ember.Handlebars.compile('<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.dataSource + '}}<i class="icon icon-cloud"></i></div>');
                     break;
@@ -76,7 +82,8 @@ define(
                     break;
             }
             return template;
-        }.property('object', 'meta')
+        }.property('object', 'meta'),
+
     });
     //TODO: Для форм нужно не забыть в шаблоне, и в остальных местах биндить все возможные атрибуты
 

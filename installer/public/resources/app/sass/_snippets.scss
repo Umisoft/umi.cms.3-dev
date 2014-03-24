@@ -46,6 +46,9 @@ $s-full-height-before-height: 34px;
         position: relative;
         margin-top: -$s-full-height-before-height;
         padding-top: $s-full-height-before-height;
+        &.row.collapse{
+            margin-top: -$s-full-height-before-height;
+        }
     }
 }
 
