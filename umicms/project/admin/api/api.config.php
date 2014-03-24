@@ -39,18 +39,24 @@ return [
     ApiApplication::OPTION_ACL => [
 
         IAclFactory::OPTION_ROLES => [
-            'blogEditor' => [],
-            'serviceEditor' => [],
-            'filesEditor' => [],
-            'modelsEditor' => [],
-            'newsEditor' => [],
-            'seoEditor' => [],
-            'searchEditor' => [],
-            'statisticsEditor' => [],
-            'structureEditor' => [],
-            'usersEditor' => [],
+
+            'administrator' => [],
+
+            'blogEditor' => ['administrator'],
+            'serviceEditor' => ['administrator'],
+            'filesEditor' => ['administrator'],
+            'modelsEditor' => ['administrator'],
+            'newsEditor' => ['administrator'],
+            'seoEditor' => ['administrator'],
+            'searchEditor' => ['administrator'],
+            'statisticsEditor' => ['administrator'],
+            'structureEditor' => ['administrator'],
+            'usersEditor' => ['administrator'],
         ],
         IAclFactory::OPTION_RESOURCES => [
+
+            'controller:settings',
+
             'component:blog',
             'component:service',
             'component:files',
@@ -63,6 +69,9 @@ return [
             'component:users'
         ],
         IAclFactory::OPTION_RULES => [
+
+            'administrator' => ['controller:settings' => []],
+
             'blogEditor' => ['component:blog' => []],
             'serviceEditor' => ['component:service' => []],
             'filesEditor' => ['component:files' => []],
