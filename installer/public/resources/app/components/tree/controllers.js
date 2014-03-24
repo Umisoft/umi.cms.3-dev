@@ -42,7 +42,7 @@ define(['App'], function(UMI){
                 var root = Root.create({});
                 root.set('children', children);
                 return [root];// Намеренно возвращается значение в виде массива, так как шаблон ожидает именно такой формат
-            }.property('root.childCount'),
+            }.property('root.childCount', 'controllers.component.sideBarControl'),
             filters: function(){
                 return [
                     {

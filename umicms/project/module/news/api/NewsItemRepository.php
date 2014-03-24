@@ -29,6 +29,7 @@ class NewsItemRepository extends BaseObjectRepository
      */
     public $collectionName = 'newsItem';
 
+
     /**
      * Возвращает селектор для выбора новостей.
      * @return CmsSelector|NewsItem[]
@@ -106,13 +107,12 @@ class NewsItemRepository extends BaseObjectRepository
     /**
      * Возвращает новость по ее последней части ЧПУ.
      * @param string $slug последняя часть ЧПУ новости
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException если новость с заданной последней частью ЧПУ не существует
      * @return NewsItem
      */
-    public function getBySlug($slug, $onlyPublic = true)
+    public function getBySlug($slug)
     {
-        $selector = $this->select($onlyPublic)
+        $selector = $this->select()
             ->where(NewsItem::FIELD_PAGE_SLUG)
             ->equals($slug);
 
@@ -133,12 +133,11 @@ class NewsItemRepository extends BaseObjectRepository
     /**
      * Возвращает селектор для выбора новостей рубрики.
      * @param NewsRubric $rubric рубрика
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @return CmsSelector|NewsItem[]
      */
-    public function getNewsByRubric(NewsRubric $rubric, $onlyPublic = true)
+    public function getNewsByRubric(NewsRubric $rubric)
     {
-        return $this->select($onlyPublic)
+        return $this->select()
             ->where(NewsItem::FIELD_RUBRIC)
             ->equals($rubric);
     }
@@ -146,12 +145,11 @@ class NewsItemRepository extends BaseObjectRepository
     /**
      * Возвращает селектор для выбора новостей сюжета.
      * @param NewsSubject $subject
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @return CmsSelector|NewsItem[]
      */
-    public function getNewsBySubject(NewsSubject $subject, $onlyPublic = true)
+    public function getNewsBySubject(NewsSubject $subject)
     {
-        return $this->select($onlyPublic)
+        return $this->select()
             ->where(NewsItem::FIELD_SUBJECTS)
             ->equals($subject);
     }

@@ -73,3 +73,24 @@
         }
     }
 }
+
+.umi-dropup{
+    position: absolute;
+    bottom: 100%;
+}
+
+$dropup-button-pip-top-med: -$button-pip-med;
+
+.button.dropup{
+    @include dropdown-button();
+    border-color: transparent;
+    border-bottom-color: $dropdown-button-pip-color;
+    &:before{
+        margin-top: $dropup-button-pip-top-med + rem-calc(2);
+    }
+    &.white{
+        &:before{
+            border-bottom-color: $dropdown-button-pip-color-alt;
+        }
+    }
+}

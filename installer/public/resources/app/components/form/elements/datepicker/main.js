@@ -14,9 +14,8 @@ define(['App'], function(UMI){
             property.date = this.get('valueObject');
             this.get('object').set(this.get('property'), property);
         }.observes('valueObject'),
-        layout: Ember.Handlebars.compile('{{input type="text" class="umi-date" value=valueObject}}<i class="icon icon-calendar"></i>'),
+        layout: Ember.Handlebars.compile('{{input type="text" class="umi-date" value=valueObject}}'),
         didInsertElement: function(){
-            var self = this;
             var el = this.$().children('.umi-date');
             el.jdPicker({date_format: "dd/mm/YYYY"});
         }

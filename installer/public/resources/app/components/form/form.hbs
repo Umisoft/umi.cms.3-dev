@@ -1,176 +1,50 @@
-{{#if controller.hasFieldsets}}
-    <div class="magellan-menu s-full-height-before">
-        {{#each formElements in model.viewSettings.form.elements itemController="FormElement"}}
+{{#if controller.hasFieldset}}
+    {{#view "magellan" elements=model.viewSettings.form.elements}}
+        {{#each formElement in model.viewSettings.form.elements itemController="FormElement"}}
             {{#if controller.isFieldset}}
-                <a href="#{{unbound formElements.name}}">{{formElements.label}}</a>
+                {{#view view.buttonView model=formElement}}{{formElement.label}}{{/view}}
             {{/if}}
         {{/each}}
-    </div>
-    <div class="magellan-menu-holder"></div>
+    {{/view}}
 {{/if}}
-
-<div class="umi-form-control-content">
-    {{#with model.object as object}}
+<div class="row s-full-height collapse">
+    <div class="columns small-12 maggelan-content">
+        {{#with model.object as object}}
             {{#each formElements in model.viewSettings.form.elements itemController="FormElement"}}
-                {{#if controller.isFieldset}}
-                    <a name="{{unbound formElements.name}}"></a>
-                    <fieldset>
-                        <legend><i class="icon icon-bottom umi-form-control-fieldset-toggle"></i>{{formElements.label}}</legend>
-                        {{#each formElements.elements}}
-                            {{view "field" objectBinding="object" metaBinding="this"}}
-                        {{/each}}
+                {{#if isFieldset}}
+                    <fieldset id="fieldset-{{unbound formElements.name}}">
+                        <legend {{action 'expand'}}><i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>{{formElements.label}}</legend>
+                        {{#if isExpanded}}
+                            {{#each formElements.elements}}
+                                {{view "field" objectBinding="object" metaBinding="this"}}
+                            {{/each}}
+                        {{/if}}
                     </fieldset>
                 {{else}}
                     {{view "field" objectBinding="object" metaBinding="this"}}
                 {{/if}}
             {{/each}}
-    {{/with}}
-</div>
-
-<div class="umi-form-drop-up s-unselectable">
-
-    <div class="umi-form-tabs-content">
-        <div class="umi-form-tab-content">
-            <div class="umi-dropdown-row">
-                <div class="umi-dropdown-row-text" style="padding: 7px 10px;"><i class="icon icon-user"></i></div>
-                <div class="right">
-                    <div><i class="icon icon-key black"></i></div>
-                    <div><i class="icon icon-key white"></i></div>
-                    <div><i class="icon icon-key"></i></div>
-                    <div><i class="icon icon-key"></i></div>
-                    <div><i class="icon icon-key white"></i></div>
-                </div>
-            </div>
-            <div class="umi-dropdown-row">
-                <div class="umi-dropdown-row-text">Виталий</div>
-                <div class="right">
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox"/></div>
-                </div>
-            </div>
-            <div class="umi-dropdown-row">
-                <div class="umi-dropdown-row-text">Кирилл</div>
-                <div class="right">
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox"/></div>
-                </div>
-            </div>
-            <div class="umi-dropdown-row">
-                <div class="umi-dropdown-row-text">Семён</div>
-                <div class="right">
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox"/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox" checked/></div>
-                    <div><input type="checkbox" checked/></div>
-                </div>
-            </div>
-            <div class="umi-dropdown-row">
-                <input type="text" placeholder="Добавить пользователя"/>
-            </div>
-        </div>
+        {{/with}}
     </div>
-
-    <div class="umi-form-tabs">
+</div>
+<ul class="button-group umi-form-control-buttons">
+    <li>
         {{#view "saveButton" class="button s-margin-clear wide left" model=model.object}}
             {{#if model.object.isSaving}}
                 Сохранено
-            {{else}}
-                {{#if model.object.isDirty}}
-                    Сохранить
                 {{else}}
-                    Сохранено
+                    {{#if model.object.isDirty}}
+                        Сохранить
+                    {{else}}
+                        Сохранено
                 {{/if}}
             {{/if}}
-
         {{/view}}
-        <div class="umi-form-tab"><i class="icon icon-pause"></i></div>
-        <div class="umi-form-tab"><i class="icon icon-6"></i></div>
-        <div class="button white s-margin-clear"><i class="icon icon-delete"></i></div>
-    </div>
-
-</div>
-
-<script type="text/x-handlebars" id="umi-popup">
-    <div class="umi-popup">
-        <div id="elfinder"></div>
-    </div>
-</script>
-
-<script>
-//    $('.umi-show-popup').click(function(){
-//        if($('html').hasClass('cssfilters')){
-//            console.log('blur');
-//            $('.umi-main-view').addClass('umi-blur');
-//            $('body').append('<div class="umi-overlay"></div>');
-//        }else{
-//            console.log('white');
-//            $('body').append('<div class="umi-overlay-white"></div>');
-//        }
-//
-//        $('body').append(document.querySelector('#umi-popup').innerHTML);
-//        var x = $(window).width()/2 - 300;
-//        var y = $(window).height()/2 - 250;
-//        $('.umi-popup').offset({left:x, top:y});
-//
-//        $().ready(function(){
-//            var elf = $('#elfinder').elfinder({
-//                url : '/resources/libs/elfinder/php/connector.php'  // connector URL (REQUIRED)
-//                // lang: 'ru',             // language (OPTIONAL)
-//            }).elfinder('instance');
-//        });
-//
-//        $('body').on('mousedown', function(event){
-//            $('.umi-main-view').removeClass('umi-blur');
-//            $('.umi-overlay').remove();
-//            $('.umi-overlay-white').remove();
-//            $('.umi-popup').remove();
-//        });
-//
-//        $('body').on('.umi-popup', 'mousedown', function(event){
-//            //        console.log('close');
-//            event.stopImmediatePropagation();
-//        });
-//    });
-</script>
-
-<script>
-    //Функция вызывается после выполнения всего didInsertelement
-    //TODO Добавить родителя для form минуя metamorph
-    //    setTimeout(function(){
-    //        var formControlScroll = new IScroll('.umi-table-control-content-center', {
-    //            scrollX: true,
-    //            probeType: 3,
-    //            mouseWheel: true,
-    //            scrollbars: true,
-    //            bounce: false,
-    //            click: false,
-    //            freeScroll: false,
-    //            keyBindings: true,
-    //            interactiveScrollbars: true
-    //        });
-    //    }, 0);
-
-    $('.umi-form-tab').mousedown(function(event){
-        event.stopPropagation();
-        $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
-        $(this).addClass('active');
-
-        var i = $(this).index('.umi-form-drop-up .umi-form-tab');
-        $('.umi-form-tab-content').eq(i).addClass('active');
-    });
-
-    $('html').on('mousedown', function(event){
-        $('.umi-form-tab, .umi-form-tab-content').removeClass('active');
-    });
-
-    $('.umi-form-tabs-content').mousedown(function(event){
-        event.stopPropagation();
-    });
-</script>
+    </li>
+    <li>
+        <span class="button white dropup">Сменить тип</span>
+        <div class="umi-dropup">
+        </div>
+    </li>
+    <li><span class="button white">Удалить</span></li>
+</ul>

@@ -1,7 +1,7 @@
 //
 // Arrow/caret
 //
-$triangle-size: 3px;
+$triangle-size: 4px;
 $triangle-border-color: $body-font-color;
 $triangle-border-color-opposite: #FFF;
 
@@ -65,5 +65,18 @@ $triangle-border-color-opposite: #FFF;
     .triangle{
         top: 50%;
         margin-top: -$triangle-size / 2;
+    }
+}
+
+.button{
+    .triangle{
+        margin-top: 6px;
+    }
+    .triangle-top, .triangle-top-white{
+        margin-top: 3px;
+    }
+    .triangle-right, .triangle-right-white,
+    .triangle-left, .triangle-left-white{
+        margin-top: 3px;
     }
 }
