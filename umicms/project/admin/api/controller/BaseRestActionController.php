@@ -56,8 +56,8 @@ abstract class BaseRestActionController extends BaseRestController implements IO
             }
             case 'DELETE': {
                 throw new HttpMethodNotAllowed(
-                    'HTTP method is not implemented.',
-                    ['GET', 'PUT', 'DELETE']
+                    'HTTP method is not allowed.',
+                    ['GET', 'PUT', 'POST']
                 );
             }
             default: {

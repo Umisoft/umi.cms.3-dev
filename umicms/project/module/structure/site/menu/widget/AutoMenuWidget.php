@@ -9,13 +9,13 @@
 
 namespace umicms\project\module\structure\site\menu\widget;
 
-use umicms\hmvc\widget\BaseWidget;
+use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\structure\api\StructureApi;
 
 /**
  * Виджет для вывода автогенерируемого меню
  */
-class AutoMenuWidget extends BaseWidget
+class AutoMenuWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет.

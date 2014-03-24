@@ -15,13 +15,9 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    AdminComponent::OPTION_SETTINGS => [
-
-    ],
-
     AdminComponent::OPTION_CONTROLLERS => [
         AdminComponent::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
-        'default' => __NAMESPACE__ . '\controller\DefaultController',
+        'default' => __NAMESPACE__ . '\controller\DefaultController'
     ],
 
     AdminComponent::OPTION_COMPONENTS => [

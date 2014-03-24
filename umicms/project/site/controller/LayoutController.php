@@ -9,18 +9,22 @@
 namespace umicms\project\site\controller;
 
 use umi\http\Response;
+use umicms\hmvc\controller\BaseController;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\api\StructureApi;
+use umicms\project\site\callstack\IPageCallStackAware;
+use umicms\project\site\callstack\TPageCallStackAware;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 
 /**
  * Контроллер сетки сайта.
  */
-class LayoutController extends SitePageController implements ISiteSettingsAware
+class LayoutController extends BaseController implements ISiteSettingsAware, IPageCallStackAware
 {
 
     use TSiteSettingsAware;
+    use TPageCallStackAware;
 
     /**
      * @var Response $response содержимое страницы

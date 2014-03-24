@@ -15,7 +15,9 @@ use umi\authentication\IAuthenticationFactory;
 use umi\authentication\TAuthenticationAware;
 use umicms\api\BaseComplexApi;
 use umicms\api\IPublicApi;
-use umicms\project\module\users\object\User;
+use umicms\project\module\users\object\AuthorizedUser;
+use umicms\project\module\users\object\Guest;
+use umicms\project\module\users\object\Supervisor;
 
 /**
  * API для работы с пользователями.
@@ -28,6 +30,14 @@ class UsersApi extends BaseComplexApi implements IPublicApi, IAuthenticationAwar
      * {@inheritdoc}
      */
     public $collectionName = 'user';
+    /**
+     * @var string $guestGuid GUID гостя
+     */
+    public $guestGuid = '552802d2-278c-46c2-9525-cd464bbed63e';
+    /**
+     * @var string $supervisorGuid GUID супервайзера
+     */
+    public $supervisorGuid = '68347a1d-c6ea-49c0-9ec3-b7406e42b01e';
     /**
      * @var string $passwordSalt маска соли для хэширования паролей
      */
@@ -44,18 +54,18 @@ class UsersApi extends BaseComplexApi implements IPublicApi, IAuthenticationAwar
 
     /**
      * Устанавливает пользователю новый пароль.
-     * @param User $user авторизованный пользователь
+     * @param AuthorizedUser $user авторизованный пользователь
      * @param string $password пароль
      */
-    public function setUserPassword(User $user, $password)
+    public function setUserPassword(AuthorizedUser $user, $password)
     {
         $passwordSalt = strtr($this->passwordSaltMask, [
                 '{salt}' => uniqid('', true)
             ]);
         $passwordHash = crypt($password, $passwordSalt);
 
-        $user->getProperty(User::FIELD_PASSWORD_SALT)->setValue($passwordSalt);
-        $user->getProperty(User::FIELD_PASSWORD)->setValue($passwordHash);
+        $user->getProperty(AuthorizedUser::FIELD_PASSWORD_SALT)->setValue($passwordSalt);
+        $user->getProperty(AuthorizedUser::FIELD_PASSWORD)->setValue($passwordHash);
     }
 
     /**
@@ -83,7 +93,7 @@ class UsersApi extends BaseComplexApi implements IPublicApi, IAuthenticationAwar
     /**
      * Возвращает авторизованного пользователя.
      * @throws RuntimeException если пользователь не был авторизован
-     * @return User авторизованный пользователь.
+     * @return AuthorizedUser авторизованный пользователь.
      */
     public function getCurrentUser()
     {
@@ -109,5 +119,23 @@ class UsersApi extends BaseComplexApi implements IPublicApi, IAuthenticationAwar
     {
         $this->getDefaultAuthManager()
             ->forget();
+    }
+
+    /**
+     * Возвращает гостя.
+     * @return Guest
+     */
+    public function getGuest()
+    {
+        return $this->user()->get($this->guestGuid);
+    }
+
+    /**
+     * Возвращает супервайзера.
+     * @return Supervisor
+     */
+    public function getSupervisor()
+    {
+        return $this->user()->get($this->supervisorGuid);
     }
 }

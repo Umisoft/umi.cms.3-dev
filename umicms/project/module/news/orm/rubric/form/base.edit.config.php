@@ -17,7 +17,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection\newsRubric', 'collection', 'form'
+            'collection.newsRubric', 'collection', 'form'
         ]
     ],
 

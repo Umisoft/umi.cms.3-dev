@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\structure\site\menu;
 
+use umi\acl\IAclFactory;
 use umicms\project\site\component\SiteComponent;
 
 return [
@@ -16,6 +17,20 @@ return [
 
     SiteComponent::OPTION_WIDGET => [
         'auto' => __NAMESPACE__ . '\widget\AutoMenuWidget'
+    ],
+
+    SiteComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'menuViewer' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'widget:auto',
+        ],
+        IAclFactory::OPTION_RULES => [
+            'menuViewer' => [
+                'widget:auto' => []
+            ]
+        ]
     ],
 
     SiteComponent::OPTION_VIEW        => [
