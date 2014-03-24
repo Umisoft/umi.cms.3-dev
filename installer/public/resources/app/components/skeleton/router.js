@@ -360,6 +360,10 @@ define([], function(){
                         return UMI.dialog.open(data).then(
                             function(){/*При положительном ответе делать ничего не нужно*/ },
                             function(){
+                                if(!model.get('isValid')){
+                                    model.set('validErrors', null);
+                                    model.send('becameValid');
+                                }
                                 model.rollback();
                                 transition.retry();
                             }
