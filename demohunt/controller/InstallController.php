@@ -313,7 +313,6 @@ class InstallController extends SitePageController implements ICollectionManager
                 ->setValue('announcement', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>')
                 ->setValue('contents', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>')
                 ->setValue('rubric', $rubric)
-                ->setGUID('96a6bea4-3c77-4ea1-9eb3-c4b1082253'.$num)
                 ->setValue('slug', 'privideniya-'.$num)
                 ->getValue('date')->setTimestamp(strtotime('2010-08-02 17:35:00'));
         }
@@ -530,6 +529,7 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `login` varchar(255) DEFAULT NULL,
                     `email` varchar(255) DEFAULT NULL,
@@ -558,6 +558,8 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `group_guid` (`guid`),
                     KEY `group_type` (`type`)
@@ -577,10 +579,12 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
-                    `user_id` bigint(20) unsigned,
-                    `user_group_id` bigint(20) unsigned,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
+                    `user_id` bigint(20) unsigned,
+                    `user_group_id` bigint(20) unsigned,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `user_user_group_guid` (`guid`),
                     KEY `user_user_group_type` (`type`),
@@ -625,13 +629,16 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_category_guid` (`guid`),
                     UNIQUE KEY `blog_category_pid_slug` (`pid`, `slug`),
@@ -656,6 +663,10 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `date` datetime DEFAULT NULL,
                     `contents` text,
                     `announcement` text,
@@ -664,8 +675,7 @@ class InstallController extends SitePageController implements ICollectionManager
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_post_guid` (`guid`),
                     UNIQUE KEY `blog_post_slug` (`slug`),
@@ -690,13 +700,16 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_tag_guid` (`guid`),
                     UNIQUE KEY `blog_tag_slug` (`slug`),
@@ -717,10 +730,13 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
-                    `post_id` bigint(20) unsigned,
-                    `tag_id` bigint(20) unsigned,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
+                    `post_id` bigint(20) unsigned,
+                    `tag_id` bigint(20) unsigned,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `post_tag_guid` (`guid`),
                     KEY `post_tag_type` (`type`),
@@ -752,11 +768,14 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `contents` text,
                     `post_id` bigint(20) unsigned,
                     `date` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_comment_guid` (`guid`),
                     UNIQUE KEY `blog_comment_pid_slug` (`pid`, `slug`),
@@ -801,14 +820,17 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_rubric_guid` (`guid`),
                     UNIQUE KEY `news_rubric_pid_slug` (`pid`, `slug`),
@@ -835,6 +857,10 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `date` datetime DEFAULT NULL,
                     `contents` text,
                     `announcement` text,
@@ -844,8 +870,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `h1` varchar(255) DEFAULT NULL,
                     `rubric_id` bigint(20) unsigned DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_news_item_guid` (`guid`),
                     UNIQUE KEY `news_news_item_slug` (`slug`),
@@ -872,14 +896,17 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_subject_guid` (`guid`),
                     UNIQUE KEY `news_subject_slug` (`slug`),
@@ -902,10 +929,13 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
-                    `news_item_id` bigint(20) unsigned,
-                    `subject_id` bigint(20) unsigned,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
+                    `news_item_id` bigint(20) unsigned,
+                    `subject_id` bigint(20) unsigned,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_news_item_subject_guid` (`guid`),
                     KEY `news_news_item_subject_type` (`type`),
@@ -937,9 +967,12 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
-                    `file_name` varchar(255) DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
+                    `file_name` varchar(255) DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `layout_guid` (`guid`),
                     KEY `layout_type` (`type`)
@@ -968,6 +1001,10 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
@@ -978,8 +1015,7 @@ class InstallController extends SitePageController implements ICollectionManager
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
                     `in_menu` tinyint(1) unsigned DEFAULT 0,
                     `submenu_state` tinyint(1) unsigned DEFAULT 0,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `structure_guid` (`guid`),
                     UNIQUE KEY `structure_mpath` (`mpath`),
@@ -1019,12 +1055,20 @@ class InstallController extends SitePageController implements ICollectionManager
                 `guid` varchar(255),
                 `version` int(10) unsigned DEFAULT '1',
                 `type` varchar(255),
+                `display_name` varchar(255) DEFAULT NULL,
+                `locked` tinyint(1) unsigned DEFAULT '0',
+                `active` tinyint(1) unsigned DEFAULT '1',
+                `created` datetime DEFAULT NULL,
+                `updated` datetime DEFAULT NULL,
+                `owner_id` bigint(20) unsigned DEFAULT NULL,
+                `editor_id` bigint(20) unsigned DEFAULT NULL,
+                `permissions` int(10) unsigned DEFAULT 0,
+
                 `date_indexed` datetime DEFAULT NULL,
                 `collection_id` varchar(255) DEFAULT NULL,
                 `ref_guid` varchar(255) DEFAULT NULL,
                 `contents` TEXT DEFAULT NULL,
-                `owner_id` bigint(20) unsigned DEFAULT NULL,
-                `editor_id` bigint(20) unsigned DEFAULT NULL,
+
                 PRIMARY KEY (`id`),
                 UNIQUE KEY `search_index_guid` (`guid`),
                 UNIQUE KEY `search_index_ref_guid` (`ref_guid`),

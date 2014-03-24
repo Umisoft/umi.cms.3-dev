@@ -5,7 +5,9 @@ define(['App'], function(UMI){
         attributeBindings: ['meta.dataSource:name'],
         optionLabelPath: 'content.displayName',
         optionValuePath: 'content.id',
-        prompt: 'Ничего не выбрано',
+        prompt: function(){
+            return this.get('meta.placeholder');
+        }.property('meta.placeholder'),
         content: function(){
             var self = this;
             var store = self.get('controller.store');
@@ -31,6 +33,11 @@ define(['App'], function(UMI){
             if(oldId !== newId){
                 object.set(property, selectObject);
                 object.send('becomeDirty');//TODO: Перенести в ядро REST Adapter
+            } else if(object.get('isDirty')){
+                var changedAttributes = object.changedAttributes();
+                if(JSON.stringify(changedAttributes) === JSON.stringify({})){
+                    object.send('rolledBack');
+                }
             }
         }.observes('value'),
         /**

@@ -190,7 +190,6 @@ return [
                 NewsRubric::FIELD_PAGE_LAYOUT,
                 NewsRubric::FIELD_NEWS,
                 NewsRubric::FIELD_CHILDREN,
-                NewsRubric::FIELD_TRASHED,
                 NewsRubric::FIELD_OWNER,
                 NewsRubric::FIELD_EDITOR
             ]

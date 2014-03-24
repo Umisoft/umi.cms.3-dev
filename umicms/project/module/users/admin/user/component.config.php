@@ -15,8 +15,23 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    AdminComponent::OPTION_SETTINGS => [
+    AdminComponent::OPTION_INTERFACE_CONTROLS => [
+        'filter' => [],
+        'form' => [],
+    ],
 
+    AdminComponent::OPTION_INTERFACE_LAYOUT => [
+        'collection' => 'user',
+        'emptyContext' => [
+            'contents' => [
+                'controls' => ['filter']
+            ]
+        ],
+        'selectedContext' => [
+            'contents' => [
+                'controls' => ['form']
+            ]
+        ]
     ],
 
     AdminComponent::OPTION_CONTROLLERS => [

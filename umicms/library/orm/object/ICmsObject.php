@@ -55,4 +55,8 @@ interface ICmsObject extends IObject
      * Имя поля для хранения последнего редактора объекта
      */
     const FIELD_EDITOR = 'editor';
+    /**
+     * Имя поля для хранения прав доступа к объекту
+     */
+    const FIELD_PERMISSION = 'permission';
 }

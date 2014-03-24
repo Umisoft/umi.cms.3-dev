@@ -72,7 +72,20 @@ return [
         User::FIELD_CREATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created', 'readOnly'   => true],
         User::FIELD_UPDATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly'   => true],
         User::FIELD_LOGIN         => ['type' => IField::TYPE_STRING, 'columnName' => 'login'],
-        User::FIELD_EMAIL         => ['type' => IField::TYPE_STRING, 'columnName' => 'email'],
+        User::FIELD_EMAIL         => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'email',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => [],
+                IValidatorFactory::TYPE_REGEXP => [
+                    'pattern' => '/.+\@.+\..+/'
+                ],
+                IValidatorFactory::TYPE_EMAIL => [],
+            ]
+        ],
         User::FIELD_PASSWORD      => ['type' => IField::TYPE_STRING, 'columnName' => 'password', 'readOnly' => true],
         User::FIELD_PASSWORD_SALT => ['type'       => IField::TYPE_STRING,
                                       'columnName' => 'password_salt',

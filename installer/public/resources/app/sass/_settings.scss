@@ -39,6 +39,14 @@ $button-font-lrg: rem-calc(13);
 
 $button-font-weight: bold;
 $button-border-width: 1px;
+
+// Dropdown buttons
+$button-pip-med: rem-calc(8);
+
+$dropdown-button-padding-med: $button-pip-med * 3 + rem-calc(3);
+$dropdown-button-pip-size-med: 4px;
+$dropdown-button-pip-opposite-med: $button-pip-med * 1.5;
+
 // Off Canvas Menu Variables
 $off-canvas-bg: #D6E0E9;
 

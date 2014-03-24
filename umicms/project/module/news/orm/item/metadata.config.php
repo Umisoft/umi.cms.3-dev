@@ -151,7 +151,6 @@ return [
                 NewsItem::FIELD_ANNOUNCEMENT,
                 NewsItem::FIELD_SUBJECTS,
                 NewsItem::FIELD_DATE,
-                NewsItem::FIELD_TRASHED,
                 NewsItem::FIELD_OWNER,
                 NewsItem::FIELD_EDITOR
             ]
