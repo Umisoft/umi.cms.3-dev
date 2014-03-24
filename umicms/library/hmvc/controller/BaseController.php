@@ -18,7 +18,6 @@ use umi\http\Response;
  */
 abstract class BaseController extends FrameworkController
 {
-
     /**
      * Возвращает значение параметра из GET-параметров запроса.
      * @param string $name имя параметра

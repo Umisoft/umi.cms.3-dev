@@ -9,20 +9,20 @@
 namespace umicms\project\module\structure\admin\page;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\component\SecureAdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
 
-    AdminComponent::OPTION_INTERFACE_CONTROLS => [
+    SecureAdminComponent::OPTION_INTERFACE_CONTROLS => [
         'tree' => [],
         'children' => [],
         'filter' => [],
         'form' => [],
     ],
 
-    AdminComponent::OPTION_INTERFACE_LAYOUT => [
+    SecureAdminComponent::OPTION_INTERFACE_LAYOUT => [
         'collection' => 'structure',
         'emptyContext' => [
             'sideBar' => [
@@ -42,14 +42,14 @@ return [
         ]
     ],
 
-    AdminComponent::OPTION_CONTROLLERS => [
-        AdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
-        AdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
-        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
+    SecureAdminComponent::OPTION_CONTROLLERS => [
+        SecureAdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
+        SecureAdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
+        SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
+        SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
     ],
 
-    AdminComponent::OPTION_ROUTES      => [
+    SecureAdminComponent::OPTION_ROUTES      => [
 
         'action' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
@@ -83,7 +83,7 @@ return [
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => AdminComponent::SETTINGS_CONTROLLER
+                'controller' => SecureAdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]

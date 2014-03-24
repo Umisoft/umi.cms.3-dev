@@ -9,31 +9,41 @@
 
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\users\object\User;
+use umicms\project\module\users\object\AuthorizedUser;
 
 return [
+
+    'options' => [
+        'dictionaries' => [
+            'collection.user', 'collection'
+        ]
+    ],
 
     'elements' => [
 
         'common' => [
             'type' => FieldSet::TYPE_NAME,
+            'label' => 'common',
             'elements' => [
-                User::FIELD_DISPLAY_NAME => [
+                AuthorizedUser::FIELD_DISPLAY_NAME => [
                     'type' => Text::TYPE_NAME,
+                    'label' => AuthorizedUser::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => User::FIELD_DISPLAY_NAME
+                        'dataSource' => AuthorizedUser::FIELD_DISPLAY_NAME
                     ],
                 ],
-                User::FIELD_LOGIN => [
+                AuthorizedUser::FIELD_LOGIN => [
                     'type' => Text::TYPE_NAME,
+                    'label' => AuthorizedUser::FIELD_LOGIN,
                     'options' => [
-                        'dataSource' => User::FIELD_LOGIN
+                        'dataSource' => AuthorizedUser::FIELD_LOGIN
                     ],
                 ],
-                User::FIELD_EMAIL => [
+                AuthorizedUser::FIELD_EMAIL => [
                     'type' => Text::TYPE_NAME,
+                    'label' => AuthorizedUser::FIELD_EMAIL,
                     'options' => [
-                        'dataSource' => User::FIELD_EMAIL
+                        'dataSource' => AuthorizedUser::FIELD_EMAIL
                     ],
                 ]
             ]

@@ -10,16 +10,16 @@
 namespace umicms\project\module\statistics\admin;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\component\SecureAdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
 
-    AdminComponent::OPTION_COMPONENTS => [
+    SecureAdminComponent::OPTION_COMPONENTS => [
         'metrika' => '{#lazy:~/project/module/statistics/admin/metrika/component.config.php}'
     ],
-    AdminComponent::OPTION_ROUTES      => [
+    SecureAdminComponent::OPTION_ROUTES      => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{component}'

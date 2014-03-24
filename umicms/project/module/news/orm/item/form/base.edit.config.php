@@ -19,7 +19,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection\newsItem', 'collection'
+            'collection.newsItem', 'collection'
         ]
     ],
 

@@ -11,7 +11,7 @@ namespace umicms\project\admin\api\controller;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
 use umicms\orm\collection\ICmsCollection;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\api\ApiApplication;
 use umicms\hmvc\controller\BaseController;
 
 /**
@@ -26,8 +26,6 @@ class ApiSettingsController extends BaseController implements ICollectionManager
      */
     public function __invoke()
     {
-
-
         return $this->createViewResponse(
             'settings',
             [
@@ -44,10 +42,11 @@ class ApiSettingsController extends BaseController implements ICollectionManager
     protected function getModulesInfo()
     {
         /**
-         * @var AdminComponent $application
+         * @var ApiApplication $application
          */
         $application = $this->getComponent();
         $applicationInfo = $application->getComponentInfo();
+
         return isset($applicationInfo['components']) ? $applicationInfo['components'] : [];
     }
 

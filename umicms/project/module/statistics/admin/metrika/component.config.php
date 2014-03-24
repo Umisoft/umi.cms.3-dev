@@ -9,16 +9,16 @@
 namespace umicms\project\module\statistics\admin\metrika;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\component\SecureAdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
-    AdminComponent::OPTION_INTERFACE_CONTROLS => [
+    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
+    SecureAdminComponent::OPTION_INTERFACE_CONTROLS => [
         'counters' => [],
         'counter' => [],
     ],
-    AdminComponent::OPTION_INTERFACE_LAYOUT => [
+    SecureAdminComponent::OPTION_INTERFACE_LAYOUT => [
         'emptyContext' => [
             'contents' => [
                 'controls' => ['counters']
@@ -30,12 +30,12 @@ return [
             ]
         ]
     ],
-    AdminComponent::OPTION_CONTROLLERS => [
+    SecureAdminComponent::OPTION_CONTROLLERS => [
 
-        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        AdminComponent::SETTINGS_CONTROLLER =>  __NAMESPACE__ . '\controller\SettingsController'
+        SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
+        SecureAdminComponent::SETTINGS_CONTROLLER =>  __NAMESPACE__ . '\controller\SettingsController'
     ],
-    AdminComponent::OPTION_ROUTES => [
+    SecureAdminComponent::OPTION_ROUTES => [
         'action' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/action/{action}',
@@ -47,7 +47,7 @@ return [
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => AdminComponent::SETTINGS_CONTROLLER
+                'controller' => SecureAdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]

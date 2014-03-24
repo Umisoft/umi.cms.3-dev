@@ -7,20 +7,22 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\admin\component;
+namespace umicms\project\admin\api\component;
 
+use umi\acl\IAclResource;
 use umicms\hmvc\component\BaseComponent;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\admin\api\controller\BaseRestActionController;
 
 /**
- * Компонент административной панели.
+ * Компонент API административной панели.
  */
-class AdminComponent extends BaseComponent implements IUrlManagerAware
+class AdminApiComponent extends BaseComponent implements IUrlManagerAware, IAclResource
 {
 
-    use TUrlManagerAware;
+
+
 
     /**
      * Имя опции для задания контролов компонента.
@@ -47,6 +49,8 @@ class AdminComponent extends BaseComponent implements IUrlManagerAware
      * Контроллер для выполнения CRUD-операций над списком объектов
      */
     const LIST_CONTROLLER = 'list';
+
+
 
     /**
      * Возвращает информацию о контролах компонента.
@@ -107,35 +111,6 @@ class AdminComponent extends BaseComponent implements IUrlManagerAware
         }
 
         return $actions;
-    }
-
-    /**
-     * Возвращает информацию о компоненте и дочерних компонентах на всю глубину.
-     * @return array
-     */
-    public function getComponentInfo()
-    {
-        $componentInfo = [
-            'name'        => $this->getName(),
-            'displayName' => $this->translate('component:' . $this->getName() . ':displayName'),
-            'resource' => $this->getUrlManager()->getAdminComponentResourceUrl($this)
-        ];
-
-        $components = [];
-
-        foreach ($this->getChildComponentNames() as $componentName) {
-            /**
-             * @var AdminComponent $component
-             */
-            $component = $this->getChildComponent($componentName);
-            $components[] = $component->getComponentInfo();
-        }
-
-        if ($components) {
-            $componentInfo['components'] = $components;
-        }
-
-        return $componentInfo;
     }
 }
  

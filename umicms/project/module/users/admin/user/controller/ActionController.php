@@ -51,7 +51,7 @@ class ActionController extends BaseRestActionController
      */
     public function getModifyActions()
     {
-        return ['login', 'logout', 'trash', 'untrash', 'emptyTrash'];
+        return ['trash', 'untrash', 'emptyTrash'];
     }
 
     /**
@@ -64,26 +64,6 @@ class ActionController extends BaseRestActionController
         }
 
         return $this->api->user()->getCollection();
-    }
-
-    protected function actionLogin()
-    {
-        if (!$this->api->isAuthenticated()) {
-            if (!$this->api->login($this->getPostVar('login'), $this->getPostVar('password'))) {
-                throw new HttpUnauthorized(
-                    $this->translate('Incorrect login or password.')
-                );
-            }
-        }
-
-        return $this->api->getCurrentUser();
-    }
-
-    protected function actionLogout()
-    {
-        $this->api->logout();
-
-        return '';
     }
 
     /**

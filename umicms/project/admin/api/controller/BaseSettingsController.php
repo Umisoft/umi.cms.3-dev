@@ -17,7 +17,6 @@ use umicms\project\admin\component\AdminComponent;
  */
 abstract class BaseSettingsController extends BaseController
 {
-
     /**
      * {@inheritdoc}
      */
