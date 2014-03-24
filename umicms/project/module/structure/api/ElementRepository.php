@@ -87,14 +87,13 @@ class ElementRepository extends BaseObjectRepository
     /**
      * Возвращает элемент по Uri.
      * @param string $uri
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException если не удалось получить элемент
      * @return StructureElement
      */
-    public function getByUri($uri, $onlyPublic = true)
+    public function getByUri($uri)
     {
         try {
-            return $this->getByUri($uri, $onlyPublic);
+            return $this->getByUri($uri);
         } catch(\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(

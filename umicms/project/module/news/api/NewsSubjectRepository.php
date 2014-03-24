@@ -81,12 +81,11 @@ class NewsSubjectRepository extends BaseObjectRepository
     /**
      * Возвращает сюжет по его последней части ЧПУ
      * @param string $slug последняя часть ЧПУ
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws NonexistentEntityException если не удалось получить сюжет
      * @return NewsSubject
      */
-    public function getBySlug($slug, $onlyPublic = true) {
-        $selector = $this->select($onlyPublic)
+    public function getBySlug($slug) {
+        $selector = $this->select()
             ->where(NewsSubject::FIELD_PAGE_SLUG)
             ->equals($slug);
 

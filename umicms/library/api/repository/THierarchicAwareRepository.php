@@ -113,11 +113,10 @@ trait THierarchicAwareRepository
     /**
      * Возвращает объект по его Uri
      * @param string $uri Uri объекта
-     * @param bool $onlyPublic выбирать только публично доступные объекты
      * @throws \Exception если не удалось выбрать объект по каким-либо причинам
      * @return CmsHierarchicObject
      */
-    protected function selectByUri($uri, $onlyPublic = true)
+    protected function selectByUri($uri)
     {
         /**
          * @var CmsHierarchicObject|IRecyclableObject $object
@@ -127,13 +126,6 @@ trait THierarchicAwareRepository
         if ($object instanceof IRecyclableObject && $object->trashed) {
             throw new RuntimeException($this->translate(
                 'Cannot select object by uri "{uri}". Object in trash.',
-                ['uri' => $uri]
-            ));
-        }
-
-        if ($onlyPublic && !$object->active) {
-            throw new RuntimeException($this->translate(
-                'Cannot select object by uri "{uri}". Object inactive.',
                 ['uri' => $uri]
             ));
         }
