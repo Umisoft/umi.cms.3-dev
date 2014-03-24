@@ -4,6 +4,17 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
     return function(){
         var Auth = {
             TEMPLATES: {},
+            forms: {},
+            getForm: function(action){
+                var deferred = $.Deferred();
+                action =  action || 'form';
+                var self = this;
+                $.get(window.UmiSettings.baseApiURL + '/action/' + action).then(function(results){
+                    self.forms[action] = results.result.form;
+                    deferred.resolve();
+                });
+                return deferred;
+            },
             validator: {
                 shake: function(){
                     function shake(id, a, d){
@@ -72,76 +83,82 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                         //Auth = null; TODO: Нужно удалять приложение Auth после авторизации
                     }, 2000);
                 });
+            },
+            init: function(){
+                tempaltes(Auth);
+                this.getForm().then(function(){
+                    // Проверяем есть ли шаблон и если нет то собираем его
+                    if(!document.querySelector('.auth-layout')){
+                        var helper = document.createElement('div');
+                        helper.innerHTML = Auth.TEMPLATES.app({outlet: Auth.TEMPLATES.index({form: Auth.forms.form})});
+                        helper = document.body.appendChild(helper);
+                        $(helper.firstElementChild).unwrap();
+                    }
+
+                    var bubbles = document.querySelector('.bubbles');
+                    var bubblesFront = document.querySelector('.bubbles-front');
+                    var parallax = function(event){
+                        var bodyWidth = document.body.offsetWidth;
+                        var bodyHeight = document.body.offsetHeight;
+                        var deltaX = 0.04;
+                        var deltaY = 0.04;
+                        var left = (bodyWidth / 2 - event.clientX) * deltaX;
+                        var top = (bodyHeight / 2 - event.clientY) * deltaY;
+                        bubbles.style.marginLeft = left + 'px';
+                        bubbles.style.marginTop = top + 'px';
+                        bubblesFront.style.marginLeft = left * 0.2 + 'px';
+                        bubblesFront.style.marginTop = top * 0.2 + 'px';
+                    };
+
+                    var bubblesHidden = true;
+                    document.onmousemove = function(event){
+                        if(bubblesHidden){
+                            bubbles.className = 'bubbles visible';
+                            bubblesFront.className = 'bubbles-front visible';
+                            bubblesHidden = false;
+                        }
+                        parallax(event);
+                    };
+
+
+                    $(document).on('click', '.close', function(){
+                        this.parentNode.parentNode.removeChild(this.parentNode);
+                        return false;
+                    });
+
+                    var errorsBlock = document.querySelector('.errors-list');
+
+                    $(document).on('submit', 'form', function(){
+                        if(!Auth.validator.check(this)){
+                            return false;
+                        }
+                        var container = $(this.parentNode);
+                        container.addClass('loading');
+                        var submit = this.elements.submit;
+                        submit.setAttribute('disabled', 'disabled');
+                        var data = $(this).serialize();
+                        var action = UmiSettings.baseURL + '/api/users/user/action/login';
+                        var deffer = $.post(action, data);
+                        deffer.done(function(data){
+                            window.UmiSettings.baseUrl = data.result.baseUrl;
+                            Auth.transition();
+                        });
+                        deffer.fail(function(error){
+                            container.removeClass('loading');
+                            submit.removeAttribute('disabled');
+                            if(error.status === 401){
+                                // console.log(error, sad, asdsad, error.responseJSON);
+                                var errorList = {error: error.responseJSON.result.error.message};
+                                errorsBlock.innerHTML = Auth.TEMPLATES.errors(errorList);
+                                $(errorsBlock).children('.alert-box').addClass('visible');
+                            }
+                        });
+                        return false;
+                    });
+                });
             }
         };
-        tempaltes(Auth);
 
-        // Проверяем есть ли шаблон и если нет то собираем его
-        if(!document.querySelector('.auth-layout')){
-            var helper = document.createElement('div');
-            helper.innerHTML = Auth.TEMPLATES.app({outlet: Auth.TEMPLATES.index()});
-            helper = document.body.appendChild(helper);
-            $(helper.firstElementChild).unwrap();
-        }
-
-        var bubbles = document.querySelector('.bubbles');
-        var bubblesFront = document.querySelector('.bubbles-front');
-        var parallax = function(event){
-            var bodyWidth = document.body.offsetWidth;
-            var bodyHeight = document.body.offsetHeight;
-            var deltaX = 0.04;
-            var deltaY = 0.04;
-            var left = (bodyWidth / 2 - event.clientX) * deltaX;
-            var top = (bodyHeight / 2 - event.clientY) * deltaY;
-            bubbles.style.marginLeft = left + 'px';
-            bubbles.style.marginTop = top + 'px';
-            bubblesFront.style.marginLeft = left * 0.2 + 'px';
-            bubblesFront.style.marginTop = top * 0.2 + 'px';
-        };
-
-        var bubblesHidden = true;
-        document.onmousemove = function(event){
-            if(bubblesHidden){
-                bubbles.className = 'bubbles visible';
-                bubblesFront.className = 'bubbles-front visible';
-                bubblesHidden = false;
-            }
-            parallax(event);
-        };
-
-        $(document).on('click', '.close', function(){
-            this.parentNode.parentNode.removeChild(this.parentNode);
-            return false;
-        });
-
-        var errorsBlock = document.querySelector('.errors-list');
-
-        $(document).on('submit', 'form', function(){
-            if(!Auth.validator.check(this)){
-                return false;
-            }
-            var container = $(this.parentNode);
-            container.addClass('loading');
-            var submit = this.elements.submit;
-            submit.setAttribute('disabled', 'disabled');
-            var data = $(this).serialize();
-            var action = UmiSettings.baseURL + '/api/users/user/action/login';
-            var deffer = $.post(action, data);
-            deffer.done(function(data){
-                window.UmiSettings.baseUrl = data.result.baseUrl;
-                Auth.transition();
-            });
-            deffer.fail(function(error){
-                container.removeClass('loading');
-                submit.removeAttribute('disabled');
-                if(error.status === 401){
-                   // console.log(error, sad, asdsad, error.responseJSON);
-                    var errorList = {error: error.responseJSON.result.error.message};
-                    errorsBlock.innerHTML = Auth.TEMPLATES.errors(errorList);
-                    $(errorsBlock).children('.alert-box').addClass('visible');
-                }
-            });
-            return false;
-        });
+        Auth.init();
     };
 });
