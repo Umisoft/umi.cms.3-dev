@@ -2,6 +2,7 @@ define(
     [
         'App',
         'text!./form.hbs',
+        'app/components/form/elements/input/main',
         'app/components/form/elements/select/main',
         'app/components/form/elements/multiSelect/main',
         'app/components/form/elements/datepicker/main',
@@ -34,10 +35,7 @@ define(
     UMI.FormControlView = Ember.View.extend({
         tagName: 'form',
         templateName: 'formControl',
-        classNames: ['s-margin-clear', 's-full-height'],
-        classNameBindings: ['class:data.class'],
-        attributeBindings: ['abide:data-abide'],
-        abide: 'ajax'
+        classNames: ['s-margin-clear', 's-full-height']
     });
 
     UMI.FieldView = Ember.View.extend({
@@ -53,7 +51,7 @@ define(
 
             switch(meta.type){
                 case 'text':
-                    template = Ember.Handlebars.compile('{{input type="text" value=object.' + meta.dataSource + ' placeholder=placeholder}}');
+                    template = Ember.Handlebars.compile('{{input type="text" value=object.' + meta.dataSource + ' placeholder=placeholder validator="collection" dataSource=dataSource}}');
                     break;
                 case 'textarea':
                     template = Ember.Handlebars.compile('{{textarea value=object.' + meta.dataSource + ' placeholder=meta.placeholder}}');
@@ -84,7 +82,8 @@ define(
                     break;
             }
             return template;
-        }.property('object', 'meta')
+        }.property('object', 'meta'),
+
     });
     //TODO: Для форм нужно не забыть в шаблоне, и в остальных местах биндить все возможные атрибуты
 
