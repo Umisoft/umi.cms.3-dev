@@ -15,16 +15,30 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    AdminComponent::OPTION_SETTINGS => [
+    AdminComponent::OPTION_INTERFACE_CONTROLS => [
+        'filter' => [],
+        'form' => [],
+    ],
 
+    AdminComponent::OPTION_INTERFACE_LAYOUT => [
+        'collection' => 'user',
+        'emptyContext' => [
+            'contents' => [
+                'controls' => ['filter']
+            ]
+        ],
+        'selectedContext' => [
+            'contents' => [
+                'controls' => ['form']
+            ]
+        ]
     ],
 
     AdminComponent::OPTION_CONTROLLERS => [
         AdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
         AdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
         AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-
-        AdminComponent::SETTINGS_CONTROLLER => 'umicms\project\admin\api\controller\SettingsController'
+        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
     ],
 
     AdminComponent::OPTION_ROUTES      => [

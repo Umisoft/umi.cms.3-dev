@@ -488,6 +488,7 @@
     width: 100%;
     right: 0;
     border-left: 1px solid #E3E4E5;
+    border-bottom: 1px solid #E2E3E4;
 }
 
 .umi-table-empty-filter-column{
@@ -495,6 +496,18 @@
     width: 100%;
     right: 0;
     border-left: 1px solid #E3E4E5;
+    position: relative;
+    &:after{
+        content: "";
+        position: absolute;
+        float: left;
+        display: block;
+        height: 3px;
+        width: unquote("calc(100% + 1px)");
+        left: 0;
+        bottom: -3px;
+        background: url(img/shadows/toBottomShadow.png);
+    }
 }
 
 .umi-table-empty-column{

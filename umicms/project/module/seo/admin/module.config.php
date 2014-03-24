@@ -8,13 +8,21 @@
 
 namespace umicms\project\module\seo\admin;
 
+use umi\route\IRouteFactory;
 use umicms\project\admin\component\AdminComponent;
 
 return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    AdminComponent::OPTION_SETTINGS => [
-
+    AdminComponent::OPTION_COMPONENTS => [
+        'megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/component.config.php}',
+        'yandex' => '{#lazy:~/project/module/seo/admin/yandex/component.config.php}',
+    ],
+    AdminComponent::OPTION_ROUTES      => [
+        'component' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/{component}'
+        ]
     ]
 ];

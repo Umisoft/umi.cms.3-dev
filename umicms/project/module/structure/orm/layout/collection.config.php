@@ -11,10 +11,9 @@ use umi\orm\collection\ICollectionFactory;
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
     'handlers' => [
-        'admin' => 'structure',
-        'site' => 'structure'
+        'admin' => 'structure.layout'
     ],
     'dictionaries' => [
-        'collection\layout', 'collection'
+        'collection.layout', 'collection'
     ]
 ];

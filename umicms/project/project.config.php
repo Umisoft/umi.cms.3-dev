@@ -11,11 +11,13 @@ namespace umicms\project;
 use umi\authentication\adapter\ORMAdapter;
 use umi\authentication\IAuthenticationFactory;
 use umi\authentication\toolbox\AuthenticationTools;
+use umi\extension\twig\TwigTemplateEngine;
 use umi\form\toolbox\FormTools;
 use umi\hmvc\component\IComponent;
 use umi\i18n\toolbox\I18nTools;
 use umi\orm\toolbox\OrmTools;
 use umi\route\IRouteFactory;
+use umi\templating\toolbox\TemplatingTools;
 use umicms\api\toolbox\ApiTools;
 use umicms\Bootstrap;
 use umicms\form\element\Wysiwyg;
@@ -58,6 +60,16 @@ return [
              ]
         ],
 
+        TemplatingTools::NAME => [
+            'factories' => [
+                'engine' => [
+                    'engineClasses' => [
+                        TwigTemplateEngine::NAME => 'umi\extension\twig\TwigTemplateEngine'
+                    ]
+                ]
+            ]
+        ],
+
         FormTools::NAME => [
             'factories' => [
                 'entity' => [
@@ -82,6 +94,7 @@ return [
                ],
                 'umicms\project\module\search\api\SearchApi' => [
                     'minimumPhraseLength' => 3,
+                    'minimumWordRootLength' => 3,
                 ],
                 'umicms\project\module\statistics\admin\metrika\model\MetrikaApi' => [
                     'oauthToken' => '4d4d45a7d4dd462ca9f83e4a8f4bd16b',

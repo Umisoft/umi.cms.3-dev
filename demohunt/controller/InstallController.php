@@ -196,10 +196,12 @@ class InstallController extends SitePageController implements ICollectionManager
         $subjectCollection = $this->getCollectionManager()->getCollection('newsSubject');
 
         $subject1 = $subjectCollection->add()
-            ->setValue('displayName', 'Призраки');
+            ->setValue('displayName', 'Призраки')
+            ->setValue('slug','prizraki');
 
         $subject2 = $subjectCollection->add()
-            ->setValue('displayName', 'Привидения');
+            ->setValue('displayName', 'Привидения')
+            ->setValue('slug','privideniya');
 
         $newsPage = $structureCollection->add('novosti', 'system')
             ->setValue('displayName', 'Новости')
@@ -311,7 +313,6 @@ class InstallController extends SitePageController implements ICollectionManager
                 ->setValue('announcement', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>')
                 ->setValue('contents', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>')
                 ->setValue('rubric', $rubric)
-                ->setGUID('96a6bea4-3c77-4ea1-9eb3-c4b1082253'.$num)
                 ->setValue('slug', 'privideniya-'.$num)
                 ->getValue('date')->setTimestamp(strtotime('2010-08-02 17:35:00'));
         }
@@ -367,6 +368,14 @@ class InstallController extends SitePageController implements ICollectionManager
          * @var SimpleHierarchicCollection $structureCollection
          */
         $structureCollection = $this->getCollectionManager()->getCollection('structure');
+
+
+        $parent = null;
+        for ($i = 0; $i < 20; $i++) {
+            $parent = $structureCollection->add('item' . $i, 'static', $parent)
+                ->setValue('displayName', 'item' . $i);
+        }
+
         /**
          * @var SimpleCollection $structureCollection
          */
@@ -434,6 +443,49 @@ class InstallController extends SitePageController implements ICollectionManager
         $price->getProperty('componentName')->setValue('structure');
         $price->getProperty('componentPath')->setValue('structure');
 
+
+        $menuItem1 = $structureCollection->add('menu_item_1', 'static')
+            ->setValue('displayName', 'Menu Item 1')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
+        $menuItem1->getProperty('componentName')->setValue('structure');
+        $menuItem1->getProperty('componentPath')->setValue('structure');
+
+        $menuItem11 = $structureCollection->add('menu_item_1_1', 'static', $menuItem1)
+            ->setValue('displayName', 'Menu Item 1.1')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
+        $menuItem11->getProperty('componentName')->setValue('structure');
+        $menuItem11->getProperty('componentPath')->setValue('structure');
+
+        $menuItem12 = $structureCollection->add('menu_item_1_2', 'static', $menuItem1)
+            ->setValue('displayName', 'Menu Item 1.2')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
+        $menuItem12->getProperty('componentName')->setValue('structure');
+        $menuItem12->getProperty('componentPath')->setValue('structure');
+
+        $menuItem121 = $structureCollection->add('menu_item_1_2_1', 'static', $menuItem12)
+            ->setValue('displayName', 'Menu Item 1.2.1')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
+        $menuItem121->getProperty('componentName')->setValue('structure');
+        $menuItem121->getProperty('componentPath')->setValue('structure');
+
+        $menuItem122 = $structureCollection->add('menu_item_1_2_2', 'static', $menuItem12)
+            ->setValue('displayName', 'Menu Item 1.2.2')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
+        $menuItem122->getProperty('componentName')->setValue('structure');
+        $menuItem122->getProperty('componentPath')->setValue('structure');
+
+        $menuItem1221 = $structureCollection->add('menu_item_1_2_2_1', 'static', $menuItem122)
+            ->setValue('displayName', 'Menu Item 1.2.2.1')
+            ->setValue('inMenu', true)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
+        $menuItem1221->getProperty('componentName')->setValue('structure');
+        $menuItem1221->getProperty('componentPath')->setValue('structure');
+
     }
 
     protected function installDbStructure()
@@ -466,8 +518,8 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_user` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
@@ -475,6 +527,9 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `login` varchar(255) DEFAULT NULL,
                     `email` varchar(255) DEFAULT NULL,
@@ -492,8 +547,8 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_user_group` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
@@ -501,6 +556,10 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `group_guid` (`guid`),
                     KEY `group_type` (`type`)
@@ -512,14 +571,18 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_user_user_group` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `user_id` bigint(20) unsigned,
                     `user_group_id` bigint(20) unsigned,
                     PRIMARY KEY (`id`),
@@ -548,14 +611,14 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_blog_category` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
 
                     `pid` bigint(20) unsigned DEFAULT NULL,
                     `mpath` varchar(255) DEFAULT NULL,
                     `uri` text,
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `order` int(10) unsigned DEFAULT NULL,
                     `level` int(10) unsigned DEFAULT NULL,
                     `child_count` int(10) unsigned DEFAULT '0',
@@ -566,11 +629,16 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_category_guid` (`guid`),
                     UNIQUE KEY `blog_category_pid_slug` (`pid`, `slug`),
@@ -585,16 +653,20 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_blog_post` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `date` datetime DEFAULT NULL,
                     `contents` text,
                     `announcement` text,
@@ -603,6 +675,7 @@ class InstallController extends SitePageController implements ICollectionManager
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_post_guid` (`guid`),
                     UNIQUE KEY `blog_post_slug` (`slug`),
@@ -617,21 +690,26 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_blog_tag` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_tag_guid` (`guid`),
                     UNIQUE KEY `blog_tag_slug` (`slug`),
@@ -644,16 +722,21 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_blog_post_tag` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `post_id` bigint(20) unsigned,
                     `tag_id` bigint(20) unsigned,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `post_tag_guid` (`guid`),
                     KEY `post_tag_type` (`type`),
@@ -669,13 +752,13 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_blog_comment` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `pid` bigint(20) unsigned DEFAULT NULL,
                     `mpath` varchar(255) DEFAULT NULL,
                     `uri` text,
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `order` int(10) unsigned DEFAULT NULL,
                     `level` int(10) unsigned DEFAULT NULL,
                     `child_count` int(10) unsigned DEFAULT '0',
@@ -685,9 +768,14 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `contents` text,
                     `post_id` bigint(20) unsigned,
                     `date` datetime DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_comment_guid` (`guid`),
                     UNIQUE KEY `blog_comment_pid_slug` (`pid`, `slug`),
@@ -714,14 +802,14 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_news_rubric` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
 
                     `pid` bigint(20) unsigned DEFAULT NULL,
                     `mpath` varchar(255) DEFAULT NULL,
                     `uri` text,
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `order` int(10) unsigned DEFAULT NULL,
                     `level` int(10) unsigned DEFAULT NULL,
                     `child_count` int(10) unsigned DEFAULT '0',
@@ -732,12 +820,17 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_rubric_guid` (`guid`),
                     UNIQUE KEY `news_rubric_pid_slug` (`pid`, `slug`),
@@ -754,16 +847,20 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_news_news_item` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `date` datetime DEFAULT NULL,
                     `contents` text,
                     `announcement` text,
@@ -789,22 +886,27 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_news_subject` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_subject_guid` (`guid`),
                     UNIQUE KEY `news_subject_slug` (`slug`),
@@ -819,16 +921,21 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_news_news_item_subject` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
-                    `type` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
+                    `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `news_item_id` bigint(20) unsigned,
                     `subject_id` bigint(20) unsigned,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_news_item_subject_guid` (`guid`),
                     KEY `news_news_item_subject_type` (`type`),
@@ -852,15 +959,20 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_layout` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
-                    `type` varchar(255) DEFAULT NULL,
+                    `type` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `file_name` varchar(255) DEFAULT NULL,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `layout_guid` (`guid`),
                     KEY `layout_type` (`type`)
@@ -873,13 +985,13 @@ class InstallController extends SitePageController implements ICollectionManager
             "
                 CREATE TABLE `demohunt_structure` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255) DEFAULT NULL,
+                    `guid` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
-                    `type` varchar(255) DEFAULT NULL,
+                    `type` varchar(255),
                     `pid` bigint(20) unsigned DEFAULT NULL,
                     `mpath` varchar(255) DEFAULT NULL,
                     `uri` text,
-                    `slug` varchar(255) DEFAULT NULL,
+                    `slug` varchar(255),
                     `order` int(10) unsigned DEFAULT NULL,
                     `level` int(10) unsigned DEFAULT NULL,
                     `child_count` int(10) unsigned DEFAULT '0',
@@ -889,6 +1001,10 @@ class InstallController extends SitePageController implements ICollectionManager
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+                    `permissions` int(10) unsigned DEFAULT 0,
+
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
@@ -899,6 +1015,7 @@ class InstallController extends SitePageController implements ICollectionManager
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
                     `in_menu` tinyint(1) unsigned DEFAULT 0,
                     `submenu_state` tinyint(1) unsigned DEFAULT 0,
+
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `structure_guid` (`guid`),
                     UNIQUE KEY `structure_mpath` (`mpath`),
@@ -935,13 +1052,23 @@ class InstallController extends SitePageController implements ICollectionManager
         $connection->exec(
             "CREATE TABLE `demohunt_search_index` (
                 `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                `guid` varchar(255) DEFAULT NULL,
+                `guid` varchar(255),
                 `version` int(10) unsigned DEFAULT '1',
-                `type` varchar(255) DEFAULT NULL,
+                `type` varchar(255),
+                `display_name` varchar(255) DEFAULT NULL,
+                `locked` tinyint(1) unsigned DEFAULT '0',
+                `active` tinyint(1) unsigned DEFAULT '1',
+                `created` datetime DEFAULT NULL,
+                `updated` datetime DEFAULT NULL,
+                `owner_id` bigint(20) unsigned DEFAULT NULL,
+                `editor_id` bigint(20) unsigned DEFAULT NULL,
+                `permissions` int(10) unsigned DEFAULT 0,
+
                 `date_indexed` datetime DEFAULT NULL,
                 `collection_id` varchar(255) DEFAULT NULL,
                 `ref_guid` varchar(255) DEFAULT NULL,
                 `contents` TEXT DEFAULT NULL,
+
                 PRIMARY KEY (`id`),
                 UNIQUE KEY `search_index_guid` (`guid`),
                 UNIQUE KEY `search_index_ref_guid` (`ref_guid`),

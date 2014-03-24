@@ -98,7 +98,7 @@ return [
             'type'       => IField::TYPE_SLUG,
             'columnName' => 'slug'
         ],
-        'news'                                   => [
+        NewsSubject::FIELD_NEWS => [
             'type'         => IField::TYPE_MANY_TO_MANY,
             'target'       => 'newsItem',
             'bridge'       => 'newsItemSubject',
@@ -106,7 +106,14 @@ return [
             'targetField'  => 'newsItem',
             'readOnly'     => true
         ],
-
+        NewsSubject::FIELD_OWNER => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'owner_id',
+        ],
+        NewsSubject::FIELD_EDITOR => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'editor_id',
+        ]
     ],
     'types'      => [
         'base' => [
@@ -118,7 +125,6 @@ return [
                 NewsSubject::FIELD_VERSION,
                 NewsSubject::FIELD_ACTIVE,
                 NewsSubject::FIELD_LOCKED,
-                NewsSubject::FIELD_TRASHED,
                 NewsSubject::FIELD_CREATED,
                 NewsSubject::FIELD_UPDATED,
                 NewsSubject::FIELD_TRASHED,
@@ -130,7 +136,9 @@ return [
                 NewsSubject::FIELD_PAGE_CONTENTS,
                 NewsSubject::FIELD_PAGE_LAYOUT,
                 NewsSubject::FIELD_PAGE_SLUG,
-                NewsSubject::FIELD_NEWS
+                NewsSubject::FIELD_NEWS,
+                NewsSubject::FIELD_OWNER,
+                NewsSubject::FIELD_EDITOR
             ]
         ]
     ]

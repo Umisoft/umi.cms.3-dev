@@ -14,6 +14,7 @@ use umi\dbal\cluster\IDbClusterAware;
 use umi\dbal\cluster\TDbClusterAware;
 use umi\event\IEventObservant;
 use umi\event\TEventObservant;
+use umi\orm\collection\ICollection;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\objectset\IObjectSet;
 use umi\spl\config\TConfigSupport;
@@ -34,10 +35,17 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     use TConfigSupport;
 
     /**
-     * Минимальная длина слова в поисковом запросе
-     * @var int $minimumWordLength
+     * Минимальная длина слова в поисковом запросе.
+     * Чем она больше, тем меньше нагрузка на поисковый движок.
+     * @var int $minimumPhraseLength
      */
     public $minimumPhraseLength;
+    /**
+     * Минимальная длина пригодного к поиску корня слова.
+     * Чем она больше, тем меньше будет найдено нерелевантных (двусмысленных) результатов
+     * @var int $minimumWordRootLength
+     */
+    public $minimumWordRootLength;
 
     /**
      * Ищет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
@@ -227,9 +235,10 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
         $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)
             ->getColumnName();
 
-        //todo mysql/postgresql/sphinx adapters
         $db = $this->getDbCluster()
             ->getConnection();
+
+        /** @var $select ISelectBuilder */
         $select = $this->getDbCluster()
             ->select([$collectionNameColumn, $refGuidColumn, [':searchMatchExpression', 'searchRelevance']])
             ->distinct()
@@ -242,7 +251,8 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
             ->expr(':searchMatchExpression', '>', ':minimumSearchRelevance')
             ->bindExpression(
                 ':searchMatchExpression',
-                'MATCH(' . $db->quoteIdentifier($contentColumnName) . ') AGAINST (' . $db->quote($words) . ')'
+                'MATCH(' . $db->quoteIdentifier($contentColumnName) . ') AGAINST (' . $db->quote($words)
+                . '  WITH QUERY EXPANSION)'
             )
             ->bindInt(':minimumSearchRelevance', 0);
         if (count($wordBases)) {
@@ -256,27 +266,19 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     }
 
     /**
-     * Возвращает {@see $searchAdapter}
-     * @return BaseAdapter
-     */
-    public function getSearchAdapter()
-    {
-        return $this->searchAdapter;
-    }
-
-    /**
-     * Преобразует слова к их базовым формам, например "масло" » "масл"
+     * Преобразует слова фразы к их базовым формам, например "масло" » "масл"
+     * Числа остаются без изменений, слишком короткие корни отбрасываются.
      * @param string $phrase
      * @return array
      */
     private function detectWordBases($phrase)
     {
         $bases = [];
-        $parts = preg_split('/s+/u', $phrase);
+        $parts = preg_split('/[\s_-]+/u', $phrase);
         foreach ($parts as &$part) {
             $partBase = $this->getStemming()
                 ->getCommonRoot($part);
-            if (mb_strlen($partBase) >= 4) {
+            if (is_numeric($partBase) || (mb_strlen($partBase) > $this->minimumWordRootLength)) {
                 $bases[] = $partBase;
             }
         }
@@ -284,7 +286,8 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     }
 
     /**
-     * @return \umi\orm\collection\ICollection
+     * Возвращает коллекцию объектов поискового индекса.
+     * @return ICollection
      */
     public function getSearchIndexCollection()
     {
@@ -293,17 +296,12 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
     }
 
     /**
+     * Собирает часть проверочного выражения LIKE
      * @param array $wordBases
      * @return string
      */
     protected function buildLikeQueryPart(array $wordBases)
     {
-//        foreach ($wordBases as &$base) {
-//            if(mb_strlen($base < 4)){
-//                $base = " $base ";
-//            }
-//        }
-
         return implode('%', $wordBases);
     }
 }

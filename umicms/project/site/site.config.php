@@ -37,9 +37,9 @@ return [
     ],
 
     SiteApplication::OPTION_VIEW        => [
-        'type'      => 'php',
-        'extension' => 'phtml',
-        'directory' => __DIR__ . '/template/php'
+        'type'      => 'twig',
+        'extension' => 'twig',
+        'directory' => __DIR__ . '/template/twig'
     ],
 
     SiteApplication::OPTION_ROUTES => [

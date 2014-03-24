@@ -153,7 +153,6 @@ class ElementRepository extends BaseObjectRepository
      */
     public function delete(StructureElement $element)
     {
-
         $this->getCollection()->delete($element);
 
         return $this;

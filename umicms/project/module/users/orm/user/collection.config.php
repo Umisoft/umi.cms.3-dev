@@ -7,7 +7,16 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
+use umicms\orm\collection\ICmsCollection;
 
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE
+    'type' => ICollectionFactory::TYPE_SIMPLE,
+    'handlers' => [
+        'admin' => 'users.user'
+    ],
+    'forms' => [
+        'base' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/orm/user/form/base.edit.config.php}'
+        ]
+    ],
 ];

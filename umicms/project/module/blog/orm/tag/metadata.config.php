@@ -8,6 +8,7 @@
 
 use umi\orm\metadata\field\IField;
 use umi\orm\object\IObject;
+use umicms\orm\object\CmsObject;
 
 return [
     'dataSource' => [
@@ -37,6 +38,14 @@ return [
             'accessor'     => 'getVersion',
             'mutator'      => 'setVersion',
             'defaultValue' => 1
+        ],
+        CmsObject::FIELD_OWNER => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'owner_id',
+        ],
+        CmsObject::FIELD_EDITOR => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'editor_id',
         ],
         'displayName'           => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
         'active'                => [
@@ -82,6 +91,8 @@ return [
                 'locked',
                 'created',
                 'updated',
+                CmsObject::FIELD_OWNER,
+                CmsObject::FIELD_EDITOR,
                 'displayName',
                 'h1',
                 'metaTitle',

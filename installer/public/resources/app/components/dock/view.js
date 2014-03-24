@@ -104,11 +104,11 @@ define(['App'], function(UMI){
                 var dock = this.$().closest('.dock');
                 var $el = this.$();
                 var self = this;
-                dropDownTimeout = setTimeout(
-                    function(){
+//                dropDownTimeout = setTimeout(
+//                    function(){
                         self.set('open', true);
-                    }, 380
-                );
+//                    }, 380
+//                );
 
                 if(!expanded){
                     expanded = true;

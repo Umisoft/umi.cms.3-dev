@@ -1,0 +1,20 @@
+.umi-top-bar{
+    background: linear-gradient(to bottom, #3E4756 0%, #1C1F26 100%);
+    background: linear-gradient(top, #3E4756 0%, #1C1F26 100%);
+}
+
+
+.top-bar-section > ul{
+    > li{
+        background: linear-gradient(to bottom, #3E4756 0%, #1C1F26 100%);
+        background: linear-gradient(top, #3E4756 0%, #1C1F26 100%);
+        margin: 0;
+        height: 24px;
+        a{
+            color: #D5D6D8 !important;
+            font-weight: bold !important;
+            line-height: rem-calc(22) !important;
+            height: rem-calc(24);
+        }
+    }
+}

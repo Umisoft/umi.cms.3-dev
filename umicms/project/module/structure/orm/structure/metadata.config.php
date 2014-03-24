@@ -158,6 +158,14 @@ return [
             'type'        => IField::TYPE_INTEGER,
             'columnName'  => 'submenu_state',
             'defaultValue' => 0
+        ],
+        StructureElement::FIELD_OWNER => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'owner_id',
+        ],
+        StructureElement::FIELD_EDITOR => [
+            'type' => IField::TYPE_INTEGER,
+            'columnName' => 'editor_id',
         ]
     ],
     'types'      => [
@@ -181,7 +189,6 @@ return [
                 StructureElement::FIELD_TRASHED,
                 StructureElement::FIELD_CREATED,
                 StructureElement::FIELD_UPDATED,
-                StructureElement::FIELD_TRASHED,
                 StructureElement::FIELD_COMPONENT_PATH,
                 StructureElement::FIELD_COMPONENT_NAME,
                 StructureElement::FIELD_PAGE_META_TITLE,
@@ -192,7 +199,9 @@ return [
                 StructureElement::FIELD_PAGE_LAYOUT,
                 StructureElement::FIELD_CHILDREN,
                 StructureElement::FIELD_IN_MENU,
-                StructureElement::FIELD_SUBMENU_STATE
+                StructureElement::FIELD_SUBMENU_STATE,
+                StructureElement::FIELD_OWNER,
+                StructureElement::FIELD_EDITOR
             ]
         ],
         'system' => [
@@ -215,7 +224,6 @@ return [
                 SystemPage::FIELD_TRASHED,
                 SystemPage::FIELD_CREATED,
                 SystemPage::FIELD_UPDATED,
-                SystemPage::FIELD_TRASHED,
                 SystemPage::FIELD_COMPONENT_PATH,
                 SystemPage::FIELD_COMPONENT_NAME,
                 SystemPage::FIELD_PAGE_META_TITLE,
@@ -226,7 +234,9 @@ return [
                 SystemPage::FIELD_PAGE_LAYOUT,
                 SystemPage::FIELD_CHILDREN,
                 SystemPage::FIELD_IN_MENU,
-                SystemPage::FIELD_SUBMENU_STATE
+                SystemPage::FIELD_SUBMENU_STATE,
+                SystemPage::FIELD_OWNER,
+                SystemPage::FIELD_EDITOR
             ]
         ],
         'static' => [
@@ -249,7 +259,6 @@ return [
                 StaticPage::FIELD_TRASHED,
                 StaticPage::FIELD_CREATED,
                 StaticPage::FIELD_UPDATED,
-                StaticPage::FIELD_TRASHED,
                 StaticPage::FIELD_COMPONENT_PATH,
                 StaticPage::FIELD_COMPONENT_NAME,
                 StaticPage::FIELD_PAGE_META_TITLE,
@@ -260,7 +269,9 @@ return [
                 StaticPage::FIELD_PAGE_LAYOUT,
                 StaticPage::FIELD_CHILDREN,
                 StaticPage::FIELD_IN_MENU,
-                StaticPage::FIELD_SUBMENU_STATE
+                StaticPage::FIELD_SUBMENU_STATE,
+                StaticPage::FIELD_OWNER,
+                StaticPage::FIELD_EDITOR
             ]
         ]
     ]
