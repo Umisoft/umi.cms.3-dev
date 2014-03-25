@@ -62,12 +62,14 @@ return [
             'readOnly'   => true
         ],
         CmsObject::FIELD_OWNER => [
-            'type' => IField::TYPE_INTEGER,
+            'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
+            'target' => 'BaseUser'
         ],
         CmsObject::FIELD_EDITOR => [
-            'type' => IField::TYPE_INTEGER,
+            'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
+            'target' => 'BaseUser'
         ],
         'newsItem'                    => [
             'type'       => IField::TYPE_BELONGS_TO,

@@ -12,7 +12,6 @@ namespace umicms\project\module\users\admin\user\controller;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\admin\api\controller\TCollectionFormAction;
 use umicms\project\module\users\api\UsersApi;
 
 /**
@@ -20,9 +19,6 @@ use umicms\project\module\users\api\UsersApi;
  */
 class ActionController extends BaseRestActionController
 {
-
-    use TCollectionFormAction;
-
     /**
      * @var UsersApi $api
      */
@@ -66,10 +62,23 @@ class ActionController extends BaseRestActionController
     }
 
     /**
+     * Возвращает форму для объектного типа коллекции.
+     * @return IForm
+     */
+    protected function actionForm()
+    {
+        $collectionName = $this->getRequiredQueryVar('collection');
+        $typeName = $this->getRequiredQueryVar('type');
+        $formName = $this->getRequiredQueryVar('form');
+
+        return $this->getCollection($collectionName)->getForm($typeName, $formName);
+    }
+
+    /**
      * Удаляет объект в корзину
      * @return string
      */
-    public function actionTrash()
+    protected function actionTrash()
     {
         $object = $this->api->user()
             ->getById($this->getQueryVar('id'));
@@ -84,7 +93,7 @@ class ActionController extends BaseRestActionController
      * Восстанавливает объект из корзины
      * @return string
      */
-    public function actionUntrash()
+    protected function actionUntrash()
     {
         $object = $this->api->user()
             ->getById($this->getQueryVar('id'));
@@ -99,7 +108,7 @@ class ActionController extends BaseRestActionController
      * Очищает корзину
      * @return string
      */
-    public function actionEmptyTrash()
+    protected function actionEmptyTrash()
     {
         $this->api->user()->emptyTrash();
         $this->getObjectPersister()

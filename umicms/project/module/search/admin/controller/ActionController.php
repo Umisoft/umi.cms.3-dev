@@ -11,7 +11,6 @@ namespace umicms\project\module\search\admin\controller;
 
 use umi\http\Response;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\admin\api\controller\TCollectionFormAction;
 use umicms\project\module\search\api\SearchApi;
 
 /**
@@ -19,8 +18,6 @@ use umicms\project\module\search\api\SearchApi;
  */
 class ActionController extends BaseRestActionController
 {
-    use TCollectionFormAction;
-
     /**
      * @var SearchApi $api
      */
@@ -54,7 +51,7 @@ class ActionController extends BaseRestActionController
     /**
      * @return Response
      */
-    public function actionSearch()
+    protected function actionSearch()
     {
         $query = $this->getQueryVar('query');
 
@@ -63,6 +60,19 @@ class ActionController extends BaseRestActionController
             $resultSet = $this->api->search($query);
         }
         return $resultSet;
+    }
+
+    /**
+     * Возвращает форму для объектного типа коллекции.
+     * @return IForm
+     */
+    protected function actionForm()
+    {
+        $collectionName = $this->getRequiredQueryVar('collection');
+        $typeName = $this->getRequiredQueryVar('type');
+        $formName = $this->getRequiredQueryVar('form');
+
+        return $this->getCollection($collectionName)->getForm($typeName, $formName);
     }
 
     /**

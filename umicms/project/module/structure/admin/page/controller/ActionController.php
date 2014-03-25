@@ -13,7 +13,6 @@ use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umi\orm\object\IObject;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\admin\api\controller\TCollectionFormAction;
 use umicms\project\module\structure\api\StructureApi;
 
 /**
@@ -21,9 +20,6 @@ use umicms\project\module\structure\api\StructureApi;
  */
 class ActionController extends BaseRestActionController
 {
-
-    use TCollectionFormAction;
-
     /**
      * @var StructureApi $api
      */
@@ -55,7 +51,7 @@ class ActionController extends BaseRestActionController
      */
     public function getQueryActions()
     {
-        return ['form'];
+        return ['form', 'backups', 'backup'];
     }
 
     /**
@@ -64,6 +60,19 @@ class ActionController extends BaseRestActionController
     public function getModifyActions()
     {
         return ['move'];
+    }
+
+    /**
+     * Возвращает форму для объектного типа коллекции.
+     * @return IForm
+     */
+    protected function actionForm()
+    {
+        $collectionName = $this->getRequiredQueryVar('collection');
+        $typeName = $this->getRequiredQueryVar('type');
+        $formName = $this->getRequiredQueryVar('form');
+
+        return $this->getCollection($collectionName)->getForm($typeName, $formName);
     }
 
     protected function actionMove()
@@ -94,6 +103,32 @@ class ActionController extends BaseRestActionController
         $this->api->element()->getCollection()->move($object, $branch, $previousSibling);
 
         return '';
+    }
+
+    /**
+     * Возвращает список резервных копий
+     * @return Backup[]
+     */
+    protected function actionBackups()
+    {
+        $elementId = $this->getRequiredQueryVar('id');
+
+        return $this->api->element()->getBackupList(
+            $this->api->element()->getById($elementId)
+        );
+    }
+
+    /**
+     * Возвращает резервную копию
+     * @return StructureElement
+     */
+    protected function actionBackup()
+    {
+        $elementId = $this->getRequiredQueryVar('id');
+        $backupId = $this->getRequiredQueryVar('backupId');
+        $element = $this->api->element()->getById($elementId);
+
+        return $this->api->element()->getBackup($element, $backupId);
     }
 
 }

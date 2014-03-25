@@ -56,12 +56,14 @@ return [
             'columnName' => 'date_indexed',
         ],
         SearchIndex::FIELD_OWNER => [
-            'type' => IField::TYPE_INTEGER,
+            'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
+            'target' => 'BaseUser'
         ],
         SearchIndex::FIELD_EDITOR => [
-            'type' => IField::TYPE_INTEGER,
+            'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
+            'target' => 'BaseUser'
         ]
     ],
     'types' => [

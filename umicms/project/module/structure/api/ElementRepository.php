@@ -14,8 +14,11 @@ use umi\orm\selector\ISelector;
 use umicms\api\repository\BaseObjectRepository;
 use umicms\api\repository\THierarchicAwareRepository;
 use umicms\api\repository\TRecycleAwareRepository;
+use umicms\exception\InvalidArgumentException;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\selector\CmsSelector;
+use umicms\project\module\service\api\BackupRepository;
+use umicms\project\module\service\object\Backup;
 use umicms\project\module\structure\object\StructureElement;
 use umicms\project\module\structure\object\SystemPage;
 
@@ -28,6 +31,16 @@ class ElementRepository extends BaseObjectRepository
     use THierarchicAwareRepository;
 
     /**
+     * @var BackupRepository $backupRepository
+     */
+    protected $backupRepository;
+
+    public function __construct(BackupRepository $backupRepository)
+    {
+        $this->backupRepository = $backupRepository;
+    }
+
+    /**
      * @var string $collectionName имя коллекции для хранения структуры
      */
     public $collectionName = 'structure';
@@ -36,7 +49,8 @@ class ElementRepository extends BaseObjectRepository
      * Возвращает селектор для выбора элементов структуры.
      * @return CmsSelector|StructureElement[]
      */
-    public function select() {
+    public function select()
+    {
         return $this->getCollection()->select();
     }
 
@@ -50,7 +64,7 @@ class ElementRepository extends BaseObjectRepository
     {
         try {
             return $this->getCollection()->get($guid);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find element by guid "{guid}".',
@@ -72,7 +86,7 @@ class ElementRepository extends BaseObjectRepository
     {
         try {
             return $this->getCollection()->getById($id);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw new NonexistentEntityException(
                 $this->translate(
                     'Cannot find element by id "{id}".',
@@ -166,8 +180,11 @@ class ElementRepository extends BaseObjectRepository
      * @param StructureElement|null $previousSibling элемент, после которой будет помещен перемещаемый элемент
      * @return $this
      */
-    public function move(StructureElement $element, StructureElement $branch = null, StructureElement $previousSibling = null)
-    {
+    public function move(
+        StructureElement $element,
+        StructureElement $branch = null,
+        StructureElement $previousSibling = null
+    ) {
         $this->getCollection()->move($element, $branch, $previousSibling);
 
         return $this;
@@ -181,5 +198,29 @@ class ElementRepository extends BaseObjectRepository
     {
         return $this->select()->types(['system']);
     }
+
+
+    /**
+     * Возвращает список резервных копий объекта
+     * @param StructureElement $element
+     * @return CmsSelector|Backup[] $object
+     */
+    public function getBackupList(StructureElement $element)
+    {
+        return $this->backupRepository->getList($element);
+    }
+
+    /**
+     * Возвращает резервную копию объекта
+     * @param StructureElement $element
+     * @param int $backupId идентификатор резервной копии
+     * @throws InvalidArgumentException
+     * @return StructureElement
+     */
+    public function getBackup(StructureElement $element, $backupId)
+    {
+        return $this->backupRepository->wakeUpBackup($element, $backupId);
+    }
+
 
 }

@@ -107,12 +107,14 @@ return [
             'readOnly'     => true
         ],
         NewsSubject::FIELD_OWNER => [
-            'type' => IField::TYPE_INTEGER,
+            'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
+            'target' => 'BaseUser'
         ],
         NewsSubject::FIELD_EDITOR => [
-            'type' => IField::TYPE_INTEGER,
+            'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
+            'target' => 'BaseUser'
         ]
     ],
     'types'      => [

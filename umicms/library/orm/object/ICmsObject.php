@@ -12,6 +12,7 @@ namespace umicms\orm\object;
 use DateTime;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IObject;
+use umicms\project\module\users\object\BaseUser;
 
 /**
  * Интерфейс ORM-объекта для UMI.CMS.
@@ -24,6 +25,8 @@ use umi\orm\object\IObject;
  * @property bool $locked признак заблокированности элемента на удаление
  * @property DateTime $created время создания элемента
  * @property DateTime $updated время обновления элемента
+ * @property BaseUser $owner владелец объекта
+ * @property BaseUser $editor последний редактор объекта
  */
 interface ICmsObject extends IObject
 {

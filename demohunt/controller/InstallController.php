@@ -16,6 +16,8 @@ use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\SimpleCollection;
 use umi\orm\collection\SimpleHierarchicCollection;
 use umi\orm\collection\TCollectionManagerAware;
+use umi\orm\manager\IObjectManagerAware;
+use umi\orm\manager\TObjectManagerAware;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
@@ -23,6 +25,7 @@ use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseController;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchIndexApi;
+use umicms\project\module\service\api\BackupRepository;
 use umicms\project\module\structure\object\StaticPage;
 use umicms\project\module\structure\object\StructureElement;
 use umicms\project\module\users\api\UsersApi;
@@ -34,11 +37,12 @@ use umicms\project\module\users\object\Supervisor;
 /**
  * Class InstallController
  */
-class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware
+class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware, IObjectManagerAware
 {
 
     use TCollectionManagerAware;
     use TObjectPersisterAware;
+    use TObjectManagerAware;
 
     /**
      * @var IDbCluster $dbCluster
@@ -56,13 +60,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     /**
      * @var SearchApi $searchApi
      */
+    protected $backupRepository;
     private $searchIndexApi;
 
-    public function __construct(IDbCluster $dbCluster, UsersApi $usersApi, SearchIndexApi $searchIndexApi)
+    public function __construct(IDbCluster $dbCluster, UsersApi $usersApi, SearchIndexApi $searchIndexApi, BackupRepository $backupRepository)
     {
         $this->dbCluster = $dbCluster;
         $this->usersApi = $usersApi;
         $this->searchIndexApi = $searchIndexApi;
+        $this->backupRepository = $backupRepository;
     }
 
     /**
@@ -80,7 +86,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->installBlog();
 
         $this->getObjectPersister()->commit();
+        $this->getObjectManager()->unloadObjects();
+
         $this->installSearch();
+        $this->installBackup();
 
         return $this->createResponse('Installed');
     }
@@ -1176,6 +1185,47 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->searchIndexApi->buildIndex('blogCategory');
         $this->searchIndexApi->buildIndex('blogPost');
         $this->searchIndexApi->buildIndex('blogComment');
+        $this->getObjectPersister()->commit();
+    }
+
+    private function installBackup()
+    {
+        $connection = $this->dbCluster->getConnection();
+
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_backup`");
+
+        $connection->exec(
+            "CREATE TABLE `demohunt_backup` (
+                `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                `guid` varchar(255),
+                `version` int(10) unsigned DEFAULT '1',
+                `type` varchar(255),
+                `object_id` bigint(20) unsigned NOT NULL,
+                `collection_name` varchar(255) NOT NULL,
+                `owner_id` bigint(20) unsigned DEFAULT NULL,
+                `editor_id` bigint(20) unsigned DEFAULT NULL,
+                `date` datetime DEFAULT NULL,
+                `user` bigint(20) unsigned DEFAULT NULL,
+                `data` longtext DEFAULT NULL,
+
+                PRIMARY KEY (`id`),
+                UNIQUE KEY `backup_guid` (`guid`),
+                CONSTRAINT `FK_search_index_user` FOREIGN KEY (`user`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                CONSTRAINT `FK_search_index_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                CONSTRAINT `FK_search_index_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8
+            "
+        );
+
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+
+        $page = $structureCollection->get('d534fd83-0f12-4a0d-9853-583b9181a948');
+        $this->backupRepository->createBackup($page);
+        $page = $structureCollection->get('3d765c94-bb80-4e8f-b6d9-b66c3ea7a5a4');
+        $this->backupRepository->createBackup($page);
+        $page = $structureCollection->get('98751ebf-7f76-4edb-8210-c2c3305bd8a0');
+        $this->backupRepository->createBackup($page);
+
         $this->getObjectPersister()->commit();
     }
 }

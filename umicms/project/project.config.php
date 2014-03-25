@@ -142,6 +142,8 @@ return [
                 'userUserGroup' => '{#lazy:~/project/module/users/orm/usergroup/metadata.config.php}',
 
                 'searchIndex' => '{#lazy:~/project/module/search/orm/index/metadata.config.php}',
+
+                'serviceBackup' => '{#lazy:~/project/module/service/orm/backup/metadata.config.php}',
             ],
 
             'collections' => [
@@ -164,6 +166,8 @@ return [
                 'userUserGroup' => '{#lazy:~/project/module/users/orm/usergroup/collection.config.php}',
 
                 'searchIndex' => '{#lazy:~/project/module/search/orm/index/collection.config.php}',
+
+                'serviceBackup' => '{#lazy:~/project/module/service/orm/backup/collection.config.php}',
             ]
         ],
 
