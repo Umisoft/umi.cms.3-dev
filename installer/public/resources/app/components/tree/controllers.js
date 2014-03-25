@@ -4,13 +4,6 @@ define(['App'], function(UMI){
 
         UMI.TreeControlController = Ember.ObjectController.extend({
             /**
-             Query params для текущего роута 'Component'
-             @property routeParams
-             @type Object
-             @default null
-             */
-            routeParams: null,
-            /**
              Возвращает корневой элемент
              @property root
              @type Object
@@ -73,7 +66,7 @@ define(['App'], function(UMI){
                  */
                 updateSortOrder: function(id, parentId, prevSiblingId, nextSibling){
                     var self = this;
-                    var type = this.get('collections')[0].type;//TODO: а как же несколько коллекций?
+                    var type = this.get('controllers.component.collectionName');
                     var ids = nextSibling || [];
                     var moveParams = {};
                     var resource;
@@ -106,13 +99,7 @@ define(['App'], function(UMI){
                         };
                     }
 
-                    resource = [window.UmiSettings.baseApiURL];
-                    resource.push(self.get('routeParams').module.module);
-                    resource.push(self.get('routeParams').component.component);
-                    resource.push('collection');
-                    resource.push(type);
-                    resource.push('move');
-                    resource = resource.join('/');
+                    resource = this.get('controllers.component.settings.actions.move.source');
                     $.ajax({'type': 'POST', 'url': resource, 'data': JSON.stringify(moveParams), 'dataType': 'json', 'contentType': 'application/json'}).then(
                         function(){
                             ids.push(id);
