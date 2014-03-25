@@ -9,6 +9,7 @@
 
 namespace umicms\project\admin\component;
 
+use umi\acl\IAclResource;
 use umicms\hmvc\component\BaseComponent;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
@@ -110,32 +111,16 @@ class AdminComponent extends BaseComponent implements IUrlManagerAware
     }
 
     /**
-     * Возвращает информацию о компоненте и дочерних компонентах на всю глубину.
+     * Возвращает информацию о компоненте.
      * @return array
      */
     public function getComponentInfo()
     {
-        $componentInfo = [
+        return [
             'name'        => $this->getName(),
             'displayName' => $this->translate('component:' . $this->getName() . ':displayName'),
             'resource' => $this->getUrlManager()->getAdminComponentResourceUrl($this)
         ];
-
-        $components = [];
-
-        foreach ($this->getChildComponentNames() as $componentName) {
-            /**
-             * @var AdminComponent $component
-             */
-            $component = $this->getChildComponent($componentName);
-            $components[] = $component->getComponentInfo();
-        }
-
-        if ($components) {
-            $componentInfo['components'] = $components;
-        }
-
-        return $componentInfo;
     }
 }
  
