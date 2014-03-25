@@ -94,8 +94,6 @@ define(
          * @class Utils
          * @static
          */
-        UMI.Utils = {};
-
         UMI.Utils = {
 //            iScroll: function(){
 //                var iScrolls = document.querySelectorAll('.umi-iscroll');
