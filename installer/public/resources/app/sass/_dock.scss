@@ -116,16 +116,19 @@ $dock-components-height: 35;
         }
     }
     .f-dropdown{
-        width: 120%;
-        margin-left: -10%;
+        width: 160%;
+        margin-left: -30%;
         padding: 0;
+        box-shadow: 0 0 4px 1px #535353;
+        border: none;
         li{
             > span{
                 color: $body-font-color;
                 white-space: normal;
             }
             .active{
-                background: #1C1E24;
+                color: #fff;
+                background: $primary-color;
             }
         }
     }

@@ -5263,14 +5263,17 @@ body {
       .umi-dock .umi-dock-button.active.disabled {
         opacity: 0.3; }
   .umi-dock .f-dropdown {
-    width: 120%;
-    margin-left: -10%;
-    padding: 0; }
+    width: 160%;
+    margin-left: -30%;
+    padding: 0;
+    box-shadow: 0 0 4px 1px #535353;
+    border: none; }
     .umi-dock .f-dropdown li > span {
       color: #222;
       white-space: normal; }
     .umi-dock .f-dropdown li .active {
-      background: #1C1E24; }
+      color: #fff;
+      background: #259cec; }
 
 .dock-buffer {
   display: none;
@@ -5340,6 +5343,8 @@ body {
       color: #535E6D; }
       .umi-tree li a.active {
         color: #535E6D; }
+  .umi-tree .umi-tree-list {
+    margin-bottom: 40px; }
   .umi-tree span {
     width: 1.25rem;
     height: 1.25rem; }

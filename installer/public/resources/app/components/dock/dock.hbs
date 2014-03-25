@@ -7,7 +7,7 @@
                         <img {{bind-attr src=view.icon}} />
                         <span>{{module.name}}</span>
                     </span>
-                    <ul class="f-dropdown dark center">
+                    <ul class="f-dropdown center">
                         {{#each component in module.components}}
                             <li>
                                 {{#link-to 'component' module.name component.name}}
