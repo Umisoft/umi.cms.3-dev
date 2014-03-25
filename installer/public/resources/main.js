@@ -126,7 +126,7 @@ require.config({
 });
 
 
-if(UmiSettings.login){
+if(UmiSettings.authenticated){
     require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder', 'datepicker', 'moment', 'chartJs'], function(application){
         "use strict";
         application();
