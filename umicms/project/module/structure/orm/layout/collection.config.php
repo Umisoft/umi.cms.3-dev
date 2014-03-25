@@ -7,6 +7,7 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
+use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -15,5 +16,10 @@ return [
     ],
     'dictionaries' => [
         'collection.layout', 'collection'
+    ],
+    'forms' => [
+        'base' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/orm/layout/form/base.edit.config.php}'
+        ]
     ]
 ];
