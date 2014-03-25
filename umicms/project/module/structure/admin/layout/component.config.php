@@ -16,8 +16,14 @@ return [
 
     SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
 
+    SecureAdminComponent::OPTION_INTERFACE_CONTROLS => [
+        'filter' => [],
+        'form' => [],
+    ],
+
     SecureAdminComponent::OPTION_INTERFACE_LAYOUT => [
         'collection' => 'layout',
+
         'emptyContext' => [
             'contents' => [
                 'controls' => ['filter']
@@ -57,7 +63,6 @@ return [
             ],
         ]
     ],
-
 
     SecureAdminComponent::OPTION_ROUTES      => [
 
