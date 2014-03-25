@@ -58,12 +58,12 @@ return [
         SearchIndex::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
-            'target' => 'BaseUser'
+            'target' => 'user'
         ],
         SearchIndex::FIELD_EDITOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
-            'target' => 'BaseUser'
+            'target' => 'user'
         ]
     ],
     'types' => [

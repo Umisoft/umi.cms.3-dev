@@ -43,12 +43,12 @@ return [
         CmsObject::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
-            'target' => 'BaseUser'
+            'target' => 'user'
         ],
         CmsObject::FIELD_EDITOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
-            'target' => 'BaseUser'
+            'target' => 'user'
         ],
         'displayName'           => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
         'active'                => [

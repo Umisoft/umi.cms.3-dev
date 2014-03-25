@@ -76,12 +76,12 @@ return [
         UserGroup::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
-            'target' => 'BaseUser'
+            'target' => 'user'
         ],
         UserGroup::FIELD_EDITOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
-            'target' => 'BaseUser'
+            'target' => 'user'
         ],
         UserGroup::FIELD_ROLES => [
             'type' => IField::TYPE_TEXT,

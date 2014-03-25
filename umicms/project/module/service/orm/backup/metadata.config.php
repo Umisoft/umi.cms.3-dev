@@ -42,12 +42,12 @@ return [
         Backup::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
-            'target' => 'BaseUser'
+            'target' => 'user'
         ],
         Backup::FIELD_EDITOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
-            'target' => 'BaseUser'
+            'target' => 'user'
         ],
         Backup::FIELD_OBJECT_ID => [
             'type' => IField::TYPE_INTEGER,
