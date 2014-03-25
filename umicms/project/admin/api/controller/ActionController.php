@@ -11,6 +11,7 @@ namespace umicms\project\admin\api\controller;
 
 use umi\form\IForm;
 use umi\hmvc\controller\BaseController;
+use umi\hmvc\exception\http\HttpForbidden;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\hmvc\exception\http\HttpUnauthorized;
 use umi\http\Response;
@@ -77,20 +78,31 @@ class ActionController extends BaseController implements IUrlManagerAware
 
     /**
      * Выполняет авторизацию пользователя.
-     * @throws HttpUnauthorized
+     * @throws HttpForbidden если у пользователя нет прав на административную панель
+     * @throws HttpUnauthorized если логин или пароль неверны
      * @return AuthorizedUser
      */
     protected function actionLogin()
     {
-        if (!$this->api->isAuthenticated()) {
-            if (!$this->api->login($this->getPostVar('login'), $this->getPostVar('password'))) {
-                throw new HttpUnauthorized(
-                    $this->translate('Incorrect login or password.')
-                );
-            }
+        if ($this->api->isAuthenticated()) {
+            $this->api->logout();
         }
 
-        return $this->api->getCurrentUser();
+        if (!$this->api->login($this->getPostVar('login'), $this->getPostVar('password'))) {
+            throw new HttpUnauthorized(
+                $this->translate('Incorrect login or password.')
+            );
+        }
+
+        $user = $this->api->getCurrentUser();
+
+        if (!$user->hasRole($this->getComponent(), 'administrator')) {
+            throw new HttpForbidden(
+                $this->translate('Access denied.')
+            );
+        }
+
+        return $user;
     }
 
     /**

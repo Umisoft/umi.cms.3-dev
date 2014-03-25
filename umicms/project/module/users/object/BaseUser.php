@@ -43,6 +43,17 @@ abstract class BaseUser extends CmsObject implements IComponentRoleResolver
     }
 
     /**
+     * Проверяет наличие роли для компонента.
+     * @param IComponent $component компонент
+     * @param string $roleName имя роли
+     * @return bool
+     */
+    public function hasRole(IComponent $component, $roleName)
+    {
+        return isset($this->getRoleNames($component)[$roleName]);
+    }
+
+    /**
      * Возвращает список всех ролей пользователя по компонентам.
      * @return array
      */

@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\news\site;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\SiteComponent;
 
@@ -23,6 +24,20 @@ return [
 
     SiteComponent::OPTION_CONTROLLERS => [
         'index' => 'umicms\project\module\news\site\controller\IndexController'
+    ],
+
+    SiteComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'newsViewer' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'controller:index'
+        ],
+        IAclFactory::OPTION_RULES => [
+            'newsViewer' => [
+                'controller:index' => []
+            ]
+        ]
     ],
 
     SiteComponent::OPTION_VIEW        => [
