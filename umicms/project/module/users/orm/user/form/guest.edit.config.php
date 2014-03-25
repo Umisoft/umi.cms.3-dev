@@ -9,13 +9,13 @@
 
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\users\object\BaseUser;
+use umicms\project\module\users\object\Guest;
 
 return [
 
     'options' => [
         'dictionaries' => [
-            'collection.user', 'collection'
+            'collection.user', 'collection', 'form'
         ]
     ],
 
@@ -25,11 +25,11 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'common',
             'elements' => [
-                BaseUser::FIELD_DISPLAY_NAME => [
+                Guest::FIELD_DISPLAY_NAME => [
                     'type' => Text::TYPE_NAME,
-                    'label' => BaseUser::FIELD_DISPLAY_NAME,
+                    'label' => Guest::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => BaseUser::FIELD_DISPLAY_NAME
+                        'dataSource' => Guest::FIELD_DISPLAY_NAME
                     ],
                 ]
             ]

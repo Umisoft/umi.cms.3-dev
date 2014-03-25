@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\users\admin;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\admin\component\SecureAdminComponent;
 
@@ -19,6 +20,19 @@ return [
 
     SecureAdminComponent::OPTION_COMPONENTS => [
         'user' => '{#lazy:~/project/module/users/admin/user/component.config.php}'
+    ],
+
+    SecureAdminComponent::OPTION_ACL => [
+
+        IAclFactory::OPTION_ROLES => [
+            'userEditor' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'component:user'
+        ],
+        IAclFactory::OPTION_RULES => [
+            'userEditor' => ['component:user' => []]
+        ]
     ],
 
     SecureAdminComponent::OPTION_ROUTES      => [

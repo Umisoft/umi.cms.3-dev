@@ -11,7 +11,7 @@ use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\structure\object\StructureElement;
+use umicms\project\module\structure\object\StaticPage;
 
 return [
 
@@ -27,18 +27,18 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'common',
             'elements' => [
-                StructureElement::FIELD_DISPLAY_NAME => [
+                StaticPage::FIELD_DISPLAY_NAME => [
                     'type' => Text::TYPE_NAME,
-                    'label' => StructureElement::FIELD_DISPLAY_NAME,
+                    'label' => StaticPage::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => StructureElement::FIELD_DISPLAY_NAME
+                        'dataSource' => StaticPage::FIELD_DISPLAY_NAME
                     ],
                 ],
-                StructureElement::FIELD_PAGE_LAYOUT => [
+                StaticPage::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
-                    'label' => StructureElement::FIELD_PAGE_LAYOUT,
+                    'label' => StaticPage::FIELD_PAGE_LAYOUT,
                     'options' => [
-                        'dataSource' => StructureElement::FIELD_PAGE_LAYOUT
+                        'dataSource' => StaticPage::FIELD_PAGE_LAYOUT
                     ],
                 ]
             ]
@@ -48,32 +48,32 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'meta',
             'elements' => [
-                StructureElement::FIELD_PAGE_H1 => [
+                StaticPage::FIELD_PAGE_H1 => [
                     'type' => Text::TYPE_NAME,
-                    'label' => StructureElement::FIELD_PAGE_H1,
+                    'label' => StaticPage::FIELD_PAGE_H1,
                     'options' => [
-                        'dataSource' => StructureElement::FIELD_PAGE_H1
+                        'dataSource' => StaticPage::FIELD_PAGE_H1
                     ],
                 ],
-                StructureElement::FIELD_PAGE_META_TITLE => [
+                StaticPage::FIELD_PAGE_META_TITLE => [
                     'type' => Text::TYPE_NAME,
-                    'label' => StructureElement::FIELD_PAGE_META_TITLE,
+                    'label' => StaticPage::FIELD_PAGE_META_TITLE,
                     'options' => [
-                        'dataSource' => StructureElement::FIELD_PAGE_META_TITLE
+                        'dataSource' => StaticPage::FIELD_PAGE_META_TITLE
                     ],
                 ],
-                StructureElement::FIELD_PAGE_META_KEYWORDS => [
+                StaticPage::FIELD_PAGE_META_KEYWORDS => [
                     'type' => Text::TYPE_NAME,
-                    'label' => StructureElement::FIELD_PAGE_META_KEYWORDS,
+                    'label' => StaticPage::FIELD_PAGE_META_KEYWORDS,
                     'options' => [
-                        'dataSource' => StructureElement::FIELD_PAGE_META_KEYWORDS
+                        'dataSource' => StaticPage::FIELD_PAGE_META_KEYWORDS
                     ]
                 ],
-                StructureElement::FIELD_PAGE_META_DESCRIPTION => [
+                StaticPage::FIELD_PAGE_META_DESCRIPTION => [
                     'type' => Text::TYPE_NAME,
-                    'label' => StructureElement::FIELD_PAGE_META_DESCRIPTION,
+                    'label' => StaticPage::FIELD_PAGE_META_DESCRIPTION,
                     'options' => [
-                        'dataSource' => StructureElement::FIELD_PAGE_META_DESCRIPTION
+                        'dataSource' => StaticPage::FIELD_PAGE_META_DESCRIPTION
                     ]
                 ]
             ]
@@ -84,11 +84,11 @@ return [
             'label' => 'contents',
             'elements' => [
 
-                StructureElement::FIELD_PAGE_CONTENTS => [
+                StaticPage::FIELD_PAGE_CONTENTS => [
                     'type' => Wysiwyg::TYPE_NAME,
-                    'label' => StructureElement::FIELD_PAGE_CONTENTS,
+                    'label' => StaticPage::FIELD_PAGE_CONTENTS,
                     'options' => [
-                        'dataSource' => StructureElement::FIELD_PAGE_CONTENTS
+                        'dataSource' => StaticPage::FIELD_PAGE_CONTENTS
                     ]
                 ]
             ]

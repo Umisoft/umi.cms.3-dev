@@ -20,13 +20,14 @@ return [
         Layout::FIELD_IDENTIFY     => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
-            'accessor'   => 'getId'
+            'accessor'   => 'getId',
+            'readOnly'   => true
         ],
         Layout::FIELD_GUID         => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
-            'mutator'    => 'setGuid'
+            'readOnly'   => true
         ],
         Layout::FIELD_TYPE         => [
             'type'       => IField::TYPE_STRING,
@@ -38,7 +39,7 @@ return [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
-            'mutator'      => 'setVersion',
+            'readOnly'   => true,
             'defaultValue' => 1
         ],
         Layout::FIELD_DISPLAY_NAME => [
@@ -62,12 +63,12 @@ return [
             'readOnly'   => true,
             'defaultValue' => 0
         ],
-        Layout::FIELD_CREATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        Layout::FIELD_UPDATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
+        Layout::FIELD_CREATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created', 'readOnly'   => true],
+        Layout::FIELD_UPDATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly'   => true],
         Layout::FIELD_FILE_NAME    => ['type' => IField::TYPE_STRING, 'columnName' => 'file_name'],
         Layout::FIELD_OWNER => [
             'type' => IField::TYPE_INTEGER,
-            'columnName' => 'owner_id',
+            'columnName' => 'owner_id'
         ],
         Layout::FIELD_EDITOR => [
             'type' => IField::TYPE_INTEGER,
