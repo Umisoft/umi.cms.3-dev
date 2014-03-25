@@ -60,7 +60,7 @@ class DefaultController extends BaseController implements ILocalesAware, IUrlMan
                 'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
                 'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
                 'locale' => $this->getCurrentLocale(),
-                'authenticated' => $this->api->isAuthenticated()
+                'authenticated' => $this->getIsUserAuthenticated()
             ]
         );
 
@@ -68,6 +68,23 @@ class DefaultController extends BaseController implements ILocalesAware, IUrlMan
         $response->headers->replace($this->response->headers->all());
 
         return $response;
+    }
+
+    /**
+     * Проверяет, залогинен ли пользователь в административную панель
+     * @return bool
+     */
+    protected function getIsUserAuthenticated()
+    {
+        if ($this->api->isAuthenticated()) {
+
+            $apiComponent = $this->getComponent()->getChildComponent('api');
+            if ($this->api->getCurrentUser()->hasRole($apiComponent, 'administrator')) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

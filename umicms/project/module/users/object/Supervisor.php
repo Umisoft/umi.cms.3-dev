@@ -9,11 +9,19 @@
 
 namespace umicms\project\module\users\object;
 
+use umi\hmvc\component\IComponent;
+
 /**
  * Супервайзер.
  */
 class Supervisor extends AuthorizedUser
 {
-
+    /**
+     * {@inheritdoc}
+     */
+    public function hasRole(IComponent $component, $roleName)
+    {
+        return true;
+    }
 }
  
