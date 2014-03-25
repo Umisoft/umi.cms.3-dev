@@ -87,12 +87,12 @@ return [
         BaseUser::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
-            'target' => 'BaseUser'
+            'target' => 'user'
         ],
         BaseUser::FIELD_EDITOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
-            'target' => 'BaseUser'
+            'target' => 'user'
         ],
         AuthorizedUser::FIELD_TRASHED       => [
             'type'         => IField::TYPE_BOOL,

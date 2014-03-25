@@ -12,7 +12,7 @@ namespace umicms\project\module\service\object;
 use umi\orm\object\property\datetime\DateTime;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsObject;
-use utest\orm\mock\collections\User;
+use umicms\project\module\users\object\AuthorizedUser;
 
 /**
  * Бэкап объекта CMS.
@@ -20,7 +20,7 @@ use utest\orm\mock\collections\User;
  * @property int $objectId идентификатор объекта, которому принадлежит резервная копия
  * @property string $collectionName имя коллекции к которой относится объект
  * @property DateTime $date дата
- * @property User $user пользователь редактировавший объект
+ * @property AuthorizedUser $user пользователь редактировавший объект
  * @property ICmsObject $data данные резервной копии объекта
  */
 class Backup extends CmsObject
