@@ -7,7 +7,10 @@ define(['App'], function(UMI){
             templateName: 'chartControl',
             classNames: 'umi-metrika-right',
             didInsertElement: function(){
-                console.log(this.get('controller.model.object.id'));
+
+                var el = this.$().children('.umi-date');
+                el.jdPicker({date_format: "dd/mm/YYYY"});
+
                 var lineChartData = {
                     labels : ["January","February","March","April","May","June","July"],
                     datasets : [
@@ -28,7 +31,21 @@ define(['App'], function(UMI){
                     ]
                 };
 
-                var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
+                document.getElementById("umi-metrika-canvas").width = $(window).width() - 220;
+                document.getElementById("umi-metrika-canvas").height = 300;
+
+                var myLine = new Chart(document.getElementById("umi-metrika-canvas").getContext("2d")).Line(lineChartData);
+
+                window.onresize = function(event){
+                    console.log('window');
+                    var options = {
+                        animation: false
+                    };
+                    document.getElementById("umi-metrika-canvas").width = $(window).width() - 220;
+//                    document.getElementById("umi-metrika-canvas").height = $(window).height() - 200;
+
+                    var myLine = new Chart(document.getElementById("umi-metrika-canvas").getContext("2d")).Line(lineChartData, options);
+                };
             }
         });
     };

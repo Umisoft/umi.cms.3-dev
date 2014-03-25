@@ -20,14 +20,14 @@ define(['App'], function(UMI){
                         },
                         cache: false,
                         success: function(response){
-                            getCounter(counterId, response);
+//                            getCounter(counterId, response);
                             renderNavigation(response)
                         }
                     });
                 }
 
-//              http://localhost/admin/api/statistics/metrika/action/counter?counterId=1062209&resource=stat/traffic/summary
 
+                //Отрисовываем аккордион
                 function renderNavigation(response){
                     var firstLevelLength = response.result.navigation.length;
                     var secondLevelLength = '';
@@ -38,7 +38,7 @@ define(['App'], function(UMI){
                         secondLevelLength = response.result.navigation[j].children.length;
 
                         for(var i = 0; i < secondLevelLength; i++){
-                            secondLevel = secondLevel + '<ul class="umi-accordion-trigger"><li><a href="#" class="umi-metrica-second-level-button" data-resource="' + response.result.navigation[j].children[i].resource + '">' + response.result.navigation[j].children[i].displayName + '</a></li></ul>';
+                            secondLevel = secondLevel + '<ul class="umi-accordion-trigger"><li><a href="#" class="umi-metrika-second-level-button" data-resource="' + response.result.navigation[j].children[i].resource + '">' + response.result.navigation[j].children[i].displayName + '</a></li></ul>';
                         }
 
                         firstLevel = firstLevel + '<li><span>' + response.result.navigation[j].displayName + '</span>' + secondLevel + '</li>';
@@ -46,26 +46,22 @@ define(['App'], function(UMI){
                     }
 
                     $('.umi-accordion').html(firstLevel);
-
-                    $('.umi-accordion').on('mousedown', '.umi-metrica-second-level-button', function(){
-                        var navigationResponse = $(this).data('resource');
-                        var counterId = that.get('controller.model.object.id');
-                        getCounter(counterId, navigationResponse);
-                    });
                 }
 
 
-                function getCounter(counterId, navigationResponse){
+                //Получаем данные для конкретного счётчика
+//              http://localhost/admin/api/statistics/metrika/action/counter?counterId=1062209&resource=stat/traffic/summary
+                function getCounter(counterId, resource){
                     $.ajax({
                         type: "GET",
                         url: "/admin/api/statistics/metrika/action/counter",
                         data: {
                             counterId: counterId,
-                            resource: navigationResponse.result.navigation[0].children[0].resource
+                            resource: resource
                         },
                         cache: false,
                         success: function(response){
-                            console.log(response);
+                            console.log(response.result.counter);
                         }
                     });
                 }
@@ -74,6 +70,12 @@ define(['App'], function(UMI){
                 $('.umi-accordion').on('mousedown', 'span', function(){
                     $('.umi-accordion-trigger').removeClass('active');
                     $(this).siblings('.umi-accordion-trigger').addClass('active');
+                });
+
+                $('.umi-accordion').on('mousedown', '.umi-metrika-second-level-button', function(){
+                    var id = that.get('controller.model.object.id');
+                    var resource = $(this).data('resource');
+                    getCounter(id, resource);
                 });
             }
         });
