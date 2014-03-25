@@ -18,7 +18,7 @@ use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\service\object\Backup;
+use umicms\project\module\service\api\object\Backup;
 use umicms\project\module\users\api\UsersApi;
 
 /**

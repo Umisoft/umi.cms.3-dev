@@ -12,9 +12,9 @@ namespace umicms\project\module\news\api;
 use umi\orm\selector\ISelector;
 use umicms\api\BaseComplexApi;
 use umicms\api\IPublicApi;
-use umicms\project\module\news\object\NewsItem;
-use umicms\project\module\news\object\NewsRubric;
-use umicms\project\module\news\object\NewsSubject;
+use umicms\project\module\news\api\object\NewsItem;
+use umicms\project\module\news\api\object\NewsRubric;
+use umicms\project\module\news\api\object\NewsSubject;
 
 /**
  * Публичное API модуля "Новости"

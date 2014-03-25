@@ -21,7 +21,7 @@ use umi\spl\config\TConfigSupport;
 use umi\stemming\IStemmingAware;
 use umi\stemming\TStemmingAware;
 use umicms\api\IPublicApi;
-use umicms\project\module\search\object\SearchIndex;
+use umicms\project\module\search\api\object\SearchIndex;
 
 /**
  * Публичный интерфейс для индексирования модулей CMS для поиска.

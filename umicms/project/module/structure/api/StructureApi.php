@@ -11,8 +11,8 @@ namespace umicms\project\module\structure\api;
 
 use umicms\api\BaseComplexApi;
 use umicms\api\IPublicApi;
-use umicms\project\module\structure\object\Layout;
-use umicms\project\module\structure\object\StructureElement;
+use umicms\project\module\structure\api\object\Layout;
+use umicms\project\module\structure\api\object\StructureElement;
 
 /**
  * API для работы со структурой.

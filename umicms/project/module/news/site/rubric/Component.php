@@ -11,7 +11,7 @@ namespace umicms\project\module\news\site\rubric;
 
 use umicms\exception\RuntimeException;
 use umicms\orm\object\ICmsPage;
-use umicms\project\module\news\object\NewsRubric;
+use umicms\project\module\news\api\object\NewsRubric;
 use umicms\project\site\component\SiteComponent;
 
 /**

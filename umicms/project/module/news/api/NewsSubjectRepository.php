@@ -13,7 +13,7 @@ use umicms\api\repository\BaseObjectRepository;
 use umicms\api\repository\TRecycleAwareRepository;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\news\object\NewsSubject;
+use umicms\project\module\news\api\object\NewsSubject;
 
 /**
  * Репозиторий для работы с новостными сюжетами.

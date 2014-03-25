@@ -11,7 +11,7 @@ namespace umicms\authentication;
 
 use umi\authentication\storage\SessionStorage;
 use umicms\project\module\users\api\UsersApi;
-use umicms\project\module\users\object\Guest;
+use umicms\project\module\users\api\object\Guest;
 
 /**
  * {@inheritdoc}

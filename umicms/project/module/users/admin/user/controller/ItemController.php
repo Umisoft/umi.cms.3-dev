@@ -13,7 +13,7 @@ use umicms\exception\RuntimeException;
 use umicms\orm\object\ICmsObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\project\module\users\api\UsersApi;
-use umicms\project\module\users\object\AuthorizedUser;
+use umicms\project\module\users\api\object\AuthorizedUser;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.

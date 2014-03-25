@@ -12,7 +12,7 @@ namespace umicms\project\module\structure\api;
 use umicms\api\repository\BaseObjectRepository;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\structure\object\Layout;
+use umicms\project\module\structure\api\object\Layout;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 

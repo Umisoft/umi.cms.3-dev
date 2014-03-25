@@ -13,7 +13,7 @@ use umicms\exception\RuntimeException;
 use umicms\orm\object\ICmsObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\project\module\news\api\NewsApi;
-use umicms\project\module\news\object\NewsRubric;
+use umicms\project\module\news\api\object\NewsRubric;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.

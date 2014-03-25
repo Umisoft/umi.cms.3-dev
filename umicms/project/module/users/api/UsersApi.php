@@ -15,9 +15,9 @@ use umi\authentication\IAuthenticationFactory;
 use umi\authentication\TAuthenticationAware;
 use umicms\api\BaseComplexApi;
 use umicms\api\IPublicApi;
-use umicms\project\module\users\object\AuthorizedUser;
-use umicms\project\module\users\object\Guest;
-use umicms\project\module\users\object\Supervisor;
+use umicms\project\module\users\api\object\AuthorizedUser;
+use umicms\project\module\users\api\object\Guest;
+use umicms\project\module\users\api\object\Supervisor;
 
 /**
  * API для работы с пользователями.

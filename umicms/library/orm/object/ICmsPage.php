@@ -10,7 +10,7 @@
 namespace umicms\orm\object;
 
 use umicms\hmvc\url\IUrlManagerAware;
-use umicms\project\module\structure\object\Layout;
+use umicms\project\module\structure\api\object\Layout;
 
 /**
  * Интерфейс страниц сайта.

@@ -20,7 +20,7 @@ use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\ICmsCollection;
 use umicms\project\admin\api\ApiApplication;
 use umicms\project\module\users\api\UsersApi;
-use umicms\project\module\users\object\AuthorizedUser;
+use umicms\project\module\users\api\object\AuthorizedUser;
 
 /**
  * Контроллер действий авторизации пользователя в административной панели.

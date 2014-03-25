@@ -18,9 +18,9 @@ use umicms\exception\InvalidArgumentException;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\service\api\BackupRepository;
-use umicms\project\module\service\object\Backup;
-use umicms\project\module\structure\object\StructureElement;
-use umicms\project\module\structure\object\SystemPage;
+use umicms\project\module\service\api\object\Backup;
+use umicms\project\module\structure\api\object\StructureElement;
+use umicms\project\module\structure\api\object\SystemPage;
 
 /**
  * Репозиторий для работы с элементами структуры.

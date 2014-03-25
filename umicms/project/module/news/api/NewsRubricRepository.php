@@ -15,7 +15,7 @@ use umicms\api\repository\THierarchicAwareRepository;
 use umicms\api\repository\TRecycleAwareRepository;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\news\object\NewsRubric;
+use umicms\project\module\news\api\object\NewsRubric;
 
 /**
  * Репозиторий для работы с новостными рубриками

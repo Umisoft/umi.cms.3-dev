@@ -14,9 +14,9 @@ use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umi\orm\object\IObject;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\module\service\object\Backup;
+use umicms\project\module\service\api\object\Backup;
 use umicms\project\module\structure\api\StructureApi;
-use umicms\project\module\structure\object\StructureElement;
+use umicms\project\module\structure\api\object\StructureElement;
 
 /**
  * Контроллер операций.

@@ -20,7 +20,7 @@ use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\project\module\users\object\Supervisor;
+use umicms\project\module\users\api\object\Supervisor;
 
 /**
  * {@inheritdoc}

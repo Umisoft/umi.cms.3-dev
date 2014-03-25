@@ -12,14 +12,14 @@ namespace umicms\project\site\route;
 use umi\orm\exception\NonexistentEntityException;
 use umi\orm\metadata\field\special\UriField;
 use umi\route\type\BaseRoute;
-use umicms\project\module\structure\object\StaticPage;
+use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 use umicms\project\module\structure\api\StructureApi;
-use umicms\project\module\structure\object\StructureElement;
+use umicms\project\module\structure\api\object\StructureElement;
 
 /**
  * Правила маршрутизации статичных страниц для сайта.

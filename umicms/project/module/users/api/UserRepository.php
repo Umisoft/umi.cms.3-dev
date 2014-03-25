@@ -13,7 +13,7 @@ use umicms\api\repository\BaseObjectRepository;
 use umicms\api\repository\TRecycleAwareRepository;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\users\object\BaseUser;
+use umicms\project\module\users\api\object\BaseUser;
 
 /**
  * Репозиторий для работы с пользователями.

@@ -26,13 +26,13 @@ use umicms\hmvc\controller\BaseController;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchIndexApi;
 use umicms\project\module\service\api\BackupRepository;
-use umicms\project\module\structure\object\StaticPage;
-use umicms\project\module\structure\object\StructureElement;
+use umicms\project\module\structure\api\object\StaticPage;
+use umicms\project\module\structure\api\object\StructureElement;
+use umicms\project\module\users\api\object\AuthorizedUser;
+use umicms\project\module\users\api\object\Guest;
+use umicms\project\module\users\api\object\Supervisor;
+use umicms\project\module\users\api\object\UserGroup;
 use umicms\project\module\users\api\UsersApi;
-use umicms\project\module\users\object\AuthorizedUser;
-use umicms\project\module\users\object\UserGroup;
-use umicms\project\module\users\object\Guest;
-use umicms\project\module\users\object\Supervisor;
 
 /**
  * Class InstallController

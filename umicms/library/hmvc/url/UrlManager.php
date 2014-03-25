@@ -15,7 +15,7 @@ use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\structure\api\StructureApi;
-use umicms\project\module\structure\object\StructureElement;
+use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\site\component\SiteComponent;
 
 /**

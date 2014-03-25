@@ -14,7 +14,7 @@ use umi\authentication\result\AuthResult;
 use umi\authentication\result\IAuthResult;
 use umi\orm\object\IObject;
 use umi\orm\selector\condition\IFieldConditionGroup;
-use umicms\project\module\users\object\AuthorizedUser;
+use umicms\project\module\users\api\object\AuthorizedUser;
 
 /**
  * {@inheritdoc}

@@ -22,7 +22,7 @@ use umicms\api\IPublicApi;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\project\module\search\highlight\Fragmenter;
-use umicms\project\module\search\object\SearchIndex;
+use umicms\project\module\search\api\object\SearchIndex;
 use utest\event\TEventSupport;
 
 /**

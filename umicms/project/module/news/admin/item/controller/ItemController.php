@@ -12,7 +12,7 @@ namespace umicms\project\module\news\admin\item\controller;
 use umicms\orm\object\ICmsObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\project\module\news\api\NewsApi;
-use umicms\project\module\news\object\NewsItem;
+use umicms\project\module\news\api\object\NewsItem;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.

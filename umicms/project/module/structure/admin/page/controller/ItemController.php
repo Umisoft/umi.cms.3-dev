@@ -14,7 +14,7 @@ use umicms\orm\object\ICmsObject;
 use umicms\orm\object\IRecyclableObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\project\module\structure\api\StructureApi;
-use umicms\project\module\structure\object\StructureElement;
+use umicms\project\module\structure\api\object\StructureElement;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.

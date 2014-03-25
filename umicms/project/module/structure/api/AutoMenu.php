@@ -12,7 +12,7 @@ namespace umicms\project\module\structure\api;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umicms\exception\InvalidArgumentException;
-use umicms\project\module\structure\object\StructureElement;
+use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
 

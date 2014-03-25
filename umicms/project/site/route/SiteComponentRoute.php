@@ -15,7 +15,7 @@ use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\module\structure\api\StructureApi;
-use umicms\project\module\structure\object\SystemPage;
+use umicms\project\module\structure\api\object\SystemPage;
 
 /**
  * Правила маршрутизации компонентов для сайта.
