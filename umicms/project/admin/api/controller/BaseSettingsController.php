@@ -10,31 +10,110 @@
 namespace umicms\project\admin\api\controller;
 
 use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\admin\component\AdminComponent;
 
 /**
- * Контроллер вывода настроек компонента
+ * Базовый контроллер вывода настроек компонента
  */
-abstract class BaseSettingsController extends BaseController
+abstract class BaseSettingsController extends BaseController implements IUrlManagerAware
 {
+    use TUrlManagerAware;
+
     /**
-     * {@inheritdoc}
+     * Имя опции для задания контролов компонента.
      */
-    public function __invoke()
+    const OPTION_INTERFACE_CONTROLS = 'controls';
+    /**
+     * Имя опции для задания настроек интерфейсного отображения контролов
+     */
+    const OPTION_INTERFACE_LAYOUT = 'layout';
+    /**
+     * Имя опции для задания действий в компоненте
+     */
+    const OPTION_INTERFACE_ACTIONS = 'actions';
+
+    /**
+     * Возвращает настройки компонента
+     * @return array
+     */
+    abstract protected function getSettings();
+
+    /**
+     * Возвращает информацию о контролах компонента.
+     * @param array $controls список контролов с опциями
+     * @return array
+     */
+    protected function buildControlsInfo(array $controls)
     {
+       $controlsInfo = [];
+
+       foreach($controls as $controlName => $options) {
+            $options['displayName'] = $this->translate('control:' . $controlName . ':displayName');
+            $controlsInfo[$controlName] = $options;
+        }
+
+        return $controlsInfo;
+    }
+
+    /**
+     * Возвращает информацию об интерфейсном отображении контролов.
+     * @param array $interfaceOptions настройки отображения контролов
+     * @return array
+     */
+    protected function buildLayoutInfo(array $interfaceOptions)
+    {
+        return $interfaceOptions;
+    }
+
+    /**
+     * Возвращает информацию о доступных действиях компонентов.
+     * @return array
+     */
+    protected function buildActionsInfo()
+    {
+        $actions = [];
         /**
          * @var AdminComponent $component
          */
         $component = $this->getComponent();
 
+        if ($component->hasController(AdminComponent::ACTION_CONTROLLER)) {
+            $controller = $component->getController(AdminComponent::ACTION_CONTROLLER);
+            if ($controller instanceof BaseRestActionController) {
+
+                foreach ($controller->getQueryActions() as $actionName) {
+                    $actions[$actionName] = [
+                        'type' => 'query',
+                        'displayName' => $this->translate('action:' . $actionName . ':displayName'),
+                        'source' => $this->getUrlManager()->getAdminComponentActionUrl($component, $actionName)
+                    ];
+                }
+
+                foreach ($controller->getModifyActions() as $actionName) {
+                    $actions[$actionName] = [
+                        'type' => 'modify',
+                        'displayName' => $this->translate('action:' . $actionName . ':displayName'),
+                        'source' => $this->getUrlManager()->getAdminComponentActionUrl($component, $actionName)
+                    ];
+                }
+            }
+        }
+
+        return $actions;
+    }
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __invoke()
+    {
         return $this->createViewResponse(
             'settings',
             [
-                'settings' => [
-                    AdminComponent::OPTION_INTERFACE_CONTROLS => $component->getControlsInfo(),
-                    AdminComponent::OPTION_INTERFACE_LAYOUT => $component->getInterfaceInfo(),
-                    'actions' => $component->getActionsInfo()
-                ]
+                'settings' => $this->getSettings()
             ]
         );
     }

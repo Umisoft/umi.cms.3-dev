@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\structure\admin\page\controller;
+namespace umicms\project\module\seo\admin\megaindex\controller;
 
 use umicms\project\admin\api\controller\BaseSettingsController;
 
@@ -17,30 +17,15 @@ use umicms\project\admin\api\controller\BaseSettingsController;
 class SettingsController extends BaseSettingsController
 {
     private $controls = [
-        'tree' => [],
-        'children' => [],
-        'filter' => [],
-        'form' => [],
+        'megaindexReport' => []
     ];
 
     private $layout = [
-        'collection' => 'structure',
         'emptyContext' => [
-            'sideBar' => [
-                'controls' => ['tree']
-            ],
             'contents' => [
-                'controls' => ['filter', 'children']
+                'controls' => ['megaindexReport']
             ]
         ],
-        'selectedContext' => [
-            'sideBar' => [
-                'controls' => ['tree']
-            ],
-            'contents' => [
-                'controls' => ['form', 'children']
-            ]
-        ]
     ];
 
     /**

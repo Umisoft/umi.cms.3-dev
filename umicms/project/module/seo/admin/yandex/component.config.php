@@ -23,19 +23,10 @@ return [
             'oauthToken' => '26ccbadbc7494266a7a0b2981a47d27d',
         ]
     ],
-    SecureAdminComponent::OPTION_INTERFACE_CONTROLS => [
-        'yandexWebmasterReport' => [],
-    ],
-    SecureAdminComponent::OPTION_INTERFACE_LAYOUT => [
-        'emptyContext' => [
-            'contents' => [
-                'controls' => ['yandexWebmasterReport']
-            ]
-        ],
-    ],
+
     SecureAdminComponent::OPTION_CONTROLLERS => [
         SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        SecureAdminComponent::SETTINGS_CONTROLLER => 'umicms\project\admin\api\controller\SettingsController'
+        SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
     ],
     SecureAdminComponent::OPTION_ROUTES => [
         'action' => [

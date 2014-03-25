@@ -24,19 +24,10 @@ return [
             'siteUrl' => 'umi-cms.ru',
         ]
     ],
-    SecureAdminComponent::OPTION_INTERFACE_CONTROLS => [
-        'megaindexReport' => [],
-    ],
-    SecureAdminComponent::OPTION_INTERFACE_LAYOUT => [
-        'emptyContext' => [
-            'contents' => [
-                'controls' => ['megaindexReport']
-            ]
-        ],
-    ],
+
     SecureAdminComponent::OPTION_CONTROLLERS => [
         SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        SecureAdminComponent::SETTINGS_CONTROLLER => 'umicms\project\admin\api\controller\SettingsController'
+        SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
     ],
     SecureAdminComponent::OPTION_ROUTES => [
         'action' => [

@@ -14,9 +14,6 @@ use umicms\project\admin\component\SecureAdminComponent;
 return [
 
     SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
-    SecureAdminComponent::OPTION_SETTINGS => [
-
-    ],
 
     SecureAdminComponent::OPTION_CONTROLLERS => [
         SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',

@@ -16,33 +16,6 @@ return [
 
     SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
 
-    SecureAdminComponent::OPTION_INTERFACE_CONTROLS => [
-        'tree' => [],
-        'children' => [],
-        'filter' => [],
-        'form' => [],
-    ],
-
-    SecureAdminComponent::OPTION_INTERFACE_LAYOUT => [
-        'collection' => 'structure',
-        'emptyContext' => [
-            'sideBar' => [
-                'controls' => ['tree']
-            ],
-            'contents' => [
-                'controls' => ['filter', 'children']
-            ]
-        ],
-        'selectedContext' => [
-            'sideBar' => [
-                'controls' => ['tree']
-            ],
-            'contents' => [
-                'controls' => ['form', 'children']
-            ]
-        ]
-    ],
-
     SecureAdminComponent::OPTION_CONTROLLERS => [
         SecureAdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
         SecureAdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',

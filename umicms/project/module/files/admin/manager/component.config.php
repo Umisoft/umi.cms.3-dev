@@ -15,20 +15,6 @@ return [
 
     SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
 
-    SecureAdminComponent::OPTION_INTERFACE_CONTROLS => [
-        'fileManager' => [
-            'action' => '/connector'
-        ],
-    ],
-
-    SecureAdminComponent::OPTION_INTERFACE_LAYOUT => [
-        'emptyContext' => [
-            'contents' => [
-                'controls' => ['fileManager']
-            ]
-        ]
-    ],
-
     SecureAdminComponent::OPTION_CONTROLLERS => [
         'connector' => __NAMESPACE__ . '\controller\ConnectorController',
         SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',

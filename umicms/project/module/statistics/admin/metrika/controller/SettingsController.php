@@ -16,5 +16,33 @@ use umicms\project\admin\api\controller\BaseSettingsController;
  */
 class SettingsController extends BaseSettingsController
 {
+    private $controls = [
+        'counters' => [],
+        'counter' => []
+    ];
 
+    private $layout = [
+        'emptyContext' => [
+            'contents' => [
+                'controls' => ['counters']
+            ]
+        ],
+        'selectedContext' => [
+            'contents' => [
+                'controls' => ['counter']
+            ]
+        ]
+    ];
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getSettings()
+    {
+        return [
+            self::OPTION_INTERFACE_CONTROLS => $this->buildControlsInfo($this->controls),
+            self::OPTION_INTERFACE_LAYOUT => $this->buildLayoutInfo($this->layout),
+            self::OPTION_INTERFACE_ACTIONS => $this->buildActionsInfo()
+        ];
+    }
 }
