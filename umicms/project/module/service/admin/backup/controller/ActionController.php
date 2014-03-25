@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\service\admin\backup\controller;
 
+use umicms\orm\selector\CmsSelector;
 use umicms\project\admin\api\controller\BaseRestActionController;
 use umicms\project\module\service\api\BackupRepository;
 

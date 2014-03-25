@@ -13,6 +13,7 @@ use umi\orm\collection\ICommonHierarchy;
 use umi\orm\collection\IHierarchicCollection;
 use umi\orm\collection\ILinkedHierarchicCollection;
 use umi\orm\collection\ISimpleCollection;
+use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
 
@@ -24,7 +25,7 @@ trait TRecycleAwareRepository
     /**
      * Возвращает коллекцию.
      * @internal
-     * @return ICommonHierarchy|IHierarchicCollection|ILinkedHierarchicCollection|ISimpleCollection
+     * @return ICommonHierarchy|IHierarchicCollection|ILinkedHierarchicCollection|ISimpleCollection|ICmsCollection
      */
     abstract public function getCollection();
 
