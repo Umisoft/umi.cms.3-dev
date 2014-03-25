@@ -18,6 +18,12 @@ return [
     'forms' => [
         'base' => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/orm/structure/form/base.edit.config.php}'
+        ],
+        'static' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/orm/structure/form/static.edit.config.php}'
+        ],
+        'system' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/orm/structure/form/system.edit.config.php}'
         ]
     ],
     'dictionaries' => [

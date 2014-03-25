@@ -98,7 +98,16 @@ return [
             'defaultValue' => 0,
             'readOnly'     => true,
         ],
-        AuthorizedUser::FIELD_LOGIN         => ['type' => IField::TYPE_STRING, 'columnName' => 'login'],
+        AuthorizedUser::FIELD_LOGIN         => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'login',
+            'filters'    => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
+        ],
         AuthorizedUser::FIELD_EMAIL         => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'email',

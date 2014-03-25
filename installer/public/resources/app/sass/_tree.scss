@@ -12,7 +12,7 @@ body{
     margin-left: rem-calc(5);
     margin-top: rem-calc(8);
     font-size: rem-calc(13);
-
+    margin-bottom:  rem-calc(40);
     ul.f-dropdown {
         padding-left: 0;
     }
@@ -32,10 +32,6 @@ body{
                 color: $umi-font-color;
             }
         }
-    }
-
-    .umi-tree-list{
-        margin-bottom: 40px;
     }
 
     span{

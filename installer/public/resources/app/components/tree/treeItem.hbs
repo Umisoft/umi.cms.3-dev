@@ -3,8 +3,12 @@
         {{#view "treeItem" modelBinding="node"}} <!-- div -->
             {{#if node.childCount}}
                 <span {{action "expanded" on="mouseDown"}} {{bind-attr class=":umi-expand"}}>
-                    {{#if node.isLoaded}} <!-- Логично переименовать в node.Loading -->
-                        <i class="animate animate-loader-20"></i>
+                    {{#if node.isExpanded}}
+                        {{#if node.sortedChildren}}
+                            <i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>
+                        {{else}}
+                            <i class="animate animate-loader-20"></i>
+                        {{/if}}
                     {{else}}
                         <i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>
                     {{/if}}

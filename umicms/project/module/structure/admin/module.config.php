@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\structure\admin;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\admin\component\SecureAdminComponent;
 
@@ -15,13 +16,25 @@ return [
 
     SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
 
-    SecureAdminComponent::OPTION_SETTINGS => [
-
-    ],
-
     SecureAdminComponent::OPTION_COMPONENTS => [
         'page' => '{#lazy:~/project/module/structure/admin/page/component.config.php}',
         'layout' => '{#lazy:~/project/module/structure/admin/layout/component.config.php}',
+    ],
+
+    SecureAdminComponent::OPTION_ACL => [
+
+        IAclFactory::OPTION_ROLES => [
+            'pageEditor' => [],
+            'layoutEditor' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'component:page',
+            'component:layout'
+        ],
+        IAclFactory::OPTION_RULES => [
+            'pageEditor' => ['component:page' => []],
+            'layoutEditor' => ['component:layout' => []],
+        ]
     ],
 
     SecureAdminComponent::OPTION_ROUTES      => [

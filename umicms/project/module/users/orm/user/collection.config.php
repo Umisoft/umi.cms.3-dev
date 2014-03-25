@@ -18,7 +18,11 @@ return [
         'base' => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/orm/user/form/base.edit.config.php}'
         ],
+        'guest' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/orm/user/form/guest.edit.config.php}'
+        ],
         'authorized' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/orm/user/form/authorized.edit.config.php}',
             'login' => '{#lazy:~/project/module/users/orm/user/form/authorized.login.config.php}'
         ]
     ],
