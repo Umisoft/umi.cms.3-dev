@@ -116,7 +116,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $administrators = $groupCollection->add()
             ->setValue('displayName', 'Администраторы');
         $administrators->roles = [
-            'project.admin.api' => ['administrator']
+            'project.admin.api' => ['newsEditor']
         ];
 
         /**
