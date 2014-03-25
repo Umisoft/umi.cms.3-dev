@@ -6,6 +6,7 @@
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
+
 namespace umicms\api\repository;
 
 use umi\orm\collection\ICommonHierarchy;
@@ -16,7 +17,7 @@ use umicms\orm\object\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
 
 /**
- * Трейт для подключения функцилнала добавления объектов в корзину в репозиторий.
+ * Трейт для подключения функционала добавления объектов в корзину в репозиторий.
  */
 trait TRecycleAwareRepository
 {

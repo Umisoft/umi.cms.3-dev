@@ -13,24 +13,18 @@ use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Request;
 use umi\http\Response;
-use umi\toolkit\IToolkitAware;
-use umi\toolkit\TToolkitAware;
 use umicms\orm\collection\TCmsCollection;
 use umicms\orm\object\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\admin\component\AdminComponent;
-use umicms\project\admin\config\IAdminSettingsAware;
-use umicms\project\admin\config\TAdminSettingsAware;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\TSerializationAware;
 
 /**
  * Приложение административной панели.
  */
-class ApiApplication extends AdminComponent implements IAdminSettingsAware, IToolkitAware, ISerializationAware
+class ApiApplication extends AdminComponent implements ISerializationAware
 {
-    use TAdminSettingsAware;
-    use TToolkitAware;
     use TSerializationAware;
 
     /**
@@ -42,21 +36,10 @@ class ApiApplication extends AdminComponent implements IAdminSettingsAware, IToo
      * @var string $requestFormat формат запроса к приложению
      */
     protected $currentRequestFormat = self::DEFAULT_REQUEST_FORMAT;
-
     /**
      * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
      */
     protected $supportedRequestPostfixes = ['json', 'xml'];
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct($name, $path, array $options = [])
-    {
-        parent::__construct($name, $path, $options);
-
-        $this->registerAdminSettings();
-    }
 
     /**
      * {@inheritdoc}
@@ -111,24 +94,6 @@ class ApiApplication extends AdminComponent implements IAdminSettingsAware, IToo
     protected function isRequestFormatSupported($format)
     {
         return in_array($format, $this->supportedRequestPostfixes);
-    }
-
-    /**
-     * Регистрирует сервисы для работы административной панели.
-     */
-    protected function registerAdminSettings()
-    {
-
-        $this->setAdminSettings($this->getSettings());
-
-        $this->getToolkit()->registerAwareInterface(
-            'umicms\project\admin\config\IAdminSettingsAware',
-            function ($object) {
-                if ($object instanceof IAdminSettingsAware) {
-                    $object->setAdminSettings($this->getSettings());
-                }
-            }
-        );
     }
 
     /**

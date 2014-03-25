@@ -9,14 +9,12 @@
 namespace umicms\project\admin\controller;
 
 use umi\hmvc\exception\http\HttpException;
-use umi\hmvc\exception\http\HttpForbidden;
-use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
 use umicms\hmvc\controller\BaseController;
 use umicms\exception\NonexistentEntityException;
 
 /**
- * Контроллер ошибок для сайта.
+ * Контроллер ошибок для административной панели.
  */
 class ErrorController extends BaseController
 {
@@ -40,23 +38,6 @@ class ErrorController extends BaseController
      */
     public function __invoke()
     {
-
-        switch (true) {
-            // 404
-            case $this->exception instanceof HttpNotFound:
-            case $this->exception instanceof NonexistentEntityException:
-                return $this->error404();
-            // 403
-            case $this->exception instanceof HttpForbidden:
-                return $this->error403();
-
-        }
-
-        $code = Response::HTTP_INTERNAL_SERVER_ERROR;
-        if ($this->exception instanceof HttpException) {
-            $code = $this->exception->getCode();
-        }
-
         $e = $this->exception;
         $stack = [];
 
@@ -64,10 +45,13 @@ class ErrorController extends BaseController
             $stack[] = $e;
         }
 
+        $code = $this->getHttpStatusCode();
+
         return $this->createViewResponse(
-            'error/controller',
+            'error',
             [
                 'error' => $this->exception,
+                'code' => $code,
                 'stack' => $stack
             ]
         )
@@ -75,32 +59,18 @@ class ErrorController extends BaseController
     }
 
     /**
-     * Отображает 404 ошибку.
-     * @return Response
+     * Определяет код статуса ответа по произошедшему исключению.
+     * @return int
      */
-    public function error404()
+    protected function getHttpStatusCode()
     {
-        return $this->createViewResponse(
-            'error/404',
-            [
-                'error' => $this->exception
-            ]
-        )
-        ->setStatusCode(Response::HTTP_NOT_FOUND);
-    }
-
-    /**
-     * Отображает 403 ошибку.
-     * @return Response
-     */
-    public function error403()
-    {
-        return $this->createViewResponse(
-            'error/403',
-            [
-                'error' => $this->exception
-            ]
-        )
-            ->setStatusCode(Response::HTTP_FORBIDDEN);
+        switch(true) {
+            case $this->exception instanceof NonexistentEntityException:
+                return Response::HTTP_NOT_FOUND;
+            case $this->exception instanceof HttpException:
+                return $this->exception->getCode();
+            default:
+                return Response::HTTP_INTERNAL_SERVER_ERROR;
+        }
     }
 }

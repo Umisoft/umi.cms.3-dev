@@ -9,14 +9,14 @@
 
 namespace umicms\project\site\controller;
 
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\controller\BaseSecureController;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
 
 /**
  * Базовый контроллер для сайта
  */
-abstract class SitePageController extends BaseController implements IPageCallStackAware
+abstract class SitePageController extends BaseSecureController implements IPageCallStackAware
 {
     use TPageCallStackAware;
 }

@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\structure\site;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\SiteComponent;
 
@@ -27,6 +28,20 @@ return [
         'type'      => 'php',
         'extension' => 'phtml',
         'directory' => __DIR__ . '/template/php',
+    ],
+
+    SiteComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'staticPageViewer' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'controller:static',
+        ],
+        IAclFactory::OPTION_RULES => [
+            'staticPageViewer' => [
+                'controller:static' => []
+            ]
+        ]
     ],
 
     SiteComponent::OPTION_ROUTES      => [

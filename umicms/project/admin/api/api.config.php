@@ -8,19 +8,18 @@
 
 namespace umicms\project\admin\api;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 
 return [
 
     ApiApplication::OPTION_CLASS => 'umicms\project\admin\api\ApiApplication',
 
-    ApiApplication::OPTION_SETTINGS => [
-
-    ],
-
     ApiApplication::OPTION_CONTROLLERS => [
         ApiApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
-        ApiApplication::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\ApiSettingsController',
+
+        'settings' => __NAMESPACE__ . '\controller\ApiSettingsController',
+        'action' => __NAMESPACE__ . '\controller\ActionController'
     ],
 
     ApiApplication::OPTION_COMPONENTS => [
@@ -37,12 +36,69 @@ return [
         'users' => '{#lazy:~/project/module/users/admin/module.config.php}'
     ],
 
+    ApiApplication::OPTION_ACL => [
+
+        IAclFactory::OPTION_ROLES => [
+
+            'administrator' => [],
+
+            'blogEditor' => ['administrator'],
+            'serviceEditor' => ['administrator'],
+            'filesEditor' => ['administrator'],
+            'modelsEditor' => ['administrator'],
+            'newsEditor' => ['administrator'],
+            'seoEditor' => ['administrator'],
+            'searchEditor' => ['administrator'],
+            'statisticsEditor' => ['administrator'],
+            'structureEditor' => ['administrator'],
+            'usersEditor' => ['administrator'],
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+
+            'controller:settings',
+
+            'component:blog',
+            'component:service',
+            'component:files',
+            'component:models',
+            'component:news',
+            'component:seo',
+            'component:search',
+            'component:statistics',
+            'component:structure',
+            'component:users'
+        ],
+        IAclFactory::OPTION_RULES => [
+
+            'administrator' => ['controller:settings' => []],
+
+            'blogEditor' => ['component:blog' => []],
+            'serviceEditor' => ['component:service' => []],
+            'filesEditor' => ['component:files' => []],
+            'modelsEditor' => ['component:models' => []],
+            'newsEditor' => ['component:news' => []],
+            'seoEditor' => ['component:seo' => []],
+            'searchEditor' => ['component:search' => []],
+            'statisticsEditor' => ['component:statistics' => []],
+            'structureEditor' => ['component:structure' => []],
+            'usersEditor' => ['component:users' => []],
+        ]
+    ],
+
     ApiApplication::OPTION_ROUTES => [
+
+        'action' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/action/{action}',
+            'defaults' => [
+                'controller' => 'action'
+            ]
+        ],
 
         'index' => [
             'type'     => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => ApiApplication::SETTINGS_CONTROLLER
+                'controller' => 'settings'
             ],
             'subroutes' => [
                 'component' => [

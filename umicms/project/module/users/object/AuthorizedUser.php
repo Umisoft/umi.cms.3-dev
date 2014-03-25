@@ -9,8 +9,6 @@
 
 namespace umicms\project\module\users\object;
 
-use umi\orm\objectset\IManyToManyObjectSet;
-use umicms\orm\object\CmsObject;
 use umicms\orm\object\IRecyclableObject;
 
 /**
@@ -19,9 +17,8 @@ use umicms\orm\object\IRecyclableObject;
  * @property string $login логин
  * @property string $email e-mail
  * @property string $password пароль
- * @property IManyToManyObjectSet $groups группы, в которые входит пользователь
  */
-class User extends CmsObject implements IRecyclableObject
+class AuthorizedUser extends BaseUser implements IRecyclableObject
 {
     /**
      * Имя поля для хранения логина
@@ -39,8 +36,4 @@ class User extends CmsObject implements IRecyclableObject
      * Имя поля для хранения пароля
      */
     const FIELD_PASSWORD = 'password';
-    /**
-     * Имя поля для хранения групп, в которые входит пользователь
-     */
-    const FIELD_GROUPS = 'groups';
 }

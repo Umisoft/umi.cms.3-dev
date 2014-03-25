@@ -10,6 +10,7 @@
 namespace umicms\project\admin\api\controller;
 
 use umi\hmvc\exception\http\HttpException;
+use umi\hmvc\exception\http\HttpForbidden;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
@@ -56,8 +57,8 @@ abstract class BaseRestActionController extends BaseRestController implements IO
             }
             case 'DELETE': {
                 throw new HttpMethodNotAllowed(
-                    'HTTP method is not implemented.',
-                    ['GET', 'PUT', 'DELETE']
+                    'HTTP method is not allowed.',
+                    ['GET', 'PUT', 'POST']
                 );
             }
             default: {
@@ -72,10 +73,23 @@ abstract class BaseRestActionController extends BaseRestController implements IO
     /**
      * Вызывает действие.
      * @param string $action имя действия
+     * @throws HttpForbidden если у текущего пользователя нет доступа к экшену.
      * @return Response
      */
     protected function callAction($action)
     {
+        if (!$this->isAllowed($this, $action)) {
+            throw new HttpForbidden(
+                $this->translate(
+                    'Cannot execute action "{action}" for component "{path}". Access denied.',
+                    [
+                        'action' => $action,
+                        'path' => $this->getComponent()->getPath()
+                    ]
+                )
+            );
+        }
+
         $methodName = 'action' . ucfirst($action);
         $actionResult = $this->{$methodName}();
 

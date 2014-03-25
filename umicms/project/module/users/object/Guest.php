@@ -10,17 +10,14 @@
 namespace umicms\project\module\users\object;
 
 use umi\orm\objectset\IManyToManyObjectSet;
-use umicms\orm\object\CmsObject;
 
 /**
- * Группа пользователей.
+ * Незарегистрированный пользователь.
  *
- * @property IManyToManyObjectSet $users пользователи, входящие в группу
+ * @property IManyToManyObjectSet $groups группы, в которые входит пользователь
  */
-class Group extends CmsObject
+class Guest extends BaseUser
 {
-    /**
-     * Имя поля для хранения пользователей, входящих в группу
-     */
-    const FIELD_USERS = 'users';
+
 }
+ 

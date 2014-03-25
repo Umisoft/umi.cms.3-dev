@@ -109,6 +109,7 @@ return [
         ],
 
         'collection.newsItem' => '{#lazy:~/project/module/news/orm/item/i18n/dictionary.config.php}',
+        'collection.user' => '{#lazy:~/project/module/users/orm/user/i18n/dictionary.config.php}',
         'collection.newsRubric' => '{#lazy:~/project/module/news/orm/rubric/i18n/dictionary.config.php}',
         'collection.newsSubject' => '{#lazy:~/project/module/news/orm/subject/i18n/dictionary.config.php}',
     ];

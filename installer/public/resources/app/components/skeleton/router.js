@@ -82,7 +82,12 @@ define([], function(){
                  params.handler - элемент (кнопка) вызвавший событие сохранение
                  */
                 save: function(params){
-                    console.log(params.object.get('currentState.stateName'));
+                    if(!params.object.get('isValid')){
+                        if(params.handler){
+                            $(params.handler).removeClass('loading');
+                        }
+                        return;
+                    }
                     params.object.save().then(
                         function(){
                             if(params.handler){
@@ -128,7 +133,7 @@ define([], function(){
                 maskLayout.className = 'auth-mask';
                 maskLayout = document.body.appendChild(maskLayout);
                 $(applicationLayout).addClass('off');
-                $.post('/admin/api/users/user/action/logout');
+                $.post(UmiSettings.baseApiURL + '/action/logout');
                 require(['auth/main'], function(auth){
                     auth();
                     $(applicationLayout).addClass('fade-out');
@@ -366,6 +371,10 @@ define([], function(){
                         return UMI.dialog.open(data).then(
                             function(){/*При положительном ответе делать ничего не нужно*/ },
                             function(){
+                                if(!model.get('isValid')){
+                                    model.set('validErrors', null);
+                                    model.send('becameValid');
+                                }
                                 model.rollback();
                                 transition.retry();
                             }
