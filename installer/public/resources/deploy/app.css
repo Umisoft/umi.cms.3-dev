@@ -5329,7 +5329,8 @@ body {
   box-sizing: border-box;
   margin-left: 0.3125rem;
   margin-top: 0.5rem;
-  font-size: 0.8125rem; }
+  font-size: 0.8125rem;
+  margin-bottom: 2.5rem; }
   .umi-tree ul.f-dropdown {
     padding-left: 0; }
   .umi-tree ul {
@@ -5343,8 +5344,6 @@ body {
       color: #535E6D; }
       .umi-tree li a.active {
         color: #535E6D; }
-  .umi-tree .umi-tree-list {
-    margin-bottom: 40px; }
   .umi-tree span {
     width: 1.25rem;
     height: 1.25rem; }
