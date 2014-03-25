@@ -9,7 +9,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\users\object\Group;
+use umicms\project\module\users\object\UserGroup;
 
 return [
     'dataSource' => [
@@ -17,32 +17,32 @@ return [
     ],
     'fields'     => [
 
-        Group::FIELD_IDENTIFY      => [
+        UserGroup::FIELD_IDENTIFY      => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
             'accessor'   => 'getId',
             'readOnly'   => true
         ],
-        Group::FIELD_GUID          => [
+        UserGroup::FIELD_GUID          => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
             'readOnly'   => true
         ],
-        Group::FIELD_TYPE          => [
+        UserGroup::FIELD_TYPE          => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
             'accessor'   => 'getType',
             'readOnly'   => true
         ],
-        Group::FIELD_VERSION       => [
+        UserGroup::FIELD_VERSION       => [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
             'readOnly'   => true,
             'defaultValue' => 1
         ],
-        Group::FIELD_DISPLAY_NAME  => [
+        UserGroup::FIELD_DISPLAY_NAME  => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name',
             'filters' => [
@@ -52,20 +52,20 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ]
         ],
-        Group::FIELD_ACTIVE        => [
+        UserGroup::FIELD_ACTIVE        => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'active',
             'defaultValue' => 1
         ],
-        Group::FIELD_LOCKED        => [
+        UserGroup::FIELD_LOCKED        => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
             'readOnly'   => true,
             'defaultValue' => 0
         ],
-        Group::FIELD_CREATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created', 'readOnly'   => true],
-        Group::FIELD_UPDATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly'   => true],
-        Group::FIELD_USERS     => [
+        UserGroup::FIELD_CREATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created', 'readOnly'   => true],
+        UserGroup::FIELD_UPDATED       => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly'   => true],
+        UserGroup::FIELD_USERS     => [
             'type'         => IField::TYPE_MANY_TO_MANY,
             'target'       => 'user',
             'bridge'       => 'userUserGroup',
@@ -73,30 +73,38 @@ return [
             'targetField'  => 'user',
             'readOnly'     => true
         ],
-        Group::FIELD_OWNER => [
+        UserGroup::FIELD_OWNER => [
             'type' => IField::TYPE_INTEGER,
             'columnName' => 'owner_id',
         ],
-        Group::FIELD_EDITOR => [
+        UserGroup::FIELD_EDITOR => [
             'type' => IField::TYPE_INTEGER,
             'columnName' => 'editor_id',
         ],
+        UserGroup::FIELD_ROLES => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'roles',
+            'accessor' => 'getRoles',
+            'mutator' => 'setRoles'
+        ]
     ],
     'types'      => [
         'base' => [
-            'objectClass' => 'umicms\project\module\users\object\Group',
+            'objectClass' => 'umicms\project\module\users\object\UserGroup',
             'fields'      => [
-                Group::FIELD_IDENTIFY,
-                Group::FIELD_GUID,
-                Group::FIELD_TYPE,
-                Group::FIELD_VERSION,
-                Group::FIELD_ACTIVE,
-                Group::FIELD_LOCKED,
-                Group::FIELD_CREATED,
-                Group::FIELD_UPDATED,
-                Group::FIELD_DISPLAY_NAME,
-                Group::FIELD_OWNER,
-                Group::FIELD_EDITOR,
+                UserGroup::FIELD_IDENTIFY,
+                UserGroup::FIELD_GUID,
+                UserGroup::FIELD_TYPE,
+                UserGroup::FIELD_VERSION,
+                UserGroup::FIELD_ACTIVE,
+                UserGroup::FIELD_LOCKED,
+                UserGroup::FIELD_CREATED,
+                UserGroup::FIELD_UPDATED,
+                UserGroup::FIELD_DISPLAY_NAME,
+                UserGroup::FIELD_OWNER,
+                UserGroup::FIELD_EDITOR,
+                UserGroup::FIELD_USERS,
+                UserGroup::FIELD_ROLES
             ]
         ]
     ]

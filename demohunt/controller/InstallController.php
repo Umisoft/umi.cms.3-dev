@@ -20,18 +20,21 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
+use umicms\hmvc\controller\BaseController;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchIndexApi;
 use umicms\project\module\structure\object\StaticPage;
 use umicms\project\module\structure\object\StructureElement;
 use umicms\project\module\users\api\UsersApi;
-use umicms\project\module\users\object\User;
-use umicms\project\site\controller\SitePageController;
+use umicms\project\module\users\object\AuthorizedUser;
+use umicms\project\module\users\object\UserGroup;
+use umicms\project\module\users\object\Guest;
+use umicms\project\module\users\object\Supervisor;
 
 /**
  * Class InstallController
  */
-class InstallController extends SitePageController implements ICollectionManagerAware, IObjectPersisterAware
+class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware
 {
 
     use TCollectionManagerAware;
@@ -88,17 +91,77 @@ class InstallController extends SitePageController implements ICollectionManager
          * @var SimpleCollection $userCollection
          */
         $userCollection = $this->getCollectionManager()->getCollection('user');
+        /**
+         * @var SimpleCollection $groupCollection
+         */
+        $groupCollection = $this->getCollectionManager()->getCollection('userGroup');
 
         /**
-         * @var User $sv
+         * @var UserGroup $visitors
          */
-        $sv = $userCollection->add()
+        $visitors = $groupCollection->add()
+            ->setValue('displayName', 'Посетители');
+
+        $visitors->roles = [
+            'project.site.structure' => ['staticPageViewer'],
+            'project.site.structure.menu' => ['menuViewer'],
+            'project.site.news' => ['newsViewer'],
+            'project.site.news.item' => ['newsItemViewer'],
+            'project.site.news.rubric' => ['rubricViewer'],
+        ];
+
+        /**
+         * @var UserGroup $administrators
+         */
+        $administrators = $groupCollection->add()
+            ->setValue('displayName', 'Администраторы');
+        $administrators->roles = [
+            'project.admin.api' => ['administrator']
+        ];
+
+        /**
+         * @var Supervisor $sv
+         */
+        $sv = $userCollection->add('authorized.supervisor')
             ->setValue('displayName', 'Супервайзер')
             ->setValue('login', 'sv')
             ->setValue('email', 'sv@umisoft.ru')
             ->setGUID('68347a1d-c6ea-49c0-9ec3-b7406e42b01e');
 
         $this->usersApi->setUserPassword($sv, '1');
+
+        /**
+         * @var AuthorizedUser $admin
+         */
+        $admin = $userCollection->add('authorized')
+            ->setValue('displayName', 'Администратор')
+            ->setValue('login', 'admin')
+            ->setValue('email', 'admin@umisoft.ru');
+
+        $admin->groups->attach($visitors);
+        $admin->groups->attach($administrators);
+        $this->usersApi->setUserPassword($admin, 'admin');
+
+        /**
+         * @var AuthorizedUser $user
+         */
+        $user = $userCollection->add('authorized')
+            ->setValue('displayName', 'Зарегистрированный пользователь')
+            ->setValue('login', 'demo')
+            ->setValue('email', 'demo@umisoft.ru');
+
+        $user->groups->attach($visitors);
+        $this->usersApi->setUserPassword($user, 'demo');
+
+        /**
+         * @var Guest $guest
+         */
+        $guest = $userCollection->add('guest')
+            ->setValue('displayName', 'Гость')
+            ->setGUID('552802d2-278c-46c2-9525-cd464bbed63e');
+
+        $guest->groups->attach($visitors);
+
     }
 
     protected function installBlog()
@@ -529,8 +592,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
-
                     `login` varchar(255) DEFAULT NULL,
                     `email` varchar(255) DEFAULT NULL,
                     `password` varchar(255) DEFAULT NULL,
@@ -560,7 +621,7 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
+                    `roles` text,
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `group_guid` (`guid`),
@@ -585,7 +646,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `user_id` bigint(20) unsigned,
                     `user_group_id` bigint(20) unsigned,
@@ -594,7 +654,7 @@ class InstallController extends SitePageController implements ICollectionManager
                     KEY `user_user_group_type` (`type`),
                     KEY `user_user_group_user` (`user_id`),
                     KEY `user_user_group_group` (`user_group_id`),
-                    CONSTRAINT `FK_user_user_group_user` FOREIGN KEY (`user_id`) REFERENCES `demohunt_user_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_user_user_group_user` FOREIGN KEY (`user_id`) REFERENCES `demohunt_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_user_user_group_group` FOREIGN KEY (`user_group_id`) REFERENCES `demohunt_user_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_user_user_group_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_user_user_group_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -637,7 +697,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
@@ -673,7 +732,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `date` datetime DEFAULT NULL,
                     `contents` text,
@@ -712,7 +770,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
@@ -744,7 +801,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `post_id` bigint(20) unsigned,
                     `tag_id` bigint(20) unsigned,
@@ -784,7 +840,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `contents` text,
                     `post_id` bigint(20) unsigned,
@@ -838,7 +893,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
@@ -877,7 +931,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `date` datetime DEFAULT NULL,
                     `contents` text,
@@ -918,7 +971,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
@@ -953,7 +1005,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `news_item_id` bigint(20) unsigned,
                     `subject_id` bigint(20) unsigned,
@@ -993,7 +1044,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `file_name` varchar(255) DEFAULT NULL,
 
@@ -1029,7 +1079,6 @@ class InstallController extends SitePageController implements ICollectionManager
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `permissions` int(10) unsigned DEFAULT 0,
 
                     `contents` text,
                     `meta_description` varchar(255) DEFAULT NULL,
@@ -1090,7 +1139,6 @@ class InstallController extends SitePageController implements ICollectionManager
                 `updated` datetime DEFAULT NULL,
                 `owner_id` bigint(20) unsigned DEFAULT NULL,
                 `editor_id` bigint(20) unsigned DEFAULT NULL,
-                `permissions` int(10) unsigned DEFAULT 0,
 
                 `date_indexed` datetime DEFAULT NULL,
                 `collection_id` varchar(255) DEFAULT NULL,

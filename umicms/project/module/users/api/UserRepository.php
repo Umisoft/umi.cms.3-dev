@@ -13,7 +13,7 @@ use umicms\api\repository\BaseObjectRepository;
 use umicms\api\repository\TRecycleAwareRepository;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\users\object\User;
+use umicms\project\module\users\object\BaseUser;
 
 /**
  * Репозиторий для работы с пользователями.
@@ -29,7 +29,7 @@ class UserRepository extends BaseObjectRepository
 
     /**
      * Возвращает селектор для выбора сюжетов.
-     * @return CmsSelector|User[]
+     * @return CmsSelector|BaseUser[]
      */
     public function select() {
         return $this->getCollection()->select();
@@ -39,7 +39,7 @@ class UserRepository extends BaseObjectRepository
      * Возвращает пользователя по его GUID
      * @param string $guid
      * @throws NonexistentEntityException если не удалось получить пользователя
-     * @return User
+     * @return BaseUser
      */
     public function get($guid) {
         try {
@@ -60,7 +60,7 @@ class UserRepository extends BaseObjectRepository
      * Возвращает пользователя по его id.
      * @param int $id
      * @throws NonexistentEntityException если не удалось получить пользователя
-     * @return User
+     * @return BaseUser
      */
     public function getById($id) {
 
@@ -80,10 +80,10 @@ class UserRepository extends BaseObjectRepository
 
     /**
      * Помечает пользователя на удаление.
-     * @param User $user
+     * @param BaseUser $user
      * @return $this
      */
-    public function delete(User $user) {
+    public function delete(BaseUser $user) {
 
         $this->getCollection()->delete($user);
 

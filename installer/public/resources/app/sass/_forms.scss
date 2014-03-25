@@ -86,7 +86,7 @@ select{
 }
 //
 // Error style
-[data-abide]{
+.umi-validator{
     span.error, small.error{
         position: absolute;
         z-index: 2;
@@ -118,7 +118,14 @@ select{
             visibility: visible;
             opacity: 1;
         }
+        .umi-form-label{
+            @include form-label-error-color;
+        }
     }
+}
+
+.umi-form-control{
+    background: #f5f6f7;
 }
 
 // normal

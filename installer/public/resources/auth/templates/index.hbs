@@ -1,24 +1,19 @@
 <div class="panel pretty radius shake-it">
-    <form name="auth" novalidate="novalidate" class="custom large" data-abide="1" method="post" action="/admin">
+    <form name="auth" novalidate="novalidate" class="custom large umi-validator" method="post" action="{{form.attributes.action}}">
         <div class="errors-list"></div>
-        <div class="row">
-            <div class="small-12 columns">
-                <i class="icon icon-user input-icon"></i>
-                <input name="login" placeholder="Имя пользователя" tabindex="1" autofocus="autofocus" type="text" required="required" autocomplete="off" value="">
-                <span class="error">Поле не заполнено</span>
+        {{#each form.elements}}
+            <div class="row">
+                <div class="small-12 columns">
+                    <i class="icon icon-{{name}} input-icon"></i>
+                    <input name="{{name}}" placeholder="{{label}}" type="{{type}}" required="required" autocomplete="off" value="">
+                    <span class="error">Поле не заполнено</span>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="small-12 columns">
-                <i class="icon icon-key input-icon"></i>
-                <input name="password" placeholder="Пароль" tabindex="2" type="password" required="required" value="">
-                <span class="error">Поле не заполнено</span>
-            </div>
-        </div>
+        {{/each}}
         <div class="row">
             <div class="small-7 columns">
                 <label class="left" for="rememberMe">
-                    <input name="rememberMe" id="rememberMe" tabindex="3" type="checkbox" value="1">
+                    <input name="rememberMe" id="rememberMe" type="checkbox" value="1">
                     Запомнить меня
                 </label>
             </div>

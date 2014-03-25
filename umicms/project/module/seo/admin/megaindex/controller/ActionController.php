@@ -10,7 +10,7 @@ namespace umicms\project\module\seo\admin\megaindex\controller;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\component\SecureAdminComponent;
 use umicms\project\module\seo\model\MegaindexModel;
 
 /**
@@ -59,7 +59,7 @@ class ActionController extends BaseRestActionController
      */
     protected function getModel()
     {
-        /** @var $component AdminComponent */
+        /** @var $component SecureAdminComponent */
         $component = $this->getComponent();
         $options = $component->getSettings()['options'];
         if (!isset($options['login'])) {

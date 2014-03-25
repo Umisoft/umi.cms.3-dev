@@ -3,25 +3,12 @@ define(['App'], function(UMI){
     return function(){
 
         UMI.AccordionView = Ember.View.extend({
-
+            templateName: 'accordion',
+            classNames: 'umi-accordion-side-bar',
             didInsertElement: function(){
-
-                //Получаем список счётчиков
-                (function getCounters(){
-                    $.ajax({
-                        type: "GET",
-                        url: "/admin/api/statistics/metrika/action/counters",
-                        data: {},
-                        cache: false,
-                        success: function(response){
-                            var counterLength = response.result.counters.counters.length;
-                            for(var k = 0; k < counterLength; k++){
-                                var counterId = response.result.counters.counters[k].id;
-                                getNavigation(counterId);
-                            }
-                        }
-                    });
-                })();
+                var that = this;
+                var counterId = this.get('controller.model.object.id');
+                getNavigation(counterId);
 
                 //Получаем меню для выбранного счётчика
                 function getNavigation(counterId){
@@ -33,36 +20,14 @@ define(['App'], function(UMI){
                         },
                         cache: false,
                         success: function(response){
-                            //                                console.log(response.result.navigation);
-                            getCounter(counterId, response);
-//                            renderNavigation(response)
-                        }
-                    });
-                }
-
-                function getCounter(counterId, navigationResponse){
-                    $.ajax({
-                        type: "GET",
-                        url: "/admin/api/statistics/metrika/action/counter",
-                        data: {
-                            counterId: counterId,
-                            resource: navigationResponse.result.navigation[0].children[0].resource
-                        },
-                        cache: false,
-                        success: function(response){
-                            console.log(response);
+//                            getCounter(counterId, response);
+                            renderNavigation(response)
                         }
                     });
                 }
 
 
-//              http://localhost/admin/api/statistics/metrika/action/counter?counterId=1062209&resource=stat/traffic/summary
-
-
-
-
-
-
+                //Отрисовываем аккордион
                 function renderNavigation(response){
                     var firstLevelLength = response.result.navigation.length;
                     var secondLevelLength = '';
@@ -73,19 +38,44 @@ define(['App'], function(UMI){
                         secondLevelLength = response.result.navigation[j].children.length;
 
                         for(var i = 0; i < secondLevelLength; i++){
-                            secondLevel = secondLevel + '<ul class="umi-accordion-trigger"><li><a href="#">' + response.result.navigation[j].children[i].title + '</a></li></ul>';
+                            secondLevel = secondLevel + '<ul class="umi-accordion-trigger"><li><a href="#" class="umi-metrika-second-level-button" data-resource="' + response.result.navigation[j].children[i].resource + '">' + response.result.navigation[j].children[i].displayName + '</a></li></ul>';
                         }
 
-                        firstLevel = firstLevel + '<li><span>' + response.result.navigation[j].title + '</span>' + secondLevel + '</li>';
+                        firstLevel = firstLevel + '<li><span>' + response.result.navigation[j].displayName + '</span>' + secondLevel + '</li>';
                         secondLevel = '';
                     }
 
                     $('.umi-accordion').html(firstLevel);
                 }
 
+
+                //Получаем данные для конкретного счётчика
+//              http://localhost/admin/api/statistics/metrika/action/counter?counterId=1062209&resource=stat/traffic/summary
+                function getCounter(counterId, resource){
+                    $.ajax({
+                        type: "GET",
+                        url: "/admin/api/statistics/metrika/action/counter",
+                        data: {
+                            counterId: counterId,
+                            resource: resource
+                        },
+                        cache: false,
+                        success: function(response){
+                            console.log(response.result.counter);
+                        }
+                    });
+                }
+
+
                 $('.umi-accordion').on('mousedown', 'span', function(){
                     $('.umi-accordion-trigger').removeClass('active');
                     $(this).siblings('.umi-accordion-trigger').addClass('active');
+                });
+
+                $('.umi-accordion').on('mousedown', '.umi-metrika-second-level-button', function(){
+                    var id = that.get('controller.model.object.id');
+                    var resource = $(this).data('resource');
+                    getCounter(id, resource);
                 });
             }
         });

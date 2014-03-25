@@ -9,7 +9,6 @@
 namespace umicms\project;
 
 use umi\authentication\adapter\ORMAdapter;
-use umi\authentication\IAuthenticationFactory;
 use umi\authentication\toolbox\AuthenticationTools;
 use umi\extension\twig\TwigTemplateEngine;
 use umi\form\toolbox\FormTools;
@@ -33,6 +32,7 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/validation/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/authentication/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/stemming/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/acl/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/api/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php')
     ],
@@ -43,10 +43,13 @@ return [
             'factories' => [
                 'authentication' => [
                     'adapterClasses' => [
-                        'ormUserAdapter' => 'umicms\authentication\OrmUserAdapter'
+                        'cmsUserAdapter' => 'umicms\authentication\CmsUserAdapter'
+                    ],
+                    'storageClasses' => [
+                        'cmsAuthStorage' => 'umicms\authentication\CmsAuthStorage'
                     ],
                     'defaultAdapter' => [
-                        'type' => 'ormUserAdapter',
+                        'type' => 'cmsUserAdapter',
                         'options' => [
                             ORMAdapter::OPTION_COLLECTION => 'user',
                             ORMAdapter::OPTION_LOGIN_FIELDS => ['login', 'email'],
@@ -54,7 +57,7 @@ return [
                         ]
                     ],
                     'defaultStorage' => [
-                        'type' => IAuthenticationFactory::STORAGE_ORM_SESSION
+                        'type' => 'cmsAuthStorage'
                     ]
                 ]
              ]

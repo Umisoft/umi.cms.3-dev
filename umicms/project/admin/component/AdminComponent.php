@@ -137,6 +137,5 @@ class AdminComponent extends BaseComponent implements IUrlManagerAware
 
         return $componentInfo;
     }
-
 }
  

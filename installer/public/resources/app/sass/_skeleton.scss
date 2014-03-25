@@ -65,6 +65,8 @@ body{
     }
 
     h5{
+        overflow-x: hidden;
+        text-overflow: ellipsis;
         font-weight: bold;
         font-size: rem-calc(16);
         line-height: rem-calc(28);

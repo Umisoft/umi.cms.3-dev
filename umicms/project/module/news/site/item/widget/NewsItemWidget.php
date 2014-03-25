@@ -9,13 +9,13 @@
 
 namespace umicms\project\module\news\site\item\widget;
 
+use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\news\api\NewsApi;
-use umicms\hmvc\widget\BaseWidget;
 
 /**
  * Виджет вывода новости
  */
-class NewsItemWidget extends BaseWidget
+class NewsItemWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

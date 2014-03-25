@@ -9,13 +9,18 @@
 
 namespace umicms\hmvc\dispatcher;
 
+use umi\acl\IAclManager;
+use umi\hmvc\acl\ComponentRoleProvider;
+use umi\hmvc\acl\IComponentRoleResolver;
 use umi\hmvc\component\IComponent;
 use umi\hmvc\dispatcher\Dispatcher as FrameworkDispatcher;
 use umi\hmvc\view\IView;
+use umicms\authentication\CmsAuthStorage;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\project\module\users\object\Supervisor;
 
 /**
  * {@inheritdoc}
@@ -86,6 +91,37 @@ class Dispatcher extends FrameworkDispatcher implements IUrlManagerAware
         }
 
         return $this->executeWidget($componentPageUrl . '/' . $widgetName, $params);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function checkPermissions(IComponent $component, $resource, $operationName = IAclManager::OPERATION_ALL)
+    {
+        $authManager = $this->getDefaultAuthManager();
+        /**
+         * @var CmsAuthStorage $storage
+         */
+        $storage = $authManager->getStorage();
+
+        if ($authManager->isAuthenticated()) {
+            $identity = $storage->getIdentity();
+
+            if ($identity instanceof Supervisor) {
+                return true;
+            }
+
+        } else {
+            $identity = $storage->getGuestIdentity();
+        }
+
+        if (!$identity instanceof IComponentRoleResolver) {
+            return false;
+        }
+        $roleProvider = new ComponentRoleProvider($component, $identity);
+
+        $aclManager = $component->getAclManager();
+        return $aclManager->isAllowed($roleProvider, $resource, $operationName);
     }
 
 }

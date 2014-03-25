@@ -13,7 +13,7 @@ use umicms\exception\RuntimeException;
 use umicms\orm\object\ICmsObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\project\module\users\api\UsersApi;
-use umicms\project\module\users\object\User;
+use umicms\project\module\users\object\AuthorizedUser;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
@@ -49,11 +49,11 @@ class ItemController extends BaseRestItemController
      */
     protected function update(ICmsObject $object, array $data)
     {
-        if (!isset($data[User::FIELD_VERSION])) {
+        if (!isset($data[AuthorizedUser::FIELD_VERSION])) {
             throw new RuntimeException('Cannot save object. Object version is unknown');
         }
 
-        $object->setVersion($data[User::FIELD_VERSION]);
+        $object->setVersion($data[AuthorizedUser::FIELD_VERSION]);
 
         // TODO: forms
         foreach ($data as $propertyName => $value) {
@@ -76,7 +76,7 @@ class ItemController extends BaseRestItemController
      */
     protected function delete(ICmsObject $object)
     {
-        if ($object instanceof User) {
+        if ($object instanceof AuthorizedUser) {
             $this->api->user()->delete($object);
             $this->getObjectPersister()->commit();
         }

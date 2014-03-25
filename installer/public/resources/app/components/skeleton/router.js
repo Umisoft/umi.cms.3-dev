@@ -82,7 +82,12 @@ define([], function(){
                  params.handler - элемент (кнопка) вызвавший событие сохранение
                  */
                 save: function(params){
-                    console.log(params.object.get('currentState.stateName'));
+                    if(!params.object.get('isValid')){
+                        if(params.handler){
+                            $(params.handler).removeClass('loading');
+                        }
+                        return;
+                    }
                     params.object.save().then(
                         function(){
                             if(params.handler){
@@ -128,7 +133,7 @@ define([], function(){
                 maskLayout.className = 'auth-mask';
                 maskLayout = document.body.appendChild(maskLayout);
                 $(applicationLayout).addClass('off');
-                $.post('/admin/api/users/user/action/logout');
+                $.post(UmiSettings.baseApiURL + '/action/logout');
                 require(['auth/main'], function(auth){
                     auth();
                     $(applicationLayout).addClass('fade-out');
@@ -255,6 +260,7 @@ define([], function(){
                 var self = this;
                 var model;
                 var routeData = {};
+                var RootModel;
                 var componentController = this.controllerFor('component');
                 var collectionName = componentController.get('collectionName');
                 var oldContext = componentController.get('selectedContext');
@@ -269,24 +275,34 @@ define([], function(){
                 }
 
                 // Вот это место мне особенно не нравится
-                if(params.context === 'root'){
-                    var RootModel = Ember.Object.extend({
-                        children: function(){
-                            if(collectionName){
-                                if(componentController.get('sideBarControl') && componentController.get('sideBarControl').get('name') === 'tree'){
-                                    return self.store.find(collectionName, {'filters[parent]': 'null()'});
-                                } else{
-                                    return self.store.find(collectionName);
-                                }
-                            }
-                        }.property()
+                if(!collectionName){
+                    RootModel = Ember.Object.extend({
+
                     });
                     model = new Ember.RSVP.Promise(function(resolve, reject){
-                        resolve(RootModel.create({'id': 'root'}));
+                        resolve(RootModel.create({'id': params.context}));
                     });
                 } else{
-                    model = this.store.find(collectionName, params.context);
+                    if(params.context === 'root'){
+                        RootModel = Ember.Object.extend({
+                            children: function(){
+                                if(collectionName){
+                                    if(componentController.get('sideBarControl') && componentController.get('sideBarControl').get('name') === 'tree'){
+                                        return self.store.find(collectionName, {'filters[parent]': 'null()'});
+                                    } else{
+                                        return self.store.find(collectionName);
+                                    }
+                                }
+                            }.property()
+                        });
+                        model = new Ember.RSVP.Promise(function(resolve, reject){
+                            resolve(RootModel.create({'id': 'root'}));
+                        });
+                    } else{
+                        model = this.store.find(collectionName, params.context);
+                    }
                 }
+
                 return model.then(function(model){
                     routeData.object = model;
                     /**
@@ -355,6 +371,10 @@ define([], function(){
                         return UMI.dialog.open(data).then(
                             function(){/*При положительном ответе делать ничего не нужно*/ },
                             function(){
+                                if(!model.get('isValid')){
+                                    model.set('validErrors', null);
+                                    model.send('becameValid');
+                                }
                                 model.rollback();
                                 transition.retry();
                             }

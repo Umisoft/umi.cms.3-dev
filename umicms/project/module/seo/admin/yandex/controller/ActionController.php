@@ -10,7 +10,7 @@ namespace umicms\project\module\seo\admin\yandex\controller;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\component\SecureAdminComponent;
 use umicms\project\module\seo\model\YandexModel;
 
 /**
@@ -96,7 +96,7 @@ class ActionController extends BaseRestActionController
      */
     protected function getModel()
     {
-        /** @var $component AdminComponent */
+        /** @var $component SecureAdminComponent */
         $component = $this->getComponent();
         $options = $component->getSettings()['options'];
         if (!isset($options['oauthToken'])) {
@@ -114,7 +114,7 @@ class ActionController extends BaseRestActionController
     public function getHostId()
     {
         if (is_null($this->hostId)) {
-            /** @var $component AdminComponent */
+            /** @var $component SecureAdminComponent */
             $component = $this->getComponent();
             $options = $component->getSettings()['options'];
             if (!isset($options['hostId'])) {

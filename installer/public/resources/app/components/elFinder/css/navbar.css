@@ -5,7 +5,7 @@
 /* container */
 .elfinder .elfinder-navbar {
     width: 230px;
-    padding: 3px 5px;
+    padding: 8px 0;
     background-image: none;
     border-top: 0 solid;
     border-bottom: 0 solid;
@@ -13,6 +13,18 @@
     display: none;
     position: relative;
     user-select: none;
+}
+
+.elfinder .elfinder-navbar:after {
+    content: "";
+    position: absolute;
+    float: left;
+    display: block;
+    height: 3px;
+    width: calc(100% + 1px);
+    top: 0;
+    left: 0;
+    background: url(img/shadows/toBottomShadow.png);
 }
 
 /* ltr/rtl enviroment */
@@ -38,7 +50,22 @@
 }
 
 /* one folder wrapper */
-.elfinder-navbar-wrapper, .elfinder-place-wrapper {
+.elfinder-navbar-wrapper .ui-state-active{
+    position: relative;
+    z-index: 1;
+}
+
+.elfinder-navbar-wrapper .ui-state-active:after{
+    content: '';
+    position: absolute;
+    display: block;
+    z-index: -1;
+    top: 0;
+    left: -1000px;
+    width: 2000px;
+    height: 100%;
+    background: linear-gradient(to bottom, #35a9fc 0%, #0f8bd5 100%);
+    background: linear-gradient(top, #35a9fc 0%, #0f8bd5 100%);
 }
 
 /* folder */

@@ -10,7 +10,6 @@
 namespace umicms\project\module\users\admin\user\controller;
 
 use umi\hmvc\exception\http\HttpException;
-use umi\hmvc\exception\http\HttpUnauthorized;
 use umi\http\Response;
 use umicms\project\admin\api\controller\BaseRestActionController;
 use umicms\project\admin\api\controller\TCollectionFormAction;
@@ -51,7 +50,7 @@ class ActionController extends BaseRestActionController
      */
     public function getModifyActions()
     {
-        return ['login', 'logout', 'trash', 'untrash', 'emptyTrash'];
+        return ['trash', 'untrash', 'emptyTrash'];
     }
 
     /**
@@ -66,26 +65,6 @@ class ActionController extends BaseRestActionController
         return $this->api->user()->getCollection();
     }
 
-    protected function actionLogin()
-    {
-        if (!$this->api->isAuthenticated()) {
-            if (!$this->api->login($this->getPostVar('login'), $this->getPostVar('password'))) {
-                throw new HttpUnauthorized(
-                    $this->translate('Incorrect login or password.')
-                );
-            }
-        }
-
-        return $this->api->getCurrentUser();
-    }
-
-    protected function actionLogout()
-    {
-        $this->api->logout();
-
-        return '';
-    }
-
     /**
      * Удаляет объект в корзину
      * @return string
@@ -94,7 +73,7 @@ class ActionController extends BaseRestActionController
     {
         $object = $this->api->user()
             ->getById($this->getQueryVar('id'));
-        $this->api->trash($object);
+        $this->api->user()->trash($object);
         $this->getObjectPersister()
             ->commit();
 
@@ -109,7 +88,7 @@ class ActionController extends BaseRestActionController
     {
         $object = $this->api->user()
             ->getById($this->getQueryVar('id'));
-        $this->api->untrash($object);
+        $this->api->user()->untrash($object);
         $this->getObjectPersister()
             ->commit();
 
@@ -122,7 +101,7 @@ class ActionController extends BaseRestActionController
      */
     public function actionEmptyTrash()
     {
-        $this->api->emptyTrash();
+        $this->api->user()->emptyTrash();
         $this->getObjectPersister()
             ->commit();
         return '';
