@@ -150,7 +150,6 @@ define(['App'], function(UMI){
         });
 
         UMI.TreeItemController = Ember.ObjectController.extend({
-            isLoaded: false,
             sortedChildren: function(){
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: this.get('children'),
