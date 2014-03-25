@@ -7,7 +7,7 @@ define(['App'], function(UMI){
             optionLabelPath: 'content.displayName',
             optionValuePath: 'content.id',
             prompt: function(){
-                return this.get('meta.placeholder');
+                return this.get('meta.placeholder') || "Ничего не выбрано";
             }.property('meta.placeholder'),
             content: function(){
                 var self = this;
@@ -29,7 +29,7 @@ define(['App'], function(UMI){
                 var selectObject = this.get('selection');
                 var object = this.get('object');
                 var property = this.get('meta.dataSource');
-                var oldId = selectObject.get('id') || false;
+                var oldId = selectObject ? (selectObject.get('id') || false) : false;
                 var newId = this.get('selectObject.id') || false;
                 if(oldId !== newId){
                     object.set(property, selectObject);
