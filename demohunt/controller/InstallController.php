@@ -115,6 +115,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $administrators = $groupCollection->add()
             ->setValue('displayName', 'Администраторы');
+        $administrators->roles = [
+            'project.admin.api' => ['administrator']
+        ];
 
         /**
          * @var Supervisor $sv
@@ -136,7 +139,19 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('email', 'admin@umisoft.ru');
 
         $admin->groups->attach($visitors);
+        $admin->groups->attach($administrators);
         $this->usersApi->setUserPassword($admin, 'admin');
+
+        /**
+         * @var AuthorizedUser $user
+         */
+        $user = $userCollection->add('authorized')
+            ->setValue('displayName', 'Зарегистрированный пользователь')
+            ->setValue('login', 'demo')
+            ->setValue('email', 'demo@umisoft.ru');
+
+        $user->groups->attach($visitors);
+        $this->usersApi->setUserPassword($user, 'demo');
 
         /**
          * @var Guest $guest
