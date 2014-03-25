@@ -9,19 +9,38 @@
 
 namespace umicms\project\module\structure\admin\layout\controller;
 
+use umi\form\IForm;
+use umi\hmvc\exception\http\HttpException;
+use umi\http\Response;
 use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\module\structure\api\StructureApi;
 
 /**
  * Контроллер операций.
  */
 class ActionController extends BaseRestActionController
 {
+
+    /**
+     * @var StructureApi $api
+     */
+    protected $api;
+
+    /**
+     * Конструктор.
+     * @param StructureApi $api
+     */
+    public function __construct(StructureApi $api)
+    {
+        $this->api = $api;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function getQueryActions()
     {
-        return [];
+        return ['form'];
     }
 
     /**
@@ -30,5 +49,24 @@ class ActionController extends BaseRestActionController
     public function getModifyActions()
     {
         return [];
+    }
+
+    /**
+     * Возвращает форму для объектного типа коллекции.
+     * @throws HttpException
+     * @return IForm
+     */
+    protected function actionForm()
+    {
+        $collectionName = $this->getRequiredQueryVar('collection');
+
+        if ($collectionName != $this->api->layout()->collectionName) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
+        }
+
+        $typeName = $this->getRequiredQueryVar('type');
+        $formName = $this->getRequiredQueryVar('form');
+
+        return $this->api->layout()->getCollection()->getForm($typeName, $formName);
     }
 }

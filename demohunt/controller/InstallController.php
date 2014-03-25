@@ -16,6 +16,8 @@ use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\SimpleCollection;
 use umi\orm\collection\SimpleHierarchicCollection;
 use umi\orm\collection\TCollectionManagerAware;
+use umi\orm\manager\IObjectManagerAware;
+use umi\orm\manager\TObjectManagerAware;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
@@ -23,6 +25,7 @@ use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseController;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchIndexApi;
+use umicms\project\module\service\api\BackupRepository;
 use umicms\project\module\structure\object\StaticPage;
 use umicms\project\module\structure\object\StructureElement;
 use umicms\project\module\users\api\UsersApi;
@@ -34,11 +37,12 @@ use umicms\project\module\users\object\Supervisor;
 /**
  * Class InstallController
  */
-class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware
+class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware, IObjectManagerAware
 {
 
     use TCollectionManagerAware;
     use TObjectPersisterAware;
+    use TObjectManagerAware;
 
     /**
      * @var IDbCluster $dbCluster
@@ -56,13 +60,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     /**
      * @var SearchApi $searchApi
      */
+    protected $backupRepository;
     private $searchIndexApi;
 
-    public function __construct(IDbCluster $dbCluster, UsersApi $usersApi, SearchIndexApi $searchIndexApi)
+    public function __construct(IDbCluster $dbCluster, UsersApi $usersApi, SearchIndexApi $searchIndexApi, BackupRepository $backupRepository)
     {
         $this->dbCluster = $dbCluster;
         $this->usersApi = $usersApi;
         $this->searchIndexApi = $searchIndexApi;
+        $this->backupRepository = $backupRepository;
     }
 
     /**
@@ -80,7 +86,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->installBlog();
 
         $this->getObjectPersister()->commit();
+        $this->getObjectManager()->unloadObjects();
+
         $this->installSearch();
+        $this->installBackup();
 
         return $this->createResponse('Installed');
     }
@@ -611,7 +620,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `user_guid` (`guid`),
                     KEY `user_type` (`type`),
-                    UNIQUE KEY `user_login` (`login`)
+                    UNIQUE KEY `user_login` (`login`),
+                    CONSTRAINT `FK_user_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_user_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -635,7 +646,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `group_guid` (`guid`),
-                    KEY `group_type` (`type`)
+                    KEY `group_type` (`type`),
+                    CONSTRAINT `FK_user_group_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_user_group_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -663,7 +676,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     KEY `user_user_group_user` (`user_id`),
                     KEY `user_user_group_group` (`user_group_id`),
                     CONSTRAINT `FK_user_user_group_user` FOREIGN KEY (`user_id`) REFERENCES `demohunt_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_user_user_group_group` FOREIGN KEY (`user_group_id`) REFERENCES `demohunt_user_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    CONSTRAINT `FK_user_user_group_group` FOREIGN KEY (`user_group_id`) REFERENCES `demohunt_user_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_user_user_group_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_user_user_group_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -715,7 +730,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     UNIQUE KEY `blog_category_pid_slug` (`pid`, `slug`),
                     KEY `blog_category_type` (`type`),
                     KEY `blog_category_pid` (`pid`),
-                    CONSTRAINT `FK_blog_category_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    CONSTRAINT `FK_blog_category_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_category_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_category_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -751,7 +768,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     UNIQUE KEY `blog_post_slug` (`slug`),
                     KEY `blog_post_type` (`type`),
                     KEY `blog_post_category` (`category_id`),
-                    CONSTRAINT `FK_blog_post_category` FOREIGN KEY (`category_id`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    CONSTRAINT `FK_blog_post_category` FOREIGN KEY (`category_id`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_post_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_post_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -782,7 +801,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_tag_guid` (`guid`),
                     UNIQUE KEY `blog_tag_slug` (`slug`),
-                    KEY `blog_tag_type` (`type`)
+                    KEY `blog_tag_type` (`type`),
+                    CONSTRAINT `FK_blog_tag_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_tag_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -811,7 +832,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     KEY `post_tag_tag` (`tag_id`),
                     KEY `post_tag_post` (`post_id`),
                     CONSTRAINT `FK_post_tag_tag` FOREIGN KEY (`tag_id`) REFERENCES `demohunt_blog_tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_post_tag_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    CONSTRAINT `FK_post_tag_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_post_tag_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_post_tag_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -850,7 +873,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     KEY `blog_comment_pid` (`pid`),
                     KEY `blog_comment_post` (`post_id`),
                     CONSTRAINT `FK_blog_comment_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_blog_comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_comment_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    CONSTRAINT `FK_blog_comment_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_comment_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_comment_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -904,7 +929,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     KEY `news_rubric_pid` (`pid`),
                     KEY `news_rubric_layout` (`layout_id`),
                     CONSTRAINT `FK_news_rubric_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_rubric_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                    CONSTRAINT `FK_news_rubric_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_rubric_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_rubric_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -942,7 +969,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     KEY `news_news_item_rubric` (`rubric_id`),
                     KEY `news_news_item_layout` (`layout_id`),
                     CONSTRAINT `FK_news_news_item_rubric` FOREIGN KEY (`rubric_id`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_news_item_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                    CONSTRAINT `FK_news_news_item_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_news_item_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_news_item_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -976,7 +1005,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     UNIQUE KEY `news_subject_slug` (`slug`),
                     KEY `news_subject_type` (`type`),
                     KEY `news_subject_layout` (`layout_id`),
-                    CONSTRAINT `FK_news_subject_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                    CONSTRAINT `FK_news_subject_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -1005,7 +1036,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     KEY `news_news_item_subject_item` (`news_item_id`),
                     KEY `news_news_item_subject_subject` (`subject_id`),
                     CONSTRAINT `FK_news_news_item_subject_item` FOREIGN KEY (`news_item_id`) REFERENCES `demohunt_news_news_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_news_item_subject_subject` FOREIGN KEY (`subject_id`) REFERENCES `demohunt_news_subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    CONSTRAINT `FK_news_news_item_subject_subject` FOREIGN KEY (`subject_id`) REFERENCES `demohunt_news_subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_news_item_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_news_item_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -1037,7 +1070,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `layout_guid` (`guid`),
-                    KEY `layout_type` (`type`)
+                    KEY `layout_type` (`type`),
+                    CONSTRAINT `FK_layout_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_layout_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -1088,7 +1123,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     KEY `component_path` (`component_path`),
                     KEY `component_name` (`component_name`),
                     CONSTRAINT `FK_structure_parent` FOREIGN KEY (`pid`) REFERENCES `demohunt_structure` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_structure_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                    CONSTRAINT `FK_structure_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_structure_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_structure_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
@@ -1134,7 +1171,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 UNIQUE KEY `search_index_ref_guid` (`ref_guid`),
                 KEY `search_index_type` (`type`),
                 KEY `search_index_collection_id` (`collection_id`),
-                FULLTEXT(`contents`)
+                FULLTEXT(`contents`),
+                CONSTRAINT `FK_search_index_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                CONSTRAINT `FK_search_index_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
             ) ENGINE=MyISAM DEFAULT CHARSET=utf8
             "
         );
@@ -1146,6 +1185,47 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->searchIndexApi->buildIndex('blogCategory');
         $this->searchIndexApi->buildIndex('blogPost');
         $this->searchIndexApi->buildIndex('blogComment');
+        $this->getObjectPersister()->commit();
+    }
+
+    private function installBackup()
+    {
+        $connection = $this->dbCluster->getConnection();
+
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_backup`");
+
+        $connection->exec(
+            "CREATE TABLE `demohunt_backup` (
+                `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                `guid` varchar(255),
+                `version` int(10) unsigned DEFAULT '1',
+                `type` varchar(255),
+                `object_id` bigint(20) unsigned NOT NULL,
+                `collection_name` varchar(255) NOT NULL,
+                `owner_id` bigint(20) unsigned DEFAULT NULL,
+                `editor_id` bigint(20) unsigned DEFAULT NULL,
+                `date` datetime DEFAULT NULL,
+                `user` bigint(20) unsigned DEFAULT NULL,
+                `data` longtext DEFAULT NULL,
+
+                PRIMARY KEY (`id`),
+                UNIQUE KEY `backup_guid` (`guid`),
+                CONSTRAINT `FK_search_index_user` FOREIGN KEY (`user`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                CONSTRAINT `FK_search_index_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                CONSTRAINT `FK_search_index_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8
+            "
+        );
+
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+
+        $page = $structureCollection->get('d534fd83-0f12-4a0d-9853-583b9181a948');
+        $this->backupRepository->createBackup($page);
+        $page = $structureCollection->get('3d765c94-bb80-4e8f-b6d9-b66c3ea7a5a4');
+        $this->backupRepository->createBackup($page);
+        $page = $structureCollection->get('98751ebf-7f76-4edb-8210-c2c3305bd8a0');
+        $this->backupRepository->createBackup($page);
+
         $this->getObjectPersister()->commit();
     }
 }

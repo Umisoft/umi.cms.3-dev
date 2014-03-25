@@ -14,7 +14,6 @@ use umi\http\Response;
 use umi\orm\object\IObject;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\admin\api\controller\TCollectionFormAction;
 use umicms\project\module\news\api\NewsApi;
 
 /**
@@ -22,8 +21,6 @@ use umicms\project\module\news\api\NewsApi;
  */
 class ActionController extends BaseRestActionController
 {
-    use TCollectionFormAction;
-
     /**
      * @var NewsApi $api
      */
@@ -66,6 +63,19 @@ class ActionController extends BaseRestActionController
         return $this->api->rubric()->getCollection();
     }
 
+    /**
+     * Возвращает форму для объектного типа коллекции.
+     * @return IForm
+     */
+    protected function actionForm()
+    {
+        $collectionName = $this->getRequiredQueryVar('collection');
+        $typeName = $this->getRequiredQueryVar('type');
+        $formName = $this->getRequiredQueryVar('form');
+
+        return $this->getCollection($collectionName)->getForm($typeName, $formName);
+    }
+
     protected function actionMove()
     {
         $data = $this->getIncomingData();
@@ -100,7 +110,7 @@ class ActionController extends BaseRestActionController
      * Удаляет объект в корзину
      * @return string
      */
-    public function actionTrash()
+    protected function actionTrash()
     {
         $object = $this->api->rubric()
             ->getById($this->getQueryVar('id'));
@@ -116,7 +126,7 @@ class ActionController extends BaseRestActionController
      * Восстанавливает объект из корзины
      * @return string
      */
-    public function actionUntrash()
+    protected function actionUntrash()
     {
         $object = $this->api->rubric()
             ->getById($this->getQueryVar('id'));
@@ -132,7 +142,7 @@ class ActionController extends BaseRestActionController
      * Очищает корзину
      * @return string
      */
-    public function actionEmptyTrash()
+    protected function actionEmptyTrash()
     {
         $this->api->rubric()
             ->emptyTrash();

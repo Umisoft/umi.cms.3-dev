@@ -67,12 +67,14 @@ return [
         Layout::FIELD_UPDATED      => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated', 'readOnly'   => true],
         Layout::FIELD_FILE_NAME    => ['type' => IField::TYPE_STRING, 'columnName' => 'file_name'],
         Layout::FIELD_OWNER => [
-            'type' => IField::TYPE_INTEGER,
-            'columnName' => 'owner_id'
+            'type' => IField::TYPE_BELONGS_TO,
+            'columnName' => 'owner_id',
+            'target' => 'BaseUser'
         ],
         Layout::FIELD_EDITOR => [
-            'type' => IField::TYPE_INTEGER,
+            'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
+            'target' => 'BaseUser'
         ]
     ],
     'types'      => [
