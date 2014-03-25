@@ -133,7 +133,7 @@ define([], function(){
                 maskLayout.className = 'auth-mask';
                 maskLayout = document.body.appendChild(maskLayout);
                 $(applicationLayout).addClass('off');
-                $.post('/admin/api/users/user/action/logout');
+                $.post(UmiSettings.baseApiURL + '/action/logout');
                 require(['auth/main'], function(auth){
                     auth();
                     $(applicationLayout).addClass('fade-out');

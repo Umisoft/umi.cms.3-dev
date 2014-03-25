@@ -14,28 +14,18 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                 var property = this.get('meta.dataSource');
                 var object = this.get('object');
                 var collection;
-                /*var getCollection = function(relation){
+                var getCollection = function(relation){
                     collection = store.findAll(relation.type);
                 };
                 object.eachRelationship(function(name, relation){
                     if(name === property){
                         getCollection(relation);
                     }
-                });*/
-                collection = [
-                    Ember.Object.create({'id': 1, 'displayName': 'Спорт'}),
-                    Ember.Object.create({'id': 2, 'displayName': 'Олимпиада'}),
-                    Ember.Object.create({'id': 3, 'displayName': 'Окервиль'}),
-                    Ember.Object.create({'id': 4, 'displayName': 'Спагетти'}),
-                    Ember.Object.create({'id': 5, 'displayName': 'Спорт и не только'}),
-                    Ember.Object.create({'id': 6, 'displayName': 'Хоккей'}),
-                    Ember.Object.create({'id': 7, 'displayName': 'Футбол'}),
-                    Ember.Object.create({'id': 8, 'displayName': 'Тенис'}),
-                    Ember.Object.create({'id': 9, 'displayName': 'Релиз UMI.CMS 3'})
-                ];
+                });
                 return collection;
             }.property(),
             selectedIds: [],
+            savedObjectsIds: null,
             filterIds: [],
             filterOn: false,
             inputInFocus: false,
@@ -91,6 +81,37 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                     this.get('notSelectedObjects').setEach('hover', false);
                 }
             }.observes('isOpen'),
+            changeRelations: function(type, id){
+                var self = this;
+                var object = this.get('object');
+                var selectedObject = this.get('collection').findBy('id', id);
+                var relation = object.get(this.get('meta.dataSource'));
+                if(type === 'select'){
+                    relation.pushObject(selectedObject);
+                } else{
+                    relation.removeObject(selectedObject);
+                }
+                return relation.then(function(relation){
+                    var isNotDirty;
+                    var savedObjectsIds = self.get('savedObjectsIds');
+                    var Ids = relation.get('content').mapBy('id');
+                    if(savedObjectsIds.length !== Ids.length){
+                        object.send('becomeDirty');
+                    } else{
+                        isNotDirty = savedObjectsIds.every(function(id) {
+                            if(Ids.contains(id)) { return true; }
+                        });
+                        if(isNotDirty){
+                            var changedAttributes = object.changedAttributes();
+                            if(JSON.stringify(changedAttributes) === JSON.stringify({})){
+                                object.send('rolledBack');
+                            }
+                        } else{
+                            object.send('becomeDirty');
+                        }
+                    }
+                });
+            },
             actions: {
                 toggleList: function(){
                     this.set('filterIds', []);
@@ -100,10 +121,11 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                 },
                 select: function(id){
                     this.get('selectedIds').pushObject(id);
-                   // this.set('isOpen', false);
+                    this.changeRelations('select', id);
                 },
                 unSelect: function(id){
                     this.get('selectedIds').removeObject(id);
+                    this.changeRelations('unSelect', id);
                 },
                 markHover: function(key){
                     var collection = this.get('notSelectedObjects');
@@ -146,7 +168,7 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                 doubleClick: function(){
                     this.get('parentView').set('isOpen', true);
                 },
-                keyUp: function(event){
+                keyUp: function(){
                     var val = this.$().val();
                     if(!val){
                         return;
@@ -202,7 +224,13 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
             }),
             init: function(){
                 this._super();
-                this.get('selectedIds').pushObject(1);
+                var self = this;
+                var property = this.get('meta.dataSource');
+                var object = this.get('object');
+                return object.get(property).then(function(objects){
+                    self.get('selectedIds').pushObject(objects);
+                    self.set('savedObjectsIds', objects.mapBy('id'));
+                });
             }
         });
     };

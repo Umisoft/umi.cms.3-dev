@@ -99,7 +99,7 @@ define(
                         template = '<div>Для поля типа <b>' + meta.type + '</b> не предусмотрен шаблон.</div>';
                         break;
                 }
-                template += '{{#if object.validErrors.' + meta.dataSource + '}}' + '<small class="error">' + '   {{#each error in object.validErrors.' + meta.dataSource + '}}' + '       {{error.message}}' + '   {{/each}}' + '</small>' + '{{/if}}';
+                template += '{{#if object.validErrors.' + meta.dataSource + '}}' + '<small class="error">' + '{{#each error in object.validErrors.' + meta.dataSource + '}}' + '{{error.message}}' + '{{/each}}' + '</small>' + '{{/if}}';
                 template = Ember.Handlebars.compile(template);
                 return template;
             }.property('object', 'meta')
