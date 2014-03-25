@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\users\object;
 
+use umi\acl\IAclResource;
 use umi\hmvc\acl\IComponentRoleResolver;
 use umi\hmvc\component\IComponent;
 use umi\orm\objectset\IManyToManyObjectSet;
@@ -50,7 +51,14 @@ abstract class BaseUser extends CmsObject implements IComponentRoleResolver
      */
     public function hasRole(IComponent $component, $roleName)
     {
-        return isset($this->getRoleNames($component)[$roleName]);
+        /**
+         * @var IAclResource|IComponent $component
+         */
+        if ($component instanceof IAclResource) {
+            return $component->getAclManager()->isAllowed($roleName, $component);
+        }
+
+        return true;
     }
 
     /**

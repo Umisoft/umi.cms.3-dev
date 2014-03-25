@@ -121,6 +121,7 @@ class Dispatcher extends FrameworkDispatcher implements IUrlManagerAware
         $roleProvider = new ComponentRoleProvider($component, $identity);
 
         $aclManager = $component->getAclManager();
+
         return $aclManager->isAllowed($roleProvider, $resource, $operationName);
     }
 
