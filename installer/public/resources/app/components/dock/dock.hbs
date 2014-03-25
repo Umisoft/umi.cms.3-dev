@@ -5,13 +5,13 @@
                 {{#view 'dockModuleButton' modelBinding="module"}}
                     <span class="dock-module">
                         <img {{bind-attr src=view.icon}} />
-                        <span>{{module.name}}</span>
+                        <span>{{module.displayName}}</span>
                     </span>
                     <ul class="f-dropdown center">
                         {{#each component in module.components}}
                             <li>
                                 {{#link-to 'component' module.name component.name}}
-                                    {{component.name}}
+                                    {{component.displayName}}
                                 {{/link-to}}
                             </li>
                         {{/each}}
@@ -27,7 +27,7 @@
             {{#with controller.activeModule as module}}
                 {{#each component in module.components}}
                     {{#link-to 'component' module.name component.name}}
-                        {{component.name}}
+                        {{component.displayName}}
                     {{/link-to}}
                 {{/each}}
             {{/with}}
