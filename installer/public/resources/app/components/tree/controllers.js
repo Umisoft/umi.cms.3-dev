@@ -15,7 +15,8 @@ define(['App'], function(UMI){
                 if(!sideBarControl){
                     return;
                 }
-                 var Root = Ember.Object.extend({
+                var self = this;
+                var Root = Ember.Object.extend({
                     displayName: sideBarControl.displayName,
                     root: true,
                     hasChildren: true,
@@ -24,18 +25,35 @@ define(['App'], function(UMI){
                     type: 'base',
                     childCount: function(){
                         return this.get('children.length');
-                    }.property('children.length')
-                });
-                var nodes = this.store.find(collectionName, {'filters[parent]': 'null()'/*, 'fields': 'displayName,order,active,childCount,children,parent'*/});
-                var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-                    content: nodes,
-                    sortProperties: ['order', 'id'],
-                    sortAscending: true
+                    }.property('children.length'),
+                    children: function(){
+                        var nodes = self.store.find(collectionName, {'filters[parent]': 'null()'/*, 'fields': 'displayName,order,active,childCount,children,parent'*/});
+                        var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+                            content: nodes,
+                            sortProperties: ['order', 'id'],
+                            sortAscending: true
+                        });
+                        return children;
+                    }.property(),
+                    updateChildren: function(id, parentId){
+                        var objectContext = this;
+                        var collectionName = self.get('controllers.component.collectionName');
+                        var object = self.store.find(collectionName, id);
+                        object.then(function(object){
+                            objectContext.get('children.content').then(function(children){
+                                if(parentId === 'root'){
+                                    children.pushObject(object);
+                                } else{
+                                    children.removeObject(object);
+                                }
+                            });
+                        });
+                    }
                 });
                 var root = Root.create({});
-                root.set('children', children);
                 return [root];// Намеренно возвращается значение в виде массива, так как шаблон ожидает именно такой формат
             }.property('root.childCount', 'controllers.component.sideBarControl'),
+            rootChildren: null,
             filters: function(){
                 return [
                     {
@@ -125,9 +143,8 @@ define(['App'], function(UMI){
                                     });
                                 }
 
-                                if(parentId === 'root' || oldParentId === 'root'){
-                                    //TODO: Зачем загружать заново элементы которые уже есть?
-                                    self.incrementProperty('root.childCount');
+                                if(parentId !== oldParentId && (parentId === 'root' || oldParentId === 'root')){
+                                    self.get('root')[0].updateChildren(id, parentId);
                                 }
                             });
                         }
