@@ -4,13 +4,6 @@ define(['App'], function(UMI){
 
         UMI.TreeControlController = Ember.ObjectController.extend({
             /**
-             Query params для текущего роута 'Component'
-             @property routeParams
-             @type Object
-             @default null
-             */
-            routeParams: null,
-            /**
              Возвращает корневой элемент
              @property root
              @type Object
@@ -22,7 +15,8 @@ define(['App'], function(UMI){
                 if(!sideBarControl){
                     return;
                 }
-                 var Root = Ember.Object.extend({
+                var self = this;
+                var Root = Ember.Object.extend({
                     displayName: sideBarControl.displayName,
                     root: true,
                     hasChildren: true,
@@ -31,18 +25,35 @@ define(['App'], function(UMI){
                     type: 'base',
                     childCount: function(){
                         return this.get('children.length');
-                    }.property('children.length')
-                });
-                var nodes = this.store.find(collectionName, {'filters[parent]': 'null()'/*, 'fields': 'displayName,order,active,childCount,children,parent'*/});
-                var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-                    content: nodes,
-                    sortProperties: ['order', 'id'],
-                    sortAscending: true
+                    }.property('children.length'),
+                    children: function(){
+                        var nodes = self.store.find(collectionName, {'filters[parent]': 'null()'/*, 'fields': 'displayName,order,active,childCount,children,parent'*/});
+                        var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+                            content: nodes,
+                            sortProperties: ['order', 'id'],
+                            sortAscending: true
+                        });
+                        return children;
+                    }.property(),
+                    updateChildren: function(id, parentId){
+                        var objectContext = this;
+                        var collectionName = self.get('controllers.component.collectionName');
+                        var object = self.store.find(collectionName, id);
+                        object.then(function(object){
+                            objectContext.get('children.content').then(function(children){
+                                if(parentId === 'root'){
+                                    children.pushObject(object);
+                                } else{
+                                    children.removeObject(object);
+                                }
+                            });
+                        });
+                    }
                 });
                 var root = Root.create({});
-                root.set('children', children);
                 return [root];// Намеренно возвращается значение в виде массива, так как шаблон ожидает именно такой формат
             }.property('root.childCount', 'controllers.component.sideBarControl'),
+            rootChildren: null,
             filters: function(){
                 return [
                     {
@@ -73,7 +84,7 @@ define(['App'], function(UMI){
                  */
                 updateSortOrder: function(id, parentId, prevSiblingId, nextSibling){
                     var self = this;
-                    var type = this.get('collections')[0].type;//TODO: а как же несколько коллекций?
+                    var type = this.get('controllers.component.collectionName');
                     var ids = nextSibling || [];
                     var moveParams = {};
                     var resource;
@@ -106,13 +117,7 @@ define(['App'], function(UMI){
                         };
                     }
 
-                    resource = [window.UmiSettings.baseApiURL];
-                    resource.push(self.get('routeParams').module.module);
-                    resource.push(self.get('routeParams').component.component);
-                    resource.push('collection');
-                    resource.push(type);
-                    resource.push('move');
-                    resource = resource.join('/');
+                    resource = this.get('controllers.component.settings.actions.move.source');
                     $.ajax({'type': 'POST', 'url': resource, 'data': JSON.stringify(moveParams), 'dataType': 'json', 'contentType': 'application/json'}).then(
                         function(){
                             ids.push(id);
@@ -138,9 +143,8 @@ define(['App'], function(UMI){
                                     });
                                 }
 
-                                if(parentId === 'root' || oldParentId === 'root'){
-                                    //TODO: Зачем загружать заново элементы которые уже есть?
-                                    self.incrementProperty('root.childCount');
+                                if(parentId !== oldParentId && (parentId === 'root' || oldParentId === 'root')){
+                                    self.get('root')[0].updateChildren(id, parentId);
                                 }
                             });
                         }

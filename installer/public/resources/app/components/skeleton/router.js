@@ -58,7 +58,7 @@ define([], function(){
                     if(result.modules){
                         self.controllerFor('dock').set('modules', result.modules);
                     }
-                }, function(error){
+                }, function(){
                     var data = {
                         'close': true,
                         'title': 'Не получен ресурс приложения.',
@@ -203,7 +203,7 @@ define([], function(){
                     componentController.set('settings', settings);
                     componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
                     return model;
-                }, function(error){
+                }, function(){
                     var data = {
                         'close': true,
                         'title': 'Не получен ресурс компонета.',
@@ -226,7 +226,7 @@ define([], function(){
             serialize: function(model){
                 return {component: model.get('name')};
             },
-            renderTemplate: function(controller, model){
+            renderTemplate: function(controller){
                 this.render();
                 if(controller.get('sideBarControl')){
                     this.render(controller.get('sideBarControl.name'), {
@@ -238,9 +238,12 @@ define([], function(){
         });
 
         UMI.ActionRoute = Ember.Route.extend({
-            model: function(params){
-                var modes = this.controllerFor('component').get('contentControls');
-                return modes.findBy('name', params.action);
+            model: function(params, transition){
+                if(transition.params.hasOwnProperty('context') && this.controllerFor('component').get('selectedContext') !== transition.params.context.context){
+                    this.controllerFor('component').set('selectedContext', transition.params.context.context);
+                }
+                var actions = this.controllerFor('component').get('contentControls');
+                return actions.findBy('name', params.action);
             },
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
@@ -279,7 +282,7 @@ define([], function(){
                     RootModel = Ember.Object.extend({
 
                     });
-                    model = new Ember.RSVP.Promise(function(resolve, reject){
+                    model = new Ember.RSVP.Promise(function(resolve){
                         resolve(RootModel.create({'id': params.context}));
                     });
                 } else{
@@ -295,7 +298,7 @@ define([], function(){
                                 }
                             }.property()
                         });
-                        model = new Ember.RSVP.Promise(function(resolve, reject){
+                        model = new Ember.RSVP.Promise(function(resolve){
                             resolve(RootModel.create({'id': 'root'}));
                         });
                     } else{
@@ -385,8 +388,7 @@ define([], function(){
         });
 
         UMI.SearchRoute = Ember.Route.extend({
-            model: function(params){
-                //console.log(params);
+            model: function(){
             }
         });
 
