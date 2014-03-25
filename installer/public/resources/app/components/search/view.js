@@ -50,12 +50,12 @@ define(['App'], function(UMI){
                     });
                 },0);
 
-
-                $(document).click(function(event) {
-                    if ($(event.target).closest(".umi-search-component").length) return;
-                    $('.umi-search-drop-down').hide();
-                    $(".umi-search-input").removeClass('active');
-                    event.stopPropagation();
+                $(document).click(function(event){
+                    if(!$(event.target).closest(".umi-search-component").length){
+                        $('.umi-search-drop-down').hide();
+                        $(".umi-search-input").removeClass('active');
+                        event.stopPropagation();
+                    }
                 });
 
                 var that = this;

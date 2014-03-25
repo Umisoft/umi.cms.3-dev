@@ -1,38 +1,34 @@
+<style>
+    .umi-tree-list{
+        margin-bottom: 40px;
+    }
+</style>
+
 <script>
     setTimeout(function(){
-        var formControlScroll = new IScroll('.umi-tree-wrapper', {
-            scrollX: true,
-            probeType: 3,
-            mouseWheel: true,
-            scrollbars: true,
-            bounce: false,
-            click: false,
-            freeScroll: false,
-            keyBindings: true,
-            interactiveScrollbars: true
-        });
+        var treeControlScroll = new IScroll('.umi-tree-wrapper', UMI.Utils.defaultIScroll);
     }, 0);
 </script>
 
 <div class="columns small-12" style="overflow: hidden;">
 
-    <div class="row s-full-height-before umi-tree-header">
-        {{#if filters}}
-        <a href="#" data-dropdown="drop" class="button flat square s-margin-clear right">
-            <i class="icon icon-settings"></i>
-        </a>
-        <ul id="drop" data-dropdown-content class="f-dropdown right">
-            {{#each filters}}
-                <li>
-                    <label>
-                        {{view Ember.Checkbox checkedBinding="view.isDone"}}
-                        <span class="title">{{title}}</span>
-                    </label>
-                </li>
-            {{/each}}
-        </ul>
-        {{/if}}
-    </div>
+    <!--<div class="row s-full-height-before umi-tree-header">-->
+        <!--{{!#if filters}}-->
+        <!--<a href="#" data-dropdown="drop" class="button flat square s-margin-clear right">-->
+            <!--<i class="icon icon-settings"></i>-->
+        <!--</a>-->
+        <!--<ul id="drop" data-dropdown-content class="f-dropdown right">-->
+            <!--{{!#each filters}}-->
+                <!--<li>-->
+                    <!--<label>-->
+                        <!--{{!view Ember.Checkbox checkedBinding="view.isDone"}}-->
+                        <!--<span class="title">{{!title}}</span>-->
+                    <!--</label>-->
+                <!--</li>-->
+            <!--{{!/each}}-->
+        <!--</ul>-->
+        <!--{{!/if}}-->
+    <!--</div>-->
 
     <div class="row s-full-height umi-tree-wrapper">
         <ul class="umi-tree-list umi-tree">

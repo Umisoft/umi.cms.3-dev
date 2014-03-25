@@ -2,7 +2,7 @@
     <li data-id="{{unbound node.id}}" {{bind-attr class="node.isDragged:hide node.root"}}>
         {{#view "treeItem" modelBinding="node"}} <!-- div -->
             {{#if node.childCount}}
-                <span {{action "expanded"}} {{bind-attr class=":umi-expand"}}>
+                <span {{action "expanded" on="mouseDown"}} {{bind-attr class=":umi-expand"}}>
                     {{#if node.isLoaded}} <!-- Логично переименовать в node.Loading -->
                         <i class="animate animate-loader-20"></i>
                     {{else}}
@@ -18,11 +18,11 @@
                 {{node.displayName}}
             {{/link-to}}
             <ul class="button-group umi-tree-context-menu right">
-                <li>
-                    <a href="#" {{action 'fastAction'}}>
-                        <i class="icon icon-add"></i>
-                    </a>
-                </li>
+                <!--<li>-->
+                    <!--<a href="#" {{action 'fastAction'}}>-->
+                        <!--<i class="icon icon-add"></i>-->
+                    <!--</a>-->
+                <!--</li>-->
                 <li class="umi-tree-drop-down-toggler">
                     <a href="#" class="tiny button flat square s-margin-clear">
                         <i class="icon black icon-bottom"></i>

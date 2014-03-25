@@ -9,15 +9,14 @@ define(['App'], function(UMI){
                 removeRecord: function(){
                     console.log('removeRecord');
 //                    var objectId = this.$();
-//                    console.log(objectId);
                 },
 
                 removeRecords: function(){
-                    console.log('removeRecords');
+
                 },
 
                 sortDirection: function(){
-                    console.log('sortDirection');
+
                 }
             },
 
@@ -109,22 +108,14 @@ define(['App'], function(UMI){
                 //Функция вызывается после выполнения всего didInsertelement
                 var tableControlScroll;
                     setColumnsSize();
-                    tableControlScroll = new IScroll('.umi-table-control-content-center', {
-                        scrollX: true,
-                        probeType: 3,
-                        mouseWheel: true,
-                        scrollbars: true,
-                        bounce: false,
-                        click: true,
-                        freeScroll: false,
-                        keyBindings: true,
-                        interactiveScrollbars: true
-                    });
+                    tableControlScroll = new IScroll('.umi-table-control-content-center', UMI.Utils.defaultIScroll);
 
                     var umiTableHeader = document.querySelector('.umi-table-header');
                     var umiTableLeft = document.querySelector('.umi-table-left');
+                    var umiTableRight = document.querySelector('.umi-table-right');
                     tableControlScroll.on('scroll', function(){
                         umiTableLeft.style.marginTop = this.y + 'px';
+                        umiTableRight.style.marginTop = this.y + 'px';
                         umiTableHeader.style.marginLeft = this.x + 'px';
                     });
 
@@ -182,8 +173,6 @@ define(['App'], function(UMI){
                                 //Вставляем элемент перед выбранной колонкой
                                 //TODO Сделать код универсальным - перебор строк в заголовке, а не для кажой по-отдельности
                                 $('.umi-table-header-column').before(function(){
-                                    console.log('index', $(this).index('.umi-table-header-column'));
-                                    console.log('currentColumn', currentColumn);
                                     if($(this).index('.umi-table-header-column') === currentColumn){
                                         return detachHeaderTitleCells.shift();
                                     } else {
@@ -323,17 +312,6 @@ define(['App'], function(UMI){
                 };
                 dragColumn();
 
-                //Подсветка строки при наведении курсора мыши
-                $('.umi-table').filter('.umi-table-tr').on('mouseenter', function(){
-                    var row = $(this);
-                    var trBackground = row.css('background');
-                    row.css({'background': '#BFE0F8'});
-                    row.mouseleave(function(){
-                        row.css({'background': trBackground});
-                    });
-                });
-
-
                 //Изменение ширины колонок
                 var self = this;
                 $('.umi-table-column-resizer').on('mousedown', function(event){
@@ -345,7 +323,10 @@ define(['App'], function(UMI){
                     var columnWidth;
                     var columnOffsetLeft = $(this).parent().offset().left;
                     var tableContentLeft = $('.umi-table').offset().left;
+
                     var tableContentRightBorder = tableContentLeft + $('.umi-table').width() - 30;
+                    console.log(tableContentRightBorder);
+
                     var rows = document.querySelectorAll('.umi-table tr').length;
                     var y = tableControlScroll.y;
 
@@ -359,8 +340,10 @@ define(['App'], function(UMI){
                                     document.querySelector('.umi-table').querySelectorAll('.umi-table-tr')[i].querySelectorAll('.umi-table-cell-div')[columnNumber].style.width = columnWidth + 'px';
                                 }
                                 if(event.pageX > tableContentRightBorder && columnWidth < 500){
+                                    console.log('rightBorderEvent');
                                     var x = tableContentLeft + columnOffsetLeft + columnWidth + 30;
-                                    tableControlScroll.scrollTo(x, y);
+                                    console.log('x', x);
+//                                    tableControlScroll.scrollTo(x, y);
                                 }
                             });
                         }
@@ -460,6 +443,22 @@ define(['App'], function(UMI){
 //                        console.log(objectId);
 //                    });
 
+                //Подсветка строки при наведении курсора мыши
+//                $('.umi-table-tr').on('mouseenter', function(){
+//                    var row = $(this);
+//                    var index = row.index();
+//                    var trBackground = row.css('background');
+//
+//                    $('.umi-table-left tr').eq(index).find('td').css({"background":"#BFE0F8"});
+//                    $('.umi-table tr').eq(index).find('td').css({"background":"#BFE0F8"});
+//                    $('.umi-table-right tr').eq(index).find('td').css({"background":"#BFE0F8"});
+//
+//                    row.mouseleave(function(){
+//                        $('.umi-table-left tr').eq(index).find('td').css({"background":trBackground});
+//                        $('.umi-table tr').eq(index).find('td').css({"background":trBackground});
+//                        $('.umi-table-right tr').eq(index).find('td').css({"background":trBackground});
+//                    });
+//                });
 
                 //Подсветка выделенных строк
                 $('.umi-table-title-div-left, .umi-table-left').on('click', 'input',function(){
@@ -487,12 +486,10 @@ define(['App'], function(UMI){
         UMI.TableCellView = Ember.View.extend({
 
             didInsertElement: function(){
-                console.log('cell');
                 // После отрисовки первой ЯЧЕЙКИ
                 insertElementCounter++;
                 if(insertElementCounter === 1){
                     this.get('parentView').fakeDidInsertElement();
-                    console.log('fakeDidInsertElement');
                 }
             },
 
@@ -503,7 +500,6 @@ define(['App'], function(UMI){
 ////            },
 //
             template: function(){
-                console.log('template');
                 var meta = this.get('meta');
                 var object = this.get('object');
                 var template;

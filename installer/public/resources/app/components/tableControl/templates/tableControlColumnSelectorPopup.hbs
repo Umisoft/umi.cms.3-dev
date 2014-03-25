@@ -60,66 +60,14 @@
 
         <div class="umi-table-control-column-list-wrapper">
             <table class="umi-table-control-column-list" style="width: 100%;">
-                <tr>
-                    <td>
-                        <input id="demo_box_1" class="css-checkbox" type="checkbox" />
-                        <label for="demo_box_1" class="css-label">Option #1</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input id="demo_box_2" class="css-checkbox" type="checkbox" />
-                        <label for="demo_box_2" class="css-label">Option #1</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input id="demo_box_3" type="checkbox" />
-                        <label for="demo_box_3">Option #1</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input id="demo_box_4" type="checkbox" />
-                        <label for="demo_box_4">Option #1</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input id="demo_box_5" type="checkbox" />
-                        <label for="demo_box_5">Option #1</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input id="demo_box_6" type="checkbox" />
-                        <label for="demo_box_6">Option #1</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input id="demo_box_7" type="checkbox" />
-                        <label for="demo_box_7">Option #1</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input id="demo_box_8" type="checkbox" />
-                        <label for="demo_box_8">Option #1</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input id="demo_box_9" type="checkbox" />
-                        <label for="demo_box_9">Option #1</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input id="demo_box_10" type="checkbox" />
-                        <label for="demo_box_10">Option #1</label>
-                    </td>
-                </tr>
+                {{#each content.viewSettings.columns}}
+                    <tr>
+                        <td>
+                            <input id="" class="css-checkbox" type="checkbox" />
+                            <label for="" class="css-label">{{title}}</label>
+                        </td>
+                    </tr>
+                {{/each}}
             </table>
         </div>
 

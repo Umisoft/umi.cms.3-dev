@@ -10,7 +10,20 @@
     margin: 0;
     background: #F6F7F8;
     border: 1px solid #DDE3E6;
+    border-top: none;
     box-sizing: border-box;
+}
+
+.elfinder-cwd-wrapper:after {
+    content: "";
+    position: absolute;
+    float: left;
+    display: block;
+    height: 3px;
+    width: calc(100% + 1px);
+    top: 0px;
+    left: 0;
+    background: url(img/shadows/toBottomShadow.png);
 }
 
 .elfinder-cwd-wrapper-list {
@@ -333,6 +346,11 @@
 
 .elfinder-odd-row {
     background: #eee;
+}
+
+.elfinder-cwd-view-list tr.ui-state-default{
+    font-weight: bold;
+    color: #575E6C;
 }
 
 /* filename container */

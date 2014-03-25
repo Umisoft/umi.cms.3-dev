@@ -1,6 +1,6 @@
 <style>
     .umi-table-ajax{
-        /*background: #FFFFFF;*/
+        background: #D6E0E9;;
     }
     .umi-table-ajax-tr:hover{
         background: #BFE0F8;
@@ -13,33 +13,17 @@
         <table cellpadding="0" class="umi-table-ajax-content">
             <thead>
                 <tr class="umi-table-ajax-titles">
-
-                    <td class="umi-table-ajax-header-column">
-                        <div class="umi-table-ajax-title-div">Заголовок</div>
-                    </td>
-                    <td class="umi-table-ajax-header-column">
-                        <div class="umi-table-ajax-title-div">Заголовок</div>
-                    </td>
-                    <td class="umi-table-ajax-header-column">
-                        <div class="umi-table-ajax-title-div">Заголовок</div>
-                    </td>
-
                     <td class="umi-table-ajax-empty-header-column"></td>
                 </tr>
             </thead>
 
             <tbody>
-
-
-                <!--<tr>-->
-                    <!--<td class="umi-table-ajax-empty-result">-->
-                        <!--Нет записей-->
-                    <!--</td>-->
-                <!--</tr>-->
+                <tr class="umi-metrika-empty-row" style="display: none;">
+                    <td class="umi-table-ajax-empty-result" colspan="4">
+                        Нет записей
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 </div>
-
-
-<canvas id="canvas" height="450" width="450"></canvas>

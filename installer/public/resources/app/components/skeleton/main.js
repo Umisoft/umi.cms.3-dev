@@ -96,6 +96,41 @@ define(
          */
         UMI.Utils = {};
 
+        UMI.Utils = {
+//            iScroll: function(){
+//                var iScrolls = document.querySelectorAll('.umi-iscroll');
+//                var iScrollsLength = iScrolls.length;
+//                for(var i = 0; i < iScrollsLength; i++){
+//                    new IScroll(iScrolls[i], this.defaultIScroll);
+//                }
+//            },
+
+            defaultIScroll: {
+                scrollX: true,
+                probeType: 3,
+                mouseWheel: true,
+                scrollbars: true,
+                bounce: false,
+                click: true,
+                freeScroll: false,
+                keyBindings: true,
+                interactiveScrollbars: true
+            }
+
+//            hideOnOutClick: function(){
+//                var element = document.querySelectorAll('.umi-hide-on-out-click');
+//                $(document).click(function(event){
+//                    if($(event.target).closest(".umi-search-component").length){
+//                        return false;
+//                    } else{
+//                        $('.umi-search-drop-down').hide();
+//                        $(".umi-search-input").removeClass('active');
+//                        event.stopPropagation();
+//                    }
+//                });
+//            }
+        };
+
         /**
          * Кэширование селекторов
          * @property DOMCache

@@ -1,1 +1,27 @@
-<ul class="umi-accordion"></ul>
+<style>
+    .umi-metrika-right{
+        float: left;
+    }
+
+    .umi-accordion-side-bar{
+        height: 100%;
+        float: left;
+    }
+
+    .umi-divider-metrika {
+        position: absolute;
+        z-index: 100000;
+        top: -1px;
+        right: 0;
+        width: 4px;
+        height: -webkit-calc(100% + 1px);
+        height: calc(100% + 1px);
+        background: #E0E4E7;
+        border-left: 1px solid #ADB9C5;
+    }
+</style>
+
+<div style="position: relative; float: left; width: 200px; height: 100%; border-right: 1px solid #98A2AB; background: #D6E0E9">
+    <ul class="umi-accordion"></ul>
+    <div class="umi-divider-metrika"></div>
+</div>

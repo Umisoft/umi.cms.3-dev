@@ -26,6 +26,7 @@ define(['App'], function(UMI){
             didInsertElement: function(){
                 //Выпадающее меню
                 $('.umi-tree').on('mousedown', '.umi-tree-drop-down-toggler', function(){
+                    console.log('openDrop-DownMenu');
                     event.stopPropagation();
                     $('.umi-tree-drop-down').remove();
 
@@ -36,16 +37,35 @@ define(['App'], function(UMI){
                     $('.umi-tree-drop-down').offset({top: y, left: x});
                 });
 
-                //Скрытие выпадающего меню при клике вне его области
-                $('html').on('mousedown', function(){
-//                    console.log('Это событие будет всегда вызываться, делай unbind');
-                    //Нужно просто перенести внутрь вызова .umi-tree-drop-down. Но я сделаю это после того как ты наиграешься с открытием по наведению.
+                $('.umi-tree').on('mousedown', '.umi-tree-drop-down-show-button', function(event){
+                    event.stopPropagation();
                     $('.umi-tree-drop-down').remove();
                 });
 
-                $('.umi-tree-drop-down').mousedown(function(event){
-                    event.stopPropagation();
+
+
+                //Скрытие выпадающего меню при клике вне его области
+                $(document).click(function(event){
+                    if(!$(event.target).closest(".umi-tree-drop-down").length){
+                        $('.umi-tree-drop-down').hide();
+                        event.stopPropagation();
+                    }
                 });
+
+//                $('.umi-tree').on('mousedown', '.umi-tree-drop-down-show-button', function(){
+//                    console.log('click');
+//                    $(this).remove();
+//                });
+
+                //                $('html').on('mousedown', function(){
+////                    console.log('Это событие будет всегда вызываться, делай unbind');
+//                    //Нужно просто перенести внутрь вызова .umi-tree-drop-down. Но я сделаю это после того как ты наиграешься с открытием по наведению.
+//                    $('.umi-tree-drop-down').remove();
+//                });
+//
+//                $('.umi-tree-drop-down').mousedown(function(event){
+//                    event.stopPropagation();
+//                });
 
 
                 //Переключение табов в выпадающем меню
@@ -206,6 +226,7 @@ define(['App'], function(UMI){
                         $('html').removeClass('s-unselectable');
                     });
                 };
+
                 var timeoutForDrag;
                 this.$().on('mousedown', '.icon.move', function(event){
                     if(event.originalEvent.which !== 1){
@@ -216,6 +237,7 @@ define(['App'], function(UMI){
                         dragAndDrop(event, el);
                     }, 200);
                 });
+
                 this.$().on('mouseup', '.icon.move', function(){
                     if(timeoutForDrag){
                         clearTimeout(timeoutForDrag);
