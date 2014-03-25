@@ -6,9 +6,9 @@
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
+
 namespace umicms\project\module\statistics\site\widget;
 
-use InvalidArgumentException;
 use umicms\hmvc\widget\BaseWidget;
 use umicms\project\module\statistics\admin\metrika\model\MetrikaApi;
 
@@ -19,19 +19,17 @@ use umicms\project\module\statistics\admin\metrika\model\MetrikaApi;
 class CounterWidget extends BaseWidget
 {
     /**
-     * Идентификатор счетчика Метрики
-     * @var int $counterId
+     * @var int $counterId идентификатор счетчика Метрики
      */
     public $counterId;
     /**
-     * API Яндекс.Метрики
-     * @var MetrikaApi $api
+     * @var MetrikaApi $api API Яндекс.Метрики
      */
     private $api;
 
     /**
-     * Внедряет {@see $api API Метрики}
-     * @param MetrikaApi $api
+     * Конструктор.
+     * @param MetrikaApi $api API Яндекс.Метрики
      */
     public function __construct(MetrikaApi $api)
     {
@@ -39,8 +37,7 @@ class CounterWidget extends BaseWidget
     }
 
     /**
-     * Выводит код счетчика
-     * @throws InvalidArgumentException
+     * Выводит код счетчика.
      * @return string
      */
     public function __invoke()
@@ -52,6 +49,7 @@ class CounterWidget extends BaseWidget
                 return '';
             }
         }
+
         return $this->api->counterData($this->counterId)['code'];
     }
 }
