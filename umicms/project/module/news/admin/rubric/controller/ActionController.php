@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\news\admin\rubric\controller;
 
+use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umi\orm\object\IObject;
@@ -52,28 +53,22 @@ class ActionController extends BaseRestActionController
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function getCollection($collectionName)
-    {
-        if ($collectionName != $this->api->rubric()->collectionName) {
-            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
-        }
-
-        return $this->api->rubric()->getCollection();
-    }
-
-    /**
      * Возвращает форму для объектного типа коллекции.
+     * @throws HttpException
      * @return IForm
      */
     protected function actionForm()
     {
         $collectionName = $this->getRequiredQueryVar('collection');
+
+        if ($collectionName != $this->api->rubric()->collectionName) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
+        }
+
         $typeName = $this->getRequiredQueryVar('type');
         $formName = $this->getRequiredQueryVar('form');
 
-        return $this->getCollection($collectionName)->getForm($typeName, $formName);
+        return $this->api->rubric()->getCollection()->getForm($typeName, $formName);
     }
 
     protected function actionMove()

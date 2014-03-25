@@ -61,25 +61,4 @@ class ActionController extends BaseRestActionController
         }
         return $resultSet;
     }
-
-    /**
-     * Возвращает форму для объектного типа коллекции.
-     * @return IForm
-     */
-    protected function actionForm()
-    {
-        $collectionName = $this->getRequiredQueryVar('collection');
-        $typeName = $this->getRequiredQueryVar('type');
-        $formName = $this->getRequiredQueryVar('form');
-
-        return $this->getCollection($collectionName)->getForm($typeName, $formName);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getCollection($collectionName)
-    {
-        return $this->api->getSearchIndexCollection();
-    }
 }

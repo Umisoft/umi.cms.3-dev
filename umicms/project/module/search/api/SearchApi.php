@@ -14,12 +14,12 @@ use umi\dbal\cluster\IDbClusterAware;
 use umi\dbal\cluster\TDbClusterAware;
 use umi\event\IEventObservant;
 use umi\event\TEventObservant;
-use umi\orm\collection\ICollection;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\objectset\IObjectSet;
 use umi\spl\config\TConfigSupport;
 use umi\stemming\TStemmingAware;
 use umicms\api\IPublicApi;
+use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\project\module\search\highlight\Fragmenter;
 use umicms\project\module\search\object\SearchIndex;
@@ -287,7 +287,7 @@ class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IE
 
     /**
      * Возвращает коллекцию объектов поискового индекса.
-     * @return ICollection
+     * @return ICmsCollection
      */
     public function getSearchIndexCollection()
     {

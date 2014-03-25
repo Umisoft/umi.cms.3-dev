@@ -9,7 +9,8 @@
 
 namespace umicms\project\module\news\admin\subject\controller;
 
-use HttpException;
+use umi\form\IForm;
+use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umicms\project\admin\api\controller\BaseRestActionController;
 use umicms\project\module\news\api\NewsApi;
@@ -50,28 +51,22 @@ class ActionController extends BaseRestActionController
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function getCollection($collectionName)
-    {
-        if ($collectionName != $this->api->subject()->collectionName) {
-            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
-        }
-
-        return $this->api->subject()->getCollection();
-    }
-
-    /**
      * Возвращает форму для объектного типа коллекции.
+     * @throws HttpException
      * @return IForm
      */
     protected function actionForm()
     {
         $collectionName = $this->getRequiredQueryVar('collection');
+
+        if ($collectionName != $this->api->subject()->collectionName) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
+        }
+
         $typeName = $this->getRequiredQueryVar('type');
         $formName = $this->getRequiredQueryVar('form');
 
-        return $this->getCollection($collectionName)->getForm($typeName, $formName);
+        return $this->api->subject()->getCollection()->getForm($typeName, $formName);
     }
 
     /**
