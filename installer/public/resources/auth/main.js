@@ -145,12 +145,9 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                         deffer.fail(function(error){
                             container.removeClass('loading');
                             submit.removeAttribute('disabled');
-                            if(error.status === 401){
-                                // console.log(error, sad, asdsad, error.responseJSON);
-                                var errorList = {error: error.responseJSON.result.error.message};
-                                errorsBlock.innerHTML = Auth.TEMPLATES.errors(errorList);
-                                $(errorsBlock).children('.alert-box').addClass('visible');
-                            }
+                            var errorList = {error: error.responseJSON.result.error.message};
+                            errorsBlock.innerHTML = Auth.TEMPLATES.errors(errorList);
+                            $(errorsBlock).children('.alert-box').addClass('visible');
                         });
                         return false;
                     });
