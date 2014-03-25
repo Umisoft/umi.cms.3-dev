@@ -24,6 +24,8 @@ define(['App'], function(UMI){
             tagName: 'div',
             classNames: ['row', 's-full-height'],
             didInsertElement: function(){
+                var scrollContainer = this.$().find('.umi-tree-wrapper')[0];
+                new IScroll(scrollContainer, UMI.Utils.defaultIScroll);
                 //Выпадающее меню
                 $('.umi-tree').on('mousedown', '.umi-tree-drop-down-toggler', function(){
                     console.log('openDrop-DownMenu');
