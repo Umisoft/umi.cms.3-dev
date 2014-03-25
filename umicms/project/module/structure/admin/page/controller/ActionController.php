@@ -9,11 +9,14 @@
 
 namespace umicms\project\module\structure\admin\page\controller;
 
+use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umi\orm\object\IObject;
 use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\module\service\object\Backup;
 use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\object\StructureElement;
 
 /**
  * Контроллер операций.
@@ -37,18 +40,6 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    protected function getCollection($collectionName)
-    {
-        if ($collectionName != $this->api->element()->collectionName) {
-            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
-        }
-
-        return $this->api->element()->getCollection();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getQueryActions()
     {
         return ['form', 'backups', 'backup'];
@@ -64,15 +55,21 @@ class ActionController extends BaseRestActionController
 
     /**
      * Возвращает форму для объектного типа коллекции.
+     * @throws HttpException
      * @return IForm
      */
     protected function actionForm()
     {
         $collectionName = $this->getRequiredQueryVar('collection');
+
+        if ($collectionName != $this->api->element()->collectionName) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
+        }
+
         $typeName = $this->getRequiredQueryVar('type');
         $formName = $this->getRequiredQueryVar('form');
 
-        return $this->getCollection($collectionName)->getForm($typeName, $formName);
+        return $this->api->element()->getCollection()->getForm($typeName, $formName);
     }
 
     protected function actionMove()
