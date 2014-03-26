@@ -70,13 +70,13 @@ class ActionController extends BaseRestActionController
     }
 
     /**
-     * Удаляет объект в корзину
+     * Удаляет объект в корзину.
      * @return string
      */
     protected function actionTrash()
     {
         $object = $this->api->user()
-            ->getById($this->getQueryVar('id'));
+            ->getById($this->getRequiredQueryVar('id'));
         $this->api->user()->trash($object);
         $this->getObjectPersister()
             ->commit();
@@ -85,13 +85,13 @@ class ActionController extends BaseRestActionController
     }
 
     /**
-     * Восстанавливает объект из корзины
+     * Восстанавливает объект из корзины.
      * @return string
      */
     protected function actionUntrash()
     {
         $object = $this->api->user()
-            ->getById($this->getQueryVar('id'));
+            ->getById($this->getRequiredQueryVar('id'));
         $this->api->user()->untrash($object);
         $this->getObjectPersister()
             ->commit();
@@ -100,7 +100,7 @@ class ActionController extends BaseRestActionController
     }
 
     /**
-     * Очищает корзину
+     * Очищает корзину.
      * @return string
      */
     protected function actionEmptyTrash()
