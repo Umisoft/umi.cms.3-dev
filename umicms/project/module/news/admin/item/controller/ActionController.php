@@ -14,6 +14,8 @@ use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umicms\project\admin\api\controller\BaseRestActionController;
 use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\object\NewsItem;
+use umicms\project\module\service\api\object\Backup;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
@@ -39,7 +41,7 @@ class ActionController extends BaseRestActionController
      */
     public function getQueryActions()
     {
-        return ['form'];
+        return ['form', 'backups', 'backup'];
     }
 
     /**
@@ -48,18 +50,6 @@ class ActionController extends BaseRestActionController
     public function getModifyActions()
     {
         return ['trash', 'untrash', 'emptyTrash'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getCollection($collectionName)
-    {
-        if ($collectionName != $this->api->news()->collectionName) {
-            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
-        }
-
-        return $this->api->news()->getCollection();
     }
 
     /**
@@ -125,5 +115,31 @@ class ActionController extends BaseRestActionController
             ->commit();
 
         return '';
+    }
+
+    /**
+     * Возвращает список резервных копий.
+     * @return Backup[]
+     */
+    protected function actionBackups()
+    {
+        $newsItemId = $this->getRequiredQueryVar('id');
+
+        return $this->api->news()->getBackupList(
+            $this->api->news()->getById($newsItemId)
+        );
+    }
+
+    /**
+     * Возвращает резервную копию.
+     * @return NewsItem
+     */
+    protected function actionBackup()
+    {
+        $newsItemId = $this->getRequiredQueryVar('id');
+        $backupId = $this->getRequiredQueryVar('backupId');
+        $newsItem = $this->api->news()->getById($newsItemId);
+
+        return $this->api->news()->getBackup($newsItem, $backupId);
     }
 }

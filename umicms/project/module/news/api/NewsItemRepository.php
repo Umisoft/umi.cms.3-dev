@@ -16,6 +16,8 @@ use umicms\orm\selector\CmsSelector;
 use umicms\project\module\news\api\object\NewsItem;
 use umicms\project\module\news\api\object\NewsRubric;
 use umicms\project\module\news\api\object\NewsSubject;
+use umicms\project\module\service\api\BackupRepository;
+use umicms\project\module\service\api\object\Backup;
 
 /**
  * Репозиторий для работы с новостями
@@ -29,6 +31,19 @@ class NewsItemRepository extends BaseObjectRepository
      */
     public $collectionName = 'newsItem';
 
+    /**
+     * @var BackupRepository $backupRepository
+     */
+    protected $backupRepository;
+
+    /**
+     * Конструктор.
+     * @param BackupRepository $backupRepository
+     */
+    public function __construct(BackupRepository $backupRepository)
+    {
+        $this->backupRepository = $backupRepository;
+    }
 
     /**
      * Возвращает селектор для выбора новостей.
@@ -152,5 +167,26 @@ class NewsItemRepository extends BaseObjectRepository
         return $this->select()
             ->where(NewsItem::FIELD_SUBJECTS)
             ->equals($subject);
+    }
+
+    /**
+     * Возвращает список резервных копий объекта.
+     * @param NewsItem $newsItem
+     * @return CmsSelector|Backup[] $object
+     */
+    public function getBackupList(NewsItem $newsItem)
+    {
+        return $this->backupRepository->getList($newsItem);
+    }
+
+    /**
+     * Возвращает резервную копию объекта.
+     * @param NewsItem $newsItem
+     * @param int $backupId идентификатор резервной копии
+     * @return NewsItem
+     */
+    public function getBackup(NewsItem $newsItem, $backupId)
+    {
+        return $this->backupRepository->wakeUpBackup($newsItem, $backupId);
     }
 }

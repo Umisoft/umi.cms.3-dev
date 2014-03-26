@@ -21,6 +21,6 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection\newsSubject', 'collection'
+        'collection.newsSubject', 'collection'
     ]
 ];

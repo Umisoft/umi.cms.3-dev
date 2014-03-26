@@ -14,6 +14,8 @@ use umicms\api\repository\TRecycleAwareRepository;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\news\api\object\NewsSubject;
+use umicms\project\module\service\api\BackupRepository;
+use umicms\project\module\service\api\object\Backup;
 
 /**
  * Репозиторий для работы с новостными сюжетами.
@@ -26,6 +28,20 @@ class NewsSubjectRepository extends BaseObjectRepository
      * {@inheritdoc}
      */
     public $collectionName = 'newsSubject';
+
+    /**
+     * @var BackupRepository $backupRepository
+     */
+    protected $backupRepository;
+
+    /**
+     * Конструктор.
+     * @param BackupRepository $backupRepository
+     */
+    public function __construct(BackupRepository $backupRepository)
+    {
+        $this->backupRepository = $backupRepository;
+    }
 
     /**
      * Возвращает селектор для выбора сюжетов.
@@ -111,5 +127,26 @@ class NewsSubjectRepository extends BaseObjectRepository
         $this->getCollection()->delete($subject);
 
         return $this;
+    }
+
+    /**
+     * Возвращает список резервных копий объекта.
+     * @param NewsSubject $newsSubject
+     * @return CmsSelector|Backup[] $object
+     */
+    public function getBackupList(NewsSubject $newsSubject)
+    {
+        return $this->backupRepository->getList($newsSubject);
+    }
+
+    /**
+     * Возвращает резервную копию объекта.
+     * @param NewsSubject $newsSubject
+     * @param int $backupId идентификатор резервной копии
+     * @return NewsSubject
+     */
+    public function getBackup(NewsSubject $newsSubject, $backupId)
+    {
+        return $this->backupRepository->wakeUpBackup($newsSubject, $backupId);
     }
 }

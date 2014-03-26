@@ -16,6 +16,8 @@ use umi\orm\object\IObject;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\admin\api\controller\BaseRestActionController;
 use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\object\NewsRubric;
+use umicms\project\module\service\api\object\Backup;
 
 /**
  * Контроллер операций.
@@ -41,7 +43,7 @@ class ActionController extends BaseRestActionController
      */
     public function getQueryActions()
     {
-        return ['form'];
+        return ['form', 'backups', 'backup'];
     }
 
     /**
@@ -144,5 +146,31 @@ class ActionController extends BaseRestActionController
         $this->getObjectPersister()
             ->commit();
         return '';
+    }
+
+    /**
+     * Возвращает список резервных копий.
+     * @return Backup[]
+     */
+    protected function actionBackups()
+    {
+        $newsRubricId = $this->getRequiredQueryVar('id');
+
+        return $this->api->rubric()->getBackupList(
+            $this->api->rubric()->getById($newsRubricId)
+        );
+    }
+
+    /**
+     * Возвращает резервную копию.
+     * @return NewsRubric
+     */
+    protected function actionBackup()
+    {
+        $newsRubricId = $this->getRequiredQueryVar('id');
+        $backupId = $this->getRequiredQueryVar('backupId');
+        $newsRubric = $this->api->rubric()->getById($newsRubricId);
+
+        return $this->api->rubric()->getBackup($newsRubric, $backupId);
     }
 }

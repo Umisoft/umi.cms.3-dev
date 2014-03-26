@@ -16,6 +16,8 @@ use umicms\api\repository\TRecycleAwareRepository;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\news\api\object\NewsRubric;
+use umicms\project\module\service\api\BackupRepository;
+use umicms\project\module\service\api\object\Backup;
 
 /**
  * Репозиторий для работы с новостными рубриками
@@ -29,6 +31,20 @@ class NewsRubricRepository extends BaseObjectRepository
      * {@inheritdoc}
      */
     public $collectionName = 'newsRubric';
+
+    /**
+     * @var BackupRepository $backupRepository
+     */
+    protected $backupRepository;
+
+    /**
+     * Конструктор.
+     * @param BackupRepository $backupRepository
+     */
+    public function __construct(BackupRepository $backupRepository)
+    {
+        $this->backupRepository = $backupRepository;
+    }
 
     /**
      * Возвращает селектор для выбора новостных рубрик.
@@ -142,5 +158,26 @@ class NewsRubricRepository extends BaseObjectRepository
         $this->getCollection()->move($rubric, $branch, $previousSibling);
 
         return $this;
+    }
+
+    /**
+     * Возвращает список резервных копий объекта.
+     * @param NewsRubric $newsRubric
+     * @return CmsSelector|Backup[] $object
+     */
+    public function getBackupList(NewsRubric $newsRubric)
+    {
+        return $this->backupRepository->getList($newsRubric);
+    }
+
+    /**
+     * Возвращает резервную копию объекта.
+     * @param NewsRubric $newsRubric
+     * @param int $backupId идентификатор резервной копии
+     * @return NewsRubric
+     */
+    public function getBackup(NewsRubric $newsRubric, $backupId)
+    {
+        return $this->backupRepository->wakeUpBackup($newsRubric, $backupId);
     }
 }

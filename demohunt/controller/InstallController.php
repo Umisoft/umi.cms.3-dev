@@ -285,7 +285,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $subject2 = $subjectCollection->add()
             ->setValue('displayName', 'Привидения')
-            ->setValue('slug','privideniya');
+            ->setValue('slug','privideniya')
+            ->setGUID('0d106acb-92a9-4145-a35a-86acd5c802c7');
 
         $newsPage = $structureCollection->add('novosti', 'system')
             ->setValue('displayName', 'Новости')
@@ -1225,6 +1226,18 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->backupRepository->createBackup($page);
         $page = $structureCollection->get('98751ebf-7f76-4edb-8210-c2c3305bd8a0');
         $this->backupRepository->createBackup($page);
+
+        $newsCollection = $this->getCollectionManager()->getCollection('newsItem');
+        $news = $newsCollection->get('d6eb9ad1-667e-429d-a476-fa64c5eec115');
+        $this->backupRepository->createBackup($news);
+
+        $rubricCollection = $this->getCollectionManager()->getCollection('newsRubric');
+        $rubric = $rubricCollection->get('8650706f-04ca-49b6-a93d-966a42377a61');
+        $this->backupRepository->createBackup($rubric);
+
+        $subjectCollection = $this->getCollectionManager()->getCollection('newsSubject');
+        $subject = $subjectCollection->get('0d106acb-92a9-4145-a35a-86acd5c802c7');
+        $this->backupRepository->createBackup($subject);
 
         $this->getObjectPersister()->commit();
     }
