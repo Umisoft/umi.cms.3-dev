@@ -6,7 +6,9 @@ define(['App'], function(UMI){
             validator: null,
             focusOut: function(){
                 if(this.get('validator') === 'collection'){
-                    this.get('templateData.keywords.object').validateProperty(this.get('dataSource'));
+                    var object = this.get('templateData.keywords.object');
+                    object.filterProperty(this.get('dataSource'));
+                    object.validateProperty(this.get('dataSource'));
                 }
             },
             focusIn: function(){

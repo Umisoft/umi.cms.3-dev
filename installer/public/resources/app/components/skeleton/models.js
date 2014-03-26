@@ -3,10 +3,28 @@ define([], function(){
 
     return function(UMI){
 
+        var propertyFilters = {
+            stringTrim: function(value){
+                return value.replace(/^\s+|\s+$/g, '');
+            },
+            htmlSafe: function(value){
+                return Ember.String.htmlSafe(value);
+            }
+        };
+
         DS.Model.reopen({
             validErrors: null,
             filterProperty: function(propertyName){
-                console.log(propertyName);
+                if(this.get('filters').hasOwnProperty(propertyName)){
+                    var filters = this.get('filters')[propertyName];
+                    var value = this.get(propertyName);
+                    var i;
+                    for(i = 0; i < filters.length; i++){
+                        Ember.assert('Фильтр "' + filters[i].type + '" не определен.', propertyFilters.hasOwnProperty(filters[i].type));
+                        value = propertyFilters[filters[i].type](value);
+                    }
+                    this.set(propertyName, value);
+                }
             },
             validateProperty: function(propertyName){
                 if(this.get('validators').hasOwnProperty(propertyName)){
@@ -47,7 +65,6 @@ define([], function(){
                             if(activeErrors && activeErrors.hasOwnProperty(propertyName)){
                                 delete activeErrors[propertyName];
                             }
-                            // Объект пересобирается без свойств прототипа
                             i = 0;
                             for(var error in activeErrors){
                                 if(activeErrors.hasOwnProperty(error)){
