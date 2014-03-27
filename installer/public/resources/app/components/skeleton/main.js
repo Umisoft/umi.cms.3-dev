@@ -140,6 +140,44 @@ define(
         };
 
         /**
+         * Local Storage
+         */
+        UMI.Utils.LS = {
+            init: (function(){
+                if(typeof(localStorage) !== "undefined"){
+                    if(!localStorage.getItem("UMI")){
+                        localStorage.setItem("UMI", JSON.stringify({}));
+                    }
+                } else{
+                    //TODO: Не обрабатывается сутуация когда Local Storage не поддерживается
+                    Ember.assert('Local Storage не поддерживается браузером', typeof(localStorage) !== "undefined");
+                }
+            }()),
+            get: function(key){
+                var data = JSON.parse(localStorage['UMI']);
+                return Ember.get(data, key);
+            },
+            set: function(keyPath, value){
+                var data = JSON.parse(localStorage['UMI']);
+                var keys = keyPath.split('.');
+                var i = 0;
+                var setNestedProperty = function getNestedProperty(obj, key, value){
+                    if(!obj.hasOwnProperty(key)){
+                        obj[key] = {};
+                    }
+                    if(i < keys.length - 1){
+                        i++;
+                        getNestedProperty(obj[key], keys[i], value);
+                    } else{
+                        obj[key] = value;
+                    }
+                };
+                setNestedProperty(data, keys[0], value);
+                localStorage.setItem('UMI', JSON.stringify(data));
+            }
+        };
+
+        /**
          * @class UmiRESTAdapter
          * @extends DS.RESTAdapter
          */
