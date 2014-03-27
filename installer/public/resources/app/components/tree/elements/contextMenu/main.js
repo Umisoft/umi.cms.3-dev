@@ -3,9 +3,11 @@ define(
     function(UMI, ContextMenuTpl){
     "use strict";
 
-    UMI.TreeControlContextMenuController = Ember.ObjectController.extend({
+    var ContextMenuController = Ember.Controller.extend({
         activeGroup: null,
-        selectAction: null,
+        selectAction: function(){
+            return UMI.Utils.LS.get('treeControls.contextAction');
+        }.property(),
         actionList: function(){
             var actions = [
                 {
@@ -18,7 +20,7 @@ define(
                 {
                     name: 'pause',
                     list: [
-                        {name: 'unActive', displayName: 'Снять активность', group: 'pause', type: "modify"}
+                        {name: 'unActive', displayName: 'Снять активность', type: "modify"}
                     ]
                 }
             ];
@@ -28,14 +30,17 @@ define(
         selectActionIcon: function(){
             var actionList = this.get('actionList');
             var selectAction = this.get('selectAction');
+            if(!selectAction){
+                return;
+            }
             var groupName;
             actionList.forEach(function(group){
-                if(group.list.contains(selectAction)){
+                if(group.list.findBy('name', selectAction.name)){
                     groupName = group.name;
                 }
             });
             return 'icon-' + groupName;
-        }.property('selectAction'),
+        }.property('selectAction', 'actionList'),
         actions: {
             toggleFastAction: function(action){
                 var selectAction;
@@ -45,6 +50,7 @@ define(
                     selectAction = null;
                 }
                 this.set('selectAction', selectAction);
+                UMI.Utils.LS.set('treeControls.contextAction', selectAction);
             },
             setActiveGroup: function(action){
                 this.set('activeGroup', action);
@@ -58,7 +64,7 @@ define(
             }
         }
     });
-    UMI.treeControlContextMenu = UMI.TreeControlContextMenuController.create({});
+    var contextMenuController = ContextMenuController.create({});
 
     UMI.TreeControlContextMenuView = Ember.View.extend({
         tagName: 'ul',
@@ -84,7 +90,7 @@ define(
                 }
             }
         },
-        controller: UMI.treeControlContextMenu,
+        controller: contextMenuController,
         groupView: Ember.View.extend({
             tagName: 'li',
             classNameBindings: ['isActive:active'],
