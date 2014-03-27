@@ -108,7 +108,7 @@ define(['App'], function(UMI){
                 //Функция вызывается после выполнения всего didInsertelement
                 var tableControlScroll;
                     setColumnsSize();
-                    tableControlScroll = new IScroll('.umi-table-control-content-center', UMI.Utils.defaultIScroll);
+                    tableControlScroll = new IScroll('.umi-table-control-content-center', UMI.Utils.iScroll.defaultSetting);
 
                     var umiTableHeader = document.querySelector('.umi-table-header');
                     var umiTableLeft = document.querySelector('.umi-table-left');

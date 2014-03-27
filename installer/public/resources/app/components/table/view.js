@@ -93,7 +93,7 @@ define(['App'], function(UMI){
                     }
 
                     setTimeout(function(){
-                        var metrikaTableScroll = new IScroll('.umi-table-ajax-control-content-center', UMI.Utils.defaultIScroll);
+                        var metrikaTableScroll = new IScroll('.umi-table-ajax-control-content-center', UMI.Utils.iScroll.defaultSetting);
                     }, 0);
                 }
 
