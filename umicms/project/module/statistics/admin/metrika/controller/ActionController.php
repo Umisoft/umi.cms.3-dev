@@ -82,11 +82,14 @@ class ActionController extends BaseRestActionController
         );
 
         $response = [
-            'totals' => $apiData['totals'],
             'labels' => $this->api->extractFieldsLabel($resource, $apiData),
             'report' => $this->api->extractReportData($resource, $apiData),
+            'date1' => $apiData['date1'],
+            'date2' => $apiData['date2'],
+            'rows' => $apiData['rows'],
+            'totals' => $apiData['totals'],
             'max' => $apiData['max'],
-            'min' => $apiData['min'],
+            'min' => $apiData['min']
         ];
         if (isset($apiData['errors'])) {
             foreach($apiData['errors'] as $error) {

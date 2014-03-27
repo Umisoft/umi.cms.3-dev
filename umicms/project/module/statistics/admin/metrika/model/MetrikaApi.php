@@ -157,13 +157,13 @@ class MetrikaApi implements IConfigIOAware, IPublicApi, ILocalizable
      */
     public function normalizeDateFrom($dateString = null)
     {
+        $date = new \DateTime(is_null($dateString) ? 'now' : $dateString);
+
         if (is_null($dateString)) {
-            $dateString = 'now';
+            $date->modify('first day of this month');
         }
         //todo system timezone
-        $date = new \DateTime($dateString);
-        return $date->modify('first day of this month')
-            ->format('Ymd');
+        return $date->format('Ymd');
     }
 
     /**
@@ -174,13 +174,13 @@ class MetrikaApi implements IConfigIOAware, IPublicApi, ILocalizable
      */
     public function normalizeDateTo($dateString = null)
     {
+        $date = new \DateTime(is_null($dateString) ? 'now' : $dateString);
+
         if (is_null($dateString)) {
-            $dateString = 'now';
+            $date->modify('last day of this month');
         }
         //todo system timezone
-        $date = new \DateTime($dateString);
-        return $date->modify('last day of this month')
-            ->format('Ymd');
+        return $date->format('Ymd');
     }
 
     /**
