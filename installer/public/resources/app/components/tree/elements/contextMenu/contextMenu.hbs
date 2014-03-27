@@ -1,7 +1,7 @@
-{{#if view.controller.fastAction}}
+{{#if view.controller.selectAction}}
     <li>
-        <span class="tiny button flat square" {{bind-attr title="view.controller.fastAction.displayName"}} {{action 'fastAction' view.controller.fastAction}}>
-            <i {{bind-attr class=":icon view.controller.fastActionIcon"}}></i>
+        <span class="tiny button flat square" {{bind-attr title="view.controller.selectAction.displayName"}} {{action 'selectAction' view.controller.selectAction}}>
+            <i {{bind-attr class=":icon view.controller.selectActionIcon"}}></i>
         </span>
     </li>
 {{/if}}
@@ -26,7 +26,7 @@
                         {{#each list}}
                             {{#view view.itemView action=this}}
                                 <i {{bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{action 'toggleFastAction' this}}></i>
-                                <span {{action 'fastAction' this}}>{{displayName}}</span>
+                                <span {{action 'selectAction' this}}>{{displayName}}</span>
                             {{/view}}
                         {{/each}}
                     </ul>

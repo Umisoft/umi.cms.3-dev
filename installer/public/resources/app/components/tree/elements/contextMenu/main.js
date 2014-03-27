@@ -5,7 +5,7 @@ define(
 
     UMI.TreeControlContextMenuController = Ember.ObjectController.extend({
         activeGroup: null,
-        fastAction: null,
+        selectAction: null,
         actionList: function(){
             var actions = [
                 {
@@ -25,31 +25,31 @@ define(
             this.set('activeGroup', actions[0]);
             return actions;
         }.property(),
-        fastActionIcon: function(){
+        selectActionIcon: function(){
             var actionList = this.get('actionList');
-            var fastAction = this.get('fastAction');
+            var selectAction = this.get('selectAction');
             var groupName;
             actionList.forEach(function(group){
-                if(group.list.contains(fastAction)){
+                if(group.list.contains(selectAction)){
                     groupName = group.name;
                 }
             });
             return 'icon-' + groupName;
-        }.property('fastAction'),
+        }.property('selectAction'),
         actions: {
             toggleFastAction: function(action){
-                var fastAction;
-                if(!this.get('fastAction') || this.get('fastAction').name !== action.name){
-                    fastAction = action;
+                var selectAction;
+                if(!this.get('selectAction') || this.get('selectAction').name !== action.name){
+                    selectAction = action;
                 } else{
-                    fastAction = null;
+                    selectAction = null;
                 }
-                this.set('fastAction', fastAction);
+                this.set('selectAction', selectAction);
             },
             setActiveGroup: function(action){
                 this.set('activeGroup', action);
             },
-            fastAction: function(action){
+            selectAction: function(action){
                 if(action.type === 'query'){
 
                 } else if(action.type === 'modify'){
@@ -95,9 +95,9 @@ define(
         itemView: Ember.View.extend({
             tagName: 'li',
             isFastAction: function(){
-                var fastAction = this.get('parentView.controller.fastAction');
-                return fastAction ? this.get('action').name === fastAction.name : false;
-            }.property('parentView.controller.fastAction')
+                var selectAction = this.get('parentView.controller.selectAction');
+                return selectAction ? this.get('action').name === selectAction.name : false;
+            }.property('parentView.controller.selectAction')
         })
     });
 });
