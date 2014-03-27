@@ -5443,6 +5443,48 @@ body {
   .umi-tree .umi-item.active .umi-tree-drop-down-toggler:before {
     background: #91B5F6;
     border-left: 1px solid #297AD1; }
+  .umi-tree .tree-control-select-action {
+    position: relative; }
+    .umi-tree .tree-control-select-action .button {
+      z-index: 2;
+      margin-bottom: 0; }
+      .umi-tree .tree-control-select-action .button:hover {
+        background: #fff; }
+        .umi-tree .tree-control-select-action .button:hover ~ .tree-control-select-action-tooltip {
+          visibility: visible;
+          bottom: 32px; }
+  .umi-tree .tree-control-select-action-tooltip {
+    z-index: 1;
+    visibility: hidden;
+    position: absolute;
+    background: #FFFFFF;
+    right: -8px;
+    font-size: 11px;
+    padding: 0px 4px;
+    opacity: 1;
+    line-height: 1rem;
+    bottom: 28px;
+    box-shadow: 0 0 1px 1px #97B6CE;
+    color: #646464;
+    border-radius: 10px;
+    font-style: italic;
+    -webkit-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s; }
+    .umi-tree .tree-control-select-action-tooltip:before {
+      content: "";
+      bottom: -16px;
+      position: absolute;
+      right: 11px;
+      border: 8px solid transparent;
+      border-top-color: #A9C9E2; }
+    .umi-tree .tree-control-select-action-tooltip:after {
+      content: "";
+      bottom: -12px;
+      position: absolute;
+      right: 13px;
+      border: 6px solid transparent;
+      border-top-color: #FFFFFF; }
   .umi-tree .umi-tree-drop-down {
     position: absolute;
     z-index: 1;
@@ -5517,6 +5559,7 @@ body {
           .umi-tree .umi-tree-drop-down .button-group .list-action li span {
             color: #535E6D; }
             .umi-tree .umi-tree-drop-down .button-group .list-action li span:hover {
+              cursor: pointer;
               border-bottom: 1px solid #535E6D; }
 
 .umi-tree-ghost {

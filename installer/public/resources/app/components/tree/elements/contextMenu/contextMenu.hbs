@@ -1,8 +1,11 @@
 {{#if view.controller.selectAction}}
-    <li>
-        <span class="tiny button flat square" {{bind-attr title="view.controller.selectAction.displayName"}} {{action 'selectAction' view.controller.selectAction}}>
+    <li class="tree-control-select-action">
+        <span class="tiny button flat square" {{action 'selectAction' view.controller.selectAction}}>
             <i {{bind-attr class=":icon view.controller.selectActionIcon"}}></i>
         </span>
+        <div class="tree-control-select-action-tooltip">
+            {{view.controller.selectAction.displayName}}
+        </div>
     </li>
 {{/if}}
 <li class="umi-tree-drop-down-wrapper">
