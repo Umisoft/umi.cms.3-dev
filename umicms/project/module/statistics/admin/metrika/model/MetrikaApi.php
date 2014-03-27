@@ -10,6 +10,8 @@ namespace umicms\project\module\statistics\admin\metrika\model;
 
 use umi\config\io\IConfigIOAware;
 use umi\config\io\TConfigIOAware;
+use umi\i18n\ILocalizable;
+use umi\i18n\TLocalizable;
 use umi\spl\config\TConfigSupport;
 use umicms\api\IPublicApi;
 use umicms\exception\InvalidArgumentException;
@@ -17,10 +19,11 @@ use umicms\exception\InvalidArgumentException;
 /**
  * API Яндекс.Метрики. Производит запросы к Метрике, получает статистические отчеты, информацию о счетчиках и пр.
  */
-class MetrikaApi implements IConfigIOAware, IPublicApi
+class MetrikaApi implements IConfigIOAware, IPublicApi, ILocalizable
 {
     use TConfigIOAware;
     use TConfigSupport;
+    use TLocalizable;
 
     /**
      * Токен OAuth авторизации для отправки запросов к API
@@ -37,6 +40,11 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
      * @var array $apiResources
      */
     public $apiResources;
+    /**
+     * Префикс для локализуемых меток API метрики.
+     * @var string $prefixLocalizable
+     */
+    private $prefixLocalizable = 'component:metrika:';
 
     /**
      * Список счетчиков статистики,
@@ -97,108 +105,9 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     }
 
     /**
-     * Посылает запрос к API Метрики.
-     * @param string $resource
-     * @param array $params
-     * @return array
-     */
-    private function apiRequest($resource, array $params = [])
-    {
-        $query = array_merge(['oauth_token' => $this->oauthToken], $params);
-        return \GuzzleHttp\get('http://api-metrika.yandex.ru/' . $resource . '.json', ['query' => $query])->json();
-    }
-
-    /**
-     * Извлекает из ответа Метрики суммарные данные для вывода в график.
-     * @param string $resource
-     * @param array $apiData
-     * @return array
-     */
-    public function extractChartData($resource, array $apiData)
-    {
-        $chartData = [];
-        $dataConfig = $this->findResourceConfig($resource);
-        $fields = $dataConfig['fields'];
-        foreach ($fields as $field) {
-            $chartData[$field] = [
-                'name' => $field,
-                'displayName' => $this->fieldDisplayName($field),
-                'type' => $this->fieldDataType($field),
-                'value' => $apiData['totals'][$field]
-            ];
-        }
-        return $chartData;
-    }
-
-    /**
-     * Возвращает конфигурацию ресурса статистики по названию.
-     * @param string $resourceName
-     * @return array
-     * @throws InvalidArgumentException
-     */
-    private function findResourceConfig($resourceName)
-    {
-        $dataConfig = null;
-        foreach ($this->getApiResources() as $resourceConfig) {
-            foreach ($resourceConfig['methods'] as $methodConfig) {
-                if ($methodConfig['name'] == $resourceName) {
-                    $dataConfig = $methodConfig;
-                    break 2;
-                }
-            }
-        }
-        if (is_null($dataConfig)) {
-            throw new InvalidArgumentException("Wrong resource query");
-        }
-        return $dataConfig;
-    }
-
-    /**
-     * Возвращает свойства общих полей отчетов Метрики.
-     * @return array
-     */
-    public function getFieldsMapping()
-    {
-        return [
-            'visits' => ['displayName' => 'Визиты', 'type' => 'int'],
-            'page_views' => ['displayName' => 'Просмотры', 'type' => 'int'],
-            'visitors' => ['displayName' => 'Посетители', 'type' => 'int'],
-            'new_visitors' => ['displayName' => 'Новые посетители', 'type' => 'int'],
-            'new_visitors_perc' => ['displayName' => 'Процент новых посетителей', 'type' => 'percent'],
-            'denial' => ['displayName' => 'Отказы', 'type' => 'percent'],
-            'depth' => ['displayName' => 'Глубина просмотра', 'type' => 'float'],
-            'visit_time' => ['displayName' => 'Время, проведенное на сайте, сек', 'type' => 'int'],
-            'avg_visits' => ['displayName' => 'Среднее число визитов', 'type' => 'float'],
-            'visits_delayed' => ['displayName' => 'visits_delayed', 'type' => 'int'],
-            'entrance' => ['displayName' => 'Входов', 'type' => 'int'],
-            'exit' => ['displayName' => 'Выходов', 'type' => 'int'],
-        ];
-    }
-
-    /**
-     * Возвращает текстовую метку поля.
-     * @param $field
-     * @return string
-     */
-    private function fieldDisplayName($field)
-    {
-        return $this->getFieldsMapping()[$field]['displayName'];
-    }
-
-    /**
-     * Возвращает тип данных поля (int|float|percent|string).
-     * @param $field
-     * @return string
-     */
-    private function fieldDataType($field)
-    {
-        return $this->getFieldsMapping()[$field]['type'];
-    }
-
-    /**
      * Извлекает подробные данные всех предусмотренных в ресурсе отчетов.
-     * @param string $resourceName
-     * @param array $apiData
+     * @param string $resourceName имя запрашеваемого ресурса
+     * @param array $apiData ответ на запрос
      * @return array
      */
     public function extractReportData($resourceName, $apiData)
@@ -208,40 +117,35 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
         $reports = $dataConfig['reports'];
 
         foreach ($reports as $report) {
-            $reportData[] = [
-                'name' => $report['name'],
+            $reportInfo = [
+                'displayName' => $this->getLabel($resourceName, $report['name']),
                 'data' => $apiData[$report['name']],
-                'displayName' => $report['displayName'],
             ];
+            if (isset($report['graph'])) {
+                $reportInfo['graph'] = $report['graph'];
+            }
+            $reportData[] = $reportInfo;
         }
         return $reportData;
     }
 
     /**
      * Возвращает свойства всех полей ресурса статистики.
-     * @param string $resourceName
+     * @param string $resourceName имя запрашеваемого ресурса
+     * @param array $apiData ответ на запрос
      * @return array
      */
-    public function extractFieldsMetadata($resourceName)
+    public function extractFieldsLabel($resourceName, $apiData)
     {
         $metadata = [];
 
         $resourceConfig = $this->findResourceConfig($resourceName);
-        foreach ($resourceConfig['fields'] as $resourceField) {
-            $metadata[$resourceField] = [
-                'displayName' => $this->fieldDisplayName($resourceField),
-                'type' => $this->fieldDataType($resourceField),
-            ];
-        }
-
         $reports = $resourceConfig['reports'];
 
         foreach ($reports as $report) {
-            foreach ($report['fields'] as $reportField) {
-                $metadata[$reportField['name']]
-                    = ['displayName' => $reportField['displayName'], 'type' => $reportField['type']];
-            }
+            $metadata = array_merge($metadata, $this->getFieldsReport($apiData[$report['name']], $resourceName));
         }
+
         return $metadata;
     }
 
@@ -277,5 +181,77 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
         $date = new \DateTime($dateString);
         return $date->modify('last day of this month')
             ->format('Ymd');
+    }
+
+    /**
+     * Извлекает список полей из отчёта.
+     * @param array $data ответ на запрос
+     * @param string $reportName название отчёта
+     * @return array
+     */
+    public function getFieldsReport($data, $reportName)
+    {
+        $fields = [];
+
+        if (isset($data[0])) {
+            foreach($data[0] as $k => $v) {
+                $fields[$k] = $this->getLabel($reportName, $k);
+                if (is_array($v)) {
+                    $fields = array_merge($fields, $this->getFieldsReport($v, $reportName));
+                }
+            }
+        }
+
+        return $fields;
+    }
+
+    /**
+     * Возвращает метку поля.
+     * @param string $prefix префикс
+     * @param string $name имя поля
+     * @return string
+     */
+    public function getLabel($prefix, $name = null)
+    {
+        $prefix = str_replace('/', ':', $prefix);
+
+        return $this->translate($this->prefixLocalizable . $prefix . (is_null($name) ? $name : ':' . $name));
+    }
+
+    /**
+     * Посылает запрос к API Метрики.
+     * @param string $resource
+     * @param array $params
+     * @return array
+     */
+    private function apiRequest($resource, array $params = [])
+    {
+        $query = array_merge(['oauth_token' => $this->oauthToken], $params);
+        return \GuzzleHttp\get('http://api-metrika.yandex.ru/' . $resource . '.json', ['query' => $query])->json();
+    }
+
+    /**
+     * Возвращает конфигурацию ресурса статистики по названию.
+     * @param string $resourceName
+     * @return array
+     * @throws InvalidArgumentException
+     */
+    private function findResourceConfig($resourceName)
+    {
+        $dataConfig = null;
+        foreach ($this->getApiResources() as $resourceConfig) {
+            foreach ($resourceConfig['resources'] as $methodConfig) {
+                if ($methodConfig['name'] == $resourceName) {
+                    $dataConfig = $methodConfig;
+                    break 2;
+                }
+            }
+        }
+        if (is_null($dataConfig)) {
+            throw new InvalidArgumentException(
+                $this->translate("Wrong resource query")
+            );
+        }
+        return $dataConfig;
     }
 }

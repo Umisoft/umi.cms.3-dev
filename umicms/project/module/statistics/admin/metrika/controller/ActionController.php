@@ -63,10 +63,14 @@ class ActionController extends BaseRestActionController
         $dateFrom = $this->api->normalizeDateFrom($this->getQueryVar('date1'));
         $dateTo = $this->api->normalizeDateTo($this->getQueryVar('date2'));
         if (is_null($counterId)) {
-            throw new InvalidArgumentException("Incorrect Metrika counter id");
+            throw new InvalidArgumentException(
+                $this->translate("Incorrect Metrika counter id")
+            );
         }
         if (is_null($resource)) {
-            throw new InvalidArgumentException("Incorrect resource queried");
+            throw new InvalidArgumentException(
+                $this->translate("Incorrect resource queried")
+            );
         }
 
         $apiData = $this->api->statQuery(
@@ -78,36 +82,38 @@ class ActionController extends BaseRestActionController
         );
 
         $response = [
-            'api_data' => [
-                'totals' => $apiData['totals'],
-                'metadata' => $this->api->extractFieldsMetadata($resource),
-                'report' => $this->api->extractReportData($resource, $apiData),
-                'max' => $apiData['max'],
-                'min' => $apiData['min'],
-            ],
+            'totals' => $apiData['totals'],
+            'labels' => $this->api->extractFieldsLabel($resource, $apiData),
+            'report' => $this->api->extractReportData($resource, $apiData),
+            'max' => $apiData['max'],
+            'min' => $apiData['min'],
         ];
+        if (isset($apiData['errors'])) {
+            foreach($apiData['errors'] as $error) {
+                $response['errors'] = [
+                    'text' => $this->translate($error['code']),
+                    'code' => $error['code']
+                ];
+            }
+        }
+
         return $response;
     }
 
     /**
      * Возвращает список доступных счетчиков Метрики.
-     * @return Response
+     * @return array
      */
     public function actionCounters()
     {
-        $counters = $this->api->listCounters();
-        $counters['labels'] = [
-            'site' => $this->translate('component:metrika:countersSite'),
-            'code_status' => $this->translate('component:metrika:countersCodeStatus'),
-            'permission' => $this->translate('component:metrika:countersPermission'),
-            'name' => $this->translate('component:metrika:countersName'),
-            'id' => $this->translate('component:metrika:countersId'),
-            'type' => $this->translate('component:metrika:countersType'),
-            'owner_login' => $this->translate('component:metrika:countersOwnerLogin')
-        ];
-        foreach ($counters['counters'] as &$counter) {
+        $listCounters = $this->api->listCounters();
+
+        foreach ($listCounters['counters'] as &$counter) {
             $counter['code_status'] = $this->translate($counter['code_status']);
         }
+
+        $counters['labels'] = $this->api->getFieldsReport($listCounters['counters'], 'counters');
+        $counters['counters'] = $listCounters['counters'];
 
         return $counters;
     }
@@ -121,14 +127,14 @@ class ActionController extends BaseRestActionController
         $counterId = $this->getRequiredQueryVar('counterId');
         $navigation = [];
         $apiResourceGroups = $this->api->getApiResources();
-        foreach ($apiResourceGroups as $resourceGroup) {
+        foreach ($apiResourceGroups as $group => $resourceGroup) {
             $navigationGroup = [];
-            $navigationGroup['displayName'] = $this->translate($resourceGroup['displayName']);
+            $navigationGroup['displayName'] = $this->api->getLabel($group);
             $navigationGroup['children'] = [];
-            foreach ($resourceGroup['methods'] as $resource) {
+            foreach ($resourceGroup['resources'] as $resource) {
                 $query = ['counterId'=>$counterId, 'resource'=>$resource['name']];
                 $navigationGroup['children'][] = [
-                    'displayName' => $this->translate($resource['displayName']),
+                    'displayName' => $this->api->getLabel($resource['name']),
                     'uri' => '/counter/?' . http_build_query($query),
                     'resource' => $resource['name'],
                 ];
