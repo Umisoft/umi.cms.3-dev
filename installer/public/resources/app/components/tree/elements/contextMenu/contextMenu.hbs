@@ -1,6 +1,6 @@
 {{#if view.controller.fastAction}}
     <li>
-        <span class="tiny button flat square" {{bind-attr title="view.controller.fastAction.displayName"}}>
+        <span class="tiny button flat square" {{bind-attr title="view.controller.fastAction.displayName"}} {{action 'fastAction' view.controller.fastAction}}>
             <i {{bind-attr class=":icon view.controller.fastActionIcon"}}></i>
         </span>
     </li>

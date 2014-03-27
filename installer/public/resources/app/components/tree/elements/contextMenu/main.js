@@ -11,14 +11,14 @@ define(
                 {
                     name: 'add',
                     list: [
-                        {name: 'addNews', displayName: 'Добавить новость'},
-                        {name: 'addRubric', displayName: 'Добавить рубрику'}
+                        {name: 'addNews', displayName: 'Добавить новость', type: 'query'},
+                        {name: 'addRubric', displayName: 'Добавить рубрику', type: 'query'}
                     ]
                 },
                 {
                     name: 'pause',
                     list: [
-                        {name: 'unActive', displayName: 'Снять активность', group: 'pause'}
+                        {name: 'unActive', displayName: 'Снять активность', group: 'pause', type: "modify"}
                     ]
                 }
             ];
@@ -48,6 +48,13 @@ define(
             },
             setActiveGroup: function(action){
                 this.set('activeGroup', action);
+            },
+            fastAction: function(action){
+                if(action.type === 'query'){
+
+                } else if(action.type === 'modify'){
+
+                }
             }
         }
     });
