@@ -255,6 +255,7 @@ $umi-dark-border-color: #CCD9E2;
                         cursor: pointer;
                     }
                     span{
+                        color: #535E6D;
                         &:hover{
                             border-bottom: 1px solid $umi-font-color;
                         }
@@ -277,43 +278,5 @@ $umi-dark-border-color: #CCD9E2;
     z-index: 100;
     i{
         margin: rem-calc(2 -2 2 0);
-    }
-}
-
-// Вот тут говнокод
-.umi-tree-header{
-    @include s-gradient-grey;
-    border-bottom: 1px solid #98A2AB;
-    .f-dropdown {
-        input {
-            display: block;
-            margin-bottom: 0;
-            float: left;
-            margin-top: rem-calc(5);
-        }
-        label {
-            margin-bottom: 0;
-        }
-        li {
-            border-bottom: 1px solid #98A2AB;
-            padding: rem-calc(5 8);
-            &:last-child {
-                border-bottom: none;
-            }
-            &:hover {
-                background: #FFF;
-            }
-            .title {
-                display: block;
-                margin-left: rem-calc(20);
-                line-height: normal;
-            }
-            div {
-                margin-bottom: rem-calc(5);
-                &:last-child {
-                    margin-bottom: 0;
-                }
-            }
-        }
     }
 }

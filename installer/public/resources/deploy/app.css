@@ -5514,8 +5514,10 @@ body {
             left: 5px;
             top: 5px;
             cursor: pointer; }
-          .umi-tree .umi-tree-drop-down .button-group .list-action li span:hover {
-            border-bottom: 1px solid #535E6D; }
+          .umi-tree .umi-tree-drop-down .button-group .list-action li span {
+            color: #535E6D; }
+            .umi-tree .umi-tree-drop-down .button-group .list-action li span:hover {
+              border-bottom: 1px solid #535E6D; }
 
 .umi-tree-ghost {
   height: 1.5rem;
@@ -5529,35 +5531,6 @@ body {
   z-index: 100; }
   .umi-tree-ghost i {
     margin: 0.125rem -0.125rem 0.125rem 0; }
-
-.umi-tree-header {
-  background: -webkit-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
-  background: -o-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
-  background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);
-  background: linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
-  border-bottom: 1px solid #98A2AB; }
-  .umi-tree-header .f-dropdown input {
-    display: block;
-    margin-bottom: 0;
-    float: left;
-    margin-top: 0.3125rem; }
-  .umi-tree-header .f-dropdown label {
-    margin-bottom: 0; }
-  .umi-tree-header .f-dropdown li {
-    border-bottom: 1px solid #98A2AB;
-    padding: 0.3125rem 0.5rem; }
-    .umi-tree-header .f-dropdown li:last-child {
-      border-bottom: none; }
-    .umi-tree-header .f-dropdown li:hover {
-      background: #FFF; }
-    .umi-tree-header .f-dropdown li .title {
-      display: block;
-      margin-left: 1.25rem;
-      line-height: normal; }
-    .umi-tree-header .f-dropdown li div {
-      margin-bottom: 0.3125rem; }
-      .umi-tree-header .f-dropdown li div:last-child {
-        margin-bottom: 0; }
 
 .umi-table-control {
   font-size: 0.8125rem;
