@@ -21,65 +21,9 @@
             {{#link-to "context" node.id class="tree-item-link"}}
                 {{node.displayName}}
             {{/link-to}}
-            <ul class="button-group umi-tree-context-menu right">
-                <!--<li>-->
-                    <!--<a href="#" {{action 'fastAction'}}>-->
-                        <!--<i class="icon icon-add"></i>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <li class="umi-tree-drop-down-toggler">
-                    <a href="#" class="tiny button flat square s-margin-clear">
-                        <i class="icon black icon-bottom"></i>
-                    </a>
-                </li>
-            </ul>
+
+            {{view 'treeControlContextMenu'}}
         {{/view}}
-
-        <script type="text/x-handlebars" id="umi-tree-menu">
-            <div class="umi-tree-drop-down s-unselectable">
-                <div class="umi-tree-drop-down-show-button">
-                    <i class="icon black icon-top"></i>
-                    <div class="umi-tree-drop-down-shadow-hide"></div>
-                </div>
-                <div class="umi-tree-tabs">
-                    <div class="umi-tree-tab active"><i class="icon icon-add"></i></div>
-                    <div class="umi-tree-tab"><i class="icon icon-pile"></i></div>
-                    <div class="umi-tree-tab"><i class="icon icon-write"></i></div>
-                    <div class="umi-tree-tab"><i class="icon icon-pause"></i></div>
-                    <div class="umi-tree-tab"><i class="icon icon-delete"></i></div>
-                </div>
-
-                <div class="umi-tree-tabs-content">
-                    <div class="umi-tree-tab-content active">
-                        <ul>
-                            <li>Добавить новость</li>
-                            <li>Добавить рубрику</li>
-                        </ul>
-                    </div>
-                    <div class="umi-tree-tab-content">
-                        <ul>
-                            <li>Создать копию</li>
-                        </ul>
-                    </div>
-                    <div class="umi-tree-tab-content">
-                        <ul>
-                            <li>Редактировать</li>
-                        </ul>
-                    </div>
-                    <div class="umi-tree-tab-content">
-                        <ul>
-                            <li>Снять активность</li>
-                        </ul>
-                    </div>
-                    <div class="umi-tree-tab-content">
-                        <ul>
-                            <li>Удалить рубрику</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </script>
 
         {{#if node.childCount}}
             {{#if node.isExpanded}}

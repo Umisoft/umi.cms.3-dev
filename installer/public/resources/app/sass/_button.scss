@@ -52,8 +52,18 @@
             // Костыль конечно
             margin-top: -7px;
             margin-bottom: -6px;
-            margin-left: -1px;
-            margin-right: -5px;
+            margin-left: -4px;
+            margin-right: -4px;
+        }
+        &.square{
+            padding-left: $button-tny;
+            padding-right: $button-tny;
+        }
+    }
+    &.small{
+        .icon{
+            margin-top: -7px;
+            margin-bottom: -6px;
         }
         &.square{
             padding-left: $button-tny;

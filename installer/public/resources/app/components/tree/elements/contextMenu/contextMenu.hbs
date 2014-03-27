@@ -1,0 +1,37 @@
+{{#if view.controller.fastAction}}
+    <li>
+        <span class="tiny button flat square" {{bind-attr title="view.controller.fastAction.displayName"}}>
+            <i {{bind-attr class=":icon view.controller.fastActionIcon"}}></i>
+        </span>
+    </li>
+{{/if}}
+<li class="umi-tree-drop-down-wrapper">
+    <div {{bind-attr class=":umi-tree-drop-down-toggler view.isOpen"}}>
+        <span class="tiny button flat square" {{action "open" target="view"}}>
+            <i {{bind-attr class=":icon :black view.isOpen:icon-top:icon-bottom"}}></i>
+        </span>
+    </div>
+    {{#if view.isOpen}}
+        <div class="umi-tree-drop-down s-unselectable">
+            <ul class="button-group">
+                {{#each view.controller.actionList}}
+                    {{#view view.groupView action=this}}
+                        <span class="small button square white" {{action "setActiveGroup" this}}>
+                            <i class="icon icon-{{unbound name}}"></i>
+                        </span>
+                    {{/view}}
+                {{/each}}
+                {{#with view.controller.activeGroup}}
+                    <ul class="list-action">
+                        {{#each list}}
+                            {{#view view.itemView action=this}}
+                                <i {{bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{action 'toggleFastAction' this}}></i>
+                                <span {{action 'fastAction' this}}>{{displayName}}</span>
+                            {{/view}}
+                        {{/each}}
+                    </ul>
+                {{/with}}
+            </ul>
+        </div>
+    {{/if}}
+</li>
