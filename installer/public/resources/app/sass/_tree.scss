@@ -42,7 +42,7 @@ $umi-dark-border-color: #CCD9E2;
             padding-right: 10px;
         }
         &:hover{
-            background: linear-gradient(#AFD3EC, #B2D4EC);
+            background: #AFD3EC;
             .umi-tree-context-menu{
                 display: block;
             }
@@ -51,7 +51,7 @@ $umi-dark-border-color: #CCD9E2;
             }
         }
         &.active{
-            background: linear-gradient(#35a9fc, #0f8bd5);
+            background: linear-gradient($primary-gradient);
             color: #FFFFFF;
             a{
                 color: #FFFFFF;

@@ -175,7 +175,7 @@ $dock-components-height: 35;
                 background: #d5dce2;
             }
             &.active{
-                background: linear-gradient($primary-color, darken($primary-color, 10%));
+                background: linear-gradient(nth($primary-gradient, 1), nth($primary-gradient, 2));
                 color: #FFF;
             }
         }

@@ -5321,9 +5321,9 @@ body {
       .dock-components .components-nav a:hover {
         background: #d5dce2; }
       .dock-components .components-nav a.active {
-        background: -webkit-linear-gradient(#259cec, #1282cc);
-        background: -o-linear-gradient(#259cec, #1282cc);
-        background: linear-gradient(#259cec, #1282cc);
+        background: -webkit-linear-gradient(#3aadff, #0087d4);
+        background: -o-linear-gradient(#3aadff, #0087d4);
+        background: linear-gradient(#3aadff, #0087d4);
         color: #FFF; }
 
 .umi-tree {
@@ -5358,17 +5358,15 @@ body {
       margin-right: -1px;
       padding-right: 10px; }
     .umi-tree .umi-item:hover {
-      background: -webkit-linear-gradient(#AFD3EC, #B2D4EC);
-      background: -o-linear-gradient(#AFD3EC, #B2D4EC);
-      background: linear-gradient(#AFD3EC, #B2D4EC); }
+      background: #AFD3EC; }
       .umi-tree .umi-item:hover .umi-tree-context-menu {
         display: block; }
       .umi-tree .umi-item:hover a {
         text-decoration: none; }
     .umi-tree .umi-item.active {
-      background: -webkit-linear-gradient(#35a9fc, #0f8bd5);
-      background: -o-linear-gradient(#35a9fc, #0f8bd5);
-      background: linear-gradient(#35a9fc, #0f8bd5);
+      background: -webkit-linear-gradient(#3aadff, #0087d4);
+      background: -o-linear-gradient(#3aadff, #0087d4);
+      background: linear-gradient(#3aadff, #0087d4);
       color: #FFFFFF; }
       .umi-tree .umi-item.active a {
         color: #FFFFFF;
@@ -6417,7 +6415,7 @@ select {
     line-height: 33px;
     font-size: 13px;
     font-weight: bold;
-    color: #575E6C; }
+    color: #BABABB; }
     .magellan-menu a:hover:before, .magellan-menu a:hover:after, .magellan-menu a.focus:before, .magellan-menu a.focus:after {
       content: "";
       position: absolute;
@@ -6433,7 +6431,7 @@ select {
       border-top-color: #FFF;
       border-width: 6px; }
     .magellan-menu a.focus {
-      background: #F7F7F7; }
+      color: #575E6C; }
       .magellan-menu a.focus:before {
         border-top-color: #BFC4C8; }
       .magellan-menu a.focus:after {

@@ -24,7 +24,7 @@
         line-height: 33px;
         font-size: 13px;
         font-weight: bold;
-        color: #575E6C;
+        color: #BABABB;
         &:hover, &.focus{
             &:before, &:after{
                 content: "";
@@ -44,7 +44,7 @@
             }
         }
         &.focus{
-            background: #F7F7F7;
+            color: #575E6C;
             &:before{
                 border-top-color: #BFC4C8;
             }
