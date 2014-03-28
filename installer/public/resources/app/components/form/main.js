@@ -4,6 +4,7 @@ define(
         'text!./form.hbs',
         './mixin',
         './elements/input/main',
+        './elements/checkbox/main',
         './elements/textarea/main',
         './elements/htmlEditor/main',
         './elements/select/main',
@@ -11,13 +12,14 @@ define(
         './elements/datepicker/main',
         './elements/magellan/main'
     ],
-    function(UMI, formTpl, mixin, inputElement, textareaElement, htmlEditorElement, selectElement, multiSelectElement, datepickerElement, magellanElement){
+    function(UMI, formTpl, mixin, inputElement, checkboxElement, textareaElement, htmlEditorElement, selectElement, multiSelectElement, datepickerElement, magellanElement){
         'use strict';
 
         Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
 
         mixin();
         inputElement();
+        checkboxElement();
         textareaElement();
         htmlEditorElement();
         selectElement();
