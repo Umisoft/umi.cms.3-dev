@@ -5595,13 +5595,26 @@ body {
   background: -o-linear-gradient(rgba(214, 224, 233, 0.6), #D6E0E9);
   background: linear-gradient(rgba(214, 224, 233, 0.6), #D6E0E9); }
   .umi-tree-control-filters .button {
+    position: relative;
     margin-bottom: 0; }
+    .umi-tree-control-filters .button:before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      background: #FFFFFF;
+      left: -1px;
+      right: -1px;
+      display: none;
+      height: 2px; }
   .umi-tree-control-filters .dropdown {
     position: relative;
     margin-right: 7px;
     margin-top: 6px; }
     .umi-tree-control-filters .dropdown.open .button {
-      z-index: 2; }
+      z-index: 2;
+      box-shadow: 0 1px 2px 1px #7C99AC;
+      background: #fff;
+      border-top-color: #fff; }
       .umi-tree-control-filters .dropdown.open .button:before {
         display: block; }
   .umi-tree-control-filters .umi-dropup {
@@ -5613,9 +5626,7 @@ body {
     box-shadow: 0 0px 2px 0px #7C99AC;
     border: none;
     border-bottom: 1px solid #BEC9D0;
-    margin-top: 0;
-    bottom: 0;
-    padding-bottom: 25px; }
+    margin-top: 0; }
     .umi-tree-control-filters .umi-dropup:before, .umi-tree-control-filters .umi-dropup:after {
       display: none; }
     .umi-tree-control-filters .umi-dropup li {

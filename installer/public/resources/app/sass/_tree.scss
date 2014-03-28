@@ -337,7 +337,18 @@ $umi-dark-border-color: #CCD9E2;
     border-top: 1px solid #D6E0E9;
     background: linear-gradient(rgba(214, 224, 233, .6), #D6E0E9);
     .button{
+        position: relative;
         margin-bottom: 0;
+        &:before{
+            content: "";
+            position: absolute;
+            top: -3px;
+            background: #FFFFFF;
+            left: -1px;
+            right: -1px;
+            display: none;
+            height: 2px;
+        }
     }
     .dropdown{
         position: relative;
@@ -346,6 +357,9 @@ $umi-dark-border-color: #CCD9E2;
         &.open{
             .button{
                 z-index: 2;
+                box-shadow: 0 1px 2px 1px #7C99AC;
+                background: #fff;
+                border-top-color: #fff;
                 &:before{
                     display: block;
                 }
@@ -362,8 +376,6 @@ $umi-dark-border-color: #CCD9E2;
         border: none;
         border-bottom: 1px solid #BEC9D0;
         margin-top: 0;
-        bottom: 0;
-        padding-bottom: 25px;
         &:before, &:after{
             display: none;
         }
