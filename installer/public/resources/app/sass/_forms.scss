@@ -67,6 +67,11 @@ label{
     margin-bottom: $form-label-bottom-margin;
 }
 
+.umi-checkbox-custom{
+    display: inline-block;
+    vertical-align: top;
+}
+
 select{
     border-radius: $input-border-radius;
     box-sizing: border-box;

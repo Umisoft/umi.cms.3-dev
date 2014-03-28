@@ -192,7 +192,27 @@ define(['App'], function(UMI){
                         clearTimeout(timeoutForDrag);
                     }
                 });
-            }
+            },
+            filtersView: Ember.View.extend({
+                classNames: ['umi-tree-control-filters'],
+                isOpen: false,
+                actions: {
+                    toggleOpen: function(){
+                        var self = this;
+                        var el = this.$();
+                        this.toggleProperty('isOpen');
+                        if(this.get('isOpen')){
+                            $('body').on('click.umi.tree.filterMenu', function(event){
+                                var targetElement = $(event.target).closest('.umi-tree-control-filters');
+                                if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
+                                    $('body').off('umi.tree.filterMenu.click');
+                                    self.set('isOpen', false);
+                                }
+                            });
+                        }
+                    }
+                }
+            })
         });
     };
 });

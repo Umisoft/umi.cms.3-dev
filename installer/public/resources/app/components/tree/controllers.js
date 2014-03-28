@@ -57,23 +57,34 @@ define(['App'], function(UMI){
             filters: function(){
                 return [
                     {
-                        "title": "Показывать неактивные страницы",
-                        "property": "active",
-                        "checked": "checked",
-                        "name": "inactive"
+                        "displayName": "Показывать неактивные страницы",
+                        "checkbox": true,
+                        "isActive": true,
+                        "filter": {
+                            "property": "active",
+                            "value": false
+                        }
+                    },
+                    {
+                        "displayName": "Показывать системные страницы",
+                        "checkbox": true,
+                        "isActive": true,
+                        "filter": {
+                            "property": "type",
+                            "value": "system"
+                        }
                     }
                 ];
             }.property(),
-            hideFilters: {},
+            hideFilters: function(){
+                return this.get('filters').filterBy('isActive', false).mapBy('filter');
+            }.property('filters.@each.isActive'),
             /**
              Активный контекст
              */
             activeContextBinding: 'controllers.context.model.object',
             needs: ['component', 'context'],
             actions: {
-                filter: function(name, element){
-
-                },
                 /**
                  Сохранение результата drag and drop
                  @method updateSortOrder
@@ -164,10 +175,10 @@ define(['App'], function(UMI){
             visible: function(){
                 var counter = 0;
                 var filters = this.get('filters');
-                var filter;
                 var model = this.get('model');
-                for(filter in filters){
-                    if(model.get(filter) === filters[filter]){
+                var i;
+                for(i = 0; i < filters.length; i++){
+                    if(model.get(filters[i].property) === filters[i].value){
                         ++counter;
                     }
                 }
