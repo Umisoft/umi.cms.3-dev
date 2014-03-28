@@ -5308,7 +5308,8 @@ body {
       line-height: 2.1875rem;
       vertical-align: middle;
       padding: 0 25px;
-      color: #575e6c;
+      position: relative;
+      color: #BABABB;
       display: block;
       float: left;
       font-weight: bold;
@@ -5319,12 +5320,23 @@ body {
       border-left: 1px solid transparent;
       border-right: 1px solid transparent; }
       .dock-components .components-nav a:hover {
-        background: #d5dce2; }
+        color: #575e6c; }
       .dock-components .components-nav a.active {
-        background: -webkit-linear-gradient(#3aadff, #0087d4);
-        background: -o-linear-gradient(#3aadff, #0087d4);
-        background: linear-gradient(#3aadff, #0087d4);
-        color: #FFF; }
+        background: #FFFDFD;
+        color: #575e6c; }
+        .dock-components .components-nav a.active:before, .dock-components .components-nav a.active:after {
+          content: "";
+          position: absolute;
+          display: block;
+          width: 3px;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background: url(img/shadows/toRightShadow.png); }
+        .dock-components .components-nav a.active:after {
+          left: auto;
+          right: -3px;
+          background: url(img/shadows/toLeftShadow.png); }
 
 .umi-tree {
   padding: 0;
