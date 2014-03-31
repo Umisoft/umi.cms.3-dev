@@ -62,5 +62,7 @@ define([], function(){
                 return sideBarControl;
             }.property('settings')
         });
+
+        UMI.ContextController = Ember.ObjectController.extend({});
     };
 });

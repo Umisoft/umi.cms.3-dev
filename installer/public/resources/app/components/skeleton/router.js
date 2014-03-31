@@ -277,8 +277,20 @@ define([], function(){
                 if(transition.params.hasOwnProperty('context') && this.controllerFor('component').get('selectedContext') !== transition.params.context.context){
                     this.controllerFor('component').set('selectedContext', transition.params.context.context);
                 }
+                var self = this;
+                var deferred = Ember.RSVP.defer();
                 var actions = this.controllerFor('component').get('contentControls');
-                return actions.findBy('name', params.action);
+                var action = actions.findBy('name', params.action);
+                if(action){
+                    deferred.resolve(action);
+                } else{
+                    deferred.reject({
+                        'status': 404,
+                        'statusText': 'Action not found.',
+                        'message': 'The action "' + params.action + '" for component "' + self.modelFor("component").get('name') + '" was not found.'
+                    });
+                }
+                return deferred.promise;
             },
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
