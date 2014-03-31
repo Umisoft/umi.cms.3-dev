@@ -47,7 +47,18 @@ $dock-components-height: 35;
                 display: block;
             }
         }
+        .f-dropdown{
+            padding-top: 5px;
+            padding-bottom: 5px;
+            li:nth-child(even){
+                background: #E8EDEF;
+            }
+            li:hover{
+                background: #A4DCF7;
+            }
+        }
     }
+
     .umi-dock-button{
         display: inline-block;
         height: 100%;
@@ -129,6 +140,12 @@ $dock-components-height: 35;
             .active{
                 color: #fff;
                 background: $primary-color;
+            }
+            a{
+                display: block;
+                padding: 10px 20px;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
     }

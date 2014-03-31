@@ -7,7 +7,7 @@ module.exports = function(grunt){
 
         watch: {
             sass: {
-                files: ['app/sass/**/*.scss', 'app/foundationJs/**/*.js', 'app/components/elFinder/**/*.*'],
+                files: ['app/sass/**/*.scss', 'app/foundationJs/**/*.js', 'app/components/fileManager/elFinder/**/*.*'],
                 tasks: ['sass', /*'grunticon', */'concat', 'autoprefixer']
             }
         },
@@ -48,35 +48,35 @@ module.exports = function(grunt){
                     separator: ';'
                 },
                 src: [
-                    'app/components/elFinder/jquery/jquery-ui-1.10.4.custom.min.js',
+                    'app/components/fileManager/elFinder/jquery/jquery-ui-1.10.4.custom.min.js',
 
-                    'app/components/elFinder/js/elFinder.js',
-                    'app/components/elFinder/js/jquery.elfinder.js',
-                    'app/components/elFinder/js/elFinder.resources.js',
-                    'app/components/elFinder/js/elFinder.options.js',
-                    'app/components/elFinder/js/elFinder.history.js',
-                    'app/components/elFinder/js/elFinder.command.js',
+                    'app/components/fileManager/elFinder/js/elFinder.js',
+                    'app/components/fileManager/elFinder/js/jquery.elfinder.js',
+                    'app/components/fileManager/elFinder/js/elFinder.resources.js',
+                    'app/components/fileManager/elFinder/js/elFinder.options.js',
+                    'app/components/fileManager/elFinder/js/elFinder.history.js',
+                    'app/components/fileManager/elFinder/js/elFinder.command.js',
 
-                    'app/components/elFinder/js/ui/overlay.js',
-                    'app/components/elFinder/js/ui/workzone.js',
-                    'app/components/elFinder/js/ui/navbar.js',
-                    'app/components/elFinder/js/ui/dialog.js',
-                    'app/components/elFinder/js/ui/tree.js',
-                    'app/components/elFinder/js/ui/cwd.js',
-                    'app/components/elFinder/js/ui/toolbar.js',
-                    'app/components/elFinder/js/ui/button.js',
-                    'app/components/elFinder/js/ui/uploadButton.js',
-                    'app/components/elFinder/js/ui/viewbutton.js',
-                    'app/components/elFinder/js/ui/searchbutton.js',
-                    'app/components/elFinder/js/ui/sortbutton.js',
-                    'app/components/elFinder/js/ui/panel.js',
-                    'app/components/elFinder/js/ui/contextmenu.js',
-                    'app/components/elFinder/js/ui/path.js',
-                    'app/components/elFinder/js/ui/stat.js',
-                    'app/components/elFinder/js/ui/places.js',
+                    'app/components/fileManager/elFinder/js/ui/overlay.js',
+                    'app/components/fileManager/elFinder/js/ui/workzone.js',
+                    'app/components/fileManager/elFinder/js/ui/navbar.js',
+                    'app/components/fileManager/elFinder/js/ui/dialog.js',
+                    'app/components/fileManager/elFinder/js/ui/tree.js',
+                    'app/components/fileManager/elFinder/js/ui/cwd.js',
+                    'app/components/fileManager/elFinder/js/ui/toolbar.js',
+                    'app/components/fileManager/elFinder/js/ui/button.js',
+                    'app/components/fileManager/elFinder/js/ui/uploadButton.js',
+                    'app/components/fileManager/elFinder/js/ui/viewbutton.js',
+                    'app/components/fileManager/elFinder/js/ui/searchbutton.js',
+                    'app/components/fileManager/elFinder/js/ui/sortbutton.js',
+                    'app/components/fileManager/elFinder/js/ui/panel.js',
+                    'app/components/fileManager/elFinder/js/ui/contextmenu.js',
+                    'app/components/fileManager/elFinder/js/ui/path.js',
+                    'app/components/fileManager/elFinder/js/ui/stat.js',
+                    'app/components/fileManager/elFinder/js/ui/places.js',
 
-                    'app/components/elFinder/js/commands/*.js',
-                    'app/components/elFinder/js/i18n/elfinder.ru.js'
+                    'app/components/fileManager/elFinder/js/commands/*.js',
+                    'app/components/fileManager/elFinder/js/i18n/elfinder.ru.js'
                 ],
                 dest: 'deploy/elFinder.js'
             },
@@ -85,7 +85,7 @@ module.exports = function(grunt){
                 src: [
                     'deploy/app.css',
                     'deploy/icons.data.svg.css',
-                    'app/components/elFinder/**/*.css'
+                    'app/components/fileManager/elFinder/**/*.css'
                 ],
                 dest: 'deploy/app.css'
             }
@@ -121,7 +121,7 @@ module.exports = function(grunt){
                     outdir: 'docs/frontend'
                 }
             }
-      },
+        },
         // Сохраняем svg в css
         grunticon: {
             myIcons: {
@@ -131,13 +131,27 @@ module.exports = function(grunt){
                     src: ['*.svg'],
                     dest: "deploy"
                 }],
-                  options: {
-//                      datasvgcss: "icons.css",
-                      cssprefix: ".icon-",
-                      defaultWidth: "20px",
-                      defaultHeight: "20px"
-//                      previewTemplate: '<script>{{{loaderText}}} grunticon(["icons.css"]);</script>{{#each icons}}{{#with this}}<pre><code>{{prefix}}{{name}}:</code></pre><div class="{{prefixClass}}{{name}}" style="width: {{width}}px; height: {{height}}px;" ></div><hr/>{{/with}}{{/each}}'
-                  }
+                options: {
+                    //                      datasvgcss: "icons.css",
+                    cssprefix: ".icon-",
+                    defaultWidth: "20px",
+                    defaultHeight: "20px"
+                    //                      previewTemplate: '<script>{{{loaderText}}} grunticon(["icons.css"]);</script>{{#each icons}}{{#with this}}<pre><code>{{prefix}}{{name}}:</code></pre><div class="{{prefixClass}}{{name}}" style="width: {{width}}px; height: {{height}}px;" ></div><hr/>{{/with}}{{/each}}'
+                }
+            },
+
+            dockIcons: {
+                files: [{
+                    expand: true,
+                    cwd: 'deploy/img/svg',
+                    src: ['*.svg'],
+                    dest: "deploy"
+                }],
+                options: {
+                    cssprefix: ".dock-icon-",
+                    defaultWidth: "20px",
+                    defaultHeight: "20px"
+                }
             }
         }
     });

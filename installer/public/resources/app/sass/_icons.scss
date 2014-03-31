@@ -14,14 +14,15 @@
         width: 20px;
         height: 20px;
         line-height: 16px;
-        background: url("img/animate/loader-20.gif") center center no-repeat;
+        background: url(img/svg/spinner.svg) left top no-repeat;
     }
 
     &.animate-loader-40{
-        width: 40px;
-        height: 40px;
+        background: url(img/svg/spinner.svg) left top no-repeat;
+        vertical-align: middle;
+        width: 32px;
+        height: 32px;
         line-height: 32px;
-        background: url("img/animate/loader-40.gif") center center no-repeat;
     }
 }
 

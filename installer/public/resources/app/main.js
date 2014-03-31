@@ -14,7 +14,9 @@ define(
         'chartControl',
         'DS',
         'table',
-        'accordion'
+        'accordion',
+        'megaIndex',
+        'yandexWebmaster'
     ],
     function(UMI){
         'use strict';

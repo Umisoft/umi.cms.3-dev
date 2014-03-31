@@ -105,10 +105,8 @@ define(['App'], function(UMI){
                     $('#tableControlWidthStyles').remove();
                 };
 
-                //Функция вызывается после выполнения всего didInsertelement
-                var tableControlScroll;
-                    setColumnsSize();
-                    tableControlScroll = new IScroll('.umi-table-control-content-center', UMI.Utils.iScroll.defaultSetting);
+                setColumnsSize();
+                var tableControlScroll = new IScroll('.umi-component .umi-table-control-content-center', UMI.Utils.defaultIScroll);
 
                     var umiTableHeader = document.querySelector('.umi-table-header');
                     var umiTableLeft = document.querySelector('.umi-table-left');
@@ -131,7 +129,7 @@ define(['App'], function(UMI){
                     var detachTableCell = null;
                     var detachTableCells = [];
 
-                    $('.umi-table-header-column').not('.umi-table-header-column-fixed').on('mousedown', function(event){
+                    $('.umi-component').on('mousedown.umi.tableControl', '.umi-table-header-column', function(event){
                         if(event.button === 0){ //Проверка на нажатие левой кнопки мыши
 
                             $('html').addClass('s-unselectable');
@@ -264,7 +262,7 @@ define(['App'], function(UMI){
 
 
                             var umiTableControl = $('.umi-table-control');
-                            $(document).on('mousemove', 'body, .ghost', function(event){
+                            $(document).on('mousemove.umi.tableControl', 'body, .ghost', function(event){
                                 ghostPosition(event);
 
                                 //Позиция курсора относительно таблицы
@@ -298,7 +296,7 @@ define(['App'], function(UMI){
 
 
                             //Удаление призрака, вставка столбца
-                            $(document).on('mouseup', function(){
+                            $(document).on('mouseup.umi.tableControl', function(){
                                 $(document).off('mousemove');
                                 $('.ghost').remove();
                                 $('.tableGhost').remove();
@@ -314,7 +312,7 @@ define(['App'], function(UMI){
 
                 //Изменение ширины колонок
                 var self = this;
-                $('.umi-table-column-resizer').on('mousedown', function(event){
+                $('.umi-component').on('mousedown.umi.tableControl', '.umi-table-column-resizer', function(event){
                     event.stopPropagation();
                     $('html').addClass('s-unselectable');
 
@@ -330,7 +328,7 @@ define(['App'], function(UMI){
                     var rows = document.querySelectorAll('.umi-table tr').length;
                     var y = tableControlScroll.y;
 
-                    $('body').on('mousemove', this, function(event){
+                    $('body').on('mousemove.umi.tableControl', this, function(event){
                         columnWidth = event.pageX - columnOffsetLeft - 20; // -20 - компенсация padding
                         if(columnWidth > 59){
                             window.RAF(function(){
@@ -354,7 +352,7 @@ define(['App'], function(UMI){
                     });
 
                     var that = this;
-                    $('body').on('mouseup', function(){
+                    $('body').on('mouseup.umi.tableControl', function(){
                         $('body').off('mousemove');
 
                         $(that).css({'background': 'none'});
@@ -409,12 +407,12 @@ define(['App'], function(UMI){
 
 
                 //Переключение кнопки сортировки вверх-вниз
-                $('.umi-table-sort-column').mousedown(function(){
+                $('.umi-component').on('mousedown.umi.tableControl', '.umi-table-sort-column', function(){
                     $(this).toggleClass('icon-bottom-thin icon-top-thin');
                 });
 
                 //Выделение всех checkbox
-                $('.umi-table-title-div-left input').click(function(){
+                $('.umi-table-title-div-left input').on('click.umi.tableControl', function(){
                     var $that = $(this);
                     $('.umi-table-left').find('input').prop("checked", function(){
                         return $that.prop("checked");
@@ -423,7 +421,7 @@ define(['App'], function(UMI){
 
                 //Переход по клику в строке на форму редактирования объекта
                 var that = this;
-                $('.umi-table').on('click', '.umi-table-tr', function(){
+                $('.umi-table-sort-column').on('click.umi.tableControl', '.umi-table .umi-table-tr', function(){
                     var objectId = $(this).data('object-id');
                     that.get('controller').transitionToRoute('context', objectId);
                 });
@@ -461,7 +459,7 @@ define(['App'], function(UMI){
 //                });
 
                 //Подсветка выделенных строк
-                $('.umi-table-title-div-left, .umi-table-left').on('click', 'input',function(){
+                $('.umi-component').on('click.umi.tableControl', '.umi-table-title-div-left input, .umi-table-left input', function(){
                     $('.umi-table-left input[type="checkbox"]').each(function(index, element){
                         if($(this).prop("checked")){
 
@@ -478,6 +476,10 @@ define(['App'], function(UMI){
                         }
                     });
                 });
+            },
+
+            willDestroyElement: function(){
+                $(window).off('.umi.tableControl');
             }
 
         });

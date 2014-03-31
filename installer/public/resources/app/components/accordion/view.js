@@ -67,16 +67,20 @@ define(['App'], function(UMI){
                 }
 
 
-                $('.umi-accordion').on('mousedown', 'span', function(){
+                $('.umi-accordion').on('mousedown.umi.accordion', 'span', function(){
                     $('.umi-accordion-trigger').removeClass('active');
                     $(this).siblings('.umi-accordion-trigger').addClass('active');
                 });
 
-                $('.umi-accordion').on('mousedown', '.umi-metrika-second-level-button', function(){
+                $('.umi-accordion').on('mousedown.umi.accordion', '.umi-metrika-second-level-button', function(){
                     var id = that.get('controller.model.object.id');
                     var resource = $(this).data('resource');
                     getCounter(id, resource);
                 });
+            },
+
+            willDestroyElement: function(){
+                $(window).off('.umi.accordion');
             }
         });
     };

@@ -118,7 +118,7 @@ $umi-dark-border-color: #CCD9E2;
     .umi-tree-context-menu{
         display: none;
         position: absolute;
-        right: rem-calc(6);
+        right: rem-calc(9);
         margin: 0;
         padding: 0;
         margin-top: -24px;
@@ -146,14 +146,28 @@ $umi-dark-border-color: #CCD9E2;
             margin-bottom: 0;
         }
         &.is-open{
-            box-shadow: 0 0px 2px 1px #7C99AC;
-            z-index: 2;
+//            box-shadow: 0 0px 2px 1px #7C99AC;
+//            z-index: 2;
             .button{
-                height: 29px;
+                box-shadow: 0 0px 3px 0px #7C99AC;
+                z-index: 2;
+                position: relative;
+
+                height: 26px;
                 margin-top: -2px;
                 background: #fff;
                 .icon{
-                    margin-top: -9px;
+                    margin-top: -8px;
+                    border-right: 1px solid #FFFFFF;
+                }
+                &:after{
+                    content: '';
+                    position: absolute;
+                    background: #FFFFFF;
+                    width: 26px;
+                    height: 3px;
+                    bottom: -4px;
+                    left: -3px;
                 }
             }
         }
@@ -171,7 +185,7 @@ $umi-dark-border-color: #CCD9E2;
     .tree-control-select-action{
         position: relative;
         .button{
-            z-index: 2;
+//            z-index: 2;
             margin-bottom: 0;
             &:hover{
                 background: #fff;
@@ -221,11 +235,12 @@ $umi-dark-border-color: #CCD9E2;
         right: 0;
         width: 160px;
         background: #FFFFFF;
-        box-shadow: 0 0px 2px 0px #7C99AC;
-        border-top: 1px solid #BEC9D0;
+        box-shadow: 0 0px 3px 0px #7C99AC;
+//        border-top: 1px solid #BEC9D0;
         .button{
             border: none !important;
         }
+
         .button-group{
             margin: 0;
             padding: 0;

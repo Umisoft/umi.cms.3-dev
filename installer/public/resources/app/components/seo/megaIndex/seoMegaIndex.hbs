@@ -1,0 +1,68 @@
+<style>
+    .umi-table-mega-index{
+        overflow: hidden;
+    }
+
+    .umi-table-ajax-control-content-center{
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+    }
+
+    .umi-table-ajax tbody{
+        background: #F5F6F7;;
+    }
+
+    .umi-table-ajax tbody td{
+        border-left: 1px solid #E3E4E5;
+    }
+
+    .umi-table-ajax-tr:nth-child(odd){
+        background: #E9F1F7;
+    }
+
+    /*.umi-table-ajax-tr:nth-child(even){*/
+        /*background: #F5F6F7;*/
+    /*}*/
+</style>
+
+<div class="umi-table-mega-index">
+    <div class="umi-table-ajax-control-content-center">
+
+        <table cellpadding="0" class="umi-table-ajax-content">
+            <thead>
+                <tr class="umi-table-ajax-titles">
+                    <td style="padding-left: 10px;">№</td>
+                    {{#each view.headers}}
+                        <td class="umi-table-ajax-header-column">
+                            <div class="umi-table-ajax-title-div">{{unbound this}}</div>
+                        </td>
+                    {{/each}}
+                    <td class="umi-table-ajax-empty-header-column"></td>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each elements in view.data}}
+                    <tr class="umi-table-ajax-tr">
+                        <td style="padding-left: 10px;">{{_view.contentIndex}}</td>
+                        {{#each elements}}
+                            <td class="umi-table-ajax-cell-td">
+                                <div class="umi-table-ajax-cell-div">{{unbound this}}</div>
+                            </td>
+                        {{/each}}
+                        <td class="umi-table-ajax-empty-column"></td>
+                    </tr>
+                {{else}}
+                    <tr class="umi-metrika-empty-row">
+                        <!-- TODO colspan заменить на переменную с количеством колонок -->
+                        <td class="umi-table-ajax-empty-result" colspan="4">
+                            Нет записей
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+    </div>
+</div>

@@ -4314,36 +4314,33 @@ $.fn.elfinderoverlay = function(opts) {
 	return this;
 };"use strict";
 /**
- * @class elfinderworkzone - elFinder container for nav and current directory
- * @author Dmitry (dio) Levashov
- **/
+* @class elfinderworkzone - elFinder container for nav and current directory
+* @author Dmitry (dio) Levashov
+**/
 $.fn.elfinderworkzone = function(fm) {
 	var cl = 'elfinder-workzone';
-	
+
 	this.not('.'+cl).each(function() {
 		var wz     = $(this).addClass(cl),
 			wdelta = wz.outerHeight(true) - wz.height(),
 			parent = wz.parent();
-			
+
 		parent.add(window).bind('resize', function() {
-				var height = parent.height();
+            var height = parent.height();
 
-				parent.children(':visible:not(.'+cl+')').each(function() {
-					var ch = $(this);
+            parent.children(':visible:not(.'+cl+')').each(function() {
+                var ch = $(this);
 
-					if (ch.css('position') != 'absolute') {
-						height -= ch.outerHeight(true);
-					}
-				});
-				
-				wz.height(height - wdelta);
-			});
+                if (ch.css('position') != 'absolute') {
+                    height -= ch.outerHeight(true);
+                }
+            });
+
+            wz.height(height - wdelta);
+        });
 	});
 	return this;
-}
-
-
-;/**
+};/**
  * @class elfindernav - elFinder container for diretories tree and places
  *
  * @author Dmitry (dio) Levashov
@@ -6042,8 +6039,7 @@ $.fn.elfindercwd = function(fm, options) {
 			// elfinder node
 			parent = $(this).parent().resize(resize),
 			// workzone node
-			wz = parent.children('.elfinder-workzone').append(wrapper.append(this))
-			;
+			wz = parent.children('.elfinder-workzone').append(wrapper.append(this));
 			
 		
 		if (fm.dragUpload) {
@@ -6170,7 +6166,7 @@ $.fn.elfindercwd = function(fm, options) {
 
 				if (cwd.outerHeight(true) < wrapper.height()) {
 					cwd.height(wrapper.height() - (cwd.outerHeight(true) - cwd.height()) - 2);
-				} 
+				}
 			})
 			// select dragged file if no selected, disable selectable
 			.dragstart(function(e) {

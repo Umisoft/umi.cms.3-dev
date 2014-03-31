@@ -5,6 +5,7 @@ define(['App'], function(UMI){
 
         UMI.SearchView = Ember.View.extend({
             didInsertElement: function(){
+                var searchResultScroll = new IScroll('.umi-search-result-wrapper', UMI.Utils.defaultIScroll);
 
                 $(".umi-search-input")
                     .mousedown(function(){
@@ -12,6 +13,7 @@ define(['App'], function(UMI){
                         $('.umi-search-drop-down').show();
                     })
                     .keyup(function(){
+                        //TODO Добавить задержку на запрос результатов после нажатия кнопки
                         if($(this).val().length > 2){
                             var search = $(this).val();
                             $.ajax({
@@ -19,7 +21,17 @@ define(['App'], function(UMI){
                                 url: "/admin/api/search/action/search",
                                 data: {"query": search},
                                 cache: false,
+
+                                beforeSend: function(){
+                                    if(!document.querySelector('.umi-search-drop-down .animate')){
+                                        $('.umi-search-drop-down').append(function(){
+                                            return '<i class="animate animate-loader-20"></i>';
+                                        });
+                                    }
+                                },
+
                                 success: function(response){
+                                    $('.umi-search-drop-down .animate').remove();
                                     console.log(response);
                                     var id = '';
                                     var content = '';
@@ -30,26 +42,15 @@ define(['App'], function(UMI){
                                         content = response.result.search[i].displayName;
                                         $(".umi-search-result").append('<li data-object-id="' + id + '">' + content + '</li>');
                                     }
+                                    searchResultScroll.refresh();
                                 }
+
                             });
                         }
                     });
 
-                setTimeout(function(){
-                    console.log('searchResultScroll');
-                    var searchResultScroll = new IScroll('.umi-search-result-wrapper', {
-                        scrollX: true,
-                        probeType: 3,
-                        mouseWheel: true,
-                        scrollbars: true,
-                        bounce: false,
-                        click: true,
-                        freeScroll: false,
-                        keyBindings: true,
-                        interactiveScrollbars: true
-                    });
-                },0);
 
+                //Скрытие результатов поиска при клике вне области
                 $(document).click(function(event){
                     if(!$(event.target).closest(".umi-search-component").length){
                         $('.umi-search-drop-down').hide();

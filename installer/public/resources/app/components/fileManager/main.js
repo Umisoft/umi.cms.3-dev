@@ -10,15 +10,55 @@ define(['App'], function(UMI){
 
     UMI.FileManagerView = Ember.View.extend({
         tagName: 'div',
+        classNames: ['umi-file-manager'],
         template: Ember.Handlebars.compile('<div id="elfinder"></div>'),
         didInsertElement: function(){
-            //            http://localhost/admin/api/files/manager/settings
+//          http://localhost/admin/api/files/manager/settings
             var action = this.controller.get('data');
-            console.log(action);
             $('#elfinder').elfinder({
                 url : '/admin/api/files/manager/action/connector',
-                lang: 'ru'
+                lang: 'ru',
+                uiOptions: {
+                    toolbar : [
+                        ['back', 'forward'],
+//                        ['reload'],
+                        // ['home', 'up'],
+                        ['mkdir', 'mkfile', 'upload'],
+                        ['download'],
+    //                    ['info'],
+    //                    ['quicklook'],
+                        ['copy', 'cut', 'paste'],
+                        ['rm'],
+                        ['duplicate', 'rename', 'edit'],
+                        ['extract', 'archive'],
+    //                    ['search'],
+    //                    ['view'],
+                        ['help']
+                    ]
+                }
             }).elfinder('instance');
+
+            $('.elfinder-navbar').on('mousedown.umi.fileManager', '.elfinder-navbar-div', function(){
+                $('.elfinder-navbar').children().removeClass('ui-state-active');
+                $(this).addClass('ui-state-active');
+            });
+
+            var fileManagerLeft;
+            var fileManagerRight;
+
+          Ember.run.schedule('afterRender',function(){
+            fileManagerLeft = new IScroll('.elfinder-navbar', UMI.Utils.iScroll.defaultSettings);
+            fileManagerRight = new IScroll('.elfinder-cwd', UMI.Utils.iScroll.defaultSettings);
+            $(window).on('resize.umi.fileManager', function(){
+                fileManagerLeft.refresh();
+                fileManagerRight.refresh();
+            });
+          });
+
+        },
+
+        willDestroyElement: function(){
+            $(window).off('.umi.fileManager');
         }
     });
 });

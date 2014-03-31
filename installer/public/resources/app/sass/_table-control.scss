@@ -29,7 +29,7 @@
     .umi-table-control-header-right{
         position: absolute;
         right: 0;
-        z-index: 2;
+        z-index: 101;
         border: 0;
     }
 
@@ -330,7 +330,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    padding: rem-calc(4 7 7 7);
+    padding: rem-calc(4 6 7 7);
     border-left: 1px solid #E3E4E5;
 }
 

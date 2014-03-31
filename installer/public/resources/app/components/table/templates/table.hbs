@@ -2,6 +2,11 @@
     .umi-table-ajax{
         background: #D6E0E9;;
     }
+
+    .umi-table-ajax tbody td{
+        border-left: 1px solid #E3E4E5;
+    }
+
     .umi-table-ajax-tr:hover{
         background: #BFE0F8;
         cursor: pointer;
@@ -11,19 +16,38 @@
 <div class="umi-table-ajax-control-content">
     <div class="umi-table-ajax-control-content-center">
         <table cellpadding="0" class="umi-table-ajax-content">
+
             <thead>
                 <tr class="umi-table-ajax-titles">
+                    {{#each view.headers}}
+                        <td class="umi-table-ajax-header-column">
+                            <div class="umi-table-ajax-title-div">{{this}}</div>
+                        </td>
+                    {{/each}}
                     <td class="umi-table-ajax-empty-header-column"></td>
                 </tr>
             </thead>
 
             <tbody>
-                <tr class="umi-metrika-empty-row" style="display: none;">
-                    <td class="umi-table-ajax-empty-result" colspan="4">
-                        Нет записей
-                    </td>
-                </tr>
+                {{#each element in view.data}}
+                    {{#view view.row object=element}}
+                        {{#each view.cell}}
+                            <td class="umi-table-ajax-cell-td">
+                                <div class="umi-table-ajax-cell-div">{{this}}</div>
+                            </td>
+                        {{/each}}
+                        <td class="umi-table-ajax-empty-column"></td>
+                    {{/view}}
+                {{else}}
+                    <tr class="umi-metrika-empty-row">
+                        <!-- TODO colspan заменить на переменную с количеством колонок -->
+                        <td class="umi-table-ajax-empty-result" colspan="4">
+                            Нет записей
+                        </td>
+                    </tr>
+                {{/each}}
             </tbody>
+
         </table>
     </div>
 </div>

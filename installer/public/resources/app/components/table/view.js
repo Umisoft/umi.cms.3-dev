@@ -5,6 +5,10 @@ define(['App'], function(UMI){
         UMI.TableView = Ember.View.extend({
             templateName: 'table',
             classNames: ['umi-table-ajax'],
+            headers: [],
+            objectId: [],
+            data: [],
+
             didInsertElement: function(){
                 var that = this;
 
@@ -18,17 +22,17 @@ define(['App'], function(UMI){
 
                         beforeSend: function(){
                             $('.umi-component').css({'position':'relative'}).append(function(){
-                                return '<div class="umi-loader" style="position: absolute; padding: 30px; background: rgba(214,224,233,.7);"><h3>Идёт загрузка данных...</h3></div>';
+                                return '<div class="umi-loader" style="position: absolute; overflow: hidden; z-index: 1; padding: 30px; width: 100%; height: 100%; background: #FFFFFF;"><i class="animate animate-loader-40"></i><h3>�?дёт загрузка данных...</h3></div>';
                             });
                         },
 
                         success: function(response){
                             $('.umi-loader').remove();
-                            if(!response){
-                                $('.umi-component').css({'position':'relative'}).append(function(){
-                                    return '<div class="umi-loader" style="position: absolute; padding: 30px; background: rgba(214,224,233,.7);"><h3>Данные отсутствуют</h3></div>';
-                                });
-                            }
+//                            if(!response){
+//                                $('.umi-component').css({'position':'relative'}).append(function(){
+//                                    return '<div class="umi-loader" style="position: absolute; padding: 30px; background: rgba(214,224,233,.7);"><h3>Данные отсутствуют</h3></div>';
+//                                });
+//                            }
 
                             var headers = [];
                             headers.push(response.result.counters.labels.name, response.result.counters.labels.site, response.result.counters.labels['code_status']);
@@ -57,58 +61,43 @@ define(['App'], function(UMI){
                 //headers - массив
                 //rows - двумерный массив
                 function renderCounters(headers, rows){
-                    var headersLength = headers.length;
+
+                    //Заносим заголовки в переменную для шаблонизатора
+                    that.set('headers', headers);
+
+                    //Заносим содержимое таблицы с удалением первой колонки (id) в переменную шаблонизатора
                     var rowsLength = rows.length;
-
-                    if(headersLength){
-                        //Выводим заголовки
-                        $('.umi-table-ajax-titles').prepend(function(){
-                            var result = '';
-                            for(var i = 0; i < headersLength; i++){
-                                result = result + '<td class="umi-table-ajax-header-column"><div class="umi-table-ajax-title-div">' + headers[i] + '</div></td>';
-                            }
-                            return result;
-                        });
-                    }
-
-                    if(rowsLength){
-                        //Выводим содержимое таблицы
-                        var result = '';
-                        var row = [];
-
-                        for(var j = 0; j < rowsLength; j++){
-                            for(var i = 1; i < headersLength + 1; i++){
-                                row.push('<td class="umi-table-ajax-cell-td"><div class="umi-table-ajax-cell-div">' + rows[j][i] + '</div></td>');
-                            }
-                            result = result + '<tr class="umi-table-ajax-tr" data-object-id="' + rows[j][0] + '">' + row + '<td class="umi-table-ajax-empty-column"></td></tr>';
-                            row = [];
-                        }
-
-                        $('.umi-table-ajax-content tbody').append(function(){
-                            return result;
-                        });
-
-                    } else{
-                        $('.umi-metrika-empty-row').show();
-                    }
-
-                    setTimeout(function(){
-                        var metrikaTableScroll = new IScroll('.umi-table-ajax-control-content-center', UMI.Utils.iScroll.defaultSetting);
-                    }, 0);
+                    var objectId = [];
+                    that.set('data', rows);
+                    that.set('objectId', objectId);
+//                    console.log(that.get('objectId'));
                 }
 
-
-                $('.umi-table-ajax').on('click','.umi-table-ajax-tr',function(){
-//                    $('.umi-table-ajax-control-content').hide();
-//                    $('.umi-counter-info').show();
-
+                $('.umi-table-ajax').on('click.umi.table','.umi-table-ajax-tr',function(){
                     var counterId = $(this).data('object-id');
-
                     that.get('controller').transitionToRoute('context', counterId);
-//                    getNavigation(counterId);
                 });
 
-            }
+            },
+
+            willDestroyElement: function(){
+                $(window).off('.umi.table');
+            },
+
+            row: Ember.View.extend({
+                tagName: 'tr',
+                classNames: ['umi-table-ajax-tr'],
+                attributeBindings: ['objectId:data-object-id'],
+                objectId: function(){
+                    return this.get('object')[0];
+                }.property('object'),
+                cell: function(){
+                    var object = this.get('object');
+                    object.shift(0);
+                    return object;
+                }.property('object')
+            })
+
         });
     };
 });

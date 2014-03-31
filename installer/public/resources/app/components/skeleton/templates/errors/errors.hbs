@@ -9,17 +9,19 @@
                     {{/if}}
                     {{statusText}}
                 </h2>
+
                 {{#if message}}
                     <p>{{message}}</p>
                 {{/if}}
+
                 {{#if lists}}
-                <div class="alert-box error">
-                    <ul>
-                        {{#each lists}}
-                        <li>{{error}}</li>
-                        {{/each}}
-                    </ul>
-                </div>
+                    <div class="alert-box error">
+                        <ul>
+                            {{#each lists}}
+                                <li>{{error}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
                 {{/if}}
             </div>
         </div>

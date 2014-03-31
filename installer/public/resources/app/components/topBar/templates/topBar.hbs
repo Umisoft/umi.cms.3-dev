@@ -1,13 +1,7 @@
 <nav class="top-bar umi-top-bar" data-topbar data-options="is_hover: false">
     <section class="top-bar-section">
 
-        <ul class="left">
-            <li>
-                {{render "search"}}
-            </li>
-        </ul>
-
-        <ul class="right">
+        <ul>
             <li>
                 <a {{action 'targetBlank' '/'}} class="left-off-canvas-toggle">
                     Открыть сайт в новом окне
@@ -18,14 +12,16 @@
                 <!--{{!view "notification"}}-->
             <!--</li>-->
 
-            <li>
+            <li class="right has-dropdown">
                 <a href="#">mail@yandex.ru</a>
+                <ul class="dropdown">
+                    <li><a href="#">Сменить пароль</a></li>
+                    <li><a href="#" {{action 'logout'}}>Выход из системы</a></li>
+                </ul>
             </li>
 
-            <li class="has-form">
-                <span class="left-off-canvas-toggle" {{action 'logout'}}>
-                    <i class="icon white icon-exit" style="margin-top: 2px;"></i>
-                </span>
+            <li class="right">
+                {{render "search"}}
             </li>
         </ul>
 
