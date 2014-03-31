@@ -64,32 +64,3 @@ $s-full-height-before-height: 34px;
 .s-gradient-grey{
     @include s-gradient-grey();
 }
-
-// Положу здесь, просто потому что больше некуда
-// TODO Хоть комментарий напиши - что это?
-.has-version{
-    position: relative;
-    .version-list{
-        position: absolute;
-        display: none;
-        right: 0;
-        bottom: -24px;
-        z-index: 100;
-        .button{
-            margin-bottom: 0;
-        }
-    }
-}
-
-.show-all-version{
-    .has-version{
-        box-shadow: 0 1px 16px 1px #808080;
-    }
-    .version-list{
-        display: block;
-        box-shadow: 0 1px 4px 1px #808080;
-        .button{
-            float: left;
-        }
-    }
-}
