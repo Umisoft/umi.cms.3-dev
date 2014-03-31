@@ -2,6 +2,7 @@
 
 return [
     'en-US' => [
+        'component:metrika:displayName' => 'Yandex.Metrika',
         'component:metrika:traffic' => 'Traffic',
         'component:metrika:trafficSummary' => 'Traffic summary',
         'component:metrika:trafficSummaryData' => 'Traffic summary',
@@ -78,6 +79,7 @@ return [
         'component:metrika:countersId' => 'ID',
         'component:metrika:countersType' => 'Type',
         'component:metrika:countersOwnerLogin' => 'Owner login',
+        'ERR_NO_DATA' => 'No data.',
         'CS_ERR_CONNECT' => 'Error connect.',
         'CS_ERR_DUPLICATED' => 'Error duplicated.',
         'CS_ERR_HTML_CODE' => 'Error html code.',
@@ -98,6 +100,7 @@ return [
     ],
 
     'ru-RU' => [
+        'component:metrika:displayName' => 'Яндекс.Метрика',
         'component:metrika:traffic' => 'Трафик',
         'component:metrika:trafficSummary' => 'Посещаемость',
         'component:metrika:trafficSummaryData' => 'Посещаемость',
@@ -174,6 +177,7 @@ return [
         'component:metrika:countersId' => 'Идентификатор счетчика',
         'component:metrika:countersType' => 'Тип счетчика',
         'component:metrika:countersOwnerLogin' => 'Логин владельца счетчика',
+        'ERR_NO_DATA' => 'Нет данных за выбранный период.',
         'CS_ERR_CONNECT' => 'Не удалось проверить (ошибка соединения).',
         'CS_ERR_DUPLICATED' => 'Установлен более одного раза.',
         'CS_ERR_HTML_CODE' => 'Установлен некорректно.',
