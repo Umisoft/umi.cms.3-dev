@@ -22,11 +22,8 @@ define([], function(){
                     this.resource('action', {path: '/:action'}, function(){
                         this.resource('context', {path: '/:context'});
                     });
-                    this.route('search');
                 });
             });
-            this.route('logout', {path: '/api/users/user/action/logout'});
-            this.route('site', {path: 'external/:link'});
         });
 
         /**
@@ -66,6 +63,28 @@ define([], function(){
                 });
             },
             actions: {
+                logout: function(){
+                    var applicationLayout = document.querySelector('.umi-main-view');
+                    var maskLayout = document.createElement('div');
+                    maskLayout.className = 'auth-mask';
+                    maskLayout = document.body.appendChild(maskLayout);
+                    $(applicationLayout).addClass('off');
+                    $.post(UmiSettings.baseApiURL + '/action/logout');
+                    require(['auth/main'], function(auth){
+                        auth();
+                        $(applicationLayout).addClass('fade-out');
+                        Ember.run.later('', function(){
+                            UMI.reset();
+                            UMI.deferReadiness();
+                            maskLayout.parentNode.removeChild(maskLayout);
+                        }, 2000);
+                    });
+                },
+                targetBlank: function(url){
+                    url = '//' + window.location.host + '/' + url;
+                    var tab = window.open(url, '_blank');
+                    tab.focus();
+                },
                 /**
                  Сохраняет обьект
 
@@ -115,27 +134,6 @@ define([], function(){
                         }
                     );
                 }
-            }
-        });
-
-        UMI.LogoutRoute = Ember.Route.extend({
-            beforeModel: function(transition){
-                transition.abort();
-                var applicationLayout = document.querySelector('.umi-main-view');
-                var maskLayout = document.createElement('div');
-                maskLayout.className = 'auth-mask';
-                maskLayout = document.body.appendChild(maskLayout);
-                $(applicationLayout).addClass('off');
-                $.post(UmiSettings.baseApiURL + '/action/logout');
-                require(['auth/main'], function(auth){
-                    auth();
-                    $(applicationLayout).addClass('fade-out');
-                    Ember.run.later('', function(){
-                        UMI.reset();
-                        UMI.deferReadiness();
-                        maskLayout.parentNode.removeChild(maskLayout);
-                    }, 2000);
-                });
             }
         });
 
@@ -429,20 +427,6 @@ define([], function(){
                         );
                     }
                 }
-            }
-        });
-
-        UMI.SearchRoute = Ember.Route.extend({
-            model: function(){
-            }
-        });
-
-        UMI.SiteRoute = Ember.Route.extend({
-            beforeModel: function(transition){
-                var url = '//' + window.location.host + '/' + transition.params.site.link.replace(/^..\//g, '');
-                var tab = window.open(url, '_blank');
-                tab.focus();
-                transition.abort();
             }
         });
     };
