@@ -22,6 +22,7 @@ define([], function(){
                     });
                     this.route('search');
                 });
+                this.route('error', {path: '/:status'});
             });
             this.route('logout', {path: '/api/users/user/action/logout'});
             this.route('site', {path: 'external/:link'});
@@ -178,8 +179,20 @@ define([], function(){
             },
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
+                    var self = this;
+                    var deferred = Ember.RSVP.defer();
                     var firstChild = model.get('components.firstObject');
-                    return this.transitionTo('component', firstChild.get('name'));
+                    if(firstChild){
+                        deferred.resolve(self.transitionTo('component', firstChild.get('name')));
+                    } else{
+                        var error = {
+                            'status': 404,
+                            'statusText': 'Components not found.',
+                            'message': 'For module "' + model.get('name') + '" components not found.'
+                        };
+                        deferred.reject(self.transitionTo('module.error', error));
+                    }
+                    return deferred.promise;
                 }
             },
             serialize: function(model){

@@ -4277,25 +4277,6 @@ ul.pagination {
   background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);
   background: linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%); }
 
-.has-version {
-  position: relative; }
-  .has-version .version-list {
-    position: absolute;
-    display: none;
-    right: 0;
-    bottom: -24px;
-    z-index: 100; }
-    .has-version .version-list .button {
-      margin-bottom: 0; }
-
-.show-all-version .has-version {
-  box-shadow: 0 1px 16px 1px #808080; }
-.show-all-version .version-list {
-  display: block;
-  box-shadow: 0 1px 4px 1px #808080; }
-  .show-all-version .version-list .button {
-    float: left; }
-
 .umi-columns {
   position: relative;
   padding-left: 0.9375rem;

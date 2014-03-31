@@ -3,7 +3,12 @@
         <div class="small-12 columns text-center">
             <p></p>
             <div>
-                <h2>{{status}}. {{statusText}}</h2>
+                <h2>
+                    {{#if status}}
+                        {{status}}.
+                    {{/if}}
+                    {{statusText}}
+                </h2>
                 {{#if message}}
                     <p>{{message}}</p>
                 {{/if}}
