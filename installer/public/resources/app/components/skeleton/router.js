@@ -24,7 +24,7 @@ define([], function(){
                 });
             });
             this.route('logout', {path: '/api/users/user/action/logout'});
-            this.route('site', {path: '/:link'});
+            this.route('site', {path: 'external/:link'});
         });
 
         //		UMI.ErrorState = Ember.Mixin.create({//TODO: Обрабатывать все типы ошибок, и разные роуты
