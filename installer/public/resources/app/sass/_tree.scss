@@ -189,15 +189,14 @@ $umi-dark-border-color: #CCD9E2;
         background: #FFFFFF;
         right: -8px;
         font-size: 11px;
-        padding: 0px 4px;
+        padding: 1px 6px;
         opacity: 1;
         line-height: 1rem;
         bottom: 28px;
         box-shadow: 0 0 1px 1px #97B6CE;
         color: #646464;
         border-radius: 10px;
-        font-style: italic;
-        transition: all .2s;
+        transition: visibility .2s;
         &:before{
             content: "";
             bottom: -16px;
