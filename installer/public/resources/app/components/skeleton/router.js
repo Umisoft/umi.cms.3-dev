@@ -326,9 +326,7 @@ define([], function(){
 
                 // Вот это место мне особенно не нравится
                 if(!collectionName){
-                    RootModel = Ember.Object.extend({
-
-                    });
+                    RootModel = Ember.Object.extend({});
                     model = new Ember.RSVP.Promise(function(resolve){
                         resolve(RootModel.create({'id': params.context}));
                     });
