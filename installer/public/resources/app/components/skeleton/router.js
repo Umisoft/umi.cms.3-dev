@@ -16,13 +16,14 @@ define([], function(){
          */
         UMI.Router.map(function(){
             this.resource('module', {path: '/:module'}, function(){
+                this.route('error', {path: '/:status'});
                 this.resource('component', {path: '/:component'}, function(){
+                    this.route('error', {path: '/:status'});
                     this.resource('action', {path: '/:action'}, function(){
                         this.resource('context', {path: '/:context'});
                     });
                     this.route('search');
                 });
-                this.route('error', {path: '/:status'});
             });
             this.route('logout', {path: '/api/users/user/action/logout'});
             this.route('site', {path: 'external/:link'});
@@ -209,32 +210,52 @@ define([], function(){
              */
             model: function(params, transition){
                 var self = this;
+                var deferred = Ember.RSVP.defer();
                 var components = this.modelFor('module').get('components');
                 var model = components.findBy('name', transition.params.component.component);
-                return Ember.$.get(model.get('resource')).then(function(results){
-                    var componentController = self.controllerFor('component');
-                    var settings = results.result.settings;
-                    componentController.set('settings', settings);
-                    componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
-                    return model;
-                }, function(){
-                    var data = {
-                        'close': true,
-                        'title': 'Не получен ресурс компонета.',
-                        'content': 'Запрос API ресурса компонента "' + model.get('resource') + '" завершился неудачей. Обратитесь за помощью к разработчикам.',
-                        'confirm': 'Перезагрузить страницу'
-                    };
-                    return UMI.dialog.open(data).then(
-                        function(){
-                            window.location.href = window.location.href;
+                if(model){
+                    Ember.$.get(model.get('resource')).then(function(results){
+                        var componentController = self.controllerFor('component');
+                        var settings = results.result.settings;
+                        componentController.set('settings', settings);
+                        componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
+                        deferred.resolve(model);
+                    }, function(errors){
+                        var message;
+                        if(errors.responseJSON.hasOwnProperty('result') && errors.responseJSON.result.hasOwnProperty('error')){
+                            message = errors.responseJSON.result.error.message;
                         }
-                    );
-                });
+                        deferred.reject({
+                            'status': errors.status,
+                            'statusText': errors.statusText,
+                            'message': message
+                        });
+                    });
+                } else{
+                    deferred.reject({
+                        'status': 404,
+                        'statusText': 'Component not found.',
+                        'message': 'The component "' + transition.params.component.component + '" was not found.'
+                    });
+                }
+                return deferred.promise;
             },
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
+                    var deferred = Ember.RSVP.defer();
+                    var self = this;
                     var defaultAction = this.controllerFor('component').get('contentControls.firstObject.name');
-                    return this.transitionTo('action', defaultAction);
+                    if(defaultAction){
+                        deferred.resolve(self.transitionTo('action', defaultAction));
+                    } else{
+                        var error = {
+                            'status': 404,
+                            'statusText': 'Actions not found.',
+                            'message': 'For component "' + model.get('name') + '" actions not found.'
+                        };
+                        deferred.reject(self.transitionTo('component.error', error));
+                    }
+                    return deferred.promise;
                 }
             },
             serialize: function(model){
