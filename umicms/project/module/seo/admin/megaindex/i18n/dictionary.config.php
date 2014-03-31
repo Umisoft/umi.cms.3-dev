@@ -2,11 +2,11 @@
 
 return [
     'en-US' => [
-        'component:megaindex:displayName' => 'Megaindex'
+        'component:megaindex:displayName' => 'MegaIndex'
     ],
 
     'ru-RU' => [
-        'component:megaindex:displayName' => 'Megaindex'
+        'component:megaindex:displayName' => 'MegaIndex'
     ]
 ];
  
