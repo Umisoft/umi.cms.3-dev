@@ -2,6 +2,7 @@
 
 return [
     'en-US' => [
+        'component:metrika:displayName' => 'Yandex.Metrika',
         'component:metrika:traffic' => 'Traffic',
         'component:metrika:trafficSummary' => 'Traffic summary',
         'component:metrika:trafficSummaryData' => 'Traffic summary',
@@ -99,6 +100,7 @@ return [
     ],
 
     'ru-RU' => [
+        'component:metrika:displayName' => 'Яндекс.Метрика',
         'component:metrika:traffic' => 'Трафик',
         'component:metrika:trafficSummary' => 'Посещаемость',
         'component:metrika:trafficSummaryData' => 'Посещаемость',

@@ -10,13 +10,11 @@
 return [
 
     'en-US' => [
-        'component:manager:displayName' => 'File manager',
-        'control:fileManager:displayName' => 'Files'
+        'component:models:displayName' => 'Models'
     ],
 
     'ru-RU' => [
-        'component:manager:displayName' => 'Файловый менеджер',
-        'control:fileManager:displayName' => 'Файлы'
+        'component:models:displayName' => 'Шаблоны данных'
     ]
 
 ];
