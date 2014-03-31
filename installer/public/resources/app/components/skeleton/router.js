@@ -27,14 +27,6 @@ define([], function(){
             this.route('site', {path: 'external/:link'});
         });
 
-        //		UMI.ErrorState = Ember.Mixin.create({//TODO: Обрабатывать все типы ошибок, и разные роуты
-        //			actions: {
-        //				error: function(error, originRoute){
-        //					this.transitionTo('error', 'error');
-        //				}
-        //			}
-        //		});
-
         /**
          * @class ApplicationRoute
          * @extends Ember.Route
@@ -58,18 +50,17 @@ define([], function(){
                     if(result.modules){
                         self.controllerFor('dock').set('modules', result.modules);
                     }
-                }, function(){
+                }, function(errors){
+                    var message;
+                    if(errors.responseJSON.hasOwnProperty('result') && errors.responseJSON.result.hasOwnProperty('error')){
+                        message = errors.responseJSON.result.error.message;
+                    }
                     var data = {
-                        'close': true,
-                        'title': 'Не получен ресурс приложения.',
-                        'content': 'Запрос API ресурса "' + UmiSettings.baseApiURL + '" завершился неудачей. Обратитесь за помощью к разработчикам.',
-                        'confirm': 'Перезагрузить страницу'
+                        'close': false,
+                        'title': errors.status + '. ' + errors.statusText,
+                        'content': message
                     };
-                    return UMI.dialog.open(data).then(
-                        function(){
-                            window.location.href = window.location.href;
-                        }
-                    );
+                    return UMI.dialog.open(data).then();
                 });
             },
             actions: {
@@ -170,10 +161,20 @@ define([], function(){
          */
         UMI.ModuleRoute = Ember.Route.extend({
             model: function(params){
+                var deferred = Ember.RSVP.defer();
                 var modules = this.controllerFor('dock').get('content');
                 var module = modules.findBy('name', params.module);
-                this.controllerFor('dock').set('activeModule', module);
-                return module;
+                if(module){
+                    this.controllerFor('dock').set('activeModule', module);
+                    deferred.resolve(module);
+                } else{
+                    deferred.reject({
+                        'status': 404,
+                        'statusText': 'Module not found.',
+                        'message': 'The module "' + params.module + '" was not found.'
+                    });
+                }
+                return deferred.promise;
             },
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
