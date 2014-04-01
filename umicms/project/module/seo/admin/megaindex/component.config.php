@@ -19,9 +19,29 @@ return [
     ],
     SecureAdminComponent::OPTION_SETTINGS => [
         'options' => [
-            'login' => 'megaindex@umisoft.ru',
+            'login' => 'megaindex-api-test@megaindex.ru',
             'password' => 'et676e5rj',
             'siteUrl' => 'umi-cms.ru',
+        ]
+    ],
+    SecureAdminComponent::OPTION_INTERFACE_CONTROLS => [
+        /*'chart' => [],
+        'counters' => [],
+        'accordion' => [],*/
+    ],
+    SecureAdminComponent::OPTION_INTERFACE_LAYOUT => [
+        'emptyContext' => [
+            /*'tree' => [
+                'controls' => ['accordion']
+            ],
+            'contents' => [
+                'controls' => ['counters']
+            ]*/
+        ],
+        'selectedContext' => [
+            /*'contents' => [
+                'controls' => ['chart', 'accordion']
+            ]*/
         ]
     ],
 
