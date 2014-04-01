@@ -154,7 +154,7 @@ define(
         });
 
         UMI.FormControlDropUpView = Ember.View.extend({
-            classNames: ['dropdown coupled'],
+            classNames: ['dropdown', 'coupled'],
             classNameBindings: ['isOpen:open'],
             isOpen: false,
             actions: {
@@ -166,7 +166,7 @@ define(
                         $('body').on('click.umi.form.controlDropUp', function(event){
                             var targetElement = $(event.target).closest('.umi-dropup');
                             if(!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== el[0].getAttribute('id')){
-                                $('body').off('umi.form.controlDropUp.click');
+                                $('body').off('.umi.form.controlDropUp');
                                 self.set('isOpen', false);
                             }
                         });

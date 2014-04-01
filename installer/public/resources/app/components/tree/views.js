@@ -205,7 +205,7 @@ define(['App'], function(UMI){
                             $('body').on('click.umi.tree.filterMenu', function(event){
                                 var targetElement = $(event.target).closest('.umi-tree-control-filters');
                                 if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
-                                    $('body').off('umi.tree.filterMenu.click');
+                                    $('body').off('.umi.tree.filterMenu.click');
                                     self.set('isOpen', false);
                                 }
                             });

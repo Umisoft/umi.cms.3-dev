@@ -83,7 +83,7 @@ define(
                     $('body').on('click.umi.tree.contextMenu', function(event){
                         var targetElement = $(event.target).closest('.umi-tree-context-menu');
                         if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
-                            $('body').off('umi.tree.contextMenu.click');
+                            $('body').off('.umi.tree.contextMenu.click');
                             self.set('isOpen', false);
                         }
                     });
