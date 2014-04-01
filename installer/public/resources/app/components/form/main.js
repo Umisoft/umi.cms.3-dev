@@ -35,28 +35,51 @@ define(
             settingsBinding: 'controllers.component.settings',
             backups: function(){
                 var backups = {};
+                var object = this.get('model.object');
                 var settings = this.get('settings');
                 backups.displayName = settings.actions.backups.displayName;
-                var params = '?id=' + this.get('model.object.id');
+                var currentVersion = {
+                    objectId: object.get('id'),
+                    date: object.get('updated'),
+                    user: null,
+                    id: 'current',
+                    current: true,
+                    isActive: true
+                };
+                var results = [currentVersion];
+                var params = '?id=' + object.get('id');
 
                 var promiseArray = DS.PromiseArray.create({
                     promise: $.get(settings.actions.backups.source + params).then(function(data){
-                        return data.result.backups.serviceBackup;
+                        return results.concat(data.result.backups.serviceBackup);
                     })
                 });
                 backups.list = Ember.ArrayProxy.create({
                     content: promiseArray
                 });
                 return backups;
-            }.property(),
+            }.property('model.object'),
             actions: {
                 applyBackup: function(backup){
                     var self = this;
                     var object = this.get('model.object');
-                    var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
-                    $.get(self.get('settings').actions.backup.source + params).then(function(data){
-                        object.setProperties(data.result.backup);
-                    });
+                    var list = self.get('backups.list');
+                    var setCurrent = function(){
+                        list.setEach('isActive', false);
+                        var current = list.findBy('id', backup.id);
+                        Ember.set(current, 'isActive', true);
+                    };
+                    if(backup.current){
+                        object.rollback();
+                        setCurrent();
+                    } else{
+                        var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
+                        $.get(self.get('settings').actions.backup.source + params).then(function(data){
+                            object.setProperties(data.result.backup);
+                            setCurrent();
+                        });
+                    }
+
                 }
             }
         });

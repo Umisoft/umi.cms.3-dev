@@ -63,11 +63,15 @@
             {{#each backup in backups.list}}
                 <div class="row collapse">
                     <div class="columns small-6 place-button">
-                        {{#unless currentVersion}}
+                        {{#if backup.isActive}}
+                            <button class="button flat tiny square">
+                                <i class="icon icon-accept"></i>
+                            </button>
+                        {{else}}
                             <button class="button flat tiny square" {{action 'applyBackup' backup}}>
                                 <i class="icon icon-renew"></i>
                             </button>
-                        {{/unless}}
+                        {{/if}}
                         {{backup.date.date}}
                     </div>
                     <div class="columns small-6">
