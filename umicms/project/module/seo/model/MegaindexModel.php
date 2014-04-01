@@ -11,25 +11,55 @@ namespace umicms\project\module\seo\model;
 use umi\hmvc\model\IModel;
 
 /**
- * Class MegaindexModel
+ * Модель, получающая данные от API Мегаиндекса.
  */
 class MegaindexModel implements IModel
 {
-    public $password;
+    /**
+     * Логин в систему Мегаиндекс
+     * @var string $login
+     */
+    protected $login;
+    /**
+     * Пароль к логину
+     * @var string $password
+     */
+    protected $password;
+    /**
+     * Ссылка на сайт проекта
+     * @var string $password
+     */
+    protected $siteUrl;
 
+    /**
+     * Конструктор модели, требует логин и пароль к системе Мегаиндекс.
+     * @param string $login
+     * @param string $password
+     * @param $siteUrl
+     */
+    public function __construct($login, $password, $siteUrl)
+    {
+        $this->login = $login;
+        $this->password = $password;
+        $this->siteUrl = $siteUrl;
+    }
+
+    /**
+     * @param string $method
+     * @param array $params
+     * @return array
+     */
     public function queryApi($method, $params)
     {
-        return json_decode(file_get_contents(
-            'http://api.megaindex.ru/?' . http_build_query(
-                [
-                    'method' => $method,
-                    'login' => 'megaindex-api-test@megaindex.ru',
-                    'password' => 123456,
-                    'lr' => 2,
-                    'url' => 'megaindex.ru',
-                    'date' => '2012-07-20'
-                ]
-            )
-        ), true);
+        $paramsMerged = array_merge(
+            [
+                'login' => $this->login,
+                'password' => $this->password,
+                'url' => $this->siteUrl,
+            ],
+            $params
+        );
+        $paramsMerged['method'] = $method;
+        return \GuzzleHttp\get('http://api.megaindex.ru/', ['query' => $paramsMerged])->json();
     }
 }

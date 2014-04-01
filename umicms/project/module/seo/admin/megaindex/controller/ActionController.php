@@ -8,7 +8,9 @@
  */
 namespace umicms\project\module\seo\admin\megaindex\controller;
 
+use umicms\exception\InvalidArgumentException;
 use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\seo\model\MegaindexModel;
 
 /**
@@ -22,11 +24,23 @@ class ActionController extends BaseRestActionController
     private $model;
 
     /**
-     * @param MegaindexModel $model
+     * {@inheritdoc}
      */
-    public function __construct(MegaindexModel $model)
+    public function __construct()
     {
-        $this->model = $model;
+        /** @var $component AdminComponent */
+        $component = $this->getComponent();
+        $options = $component->getSettings()['options'];
+        if (!isset($options['login'])) {
+            throw new InvalidArgumentException($this->translate("Option {option} is required", ['option'=>'login']));
+        }
+        if (!isset($options['password'])) {
+            throw new InvalidArgumentException($this->translate("Option {option} is required", ['option'=>'password']));
+        }
+        if (!isset($options['siteUrl'])) {
+            throw new InvalidArgumentException($this->translate("Option {option} is required", ['option'=>'siteUrl']));
+        }
+        $this->model = new MegaindexModel($options['login'], $options['password'], $options['siteUrl']);
     }
 
     /**
@@ -34,7 +48,7 @@ class ActionController extends BaseRestActionController
      */
     public function getQueryActions()
     {
-        return ['method'];
+        return ['siteAnalyse', 'scanYandex'];
     }
 
     /**
@@ -51,9 +65,17 @@ class ActionController extends BaseRestActionController
      */
     public function actionMethod()
     {
-        $method = $this->getRequiredQueryVar('method');
         $vars = $this->getAllQueryVars();
-        unset($vars['method']);
-        return $this->model->queryApi($method, $vars);
+        return $this->model->queryApi($this->getRequiredQueryVar('method'), $vars);
+    }
+
+    public function actionSiteAnalyse()
+    {
+        return $this->model->queryApi('siteAnalyse', []);
+    }
+
+    public function actionScanYandex()
+    {
+        return $this->model->queryApi('scan_yandex_position', []);
     }
 }
