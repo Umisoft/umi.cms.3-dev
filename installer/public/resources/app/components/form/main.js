@@ -30,7 +30,35 @@ define(
         UMI.FormControlController = Ember.ObjectController.extend({
             hasFieldset: function(){
                 return this.get('content.viewSettings.form.elements').isAny('type', 'fieldset');
-            }.property()
+            }.property(),
+            needs: ['component'],
+            settingsBinding: 'controllers.component.settings',
+            backups: function(){
+                var backups = {};
+                var settings = this.get('settings');
+                backups.displayName = settings.actions.backups.displayName;
+                var params = '?id=' + this.get('model.object.id');
+
+                var promiseArray = DS.PromiseArray.create({
+                    promise: $.get(settings.actions.backups.source + params).then(function(data){
+                        return data.result.backups.serviceBackup;
+                    })
+                });
+                backups.list = Ember.ArrayProxy.create({
+                    content: promiseArray
+                });
+                return backups;
+            }.property(),
+            actions: {
+                applyBackup: function(backup){
+                    var self = this;
+                    var object = this.get('model.object');
+                    var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
+                    $.get(self.get('settings').actions.backup.source + params).then(function(data){
+                        object.setProperties(data.result.backup);
+                    });
+                }
+            }
         });
 
         UMI.FormElementController = Ember.ObjectController.extend({
@@ -121,6 +149,28 @@ define(
                         handler: button[0]
                     };
                     this.get('controller').send('save', params);
+                }
+            }
+        });
+
+        UMI.FormControlDropUpView = Ember.View.extend({
+            classNames: ['dropdown coupled'],
+            classNameBindings: ['isOpen:open'],
+            isOpen: false,
+            actions: {
+                open: function(){
+                    var self = this;
+                    var el = this.$();
+                    this.toggleProperty('isOpen');
+                    if(this.get('isOpen')){
+                        $('body').on('click.umi.form.controlDropUp', function(event){
+                            var targetElement = $(event.target).closest('.umi-dropup');
+                            if(!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== el[0].getAttribute('id')){
+                                $('body').off('umi.form.controlDropUp.click');
+                                self.set('isOpen', false);
+                            }
+                        });
+                    }
                 }
             }
         });

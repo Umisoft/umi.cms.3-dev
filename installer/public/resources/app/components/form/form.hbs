@@ -46,9 +46,40 @@
         {{/view}}
     </li>
     <li>
-        <span class="button white dropup">Сменить тип</span>
-        <div class="umi-dropup">
-        </div>
+        <span class="button white">
+            <i class="icon icon-user"></i>
+        </span>
     </li>
+    {{#view "formControlDropUp" tagName="li"}}
+        <span class="button white" {{action "open" target="view"}}>
+            <i class="icon icon-6"></i>
+        </span>
+        <div class="f-dropdown umi-dropup dropdown-rows">
+            <div class="row collapse">
+                <div class="columns small-12 place-button">
+                    <strong>{{backups.displayName}}</strong>
+                </div>
+            </div>
+            {{#each backup in backups.list.content}}
+                <div class="row collapse">
+                    <div class="columns small-6 place-button">
+                        {{#unless currentVersion}}
+                            <button class="button flat tiny square" {{action 'applyBackup' backup}}>
+                                <i class="icon icon-renew"></i>
+                            </button>
+                        {{/unless}}
+                        {{backup.date.date}}
+                    </div>
+                    <div class="columns small-6">
+                        {{#if backup.user}}
+                            {{backup.user}}
+                        {{else}}
+                            Пустое значение
+                        {{/if}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{/view}}
     <li><span class="button white">Удалить</span></li>
 </ul>
