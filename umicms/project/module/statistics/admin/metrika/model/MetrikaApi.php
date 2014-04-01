@@ -105,8 +105,7 @@ class MetrikaApi implements IConfigIOAware, IPublicApi
     private function apiRequest($resource, array $params = [])
     {
         $query = array_merge(['oauth_token' => $this->oauthToken], $params);
-        $result = file_get_contents('http://api-metrika.yandex.ru/' . $resource . '.json?' . http_build_query($query));
-        return json_decode($result, true);
+        return \GuzzleHttp\get('http://api-metrika.yandex.ru/' . $resource . '.json', ['query' => $query])->json();
     }
 
     /**
