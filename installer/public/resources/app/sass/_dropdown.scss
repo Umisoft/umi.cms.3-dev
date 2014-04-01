@@ -9,6 +9,8 @@
     transition: all 0.2s linear;
     margin-top: 10px;
     left: 0;
+    color: #44474d;
+    font-size: rem-calc(13);
     &.right{
         right: 0;
     }
@@ -105,6 +107,84 @@ $dropup-button-pip-top-med: -$button-pip-med;
     &.white{
         &:before{
             border-bottom-color: $dropdown-button-pip-color-alt;
+        }
+    }
+}
+
+.dropdown.coupled{
+    > .button{
+        position: relative;
+        &:before{
+            display: none;
+            content: "";
+            position: absolute;
+            left: -4px;
+            top: 0;
+            width: 3px;
+            height: 32px;
+            background: url(img/shadows/toLeftShadow.png);
+        }
+        &:after{
+            display: none;
+            content: "";
+            left: 0;
+            top: -2px;
+            position: absolute;
+            width: 100%;
+            height: 7px;
+            background: #fcfcfc;
+            z-index: 110;
+        }
+    }
+    &.open{
+        > .button{
+            &:before, &:after{
+                display: block;
+            }
+        }
+    }
+    .f-dropdown{
+        border: none;
+        box-shadow: 0 0 5px 1px #727E8F;
+        border-bottom: 1px solid #C7C7C7;
+        &:before, &:after{
+            display: none;
+        }
+    }
+}
+
+.umi-form-control-buttons{
+    .dropdown.open{
+        + li{
+            .button:after{
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 3px;
+                height: 32px;
+                background: url(img/shadows/toRightShadow.png);
+            }
+        }
+    }
+    .dropdown-rows{
+        > .row{
+            padding: rem-calc(8) rem-calc(8);
+            &:nth-child(even){
+                background: #EEF7FC;
+            }
+            .button.tiny{
+                margin-top: -2px;
+                margin-bottom: -2px;
+            }
+        }
+    }
+    .columns.place-button{// Вот это не круто
+        padding-left: rem-calc(25);
+        position: relative;
+        .button{
+            position: absolute;
+            left: 0;
         }
     }
 }
