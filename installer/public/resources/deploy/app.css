@@ -6187,11 +6187,54 @@ select {
   box-shadow: 0 0 6px 1px #D1D1D1; }
   .umi-form-control-buttons > li > .button {
     margin-bottom: 0;
-    border-color: rgba(141, 141, 141, 0.5);
-    border-left-width: 1px;
+    border-left-width: 0;
     border-right: 0; }
     .umi-form-control-buttons > li > .button:last-child {
       border-right-width: 1px; }
+  .umi-form-control-buttons .f-dropdown {
+    min-width: 340px;
+    right: 0;
+    left: auto; }
+  .umi-form-control-buttons .dropdown.open + li .button:before {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 32px;
+    background: url(img/shadows/toRightShadow.png); }
+  .umi-form-control-buttons .dropdown-rows .row {
+    padding: 0.5rem 0.5rem; }
+    .umi-form-control-buttons .dropdown-rows .row .button.tiny {
+      margin-top: -2px;
+      margin-bottom: -2px; }
+  .umi-form-control-buttons .columns.place-button {
+    padding-left: 1.75rem;
+    position: relative; }
+    .umi-form-control-buttons .columns.place-button .button {
+      position: absolute;
+      left: 0; }
+  .umi-form-control-buttons .s-scroll-wrap {
+    max-height: 200px;
+    height: auto;
+    border: 1px solid #D1D1D1;
+    margin: 0 8px 8px; }
+    .umi-form-control-buttons .s-scroll-wrap .row:nth-child(even) {
+      background: #EEF7FC; }
+    .umi-form-control-buttons .s-scroll-wrap .row:hover {
+      cursor: pointer;
+      background: #C5E2F7; }
+  .umi-form-control-buttons .icons-group {
+    margin-right: 0.625rem; }
+    .umi-form-control-buttons .icons-group .icon {
+      margin-left: 0.3125rem; }
+      .umi-form-control-buttons .icons-group .icon:first-child {
+        margin-left: 0; }
+  .umi-form-control-buttons .checkbox-group .umi-checkbox-custom {
+    margin-left: 0.3125rem; }
+    .umi-form-control-buttons .checkbox-group .umi-checkbox-custom:first-child {
+      margin-left: 0; }
 
 .umi-input-wrapper-date {
   position: relative; }
@@ -6518,51 +6561,6 @@ select {
   box-shadow: 0 0 5px 1px #AFB4BB; }
   .dropdown.coupled .f-dropdown:before, .dropdown.coupled .f-dropdown:after {
     display: none; }
-
-.umi-form-control-buttons .f-dropdown {
-  min-width: 340px;
-  right: 0;
-  left: auto; }
-.umi-form-control-buttons .dropdown.open + li .button:before {
-  display: block;
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 3px;
-  height: 32px;
-  background: url(img/shadows/toRightShadow.png); }
-.umi-form-control-buttons .dropdown-rows .row {
-  padding: 0.5rem 0.5rem; }
-  .umi-form-control-buttons .dropdown-rows .row .button.tiny {
-    margin-top: -2px;
-    margin-bottom: -2px; }
-.umi-form-control-buttons .columns.place-button {
-  padding-left: 1.75rem;
-  position: relative; }
-  .umi-form-control-buttons .columns.place-button .button {
-    position: absolute;
-    left: 0; }
-.umi-form-control-buttons .s-scroll-wrap {
-  max-height: 200px;
-  height: auto;
-  border: 1px solid #D1D1D1;
-  margin: 0 8px 8px; }
-  .umi-form-control-buttons .s-scroll-wrap .row:nth-child(even) {
-    background: #EEF7FC; }
-  .umi-form-control-buttons .s-scroll-wrap .row:hover {
-    cursor: pointer;
-    background: #C5E2F7; }
-.umi-form-control-buttons .icons-group {
-  margin-right: 0.625rem; }
-  .umi-form-control-buttons .icons-group .icon {
-    margin-left: 0.3125rem; }
-    .umi-form-control-buttons .icons-group .icon:first-child {
-      margin-left: 0; }
-.umi-form-control-buttons .checkbox-group .umi-checkbox-custom {
-  margin-left: 0.3125rem; }
-  .umi-form-control-buttons .checkbox-group .umi-checkbox-custom:first-child {
-    margin-left: 0; }
 
 ::-webkit-input-placeholder {
   /* WebKit browsers */
