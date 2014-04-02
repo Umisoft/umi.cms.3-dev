@@ -2,7 +2,7 @@ define(
     [
         'App',
         'text!./form.hbs',
-        './mixin',
+        './mixins',
         './elements/input/main',
         './elements/checkbox/main',
         './elements/textarea/main',
