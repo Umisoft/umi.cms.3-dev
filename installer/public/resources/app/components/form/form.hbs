@@ -63,14 +63,14 @@
             <div class="s-scroll-wrap">
                 <div>
                     {{#each backup in backups.list}}
-                        <div class="row collapse">
+                        <div class="row collapse" {{action 'applyBackup' backup}}>
                             <div class="columns small-6 place-button">
                                 {{#if backup.isActive}}
                                     <button class="button flat tiny square">
                                         <i class="icon icon-accept"></i>
                                     </button>
                                 {{else}}
-                                    <button class="button flat tiny square" {{action 'applyBackup' backup}}>
+                                    <button class="button flat tiny square">
                                         <i class="icon icon-renew"></i>
                                     </button>
                                 {{/if}}

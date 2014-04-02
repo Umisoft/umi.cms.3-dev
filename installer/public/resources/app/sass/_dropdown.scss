@@ -189,9 +189,13 @@ $dropup-button-pip-top-med: -$button-pip-med;
     .s-scroll-wrap{
         max-height: 200px;
         height: auto;
-        border: 1px solid #D3D5D6;
-        border-left: none;
-        border-right: none;
-        margin-bottom: 12px;
+        border: 1px solid #D1D1D1;
+        margin:0 2px 3px;
+        .row{
+            &:hover{
+                cursor: pointer;
+                background: #C5E2F7;
+            }
+        }
     }
 }

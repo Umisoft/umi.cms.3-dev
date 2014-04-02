@@ -61,6 +61,9 @@ define(
             }.property('model.object'),
             actions: {
                 applyBackup: function(backup){
+                    if(backup.isActive){
+                        return;
+                    }
                     var self = this;
                     var object = this.get('model.object');
                     var list = self.get('backups.list');
