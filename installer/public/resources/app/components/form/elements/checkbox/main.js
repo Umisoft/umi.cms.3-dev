@@ -10,7 +10,12 @@ define(['App'], function(UMI){
             }.property(),
             actions: {
                 change: function(){
-                    this.$().children('input')[0].checked = this.toggleProperty('checked');
+                    var value = this.toggleProperty('checked');
+                    // Bugfix. В выпадающем списке в котором есть iScroll чекбокс не изменяет свое состояние.
+                    var el = this.$().children('input')[0];
+                    setTimeout(function(){
+                        el.checked = value;
+                    }, 0);
                 }
             }
         });
