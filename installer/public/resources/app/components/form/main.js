@@ -59,6 +59,131 @@ define(
                 });
                 return backups;
             }.property('model.object'),
+            access: function(){
+                var globalAllow = [
+                    {
+                        "name": "create",
+                        "allow": true
+                    },
+                    {
+                        "name": "read",
+                        "allow": true
+                    },
+                    {
+                        "name": "update",
+                        "allow": false
+                    },
+                    {
+                        "name": "delete",
+                        "allow": false
+                    }
+                ];
+                var AccessObject = Ember.Object.extend({
+                    displayName: 'Права доступа',
+                    action: {
+                        displayName: 'Добавить пользователя'
+                    },
+                    actions: [
+                        {
+                            "name": "create",
+                            "displayName": "Добавление"
+                        },
+                        {
+                            "name": "read",
+                            "displayName": "Чтение"
+                        },
+                        {
+                            "name": "update",
+                            "displayName": "Редактирование"
+                        },
+                        {
+                            "name": "delete",
+                            "displayName": "Удаление"
+                        }
+                    ],
+                    global: {
+                        "displayName": "Все пользователи",
+                        "actions": [
+                            {
+                                "name": "create",
+                                "allow": true
+                            },
+                            {
+                                "name": "read",
+                                "allow": true
+                            },
+                            {
+                                "name": "update",
+                                "allow": false
+                            },
+                            {
+                                "name": "delete",
+                                "allow": false
+                            }
+                        ]
+                    },
+                    users: [
+                        {
+                            "id": 1,
+                            "displayName": "Супервайзер",
+                            "actions": [
+                                {
+                                    "name": "create",
+                                    "allow": true
+                                },
+                                {
+                                    "name": "read",
+                                    "allow": true
+                                },
+                                {
+                                    "name": "update",
+                                    "allow": true
+                                },
+                                {
+                                    "name": "delete",
+                                    "allow": true
+                                }
+                            ]
+                        },
+                        {
+                            "id": 2,
+                            "displayName": "Администратор",
+                            "actions": [
+                                {
+                                    "name": "create",
+                                    "allow": true
+                                },
+                                {
+                                    "name": "read",
+                                    "allow": true
+                                },
+                                {
+                                    "name": "update",
+                                    "allow": false
+                                },
+                                {
+                                    "name": "delete",
+                                    "allow": false
+                                }
+                            ]
+                        }
+                    ],
+                    usersAllow: function(){// Жесть!
+                        var users = this.get('users');
+                        var global = this.get('global');
+                        global.actions.forEach(function(action){
+                            var oldAllow = globalAllow.findBy('name', action.name);
+                            if(action.allow !== oldAllow.allow){
+                                oldAllow.allow = action.allow;
+                                users.forEach(function(user){
+                                    Ember.set(user.actions.findBy('name', action.name), 'allow', action.allow);
+                                });
+                            }
+                        });
+                    }.observes('global.actions.@each.allow')
+                });
+                return AccessObject.create({});
+            }.property('model.object'),
             actions: {
                 applyBackup: function(backup){
                     if(backup.isActive){
@@ -82,7 +207,6 @@ define(
                             setCurrent();
                         });
                     }
-
                 }
             }
         });
@@ -183,23 +307,36 @@ define(
             classNames: ['dropdown', 'coupled'],
             classNameBindings: ['isOpen:open'],
             isOpen: false,
+            iScroll: null,
             actions: {
                 open: function(){
                     var self = this;
                     var el = this.$();
                     this.toggleProperty('isOpen');
                     if(this.get('isOpen')){
-                        var dropdownScroll = new IScroll(el.find('.s-scroll-wrap')[0], UMI.Utils.iScroll.defaultSetting);
-                        $('body').on('click.umi.form.controlDropUp', function(event){
-                            var targetElement = $(event.target).closest('.umi-dropup');
-                            if(!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== el[0].getAttribute('id')){
-                                dropdownScroll.destroy();
-                                $('body').off('.umi.form.controlDropUp');
-                                self.set('isOpen', false);
+                        setTimeout(function(){
+                            $('body').on('click.umi.form.controlDropUp', function(event){
+                                var targetElement = $(event.target).closest('.umi-dropup');
+                                if(!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== el[0].getAttribute('id')){
+                                    $('body').off('.umi.form.controlDropUp');
+                                    self.set('isOpen', false);
+                                }
+                            });
+                            if(self.get('iScroll')){
+                                self.get('iScroll').refresh();
                             }
-                        });
+                        }, 0);
                     }
                 }
+            },
+            didInsertElement: function(){
+                var el = this.$();
+                var scroll;
+                var scrollElement = el.find('.s-scroll-wrap');
+                if(scrollElement.length){
+                    scroll = new IScroll(scrollElement[0], UMI.Utils.iScroll.defaultSetting);
+                }
+                this.set('iScroll', scroll);
             }
         });
     });
