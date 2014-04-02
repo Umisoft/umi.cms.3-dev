@@ -207,6 +207,9 @@ define(
                             setCurrent();
                         });
                     }
+                },
+                toggleProperty: function(property){
+                    this.get('model.object').toggleProperty(property);
                 }
             }
         });

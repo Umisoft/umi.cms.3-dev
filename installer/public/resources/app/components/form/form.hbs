@@ -45,6 +45,15 @@
             {{/if}}
         {{/view}}
     </li>
+    <li>
+        <span class="button white square" {{action 'toggleProperty' 'active'}}>
+            {{#if model.object.active}}
+                <i class="icon icon-pause"></i>
+            {{else}}
+                <i class="icon icon-pause white"></i>
+            {{/if}}
+        </span>
+    </li>
     <!-- Бэкапы -->
     {{#view "formControlDropUp" tagName="li"}}
         <span class="button white square" {{action "open" target="view"}}>

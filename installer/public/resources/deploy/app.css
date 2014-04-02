@@ -5881,7 +5881,7 @@ body {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  padding: 0.25rem 0.125rem 0.4375rem 0.4375rem;
+  padding: 0.25rem 0.4375rem 0.4375rem 0.4375rem;
   border-left: 1px solid #E3E4E5; }
 
 .umi-table-filter-div-left {
