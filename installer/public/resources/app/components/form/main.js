@@ -186,9 +186,11 @@ define(
                     var el = this.$();
                     this.toggleProperty('isOpen');
                     if(this.get('isOpen')){
+                        var dropdownScroll = new IScroll(el.find('.s-scroll-wrap')[0], UMI.Utils.iScroll.defaultSetting);
                         $('body').on('click.umi.form.controlDropUp', function(event){
                             var targetElement = $(event.target).closest('.umi-dropup');
                             if(!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== el[0].getAttribute('id')){
+                                dropdownScroll.destroy();
                                 $('body').off('.umi.form.controlDropUp');
                                 self.set('isOpen', false);
                             }

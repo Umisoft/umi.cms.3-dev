@@ -60,29 +60,33 @@
                     <strong>{{backups.displayName}}</strong>
                 </div>
             </div>
-            {{#each backup in backups.list}}
-                <div class="row collapse">
-                    <div class="columns small-6 place-button">
-                        {{#if backup.isActive}}
-                            <button class="button flat tiny square">
-                                <i class="icon icon-accept"></i>
-                            </button>
-                        {{else}}
-                            <button class="button flat tiny square" {{action 'applyBackup' backup}}>
-                                <i class="icon icon-renew"></i>
-                            </button>
-                        {{/if}}
-                        {{backup.date.date}}
-                    </div>
-                    <div class="columns small-6">
-                        {{#if backup.user}}
-                            {{backup.user}}
-                        {{else}}
-                            Пустое значение
-                        {{/if}}
-                    </div>
+            <div class="s-scroll-wrap">
+                <div>
+                    {{#each backup in backups.list}}
+                        <div class="row collapse">
+                            <div class="columns small-6 place-button">
+                                {{#if backup.isActive}}
+                                    <button class="button flat tiny square">
+                                        <i class="icon icon-accept"></i>
+                                    </button>
+                                {{else}}
+                                    <button class="button flat tiny square" {{action 'applyBackup' backup}}>
+                                        <i class="icon icon-renew"></i>
+                                    </button>
+                                {{/if}}
+                                {{backup.date.date}}
+                            </div>
+                            <div class="columns small-6">
+                                {{#if backup.user}}
+                                    {{backup.user}}
+                                {{else}}
+                                    Пустое значение
+                                {{/if}}
+                            </div>
+                        </div>
+                    {{/each}}
                 </div>
-            {{/each}}
+            </div>
         </div>
     {{/view}}
     <li><span class="button white">Удалить</span></li>

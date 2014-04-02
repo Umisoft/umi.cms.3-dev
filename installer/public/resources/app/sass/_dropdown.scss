@@ -145,8 +145,7 @@ $dropup-button-pip-top-med: -$button-pip-med;
     }
     .f-dropdown{
         border: none;
-        box-shadow: 0 0 5px 1px #727E8F;
-        border-bottom: 1px solid #C7C7C7;
+        box-shadow: 0 0 5px 1px #AFB4BB;
         &:before, &:after{
             display: none;
         }
@@ -168,7 +167,7 @@ $dropup-button-pip-top-med: -$button-pip-med;
         }
     }
     .dropdown-rows{
-        > .row{
+         .row{
             padding: rem-calc(8) rem-calc(8);
             &:nth-child(even){
                 background: #EEF7FC;
@@ -186,5 +185,13 @@ $dropup-button-pip-top-med: -$button-pip-med;
             position: absolute;
             left: 0;
         }
+    }
+    .s-scroll-wrap{
+        max-height: 200px;
+        height: auto;
+        border: 1px solid #D3D5D6;
+        border-left: none;
+        border-right: none;
+        margin-bottom: 12px;
     }
 }
