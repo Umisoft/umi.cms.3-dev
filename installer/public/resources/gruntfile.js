@@ -8,7 +8,7 @@ module.exports = function(grunt){
         watch: {
             sass: {
                 files: ['app/sass/**/*.scss', 'app/foundationJs/**/*.js', 'app/components/fileManager/elFinder/**/*.*'],
-                tasks: ['sass','grunticon', 'concat', 'autoprefixer']
+                tasks: ['sass', 'concat', 'autoprefixer']
             }
         },
 
