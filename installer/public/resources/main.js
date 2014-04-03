@@ -11,13 +11,13 @@ require.config({
         Handlebars: 'libs/handlebars/handlebars',
         Ember: 'libs/ember/ember',
         DS: 'libs/ember-data/ember-data',
-        Foundation: 'deploy/foundation',
+        Foundation: 'build/js/foundation',
 
         iscroll: 'libs/iscroll-probe-5.1.1',
         ckEditor: 'libs/ckeditor/ckeditor',
         datepicker: 'libs/datepicker',
         moment: 'libs/momentjs/min/moment-with-langs.min',
-        elFinder: 'deploy/elFinder',
+        elFinder: 'build/js/elFinder',
         chartJs: 'libs/chartjs/Chart'
 
         //jQueryUI: 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min' //TODO Сейчас подключается с файлами elFinder. Нужно перепелить.
@@ -38,7 +38,7 @@ require.config({
     },
 
     packages: [
-        //Подключаем Partials. �?мена следуют по алфавиту, как и в структуре папок
+        //Подключаем Partials. �?мена следуют по алфавиту, как и в структуре папок
         {name: 'accordion',         location: "app/components/accordion"},
         {name: 'chartControl',      location: "app/components/chartControl"},
         {name: 'dialog',            location: "app/components/dialog"},

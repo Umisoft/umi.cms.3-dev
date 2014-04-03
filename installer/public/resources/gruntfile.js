@@ -8,7 +8,7 @@ module.exports = function(grunt){
         watch: {
             sass: {
                 files: ['app/sass/**/*.scss', 'app/foundationJs/**/*.js', 'app/components/fileManager/elFinder/**/*.*'],
-                tasks: ['sass', 'concat', 'autoprefixer']
+                tasks: ['sass','grunticon', 'concat', 'autoprefixer']
             }
         },
 
@@ -18,17 +18,39 @@ module.exports = function(grunt){
                     includePaths: ['libs/foundation/scss/']
                 },
                 files: {
-                    'deploy/app.css': 'app/sass/app.scss'
+                    'build/css/app.css': 'app/sass/app.scss'
                 }
             }
         },
 
-        autoprefixer: {
-            options: {
-                browsers: ['last 2 version', 'ie 9', 'opera 12']
+        // Сохраняем svg в css
+        grunticon: {
+            myIcons: {
+                files: [{
+                    expand: true,
+                    cwd: 'build/svg/icons/',
+                    src: ['*.svg'],
+                    dest: "build/css"
+                }],
+                options: {
+                    datasvgcss: 'icons.data.svg.css',
+                    cssprefix: ".icon-",
+                    defaultWidth: "20px",
+                    defaultHeight: "20px"
+                }
             },
-            dist: {
-                src: 'deploy/app.css'
+
+            dockIcons: {
+                files: [{
+                    expand: true,
+                    cwd: 'build/svg/dockIcons/',
+                    src: ['*.svg'],
+                    dest: "build/css"
+                }],
+                options: {
+                    datasvgcss: 'icons.dock.svg.css',
+                    cssprefix: ".dock-icon-"
+                }
             }
         },
 
@@ -41,7 +63,7 @@ module.exports = function(grunt){
                     'app/foundationJs/foundation.js',
                     'app/foundationJs/components/foundation.offcanvas.js'
                 ],
-                dest: 'deploy/foundation.js'
+                dest: 'build/js/foundation.js'
             },
             elFinder: {
                 options: {
@@ -78,24 +100,32 @@ module.exports = function(grunt){
                     'app/components/fileManager/elFinder/js/commands/*.js',
                     'app/components/fileManager/elFinder/js/i18n/elfinder.ru.js'
                 ],
-                dest: 'deploy/elFinder.js'
+                dest: 'build/js/elFinder.js'
             },
             //Объединяем стили с иконками
             css: {
                 src: [
-                    'deploy/app.css',
-                    'deploy/icons.data.svg.css',
-                    'deploy/icons.dock.svg.css',
-                    'app/components/fileManager/elFinder/**/*.css'
+                    'build/css/app.css',
+                    'build/css/icons.data.svg.css',
+                    'build/css/icons.dock.svg.css'
                 ],
-                dest: 'deploy/app.css'
+                dest: 'build/css/styles.css'
+            }
+        },
+
+        autoprefixer: {
+            options: {
+                browsers: ['last 2 version', 'ie 9', 'opera 12']
+            },
+            dist: {
+                src: 'build/css/styles.css'
             }
         },
 
         csso: {
             compress: {
                 files: {
-                    'deploy/app.css': ['deploy/app.css']
+                    'deploy/styles.css': ['build/css/styles.css']
                 }
             }
         },
@@ -109,40 +139,6 @@ module.exports = function(grunt){
                 options: {
                     paths: 'app',
                     outdir: 'docs/frontend'
-                }
-            }
-        },
-        // Сохраняем svg в css
-        grunticon: {
-            myIcons: {
-                files: [{
-                    expand: true,
-                    cwd: 'deploy/img/svg',
-                    src: ['*.svg'],
-                    dest: "deploy"
-                }],
-                options: {
-                    //                      datasvgcss: "icons.css",
-                    cssprefix: ".icon-",
-                    defaultWidth: "20px",
-                    defaultHeight: "20px"
-                    //                      previewTemplate: '<script>{{{loaderText}}} grunticon(["icons.css"]);</script>{{#each icons}}{{#with this}}<pre><code>{{prefix}}{{name}}:</code></pre><div class="{{prefixClass}}{{name}}" style="width: {{width}}px; height: {{height}}px;" ></div><hr/>{{/with}}{{/each}}'
-                }
-            },
-
-            dockIcons: {
-                files: [{
-                    expand: true,
-                    datasvgcss: 'icons.data.svg.css',
-                    cwd: 'deploy/img/svg',
-                    src: ['*.svg'],
-                    dest: "deploy"
-                }],
-                options: {
-                    datasvgcss: 'icons.dock.svg.css',
-                    cssprefix: ".dock-icon-",
-                    defaultWidth: "20px",
-                    defaultHeight: "20px"
                 }
             }
         }
@@ -160,6 +156,6 @@ module.exports = function(grunt){
 
     //регистрируем задачу
     grunt.registerTask('default', ['watch']); //задача по умолчанию, просто grunt
-    grunt.registerTask('deploy', ['grunticon', 'sass', 'autoprefixer', 'csso', 'concat']);
+    grunt.registerTask('deploy', ['grunticon', 'sass', 'concat', 'autoprefixer', 'csso']);
     grunt.registerTask("docs", ["yuidoc"]);
 };

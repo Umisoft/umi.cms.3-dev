@@ -31,13 +31,13 @@ input[type="checkbox"] + label{
     height: 20px;
     display: inline-block;
     line-height: 20px;
-    background: url(img/svg/checkbox.svg) left top no-repeat;
+    background: url(../img/svg/checkbox.svg) left top no-repeat;
     vertical-align: middle;
     cursor:pointer;
 }
 
 input[type="checkbox"]:checked + label{
-    background: url(img/svg/checkbox-checked.svg) left top no-repeat;
+    background: url(../img/svg/checkbox-checked.svg) left top no-repeat;
 }
 
 label{

@@ -18,7 +18,7 @@
 
 .umi-blur{
     filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
-    filter: url('/resources/deploy/filters.svg#blur');
+    filter: url(../svg/elements/blur.svg#blur);
     filter: blur(4px);
 }
 
@@ -97,7 +97,7 @@
     width: calc(100% + 1px);
     left: 0;
     top: 0;
-    background: url(/resources/deploy/img/shadows/toBottomShadow.png);
+    background: url(../img/shadows/toBottomShadow.png);
 }
 
 .umi-table-control-column-list-wrapper:after{
@@ -109,5 +109,5 @@
     width: calc(100% + 1px);
     left: 0;
     bottom: 0;
-    background: url(/resources/deploy/img/shadows/toTopShadow.png);
+    background: url(../img/shadows/toTopShadow.png);
 }
