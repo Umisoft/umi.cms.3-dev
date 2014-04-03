@@ -8,7 +8,7 @@ module.exports = function(grunt){
         watch: {
             sass: {
                 files: ['app/sass/**/*.scss', 'app/foundationJs/**/*.js', 'app/components/fileManager/elFinder/**/*.*'],
-                tasks: ['sass', /*'grunticon', */'concat', 'autoprefixer']
+                tasks: ['sass', 'concat', 'autoprefixer']
             }
         },
 
@@ -34,7 +34,7 @@ module.exports = function(grunt){
 
         concat: {
             options: {
-                separator: ''
+                separator: '\n'
             },
             foundation: {
                 src: [
@@ -49,7 +49,7 @@ module.exports = function(grunt){
                 },
                 src: [
                     'app/components/fileManager/elFinder/jquery/jquery-ui-1.10.4.custom.min.js',
-
+                    // Файлы перечислены намеренно, так как необходим определеный порядок соединения файлов
                     'app/components/fileManager/elFinder/js/elFinder.js',
                     'app/components/fileManager/elFinder/js/jquery.elfinder.js',
                     'app/components/fileManager/elFinder/js/elFinder.resources.js',
@@ -85,30 +85,20 @@ module.exports = function(grunt){
                 src: [
                     'deploy/app.css',
                     'deploy/icons.data.svg.css',
+                    'deploy/icons.dock.svg.css',
                     'app/components/fileManager/elFinder/**/*.css'
                 ],
                 dest: 'deploy/app.css'
             }
         },
-        //
-        //		csso: {
-        //			compress: {
-        //				files: {
-        //					'deploy/app.css': ['deploy/app.css']
-        //				}
-        //			}
-        //		},
-        //
-        //		uglify: {
-        //			options: {
-        //				banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-        //			},
-        //			dist: {
-        //				files: {
-        //					'deploy/<%= pkg.name %>.js': ['<%= concat.dist.dest %>']
-        //				}
-        //			}
-        //		},
+
+        csso: {
+            compress: {
+                files: {
+                    'deploy/app.css': ['deploy/app.css']
+                }
+            }
+        },
 
         yuidoc: {
             compile: {
@@ -143,11 +133,13 @@ module.exports = function(grunt){
             dockIcons: {
                 files: [{
                     expand: true,
+                    datasvgcss: 'icons.data.svg.css',
                     cwd: 'deploy/img/svg',
                     src: ['*.svg'],
                     dest: "deploy"
                 }],
                 options: {
+                    datasvgcss: 'icons.dock.svg.css',
                     cssprefix: ".dock-icon-",
                     defaultWidth: "20px",
                     defaultHeight: "20px"
@@ -162,14 +154,12 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-grunticon');
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    //    grunt.loadNpmTasks('grunt-contrib-uglify');
-    //    grunt.loadNpmTasks('grunt-contrib-jshint');
-    //    grunt.loadNpmTasks('grunt-csso');
+    grunt.loadNpmTasks('grunt-csso');
     grunt.loadNpmTasks("grunt-contrib-yuidoc");
 
 
     //регистрируем задачу
     grunt.registerTask('default', ['watch']); //задача по умолчанию, просто grunt
-    //    grunt.registerTask('deploy', ['sass', 'autoprefixer', 'csso', 'concat', 'uglify']);
+    grunt.registerTask('deploy', ['grunticon', 'sass', 'autoprefixer', 'csso', 'concat']);
     grunt.registerTask("docs", ["yuidoc"]);
 };

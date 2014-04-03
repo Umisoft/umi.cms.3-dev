@@ -1,20 +1,28 @@
-.icon-bottom { background-image: url('png/bottom.png'); background-repeat: no-repeat; }
+.dock-icon-bottom { background-image: url('png/bottom.png'); background-repeat: no-repeat; }
 
-.icon-butterfly { background-image: url('png/butterfly.png'); background-repeat: no-repeat; }
+.dock-icon-butterfly { background-image: url('png/butterfly.png'); background-repeat: no-repeat; }
 
-.icon-checkbox-checked { background-image: url('png/checkbox-checked.png'); background-repeat: no-repeat; }
+.dock-icon-checkbox-checked { background-image: url('png/checkbox-checked.png'); background-repeat: no-repeat; }
 
-.icon-checkbox { background-image: url('png/checkbox.png'); background-repeat: no-repeat; }
+.dock-icon-checkbox { background-image: url('png/checkbox.png'); background-repeat: no-repeat; }
 
-.icon-icon_623 { background-image: url('png/icon_623.png'); background-repeat: no-repeat; }
+.dock-icon-icon_623 { background-image: url('png/icon_623.png'); background-repeat: no-repeat; }
 
-.icon-left { background-image: url('png/left.png'); background-repeat: no-repeat; }
+.dock-icon-left { background-image: url('png/left.png'); background-repeat: no-repeat; }
 
-.icon-mail { background-image: url('png/mail.png'); background-repeat: no-repeat; }
+.dock-icon-logout { background-image: url('png/logout.png'); background-repeat: no-repeat; }
 
-.icon-right { background-image: url('png/right.png'); background-repeat: no-repeat; }
+.dock-icon-mail { background-image: url('png/mail.png'); background-repeat: no-repeat; }
 
-.icon-top { background-image: url('png/top.png'); background-repeat: no-repeat; }
+.dock-icon-reload { background-image: url('png/reload.png'); background-repeat: no-repeat; }
 
-.icon-umi-butterfly { background-image: url('png/umi-butterfly.png'); background-repeat: no-repeat; }
+.dock-icon-right { background-image: url('png/right.png'); background-repeat: no-repeat; }
+
+.dock-icon-search { background-image: url('png/search.png'); background-repeat: no-repeat; }
+
+.dock-icon-spinner { background-image: url('png/spinner.png'); background-repeat: no-repeat; }
+
+.dock-icon-top { background-image: url('png/top.png'); background-repeat: no-repeat; }
+
+.dock-icon-umi-butterfly { background-image: url('png/umi-butterfly.png'); background-repeat: no-repeat; }
 

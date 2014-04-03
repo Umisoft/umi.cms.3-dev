@@ -791,6 +791,7 @@
     };
 
 }(jQuery, this, this.document));
+
 ;(function($, window, document, undefined){
     'use strict';
 
