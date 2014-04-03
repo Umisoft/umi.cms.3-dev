@@ -40,7 +40,7 @@ class ActionController extends BaseRestActionController
         return [];
     }
 
-    /**
+      /**
      * Возвращает список доступных сайтов
      * @return array
      */
