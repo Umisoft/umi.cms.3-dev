@@ -21,7 +21,7 @@ define(['App'], function(UMI){
                     beforeSend: function(){
                         $('.umi-counter-period').after(function(){
                             $('.umi-counter-content').remove();
-                            return '<div class="umi-counter-content umi-loader"><i class="animate animate-loader-40" style="float:left"></i><h3 style="float:left; color: #4C617D;">�?дёт загрузка данных...</h3></div>';
+                            return '<div class="umi-counter-content umi-loader"><i class="animate animate-loader-40" style="float:left"></i><h3 style="float:left; color: #4C617D;">Идёт загрузка данных...</h3></div>';
                         });
                     },
 

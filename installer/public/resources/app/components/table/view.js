@@ -22,7 +22,7 @@ define(['App'], function(UMI){
 
                         beforeSend: function(){
                             $('.umi-component').css({'position':'relative'}).append(function(){
-                                return '<div class="umi-loader" style="position: absolute; overflow: hidden; z-index: 1; padding: 30px; width: 100%; height: 100%; background: #FFFFFF;"><i class="animate animate-loader-40"></i><h3>�?дёт загрузка данных...</h3></div>';
+                                return '<div class="umi-loader" style="position: absolute; overflow: hidden; z-index: 1; padding: 30px; width: 100%; height: 100%; background: #FFFFFF;"><i class="animate animate-loader-40"></i><h3>Идёт загрузка данных...</h3></div>';
                             });
                         },
 

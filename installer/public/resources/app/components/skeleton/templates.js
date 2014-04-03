@@ -7,8 +7,8 @@ define([
     'text!./templates/actions/tree.hbs',
     'text!./templates/actions/counters.hbs',
     'text!./templates/actions/counter.hbs',
-    'text!./templates/actions/megaindexReport.hbs',
-    'text!./templates/actions/yandexWebmasterReport.hbs',
+    'text!./templates/actions/megaIndex.hbs',
+    'text!./templates/actions/yandexWebmaster.hbs',
     'text!./templates/errors/errors.hbs'
 ], function(applicationTpl, componentTpl, childrenTpl, formTpl, filesTpl, treeTpl, countersTpl, counterTpl, megaIndexTpl, yandexWebmasterTpl, errorsTpl){
     'use strict';
