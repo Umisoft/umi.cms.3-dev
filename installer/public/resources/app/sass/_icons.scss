@@ -80,13 +80,13 @@
     &.icon-pause{
         background-position: -260px 0;
     }
-    &.icon-write{
+    &.icon-write, &.icon-update{
         background-position: -280px 0;
     }
     &.icon-search{
         background-position: -300px 0;
     }
-    &.icon-add{
+    &.icon-add, &.icon-create{
         background-position: -320px 0;
     }
     &.icon-plus{
@@ -95,7 +95,7 @@
     &.icon-settings{
         background-position: -360px 0;
     }
-    &.icon-eye{
+    &.icon-eye, &.icon-read{
         background-position: -380px 0;
     }
     &.icon-window{
@@ -247,13 +247,13 @@
         &.icon-pause{
             background-position: -260px -20px;
         }
-        &.icon-write{
+        &.icon-write, &.icon-update{
             background-position: -280px -20px;
         }
         &.icon-search{
             background-position: -300px -20px;
         }
-        &.icon-add{
+        &.icon-add, &.icon-create{
             background-position: -320px -20px;
         }
         &.icon-plus{
@@ -262,7 +262,7 @@
         &.icon-settings{
             background-position: -360px -20px;
         }
-        &.icon-eye{
+        &.icon-eye, &.icon-read{
             background-position: -380px -20px;
         }
         &.icon-window{
@@ -415,13 +415,13 @@
         &.icon-pause{
             background-position: -260px -40px;
         }
-        &.icon-write{
+        &.icon-write, &.icon-update{
             background-position: -280px -40px;
         }
         &.icon-search{
             background-position: -300px -40px;
         }
-        &.icon-add{
+        &.icon-add, &.icon-create{
             background-position: -320px -40px;
         }
         &.icon-plus{
@@ -430,7 +430,7 @@
         &.icon-settings{
             background-position: -360px -40px;
         }
-        &.icon-eye{
+        &.icon-eye, &.icon-read{
             background-position: -380px -40px;
         }
         &.icon-window{

@@ -9,9 +9,9 @@
 
         <ul class="right">
             <li>
-                {{#link-to 'site' 'external' class="left-off-canvas-toggle"}}
+                <a {{action 'targetBlank' '/'}} class="left-off-canvas-toggle">
                     Открыть сайт в новом окне
-                {{/link-to}}
+                </a>
             </li>
 
             <!--<li>-->
@@ -23,9 +23,9 @@
             </li>
 
             <li class="has-form">
-                {{#link-to 'logout' class="left-off-canvas-toggle"}}
+                <span class="left-off-canvas-toggle" {{action 'logout'}}>
                     <i class="icon white icon-exit" style="margin-top: 2px;"></i>
-                {{/link-to}}
+                </span>
             </li>
         </ul>
 

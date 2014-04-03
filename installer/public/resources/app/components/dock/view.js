@@ -8,7 +8,7 @@ define(['App'], function(UMI){
         var def = {old: 0, cur: 0, def: 0, coeff: 1 };
 
         UMI.DockView = Ember.View.extend({
-            classNames: ['umi-dock'],
+            classNames: ['umi-dock', 's-unselectable'],
             didInsertElement: function(){
                 var self = this;
                 var dock = self.$().find('.dock')[0];

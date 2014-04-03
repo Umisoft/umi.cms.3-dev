@@ -3,7 +3,7 @@ define(['App'], function(UMI){
 
     return function(){
         UMI.MagellanView = Ember.View.extend({
-            classNames: ['magellan-menu', 's-full-height-before'],
+            classNames: ['magellan-menu', 's-full-height-before', 's-unselectable'],
             focusName: null,
             buttonView: Ember.View.extend({
                 tagName: 'a',
