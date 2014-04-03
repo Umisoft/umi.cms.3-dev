@@ -7,7 +7,7 @@ require.config({
         App: 'app/components/skeleton/main',
 
         Modernizr: 'libs/modernizr/modernizr',
-        jQuery: 'libs/jquery/jquery',
+        jQuery: 'libs/jquery/dist/jquery.min',
         Handlebars: 'libs/handlebars/handlebars',
         Ember: 'libs/ember/ember',
         DS: 'libs/ember-data/ember-data',
