@@ -39,7 +39,7 @@ module.exports = function(grunt){
             foundation: {
                 src: [
                     'app/foundationJs/foundation.js',
-                    'app/foundationJs/components/*.js'
+                    'app/foundationJs/components/foundation.offcanvas.js'
                 ],
                 dest: 'deploy/foundation.js'
             },
