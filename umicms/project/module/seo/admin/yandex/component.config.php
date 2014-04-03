@@ -23,26 +23,6 @@ return [
             'oauthToken' => '26ccbadbc7494266a7a0b2981a47d27d',
         ]
     ],
-    SecureAdminComponent::OPTION_INTERFACE_CONTROLS => [
-        /*'chart' => [],
-        'counters' => [],
-        'accordion' => [],*/
-    ],
-    SecureAdminComponent::OPTION_INTERFACE_LAYOUT => [
-        'emptyContext' => [
-            /*'tree' => [
-                'controls' => ['accordion']
-            ],
-            'contents' => [
-                'controls' => ['counters']
-            ]*/
-        ],
-        'selectedContext' => [
-            /*'contents' => [
-                'controls' => ['chart', 'accordion']
-            ]*/
-        ]
-    ],
     SecureAdminComponent::OPTION_CONTROLLERS => [
         SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
         SecureAdminComponent::SETTINGS_CONTROLLER => 'umicms\project\admin\api\controller\SettingsController'

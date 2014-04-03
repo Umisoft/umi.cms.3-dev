@@ -24,27 +24,6 @@ return [
             'siteUrl' => 'umi-cms.ru',
         ]
     ],
-    SecureAdminComponent::OPTION_INTERFACE_CONTROLS => [
-        /*'chart' => [],
-        'counters' => [],
-        'accordion' => [],*/
-    ],
-    SecureAdminComponent::OPTION_INTERFACE_LAYOUT => [
-        'emptyContext' => [
-            /*'tree' => [
-                'controls' => ['accordion']
-            ],
-            'contents' => [
-                'controls' => ['counters']
-            ]*/
-        ],
-        'selectedContext' => [
-            /*'contents' => [
-                'controls' => ['chart', 'accordion']
-            ]*/
-        ]
-    ],
-
     SecureAdminComponent::OPTION_CONTROLLERS => [
         SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
         SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
