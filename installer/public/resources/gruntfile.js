@@ -6,8 +6,8 @@ module.exports = function(grunt){
         pkg: grunt.file.readJSON('package.json'), //подгружаем package.json, чтобы использовать его данные
 
         watch: {
-            sass: {
-                files: ['app/sass/**/*.scss', 'app/foundationJs/**/*.js', 'app/components/fileManager/elFinder/**/*.*'],
+            scss: {
+                files: ['app/scss/**/*.scss', 'app/foundationJs/**/*.js', 'app/components/fileManager/elFinder/**/*.*'],
                 tasks: ['sass', 'concat', 'autoprefixer']
             }
         },
@@ -18,7 +18,7 @@ module.exports = function(grunt){
                     includePaths: ['libs/foundation/scss/']
                 },
                 files: {
-                    'build/css/app.css': 'app/sass/app.scss'
+                    'build/css/app.css': 'app/scss/app.scss'
                 }
             }
         },
