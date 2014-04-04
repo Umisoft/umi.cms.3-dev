@@ -2,6 +2,7 @@ define(
     [
         'App',
 
+        //Вызов partials
         'topBar',
         'dock',
         'tableControl',

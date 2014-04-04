@@ -74,7 +74,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                 var authLayout = document.querySelector('.auth-layout');
                 var maskLayout = document.querySelector('.auth-mask');
                 $(authLayout).addClass('off');
-                require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder', 'datepicker', 'moment'], function(application){
+                require(['application/main'], function(application){
                     application();
                     $(authLayout).addClass('fade-out');
                     setTimeout(function(){

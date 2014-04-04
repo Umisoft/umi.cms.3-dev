@@ -1,6 +1,11 @@
 define(
     [
         'DS',
+        'Modernizr',
+        'iscroll',
+        'ckEditor',
+        'elFinder',
+        'datepicker',
         'moment',
         'application/config',
         'application/utils',
@@ -10,7 +15,7 @@ define(
         'application/controllers',
         'application/views'
     ],
-    function(DS, moment, config, utils, templates, models, router, controller, views){
+    function(DS, Modernizr, iscroll, ckEditor, elFinder, datepicker, moment, config, utils, templates, models, router, controller, views){
         'use strict';
 
         var UMI = window.UMI = window.UMI || {};
