@@ -4,14 +4,13 @@ require.config({
     paths: {
         text: 'libs/requirejs-text/text',
 
-        App: 'app/components/skeleton/main',
+        App: 'partials/skeleton/main',
 
         Modernizr: 'libs/modernizr/modernizr',
-        jQuery: 'libs/jquery/dist/jquery.min',
+        jQuery: 'libs/jquery/dist/jquery',
         Handlebars: 'libs/handlebars/handlebars',
         Ember: 'libs/ember/ember',
         DS: 'libs/ember-data/ember-data',
-        Foundation: 'build/js/foundation',
 
         iscroll: 'libs/iscroll-probe-5.1.1',
         ckEditor: 'libs/ckeditor/ckeditor',
@@ -29,7 +28,6 @@ require.config({
         jQuery:     {exports: 'jQuery'},
         elFinder:   {exports: 'elFinder',   deps: ['jQuery']},
         Ember:      {exports: 'Ember',      deps: ['Handlebars', 'jQuery']},
-        Foundation: {exports: 'Foundation', deps: ['jQuery']},
         DS:         {exports: 'DS',         deps: ['Ember']},
         ckEditor:   {exports: 'ckEditor'},
         datepicker: {exports: 'datepicker', deps: ['jQuery']},
@@ -38,29 +36,29 @@ require.config({
     },
 
     packages: [
-        //Подключаем Partials. �?мена следуют по алфавиту, как и в структуре папок
-        {name: 'accordion',         location: "app/components/accordion"},
-        {name: 'chartControl',      location: "app/components/chartControl"},
-        {name: 'dialog',            location: "app/components/dialog"},
-        {name: 'dock',              location: "app/components/dock"},
-        {name: 'fileManager',       location: "app/components/fileManager"},
-        {name: 'form',              location: "app/components/form"},
-        {name: 'notification',      location: "app/components/notification"},
-        {name: 'popup',             location: "app/components/popup"},
-        {name: 'search',            location: "app/components/search"},
-        {name: 'megaIndex',         location: "app/components/seo/megaIndex"},
-        {name: 'yandexWebmaster',   location: "app/components/seo/yandexWebmaster"},
-        //skeleton                  app/components/skeleton
-        {name: 'table',             location: "app/components/table"},
-        {name: 'tableControl',      location: "app/components/tableControl"},
-        {name: 'topBar',            location: "app/components/topBar"},
-        {name: 'tree',              location: "app/components/tree"}
+        //Подключаем Partials. замена следуют по алфавиту, как и в структуре папок
+        {name: 'accordion',         location: "partials/accordion"},
+        {name: 'chartControl',      location: "partials/chartControl"},
+        {name: 'dialog',            location: "partials/dialog"},
+        {name: 'dock',              location: "partials/dock"},
+        {name: 'fileManager',       location: "partials/fileManager"},
+        {name: 'form',              location: "partials/form"},
+        {name: 'notification',      location: "partials/notification"},
+        {name: 'popup',             location: "partials/popup"},
+        {name: 'search',            location: "partials/search"},
+        {name: 'megaIndex',         location: "partials/seo/megaIndex"},
+        {name: 'yandexWebmaster',   location: "partials/seo/yandexWebmaster"},
+        //skeleton                  partials/skeleton
+        {name: 'table',             location: "partials/table"},
+        {name: 'tableControl',      location: "partials/tableControl"},
+        {name: 'topBar',            location: "partials/topBar"},
+        {name: 'tree',              location: "partials/tree"}
     ]
 });
 
 
 if(UmiSettings.authenticated){
-    require(['app/main', 'DS', 'Modernizr', 'Foundation', 'iscroll', 'ckEditor', 'elFinder', 'datepicker', 'moment', 'chartJs'], function(application){
+    require(['app/main', 'DS', 'Modernizr', 'iscroll', 'ckEditor', 'elFinder', 'datepicker', 'moment', 'chartJs'], function(application){
         "use strict";
         application();
     });

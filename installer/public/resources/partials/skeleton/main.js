@@ -2,11 +2,11 @@ define(
     [
         'DS',
         'Modernizr',
-        'app/components/skeleton/templates',
-        'app/components/skeleton/models',
-        'app/components/skeleton/router',
-        'app/components/skeleton/controllers',
-        'app/components/skeleton/views'
+        'partials/skeleton/templates',
+        'partials/skeleton/models',
+        'partials/skeleton/router',
+        'partials/skeleton/controllers',
+        'partials/skeleton/views'
     ],
     function(DS, Modernizr, templates, models, router, controller, views){
         'use strict';
