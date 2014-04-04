@@ -25,7 +25,7 @@ return [
     ],
     SecureAdminComponent::OPTION_CONTROLLERS => [
         SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        SecureAdminComponent::SETTINGS_CONTROLLER => 'umicms\project\admin\api\controller\SettingsController'
+        SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
     ],
     SecureAdminComponent::OPTION_ROUTES => [
         'action' => [
