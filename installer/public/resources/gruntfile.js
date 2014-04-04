@@ -7,7 +7,7 @@ module.exports = function(grunt){
 
         watch: {
             scss: {
-                files: ['app/scss/**/*.scss', 'app/foundationJs/**/*.js', 'app/components/fileManager/elFinder/**/*.*'],
+                files: ['scss/**/*.scss', 'partials/fileManager/elFinder/**/*.*'],
                 tasks: ['sass', 'concat', 'autoprefixer']
             }
         },
@@ -18,7 +18,7 @@ module.exports = function(grunt){
                     includePaths: ['libs/foundation/scss/']
                 },
                 files: {
-                    'build/css/app.css': 'app/scss/app.scss'
+                    'build/css/app.css': 'scss/app.scss'
                 }
             }
         },
@@ -58,47 +58,40 @@ module.exports = function(grunt){
             options: {
                 separator: '\n'
             },
-            foundation: {
-                src: [
-                    'app/foundationJs/foundation.js',
-                    'app/foundationJs/components/foundation.offcanvas.js'
-                ],
-                dest: 'build/js/foundation.js'
-            },
             elFinder: {
                 options: {
                     separator: ';'
                 },
                 src: [
-                    'app/components/fileManager/elFinder/jquery/jquery-ui-1.10.4.custom.min.js',
+                    'partials/fileManager/elFinder/jquery/jquery-ui-1.10.4.custom.min.js',
                     // Файлы перечислены намеренно, так как необходим определеный порядок соединения файлов
-                    'app/components/fileManager/elFinder/js/elFinder.js',
-                    'app/components/fileManager/elFinder/js/jquery.elfinder.js',
-                    'app/components/fileManager/elFinder/js/elFinder.resources.js',
-                    'app/components/fileManager/elFinder/js/elFinder.options.js',
-                    'app/components/fileManager/elFinder/js/elFinder.history.js',
-                    'app/components/fileManager/elFinder/js/elFinder.command.js',
+                    'partials/fileManager/elFinder/js/elFinder.js',
+                    'partials/fileManager/elFinder/js/jquery.elfinder.js',
+                    'partials/fileManager/elFinder/js/elFinder.resources.js',
+                    'partials/fileManager/elFinder/js/elFinder.options.js',
+                    'partials/fileManager/elFinder/js/elFinder.history.js',
+                    'partials/fileManager/elFinder/js/elFinder.command.js',
 
-                    'app/components/fileManager/elFinder/js/ui/overlay.js',
-                    'app/components/fileManager/elFinder/js/ui/workzone.js',
-                    'app/components/fileManager/elFinder/js/ui/navbar.js',
-                    'app/components/fileManager/elFinder/js/ui/dialog.js',
-                    'app/components/fileManager/elFinder/js/ui/tree.js',
-                    'app/components/fileManager/elFinder/js/ui/cwd.js',
-                    'app/components/fileManager/elFinder/js/ui/toolbar.js',
-                    'app/components/fileManager/elFinder/js/ui/button.js',
-                    'app/components/fileManager/elFinder/js/ui/uploadButton.js',
-                    'app/components/fileManager/elFinder/js/ui/viewbutton.js',
-                    'app/components/fileManager/elFinder/js/ui/searchbutton.js',
-                    'app/components/fileManager/elFinder/js/ui/sortbutton.js',
-                    'app/components/fileManager/elFinder/js/ui/panel.js',
-                    'app/components/fileManager/elFinder/js/ui/contextmenu.js',
-                    'app/components/fileManager/elFinder/js/ui/path.js',
-                    'app/components/fileManager/elFinder/js/ui/stat.js',
-                    'app/components/fileManager/elFinder/js/ui/places.js',
+                    'partials/fileManager/elFinder/js/ui/overlay.js',
+                    'partials/fileManager/elFinder/js/ui/workzone.js',
+                    'partials/fileManager/elFinder/js/ui/navbar.js',
+                    'partials/fileManager/elFinder/js/ui/dialog.js',
+                    'partials/fileManager/elFinder/js/ui/tree.js',
+                    'partials/fileManager/elFinder/js/ui/cwd.js',
+                    'partials/fileManager/elFinder/js/ui/toolbar.js',
+                    'partials/fileManager/elFinder/js/ui/button.js',
+                    'partials/fileManager/elFinder/js/ui/uploadButton.js',
+                    'partials/fileManager/elFinder/js/ui/viewbutton.js',
+                    'partials/fileManager/elFinder/js/ui/searchbutton.js',
+                    'partials/fileManager/elFinder/js/ui/sortbutton.js',
+                    'partials/fileManager/elFinder/js/ui/panel.js',
+                    'partials/fileManager/elFinder/js/ui/contextmenu.js',
+                    'partials/fileManager/elFinder/js/ui/path.js',
+                    'partials/fileManager/elFinder/js/ui/stat.js',
+                    'partials/fileManager/elFinder/js/ui/places.js',
 
-                    'app/components/fileManager/elFinder/js/commands/*.js',
-                    'app/components/fileManager/elFinder/js/i18n/elfinder.ru.js'
+                    'partials/fileManager/elFinder/js/commands/*.js',
+                    'partials/fileManager/elFinder/js/i18n/elfinder.ru.js'
                 ],
                 dest: 'build/js/elFinder.js'
             },
