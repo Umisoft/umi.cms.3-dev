@@ -111,16 +111,7 @@
 
 
         setTimeout(function(){
-            var tableControlColumnListScroll = new IScroll('.umi-table-control-column-list-wrapper', {
-                scrollX: true,
-                probeType: 3,
-                mouseWheel: true,
-                scrollbars: true,
-                bounce: false,
-                freeScroll: false,
-                keyBindings: true,
-                interactiveScrollbars: true
-            });
+            var tableControlColumnListScroll = new IScroll('.umi-table-control-column-list-wrapper', UMI.config.iScroll);
         }, 0);
     });
 </script>

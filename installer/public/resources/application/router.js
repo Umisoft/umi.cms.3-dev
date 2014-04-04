@@ -29,7 +29,7 @@ define([], function(){
         /**
          * @class ApplicationRoute
          * @extends Ember.Route
-         * @uses Utils.modelsFactory
+         * @uses modelsFactory
          */
         UMI.ApplicationRoute = Ember.Route.extend({
             /**
@@ -44,7 +44,7 @@ define([], function(){
                     var result = results.result;
                     self.controllerFor('application').set('settings', result);
                     if(result.collections){
-                        UMI.Utils.modelsFactory(result.collections);
+                        UMI.modelsFactory(result.collections);
                     }
                     if(result.modules){
                         self.controllerFor('dock').set('modules', result.modules);

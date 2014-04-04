@@ -101,7 +101,7 @@ define([], function(){
          * @method modelsFactory
          * @param array Массив обьектов
          */
-        UMI.Utils.modelsFactory = function(collections){
+        UMI.modelsFactory = function(collections){
             var i;
             var j;
             var collection;

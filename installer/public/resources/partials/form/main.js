@@ -337,7 +337,7 @@ define(
                 var scroll;
                 var scrollElement = el.find('.s-scroll-wrap');
                 if(scrollElement.length){
-                    scroll = new IScroll(scrollElement[0], UMI.Utils.iScroll.defaultSetting);
+                    scroll = new IScroll(scrollElement[0], UMI.config.iScroll);
                 }
                 this.set('iScroll', scroll);
             }

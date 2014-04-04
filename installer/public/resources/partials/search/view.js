@@ -5,7 +5,7 @@ define(['App'], function(UMI){
 
         UMI.SearchView = Ember.View.extend({
             didInsertElement: function(){
-                var searchResultScroll = new IScroll('.umi-search-result-wrapper', UMI.Utils.defaultIScroll);
+                var searchResultScroll = new IScroll('.umi-search-result-wrapper', UMI.config.iScroll);
 
                 $(".umi-search-input")
                     .mousedown(function(){

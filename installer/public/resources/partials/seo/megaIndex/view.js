@@ -11,7 +11,7 @@ define(['App'], function(UMI){
             didInsertElement: function(){
                 var that = this;
 
-                var megaIndexScroll = new IScroll('.umi-table-ajax-control-content-center', UMI.Utils.iScroll.defaultSettings);
+                var megaIndexScroll = new IScroll('.umi-table-ajax-control-content-center', UMI.config.iScroll);
 
                 //Получаем список счётчиков
                 (function getCounters(){

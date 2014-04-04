@@ -1,6 +1,7 @@
 define(
     [
         'App',
+
         'topBar',
         'dock',
         'tableControl',

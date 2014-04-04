@@ -25,7 +25,7 @@ define(['App'], function(UMI){
             classNames: ['row', 's-full-height'],
             didInsertElement: function(){
                 var scrollContainer = this.$().find('.umi-tree-wrapper')[0];
-                new IScroll(scrollContainer, UMI.Utils.iScroll.defaultSetting);
+                new IScroll(scrollContainer, UMI.config.iScroll);
                 var self = this;
 
                 var dragAndDrop = function(event, el){

@@ -47,8 +47,8 @@ define(['App'], function(UMI){
             var fileManagerRight;
 
           Ember.run.schedule('afterRender',function(){
-            fileManagerLeft = new IScroll('.elfinder-navbar', UMI.Utils.iScroll.defaultSettings);
-            fileManagerRight = new IScroll('.elfinder-cwd', UMI.Utils.iScroll.defaultSettings);
+            fileManagerLeft = new IScroll('.elfinder-navbar', UMI.config.iScroll);
+            fileManagerRight = new IScroll('.elfinder-cwd', UMI.config.iScroll);
             $(window).on('resize.umi.fileManager', function(){
                 fileManagerLeft.refresh();
                 fileManagerRight.refresh();

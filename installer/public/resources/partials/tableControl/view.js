@@ -106,7 +106,7 @@ define(['App'], function(UMI){
                 };
 
                 setColumnsSize();
-                var tableControlScroll = new IScroll('.umi-component .umi-table-control-content-center', UMI.Utils.defaultIScroll);
+                var tableControlScroll = new IScroll('.umi-component .umi-table-control-content-center', UMI.config.iScroll);
 
                     var umiTableHeader = document.querySelector('.umi-table-header');
                     var umiTableLeft = document.querySelector('.umi-table-left');

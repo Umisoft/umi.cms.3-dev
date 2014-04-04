@@ -4,7 +4,7 @@ require.config({
     paths: {
         text: 'libs/requirejs-text/text',
 
-        App: 'partials/skeleton/main',
+        App: 'application/application',
 
         Modernizr: 'libs/modernizr/modernizr',
         jQuery: 'libs/jquery/dist/jquery',
@@ -58,7 +58,7 @@ require.config({
 
 
 if(UmiSettings.authenticated){
-    require(['app/main', 'DS', 'Modernizr', 'iscroll', 'ckEditor', 'elFinder', 'datepicker', 'moment', 'chartJs'], function(application){
+    require(['application/main', 'DS', 'Modernizr', 'iscroll', 'ckEditor', 'elFinder', 'datepicker', 'moment', 'chartJs'], function(application){
         "use strict";
         application();
     });
