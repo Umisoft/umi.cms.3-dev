@@ -1,155 +1,74 @@
-<!-- Потестить на iOS - говорят, label не отрабатывает. Вариант решения - добавить пустой onclick: <label for="elementid" onclick="">Label</label> -->
+<div class="table-header">
+    <div class="table-row">
+        <div class="table-cell left-fixed">
+            <input type="checkbox" id="checkbox-id" class="s-margin-clear"/>
+            <label for="checkbox-id"></label>
+        </div>
 
-<div class="umi-table-control-header">
-    <div class="umi-table-control-header-left">
-        <table class="umi-table-header-left s-unselectable">
-            <tr class="umi-table-header-left-title">
-                <td class="umi-table-header-column-left">
-                    <div class="umi-table-title-div-left">
-                        <!--TODO Сделать динамический id для checkbox-->
-                        <input type="checkbox" id="checkbox-id" class="s-margin-clear" style="margin-top: -5px;" />
-                        <label for="checkbox-id"></label>
-                    </div>
-                </td>
-            </tr>
-            <tr class="umi-table-header-left-filter">
-                <td class="umi-table-filter-column-left">
-                    <div class="umi-table-filter-div-left"></div>
-                </td>
-            </tr>
-        </table>
+        {{#each column in content.viewSettings.columns}}
+            {{#view "tableCell" column=column}}
+                <strong>{{column.title}}</strong>
+                <div class="umi-table-column-resizer"></div>
+            {{/view}}
+        {{/each}}
+
+        <div class="table-cell right-fixed">
+            <a href="#">
+                <i class="icon icon-settings"></i>
+            </a>
+        </div>
     </div>
 
-    <div class="umi-table-control-header-center">
-        <table class="umi-table-header s-unselectable">
-            <tr class="umi-table-titles">
-                {{#each content.viewSettings.columns}}
-                    <td class="umi-table-header-column">
-                        <div class="umi-table-title-div">{{title}}</div>
-                        <div class="umi-table-column-resizer"></div>
-                    </td>
-                {{/each}}
+    <div class="table-row bg-gray">
+        <div class="table-cell left-fixed empty"></div>
 
-                <!--&lt;!&ndash; TODO Перенести в CSS. float:none - перебиваем лишний стиль от Foundation &ndash;&gt;-->
-                <!--<td class="umi-table-header-column-fixed" style="float:none; width: 100%;"></td>-->
-
-                <td class="umi-table-empty-header-column"></td>
-            </tr>
-
-            <tr class="umi-table-filters">
-                {{#each content.viewSettings.columns}}
-                    <td class="umi-table-filter-column">
-                        <div class="umi-table-filter-div">
-                            <!--<div class="umi-table-filter-button umi-table-filter-button-left"><i class="icon black icon-left-thin umi-table-pin-column"></i></div>-->
-                            <div class="umi-table-filter-input">
-                                <input type="text" class="s-margin-clear"/>
-                            </div>
-                            <div class="umi-table-filter-button umi-table-filter-button-right" {{action "sortDirection" target="view"}}><i class="icon black icon-bottom-thin umi-table-sort-column"></i></div>
-                        </div>
-                    </td>
-                {{/each}}
-
-                <!--<td class="umi-table-filter-column" style="float:none; width: 100%;">-->
-                    <!--<div class="umi-table-control-empty"></div>-->
-                <!--</td>-->
-
-                <td class="umi-table-empty-filter-column"></td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="umi-table-control-header-right">
-        <table class="umi-table-header-right s-unselectable">
-            <tr class="umi-table-header-right-title">
-                <td class="umi-table-header-column-right">
-                    <div class="umi-table-title-div-right">
-                        <a href="#"><i class="icon icon-settings"></i></a>
+        {{#each column in content.viewSettings.columns}}
+            {{#view "tableCell" column=column}}
+                <div class="table-cell-filter">
+                    <div class="button flat tiny square right">
+                        <i class="icon black icon-bottom-thin"></i>
                     </div>
-                </td>
-            </tr>
+                    <input type="text"/>
+                </div>
+                <div class="umi-table-column-resizer"></div>
+            {{/view}}
+        {{/each}}
 
-            <tr class="umi-table-header-right-filter">
-                <td class="umi-table-filter-column-right">
-                    <div class="umi-table-filter-div-right"></div>
-                </td>
-            </tr>
-        </table>
+        <div class="table-cell right-fixed empty"></div>
     </div>
 </div>
 
-
-<div class="umi-table-control-content">
-    <div class="umi-table-control-content-left">
-        <table class="umi-table-left">
-            <tbody>
-                {{#each object in content.object.children}}
-                    <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
-                        <td>
-                            <div class="umi-table-left-div">
-                                {{input type="checkbox" class="s-margin-clear" action="check" id=object.id}}
-                                <label for="{{unbound object.id}}"></label>
-                            </div>
-                        </td>
-                    </tr>
-                {{/each}}
-            </tbody>
-        </table>
+<div class="table-content-wrapper">
+    <div class="s-scroll-wrap">
+        <div class="table-content">
+            {{#each object in objects}}
+                {{#link-to 'context' 'form' object.id class="table-row table-content-row" tagName="div"}}
+                    {{#each column in content.viewSettings.columns}}
+                        {{view "tableCellContent" objectBinding="object" column=column}}
+                    {{/each}}
+                {{/link-to}}
+            {{else}}
+                Нет записей
+            {{/each}}
+        </div>
+        <!-- Отдельно добавим чекбоксы-->
+        <div class="table-column-fixed-left">
+            {{#each object in objects}}
+            <div class="table-row">
+                <div class="table-cell">
+                    <input type="checkbox" id="checkbox-id" class="s-margin-clear"/>
+                    <label for="checkbox-id"></label>
+                </div>
+            </div>
+            {{/each}}
+        </div>
     </div>
 
-    <div class="umi-table-control-content-center">
-        <table cellpadding="0" class="umi-table">
-            <tbody>
-                {{#each object in content.object.children}}
-                    {{#link-to 'context' 'form' object.id tagName="tr" class="umi-table-tr" data-object-id="{{unbound object.id}}"}}
-                        {{#each content.viewSettings.columns}}
-                            <td class="umi-table-cell-td">
-                                {{view "tableCell" objectBinding="object" metaBinding="this"}}
-                            </td>
-                        {{/each}}
-                        <td class="umi-table-empty-column"></td>
-                    {{/link-to}}
-                {{else}}
-                    <!-- TODO Допилить дизайн-->
-                    <tr>
-                        <td class="umi-table-empty-result">
-                            Нет записей
-                        </td>
-                    </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
-
-    <div class="umi-table-control-content-right">
-        <table class="umi-table-right">
-            <tbody>
-                {{#each object in content.object.children}}
-                    <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
-                        <td>
-                            <div class="umi-table-right-div">
-                                <a href="#" data-object-id="{{unbound object.id}}" {{action "removeRecord" target="view"}}><i class="icon icon-delete"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
 </div>
 
-<div class="umi-table-control-footer">
-    <!-- TODO Допилить. Инлайновые стили, т.к. не известно что здесь конкретно будет -->
-    <!--<div class="left" style="width:300px;">-->
-        <!--<a href="#" style="color:#5E667C!important;"><i class="icon icon-download"></i> Экспорт в CSV</a>&nbsp;&nbsp;&nbsp;&nbsp;-->
-        <!--<a href="#" style="color:#5E667C!important;"><i class="icon icon-upload"></i> Импорт из CSV</a>-->
-    <!--</div>-->
-
-    <div class="right" style="width:65px; line-height: 20px!important;">
+<div class="table-footer">
+    <div class="right table-pagination">
+        <span class="pagination-label">Строк на странице:</span>
         {{input type="text" value="100" class="s-margin-clear"}}
     </div>
-
-    <div class="right" style="width:150px;">Строк на странице:</div>
 </div>
-
-
-{{render "tableControlColumnSelectorPopup"}}
