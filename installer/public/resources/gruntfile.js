@@ -93,7 +93,7 @@ module.exports = function(grunt){
                     'partials/fileManager/elFinder/js/commands/*.js',
                     'partials/fileManager/elFinder/js/i18n/elfinder.ru.js'
                 ],
-                dest: 'build/js/elFinder.js'
+                dest: 'libs/elFinder.js'
             },
             //Объединяем стили с иконками
             css: {

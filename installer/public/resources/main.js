@@ -16,7 +16,7 @@ require.config({
         ckEditor: 'libs/ckeditor/ckeditor',
         datepicker: 'libs/datepicker',
         moment: 'libs/momentjs/min/moment-with-langs.min',
-        elFinder: 'build/js/elFinder',
+        elFinder: 'libs/elFinder',
         chartJs: 'libs/chartjs/Chart'
 
         //jQueryUI: 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min' //TODO Сейчас подключается с файлами elFinder. Нужно перепелить.
