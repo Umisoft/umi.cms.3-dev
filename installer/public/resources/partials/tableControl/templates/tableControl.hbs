@@ -100,16 +100,14 @@
         <table cellpadding="0" class="umi-table">
             <tbody>
                 {{#each object in content.object.children}}
-                    <tr class="umi-table-tr" data-object-id="{{unbound object.id}}">
-
+                    {{#link-to 'context' 'form' object.id tagName="tr" class="umi-table-tr" data-object-id="{{unbound object.id}}"}}
                         {{#each content.viewSettings.columns}}
                             <td class="umi-table-cell-td">
                                 {{view "tableCell" objectBinding="object" metaBinding="this"}}
                             </td>
                         {{/each}}
-
                         <td class="umi-table-empty-column"></td>
-                    </tr>
+                    {{/link-to}}
                 {{else}}
                     <!-- TODO Допилить дизайн-->
                     <tr>

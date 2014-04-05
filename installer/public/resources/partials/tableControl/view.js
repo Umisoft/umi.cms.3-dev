@@ -418,14 +418,6 @@ define(['App'], function(UMI){
                         return $that.prop("checked");
                     });
                 });
-
-                //Переход по клику в строке на форму редактирования объекта
-                var that = this;
-                $('.umi-table-sort-column').on('click.umi.tableControl', '.umi-table .umi-table-tr', function(){
-                    var objectId = $(this).data('object-id');
-                    that.get('controller').transitionToRoute('context', objectId);
-                });
-
                       //Удаление записи
 //                    //TODO После вынесения столбца с кнопками удаления в отдельную колонку, изменить селектор на .umi-table-control-content-right
 //                    $('.umi-table-control-content-right').on('click', '.icon-delete', function(){
