@@ -77,7 +77,7 @@ define([], function(){
                             UMI.reset();
                             UMI.deferReadiness();
                             maskLayout.parentNode.removeChild(maskLayout);
-                        }, 2000);
+                        }, 800);
                     });
                 },
                 targetBlank: function(url){

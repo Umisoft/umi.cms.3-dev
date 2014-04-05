@@ -2,6 +2,8 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
     "use strict";
 
     return function(){
+        window.applicationLoading = $.Deferred();
+
         var Auth = {
             TEMPLATES: {},
             forms: {},
@@ -76,12 +78,16 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                 $(authLayout).addClass('off');
                 require(['application/main'], function(application){
                     application();
-                    $(authLayout).addClass('fade-out');
-                    setTimeout(function(){
-                        authLayout.parentNode.removeChild(authLayout);
-                        maskLayout.parentNode.removeChild(maskLayout);
-                        //Auth = null; TODO: Нужно удалять приложение Auth после авторизации
-                    }, 2000);
+                    applicationLoading.then(function(){
+                        // Анимация осуществляется с помощью css transition.
+                        // Время анимации .7s
+                        $(authLayout).addClass('fade-out');
+                        setTimeout(function(){
+                            authLayout.parentNode.removeChild(authLayout);
+                            maskLayout.parentNode.removeChild(maskLayout);
+                            //Auth = null; TODO: Нужно удалять приложение Auth после авторизации
+                        }, 800);
+                    });
                 });
             },
             init: function(){
