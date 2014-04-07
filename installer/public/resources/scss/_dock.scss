@@ -203,12 +203,12 @@ $dock-components-height: 35;
                     height: 100%;
                     top: 0;
                     left: 0;
-                    background: url(../img/shadows/toRightShadow.png);
+                    background: url(img/shadows/toRightShadow.png);
                 }
                 &:after{
                     left: auto;
                     right: -3px;
-                    background: url(../img/shadows/toLeftShadow.png);
+                    background: url(img/shadows/toLeftShadow.png);
                 }
             }
         }

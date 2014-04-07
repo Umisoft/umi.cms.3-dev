@@ -8,7 +8,7 @@ module.exports = function(grunt){
         watch: {
             scss: {
                 files: ['scss/**/*.scss', 'partials/fileManager/elFinder/**/*.*'],
-                tasks: ['sass', 'concat', 'autoprefixer']
+                tasks: ['sass', 'concat', 'autoprefixer', 'copy:styles']
             }
         },
 
@@ -75,6 +75,13 @@ module.exports = function(grunt){
                 cwd: 'build/svg',
                 src: ['animation/**', 'elements/**'],
                 dest: 'deploy/svg/'
+            },
+
+            styles: {
+                expand: true,
+                cwd: 'build/css',
+                src: ['styles.css'],
+                dest: 'deploy/'
             }
         },
 
@@ -183,6 +190,6 @@ module.exports = function(grunt){
 
     //регистрируем задачу
     grunt.registerTask('default', ['watch']); //задача по умолчанию, просто grunt
-    grunt.registerTask('deploy', ['clean', 'copy', 'grunticon', 'sass', 'concat', 'autoprefixer', 'csso']);
+    grunt.registerTask('deploy', ['clean', 'copy:png', 'copy:svg', 'grunticon', 'sass', 'concat', 'autoprefixer', 'csso']);
     grunt.registerTask("docs", ["yuidoc"]);
 };
