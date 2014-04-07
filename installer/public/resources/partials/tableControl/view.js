@@ -5,11 +5,59 @@ define(['App'], function(UMI){
             templateName: 'tableControl',
             classNames: ['umi-table-control'],
             iScroll: null,
+            /**
+             * При изменении данных вызывает ресайз скрола.
+             */
+            scrollUpdate: function(){
+                var objects = this.get('controller.objects.content');
+                var iScroll = this.get('iScroll');
+                if(objects && iScroll){
+                    setTimeout(function(){
+                        objects.then(function(){
+                            iScroll.refresh();
+                        });
+                    }, 100);
+                }
+            }.observes('objects').on('didInsertElement'),
             didInsertElement: function(){
                 var tableControl = this.$();
-                var tableContent = tableControl.find('.s-scroll-wrap');
-                var scrollContent = new IScroll(tableContent[0], UMI.config.iScroll);
-                this.set('iScroll', scrollContent);
+                var self = this;
+                var objects = this.get('controller.objects.content');
+
+                // Элементы позицию которых необходимо изменять при прокрутке/ресайзе таблицы
+                var umiTableLeft = tableControl.find('.table-column-fixed-left')[0];
+                var umiTableRight = tableControl.find('.table-column-fixed-right')[0];
+                var umiTableHeader = tableControl.find('.table-header')[0];
+
+                if(objects){
+                    var tableContent = tableControl.find('.s-scroll-wrap');
+                    objects.then(function(){
+                        // Добавим таймаут для iScroll по совету из документации:
+                        //If you have a complex DOM it is sometimes smart to add a little delay from the onload event to iScroll initialization.
+                        //Executing the iScroll with a 100 or 200 milliseconds delay gives the browser that little rest that can save your ass.
+                        setTimeout(function(){
+                            var scrollContent = new IScroll(tableContent[0], UMI.config.iScroll);
+                            self.set('iScroll', scrollContent);
+                            scrollContent.on('scroll', function(){
+                                umiTableLeft.style.marginTop = this.y + 'px';
+                                umiTableRight.style.marginTop = this.y + 'px';
+                                umiTableHeader.style.marginLeft = this.x + 'px';
+                            });
+
+                            // После ресайза страницы необходимо изменить отступы у элементов  umiTableLeft, umiTableRight, umiTableHeader
+                            $(window).on('resize.umi.tableControl', function(){
+                                setTimeout(function(){
+                                    umiTableLeft.style.marginTop = scrollContent.y + 'px';
+                                    umiTableRight.style.marginTop = scrollContent.y + 'px';
+                                    umiTableHeader.style.marginLeft = scrollContent.x + 'px';
+                                }, 100);
+                            });
+                        }, 100);
+                    });
+                }
+            },
+            willDestroyElement: function(){
+                $(window).off('.umi.tableControl');
             }
         });
 
@@ -19,7 +67,25 @@ define(['App'], function(UMI){
             computedStyle: function(){
                 var columnWidth = this.get('column').width || 200;
                 return 'width: ' + columnWidth + 'px;';
-            }.property('column')
+            }.property('column'),
+            actions: {
+                resizeColumn: function(){
+                    var column = this.get('column');
+                    var columnEl = this.$();
+                    var handler = columnEl.children('.table-column-resizer');
+                    var columnOfset = columnEl.offset().left;
+                    $('body').on('mousemove.umi.tableControl', function(event){
+                        event.stopPropagation();
+                        if(columnEl[0].offsetWidth > 59){
+                            column.width = event.pageX - columnOfset;
+                        }
+                    });
+                    $('body').on('mouseup.umi.tableControl', function(){
+                        $('body').off('mousemove');
+                        $('body').off('.umi.tableControl.mouseup');
+                    });
+                }
+            }
         });
 
         UMI.TableCellContentView = UMI.TableCellView.extend({

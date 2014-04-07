@@ -1,5 +1,6 @@
 <div class="table-header">
     <div class="table-row">
+
         <div class="table-cell left-fixed">
             <input type="checkbox" id="checkbox-id" class="s-margin-clear"/>
             <label for="checkbox-id"></label>
@@ -7,8 +8,10 @@
 
         {{#each column in content.viewSettings.columns}}
             {{#view "tableCell" column=column}}
-                <strong>{{column.title}}</strong>
-                <div class="umi-table-column-resizer"></div>
+                <div class="table-title-div">
+                    <strong>{{column.title}}</strong>
+                </div>
+                <div class="table-column-resizer" {{action 'resizeColumn' on="mouseDown" target="view"}}></div>
             {{/view}}
         {{/each}}
 
@@ -17,6 +20,7 @@
                 <i class="icon icon-settings"></i>
             </a>
         </div>
+
     </div>
 
     <div class="table-row bg-gray">
@@ -25,12 +29,11 @@
         {{#each column in content.viewSettings.columns}}
             {{#view "tableCell" column=column}}
                 <div class="table-cell-filter">
-                    <div class="button flat tiny square right">
+                    <div class="button flat tiny square right" {{action 'sortByProperty' column.name}}>
                         <i class="icon black icon-bottom-thin"></i>
                     </div>
                     <input type="text"/>
                 </div>
-                <div class="umi-table-column-resizer"></div>
             {{/view}}
         {{/each}}
 
@@ -41,15 +44,26 @@
 <div class="table-content-wrapper">
     <div class="s-scroll-wrap">
         <div class="table-content">
-            {{#each object in objects}}
-                {{#link-to 'context' 'form' object.id class="table-row table-content-row" tagName="div"}}
-                    {{#each column in content.viewSettings.columns}}
-                        {{view "tableCellContent" objectBinding="object" column=column}}
-                    {{/each}}
-                {{/link-to}}
+            {{#if objects.content.isFulfilled}}
+                {{#each object in objects}}
+                    {{#link-to 'context' 'form' object.id class="table-row table-content-row" tagName="div"}}
+                        {{#each column in content.viewSettings.columns}}
+                            {{view "tableCellContent" objectBinding="object" column=column}}
+                        {{/each}}
+                    {{/link-to}}
+                {{else}}
+                    <div class="table-content-empty">
+                        <span class="table-content-empty-text">
+                            Данный раздел пуст, вы можете добавить страницу, создав новую или перетащив существующую.
+                        </span>
+                        <div class="table-content-empty-bg"></div>
+                    </div>
+                {{/each}}
             {{else}}
-                Нет записей
-            {{/each}}
+                <div class="table-content-loader">
+                    <i class="animate animate-loader-40"></i> <strong>Загрузка...</strong>
+                </div>
+            {{/if}}
         </div>
         <!-- Отдельно добавим чекбоксы-->
         <div class="table-column-fixed-left">
@@ -62,8 +76,16 @@
             </div>
             {{/each}}
         </div>
+        <!-- отдельно добавим пустую колонку справа-->
+        <div class="table-column-fixed-right">
+            {{#each object in objects}}
+            <div class="table-row">
+                <div class="table-cell empty">
+                </div>
+            </div>
+            {{/each}}
+        </div>
     </div>
-
 </div>
 
 <div class="table-footer">

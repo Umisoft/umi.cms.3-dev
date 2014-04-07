@@ -11,18 +11,23 @@ $table-control-header-height: 70px;
     box-sizing: border-box;
 
     .table-header{
-        position: relative;
-        z-index: 2;
-        &:after{
-            content: "";
-            position: absolute;
-            float: left;
-            display: block;
-            height: 3px;
-            width: 100%;
-            left: 0;
-            bottom: -3px;
-            background: url(../img/shadows/toBottomShadow.png);
+        .table-cell{
+            &.left-fixed, &.right-fixed{
+                background: #fff;
+            }
+        }
+        .bg-gray{
+            .table-cell{
+                &.left-fixed, &.right-fixed{
+                    background: #F5F6F7;
+                }
+            }
+        }
+
+        .table-row{
+            &:first-child{
+                border-bottom: 1px solid #E2E3E4;
+            }
         }
     }
 
@@ -30,7 +35,6 @@ $table-control-header-height: 70px;
         width: 100%;
         display: block;
         background: #fff;
-        //border-bottom: 1px solid $table-control-cell-border-color;
         padding: 0 $table-control-left-column-width;
         box-sizing: border-box;
         white-space: nowrap;
@@ -45,7 +49,7 @@ $table-control-header-height: 70px;
 
     .table-cell{
         display: inline-block;
-        overflow: hidden;
+        position: relative;
         white-space: nowrap;
         text-overflow: ellipsis;
         height: rem-calc(34);
@@ -58,6 +62,7 @@ $table-control-header-height: 70px;
             width: $table-control-left-column-width;
             left: 0;
             padding: rem-calc(0 8);
+            z-index: 2;
             &.empty{
                 width: $table-control-left-column-width;
                 padding: 0;
@@ -71,6 +76,12 @@ $table-control-header-height: 70px;
                 vertical-align: middle;
             }
         }
+    }
+
+    .table-header-title{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
     .table-cell-filter{
@@ -92,7 +103,18 @@ $table-control-header-height: 70px;
     .table-content-wrapper{
         height: calc(100% - 74px - 29px);
         position: relative;
-        z-index: 1;
+        &:before{
+            content: "";
+            position: absolute;
+            float: left;
+            display: block;
+            height: 3px;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background: url(../img/shadows/toBottomShadow.png);
+            z-index: 2;
+        }
     }
 
     .table-content{
@@ -104,12 +126,12 @@ $table-control-header-height: 70px;
     .table-content-row{
         background: #F5F6F7;
         cursor: pointer;
-        &:nth-child(odd){
+        &:nth-of-type(odd){
             background: #E9F1F7;
         }
     }
 
-    .table-column-fixed-left{
+    .table-column-fixed-left, .table-column-fixed-right{
         position: absolute;
         left: 0;
         top: 0;
@@ -117,7 +139,7 @@ $table-control-header-height: 70px;
             background: #F5F6F7;
             padding: 0;
             width: auto;
-            &:nth-child(odd){
+            &:nth-of-type(odd){
                 background: #E9F1F7;
             }
         }
@@ -127,6 +149,56 @@ $table-control-header-height: 70px;
         }
     }
 
+    .table-column-fixed-right{
+        left: auto;
+        right: 0;
+        .table-cell{
+            border-right: none;
+            border-left: 1px solid #E3E4E5;
+        }
+    }
+
+    .table-column-resizer{
+        position: absolute;
+        right: 0;
+        margin-right: -4px;
+        z-index: 100;
+        width: 7px;
+        height: 69px;
+        top: 0;
+        border: 0;
+        cursor: e-resize;
+        &:hover{
+            background: #444444;
+        }
+    }
+
+    .table-content-loader{
+        background: #E9F1F7;
+        text-align: center;
+        padding: 35px 0;
+    }
+
+    .table-content-empty{
+        background: #E9F1F7;
+        text-align: center;
+        padding: 35px 0;
+    }
+
+    .table-content-empty-text{
+        font-weight: bold;
+        max-width: 350px;
+        display: inline-block;
+        line-height: normal;
+    }
+
+    .table-content-empty-bg{
+        width: 296px;
+        height: 139px;
+        margin: 20px auto 0;
+        background: url(../img/empty-page.png) no-repeat;
+    }
+    // ----------- table footer
     .table-footer{
         position: absolute;
         width: 100%;
