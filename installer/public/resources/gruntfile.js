@@ -23,6 +23,13 @@ module.exports = function(grunt){
             }
         },
 
+        //Чистим полностью папку deploy для уверенности, что не останется старых лишних файлов и проект будет свеж
+        clean: {
+            deploy: {
+                src: ["deploy/*"]
+            }
+        },
+
         // Сохраняем svg в css
         grunticon: {
             myIcons: {
@@ -54,6 +61,14 @@ module.exports = function(grunt){
             }
         },
 
+        //Копируем растровые изображения
+        copy: {
+            main: {
+                src: 'build/img/*',
+                dest: 'deploy/img'
+            }
+        },
+
         concat: {
             options: {
                 separator: '\n'
@@ -64,7 +79,7 @@ module.exports = function(grunt){
                 },
                 src: [
                     'partials/fileManager/elFinder/jquery/jquery-ui-1.10.4.custom.min.js',
-                    // Файлы перечислены намеренно, так как необходим определеный порядок соединения файлов
+                    // Файлы перечислены в необходимом порядке соединения
                     'partials/fileManager/elFinder/js/elFinder.js',
                     'partials/fileManager/elFinder/js/jquery.elfinder.js',
                     'partials/fileManager/elFinder/js/elFinder.resources.js',
@@ -137,6 +152,14 @@ module.exports = function(grunt){
         }
     });
 
+
+    /*
+    *
+    * grunt-contrib-clean
+    * grunt-contrib-copy
+    *
+    * */
+
     //подгружаем необходимые плагины
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-sass');
@@ -145,10 +168,12 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-csso');
     grunt.loadNpmTasks("grunt-contrib-yuidoc");
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
 
     //регистрируем задачу
     grunt.registerTask('default', ['watch']); //задача по умолчанию, просто grunt
-    grunt.registerTask('deploy', ['grunticon', 'sass', 'concat', 'autoprefixer', 'csso']);
+    grunt.registerTask('deploy', [/*'clean',*/ 'copy', 'grunticon', 'sass', 'concat', 'autoprefixer', 'csso']);
     grunt.registerTask("docs", ["yuidoc"]);
 };

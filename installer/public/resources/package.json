@@ -17,6 +17,14 @@
         "grunt-contrib-jshint": "latest",
         "grunt-svgmin": "latest",
         "grunt-grunticon": "latest",
-        "grunt-contrib-yuidoc": "latest"
+        "grunt-contrib-yuidoc": "latest",
+
+        "grunt-contrib-clean": "latest",
+        "grunt-contrib-copy": "latest",
+
+        "grunt-contrib-requirejs": "latest",
+        "grunt-newer": "latest",
+        "grunt-ember-template-compiler": "latest",
+        "grunt-ember-templates": "latest"
     }
 }
