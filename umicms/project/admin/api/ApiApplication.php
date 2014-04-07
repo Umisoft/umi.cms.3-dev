@@ -33,7 +33,7 @@ class ApiApplication extends AdminComponent implements ISerializationAware
     const DEFAULT_REQUEST_FORMAT = 'json';
 
     /**
-     * @var string $requestFormat формат запроса к приложению
+     * @var string $currentRequestFormat формат запроса к приложению
      */
     protected $currentRequestFormat = self::DEFAULT_REQUEST_FORMAT;
     /**

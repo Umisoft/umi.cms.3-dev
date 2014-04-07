@@ -44,18 +44,19 @@ abstract class BaseUser extends CmsObject implements IComponentRoleResolver
     }
 
     /**
-     * Проверяет наличие роли для компонента.
+     * Проверяет разрешение на доступ роли к ресурсу компонента.
      * @param IComponent $component компонент
      * @param string $roleName имя роли
+     * @param string $resourceName имя ресурса
      * @return bool
      */
-    public function hasRole(IComponent $component, $roleName)
+    public function isAllowed(IComponent $component, $roleName, $resourceName)
     {
         /**
          * @var IAclResource|IComponent $component
          */
         if ($component instanceof IAclResource) {
-            return $component->getAclManager()->isAllowed($roleName, $component);
+            return $component->getAclManager()->isAllowed($roleName, $resourceName);
         }
 
         return true;

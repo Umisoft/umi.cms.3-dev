@@ -19,7 +19,7 @@ class Supervisor extends AuthorizedUser
     /**
      * {@inheritdoc}
      */
-    public function hasRole(IComponent $component, $roleName)
+    public function isAllowed(IComponent $component, $roleName, $resourceName)
     {
         return true;
     }
