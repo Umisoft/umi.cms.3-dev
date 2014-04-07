@@ -22,7 +22,7 @@ use umicms\project\module\service\api\object\Backup;
 use umicms\project\module\users\api\UsersApi;
 
 /**
- * Репозиторий для работы с бэкапами
+ * Репозиторий для работы с бэкапами.
  */
 class BackupRepository extends BaseObjectRepository implements IPublicApi, IObjectManagerAware
 {
@@ -42,7 +42,7 @@ class BackupRepository extends BaseObjectRepository implements IPublicApi, IObje
 
 
     /**
-     * Возвращает селектор для выбора бэкапов
+     * Возвращает селектор для выбора бэкапов.
      * @return CmsSelector
      */
     public function select()
@@ -59,7 +59,7 @@ class BackupRepository extends BaseObjectRepository implements IPublicApi, IObje
     }
 
     /**
-     * Возвращает селектор списка бэкапов
+     * Возвращает селектор списка бэкапов.
      * @param ICmsObject $object
      * @return CmsSelector
      */
@@ -71,7 +71,7 @@ class BackupRepository extends BaseObjectRepository implements IPublicApi, IObje
     }
 
     /**
-     * Возвращает бэкап по GUID
+     * Возвращает бэкап по GUID.
      * @param $guid
      * @throws NonexistentEntityException
      * @return Backup
@@ -93,7 +93,7 @@ class BackupRepository extends BaseObjectRepository implements IPublicApi, IObje
     }
 
     /**
-     * Возвращает резервную копию по Id
+     * Возвращает резервную копию по Id.
      * @param int $id
      * @throws NonexistentEntityException
      * @return Backup
@@ -116,14 +116,15 @@ class BackupRepository extends BaseObjectRepository implements IPublicApi, IObje
 
 
     /**
-     * Восстанавливает в памяти резервную копию объекта
+     * Восстанавливает в памяти резервную копию объекта.
      * @param ICmsObject $object
      * @param int $backupId идентификатор резервной копии
      * @throws RuntimeException если не удалось восстановить объект
      * @throws InvalidArgumentException если резервная копия не принадлежит указанному объекту
      * @return ICmsObject
      */
-    public function wakeUpBackup(ICmsObject $object, $backupId) {
+    public function wakeUpBackup(ICmsObject $object, $backupId)
+    {
         $backup = $this->getById($backupId);
         if ($backup->objectId != $object->getId()) {
             throw new InvalidArgumentException(
