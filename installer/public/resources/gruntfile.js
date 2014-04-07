@@ -63,9 +63,18 @@ module.exports = function(grunt){
 
         //Копируем растровые изображения
         copy: {
-            main: {
-                src: 'build/img/*',
-                dest: 'deploy/img'
+            png: {
+                expand: true,
+                cwd: 'build/img',
+                src: ['**'],
+                dest: 'deploy/img/'
+            },
+
+            svg: {
+                expand: true,
+                cwd: 'build/svg',
+                src: ['animation/**', 'elements/**'],
+                dest: 'deploy/svg/'
             }
         },
 
@@ -174,6 +183,6 @@ module.exports = function(grunt){
 
     //регистрируем задачу
     grunt.registerTask('default', ['watch']); //задача по умолчанию, просто grunt
-    grunt.registerTask('deploy', [/*'clean',*/ 'copy', 'grunticon', 'sass', 'concat', 'autoprefixer', 'csso']);
+    grunt.registerTask('deploy', ['clean', 'copy', 'grunticon', 'sass', 'concat', 'autoprefixer', 'csso']);
     grunt.registerTask("docs", ["yuidoc"]);
 };
