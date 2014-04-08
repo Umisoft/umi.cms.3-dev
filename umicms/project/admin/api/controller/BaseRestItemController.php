@@ -14,14 +14,19 @@ use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
+use umicms\api\IApiAware;
+use umicms\api\toolbox\TApiAware;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\object\IRecoverableObject;
+use umicms\project\module\service\api\BackupRepository;
 
 /**
  * Базовый контроллер Read-Update-Delete операций над объектом.
  */
-abstract class BaseRestItemController extends BaseRestController implements IObjectPersisterAware
+abstract class BaseRestItemController extends BaseRestController implements IObjectPersisterAware, IApiAware
 {
     use TObjectPersisterAware;
+    use TApiAware;
 
     /**
      * Возвращает объект.
@@ -57,6 +62,15 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
             }
             case 'PUT': {
                 $object = $this->get();
+
+                if ($object instanceof IRecoverableObject) {
+                    /**
+                     * @var BackupRepository $backupApi
+                     */
+                    $backupApi = $this->getApi('umicms\project\module\service\api\BackupRepository');
+                    $backupApi->createBackup($object);
+                }
+
                 return $this->createViewResponse(
                     'update',
                     [

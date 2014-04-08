@@ -15,6 +15,9 @@ namespace umicms\api\toolbox;
 return [
     'name'     => ApiTools::NAME,
     'class'    => __NAMESPACE__ . '\ApiTools',
+    'awareInterfaces' => [
+        'umicms\api\IApiAware'
+    ],
     'services' => [
         'umicms\api\IPublicApi'
     ]
