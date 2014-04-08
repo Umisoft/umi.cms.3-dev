@@ -1,96 +1,110 @@
-<div class="table-header">
-    <div class="table-row">
+{{#if objects.content.isFulfilled}}
+    {{#if objects}}
+        <div class="umi-table-control-header s-unselectable">
 
-        <div class="table-cell left-fixed">
-            <input type="checkbox" id="checkbox-id" class="s-margin-clear"/>
-            <label for="checkbox-id"></label>
-        </div>
-
-        {{#each column in content.viewSettings.columns}}
-            {{#view "tableCell" column=column}}
-                <div class="table-title-div">
-                    <strong>{{column.title}}</strong>
-                </div>
-                <div class="table-column-resizer" {{action 'resizeColumn' on="mouseDown" target="view"}}></div>
-            {{/view}}
-        {{/each}}
-
-        <div class="table-cell right-fixed">
-            <a href="#">
-                <i class="icon icon-settings"></i>
-            </a>
-        </div>
-
-    </div>
-
-    <div class="table-row bg-gray">
-        <div class="table-cell left-fixed empty"></div>
-
-        {{#each column in content.viewSettings.columns}}
-            {{#view "tableCell" column=column}}
-                <div class="table-cell-filter">
-                    <div class="button flat tiny square right" {{action 'sortByProperty' column.name}}>
-                        <i class="icon black icon-bottom-thin"></i>
-                    </div>
-                    <input type="text"/>
-                </div>
-            {{/view}}
-        {{/each}}
-
-        <div class="table-cell right-fixed empty"></div>
-    </div>
-</div>
-
-<div class="table-content-wrapper">
-    <div class="s-scroll-wrap">
-        <div class="table-content">
-            {{#if objects.content.isFulfilled}}
-                {{#each object in objects}}
-                    {{#link-to 'context' 'form' object.id class="table-row table-content-row" tagName="div"}}
-                        {{#each column in content.viewSettings.columns}}
-                            {{view "tableCellContent" objectBinding="object" column=column}}
-                        {{/each}}
-                    {{/link-to}}
-                {{else}}
-                    <div class="table-content-empty">
-                        <span class="table-content-empty-text">
-                            Данный раздел пуст, вы можете добавить страницу, создав новую или перетащив существующую.
-                        </span>
-                        <div class="table-content-empty-bg"></div>
-                    </div>
-                {{/each}}
-            {{else}}
-                <div class="table-content-loader">
-                    <i class="animate animate-loader-40"></i> <strong>Загрузка...</strong>
-                </div>
-            {{/if}}
-        </div>
-        <!-- Отдельно добавим чекбоксы-->
-        <div class="table-column-fixed-left">
-            {{#each object in objects}}
-            <div class="table-row">
+            <div class="umi-table-control-header-fixed-left">
                 <div class="table-cell">
                     <input type="checkbox" id="checkbox-id" class="s-margin-clear"/>
                     <label for="checkbox-id"></label>
                 </div>
+                <div class="table-cell-empty bg-gray"></div>
             </div>
-            {{/each}}
+
+            <div class="umi-table-control-header-center">
+                <table class="umi-table-header">
+                    <tbody>
+                        <tr class="umi-table-row">
+                            {{#each column in content.viewSettings.columns}}
+                                <td class="umi-table-header-column">
+                                    {{#view "tableCell" column=column}}
+                                        {{column.title}}
+                                    {{/view}}
+                                    <div class="umi-table-column-resizer"></div>
+                                </td>
+                            {{/each}}
+                            <td class="umi-table-empty-column"></td>
+                        </tr>
+
+                        <tr class="umi-table-row filters">
+                            {{#each column in content.viewSettings.columns}}
+                                <td class="umi-table-header-column">
+                                    {{#view "tableCell" column=column class="filter"}}
+                                        <input type="text"/>
+                                        <div class="button flat tiny square right" {{action 'sortByProperty' column.name}}>
+                                            <i class="icon black icon-bottom-thin"></i>
+                                        </div>
+                                    {{/view}}
+                                </td>
+                            {{/each}}
+                            <td class="umi-table-empty-column"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="umi-table-control-header-fixed-right">
+                <div class="table-cell">
+                    <span class="button tiny flat">
+                        <i class="icon icon-settings"></i>
+                    </span>
+                </div>
+                <div class="table-cell-empty bg-gray"></div>
+            </div>
+
         </div>
-        <!-- отдельно добавим пустую колонку справа-->
-        <div class="table-column-fixed-right">
-            {{#each object in objects}}
-            <div class="table-row">
-                <div class="table-cell empty">
+
+        <div class="table-content-wrapper">
+            <div class="s-scroll-wrap">
+                <table class="table-content">
+                    <tbody>
+                        {{#each object in objects}}
+                            {{#link-to 'context' 'form' object.id class="umi-table-content-row" tagName="tr"}}
+                                {{#each column in content.viewSettings.columns}}
+                                    <td class="umi-table-cell">
+                                        {{view "tableCellContent" objectBinding="object" column=column}}
+                                    </td>
+                                {{/each}}
+                                <td class="umi-table-empty-column"></td>
+                            {{/link-to}}
+                        {{/each}}
+                    </tbody>
+                </table>
+
+                <!-- Отдельно добавим чекбоксы-->
+                <div class="umi-table-control-content-fixed-left">
+                    {{#each object in objects}}
+                        <div class="table-cell">
+                            <input type="checkbox" id="checkbox-id" class="s-margin-clear"/>
+                            <label for="checkbox-id"></label>
+                        </div>
+                    {{/each}}
+                </div>
+
+                <!-- отдельно добавим пустую колонку справа-->
+                <div class="umi-table-control-content-fixed-right">
+                    {{#each object in objects}}
+                        <div class="table-cell-empty"></div>
+                    {{/each}}
                 </div>
             </div>
-            {{/each}}
         </div>
-    </div>
-</div>
 
-<div class="table-footer">
-    <div class="right table-pagination">
-        <span class="pagination-label">Строк на странице:</span>
-        {{input type="text" value="100" class="s-margin-clear"}}
+        <div class="umi-table-control-footer">
+            <div class="right table-pagination">
+                <span class="pagination-label">Строк на странице:</span>
+                {{input type="text" value="100" class="s-margin-clear"}}
+            </div>
+        </div>
+    {{else}}
+        <div class="table-content-empty">
+            <span class="table-content-empty-text">
+                Данный раздел пуст, вы можете добавить страницу, создав новую или перетащив существующую.
+            </span>
+            <div class="table-content-empty-bg"></div>
+        </div>
+    {{/if}}
+{{else}}
+    <div class="table-content-loader">
+        <i class="animate animate-loader-40"></i> <strong>Загрузка...</strong>
     </div>
-</div>
+{{/if}}

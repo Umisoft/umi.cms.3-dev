@@ -25,9 +25,9 @@ define(['App'], function(UMI){
                 var objects = this.get('controller.objects.content');
 
                 // Элементы позицию которых необходимо изменять при прокрутке/ресайзе таблицы
-                var umiTableLeft = tableControl.find('.table-column-fixed-left')[0];
-                var umiTableRight = tableControl.find('.table-column-fixed-right')[0];
-                var umiTableHeader = tableControl.find('.table-header')[0];
+                var umiTableLeft = tableControl.find('.umi-table-control-content-fixed-left')[0];
+                var umiTableRight = tableControl.find('.umi-table-control-content-fixed-right')[0];
+                var umiTableHeader = tableControl.find('.umi-table-control-header-center')[0];
 
                 if(objects){
                     var tableContent = tableControl.find('.s-scroll-wrap');
@@ -63,21 +63,17 @@ define(['App'], function(UMI){
 
         UMI.TableCellView = Ember.View.extend({
             classNames: ['table-cell'],
-            attributeBindings: ['computedStyle:style'],
-            computedStyle: function(){
-                var columnWidth = this.get('column').width || 200;
-                return 'width: ' + columnWidth + 'px;';
-            }.property('column'),
             actions: {
                 resizeColumn: function(){
-                    var column = this.get('column');
                     var columnEl = this.$();
                     var handler = columnEl.children('.table-column-resizer');
                     var columnOfset = columnEl.offset().left;
+                    var columnWidth;
                     $('body').on('mousemove.umi.tableControl', function(event){
                         event.stopPropagation();
                         if(columnEl[0].offsetWidth > 59){
-                            column.width = event.pageX - columnOfset;
+                            columnWidth = event.pageX - columnOfset;
+                            columnEl[0].style.width = columnWidth + 'px';
                         }
                     });
                     $('body').on('mouseup.umi.tableControl', function(){
