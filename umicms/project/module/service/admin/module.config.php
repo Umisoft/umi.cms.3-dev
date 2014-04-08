@@ -8,18 +8,29 @@
 
 namespace umicms\project\module\service\admin;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\admin\component\SecureAdminComponent;
 
 return [
 
     SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
-
     SecureAdminComponent::OPTION_COMPONENTS => [
         'backup' => '{#lazy:~/project/module/service/admin/backup/component.config.php}'
     ],
+    SecureAdminComponent::OPTION_ACL => [
 
-    SecureAdminComponent::OPTION_ROUTES      => [
+        IAclFactory::OPTION_ROLES => [
+            'backupEditor' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'component:backup'
+        ],
+        IAclFactory::OPTION_RULES => [
+            'backupEditor' => ['component:backup' => []]
+        ]
+    ],
+    SecureAdminComponent::OPTION_ROUTES => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{component}'
