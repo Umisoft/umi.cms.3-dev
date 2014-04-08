@@ -12,6 +12,7 @@ use SplDoublyLinkedList;
 use SplStack;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpNotFound;
+use umi\hmvc\view\IView;
 use umi\http\IHttpAware;
 use umi\http\Request;
 use umi\http\Response;
@@ -135,9 +136,17 @@ class SiteApplication extends SiteComponent
 
         $requestFormat = $this->getRequestFormatByPostfix($request->getRequestFormat(null));
 
+        $responseContent = $response->getContent();
+
         if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
+            if (!$responseContent instanceof IView) {
+                throw new HttpNotFound($this->translate(
+                    'Resource not found.'
+                ));
+            }
+
             $result = [
-                'result' => $response->getContent()
+                'result' => $responseContent
             ];
 
             $serializer = $this->getSerializer($requestFormat, $result);
