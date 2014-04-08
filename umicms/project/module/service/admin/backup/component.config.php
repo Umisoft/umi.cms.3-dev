@@ -23,7 +23,7 @@ return [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/action/{action}',
             'defaults' => [
-                'controller' => 'action',
+                'controller' => AdminComponent::ACTION_CONTROLLER
             ],
         ],
     ]
