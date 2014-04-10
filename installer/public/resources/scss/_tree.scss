@@ -83,11 +83,12 @@ $umi-dark-border-color: #CCD9E2;
         height: rem-calc(20);
         cursor: hand;
         position: absolute;
-        margin-left: rem-calc(-22);
-        margin-top: rem-calc(2);
+        margin-left: rem-calc(-27);
+//        margin-top: rem-calc(2);
+        padding: rem-calc(2);
         &:hover{
             background: #FFFFFF;
-            box-shadow: 0 0px 2px 0px #7C99AC;
+//            box-shadow: 0 0px 2px 0px #7C99AC;
         }
     }
 
@@ -157,7 +158,7 @@ $umi-dark-border-color: #CCD9E2;
                 margin-top: -2px;
                 background: #fff;
                 .icon{
-                    margin-top: -8px;
+                    margin-top: -6px;
                     border-right: 1px solid #FFFFFF;
                 }
                 &:after{
