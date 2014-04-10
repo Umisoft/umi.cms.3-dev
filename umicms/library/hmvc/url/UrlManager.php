@@ -43,6 +43,10 @@ class UrlManager implements IUrlManager
      * @var string $baseAdminUrl базовый URL для административной панели
      */
     protected $baseAdminUrl;
+    /**
+     * @var string $domainUrl URL домена проекта
+     */
+    protected $domainUrl;
 
     /**
      * Конструктор.
@@ -61,6 +65,16 @@ class UrlManager implements IUrlManager
     public function setBaseUrl($baseUrl)
     {
         $this->baseUrl = $baseUrl;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setProjectDomainUrl($domainUrl)
+    {
+        $this->domainUrl = $domainUrl;
 
         return $this;
     }
@@ -88,9 +102,19 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
-    public function getProjectUrl()
+    public function getProjectUrl($isAbsolute = false)
     {
-        return $this->baseUrl ?: '/';
+        $domainUrl = $isAbsolute ? $this->getProjectDomainUrl() : '';
+
+        return $domainUrl . $this->baseUrl ?: '/';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProjectDomainUrl()
+    {
+        return $this->domainUrl;
     }
 
     /**
@@ -112,10 +136,12 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
-    public function getSitePageUrl(ICmsPage $page)
+    public function getSitePageUrl(ICmsPage $page, $isAbsolute = false)
     {
+        $domainUrl = $isAbsolute ? $this->getProjectDomainUrl() : '';
+
         if ($page instanceof StructureElement) {
-            return $this->baseUrl . '/' . $page->getURL();
+            return $domainUrl . $this->baseUrl . '/' . $page->getURL();
         }
         /**
          * @var ICmsCollection $collection
@@ -128,7 +154,7 @@ class UrlManager implements IUrlManager
          */
         $component = $this->dispatcher->getSiteComponentByPath($handler);
 
-        return $this->getSystemPageUrl($handler) . $component->getPageUri($page);
+        return $domainUrl . $this->getSystemPageUrl($handler) . $component->getPageUri($page);
 
     }
 

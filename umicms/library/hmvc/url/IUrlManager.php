@@ -29,6 +29,13 @@ interface IUrlManager
     public function setBaseUrl($baseUrl);
 
     /**
+     * Устанавливает URL домена проекта.
+     * @param string $domainUrl
+     * @return self
+     */
+    public function setProjectDomainUrl($domainUrl);
+
+    /**
      * Устанавливает базовый URL для REST-запросов.
      * @param string $baseRestUrl
      * @return self
@@ -44,9 +51,16 @@ interface IUrlManager
 
     /**
      * Возвращает базовый URL проекта.
+     * @param bool $isAbsolute генерировать ли абсолютный URL
      * @return string
      */
-    public function getProjectUrl();
+    public function getProjectUrl($isAbsolute = false);
+
+    /**
+     * Возвращает URL домена проекта.
+     * @return string
+     */
+    public function getProjectDomainUrl();
 
     /**
      * Возвращает базовый URL для REST-запросов.
@@ -63,9 +77,10 @@ interface IUrlManager
     /**
      * Возвращает URL страницы для отображения на сайте.
      * @param ICmsPage $page страница
+     * @param bool $isAbsolute генерировать ли абсолютный URL
      * @return string
      */
-    public function getSitePageUrl(ICmsPage $page);
+    public function getSitePageUrl(ICmsPage $page, $isAbsolute = false);
 
     /**
      * Возвращает URL системной страницы по пути ее компонента-обработчика
