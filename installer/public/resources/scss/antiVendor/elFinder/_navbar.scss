@@ -88,10 +88,10 @@
     position: relative;
     display: block;
     white-space: nowrap;
-    padding: 3px 12px;
+    line-height: 24px;
+    height: 24px;
     margin: 0;
     outline: 0 solid;
-    border: 1px solid transparent;
     cursor: default;
 }
 
@@ -239,12 +239,16 @@
 
 /* resizable */
 .elfinder-navbar .ui-resizable-handle {
+    position: absolute;
+    z-index: 11;
     width: 4px;
+    height: 100%;
     background: #F5F6F7;
     left: 0;
     right: 0!important;
     border-left: 1px solid #ADB9C5;
     border-right: 1px solid #ADB9C5;
+    cursor: move;
 }
 
 
