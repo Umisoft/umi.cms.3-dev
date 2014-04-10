@@ -130,6 +130,7 @@ class Bootstrap implements IProjectConfigAware
          * @var IUrlManager $urlManager
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
+        $urlManager->setProjectDomainUrl($routeResult->getMatchedUrl());
         $urlManager->setBaseUrl($baseProjectUrl);
 
         $baseAdminUrl = $baseProjectUrl . $project->getRouter()->assemble('admin');
@@ -163,8 +164,8 @@ class Bootstrap implements IProjectConfigAware
         $response->setPublic();
         $response->isNotModified($request);
 
-        if (isset(static::$contentTypes[$request->getRequestFormat()])) {
-            $response->headers->set('Content-Type', static::$contentTypes[$request->getRequestFormat()]);
+        if (!$response->headers->has('content-type') && isset(static::$contentTypes[$request->getRequestFormat()])) {
+            $response->headers->set('content-type', static::$contentTypes[$request->getRequestFormat()]);
         }
 
         $response->prepare($request)

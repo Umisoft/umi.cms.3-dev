@@ -9,15 +9,16 @@
 
 namespace umicms\project\module\service\admin\backup\controller;
 
-use umicms\orm\selector\CmsSelector;
-use umicms\project\admin\api\controller\BaseRestActionController;
+use umi\hmvc\exception\http\HttpNotFound;
+use umicms\project\admin\api\controller\BaseRestListController;
 use umicms\project\module\service\api\BackupRepository;
 
-/**
- * Контроллер действий над списком.
- */
-class ActionController extends BaseRestActionController
+class ListController extends BaseRestListController
 {
+
+    /**
+     * @var BackupRepository $backupRepository
+     */
     protected $backupRepository;
 
     /**
@@ -32,26 +33,27 @@ class ActionController extends BaseRestActionController
     /**
      * {@inheritdoc}
      */
-    public function getQueryActions()
+    protected function getCollectionName()
     {
-        return ['list'];
+        return $this->backupRepository->collectionName;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getModifyActions()
-    {
-        return [];
-    }
-
-    /**
-     * Возвращает список всех резервных копий.
-     * @return CmsSelector
-     */
-    protected function actionList()
+    protected function getList()
     {
         return $this->backupRepository->select();
     }
+
+    /**
+     * Резервные копии создаются автоматически.
+     * @throws HttpNotFound
+     */
+    protected function create(array $data)
+    {
+        throw new HttpNotFound($this->translate(
+            'Cannot create backup. Method is not supported.'
+        ));
+    }
 }
- 
