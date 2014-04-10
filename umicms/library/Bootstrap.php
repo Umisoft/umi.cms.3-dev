@@ -130,7 +130,8 @@ class Bootstrap implements IProjectConfigAware
          * @var IUrlManager $urlManager
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
-        $urlManager->setProjectDomainUrl($routeResult->getMatchedUrl());
+        $domainUrl  = substr($routeResult->getMatchedUrl(), 0, -strlen($baseProjectUrl));
+        $urlManager->setProjectDomainUrl($domainUrl);
         $urlManager->setBaseUrl($baseProjectUrl);
 
         $baseAdminUrl = $baseProjectUrl . $project->getRouter()->assemble('admin');

@@ -104,9 +104,11 @@ class UrlManager implements IUrlManager
      */
     public function getProjectUrl($isAbsolute = false)
     {
-        $domainUrl = $isAbsolute ? $this->getProjectDomainUrl() : '';
+        if ($isAbsolute) {
+            return $this->getProjectDomainUrl() . $this->baseUrl;
+        }
 
-        return $domainUrl . $this->baseUrl ?: '/';
+        return $this->baseUrl ?: '/';
     }
 
     /**
@@ -138,10 +140,12 @@ class UrlManager implements IUrlManager
      */
     public function getSitePageUrl(ICmsPage $page, $isAbsolute = false)
     {
-        $domainUrl = $isAbsolute ? $this->getProjectDomainUrl() : '';
-
         if ($page instanceof StructureElement) {
-            return $domainUrl . $this->baseUrl . '/' . $page->getURL();
+            $pageUrl = $isAbsolute ? $this->domainUrl : '';
+            $pageUrl .= $this->baseUrl . '/';
+            $pageUrl .= $page->getURL();
+
+            return $pageUrl;
         }
         /**
          * @var ICmsCollection $collection
@@ -154,16 +158,17 @@ class UrlManager implements IUrlManager
          */
         $component = $this->dispatcher->getSiteComponentByPath($handler);
 
-        return $domainUrl . $this->getSystemPageUrl($handler) . $component->getPageUri($page);
+        return $this->getSystemPageUrl($handler, $isAbsolute) . $component->getPageUri($page);
 
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getSystemPageUrl($componentPath)
+    public function getSystemPageUrl($componentPath, $isAbsolute = false)
     {
-        $pageUrl = $this->baseUrl . '/';
+        $pageUrl = $isAbsolute ? $this->domainUrl : '';
+        $pageUrl .= $this->baseUrl . '/';
         $pageUrl .= $this->structureApi->element()->getSystemPageByComponentPath($componentPath)->getURL();
 
         return $pageUrl;
@@ -172,22 +177,25 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
-    public function getAdminComponentUrl(AdminComponent $component)
+    public function getAdminComponentUrl(AdminComponent $component, $isAbsolute = false)
     {
-        return $this->baseAdminUrl . $this->getRelativeComponentUrl($component);
+        $domainUrl = $isAbsolute ? $this->domainUrl : '';
+
+        return $domainUrl . $this->baseAdminUrl . $this->getRelativeComponentUrl($component);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getObjectEditLinkUrl(ICmsObject $object)
+    public function getObjectEditLinkUrl(ICmsObject $object, $isAbsolute = false)
     {
         /**
          * @var ICmsCollection $collection
          */
         $collection = $object->getCollection();
 
-        $editLink = $this->baseAdminUrl;
+        $editLink = $isAbsolute ? $this->domainUrl : '';
+        $editLink .= $this->baseAdminUrl;
         $editLink .= '/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
         $editLink .= '/form/' . $object->getId();
 

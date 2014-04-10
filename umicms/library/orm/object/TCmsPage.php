@@ -34,7 +34,7 @@ trait TCmsPage
     {
         if (!$this->traitPageUrl) {
             /** @noinspection PhpParamsInspection */
-            $this->traitUrl = $this->getUrlManager()->getSitePageUrl($this, $isAbsolute);
+            $this->traitPageUrl = $this->getUrlManager()->getSitePageUrl($this, $isAbsolute);
         }
 
         return $this->traitPageUrl;

@@ -61,7 +61,8 @@ interface ICmsObject extends IObject
 
     /**
      * Возвращает ссылку на редактирование объекта в административной панели.
+     * @param bool $isAbsolute генерировать ли абсолютный URL
      * @return string
      */
-    public function getEditLink();
+    public function getEditLink($isAbsolute = false);
 }

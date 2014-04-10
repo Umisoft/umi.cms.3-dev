@@ -26,11 +26,11 @@ trait TCmsObject
     /**
      * @see ICmsObject::getEditLink()
      */
-    public function getEditLink()
+    public function getEditLink($isAbsolute = false)
     {
         if (!$this->traitEditLink) {
             /** @noinspection PhpParamsInspection */
-            $this->traitEditLink = $this->getUrlManager()->getObjectEditLinkUrl($this);
+            $this->traitEditLink = $this->getUrlManager()->getObjectEditLinkUrl($this, $isAbsolute);
         }
 
         return $this->traitEditLink;

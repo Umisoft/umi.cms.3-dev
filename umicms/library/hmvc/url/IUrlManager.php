@@ -85,24 +85,27 @@ interface IUrlManager
     /**
      * Возвращает URL системной страницы по пути ее компонента-обработчика
      * @param string $componentPath путь ее компонента-обработчика
+     * @param bool $isAbsolute генерировать ли абсолютный URL
      * @throws NonexistentEntityException если такой страницы нет
      * @return string
      */
-    public function getSystemPageUrl($componentPath);
+    public function getSystemPageUrl($componentPath, $isAbsolute = false);
 
     /**
      * Возвращает URL компонента в административной панели.
      * @param AdminComponent $component
+     * @param bool $isAbsolute генерировать ли абсолютный URL
      * @return string
      */
-    public function getAdminComponentUrl(AdminComponent $component);
+    public function getAdminComponentUrl(AdminComponent $component, $isAbsolute = false);
 
     /**
      * Возвращает ссылку на редактирование объекта в административной панели.
      * @param ICmsObject $object
+     * @param bool $isAbsolute генерировать ли абсолютный URL
      * @return string
      */
-    public function getObjectEditLinkUrl(ICmsObject $object);
+    public function getObjectEditLinkUrl(ICmsObject $object, $isAbsolute = false);
 
     /**
      * Возвращает URL ресурса коллекции
