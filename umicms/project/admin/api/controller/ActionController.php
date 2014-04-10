@@ -95,7 +95,7 @@ class ActionController extends BaseController implements IUrlManagerAware
 
         $user = $this->api->getCurrentUser();
 
-        if (!$user->hasRole($this->getComponent(), 'administrator')) {
+        if (!$user->isAllowed($this->getComponent(), 'controller:settings')) {
             throw new HttpForbidden(
                 $this->translate('Access denied.')
             );

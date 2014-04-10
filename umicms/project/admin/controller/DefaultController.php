@@ -79,7 +79,7 @@ class DefaultController extends BaseController implements ILocalesAware, IUrlMan
         if ($this->api->isAuthenticated()) {
 
             $apiComponent = $this->getComponent()->getChildComponent('api');
-            if ($this->api->getCurrentUser()->hasRole($apiComponent, 'administrator')) {
+            if ($this->api->getCurrentUser()->isAllowed($apiComponent, 'controller:settings')) {
                 return true;
             }
         }
