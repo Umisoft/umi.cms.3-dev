@@ -11,7 +11,6 @@ namespace umicms\project\module\news\api\object;
 
 use DateTime;
 use umi\orm\objectset\IManyToManyObjectSet;
-use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;

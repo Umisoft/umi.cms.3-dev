@@ -83,6 +83,13 @@ interface IUrlManager
     public function getAdminComponentUrl(AdminComponent $component);
 
     /**
+     * Возвращает ссылку на редактирование объекта в административной панели.
+     * @param ICmsObject $object
+     * @return string
+     */
+    public function getObjectEditLinkUrl(ICmsObject $object);
+
+    /**
      * Возвращает URL ресурса коллекции
      * @param ICmsCollection $collection коллекция
      * @param ICmsObject|null $object

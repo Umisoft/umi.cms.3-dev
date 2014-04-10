@@ -9,32 +9,35 @@
 
 namespace umicms\orm\object;
 
-use umicms\hmvc\url\TUrlManagerAware;
+use umicms\hmvc\url\IUrlManager;
 
 /**
  * Трейт для поддержки страниц.
- * @mixin ICmsPage
  */
 trait TCmsPage
 {
-    use TUrlManagerAware;
-
     /**
-     * @var string $url URL новости
+     * @var string $traitPageUrl URL страницы на сайте
      */
-    private $traitUrl;
+    private $traitPageUrl;
+
+     /**
+     * @see TUrlManagerAware::getUrlManager()
+     * @return IUrlManager
+     */
+    abstract protected function getUrlManager();
 
     /**
      * @see ICmsPage::getPageUrl()
      */
     public function getPageUrl()
     {
-        if (!$this->traitUrl) {
+        if (!$this->traitPageUrl) {
             /** @noinspection PhpParamsInspection */
-            $this->traitUrl = $this->getUrlManager()->getSitePageUrl($this);
+            $this->traitPageUrl = $this->getUrlManager()->getSitePageUrl($this);
         }
 
-        return $this->traitUrl;
+        return $this->traitPageUrl;
     }
 }
  

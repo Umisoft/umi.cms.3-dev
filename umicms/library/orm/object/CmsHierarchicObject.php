@@ -12,6 +12,7 @@ namespace umicms\orm\object;
 use umi\orm\object\HierarchicObject;
 use umi\orm\objectset\IObjectSet;
 use umi\orm\selector\ISelector;
+use umicms\hmvc\url\IUrlManagerAware;
 
 /**
  * Класс иерархического объекта UMI.CMS.
@@ -23,12 +24,14 @@ use umi\orm\selector\ISelector;
  * @property int $childCount количество дочерних элементов
  * @property IObjectSet $children дочерние элементы
  */
-class CmsHierarchicObject extends HierarchicObject implements ICmsObject
+class CmsHierarchicObject extends HierarchicObject implements ICmsObject, IUrlManagerAware
 {
     /**
      *  Имя поля для хранения дочерних элементов
      */
     const FIELD_CHILDREN = 'children';
+
+    use TCmsObject;
 
     /**
      * @var string $normalizedURL нормализованный url объекта

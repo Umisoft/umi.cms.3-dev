@@ -154,6 +154,23 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
+    public function getObjectEditLinkUrl(ICmsObject $object)
+    {
+        /**
+         * @var ICmsCollection $collection
+         */
+        $collection = $object->getCollection();
+
+        $editLink = $this->baseAdminUrl;
+        $editLink .= '/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
+        $editLink .= '/form/' . $object->getId();
+
+        return $editLink;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getCollectionResourceUrl(ICmsCollection $collection, ICmsObject $object = null)
     {
         $collectionResourceUrl = $this->baseRestUrl;
