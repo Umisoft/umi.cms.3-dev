@@ -55,9 +55,10 @@ interface ICmsPage extends ICmsObject, IRecoverableObject, IRecyclableObject
 
     /**
      * Возвращает URL страницы для отображения на сайте.
+     * @param bool $isAbsolute генерировать ли абсолютный URL
      * @return string
      */
-    public function getPageUrl();
+    public function getPageUrl($isAbsolute = false);
 
 }
  

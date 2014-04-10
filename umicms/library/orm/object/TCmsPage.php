@@ -30,11 +30,11 @@ trait TCmsPage
     /**
      * @see ICmsPage::getPageUrl()
      */
-    public function getPageUrl()
+    public function getPageUrl($isAbsolute = false)
     {
         if (!$this->traitPageUrl) {
             /** @noinspection PhpParamsInspection */
-            $this->traitPageUrl = $this->getUrlManager()->getSitePageUrl($this);
+            $this->traitUrl = $this->getUrlManager()->getSitePageUrl($this, $isAbsolute);
         }
 
         return $this->traitPageUrl;
