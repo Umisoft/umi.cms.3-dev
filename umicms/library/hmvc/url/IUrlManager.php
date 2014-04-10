@@ -76,6 +76,13 @@ interface IUrlManager
     public function getSystemPageUrl($componentPath);
 
     /**
+     * Возвращает URL компонента в административной панели.
+     * @param AdminComponent $component
+     * @return string
+     */
+    public function getAdminComponentUrl(AdminComponent $component);
+
+    /**
      * Возвращает URL ресурса коллекции
      * @param ICmsCollection $collection коллекция
      * @param ICmsObject|null $object
@@ -96,7 +103,7 @@ interface IUrlManager
      * @param string $actionName имя действия
      * @return string
      */
-    public function getAdminComponentActionUrl(AdminComponent $component, $actionName);
+    public function getAdminComponentActionResourceUrl(AdminComponent $component, $actionName);
 
 }
  

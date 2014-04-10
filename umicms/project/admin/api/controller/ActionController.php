@@ -131,7 +131,7 @@ class ActionController extends BaseController implements IUrlManagerAware
          */
         $component = $this->getComponent();
 
-        $form->setAction($this->getUrlManager()->getAdminComponentActionUrl($component, 'login'));
+        $form->setAction($this->getUrlManager()->getAdminComponentActionResourceUrl($component, 'login'));
 
         return $form;
     }

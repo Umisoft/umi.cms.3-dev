@@ -146,6 +146,14 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
+    public function getAdminComponentUrl(AdminComponent $component)
+    {
+        return $this->baseAdminUrl . $this->getRelativeComponentUrl($component);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getCollectionResourceUrl(ICmsCollection $collection, ICmsObject $object = null)
     {
         $collectionResourceUrl = $this->baseRestUrl;
@@ -164,21 +172,28 @@ class UrlManager implements IUrlManager
      */
     public function getAdminComponentResourceUrl(AdminComponent $component)
     {
-        $componentResourceUrl = $this->baseRestUrl;
-        $componentResourceUrl .= str_replace(AdminComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 17));
-
-        return $componentResourceUrl;
+        return $this->baseRestUrl . $this->getRelativeComponentUrl($component);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getAdminComponentActionUrl(AdminComponent $component, $actionName)
+    public function getAdminComponentActionResourceUrl(AdminComponent $component, $actionName)
     {
         $actionUrl = $this->getAdminComponentResourceUrl($component);
         $actionUrl .= $component->getRouter()->assemble('action', ['action' => $actionName]);
 
         return $actionUrl;
+    }
+
+    /**
+     * Возвращает URL компонента относительно API-компонента.
+     * @param AdminComponent $component
+     * @return string
+     */
+    protected function getRelativeComponentUrl(AdminComponent $component)
+    {
+        return str_replace(AdminComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 17));
     }
 }
  
