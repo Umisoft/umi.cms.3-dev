@@ -8,7 +8,7 @@
 	padding:20px 0 40px 0;
 }
 
-.elfinder-quicklook .ui-resizable-se { 
+.elfinder-quicklook .ui-resizable-se {
 	width:14px;
 	height:14px;
 	right:5px;
@@ -45,15 +45,15 @@
 }
 
 /* window title */
-.elfinder-quicklook-title { 
-	color:#fff; 
-	white-space:nowrap; 
+.elfinder-quicklook-title {
+	color:#fff;
+	white-space:nowrap;
 	overflow:hidden;
 	padding:2px 0;
 }
 
 /* icon "close" in titlebar */
-.elfinder-quicklook-titlebar .ui-icon { 
+.elfinder-quicklook-titlebar .ui-icon {
 	position:absolute;
 	left : 4px;
 	top:50%;
@@ -88,10 +88,10 @@
 }
 
 /* file name in info */
-.elfinder-quicklook-info .elfinder-quicklook-info-data:first-child { 
-	color:#fff; 
-	font-weight:bold; 
-	padding-bottom:.5em; 
+.elfinder-quicklook-info .elfinder-quicklook-info-data:first-child {
+	color:#fff;
+	font-weight:bold;
+	padding-bottom:.5em;
 }
 
 /* other data in info */
@@ -150,7 +150,7 @@
 	margin:0 7px;
 	float:left;
 	background:url("img/quicklook-icons.png") 0 0 no-repeat;
-	
+
 }
 
 /* fullscreen icon */
