@@ -179,7 +179,7 @@ $dock-components-height: 35;
             vertical-align: middle;
             padding: 0 25px;
             position: relative;
-            color: #BABABB;
+            color: #AAADB4;
             display: block;
             float: left;
             font-weight: bold;
@@ -203,12 +203,12 @@ $dock-components-height: 35;
                     height: 100%;
                     top: 0;
                     left: 0;
-                    background: url(../img/shadows/toRightShadow.png);
+                    background: url(img/shadows/toRightShadow.png);
                 }
                 &:after{
                     left: auto;
                     right: -3px;
-                    background: url(../img/shadows/toLeftShadow.png);
+                    background: url(img/shadows/toLeftShadow.png);
                 }
             }
         }

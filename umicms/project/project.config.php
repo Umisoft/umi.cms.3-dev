@@ -33,6 +33,7 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/authentication/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/stemming/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/acl/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/rss/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/api/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php')
     ],

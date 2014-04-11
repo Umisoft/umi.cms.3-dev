@@ -58,4 +58,11 @@ interface ICmsObject extends IObject
      * Имя поля для хранения последнего редактора объекта
      */
     const FIELD_EDITOR = 'editor';
+
+    /**
+     * Возвращает ссылку на редактирование объекта в административной панели.
+     * @param bool $isAbsolute генерировать ли абсолютный URL
+     * @return string
+     */
+    public function getEditLink($isAbsolute = false);
 }

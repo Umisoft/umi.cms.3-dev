@@ -9,7 +9,6 @@
 
 namespace umicms\orm\object;
 
-use umicms\hmvc\url\IUrlManagerAware;
 use umicms\project\module\structure\api\object\Layout;
 
 /**
@@ -23,7 +22,7 @@ use umicms\project\module\structure\api\object\Layout;
  * @property string $slug последней часть ЧПУ
  * @property Layout|null $layout шаблон для вывода
  */
-interface ICmsPage extends ICmsObject, IRecyclableObject, IUrlManagerAware
+interface ICmsPage extends ICmsObject, IRecoverableObject, IRecyclableObject
 {
     /**
      *  Имя поля для хранения заголовка окна браузера
@@ -56,9 +55,10 @@ interface ICmsPage extends ICmsObject, IRecyclableObject, IUrlManagerAware
 
     /**
      * Возвращает URL страницы для отображения на сайте.
+     * @param bool $isAbsolute генерировать ли абсолютный URL
      * @return string
      */
-    public function getPageUrl();
+    public function getPageUrl($isAbsolute = false);
 
 }
  

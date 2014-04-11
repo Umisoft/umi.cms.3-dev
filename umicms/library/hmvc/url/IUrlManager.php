@@ -29,6 +29,13 @@ interface IUrlManager
     public function setBaseUrl($baseUrl);
 
     /**
+     * Устанавливает URL домена проекта.
+     * @param string $domainUrl
+     * @return self
+     */
+    public function setProjectDomainUrl($domainUrl);
+
+    /**
      * Устанавливает базовый URL для REST-запросов.
      * @param string $baseRestUrl
      * @return self
@@ -44,9 +51,16 @@ interface IUrlManager
 
     /**
      * Возвращает базовый URL проекта.
+     * @param bool $isAbsolute генерировать ли абсолютный URL
      * @return string
      */
-    public function getProjectUrl();
+    public function getProjectUrl($isAbsolute = false);
+
+    /**
+     * Возвращает URL домена проекта.
+     * @return string
+     */
+    public function getProjectDomainUrl();
 
     /**
      * Возвращает базовый URL для REST-запросов.
@@ -63,17 +77,35 @@ interface IUrlManager
     /**
      * Возвращает URL страницы для отображения на сайте.
      * @param ICmsPage $page страница
+     * @param bool $isAbsolute генерировать ли абсолютный URL
      * @return string
      */
-    public function getSitePageUrl(ICmsPage $page);
+    public function getSitePageUrl(ICmsPage $page, $isAbsolute = false);
 
     /**
      * Возвращает URL системной страницы по пути ее компонента-обработчика
      * @param string $componentPath путь ее компонента-обработчика
+     * @param bool $isAbsolute генерировать ли абсолютный URL
      * @throws NonexistentEntityException если такой страницы нет
      * @return string
      */
-    public function getSystemPageUrl($componentPath);
+    public function getSystemPageUrl($componentPath, $isAbsolute = false);
+
+    /**
+     * Возвращает URL компонента в административной панели.
+     * @param AdminComponent $component
+     * @param bool $isAbsolute генерировать ли абсолютный URL
+     * @return string
+     */
+    public function getAdminComponentUrl(AdminComponent $component, $isAbsolute = false);
+
+    /**
+     * Возвращает ссылку на редактирование объекта в административной панели.
+     * @param ICmsObject $object
+     * @param bool $isAbsolute генерировать ли абсолютный URL
+     * @return string
+     */
+    public function getObjectEditLinkUrl(ICmsObject $object, $isAbsolute = false);
 
     /**
      * Возвращает URL ресурса коллекции
@@ -96,7 +128,7 @@ interface IUrlManager
      * @param string $actionName имя действия
      * @return string
      */
-    public function getAdminComponentActionUrl(AdminComponent $component, $actionName);
+    public function getAdminComponentActionResourceUrl(AdminComponent $component, $actionName);
 
 }
  

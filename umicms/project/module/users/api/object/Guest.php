@@ -9,12 +9,9 @@
 
 namespace umicms\project\module\users\api\object;
 
-use umi\orm\objectset\IManyToManyObjectSet;
-
 /**
  * Незарегистрированный пользователь.
  *
- * @property IManyToManyObjectSet $groups группы, в которые входит пользователь
  */
 class Guest extends BaseUser
 {

@@ -11,6 +11,7 @@
         <?php foreach ($rubrics as $rubric) : ?>
             <li>
                 <?= $this->widget('news.rubric.view', ['guid' => $rubric->guid, 'template' => 'shortView']); ?>
+                RSS: <a href="<?= $this->widget('news.rubric.rss', ['rubricGuid' => $rubric->guid]); ?>"><?= $this->widget('news.rubric.rss', ['rubricGuid' => $rubric->guid]); ?></a>
             </li>
         <?php endforeach;?>
     </ul>

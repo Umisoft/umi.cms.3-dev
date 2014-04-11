@@ -19,11 +19,13 @@ return [
     SiteComponent::OPTION_CONTROLLERS => [
         'index' => __NAMESPACE__ . '\controller\IndexController',
         'item' => __NAMESPACE__ . '\controller\NewsItemController',
+        'rss' => __NAMESPACE__ . '\controller\NewsItemRssController'
     ],
 
     SiteComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\NewsItemWidget',
-        'list' => __NAMESPACE__ . '\widget\NewsItemListWidget'
+        'list' => __NAMESPACE__ . '\widget\NewsItemListWidget',
+        'rss' => __NAMESPACE__ . '\widget\NewsItemListRssUrlWidget'
     ],
 
     SiteComponent::OPTION_VIEW        => [
@@ -53,6 +55,13 @@ return [
     ],
 
     SiteComponent::OPTION_ROUTES      => [
+        'rss' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'route' => '/rss',
+            'defaults' => [
+                'controller' => 'rss'
+            ]
+        ],
         'item' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/{slug}',

@@ -10,12 +10,30 @@
 namespace umicms\hmvc\widget;
 
 use umi\hmvc\widget\BaseWidget as FrameworkWidget;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
 
 /**
  * Базовый виджет UMI.CMS
  */
-abstract class BaseWidget extends FrameworkWidget
+abstract class BaseWidget extends FrameworkWidget implements IUrlManagerAware
 {
+    use TUrlManagerAware;
 
+    /**
+     * Возвращает URL маршрута компонента.
+     * @param string $routeName
+     * @param array $routeParams параметры маршрута
+     * @param bool $isAbsolute возвращать ли абсолютный URL
+     * @return string
+     */
+    protected function getUrl($routeName, array $routeParams = [], $isAbsolute = false)
+    {
+        $url = rtrim($this->getUrlManager()->getProjectUrl($isAbsolute), '/');
+        $url .= $this->getContext()->getBaseUrl();
+        $url .= $this->getComponent()->getRouter()->assemble($routeName, $routeParams);
+
+        return $url;
+    }
 }
  

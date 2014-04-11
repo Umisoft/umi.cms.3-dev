@@ -12,6 +12,7 @@ namespace umicms\api\toolbox;
 use umi\toolkit\exception\UnsupportedServiceException;
 use umi\toolkit\toolbox\IToolbox;
 use umi\toolkit\toolbox\TToolbox;
+use umicms\api\IApiAware;
 use umicms\api\IPublicApi;
 
 /**
@@ -45,6 +46,16 @@ class ApiTools implements IToolbox
             'Toolbox "{name}" does not support service "{interface}".',
             ['name' => self::NAME, 'interface' => $serviceInterfaceName]
         ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function injectDependencies($object)
+    {
+        if ($object instanceof IApiAware) {
+            $object->setApiTools($this);
+        }
     }
 
     /**

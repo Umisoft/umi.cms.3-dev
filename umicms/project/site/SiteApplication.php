@@ -136,6 +136,12 @@ class SiteApplication extends SiteComponent
         $requestFormat = $this->getRequestFormatByPostfix($request->getRequestFormat(null));
 
         if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
+            if ($response->getIsCompleted()) {
+                throw new HttpNotFound($this->translate(
+                    'Resource not found.'
+                ));
+            }
+
             $result = [
                 'result' => $response->getContent()
             ];

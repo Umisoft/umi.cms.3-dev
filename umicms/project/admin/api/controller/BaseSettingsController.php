@@ -87,7 +87,7 @@ abstract class BaseSettingsController extends BaseController implements IUrlMana
                     $actions[$actionName] = [
                         'type' => 'query',
                         'displayName' => $this->translate('action:' . $actionName . ':displayName'),
-                        'source' => $this->getUrlManager()->getAdminComponentActionUrl($component, $actionName)
+                        'source' => $this->getUrlManager()->getAdminComponentActionResourceUrl($component, $actionName)
                     ];
                 }
 
@@ -95,7 +95,7 @@ abstract class BaseSettingsController extends BaseController implements IUrlMana
                     $actions[$actionName] = [
                         'type' => 'modify',
                         'displayName' => $this->translate('action:' . $actionName . ':displayName'),
-                        'source' => $this->getUrlManager()->getAdminComponentActionUrl($component, $actionName)
+                        'source' => $this->getUrlManager()->getAdminComponentActionResourceUrl($component, $actionName)
                     ];
                 }
             }

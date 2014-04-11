@@ -10,11 +10,12 @@
 namespace umicms\orm\object;
 
 use umi\orm\object\Object;
+use umicms\hmvc\url\IUrlManagerAware;
 
 /**
  * Класс простого объекта UMI.CMS.
  */
-class CmsObject extends Object implements ICmsObject
+class CmsObject extends Object implements ICmsObject, IUrlManagerAware
 {
-
+    use TCmsObject;
 }

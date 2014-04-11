@@ -12,7 +12,7 @@
         width: unquote("calc(100% + 1px)");
         left: 0;
         bottom: -3px;
-        background: url(../img/shadows/toBottomShadow.png);
+        background: url(img/shadows/toBottomShadow.png);
     }
     a{
         position: relative;
@@ -24,8 +24,11 @@
         line-height: 33px;
         font-size: 13px;
         font-weight: bold;
-        color: #BABABB;
-        &:hover, &.focus{
+        color: #C0C8CF;
+        &:hover{
+            color: #575E6C;
+        }
+        &.focus{
             &:before, &:after{
                 content: "";
                 position: absolute;
@@ -37,20 +40,20 @@
                 border: 8px solid transparent;
                 border-top-color: #BFC4C8;
             }
+
             &:after{
                 margin-left: -6px;
                 border-top-color: #FFF;
                 border-width: 6px;
             }
-        }
-        &.focus{
+
             color: #575E6C;
             &:before{
                 border-top-color: #BFC4C8;
             }
-            &:after{
-                border-top-color: #F7F7F7;
-            }
+//            &:after{
+//                border-top-color: #F7F7F7;
+//            }
         }
     }
 }

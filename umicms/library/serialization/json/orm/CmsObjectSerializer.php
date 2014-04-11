@@ -116,8 +116,10 @@ class CmsObjectSerializer extends BaseSerializer implements IUrlManagerAware
             $properties['links'] = $links;
         }
 
+        $properties['meta'] = ['editLink' => $object->getEditLink()];
+
         if ($object instanceof ICmsPage) {
-            $properties['meta'] = ['pageUrl' => $object->getPageUrl()];
+            $properties['meta']['pageUrl'] = $object->getPageUrl();
         }
 
         $this->delegate($properties);

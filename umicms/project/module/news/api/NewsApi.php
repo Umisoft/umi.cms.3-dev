@@ -10,8 +10,13 @@
 namespace umicms\project\module\news\api;
 
 use umi\orm\selector\ISelector;
+use umi\rss\IRssFeed;
+use umi\rss\IRssFeedAware;
+use umi\rss\TRssFeedAware;
 use umicms\api\BaseComplexApi;
 use umicms\api\IPublicApi;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\news\api\object\NewsItem;
 use umicms\project\module\news\api\object\NewsRubric;
 use umicms\project\module\news\api\object\NewsSubject;
@@ -19,8 +24,11 @@ use umicms\project\module\news\api\object\NewsSubject;
 /**
  * Публичное API модуля "Новости"
  */
-class NewsApi extends BaseComplexApi implements IPublicApi
+class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IRssFeedAware
 {
+    use TUrlManagerAware;
+    use TRssFeedAware;
+
     /**
      * Возвращает репозиторий для работы с новостями.
      * @return NewsItemRepository
@@ -63,6 +71,32 @@ class NewsApi extends BaseComplexApi implements IPublicApi
         }
 
         return $news;
+    }
+
+    /**
+     * Строит RSS-ленту.
+     * @param string $title заголовок RSS-ленты
+     * @param string $description описание RSS-ленты
+     * @param ISelector|NewsItem[] $newsSelector список новостей
+     * @return IRssFeed
+     */
+    public function getNewsRssFeed($title, $description, ISelector $newsSelector)
+    {
+        $rssFeed = $this->createRssFeed(
+            $this->getUrlManager()->getProjectUrl(true),
+            $title,
+            $description
+        );
+
+        foreach ($newsSelector as $newsItem) {
+            $rssFeed->addItem()
+                ->setTitle($newsItem->h1)
+                ->setContent($newsItem->announcement)
+                ->setUrl($newsItem->getPageUrl(true))
+                ->setDate($newsItem->date);
+        }
+
+        return $rssFeed;
     }
 
     /**

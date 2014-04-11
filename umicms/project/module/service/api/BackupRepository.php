@@ -16,10 +16,9 @@ use umicms\api\repository\BaseObjectRepository;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
-use umicms\orm\object\ICmsObject;
+use umicms\orm\object\IRecoverableObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\service\api\object\Backup;
-use umicms\project\module\users\api\UsersApi;
 
 /**
  * Репозиторий для работы с бэкапами.
@@ -32,14 +31,6 @@ class BackupRepository extends BaseObjectRepository implements IPublicApi, IObje
      * {@inheritdoc}
      */
     public $collectionName = 'serviceBackup';
-
-    public $userApi;
-
-    public function __construct(UsersApi $usersApi)
-    {
-        $this->userApi = $usersApi;
-    }
-
 
     /**
      * Возвращает селектор для выбора бэкапов.
@@ -60,10 +51,10 @@ class BackupRepository extends BaseObjectRepository implements IPublicApi, IObje
 
     /**
      * Возвращает селектор списка бэкапов.
-     * @param ICmsObject $object
+     * @param IRecoverableObject $object
      * @return CmsSelector
      */
-    public function getList(ICmsObject $object)
+    public function getList(IRecoverableObject $object)
     {
         return $this->select()
             ->where(Backup::FIELD_OBJECT_ID)->equals($object->getId())
@@ -117,13 +108,13 @@ class BackupRepository extends BaseObjectRepository implements IPublicApi, IObje
 
     /**
      * Восстанавливает в памяти резервную копию объекта.
-     * @param ICmsObject $object
+     * @param IRecoverableObject $object
      * @param int $backupId идентификатор резервной копии
      * @throws RuntimeException если не удалось восстановить объект
      * @throws InvalidArgumentException если резервная копия не принадлежит указанному объекту
-     * @return ICmsObject
+     * @return IRecoverableObject
      */
-    public function wakeUpBackup(ICmsObject $object, $backupId)
+    public function wakeUpBackup(IRecoverableObject $object, $backupId)
     {
         $backup = $this->getById($backupId);
         if ($backup->objectId != $object->getId()) {
@@ -140,7 +131,7 @@ class BackupRepository extends BaseObjectRepository implements IPublicApi, IObje
 
         $restoredObject = $backup->data;
 
-        if (!$restoredObject instanceof ICmsObject) {
+        if (!$restoredObject instanceof IRecoverableObject) {
             throw new RuntimeException(
                 $this->translate(
                     'Cannot restore backup "{backupId}" for object "{guid}". Backup corrupted.',
@@ -159,10 +150,10 @@ class BackupRepository extends BaseObjectRepository implements IPublicApi, IObje
 
     /**
      * Создаёт резервную копию объекта.
-     * @param ICmsObject $object
+     * @param IRecoverableObject $object
      * @return $this
      */
-    public function createBackup(ICmsObject $object)
+    public function createBackup(IRecoverableObject $object)
     {
         /** @var Backup $backup */
         $backup = $this->getCollection()->add();
