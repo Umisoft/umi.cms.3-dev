@@ -37,7 +37,6 @@ define(['App'], function(UMI){
                 var self = this;
                 var query = this.get('query');
                 var collectionName = self.get('controllers.component').settings.layout.collection;
-                var promise = self.store.find(collectionName, query);
                 return self.store.find(collectionName, query).then(function(objects){
                     self.set('objects', objects);
                 });
