@@ -9,14 +9,16 @@ define(['App'], function(UMI){
 
             filters: function(){
                 var filters = {};
+
                 var collectionName = this.get('controllers.component').settings.layout.collection;
                 var metaForCollection = this.get('store').metadataFor(collectionName);
                 if(metaForCollection && metaForCollection.collectionType === 'hierarchic'){
                     var parentId = this.get('model.object.id') !== 'root' ? 'equals(' + this.get('model.object.id') + ')' : 'null()';
                     filters.parent = parentId;
                 }
+
                 return filters;
-            }.property(),
+            }.property('content.object.id'),
 
             query: function(){
                 var query = {};
@@ -35,29 +37,17 @@ define(['App'], function(UMI){
                 return query;
             }.property('limit', 'filters', 'offset'),
 
-            objects: null,
-
-            queryChange: function(){
-                var self = this;
-                var query = this.get('query');
-                var collectionName = self.get('controllers.component').settings.layout.collection;
-                return self.store.find(collectionName, query).then(function(objects){
-                    self.set('objects', objects);
-                });
-            }.observes('query'),
-
-            modelChange: function(){
+            objects: function(){
                 var self = this;
                 var query = this.get('query');
                 var collectionName = self.get('controllers.component').settings.layout.collection;
                 var objects = self.store.find(collectionName, query);
-                var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+                return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: objects,
                     sortProperties: ['id'],
                     sortAscending: true
                 });
-                self.set('objects', children);
-            }.observes('model').on('init'),
+            }.property('content.object.id', 'query'),
 
             actions: {
                 sortByProperty: function(propertyName){

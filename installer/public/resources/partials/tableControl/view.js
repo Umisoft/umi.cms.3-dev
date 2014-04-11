@@ -28,15 +28,9 @@ define(['App'], function(UMI){
                 };
 
                 if(objects && iScroll){
-                    // Проверяет данные promise или массив
-                    if(Object.prototype.toString.call(objects).slice(8, -1) === 'Object'){
-                        objects.then(function(){
-                            scrollUpdate();
-                        });
-                    } else{
+                    objects.then(function(){
                         scrollUpdate();
-                    }
-
+                    });
                 }
             }.observes('controller.objects').on('didInsertElement'),
 
