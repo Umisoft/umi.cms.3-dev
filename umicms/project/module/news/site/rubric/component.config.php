@@ -31,14 +31,17 @@ return [
 
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'rubricViewer' => []
+            'rubricViewer' => [],
+            'rubricRssViewer' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:index',
             'controller:rubric',
+            'controller:rss',
             'widget:view',
             'widget:list',
-            'widget:newsList'
+            'widget:newsList',
+            'widget:rss'
         ],
         IAclFactory::OPTION_RULES => [
             'rubricViewer' => [
@@ -47,6 +50,10 @@ return [
                 'widget:view' => [],
                 'widget:list' => [],
                 'widget:newsList' => []
+            ],
+            'rubricRssViewer' => [
+                'controller:rss' => [],
+                'widget:rss' => []
             ]
         ]
     ],

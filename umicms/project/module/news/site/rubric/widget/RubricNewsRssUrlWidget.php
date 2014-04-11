@@ -9,14 +9,19 @@
 
 namespace umicms\project\module\news\site\rubric\widget;
 
+use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\news\api\NewsApi;
-use umicms\hmvc\widget\BaseWidget;
 
 /**
  * Виджет для вывода URL на RSS-ленту по рубрике.
  */
-class RubricNewsRssUrlWidget extends BaseWidget
+class RubricNewsRssUrlWidget extends BaseSecureWidget
 {
+    /**
+     * @var string $template имя шаблона, по которому выводится виджет
+     */
+    public $template = 'rssLink';
+
     /**
      * @var array $rubricGuid список GUID новостных сюжетов, из которых выводятся новости.
      * Если не указаны, то выводятся новости всех сюжетов
@@ -43,7 +48,12 @@ class RubricNewsRssUrlWidget extends BaseWidget
     public function __invoke()
     {
         $url = $this->api->rubric()->get($this->rubricGuid)->getURL();
-        return $this->getUrl('rss', ['url' => $url]);
+        return $this->createResult(
+            $this->template,
+            [
+                'url' => $this->getUrl('rss', ['url' => $url])
+            ]
+        );
     }
 }
  
