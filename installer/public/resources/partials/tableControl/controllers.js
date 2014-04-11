@@ -9,8 +9,12 @@ define(['App'], function(UMI){
 
             filters: function(){
                 var filters = {};
-                var parentId = this.get('model.object.id') !== 'root' ? 'equals(' + this.get('model.object.id') + ')' : 'null()';
-                filters.parent = parentId;
+                var collectionName = this.get('controllers.component').settings.layout.collection;
+                var metaForCollection = this.get('store').metadataFor(collectionName);
+                if(metaForCollection && metaForCollection.collectionType === 'hierarchic'){
+                    var parentId = this.get('model.object.id') !== 'root' ? 'equals(' + this.get('model.object.id') + ')' : 'null()';
+                    filters.parent = parentId;
+                }
                 return filters;
             }.property(),
 

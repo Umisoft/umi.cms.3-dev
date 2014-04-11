@@ -167,11 +167,12 @@ define([], function(){
                     }
                 }
 
-                fields.meta = DS.attr('raw', {readOnly: true});
-                fields.filters = filters;
+                fields.filters = filters;// TODO: Зарезервировать эти свойсва со стороны back-and
                 fields.validators = validators;
 
                 UMI[collection.name.capitalize()] = DS.Model.extend(fields);
+
+                UMI.__container__.lookup('store:main').metaForType(collection.name, {'collectionType': collection.type});// TODO: Найти рекоммендации на что заменить __container__
 
                 if(collection.source){
                     UMI[collection.name.capitalize() + 'Adapter'] = DS.UmiRESTAdapter.extend({
