@@ -36,7 +36,7 @@ define(
             }.property(),
             needs: ['component'],
             settingsBinding: 'controllers.component.settings',
-            backups: function(){
+            backups: function(){// TODO: Выполняется лишний раз при уходе с роута
                 var backups = {};
                 var object = this.get('model.object');
                 var settings = this.get('settings');
