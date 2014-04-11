@@ -1,32 +1,32 @@
 <div class="umi-table-control-header s-unselectable">
 
     <div class="umi-table-control-header-fixed-left">
-        <div class="umi-table-control-cell">
+        <div class="umi-table-control-header-cell">
             <input type="checkbox" id="checkbox-id" class="s-margin-clear"/>
             <label for="checkbox-id"></label>
         </div>
-        <div class="umi-table-contol-cell-empty bg-gray"></div>
+        <div class="umi-table-control-control-cell-empty"></div>
     </div>
 
     <div class="umi-table-control-header-center">
         <table class="umi-table-control-header">
             <tbody>
-                <tr class="umi-table-row">
+                <tr class="umi-table-control-row">
                     {{#each column in content.viewSettings.columns}}
-                        <td class="umi-table-header-column">
-                            <div class="umi-table-control-cell column-id-{{unbound column.name}}">
+                        <td class="umi-table-control-header-column">
+                            <div class="umi-table-control-header-cell column-id-{{unbound column.name}}">
                                 {{column.title}}
                             </div>
-                            <div class="umi-table-column-resizer"></div>
+                            <div class="umi-table-control-column-resizer"></div>
                         </td>
                     {{/each}}
-                    <td class="umi-table-empty-column"></td>
+                    <td class="umi-table-control-empty-column"></td>
                 </tr>
 
-                <tr class="umi-table-row filters">
+                <tr class="umi-table-control-row filters">
                     {{#each column in content.viewSettings.columns}}
-                        <td class="umi-table-header-column">
-                            <div class="umi-table-control-cell filter column-id-{{unbound column.name}}">
+                        <td class="umi-table-control-header-column">
+                            <div class="umi-table-control-header-cell filter column-id-{{unbound column.name}}">
                                 <input type="text"/>
                                 <div class="button flat tiny square right" {{action 'sortByProperty' column.name}}>
                                     <i class="icon black icon-bottom-thin"></i>
@@ -34,35 +34,35 @@
                             </div>
                         </td>
                     {{/each}}
-                    <td class="umi-table-empty-column"></td>
+                    <td class="umi-table-control-empty-column"></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
     <div class="umi-table-control-header-fixed-right">
-        <div class="umi-table-control-cell">
-            <span class="button tiny flat">
+        <div class="umi-table-control-header-cell">
+            <span class="button tiny flat" {{action "showPopup" "tableControlColumnSelectorPopup" target="controllers.popup"}}>
                 <i class="icon icon-settings"></i>
             </span>
         </div>
-        <div class="umi-table-contol-cell-empty bg-gray"></div>
+        <div class="umi-table-control-contol-cell-empty"></div>
     </div>
 </div>
 
-<div class="table-content-wrapper">
+<div class="umi-table-control-content-wrapper">
     <div class="s-scroll-wrap">
-        <table class="table-content">
+        <table class="umi-table-control-content">
             <tbody>
                 {{!#if objects.content.isFulfilled}}
                     {{#each object in objects}}
-                        {{#link-to 'context' 'form' object.id class="umi-table-content-row" tagName="tr"}}
+                        {{#link-to 'context' 'form' object.id class="umi-table-control-content-row" tagName="tr"}}
                             {{#each column in content.viewSettings.columns}}
-                                <td class="umi-table-cell">
+                                <td class="umi-table-control-content-cell">
                                     {{view "tableCellContent" objectBinding="object" column=column}}
                                 </td>
                             {{/each}}
-                            <td class="umi-table-empty-column"></td>
+                            <td class="umi-table-control-empty-column"></td>
                         {{/link-to}}
                     {{else}}
                         <tr class="umi-table-control-content-row-empty">
@@ -78,22 +78,23 @@
             </tbody>
         </table>
 
-        <!-- Отдельно добавим чекбоксы-->
+        <!-- Колонка слева от контента -->
         <div class="umi-table-control-content-fixed-left">
             {{#each object in objects}}
-            <div class="umi-table-control-cell">
-                <input type="checkbox" id="checkbox-id" class="s-margin-clear"/>
-                <label for="checkbox-id"></label>
-            </div>
+                <div class="umi-table-control-header-cell"> <!-- TODO Переименовать класс - убрать header из имени -->
+                    <input type="checkbox" id="checkbox-id" class="s-margin-clear"/>
+                    <label for="checkbox-id"></label>
+                </div>
             {{/each}}
         </div>
 
-        <!-- отдельно добавим пустую колонку справа-->
+        <!-- Колонка справа от контента -->
         <div class="umi-table-control-content-fixed-right">
             {{#each object in objects}}
-            <div class="umi-table-contol-cell-empty"></div>
+                <div class="umi-table-control-control-cell-empty"><i class="icon icon-delete"></i></div> <!-- TODO Переименовать класс - убрать empty из имени -->
             {{/each}}
         </div>
+
     </div>
 </div>
 

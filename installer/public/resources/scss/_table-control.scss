@@ -13,6 +13,9 @@ $table-control-header-height: 70px;
 }
 
 // -------- Шапка таблицы
+.umi-table-control-header{
+    background: #F5F6F7;
+}
 .umi-table-control-header-center{
     padding: 0 $table-control-left-column-width;
 
@@ -22,7 +25,7 @@ $table-control-header-height: 70px;
         border-collapse: collapse;
     }
 
-    .umi-table-row{
+    .umi-table-control-row{
         width: 100%;
         height: $table-control-row-height;
         font-weight: bold;
@@ -33,7 +36,7 @@ $table-control-header-height: 70px;
         }
     }
 
-    .umi-table-header-column{
+    .umi-table-control-header-column{
         table-layout: fixed;
         position: relative;
         padding: 0;
@@ -43,14 +46,14 @@ $table-control-header-height: 70px;
     }
 }
 
-.umi-table-empty-column{
+.umi-table-control-empty-column{
     float: none;
     width: 100%;
     right: 0;
     border-bottom: 1px solid #E2E3E4;
 }
 
-.umi-table-column-resizer{
+.umi-table-control-column-resizer{
     position: absolute;
     right: 0;
     margin-right: -4px;
@@ -76,7 +79,7 @@ $table-control-header-height: 70px;
     left: 0;
     top: 0;
     border-right: 1px solid $table-control-cell-border-color;
-    .umi-table-control-cell{
+    .umi-table-control-header-cell{
         height: $table-control-row-height;
         width: $table-control-left-column-width;
         display: block;
@@ -84,9 +87,6 @@ $table-control-header-height: 70px;
         padding-left: rem-calc(8);
         background: #fff;
         border-bottom: 1px solid #E3E4E5;
-        &.bg-gray{
-            background: #F5F6F7;
-        }
     }
 }
 
@@ -98,7 +98,7 @@ $table-control-header-height: 70px;
 }
 
 .umi-table-control-header-fixed-left, .umi-table-control-header-fixed-right{
-    .umi-table-control-cell{
+    .umi-table-control-header-cell{
         height: $table-control-row-height + 1px;
     }
 }
@@ -111,19 +111,16 @@ $table-control-header-height: 70px;
     right: 0;
 }
 
-.umi-table-contol-cell-empty{
+.umi-table-control-control-cell-empty{
     left: auto;
     right: 0;
     width: $table-control-left-column-width;
     height: $table-control-row-height;
     line-height: $table-control-row-height;
-    &.bg-gray{
-        background: #F5F6F7;
-    }
 }
 
 // ----------- table content
-.table-content-wrapper{
+.umi-table-control-content-wrapper{
     height: calc(100% - 74px - 29px);
     position: relative;
     &:before{
@@ -134,18 +131,19 @@ $table-control-header-height: 70px;
         height: 3px;
         width: 100%;
         left: 0;
-        top: 0;
+        top: -1px;
         background: url(img/shadows/toBottomShadow.png);
         z-index: 3;
     }
-    .umi-table-empty-column{
+    .umi-table-control-empty-column{
         border-bottom: 0;
     }
 }
 
+//Щапка
 .umi-table-control-content-fixed-left, .umi-table-control-content-fixed-right{
     border-bottom: 1px solid #A7B9C5;
-    .umi-table-control-cell, .umi-table-contol-cell-empty{
+    .umi-table-control-header-cell, .umi-table-control-control-cell-empty{
         background: #F5F6F7;
         border-bottom: 0;
         &:nth-of-type(odd){
@@ -154,7 +152,7 @@ $table-control-header-height: 70px;
     }
 }
 
-.table-content{
+.umi-table-control-content{
     float: left;
     border-collapse: collapse;
     table-layout: fixed;
@@ -162,7 +160,7 @@ $table-control-header-height: 70px;
     margin: 0 34px;
 }
 
-.umi-table-content-row{
+.umi-table-control-content-row{
     height: $table-control-row-height;
     cursor: pointer;
     background: #F5F6F7;
@@ -171,7 +169,7 @@ $table-control-header-height: 70px;
     }
 }
 
-.umi-table-control-cell{
+.umi-table-control-header-cell{
     position: relative;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -197,11 +195,19 @@ $table-control-header-height: 70px;
     }
 }
 
-.umi-table-cell{
-    padding: 0;
+.umi-table-control-content-cell-div{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    //	width: 100%;
+    line-height: rem-calc(34);
+    border-left: 1px solid #E3E4E5;
+    padding: 0 10px;
 }
 
-.umi-table-content-row:last-of-type td{
+//TODO Нужно избавиться от селектора td
+.umi-table-control-content-row:last-of-type td{
     border-bottom: 1px solid #A7B9C5;
 }
 
@@ -245,7 +251,7 @@ $table-control-header-height: 70px;
     right: 0;
     height: 100px;
     padding: 0;
-    .table-content-loader{
+    .umi-table-control-content-loader{
         background: #E9F1F7;
         height: 100%;
         margin: 0 -$table-control-left-column-width;

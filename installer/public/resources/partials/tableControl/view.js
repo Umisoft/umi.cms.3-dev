@@ -49,7 +49,7 @@ define(['App'], function(UMI){
                 var resultStyle = '';
                 var columns = this.get('controller.viewSettings').columns;
                 var i;
-                var tableControlClass = '.umi-table-control';
+                var tableControlClass = '.umi-table-control-content';
 
                 for(i = 0; i < columns.length; i++){
                     resultStyle = resultStyle + tableControlClass + ' .column-id-' + columns[i].name + '{width: ' + columns[i].width + 'px;}';
@@ -79,6 +79,7 @@ define(['App'], function(UMI){
                         Ember.run.scheduleOnce('afterRender', self, function(){
                             var scrollContent = new IScroll(tableContent[0], UMI.config.iScroll);
                             self.set('iScroll', scrollContent);
+
                             scrollContent.on('scroll', function(){
                                 umiTableLeft.style.marginTop = this.y + 'px';
                                 umiTableRight.style.marginTop = this.y + 'px';
@@ -87,15 +88,13 @@ define(['App'], function(UMI){
 
                             // После ресайза страницы необходимо изменить отступы у элементов  umiTableLeft, umiTableRight, umiTableHeader
                             $(window).on('resize.umi.tableControl', function(){
-                                setTimeout(function(){
-                                    umiTableLeft.style.marginTop = scrollContent.y + 'px';
-                                    umiTableRight.style.marginTop = scrollContent.y + 'px';
-                                    umiTableHeader.style.marginLeft = scrollContent.x + 'px';
-                                }, 100);
+                                umiTableLeft.style.marginTop = scrollContent.y + 'px';
+                                umiTableRight.style.marginTop = scrollContent.y + 'px';
+                                umiTableHeader.style.marginLeft = scrollContent.x + 'px';
                             });
 
                             // Событие изменения ширины колонки
-                            tableControl.on('mousedown.umi.tableControl', '.umi-table-column-resizer', function(){
+                            tableControl.on('mousedown.umi.tableControl', '.umi-table-control-column-resizer', function(){
                                 var handler = this;
                                 $(handler).addClass('on-resize');
                                 var columnEl = handler.parentNode.firstElementChild;
@@ -149,7 +148,7 @@ define(['App'], function(UMI){
         });
 
         UMI.TableCellContentView = Ember.View.extend({
-            classNames: ['umi-table-control-cell'],
+            classNames: ['umi-table-control-content-cell-div'],
             classNameBindings: ['columnId'],
             columnId: function(){
                 return 'column-id-' + this.get('column').name;
