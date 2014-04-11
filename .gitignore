@@ -4,6 +4,5 @@
 /vendor
 node_modules
 /Vagrantfile
-/installer/public/resources/libs
 /.vagrant
 *.pp
