@@ -10,7 +10,6 @@
 namespace umicms\project\module\news\site\item\controller;
 
 use umi\http\Response;
-use umi\rss\TRssFeedAware;
 use umicms\hmvc\controller\BaseController;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\news\api\NewsApi;
