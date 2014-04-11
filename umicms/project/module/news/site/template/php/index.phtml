@@ -7,4 +7,5 @@
 <?= $page->contents ?>
 
 <?= $this->widget('news.rubric.list', ['template' => 'list']) ?>
+RSS: <a href="<?= $this->widget('news.item.rss') ?>"><?= $this->widget('news.item.rss') ?></a>
 <?= $this->widget('news.item.list', ['template' => 'list']) ?>

@@ -19,12 +19,14 @@ return [
     SiteComponent::OPTION_CONTROLLERS => [
         'index' => __NAMESPACE__ . '\controller\IndexController',
         'rubric' => __NAMESPACE__ . '\controller\RubricController',
+        'rss' => __NAMESPACE__ . '\controller\NewsRubricRssController'
     ],
 
     SiteComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ .  '\widget\RubricWidget',
         'newsList' => __NAMESPACE__ . '\widget\RubricNewsListWidget',
         'list' => __NAMESPACE__ .  '\widget\RubricListWidget',
+        'rss' => __NAMESPACE__ .  '\widget\RubricNewsRssUrlWidget'
     ],
 
     SiteComponent::OPTION_ACL => [
@@ -56,6 +58,13 @@ return [
     ],
 
     SiteComponent::OPTION_ROUTES      => [
+        'rss' => [
+            'type'     => IRouteFactory::ROUTE_REGEXP,
+            'route' => '/rss/(?P<url>.+)',
+            'defaults' => [
+                'controller' => 'rss'
+            ]
+        ],
         'rubric' => [
             'type'     => IRouteFactory::ROUTE_REGEXP,
             'route'    => '/(?P<url>.+)',
