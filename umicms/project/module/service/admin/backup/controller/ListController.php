@@ -15,7 +15,6 @@ use umicms\project\module\service\api\BackupRepository;
 
 class ListController extends BaseRestListController
 {
-
     /**
      * @var BackupRepository $backupRepository
      */

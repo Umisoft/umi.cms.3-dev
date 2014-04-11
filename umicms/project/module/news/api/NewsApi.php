@@ -80,7 +80,7 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
      * @param ISelector|NewsItem[] $newsSelector список новостей
      * @return IRssFeed
      */
-    public function getNewsRssFeed($title, $description, $newsSelector)
+    public function getNewsRssFeed($title, $description, ISelector $newsSelector)
     {
         $rssFeed = $this->createRssFeed(
             $this->getUrlManager()->getProjectUrl(true),

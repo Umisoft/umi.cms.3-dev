@@ -14,7 +14,7 @@ html{
 }
 
 .auth-mask{
-    transition: opacity 0.8s linear 0.8s;
+    transition: opacity 0.3s linear 0.4s;
     opacity: 1;
     background: linear-gradient(to bottom, #1B243F, #0F1422);
     width: 100%;
@@ -31,7 +31,7 @@ html{
         z-index: 99999;
         position: absolute;
         width: 100%;
-        transition: opacity 0.8s linear;
+        transition: opacity 0.4s linear;
         ~ .auth-mask{
             visibility: visible;
         }
