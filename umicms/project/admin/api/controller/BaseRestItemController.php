@@ -12,10 +12,19 @@ namespace umicms\project\admin\api\controller;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
+use umi\orm\metadata\field\datetime\DateTimeField;
+use umi\orm\metadata\field\relation\BelongsToRelationField;
+use umi\orm\metadata\field\relation\HasManyRelationField;
+use umi\orm\metadata\field\relation\ManyToManyRelationField;
+use umi\orm\object\property\datetime\DateTime;
+use umi\orm\objectset\IManyToManyObjectSet;
+use umi\orm\objectset\IObjectSet;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\api\IApiAware;
 use umicms\api\toolbox\TApiAware;
+use umicms\exception\RuntimeException;
+use umicms\exception\UnexpectedValueException;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\IRecoverableObject;
 use umicms\project\module\service\api\BackupRepository;
@@ -33,14 +42,6 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
      * @return ICmsObject
      */
     abstract protected function get();
-
-    /**
-     * Обновляет и возвращает объект.
-     * @param ICmsObject $object
-     * @param array $data
-     * @return ICmsObject
-     */
-    abstract protected function update(ICmsObject $object, array $data);
 
     /**
      * Удаляет объект.
@@ -113,6 +114,159 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
         }
 
         return $data[$collectionName];
+    }
+
+    /**
+     * Обновляет и возвращает объект.
+     * @param ICmsObject $object
+     * @param array $data
+     * @throws RuntimeException если невозможно сохранить объект
+     * @return ICmsObject
+     */
+    protected function update(ICmsObject $object, array $data)
+    {
+        if (!isset($data[ICmsObject::FIELD_VERSION])) {
+            throw new RuntimeException('Cannot save object. Object version is unknown');
+        }
+
+        $object->setVersion($data[ICmsObject::FIELD_VERSION]);
+
+        foreach ($data as $propertyName => $value) {
+            if ($object->hasProperty($propertyName) && !$object->getProperty($propertyName)->getIsReadOnly()) {
+
+                $field = $object->getProperty($propertyName)->getField();
+
+                switch(true) {
+                    case $field instanceof HasManyRelationField: {
+                        $this->setObjectSetValue($object, $propertyName, $field, $value);
+                        break;
+                    }
+                    case $field instanceof BelongsToRelationField: {
+                        $this->setObjectValue($object, $propertyName, $field, $value);
+                        break;
+                    }
+                    case $field instanceof ManyToManyRelationField: {
+                        $this->setManyToManyObjectSetValue($object, $propertyName, $field, $value);
+                        break;
+                    }
+                    case $field instanceof DateTimeField: {
+                        $this->setDateTimeValue($object, $propertyName, $value);
+                        break;
+                    }
+                    default: {
+                        $object->setValue($propertyName, $value);
+                    }
+                }
+            }
+        }
+
+        $this->getObjectPersister()->commit();
+
+        return $object;
+    }
+
+    protected function setDateTimeValue(ICmsObject $object, $propertyName, $value)
+    {
+
+        if (!is_array($value) || !isset($value['date'])) {
+            throw new UnexpectedValueException(
+                sprintf('Cannot set data for DateTime property "%s". Data should be an array an contain "date" option.', $propertyName)
+            );
+        }
+
+        /**
+         * @var DateTime $dateTime
+         */
+        $dateTime = $object->getValue($propertyName);
+
+        $dateTime->setTimestamp(strtotime($value['date']));
+        if (isset($value['timezone'])) {
+            $dateTime->setTimezone(new \DateTimeZone($value['timezone']));
+        }
+    }
+
+    /**
+     * Сохраняет значение объекта для HasManyRelationField.
+     * @param ICmsObject $object изменяемый объект
+     * @param string $propertyName имя изменяемого объекта
+     * @param HasManyRelationField $field поле свойств
+     * @param array $value значение (список идентификаторов связанных объектов)
+     * @throws UnexpectedValueException если значение некорректно
+     */
+    protected function setObjectSetValue(ICmsObject $object, $propertyName, HasManyRelationField $field, $value)
+    {
+        if (!is_array($value)) {
+            throw new UnexpectedValueException(
+                sprintf('Cannot set data for HasManyRelation property "%s". Data should be an array.', $propertyName)
+            );
+        }
+
+        $targetCollection = $field->getTargetCollection();
+
+        /**
+         * @var IObjectSet $objectSet
+         */
+        $objectSet = $object->getValue($propertyName);
+        /**
+         * @var ICmsObject $relatedObject
+         */
+        foreach($objectSet as $relatedObject) {
+            $relatedObject->setValue($field->getTargetFieldName(), null);
+        }
+
+        foreach ($value as $id) {
+            $targetCollection->getById($id)->setValue($field->getTargetFieldName(), $object);
+        }
+    }
+
+    /**
+     * Сохраняет значение объекта для BelongsToRelationField.
+     * @param ICmsObject $object изменяемый объект
+     * @param string $propertyName имя изменяемого объекта
+     * @param BelongsToRelationField $field поле свойств
+     * @param int|null $value значение (идентификатор связанного объекта)
+     * @throws UnexpectedValueException если значение некорректно
+     */
+    protected function setObjectValue(ICmsObject $object, $propertyName, BelongsToRelationField $field, $value)
+    {
+        if (!is_numeric($value) && !is_null($value)) {
+            throw new UnexpectedValueException(
+                sprintf('Cannot set data for BelongsToRelation property "%s". Data should be numeric or null.', $propertyName)
+            );
+        }
+
+        $value = $value ? $field->getTargetCollection()->getById($value) : null;
+
+        $object->setValue($propertyName, $value);
+    }
+
+    /**
+     * Сохраняет значение объекта для ManyToManyRelationField.
+     * @param ICmsObject $object изменяемый объект
+     * @param string $propertyName имя изменяемого объекта
+     * @param ManyToManyRelationField $field поле свойств
+     * @param array $value значение (список идентификаторов связанных объектов)
+     * @throws UnexpectedValueException если значение некорректно
+     */
+    protected function setManyToManyObjectSetValue(ICmsObject $object, $propertyName, ManyToManyRelationField $field, $value)
+    {
+        if (!is_array($value)) {
+            throw new UnexpectedValueException(
+                sprintf('Cannot set data for ManyToManyRelation property "%s". Data should be an array.', $propertyName)
+            );
+        }
+
+        $targetCollection = $field->getTargetCollection();
+
+        /**
+         * @var IManyToManyObjectSet $objectSet
+         */
+        $objectSet = $object->getValue($propertyName);
+        $objectSet->detachAll();
+
+        foreach ($value as $id) {
+            $objectSet->link($targetCollection->getById($id));
+        }
     }
 
 }

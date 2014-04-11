@@ -110,8 +110,7 @@ return [
             'target'       => 'newsSubject',
             'bridge'       => 'newsItemSubject',
             'relatedField' => 'newsItem',
-            'targetField'  => 'subject',
-            'readOnly'     => true
+            'targetField'  => 'subject'
         ],
         NewsItem::FIELD_DATE                  => [
             'type' => IField::TYPE_DATE_TIME,

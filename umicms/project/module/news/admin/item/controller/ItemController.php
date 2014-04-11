@@ -45,27 +45,6 @@ class ItemController extends BaseRestItemController
     /**
      * {@inheritdoc}
      */
-    protected function update(ICmsObject $object, array $data)
-    {
-        // TODO: forms
-        foreach ($data as $propertyName => $value) {
-            if ($object->hasProperty($propertyName)
-                && !$object->getProperty($propertyName)->getIsReadOnly()
-                && !is_array($value)
-
-            ) {
-                $object->setValue($propertyName, $value);
-            }
-        }
-
-        $this->getObjectPersister()->commit();
-
-        return $object;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function delete(ICmsObject $object)
     {
         if ($object instanceof NewsItem) {
