@@ -81,8 +81,7 @@ return [
             'target'       => 'userGroup',
             'bridge'       => 'userUserGroup',
             'relatedField' => 'user',
-            'targetField'  => 'userGroup',
-            'readOnly'     => true
+            'targetField'  => 'userGroup'
         ],
         BaseUser::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,

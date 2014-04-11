@@ -104,7 +104,6 @@ return [
             'bridge'       => 'newsItemSubject',
             'relatedField' => 'subject',
             'targetField'  => 'newsItem',
-            'readOnly'     => true
         ],
         NewsSubject::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,

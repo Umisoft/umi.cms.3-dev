@@ -12,9 +12,11 @@ namespace umicms\project\admin\api\controller;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
+use umi\orm\metadata\field\datetime\DateTimeField;
 use umi\orm\metadata\field\relation\BelongsToRelationField;
 use umi\orm\metadata\field\relation\HasManyRelationField;
 use umi\orm\metadata\field\relation\ManyToManyRelationField;
+use umi\orm\object\property\datetime\DateTime;
 use umi\orm\objectset\IManyToManyObjectSet;
 use umi\orm\objectset\IObjectSet;
 use umi\orm\persister\IObjectPersisterAware;
@@ -147,6 +149,10 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
                         $this->setManyToManyObjectSetValue($object, $propertyName, $field, $value);
                         break;
                     }
+                    case $field instanceof DateTimeField: {
+                        $this->setDateTimeValue($object, $propertyName, $value);
+                        break;
+                    }
                     default: {
                         $object->setValue($propertyName, $value);
                     }
@@ -157,6 +163,26 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
         $this->getObjectPersister()->commit();
 
         return $object;
+    }
+
+    protected function setDateTimeValue(ICmsObject $object, $propertyName, $value)
+    {
+
+        if (!is_array($value) || !isset($value['date'])) {
+            throw new UnexpectedValueException(
+                sprintf('Cannot set data for DateTime property "%s". Data should be an array an contain "date" option.', $propertyName)
+            );
+        }
+
+        /**
+         * @var DateTime $dateTime
+         */
+        $dateTime = $object->getValue($propertyName);
+
+        $dateTime->setTimestamp(strtotime($value['date']));
+        if (isset($value['timezone'])) {
+            $dateTime->setTimezone(new \DateTimeZone($value['timezone']));
+        }
     }
 
     /**
@@ -239,7 +265,7 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
         $objectSet->detachAll();
 
         foreach ($value as $id) {
-            $objectSet->attach($targetCollection->getById($id));
+            $objectSet->link($targetCollection->getById($id));
         }
     }
 
