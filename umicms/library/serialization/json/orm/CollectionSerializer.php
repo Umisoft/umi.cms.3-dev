@@ -38,6 +38,10 @@ class CollectionSerializer extends BaseSerializer implements IUrlManagerAware
         $this->writeRaw($collection->getName());
         $this->getJsonWriter()->endElement();
 
+        $this->getJsonWriter()->startElement('type');
+        $this->writeRaw($collection->getType());
+        $this->getJsonWriter()->endElement();
+
         if ($collection instanceof ICmsCollection && $collection->hasHandler('admin')) {
             $this->getJsonWriter()->startElement('source');
             $this->writeRaw($this->getUrlManager()->getCollectionResourceUrl($collection));

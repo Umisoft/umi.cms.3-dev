@@ -61,6 +61,14 @@ trait TCmsCollection
     }
 
     /**
+     * @see ICmsCollection::getType()
+     */
+    public function getType()
+    {
+        return $this->traitGetConfig()['type'];
+    }
+
+    /**
      * @see ICmsCollection::getForm()
      */
     public function getForm($typeName, $formName, CmsObject $object = null)
