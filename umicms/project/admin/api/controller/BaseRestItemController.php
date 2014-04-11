@@ -16,6 +16,7 @@ use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\api\IApiAware;
 use umicms\api\toolbox\TApiAware;
+use umicms\exception\RuntimeException;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\IRecoverableObject;
 use umicms\project\module\service\api\BackupRepository;
@@ -33,14 +34,6 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
      * @return ICmsObject
      */
     abstract protected function get();
-
-    /**
-     * Обновляет и возвращает объект.
-     * @param ICmsObject $object
-     * @param array $data
-     * @return ICmsObject
-     */
-    abstract protected function update(ICmsObject $object, array $data);
 
     /**
      * Удаляет объект.
@@ -113,6 +106,36 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
         }
 
         return $data[$collectionName];
+    }
+
+    /**
+     * Обновляет и возвращает объект.
+     * @param ICmsObject $object
+     * @param array $data
+     * @throws RuntimeException если невозможно сохранить объект
+     * @return ICmsObject
+     */
+    protected function update(ICmsObject $object, array $data)
+    {
+        if (!isset($data[ICmsObject::FIELD_VERSION])) {
+            throw new RuntimeException('Cannot save object. Object version is unknown');
+        }
+
+        $object->setVersion($data[ICmsObject::FIELD_VERSION]);
+
+        foreach ($data as $propertyName => $value) {
+            if ($object->hasProperty($propertyName)
+                && !$object->getProperty($propertyName)->getIsReadOnly()
+                && !is_array($value)
+
+            ) {
+                $object->setValue($propertyName, $value);
+            }
+        }
+
+        $this->getObjectPersister()->commit();
+
+        return $object;
     }
 
 }

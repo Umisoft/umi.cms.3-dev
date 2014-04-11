@@ -48,33 +48,6 @@ class ItemController extends BaseRestItemController
     /**
      * {@inheritdoc}
      */
-    protected function update(ICmsObject $object, array $data)
-    {
-        if (!isset($data[StructureElement::FIELD_VERSION])) {
-            throw new RuntimeException('Cannot save object. Object version is unknown');
-        }
-
-        $object->setVersion($data[StructureElement::FIELD_VERSION]);
-
-        // TODO: forms
-        foreach ($data as $propertyName => $value) {
-            if ($object->hasProperty($propertyName)
-                && !$object->getProperty($propertyName)->getIsReadOnly()
-                && !is_array($value)
-
-            ) {
-                $object->setValue($propertyName, $value);
-            }
-        }
-
-        $this->getObjectPersister()->commit();
-
-        return $object;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function delete(ICmsObject $object)
     {
         if ($object instanceof StructureElement) {
