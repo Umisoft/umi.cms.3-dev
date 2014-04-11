@@ -36,13 +36,16 @@ return [
 
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'newsItemViewer' => []
+            'newsItemViewer' => [],
+            'newsItemRssViewer' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:index',
             'controller:item',
+            'controller:rss',
             'widget:view',
-            'widget:list'
+            'widget:list',
+            'widget:rss'
         ],
         IAclFactory::OPTION_RULES => [
             'newsItemViewer' => [
@@ -50,6 +53,10 @@ return [
                 'controller:item' => [],
                 'widget:view' => [],
                 'widget:list' => []
+            ],
+            'newsItemRssViewer' => [
+                'controller:rss' => [],
+                'widget:rss' => []
             ]
         ]
     ],

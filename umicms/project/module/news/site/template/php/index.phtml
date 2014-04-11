@@ -6,6 +6,8 @@
 <h1><?= $page->h1 ?></h1>
 <?= $page->contents ?>
 
+<?= $this->widget('news.item.rss', ['template' => 'rssLink']); ?>
+<h2>Рубрики</h2>
 <?= $this->widget('news.rubric.list', ['template' => 'list']) ?>
-RSS: <a href="<?= $this->widget('news.item.rss') ?>"><?= $this->widget('news.item.rss') ?></a>
-<?= $this->widget('news.item.list', ['template' => 'list']) ?>
+<h2>Сюжеты</h2>
+<?= $this->widget('news.subject.list', ['template' => 'list']) ?>

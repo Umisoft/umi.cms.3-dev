@@ -10,7 +10,7 @@
 namespace umicms\project\module\news\site\item\controller;
 
 use umi\http\Response;
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\controller\BaseSecureController;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\news\api\NewsApi;
 use umicms\project\site\config\ISiteSettingsAware;
@@ -19,7 +19,7 @@ use umicms\project\site\config\TSiteSettingsAware;
 /**
  * Контроллер вывода общей RSS-ленты.
  */
-class NewsItemRssController extends BaseController implements ISiteSettingsAware
+class NewsItemRssController extends BaseSecureController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 

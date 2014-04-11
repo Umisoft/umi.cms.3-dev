@@ -11,6 +11,7 @@
         <?php foreach ($subjects as $subject) : ?>
             <li>
                 <?= $this->widget('news.subject.view', ['guid' => $subject->guid, 'template' => 'shortView']); ?>
+                <?= $this->widget('news.subject.rss', ['subjectGuid' => $subject->guid, 'template' => 'rssLink']); ?>
             </li>
         <?php endforeach;?>
     </ul>
