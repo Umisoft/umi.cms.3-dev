@@ -7,49 +7,54 @@ define(['App'], function(UMI){
 
             offset: 0,
 
-            filter: function(){
-
+            filters: function(){
+                var filters = {};
+                var parentId = this.get('model.object.id') !== 'root' ? 'equals(' + this.get('model.object.id') + ')' : 'null()';
+                filters.parent = parentId;
+                return filters;
             }.property(),
 
             query: function(){
                 var query = {};
                 var limit = this.get('limit');
-                var filter = this.get('filter');
+                var filters = this.get('filters');
                 var offset = this.get('offset');
                 if(limit){
                     query.limit = limit;
                 }
-                if(filter){
-                    query.filter = filter;
+                if(filters){
+                    query.filters = filters;
                 }
                 if(offset){
                     query.offset = offset * limit;
                 }
                 return query;
-            }.property('limit', 'filter', 'offset'),
+            }.property('limit', 'filters', 'offset'),
 
-            objects: function(){
-                var self = this;
-                var query = this.get('query');
-                var collectionName = self.get('controllers.component').settings.layout.collection;
-                var objects = self.store.find(collectionName, query);
-                return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-                    content: objects,
-                    sortProperties: ['id'],
-                    sortAscending: true
-                });
-            }.property('model.object'),
+            objects: null,
 
             queryChange: function(){
                 var self = this;
                 var query = this.get('query');
-                //var parentId = this.get('model.object.id') !== 'root'? this.get('model.object.id') : 'null()';
                 var collectionName = self.get('controllers.component').settings.layout.collection;
                 var promise = self.store.find(collectionName, query);
                 return self.store.find(collectionName, query).then(function(objects){
                     self.set('objects', objects);
                 });
             }.observes('query'),
+
+            modelChange: function(){
+                var self = this;
+                var query = this.get('query');
+                var collectionName = self.get('controllers.component').settings.layout.collection;
+                var objects = self.store.find(collectionName, query);
+                var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+                    content: objects,
+                    sortProperties: ['id'],
+                    sortAscending: true
+                });
+                self.set('objects', children);
+            }.observes('model').on('init'),
 
             actions: {
                 sortByProperty: function(propertyName){
