@@ -32,7 +32,7 @@ define(['App'], function(UMI){
                         ['duplicate', 'rename', 'edit'],
                         ['extract', 'archive'],
     //                    ['search'],
-    //                    ['view'],
+                        ['view'],
                         ['help']
                     ]
                 }
