@@ -12,15 +12,47 @@ define(['App'], function(UMI){
                 var objects = this.get('controller.objects.content');
                 var iScroll = this.get('iScroll');
                 if(objects && iScroll){
-                    setTimeout(function(){
-                        objects.then(function(){
+                    if(Ember.isArray(objects)){
+                        Ember.run.scheduleOnce('afterRender', self, function(){
                             iScroll.refresh();
                         });
-                    }, 100);
+                    } else{
+                        objects.then(function(){
+                            Ember.run.scheduleOnce('afterRender', self, function(){
+                                iScroll.refresh();
+                            });
+                        });
+                    }
+
                 }
-            }.observes('objects').on('didInsertElement'),
+            }.observes('controller.objects').on('didInsertElement'),
+
+            setColumnWidth: function(){
+                // Вставаляем стили с шириной ячеек таблицы
+                var tableId = 'table-control-column-style'; //TODO: Нужно динамически генерить уникальный ID
+                var tableStyleColumns = document.querySelector('#' + tableId);
+
+                // Создание тега styles если его ещё не существует
+                if(!tableStyleColumns){
+                    tableStyleColumns = document.createElement('style');
+                    tableStyleColumns.id = tableId;
+                    tableStyleColumns = document.body.appendChild(tableStyleColumns);
+                }
+
+                var resultStyle = '';
+                var columns = this.get('controller.viewSettings').columns;
+                var i;
+                var tableControlClass = '.umi-table-control';
+
+                for(i = 0; i < columns.length; i++){
+                    resultStyle = resultStyle + tableControlClass + ' .column-id-' + columns[i].name + '{width: ' + columns[i].width + 'px;}';
+                }
+                tableStyleColumns.innerHTML = resultStyle;
+            },
+
             didInsertElement: function(){
                 var tableControl = this.$();
+
                 var self = this;
                 var objects = this.get('controller.objects.content');
 
@@ -31,11 +63,13 @@ define(['App'], function(UMI){
 
                 if(objects){
                     var tableContent = tableControl.find('.s-scroll-wrap');
-                    objects.then(function(){
-                        // Добавим таймаут для iScroll по совету из документации:
-                        //If you have a complex DOM it is sometimes smart to add a little delay from the onload event to iScroll initialization.
-                        //Executing the iScroll with a 100 or 200 milliseconds delay gives the browser that little rest that can save your ass.
-                        setTimeout(function(){
+
+                    objects.then(function(objects){
+                        if(!objects.content.length){
+                            return;
+                        }
+
+                        Ember.run.scheduleOnce('afterRender', self, function(){
                             var scrollContent = new IScroll(tableContent[0], UMI.config.iScroll);
                             self.set('iScroll', scrollContent);
                             scrollContent.on('scroll', function(){
@@ -52,46 +86,77 @@ define(['App'], function(UMI){
                                     umiTableHeader.style.marginLeft = scrollContent.x + 'px';
                                 }, 100);
                             });
-                        }, 100);
+
+                            // Событие изменения ширины колонки
+                            tableControl.on('mousedown.umi.tableControl', '.umi-table-column-resizer', function(){
+                                var handler = this;
+                                $(handler).addClass('on-resize');
+                                var columnEl = handler.parentNode.firstElementChild;
+                                var columnName = columnEl.className;
+                                columnName = columnName.substr(columnName.indexOf('column-id-') + 10);
+                                var columnOfset = $(columnEl).offset().left;
+                                var columnWidth;
+                                $('body').on('mousemove.umi.tableControl', function(event){
+                                    event.stopPropagation();
+                                    columnWidth = event.pageX - columnOfset;
+                                    if(columnWidth >= 60 && columnEl.offsetWidth > 59){
+                                        return (function(){
+                                            Ember.set(self.get('controller.viewSettings').columns.findBy('name', columnName), 'width', columnWidth);
+                                            self.setColumnWidth();
+                                        }());
+                                    }
+                                });
+
+                                $('body').on('mouseup.umi.tableControl', function(){
+                                    $(handler).removeClass('on-resize');
+                                    $('body').off('mousemove');
+                                    $('body').off('.umi.tableControl.mouseup');
+                                    scrollContent.refresh();
+                                });
+                            });
+                        });
                     });
                 }
+
+                // Событие изменения limit
+                $('.umi-table-control-footer').on('keydown.umi.tableControl', '.umi-limit', function(event){
+                    if(event.keyCode === 13){
+                        self.get('controller').set('limit', this.value);
+                    }
+                });
+
+                // Событие изменения limit
+                $('.umi-table-control-footer').on('keydown.umi.tableControl', '.umi-pagination', function(event){
+                    if(event.keyCode === 13){
+                        self.get('controller').set('offset', this.value);
+                    }
+                });
             },
+            willInsertElement: function(){
+                this.setColumnWidth();
+            },
+
             willDestroyElement: function(){
                 $(window).off('.umi.tableControl');
             }
         });
 
-        UMI.TableCellView = Ember.View.extend({
-            classNames: ['table-cell'],
-            actions: {
-                resizeColumn: function(){
-                    var columnEl = this.$();
-                    var handler = columnEl.children('.table-column-resizer');
-                    var columnOfset = columnEl.offset().left;
-                    var columnWidth;
-                    $('body').on('mousemove.umi.tableControl', function(event){
-                        event.stopPropagation();
-                        if(columnEl[0].offsetWidth > 59){
-                            columnWidth = event.pageX - columnOfset;
-                            columnEl[0].style.width = columnWidth + 'px';
-                        }
-                    });
-                    $('body').on('mouseup.umi.tableControl', function(){
-                        $('body').off('mousemove');
-                        $('body').off('.umi.tableControl.mouseup');
-                    });
-                }
-            }
-        });
-
-        UMI.TableCellContentView = UMI.TableCellView.extend({
+        UMI.TableCellContentView = Ember.View.extend({
+            classNames: ['umi-table-control-cell'],
+            classNameBindings: ['columnId'],
+            columnId: function(){
+                return 'column-id-' + this.get('column').name;
+            }.property(),
             template: function(){
                 var meta = this.get('column');
                 var object = this.get('object');
                 var template;
                 template = Ember.Handlebars.compile(object.get(meta.name) + '&nbsp;');
                 return template;
-            }.property('object','column')
+            }.property('object','column'),
+            didInsertElement: function(){
+                console.log('didInsertElement');
+            }
         });
     };
 });
