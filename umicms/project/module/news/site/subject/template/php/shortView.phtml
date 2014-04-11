@@ -5,7 +5,6 @@
 ?>
 <h2>
     <a href="<?= $subject->getPageUrl() ?>">
-        <?= $subject->h1 ?>
+        <?= $subject->displayName ?>
     </a>
 </h2>
-<?= $this->widget('news.subject.newsList', ['subjectGuids' => [$subject->guid], 'template' => 'newsList']); ?>

@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\news\site\subject;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\SiteComponent;
 
@@ -25,7 +26,36 @@ return [
         'view' => __NAMESPACE__ . '\widget\SubjectWidget',
         'newsList' => __NAMESPACE__ . '\widget\SubjectNewsListWidget',
         'list' => __NAMESPACE__ . '\widget\SubjectListWidget',
-        'rssUrl' => __NAMESPACE__ . '\widget\SubjectNewsRssUrlWidget'
+        'rss' => __NAMESPACE__ . '\widget\SubjectNewsRssUrlWidget'
+    ],
+
+    SiteComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'subjectViewer' => [],
+            'subjectRssViewer' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'controller:index',
+            'controller:subject',
+            'controller:rss',
+            'widget:view',
+            'widget:list',
+            'widget:newsList',
+            'widget:rss'
+        ],
+        IAclFactory::OPTION_RULES => [
+            'subjectViewer' => [
+                'controller:index' => [],
+                'controller:subject' => [],
+                'widget:view' => [],
+                'widget:list' => [],
+                'widget:newsList' => []
+            ],
+            'subjectRssViewer' => [
+                'controller:rss' => [],
+                'widget:rss' => []
+            ]
+        ]
     ],
 
     SiteComponent::OPTION_VIEW        => [
