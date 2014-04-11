@@ -1,7 +1,7 @@
-{{#if controller.hasFieldset}}
+{{#if hasFieldset}}
     {{#view "magellan" elements=model.viewSettings.form.elements}}
         {{#each formElement in model.viewSettings.form.elements itemController="FormElement"}}
-            {{#if controller.isFieldset}}
+            {{#if isFieldset}}
                 {{#view view.buttonView model=formElement}}{{formElement.label}}{{/view}}
             {{/if}}
         {{/each}}
@@ -55,45 +55,47 @@
         </span>
     </li>
     <!-- Бэкапы -->
-    {{#view "formControlDropUp" tagName="li"}}
-        <span class="button white square" {{action "open" target="view"}}>
-            <i class="icon icon-6"></i>
-        </span>
-        <div class="f-dropdown umi-dropup dropdown-rows">
-            <div class="row collapse">
-                <div class="columns small-12">
-                    <strong>{{backups.displayName}}</strong>
+    {{#if hasBackups}}
+        {{#view "formControlDropUp" tagName="li"}}
+            <span class="button white square" {{action "open" target="view"}}>
+                <i class="icon icon-6"></i>
+            </span>
+            <div class="f-dropdown umi-dropup dropdown-rows">
+                <div class="row collapse">
+                    <div class="columns small-12">
+                        <strong>{{backups.displayName}}</strong>
+                    </div>
+                </div>
+                <div class="s-scroll-wrap">
+                    <div>
+                        {{#each backup in backups.list}}
+                            <div class="row collapse" {{action 'applyBackup' backup}}>
+                                <div class="columns small-6 place-button">
+                                    {{#if backup.isActive}}
+                                        <button class="button flat tiny square">
+                                            <i class="icon icon-accept"></i>
+                                        </button>
+                                    {{else}}
+                                        <button class="button flat tiny square">
+                                            <i class="icon icon-renew"></i>
+                                        </button>
+                                    {{/if}}
+                                    {{backup.date.date}}
+                                </div>
+                                <div class="columns small-6">
+                                    {{#if backup.user}}
+                                        {{backup.user}}
+                                    {{else}}
+                                        Пустое значение
+                                    {{/if}}
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
                 </div>
             </div>
-            <div class="s-scroll-wrap">
-                <div>
-                    {{#each backup in backups.list}}
-                        <div class="row collapse" {{action 'applyBackup' backup}}>
-                            <div class="columns small-6 place-button">
-                                {{#if backup.isActive}}
-                                    <button class="button flat tiny square">
-                                        <i class="icon icon-accept"></i>
-                                    </button>
-                                {{else}}
-                                    <button class="button flat tiny square">
-                                        <i class="icon icon-renew"></i>
-                                    </button>
-                                {{/if}}
-                                {{backup.date.date}}
-                            </div>
-                            <div class="columns small-6">
-                                {{#if backup.user}}
-                                    {{backup.user}}
-                                {{else}}
-                                    Пустое значение
-                                {{/if}}
-                            </div>
-                        </div>
-                    {{/each}}
-                </div>
-            </div>
-        </div>
-    {{/view}}
+        {{/view}}
+    {{/if}}
     <!-- Права доступа -->
     {{#view "formControlDropUp" tagName="li"}}
         <span class="button white square" {{action "open" target="view"}}>

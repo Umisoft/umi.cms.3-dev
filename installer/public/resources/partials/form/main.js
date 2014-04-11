@@ -28,6 +28,9 @@ define(
         magellanElement();
 
         UMI.FormControlController = Ember.ObjectController.extend({
+            hasBackups: function(){
+                return this.get('settings').actions.backups;
+            }.property(),
             hasFieldset: function(){
                 return this.get('content.viewSettings.form.elements').isAny('type', 'fieldset');
             }.property(),
@@ -37,27 +40,29 @@ define(
                 var backups = {};
                 var object = this.get('model.object');
                 var settings = this.get('settings');
-                backups.displayName = settings.actions.backups.displayName;
-                var currentVersion = {
-                    objectId: object.get('id'),
-                    date: object.get('updated'),
-                    user: null,
-                    id: 'current',
-                    current: true,
-                    isActive: true
-                };
-                var results = [currentVersion];
-                var params = '?id=' + object.get('id');
+                if(this.get('hasBackups')){
+                    backups.displayName = settings.actions.backups.displayName;
+                    var currentVersion = {
+                        objectId: object.get('id'),
+                        date: object.get('updated'),
+                        user: null,
+                        id: 'current',
+                        current: true,
+                        isActive: true
+                    };
+                    var results = [currentVersion];
+                    var params = '?id=' + object.get('id');
 
-                var promiseArray = DS.PromiseArray.create({
-                    promise: $.get(settings.actions.backups.source + params).then(function(data){
-                        return results.concat(data.result.backups.serviceBackup);
-                    })
-                });
-                backups.list = Ember.ArrayProxy.create({
-                    content: promiseArray
-                });
-                return backups;
+                    var promiseArray = DS.PromiseArray.create({
+                        promise: $.get(settings.actions.backups.source + params).then(function(data){
+                            return results.concat(data.result.backups.serviceBackup);
+                        })
+                    });
+                    backups.list = Ember.ArrayProxy.create({
+                        content: promiseArray
+                    });
+                    return backups;
+                }
             }.property('model.object'),
             access: function(){
                 var globalAllow = [
