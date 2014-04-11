@@ -9,19 +9,32 @@ define(['App'], function(UMI){
              * При изменении данных вызывает ресайз скрола.
              */
             scrollUpdate: function(){
+                var self = this;
+                var tableControl = this.$();
                 var objects = this.get('controller.objects.content');
                 var iScroll = this.get('iScroll');
+
+                var scrollUpdate = function(){
+                    Ember.run.scheduleOnce('afterRender', self, function(){
+                        // Элементы позицию которых необходимо изменять при прокрутке/ресайзе таблицы
+                        var umiTableLeft = tableControl.find('.umi-table-control-content-fixed-left')[0];
+                        var umiTableRight = tableControl.find('.umi-table-control-content-fixed-right')[0];
+                        var umiTableHeader = tableControl.find('.umi-table-control-header-center')[0];
+                        iScroll.refresh();
+                        umiTableLeft.style.marginTop = 0;
+                        umiTableRight.style.marginTop = 0;
+                        umiTableHeader.style.marginLeft = 0;
+                    });
+                };
+
                 if(objects && iScroll){
-                    if(Ember.isArray(objects)){
-                        Ember.run.scheduleOnce('afterRender', self, function(){
-                            iScroll.refresh();
+                    // Проверяет данные promise или массив
+                    if(Object.prototype.toString.call(objects).slice(8, -1) === 'Object'){
+                        objects.then(function(){
+                            scrollUpdate();
                         });
                     } else{
-                        objects.then(function(){
-                            Ember.run.scheduleOnce('afterRender', self, function(){
-                                iScroll.refresh();
-                            });
-                        });
+                        scrollUpdate();
                     }
 
                 }
