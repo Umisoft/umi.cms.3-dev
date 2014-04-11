@@ -20,6 +20,7 @@ return [
         'project.admin.api.news.item' => '{#lazy:~/project/module/news/admin/item/i18n/dictionary.config.php}',
         'project.admin.api.news.rubric' => '{#lazy:~/project/module/news/admin/rubric/i18n/dictionary.config.php}',
         'project.admin.api.news.subject' => '{#lazy:~/project/module/news/admin/subject/i18n/dictionary.config.php}',
+        'project.admin.api.news.rss' => '{#lazy:~/project/module/news/admin/rss/i18n/dictionary.config.php}',
 
         'project.admin.api.files' => '{#lazy:~/project/module/files/admin/i18n/dictionary.config.php}',
         'project.admin.api.files.manager' => '{#lazy:~/project/module/files/admin/manager/i18n/dictionary.config.php}',

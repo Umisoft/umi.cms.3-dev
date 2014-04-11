@@ -17,7 +17,8 @@ use umicms\orm\object\TCmsPage;
 /**
  * Новостной сюжет.
  *
- * @property IManyToManyObjectSet $news новости рубрики
+ * @property IManyToManyObjectSet $news новости сюжета
+ * @property IManyToManyObjectSet $rss RSS-ленты сюжета
  */
 class NewsSubject extends CmsObject implements ICmsPage
 {
@@ -27,4 +28,8 @@ class NewsSubject extends CmsObject implements ICmsPage
      *  Имя поля для хранения новостей
      */
     const FIELD_NEWS = 'news';
+    /**
+     * Имя поля для хранения RSS-ленты
+     */
+    const FIELD_RSS = 'rss';
 }

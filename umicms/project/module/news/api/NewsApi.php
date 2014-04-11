@@ -57,6 +57,15 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
     }
 
     /**
+     * Возвращает репозиторий для работы с импортируемыми RSS-лентами.
+     * @return RssItemRepository
+     */
+    public function rss()
+    {
+        return $this->getApi('umicms\project\module\news\api\RssItemRepository');
+    }
+
+    /**
      * Возвращает селектор для выборки новостей.
      * @param int $limit максимальное количество новостей
      * @return ISelector
@@ -168,6 +177,11 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
         }
 
         return $rubrics;
+    }
+
+    public function importRss()
+    {
+        //$this->rss()->importRss();
     }
 
 }

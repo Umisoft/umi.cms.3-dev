@@ -19,7 +19,8 @@ return [
     SecureAdminComponent::OPTION_COMPONENTS => [
         'rubric' => '{#lazy:~/project/module/news/admin/rubric/component.config.php}',
         'item' => '{#lazy:~/project/module/news/admin/item/component.config.php}',
-        'subject' => '{#lazy:~/project/module/news/admin/subject/component.config.php}'
+        'subject' => '{#lazy:~/project/module/news/admin/subject/component.config.php}',
+        'rss' => '{#lazy:~/project/module/news/admin/rss/component.config.php}'
     ],
 
     SecureAdminComponent::OPTION_ACL => [
@@ -27,17 +28,20 @@ return [
         IAclFactory::OPTION_ROLES => [
             'rubricEditor' => [],
             'itemEditor' => [],
-            'subjectEditor' => []
+            'subjectEditor' => [],
+            'rssEditor' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'component:rubric',
             'component:item',
-            'component:subject'
+            'component:subject',
+            'component:rss'
         ],
         IAclFactory::OPTION_RULES => [
             'rubricEditor' => ['component:rubric' => []],
             'itemEditor' => ['component:item' => []],
-            'subjectEditor' => ['component:subject' => []]
+            'subjectEditor' => ['component:subject' => []],
+            'rssEditor' => ['component:rss' => []]
         ]
     ],
 

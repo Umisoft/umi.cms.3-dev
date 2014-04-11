@@ -129,7 +129,9 @@ return [
 
                 'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/metadata.config.php}',
                 'newsItem' => '{#lazy:~/project/module/news/configuration/item/metadata.config.php}',
+                'rssItem' => '{#lazy:~/project/module/news/configuration/rss/metadata.config.php}',
                 'newsItemSubject' => '{#lazy:~/project/module/news/configuration/itemsubject/metadata.config.php}',
+                'rssItemSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/metadata.config.php}',
                 'newsSubject' => '{#lazy:~/project/module/news/configuration/subject/metadata.config.php}',
 
                 'blogCategory' => '{#lazy:~/project/module/blog/configuration/category/metadata.config.php}',
@@ -153,7 +155,9 @@ return [
 
                 'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/collection.config.php}',
                 'newsItem' => '{#lazy:~/project/module/news/configuration/item/collection.config.php}',
+                'rssItem' => '{#lazy:~/project/module/news/configuration/rss/collection.config.php}',
                 'newsItemSubject' => '{#lazy:~/project/module/news/configuration/itemsubject/collection.config.php}',
+                'rssItemSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/collection.config.php}',
                 'newsSubject' => '{#lazy:~/project/module/news/configuration/subject/collection.config.php}',
 
                 'blogCategory' => '{#lazy:~/project/module/blog/configuration/category/collection.config.php}',
