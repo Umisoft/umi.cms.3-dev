@@ -2,7 +2,7 @@ $table-control-left-column-width: 34px;
 $table-control-row-height: 34px;
 $table-control-cell-border-color: #E3E4E5;
 $table-control-header-height: 70px;
-
+$table-control-row-bg-hover: #b5dbf6;
 .umi-table-control{
     font-size: rem-calc(13);
     height: 100%;
@@ -84,7 +84,7 @@ $table-control-header-height: 70px;
     left: 0;
     top: 0;
     border-right: 1px solid $table-control-cell-border-color;
-    .umi-table-control-header-cell{
+    .umi-table-control-header-cell, .umi-table-control-column-fixed-cell{
         height: $table-control-row-height;
         width: $table-control-left-column-width;
         display: block;
@@ -147,19 +147,20 @@ $table-control-header-height: 70px;
 
 .umi-table-control-content-fixed-left, .umi-table-control-content-fixed-right{
     border-bottom: 1px solid #A7B9C5;
-    .umi-table-control-header-cell, .umi-table-control-control-cell-empty{
+    .umi-table-control-column-fixed-cell, .umi-table-control-control-cell-empty{
         background: #F5F6F7;
         border-bottom: 0;
         &:nth-of-type(odd){
             background: #E9F1F7;
         }
-        &.drop-size{
-            height: 0;
-            border: none;
-            padding: 0;
-            background: none;
-        }
     }
+}
+
+.umi-table-control-cell-drop-size{
+    height: 0;
+    border: none;
+    padding: 0;
+    background: none;
 }
 
 .umi-table-control-content{
@@ -168,7 +169,7 @@ $table-control-header-height: 70px;
     table-layout: fixed;
     border: 0;
     margin: 0 34px;
-    width: 100%;
+    width: unquote("calc(100% - 68px)");
 }
 
 .umi-table-control-content-row{
@@ -178,9 +179,12 @@ $table-control-header-height: 70px;
     &:nth-of-type(odd){
         background: #E9F1F7;
     }
+    &.hover{
+        background: $table-control-row-bg-hover;
+    }
 }
 
-.umi-table-control-header-cell{
+.umi-table-control-header-cell, .umi-table-control-column-fixed-cell{
     position: relative;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -203,6 +207,9 @@ $table-control-header-height: 70px;
         .button{
             margin-bottom: 0;
         }
+    }
+    &.hover{
+        background: $table-control-row-bg-hover !important;
     }
 }
 

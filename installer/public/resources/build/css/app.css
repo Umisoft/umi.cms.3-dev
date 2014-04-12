@@ -5651,7 +5651,7 @@ ul.umi-search-result {
   left: 0;
   top: 0;
   border-right: 1px solid #E3E4E5; }
-  .umi-table-control-content-fixed-left .umi-table-control-header-cell, .umi-table-control-content-fixed-right .umi-table-control-header-cell, .umi-table-control-header-fixed-left .umi-table-control-header-cell, .umi-table-control-header-fixed-right .umi-table-control-header-cell {
+  .umi-table-control-content-fixed-left .umi-table-control-header-cell, .umi-table-control-content-fixed-left .umi-table-control-column-fixed-cell, .umi-table-control-content-fixed-right .umi-table-control-header-cell, .umi-table-control-content-fixed-right .umi-table-control-column-fixed-cell, .umi-table-control-header-fixed-left .umi-table-control-header-cell, .umi-table-control-header-fixed-left .umi-table-control-column-fixed-cell, .umi-table-control-header-fixed-right .umi-table-control-header-cell, .umi-table-control-header-fixed-right .umi-table-control-column-fixed-cell {
     height: 34px;
     width: 34px;
     display: block;
@@ -5701,16 +5701,17 @@ ul.umi-search-result {
 
 .umi-table-control-content-fixed-left, .umi-table-control-content-fixed-right {
   border-bottom: 1px solid #A7B9C5; }
-  .umi-table-control-content-fixed-left .umi-table-control-header-cell, .umi-table-control-content-fixed-left .umi-table-control-control-cell-empty, .umi-table-control-content-fixed-right .umi-table-control-header-cell, .umi-table-control-content-fixed-right .umi-table-control-control-cell-empty {
+  .umi-table-control-content-fixed-left .umi-table-control-column-fixed-cell, .umi-table-control-content-fixed-left .umi-table-control-control-cell-empty, .umi-table-control-content-fixed-right .umi-table-control-column-fixed-cell, .umi-table-control-content-fixed-right .umi-table-control-control-cell-empty {
     background: #F5F6F7;
     border-bottom: 0; }
-    .umi-table-control-content-fixed-left .umi-table-control-header-cell:nth-of-type(odd), .umi-table-control-content-fixed-left .umi-table-control-control-cell-empty:nth-of-type(odd), .umi-table-control-content-fixed-right .umi-table-control-header-cell:nth-of-type(odd), .umi-table-control-content-fixed-right .umi-table-control-control-cell-empty:nth-of-type(odd) {
+    .umi-table-control-content-fixed-left .umi-table-control-column-fixed-cell:nth-of-type(odd), .umi-table-control-content-fixed-left .umi-table-control-control-cell-empty:nth-of-type(odd), .umi-table-control-content-fixed-right .umi-table-control-column-fixed-cell:nth-of-type(odd), .umi-table-control-content-fixed-right .umi-table-control-control-cell-empty:nth-of-type(odd) {
       background: #E9F1F7; }
-    .umi-table-control-content-fixed-left .umi-table-control-header-cell.drop-size, .umi-table-control-content-fixed-left .umi-table-control-control-cell-empty.drop-size, .umi-table-control-content-fixed-right .umi-table-control-header-cell.drop-size, .umi-table-control-content-fixed-right .umi-table-control-control-cell-empty.drop-size {
-      height: 0;
-      border: none;
-      padding: 0;
-      background: none; }
+
+.umi-table-control-cell-drop-size {
+  height: 0;
+  border: none;
+  padding: 0;
+  background: none; }
 
 .umi-table-control-content {
   float: left;
@@ -5718,7 +5719,7 @@ ul.umi-search-result {
   table-layout: fixed;
   border: 0;
   margin: 0 34px;
-  width: 100%; }
+  width: calc(100% - 68px); }
 
 .umi-table-control-content-row {
   height: 34px;
@@ -5726,8 +5727,10 @@ ul.umi-search-result {
   background: #F5F6F7; }
   .umi-table-control-content-row:nth-of-type(odd) {
     background: #E9F1F7; }
+  .umi-table-control-content-row.hover {
+    background: #b5dbf6; }
 
-.umi-table-control-header-cell {
+.umi-table-control-header-cell, .umi-table-control-column-fixed-cell {
   position: relative;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -5737,17 +5740,19 @@ ul.umi-search-result {
   border-right: 1px solid #E3E4E5;
   box-sizing: border-box;
   overflow: hidden; }
-  .umi-table-control-header-cell.filter {
+  .umi-table-control-header-cell.filter, .umi-table-control-column-fixed-cell.filter {
     padding-top: 0.25rem; }
-    .umi-table-control-header-cell.filter input {
+    .umi-table-control-header-cell.filter input, .umi-table-control-column-fixed-cell.filter input {
       padding: 0 0.375rem;
       margin-top: 3px;
       height: 21px !important;
       width: calc(100% - 24px);
       margin-bottom: 0;
       float: left; }
-    .umi-table-control-header-cell.filter .button {
+    .umi-table-control-header-cell.filter .button, .umi-table-control-column-fixed-cell.filter .button {
       margin-bottom: 0; }
+  .umi-table-control-header-cell.hover, .umi-table-control-column-fixed-cell.hover {
+    background: #b5dbf6 !important; }
 
 .umi-table-control-content-cell {
   padding: 0; }

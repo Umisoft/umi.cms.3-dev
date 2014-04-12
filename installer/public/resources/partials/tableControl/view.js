@@ -98,6 +98,34 @@ define(['App'], function(UMI){
                                 });
                             });
 
+                            // Hover event
+                            var getHoverElements = function(el){
+                                var isContentRow = $(el).hasClass('umi-table-control-content-row');
+                                var rows = el.parentNode.querySelectorAll(isContentRow ? '.umi-table-control-content-row' : '.umi-table-control-column-fixed-cell');
+                                var i;
+
+                                for(i = 0; i < rows.length; i++){
+                                    if(rows[i] === el){
+                                        break;
+                                    }
+                                }
+                                var leftElements = umiTableLeft.querySelectorAll('.umi-table-control-column-fixed-cell');
+                                var rightElements = umiTableRight.querySelectorAll('.umi-table-control-column-fixed-cell');
+                                if(!isContentRow){
+                                    el = tableContent[0].querySelectorAll('.umi-table-control-content-row')[i];
+                                }
+                                return [el, leftElements[i], rightElements[i]];
+                            };
+
+                            tableControl.on('mouseenter.umi.tableControl', '.umi-table-control-content-row, .umi-table-control-column-fixed-cell', function(){
+                                var elements = getHoverElements(this);
+                                $(elements).addClass('hover');
+                            });
+
+                            tableControl.on('mouseleave.umi.tableControl', '.umi-table-control-content-row, .umi-table-control-column-fixed-cell', function(){
+                                var elements = getHoverElements(this);
+                                $(elements).removeClass('hover');
+                            });
                             // Drag and Drop
                         });
                     });
