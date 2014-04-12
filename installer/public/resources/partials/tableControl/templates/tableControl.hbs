@@ -11,87 +11,96 @@
     <div class="umi-table-control-header-center">
         <table class="umi-table-control-header">
             <tbody>
-                <tr class="umi-table-control-row">
-                    {{#each column in content.viewSettings.columns}}
-                        <td class="umi-table-control-header-column">
-                            <div class="umi-table-control-header-cell column-id-{{unbound column.name}}">
-                                {{column.title}}
-                            </div>
-                            <div class="umi-table-control-column-resizer"></div>
-                        </td>
-                    {{/each}}
-                    <td class="umi-table-control-empty-column"></td>
-                </tr>
+            <tr class="umi-table-control-row">
+                {{#each column in content.viewSettings.columns}}
+                <td class="umi-table-control-header-column column-id-{{unbound column.name}}" style="width: {{unbound column.width}}px">
+                    <div class="umi-table-control-header-cell">
+                        {{column.title}}
+                    </div>
+                    <div class="umi-table-control-column-resizer"></div>
+                </td>
+                {{/each}}
+                <td class="umi-table-control-empty-column"></td>
+            </tr>
 
-                <tr class="umi-table-control-row filters">
-                    {{#each column in content.viewSettings.columns}}
-                        <td class="umi-table-control-header-column">
-                            <div class="umi-table-control-header-cell filter column-id-{{unbound column.name}}">
-                                <input type="text"/>
-                                <div class="button flat tiny square right" {{action 'sortByProperty' column.name}}>
-                                    <i class="icon black icon-bottom-thin"></i>
-                                </div>
-                            </div>
-                        </td>
-                    {{/each}}
-                    <td class="umi-table-control-empty-column"></td>
-                </tr>
-            </tbody>
-        </table>
+            <tr class="umi-table-control-row filters">
+                {{#each column in content.viewSettings.columns}}
+                <td class="umi-table-control-header-column">
+                    <div class="umi-table-control-header-cell filter column-id-{{unbound column.name}}">
+                        <input type="text"/>
+                        <div class="button flat tiny square right" {{action 'sortByProperty' column.name}}>
+                        <i class="icon black icon-bottom-thin"></i>
+                    </div>
     </div>
+    </td>
+    {{/each}}
+    <td class="umi-table-control-empty-column"></td>
+    </tr>
+    </tbody>
+    </table>
+</div>
 
-    <div class="umi-table-control-header-fixed-right">
-        <div class="umi-table-control-header-cell">
-            <span class="button tiny flat" {{action "showPopup" "tableControlColumnSelectorPopup" target="controllers.popup"}}>
-                <i class="icon icon-settings"></i>
-            </span>
-        </div>
-        <div class="umi-table-control-contol-cell-empty"></div>
+<div class="umi-table-control-header-fixed-right">
+    <div class="umi-table-control-header-cell">
+        <span class="button tiny flat" {{action "showPopup" "tableControlColumnSelectorPopup" target="controllers.popup"}}>
+        <i class="icon icon-settings"></i>
+        </span>
     </div>
+    <div class="umi-table-control-control-cell-empty"></div>
+</div>
 </div>
 
 <div class="umi-table-control-content-wrapper">
     <div class="s-scroll-wrap">
         <table class="umi-table-control-content">
             <tbody>
-                {{!#if objects.content.isFulfilled}}
-                    {{#each object in objects}}
-                        {{#link-to 'context' 'form' object.id class="umi-table-control-content-row" tagName="tr"}}
-                            {{#each column in content.viewSettings.columns}}
-                                <td class="umi-table-control-content-cell">
-                                    {{view "tableCellContent" objectBinding="object" column=column}}
-                                </td>
-                            {{/each}}
-                            <td class="umi-table-control-empty-column"></td>
-                        {{/link-to}}
-                    {{else}}
-                        <tr class="umi-table-control-content-row-empty">
-                            <td></td> <!-- Без этой ячейки не получается сделать на полную ширину -->
-                            <td class="umi-table-control-content-cell-empty">
-                                <div class="umi-table-control-content-div-empty">
-                                    <span>Нет данных</span>
-                                </div>
-                            </td>
-                        </tr>
-                    {{/each}}
-                {{!/if}}
+            <tr class="umi-table-control-content-row-size">
+                {{#each column in content.viewSettings.columns}}
+                <td class="umi-table-control-content-cell column-id-{{unbound column.name}}" style="width: {{unbound column.width}}px"></td>
+                {{/each}}
+                <td class="umi-table-control-empty-column"></td>
+            </tr>
+            {{#if objects.content.isFulfilled}}
+            {{#each object in objects}}
+            {{#link-to 'context' 'form' object.id class="umi-table-control-content-row" tagName="tr"}}
+            {{#each column in content.viewSettings.columns}}
+            <td class="umi-table-control-content-cell">
+                {{view "tableCellContent" objectBinding="object" column=column}}
+            </td>
+            {{/each}}
+            <td class="umi-table-control-empty-column"></td>
+            {{/link-to}}
+            {{else}}
+            <tr class="umi-table-control-content-row-empty">
+                <td></td> <!-- Без этой ячейки не получается сделать на полную ширину -->
+                <td class="umi-table-control-content-cell-empty">
+                    <div class="umi-table-control-content-div-empty">
+                        <span>Нет данных</span>
+                    </div>
+                </td>
+            </tr>
+            {{/each}}
+            {{/if}}
             </tbody>
         </table>
 
         <!-- Колонка слева от контента -->
         <div class="umi-table-control-content-fixed-left">
+            <!-- Пустая ячейка нужна всего лишь для правильного индекса строк-->
+            <div class="umi-table-control-header-cell drop-size"></div>
             {{#each object in objects}}
-                <div class="umi-table-control-header-cell"> <!-- TODO Переименовать класс - убрать header из имени -->
-                    <input type="checkbox" id="checkbox-id" class="s-margin-clear"/>
-                    <label for="checkbox-id"></label>
-                </div>
+            <div class="umi-table-control-header-cell"> <!-- TODO Переименовать класс - убрать header из имени -->
+                <input type="checkbox" id="checkbox-id" class="s-margin-clear"/>
+                <label for="checkbox-id"></label>
+            </div>
             {{/each}}
         </div>
 
         <!-- Колонка справа от контента -->
         <div class="umi-table-control-content-fixed-right">
+            <div class="umi-table-control-header-cell drop-size"></div>
             {{#each object in objects}}
-                <div class="umi-table-control-control-cell-empty"><i class="icon icon-delete"></i></div> <!-- TODO Переименовать класс - убрать empty из имени -->
+            <div class="umi-table-control-control-cell-empty"><i class="icon icon-delete"></i></div> <!-- TODO Переименовать класс - убрать empty из имени -->
             {{/each}}
         </div>
 
