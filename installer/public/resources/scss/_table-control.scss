@@ -184,7 +184,7 @@ $table-control-row-bg-hover: #b5dbf6;
     .edit-link{
         color: $body-font-color;
         &:hover{
-            border-bottom: 1px solid $body-font-color;
+            text-decoration: underline;
         }
     }
 }
@@ -269,14 +269,29 @@ $table-control-row-bg-hover: #b5dbf6;
 
 .umi-table-control-pagination{
     padding: rem-calc(6) rem-calc(10);
+    .pagination-controls{
+        .pagination-counter{
+            line-height: 24px;
+            margin-right: 15px;
+        }
+        ~ .pagination-limit{
+            margin-left: 30px;
+        }
+        .button{
+            margin-bottom: 0;
+        }
+    }
+    .pagination-limit{
+
+    }
     .pagination-label{
         float: left;
-        margin-right: 30px;
-        line-height: 21px;
+        margin-right: 15px;
+        line-height: 24px;
     }
     input{
         padding: 0 rem-calc(5);
-        height: rem-calc(21);
+        height: rem-calc(24);
         width: 50px;
     }
 }

@@ -111,11 +111,20 @@
 <!-- Футер-->
 <div class="umi-table-control-footer">
     <div class="right umi-table-control-pagination">
-        <span class="pagination-label">Пагинация:</span>
-        <input type="text" class="s-margin-clear umi-pagination" {{bind-attr value=offset}} />
-    </div>
-    <div class="right umi-table-control-pagination">
-        <span class="pagination-label">Строк на странице:</span>
-        <input type="text" class="s-margin-clear umi-limit" {{bind-attr value=limit}} />
+        <div class="left pagination-controls">
+            <span class="pagination-counter">
+                100-100 из 100
+            </span>
+            <span class="button secondary tiny">
+                <i class="icon black icon-left-thin"></i>
+            </span>
+            <span class="button secondary tiny">
+                <i class="icon black icon-right-thin"></i>
+            </span>
+        </div>
+        <div class="left pagination-limit">
+            <span class="pagination-label">Строк на странице:</span>
+            <input type="text" class="s-margin-clear umi-limit" {{bind-attr value=limit}} />
+        </div>
     </div>
 </div>
