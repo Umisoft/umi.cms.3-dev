@@ -58,6 +58,11 @@ $table-control-row-bg-hover: #b5dbf6;
     border-bottom: 1px solid #E2E3E4;
 }
 
+// В firefox position: relative, для td не работает, поэутому нужна обёртка
+.umi-table-control-cell-firefox-fix{
+    position: relative;
+}
+
 .umi-table-control-column-resizer{
     position: absolute;
     right: 0;
@@ -290,11 +295,12 @@ $table-control-row-bg-hover: #b5dbf6;
 
     }
     .pagination-label{
-        float: left;
+        display: inline-block;
         margin-right: 15px;
         line-height: 24px;
     }
     input{
+        display: inline-block;
         padding: 0 rem-calc(5);
         height: rem-calc(24);
         width: 50px;

@@ -14,10 +14,12 @@
                 <tr class="umi-table-control-row">
                     {{#each column in content.viewSettings.columns}}
                         <td class="umi-table-control-header-column column-id-{{unbound column.name}}" style="width: {{unbound column.width}}px">
-                            <div class="umi-table-control-header-cell">
-                                {{column.title}}
+                            <div class="umi-table-control-cell-firefox-fix">
+                                <div class="umi-table-control-header-cell">
+                                    {{column.title}}
+                                </div>
+                                <div class="umi-table-control-column-resizer"></div>
                             </div>
-                            <div class="umi-table-control-column-resizer"></div>
                         </td>
                     {{/each}}
                     <td class="umi-table-control-empty-column"></td>

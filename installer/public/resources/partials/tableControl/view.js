@@ -76,7 +76,7 @@ define(['App'], function(UMI){
                             tableControl.on('mousedown.umi.tableControl', '.umi-table-control-column-resizer', function(){
                                 var handler = this;
                                 $(handler).addClass('on-resize');
-                                var columnEl = handler.parentNode;
+                                var columnEl = handler.parentNode.parentNode;
                                 var columnName = columnEl.className;
                                 columnName = columnName.substr(columnName.indexOf('column-id-'));
                                 var columnOffset = $(columnEl).offset().left;

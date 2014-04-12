@@ -5725,6 +5725,9 @@ ul.umi-search-result {
   right: 0;
   border-bottom: 1px solid #E2E3E4; }
 
+.umi-table-control-cell-firefox-fix {
+  position: relative; }
+
 .umi-table-control-column-resizer {
   position: absolute;
   right: 0;
@@ -5906,10 +5909,11 @@ ul.umi-search-result {
     .umi-table-control-pagination .pagination-controls .button.disabled .icon {
       opacity: 0.5; }
   .umi-table-control-pagination .pagination-label {
-    float: left;
+    display: inline-block;
     margin-right: 15px;
     line-height: 24px; }
   .umi-table-control-pagination input {
+    display: inline-block;
     padding: 0 0.3125rem;
     height: 1.5rem;
     width: 50px; }
