@@ -30,9 +30,9 @@
                         <td class="umi-table-control-header-column">
                             <div class="umi-table-control-header-cell filter column-id-{{unbound column.name}}">
                                 <input type="text"/>
-                                <div class="button flat tiny square right" {{action 'sortByProperty' column.name}}>
-                                    <i class="icon black icon-bottom-thin"></i>
-                                </div>
+                                {{#view view.sortHandlerView propertyName=column.name}}
+                                    <i {{bind-attr class=":icon :black view.sortAscending:icon-bottom-thin:icon-top-thin"}}></i>
+                                {{/view}}
                             </div>
                         </td>
                     {{/each}}

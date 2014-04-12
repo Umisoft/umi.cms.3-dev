@@ -214,8 +214,13 @@ $table-control-row-bg-hover: #b5dbf6;
             margin-bottom: 0;
             float: left;
         }
-        .button{
+        .sort-handler{
             margin-bottom: 0;
+            float: right;
+            opacity: .4;
+            &.active{
+                opacity: 1;
+            }
         }
     }
     &.hover{

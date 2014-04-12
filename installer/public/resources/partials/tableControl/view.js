@@ -190,6 +190,28 @@ define(['App'], function(UMI){
                         }
                     }
                 })
+            }),
+
+            sortHandlerView: Ember.View.extend({
+                classNames: ['button', 'flat', 'tiny', 'square', 'sort-handler'],
+                classNameBindings: ['isActive:active'],
+                sortAscending: true,
+                isActive: function(){
+                    var sortByProperty = this.get('controller.sortByProperty');
+                    if(sortByProperty){
+                        return this.get('propertyName') === sortByProperty.name;
+                    }
+                }.property('controller.sortByProperty'),
+                click: function(){
+                    var sortByProperty = {};
+                    sortByProperty.name = this.get('propertyName');
+
+                    if(this.get('isActive')){
+                        this.toggleProperty('sortAscending');
+                    }
+                    sortByProperty.sortAscending = this.get('orderDirection');
+                    this.get('controller').set('sortByProperty', sortByProperty);
+                }
             })
         });
 

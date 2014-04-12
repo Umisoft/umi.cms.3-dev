@@ -5854,8 +5854,12 @@ ul.umi-search-result {
       width: calc(100% - 24px);
       margin-bottom: 0;
       float: left; }
-    .umi-table-control-header-cell.filter .button, .umi-table-control-column-fixed-cell.filter .button {
-      margin-bottom: 0; }
+    .umi-table-control-header-cell.filter .sort-handler, .umi-table-control-column-fixed-cell.filter .sort-handler {
+      margin-bottom: 0;
+      float: right;
+      opacity: 0.4; }
+      .umi-table-control-header-cell.filter .sort-handler.active, .umi-table-control-column-fixed-cell.filter .sort-handler.active {
+        opacity: 1; }
   .umi-table-control-header-cell.hover, .umi-table-control-column-fixed-cell.hover {
     background: #b5dbf6 !important; }
 

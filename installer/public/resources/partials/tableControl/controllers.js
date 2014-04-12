@@ -6,7 +6,7 @@ define(['App'], function(UMI){
             limit: 100,
             total: 46,
             offset: 0,
-
+            sortByProperty: null,
             filters: function(){
                 var filters = {};
 
@@ -25,6 +25,7 @@ define(['App'], function(UMI){
                 var limit = this.get('limit');
                 var filters = this.get('filters');
                 var offset = this.get('offset');
+                var sortByProperty = this.get('sortByProperty');
                 if(limit){
                     query.limit = limit;
                 }
@@ -34,8 +35,11 @@ define(['App'], function(UMI){
                 if(offset){
                     query.offset = offset * limit;
                 }
+                if(sortByProperty){
+                    //query.offset = offset * limit;
+                }
                 return query;
-            }.property('limit', 'filters', 'offset'),
+            }.property('limit', 'filters', 'offset', 'sortByProperty'),
 
             objects: function(){
                 var self = this;
