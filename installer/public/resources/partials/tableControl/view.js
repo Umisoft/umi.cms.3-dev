@@ -130,25 +130,67 @@ define(['App'], function(UMI){
                         });
                     });
                 }
-
-                // Событие изменения limit
-                $('.umi-table-control-footer').on('keydown.umi.tableControl', '.umi-limit', function(event){
-                    if(event.keyCode === 13){
-                        self.get('controller').set('limit', this.value);
-                    }
-                });
-
-                // Событие изменения limit
-                $('.umi-table-control-footer').on('keydown.umi.tableControl', '.umi-pagination', function(event){
-                    if(event.keyCode === 13){
-                        self.get('controller').set('offset', this.value);
-                    }
-                });
             },
 
             willDestroyElement: function(){
                 $(window).off('.umi.tableControl');
-            }
+            },
+
+            paginationView: Ember.View.extend({
+                classNames: ['right', 'umi-table-control-pagination'],
+                counter: function(){
+                    var label = 'из';
+                    var limit = this.get('controller.limit');
+                    var offset = this.get('controller.offset') + 1;
+                    var total = this.get('controller.total');
+                    var maxCount = offset*limit;
+                    var start = maxCount - limit + 1;
+                    maxCount = maxCount < total ? maxCount : total;
+                    return start + '-' + maxCount + ' ' + label + ' ' + total;
+                }.property('controller.limit', 'controller.offset', 'controller.total'),
+                prevButtonView: Ember.View.extend({
+                    classNames: ['button', 'secondary', 'tiny'],
+                    classNameBindings: ['isActive::disabled'],
+                    isActive: function(){
+                        return this.get('controller.offset');
+                    }.property('controller.offset'),
+                    click: function(){
+                        if(this.get('isActive')){
+                            this.get('controller').decrementProperty('offset');
+                        }
+                    }
+                }),
+                nextButtonView: Ember.View.extend({
+                    classNames: ['button', 'secondary', 'tiny'],
+                    classNameBindings: ['isActive::disabled'],
+                    isActive: function(){
+                        var limit = this.get('controller.limit');
+                        var offset = this.get('controller.offset') + 1;
+                        var total = this.get('controller.total');
+                        return total > limit * offset;
+                    }.property('controller.limit', 'controller.offset', 'controller.total'),
+                    click: function(){
+                        if(this.get('isActive')){
+                            this.get('controller').incrementProperty('offset');
+                        }
+                    }
+                }),
+                limitView: Ember.View.extend({
+                    tagName: 'input',
+                    classNames: ['s-margin-clear'],
+                    attributeBindings: ['value', 'type'],
+                    value: function(){
+                        return this.get('controller.limit');
+                    }.property('controller.limit'),
+                    type: 'text',
+                    keyDown: function(event){
+                        if(event.keyCode === 13){
+                            // При изменении количества строк на странице сбрасывается offset
+                            this.get('controller').setProperties({'offset': 0, 'limit': this.$()[0].value});
+                        }
+                    }
+                })
+            })
         });
 
         UMI.TableCellContentView = Ember.View.extend({

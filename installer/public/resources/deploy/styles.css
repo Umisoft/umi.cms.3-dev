@@ -5903,6 +5903,8 @@ ul.umi-search-result {
     margin-left: 30px; }
   .umi-table-control-pagination .pagination-controls .button {
     margin-bottom: 0; }
+    .umi-table-control-pagination .pagination-controls .button.disabled .icon {
+      opacity: 0.5; }
   .umi-table-control-pagination .pagination-label {
     float: left;
     margin-right: 15px;

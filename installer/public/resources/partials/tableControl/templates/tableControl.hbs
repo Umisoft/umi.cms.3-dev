@@ -109,22 +109,22 @@
 </div>
 
 <!-- Футер-->
-<div class="umi-table-control-footer">
-    <div class="right umi-table-control-pagination">
+<div class="umi-table-control-footer s-unselectable">
+    {{#view view.paginationView}}
         <div class="left pagination-controls">
             <span class="pagination-counter">
-                100-100 из 100
+                {{view.counter}}
             </span>
-            <span class="button secondary tiny">
+            {{#view view.prevButtonView}}
                 <i class="icon black icon-left-thin"></i>
-            </span>
-            <span class="button secondary tiny">
+            {{/view}}
+            {{#view view.nextButtonView}}
                 <i class="icon black icon-right-thin"></i>
-            </span>
+            {{/view}}
         </div>
         <div class="left pagination-limit">
             <span class="pagination-label">Строк на странице:</span>
-            <input type="text" class="s-margin-clear umi-limit" {{bind-attr value=limit}} />
+            {{view view.limitView}}
         </div>
-    </div>
+    {{/view}}
 </div>

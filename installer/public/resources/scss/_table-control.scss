@@ -279,6 +279,11 @@ $table-control-row-bg-hover: #b5dbf6;
         }
         .button{
             margin-bottom: 0;
+            &.disabled{
+                .icon{
+                    opacity: 0.5;
+                }
+            }
         }
     }
     .pagination-limit{

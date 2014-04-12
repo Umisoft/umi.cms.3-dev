@@ -4,7 +4,7 @@ define(['App'], function(UMI){
     return function(){
         UMI.TableControlController = Ember.ObjectController.extend({
             limit: 100,
-
+            total: 46,
             offset: 0,
 
             filters: function(){
