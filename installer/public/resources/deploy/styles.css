@@ -5936,14 +5936,6 @@ ul.umi-search-result {
       vertical-align: middle;
       margin-top: 33px; }
 
-.umi-table-control-content-row-empty td {
-  padding: 0; }
-
-.umi-table-control-content-cell-empty {
-  float: none;
-  width: 100%;
-  right: 0; }
-
 .umi-table-control-content-div-empty {
   margin-left: -34px;
   margin-right: -34px;

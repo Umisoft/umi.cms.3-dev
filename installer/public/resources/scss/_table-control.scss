@@ -330,18 +330,6 @@ $table-control-row-bg-hover: #b5dbf6;
 }
 
 //----------------- Стили пустой таблицы
-.umi-table-control-content-row-empty{
-    td{
-        padding: 0;
-    }
-}
-
-.umi-table-control-content-cell-empty{
-    float: none;
-    width: 100%;
-    right: 0;
-}
-
 .umi-table-control-content-div-empty{
     // Компилятор sass вычисляет разницу 20px -$variable, вместо того чтобы оставить как есть. Поэтому margin разделен
     margin-left: -$table-control-left-column-width;
