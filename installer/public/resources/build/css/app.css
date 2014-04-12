@@ -5723,12 +5723,15 @@ ul.umi-search-result {
 
 .umi-table-control-content-row {
   height: 34px;
-  cursor: pointer;
   background: #F5F6F7; }
   .umi-table-control-content-row:nth-of-type(odd) {
     background: #E9F1F7; }
   .umi-table-control-content-row.hover {
     background: #b5dbf6; }
+  .umi-table-control-content-row .edit-link {
+    color: #535E6D; }
+    .umi-table-control-content-row .edit-link:hover {
+      border-bottom: 1px solid #535E6D; }
 
 .umi-table-control-header-cell, .umi-table-control-column-fixed-cell {
   position: relative;

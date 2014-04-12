@@ -158,8 +158,12 @@ define(['App'], function(UMI){
                 var meta = this.get('column');
                 var object = this.get('object');
                 var template;
-                template = Ember.Handlebars.compile(object.get(meta.name) + '&nbsp;');
-                return template;
+                if(meta.name === 'displayName'){
+                    template = '{{#link-to "context" "form" object.id class="edit-link"}}' + object.get(meta.name) + '{{/link-to}}';
+                } else{
+                    template = object.get(meta.name) + '&nbsp;';
+                }
+                return Ember.Handlebars.compile(template);
             }.property('object','column'),
             didInsertElement: function(){
                 console.log('didInsertElement');

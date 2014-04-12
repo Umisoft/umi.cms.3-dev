@@ -174,13 +174,18 @@ $table-control-row-bg-hover: #b5dbf6;
 
 .umi-table-control-content-row{
     height: $table-control-row-height;
-    cursor: pointer;
     background: #F5F6F7;
     &:nth-of-type(odd){
         background: #E9F1F7;
     }
     &.hover{
         background: $table-control-row-bg-hover;
+    }
+    .edit-link{
+        color: $body-font-color;
+        &:hover{
+            border-bottom: 1px solid $body-font-color;
+        }
     }
 }
 
