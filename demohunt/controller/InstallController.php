@@ -983,6 +983,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_news_item_guid` (`guid`),
                     UNIQUE KEY `news_news_item_slug` (`slug`),
+                    UNIQUE KEY `news_news_item_source` (`source`),
                     KEY `news_news_item_type` (`type`),
                     KEY `news_news_item_rubric` (`rubric_id`),
                     KEY `news_news_item_layout` (`layout_id`),
