@@ -24,7 +24,7 @@ class NewsItemWidget extends BaseSecureWidget
      */
     public $template = 'view';
     /**
-     * @var string $guid GUID новости
+     * @var string|NewsItem $newsItem GUID новости
      */
     public $newsItem;
 

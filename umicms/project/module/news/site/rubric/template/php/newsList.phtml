@@ -9,7 +9,7 @@
     <ul>
         <?php foreach ($news as $newsItem) : ?>
             <li>
-                <?= $this->widget('news.item.view', ['rubric' => $newsItem, 'template' => 'shortView']); ?>
+                <?= $this->widget('news.item.view', ['newsItem' => $newsItem, 'template' => 'shortView']); ?>
             </li>
         <?php endforeach;?>
     </ul>

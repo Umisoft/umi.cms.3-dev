@@ -6,4 +6,4 @@
 <h1><?= $subject->h1 ?></h1>
 <?= $subject->contents ?>
 
-<?= $this->widget('news.subject.newsList', ['subjectGuids' => [$subject->guid], 'template' => 'newsList']); ?>
+<?= $this->widget('news.subject.newsList', ['subjects' => [$subject], 'template' => 'newsList']); ?>

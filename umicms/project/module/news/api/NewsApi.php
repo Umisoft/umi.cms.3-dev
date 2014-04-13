@@ -131,18 +131,19 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
 
     /**
      * Возвращает селектор для выборки новостей указанных сюжетов.
-     * @param array $subjectGuids список GUID сюжетов новостей
+     * @param NewsSubject[] $subjects список GUID сюжетов новостей
      * @param int $limit максимальное количество новостей
      * @return ISelector
      */
-    public function getSubjectNews($subjectGuids = [], $limit = null)
+    public function getSubjectNews($subjects = [], $limit = null)
     {
         $news = $this->getNews($limit);
 
-        if (count($subjectGuids)) {
-            $news->where(NewsItem::FIELD_SUBJECTS . ISelector::FIELD_SEPARATOR . NewsSubject::FIELD_GUID)
-                ->in($subjectGuids);
+        $news->begin(IFieldConditionGroup::MODE_OR);
+        foreach ($subjects as $subject) {
+            $news->where(NewsItem::FIELD_SUBJECTS)->equals($subject);
         }
+        $news->end();
 
         return $news;
     }
