@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\news\api\object;
 
+use umi\orm\objectset\ManyToManyObjectSet;
 use umicms\orm\object\CmsObject;
 
 /**
@@ -16,8 +17,8 @@ use umicms\orm\object\CmsObject;
  *
  * @property string $rssUrl URL RSS-ленты, которую необходимо импортировать
  * @property string $charsetRss кодировка RSS-канала
- * @property string $rubric имя поля для хранения рубрики, к которой относятся импортируемые новости
- * @property string $subjects имя поля для хранения сюжета, к которой относятся импортируемые новости
+ * @property NewsRubric|null $rubric имя поля для хранения рубрики, к которой относятся импортируемые новости
+ * @property ManyToManyObjectSet|NewsSubject[] $subjects список сюжетов, к которым относятся импортируемые новости
  */
 class RssImportItem extends CmsObject
 {

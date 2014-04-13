@@ -115,11 +115,13 @@ return [
             'en-US' => [
                 'common' => 'Common',
                 'meta' => 'Meta',
+                'importSetting' => 'Import setting',
                 'contents' => 'Contents'
             ],
             'ru-RU' => [
                 'common' => 'Общее',
                 'meta' => 'Мета-информация',
+                'importSetting' => 'Настройки импорта',
                 'contents' => 'Контент'
             ]
         ],
@@ -128,4 +130,5 @@ return [
         'collection.user' => '{#lazy:~/project/module/users/configuration/user/i18n/dictionary.config.php}',
         'collection.newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/i18n/dictionary.config.php}',
         'collection.newsSubject' => '{#lazy:~/project/module/news/configuration/subject/i18n/dictionary.config.php}',
+        'collection.rssImportItem' => '{#lazy:~/project/module/news/configuration/rss/i18n/dictionary.config.php}',
     ];

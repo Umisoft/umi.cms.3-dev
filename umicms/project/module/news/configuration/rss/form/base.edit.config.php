@@ -39,7 +39,7 @@ return [
 
         'meta' => [
             'type' => FieldSet::TYPE_NAME,
-            'label' => 'settings',
+            'label' => 'importSetting',
             'elements' => [
                 RssImportItem::FIELD_RSS_URL => [
                     'type' => Text::TYPE_NAME,
