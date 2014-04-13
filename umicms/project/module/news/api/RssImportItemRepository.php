@@ -13,17 +13,18 @@ use Exception;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umi\rss\IRssFeedAware;
+use umi\rss\RssItem;
 use umi\rss\TRssFeedAware;
 use umicms\api\repository\BaseObjectRepository;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\news\api\object\RssItem;
+use umicms\project\module\news\api\object\RssImportItem;
 
 /**
  * Репозиторий для работы с коллекцией импортируемых RSS-лент.
  */
-class RssItemRepository extends BaseObjectRepository implements IRssFeedAware, ILocalizable
+class RssImportItemRepository extends BaseObjectRepository implements IRssFeedAware, ILocalizable
 {
     use TRssFeedAware;
     use TLocalizable;
@@ -31,11 +32,11 @@ class RssItemRepository extends BaseObjectRepository implements IRssFeedAware, I
     /**
      * {@inheritdoc}
      */
-    public $collectionName = 'rssItem';
+    public $collectionName = 'rssImportItem';
 
     /**
      * Возвращает селектор для выбора импортируемых RSS-лент.
-     * @return CmsSelector|RssItem[]
+     * @return CmsSelector|RssImportItem[]
      */
     public function select() {
         return $this->getCollection()->select();
@@ -45,7 +46,7 @@ class RssItemRepository extends BaseObjectRepository implements IRssFeedAware, I
      * Возвращает RSS-ленту по ее GUID.
      * @param string $guid
      * @throws NonexistentEntityException если не удалось получить RSS-ленту
-     * @return RssItem
+     * @return RssImportItem
      */
     public function get($guid)
     {
@@ -67,7 +68,7 @@ class RssItemRepository extends BaseObjectRepository implements IRssFeedAware, I
      * Возвращает RSS-ленту по ее id.
      * @param int $id
      * @throws NonexistentEntityException если не удалось получить RSS-ленту
-     * @return RssItem
+     * @return RssImportItem
      */
     public function getById($id)
     {
@@ -87,7 +88,7 @@ class RssItemRepository extends BaseObjectRepository implements IRssFeedAware, I
 
     /**
      * Добавляет RSS-ленту.
-     * @return RssItem
+     * @return RssImportItem
      */
     public function add()
     {
@@ -96,10 +97,10 @@ class RssItemRepository extends BaseObjectRepository implements IRssFeedAware, I
 
     /**
      * Помечает RSS-ленту на удаление.
-     * @param RssItem $item
+     * @param RssImportItem $item
      * @return $this
      */
-    public function delete(RssItem $item)
+    public function delete(RssImportItem $item)
     {
         $this->getCollection()->delete($item);
 
@@ -108,22 +109,22 @@ class RssItemRepository extends BaseObjectRepository implements IRssFeedAware, I
 
     /**
      * Импортирует новости из RSS-ленты.
-     * @param string $guid GUID импортируемой RSS-ленты
+     * @param RssImportItem $rssImportItem
      * @param NewsItemRepository $newsItemRepository
      * @throws RuntimeException
+     * @internal param string $guid GUID импортируемой RSS-ленты
      * @return $this
      */
-    public function importRss($guid, NewsItemRepository $newsItemRepository)
+    public function importRss(RssImportItem $rssImportItem, NewsItemRepository $newsItemRepository)
     {
-        $rssFeed = $this->get($guid);
         try {
-            $xml = \GuzzleHttp\get($rssFeed->rssUrl)
+            $xml = \GuzzleHttp\get($rssImportItem->rssUrl)
                 ->xml(['object' => false]);
         } catch (Exception $e) {
             throw new RuntimeException(
                 $this->translate(
                     'Cannot load RSS feed from url {url}.',
-                    ['url' => $rssFeed->rssUrl]
+                    ['url' => $rssImportItem->rssUrl]
                 ),
                 0,
                 $e
@@ -142,21 +143,23 @@ class RssItemRepository extends BaseObjectRepository implements IRssFeedAware, I
 
     /**
      * Импортирует новость из RSS-ленты.
-     * @param \umi\rss\RssItem $item
+     * @param RssItem $item
      * @param NewsItemRepository $newsItemRepository
      */
-    protected function importRssItem($item, NewsItemRepository $newsItemRepository)
+    protected function importRssItem(RssItem $item, NewsItemRepository $newsItemRepository)
     {
         $newsItem = $newsItemRepository->add();
         if ($item->getTitle()) {
             $newsItem->displayName = $item->getTitle();
         }
         if ($item->getContent()) {
-            $newsItem->contents = $item->getTitle();
+            $newsItem->contents = $item->getContent();
         }
         if ($item->getDate()) {
-            $newsItem->date = $item->getDate();
+            $newsItem->date->setTimestamp($item->getDate()->getTimestamp());
+            $newsItem->date->setTimezone($item->getDate()->getTimezone());
         }
+        $newsItem->slug = $newsItem->guid;
         /*if ($item->getUrl()) {
             $newsItem->date = $item->getDate();
         }*/

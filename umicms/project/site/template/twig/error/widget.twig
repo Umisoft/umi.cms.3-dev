@@ -19,7 +19,26 @@
 {% endblock %}
 
 {% block stack_error %}
-
+    <hr/>
+    <h3>Previous exceptions:</h3>
+    <ul>
+        <li>
+            <dl>
+                <dt>File:</dt>
+                <dd>
+                    {{ error.getFile() }}:{{ error.getLine() }}
+                </dd>
+                <dt>Message:</dt>
+                <dd>
+                    {{ error.getMessage() }}
+                </dd>
+                <dt>Stack trace:</dt>
+                <dd>
+                    <pre>{{ error.getTraceAsString() }}</pre>
+                </dd>
+            </dl>
+        </li>
+    </ul>
 {% endblock %}
 
 {% block error500 %}
@@ -27,7 +46,7 @@
 
     <h2>{{ error.getMessage() }}</h2>
 
-    <!-- hr/>
+    <hr/>
     <h3>Additional information:</h3>
 
     <dl>
@@ -43,9 +62,5 @@
         <dd>
             <pre>{{ error.getTraceAsString() }}</pre>
         </dd>
-    </dl -->
+    </dl>
 {% endblock %}
-
-
-
-

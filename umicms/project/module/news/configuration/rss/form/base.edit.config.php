@@ -10,13 +10,13 @@
 use umi\form\element\MultiSelect;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\news\api\object\RssItem;
+use umicms\project\module\news\api\object\RssImportItem;
 
 return [
 
     'options' => [
         'dictionaries' => [
-            'collection.newsRubric', 'collection', 'form'
+            'collection.rssImportItem', 'collection', 'form'
         ]
     ],
 
@@ -26,11 +26,11 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'common',
             'elements' => [
-                RssItem::FIELD_DISPLAY_NAME => [
+                RssImportItem::FIELD_DISPLAY_NAME => [
                     'type' => Text::TYPE_NAME,
-                    'label' => RssItem::FIELD_DISPLAY_NAME,
+                    'label' => RssImportItem::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => RssItem::FIELD_DISPLAY_NAME
+                        'dataSource' => RssImportItem::FIELD_DISPLAY_NAME
                     ],
                 ]
             ]
@@ -40,25 +40,25 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'meta',
             'elements' => [
-                RssItem::FIELD_CHARSET_RSS => [
+                RssImportItem::FIELD_CHARSET_RSS => [
                     'type' => Text::TYPE_NAME,
-                    'label' => RssItem::FIELD_CHARSET_RSS,
+                    'label' => RssImportItem::FIELD_CHARSET_RSS,
                     'options' => [
-                        'dataSource' => RssItem::FIELD_CHARSET_RSS
+                        'dataSource' => RssImportItem::FIELD_CHARSET_RSS
                     ],
                 ],
-                RssItem::FIELD_RUBRIC => [
+                RssImportItem::FIELD_RUBRIC => [
                     'type' => Text::TYPE_NAME,
-                    'label' => RssItem::FIELD_RUBRIC,
+                    'label' => RssImportItem::FIELD_RUBRIC,
                     'options' => [
-                        'dataSource' => RssItem::FIELD_RUBRIC
+                        'dataSource' => RssImportItem::FIELD_RUBRIC
                     ],
                 ],
-                RssItem::FIELD_SUBJECTS => [
+                RssImportItem::FIELD_SUBJECTS => [
                     'type' => MultiSelect::TYPE_NAME,
-                    'label' => RssItem::FIELD_SUBJECTS,
+                    'label' => RssImportItem::FIELD_SUBJECTS,
                     'options' => [
-                        'dataSource' => RssItem::FIELD_SUBJECTS
+                        'dataSource' => RssImportItem::FIELD_SUBJECTS
                     ]
                 ]
             ]

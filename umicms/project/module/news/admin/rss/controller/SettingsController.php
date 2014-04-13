@@ -22,7 +22,7 @@ class SettingsController extends BaseSettingsController
     ];
 
     private $layout = [
-        'collection' => 'rssItem',
+        'collection' => 'rssImportItem',
         'emptyContext' => [
             'contents' => [
                 'controls' => ['filter']

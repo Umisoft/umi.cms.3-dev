@@ -273,7 +273,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var SimpleCollection $rssItemCollection
          */
-        $rssItemCollection = $this->getCollectionManager()->getCollection('rssItem');
+        $rssItemCollection = $this->getCollectionManager()->getCollection('rssImportItem');
         /**
          * @var SimpleHierarchicCollection $rubricCollection
          */
@@ -905,6 +905,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $connection->exec("DROP TABLE IF EXISTS `demohunt_news_news_item_subject`");
         $connection->exec("DROP TABLE IF EXISTS `demohunt_rss_rss_item`");
         $connection->exec("DROP TABLE IF EXISTS `demohunt_rss_rss_item_subject`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_rss_rss_item`");
 
         $connection->exec(
             "

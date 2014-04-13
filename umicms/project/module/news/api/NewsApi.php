@@ -20,6 +20,7 @@ use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\news\api\object\NewsItem;
 use umicms\project\module\news\api\object\NewsRubric;
 use umicms\project\module\news\api\object\NewsSubject;
+use umicms\project\module\news\api\object\RssImportItem;
 
 /**
  * Публичное API модуля "Новости"
@@ -58,11 +59,11 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
 
     /**
      * Возвращает репозиторий для работы с импортируемыми RSS-лентами.
-     * @return RssItemRepository
+     * @return RssImportItemRepository
      */
     public function rss()
     {
-        return $this->getApi('umicms\project\module\news\api\RssItemRepository');
+        return $this->getApi('umicms\project\module\news\api\RssImportItemRepository');
     }
 
     /**
@@ -179,9 +180,13 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
         return $rubrics;
     }
 
-    public function importRss()
+    /**
+     * Выполнение импорта новостей из RSS-ленты.
+     * @param RssImportItem $rssImportItem импортируемая RSS-лента
+     */
+    public function importRss(RssImportItem $rssImportItem)
     {
-        //$this->rss()->importRss();
+        $this->rss()->importRss($rssImportItem, $this->news());
     }
 
 }

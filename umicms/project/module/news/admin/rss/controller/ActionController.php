@@ -70,8 +70,16 @@ class ActionController extends BaseRestActionController
         return $this->api->rss()->getCollection()->getForm($typeName, $formName);
     }
 
+    /**
+     * Запускает импорт RSS-ленты.
+     */
     protected function actionImport()
     {
+        $importRssId = $this->getRequiredQueryVar('importRssId');
 
+        $guidItemRss = $this->api->rss()->getById($importRssId);
+
+        $this->api->importRss($guidItemRss);
+        $this->getObjectPersister()->commit();
     }
 }

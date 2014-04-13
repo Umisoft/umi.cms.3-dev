@@ -12,7 +12,7 @@ namespace umicms\project\module\news\admin\rss\controller;
 use umicms\orm\object\ICmsObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\project\module\news\api\NewsApi;
-use umicms\project\module\news\api\object\RssItem;
+use umicms\project\module\news\api\object\RssImportItem;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
@@ -47,7 +47,7 @@ class ItemController extends BaseRestItemController
      */
     protected function delete(ICmsObject $object)
     {
-        if ($object instanceof RssItem) {
+        if ($object instanceof RssImportItem) {
             $this->api->rss()->delete($object);
             $this->getObjectPersister()->commit();
         }

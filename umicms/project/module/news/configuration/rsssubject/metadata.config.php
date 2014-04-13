@@ -71,7 +71,7 @@ return [
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
-        'rssItem'                    => [
+        'rssImportItem'                    => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'rss_item_id',
             'target'     => 'newsItem'
@@ -97,7 +97,7 @@ return [
                 CmsObject::FIELD_DISPLAY_NAME,
                 CmsObject::FIELD_OWNER,
                 CmsObject::FIELD_EDITOR,
-                'rssItem',
+                'rssImportItem',
                 'subject'
             ]
         ]
