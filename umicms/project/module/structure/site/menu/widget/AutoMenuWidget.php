@@ -25,7 +25,7 @@ class AutoMenuWidget extends BaseSecureWidget
     public $template = 'auto';
 
     /**
-     * @var string|StructureElement $branch ветки или GUID, от которой строится меню. Если не задано, меню строится от корня сайта.
+     * @var string|StructureElement $branch ветка или GUID, от которой строится меню. Если не задано, меню строится от корня сайта.
      */
     public $branch;
 

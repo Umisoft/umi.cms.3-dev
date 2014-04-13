@@ -29,7 +29,7 @@ class SubjectNewsListWidget extends BaseWidget
      */
     public $limit;
     /**
-     * @var array|NewsSubject[]|NewsSubject|null $subjects список GUID новостных сюжетов, из которых выводятся новости.
+     * @var array|NewsSubject[]|NewsSubject|null $subjects сюжет, новостных сюжетов или GUID, из которых выводятся новости.
      * Если не указаны, то выводятся новости всех сюжетов
      */
     public $subjects = [];

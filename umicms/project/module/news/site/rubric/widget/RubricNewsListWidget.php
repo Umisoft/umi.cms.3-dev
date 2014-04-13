@@ -29,7 +29,7 @@ class RubricNewsListWidget extends BaseSecureWidget
      */
     public $limit;
     /**
-     * @var array|NewsRubric[]|NewsRubric|null $rubrics список GUID новостных рубрик, из которых выводятся новости.
+     * @var array|NewsRubric[]|NewsRubric|null $rubrics рубрика, список новостных рубрик или GUID, из которых выводятся новости.
      * Если не указаны, то новости выводятся из всех рубрик
      */
     public $rubrics;

@@ -29,7 +29,7 @@ class RubricListWidget extends BaseSecureWidget
      */
     public $limit;
     /**
-     * @var string|null|NewsRubric $parentGuid новостная рубрика или GUID, из которой выводятся дочерние рубрики.
+     * @var string|null|NewsRubric $parentRubric новостная рубрика или GUID, из которой выводятся дочерние рубрики.
      * Если не указан, выводятся все корневые рубрики.
      */
     public $parentRubric;

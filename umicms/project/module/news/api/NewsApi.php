@@ -135,7 +135,7 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
      * @param int $limit максимальное количество новостей
      * @return ISelector
      */
-    public function getSubjectNews($subjects = [], $limit = null)
+    public function getSubjectNews(array $subjects = [], $limit = null)
     {
         $news = $this->getNews($limit);
 

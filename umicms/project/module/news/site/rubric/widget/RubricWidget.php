@@ -24,7 +24,7 @@ class RubricWidget extends BaseSecureWidget
      */
     public $template = 'view';
     /**
-     * @var string $guid GUID рубрики
+     * @var string|NewsRubric $rubric рубрика или GUID рубрики
      */
     public $rubric;
 

@@ -24,7 +24,7 @@ class SubjectWidget extends BaseWidget
      */
     public $template = 'view';
     /**
-     * @var string|NewsSubject $subject GUID сюжета
+     * @var string|NewsSubject $subject сюжет или GUID
      */
     public $subject;
 
