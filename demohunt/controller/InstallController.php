@@ -973,6 +973,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `date` datetime DEFAULT NULL,
                     `contents` text,
                     `announcement` text,
+                    `source` varchar(255) DEFAULT NULL,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,

@@ -148,20 +148,24 @@ class RssImportItemRepository extends BaseObjectRepository implements IRssFeedAw
      */
     protected function importRssItem(RssItem $item, NewsItemRepository $newsItemRepository)
     {
-        $newsItem = $newsItemRepository->add();
-        if ($item->getTitle()) {
-            $newsItem->displayName = $item->getTitle();
+        try {
+            $newsItemRepository->getNewsBySource($item->getUrl());
+        } catch(NonexistentEntityException $e) {
+            $newsItem = $newsItemRepository->add();
+            if ($item->getTitle()) {
+                $newsItem->displayName = $item->getTitle();
+            }
+            if ($item->getContent()) {
+                $newsItem->contents = $item->getContent();
+            }
+            if ($item->getDate()) {
+                $newsItem->date->setTimestamp($item->getDate()->getTimestamp());
+                $newsItem->date->setTimezone($item->getDate()->getTimezone());
+            }
+            if ($item->getUrl()) {
+                $newsItem->source = $item->getUrl();
+            }
+            $newsItem->slug = $newsItem->guid;
         }
-        if ($item->getContent()) {
-            $newsItem->contents = $item->getContent();
-        }
-        if ($item->getDate()) {
-            $newsItem->date->setTimestamp($item->getDate()->getTimestamp());
-            $newsItem->date->setTimezone($item->getDate()->getTimezone());
-        }
-        $newsItem->slug = $newsItem->guid;
-        /*if ($item->getUrl()) {
-            $newsItem->date = $item->getDate();
-        }*/
     }
 }

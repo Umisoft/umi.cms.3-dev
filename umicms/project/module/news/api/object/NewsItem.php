@@ -22,6 +22,7 @@ use umicms\orm\object\TCmsPage;
  * @property DateTime $date дата
  * @property NewsRubric|null $rubric рубрика, к которой относится новость
  * @property IManyToManyObjectSet $subjects сюжеты, в которые входит новость
+ * @property string $source источник публикации
  */
 class NewsItem extends CmsObject implements ICmsPage
 {
@@ -43,6 +44,10 @@ class NewsItem extends CmsObject implements ICmsPage
      * Имя поля для хранения анонса новости
      */
     const FIELD_ANNOUNCEMENT = 'announcement';
+    /**
+     * Источник публикации
+     */
+    const FIELD_SOURCE = 'source';
 
 
 }

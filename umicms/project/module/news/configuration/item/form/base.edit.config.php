@@ -124,6 +124,14 @@ return [
                     'options' => [
                         'dataSource' => NewsItem::FIELD_PAGE_CONTENTS
                     ]
+                ],
+
+                NewsItem::FIELD_SOURCE => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => NewsItem::FIELD_SOURCE,
+                    'options' => [
+                        'dataSource' => NewsItem::FIELD_SOURCE
+                    ]
                 ]
             ],
 

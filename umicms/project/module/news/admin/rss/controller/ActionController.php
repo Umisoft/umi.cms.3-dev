@@ -40,7 +40,7 @@ class ActionController extends BaseRestActionController
      */
     public function getQueryActions()
     {
-        return ['form', 'import'];
+        return ['form', 'importFromRss'];
     }
 
     /**
@@ -73,7 +73,7 @@ class ActionController extends BaseRestActionController
     /**
      * Запускает импорт RSS-ленты.
      */
-    protected function actionImport()
+    protected function actionImportFromRss()
     {
         $importRssId = $this->getRequiredQueryVar('importRssId');
 
