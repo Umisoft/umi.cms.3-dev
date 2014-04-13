@@ -131,7 +131,7 @@ class RssImportItemRepository extends BaseObjectRepository implements IRssFeedAw
             );
         }
 
-        $rssFeed = $this->createRssFeedFromXml($xml->asXML());
+        $rssFeed = $this->createRssFeedFromSimpleXml($xml);
 
         $items = $rssFeed->getRssItems();
         foreach ($items as $item) {
