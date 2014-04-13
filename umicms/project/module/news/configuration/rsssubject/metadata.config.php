@@ -74,7 +74,7 @@ return [
         'rssImportItem'                    => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'rss_item_id',
-            'target'     => 'newsItem'
+            'target'     => 'rssImportItem'
         ],
         'subject'                     => [
             'type'       => IField::TYPE_BELONGS_TO,

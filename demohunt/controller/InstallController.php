@@ -1114,14 +1114,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `rss_url` varchar(255) DEFAULT NULL,
                     `charset_rss` varchar(255) DEFAULT NULL,
                     `rubric_id` bigint(20) unsigned DEFAULT NULL,
-                    `subject_id` bigint(20) unsigned DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `rss_rss_item_guid` (`guid`),
                     KEY `rss_rss_item_type` (`type`),
                     KEY `rss_rss_item_rubric` (`rubric_id`),
-                    KEY `rss_rss_item_layout` (`subject_id`),
                     CONSTRAINT `FK_rss_rss_item_rubric` FOREIGN KEY (`rubric_id`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_rss_item_subject` FOREIGN KEY (`subject_id`) REFERENCES `demohunt_news_subject` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_rss_rss_item_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_rss_rss_item_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8

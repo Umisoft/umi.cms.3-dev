@@ -135,7 +135,7 @@ class RssImportItemRepository extends BaseObjectRepository implements IRssFeedAw
 
         $items = $rssFeed->getRssItems();
         foreach ($items as $item) {
-            $this->importRssItem($item, $newsItemRepository);
+            $this->importRssItem($item, $rssImportItem, $newsItemRepository);
         }
 
         return $this;
@@ -144,9 +144,10 @@ class RssImportItemRepository extends BaseObjectRepository implements IRssFeedAw
     /**
      * Импортирует новость из RSS-ленты.
      * @param RssItem $item
+     * @param RssImportItem $rssImportItem
      * @param NewsItemRepository $newsItemRepository
      */
-    protected function importRssItem(RssItem $item, NewsItemRepository $newsItemRepository)
+    protected function importRssItem(RssItem $item, RssImportItem $rssImportItem, NewsItemRepository $newsItemRepository)
     {
         try {
             $newsItemRepository->getNewsBySource($item->getUrl());
@@ -154,6 +155,7 @@ class RssImportItemRepository extends BaseObjectRepository implements IRssFeedAw
             $newsItem = $newsItemRepository->add();
             if ($item->getTitle()) {
                 $newsItem->displayName = $item->getTitle();
+                $newsItem->h1 = $item->getTitle();
             }
             if ($item->getContent()) {
                 $newsItem->contents = $item->getContent();
@@ -166,6 +168,10 @@ class RssImportItemRepository extends BaseObjectRepository implements IRssFeedAw
                 $newsItem->source = $item->getUrl();
             }
             $newsItem->slug = $newsItem->guid;
+            $newsItem->rubric = $rssImportItem->rubric;
+            foreach ($rssImportItem->subjects as $subject) {
+                $newsItem->subjects->attach($subject);
+            }
         }
     }
 }

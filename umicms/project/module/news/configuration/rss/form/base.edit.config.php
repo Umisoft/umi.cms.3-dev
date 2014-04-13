@@ -8,6 +8,7 @@
  */
 
 use umi\form\element\MultiSelect;
+use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\project\module\news\api\object\RssImportItem;
@@ -38,8 +39,15 @@ return [
 
         'meta' => [
             'type' => FieldSet::TYPE_NAME,
-            'label' => 'meta',
+            'label' => 'settings',
             'elements' => [
+                RssImportItem::FIELD_RSS_URL => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => RssImportItem::FIELD_RSS_URL,
+                    'options' => [
+                        'dataSource' => RssImportItem::FIELD_RSS_URL
+                    ],
+                ],
                 RssImportItem::FIELD_CHARSET_RSS => [
                     'type' => Text::TYPE_NAME,
                     'label' => RssImportItem::FIELD_CHARSET_RSS,
@@ -48,7 +56,7 @@ return [
                     ],
                 ],
                 RssImportItem::FIELD_RUBRIC => [
-                    'type' => Text::TYPE_NAME,
+                    'type' => Select::TYPE_NAME,
                     'label' => RssImportItem::FIELD_RUBRIC,
                     'options' => [
                         'dataSource' => RssImportItem::FIELD_RUBRIC
