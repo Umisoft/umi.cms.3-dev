@@ -9,8 +9,10 @@
 
 namespace umicms\project\module\news\site\rubric\widget;
 
+use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\object\NewsRubric;
 
 /**
  * Виджет вывода рубрики
@@ -24,7 +26,7 @@ class RubricWidget extends BaseSecureWidget
     /**
      * @var string $guid GUID рубрики
      */
-    public $guid;
+    public $rubric;
 
     /**
      * @var NewsApi $api API модуля "Новости"
@@ -45,10 +47,26 @@ class RubricWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
+        if (is_string($this->rubric)) {
+            $this->rubric = $this->api->rubric()->get($this->rubric);
+        }
+
+        if (isset($this->rubric) && !$this->rubric instanceof NewsRubric) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Widget parameter "{param} should be instance of "{class}".',
+                    [
+                        'param' => 'rubric',
+                        'class' => 'NewsRubric'
+                    ]
+                )
+            );
+        }
+
         return $this->createResult(
             $this->template,
             [
-                'rubric' => $this->api->rubric()->get($this->guid)
+                'rubric' => $this->rubric
             ]
         );
     }

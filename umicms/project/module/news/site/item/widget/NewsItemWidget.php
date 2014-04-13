@@ -9,8 +9,10 @@
 
 namespace umicms\project\module\news\site\item\widget;
 
+use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\object\NewsItem;
 
 /**
  * Виджет вывода новости
@@ -24,7 +26,7 @@ class NewsItemWidget extends BaseSecureWidget
     /**
      * @var string $guid GUID новости
      */
-    public $guid;
+    public $newsItem;
 
     /**
      * @var NewsApi $api API модуля "Новости"
@@ -45,10 +47,26 @@ class NewsItemWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
+        if (is_string($this->newsItem)) {
+            $this->newsItem = $this->api->news()->get($this->newsItem);
+        }
+
+        if (isset($this->newsItem) && !$this->newsItem instanceof NewsItem) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Widget parameter "{param} should be instance of "{class}".',
+                    [
+                        'param' => 'newsItem',
+                        'class' => 'NewsItem'
+                    ]
+                )
+            );
+        }
+
         return $this->createResult(
             $this->template,
             [
-                'newsItem' => $this->api->news()->get($this->guid)
+                'newsItem' => $this->newsItem
             ]
         );
     }

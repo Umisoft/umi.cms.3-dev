@@ -9,8 +9,10 @@
 
 namespace umicms\project\module\news\site\rubric\widget;
 
+use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\object\NewsRubric;
 
 /**
  * Виджет для вывода списка новостей по рубрикам
@@ -27,10 +29,10 @@ class RubricNewsListWidget extends BaseSecureWidget
      */
     public $limit;
     /**
-     * @var array $rubricGuids список GUID новостных рубрик, из которых выводятся новости.
+     * @var array|NewsRubric[]|NewsRubric|null $rubrics список GUID новостных рубрик, из которых выводятся новости.
      * Если не указаны, то новости выводятся из всех рубрик
      */
-    public $rubricGuids = [];
+    public $rubrics;
 
     /**
      * @var NewsApi $api API модуля "Новости"
@@ -51,10 +53,30 @@ class RubricNewsListWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
+        $rubrics = (array) $this->rubrics;
+
+        foreach ($rubrics as &$rubric) {
+            if (is_string($rubric)) {
+                $rubric = $this->api->rubric()->get($rubric);
+            }
+
+            if (isset($rubric) && !$rubric instanceof NewsRubric) {
+                throw new InvalidArgumentException(
+                    $this->translate(
+                        'Widget parameter "{param} should be instance of "{class}".',
+                        [
+                            'param' => 'rubrics',
+                            'class' => 'NewsRubric'
+                        ]
+                    )
+                );
+            }
+        }
+
         return $this->createResult(
             $this->template,
             [
-                'news' => $this->api->getRubricNews($this->rubricGuids, $this->limit)
+                'news' => $this->api->getRubricNews($rubrics, $this->limit)
             ]
         );
     }

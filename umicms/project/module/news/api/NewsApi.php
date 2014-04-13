@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\news\api;
 
+use umi\orm\selector\condition\IFieldConditionGroup;
 use umi\orm\selector\ISelector;
 use umi\rss\IRssFeed;
 use umi\rss\IRssFeedAware;
@@ -111,18 +112,19 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
 
     /**
      * Возвращает селектор для выборки новостей указанных рубрик.
-     * @param array $rubricGuids список GUID рубрик новостей
+     * @param NewsRubric[] $rubrics список GUID рубрик новостей
      * @param int $limit максимальное количество новостей
      * @return ISelector
      */
-    public function getRubricNews($rubricGuids = [], $limit = null)
+    public function getRubricNews(array $rubrics = [], $limit = null)
     {
         $news = $this->getNews($limit);
 
-        if (count($rubricGuids)) {
-            $news->where(NewsItem::FIELD_RUBRIC . ISelector::FIELD_SEPARATOR . NewsRubric::FIELD_GUID)
-                ->in($rubricGuids);
+        $news->begin(IFieldConditionGroup::MODE_OR);
+        foreach ($rubrics as $rubric) {
+            $news->where(NewsItem::FIELD_RUBRIC)->equals($rubric);
         }
+        $news->end();
 
         return $news;
     }
@@ -147,15 +149,13 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
 
     /**
      * Возвращает селектор для выборки новостных рубрик в указанной рубрике.
-     * @param string|null $parentRubricGuid GUID рубрики
+     * @param NewsRubric|null $parentRubric GUID рубрики
      * @param int $limit максимальное количество рубрик
      * @return ISelector
      */
-    public function getRubrics($parentRubricGuid = null, $limit = null)
+    public function getRubrics(NewsRubric $parentRubric = null, $limit = null)
     {
-        $parent = $parentRubricGuid ? $this->rubric()->get($parentRubricGuid) : null;
-
-        $rubrics = $this->rubric()->selectChildren($parent);
+        $rubrics = $this->rubric()->selectChildren($parentRubric);
 
         if ($limit) {
             $rubrics->limit($limit);

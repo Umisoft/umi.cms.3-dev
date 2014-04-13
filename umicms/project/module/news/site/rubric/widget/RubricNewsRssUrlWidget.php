@@ -9,8 +9,10 @@
 
 namespace umicms\project\module\news\site\rubric\widget;
 
+use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\object\NewsRubric;
 
 /**
  * Виджет для вывода URL на RSS-ленту по рубрике.
@@ -23,10 +25,10 @@ class RubricNewsRssUrlWidget extends BaseSecureWidget
     public $template = 'rssLink';
 
     /**
-     * @var array $rubricGuid список GUID новостных сюжетов, из которых выводятся новости.
-     * Если не указаны, то выводятся новости всех сюжетов
+     * @var NewsRubric|string|null $rubric рубрика или GUID рубрики, URL на RSS которой генерировать.
+     * Если не указана, генерируется URL на все новости.
      */
-    public $rubricGuid;
+    public $rubric;
 
     /**
      * @var NewsApi $api API модуля "Новости"
@@ -47,7 +49,23 @@ class RubricNewsRssUrlWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        $url = $this->api->rubric()->get($this->rubricGuid)->getURL();
+        if (is_string($this->rubric)) {
+            $this->rubric = $this->api->rubric()->get($this->rubric);
+        }
+
+        if (isset($this->parentRubric) && !$this->parentRubric instanceof NewsRubric) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Widget parameter "{param} should be instance of "{class}".',
+                    [
+                        'param' => 'rubric',
+                        'class' => 'NewsRubric'
+                    ]
+                )
+            );
+        }
+
+        $url = $this->rubric->getURL();
         return $this->createResult(
             $this->template,
             [
