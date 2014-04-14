@@ -7,6 +7,7 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
@@ -89,6 +90,14 @@ return [
                     'label' => NewsRubric::FIELD_PAGE_CONTENTS,
                     'options' => [
                         'dataSource' => NewsRubric::FIELD_PAGE_CONTENTS
+                    ]
+                ],
+
+                NewsRubric::FIELD_NEWS => [
+                    'type' => MultiSelect::TYPE_NAME,
+                    'label' => NewsRubric::FIELD_NEWS,
+                    'options' => [
+                        'dataSource' => NewsRubric::FIELD_NEWS
                     ]
                 ]
             ]
