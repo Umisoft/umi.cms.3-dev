@@ -16,7 +16,6 @@ use umicms\orm\object\CmsObject;
  * RSS.
  *
  * @property string $rssUrl URL RSS-ленты, которую необходимо импортировать
- * @property string $charsetRss кодировка RSS-канала
  * @property NewsRubric|null $rubric имя поля для хранения рубрики, к которой относятся импортируемые новости
  * @property ManyToManyObjectSet|NewsSubject[] $subjects список сюжетов, к которым относятся импортируемые новости
  */
