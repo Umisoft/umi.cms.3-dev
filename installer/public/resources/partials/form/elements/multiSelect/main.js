@@ -8,32 +8,16 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
             template: Ember.Handlebars.compile(layoutTpl),
             isOpen: false,
             placeholder: '',
-            collection: function(){
-                var self = this;
-                var store = self.get('controller.store');
-                var property = this.get('meta.dataSource');
-                var object = this.get('object');
-                var collection;
-                var getCollection = function(relation){
-                    collection = store.findAll(relation.type);
-                };
-                object.eachRelationship(function(name, relation){
-                    if(name === property){
-                        getCollection(relation);
-                    }
-                });
-                return collection;
-            }.property(),
+            collection: null,
             selectedIds: [],
             savedObjectsIds: null,
             filterIds: [],
             filterOn: false,
             inputInFocus: false,
             selectedObjects: function(){
-                var collection = this.get('collection');
+                var collection = this.get('collection') || [];
                 var selectedObjects = [];
                 var selectedIds = this.get('selectedIds');
-
                 collection.forEach(function(item){
                     var id = item.get('id');
                     if(selectedIds.contains(id)){
@@ -227,9 +211,26 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                 var self = this;
                 var property = this.get('meta.dataSource');
                 var object = this.get('object');
-                return object.get(property).then(function(objects){
-                    self.get('selectedIds').pushObject(objects);
-                    self.set('savedObjectsIds', objects.mapBy('id'));
+                var store = self.get('controller.store');
+                var promises = [];
+                var selectedObjects;
+
+                selectedObjects = object.get(property);
+                promises.push(selectedObjects);
+
+                var getCollection = function(relation){
+                    promises.push(store.findAll(relation.type));
+                };
+                object.eachRelationship(function(name, relation){
+                    if(name === property){
+                        getCollection(relation);
+                    }
+                });
+
+                return Ember.RSVP.all(promises).then(function(results){
+                    self.set('collection', results[1]);
+                    self.set('selectedIds', results[0].mapBy('id'));
+                    self.set('savedObjectsIds', results[0].mapBy('id'));
                 });
             }
         });
