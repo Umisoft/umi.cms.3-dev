@@ -37,8 +37,6 @@ if (!file_exists($autoLoaderPath)) {
 /** @noinspection PhpIncludeInspection */
 /** @var $loader ClassLoader */
 $loader = require $autoLoaderPath;
-// add sql logger autoload
-$loader->addPsr4('utest\dbal\\', $vendorDirectory.'/umi/framework-dev/tests/utest/dbal/');
 
 $env = new Environment;
 

@@ -12,14 +12,12 @@ use umicms\project\module\news\api\object\RssImportItem;
 return [
         'en-US' => [
             RssImportItem::FIELD_RSS_URL => 'URL RSS feed',
-            RssImportItem::FIELD_CHARSET_RSS => 'Charset RSS feed',
             RssImportItem::FIELD_SUBJECTS => 'Subjects',
             RssImportItem::FIELD_RUBRIC => 'Rubric'
         ],
 
         'ru-RU' => [
             RssImportItem::FIELD_RSS_URL => 'URL RSS-ленты',
-            RssImportItem::FIELD_CHARSET_RSS => 'Кодировка RSS-ленты',
             RssImportItem::FIELD_SUBJECTS => 'Сюжеты',
             RssImportItem::FIELD_RUBRIC => 'Рубрика'
         ]
