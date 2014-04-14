@@ -10,11 +10,18 @@
 return [
 
     'en-US' => [
-        'component:blog:displayName' => 'Blog'
+        'component:blog:displayName' => 'Blog',
+        'component:category:displayName' => 'Category',
+        'component:post:displayName' => 'Posts',
+        'component:tag:displayName' => 'Tags'
     ],
 
     'ru-RU' => [
-        'component:blog:displayName' => 'Блог'
+        'component:blog:displayName' => 'Блог',
+        'component:category:displayName' => 'Категории',
+        'component:post:displayName' => 'Посты',
+        'component:comment:displayName' => 'Комментарии',
+        'component:tag:displayName' => 'Тэги'
     ]
 
 ];

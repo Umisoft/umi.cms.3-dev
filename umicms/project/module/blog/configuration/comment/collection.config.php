@@ -9,5 +9,12 @@
 use umi\orm\collection\ICollectionFactory;
 
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC
+    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
+    'handlers' => [
+        'admin' => 'blog.comment',
+        'site' => 'blog.comment'
+    ],
+    'dictionaries' => [
+        'collection\blogComment', 'collection'
+    ]
 ];

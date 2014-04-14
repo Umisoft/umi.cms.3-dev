@@ -9,5 +9,12 @@
 use umi\orm\collection\ICollectionFactory;
 
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE
+    'type' => ICollectionFactory::TYPE_SIMPLE,
+    'handlers' => [
+        'admin' => 'blog.tag',
+        'site' => 'blog.tag'
+    ],
+    'dictionaries' => [
+        'collection\blogTag', 'collection'
+    ]
 ];
