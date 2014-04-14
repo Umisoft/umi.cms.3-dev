@@ -52,7 +52,22 @@ class ListController extends BaseRestListController
      */
     protected function create(array $data)
     {
+        // TODO: forms
+        $object = $this->api->rss()->add();
 
+        foreach ($data as $propertyName => $value) {
+            if ($object->hasProperty($propertyName)
+                && !$object->getProperty($propertyName)->getIsReadOnly()
+                && !is_array($value)
+
+            ) {
+                $object->setValue($propertyName, $value);
+            }
+        }
+
+        $this->getObjectPersister()->commit();
+
+        return $object;
     }
 }
  
