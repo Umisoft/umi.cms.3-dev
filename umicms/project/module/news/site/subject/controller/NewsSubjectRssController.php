@@ -47,7 +47,7 @@ class NewsSubjectRssController extends BaseSecureController implements ISiteSett
 
         $newsSubject = $this->api->subject()->getBySlug($slugSubject);
 
-        $newsSubjectItems = $this->api->getSubjectNews([$newsSubject->guid]);
+        $newsSubjectItems = $this->api->getSubjectNews([$newsSubject]);
 
         $rssFeed = $this->api->getNewsRssFeed(
             $newsSubject->displayName,
