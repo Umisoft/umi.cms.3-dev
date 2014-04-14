@@ -408,13 +408,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $rssItemCollection->add()
             ->setValue('displayName', 'Scripting News')
-            ->setValue('rssUrl', 'http://static.userland.com/gems/backend/rssTwoExample2.xml')
-            ->setValue('charsetRss', 'utf8');
+            ->setValue('rssUrl', 'http://static.userland.com/gems/backend/rssTwoExample2.xml');
 
         $rssItemCollection->add()
             ->setValue('displayName', 'Хабрахабр / Захабренные / Тематические / Посты')
-            ->setValue('rssUrl', 'http://habrahabr.ru/rss/hubs/')
-            ->setValue('charsetRss', 'utf8');
+            ->setValue('rssUrl', 'http://habrahabr.ru/rss/hubs/');
+
+        $rssItemCollection->add()
+            ->setValue('displayName', 'DLE-News (windows-1251)')
+            ->setValue('rssUrl', 'http://dle-news.ru/rss.xml');
 
     }
 
@@ -1112,7 +1114,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
 
                     `rss_url` varchar(255) DEFAULT NULL,
-                    `charset_rss` varchar(255) DEFAULT NULL,
                     `rubric_id` bigint(20) unsigned DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `rss_rss_item_guid` (`guid`),

@@ -27,10 +27,6 @@ class RssImportItem extends CmsObject
      */
     const FIELD_RSS_URL = 'rssUrl';
     /**
-     * Кодировка RSS-канала.
-     */
-    const FIELD_CHARSET_RSS = 'charsetRss';
-    /**
      * Имя поля для хранения рубрики, к которой относятся импортируемые новости.
      */
     const FIELD_RUBRIC = 'rubric';
