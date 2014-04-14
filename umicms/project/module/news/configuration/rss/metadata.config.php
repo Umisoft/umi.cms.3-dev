@@ -88,11 +88,6 @@ return [
             'columnName' => 'rss_url',
             'accessor'   => 'getRssUrl'
         ],
-        RssImportItem::FIELD_CHARSET_RSS => [
-            'type'       => IField::TYPE_STRING,
-            'columnName' => 'charset_rss',
-            'accessor'   => 'getCharsetRss'
-        ],
         RssImportItem::FIELD_RUBRIC => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'rubric_id',
@@ -122,7 +117,6 @@ return [
                 RssImportItem::FIELD_OWNER,
                 RssImportItem::FIELD_EDITOR,
                 RssImportItem::FIELD_RSS_URL,
-                RssImportItem::FIELD_CHARSET_RSS,
                 RssImportItem::FIELD_RUBRIC,
                 RssImportItem::FIELD_SUBJECTS
             ]

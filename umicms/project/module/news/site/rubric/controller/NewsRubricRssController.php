@@ -47,7 +47,7 @@ class NewsRubricRssController extends BaseSecureController implements ISiteSetti
 
         $newsRubric = $this->api->rubric()->getByUri($urlRubric);
 
-        $newsRubricItems = $this->api->getRubricNews([$newsRubric->guid]);
+        $newsRubricItems = $this->api->getRubricNews([$newsRubric]);
 
         $rssFeed = $this->api->getNewsRssFeed(
             $newsRubric->displayName,

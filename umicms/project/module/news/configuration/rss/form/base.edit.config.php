@@ -48,13 +48,6 @@ return [
                         'dataSource' => RssImportItem::FIELD_RSS_URL
                     ],
                 ],
-                RssImportItem::FIELD_CHARSET_RSS => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => RssImportItem::FIELD_CHARSET_RSS,
-                    'options' => [
-                        'dataSource' => RssImportItem::FIELD_CHARSET_RSS
-                    ],
-                ],
                 RssImportItem::FIELD_RUBRIC => [
                     'type' => Select::TYPE_NAME,
                     'label' => RssImportItem::FIELD_RUBRIC,
