@@ -10,16 +10,21 @@ namespace umicms\project\module\seo\model;
 
 use SimpleXMLElement;
 use umi\hmvc\model\IModel;
+use umi\i18n\ILocalizable;
+use umi\i18n\TLocalizable;
 
 /**
  * Модель, получающая данные от API Мегаиндекса.
  */
-class YandexModel implements IModel
+class YandexModel implements IModel, ILocalizable
 {
+    use TLocalizable;
     /**
      * @var string $oauthToken
      */
     private $oauthToken;
+
+    private $translationPrefix = 'component:yandex:';
 
     /**
      * Конструктор модели, требует токен для запросов к Яндексу.
@@ -47,10 +52,19 @@ class YandexModel implements IModel
 
     /**
      * Возвращает список {@link http://api.yandex.ru/webmaster/doc/dg/reference/hosts.xml доступных сайтов}.
+     * @return array
      */
     public function getHosts()
     {
-        return $this->queryApi('hosts');
+        $resource = 'hosts';
+        $result['data'] = $this->queryApi($resource);
+
+        $result['labels'] = [];
+        if (isset($result['data']['host'][0])) {
+            $result['labels'] = $this->getLabel($result['data']['host'][0], $resource);
+        }
+
+        return $result;
     }
 
     /**
@@ -62,7 +76,13 @@ class YandexModel implements IModel
      */
     public function getHostStats($siteId)
     {
-        return $this->queryApi('hosts/' . $siteId . '/stats');
+        $resource = 'hostsStats';
+
+        $result['data'] = $this->queryApi('hosts/' . $siteId . '/stats');
+
+        $result['labels'] = $this->getLabel($result['data'], $resource);
+
+        return $result;
     }
 
     /**
@@ -73,7 +93,13 @@ class YandexModel implements IModel
      */
     public function getIndexedStats($hostId)
     {
-        return $this->queryApi('hosts/' . $hostId . '/indexed');
+        $resource = 'hostsIndexed';
+
+        $result['data'] = $this->queryApi('hosts/' . $hostId . '/indexed');
+
+        $result['labels'] = $this->getLabel($result['data'], $resource);
+
+        return $result;
     }
 
     /**
@@ -84,7 +110,13 @@ class YandexModel implements IModel
      */
     public function getLinksStats($hostId)
     {
-        return $this->queryApi('hosts/' . $hostId . '/links');
+        $resource = 'hostsLinks';
+
+        $result['data'] = $this->queryApi('hosts/' . $hostId . '/links');
+
+        $result['labels'] = $this->getLabel($result['data'], $resource);
+
+        return $result;
     }
 
     /**
@@ -95,7 +127,13 @@ class YandexModel implements IModel
      */
     public function getTopsStats($hostId)
     {
-        return $this->queryApi('hosts/' . $hostId . '/tops');
+        $resource = 'hostsTops';
+
+        $result['data'] = $this->queryApi('hosts/' . $hostId . '/tops');
+
+        $result['labels'] = $this->getLabel($result['data'], $resource);
+
+        return $result;
     }
 
     /**
@@ -148,5 +186,26 @@ class YandexModel implements IModel
         }
 
         return $return;
+    }
+
+    /**
+     * Возвращает метки полей.
+     * @param array $data данные
+     * @param string $resource наименование ресурса
+     * @return array список меток
+     */
+    protected function getLabel(array $data, $resource)
+    {
+        $labels = [];
+        foreach($data as $key => $host) {
+            if (!is_int($key)) {
+                $labels[$key] = $this->translate($this->translationPrefix . $resource . ucfirst($key));
+            }
+            if (is_array($host)) {
+                $labels = array_merge($labels, $this->getLabel($host, $resource));
+            }
+        }
+
+        return $labels;
     }
 }
