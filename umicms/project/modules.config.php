@@ -1,4 +1,4 @@
 <?php
 return [
-    'news' => '{#import:~/project/module/news/configuration/module.config.php}',
+    'newsClassName' => '{#import:~/project/module/news/configuration/module.config.php}',
 ];

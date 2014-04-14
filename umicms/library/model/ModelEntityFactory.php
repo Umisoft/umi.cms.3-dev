@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\module\model;
+namespace umicms\model;
 
 use umi\toolkit\factory\IFactory;
 use umi\toolkit\factory\TFactory;
@@ -22,7 +22,11 @@ class ModelEntityFactory implements IFactory
     /**
      * @var string $modelCollectionClass класс коллекции моделей
      */
-    public $modelCollectionClass = 'umicms\module\model\ModelCollection';
+    public $modelCollectionClass = 'umicms\model\ModelCollection';
+    /**
+     * @var string $modelClass класс модели
+     */
+    public $modelClass = 'umicms\model\Model';
 
     /**
      * Создает коллекцию моделей.
@@ -33,9 +37,24 @@ class ModelEntityFactory implements IFactory
     {
         return $this->getPrototype(
             $this->modelCollectionClass,
-            ['umicms\module\model\ModelCollection']
+            ['umicms\model\ModelCollection']
         )
             ->createInstance([$config]);
+    }
+
+    /**
+     * Создает модель данных
+     * @param string $modelName имя модели
+     * @param array $config конфигурация
+     * @return Model
+     */
+    public function createModel($modelName, array $config)
+    {
+        return $this->getPrototype(
+            $this->modelClass,
+            ['umicms\model\Model']
+        )
+            ->createInstance([$modelName, $config]);
     }
 }
  
