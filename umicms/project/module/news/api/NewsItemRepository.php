@@ -170,6 +170,32 @@ class NewsItemRepository extends BaseObjectRepository
     }
 
     /**
+     * Возвращает новость по её источнику.
+     * @param string $source
+     * @throws NonexistentEntityException
+     * @return NewsItem
+     */
+    public function getNewsBySource($source)
+    {
+        $selector = $this->select()
+            ->where(NewsItem::FIELD_SOURCE)
+            ->equals($source);
+
+        $item = $selector->getResult()->fetch();
+
+        if (!$item instanceof NewsItem) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find news item by source "{source}".',
+                    ['source' => $source]
+                )
+            );
+        }
+
+        return $item;
+    }
+
+    /**
      * Возвращает список резервных копий объекта.
      * @param NewsItem $newsItem
      * @return CmsSelector|Backup[] $object

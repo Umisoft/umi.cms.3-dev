@@ -28,40 +28,11 @@ define(['App'], function(UMI){
                 };
 
                 if(objects && iScroll){
-                    // Проверяет данные promise или массив
-                    if(Object.prototype.toString.call(objects).slice(8, -1) === 'Object'){
-                        objects.then(function(){
-                            scrollUpdate();
-                        });
-                    } else{
+                    objects.then(function(){
                         scrollUpdate();
-                    }
-
+                    });
                 }
             }.observes('controller.objects').on('didInsertElement'),
-
-            setColumnWidth: function(){
-                // Вставаляем стили с шириной ячеек таблицы
-                var tableId = 'table-control-column-style'; //TODO: Нужно динамически генерить уникальный ID
-                var tableStyleColumns = document.querySelector('#' + tableId);
-
-                // Создание тега styles если его ещё не существует
-                if(!tableStyleColumns){
-                    tableStyleColumns = document.createElement('style');
-                    tableStyleColumns.id = tableId;
-                    tableStyleColumns = document.body.appendChild(tableStyleColumns);
-                }
-
-                var resultStyle = '';
-                var columns = this.get('controller.viewSettings').columns;
-                var i;
-                var tableControlClass = '.umi-table-control';
-
-                for(i = 0; i < columns.length; i++){
-                    resultStyle = resultStyle + tableControlClass + ' .column-id-' + columns[i].name + '{width: ' + columns[i].width + 'px;}';
-                }
-                tableStyleColumns.innerHTML = resultStyle;
-            },
 
             didInsertElement: function(){
                 var tableControl = this.$();
@@ -74,6 +45,8 @@ define(['App'], function(UMI){
                 var umiTableRight = tableControl.find('.umi-table-control-content-fixed-right')[0];
                 var umiTableHeader = tableControl.find('.umi-table-control-header-center')[0];
 
+                var umiTableContentRowSize = tableControl.find('.umi-table-control-content-row-size')[0];
+
                 if(objects){
                     var tableContent = tableControl.find('.s-scroll-wrap');
 
@@ -85,6 +58,7 @@ define(['App'], function(UMI){
                         Ember.run.scheduleOnce('afterRender', self, function(){
                             var scrollContent = new IScroll(tableContent[0], UMI.config.iScroll);
                             self.set('iScroll', scrollContent);
+
                             scrollContent.on('scroll', function(){
                                 umiTableLeft.style.marginTop = this.y + 'px';
                                 umiTableRight.style.marginTop = this.y + 'px';
@@ -93,30 +67,26 @@ define(['App'], function(UMI){
 
                             // После ресайза страницы необходимо изменить отступы у элементов  umiTableLeft, umiTableRight, umiTableHeader
                             $(window).on('resize.umi.tableControl', function(){
-                                setTimeout(function(){
-                                    umiTableLeft.style.marginTop = scrollContent.y + 'px';
-                                    umiTableRight.style.marginTop = scrollContent.y + 'px';
-                                    umiTableHeader.style.marginLeft = scrollContent.x + 'px';
-                                }, 100);
+                                umiTableLeft.style.marginTop = scrollContent.y + 'px';
+                                umiTableRight.style.marginTop = scrollContent.y + 'px';
+                                umiTableHeader.style.marginLeft = scrollContent.x + 'px';
                             });
 
                             // Событие изменения ширины колонки
-                            tableControl.on('mousedown.umi.tableControl', '.umi-table-column-resizer', function(){
+                            tableControl.on('mousedown.umi.tableControl', '.umi-table-control-column-resizer', function(){
                                 var handler = this;
                                 $(handler).addClass('on-resize');
-                                var columnEl = handler.parentNode.firstElementChild;
+                                var columnEl = handler.parentNode.parentNode;
                                 var columnName = columnEl.className;
-                                columnName = columnName.substr(columnName.indexOf('column-id-') + 10);
-                                var columnOfset = $(columnEl).offset().left;
+                                columnName = columnName.substr(columnName.indexOf('column-id-'));
+                                var columnOffset = $(columnEl).offset().left;
                                 var columnWidth;
+                                var contentCell = umiTableContentRowSize.querySelector('.' + columnName);
                                 $('body').on('mousemove.umi.tableControl', function(event){
                                     event.stopPropagation();
-                                    columnWidth = event.pageX - columnOfset;
+                                    columnWidth = event.pageX - columnOffset;
                                     if(columnWidth >= 60 && columnEl.offsetWidth > 59){
-                                        return (function(){
-                                            Ember.set(self.get('controller.viewSettings').columns.findBy('name', columnName), 'width', columnWidth);
-                                            self.setColumnWidth();
-                                        }());
+                                        columnEl.style.width = contentCell.style.width = columnWidth + 'px';
                                     }
                                 });
 
@@ -127,45 +97,137 @@ define(['App'], function(UMI){
                                     scrollContent.refresh();
                                 });
                             });
+
+                            // Hover event
+                            var getHoverElements = function(el){
+                                var isContentRow = $(el).hasClass('umi-table-control-content-row');
+                                var rows = el.parentNode.querySelectorAll(isContentRow ? '.umi-table-control-content-row' : '.umi-table-control-column-fixed-cell');
+                                var i;
+
+                                for(i = 0; i < rows.length; i++){
+                                    if(rows[i] === el){
+                                        break;
+                                    }
+                                }
+                                var leftElements = umiTableLeft.querySelectorAll('.umi-table-control-column-fixed-cell');
+                                var rightElements = umiTableRight.querySelectorAll('.umi-table-control-column-fixed-cell');
+                                if(!isContentRow){
+                                    el = tableContent[0].querySelectorAll('.umi-table-control-content-row')[i];
+                                }
+                                return [el, leftElements[i], rightElements[i]];
+                            };
+
+                            tableControl.on('mouseenter.umi.tableControl', '.umi-table-control-content-row, .umi-table-control-column-fixed-cell', function(){
+                                var elements = getHoverElements(this);
+                                $(elements).addClass('hover');
+                            });
+
+                            tableControl.on('mouseleave.umi.tableControl', '.umi-table-control-content-row, .umi-table-control-column-fixed-cell', function(){
+                                var elements = getHoverElements(this);
+                                $(elements).removeClass('hover');
+                            });
+                            // Drag and Drop
                         });
                     });
                 }
-
-                // Событие изменения limit
-                $('.umi-table-control-footer').on('keydown.umi.tableControl', '.umi-limit', function(event){
-                    if(event.keyCode === 13){
-                        self.get('controller').set('limit', this.value);
-                    }
-                });
-
-                // Событие изменения limit
-                $('.umi-table-control-footer').on('keydown.umi.tableControl', '.umi-pagination', function(event){
-                    if(event.keyCode === 13){
-                        self.get('controller').set('offset', this.value);
-                    }
-                });
-            },
-            willInsertElement: function(){
-                this.setColumnWidth();
             },
 
             willDestroyElement: function(){
                 $(window).off('.umi.tableControl');
-            }
+            },
+
+            paginationView: Ember.View.extend({
+                classNames: ['right', 'umi-table-control-pagination'],
+                counter: function(){
+                    var label = 'из';
+                    var limit = this.get('controller.limit');
+                    var offset = this.get('controller.offset') + 1;
+                    var total = this.get('controller.total');
+                    var maxCount = offset*limit;
+                    var start = maxCount - limit + 1;
+                    maxCount = maxCount < total ? maxCount : total;
+                    return start + '-' + maxCount + ' ' + label + ' ' + total;
+                }.property('controller.limit', 'controller.offset', 'controller.total'),
+                prevButtonView: Ember.View.extend({
+                    classNames: ['button', 'secondary', 'tiny'],
+                    classNameBindings: ['isActive::disabled'],
+                    isActive: function(){
+                        return this.get('controller.offset');
+                    }.property('controller.offset'),
+                    click: function(){
+                        if(this.get('isActive')){
+                            this.get('controller').decrementProperty('offset');
+                        }
+                    }
+                }),
+                nextButtonView: Ember.View.extend({
+                    classNames: ['button', 'secondary', 'tiny'],
+                    classNameBindings: ['isActive::disabled'],
+                    isActive: function(){
+                        var limit = this.get('controller.limit');
+                        var offset = this.get('controller.offset') + 1;
+                        var total = this.get('controller.total');
+                        return total > limit * offset;
+                    }.property('controller.limit', 'controller.offset', 'controller.total'),
+                    click: function(){
+                        if(this.get('isActive')){
+                            this.get('controller').incrementProperty('offset');
+                        }
+                    }
+                }),
+                limitView: Ember.View.extend({
+                    tagName: 'input',
+                    classNames: ['s-margin-clear'],
+                    attributeBindings: ['value', 'type'],
+                    value: function(){
+                        return this.get('controller.limit');
+                    }.property('controller.limit'),
+                    type: 'text',
+                    keyDown: function(event){
+                        if(event.keyCode === 13){
+                            // При изменении количества строк на странице сбрасывается offset
+                            this.get('controller').setProperties({'offset': 0, 'limit': this.$()[0].value});
+                        }
+                    }
+                })
+            }),
+
+            sortHandlerView: Ember.View.extend({
+                classNames: ['button', 'flat', 'tiny', 'square', 'sort-handler'],
+                classNameBindings: ['isActive:active'],
+                sortAscending: true,
+                isActive: function(){
+                    var sortByProperty = this.get('controller.sortByProperty');
+                    if(sortByProperty){
+                        return this.get('propertyName') === sortByProperty.name;
+                    }
+                }.property('controller.sortByProperty'),
+                click: function(){
+                    var sortByProperty = {};
+                    sortByProperty.name = this.get('propertyName');
+
+                    if(this.get('isActive')){
+                        this.toggleProperty('sortAscending');
+                    }
+                    sortByProperty.sortAscending = this.get('orderDirection');
+                    this.get('controller').set('sortByProperty', sortByProperty);
+                }
+            })
         });
 
         UMI.TableCellContentView = Ember.View.extend({
-            classNames: ['umi-table-control-cell'],
+            classNames: ['umi-table-control-content-cell-div'],
             classNameBindings: ['columnId'],
-            columnId: function(){
-                return 'column-id-' + this.get('column').name;
-            }.property(),
             template: function(){
                 var meta = this.get('column');
                 var object = this.get('object');
                 var template;
-                template = Ember.Handlebars.compile(object.get(meta.name) + '&nbsp;');
-                return template;
+                if(meta.name === 'displayName'){
+                    template = '{{#link-to "context" "form" object.id class="edit-link"}}' + object.get(meta.name) + '{{/link-to}}';
+                } else{
+                    template = object.get(meta.name) + '&nbsp;';
+                }
+                return Ember.Handlebars.compile(template);
             }.property('object','column'),
             didInsertElement: function(){
                 console.log('didInsertElement');

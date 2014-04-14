@@ -4,29 +4,42 @@ define(['App'], function(UMI){
     return function(){
         UMI.TableControlController = Ember.ObjectController.extend({
             limit: 100,
-
+            total: 46,
             offset: 0,
+            sortByProperty: null,
+            filters: function(){
+                var filters = {};
 
-            filter: function(){
+                var collectionName = this.get('controllers.component').settings.layout.collection;
+                var metaForCollection = this.get('store').metadataFor(collectionName);
+                if(metaForCollection && metaForCollection.collectionType === 'hierarchic'){
+                    var parentId = this.get('model.object.id') !== 'root' ? 'equals(' + this.get('model.object.id') + ')' : 'null()';
+                    filters.parent = parentId;
+                }
 
-            }.property(),
+                return filters;
+            }.property('content.object.id'),
 
             query: function(){
                 var query = {};
                 var limit = this.get('limit');
-                var filter = this.get('filter');
+                var filters = this.get('filters');
                 var offset = this.get('offset');
+                var sortByProperty = this.get('sortByProperty');
                 if(limit){
                     query.limit = limit;
                 }
-                if(filter){
-                    query.filter = filter;
+                if(filters){
+                    query.filters = filters;
                 }
                 if(offset){
                     query.offset = offset * limit;
                 }
+                if(sortByProperty){
+                    //query.offset = offset * limit;
+                }
                 return query;
-            }.property('limit', 'filter', 'offset'),
+            }.property('limit', 'filters', 'offset', 'sortByProperty'),
 
             objects: function(){
                 var self = this;
@@ -38,18 +51,7 @@ define(['App'], function(UMI){
                     sortProperties: ['id'],
                     sortAscending: true
                 });
-            }.property('model.object'),
-
-            queryChange: function(){
-                var self = this;
-                var query = this.get('query');
-                //var parentId = this.get('model.object.id') !== 'root'? this.get('model.object.id') : 'null()';
-                var collectionName = self.get('controllers.component').settings.layout.collection;
-                var promise = self.store.find(collectionName, query);
-                return self.store.find(collectionName, query).then(function(objects){
-                    self.set('objects', objects);
-                });
-            }.observes('query'),
+            }.property('content.object.id', 'query'),
 
             actions: {
                 sortByProperty: function(propertyName){

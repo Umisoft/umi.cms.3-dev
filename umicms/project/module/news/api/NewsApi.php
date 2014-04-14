@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\news\api;
 
+use umi\orm\selector\condition\IFieldConditionGroup;
 use umi\orm\selector\ISelector;
 use umi\rss\IRssFeed;
 use umi\rss\IRssFeedAware;
@@ -20,6 +21,7 @@ use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\news\api\object\NewsItem;
 use umicms\project\module\news\api\object\NewsRubric;
 use umicms\project\module\news\api\object\NewsSubject;
+use umicms\project\module\news\api\object\RssImportItem;
 
 /**
  * Публичное API модуля "Новости"
@@ -54,6 +56,15 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
     public function subject()
     {
         return $this->getApi('umicms\project\module\news\api\NewsSubjectRepository');
+    }
+
+    /**
+     * Возвращает репозиторий для работы с импортируемыми RSS-лентами.
+     * @return RssImportItemRepository
+     */
+    public function rss()
+    {
+        return $this->getApi('umicms\project\module\news\api\RssImportItemRepository');
     }
 
     /**
@@ -101,51 +112,51 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
 
     /**
      * Возвращает селектор для выборки новостей указанных рубрик.
-     * @param array $rubricGuids список GUID рубрик новостей
+     * @param NewsRubric[] $rubrics список GUID рубрик новостей
      * @param int $limit максимальное количество новостей
      * @return ISelector
      */
-    public function getRubricNews($rubricGuids = [], $limit = null)
+    public function getRubricNews(array $rubrics = [], $limit = null)
     {
         $news = $this->getNews($limit);
 
-        if (count($rubricGuids)) {
-            $news->where(NewsItem::FIELD_RUBRIC . ISelector::FIELD_SEPARATOR . NewsRubric::FIELD_GUID)
-                ->in($rubricGuids);
+        $news->begin(IFieldConditionGroup::MODE_OR);
+        foreach ($rubrics as $rubric) {
+            $news->where(NewsItem::FIELD_RUBRIC)->equals($rubric);
         }
+        $news->end();
 
         return $news;
     }
 
     /**
      * Возвращает селектор для выборки новостей указанных сюжетов.
-     * @param array $subjectGuids список GUID сюжетов новостей
+     * @param NewsSubject[] $subjects список GUID сюжетов новостей
      * @param int $limit максимальное количество новостей
      * @return ISelector
      */
-    public function getSubjectNews($subjectGuids = [], $limit = null)
+    public function getSubjectNews(array $subjects = [], $limit = null)
     {
         $news = $this->getNews($limit);
 
-        if (count($subjectGuids)) {
-            $news->where(NewsItem::FIELD_SUBJECTS . ISelector::FIELD_SEPARATOR . NewsSubject::FIELD_GUID)
-                ->in($subjectGuids);
+        $news->begin(IFieldConditionGroup::MODE_OR);
+        foreach ($subjects as $subject) {
+            $news->where(NewsItem::FIELD_SUBJECTS)->equals($subject);
         }
+        $news->end();
 
         return $news;
     }
 
     /**
      * Возвращает селектор для выборки новостных рубрик в указанной рубрике.
-     * @param string|null $parentRubricGuid GUID рубрики
+     * @param NewsRubric|null $parentRubric GUID рубрики
      * @param int $limit максимальное количество рубрик
      * @return ISelector
      */
-    public function getRubrics($parentRubricGuid = null, $limit = null)
+    public function getRubrics(NewsRubric $parentRubric = null, $limit = null)
     {
-        $parent = $parentRubricGuid ? $this->rubric()->get($parentRubricGuid) : null;
-
-        $rubrics = $this->rubric()->selectChildren($parent);
+        $rubrics = $this->rubric()->selectChildren($parentRubric);
 
         if ($limit) {
             $rubrics->limit($limit);
@@ -168,6 +179,15 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
         }
 
         return $rubrics;
+    }
+
+    /**
+     * Выполнение импорта новостей из RSS-ленты.
+     * @param RssImportItem $rssImportItem импортируемая RSS-лента
+     */
+    public function importRss(RssImportItem $rssImportItem)
+    {
+        $this->rss()->importRss($rssImportItem, $this->news());
     }
 
 }

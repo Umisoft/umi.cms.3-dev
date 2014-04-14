@@ -271,6 +271,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $newsCollection = $this->getCollectionManager()->getCollection('newsItem');
         /**
+         * @var SimpleCollection $rssItemCollection
+         */
+        $rssItemCollection = $this->getCollectionManager()->getCollection('rssImportItem');
+        /**
          * @var SimpleHierarchicCollection $rubricCollection
          */
         $rubricCollection = $this->getCollectionManager()->getCollection('newsRubric');
@@ -402,6 +406,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 ->getValue('date')->setTimestamp(strtotime('2010-08-02 17:35:00'));
         }
 
+        $rssItemCollection->add()
+            ->setValue('displayName', 'Scripting News')
+            ->setValue('rssUrl', 'http://static.userland.com/gems/backend/rssTwoExample2.xml')
+            ->setValue('charsetRss', 'utf8');
+
+        $rssItemCollection->add()
+            ->setValue('displayName', 'Хабрахабр / Захабренные / Тематические / Посты')
+            ->setValue('rssUrl', 'http://habrahabr.ru/rss/hubs/')
+            ->setValue('charsetRss', 'utf8');
 
     }
 
@@ -890,6 +903,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $connection->exec("DROP TABLE IF EXISTS `demohunt_news_news_item`");
         $connection->exec("DROP TABLE IF EXISTS `demohunt_news_subject`");
         $connection->exec("DROP TABLE IF EXISTS `demohunt_news_news_item_subject`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_rss_rss_item`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_rss_rss_item_subject`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_rss_rss_item`");
 
         $connection->exec(
             "
@@ -957,6 +973,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `date` datetime DEFAULT NULL,
                     `contents` text,
                     `announcement` text,
+                    `source` varchar(255) DEFAULT NULL,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
@@ -966,6 +983,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_news_item_guid` (`guid`),
                     UNIQUE KEY `news_news_item_slug` (`slug`),
+                    UNIQUE KEY `news_news_item_source` (`source`),
                     KEY `news_news_item_type` (`type`),
                     KEY `news_news_item_rubric` (`rubric_id`),
                     KEY `news_news_item_layout` (`layout_id`),
@@ -1000,13 +1018,16 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
+                    `rss_item_id` bigint(20) unsigned DEFAULT NULL,
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_subject_guid` (`guid`),
                     UNIQUE KEY `news_subject_slug` (`slug`),
                     KEY `news_subject_type` (`type`),
                     KEY `news_subject_layout` (`layout_id`),
+                    KEY `news_news_item_rss_subject` (`rss_item_id`),
                     CONSTRAINT `FK_news_subject_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_news_rss_subject` FOREIGN KEY (`rss_item_id`) REFERENCES `demohunt_rss_rss_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_news_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_news_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
@@ -1040,6 +1061,66 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     CONSTRAINT `FK_news_news_item_subject_subject` FOREIGN KEY (`subject_id`) REFERENCES `demohunt_news_subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_news_news_item_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_news_news_item_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_rss_rss_item_subject` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255),
+                    `type` varchar(255),
+                    `version` int(10) unsigned DEFAULT '1',
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
+                    `rss_item_id` bigint(20) unsigned,
+                    `subject_id` bigint(20) unsigned,
+
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `rss_rss_item_subject_guid` (`guid`),
+                    KEY `rss_rss_item_subject_type` (`type`),
+                    KEY `rss_rss_item_subject_item` (`rss_item_id`),
+                    KEY `rss_rss_item_subject_subject` (`subject_id`),
+                    CONSTRAINT `FK_rss_rss_item_subject_item` FOREIGN KEY (`rss_item_id`) REFERENCES `demohunt_rss_rss_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_rss_item_subject_subject` FOREIGN KEY (`subject_id`) REFERENCES `demohunt_news_subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_rss_item_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_rss_item_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_rss_rss_item` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255),
+                    `type` varchar(255),
+                    `version` int(10) unsigned DEFAULT '1',
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
+                    `rss_url` varchar(255) DEFAULT NULL,
+                    `charset_rss` varchar(255) DEFAULT NULL,
+                    `rubric_id` bigint(20) unsigned DEFAULT NULL,
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `rss_rss_item_guid` (`guid`),
+                    KEY `rss_rss_item_type` (`type`),
+                    KEY `rss_rss_item_rubric` (`rubric_id`),
+                    CONSTRAINT `FK_rss_rss_item_rubric` FOREIGN KEY (`rubric_id`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_rss_item_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_rss_item_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
