@@ -20,6 +20,7 @@ use umi\templating\toolbox\TemplatingTools;
 use umicms\api\toolbox\ApiTools;
 use umicms\Bootstrap;
 use umicms\form\element\Wysiwyg;
+use umicms\module\toolbox\ModuleTools;
 
 return [
 
@@ -35,6 +36,7 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/acl/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/rss/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/api/toolbox/config.php'),
+        require(CMS_LIBRARY_DIR . '/module/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php')
     ],
 
@@ -105,6 +107,10 @@ return [
                     'apiResources'=>'{#lazy:~/project/module/statistics/admin/metrika/api-resources.config.php}'
                 ]
             ]
+        ],
+
+        ModuleTools::NAME => [
+            'modules' => '{#import:~/project/modules.config.php}'
         ],
 
         OrmTools::NAME => [

@@ -7,13 +7,14 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\models\api;
+namespace umicms\module\model;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Schema\Synchronizer\SingleDatabaseSynchronizer;
 use umi\dbal\cluster\IDbClusterAware;
 use umi\dbal\cluster\TDbClusterAware;
-use umicms\api\IPublicApi;
+use umi\i18n\ILocalizable;
+use umi\i18n\TLocalizable;
 use umicms\exception\AlreadyExistentEntityException;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
@@ -21,10 +22,19 @@ use umicms\exception\RuntimeException;
 /**
  * API для управления моделями данных
  */
-class ModelsApi implements IPublicApi, IDbClusterAware
+class ModelCollection implements IDbClusterAware, ILocalizable
 {
-
     use TDbClusterAware;
+    use TLocalizable;
+
+    /**
+     * Конструктор.
+     * @param array $modelsConfig конфигурация моделей
+     */
+    public function __construct(array $modelsConfig)
+    {
+        $this->modelsConfig = $modelsConfig;
+    }
 
     /**
      * @var Model[] $newModels новые модели
@@ -38,6 +48,14 @@ class ModelsApi implements IPublicApi, IDbClusterAware
      * @var Model[] $modifiedModels измененные модели
      */
     protected $modifiedModels = [];
+    /**
+     * @var Model[] $models список моделей
+     */
+    protected $models;
+    /**
+     * @var array $modelsConfig конфигурация моделей данных
+     */
+    private $modelsConfig;
 
     /**
      * Возвращает список имен моделей данных.
@@ -45,27 +63,7 @@ class ModelsApi implements IPublicApi, IDbClusterAware
      */
     public function getModelNames()
     {
-        //TODO
-    }
-
-    /**
-     * Возвращает список имен моделей данных в группе.
-     * @param string $groupName имя группы
-     * @throws NonexistentEntityException если группы с заданным именем не существует
-     * @return array
-     */
-    public function getModelNamesByGroup($groupName)
-    {
-        //TODO
-    }
-
-    /**
-     * Возвращает список имен групп моделей данных.
-     * @return array
-     */
-    public function getGroupNames()
-    {
-        //TODO
+        return array_keys($this->modelsConfig);
     }
 
     /**
@@ -75,17 +73,7 @@ class ModelsApi implements IPublicApi, IDbClusterAware
      */
     public function hasModel($modelName)
     {
-        //TODO
-    }
-
-    /**
-     * Проевряет, существует ли группа моделей данных по имени.
-     * @param string $groupName имя группы
-     * @return bool
-     */
-    public function hasGroup($groupName)
-    {
-        //TODO
+        return isset($this->getModelNames()[$modelName]);
     }
 
     /**
@@ -96,6 +84,15 @@ class ModelsApi implements IPublicApi, IDbClusterAware
      */
     public function getModel($modelName)
     {
+        if (!$this->hasModel($modelName)) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Model "{modelName}" does not exist.',
+                    ['modelName' => $modelName]
+                )
+            );
+        }
+
         //TODO
     }
 

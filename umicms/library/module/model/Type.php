@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\models\api;
+namespace umicms\module\model;
 
 /**
  * Тип данных
