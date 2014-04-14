@@ -9,8 +9,10 @@
 
 namespace umicms\project\module\news\site\subject\widget;
 
+use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\object\NewsSubject;
 
 /**
  * Виджет для вывода URL на RSS-ленту по сюжету.
@@ -23,9 +25,9 @@ class SubjectNewsRssUrlWidget extends BaseSecureWidget
     public $template = 'rssLink';
 
     /**
-     * @var array $rubricGuid GUID новостного сюжета, по которым формируется RSS-лента.
+     * @var string|NewsSubject $subject новостной сюжет или GUID сюжета, по которым формируется RSS-лента.
      */
-    public $subjectGuid;
+    public $subject;
 
     /**
      * @var NewsApi $api API модуля "Новости"
@@ -46,11 +48,26 @@ class SubjectNewsRssUrlWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        $slug = $this->api->subject()->get($this->subjectGuid)->slug;
+        if (is_string($this->subject)) {
+            $this->subject = $this->api->subject()->get($this->subject);
+        }
+
+        if (isset($this->subject) && !$this->subject instanceof NewsSubject) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Widget parameter "{param} should be instance of "{class}".',
+                    [
+                        'param' => 'subject',
+                        'class' => 'NewsSubject'
+                    ]
+                )
+            );
+        }
+
         return $this->createResult(
             $this->template,
             [
-                'url' => $this->getUrl('rss', ['slug' => $slug])
+                'url' => $this->getUrl('rss', ['slug' => $this->subject->slug])
             ]
         );
     }

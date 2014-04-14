@@ -99,7 +99,14 @@ return [
             'type'       => IField::TYPE_SLUG,
             'columnName' => 'slug'
         ],
-        NewsItem::FIELD_ANNOUNCEMENT          => ['type' => IField::TYPE_TEXT, 'columnName' => 'announcement'],
+        NewsItem::FIELD_ANNOUNCEMENT          => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'announcement'
+        ],
+        NewsItem::FIELD_SOURCE          => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'source'
+        ],
         NewsItem::FIELD_RUBRIC                => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'rubric_id',
@@ -150,6 +157,7 @@ return [
                 NewsItem::FIELD_PAGE_SLUG,
                 NewsItem::FIELD_RUBRIC,
                 NewsItem::FIELD_ANNOUNCEMENT,
+                NewsItem::FIELD_SOURCE,
                 NewsItem::FIELD_SUBJECTS,
                 NewsItem::FIELD_DATE,
                 NewsItem::FIELD_OWNER,

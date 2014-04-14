@@ -6,5 +6,5 @@
 <h1><?= $rubric->h1 ?></h1>
 <?= $rubric->contents ?>
 
-<?= $this->widget('news.rubric.list', ['parentGuid' => $rubric->guid, 'template' => 'list']); ?>
-<?= $this->widget('news.rubric.newsList', ['rubricGuids' => [$rubric->guid], 'template' => 'newsList']); ?>
+<?= $this->widget('news.rubric.list', ['parentRubric' => $rubric, 'template' => 'list']); ?>
+<?= $this->widget('news.rubric.newsList', ['rubrics' => [$rubric], 'template' => 'newsList']); ?>

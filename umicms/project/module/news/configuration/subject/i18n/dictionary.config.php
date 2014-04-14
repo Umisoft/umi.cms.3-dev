@@ -11,10 +11,12 @@ use umicms\project\module\news\api\object\NewsSubject;
 
 return [
         'en-US' => [
-            NewsSubject::FIELD_NEWS => 'News items'
+            NewsSubject::FIELD_NEWS => 'News items',
+            NewsSubject::FIELD_RSS => 'RSS feeds'
         ],
 
         'ru-RU' => [
-            NewsSubject::FIELD_NEWS => 'Новости'
+            NewsSubject::FIELD_NEWS => 'Новости',
+            NewsSubject::FIELD_RSS => 'RSS-ленты'
         ]
     ];

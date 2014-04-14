@@ -9,7 +9,9 @@
 
 namespace umicms\project\module\structure\site\menu\widget;
 
+use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\structure\api\StructureApi;
 
 /**
@@ -23,9 +25,9 @@ class AutoMenuWidget extends BaseSecureWidget
     public $template = 'auto';
 
     /**
-     * @var string $branchGuid GUID ветки, от которой строится меню. Если не задано, меню строится от корня сайта.
+     * @var string|StructureElement $branch ветка или GUID, от которой строится меню. Если не задано, меню строится от корня сайта.
      */
-    public $branchGuid;
+    public $branch;
 
     /**
      * @var int $depth уровень вложенности меню.
@@ -51,11 +53,26 @@ class AutoMenuWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        $branch = $this->branchGuid ? $this->api->element()->get($this->branchGuid) : null;
+        if (is_string($this->branch)) {
+            $this->branch = $this->api->element()->get($this->branch);
+        }
+
+        if (isset($this->branch) && !$this->branch instanceof StructureElement) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Widget parameter "{param} should be instance of "{class}".',
+                    [
+                        'param' => 'branch',
+                        'class' => 'StructureElement'
+                    ]
+                )
+            );
+        }
+
         return $this->createResult(
             $this->template,
             [
-                'menu' => $this->api->structureMenu()->buildMenu($branch, $this->depth)
+                'menu' => $this->api->structureMenu()->buildMenu($this->branch, $this->depth)
             ]
         );
     }
