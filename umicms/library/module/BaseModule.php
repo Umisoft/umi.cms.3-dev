@@ -11,9 +11,9 @@ namespace umicms\module;
 
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
-use umicms\module\model\IModelEntityFactoryAware;
-use umicms\module\model\ModelCollection;
-use umicms\module\model\TModelEntityFactoryAware;
+use umicms\model\IModelEntityFactoryAware;
+use umicms\model\ModelCollection;
+use umicms\model\TModelEntityFactoryAware;
 
 /**
  * Модуль
@@ -24,6 +24,10 @@ abstract class BaseModule implements ICollectionManagerAware, IModelEntityFactor
     use TModelEntityFactoryAware;
 
     /**
+     * @var string $name имя модуля
+     */
+    public $name;
+    /**
      * @var array $models конфигурация моделей, обслуживаемых модулем
      */
     public $models = [];
@@ -32,6 +36,15 @@ abstract class BaseModule implements ICollectionManagerAware, IModelEntityFactor
      * @var ModelCollection $modelCollection
      */
     protected $modelCollection;
+
+    /**
+     * Возвращает имя модуля.
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
     /**
      * Возвращает коллекцию моделей модуля.

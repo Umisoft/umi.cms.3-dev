@@ -7,18 +7,17 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\module\toolbox;
+namespace umicms\model\toolbox;
 
 /**
  * Конфигурация для регистрации набора инструментов.
  */
+
 return [
-    'name'     => ModuleTools::NAME,
-    'class'    => __NAMESPACE__ . '\ModuleTools',
+    'name'     => ModelTools::NAME,
+    'class'    => __NAMESPACE__ . '\ModelTools',
     'awareInterfaces' => [
-        'umicms\module\IModuleAware'
-    ],
-    'services' => [
-        'umicms\module\BaseModule'
+        'umicms\model\IModelEntityFactoryAware',
+        'umicms\model\manager\IModelManagerAware',
     ]
 ];

@@ -14,8 +14,8 @@ use umi\toolkit\toolbox\IToolbox;
 use umi\toolkit\toolbox\TToolbox;
 use umicms\module\BaseModule;
 use umicms\module\IModuleAware;
-use umicms\module\model\IModelEntityFactoryAware;
-use umicms\module\model\ModelEntityFactory;
+use umicms\model\IModelEntityFactoryAware;
+use umicms\model\ModelEntityFactory;
 
 /**
  * Инструментарий для работы с модулями.
@@ -33,22 +33,6 @@ class ModuleTools implements IToolbox
      * @var array $modules конфигурация модулей
      */
     public $modules = [];
-    /**
-     * @var string $modelEntityFactoryClass класс для создания фабрики сущностей моделей данных
-     */
-    public $modelEntityFactoryClass = 'umicms\module\model\ModelEntityFactory';
-
-    /**
-     * Конструктор
-     */
-    public function __construct()
-    {
-        $this->registerFactory(
-            'modelEntity',
-            $this->modelEntityFactoryClass,
-            ['umicms\module\model\ModelEntityFactory']
-        );
-    }
 
     /**
      * {@inheritdoc}
@@ -73,9 +57,6 @@ class ModuleTools implements IToolbox
     {
         if ($object instanceof IModuleAware) {
             $object->setModuleTools($this);
-        }
-        if ($object instanceof IModelEntityFactoryAware) {
-            $object->setModelEntityFactory($this->getModelEntityFactory());
         }
     }
 
@@ -102,15 +83,6 @@ class ModuleTools implements IToolbox
     protected function getConfig($className)
     {
         return isset($this->modules[$className]) ? $this->configToArray($this->modules[$className], true) : [];
-    }
-
-    /**
-     * Возвращает фабрику сущностей моделей данных
-     * @return ModelEntityFactory
-     */
-    protected function getModelEntityFactory()
-    {
-        return $this->getFactory('modelEntity');
     }
 
 }

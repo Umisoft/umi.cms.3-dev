@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\module\model;
+namespace umicms\model;
 
 /**
  * Интерфейс для внедрения фабрики сущностей моделей данных.

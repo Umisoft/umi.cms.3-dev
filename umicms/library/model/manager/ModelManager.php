@@ -7,34 +7,21 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\module\model;
+namespace umicms\model\manager;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Schema\Synchronizer\SingleDatabaseSynchronizer;
 use umi\dbal\cluster\IDbClusterAware;
 use umi\dbal\cluster\TDbClusterAware;
-use umi\i18n\ILocalizable;
-use umi\i18n\TLocalizable;
-use umicms\exception\AlreadyExistentEntityException;
-use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
+use umicms\model\Model;
 
 /**
- * API для управления моделями данных
+ * Менеджер моделей данных
  */
-class ModelCollection implements IDbClusterAware, ILocalizable
+class ModelManager implements IDbClusterAware
 {
     use TDbClusterAware;
-    use TLocalizable;
-
-    /**
-     * Конструктор.
-     * @param array $modelsConfig конфигурация моделей
-     */
-    public function __construct(array $modelsConfig)
-    {
-        $this->modelsConfig = $modelsConfig;
-    }
 
     /**
      * @var Model[] $newModels новые модели
@@ -48,75 +35,43 @@ class ModelCollection implements IDbClusterAware, ILocalizable
      * @var Model[] $modifiedModels измененные модели
      */
     protected $modifiedModels = [];
-    /**
-     * @var Model[] $models список моделей
-     */
-    protected $models;
-    /**
-     * @var array $modelsConfig конфигурация моделей данных
-     */
-    private $modelsConfig;
 
     /**
-     * Возвращает список имен моделей данных.
-     * @return array
-     */
-    public function getModelNames()
-    {
-        return array_keys($this->modelsConfig);
-    }
-
-    /**
-     * Проевряет, существует ли модель данных по имени.
-     * @param string $modelName имя модели
-     * @return bool
-     */
-    public function hasModel($modelName)
-    {
-        return isset($this->getModelNames()[$modelName]);
-    }
-
-    /**
-     * Возвращает модель данных по имени.
-     * @param string $modelName имя модели
-     * @throws NonexistentEntityException если модели с заданным именем не существует
-     * @return Model
-     */
-    public function getModel($modelName)
-    {
-        if (!$this->hasModel($modelName)) {
-            throw new NonexistentEntityException(
-                $this->translate(
-                    'Model "{modelName}" does not exist.',
-                    ['modelName' => $modelName]
-                )
-            );
-        }
-
-        //TODO
-    }
-
-    /**
-     * Добавляет модель в группу. Если группы не существует, она будет создана.
-     * @param string $groupName имя группы
-     * @param string $modelName имя модели
-     * @throws AlreadyExistentEntityException если модель с заданным именем существует
-     * @return Model
-     */
-    public function addModel($groupName, $modelName)
-    {
-        //TODO
-    }
-
-    /**
-     * Удаляет модель данных по имени.
-     * @param string $modelName имя модели
-     * @throws NonexistentEntityException если модели с заданным именем не существует
+     * Помечает модель как новую
+     * @param Model $model
      * @return $this
      */
-    public function deleteModel($modelName)
+    public function markAsNew(Model $model)
     {
-        //TODO
+        $this->newModels[] = $model;
+
+        return $this;
+    }
+
+    /**
+     * Помечает модель как удаленную
+     * @param Model $model
+     * @return $this
+     */
+    public function markAsDeleted(Model $model)
+    {
+        $this->deletedModels[] = $model;
+
+        return $this;
+    }
+
+    /**
+     * Помечает модель как модифицированную
+     * @param Model $model
+     * @return $this
+     */
+    public function markAsModified(Model $model)
+    {
+        if (!in_array($model, $this->newModels)) {
+            $this->modifiedModels[] = $model;
+        }
+
+        return $this;
     }
 
     /**

@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\module\model;
+namespace umicms\model;
 
 use Doctrine\DBAL\Schema\Table;
 use umi\i18n\ILocalizable;
@@ -24,6 +24,14 @@ class Model implements ILocalizable
     use TLocalizable;
 
     /**
+     * @var string $name имя модели
+     */
+    protected $name;
+    /**
+     * @var array $config конфигурация модели
+     */
+    protected $config;
+    /**
      * @var array $typeNames список имен всех типов модели
      */
     protected $typeNames;
@@ -32,13 +40,19 @@ class Model implements ILocalizable
      */
     protected $types = [];
 
+    public function __construct($name, array $config)
+    {
+        $this->name = $name;
+        $this->config = $config;
+    }
+
     /**
      * Возвращает имя модели.
      * @return string
      */
     public function getName()
     {
-        //TODO
+        return $this->name;
     }
 
     /**

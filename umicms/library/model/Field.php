@@ -7,12 +7,12 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\module\model;
+namespace umicms\model;
 
 /**
- * Группа полей типа данных
+ * Class Field
  */
-class Group
+class Field
 {
 
 }
