@@ -13,7 +13,7 @@ use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\module\users\api\UsersApi;
+use umicms\project\module\users\api\UsersModule;
 
 /**
  * Контроллер операций.
@@ -21,15 +21,15 @@ use umicms\project\module\users\api\UsersApi;
 class ActionController extends BaseRestActionController
 {
     /**
-     * @var UsersApi $api
+     * @var UsersModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param UsersApi $api
+     * @param UsersModule $api
      */
-    public function __construct(UsersApi $api)
+    public function __construct(UsersModule $api)
     {
         $this->api = $api;
     }

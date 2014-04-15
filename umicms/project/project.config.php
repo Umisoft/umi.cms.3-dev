@@ -35,8 +35,8 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/stemming/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/acl/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/rss/toolbox/config.php'),
-        require(CMS_LIBRARY_DIR . '/api/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/module/toolbox/config.php'),
+        require(CMS_LIBRARY_DIR . '/api/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php')
     ],
 
@@ -110,7 +110,7 @@ return [
         ],
 
         ModuleTools::NAME => [
-            'modules' => '{#import:~/project/modules.config.php}'
+            'modules' => '{#partial:~/project/modules.config.php}'
         ],
 
         OrmTools::NAME => [
@@ -133,7 +133,7 @@ return [
 
                 'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/metadata.config.php}',
                 'newsItem' => '{#lazy:~/project/module/news/configuration/item/metadata.config.php}',
-                'rssImportItem' => '{#lazy:~/project/module/news/configuration/rss/metadata.config.php}',
+                'rssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/metadata.config.php}',
                 'newsItemSubject' => '{#lazy:~/project/module/news/configuration/itemsubject/metadata.config.php}',
                 'rssItemSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/metadata.config.php}',
                 'newsSubject' => '{#lazy:~/project/module/news/configuration/subject/metadata.config.php}',
@@ -159,7 +159,7 @@ return [
 
                 'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/collection.config.php}',
                 'newsItem' => '{#lazy:~/project/module/news/configuration/item/collection.config.php}',
-                'rssImportItem' => '{#lazy:~/project/module/news/configuration/rss/collection.config.php}',
+                'rssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/collection.config.php}',
                 'newsItemSubject' => '{#lazy:~/project/module/news/configuration/itemsubject/collection.config.php}',
                 'rssItemSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/collection.config.php}',
                 'newsSubject' => '{#lazy:~/project/module/news/configuration/subject/collection.config.php}',

@@ -9,31 +9,23 @@
 
 namespace umicms\project\module\users\api;
 
-use umi\authentication\exception\RuntimeException;
 use umi\authentication\IAuthenticationAware;
 use umi\authentication\IAuthenticationFactory;
 use umi\authentication\TAuthenticationAware;
-use umi\orm\collection\ICollectionManagerAware;
-use umi\orm\collection\TCollectionManagerAware;
-use umicms\api\BaseComplexApi;
-use umicms\api\IPublicApi;
+use umicms\exception\RuntimeException;
+use umicms\module\BaseModule;
 use umicms\project\module\users\api\collection\UserCollection;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\object\Guest;
 use umicms\project\module\users\api\object\Supervisor;
 
 /**
- * API для работы с пользователями.
+ * Модуль для работы с пользователями.
  */
-class UsersApi extends BaseComplexApi implements IPublicApi, IAuthenticationAware, ICollectionManagerAware
+class UsersModule extends BaseModule implements IAuthenticationAware
 {
     use TAuthenticationAware;
-    use TCollectionManagerAware;
 
-    /**
-     * {@inheritdoc}
-     */
-    public $collectionName = 'user';
     /**
      * @var string $guestGuid GUID гостя
      */
@@ -53,7 +45,7 @@ class UsersApi extends BaseComplexApi implements IPublicApi, IAuthenticationAwar
      */
     public function user()
     {
-        return $this->getCollectionManager()->getCollection('user');
+        return $this->getCollection('user');
     }
 
     /**

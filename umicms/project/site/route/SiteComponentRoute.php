@@ -14,7 +14,7 @@ use umi\route\type\BaseRoute;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\site\component\SiteComponent;
-use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\SystemPage;
 
 /**
@@ -26,15 +26,15 @@ class SiteComponentRoute extends BaseRoute implements IUrlManagerAware
     use TUrlManagerAware;
 
     /**
-     * @var StructureApi $systemApi API работы со структурой
+     * @var StructureModule $systemApi API работы со структурой
      */
     protected $structureApi;
 
     /**
      * {@inheritdoc}
-     * @param StructureApi $structureApi API работы со структурой
+     * @param StructureModule $structureApi API работы со структурой
      */
-    public function __construct(array $options = [], array $subroutes = [], StructureApi $structureApi)
+    public function __construct(array $options = [], array $subroutes = [], StructureModule $structureApi)
     {
         $this->structureApi = $structureApi;
 

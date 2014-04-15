@@ -11,7 +11,7 @@ use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\news\api\object\RssImportItem;
+use umicms\project\module\news\api\object\RssImportScenario;
 
 return [
 
@@ -27,11 +27,11 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'common',
             'elements' => [
-                RssImportItem::FIELD_DISPLAY_NAME => [
+                RssImportScenario::FIELD_DISPLAY_NAME => [
                     'type' => Text::TYPE_NAME,
-                    'label' => RssImportItem::FIELD_DISPLAY_NAME,
+                    'label' => RssImportScenario::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => RssImportItem::FIELD_DISPLAY_NAME
+                        'dataSource' => RssImportScenario::FIELD_DISPLAY_NAME
                     ],
                 ]
             ]
@@ -41,25 +41,25 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'importSetting',
             'elements' => [
-                RssImportItem::FIELD_RSS_URL => [
+                RssImportScenario::FIELD_RSS_URL => [
                     'type' => Text::TYPE_NAME,
-                    'label' => RssImportItem::FIELD_RSS_URL,
+                    'label' => RssImportScenario::FIELD_RSS_URL,
                     'options' => [
-                        'dataSource' => RssImportItem::FIELD_RSS_URL
+                        'dataSource' => RssImportScenario::FIELD_RSS_URL
                     ],
                 ],
-                RssImportItem::FIELD_RUBRIC => [
+                RssImportScenario::FIELD_RUBRIC => [
                     'type' => Select::TYPE_NAME,
-                    'label' => RssImportItem::FIELD_RUBRIC,
+                    'label' => RssImportScenario::FIELD_RUBRIC,
                     'options' => [
-                        'dataSource' => RssImportItem::FIELD_RUBRIC
+                        'dataSource' => RssImportScenario::FIELD_RUBRIC
                     ],
                 ],
-                RssImportItem::FIELD_SUBJECTS => [
+                RssImportScenario::FIELD_SUBJECTS => [
                     'type' => MultiSelect::TYPE_NAME,
-                    'label' => RssImportItem::FIELD_SUBJECTS,
+                    'label' => RssImportScenario::FIELD_SUBJECTS,
                     'options' => [
-                        'dataSource' => RssImportItem::FIELD_SUBJECTS
+                        'dataSource' => RssImportScenario::FIELD_SUBJECTS
                     ]
                 ]
             ]

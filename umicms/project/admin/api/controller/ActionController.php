@@ -19,7 +19,7 @@ use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\ICmsCollection;
 use umicms\project\admin\api\ApiApplication;
-use umicms\project\module\users\api\UsersApi;
+use umicms\project\module\users\api\UsersModule;
 use umicms\project\module\users\api\object\AuthorizedUser;
 
 /**
@@ -30,15 +30,15 @@ class ActionController extends BaseController implements IUrlManagerAware
     use TUrlManagerAware;
 
     /**
-     * @var UsersApi $api
+     * @var UsersModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param UsersApi $api
+     * @param UsersModule $api
      */
-    public function __construct(UsersApi $api)
+    public function __construct(UsersModule $api)
     {
         $this->api = $api;
     }

@@ -2,6 +2,6 @@
 
 return [
     'dataSource' => [
-        'sourceName' => 'demohunt_rss_rss_item_subject'
+        'sourceName' => 'demohunt_news_rss_import_scenario_subject'
     ]
 ];

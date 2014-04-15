@@ -12,10 +12,8 @@ namespace umicms\module\toolbox;
 use umi\toolkit\exception\UnsupportedServiceException;
 use umi\toolkit\toolbox\IToolbox;
 use umi\toolkit\toolbox\TToolbox;
-use umicms\module\BaseModule;
+use umicms\module\IModule;
 use umicms\module\IModuleAware;
-use umicms\model\IModelEntityFactoryAware;
-use umicms\model\ModelEntityFactory;
 
 /**
  * Инструментарий для работы с модулями.
@@ -40,7 +38,7 @@ class ModuleTools implements IToolbox
     public function getService($serviceInterfaceName, $concreteClassName)
     {
         switch ($serviceInterfaceName) {
-            case 'umicms\module\BaseModule':
+            case 'umicms\module\IModule':
                 return $this->getModule($concreteClassName);
         }
 
@@ -63,7 +61,7 @@ class ModuleTools implements IToolbox
     /**
      * Возвращает модуль.
      * @param string $className имя класса
-     * @return BaseModule
+     * @return IModule
      */
     protected function getModule($className)
     {

@@ -9,26 +9,17 @@
 
 namespace umicms\project\module\structure\api;
 
-use umi\orm\collection\ICollectionManagerAware;
-use umi\orm\collection\TCollectionManagerAware;
-use umicms\api\BaseComplexApi;
-use umicms\api\IPublicApi;
+use umicms\module\BaseModule;
 use umicms\project\module\structure\api\collection\LayoutCollection;
 use umicms\project\module\structure\api\collection\StructureElementCollection;
 use umicms\project\module\structure\api\object\Layout;
 use umicms\project\module\structure\api\object\StructureElement;
 
 /**
- * API для работы со структурой.
+ * Модуль для работы со структурой.
  */
-class StructureApi extends BaseComplexApi implements IPublicApi, ICollectionManagerAware
+class StructureModule extends BaseModule
 {
-    use TCollectionManagerAware;
-
-    /**
-     * @var StructureElement $currentElement
-     */
-    protected $currentElement;
 
     /**
      * Возвращает коллекцию для работы с элементами структуры.
@@ -36,7 +27,7 @@ class StructureApi extends BaseComplexApi implements IPublicApi, ICollectionMana
      */
     public function element()
     {
-        return $this->getCollectionManager()->getCollection('structure');
+        return $this->getCollection('structure');
     }
 
     /**
@@ -45,14 +36,14 @@ class StructureApi extends BaseComplexApi implements IPublicApi, ICollectionMana
      */
     public function layout()
     {
-        return $this->getCollectionManager()->getCollection('layout');
+        return $this->getCollection('layout');
     }
 
     /**
      * Возвращает API для работы с автогенерируемым меню структуры
      * @return AutoMenu
      */
-    public function structureMenu()
+    public function menu()
     {
         return $this->getApi('umicms\project\module\structure\api\AutoMenu');
     }

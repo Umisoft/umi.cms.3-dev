@@ -13,7 +13,7 @@ use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\api\StructureModule;
 
 /**
  * Контроллер операций.
@@ -22,15 +22,15 @@ class ActionController extends BaseRestActionController
 {
 
     /**
-     * @var StructureApi $api
+     * @var StructureModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param StructureApi $api
+     * @param StructureModule $api
      */
-    public function __construct(StructureApi $api)
+    public function __construct(StructureModule $api)
     {
         $this->api = $api;
     }

@@ -19,6 +19,6 @@ return [
         'umicms\module\IModuleAware'
     ],
     'services' => [
-        'umicms\module\BaseModule'
+        'umicms\module\IModule'
     ]
 ];

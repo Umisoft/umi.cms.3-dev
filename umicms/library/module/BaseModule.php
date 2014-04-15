@@ -9,6 +9,8 @@
 
 namespace umicms\module;
 
+use umi\i18n\ILocalizable;
+use umi\i18n\TLocalizable;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\spl\config\TConfigSupport;
@@ -20,14 +22,15 @@ use umicms\model\TModelEntityFactoryAware;
 use umicms\orm\collection\ICmsCollection;
 
 /**
- * Модуль
+ * Модуль UMI.CMS. Расширяет API системы.
  */
-abstract class BaseModule implements ICollectionManagerAware, IModelEntityFactoryAware, IToolkitAware
+abstract class BaseModule implements IModule, ICollectionManagerAware, IModelEntityFactoryAware, IToolkitAware, ILocalizable
 {
     use TCollectionManagerAware;
     use TModelEntityFactoryAware;
     use TToolkitAware;
     use TConfigSupport;
+    use TLocalizable;
 
     /**
      * @var string $name имя модуля
@@ -48,8 +51,7 @@ abstract class BaseModule implements ICollectionManagerAware, IModelEntityFactor
     protected $modelCollection;
 
     /**
-     * Возвращает имя модуля.
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -57,8 +59,7 @@ abstract class BaseModule implements ICollectionManagerAware, IModelEntityFactor
     }
 
     /**
-     * Возвращает коллекцию моделей модуля.
-     * @return ModelCollection
+     * {@inheritdoc}
      */
     public function getModels()
     {
@@ -74,7 +75,7 @@ abstract class BaseModule implements ICollectionManagerAware, IModelEntityFactor
      * @param string $collectionName имя коллекции
      * @return ICmsCollection
      */
-    public function getCollection($collectionName)
+    protected function getCollection($collectionName)
     {
         return $this->getCollectionManager()->getCollection($collectionName);
     }

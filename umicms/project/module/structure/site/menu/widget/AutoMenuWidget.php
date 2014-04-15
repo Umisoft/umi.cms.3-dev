@@ -12,7 +12,7 @@ namespace umicms\project\module\structure\site\menu\widget;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\structure\api\object\StructureElement;
-use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\api\StructureModule;
 
 /**
  * Виджет для вывода автогенерируемого меню
@@ -35,15 +35,15 @@ class AutoMenuWidget extends BaseSecureWidget
     public $depth = 1;
 
     /**
-     * @var StructureApi $api
+     * @var StructureModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param StructureApi $api
+     * @param StructureModule $api
      */
-    public function __construct(StructureApi $api)
+    public function __construct(StructureModule $api)
     {
         $this->api = $api;
     }
@@ -72,7 +72,7 @@ class AutoMenuWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'menu' => $this->api->structureMenu()->buildMenu($this->branch, $this->depth)
+                'menu' => $this->api->menu()->buildMenu($this->branch, $this->depth)
             ]
         );
     }

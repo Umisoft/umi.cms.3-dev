@@ -15,7 +15,7 @@ use umi\http\Response;
 use umi\orm\object\IObject;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsRubric;
 use umicms\project\module\service\api\object\Backup;
 
@@ -25,15 +25,15 @@ use umicms\project\module\service\api\object\Backup;
 class ActionController extends BaseRestActionController
 {
     /**
-     * @var NewsApi $api
+     * @var NewsModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param NewsApi $api
+     * @param NewsModule $api
      */
-    public function __construct(NewsApi $api)
+    public function __construct(NewsModule $api)
     {
         $this->api = $api;
     }

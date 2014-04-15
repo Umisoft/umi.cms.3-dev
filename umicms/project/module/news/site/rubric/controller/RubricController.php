@@ -10,7 +10,7 @@
 namespace umicms\project\module\news\site\rubric\controller;
 
 use umicms\project\site\controller\SitePageController;
-use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\NewsModule;
 
 /**
  * Контроллер отображения новостной рубрики
@@ -19,11 +19,11 @@ class RubricController extends SitePageController
 {
 
     /**
-     * @var NewsApi $api
+     * @var NewsModule $api
      */
     protected $api;
 
-    public function __construct(NewsApi $api)
+    public function __construct(NewsModule $api)
     {
         $this->api = $api;
     }

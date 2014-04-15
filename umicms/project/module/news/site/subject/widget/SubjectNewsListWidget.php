@@ -10,7 +10,7 @@
 namespace umicms\project\module\news\site\subject\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\NewsModule;
 use umicms\hmvc\widget\BaseWidget;
 use umicms\project\module\news\api\object\NewsSubject;
 
@@ -35,15 +35,15 @@ class SubjectNewsListWidget extends BaseWidget
     public $subjects = [];
 
     /**
-     * @var NewsApi $api API модуля "Новости"
+     * @var NewsModule $api API модуля "Новости"
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param NewsApi $newsApi API модуля "Новости"
+     * @param NewsModule $newsApi API модуля "Новости"
      */
-    public function __construct(NewsApi $newsApi)
+    public function __construct(NewsModule $newsApi)
     {
         $this->api = $newsApi;
     }
@@ -76,7 +76,7 @@ class SubjectNewsListWidget extends BaseWidget
         return $this->createResult(
             $this->template,
             [
-                'news' => $this->api->getSubjectNews($subjects, $this->limit)
+                'news' => $this->api->getNewsBySubjects($subjects, $this->limit)
             ]
         );
     }

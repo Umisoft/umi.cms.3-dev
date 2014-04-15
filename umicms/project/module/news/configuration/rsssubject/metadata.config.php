@@ -11,7 +11,7 @@ use umicms\orm\object\CmsObject;
 
 return [
     'dataSource' => [
-        'sourceName' => 'umi_rss_rss_item_subject'
+        'sourceName' => 'umi_news_rss_import_scenario_subject'
     ],
     'fields'     => [
         CmsObject::FIELD_IDENTIFY     => [

@@ -13,14 +13,13 @@ use umi\orm\objectset\ManyToManyObjectSet;
 use umicms\orm\object\CmsObject;
 
 /**
- * RSS.
+ * Сценарий иморта внешней RSS ленты.
  *
- * @property string $rssUrl URL RSS-ленты, которую необходимо импортировать
- * @property string $charsetRss кодировка RSS-канала
- * @property NewsRubric|null $rubric имя поля для хранения рубрики, к которой относятся импортируемые новости
- * @property ManyToManyObjectSet|NewsSubject[] $subjects список сюжетов, к которым относятся импортируемые новости
+ * @property string $rssUrl Абсолютный URL внешней RSS-ленты.
+ * @property NewsRubric|null $rubric рубрика, которая будет установлена импортируемым новостям
+ * @property ManyToManyObjectSet|NewsSubject[] $subjects список сюжетов, которые будут установлены импортируемым новостям
  */
-class RssImportItem extends CmsObject
+class RssImportScenario extends CmsObject
 {
     /**
      * URL RSS-ленты, которую необходимо импортировать.

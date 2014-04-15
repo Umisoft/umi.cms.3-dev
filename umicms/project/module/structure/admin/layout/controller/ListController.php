@@ -10,7 +10,7 @@
 namespace umicms\project\module\structure\admin\layout\controller;
 
 use umicms\project\admin\api\controller\BaseRestListController;
-use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\api\StructureModule;
 
 /**
  * Контроллер действий над списком.
@@ -19,15 +19,15 @@ class ListController extends BaseRestListController
 {
 
     /**
-     * @var StructureApi $api
+     * @var StructureModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param StructureApi $api
+     * @param StructureModule $api
      */
-    public function __construct(StructureApi $api)
+    public function __construct(StructureModule $api)
     {
         $this->api = $api;
     }
