@@ -20,13 +20,12 @@ use umi\orm\persister\TObjectPersisterAware;
 use umi\spl\config\TConfigSupport;
 use umi\stemming\IStemmingAware;
 use umi\stemming\TStemmingAware;
-use umicms\api\IPublicApi;
 use umicms\project\module\search\api\object\SearchIndex;
 
 /**
  * Публичный интерфейс для индексирования модулей CMS для поиска.
  */
-class SearchIndexApi extends BaseSearchApi implements IPublicApi, IStemmingAware, IConfigIOAware,
+class SearchIndexApi extends BaseSearchApi implements IStemmingAware, IConfigIOAware,
     IObjectPersisterAware, IEventObservant
 {
     use TStemmingAware;
