@@ -255,7 +255,7 @@ define(
             wide: function(){
                 return this.get('meta.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12';
             }.property('meta.type'),
-            layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{label}}</label></div>{{yield}}'),
+            layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{meta.label}}</label></div>{{yield}}'),
             template: function(){
                 var meta = this.get('meta');
                 var template;
