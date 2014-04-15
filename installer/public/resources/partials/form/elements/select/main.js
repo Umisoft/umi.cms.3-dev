@@ -9,30 +9,20 @@ define(['App'], function(UMI){
             prompt: function(){
                 return this.get('meta.placeholder') || "Ничего не выбрано";
             }.property('meta.placeholder'),
-            content: function(){
-                var self = this;
-                var store = self.get('controller.store');
-                var property = this.get('meta.dataSource');
-                var object = this.get('object');
-                var collection;
-                var getCollection = function(relation){
-                    collection = store.findAll(relation.type);
-                };
-                object.eachRelationship(function(name, relation){
-                    if(name === property){
-                        getCollection(relation);
-                    }
-                });
-                return collection;
-            }.property(),
+            content: null,
             changeValue: function(){
-                var selectObject = this.get('selection');
                 var object = this.get('object');
                 var property = this.get('meta.dataSource');
-                var oldId = selectObject ? (selectObject.get('id') || false) : false;
-                var newId = this.get('selectObject.id') || false;
+                var selectedObject = this.get('selection');
+                var savedRelationId = this.get('savedRelationId');
+                var oldId = savedRelationId || undefined;
+                var newId = selectedObject ? selectedObject.get('id') : undefined;
                 if(oldId !== newId){
-                    object.set(property, selectObject);
+                    if(newId){
+                        object.set(property, selectedObject);
+                    } else{
+                        object.set(property, newId);
+                    }
                     object.send('becomeDirty');//TODO: Перенести в ядро REST Adapter
                 } else if(object.get('isDirty')){
                     var changedAttributes = object.changedAttributes();
@@ -42,23 +32,39 @@ define(['App'], function(UMI){
                 }
             }.observes('value'),
             /**
-             Связанный объект
+             Сохранённое значение
              */
-            selectObject: null,
+            savedRelationId: null,
             init: function(){
                 this._super();
                 var self = this;
+                var promises = [];
                 var object = this.get('object');
                 var property = this.get('meta.dataSource');
-                var promise = object.get(property);
-                if(promise){
-                    return promise.then(function(selectObject){
-                        if(selectObject){
-                            self.set('selectObject', selectObject);
-                            self.set('selection', selectObject);
-                        }
-                    });
-                }
+                var store = self.get('controller.store');
+                promises.push(object.get(property));
+
+                var getCollection = function(relation){
+                    promises.push(store.findAll(relation.type));
+                };
+                object.eachRelationship(function(name, relation){
+                    if(name === property){
+                        getCollection(relation);
+                    }
+                });
+
+                object.on('didUpdate', function(){// TODO: Событие всплывает 2 раза подряд
+                    self.set('savedRelationId', self.get('selection.id'));
+                });
+
+                return Ember.RSVP.all(promises).then(function(results){
+                    self.set('savedRelationId', results[0] ? results[0].get('id') : undefined);
+                    self.set('selection', results[0]);
+                    self.set('content', results[1]);
+                });
+            },
+            willDestroyElement: function(){
+                //console.log('willDestroyElement');
             }
         });
     };

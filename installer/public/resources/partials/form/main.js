@@ -28,19 +28,23 @@ define(
         magellanElement();
 
         UMI.FormControlController = Ember.ObjectController.extend({
-            hasBackups: function(){
-                return this.get('settings').actions.backups;
-            }.property('settings'),
+            needs: ['component'],
+            settings: function(){
+                var settings = {};
+                settings = this.get('controllers.component.settings');
+                return settings;
+            }.property(),
             hasFieldset: function(){
                 return this.get('content.viewSettings.form.elements').isAny('type', 'fieldset');
-            }.property(),
-            needs: ['component'],
-            settingsBinding: 'controllers.component.settings',
-            backups: function(){// TODO: Выполняется лишний раз при уходе с роута
+            }.property('model.@each'),
+            hasBackups: function(){
+                return !!this.get('settings').actions.backups;
+            }.property('model.@each'),
+            backups: function(){// TODO: Выполняется лишний раз при уходе с роута http://youtrack.umicloud.ru/issue/cms-308
                 var backups = {};
-                var object = this.get('model.object');
+                var object = this.get('object');
                 var settings = this.get('settings');
-                if(this.get('hasBackups')){
+                if(this.get('settings').actions.backups){
                     backups.displayName = settings.actions.backups.displayName;
                     var currentVersion = {
                         objectId: object.get('id'),
@@ -63,7 +67,7 @@ define(
                     });
                     return backups;
                 }
-            }.property('model.object'),
+            }.property('model.@each'),
             access: function(){
                 var globalAllow = [
                     {
@@ -220,6 +224,7 @@ define(
         });
 
         UMI.FormElementController = Ember.ObjectController.extend({
+            objectBinding: 'parentController.model.object',
             isFieldset: function(){
                 return this.get('content.type') === 'fieldset';
             }.property(),
@@ -254,28 +259,27 @@ define(
             template: function(){
                 var meta = this.get('meta');
                 var template;
-
                 switch(meta.type){
                     case 'text':
-                        template = '{{input type="text" value=object.' + meta.dataSource + ' placeholder=placeholder validator="collection" dataSource=dataSource}}';
+                        template = '{{input type="text" value=object.' + meta.dataSource + ' placeholder=meta.placeholder validator="collection" dataSource=meta.dataSource}}';
                         break;
                     case 'textarea':
-                        template = '{{textarea value=object.' + meta.dataSource + ' placeholder=meta.placeholder validator="collection" dataSource=dataSource}}';
+                        template = '{{textarea value=object.' + meta.dataSource + ' placeholder=meta.placeholder validator="collection" dataSource=meta.dataSource}}';
                         break;
                     case 'wysiwyg':
-                        template = '{{html-editor object=object property="' + meta.dataSource + '" validator="collection" dataSource=dataSource}}';
+                        template = '{{html-editor object=object property="' + meta.dataSource + '" validator="collection" dataSource=meta.dataSource}}';
                         break;
                     case 'number': // TODO: Поле типа "number" в firefox не работает
-                        template = '{{input type="number" value=object.' + meta.dataSource + ' validator="collection" dataSource=dataSource}}';
+                        template = '{{input type="number" value=object.' + meta.dataSource + ' validator="collection" dataSource=meta.dataSource}}';
                         break;
                     case 'checkbox':
-                        template = '{{input type="checkbox" checked=object.' + meta.dataSource + ' name=name validator="collection" dataSource=dataSource}}<label for="' + meta.name + '"></label>';
+                        template = '{{input type="checkbox" checked=object.' + meta.dataSource + ' name=meta.name validator="collection" dataSource=meta.dataSource}}<label for="' + meta.name + '"></label>';
                         break;
                     case 'select':
-                        template = '{{view "select" object=object meta=this}}';
+                        template = '{{view "select" object=object meta=meta}}';
                         break;
                     case 'multi-select':
-                        template = '{{view "multiSelect" object=object meta=this}}';
+                        template = '{{view "multiSelect" object=object meta=meta}}';
                         break;
                     case 'datetime':
                         template = '{{date-picker object=object property="' + meta.dataSource + '"}}';
