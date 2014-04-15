@@ -36,7 +36,7 @@ class ListController extends BaseRestListController
      */
     protected function getCollectionName()
     {
-        return $this->api->rssImport()->collectionName;
+        return $this->api->rssImport()->getName();
     }
 
     /**

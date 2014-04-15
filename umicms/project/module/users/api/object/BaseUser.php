@@ -9,7 +9,6 @@
 
 namespace umicms\project\module\users\api\object;
 
-use umi\acl\IAclResource;
 use umi\hmvc\acl\IComponentRoleResolver;
 use umi\hmvc\component\IComponent;
 use umi\orm\objectset\IManyToManyObjectSet;

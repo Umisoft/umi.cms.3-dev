@@ -37,7 +37,7 @@ class ListController extends BaseRestListController
      */
     protected function getCollectionName()
     {
-        return $this->api->news()->collectionName;
+        return $this->api->news()->getName();
     }
 
     /**

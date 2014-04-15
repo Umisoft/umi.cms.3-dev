@@ -38,7 +38,7 @@ class ListController extends BaseRestListController
      */
     protected function getCollectionName()
     {
-        return $this->api->rubric()->collectionName;
+        return $this->api->rubric()->getName();
     }
 
     /**
