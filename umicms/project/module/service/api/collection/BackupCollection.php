@@ -7,38 +7,33 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\service\api;
+namespace umicms\project\module\service\api\collection;
 
-use umi\orm\manager\IObjectManagerAware;
-use umi\orm\manager\TObjectManagerAware;
-use umicms\api\IPublicApi;
-use umicms\api\repository\BaseObjectRepository;
+use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
-use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
-use umicms\orm\object\IRecoverableObject;
+use umicms\orm\collection\SimpleCollection;
+use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\service\api\object\Backup;
 
 /**
- * Репозиторий для работы с бэкапами.
+ * Коллекция резервных копий объектов.
+ *
+ * @method Backup get($guid, $withLocalization = false) Возвращает резервную копию по ее GUID.
+ * @method Backup getById($objectId, $withLocalization = false) Возвращает резервную копию по ее id.
+ * @method Backup add($typeName = IObjectType::BASE) Создает и возвращает резервную копию.
  */
-class BackupRepository extends BaseObjectRepository implements IPublicApi, IObjectManagerAware
+class BackupCollection extends SimpleCollection
 {
-    use TObjectManagerAware;
 
     /**
-     * {@inheritdoc}
-     */
-    public $collectionName = 'serviceBackup';
-
-    /**
-     * Возвращает селектор для выбора бэкапов.
-     * @return CmsSelector
+     * Возвращает селектор для выбора резервных копий.
+     * @return CmsSelector|Backup[]
      */
     public function select()
     {
-        return $this->getCollection()->select()
+        return parent::select()
             ->fields(
                 [
                     Backup::FIELD_OBJECT_ID,
@@ -52,7 +47,7 @@ class BackupRepository extends BaseObjectRepository implements IPublicApi, IObje
     /**
      * Возвращает селектор списка бэкапов.
      * @param IRecoverableObject $object
-     * @return CmsSelector
+     * @return CmsSelector|Backup[]
      */
     public function getList(IRecoverableObject $object)
     {
@@ -60,51 +55,6 @@ class BackupRepository extends BaseObjectRepository implements IPublicApi, IObje
             ->where(Backup::FIELD_OBJECT_ID)->equals($object->getId())
             ->where(Backup::FIELD_COLLECTION_NAME)->equals($object->getCollectionName());
     }
-
-    /**
-     * Возвращает бэкап по GUID.
-     * @param $guid
-     * @throws NonexistentEntityException
-     * @return Backup
-     */
-    public function getByGuid($guid)
-    {
-        try {
-            return $this->getCollection()->get($guid);
-        } catch (\Exception $e) {
-            throw new NonexistentEntityException(
-                $this->translate(
-                    'Cannot find element by guid "{guid}".',
-                    ['guid' => $guid]
-                ),
-                0,
-                $e
-            );
-        }
-    }
-
-    /**
-     * Возвращает резервную копию по Id.
-     * @param int $id
-     * @throws NonexistentEntityException
-     * @return Backup
-     */
-    public function getById($id)
-    {
-        try {
-            return $this->getCollection()->getById($id);
-        } catch (\Exception $e) {
-            throw new NonexistentEntityException(
-                $this->translate(
-                    'Cannot find element by id "{id}".',
-                    ['id' => $id]
-                ),
-                0,
-                $e
-            );
-        }
-    }
-
 
     /**
      * Восстанавливает в памяти резервную копию объекта.
@@ -156,7 +106,7 @@ class BackupRepository extends BaseObjectRepository implements IPublicApi, IObje
     public function createBackup(IRecoverableObject $object)
     {
         /** @var Backup $backup */
-        $backup = $this->getCollection()->add();
+        $backup = $this->add();
         $backup->objectId = $object->getId();
         $backup->collectionName = $object->getCollectionName();
         $backup->date->setCurrent();

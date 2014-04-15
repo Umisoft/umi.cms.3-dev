@@ -13,8 +13,9 @@ use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Request;
 use umi\http\Response;
+use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\TCmsCollection;
-use umicms\orm\object\IRecyclableObject;
+use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\admin\component\AdminComponent;
 use umicms\serialization\ISerializationAware;
@@ -103,9 +104,9 @@ class ApiApplication extends AdminComponent implements ISerializationAware
     {
         TCmsCollection::setSelectorInitializer(function(CmsSelector $selector) {
 
-            $type = $selector->getCollection()->getMetadata()->getBaseType();
+            $collection = $selector->getCollection();
 
-            if ($type->getFieldExists(IRecyclableObject::FIELD_TRASHED)) {
+            if ($collection instanceof IRecyclableCollection) {
                 $selector->where(IRecyclableObject::FIELD_TRASHED)->notEquals(true);
             }
 

@@ -13,8 +13,11 @@ use umi\authentication\exception\RuntimeException;
 use umi\authentication\IAuthenticationAware;
 use umi\authentication\IAuthenticationFactory;
 use umi\authentication\TAuthenticationAware;
+use umi\orm\collection\ICollectionManagerAware;
+use umi\orm\collection\TCollectionManagerAware;
 use umicms\api\BaseComplexApi;
 use umicms\api\IPublicApi;
+use umicms\project\module\users\api\collection\UserCollection;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\object\Guest;
 use umicms\project\module\users\api\object\Supervisor;
@@ -22,9 +25,10 @@ use umicms\project\module\users\api\object\Supervisor;
 /**
  * API для работы с пользователями.
  */
-class UsersApi extends BaseComplexApi implements IPublicApi, IAuthenticationAware
+class UsersApi extends BaseComplexApi implements IPublicApi, IAuthenticationAware, ICollectionManagerAware
 {
     use TAuthenticationAware;
+    use TCollectionManagerAware;
 
     /**
      * {@inheritdoc}
@@ -45,11 +49,11 @@ class UsersApi extends BaseComplexApi implements IPublicApi, IAuthenticationAwar
 
     /**
      * Возвращает репозиторий для работы с пользователями.
-     * @return UserRepository
+     * @return UserCollection
      */
     public function user()
     {
-        return $this->getApi('umicms\project\module\users\api\UserRepository');
+        return $this->getCollectionManager()->getCollection('user');
     }
 
     /**

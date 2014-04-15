@@ -10,7 +10,6 @@
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
-use umicms\orm\object\IRecyclableObject;
 
 return [
 
@@ -51,7 +50,6 @@ return [
         'collection' => [
 
             'en-US' => [
-                ICmsObject::FIELD_ACTIVE => 'Active',
                 ICmsObject::FIELD_CREATED => 'Creation date',
                 ICmsObject::FIELD_DISPLAY_NAME => 'Display name',
                 ICmsObject::FIELD_LOCKED => 'Locked',
@@ -69,6 +67,7 @@ return [
                 CmsHierarchicObject::FIELD_PARENT => 'Parent',
                 CmsHierarchicObject::FIELD_URI => 'URI',
 
+                ICmsPage::FIELD_ACTIVE => 'Active',
                 ICmsPage::FIELD_PAGE_CONTENTS => 'Contents',
                 ICmsPage::FIELD_PAGE_H1 => 'H1',
                 ICmsPage::FIELD_PAGE_LAYOUT => 'Layout',
@@ -77,11 +76,10 @@ return [
                 ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
                 ICmsPage::FIELD_PAGE_SLUG => 'Slug',
 
-                IRecyclableObject::FIELD_TRASHED => 'Trashed'
+                ICmsPage::FIELD_TRASHED => 'Trashed'
             ],
 
             'ru-RU' => [
-                ICmsObject::FIELD_ACTIVE => 'Активность',
                 ICmsObject::FIELD_CREATED => 'Дата создания',
                 ICmsObject::FIELD_DISPLAY_NAME => 'Имя отображения',
                 ICmsObject::FIELD_LOCKED => 'Заблокировано',
@@ -99,6 +97,7 @@ return [
                 CmsHierarchicObject::FIELD_PARENT => 'Родительская сущность',
                 CmsHierarchicObject::FIELD_URI => 'URI',
 
+                ICmsPage::FIELD_ACTIVE => 'Активность',
                 ICmsPage::FIELD_PAGE_CONTENTS => 'Контент',
                 ICmsPage::FIELD_PAGE_H1 => 'H1',
                 ICmsPage::FIELD_PAGE_LAYOUT => 'Шаблон',
@@ -107,7 +106,7 @@ return [
                 ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
                 ICmsPage::FIELD_PAGE_SLUG => 'Псевдостатический адрес',
 
-                IRecyclableObject::FIELD_TRASHED => 'В корзине'
+                ICmsPage::FIELD_TRASHED => 'В корзине'
             ]
         ],
 

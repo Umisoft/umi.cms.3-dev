@@ -26,8 +26,8 @@ use umicms\api\toolbox\TApiAware;
 use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
 use umicms\orm\object\ICmsObject;
-use umicms\orm\object\IRecoverableObject;
-use umicms\project\module\service\api\BackupRepository;
+use umicms\orm\object\behaviour\IRecoverableObject;
+use umicms\project\module\service\api\collection\BackupCollection;
 
 /**
  * Базовый контроллер Read-Update-Delete операций над объектом.
@@ -66,9 +66,9 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
 
                 if ($object instanceof IRecoverableObject) {
                     /**
-                     * @var BackupRepository $backupApi
+                     * @var BackupCollection $backupApi
                      */
-                    $backupApi = $this->getApi('umicms\project\module\service\api\BackupRepository');
+                    $backupApi = $this->getApi('umicms\project\module\service\api\collection\BackupRepository');
                     $backupApi->createBackup($object);
                 }
 

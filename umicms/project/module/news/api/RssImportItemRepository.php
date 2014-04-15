@@ -19,6 +19,7 @@ use umicms\api\repository\BaseObjectRepository;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
 use umicms\orm\selector\CmsSelector;
+use umicms\project\module\news\api\collection\NewsItemCollection;
 use umicms\project\module\news\api\object\RssImportItem;
 
 /**
@@ -110,12 +111,12 @@ class RssImportItemRepository extends BaseObjectRepository implements IRssFeedAw
     /**
      * Импортирует новости из RSS-ленты.
      * @param RssImportItem $rssImportItem
-     * @param NewsItemRepository $newsItemRepository
+     * @param NewsItemCollection $newsItemRepository
      * @throws RuntimeException
      * @internal param string $guid GUID импортируемой RSS-ленты
      * @return $this
      */
-    public function importRss(RssImportItem $rssImportItem, NewsItemRepository $newsItemRepository)
+    public function importRss(RssImportItem $rssImportItem, NewsItemCollection $newsItemRepository)
     {
         try {
             $xml = \GuzzleHttp\get($rssImportItem->rssUrl)
@@ -145,9 +146,9 @@ class RssImportItemRepository extends BaseObjectRepository implements IRssFeedAw
      * Импортирует новость из RSS-ленты.
      * @param RssItem $item
      * @param RssImportItem $rssImportItem
-     * @param NewsItemRepository $newsItemRepository
+     * @param NewsItemCollection $newsItemRepository
      */
-    protected function importRssItem(RssItem $item, RssImportItem $rssImportItem, NewsItemRepository $newsItemRepository)
+    protected function importRssItem(RssItem $item, RssImportItem $rssImportItem, NewsItemCollection $newsItemRepository)
     {
         try {
             $newsItemRepository->getNewsBySource($item->getUrl());

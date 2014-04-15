@@ -9,37 +9,43 @@
 
 namespace umicms\project\module\structure\api;
 
+use umi\orm\collection\ICollectionManagerAware;
+use umi\orm\collection\TCollectionManagerAware;
 use umicms\api\BaseComplexApi;
 use umicms\api\IPublicApi;
+use umicms\project\module\structure\api\collection\LayoutCollection;
+use umicms\project\module\structure\api\collection\StructureElementCollection;
 use umicms\project\module\structure\api\object\Layout;
 use umicms\project\module\structure\api\object\StructureElement;
 
 /**
  * API для работы со структурой.
  */
-class StructureApi extends BaseComplexApi implements IPublicApi
+class StructureApi extends BaseComplexApi implements IPublicApi, ICollectionManagerAware
 {
+    use TCollectionManagerAware;
+
     /**
      * @var StructureElement $currentElement
      */
     protected $currentElement;
 
     /**
-     * Возвращает репозиторий для работы с элементами структуры.
-     * @return ElementRepository
+     * Возвращает коллекцию для работы с элементами структуры.
+     * @return StructureElementCollection
      */
     public function element()
     {
-        return $this->getApi('umicms\project\module\structure\api\ElementRepository');
+        return $this->getCollectionManager()->getCollection('structure');
     }
 
     /**
-     * Возвращает репозиторий для работы с шаблонами.
-     * @return LayoutRepository
+     * Возвращает коллекцию для работы с шаблонами.
+     * @return LayoutCollection
      */
     public function layout()
     {
-        return $this->getApi('umicms\project\module\structure\api\LayoutRepository');
+        return $this->getCollectionManager()->getCollection('layout');
     }
 
     /**

@@ -7,15 +7,15 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\orm\collection;
+namespace umicms\orm\object\behaviour;
 
-use umi\orm\collection\CommonHierarchy as FrameworkCommonHierarchy;
-
+use umicms\orm\object\ICmsObject;
 
 /**
- * {@inheritdoc}
+ * Интерфейс объекта, который может иметь резервные копии.
  */
-class CommonHierarchy extends FrameworkCommonHierarchy implements ICmsCollection
+interface IRecoverableObject extends ICmsObject
 {
-    use TCmsCollection;
+
 }
+ 

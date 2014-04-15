@@ -40,11 +40,6 @@ return [
             'defaultValue' => 1
         ],
         CmsObject::FIELD_DISPLAY_NAME => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
-        CmsObject::FIELD_ACTIVE       => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'active',
-            'defaultValue' => 1
-        ],
         CmsObject::FIELD_LOCKED       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
@@ -90,7 +85,6 @@ return [
                 CmsObject::FIELD_GUID,
                 CmsObject::FIELD_TYPE,
                 CmsObject::FIELD_VERSION,
-                CmsObject::FIELD_ACTIVE,
                 CmsObject::FIELD_LOCKED,
                 CmsObject::FIELD_CREATED,
                 CmsObject::FIELD_UPDATED,

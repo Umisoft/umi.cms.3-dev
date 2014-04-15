@@ -9,7 +9,6 @@
 
 namespace umicms\project\module\structure\admin\page\controller;
 
-use umicms\exception\RuntimeException;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\IRecyclableObject;
 use umicms\project\admin\api\controller\BaseRestItemController;

@@ -121,9 +121,7 @@ return [
                 ],
                 'objectCollection' => [
                     'defaultSimpleCollectionClass' => 'umicms\orm\collection\SimpleCollection',
-                    'defaultHierarchicCollectionClass' => 'umicms\orm\collection\SimpleHierarchicCollection',
-                    'defaultLinkedHierarchicCollectionClass' => 'umicms\orm\collection\LinkedHierarchicCollection',
-                    'defaultCommonHierarchyClass' => 'umicms\orm\collection\CommonHierarchy'
+                    'defaultHierarchicCollectionClass' => 'umicms\orm\collection\SimpleHierarchicCollection'
                 ],
                 'selector' => [
                     'selectorClass' => 'umicms\orm\selector\CmsSelector'

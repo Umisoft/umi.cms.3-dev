@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\structure\admin\page\controller;
 
+use umi\orm\metadata\IObjectType;
 use umicms\exception\RuntimeException;
 use umicms\project\admin\api\controller\BaseRestListController;
 use umicms\project\module\structure\api\StructureApi;
@@ -68,7 +69,7 @@ class ListController extends BaseRestListController
             unset($data['parent']);
         }
 
-        $object = $this->api->element()->add($slug, $parent);
+        $object = $this->api->element()->add($slug, IObjectType::BASE, $parent);
 
         foreach ($data as $propertyName => $value) {
             if ($object->hasProperty($propertyName)

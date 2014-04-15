@@ -25,7 +25,7 @@ use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseController;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchIndexApi;
-use umicms\project\module\service\api\BackupRepository;
+use umicms\project\module\service\api\collection\BackupCollection;
 use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -63,12 +63,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     protected $backupRepository;
     private $searchIndexApi;
 
-    public function __construct(IDbCluster $dbCluster, UsersApi $usersApi, SearchIndexApi $searchIndexApi, BackupRepository $backupRepository)
+    public function __construct(IDbCluster $dbCluster, UsersApi $usersApi, SearchIndexApi $searchIndexApi)
     {
         $this->dbCluster = $dbCluster;
         $this->usersApi = $usersApi;
         $this->searchIndexApi = $searchIndexApi;
-        $this->backupRepository = $backupRepository;
     }
 
     /**
@@ -1302,24 +1301,29 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $structureCollection = $this->getCollectionManager()->getCollection('structure');
 
+        /**
+         * @var BackupCollection $backupCollection
+         */
+        $backupCollection = $this->getCollectionManager()->getCollection('serviceBackup');
+
         $page = $structureCollection->get('d534fd83-0f12-4a0d-9853-583b9181a948');
-        $this->backupRepository->createBackup($page);
+        $backupCollection->createBackup($page);
         $page = $structureCollection->get('3d765c94-bb80-4e8f-b6d9-b66c3ea7a5a4');
-        $this->backupRepository->createBackup($page);
+        $backupCollection->createBackup($page);
         $page = $structureCollection->get('98751ebf-7f76-4edb-8210-c2c3305bd8a0');
-        $this->backupRepository->createBackup($page);
+        $backupCollection->createBackup($page);
 
         $newsCollection = $this->getCollectionManager()->getCollection('newsItem');
         $news = $newsCollection->get('d6eb9ad1-667e-429d-a476-fa64c5eec115');
-        $this->backupRepository->createBackup($news);
+        $backupCollection->createBackup($news);
 
         $rubricCollection = $this->getCollectionManager()->getCollection('newsRubric');
         $rubric = $rubricCollection->get('8650706f-04ca-49b6-a93d-966a42377a61');
-        $this->backupRepository->createBackup($rubric);
+        $backupCollection->createBackup($rubric);
 
         $subjectCollection = $this->getCollectionManager()->getCollection('newsSubject');
         $subject = $subjectCollection->get('0d106acb-92a9-4145-a35a-86acd5c802c7');
-        $this->backupRepository->createBackup($subject);
+        $backupCollection->createBackup($subject);
 
         $this->getObjectPersister()->commit();
     }

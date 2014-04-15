@@ -7,10 +7,12 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\orm\object;
+namespace umicms\orm\object\behaviour;
+
+use umicms\orm\object\ICmsObject;
 
 /**
- * Объект, который можно помещать в корзину и восстанавливать из неё.
+ * Интерфейс объекта, который можно помещать в корзину и восстанавливать из неё.
  *
  * @property bool $trashed состояние "в корзине"
  */

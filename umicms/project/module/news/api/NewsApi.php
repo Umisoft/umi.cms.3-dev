@@ -9,6 +9,8 @@
 
 namespace umicms\project\module\news\api;
 
+use umi\orm\collection\ICollectionManagerAware;
+use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\selector\condition\IFieldConditionGroup;
 use umi\orm\selector\ISelector;
 use umi\rss\IRssFeed;
@@ -18,6 +20,9 @@ use umicms\api\BaseComplexApi;
 use umicms\api\IPublicApi;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\project\module\news\api\collection\NewsItemCollection;
+use umicms\project\module\news\api\collection\NewsRubricCollection;
+use umicms\project\module\news\api\collection\NewsSubjectCollection;
 use umicms\project\module\news\api\object\NewsItem;
 use umicms\project\module\news\api\object\NewsRubric;
 use umicms\project\module\news\api\object\NewsSubject;
@@ -26,36 +31,37 @@ use umicms\project\module\news\api\object\RssImportItem;
 /**
  * Публичное API модуля "Новости"
  */
-class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IRssFeedAware
+class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IRssFeedAware, ICollectionManagerAware
 {
     use TUrlManagerAware;
     use TRssFeedAware;
+    use TCollectionManagerAware;
 
     /**
-     * Возвращает репозиторий для работы с новостями.
-     * @return NewsItemRepository
+     * Возвращает коллекцию для работы с новостями.
+     * @return NewsItemCollection
      */
     public function news()
     {
-        return $this->getApi('umicms\project\module\news\api\NewsItemRepository');
+        return $this->getCollectionManager()->getCollection('newsItem');
     }
 
     /**
-     * Возвращает репозиторий для работы с новостными рубриками.
-     * @return NewsRubricRepository
+     * Возвращает коллекцию для работы с новостными рубриками.
+     * @return NewsRubricCollection
      */
     public function rubric()
     {
-        return $this->getApi('umicms\project\module\news\api\NewsRubricRepository');
+        return $this->getCollectionManager()->getCollection('newsRubric');
     }
 
     /**
      * Возвращает репозиторий для работы с новостными сюжетами.
-     * @return NewsSubjectRepository
+     * @return NewsSubjectCollection
      */
     public function subject()
     {
-        return $this->getApi('umicms\project\module\news\api\NewsSubjectRepository');
+        return $this->getCollectionManager()->getCollection('newsSubject');
     }
 
     /**
@@ -70,7 +76,7 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
     /**
      * Возвращает селектор для выборки новостей.
      * @param int $limit максимальное количество новостей
-     * @return ISelector
+     * @return ISelector|NewsItem[]
      */
     public function getNews($limit = null)
     {
@@ -133,7 +139,7 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
      * Возвращает селектор для выборки новостей указанных сюжетов.
      * @param NewsSubject[] $subjects список GUID сюжетов новостей
      * @param int $limit максимальное количество новостей
-     * @return ISelector
+     * @return ISelector|NewsItem[]
      */
     public function getSubjectNews(array $subjects = [], $limit = null)
     {
@@ -152,7 +158,7 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
      * Возвращает селектор для выборки новостных рубрик в указанной рубрике.
      * @param NewsRubric|null $parentRubric GUID рубрики
      * @param int $limit максимальное количество рубрик
-     * @return ISelector
+     * @return ISelector|NewsRubric[]
      */
     public function getRubrics(NewsRubric $parentRubric = null, $limit = null)
     {
@@ -168,7 +174,7 @@ class NewsApi extends BaseComplexApi implements IPublicApi, IUrlManagerAware, IR
     /**
      * Возвращает селектор для выборки новостных сюжетов.
      * @param int $limit максимальное количество сюжетов
-     * @return ISelector
+     * @return ISelector|NewsSubject[]
      */
     public function getSubjects($limit = null)
     {

@@ -10,6 +10,9 @@
 namespace umicms\orm\collection;
 
 use umi\form\TFormAware;
+use umi\i18n\TLocalizable;
+use umi\orm\collection\TCollectionManagerAware;
+use umi\orm\metadata\IMetadata;
 use umi\spl\config\TConfigSupport;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\OutOfBoundsException;
@@ -18,18 +21,28 @@ use umicms\orm\selector\CmsSelector;
 
 /**
  * Трейт коллекции объектов UMI.CMS
- * @mixin ICmsCollection
  */
 trait TCmsCollection
 {
-
+    use TCollectionManagerAware;
     use TFormAware;
     use TConfigSupport;
+    use TLocalizable;
 
     /**
      * @var callable $selectorInitializer инициализатор для селектора
      */
     protected static $selectorInitializer;
+
+    /**
+     * @see ICmsCollection::getName()
+     */
+    abstract public function getName();
+    /**
+     * @see ICmsCollection::getMetadata()
+     * @return IMetadata
+     */
+    abstract public function getMetadata();
 
     /**
      * Устанавливает инициализатор для селектора
@@ -149,6 +162,16 @@ trait TCmsCollection
         $dictionaries = $this->configToArray($dictionaries);
 
         return $dictionaries;
+    }
+
+    /**
+     * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
+     * @return CmsSelector
+     */
+    protected function selectInternal() {
+        /** @noinspection PhpUndefinedMethodInspection */
+        /** @noinspection PhpUndefinedClassInspection */
+        return parent::select();
     }
 
     /**

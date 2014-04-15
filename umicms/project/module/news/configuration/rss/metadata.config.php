@@ -52,11 +52,6 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ]
         ],
-        RssImportItem::FIELD_ACTIVE                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'active',
-            'defaultValue' => 1
-        ],
         RssImportItem::FIELD_LOCKED                => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
@@ -109,7 +104,6 @@ return [
                 RssImportItem::FIELD_GUID,
                 RssImportItem::FIELD_TYPE,
                 RssImportItem::FIELD_VERSION,
-                RssImportItem::FIELD_ACTIVE,
                 RssImportItem::FIELD_LOCKED,
                 RssImportItem::FIELD_CREATED,
                 RssImportItem::FIELD_UPDATED,
