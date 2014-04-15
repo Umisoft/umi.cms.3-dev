@@ -17,7 +17,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.rssImportItem', 'collection', 'form'
+            'collection.rssImportScenario', 'collection', 'form'
         ]
     ],
 

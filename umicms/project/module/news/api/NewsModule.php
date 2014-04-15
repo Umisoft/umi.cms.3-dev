@@ -38,7 +38,7 @@ class NewsModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     use TUrlManagerAware;
 
     /**
-     * Возвращает коллекцию для работы с новостями.
+     * Возвращает коллекцию новостей.
      * @return NewsItemCollection
      */
     public function news()
@@ -47,7 +47,7 @@ class NewsModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает коллекцию для работы с новостными рубриками.
+     * Возвращает коллекцию новостных рубрик.
      * @return NewsRubricCollection
      */
     public function rubric()
@@ -56,7 +56,7 @@ class NewsModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает репозиторий для работы с новостными сюжетами.
+     * Возвращает коллекцию новостных сюжетов.
      * @return NewsSubjectCollection
      */
     public function subject()
@@ -65,12 +65,12 @@ class NewsModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает репозиторий для работы с импортируемыми RSS-лентами.
+     * Возвращает коллекцию сценариев RSS-импортов новостей.
      * @return RssImportScenarioCollection
      */
     public function rssImport()
     {
-        return $this->getApi('umicms\project\module\news\api\RssImportItemRepository');
+        return $this->getCollection('rssImportScenario');
     }
 
     /**

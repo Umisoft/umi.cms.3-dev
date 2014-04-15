@@ -56,20 +56,20 @@ return [
             'columnName' => 'updated',
             'readOnly'   => true
         ],
-        CmsObject::FIELD_OWNER => [
-            'type' => IField::TYPE_BELONGS_TO,
-            'columnName' => 'owner_id',
-            'target' => 'user'
-        ],
-        CmsObject::FIELD_EDITOR => [
-            'type' => IField::TYPE_BELONGS_TO,
-            'columnName' => 'editor_id',
-            'target' => 'user'
-        ],
-        'rssImportItem'                    => [
+        CmsObject::FIELD_OWNER        => [
             'type'       => IField::TYPE_BELONGS_TO,
-            'columnName' => 'rss_item_id',
-            'target'     => 'rssImportItem'
+            'columnName' => 'owner_id',
+            'target'     => 'user'
+        ],
+        CmsObject::FIELD_EDITOR       => [
+            'type'       => IField::TYPE_BELONGS_TO,
+            'columnName' => 'editor_id',
+            'target'     => 'user'
+        ],
+        'rssImportScenario'           => [
+            'type'       => IField::TYPE_BELONGS_TO,
+            'columnName' => 'rss_import_scenario_id',
+            'target'     => 'rssImportScenario'
         ],
         'subject'                     => [
             'type'       => IField::TYPE_BELONGS_TO,
@@ -91,7 +91,7 @@ return [
                 CmsObject::FIELD_DISPLAY_NAME,
                 CmsObject::FIELD_OWNER,
                 CmsObject::FIELD_EDITOR,
-                'rssImportItem',
+                'rssImportScenario',
                 'subject'
             ]
         ]

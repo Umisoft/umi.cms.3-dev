@@ -91,8 +91,8 @@ return [
         RssImportScenario::FIELD_SUBJECTS => [
             'type'         => IField::TYPE_MANY_TO_MANY,
             'target'       => 'newsSubject',
-            'bridge'       => 'rssItemSubject',
-            'relatedField' => 'rssImportItem',
+            'bridge'       => 'rssScenarioSubject',
+            'relatedField' => 'rssImportScenario',
             'targetField'  => 'subject'
         ],
     ],

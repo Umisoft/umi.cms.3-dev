@@ -10,7 +10,6 @@
 namespace demohunt\controller;
 
 use Doctrine\DBAL\DBALException;
-use PDOException;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\driver\IDialect;
 use umi\http\Response;
@@ -277,9 +276,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $newsCollection = $this->getCollectionManager()->getCollection('newsItem');
         /**
-         * @var RssImportScenarioCollection $rssItemCollection
+         * @var RssImportScenarioCollection $rssScenarioCollection
          */
-        $rssItemCollection = $this->getCollectionManager()->getCollection('rssImportScenario');
+        $rssScenarioCollection = $this->getCollectionManager()->getCollection('rssImportScenario');
         /**
          * @var SimpleHierarchicCollection $rubricCollection
          */
@@ -412,15 +411,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 ->getValue('date')->setTimestamp(strtotime('2010-08-02 17:35:00'));
         }
 
-        $rssItemCollection->add()
+        $rssScenarioCollection->add()
             ->setValue('displayName', 'Scripting News')
             ->setValue('rssUrl', 'http://static.userland.com/gems/backend/rssTwoExample2.xml');
 
-        $rssItemCollection->add()
+        $rssScenarioCollection->add()
             ->setValue('displayName', 'Хабрахабр / Захабренные / Тематические / Посты')
             ->setValue('rssUrl', 'http://habrahabr.ru/rss/hubs/');
 
-        $rssItemCollection->add()
+        $rssScenarioCollection->add()
             ->setValue('displayName', 'DLE-News (windows-1251)')
             ->setValue('rssUrl', 'http://dle-news.ru/rss.xml');
 
@@ -1026,16 +1025,13 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
-                    `rss_item_id` bigint(20) unsigned DEFAULT NULL,
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_subject_guid` (`guid`),
                     UNIQUE KEY `news_subject_slug` (`slug`),
                     KEY `news_subject_type` (`type`),
                     KEY `news_subject_layout` (`layout_id`),
-                    KEY `news_news_item_rss_subject` (`rss_item_id`),
                     CONSTRAINT `FK_news_subject_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_rss_subject` FOREIGN KEY (`rss_item_id`) REFERENCES `demohunt_news_rss_import_scenario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_news_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_news_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
@@ -1088,15 +1084,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
 
-                    `rss_item_id` bigint(20) unsigned,
+                    `rss_import_scenario_id` bigint(20) unsigned,
                     `subject_id` bigint(20) unsigned,
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `rss_rss_item_subject_guid` (`guid`),
                     KEY `rss_rss_item_subject_type` (`type`),
-                    KEY `rss_rss_item_subject_item` (`rss_item_id`),
+                    KEY `rss_rss_item_subject_item` (`rss_import_scenario_id`),
                     KEY `rss_import_scenario_subject` (`subject_id`),
-                    CONSTRAINT `FK_rss_rss_item_subject_item` FOREIGN KEY (`rss_item_id`) REFERENCES `demohunt_news_rss_import_scenario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_rss_item_subject_item` FOREIGN KEY (`rss_import_scenario_id`) REFERENCES `demohunt_news_rss_import_scenario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_rss_import_scenario_subject` FOREIGN KEY (`subject_id`) REFERENCES `demohunt_news_subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_rss_import_scenario_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_rss_import_scenario_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
