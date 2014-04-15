@@ -10,6 +10,7 @@
 namespace umicms\project\module\users\api\object;
 
 use umi\orm\objectset\IManyToManyObjectSet;
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\CmsObject;
 
 /**
@@ -18,7 +19,7 @@ use umicms\orm\object\CmsObject;
  * @property IManyToManyObjectSet $users пользователи, входящие в группу
  * @property array $roles роли, доступные группе
  */
-class UserGroup extends CmsObject
+class UserGroup extends CmsObject implements IActiveAccessibleObject
 {
     /**
      * Имя поля для хранения пользователей, входящих в группу

@@ -11,7 +11,7 @@ use umicms\orm\object\CmsObject;
 
 return [
     'dataSource' => [
-        'sourceName' => 'umi_rss_rss_item_subject'
+        'sourceName' => 'umi_news_rss_import_scenario_subject'
     ],
     'fields'     => [
         CmsObject::FIELD_IDENTIFY     => [
@@ -40,11 +40,6 @@ return [
             'defaultValue' => 1
         ],
         CmsObject::FIELD_DISPLAY_NAME => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
-        CmsObject::FIELD_ACTIVE       => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'active',
-            'defaultValue' => 1
-        ],
         CmsObject::FIELD_LOCKED       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
@@ -61,20 +56,20 @@ return [
             'columnName' => 'updated',
             'readOnly'   => true
         ],
-        CmsObject::FIELD_OWNER => [
-            'type' => IField::TYPE_BELONGS_TO,
-            'columnName' => 'owner_id',
-            'target' => 'user'
-        ],
-        CmsObject::FIELD_EDITOR => [
-            'type' => IField::TYPE_BELONGS_TO,
-            'columnName' => 'editor_id',
-            'target' => 'user'
-        ],
-        'rssImportItem'                    => [
+        CmsObject::FIELD_OWNER        => [
             'type'       => IField::TYPE_BELONGS_TO,
-            'columnName' => 'rss_item_id',
-            'target'     => 'rssImportItem'
+            'columnName' => 'owner_id',
+            'target'     => 'user'
+        ],
+        CmsObject::FIELD_EDITOR       => [
+            'type'       => IField::TYPE_BELONGS_TO,
+            'columnName' => 'editor_id',
+            'target'     => 'user'
+        ],
+        'rssImportScenario'           => [
+            'type'       => IField::TYPE_BELONGS_TO,
+            'columnName' => 'rss_import_scenario_id',
+            'target'     => 'rssImportScenario'
         ],
         'subject'                     => [
             'type'       => IField::TYPE_BELONGS_TO,
@@ -90,14 +85,13 @@ return [
                 CmsObject::FIELD_GUID,
                 CmsObject::FIELD_TYPE,
                 CmsObject::FIELD_VERSION,
-                CmsObject::FIELD_ACTIVE,
                 CmsObject::FIELD_LOCKED,
                 CmsObject::FIELD_CREATED,
                 CmsObject::FIELD_UPDATED,
                 CmsObject::FIELD_DISPLAY_NAME,
                 CmsObject::FIELD_OWNER,
                 CmsObject::FIELD_EDITOR,
-                'rssImportItem',
+                'rssImportScenario',
                 'subject'
             ]
         ]

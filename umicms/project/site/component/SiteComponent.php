@@ -14,7 +14,7 @@ use umi\http\Request;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\component\BaseComponent;
 use umicms\orm\object\ICmsPage;
-use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
@@ -32,7 +32,7 @@ class SiteComponent extends BaseComponent implements IPageCallStackAware
     const MATCH_STRUCTURE_ELEMENT = 'element';
 
     /**
-     * @var StructureApi $structureApi
+     * @var StructureModule $structureApi
      */
     protected $structureApi;
 
@@ -53,9 +53,9 @@ class SiteComponent extends BaseComponent implements IPageCallStackAware
 
     /**
      * {@inheritdoc}
-     * @param StructureApi $structureApi
+     * @param StructureModule $structureApi
      */
-    public function __construct($name, $path, array $options = [], StructureApi $structureApi)
+    public function __construct($name, $path, array $options = [], StructureModule $structureApi)
     {
         parent::__construct($name, $path, $options);
 

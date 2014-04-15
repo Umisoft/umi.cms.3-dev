@@ -10,7 +10,7 @@
 namespace umicms\authentication;
 
 use umi\authentication\storage\SessionStorage;
-use umicms\project\module\users\api\UsersApi;
+use umicms\project\module\users\api\UsersModule;
 use umicms\project\module\users\api\object\Guest;
 
 /**
@@ -19,14 +19,14 @@ use umicms\project\module\users\api\object\Guest;
 class CmsAuthStorage extends SessionStorage
 {
     /**
-     * @var UsersApi $api
+     * @var UsersModule $api
      */
     protected $api;
 
     /**
-     * @param UsersApi $api
+     * @param UsersModule $api
      */
-    public function __construct(UsersApi $api)
+    public function __construct(UsersModule $api)
     {
         $this->api = $api;
     }

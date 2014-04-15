@@ -10,7 +10,7 @@
 namespace umicms\project\module\structure\site\controller;
 
 use umicms\project\site\controller\SitePageController;
-use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\api\StructureModule;
 
 /**
  * Контроллер для вывода простой страницы.
@@ -18,11 +18,11 @@ use umicms\project\module\structure\api\StructureApi;
 class StaticPageController extends SitePageController
 {
     /**
-     * @var StructureApi $structureApi
+     * @var StructureModule $structureApi
      */
     protected $structureApi;
 
-    public function __construct(StructureApi $structureApi) {
+    public function __construct(StructureModule $structureApi) {
         $this->structureApi = $structureApi;
     }
 

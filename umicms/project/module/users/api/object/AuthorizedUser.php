@@ -9,8 +9,6 @@
 
 namespace umicms\project\module\users\api\object;
 
-use umicms\orm\object\IRecyclableObject;
-
 /**
  * Пользователь.
  *
@@ -18,7 +16,7 @@ use umicms\orm\object\IRecyclableObject;
  * @property string $email e-mail
  * @property string $password пароль
  */
-class AuthorizedUser extends BaseUser implements IRecyclableObject
+class AuthorizedUser extends BaseUser
 {
     /**
      * Имя поля для хранения логина

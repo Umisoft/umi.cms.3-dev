@@ -15,7 +15,7 @@ use umi\http\Response;
 use umi\orm\object\IObject;
 use umicms\project\admin\api\controller\BaseRestActionController;
 use umicms\project\module\service\api\object\Backup;
-use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\StructureElement;
 
 /**
@@ -24,15 +24,15 @@ use umicms\project\module\structure\api\object\StructureElement;
 class ActionController extends BaseRestActionController
 {
     /**
-     * @var StructureApi $api
+     * @var StructureModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param StructureApi $api
+     * @param StructureModule $api
      */
-    public function __construct(StructureApi $api)
+    public function __construct(StructureModule $api)
     {
         $this->api = $api;
     }
@@ -62,14 +62,14 @@ class ActionController extends BaseRestActionController
     {
         $collectionName = $this->getRequiredQueryVar('collection');
 
-        if ($collectionName != $this->api->element()->collectionName) {
+        if ($collectionName != $this->api->element()->getName()) {
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
         }
 
         $typeName = $this->getRequiredQueryVar('type');
         $formName = $this->getRequiredQueryVar('form');
 
-        return $this->api->element()->getCollection()->getForm($typeName, $formName);
+        return $this->api->element()->getForm($typeName, $formName);
     }
 
     protected function actionMove()

@@ -18,7 +18,7 @@ use umicms\project\site\callstack\TPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
-use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\StructureElement;
 
 /**
@@ -30,15 +30,15 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware, IPage
     use TPageCallStackAware;
 
     /**
-     * @var StructureApi $systemApi API работы со структурой
+     * @var StructureModule $systemApi API работы со структурой
      */
     protected $structureApi;
 
     /**
      * {@inheritdoc}
-     * @param StructureApi $structureApi API работы со структурой
+     * @param StructureModule $structureApi API работы со структурой
      */
-    public function __construct(array $options = [], array $subroutes = [], StructureApi $structureApi)
+    public function __construct(array $options = [], array $subroutes = [], StructureModule $structureApi)
     {
         $this->structureApi = $structureApi;
 

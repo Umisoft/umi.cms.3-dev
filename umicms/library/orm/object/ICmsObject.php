@@ -21,7 +21,6 @@ use umicms\project\module\users\api\object\BaseUser;
  * @property IObjectType $type тип
  * @property string $displayName выводимое в интерфейсах имя
  * @property int $version версия
- * @property bool $active признак активности
  * @property bool $locked признак заблокированности элемента на удаление
  * @property DateTime $created время создания элемента
  * @property DateTime $updated время обновления элемента
@@ -30,10 +29,6 @@ use umicms\project\module\users\api\object\BaseUser;
  */
 interface ICmsObject extends IObject
 {
-    /**
-     *  Имя поля для хранения состояния активности объекта
-     */
-    const FIELD_ACTIVE = 'active';
     /**
      *  Имя поля для хранения состояния заблокированности объекта на удаление
      */

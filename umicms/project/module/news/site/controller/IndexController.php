@@ -10,7 +10,7 @@
 namespace umicms\project\module\news\site\controller;
 
 use umicms\project\site\controller\SitePageController;
-use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\api\StructureModule;
 
 /**
  * Контроллер отображения системной страницы модуля "Новости".
@@ -19,11 +19,11 @@ class IndexController extends SitePageController
 {
 
     /**
-     * @var StructureApi $structureApi
+     * @var StructureModule $structureApi
      */
     protected $structureApi;
 
-    public function __construct(StructureApi $structureApi) {
+    public function __construct(StructureModule $structureApi) {
         $this->structureApi = $structureApi;
     }
 

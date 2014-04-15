@@ -93,7 +93,7 @@ return [
                     ]
                 ],
 
-                'rssImportItem' => [
+                'rssImportScenario' => [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => NewsSubject::FIELD_RSS,
                     'options' => [

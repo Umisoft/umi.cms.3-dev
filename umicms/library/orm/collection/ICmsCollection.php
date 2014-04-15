@@ -11,7 +11,9 @@ namespace umicms\orm\collection;
 
 use umi\form\IForm;
 use umi\form\IFormAware;
+use umi\i18n\ILocalizable;
 use umi\orm\collection\ICollection;
+use umi\orm\collection\ICollectionManagerAware;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\OutOfBoundsException;
 use umicms\orm\object\CmsObject;
@@ -19,9 +21,8 @@ use umicms\orm\object\CmsObject;
 /**
  * Интерфейс коллекции объектов UMI.CMS
  */
-interface ICmsCollection extends ICollection, IFormAware
+interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAware, IFormAware
 {
-
     /**
      * Имя формы для редактирования объектов по умолчанию
      */

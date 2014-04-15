@@ -9,40 +9,40 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\news\api\object\RssImportItem;
+use umicms\project\module\news\api\object\RssImportScenario;
 
 return [
     'dataSource' => [
-        'sourceName' => 'umi_rss_rss_item'
+        'sourceName' => 'umi_news_rss_import_scenario'
     ],
     'fields'     => [
 
-        RssImportItem::FIELD_IDENTIFY              => [
+        RssImportScenario::FIELD_IDENTIFY              => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
             'accessor'   => 'getId',
             'readOnly'   => true
         ],
-        RssImportItem::FIELD_GUID                  => [
+        RssImportScenario::FIELD_GUID                  => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
             'readOnly'   => true
         ],
-        RssImportItem::FIELD_TYPE                  => [
+        RssImportScenario::FIELD_TYPE                  => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
             'accessor'   => 'getType',
             'readOnly'   => true
         ],
-        RssImportItem::FIELD_VERSION               => [
+        RssImportScenario::FIELD_VERSION               => [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
             'readOnly'     => true,
             'defaultValue' => 1
         ],
-        RssImportItem::FIELD_DISPLAY_NAME          => [
+        RssImportScenario::FIELD_DISPLAY_NAME          => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name',
             'filters' => [
@@ -52,73 +52,67 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ]
         ],
-        RssImportItem::FIELD_ACTIVE                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'active',
-            'defaultValue' => 1
-        ],
-        RssImportItem::FIELD_LOCKED                => [
+        RssImportScenario::FIELD_LOCKED                => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
             'readOnly'     => true,
             'defaultValue' => 0
         ],
-        RssImportItem::FIELD_CREATED               => [
+        RssImportScenario::FIELD_CREATED               => [
             'type'       => IField::TYPE_DATE_TIME,
             'columnName' => 'created',
             'readOnly'   => true
         ],
-        RssImportItem::FIELD_UPDATED               => [
+        RssImportScenario::FIELD_UPDATED               => [
             'type'       => IField::TYPE_DATE_TIME,
             'columnName' => 'updated',
             'readOnly'   => true
         ],
-        RssImportItem::FIELD_OWNER => [
+        RssImportScenario::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
             'target' => 'user'
         ],
-        RssImportItem::FIELD_EDITOR => [
+        RssImportScenario::FIELD_EDITOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
-        RssImportItem::FIELD_RSS_URL => [
+        RssImportScenario::FIELD_RSS_URL => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'rss_url',
             'accessor'   => 'getRssUrl'
         ],
-        RssImportItem::FIELD_RUBRIC => [
+        RssImportScenario::FIELD_RUBRIC => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'rubric_id',
             'target' => 'newsRubric'
         ],
-        RssImportItem::FIELD_SUBJECTS => [
+        RssImportScenario::FIELD_SUBJECTS => [
             'type'         => IField::TYPE_MANY_TO_MANY,
             'target'       => 'newsSubject',
-            'bridge'       => 'rssItemSubject',
-            'relatedField' => 'rssImportItem',
+            'bridge'       => 'rssScenarioSubject',
+            'relatedField' => 'rssImportScenario',
             'targetField'  => 'subject'
         ],
     ],
     'types'      => [
         'base' => [
-            'objectClass' => 'umicms\project\module\news\api\object\RssImportItem',
+            'objectClass' => 'umicms\project\module\news\api\object\RssImportScenario',
             'fields'      => [
-                RssImportItem::FIELD_IDENTIFY,
-                RssImportItem::FIELD_GUID,
-                RssImportItem::FIELD_TYPE,
-                RssImportItem::FIELD_VERSION,
-                RssImportItem::FIELD_ACTIVE,
-                RssImportItem::FIELD_LOCKED,
-                RssImportItem::FIELD_CREATED,
-                RssImportItem::FIELD_UPDATED,
-                RssImportItem::FIELD_DISPLAY_NAME,
-                RssImportItem::FIELD_OWNER,
-                RssImportItem::FIELD_EDITOR,
-                RssImportItem::FIELD_RSS_URL,
-                RssImportItem::FIELD_RUBRIC,
-                RssImportItem::FIELD_SUBJECTS
+                RssImportScenario::FIELD_IDENTIFY,
+                RssImportScenario::FIELD_GUID,
+                RssImportScenario::FIELD_TYPE,
+                RssImportScenario::FIELD_VERSION,
+                RssImportScenario::FIELD_LOCKED,
+                RssImportScenario::FIELD_CREATED,
+                RssImportScenario::FIELD_UPDATED,
+                RssImportScenario::FIELD_DISPLAY_NAME,
+                RssImportScenario::FIELD_OWNER,
+                RssImportScenario::FIELD_EDITOR,
+                RssImportScenario::FIELD_RSS_URL,
+                RssImportScenario::FIELD_RUBRIC,
+                RssImportScenario::FIELD_SUBJECTS
             ]
         ]
     ]

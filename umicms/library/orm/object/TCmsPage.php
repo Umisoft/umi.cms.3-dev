@@ -16,11 +16,6 @@ use umicms\hmvc\url\IUrlManager;
  */
 trait TCmsPage
 {
-    /**
-     * @var string $traitPageUrl URL страницы на сайте
-     */
-    private $traitPageUrl;
-
      /**
      * @see TUrlManagerAware::getUrlManager()
      * @return IUrlManager
@@ -32,12 +27,8 @@ trait TCmsPage
      */
     public function getPageUrl($isAbsolute = false)
     {
-        if (!$this->traitPageUrl) {
-            /** @noinspection PhpParamsInspection */
-            $this->traitPageUrl = $this->getUrlManager()->getSitePageUrl($this, $isAbsolute);
-        }
-
-        return $this->traitPageUrl;
+        /** @noinspection PhpParamsInspection */
+        return $this->getUrlManager()->getSitePageUrl($this, $isAbsolute);
     }
 }
  

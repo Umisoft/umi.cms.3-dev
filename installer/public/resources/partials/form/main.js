@@ -30,7 +30,7 @@ define(
         UMI.FormControlController = Ember.ObjectController.extend({
             hasBackups: function(){
                 return this.get('settings').actions.backups;
-            }.property(),
+            }.property('settings'),
             hasFieldset: function(){
                 return this.get('content.viewSettings.form.elements').isAny('type', 'fieldset');
             }.property(),

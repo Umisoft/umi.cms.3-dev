@@ -11,20 +11,20 @@ namespace umicms\project\module\service\admin\backup\controller;
 
 use umi\hmvc\exception\http\HttpNotFound;
 use umicms\project\admin\api\controller\BaseRestListController;
-use umicms\project\module\service\api\BackupRepository;
+use umicms\project\module\service\api\collection\BackupCollection;
 
 class ListController extends BaseRestListController
 {
     /**
-     * @var BackupRepository $backupRepository
+     * @var BackupCollection $backupRepository
      */
     protected $backupRepository;
 
     /**
      * Конструктор.
-     * @param BackupRepository $backupRepository
+     * @param BackupCollection $backupRepository
      */
-    public function __construct(BackupRepository $backupRepository)
+    public function __construct(BackupCollection $backupRepository)
     {
         $this->backupRepository = $backupRepository;
     }

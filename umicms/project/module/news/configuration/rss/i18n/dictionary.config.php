@@ -7,18 +7,18 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-use umicms\project\module\news\api\object\RssImportItem;
+use umicms\project\module\news\api\object\RssImportScenario;
 
 return [
         'en-US' => [
-            RssImportItem::FIELD_RSS_URL => 'URL RSS feed',
-            RssImportItem::FIELD_SUBJECTS => 'Subjects',
-            RssImportItem::FIELD_RUBRIC => 'Rubric'
+            RssImportScenario::FIELD_RSS_URL => 'URL RSS feed',
+            RssImportScenario::FIELD_SUBJECTS => 'Subjects',
+            RssImportScenario::FIELD_RUBRIC => 'Rubric'
         ],
 
         'ru-RU' => [
-            RssImportItem::FIELD_RSS_URL => 'URL RSS-ленты',
-            RssImportItem::FIELD_SUBJECTS => 'Сюжеты',
-            RssImportItem::FIELD_RUBRIC => 'Рубрика'
+            RssImportScenario::FIELD_RSS_URL => 'URL RSS-ленты',
+            RssImportScenario::FIELD_SUBJECTS => 'Сюжеты',
+            RssImportScenario::FIELD_RUBRIC => 'Рубрика'
         ]
     ];

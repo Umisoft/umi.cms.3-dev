@@ -20,15 +20,17 @@ use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
+use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\TCmsCollection;
-use umicms\orm\object\ICmsObject;
-use umicms\orm\object\IRecyclableObject;
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
+use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
-use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\api\StructureModule;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\TSerializationAware;
 
@@ -88,9 +90,9 @@ class SiteApplication extends SiteComponent
 
     /**
      * {@inheritdoc}
-     * @param StructureApi $structureApi
+     * @param StructureModule $structureApi
      */
-    public function __construct($name, $path, array $options = [], StructureApi $structureApi)
+    public function __construct($name, $path, array $options = [], StructureModule $structureApi)
     {
         parent::__construct($name, $path, $options, $structureApi);
 
@@ -270,14 +272,14 @@ class SiteApplication extends SiteComponent
     {
         TCmsCollection::setSelectorInitializer(function(CmsSelector $selector) {
 
-            $type = $selector->getCollection()->getMetadata()->getBaseType();
+            $collection = $selector->getCollection();
 
-            if ($type->getFieldExists(IRecyclableObject::FIELD_TRASHED)) {
+            if ($collection instanceof IRecyclableCollection) {
                 $selector->where(IRecyclableObject::FIELD_TRASHED)->notEquals(true);
             }
 
-            if ($type->getFieldExists(ICmsObject::FIELD_ACTIVE)) {
-                $selector->where(ICmsObject::FIELD_ACTIVE)->equals(true);
+            if ($collection instanceof IActiveAccessibleCollection) {
+                $selector->where(IActiveAccessibleObject::FIELD_ACTIVE)->equals(true);
             }
 
         });

@@ -11,6 +11,8 @@ use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
+    'class' => 'umicms\project\module\structure\api\collection\StructureElementCollection',
+
     'handlers' => [
         'admin' => 'structure.page',
         'site' => 'structure'

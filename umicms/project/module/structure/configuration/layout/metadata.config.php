@@ -52,11 +52,6 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ]
         ],
-        Layout::FIELD_ACTIVE       => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'active',
-            'defaultValue' => 1
-        ],
         Layout::FIELD_LOCKED       => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
@@ -86,7 +81,6 @@ return [
                 Layout::FIELD_TYPE,
                 Layout::FIELD_VERSION,
                 Layout::FIELD_DISPLAY_NAME,
-                Layout::FIELD_ACTIVE,
                 Layout::FIELD_LOCKED,
                 Layout::FIELD_CREATED,
                 Layout::FIELD_UPDATED,

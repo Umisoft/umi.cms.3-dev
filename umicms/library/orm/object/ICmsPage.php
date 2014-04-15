@@ -9,6 +9,9 @@
 
 namespace umicms\orm\object;
 
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
+use umicms\orm\object\behaviour\IRecoverableObject;
+use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\project\module\structure\api\object\Layout;
 
 /**
@@ -22,7 +25,7 @@ use umicms\project\module\structure\api\object\Layout;
  * @property string $slug последней часть ЧПУ
  * @property Layout|null $layout шаблон для вывода
  */
-interface ICmsPage extends ICmsObject, IRecoverableObject, IRecyclableObject
+interface ICmsPage extends ICmsObject, IRecoverableObject, IRecyclableObject, IActiveAccessibleObject
 {
     /**
      *  Имя поля для хранения заголовка окна браузера

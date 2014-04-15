@@ -14,7 +14,7 @@ use umi\orm\collection\IHierarchicCollection;
 use umi\orm\collection\ILinkedHierarchicCollection;
 use umi\orm\collection\ISimpleCollection;
 use umicms\orm\collection\ICmsCollection;
-use umicms\orm\object\IRecyclableObject;
+use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
 
 /**

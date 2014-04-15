@@ -14,6 +14,7 @@ use umi\extension\twig\TwigTemplateEngine;
 use umi\form\toolbox\FormTools;
 use umi\hmvc\component\IComponent;
 use umi\i18n\toolbox\I18nTools;
+use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\OrmTools;
 use umi\route\IRouteFactory;
 use umi\templating\toolbox\TemplatingTools;
@@ -22,6 +23,7 @@ use umicms\Bootstrap;
 use umicms\form\element\File;
 use umicms\form\element\Image;
 use umicms\form\element\Wysiwyg;
+use umicms\module\toolbox\ModuleTools;
 
 return [
 
@@ -36,6 +38,7 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/stemming/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/acl/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/rss/toolbox/config.php'),
+        require(CMS_LIBRARY_DIR . '/module/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/api/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php')
     ],
@@ -111,6 +114,10 @@ return [
             ]
         ],
 
+        ModuleTools::NAME => [
+            'modules' => '{#partial:~/project/modules.config.php}'
+        ],
+
         OrmTools::NAME => [
             'factories' => [
                 'object' => [
@@ -119,12 +126,15 @@ return [
                 ],
                 'objectCollection' => [
                     'defaultSimpleCollectionClass' => 'umicms\orm\collection\SimpleCollection',
-                    'defaultHierarchicCollectionClass' => 'umicms\orm\collection\SimpleHierarchicCollection',
-                    'defaultLinkedHierarchicCollectionClass' => 'umicms\orm\collection\LinkedHierarchicCollection',
-                    'defaultCommonHierarchyClass' => 'umicms\orm\collection\CommonHierarchy'
+                    'defaultHierarchicCollectionClass' => 'umicms\orm\collection\SimpleHierarchicCollection'
                 ],
                 'selector' => [
                     'selectorClass' => 'umicms\orm\selector\CmsSelector'
+                ],
+                'metadata' => [
+                    'fieldTypes' => [
+                        IField::TYPE_BELONGS_TO => 'umicms\orm\metadata\field\relation\BelongsToRelationField'
+                    ]
                 ]
             ],
             'metadata'    => [
@@ -133,9 +143,9 @@ return [
 
                 'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/metadata.config.php}',
                 'newsItem' => '{#lazy:~/project/module/news/configuration/item/metadata.config.php}',
-                'rssImportItem' => '{#lazy:~/project/module/news/configuration/rss/metadata.config.php}',
+                'rssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/metadata.config.php}',
                 'newsItemSubject' => '{#lazy:~/project/module/news/configuration/itemsubject/metadata.config.php}',
-                'rssItemSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/metadata.config.php}',
+                'rssScenarioSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/metadata.config.php}',
                 'newsSubject' => '{#lazy:~/project/module/news/configuration/subject/metadata.config.php}',
 
                 'blogCategory' => '{#lazy:~/project/module/blog/configuration/category/metadata.config.php}',
@@ -164,9 +174,9 @@ return [
 
                 'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/collection.config.php}',
                 'newsItem' => '{#lazy:~/project/module/news/configuration/item/collection.config.php}',
-                'rssImportItem' => '{#lazy:~/project/module/news/configuration/rss/collection.config.php}',
+                'rssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/collection.config.php}',
                 'newsItemSubject' => '{#lazy:~/project/module/news/configuration/itemsubject/collection.config.php}',
-                'rssItemSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/collection.config.php}',
+                'rssScenarioSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/collection.config.php}',
                 'newsSubject' => '{#lazy:~/project/module/news/configuration/subject/collection.config.php}',
 
                 'blogCategory' => '{#lazy:~/project/module/blog/configuration/category/collection.config.php}',

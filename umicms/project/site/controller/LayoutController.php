@@ -11,7 +11,7 @@ namespace umicms\project\site\controller;
 use umi\http\Response;
 use umicms\hmvc\controller\BaseController;
 use umicms\orm\object\ICmsPage;
-use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\api\StructureModule;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
 use umicms\project\site\config\ISiteSettingsAware;
@@ -31,16 +31,16 @@ class LayoutController extends BaseController implements ISiteSettingsAware, IPa
      */
     protected $response;
     /**
-     * @var StructureApi $structureApi
+     * @var StructureModule $structureApi
      */
     protected $structureApi;
 
     /**
      * Конструктор.
      * @param Response $response
-     * @param StructureApi $structureApi
+     * @param StructureModule $structureApi
      */
-    public function __construct(Response $response, StructureApi $structureApi)
+    public function __construct(Response $response, StructureModule $structureApi)
     {
         $this->response = $response;
         $this->structureApi = $structureApi;
