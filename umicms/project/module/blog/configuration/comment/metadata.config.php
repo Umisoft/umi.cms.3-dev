@@ -132,6 +132,11 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ]
         ],
+        BlogComment::FIELD_AUTHOR => [
+            'type' => IField::TYPE_BELONGS_TO,
+            'columnName' => 'author_id',
+            'target' => 'blogAuthor'
+        ],
         BlogComment::FIELD_POST => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'post_id',
@@ -169,6 +174,7 @@ return [
                 BlogComment::FIELD_CREATED,
                 BlogComment::FIELD_UPDATED,
                 BlogComment::FIELD_DISPLAY_NAME,
+                BlogComment::FIELD_AUTHOR,
                 BlogComment::FIELD_POST,
                 BlogComment::FIELD_CONTENTS,
                 BlogComment::FIELD_PUBLISH_TIME

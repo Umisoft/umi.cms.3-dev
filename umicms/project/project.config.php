@@ -136,9 +136,12 @@ return [
 
                 'blogCategory' => '{#lazy:~/project/module/blog/configuration/category/metadata.config.php}',
                 'blogPost' => '{#lazy:~/project/module/blog/configuration/post/metadata.config.php}',
+                'blogAuthor' => '{#lazy:~/project/module/blog/configuration/author/metadata.config.php}',
                 'blogComment' => '{#lazy:~/project/module/blog/configuration/comment/metadata.config.php}',
                 'blogTag' => '{#lazy:~/project/module/blog/configuration/tag/metadata.config.php}',
                 'blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/metadata.config.php}',
+                'rssImportPost' => '{#lazy:~/project/module/blog/configuration/rss/metadata.config.php}',
+                'rssBlogTag' => '{#lazy:~/project/module/blog/configuration/rsstag/metadata.config.php}',
 
                 'user' => '{#lazy:~/project/module/users/configuration/user/metadata.config.php}',
                 'userGroup' => '{#lazy:~/project/module/users/configuration/group/metadata.config.php}',
@@ -162,9 +165,12 @@ return [
 
                 'blogCategory' => '{#lazy:~/project/module/blog/configuration/category/collection.config.php}',
                 'blogPost' => '{#lazy:~/project/module/blog/configuration/post/collection.config.php}',
+                'blogAuthor' => '{#lazy:~/project/module/blog/configuration/author/collection.config.php}',
                 'blogComment' => '{#lazy:~/project/module/blog/configuration/comment/collection.config.php}',
                 'blogTag' => '{#lazy:~/project/module/blog/configuration/tag/collection.config.php}',
                 'blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/collection.config.php}',
+                'rssImportPost' => '{#lazy:~/project/module/blog/configuration/rss/collection.config.php}',
+                'rssBlogTag' => '{#lazy:~/project/module/blog/configuration/rsstag/collection.config.php}',
 
                 'user' => '{#lazy:~/project/module/users/configuration/user/collection.config.php}',
                 'userGroup' => '{#lazy:~/project/module/users/configuration/group/collection.config.php}',

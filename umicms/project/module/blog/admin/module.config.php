@@ -18,6 +18,7 @@ return [
     SecureAdminComponent::OPTION_COMPONENTS => [
         'category' => '{#lazy:~/project/module/blog/admin/category/component.config.php}',
         'post' => '{#lazy:~/project/module/blog/admin/post/component.config.php}',
+        'author' => '{#lazy:~/project/module/blog/admin/author/component.config.php}',
         'comment' => '{#lazy:~/project/module/blog/admin/comment/component.config.php}',
         'tag' => '{#lazy:~/project/module/blog/admin/tag/component.config.php}'
     ],

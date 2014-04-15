@@ -95,7 +95,7 @@ return [
         BlogPost::FIELD_AUTHOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'author_id',
-            'target' => 'user'
+            'target' => 'blogAuthor'
         ],
         BlogPost::FIELD_PUBLISH_TIME => [
             'type' => IField::TYPE_DATE_TIME,
@@ -121,6 +121,10 @@ return [
             'type' => IField::TYPE_TEXT,
             'columnName' => 'announcement'
         ],
+        BlogPost::FIELD_SOURCE => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'source'
+        ],
         BlogPost::FIELD_PAGE_CONTENTS => [
             'type' => IField::TYPE_TEXT,
             'columnName' => 'contents'
@@ -142,7 +146,6 @@ return [
             'relatedField' => 'blogPost',
             'targetField' => 'tag'
         ],
-
         BlogPost::FIELD_COMMENTS_COUNT => [
             'type' => IField::TYPE_COUNTER,
             'columnName' => 'comments_count'

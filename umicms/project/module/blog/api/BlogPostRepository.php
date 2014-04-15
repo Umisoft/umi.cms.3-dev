@@ -122,7 +122,7 @@ class BlogPostRepository extends BaseObjectRepository
     /**
      * Возвращает пост по его последней части ЧПУ.
      * @param string $slug последняя часть ЧПУ поста
-     * @throws NonexistentEntityException если новость с заданной последней частью ЧПУ не существует
+     * @throws NonexistentEntityException если пост с заданной последней частью ЧПУ не существует
      * @return BlogPost
      */
     public function getBySlug($slug)
@@ -146,11 +146,37 @@ class BlogPostRepository extends BaseObjectRepository
     }
 
     /**
+     * Возвращает пост по его источнику.
+     * @param string $source
+     * @throws NonexistentEntityException
+     * @return BlogPost
+     */
+    public function getPostBySource($source)
+    {
+        $selector = $this->select()
+            ->where(BlogPost::FIELD_SOURCE)
+            ->equals($source);
+
+        $post = $selector->getResult()->fetch();
+
+        if (!$post instanceof BlogPost) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find blog post by source "{source}".',
+                    ['source' => $source]
+                )
+            );
+        }
+
+        return $post;
+    }
+
+    /**
      * Возвращает селектор для выбора постов категории.
      * @param BlogCategory $category категория
      * @return CmsSelector|BlogPost[]
      */
-    public function getNewsByRubric(BlogCategory $category)
+    public function getPostByRubric(BlogCategory $category)
     {
         return $this->select()
             ->where(BlogPost::FIELD_CATEGORY)
@@ -162,7 +188,7 @@ class BlogPostRepository extends BaseObjectRepository
      * @param BlogTag $tag
      * @return CmsSelector|BlogPost[]
      */
-    public function getNewsBySubject(BlogTag $tag)
+    public function getPostByTag(BlogTag $tag)
     {
         return $this->select()
             ->where(BlogPost::FIELD_TAGS)

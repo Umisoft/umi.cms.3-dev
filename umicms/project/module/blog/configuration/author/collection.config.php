@@ -10,17 +10,17 @@ use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
 
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
+    'type' => ICollectionFactory::TYPE_SIMPLE,
     'handlers' => [
-        'admin' => 'blog.category',
-        'site' => 'blog.category'
+        'admin' => 'blog.author',
+        'site' => 'blog.author'
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/category/form/base.edit.config.php}'
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/author/form/base.edit.config.php}'
         ]
     ],
     'dictionaries' => [
-        'collection\blogCategory', 'collection'
+        'collection\blogAuthor', 'collection'
     ]
 ];

@@ -13,6 +13,7 @@ return [
         'component:blog:displayName' => 'Blog',
         'component:category:displayName' => 'Category',
         'component:post:displayName' => 'Posts',
+        'component:author:displayName' => 'Authors',
         'component:tag:displayName' => 'Tags'
     ],
 
@@ -20,6 +21,7 @@ return [
         'component:blog:displayName' => 'Блог',
         'component:category:displayName' => 'Категории',
         'component:post:displayName' => 'Посты',
+        'component:author:displayName' => 'Авторы',
         'component:comment:displayName' => 'Комментарии',
         'component:tag:displayName' => 'Тэги'
     ]

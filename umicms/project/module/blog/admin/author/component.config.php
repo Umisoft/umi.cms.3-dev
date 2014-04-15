@@ -6,7 +6,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\admin\post;
+namespace umicms\project\module\blog\admin\author;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;

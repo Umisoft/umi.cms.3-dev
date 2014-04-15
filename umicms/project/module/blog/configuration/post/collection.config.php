@@ -7,12 +7,18 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
+use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
     'handlers' => [
         'admin' => 'blog.post',
         'site' => 'blog.post'
+    ],
+    'forms' => [
+        'base' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/post/form/base.edit.config.php}'
+        ]
     ],
     'dictionaries' => [
         'collection\blogPost', 'collection'

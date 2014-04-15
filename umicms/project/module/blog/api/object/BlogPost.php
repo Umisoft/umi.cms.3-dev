@@ -14,18 +14,18 @@ use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
-use umicms\project\module\users\api\UsersApi;
 
 /**
  * Пост блога.
  *
- * @property UsersApi $author автор поста
+ * @property BlogAuthor $author автор поста
  * @property string $announcement анонс
  * @property BlogCategory|null $category категория поста
  * @property IManyToManyObjectSet $tags тэги, к которым относится пост
  * @property DateTime $publishTime дата публикации поста
  * @property int $commentsCount количество комментариев к посту
  * @property string $oldUrl старый URL поста
+ * @property string $source источник поста
  */
 class BlogPost extends CmsObject implements ICmsPage
 {
@@ -59,5 +59,9 @@ class BlogPost extends CmsObject implements ICmsPage
      * Имя поля для хранения старого URL поста
      */
     const FIELD_OLD_URL = 'oldUrl';
+    /**
+     * Имя поля для хранения источника поста
+     */
+    const FIELD_SOURCE = 'source';
 }
  
