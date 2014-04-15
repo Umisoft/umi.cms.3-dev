@@ -19,6 +19,8 @@ use umi\route\IRouteFactory;
 use umi\templating\toolbox\TemplatingTools;
 use umicms\api\toolbox\ApiTools;
 use umicms\Bootstrap;
+use umicms\form\element\File;
+use umicms\form\element\Image;
 use umicms\form\element\Wysiwyg;
 
 return [
@@ -78,7 +80,9 @@ return [
             'factories' => [
                 'entity' => [
                     'elementTypes' => [
-                        Wysiwyg::TYPE_NAME => 'umicms\form\element\Wysiwyg'
+                        Wysiwyg::TYPE_NAME => 'umicms\form\element\Wysiwyg',
+                        File::TYPE_NAME => 'umicms\form\element\File',
+                        Image::TYPE_NAME => 'umicms\form\element\Image'
                     ]
                 ]
             ]
@@ -150,6 +154,8 @@ return [
                 'searchIndex' => '{#lazy:~/project/module/search/configuration/index/metadata.config.php}',
 
                 'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}',
+
+                'testTest' => '{#lazy:~/project/module/testmodule/configuration/test/metadata.config.php}',
             ],
 
             'collections' => [
@@ -179,6 +185,8 @@ return [
                 'searchIndex' => '{#lazy:~/project/module/search/configuration/index/collection.config.php}',
 
                 'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}',
+
+                'testTest' => '{#lazy:~/project/module/testmodule/configuration/test/collection.config.php}',
             ]
         ],
 

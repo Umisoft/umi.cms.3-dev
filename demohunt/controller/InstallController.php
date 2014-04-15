@@ -91,6 +91,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->installSearch();
         $this->installBackup();
 
+        $this->installTest();
+
         return $this->createResponse('Installed');
     }
 
@@ -311,7 +313,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>Существует ли разговорник для общения с НЛО? Основы этикета?</p>')
             ->setValue('post', $post2);
         $comment3->getValue('publishTime')->setTimestamp(strtotime('2012-11-15 15:05:34'));
-
     }
 
     protected function installNews()
@@ -1432,6 +1433,48 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $subjectCollection = $this->getCollectionManager()->getCollection('newsSubject');
         $subject = $subjectCollection->get('0d106acb-92a9-4145-a35a-86acd5c802c7');
         $this->backupRepository->createBackup($subject);
+
+        $this->getObjectPersister()->commit();
+    }
+
+    protected function installTest()
+    {
+        $connection = $this->dbCluster->getConnection();
+
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_module_test`");
+
+        $connection->exec(
+            "CREATE TABLE `demohunt_module_test` (
+                `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                `guid` varchar(255),
+                `version` int(10) unsigned DEFAULT '1',
+                `type` varchar(255),
+                `display_name` varchar(255) DEFAULT NULL,
+
+                `text` varchar(255) DEFAULT NULL,
+                `textarea` varchar(255) DEFAULT NULL,
+                `select` varchar(255) DEFAULT NULL,
+                `radio` varchar(255) DEFAULT NULL,
+                `password` varchar(255) DEFAULT NULL,
+                `checkbox` varchar(255) DEFAULT NULL,
+
+                `date` varchar(255) DEFAULT NULL,
+                `date_time` varchar(255) DEFAULT NULL,
+                `email` varchar(255) DEFAULT NULL,
+                `number` varchar(255) DEFAULT NULL,
+                `time` varchar(255) DEFAULT NULL,
+                `file` varchar(255) DEFAULT NULL,
+                `image` varchar(255) DEFAULT NULL,
+
+                PRIMARY KEY (`id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8
+            "
+        );
+
+        $testCollection = $this->getCollectionManager()->getCollection('testTest');
+
+        $testCollection->add()
+            ->setValue('displayName', 'test 1');
 
         $this->getObjectPersister()->commit();
     }
