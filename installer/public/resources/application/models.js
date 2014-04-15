@@ -104,7 +104,18 @@ define([], function(){
                 var object = this;
 
                 for(var key in changedRelationships){
-                    if(!(key in loadedRelationships) || loadedRelationships[key] !== changedRelationships[key]){
+                    if(!(key in loadedRelationships)){
+                        isDirty = true;
+                    } else if(Object.prototype.toString.call(loadedRelationships[key]).slice(8, -1) === 'Array' && Object.prototype.toString.call(changedRelationships[key]).slice(8, -1) === 'Array'){
+                        if(loadedRelationships[key].length !== changedRelationships[key].length){
+                            isDirty = true;
+                        } else{
+                            isDirty = changedRelationships[key].every(function(id){
+                                if(loadedRelationships[key].contains(id)) { return true; }
+                            });
+                            isDirty = !isDirty;
+                        }
+                    } else if(loadedRelationships[key] !== changedRelationships[key]){
                         isDirty = true;
                     }
                 }
