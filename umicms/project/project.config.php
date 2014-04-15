@@ -14,6 +14,7 @@ use umi\extension\twig\TwigTemplateEngine;
 use umi\form\toolbox\FormTools;
 use umi\hmvc\component\IComponent;
 use umi\i18n\toolbox\I18nTools;
+use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\OrmTools;
 use umi\route\IRouteFactory;
 use umi\templating\toolbox\TemplatingTools;
@@ -127,6 +128,11 @@ return [
                 ],
                 'selector' => [
                     'selectorClass' => 'umicms\orm\selector\CmsSelector'
+                ],
+                'metadata' => [
+                    'fieldTypes' => [
+                        IField::TYPE_BELONGS_TO => 'umicms\orm\metadata\field\relation\BelongsToRelationField'
+                    ]
                 ]
             ],
             'metadata'    => [
