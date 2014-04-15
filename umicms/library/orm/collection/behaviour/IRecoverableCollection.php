@@ -22,6 +22,14 @@ use umicms\project\module\service\api\object\Backup;
 interface IRecoverableCollection extends ICmsCollection
 {
     /**
+     * Создаёт резервную копию объекта.
+     * @param IRecoverableObject $object
+     * @throws NotAllowedOperationException если объект не принадлежит коллекции.
+     * @return $this
+     */
+    public function createBackup(IRecoverableObject $object);
+
+    /**
      * Возвращает список резервных копий для объекта.
      * @param IRecoverableObject $object
      * @throws NotAllowedOperationException если объект не принадлежит коллекции.

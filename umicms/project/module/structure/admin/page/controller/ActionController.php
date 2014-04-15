@@ -62,14 +62,14 @@ class ActionController extends BaseRestActionController
     {
         $collectionName = $this->getRequiredQueryVar('collection');
 
-        if ($collectionName != $this->api->element()->collectionName) {
+        if ($collectionName != $this->api->element()->getName()) {
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
         }
 
         $typeName = $this->getRequiredQueryVar('type');
         $formName = $this->getRequiredQueryVar('form');
 
-        return $this->api->element()->getCollection()->getForm($typeName, $formName);
+        return $this->api->element()->getForm($typeName, $formName);
     }
 
     protected function actionMove()

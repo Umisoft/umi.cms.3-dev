@@ -34,6 +34,20 @@ trait TRecoverableCollection
     abstract protected function translate($message, array $placeholders = [], $localeId = null);
 
     /**
+     * @see IRecoverableCollection::createBackup()
+     */
+    public function createBackup(IRecoverableObject $object)
+    {
+        if ($object->getCollection() !== $this) {
+            throw new NotAllowedOperationException($this->translate(
+                'Cannot create object backup. Object from another collection given.'
+            ));
+        }
+
+        return $this->getBackupCollection()->createBackup($object);
+    }
+
+    /**
      * @see IRecoverableCollection::getBackupList()
      */
     public function getBackupList(IRecoverableObject $object)

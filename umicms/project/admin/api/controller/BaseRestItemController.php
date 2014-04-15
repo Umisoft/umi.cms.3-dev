@@ -21,21 +21,18 @@ use umi\orm\objectset\IManyToManyObjectSet;
 use umi\orm\objectset\IObjectSet;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\api\IApiAware;
-use umicms\api\toolbox\TApiAware;
 use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
+use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
-use umicms\project\module\service\api\collection\BackupCollection;
 
 /**
  * Базовый контроллер Read-Update-Delete операций над объектом.
  */
-abstract class BaseRestItemController extends BaseRestController implements IObjectPersisterAware, IApiAware
+abstract class BaseRestItemController extends BaseRestController implements IObjectPersisterAware
 {
     use TObjectPersisterAware;
-    use TApiAware;
 
     /**
      * Возвращает объект.
@@ -64,12 +61,9 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
             case 'PUT': {
                 $object = $this->get();
 
-                if ($object instanceof IRecoverableObject) {
-                    /**
-                     * @var BackupCollection $backupApi
-                     */
-                    $backupApi = $this->getApi('umicms\project\module\service\api\collection\BackupRepository');
-                    $backupApi->createBackup($object);
+                $collection = $object->getCollection();
+                if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
+                    $collection->createBackup($object);
                 }
 
                 return $this->createViewResponse(

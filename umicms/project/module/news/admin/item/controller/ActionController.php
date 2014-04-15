@@ -61,14 +61,14 @@ class ActionController extends BaseRestActionController
     {
         $collectionName = $this->getRequiredQueryVar('collection');
 
-        if ($collectionName != $this->api->news()->collectionName) {
+        if ($collectionName != $this->api->news()->getName()) {
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
         }
 
         $typeName = $this->getRequiredQueryVar('type');
         $formName = $this->getRequiredQueryVar('form');
 
-        return $this->api->news()->getCollection()->getForm($typeName, $formName);
+        return $this->api->news()->getForm($typeName, $formName);
     }
 
     /**
