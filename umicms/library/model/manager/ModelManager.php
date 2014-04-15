@@ -83,6 +83,11 @@ class ModelManager implements IDbClusterAware
         //TODO
     }
 
+    protected function applyConfigChanges()
+    {
+
+    }
+
     /**
      * Применят миграции таблиц моделей.
      * @throws RuntimeException если не удалось выполнить миграции
