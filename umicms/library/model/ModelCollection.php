@@ -86,7 +86,7 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
     }
 
     /**
-     * Добавляет модель в группу. Если группы не существует, она будет создана.
+     * Добавляет модель.
      * @param string $modelName имя модели
      * @param array $modelConfig конфигурация
      * @throws AlreadyExistentEntityException если модель с заданным именем существует
