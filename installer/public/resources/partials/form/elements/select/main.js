@@ -14,27 +14,9 @@ define(['App'], function(UMI){
                 var object = this.get('object');
                 var property = this.get('meta.dataSource');
                 var selectedObject = this.get('selection');
-                var savedRelationId = this.get('savedRelationId');
-                var oldId = savedRelationId || undefined;
-                var newId = selectedObject ? selectedObject.get('id') : undefined;
-                if(oldId !== newId){
-                    if(newId){
-                        object.set(property, selectedObject);
-                    } else{
-                        object.set(property, newId);
-                    }
-                    object.send('becomeDirty');//TODO: Перенести в ядро REST Adapter
-                } else if(object.get('isDirty')){
-                    var changedAttributes = object.changedAttributes();
-                    if(JSON.stringify(changedAttributes) === JSON.stringify({})){
-                        object.send('rolledBack');
-                    }
-                }
+                object.set(property, selectedObject || undefined);
+                object.changeRelationshipsValue(property, selectedObject ? selectedObject.get('id') : undefined);
             }.observes('value'),
-            /**
-             Сохранённое значение
-             */
-            savedRelationId: null,
             init: function(){
                 this._super();
                 var self = this;
@@ -54,11 +36,11 @@ define(['App'], function(UMI){
                 });
 
                 object.on('didUpdate', function(){// TODO: Событие всплывает 2 раза подряд
-                    self.set('savedRelationId', self.get('selection.id'));
+                    Ember.set(object.get('loadedRelationshipsByName'), property, self.get('selection.id') || undefined);
                 });
 
                 return Ember.RSVP.all(promises).then(function(results){
-                    self.set('savedRelationId', results[0] ? results[0].get('id') : undefined);
+                    Ember.set(object.get('loadedRelationshipsByName'), property, results[0] ? results[0].get('id') : undefined);
                     self.set('selection', results[0]);
                     self.set('content', results[1]);
                 });

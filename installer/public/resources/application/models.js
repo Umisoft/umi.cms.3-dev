@@ -93,6 +93,30 @@ define([], function(){
                 }
                 activeErrors = i ? activeErrors : null;
                 this.set('validErrors', activeErrors);
+            },
+            loadedRelationshipsByName: {},
+            changedRelationshipsByName: {},
+            changeRelationshipsValue: function(property, value){
+                var loadedRelationships = this.get('loadedRelationshipsByName');
+                var changedRelationships = this.get('changedRelationshipsByName');
+                Ember.set(changedRelationships, property, value);
+                var isDirty = false;
+                var object = this;
+
+                for(var key in changedRelationships){
+                    if(!(key in loadedRelationships) || loadedRelationships[key] !== changedRelationships[key]){
+                        isDirty = true;
+                    }
+                }
+
+                if(isDirty){
+                    object.send('becomeDirty');
+                } else{
+                    var changedAttributes = object.changedAttributes();
+                    if(JSON.stringify(changedAttributes) === JSON.stringify({})){
+                        object.send('rolledBack');
+                    }
+                }
             }
         });
 
