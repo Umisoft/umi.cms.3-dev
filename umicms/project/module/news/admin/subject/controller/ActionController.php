@@ -13,7 +13,7 @@ use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsSubject;
 use umicms\project\module\service\api\object\Backup;
 
@@ -23,15 +23,15 @@ use umicms\project\module\service\api\object\Backup;
 class ActionController extends BaseRestActionController
 {
     /**
-     * @var NewsApi $api
+     * @var NewsModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param NewsApi $api
+     * @param NewsModule $api
      */
-    public function __construct(NewsApi $api)
+    public function __construct(NewsModule $api)
     {
         $this->api = $api;
     }
@@ -61,14 +61,14 @@ class ActionController extends BaseRestActionController
     {
         $collectionName = $this->getRequiredQueryVar('collection');
 
-        if ($collectionName != $this->api->subject()->collectionName) {
+        if ($collectionName != $this->api->subject()->getName()) {
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
         }
 
         $typeName = $this->getRequiredQueryVar('type');
         $formName = $this->getRequiredQueryVar('form');
 
-        return $this->api->subject()->getCollection()->getForm($typeName, $formName);
+        return $this->api->subject()->getForm($typeName, $formName);
     }
 
     /**
@@ -139,6 +139,6 @@ class ActionController extends BaseRestActionController
         $backupId = $this->getRequiredQueryVar('backupId');
         $newsSubject = $this->api->subject()->getById($newsSubjectId);
 
-        return $this->api->subject()->getBackup($newsSubject, $backupId);
+        return $this->api->subject()->wakeUpBackup($newsSubject, $backupId);
     }
 }

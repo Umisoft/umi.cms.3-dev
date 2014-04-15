@@ -11,6 +11,7 @@ use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
+    'class' => 'umicms\project\module\news\api\collection\NewsRubricCollection',
     'handlers' => [
         'admin' => 'news.rubric',
         'site' => 'news.rubric'

@@ -14,7 +14,7 @@ use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\admin\component\AdminComponent;
-use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\site\component\SiteComponent;
 
@@ -28,7 +28,7 @@ class UrlManager implements IUrlManager
      */
     protected $dispatcher;
     /**
-     * @var StructureApi $structureApi API структуры сайта
+     * @var StructureModule $structureApi API структуры сайта
      */
     protected $structureApi;
     /**
@@ -51,9 +51,9 @@ class UrlManager implements IUrlManager
     /**
      * Конструктор.
      * @param Dispatcher $dispatcher диспетчер компонентов
-     * @param StructureApi $structureApi
+     * @param StructureModule $structureApi
      */
-    public function __construct(Dispatcher $dispatcher, StructureApi $structureApi)
+    public function __construct(Dispatcher $dispatcher, StructureModule $structureApi)
     {
         $this->dispatcher = $dispatcher;
         $this->structureApi = $structureApi;

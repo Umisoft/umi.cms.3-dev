@@ -11,7 +11,7 @@ namespace umicms\project\module\news\admin\rubric\controller;
 
 use umicms\exception\RuntimeException;
 use umicms\project\admin\api\controller\BaseRestListController;
-use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\NewsModule;
 
 /**
  * Контроллер действий над списком.
@@ -20,15 +20,15 @@ class ListController extends BaseRestListController
 {
 
     /**
-     * @var NewsApi $api
+     * @var NewsModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param NewsApi $api
+     * @param NewsModule $api
      */
-    public function __construct(NewsApi $api)
+    public function __construct(NewsModule $api)
     {
         $this->api = $api;
     }
@@ -38,7 +38,7 @@ class ListController extends BaseRestListController
      */
     protected function getCollectionName()
     {
-        return $this->api->rubric()->collectionName;
+        return $this->api->rubric()->getName();
     }
 
     /**

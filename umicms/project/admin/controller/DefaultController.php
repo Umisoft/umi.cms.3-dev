@@ -14,7 +14,7 @@ use umi\i18n\TLocalesAware;
 use umicms\hmvc\controller\BaseController;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\project\module\users\api\UsersApi;
+use umicms\project\module\users\api\UsersModule;
 
 /**
  * Контроллер интерфейса административной панели.
@@ -31,16 +31,16 @@ class DefaultController extends BaseController implements ILocalesAware, IUrlMan
     protected $response;
 
     /**
-     * @var UsersApi $api
+     * @var UsersModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
      * @param Response $response
-     * @param UsersApi $api
+     * @param UsersModule $api
      */
-    public function __construct(Response $response, UsersApi $api)
+    public function __construct(Response $response, UsersModule $api)
     {
         $this->response = $response;
         $this->api = $api;

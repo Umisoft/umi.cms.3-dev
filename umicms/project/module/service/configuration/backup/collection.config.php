@@ -11,6 +11,7 @@ use umi\orm\collection\ICollectionFactory;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
+    'class' => 'umicms\project\module\service\api\collection\BackupCollection',
     'handlers' => [
         'admin' => 'service.backup',
     ],

@@ -11,6 +11,7 @@ use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
+    'class' => 'umicms\project\module\users\api\collection\UserCollection',
     'handlers' => [
         'admin' => 'users.user'
     ],

@@ -9,11 +9,10 @@
 
 namespace umicms\project\module\structure\admin\page\controller;
 
-use umicms\exception\RuntimeException;
+use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\ICmsObject;
-use umicms\orm\object\IRecyclableObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
-use umicms\project\module\structure\api\StructureApi;
+use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\StructureElement;
 
 /**
@@ -22,15 +21,15 @@ use umicms\project\module\structure\api\object\StructureElement;
 class ItemController extends BaseRestItemController
 {
     /**
-     * @var StructureApi $api
+     * @var StructureModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param StructureApi $api
+     * @param StructureModule $api
      */
-    public function __construct(StructureApi $api)
+    public function __construct(StructureModule $api)
     {
         $this->api = $api;
     }

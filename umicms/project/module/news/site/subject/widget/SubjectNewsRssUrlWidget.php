@@ -11,7 +11,7 @@ namespace umicms\project\module\news\site\subject\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
-use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsSubject;
 
 /**
@@ -30,15 +30,15 @@ class SubjectNewsRssUrlWidget extends BaseSecureWidget
     public $subject;
 
     /**
-     * @var NewsApi $api API модуля "Новости"
+     * @var NewsModule $api API модуля "Новости"
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param NewsApi $newsApi API модуля "Новости"
+     * @param NewsModule $newsApi API модуля "Новости"
      */
-    public function __construct(NewsApi $newsApi)
+    public function __construct(NewsModule $newsApi)
     {
         $this->api = $newsApi;
     }

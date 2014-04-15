@@ -9,6 +9,7 @@
 
 namespace demohunt\controller;
 
+use Doctrine\DBAL\DBALException;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\driver\IDialect;
 use umi\http\Response;
@@ -23,16 +24,17 @@ use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseController;
+use umicms\project\module\news\api\collection\RssImportScenarioCollection;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchIndexApi;
-use umicms\project\module\service\api\BackupRepository;
+use umicms\project\module\service\api\collection\BackupCollection;
 use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\object\Guest;
 use umicms\project\module\users\api\object\Supervisor;
 use umicms\project\module\users\api\object\UserGroup;
-use umicms\project\module\users\api\UsersApi;
+use umicms\project\module\users\api\UsersModule;
 
 /**
  * Class InstallController
@@ -49,7 +51,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     protected $dbCluster;
     /**
-     * @var UsersApi $usersApi
+     * @var UsersModule $usersApi
      */
     protected $usersApi;
 
@@ -63,12 +65,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     protected $backupRepository;
     private $searchIndexApi;
 
-    public function __construct(IDbCluster $dbCluster, UsersApi $usersApi, SearchIndexApi $searchIndexApi, BackupRepository $backupRepository)
+    public function __construct(IDbCluster $dbCluster, UsersModule $usersApi, SearchIndexApi $searchIndexApi)
     {
         $this->dbCluster = $dbCluster;
         $this->usersApi = $usersApi;
         $this->searchIndexApi = $searchIndexApi;
-        $this->backupRepository = $backupRepository;
     }
 
     /**
@@ -77,19 +78,23 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     public function __invoke()
     {
-        $this->installDbStructure();
+        try {
+            $this->installDbStructure();
 
-        $this->installUsers();
-        $this->installStructure();
-        $this->installNews();
-        $this->installGratitude();
-        $this->installBlog();
+            $this->installUsers();
+            $this->installStructure();
+            $this->installNews();
+            $this->installGratitude();
+            $this->installBlog();
 
-        $this->getObjectPersister()->commit();
-        $this->getObjectManager()->unloadObjects();
+            $this->getObjectPersister()->commit();
+            $this->getObjectManager()->unloadObjects();
 
-        $this->installSearch();
-        $this->installBackup();
+            $this->installSearch();
+            $this->installBackup();
+        } catch (DBALException $e) {
+            var_dump($e->getMessage());
+        }
 
         return $this->createResponse('Installed');
     }
@@ -271,9 +276,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $newsCollection = $this->getCollectionManager()->getCollection('newsItem');
         /**
-         * @var SimpleCollection $rssItemCollection
+         * @var RssImportScenarioCollection $rssScenarioCollection
          */
-        $rssItemCollection = $this->getCollectionManager()->getCollection('rssImportItem');
+        $rssScenarioCollection = $this->getCollectionManager()->getCollection('rssImportScenario');
         /**
          * @var SimpleHierarchicCollection $rubricCollection
          */
@@ -406,15 +411,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 ->getValue('date')->setTimestamp(strtotime('2010-08-02 17:35:00'));
         }
 
-        $rssItemCollection->add()
+        $rssScenarioCollection->add()
             ->setValue('displayName', 'Scripting News')
             ->setValue('rssUrl', 'http://static.userland.com/gems/backend/rssTwoExample2.xml');
 
-        $rssItemCollection->add()
+        $rssScenarioCollection->add()
             ->setValue('displayName', 'Хабрахабр / Захабренные / Тематические / Посты')
             ->setValue('rssUrl', 'http://habrahabr.ru/rss/hubs/');
 
-        $rssItemCollection->add()
+        $rssScenarioCollection->add()
             ->setValue('displayName', 'DLE-News (windows-1251)')
             ->setValue('rssUrl', 'http://dle-news.ru/rss.xml');
 
@@ -905,9 +910,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $connection->exec("DROP TABLE IF EXISTS `demohunt_news_news_item`");
         $connection->exec("DROP TABLE IF EXISTS `demohunt_news_subject`");
         $connection->exec("DROP TABLE IF EXISTS `demohunt_news_news_item_subject`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_rss_rss_item`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_rss_rss_item_subject`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_rss_rss_item`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_rss_import_scenario`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_rss_import_scenario_subject`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_rss_import_scenario`");
 
         $connection->exec(
             "
@@ -1020,16 +1025,13 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `meta_title` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
-                    `rss_item_id` bigint(20) unsigned DEFAULT NULL,
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `news_subject_guid` (`guid`),
                     UNIQUE KEY `news_subject_slug` (`slug`),
                     KEY `news_subject_type` (`type`),
                     KEY `news_subject_layout` (`layout_id`),
-                    KEY `news_news_item_rss_subject` (`rss_item_id`),
                     CONSTRAINT `FK_news_subject_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_rss_subject` FOREIGN KEY (`rss_item_id`) REFERENCES `demohunt_rss_rss_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_news_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_news_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
@@ -1069,7 +1071,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $connection->exec(
             "
-                CREATE TABLE `demohunt_rss_rss_item_subject` (
+                CREATE TABLE `demohunt_news_rss_import_scenario_subject` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
                     `guid` varchar(255),
                     `type` varchar(255),
@@ -1082,25 +1084,25 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
 
-                    `rss_item_id` bigint(20) unsigned,
+                    `rss_import_scenario_id` bigint(20) unsigned,
                     `subject_id` bigint(20) unsigned,
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `rss_rss_item_subject_guid` (`guid`),
                     KEY `rss_rss_item_subject_type` (`type`),
-                    KEY `rss_rss_item_subject_item` (`rss_item_id`),
-                    KEY `rss_rss_item_subject_subject` (`subject_id`),
-                    CONSTRAINT `FK_rss_rss_item_subject_item` FOREIGN KEY (`rss_item_id`) REFERENCES `demohunt_rss_rss_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_rss_item_subject_subject` FOREIGN KEY (`subject_id`) REFERENCES `demohunt_news_subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_rss_item_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_rss_item_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                    KEY `rss_rss_item_subject_item` (`rss_import_scenario_id`),
+                    KEY `rss_import_scenario_subject` (`subject_id`),
+                    CONSTRAINT `FK_rss_rss_item_subject_item` FOREIGN KEY (`rss_import_scenario_id`) REFERENCES `demohunt_news_rss_import_scenario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_import_scenario_subject` FOREIGN KEY (`subject_id`) REFERENCES `demohunt_news_subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_import_scenario_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_import_scenario_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
 
         $connection->exec(
             "
-                CREATE TABLE `demohunt_rss_rss_item` (
+                CREATE TABLE `demohunt_news_rss_import_scenario` (
                     `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
                     `guid` varchar(255),
                     `type` varchar(255),
@@ -1302,24 +1304,29 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $structureCollection = $this->getCollectionManager()->getCollection('structure');
 
+        /**
+         * @var BackupCollection $backupCollection
+         */
+        $backupCollection = $this->getCollectionManager()->getCollection('serviceBackup');
+
         $page = $structureCollection->get('d534fd83-0f12-4a0d-9853-583b9181a948');
-        $this->backupRepository->createBackup($page);
+        $backupCollection->createBackup($page);
         $page = $structureCollection->get('3d765c94-bb80-4e8f-b6d9-b66c3ea7a5a4');
-        $this->backupRepository->createBackup($page);
+        $backupCollection->createBackup($page);
         $page = $structureCollection->get('98751ebf-7f76-4edb-8210-c2c3305bd8a0');
-        $this->backupRepository->createBackup($page);
+        $backupCollection->createBackup($page);
 
         $newsCollection = $this->getCollectionManager()->getCollection('newsItem');
         $news = $newsCollection->get('d6eb9ad1-667e-429d-a476-fa64c5eec115');
-        $this->backupRepository->createBackup($news);
+        $backupCollection->createBackup($news);
 
         $rubricCollection = $this->getCollectionManager()->getCollection('newsRubric');
         $rubric = $rubricCollection->get('8650706f-04ca-49b6-a93d-966a42377a61');
-        $this->backupRepository->createBackup($rubric);
+        $backupCollection->createBackup($rubric);
 
         $subjectCollection = $this->getCollectionManager()->getCollection('newsSubject');
         $subject = $subjectCollection->get('0d106acb-92a9-4145-a35a-86acd5c802c7');
-        $this->backupRepository->createBackup($subject);
+        $backupCollection->createBackup($subject);
 
         $this->getObjectPersister()->commit();
     }

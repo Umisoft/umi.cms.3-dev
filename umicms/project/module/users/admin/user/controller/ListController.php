@@ -10,7 +10,7 @@
 namespace umicms\project\module\users\admin\user\controller;
 
 use umicms\project\admin\api\controller\BaseRestListController;
-use umicms\project\module\users\api\UsersApi;
+use umicms\project\module\users\api\UsersModule;
 
 /**
  * Контроллер действий над списком.
@@ -19,15 +19,15 @@ class ListController extends BaseRestListController
 {
 
     /**
-     * @var UsersApi $api
+     * @var UsersModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param UsersApi $api
+     * @param UsersModule $api
      */
-    public function __construct(UsersApi $api)
+    public function __construct(UsersModule $api)
     {
         $this->api = $api;
     }
@@ -37,7 +37,7 @@ class ListController extends BaseRestListController
      */
     protected function getCollectionName()
     {
-        return $this->api->user()->collectionName;
+        return $this->api->user()->getName();
     }
 
     /**

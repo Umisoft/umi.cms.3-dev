@@ -12,7 +12,7 @@ namespace umicms\project\module\news\site\rubric\controller;
 use umi\http\Response;
 use umicms\hmvc\controller\BaseSecureController;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\NewsModule;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 
@@ -24,15 +24,15 @@ class NewsRubricRssController extends BaseSecureController implements ISiteSetti
     use TSiteSettingsAware;
 
     /**
-     * @var NewsApi $api
+     * @var NewsModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param NewsApi $api
+     * @param NewsModule $api
      */
-    public function __construct(NewsApi $api)
+    public function __construct(NewsModule $api)
     {
         $this->api = $api;
     }
@@ -47,7 +47,7 @@ class NewsRubricRssController extends BaseSecureController implements ISiteSetti
 
         $newsRubric = $this->api->rubric()->getByUri($urlRubric);
 
-        $newsRubricItems = $this->api->getRubricNews([$newsRubric]);
+        $newsRubricItems = $this->api->getNewsByRubrics([$newsRubric]);
 
         $rssFeed = $this->api->getNewsRssFeed(
             $newsRubric->displayName,

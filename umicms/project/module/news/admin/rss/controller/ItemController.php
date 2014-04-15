@@ -11,8 +11,8 @@ namespace umicms\project\module\news\admin\rss\controller;
 
 use umicms\orm\object\ICmsObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
-use umicms\project\module\news\api\NewsApi;
-use umicms\project\module\news\api\object\RssImportItem;
+use umicms\project\module\news\api\NewsModule;
+use umicms\project\module\news\api\object\RssImportScenario;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
@@ -20,15 +20,15 @@ use umicms\project\module\news\api\object\RssImportItem;
 class ItemController extends BaseRestItemController
 {
     /**
-     * @var NewsApi $api
+     * @var NewsModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param NewsApi $api
+     * @param NewsModule $api
      */
-    public function __construct(NewsApi $api)
+    public function __construct(NewsModule $api)
     {
         $this->api = $api;
     }
@@ -39,7 +39,7 @@ class ItemController extends BaseRestItemController
     protected function get()
     {
         $id = $this->getRouteVar('id');
-        return $this->api->rss()->getById($id);
+        return $this->api->rssImport()->getById($id);
     }
 
     /**
@@ -47,8 +47,8 @@ class ItemController extends BaseRestItemController
      */
     protected function delete(ICmsObject $object)
     {
-        if ($object instanceof RssImportItem) {
-            $this->api->rss()->delete($object);
+        if ($object instanceof RssImportScenario) {
+            $this->api->rssImport()->delete($object);
             $this->getObjectPersister()->commit();
         }
     }

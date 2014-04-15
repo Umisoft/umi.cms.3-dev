@@ -11,7 +11,7 @@ namespace umicms\project\module\news\admin\item\controller;
 
 use umicms\orm\object\ICmsObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
-use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsItem;
 
 /**
@@ -20,15 +20,15 @@ use umicms\project\module\news\api\object\NewsItem;
 class ItemController extends BaseRestItemController
 {
     /**
-     * @var NewsApi $api
+     * @var NewsModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param NewsApi $api
+     * @param NewsModule $api
      */
-    public function __construct(NewsApi $api)
+    public function __construct(NewsModule $api)
     {
         $this->api = $api;
     }

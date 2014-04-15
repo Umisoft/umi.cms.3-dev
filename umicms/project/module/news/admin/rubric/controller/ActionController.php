@@ -15,7 +15,7 @@ use umi\http\Response;
 use umi\orm\object\IObject;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\module\news\api\NewsApi;
+use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsRubric;
 use umicms\project\module\service\api\object\Backup;
 
@@ -25,15 +25,15 @@ use umicms\project\module\service\api\object\Backup;
 class ActionController extends BaseRestActionController
 {
     /**
-     * @var NewsApi $api
+     * @var NewsModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param NewsApi $api
+     * @param NewsModule $api
      */
-    public function __construct(NewsApi $api)
+    public function __construct(NewsModule $api)
     {
         $this->api = $api;
     }
@@ -63,14 +63,14 @@ class ActionController extends BaseRestActionController
     {
         $collectionName = $this->getRequiredQueryVar('collection');
 
-        if ($collectionName != $this->api->rubric()->collectionName) {
+        if ($collectionName != $this->api->rubric()->getName()) {
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
         }
 
         $typeName = $this->getRequiredQueryVar('type');
         $formName = $this->getRequiredQueryVar('form');
 
-        return $this->api->rubric()->getCollection()->getForm($typeName, $formName);
+        return $this->api->rubric()->getForm($typeName, $formName);
     }
 
     protected function actionMove()
@@ -171,6 +171,6 @@ class ActionController extends BaseRestActionController
         $backupId = $this->getRequiredQueryVar('backupId');
         $newsRubric = $this->api->rubric()->getById($newsRubricId);
 
-        return $this->api->rubric()->getBackup($newsRubric, $backupId);
+        return $this->api->rubric()->wakeUpBackup($newsRubric, $backupId);
     }
 }
