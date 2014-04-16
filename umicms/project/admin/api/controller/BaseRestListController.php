@@ -53,9 +53,21 @@ abstract class BaseRestListController extends BaseRestController implements IObj
     {
         switch($this->getRequest()->getMethod()) {
             case 'GET': {
+
+                $list = $this->applySelectorConditions($this->getList());
+                $result = ['collection' => $list];
+
+                if ($list->getLimit()) {
+                    $result['meta'] = [
+                        'limit' => $list->getLimit(),
+                        'offset' => $list->getOffset(),
+                        'total' => $list->getTotal()
+                    ];
+                }
+
                 return $this->createViewResponse(
                     'list',
-                    ['collection' => $this->applySelectorConditions($this->getList())]
+                    $result
                 );
             }
             case 'PUT':
@@ -106,7 +118,7 @@ abstract class BaseRestListController extends BaseRestController implements IObj
     protected function applySelectorConditions(ISelector $selector)
     {
 
-        $selector->limit($this->getQueryVar('limit'), $this->getQueryVar('offset'));
+        $selector->limit((int) $this->getQueryVar('limit'), (int) $this->getQueryVar('offset'));
 
         if ($fields = $this->getQueryVar('fields')) {
             $this->applySelectorFieldFilter($selector, $fields);
