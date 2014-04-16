@@ -139,6 +139,6 @@ class ActionController extends BaseRestActionController
         $backupId = $this->getRequiredQueryVar('backupId');
         $newsSubject = $this->api->subject()->getById($newsSubjectId);
 
-        return $this->api->subject()->getBackup($newsSubject, $backupId);
+        return $this->api->subject()->wakeUpBackup($newsSubject, $backupId);
     }
 }

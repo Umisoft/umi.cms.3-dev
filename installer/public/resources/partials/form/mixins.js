@@ -6,14 +6,14 @@ define(['App'], function(UMI){
             validator: null,
             focusOut: function(){
                 if(this.get('validator') === 'collection'){
-                    var object = this.get('templateData.keywords.object');
+                    var object = this.get('templateData.view.object');
                     object.filterProperty(this.get('dataSource'));
                     object.validateProperty(this.get('dataSource'));
                 }
             },
             focusIn: function(){
                 if(this.get('validator') === 'collection'){
-                    this.get('templateData.keywords.object').clearValidateForProperty(this.get('dataSource'));
+                    this.get('templateData.view.object').clearValidateForProperty(this.get('dataSource'));
                 }
             }
         });

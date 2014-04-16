@@ -27,7 +27,7 @@ use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseController;
 use umicms\project\module\news\api\collection\NewsRssImportScenarioCollection;
 use umicms\project\module\search\api\SearchApi;
-use umicms\project\module\search\api\SearchIndexApi;
+use umicms\project\module\search\api\SearchModule;
 use umicms\project\module\service\api\collection\BackupCollection;
 use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\module\structure\api\object\StructureElement;
@@ -66,11 +66,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     protected $backupRepository;
     private $searchIndexApi;
 
-    public function __construct(IDbCluster $dbCluster, UsersModule $usersApi, SearchIndexApi $searchIndexApi)
+    public function __construct(IDbCluster $dbCluster, UsersModule $usersApi, SearchModule $searchModule)
     {
         $this->dbCluster = $dbCluster;
         $this->usersApi = $usersApi;
-        $this->searchIndexApi = $searchIndexApi;
+        $this->searchIndexApi = $searchModule->getSearchApi();
     }
 
     /**

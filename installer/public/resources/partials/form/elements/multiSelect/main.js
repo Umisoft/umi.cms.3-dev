@@ -10,7 +10,6 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
             placeholder: '',
             collection: null,
             selectedIds: [],
-            savedObjectsIds: null,
             filterIds: [],
             filterOn: false,
             inputInFocus: false,
@@ -66,34 +65,18 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                 }
             }.observes('isOpen'),
             changeRelations: function(type, id){
-                var self = this;
                 var object = this.get('object');
                 var selectedObject = this.get('collection').findBy('id', id);
-                var relation = object.get(this.get('meta.dataSource'));
-                if(type === 'select'){
-                    relation.pushObject(selectedObject);
-                } else{
-                    relation.removeObject(selectedObject);
-                }
+                var property = this.get('meta.dataSource');
+                var relation = object.get(property);
                 return relation.then(function(relation){
-                    var isNotDirty;
-                    var savedObjectsIds = self.get('savedObjectsIds');
-                    var Ids = relation.get('content').mapBy('id');
-                    if(savedObjectsIds.length !== Ids.length){
-                        object.send('becomeDirty');
+                    if(type === 'select'){
+                        relation.pushObject(selectedObject);
                     } else{
-                        isNotDirty = savedObjectsIds.every(function(id) {
-                            if(Ids.contains(id)) { return true; }
-                        });
-                        if(isNotDirty){
-                            var changedAttributes = object.changedAttributes();
-                            if(JSON.stringify(changedAttributes) === JSON.stringify({})){
-                                object.send('rolledBack');
-                            }
-                        } else{
-                            object.send('becomeDirty');
-                        }
+                        relation.removeObject(selectedObject);
                     }
+                    var Ids = relation.get('content').mapBy('id');
+                    object.changeRelationshipsValue(property, Ids);
                 });
             },
             actions: {
@@ -230,7 +213,7 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                 return Ember.RSVP.all(promises).then(function(results){
                     self.set('collection', results[1]);
                     self.set('selectedIds', results[0].mapBy('id'));
-                    self.set('savedObjectsIds', results[0].mapBy('id'));
+                    Ember.set(object.get('loadedRelationshipsByName'), property, results[0].mapBy('id'));
                 });
             }
         });

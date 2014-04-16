@@ -1,4 +1,4 @@
 <?php
 return [
-    'newsClassName' => '{#import:~/project/module/news/configuration/module.config.php}',
+    'umicms\project\module\search\api\SearchModule' => '{#partial:~/project/module/search/configuration/module.config.php}'
 ];

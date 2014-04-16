@@ -18,7 +18,6 @@ use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\OrmTools;
 use umi\route\IRouteFactory;
 use umi\templating\toolbox\TemplatingTools;
-use umicms\api\toolbox\ApiTools;
 use umicms\Bootstrap;
 use umicms\form\element\File;
 use umicms\form\element\Image;
@@ -39,7 +38,7 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/acl/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/rss/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/module/toolbox/config.php'),
-        require(CMS_LIBRARY_DIR . '/api/toolbox/config.php'),
+        require(CMS_LIBRARY_DIR . '/model/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php')
     ],
 
@@ -87,29 +86,6 @@ return [
                         File::TYPE_NAME => 'umicms\form\element\File',
                         Image::TYPE_NAME => 'umicms\form\element\Image'
                     ]
-                ]
-            ]
-        ],
-
-        ApiTools::NAME => [
-            'api' => [
-               'umicms\project\module\search\api\SearchIndexApi' => [
-                   'collectionsMap' => [
-                       'newsItem' => ['properties' => ['displayName', 'announcement']],
-                       'newsSubject' => ['properties' => ['displayName', 'h1', 'contents']],
-                       'newsRubric' => ['properties' => ['displayName', 'h1', 'contents']],
-                       'blogCategory' => ['properties' => ['displayName', 'h1', 'contents']],
-                       'blogComment' => ['properties' => ['contents']],
-                       'blogPost' => ['properties' => ['displayName', 'h1', 'announcement', 'contents']],
-                   ]
-               ],
-                'umicms\project\module\search\api\SearchApi' => [
-                    'minimumPhraseLength' => 3,
-                    'minimumWordRootLength' => 3,
-                ],
-                'umicms\project\module\statistics\admin\metrika\model\MetrikaApi' => [
-                    'oauthToken' => '4d4d45a7d4dd462ca9f83e4a8f4bd16b',
-                    'apiResources'=>'{#lazy:~/project/module/statistics/admin/metrika/api-resources.config.php}'
                 ]
             ]
         ],

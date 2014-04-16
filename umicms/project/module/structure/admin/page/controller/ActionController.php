@@ -97,7 +97,7 @@ class ActionController extends BaseRestActionController
             $previousSibling = null;
         }
 
-        $this->api->element()->getCollection()->move($object, $branch, $previousSibling);
+        $this->api->element()->move($object, $branch, $previousSibling);
 
         return '';
     }
@@ -125,7 +125,7 @@ class ActionController extends BaseRestActionController
         $backupId = $this->getRequiredQueryVar('backupId');
         $element = $this->api->element()->getById($elementId);
 
-        return $this->api->element()->getBackup($element, $backupId);
+        return $this->api->element()->wakeUpBackup($element, $backupId);
     }
 
 }

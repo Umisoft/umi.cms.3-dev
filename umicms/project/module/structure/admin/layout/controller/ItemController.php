@@ -9,7 +9,6 @@
 
 namespace umicms\project\module\structure\admin\layout\controller;
 
-use umicms\exception\RuntimeException;
 use umicms\orm\object\ICmsObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\project\module\structure\api\StructureModule;

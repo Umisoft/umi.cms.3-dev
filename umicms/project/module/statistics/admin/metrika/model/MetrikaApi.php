@@ -13,13 +13,12 @@ use umi\config\io\TConfigIOAware;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umi\spl\config\TConfigSupport;
-use umicms\api\IPublicApi;
 use umicms\exception\InvalidArgumentException;
 
 /**
  * API Яндекс.Метрики. Производит запросы к Метрике, получает статистические отчеты, информацию о счетчиках и пр.
  */
-class MetrikaApi implements IConfigIOAware, IPublicApi, ILocalizable
+class MetrikaApi implements IConfigIOAware, ILocalizable
 {
     use TConfigIOAware;
     use TConfigSupport;

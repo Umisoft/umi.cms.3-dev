@@ -9,8 +9,8 @@
 
 namespace umicms\project\module\structure\admin\page\controller;
 
+use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\ICmsObject;
-use umicms\orm\object\IRecyclableObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\StructureElement;

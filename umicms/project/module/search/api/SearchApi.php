@@ -18,7 +18,6 @@ use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\objectset\IObjectSet;
 use umi\spl\config\TConfigSupport;
 use umi\stemming\TStemmingAware;
-use umicms\api\IPublicApi;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\project\module\search\highlight\Fragmenter;
@@ -28,7 +27,7 @@ use utest\event\TEventSupport;
 /**
  * Публичный интерфейс поиска по модулям CMS
  */
-class SearchApi extends BaseSearchApi implements IPublicApi, IDbClusterAware, IEventObservant
+class SearchApi extends BaseSearchApi implements IDbClusterAware, IEventObservant
 {
     use TDbClusterAware;
     use TEventObservant;

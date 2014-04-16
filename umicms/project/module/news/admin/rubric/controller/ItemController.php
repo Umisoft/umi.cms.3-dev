@@ -9,7 +9,6 @@
 
 namespace umicms\project\module\news\admin\rubric\controller;
 
-use umicms\exception\RuntimeException;
 use umicms\orm\object\ICmsObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\project\module\news\api\NewsModule;
