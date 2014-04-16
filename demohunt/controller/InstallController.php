@@ -220,6 +220,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $blogPage = $structureCollection->add('blogik', 'system')
             ->setValue('displayName', 'Блог')
+            ->setValue('h1', 'Блог')
             ->setGUID('e6b89f38-7af3-4bda-80fd-3d5a4cf080cf')
             ->setValue('inMenu', true)
             ->setValue('layout', $this->testLayout);

@@ -24,7 +24,7 @@ return [
     ],
 
     SiteComponent::OPTION_CONTROLLERS => [
-        //'index' => 'umicms\project\module\blog\site\controller\IndexController'
+        'index' => 'umicms\project\module\blog\site\controller\IndexController'
     ],
 
     SiteComponent::OPTION_ACL => [

@@ -221,15 +221,21 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает селектор для выбора постов категории.
-     * @param BlogCategory $category категория
+     * Возвращает селектор для выбора постов категорий.
+     * @param BlogCategory[] $categories категории блога
      * @return CmsSelector|BlogPost[]
      */
-    public function getPostByCategory(BlogCategory $category)
+    public function getPostByCategory(array $categories = [])
     {
-        return $this->post()->select()
-            ->where(BlogPost::FIELD_CATEGORY)
-            ->equals($category);
+        $posts = $this->getPosts();
+
+        $posts->begin(IFieldConditionGroup::MODE_OR);
+        foreach ($categories as $category) {
+            $posts->where(BlogPost::FIELD_CATEGORY)->equals($category);
+        }
+        $posts->end();
+
+        return $posts;
     }
 
 
