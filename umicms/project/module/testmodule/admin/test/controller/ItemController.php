@@ -10,14 +10,14 @@
 namespace umicms\project\module\testmodule\admin\test\controller;
 
 use umicms\orm\object\ICmsObject;
-use umicms\project\admin\api\controller\BaseRestItemController;
+use umicms\project\admin\api\controller\DefaultRestItemController;
 use umicms\project\module\testmodule\api\object\TestObject;
 use umicms\project\module\testmodule\api\TestModule;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
  */
-class ItemController extends BaseRestItemController
+class ItemController extends DefaultRestItemController
 {
     /**
      * @var TestModule $api
@@ -36,7 +36,7 @@ class ItemController extends BaseRestItemController
     /**
      * {@inheritdoc}
      */
-    protected function get()
+    protected function getRequestedObject()
     {
         $id = $this->getRouteVar('id');
         return $this->api->test()->getById($id);

@@ -11,13 +11,13 @@ namespace umicms\project\module\structure\admin\page\controller;
 
 use umi\orm\metadata\IObjectType;
 use umicms\exception\RuntimeException;
-use umicms\project\admin\api\controller\BaseRestListController;
+use umicms\project\admin\api\controller\DefaultRestListController;
 use umicms\project\module\structure\api\StructureModule;
 
 /**
  * Контроллер действий над списком.
  */
-class ListController extends BaseRestListController
+class ListController extends DefaultRestListController
 {
 
     /**

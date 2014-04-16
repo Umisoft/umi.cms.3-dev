@@ -9,23 +9,23 @@
 namespace umicms\project\module\blog\admin\comment;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
-    SecureAdminComponent::OPTION_CONTROLLERS => [
-        SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
+    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    AdminComponent::OPTION_CONTROLLERS => [
+        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
     ],
-    SecureAdminComponent::OPTION_ACL => [
+    AdminComponent::OPTION_ACL => [
 
     ],
-    SecureAdminComponent::OPTION_ROUTES => [
+    AdminComponent::OPTION_ROUTES => [
 
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => SecureAdminComponent::SETTINGS_CONTROLLER
+                'controller' => AdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]

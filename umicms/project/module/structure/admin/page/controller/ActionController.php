@@ -13,7 +13,7 @@ use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umi\orm\object\IObject;
-use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\admin\api\controller\DefaultRestActionController;
 use umicms\project\module\service\api\object\Backup;
 use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\StructureElement;
@@ -21,7 +21,7 @@ use umicms\project\module\structure\api\object\StructureElement;
 /**
  * Контроллер операций.
  */
-class ActionController extends BaseRestActionController
+class ActionController extends DefaultRestActionController
 {
     /**
      * @var StructureModule $api

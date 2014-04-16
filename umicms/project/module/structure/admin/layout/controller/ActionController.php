@@ -12,13 +12,13 @@ namespace umicms\project\module\structure\admin\layout\controller;
 use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
-use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\admin\api\controller\DefaultRestActionController;
 use umicms\project\module\structure\api\StructureModule;
 
 /**
  * Контроллер операций.
  */
-class ActionController extends BaseRestActionController
+class ActionController extends DefaultRestActionController
 {
 
     /**

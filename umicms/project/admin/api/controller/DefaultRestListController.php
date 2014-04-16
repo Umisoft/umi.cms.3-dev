@@ -12,39 +12,25 @@ namespace umicms\project\admin\api\controller;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
+use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umi\orm\selector\condition\IFieldCondition;
-use umi\orm\selector\ISelector;
 use umicms\exception\OutOfBoundsException;
+use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
+use umicms\orm\collection\SimpleCollection;
+use umicms\orm\collection\SimpleHierarchicCollection;
+use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\selector\CmsSelector;
 
 /**
- * Базовый контроллер действий над списком.
+ * Контроллер действий над списком.
  */
-abstract class BaseRestListController extends BaseRestController implements IObjectPersisterAware
+class DefaultRestListController extends BaseDefaultRestController implements IObjectPersisterAware
 {
     use TObjectPersisterAware;
-
-    /**
-     * Возвращает список.
-     * @return ISelector
-     */
-    abstract protected function getList();
-
-    /**
-     * Создает и возвращает объект списка.
-     * @param array $data данные
-     * @return ICmsObject
-     */
-    abstract protected function create(array $data);
-
-    /**
-     * Возвращает имя коллекции.
-     * @return string
-     */
-    abstract protected function getCollectionName();
 
     /**
      * {@inheritdoc}
@@ -72,7 +58,7 @@ abstract class BaseRestListController extends BaseRestController implements IObj
             }
             case 'PUT':
             case 'POST': {
-                $object = $this->create($this->getIncomingDataForList());
+                $object = $this->create($this->getCollectionIncomingData());
                 return $this->createViewResponse(
                     'item', [$this->getCollectionName() => $object]
                 );
@@ -93,29 +79,57 @@ abstract class BaseRestListController extends BaseRestController implements IObj
         }
     }
 
+    /**
+     * Возвращает список объектов коллекции, с которой работает компонент.
+     * @return CmsSelector
+     */
+    protected function getList() 
+    {
+        return  $this->getComponent()->getCollection()->select();
+    }
 
     /**
-     * Возвращает данные для создания объекта.
-     * @throws HttpException если не удалось получить данные
-     * @return array
+     * Создает и возвращает объект списка.
+     * @param array $data данные
+     * @throws RuntimeException если невозможно создать объект
+     * @return ICmsObject
      */
-    protected function getIncomingDataForList()
+    protected function create(array $data)
     {
-        $data = $this->getIncomingData();
+        /**
+         * @var SimpleHierarchicCollection|SimpleCollection $collection
+         */
+        $collection = $this->getCollection();
 
-        if (!isset($data[$this->getCollectionName()]) || !is_array($data[$this->getCollectionName()])) {
-            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Object data not found.');
+        switch(true) {
+            case $collection instanceof SimpleHierarchicCollection: {
+                $object = $this->createHierarchicObject($collection, $data);
+                break;
+            }
+            case $collection instanceof SimpleCollection: {
+                $object = $this->createObject($collection, $data);
+                break;
+            }
+
+            default: {
+                throw new RuntimeException(
+                    $this->translate(
+                        'Cannot create object in collection "{collection}". Unknown collection type.',
+                        ['collection' => $this->getCollectionName()]
+                    )
+                );
+            }
         }
 
-        return $data[$this->getCollectionName()];
+        return $this->save($object, $data);
     }
 
     /**
      * Применяет условия выборки.
-     * @param ISelector $selector
-     * @return ISelector
+     * @param CmsSelector $selector
+     * @return CmsSelector
      */
-    protected function applySelectorConditions(ISelector $selector)
+    protected function applySelectorConditions(CmsSelector $selector)
     {
 
         $selector->limit((int) $this->getQueryVar('limit'), (int) $this->getQueryVar('offset'));
@@ -131,7 +145,7 @@ abstract class BaseRestListController extends BaseRestController implements IObj
         if (is_array($this->getQueryVar('orderBy'))) {
             foreach($this->getQueryVar('orderBy') as $fieldPath => $direction) {
                 $fieldPath = $this->normalizeFieldPath($fieldPath);
-                $selector->orderBy($fieldPath, $direction);
+                $selector->orderBy($fieldPath, strtoupper($direction));
             }
         }
 
@@ -151,11 +165,11 @@ abstract class BaseRestListController extends BaseRestController implements IObj
 
     /**
      * Применяет фильтр к связанным выбираемым полям.
-     * @param ISelector $selector
+     * @param CmsSelector $selector
      * @param array $with
-     * @return ISelector
+     * @return CmsSelector
      */
-    protected function applySelectorWith(ISelector $selector, array $with)
+    protected function applySelectorWith(CmsSelector $selector, array $with)
     {
         foreach ($with as $fieldPath => $fieldList) {
             $fieldPath = $this->normalizeFieldPath($fieldPath);
@@ -168,11 +182,11 @@ abstract class BaseRestListController extends BaseRestController implements IObj
 
     /**
      * Применяет фильтр к выбираемым полям.
-     * @param ISelector $selector
+     * @param CmsSelector $selector
      * @param string $fields
-     * @return ISelector
+     * @return CmsSelector
      */
-    protected function applySelectorFieldFilter(ISelector $selector, $fields)
+    protected function applySelectorFieldFilter(CmsSelector $selector, $fields)
     {
         $fieldNames = explode(',', $fields);
 
@@ -183,7 +197,7 @@ abstract class BaseRestListController extends BaseRestController implements IObj
      * Применяет фильтр "равно".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return ISelector
+     * @return CmsSelector
      */
     protected function applyEqualsFilter(IFieldCondition $condition, $value)
     {
@@ -194,7 +208,7 @@ abstract class BaseRestListController extends BaseRestController implements IObj
      * Применяет фильтр "не равно".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return ISelector
+     * @return CmsSelector
      */
     protected function applyNotEqualsFilter(IFieldCondition $condition, $value)
     {
@@ -205,7 +219,7 @@ abstract class BaseRestListController extends BaseRestController implements IObj
      * Применяет фильтр "больше".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return ISelector
+     * @return CmsSelector
      */
     protected function applyMoreFilter(IFieldCondition $condition, $value)
     {
@@ -216,7 +230,7 @@ abstract class BaseRestListController extends BaseRestController implements IObj
      * Применяет фильтр "больше или равно".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return ISelector
+     * @return CmsSelector
      */
     protected function applyEqualsOrMoreFilter(IFieldCondition $condition, $value)
     {
@@ -227,7 +241,7 @@ abstract class BaseRestListController extends BaseRestController implements IObj
      * Применяет фильтр "меньше".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return ISelector
+     * @return CmsSelector
      */
     protected function applyLessFilter(IFieldCondition $condition, $value)
     {
@@ -238,7 +252,7 @@ abstract class BaseRestListController extends BaseRestController implements IObj
      * Применяет фильтр "меньше или равно".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return ISelector
+     * @return CmsSelector
      */
     protected function applyEqualsOrLessFilter(IFieldCondition $condition, $value)
     {
@@ -250,7 +264,7 @@ abstract class BaseRestListController extends BaseRestController implements IObj
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
      * @throws UnexpectedValueException если невозможно определить границы фильтра
-     * @return ISelector
+     * @return CmsSelector
      */
     protected function applyBetweenFilter(IFieldCondition $condition, $value)
     {
@@ -272,7 +286,7 @@ abstract class BaseRestListController extends BaseRestController implements IObj
      * Применяет фильтр "похоже".
      * @param IFieldCondition $condition условие для поля фильтра
      * @param string $value значения фильтра
-     * @return ISelector
+     * @return CmsSelector
      */
     protected function applyLikeFilter(IFieldCondition $condition, $value)
     {
@@ -281,13 +295,13 @@ abstract class BaseRestListController extends BaseRestController implements IObj
 
     /**
      * Применяет фильтр поля на список.
-     * @param ISelector $selector список
+     * @param CmsSelector $selector список
      * @param string $name путь поля
      * @param string $value информация о фильтре
      * @throws OutOfBoundsException если не удалось определить тип фильтра
-     * @return ISelector
+     * @return CmsSelector
      */
-    protected function applySelectorConditionFilter(ISelector $selector, $name, $value)
+    protected function applySelectorConditionFilter(CmsSelector $selector, $name, $value)
     {
         $condition = $selector->where($name);
         if (preg_match('|^(?P<expression>\w+)\((?P<value>.*)\)$|i', $value, $matches)) {
@@ -333,10 +347,49 @@ abstract class BaseRestListController extends BaseRestController implements IObj
      */
     private function normalizeFieldPath($path)
     {
-        return str_replace('_', ISelector::FIELD_SEPARATOR, $path);
+        return str_replace('_', CmsSelector::FIELD_SEPARATOR, $path);
     }
 
+    /**
+     * Создает объект в коллекции.
+     * @param SimpleHierarchicCollection $collection коллекция
+     * @param array $data данные объекта
+     * @throws RuntimeException в случае недостаточности данных для создания объекта
+     * @return CmsHierarchicObject
+     */
+    private function createHierarchicObject(SimpleHierarchicCollection $collection, array $data)
+    {
+        if (!isset($data['slug'])) {
+            throw new RuntimeException(
+                $this->translate('Cannot create hierarchic object. Option "{option}" required.')
+            );
+        }
 
+        $typeName = isset($data['typeName']) ? $data['typeName'] : IObjectType::BASE;
+        $parent = null;
+        if (isset($data['parent'])) {
+            /**
+             * @var CmsHierarchicObject $parent
+             */
+            $parent = $collection->getById($data['parent']);
+        }
+
+        return $collection->add($data['slug'], $typeName, $parent);
+
+    }
+
+    /**
+     * Создает объект в коллекции.
+     * @param SimpleCollection $collection коллекция
+     * @param array $data данные объекта
+     * @return ICmsObject
+     */
+    private function createObject(SimpleCollection $collection, array $data)
+    {
+        $typeName = isset($data['type']) ? $data['type'] : IObjectType::BASE;
+
+        return $collection->add($typeName);
+    }
 
 }
  

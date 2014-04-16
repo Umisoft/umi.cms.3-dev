@@ -10,14 +10,14 @@
 namespace umicms\project\module\news\admin\rss\controller;
 
 use umicms\orm\object\ICmsObject;
-use umicms\project\admin\api\controller\BaseRestItemController;
+use umicms\project\admin\api\controller\DefaultRestItemController;
 use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsRssImportScenario;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
  */
-class ItemController extends BaseRestItemController
+class ItemController extends DefaultRestItemController
 {
     /**
      * @var NewsModule $api
@@ -36,7 +36,7 @@ class ItemController extends BaseRestItemController
     /**
      * {@inheritdoc}
      */
-    protected function get()
+    protected function getRequestedObject()
     {
         $id = $this->getRouteVar('id');
         return $this->api->rssImport()->getById($id);

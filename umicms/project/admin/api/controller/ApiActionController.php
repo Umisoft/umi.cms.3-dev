@@ -24,7 +24,7 @@ use umicms\project\module\users\api\object\AuthorizedUser;
 /**
  * Контроллер действий авторизации пользователя в административной панели.
  */
-class ActionController extends BaseController implements IUrlManagerAware
+class ApiActionController extends BaseController implements IUrlManagerAware
 {
     use TUrlManagerAware;
 

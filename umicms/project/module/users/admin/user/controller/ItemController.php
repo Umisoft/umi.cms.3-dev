@@ -10,14 +10,14 @@
 namespace umicms\project\module\users\admin\user\controller;
 
 use umicms\orm\object\ICmsObject;
-use umicms\project\admin\api\controller\BaseRestItemController;
+use umicms\project\admin\api\controller\DefaultRestItemController;
 use umicms\project\module\users\api\UsersModule;
 use umicms\project\module\users\api\object\AuthorizedUser;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
  */
-class ItemController extends BaseRestItemController
+class ItemController extends DefaultRestItemController
 {
     /**
      * @var UsersModule $api
@@ -37,7 +37,7 @@ class ItemController extends BaseRestItemController
     /**
      * {@inheritdoc}
      */
-    protected function get()
+    protected function getRequestedObject()
     {
         $id = $this->getRouteVar('id');
         return $this->api->user()->getById($id);

@@ -9,10 +9,10 @@
 
 namespace umicms\project\module\testmodule\admin\test\controller;
 
-use umicms\project\admin\api\controller\BaseRestListController;
+use umicms\project\admin\api\controller\DefaultRestListController;
 use umicms\project\module\testmodule\api\TestModule;
 
-class ListController extends BaseRestListController
+class ListController extends DefaultRestListController
 {
     /**
      * @var TestModule $api

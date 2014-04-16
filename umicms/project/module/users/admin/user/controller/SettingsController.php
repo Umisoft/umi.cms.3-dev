@@ -9,12 +9,12 @@
 
 namespace umicms\project\module\users\admin\user\controller;
 
-use umicms\project\admin\api\controller\BaseSettingsController;
+use umicms\project\admin\api\controller\DefaultSettingsController;
 
 /**
  * Контроллер вывода настроек компонента
  */
-class SettingsController extends BaseSettingsController
+class SettingsController extends DefaultSettingsController
 {
     private $controls = [
         'filter' => [],

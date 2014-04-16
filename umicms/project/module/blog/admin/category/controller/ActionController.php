@@ -14,7 +14,7 @@ use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umi\orm\object\IObject;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\admin\api\controller\DefaultRestActionController;
 use umicms\project\module\blog\api\BlogModule;;
 use umicms\project\module\blog\api\object\BlogCategory;
 use umicms\project\module\service\api\object\Backup;
@@ -22,7 +22,7 @@ use umicms\project\module\service\api\object\Backup;
 /**
  * Контроллер операций.
  */
-class ActionController extends BaseRestActionController
+class ActionController extends DefaultRestActionController
 {
     /**
      * @var BlogModule $api

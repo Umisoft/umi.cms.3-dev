@@ -9,13 +9,13 @@
 
 namespace umicms\project\module\news\admin\rss\controller;
 
-use umicms\project\admin\api\controller\BaseRestListController;
+use umicms\project\admin\api\controller\DefaultRestListController;
 use umicms\project\module\news\api\NewsModule;
 
 /**
  * Контроллер действий над списком.
  */
-class ListController extends BaseRestListController
+class ListController extends DefaultRestListController
 {
     /**
      * @var NewsModule $api

@@ -9,23 +9,23 @@
 namespace umicms\project\module\testmodule\admin\test;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
-    SecureAdminComponent::OPTION_CONTROLLERS => [
-        SecureAdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
-        SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
-        SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        SecureAdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
+    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    AdminComponent::OPTION_CONTROLLERS => [
+        AdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
+        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
+        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
+        AdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
     ],
-    SecureAdminComponent::OPTION_ROUTES => [
+    AdminComponent::OPTION_ROUTES => [
         'action' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/action/{action}',
             'defaults' => [
-                'controller' => SecureAdminComponent::ACTION_CONTROLLER
+                'controller' => AdminComponent::ACTION_CONTROLLER
             ]
         ],
         'collection' => [
@@ -36,14 +36,14 @@ return [
                     'type'     => IRouteFactory::ROUTE_SIMPLE,
                     'route'    => '/{collection}/{id:integer}',
                     'defaults' => [
-                        'controller' => SecureAdminComponent::ITEM_CONTROLLER
+                        'controller' => AdminComponent::ITEM_CONTROLLER
                     ]
                 ],
                 'list' => [
                     'type' => IRouteFactory::ROUTE_SIMPLE,
                     'route' => '/{collection}',
                     'defaults' => [
-                        'controller' => SecureAdminComponent::LIST_CONTROLLER
+                        'controller' => AdminComponent::LIST_CONTROLLER
                     ]
                 ]
             ]
@@ -51,7 +51,7 @@ return [
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => SecureAdminComponent::SETTINGS_CONTROLLER
+                'controller' => AdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]

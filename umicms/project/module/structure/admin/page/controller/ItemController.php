@@ -11,14 +11,14 @@ namespace umicms\project\module\structure\admin\page\controller;
 
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\ICmsObject;
-use umicms\project\admin\api\controller\BaseRestItemController;
+use umicms\project\admin\api\controller\DefaultRestItemController;
 use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\StructureElement;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
  */
-class ItemController extends BaseRestItemController
+class ItemController extends DefaultRestItemController
 {
     /**
      * @var StructureModule $api
@@ -38,7 +38,7 @@ class ItemController extends BaseRestItemController
     /**
      * {@inheritdoc}
      */
-    protected function get()
+    protected function getRequestedObject()
     {
         $id = $this->getRouteVar('id');
         return $this->api->element()->getById($id);

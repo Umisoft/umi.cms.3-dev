@@ -10,14 +10,14 @@
 namespace umicms\project\module\blog\admin\post\controller;
 
 use umicms\orm\object\ICmsObject;
-use umicms\project\admin\api\controller\BaseRestItemController;
+use umicms\project\admin\api\controller\DefaultRestItemController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
  */
-class PostController extends BaseRestItemController
+class PostController extends DefaultRestItemController
 {
     /**
      * @var BlogModule $api
@@ -36,7 +36,7 @@ class PostController extends BaseRestItemController
     /**
      * {@inheritdoc}
      */
-    protected function get()
+    protected function getRequestedObject()
     {
         $id = $this->getRouteVar('id');
         return $this->api->post()->getById($id);

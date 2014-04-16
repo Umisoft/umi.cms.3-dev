@@ -12,13 +12,13 @@ namespace umicms\project\module\testmodule\admin\test\controller;
 use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
-use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\admin\api\controller\DefaultRestActionController;
 use umicms\project\module\testmodule\api\TestModule;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
  */
-class ActionController extends BaseRestActionController
+class ActionController extends DefaultRestActionController
 {
     /**
      * @var TestModule $testRepository

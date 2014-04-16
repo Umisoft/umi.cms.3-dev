@@ -10,16 +10,16 @@ namespace umicms\project\module\service\admin\backup;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
-    SecureAdminComponent::OPTION_CONTROLLERS => [
-        SecureAdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
-        SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
+    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    AdminComponent::OPTION_CONTROLLERS => [
+        AdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
+        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
     ],
-    SecureAdminComponent::OPTION_ACL => [
+    AdminComponent::OPTION_ACL => [
 
         IAclFactory::OPTION_ROLES => [
             'editor' => []
@@ -35,7 +35,7 @@ return [
             ],
         ]
     ],
-    SecureAdminComponent::OPTION_ROUTES => [
+    AdminComponent::OPTION_ROUTES => [
         'collection' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'route' => '/collection',
@@ -44,7 +44,7 @@ return [
                     'type' => IRouteFactory::ROUTE_SIMPLE,
                     'route' => '/{collection}',
                     'defaults' => [
-                        'controller' => SecureAdminComponent::LIST_CONTROLLER
+                        'controller' => AdminComponent::LIST_CONTROLLER
                     ]
                 ]
             ]
@@ -52,7 +52,7 @@ return [
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => SecureAdminComponent::SETTINGS_CONTROLLER
+                'controller' => AdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]

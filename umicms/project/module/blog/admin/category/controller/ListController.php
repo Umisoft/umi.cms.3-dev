@@ -10,13 +10,13 @@
 namespace umicms\project\module\blog\admin\category\controller;
 
 use umicms\exception\RuntimeException;
-use umicms\project\admin\api\controller\BaseRestListController;
+use umicms\project\admin\api\controller\DefaultRestListController;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
  * Контроллер действий над списком.
  */
-class ListController extends BaseRestListController
+class ListController extends DefaultRestListController
 {
     /**
      * @var BlogModule $api

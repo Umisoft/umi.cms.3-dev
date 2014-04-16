@@ -10,10 +10,10 @@
 namespace umicms\project\module\service\admin\backup\controller;
 
 use umi\hmvc\exception\http\HttpNotFound;
-use umicms\project\admin\api\controller\BaseRestListController;
+use umicms\project\admin\api\controller\DefaultRestListController;
 use umicms\project\module\service\api\collection\BackupCollection;
 
-class ListController extends BaseRestListController
+class ListController extends DefaultRestListController
 {
     /**
      * @var BackupCollection $backupRepository

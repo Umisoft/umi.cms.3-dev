@@ -9,13 +9,13 @@
 
 namespace umicms\project\module\blog\admin\post\controller;
 
-use umicms\project\admin\api\controller\BaseRestListController;
+use umicms\project\admin\api\controller\DefaultRestListController;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
  * Контроллер действий над списком.
  */
-class ListController extends BaseRestListController
+class ListController extends DefaultRestListController
 {
 
     /**

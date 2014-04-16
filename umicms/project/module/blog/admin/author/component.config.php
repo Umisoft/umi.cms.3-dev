@@ -10,18 +10,18 @@ namespace umicms\project\module\blog\admin\author;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
-    SecureAdminComponent::OPTION_CONTROLLERS => [
-        SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
-        SecureAdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
-        SecureAdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\PostController',
-        SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
+    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    AdminComponent::OPTION_CONTROLLERS => [
+        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
+        AdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
+        AdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\PostController',
+        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
-    SecureAdminComponent::OPTION_ACL => [
+    AdminComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'editor' => []
         ],
@@ -40,12 +40,12 @@ return [
             ],
         ]
     ],
-    SecureAdminComponent::OPTION_ROUTES => [
+    AdminComponent::OPTION_ROUTES => [
         'action' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/action/{action}',
             'defaults' => [
-                'controller' => SecureAdminComponent::ACTION_CONTROLLER
+                'controller' => AdminComponent::ACTION_CONTROLLER
             ]
         ],
         'collection' => [
@@ -56,14 +56,14 @@ return [
                     'type' => IRouteFactory::ROUTE_SIMPLE,
                     'route' => '/{collection}/{id:integer}',
                     'defaults' => [
-                        'controller' => SecureAdminComponent::ITEM_CONTROLLER
+                        'controller' => AdminComponent::ITEM_CONTROLLER
                     ]
                 ],
                 'list' => [
                     'type' => IRouteFactory::ROUTE_SIMPLE,
                     'route' => '/{collection}',
                     'defaults' => [
-                        'controller' => SecureAdminComponent::LIST_CONTROLLER
+                        'controller' => AdminComponent::LIST_CONTROLLER
                     ]
                 ]
             ]
@@ -71,7 +71,7 @@ return [
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => SecureAdminComponent::SETTINGS_CONTROLLER
+                'controller' => AdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]

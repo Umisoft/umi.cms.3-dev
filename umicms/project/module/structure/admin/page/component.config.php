@@ -10,20 +10,20 @@ namespace umicms\project\module\structure\admin\page;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    SecureAdminComponent::OPTION_CONTROLLERS => [
-        SecureAdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
-        SecureAdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
-        SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
+    AdminComponent::OPTION_CONTROLLERS => [
+        AdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
+        AdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
+        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
+        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
     ],
 
-    SecureAdminComponent::OPTION_ACL => [
+    AdminComponent::OPTION_ACL => [
 
         IAclFactory::OPTION_ROLES => [
             'editor' => []
@@ -45,7 +45,7 @@ return [
     ],
 
 
-    SecureAdminComponent::OPTION_ROUTES      => [
+    AdminComponent::OPTION_ROUTES      => [
 
         'action' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
@@ -79,7 +79,7 @@ return [
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => SecureAdminComponent::SETTINGS_CONTROLLER
+                'controller' => AdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]

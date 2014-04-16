@@ -12,7 +12,7 @@ namespace umicms\project\module\blog\admin\author\controller;
 use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
-use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\admin\api\controller\DefaultRestActionController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\service\api\object\Backup;
@@ -20,7 +20,7 @@ use umicms\project\module\service\api\object\Backup;
 /**
  * Контроллер Read-Update-Delete операций над объектом.
  */
-class ActionController extends BaseRestActionController
+class ActionController extends DefaultRestActionController
 {
     /**
      * @var BlogModule $api

@@ -118,6 +118,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Посетители');
 
         $visitors->roles = [
+            'project' => ['visitor'],
+            'project.admin' => ['visitor'],
             'project.site.structure' => ['staticPageViewer'],
             'project.site.structure.menu' => ['menuViewer'],
             'project.site.news' => ['newsViewer'],

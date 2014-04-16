@@ -10,10 +10,8 @@
 namespace umicms\project\admin\api\controller;
 
 use umi\hmvc\exception\http\HttpException;
-use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
 use umi\orm\metadata\field\datetime\DateTimeField;
-use umi\orm\metadata\field\relation\BelongsToRelationField;
 use umi\orm\metadata\field\relation\HasManyRelationField;
 use umi\orm\metadata\field\relation\ManyToManyRelationField;
 use umi\orm\object\property\datetime\DateTime;
@@ -23,91 +21,100 @@ use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
-use umicms\orm\collection\behaviour\IRecoverableCollection;
+use umicms\hmvc\controller\BaseSecureController;
+use umicms\orm\collection\ICmsCollection;
+use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\ICmsObject;
-use umicms\orm\object\behaviour\IRecoverableObject;
+use umicms\project\admin\api\component\DefaultAdminComponent;
 
 /**
- * Базовый контроллер Read-Update-Delete операций над объектом.
+ * Базовый REST-контроллер.
  */
-abstract class BaseRestItemController extends BaseRestController implements IObjectPersisterAware
+abstract class BaseDefaultRestController extends BaseSecureController implements IObjectPersisterAware
 {
     use TObjectPersisterAware;
 
     /**
-     * Возвращает объект.
-     * @return ICmsObject
+     * Возвращает компонент, которому принадлежит контроллер.
+     * @throws RuntimeException при неверном классе компонента
+     * @return DefaultAdminComponent
      */
-    abstract protected function get();
-
-    /**
-     * Удаляет объект.
-     * @param ICmsObject $object
-     */
-    abstract protected function delete(ICmsObject $object);
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __invoke()
+    protected function getComponent()
     {
-        switch($this->getRequest()->getMethod()) {
-            case 'GET': {
-                $object = $this->get();
-                return $this->createViewResponse(
-                    'item', [$object->getCollectionName() => $object]
-                );
-            }
-            case 'PUT': {
-                $object = $this->get();
+        $component = parent::getComponent();
 
-                $collection = $object->getCollection();
-                if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
-                    $collection->createBackup($object);
-                }
-
-                return $this->createViewResponse(
-                    'update',
+        if (!$component instanceof DefaultAdminComponent) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Component for controller "{controllerClass}" should be instance of "{componentClass}".',
                     [
-                        $object->getCollectionName() => $this->update($object, $this->getIncomingDataForObject($object))
+                        'controllerClass' => get_class($this),
+                        'componentClass' => 'umicms\project\admin\api\component\DefaultAdminComponent'
                     ]
-                );
-            }
-            case 'DELETE': {
-                $this->delete($this->get());
-                return $this->createResponse('', Response::HTTP_NO_CONTENT);
-            }
-            case 'POST': {
-                throw new HttpMethodNotAllowed(
-                    'HTTP method is not implemented.',
-                    ['GET', 'PUT', 'DELETE']
-                );
-            }
-            default: {
-                throw new HttpException(
-                    Response::HTTP_NOT_IMPLEMENTED,
-                    'HTTP method is not implemented.'
-                );
-            }
+                )
+            );
         }
+
+        return $component;
     }
 
     /**
-     * Возвращает данные для изменения объекта.
-     * @param ICmsObject $object объект для изменения
+     * Возвращает коллекцию, с которой работает компонент.
+     * @return ICmsCollection
+     */
+    protected function getCollection()
+    {
+        return $this->getComponent()->getCollection();
+    }
+
+    /**
+     * Возвращает имя коллекции, с которой работает компонент.
+     * @return string
+     */
+    protected function getCollectionName()
+    {
+        return $this->getComponent()->getCollection()->getName();
+    }
+
+    /**
+     * Возвращает данные для сохранения объекта.
      * @throws HttpException если не удалось получить данные
      * @return array
      */
-    private function getIncomingDataForObject(ICmsObject $object)
+    protected function getCollectionIncomingData()
     {
         $data = $this->getIncomingData();
 
-        $collectionName = $object->getCollectionName();
+        $collectionName = $this->getCollectionName();
         if (!isset($data[$collectionName]) || !is_array($data[$collectionName])) {
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'Object data not found.');
         }
 
         return $data[$collectionName];
+    }
+
+    /**
+     * Возвращает данные, полученные в теле POST- или PUT-запроса, в виде массива.
+     * @throws HttpException если не удалось получить данные
+     * @return array
+     */
+    protected function getIncomingData()
+    {
+        $inputData = file_get_contents('php://input');
+        if (!$inputData) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Request body is empty.');
+        }
+
+        $data = @json_decode($inputData, true);
+
+        if ($error = json_last_error()) {
+            if (function_exists('json_last_error_msg')) {
+                $error = json_last_error_msg();
+            }
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'JSON parse error: ' . $error);
+        }
+
+        return $data;
     }
 
     /**
@@ -117,7 +124,7 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
      * @throws RuntimeException если невозможно сохранить объект
      * @return ICmsObject
      */
-    protected function update(ICmsObject $object, array $data)
+    protected function save(ICmsObject $object, array $data)
     {
         if (!isset($data[ICmsObject::FIELD_VERSION])) {
             throw new RuntimeException('Cannot save object. Object version is unknown');
@@ -148,7 +155,7 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
                         break;
                     }
                     default: {
-                        $object->setValue($propertyName, $value);
+                    $object->setValue($propertyName, $value);
                     }
                 }
             }
@@ -164,7 +171,10 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
 
         if (!is_array($value) || !isset($value['date'])) {
             throw new UnexpectedValueException(
-                sprintf('Cannot set data for DateTime property "%s". Data should be an array an contain "date" option.', $propertyName)
+                $this->translate(
+                    'Cannot set data for DateTime property "{propertyName}". Data should be an array an contain "date" option.',
+                    ['propertyName' => $propertyName]
+                )
             );
         }
 
@@ -191,7 +201,10 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
     {
         if (!is_array($value)) {
             throw new UnexpectedValueException(
-                sprintf('Cannot set data for HasManyRelation property "%s". Data should be an array.', $propertyName)
+                $this->translate(
+                    'Cannot set data for HasManyRelation property "{propertyName}". Data should be an array.',
+                    ['propertyName' => $propertyName]
+                )
             );
         }
 
@@ -225,7 +238,10 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
     {
         if (!is_numeric($value) && !is_null($value)) {
             throw new UnexpectedValueException(
-                sprintf('Cannot set data for BelongsToRelation property "%s". Data should be numeric or null.', $propertyName)
+                $this->translate(
+                    'Cannot set data for BelongsToRelation property "{propertyName}". Data should be numeric or null.',
+                    ['propertyName' => $propertyName]
+                )
             );
         }
 
@@ -246,7 +262,10 @@ abstract class BaseRestItemController extends BaseRestController implements IObj
     {
         if (!is_array($value)) {
             throw new UnexpectedValueException(
-                sprintf('Cannot set data for ManyToManyRelation property "%s". Data should be an array.', $propertyName)
+                $this->translate(
+                    'Cannot set data for ManyToManyRelation property "{propertyName}". Data should be an array.',
+                    ['propertyName' => $propertyName]
+                )
             );
         }
 
