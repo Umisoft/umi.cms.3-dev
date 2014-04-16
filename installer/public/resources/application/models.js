@@ -128,6 +128,38 @@ define([], function(){
                         object.send('rolledBack');
                     }
                 }
+            },
+            relationPropertyIsDirty: function(property){
+                var loadedRelationships = this.get('loadedRelationshipsByName');
+                var changedRelationships = this.get('changedRelationshipsByName');
+                var isDirty = false;
+
+                if(changedRelationships.hasOwnProperty(property)){
+                    Ember.assert('Не добавлена загруженная связь. После загрузки связей hasMany и ManyToMany необходимо добавлять их результат к loadedRelationshipsByName', loadedRelationships.hasOwnProperty(property));
+                    if(Object.prototype.toString.call(loadedRelationships[property]).slice(8, -1) === 'Array' && Object.prototype.toString.call(changedRelationships[property]).slice(8, -1) === 'Array'){
+                        if(loadedRelationships[property].length !== changedRelationships[property].length){
+                            isDirty = true;
+                        } else{
+                            isDirty = changedRelationships[property].every(function(id){
+                                if(loadedRelationships[property].contains(id)) { return true; }
+                            });
+                            isDirty = !isDirty;
+                        }
+                    } else if(loadedRelationships[property] !== changedRelationships[property]){
+                        isDirty = true;
+                    }
+                }
+                return isDirty;
+            },
+            updateRelationhipsMap: function(){
+                var loadedRelationships = this.get('loadedRelationshipsByName');
+                var changedRelationships = this.get('changedRelationshipsByName');
+                for(var property in changedRelationships){
+                    if(changedRelationships.hasOwnProperty(property)){
+                        loadedRelationships[property] = changedRelationships[property];
+                    }
+                }
+                this.set('changedRelationshipsByName', {});
             }
         });
 
