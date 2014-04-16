@@ -121,6 +121,17 @@ define(
                     payload = payload.collection;
                 }
                 return payload;
+            },
+            serializeHasMany: function(record, json, relationship){
+                var key = relationship.key;
+
+                var relationshipType = DS.RelationshipChange.determineRelationshipType(record.constructor, relationship);
+
+                if (relationshipType === 'manyToNone' || relationshipType === 'manyToMany' || relationshipType === 'manyToOne'){
+                    if(record.relationPropertyIsDirty(key)){
+                        json[key] = Ember.get(record, key).mapBy('id');
+                    }
+                }
             }
         });
 
