@@ -9,40 +9,40 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\testmodule\api\object\test;
+use umicms\project\module\testmodule\api\object\TestObject;
 
 return [
     'dataSource' => [
-        'sourceName' => 'umi_Test'
+        'sourceName' => 'umi_test'
     ],
     'fields' => [
 
-        Test::FIELD_IDENTIFY => [
+        TestObject::FIELD_IDENTIFY => [
             'type' => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
             'accessor' => 'getId',
             'readOnly' => true
         ],
-        Test::FIELD_GUID => [
+        TestObject::FIELD_GUID => [
             'type' => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor' => 'getGuid',
             'readOnly' => true
         ],
-        Test::FIELD_TYPE => [
+        TestObject::FIELD_TYPE => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'type',
             'accessor' => 'getType',
             'readOnly' => true
         ],
-        Test::FIELD_VERSION => [
+        TestObject::FIELD_VERSION => [
             'type' => IField::TYPE_VERSION,
             'columnName' => 'version',
             'accessor' => 'getVersion',
             'readOnly' => true,
             'defaultValue' => 1
         ],
-        Test::FIELD_DISPLAY_NAME => [
+        TestObject::FIELD_DISPLAY_NAME => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name',
             'filters' => [
@@ -52,43 +52,43 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ]
         ],
-        Test::TEXT => ['type' => IField::TYPE_STRING, 'columnName' => Test::TEXT],
-        Test::TEXTAREA => ['type' => IField::TYPE_STRING, 'columnName' => Test::TEXTAREA],
-        Test::SELECT => ['type' => IField::TYPE_STRING, 'columnName' => Test::SELECT],
-        Test::PASSWORD => ['type' => IField::TYPE_STRING, 'columnName' => Test::PASSWORD],
-        Test::CHECKBOX => ['type' => IField::TYPE_STRING, 'columnName' => Test::CHECKBOX],
+        TestObject::TEXT => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::TEXT],
+        TestObject::TEXTAREA => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::TEXTAREA],
+        TestObject::SELECT => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::SELECT],
+        TestObject::PASSWORD => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::PASSWORD],
+        TestObject::CHECKBOX => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::CHECKBOX],
 
-        Test::DATE => ['type' => IField::TYPE_STRING, 'columnName' => Test::DATE],
-        Test::DATE_TIME => ['type' => IField::TYPE_STRING, 'columnName' => Test::DATE_TIME],
-        Test::EMAIL => ['type' => IField::TYPE_STRING, 'columnName' => Test::EMAIL],
-        Test::NUMBER => ['type' => IField::TYPE_STRING, 'columnName' => Test::NUMBER],
-        Test::TIME => ['type' => IField::TYPE_STRING, 'columnName' => Test::TIME],
-        Test::FILE => ['type' => IField::TYPE_STRING, 'columnName' => Test::FILE],
-        Test::IMAGE => ['type' => IField::TYPE_STRING, 'columnName' => Test::IMAGE]
+        TestObject::DATE => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::DATE],
+        TestObject::DATE_TIME => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::DATE_TIME],
+        TestObject::EMAIL => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::EMAIL],
+        TestObject::NUMBER => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::NUMBER],
+        TestObject::TIME => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::TIME],
+        TestObject::FILE => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::FILE],
+        TestObject::IMAGE => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::IMAGE]
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\testmodule\api\object\Test',
+            'objectClass' => 'umicms\project\module\testmodule\api\object\TestObject',
             'fields' => [
-                Test::FIELD_IDENTIFY,
-                Test::FIELD_GUID,
-                Test::FIELD_TYPE,
-                Test::FIELD_VERSION,
-                Test::FIELD_DISPLAY_NAME,
+                TestObject::FIELD_IDENTIFY,
+                TestObject::FIELD_GUID,
+                TestObject::FIELD_TYPE,
+                TestObject::FIELD_VERSION,
+                TestObject::FIELD_DISPLAY_NAME,
 
-                Test::TEXT,
-                Test::TEXTAREA,
-                Test::SELECT,
-                Test::PASSWORD,
-                Test::CHECKBOX,
+                TestObject::TEXT,
+                TestObject::TEXTAREA,
+                TestObject::SELECT,
+                TestObject::PASSWORD,
+                TestObject::CHECKBOX,
 
-                Test::DATE,
-                Test::DATE_TIME,
-                Test::EMAIL,
-                Test::NUMBER,
-                Test::TIME,
-                Test::FILE,
-                Test::IMAGE
+                TestObject::DATE,
+                TestObject::DATE_TIME,
+                TestObject::EMAIL,
+                TestObject::NUMBER,
+                TestObject::TIME,
+                TestObject::FILE,
+                TestObject::IMAGE
             ]
         ]
     ]

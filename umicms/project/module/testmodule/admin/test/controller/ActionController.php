@@ -13,7 +13,7 @@ use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\module\testmodule\api\TestRepository;
+use umicms\project\module\testmodule\api\TestModule;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
@@ -21,15 +21,15 @@ use umicms\project\module\testmodule\api\TestRepository;
 class ActionController extends BaseRestActionController
 {
     /**
-     * @var TestRepository $testRepository
+     * @var TestModule $testRepository
      */
     protected $testRepository;
 
     /**
      * Конструктор.
-     * @param TestRepository $testRepository
+     * @param TestModule $testRepository
      */
-    public function __construct(TestRepository $testRepository)
+    public function __construct(TestModule $testRepository)
     {
         $this->testRepository = $testRepository;
     }
@@ -59,13 +59,13 @@ class ActionController extends BaseRestActionController
     {
         $collectionName = $this->getRequiredQueryVar('collection');
 
-        if ($collectionName != $this->testRepository->collectionName) {
+        if ($collectionName != $this->testRepository->test()->getName()) {
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
         }
 
         $typeName = $this->getRequiredQueryVar('type');
         $formName = $this->getRequiredQueryVar('form');
 
-        return $this->testRepository->getCollection()->getForm($typeName, $formName);
+        return $this->testRepository->test()->getForm($typeName, $formName);
     }
 }

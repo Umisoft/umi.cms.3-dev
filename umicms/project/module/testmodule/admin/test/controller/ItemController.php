@@ -11,8 +11,8 @@ namespace umicms\project\module\testmodule\admin\test\controller;
 
 use umicms\orm\object\ICmsObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
-use umicms\project\module\testmodule\api\object\Test;
-use umicms\project\module\testmodule\api\TestRepository;
+use umicms\project\module\testmodule\api\object\TestObject;
+use umicms\project\module\testmodule\api\TestModule;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
@@ -20,15 +20,15 @@ use umicms\project\module\testmodule\api\TestRepository;
 class ItemController extends BaseRestItemController
 {
     /**
-     * @var TestRepository $api
+     * @var TestModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param TestRepository $api
+     * @param TestModule $api
      */
-    public function __construct(TestRepository $api)
+    public function __construct(TestModule $api)
     {
         $this->api = $api;
     }
@@ -39,7 +39,7 @@ class ItemController extends BaseRestItemController
     protected function get()
     {
         $id = $this->getRouteVar('id');
-        return $this->api->getById($id);
+        return $this->api->test()->getById($id);
     }
 
     /**
@@ -47,8 +47,8 @@ class ItemController extends BaseRestItemController
      */
     protected function delete(ICmsObject $object)
     {
-        if ($object instanceof Test) {
-            $this->api->delete($object);
+        if ($object instanceof TestObject) {
+            $this->api->test()->delete($object);
             $this->getObjectPersister()->commit();
         }
     }

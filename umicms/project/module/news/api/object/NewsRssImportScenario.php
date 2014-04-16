@@ -19,7 +19,7 @@ use umicms\orm\object\CmsObject;
  * @property NewsRubric|null $rubric рубрика, которая будет установлена импортируемым новостям
  * @property ManyToManyObjectSet|NewsSubject[] $subjects список сюжетов, которые будут установлены импортируемым новостям
  */
-class RssImportScenario extends CmsObject
+class NewsRssImportScenario extends CmsObject
 {
     /**
      * URL RSS-ленты, которую необходимо импортировать.

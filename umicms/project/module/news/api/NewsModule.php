@@ -23,11 +23,11 @@ use umicms\orm\selector\CmsSelector;
 use umicms\project\module\news\api\collection\NewsItemCollection;
 use umicms\project\module\news\api\collection\NewsRubricCollection;
 use umicms\project\module\news\api\collection\NewsSubjectCollection;
-use umicms\project\module\news\api\collection\RssImportScenarioCollection;
+use umicms\project\module\news\api\collection\NewsRssImportScenarioCollection;
 use umicms\project\module\news\api\object\NewsItem;
 use umicms\project\module\news\api\object\NewsRubric;
 use umicms\project\module\news\api\object\NewsSubject;
-use umicms\project\module\news\api\object\RssImportScenario;
+use umicms\project\module\news\api\object\NewsRssImportScenario;
 
 /**
  * Модуль "Новости".
@@ -66,11 +66,11 @@ class NewsModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает коллекцию сценариев RSS-импортов новостей.
-     * @return RssImportScenarioCollection
+     * @return NewsRssImportScenarioCollection
      */
     public function rssImport()
     {
-        return $this->getCollection('rssImportScenario');
+        return $this->getCollection('newsRssImportScenario');
     }
 
     /**
@@ -170,20 +170,20 @@ class NewsModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Выполняет импорт новостей из внешней RSS-ленты.
-     * @param RssImportScenario $rssImportScenario сценарий импорта RSS-ленты
+     * @param NewsRssImportScenario $newsRssImportScenario сценарий импорта RSS-ленты
      * @throws RuntimeException если не удалось выполнить импорт
      * @return $this
      */
-    public function importRss(RssImportScenario $rssImportScenario)
+    public function importRss(NewsRssImportScenario $newsRssImportScenario)
     {
         try {
-            $xml = \GuzzleHttp\get($rssImportScenario->rssUrl)
+            $xml = \GuzzleHttp\get($newsRssImportScenario->rssUrl)
                 ->xml(['object' => false]);
         } catch (\Exception $e) {
             throw new RuntimeException(
                 $this->translate(
                     'Cannot load RSS feed from url {url}.',
-                    ['url' => $rssImportScenario->rssUrl]
+                    ['url' => $newsRssImportScenario->rssUrl]
                 ),
                 0,
                 $e
@@ -193,7 +193,7 @@ class NewsModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         $rssFeed = $this->createRssFeedFromSimpleXml($xml);
 
         foreach ($rssFeed->getRssItems() as $item) {
-            $this->importRssItem($item, $rssImportScenario);
+            $this->importRssItem($item, $newsRssImportScenario);
         }
 
         return $this;
@@ -202,9 +202,9 @@ class NewsModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Импортирует новость из RSS.
      * @param RssItem $item
-     * @param RssImportScenario $rssImportScenario
+     * @param NewsRssImportScenario $newsRssImportScenario
      */
-    protected function importRssItem(RssItem $item, RssImportScenario $rssImportScenario)
+    protected function importRssItem(RssItem $item, NewsRssImportScenario $newsRssImportScenario)
     {
         try {
             $this->news()->getNewsBySource($item->getUrl());
@@ -225,9 +225,9 @@ class NewsModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
                 $newsItem->source = $item->getUrl();
             }
             $newsItem->slug = $newsItem->guid;
-            $newsItem->rubric = $rssImportScenario->rubric;
+            $newsItem->rubric = $newsRssImportScenario->rubric;
 
-            foreach ($rssImportScenario->subjects as $subject) {
+            foreach ($newsRssImportScenario->subjects as $subject) {
                 $newsItem->subjects->attach($subject);
             }
         }

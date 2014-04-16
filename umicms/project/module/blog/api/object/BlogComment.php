@@ -10,14 +10,14 @@
 namespace umicms\project\module\blog\api\object;
 
 use DateTime;
+use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\CmsHierarchicObject;
-use umicms\orm\object\IRecyclableObject;
-use umicms\project\module\users\api\UsersApi;
+use umicms\project\module\users\api\UsersModule;
 
 /**
  * Комментарий к посту.
  *
- * @property UsersApi $author автор поста
+ * @property UsersModule $author автор поста
  * @property BlogPost $post пост, к которому относится комментарий
  * @property string $contents комментарий
  * @property DateTime $publishTime дата и время публикации комментария

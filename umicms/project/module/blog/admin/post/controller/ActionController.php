@@ -13,7 +13,7 @@ use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\module\blog\api\BlogApi;
+use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\service\api\object\Backup;
 
@@ -23,15 +23,15 @@ use umicms\project\module\service\api\object\Backup;
 class ActionController extends BaseRestActionController
 {
     /**
-     * @var BlogApi $api
+     * @var BlogModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param BlogApi $api
+     * @param BlogModule $api
      */
-    public function __construct(BlogApi $api)
+    public function __construct(BlogModule $api)
     {
         $this->api = $api;
     }

@@ -14,7 +14,7 @@ use umicms\orm\object\CmsObject;
 /**
  * Test.
  */
-class Test extends CmsObject
+class TestObject extends CmsObject
 {
     const TEXT = 'text';
     const TEXTAREA = 'textarea';

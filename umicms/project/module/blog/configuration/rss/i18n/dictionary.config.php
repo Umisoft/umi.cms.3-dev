@@ -7,18 +7,18 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-use umicms\project\module\blog\api\object\RssImportPost;
+use umicms\project\module\blog\api\object\BlogRssImportScenario;
 
 return [
         'en-US' => [
-            RssImportPost::FIELD_RSS_URL => 'URL RSS feed',
-            RssImportPost::FIELD_TAGS => 'Tags',
-            RssImportPost::FIELD_CATEGORY => 'Category'
+            BlogRssImportScenario::FIELD_RSS_URL => 'URL RSS feed',
+            BlogRssImportScenario::FIELD_TAGS => 'Tags',
+            BlogRssImportScenario::FIELD_CATEGORY => 'Category'
         ],
 
         'ru-RU' => [
-            RssImportPost::FIELD_RSS_URL => 'URL RSS-ленты',
-            RssImportPost::FIELD_TAGS => 'Тэги',
-            RssImportPost::FIELD_CATEGORY => 'Категория'
+            BlogRssImportScenario::FIELD_RSS_URL => 'URL RSS-ленты',
+            BlogRssImportScenario::FIELD_TAGS => 'Тэги',
+            BlogRssImportScenario::FIELD_CATEGORY => 'Категория'
         ]
     ];

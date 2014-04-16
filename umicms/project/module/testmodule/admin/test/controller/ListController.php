@@ -10,22 +10,22 @@
 namespace umicms\project\module\testmodule\admin\test\controller;
 
 use umicms\project\admin\api\controller\BaseRestListController;
-use umicms\project\module\testmodule\api\TestRepository;
+use umicms\project\module\testmodule\api\TestModule;
 
 class ListController extends BaseRestListController
 {
     /**
-     * @var TestRepository $testRepository
+     * @var TestModule $api
      */
-    protected $testRepository;
+    protected $api;
 
     /**
      * Конструктор.
-     * @param TestRepository $testRepository
+     * @param TestModule $testModule
      */
-    public function __construct(TestRepository $testRepository)
+    public function __construct(TestModule $testModule)
     {
-        $this->testRepository = $testRepository;
+        $this->api = $testModule;
     }
 
     /**
@@ -33,7 +33,7 @@ class ListController extends BaseRestListController
      */
     protected function getCollectionName()
     {
-        return $this->testRepository->collectionName;
+        return $this->api->test()->getName();
     }
 
     /**
@@ -41,7 +41,7 @@ class ListController extends BaseRestListController
      */
     protected function getList()
     {
-        return $this->testRepository->select();
+        return $this->api->test()->select();
     }
 
     /**
@@ -50,7 +50,7 @@ class ListController extends BaseRestListController
     protected function create(array $data)
     {
         // TODO: forms
-        $object = $this->testRepository->add();
+        $object = $this->api->test()->add();
 
         foreach ($data as $propertyName => $value) {
             if ($object->hasProperty($propertyName)

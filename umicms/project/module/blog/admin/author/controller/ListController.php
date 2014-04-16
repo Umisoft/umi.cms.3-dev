@@ -10,7 +10,7 @@
 namespace umicms\project\module\blog\admin\author\controller;
 
 use umicms\project\admin\api\controller\BaseRestListController;
-use umicms\project\module\blog\api\BlogApi;
+use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\users\api\UsersApi;
 
 /**
@@ -20,7 +20,7 @@ class ListController extends BaseRestListController
 {
 
     /**
-     * @var BlogApi $api
+     * @var BlogModule $api
      */
     protected $api;
     /**
@@ -30,10 +30,10 @@ class ListController extends BaseRestListController
 
     /**
      * Конструктор.
-     * @param BlogApi $api
+     * @param BlogModule $api
      * @param UsersApi $users
      */
-    public function __construct(BlogApi $api, UsersApi $users)
+    public function __construct(BlogModule $api, UsersApi $users)
     {
         $this->api = $api;
         $this->users = $users;

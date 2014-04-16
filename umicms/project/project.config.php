@@ -143,7 +143,7 @@ return [
 
                 'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/metadata.config.php}',
                 'newsItem' => '{#lazy:~/project/module/news/configuration/item/metadata.config.php}',
-                'rssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/metadata.config.php}',
+                'newsRssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/metadata.config.php}',
                 'newsItemSubject' => '{#lazy:~/project/module/news/configuration/itemsubject/metadata.config.php}',
                 'rssScenarioSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/metadata.config.php}',
                 'newsSubject' => '{#lazy:~/project/module/news/configuration/subject/metadata.config.php}',
@@ -154,7 +154,7 @@ return [
                 'blogComment' => '{#lazy:~/project/module/blog/configuration/comment/metadata.config.php}',
                 'blogTag' => '{#lazy:~/project/module/blog/configuration/tag/metadata.config.php}',
                 'blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/metadata.config.php}',
-                'rssImportPost' => '{#lazy:~/project/module/blog/configuration/rss/metadata.config.php}',
+                'blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/metadata.config.php}',
                 'rssBlogTag' => '{#lazy:~/project/module/blog/configuration/rsstag/metadata.config.php}',
 
                 'user' => '{#lazy:~/project/module/users/configuration/user/metadata.config.php}',
@@ -174,7 +174,7 @@ return [
 
                 'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/collection.config.php}',
                 'newsItem' => '{#lazy:~/project/module/news/configuration/item/collection.config.php}',
-                'rssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/collection.config.php}',
+                'newsRssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/collection.config.php}',
                 'newsItemSubject' => '{#lazy:~/project/module/news/configuration/itemsubject/collection.config.php}',
                 'rssScenarioSubject' => '{#lazy:~/project/module/news/configuration/rsssubject/collection.config.php}',
                 'newsSubject' => '{#lazy:~/project/module/news/configuration/subject/collection.config.php}',
@@ -185,7 +185,7 @@ return [
                 'blogComment' => '{#lazy:~/project/module/blog/configuration/comment/collection.config.php}',
                 'blogTag' => '{#lazy:~/project/module/blog/configuration/tag/collection.config.php}',
                 'blogPostTag' => '{#lazy:~/project/module/blog/configuration/posttag/collection.config.php}',
-                'rssImportPost' => '{#lazy:~/project/module/blog/configuration/rss/collection.config.php}',
+                'blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/collection.config.php}',
                 'rssBlogTag' => '{#lazy:~/project/module/blog/configuration/rsstag/collection.config.php}',
 
                 'user' => '{#lazy:~/project/module/users/configuration/user/collection.config.php}',

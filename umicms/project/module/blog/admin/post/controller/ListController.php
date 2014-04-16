@@ -10,7 +10,7 @@
 namespace umicms\project\module\blog\admin\post\controller;
 
 use umicms\project\admin\api\controller\BaseRestListController;
-use umicms\project\module\blog\api\BlogApi;
+use umicms\project\module\blog\api\BlogModule;
 
 /**
  * Контроллер действий над списком.
@@ -19,15 +19,15 @@ class ListController extends BaseRestListController
 {
 
     /**
-     * @var BlogApi $api
+     * @var BlogModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param BlogApi $api
+     * @param BlogModule $api
      */
-    public function __construct(BlogApi $api)
+    public function __construct(BlogModule $api)
     {
         $this->api = $api;
     }

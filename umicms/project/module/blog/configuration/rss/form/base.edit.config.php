@@ -11,13 +11,13 @@ use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\blog\api\object\RssImportPost;
+use umicms\project\module\blog\api\object\BlogRssImportScenario;
 
 return [
 
     'options' => [
         'dictionaries' => [
-            'collection.rssImportPost', 'collection', 'form'
+            'collection.blogRssImportScenario', 'collection', 'form'
         ]
     ],
 
@@ -27,11 +27,11 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'common',
             'elements' => [
-                RssImportPost::FIELD_DISPLAY_NAME => [
+                BlogRssImportScenario::FIELD_DISPLAY_NAME => [
                     'type' => Text::TYPE_NAME,
-                    'label' => RssImportPost::FIELD_DISPLAY_NAME,
+                    'label' => BlogRssImportScenario::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => RssImportPost::FIELD_DISPLAY_NAME
+                        'dataSource' => BlogRssImportScenario::FIELD_DISPLAY_NAME
                     ],
                 ]
             ]
@@ -41,25 +41,25 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'importSetting',
             'elements' => [
-                RssImportPost::FIELD_RSS_URL => [
+                BlogRssImportScenario::FIELD_RSS_URL => [
                     'type' => Text::TYPE_NAME,
-                    'label' => RssImportPost::FIELD_RSS_URL,
+                    'label' => BlogRssImportScenario::FIELD_RSS_URL,
                     'options' => [
-                        'dataSource' => RssImportPost::FIELD_RSS_URL
+                        'dataSource' => BlogRssImportScenario::FIELD_RSS_URL
                     ],
                 ],
-                RssImportPost::FIELD_CATEGORY => [
+                BlogRssImportScenario::FIELD_CATEGORY => [
                     'type' => Select::TYPE_NAME,
-                    'label' => RssImportPost::FIELD_CATEGORY,
+                    'label' => BlogRssImportScenario::FIELD_CATEGORY,
                     'options' => [
-                        'dataSource' => RssImportPost::FIELD_CATEGORY
+                        'dataSource' => BlogRssImportScenario::FIELD_CATEGORY
                     ],
                 ],
-                RssImportPost::FIELD_TAGS => [
+                BlogRssImportScenario::FIELD_TAGS => [
                     'type' => MultiSelect::TYPE_NAME,
-                    'label' => RssImportPost::FIELD_TAGS,
+                    'label' => BlogRssImportScenario::FIELD_TAGS,
                     'options' => [
-                        'dataSource' => RssImportPost::FIELD_TAGS
+                        'dataSource' => BlogRssImportScenario::FIELD_TAGS
                     ]
                 ]
             ]

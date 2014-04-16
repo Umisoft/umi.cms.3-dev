@@ -21,7 +21,33 @@ return [
 
     ],
     SecureAdminComponent::OPTION_ROUTES => [
-
+        'action' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/action/{action}',
+            'defaults' => [
+                'controller' => SecureAdminComponent::ACTION_CONTROLLER
+            ]
+        ],
+        'collection' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'route' => '/collection',
+            'subroutes' => [
+                'item' => [
+                    'type' => IRouteFactory::ROUTE_SIMPLE,
+                    'route' => '/{collection}/{id:integer}',
+                    'defaults' => [
+                        'controller' => SecureAdminComponent::ITEM_CONTROLLER
+                    ]
+                ],
+                'list' => [
+                    'type' => IRouteFactory::ROUTE_SIMPLE,
+                    'route' => '/{collection}',
+                    'defaults' => [
+                        'controller' => SecureAdminComponent::LIST_CONTROLLER
+                    ]
+                ]
+            ]
+        ],
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [

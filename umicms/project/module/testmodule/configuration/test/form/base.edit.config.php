@@ -19,7 +19,7 @@ use umi\form\element\Textarea;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\File;
 use umicms\form\element\Image;
-use umicms\project\module\testmodule\api\object\Test;
+use umicms\project\module\testmodule\api\object\TestObject;
 
 return [
 
@@ -35,18 +35,18 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'common',
             'elements' => [
-                Test::TEXT => [
+                TestObject::TEXT => [
                     'type' => Text::TYPE_NAME,
-                    'label' => Test::TEXT,
+                    'label' => TestObject::TEXT,
                     'options' => [
-                        'dataSource' => Test::TEXT
+                        'dataSource' => TestObject::TEXT
                     ],
                 ],
-                Test::TEXTAREA => [
+                TestObject::TEXTAREA => [
                     'type' => Textarea::TYPE_NAME,
-                    'label' => Test::TEXTAREA,
+                    'label' => TestObject::TEXTAREA,
                     'options' => [
-                        'dataSource' => Test::TEXTAREA
+                        'dataSource' => TestObject::TEXTAREA
                     ],
                 ],
                 /*Test::SELECT => [
@@ -59,15 +59,15 @@ return [
                         ]
                     ],
                 ],*/
-                Test::RADIO => [
+                TestObject::RADIO => [
                     'type' => Radio::TYPE_NAME,
-                    'label' => Test::RADIO,
+                    'label' => TestObject::RADIO,
                 ],
-                Test::PASSWORD => [
+                TestObject::PASSWORD => [
                     'type' => Radio::TYPE_NAME,
-                    'label' => Test::PASSWORD,
+                    'label' => TestObject::PASSWORD,
                     'options' => [
-                        'dataSource' => Test::PASSWORD
+                        'dataSource' => TestObject::PASSWORD
                     ],
                 ],
                 /*Test::MULTISELECT => [
@@ -87,61 +87,61 @@ return [
                         'dataSource' => Test::CSRF
                     ],
                 ],*/
-                Test::CHECKBOX => [
+                TestObject::CHECKBOX => [
                     'type' => Checkbox::TYPE_NAME,
-                    'label' => Test::CHECKBOX,
+                    'label' => TestObject::CHECKBOX,
                     'options' => [
-                        'dataSource' => Test::CHECKBOX
+                        'dataSource' => TestObject::CHECKBOX
                     ],
                 ],
 
-                Test::DATE => [
+                TestObject::DATE => [
                     'type' => Date::TYPE_NAME,
-                    'label' => Test::DATE,
+                    'label' => TestObject::DATE,
                     'options' => [
-                        'dataSource' => Test::DATE
+                        'dataSource' => TestObject::DATE
                     ],
                 ],
-                Test::DATE_TIME => [
+                TestObject::DATE_TIME => [
                     'type' => DateTime::TYPE_NAME,
-                    'label' => Test::DATE_TIME,
+                    'label' => TestObject::DATE_TIME,
                     'options' => [
-                        'dataSource' => Test::DATE_TIME
+                        'dataSource' => TestObject::DATE_TIME
                     ],
                 ],
-                Test::EMAIL => [
+                TestObject::EMAIL => [
                     'type' => Email::TYPE_NAME,
-                    'label' => Test::EMAIL,
+                    'label' => TestObject::EMAIL,
                     'options' => [
-                        'dataSource' => Test::EMAIL
+                        'dataSource' => TestObject::EMAIL
                     ],
                 ],
-                Test::NUMBER => [
+                TestObject::NUMBER => [
                     'type' => Number::TYPE_NAME,
-                    'label' => Test::NUMBER,
+                    'label' => TestObject::NUMBER,
                     'options' => [
-                        'dataSource' => Test::NUMBER
+                        'dataSource' => TestObject::NUMBER
                     ],
                 ],
-                Test::TIME => [
+                TestObject::TIME => [
                     'type' => Time::TYPE_NAME,
-                    'label' => Test::TIME,
+                    'label' => TestObject::TIME,
                     'options' => [
-                        'dataSource' => Test::TIME
+                        'dataSource' => TestObject::TIME
                     ],
                 ],
-                Test::FILE => [
+                TestObject::FILE => [
                     'type' => File::TYPE_NAME,
-                    'label' => Test::FILE,
+                    'label' => TestObject::FILE,
                     'options' => [
-                        'dataSource' => Test::FILE
+                        'dataSource' => TestObject::FILE
                     ],
                 ],
-                Test::IMAGE => [
+                TestObject::IMAGE => [
                     'type' => Image::TYPE_NAME,
-                    'label' => Test::IMAGE,
+                    'label' => TestObject::IMAGE,
                     'options' => [
-                        'dataSource' => Test::IMAGE
+                        'dataSource' => TestObject::IMAGE
                     ],
                 ]
             ]

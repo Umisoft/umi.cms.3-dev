@@ -10,6 +10,7 @@
 namespace demohunt\controller;
 
 use Doctrine\DBAL\DBALException;
+use Mockery\CountValidator\Exception;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\driver\IDialect;
 use umi\http\Response;
@@ -24,7 +25,7 @@ use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseController;
-use umicms\project\module\news\api\collection\RssImportScenarioCollection;
+use umicms\project\module\news\api\collection\NewsRssImportScenarioCollection;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchIndexApi;
 use umicms\project\module\service\api\collection\BackupCollection;
@@ -92,11 +93,12 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
             $this->installSearch();
             $this->installBackup();
+            $this->installTest();
         } catch (DBALException $e) {
             var_dump($e->getMessage());
         }
 
-        $this->installTest();
+
 
         return $this->createResponse('Installed');
     }
@@ -331,9 +333,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $newsCollection = $this->getCollectionManager()->getCollection('newsItem');
         /**
-         * @var RssImportScenarioCollection $rssScenarioCollection
+         * @var NewsRssImportScenarioCollection $newsRssImportScenarioCollection
          */
-        $rssScenarioCollection = $this->getCollectionManager()->getCollection('rssImportScenario');
+        $rssScenarioCollection = $this->getCollectionManager()->getCollection('newsRssImportScenario');
         /**
          * @var SimpleHierarchicCollection $rubricCollection
          */

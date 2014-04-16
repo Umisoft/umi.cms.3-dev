@@ -11,11 +11,12 @@ use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
+    'class' => 'umicms\project\module\testmodule\api\collection\TestCollection',
     'handlers' => [
         'admin' => 'testmodule.test'
     ],
     'dictionaries' => [
-        'collection.testmodule', 'collection'
+        'collection.testTest', 'collection'
     ],
     'forms' => [
         'base' => [

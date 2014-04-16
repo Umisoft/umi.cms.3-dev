@@ -126,10 +126,10 @@ return [
         ],
         BlogTag::FIELD_RSS => [
             'type' => IField::TYPE_MANY_TO_MANY,
-            'target' => 'rssImportPost',
+            'target' => 'blogRssImportScenario',
             'bridge' => 'rssBlogTag',
             'relatedField' => 'tag',
-            'targetField' => 'rssImportPost',
+            'targetField' => 'blogRssImportScenario',
         ]
     ],
     'types' => [

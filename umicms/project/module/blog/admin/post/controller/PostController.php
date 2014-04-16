@@ -11,7 +11,7 @@ namespace umicms\project\module\blog\admin\post\controller;
 
 use umicms\orm\object\ICmsObject;
 use umicms\project\admin\api\controller\BaseRestItemController;
-use umicms\project\module\blog\api\BlogApi;
+use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
@@ -20,15 +20,15 @@ use umicms\project\module\blog\api\object\BlogPost;
 class PostController extends BaseRestItemController
 {
     /**
-     * @var BlogApi $api
+     * @var BlogModule $api
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param BlogApi $api
+     * @param BlogModule $api
      */
-    public function __construct(BlogApi $api)
+    public function __construct(BlogModule $api)
     {
         $this->api = $api;
     }

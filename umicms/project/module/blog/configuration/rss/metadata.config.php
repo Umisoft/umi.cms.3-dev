@@ -9,7 +9,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\blog\api\object\RssImportPost;
+use umicms\project\module\blog\api\object\BlogRssImportScenario;
 
 return [
     'dataSource' => [
@@ -17,32 +17,32 @@ return [
     ],
     'fields'     => [
 
-        RssImportPost::FIELD_IDENTIFY              => [
+        BlogRssImportScenario::FIELD_IDENTIFY              => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
             'accessor'   => 'getId',
             'readOnly'   => true
         ],
-        RssImportPost::FIELD_GUID                  => [
+        BlogRssImportScenario::FIELD_GUID                  => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
             'readOnly'   => true
         ],
-        RssImportPost::FIELD_TYPE                  => [
+        BlogRssImportScenario::FIELD_TYPE                  => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
             'accessor'   => 'getType',
             'readOnly'   => true
         ],
-        RssImportPost::FIELD_VERSION               => [
+        BlogRssImportScenario::FIELD_VERSION               => [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
             'readOnly'     => true,
             'defaultValue' => 1
         ],
-        RssImportPost::FIELD_DISPLAY_NAME          => [
+        BlogRssImportScenario::FIELD_DISPLAY_NAME          => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name',
             'filters' => [
@@ -52,73 +52,67 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ]
         ],
-        RssImportPost::FIELD_ACTIVE                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'active',
-            'defaultValue' => 1
-        ],
-        RssImportPost::FIELD_LOCKED                => [
+        BlogRssImportScenario::FIELD_LOCKED                => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
             'readOnly'     => true,
             'defaultValue' => 0
         ],
-        RssImportPost::FIELD_CREATED               => [
+        BlogRssImportScenario::FIELD_CREATED               => [
             'type'       => IField::TYPE_DATE_TIME,
             'columnName' => 'created',
             'readOnly'   => true
         ],
-        RssImportPost::FIELD_UPDATED               => [
+        BlogRssImportScenario::FIELD_UPDATED               => [
             'type'       => IField::TYPE_DATE_TIME,
             'columnName' => 'updated',
             'readOnly'   => true
         ],
-        RssImportPost::FIELD_OWNER => [
+        BlogRssImportScenario::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
             'target' => 'user'
         ],
-        RssImportPost::FIELD_EDITOR => [
+        BlogRssImportScenario::FIELD_EDITOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
-        RssImportPost::FIELD_RSS_URL => [
+        BlogRssImportScenario::FIELD_RSS_URL => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'rss_url',
             'accessor'   => 'getRssUrl'
         ],
-        RssImportPost::FIELD_CATEGORY => [
+        BlogRssImportScenario::FIELD_CATEGORY => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'rubric_id',
             'target' => 'blogCategory'
         ],
-        RssImportPost::FIELD_TAGS => [
+        BlogRssImportScenario::FIELD_TAGS => [
             'type'         => IField::TYPE_MANY_TO_MANY,
             'target'       => 'blogTag',
             'bridge'       => 'rssBlogTag',
-            'relatedField' => 'rssImportPost',
+            'relatedField' => 'blogRssImportScenario',
             'targetField'  => 'tag'
         ],
     ],
     'types'      => [
         'base' => [
-            'objectClass' => 'umicms\project\module\blog\api\object\RssImportPost',
+            'objectClass' => 'umicms\project\module\blog\api\object\BlogRssImportScenario',
             'fields'      => [
-                RssImportPost::FIELD_IDENTIFY,
-                RssImportPost::FIELD_GUID,
-                RssImportPost::FIELD_TYPE,
-                RssImportPost::FIELD_VERSION,
-                RssImportPost::FIELD_ACTIVE,
-                RssImportPost::FIELD_LOCKED,
-                RssImportPost::FIELD_CREATED,
-                RssImportPost::FIELD_UPDATED,
-                RssImportPost::FIELD_DISPLAY_NAME,
-                RssImportPost::FIELD_OWNER,
-                RssImportPost::FIELD_EDITOR,
-                RssImportPost::FIELD_RSS_URL,
-                RssImportPost::FIELD_CATEGORY,
-                RssImportPost::FIELD_TAGS
+                BlogRssImportScenario::FIELD_IDENTIFY,
+                BlogRssImportScenario::FIELD_GUID,
+                BlogRssImportScenario::FIELD_TYPE,
+                BlogRssImportScenario::FIELD_VERSION,
+                BlogRssImportScenario::FIELD_LOCKED,
+                BlogRssImportScenario::FIELD_CREATED,
+                BlogRssImportScenario::FIELD_UPDATED,
+                BlogRssImportScenario::FIELD_DISPLAY_NAME,
+                BlogRssImportScenario::FIELD_OWNER,
+                BlogRssImportScenario::FIELD_EDITOR,
+                BlogRssImportScenario::FIELD_RSS_URL,
+                BlogRssImportScenario::FIELD_CATEGORY,
+                BlogRssImportScenario::FIELD_TAGS
             ]
         ]
     ]

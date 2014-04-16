@@ -19,7 +19,7 @@ use umicms\orm\object\CmsObject;
  * @property BlogCategory|null $category имя поля для хранения категории, к которой относятся импортируемые посты
  * @property ManyToManyObjectSet|BlogTag[] $tags список тэгов, к которым относятся импортируемые посты
  */
-class RssImportPost extends CmsObject
+class BlogRssImportScenario extends CmsObject
 {
     /**
      * URL RSS-ленты, которую необходимо импортировать.

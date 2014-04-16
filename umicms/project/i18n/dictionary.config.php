@@ -129,5 +129,5 @@ return [
         'collection.user' => '{#lazy:~/project/module/users/configuration/user/i18n/dictionary.config.php}',
         'collection.newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/i18n/dictionary.config.php}',
         'collection.newsSubject' => '{#lazy:~/project/module/news/configuration/subject/i18n/dictionary.config.php}',
-        'collection.rssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/i18n/dictionary.config.php}',
+        'collection.newsRssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/i18n/dictionary.config.php}',
     ];
