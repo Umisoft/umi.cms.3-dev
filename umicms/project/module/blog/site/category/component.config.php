@@ -8,16 +8,22 @@
 
 namespace umicms\project\module\blog\site\category;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\SiteComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\module\blog\site\category\Component',
+    SiteComponent::OPTION_CLASS => 'umicms\project\module\blog\site\category\BlogCategoryComponent',
     SiteComponent::OPTION_CONTROLLERS => [
-
+        'category' => __NAMESPACE__ . '\controller\BlogCategoryController',
+        'rss' => __NAMESPACE__ . '\controller\BlogCategoryRssController'
     ],
     SiteComponent::OPTION_WIDGET => [
+        'view' => __NAMESPACE__ .  '\widget\CategoryWidget',
+        'postList' => __NAMESPACE__ . '\widget\CategoryPostListWidget',
+        'list' => __NAMESPACE__ .  '\widget\CategoryListWidget',
+        'rss' => __NAMESPACE__ .  '\widget\CategoryPostRssUrlWidget'
     ],
     SiteComponent::OPTION_VIEW => [
         'type' => 'php',
@@ -25,6 +31,30 @@ return [
         'directory' => __DIR__ . '/template/php',
     ],
     SiteComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'blogCategoryViewer' => [],
+            'blogCategoryRssViewer' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'controller:category',
+            'controller:rss',
+            'widget:view',
+            'widget:postList',
+            'widget:list',
+            'widget:rss'
+        ],
+        IAclFactory::OPTION_RULES => [
+            'blogCategoryViewer' => [
+                'controller:category' => [],
+                'widget:view' => [],
+                'widget:list' => [],
+                'widget:postList' => []
+            ],
+            'blogCategoryRssViewer' => [
+                'controller:rss' => [],
+                'widget:rss' => []
+            ]
+        ]
     ],
     SiteComponent::OPTION_ROUTES => [
         'rss' => [

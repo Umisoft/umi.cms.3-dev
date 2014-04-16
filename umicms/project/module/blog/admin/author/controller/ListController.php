@@ -11,7 +11,7 @@ namespace umicms\project\module\blog\admin\author\controller;
 
 use umicms\project\admin\api\controller\DefaultRestListController;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\users\api\UsersApi;
+use umicms\project\module\users\api\UsersModule;
 
 /**
  * Контроллер действий над списком.
@@ -24,16 +24,16 @@ class ListController extends DefaultRestListController
      */
     protected $api;
     /**
-     * @var UsersApi $user
+     * @var UsersModule $user
      */
     protected $users;
 
     /**
      * Конструктор.
      * @param BlogModule $api
-     * @param UsersApi $users
+     * @param UsersModule $users
      */
-    public function __construct(BlogModule $api, UsersApi $users)
+    public function __construct(BlogModule $api, UsersModule $users)
     {
         $this->api = $api;
         $this->users = $users;
@@ -44,7 +44,7 @@ class ListController extends DefaultRestListController
      */
     protected function getCollectionName()
     {
-        return $this->api->author()->collectionName;
+        return $this->api->author()->getName();
     }
 
     /**
@@ -52,7 +52,7 @@ class ListController extends DefaultRestListController
      */
     protected function getList()
     {
-        return  $this->api->author()->select(false);
+        return $this->api->author()->select(false);
     }
 
     /**
@@ -60,26 +60,7 @@ class ListController extends DefaultRestListController
      */
     protected function create(array $data)
     {
-        $object = $this->api->author()->add();
 
-        // TODO: forms
-        if (isset($data['profile'])) {
-            $user = $this->users->user()->getById($data['profile']);
-            $data['profile'] = $user;
-        }
-        foreach ($data as $propertyName => $value) {
-            if ($object->hasProperty($propertyName)
-                && !$object->getProperty($propertyName)->getIsReadOnly()
-                && !is_array($value)
-
-            ) {
-                $object->setValue($propertyName, $value);
-            }
-        }
-
-        $this->getObjectPersister()->commit();
-
-        return $object;
     }
 }
  

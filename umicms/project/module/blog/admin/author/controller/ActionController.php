@@ -14,7 +14,7 @@ use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umicms\project\admin\api\controller\DefaultRestActionController;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\api\object\BlogAuthor;
 use umicms\project\module\service\api\object\Backup;
 
 /**
@@ -61,14 +61,14 @@ class ActionController extends DefaultRestActionController
     {
         $collectionName = $this->getRequiredQueryVar('collection');
 
-        if ($collectionName != $this->api->post()->collectionName) {
+        if ($collectionName != $this->api->author()->getName()) {
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
         }
 
         $typeName = $this->getRequiredQueryVar('type');
         $formName = $this->getRequiredQueryVar('form');
 
-        return $this->api->post()->getCollection()->getForm($typeName, $formName);
+        return $this->api->author()->getForm($typeName, $formName);
     }
 
     /**
@@ -123,23 +123,23 @@ class ActionController extends DefaultRestActionController
      */
     protected function actionBackups()
     {
-        $blogPostId = $this->getRequiredQueryVar('id');
+        $authorId = $this->getRequiredQueryVar('id');
 
         return $this->api->post()->getBackupList(
-            $this->api->post()->getById($blogPostId)
+            $this->api->post()->getById($authorId)
         );
     }
 
     /**
      * Возвращает резервную копию.
-     * @return BlogPost
+     * @return BlogAuthor
      */
     protected function actionBackup()
     {
-        $blogPostId = $this->getRequiredQueryVar('id');
+        $authorId = $this->getRequiredQueryVar('id');
         $backupId = $this->getRequiredQueryVar('backupId');
-        $blogPost = $this->api->post()->getById($blogPostId);
+        $author = $this->api->post()->getById($authorId);
 
-        return $this->api->post()->getBackup($blogPost, $backupId);
+        return $this->api->author()->wakeUpBackup($author, $backupId);
     }
 }

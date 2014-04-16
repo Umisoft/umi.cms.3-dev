@@ -154,10 +154,10 @@ class ActionController extends DefaultRestActionController
      */
     protected function actionBackups()
     {
-        $newsRubricId = $this->getRequiredQueryVar('id');
+        $blogCategoryId = $this->getRequiredQueryVar('id');
 
         return $this->api->category()->getBackupList(
-            $this->api->category()->getById($newsRubricId)
+            $this->api->category()->getById($blogCategoryId)
         );
     }
 
@@ -167,10 +167,10 @@ class ActionController extends DefaultRestActionController
      */
     protected function actionBackup()
     {
-        $newsRubricId = $this->getRequiredQueryVar('id');
+        $blogCategoryId = $this->getRequiredQueryVar('id');
         $backupId = $this->getRequiredQueryVar('backupId');
-        $newsRubric = $this->api->category()->getById($newsRubricId);
+        $blogCategory = $this->api->category()->getById($blogCategoryId);
 
-        return $this->api->category()->wakeUpBackup($newsRubric, $backupId);
+        return $this->api->category()->wakeUpBackup($blogCategory, $backupId);
     }
 }
