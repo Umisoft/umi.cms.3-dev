@@ -14,7 +14,13 @@ use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\route\IRouteFactory;
 use umicms\exception\RuntimeException;
+use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
+use umicms\orm\collection\behaviour\IRecoverableCollection;
+use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsCollection;
+use umicms\orm\collection\PageCollection;
+use umicms\orm\collection\PageHierarchicCollection;
+use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\project\admin\component\AdminComponent;
 
 /**
@@ -28,6 +34,14 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionManager
      * Опция для задания имени коллекции, с которой работает компонент.
      */
     const OPTION_COLLECTION_NAME = 'collectionName';
+    /**
+     * Опция для задания дополнительного списка доступных действий на запрос данных
+     */
+    const OPTION_QUERY_ACTIONS = 'queryActions';
+    /**
+     * Опция для задания дополнительного списка доступных действий на изменение данных
+     */
+    const OPTION_MODIFY_ACTIONS = 'modifyActions';
 
     public $defaultOptions = [
 
@@ -72,18 +86,15 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionManager
             'collection' => [
                 'type'     => IRouteFactory::ROUTE_FIXED,
                 'route'    => '/collection',
+                'defaults' => [
+                    'controller' => DefaultAdminComponent::LIST_CONTROLLER
+                ],
                 'subroutes' => [
                     'item' => [
                         'type'     => IRouteFactory::ROUTE_SIMPLE,
                         'route'    => '/{id:integer}',
                         'defaults' => [
                             'controller' => DefaultAdminComponent::ITEM_CONTROLLER
-                        ]
-                    ],
-                    'list' => [
-                        'type'     => IRouteFactory::ROUTE_SIMPLE,
-                        'defaults' => [
-                            'controller' => DefaultAdminComponent::LIST_CONTROLLER
                         ]
                     ]
                 ]
@@ -128,5 +139,66 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionManager
 
         return $this->getCollectionManager()->getCollection($this->options[self::OPTION_COLLECTION_NAME]);
     }
+
+    /**
+     * Возвращает список доступных действий на запрос данных.
+     * @return array
+     */
+    public function getQueryActions()
+    {
+        $defaultActions = [
+            'form'
+        ];
+
+        $collection = $this->getCollection();
+        if ($collection instanceof IRecoverableCollection) {
+            $defaultActions[] = 'backupList';
+            $defaultActions[] = 'backup';
+        }
+
+        if ($collection instanceof PageCollection || $collection instanceof PageHierarchicCollection) {
+            $defaultActions[] = 'viewOnSite';
+        }
+
+        $actions = [];
+        if (isset($this->options[self::OPTION_QUERY_ACTIONS])) {
+            $actions = $this->configToArray($this->options[self::OPTION_QUERY_ACTIONS]);
+        }
+
+        return array_merge($defaultActions, $actions);
+    }
+
+    /**
+     * Возвращает список доступных действий на изменение данных.
+     * @return array
+     */
+    public function getModifyActions()
+    {
+        $defaultActions = [];
+        $collection = $this->getCollection();
+
+        if ($collection instanceof IActiveAccessibleCollection) {
+            $defaultActions[] = 'switchActivity';
+        }
+        if ($collection instanceof SimpleHierarchicCollection) {
+            $defaultActions[] = 'move';
+        }
+        if ($collection instanceof PageCollection || $collection instanceof PageHierarchicCollection) {
+            $defaultActions[] = 'changeSlug';
+        }
+        if ($collection instanceof IRecyclableCollection) {
+            $defaultActions[] = 'trash';
+            $defaultActions[] = 'untrash';
+        }
+
+        $actions = [];
+        if (isset($this->options[self::OPTION_MODIFY_ACTIONS])) {
+            $actions = $this->configToArray($this->options[self::OPTION_MODIFY_ACTIONS]);
+        }
+
+        return array_merge($defaultActions, $actions);
+    }
+
+
 }
  

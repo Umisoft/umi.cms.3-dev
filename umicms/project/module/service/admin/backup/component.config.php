@@ -8,52 +8,9 @@
 
 namespace umicms\project\module\service\admin\backup;
 
-use umi\acl\IAclFactory;
-use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\api\component\DefaultAdminComponent;
 
 return [
-
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
-    AdminComponent::OPTION_CONTROLLERS => [
-        AdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
-        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
-    ],
-    AdminComponent::OPTION_ACL => [
-
-        IAclFactory::OPTION_ROLES => [
-            'editor' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:settings',
-            'controller:list'
-        ],
-        IAclFactory::OPTION_RULES => [
-            'editor' => [
-                'controller:settings' => [],
-                'controller:list' => []
-            ],
-        ]
-    ],
-    AdminComponent::OPTION_ROUTES => [
-        'collection' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'route' => '/collection',
-            'subroutes' => [
-                'list' => [
-                    'type' => IRouteFactory::ROUTE_SIMPLE,
-                    'route' => '/{collection}',
-                    'defaults' => [
-                        'controller' => AdminComponent::LIST_CONTROLLER
-                    ]
-                ]
-            ]
-        ],
-        'settings' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => AdminComponent::SETTINGS_CONTROLLER
-            ]
-        ]
-    ]
+    DefaultAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultAdminComponent',
+    DefaultAdminComponent::OPTION_COLLECTION_NAME => 'serviceBackup'
 ];

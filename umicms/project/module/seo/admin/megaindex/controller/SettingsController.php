@@ -9,12 +9,12 @@
 
 namespace umicms\project\module\seo\admin\megaindex\controller;
 
-use umicms\project\admin\api\controller\DefaultSettingsController;
+use umicms\project\admin\api\controller\DefaultRestSettingsController;
 
 /**
  * Контроллер вывода настроек компонента
  */
-class SettingsController extends DefaultSettingsController
+class SettingsController extends DefaultRestSettingsController
 {
     private $controls = [
         'megaindexReport' => []

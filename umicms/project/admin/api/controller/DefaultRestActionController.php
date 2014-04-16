@@ -20,9 +20,6 @@ use umicms\exception\RuntimeException;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
-use umicms\orm\collection\PageCollection;
-use umicms\orm\collection\PageHierarchicCollection;
-use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
@@ -35,14 +32,6 @@ use umicms\project\module\service\api\object\Backup;
  */
 class DefaultRestActionController extends BaseDefaultRestController
 {
-    /**
-     * @var array $queryActions дополнительный список доступных действий на запрос данных
-     */
-    protected $queryActions = [];
-    /**
-     * @var array $modifyActions дополнительный список доступных действий на изменение данных
-     */
-    protected $modifyActions = [];
 
     /**
      * {@inheritdoc}
@@ -53,14 +42,14 @@ class DefaultRestActionController extends BaseDefaultRestController
 
         switch($this->getRequest()->getMethod()) {
             case 'GET': {
-                $this->checkSupportedAction($action, $this->getQueryActions());
+                $this->checkSupportedAction($action, $this->getComponent()->getQueryActions());
                 return $this->callAction($action);
             }
             case 'PUT': {
 
             }
             case 'POST': {
-                $this->checkSupportedAction($action, $this->getModifyActions());
+                $this->checkSupportedAction($action, $this->getComponent()->getModifyActions());
                 return $this->callAction($action);
             }
             case 'DELETE': {
@@ -76,57 +65,6 @@ class DefaultRestActionController extends BaseDefaultRestController
                 );
             }
         }
-    }
-
-    /**
-     * Возвращает список доступных действий на запрос данных.
-     * @return array
-     */
-    public function getQueryActions()
-    {
-        $defaultActions = [
-            'form'
-        ];
-
-        $collection = $this->getCollection();
-        if ($collection instanceof IRecoverableCollection) {
-            $defaultActions[] = 'backupList';
-            $defaultActions[] = 'backup';
-        }
-
-        if ($collection instanceof PageCollection || $collection instanceof PageHierarchicCollection) {
-            $defaultActions[] = 'viewOnSite';
-        }
-
-
-        return array_merge($defaultActions, $this->queryActions);
-    }
-
-    /**
-     * Возвращает список доступных действий на изменение данных.
-     * @return array
-     */
-    public function getModifyActions()
-    {
-        $defaultActions = [];
-        $collection = $this->getCollection();
-
-        if ($collection instanceof IActiveAccessibleCollection) {
-            $defaultActions[] = 'switchActivity';
-        }
-        if ($collection instanceof SimpleHierarchicCollection) {
-            $defaultActions[] = 'move';
-        }
-        if ($collection instanceof PageCollection || $collection instanceof PageHierarchicCollection) {
-            $defaultActions[] = 'changeSlug';
-        }
-        if ($collection instanceof IRecyclableCollection) {
-            $defaultActions[] = 'trash';
-            $defaultActions[] = 'untrash';
-        }
-
-
-        return array_merge($defaultActions, $this->modifyActions);
     }
 
     /**
@@ -367,7 +305,7 @@ class DefaultRestActionController extends BaseDefaultRestController
      * @throws HttpException если данные невалидные.
      * @return ICmsObject
      */
-    private function getEditedObject(array $data)
+    protected function getEditedObject(array $data)
     {
         if (isset($data[ICmsObject::FIELD_IDENTIFY])) {
             throw new HttpException(

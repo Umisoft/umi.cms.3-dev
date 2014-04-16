@@ -13,12 +13,11 @@ use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\SimpleCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
-use umicms\project\admin\component\AdminComponent;
 
 /**
  * Контроллер вывода настроек компонента
  */
-class DefaultSettingsController extends BaseDefaultRestController implements IUrlManagerAware
+class DefaultRestSettingsController extends BaseDefaultRestController implements IUrlManagerAware
 {
     use TUrlManagerAware;
 
@@ -151,31 +150,22 @@ class DefaultSettingsController extends BaseDefaultRestController implements IUr
     protected function buildActionsInfo()
     {
         $actions = [];
-        /**
-         * @var AdminComponent $component
-         */
         $component = $this->getComponent();
 
-        if ($component->hasController(AdminComponent::ACTION_CONTROLLER)) {
-            $controller = $component->getController(AdminComponent::ACTION_CONTROLLER);
-            if ($controller instanceof DefaultRestActionController) {
+        foreach ($component->getQueryActions() as $actionName) {
+            $actions[$actionName] = [
+                'type' => 'query',
+                'displayName' => $this->translate('action:' . $actionName . ':displayName'),
+                'source' => $this->getUrlManager()->getAdminComponentActionResourceUrl($component, $actionName)
+            ];
+        }
 
-                foreach ($controller->getQueryActions() as $actionName) {
-                    $actions[$actionName] = [
-                        'type' => 'query',
-                        'displayName' => $this->translate('action:' . $actionName . ':displayName'),
-                        'source' => $this->getUrlManager()->getAdminComponentActionResourceUrl($component, $actionName)
-                    ];
-                }
-
-                foreach ($controller->getModifyActions() as $actionName) {
-                    $actions[$actionName] = [
-                        'type' => 'modify',
-                        'displayName' => $this->translate('action:' . $actionName . ':displayName'),
-                        'source' => $this->getUrlManager()->getAdminComponentActionResourceUrl($component, $actionName)
-                    ];
-                }
-            }
+        foreach ($component->getModifyActions() as $actionName) {
+            $actions[$actionName] = [
+                'type' => 'modify',
+                'displayName' => $this->translate('action:' . $actionName . ':displayName'),
+                'source' => $this->getUrlManager()->getAdminComponentActionResourceUrl($component, $actionName)
+            ];
         }
 
         return $actions;

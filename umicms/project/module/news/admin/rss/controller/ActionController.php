@@ -9,12 +9,10 @@
 
 namespace umicms\project\module\news\admin\rss\controller;
 
-use umi\form\IForm;
-use umi\hmvc\exception\http\HttpException;
-use umi\http\Response;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\admin\api\controller\DefaultRestActionController;
 use umicms\project\module\news\api\NewsModule;
+use umicms\project\module\news\api\object\NewsRssImportScenario;
 
 /**
  * Контроллер операций.
@@ -36,50 +34,18 @@ class ActionController extends DefaultRestActionController
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function getQueryActions()
-    {
-        return ['form', 'importFromRss'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModifyActions()
-    {
-        return [];
-    }
-
-    /**
-     * Возвращает форму для объектного типа коллекции.
-     * @throws HttpException
-     * @return IForm
-     */
-    protected function actionForm()
-    {
-        $collectionName = $this->getRequiredQueryVar('collection');
-
-        if ($collectionName != $this->api->rssImport()->getName()) {
-            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
-        }
-
-        $typeName = $this->getRequiredQueryVar('type');
-        $formName = $this->getRequiredQueryVar('form');
-
-        return $this->api->rssImport()->getForm($typeName, $formName);
-    }
-
-    /**
      * Запускает импорт RSS-ленты.
      */
     protected function actionImportFromRss()
     {
-        $importRssId = $this->getRequiredQueryVar('importRssId');
+        /**
+         * @var NewsRssImportScenario $scenario
+         */
+        $scenario = $this->getEditedObject($this->getIncomingData());
 
-        $guidItemRss = $this->api->rssImport()->getById($importRssId);
-
-        $this->api->importRss($guidItemRss);
+        $this->api->importRss($scenario);
         $this->getObjectPersister()->commit();
+
+        return '';
     }
 }

@@ -8,78 +8,17 @@
 
 namespace umicms\project\module\news\admin\rss;
 
-use umi\acl\IAclFactory;
-use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\api\component\DefaultAdminComponent;
 
 return [
+    DefaultAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultAdminComponent',
+    DefaultAdminComponent::OPTION_COLLECTION_NAME => 'newsRssImportScenario',
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
-
-    AdminComponent::OPTION_CONTROLLERS => [
-        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
-        AdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
-        AdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
-        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
+    DefaultAdminComponent::OPTION_CONTROLLERS => [
+        DefaultAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
 
-    AdminComponent::OPTION_ACL => [
-
-        IAclFactory::OPTION_ROLES => [
-            'editor' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:settings',
-            'controller:list',
-            'controller:item',
-            'controller:action'
-        ],
-        IAclFactory::OPTION_RULES => [
-            'editor' => [
-                'controller:settings' => [],
-                'controller:list' => [],
-                'controller:item' => [],
-                'controller:action' => []
-            ]
-        ]
-    ],
-
-    AdminComponent::OPTION_ROUTES      => [
-
-        'action' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/action/{action}',
-            'defaults' => [
-                'controller' => AdminComponent::ACTION_CONTROLLER
-            ]
-        ],
-
-        'collection' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route'    => '/collection',
-            'subroutes' => [
-                'item' => [
-                    'type'     => IRouteFactory::ROUTE_SIMPLE,
-                    'route'    => '/{collection}/{id:integer}',
-                    'defaults' => [
-                        'controller' => AdminComponent::ITEM_CONTROLLER
-                    ]
-                ],
-                'list' => [
-                    'type'     => IRouteFactory::ROUTE_SIMPLE,
-                    'route'    => '/{collection}',
-                    'defaults' => [
-                        'controller' => AdminComponent::LIST_CONTROLLER
-                    ]
-                ]
-            ]
-        ],
-
-        'settings' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => AdminComponent::SETTINGS_CONTROLLER
-            ]
-        ]
+    DefaultAdminComponent::OPTION_MODIFY_ACTIONS => [
+        'importFromRss'
     ]
 ];

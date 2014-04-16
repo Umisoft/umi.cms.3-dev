@@ -15,11 +15,6 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    AdminComponent::OPTION_SETTINGS => [
-
-    ],
-
-
     AdminComponent::OPTION_COMPONENTS => [
         'manager' => '{#lazy:~/project/module/files/admin/manager/component.config.php}'
     ],
