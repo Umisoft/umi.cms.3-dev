@@ -7,37 +7,57 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umi\orm\object\IObject;
 use umicms\orm\object\CmsObject;
 
 return [
     'dataSource' => [
-        'sourceName' => 'umi_news_news_item_subject'
+        'sourceName' => 'umi_blog_blog_post_tags'
     ],
-    'fields'     => [
-        IObject::FIELD_IDENTIFY => [
-            'type'       => IField::TYPE_IDENTIFY,
+    'fields' => [
+        CmsObject::FIELD_IDENTIFY => [
+            'type' => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
-            'accessor'   => 'getId'
+            'accessor' => 'getId',
+            'readOnly' => true
         ],
-        IObject::FIELD_GUID     => [
-            'type'       => IField::TYPE_GUID,
+        CmsObject::FIELD_GUID => [
+            'type' => IField::TYPE_GUID,
             'columnName' => 'guid',
-            'accessor'   => 'getGuid',
-            'mutator'    => 'setGuid'
+            'accessor' => 'getGuid',
+            'readOnly' => true
         ],
-        IObject::FIELD_TYPE     => [
-            'type'       => IField::TYPE_STRING,
+        CmsObject::FIELD_TYPE => [
+            'type' => IField::TYPE_STRING,
             'columnName' => 'type',
-            'accessor'   => 'getType',
-            'readOnly'   => true
+            'accessor' => 'getType',
+            'readOnly' => true
         ],
-        IObject::FIELD_VERSION  => [
-            'type'         => IField::TYPE_VERSION,
-            'columnName'   => 'version',
-            'accessor'     => 'getVersion',
-            'mutator'      => 'setVersion',
+        CmsObject::FIELD_VERSION => [
+            'type' => IField::TYPE_VERSION,
+            'columnName' => 'version',
+            'accessor' => 'getVersion',
+            'readOnly' => true,
             'defaultValue' => 1
+        ],
+        CmsObject::FIELD_DISPLAY_NAME => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'display_name'
+        ],
+        CmsObject::FIELD_LOCKED => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'locked',
+            'readOnly' => true,
+            'defaultValue' => 0
+        ],
+        CmsObject::FIELD_CREATED => [
+            'type' => IField::TYPE_DATE_TIME,
+            'columnName' => 'created',
+            'readOnly' => true
+        ],
+        CmsObject::FIELD_UPDATED => [
+            'type' => IField::TYPE_DATE_TIME,
+            'columnName' => 'updated',
+            'readOnly' => true
         ],
         CmsObject::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
@@ -49,40 +69,32 @@ return [
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
-        'displayName'           => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
-        'active'                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'active',
-            'defaultValue' => 1
+        'post' => [
+            'type' => IField::TYPE_BELONGS_TO,
+            'columnName' => 'post_id',
+            'target' => 'blogPost'
         ],
-        'locked'                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'locked',
-            'defaultValue' => 0
-        ],
-        'created'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        'updated'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
-        'post'                  => ['type'       => IField::TYPE_BELONGS_TO,
-                                    'columnName' => 'post_id',
-                                    'target'     => 'blogPost'
-        ],
-        'tag'                   => ['type' => IField::TYPE_BELONGS_TO, 'columnName' => 'tag_id', 'target' => 'blogTag']
-
+        'tag' => [
+            'type' => IField::TYPE_BELONGS_TO,
+            'columnName' => 'tag_id',
+            'target' => 'blogTag'
+        ]
     ],
-    'types'      => [
+    'types' => [
         'base' => [
             'fields' => [
-                'id',
-                'guid',
-                'type',
-                'version',
-                'active',
-                'locked',
-                'created',
-                'updated',
+                CmsObject::FIELD_IDENTIFY,
+                CmsObject::FIELD_GUID,
+                CmsObject::FIELD_TYPE,
+                CmsObject::FIELD_VERSION,
                 CmsObject::FIELD_OWNER,
                 CmsObject::FIELD_EDITOR,
-                'displayName',
+                CmsObject::FIELD_DISPLAY_NAME,
+                CmsObject::FIELD_LOCKED,
+                CmsObject::FIELD_CREATED,
+                CmsObject::FIELD_UPDATED,
+                CmsObject::FIELD_OWNER,
+                CmsObject::FIELD_EDITOR,
                 'post',
                 'tag'
             ]

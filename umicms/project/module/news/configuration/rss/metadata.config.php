@@ -9,7 +9,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\news\api\object\RssImportScenario;
+use umicms\project\module\news\api\object\NewsRssImportScenario;
 
 return [
     'dataSource' => [
@@ -17,32 +17,32 @@ return [
     ],
     'fields'     => [
 
-        RssImportScenario::FIELD_IDENTIFY              => [
+        NewsRssImportScenario::FIELD_IDENTIFY              => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
             'accessor'   => 'getId',
             'readOnly'   => true
         ],
-        RssImportScenario::FIELD_GUID                  => [
+        NewsRssImportScenario::FIELD_GUID                  => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
             'readOnly'   => true
         ],
-        RssImportScenario::FIELD_TYPE                  => [
+        NewsRssImportScenario::FIELD_TYPE                  => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
             'accessor'   => 'getType',
             'readOnly'   => true
         ],
-        RssImportScenario::FIELD_VERSION               => [
+        NewsRssImportScenario::FIELD_VERSION               => [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
             'readOnly'     => true,
             'defaultValue' => 1
         ],
-        RssImportScenario::FIELD_DISPLAY_NAME          => [
+        NewsRssImportScenario::FIELD_DISPLAY_NAME          => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name',
             'filters' => [
@@ -52,67 +52,67 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ]
         ],
-        RssImportScenario::FIELD_LOCKED                => [
+        NewsRssImportScenario::FIELD_LOCKED                => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
             'readOnly'     => true,
             'defaultValue' => 0
         ],
-        RssImportScenario::FIELD_CREATED               => [
+        NewsRssImportScenario::FIELD_CREATED               => [
             'type'       => IField::TYPE_DATE_TIME,
             'columnName' => 'created',
             'readOnly'   => true
         ],
-        RssImportScenario::FIELD_UPDATED               => [
+        NewsRssImportScenario::FIELD_UPDATED               => [
             'type'       => IField::TYPE_DATE_TIME,
             'columnName' => 'updated',
             'readOnly'   => true
         ],
-        RssImportScenario::FIELD_OWNER => [
+        NewsRssImportScenario::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
             'target' => 'user'
         ],
-        RssImportScenario::FIELD_EDITOR => [
+        NewsRssImportScenario::FIELD_EDITOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
-        RssImportScenario::FIELD_RSS_URL => [
+        NewsRssImportScenario::FIELD_RSS_URL => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'rss_url',
             'accessor'   => 'getRssUrl'
         ],
-        RssImportScenario::FIELD_RUBRIC => [
+        NewsRssImportScenario::FIELD_RUBRIC => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'rubric_id',
             'target' => 'newsRubric'
         ],
-        RssImportScenario::FIELD_SUBJECTS => [
+        NewsRssImportScenario::FIELD_SUBJECTS => [
             'type'         => IField::TYPE_MANY_TO_MANY,
             'target'       => 'newsSubject',
             'bridge'       => 'rssScenarioSubject',
-            'relatedField' => 'rssImportScenario',
+            'relatedField' => 'newsRssImportScenario',
             'targetField'  => 'subject'
         ],
     ],
     'types'      => [
         'base' => [
-            'objectClass' => 'umicms\project\module\news\api\object\RssImportScenario',
+            'objectClass' => 'umicms\project\module\news\api\object\newsRssImportScenario',
             'fields'      => [
-                RssImportScenario::FIELD_IDENTIFY,
-                RssImportScenario::FIELD_GUID,
-                RssImportScenario::FIELD_TYPE,
-                RssImportScenario::FIELD_VERSION,
-                RssImportScenario::FIELD_LOCKED,
-                RssImportScenario::FIELD_CREATED,
-                RssImportScenario::FIELD_UPDATED,
-                RssImportScenario::FIELD_DISPLAY_NAME,
-                RssImportScenario::FIELD_OWNER,
-                RssImportScenario::FIELD_EDITOR,
-                RssImportScenario::FIELD_RSS_URL,
-                RssImportScenario::FIELD_RUBRIC,
-                RssImportScenario::FIELD_SUBJECTS
+                NewsRssImportScenario::FIELD_IDENTIFY,
+                NewsRssImportScenario::FIELD_GUID,
+                NewsRssImportScenario::FIELD_TYPE,
+                NewsRssImportScenario::FIELD_VERSION,
+                NewsRssImportScenario::FIELD_LOCKED,
+                NewsRssImportScenario::FIELD_CREATED,
+                NewsRssImportScenario::FIELD_UPDATED,
+                NewsRssImportScenario::FIELD_DISPLAY_NAME,
+                NewsRssImportScenario::FIELD_OWNER,
+                NewsRssImportScenario::FIELD_EDITOR,
+                NewsRssImportScenario::FIELD_RSS_URL,
+                NewsRssImportScenario::FIELD_RUBRIC,
+                NewsRssImportScenario::FIELD_SUBJECTS
             ]
         ]
     ]

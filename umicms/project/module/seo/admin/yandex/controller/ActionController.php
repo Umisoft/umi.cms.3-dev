@@ -14,14 +14,17 @@ use umicms\project\admin\component\SecureAdminComponent;
 use umicms\project\module\seo\model\YandexModel;
 
 /**
- * Контроллер операций с API Мегаиндекса
+ * Контроллер операций с API Яндекс.Вебмастер.
  */
 class ActionController extends BaseRestActionController
 {
     /**
-     * @var array $options
+     * @var array $options настройки Яндекс.Вебмастер.
      */
     public $options;
+    /**
+     * @var int $hostId идентификатор хоста.
+     */
     protected $hostId;
 
     /**
@@ -104,14 +107,16 @@ class ActionController extends BaseRestActionController
                 $this->translate("Option {option} is required", ['option' => 'oauthToken'])
             );
         }
+
         return new YandexModel($options['oauthToken']);
     }
 
     /**
+     * Возвращает идентификатор хоста по умолчанию.
      * @throws InvalidArgumentException
      * @return int
      */
-    public function getHostId()
+    protected function getHostId()
     {
         if (is_null($this->hostId)) {
             /** @var $component SecureAdminComponent */
@@ -124,6 +129,7 @@ class ActionController extends BaseRestActionController
             }
             $this->hostId = $options['hostId'];
         }
+
         return $this->hostId;
     }
 }

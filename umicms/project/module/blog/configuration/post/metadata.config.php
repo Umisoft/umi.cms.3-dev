@@ -6,114 +6,184 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
-use umi\orm\object\IObject;
-use umicms\orm\object\CmsObject;
+use umi\validation\IValidatorFactory;
+use umicms\project\module\blog\api\object\BlogPost;
 
 return [
     'dataSource' => [
         'sourceName' => 'umi_blog_post'
     ],
-    'fields'     => [
-
-        IObject::FIELD_IDENTIFY => [
-            'type'       => IField::TYPE_IDENTIFY,
+    'fields' => [
+        BlogPost::FIELD_IDENTIFY => [
+            'type' => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
-            'accessor'   => 'getId'
+            'accessor' => 'getId',
+            'readOnly' => true
         ],
-        IObject::FIELD_GUID     => [
-            'type'       => IField::TYPE_GUID,
+        BlogPost::FIELD_GUID => [
+            'type' => IField::TYPE_GUID,
             'columnName' => 'guid',
-            'accessor'   => 'getGuid',
-            'mutator'    => 'setGuid'
+            'accessor' => 'getGuid',
+            'readOnly' => true
         ],
-        IObject::FIELD_TYPE     => [
-            'type'       => IField::TYPE_STRING,
+        BlogPost::FIELD_TYPE => [
+            'type' => IField::TYPE_STRING,
             'columnName' => 'type',
-            'accessor'   => 'getType',
-            'readOnly'   => true
+            'accessor' => 'getType',
+            'readOnly' => true
         ],
-        IObject::FIELD_VERSION  => [
-            'type'         => IField::TYPE_VERSION,
-            'columnName'   => 'version',
-            'accessor'     => 'getVersion',
-            'mutator'      => 'setVersion',
+        BlogPost::FIELD_VERSION => [
+            'type' => IField::TYPE_VERSION,
+            'columnName' => 'version',
+            'accessor' => 'getVersion',
+            'readOnly' => true,
             'defaultValue' => 1
         ],
-        CmsObject::FIELD_OWNER => [
+        BlogPost::FIELD_PAGE_SLUG => [
+            'type' => IField::TYPE_SLUG,
+            'columnName' => 'slug',
+        ],
+        BlogPost::FIELD_DISPLAY_NAME => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'display_name',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
+        ],
+        BlogPost::FIELD_ACTIVE => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'active',
+            'defaultValue' => 1
+        ],
+        BlogPost::FIELD_LOCKED => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'locked',
+            'readOnly' => true,
+            'defaultValue' => 0
+        ],
+        BlogPost::FIELD_TRASHED => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'trashed',
+            'defaultValue' => 0,
+            'readOnly' => true,
+        ],
+        BlogPost::FIELD_CREATED => [
+            'type' => IField::TYPE_DATE_TIME,
+            'columnName' => 'created',
+            'readOnly' => true
+        ],
+        BlogPost::FIELD_UPDATED => [
+            'type' => IField::TYPE_DATE_TIME,
+            'columnName' => 'updated',
+            'readOnly' => true
+        ],
+        BlogPost::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
             'target' => 'user'
         ],
-        CmsObject::FIELD_EDITOR => [
+        BlogPost::FIELD_EDITOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
-        'displayName'           => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
-        'active'                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'active',
-            'defaultValue' => 1
+        BlogPost::FIELD_AUTHOR => [
+            'type' => IField::TYPE_BELONGS_TO,
+            'columnName' => 'author_id',
+            'target' => 'blogAuthor'
         ],
-        'locked'                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'locked',
-            'defaultValue' => 0
+        BlogPost::FIELD_PUBLISH_TIME => [
+            'type' => IField::TYPE_DATE_TIME,
+            'columnName' => 'publish_time'
         ],
-        'created'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        'updated'               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
-        'h1'                    => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
-        'metaTitle'             => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
-        'metaKeywords'          => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
-        'metaDescription'       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
-        'contents'               => ['type' => IField::TYPE_TEXT, 'columnName' => 'contents'],
-        'announcement'          => ['type' => IField::TYPE_TEXT, 'columnName' => 'announcement'],
-        'category'              => [
-            'type'       => IField::TYPE_BELONGS_TO,
+        BlogPost::FIELD_PAGE_META_TITLE => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'meta_title'
+        ],
+        BlogPost::FIELD_PAGE_META_KEYWORDS => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'meta_keywords'
+        ],
+        BlogPost::FIELD_PAGE_META_DESCRIPTION => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'meta_description'
+        ],
+        BlogPost::FIELD_PAGE_H1 => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'h1'
+        ],
+        BlogPost::FIELD_ANNOUNCEMENT => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'announcement'
+        ],
+        BlogPost::FIELD_SOURCE => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'source'
+        ],
+        BlogPost::FIELD_PAGE_CONTENTS => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'contents'
+        ],
+        BlogPost::FIELD_PAGE_LAYOUT => [
+            'type' => IField::TYPE_BELONGS_TO,
+            'columnName' => 'layout_id',
+            'target' => 'layout'
+        ],
+        BlogPost::FIELD_CATEGORY => [
+            'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'category_id',
-            'target'     => 'blogCategory'
+            'target' => 'blogCategory'
         ],
-        'slug'                  => [
-            'type'       => IField::TYPE_SLUG,
-            'columnName' => 'slug',
-            'accessor'   => 'getSlug',
-            'mutator'    => 'setSlug'
+        BlogPost::FIELD_TAGS => [
+            'type' => IField::TYPE_MANY_TO_MANY,
+            'target' => 'blogTag',
+            'bridge' => 'blogPostTag',
+            'relatedField' => 'blogPost',
+            'targetField' => 'tag'
         ],
-        'tags'                  => [
-            'type'         => IField::TYPE_MANY_TO_MANY,
-            'target'       => 'blogTag',
-            'bridge'       => 'blogPostTag',
-            'relatedField' => 'post',
-            'targetField'  => 'tag'
+        BlogPost::FIELD_COMMENTS_COUNT => [
+            'type' => IField::TYPE_COUNTER,
+            'columnName' => 'comments_count'
         ],
-        'date'                  => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'date']
-
+        BlogPost::FIELD_OLD_URL => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'old_url'
+        ]
     ],
-    'types'      => [
+    'types' => [
         'base' => [
+            'objectClass' => 'umicms\project\module\blog\api\object\BlogPost',
             'fields' => [
-                'id',
-                'guid',
-                'type',
-                'version',
-                'active',
-                'locked',
-                'created',
-                'updated',
-                CmsObject::FIELD_OWNER,
-                CmsObject::FIELD_EDITOR,
-                'displayName',
-                'category',
-                'slug',
-                'h1',
-                'metaTitle',
-                'metaKeywords',
-                'metaDescription',
-                'announcement',
-                'contents',
-                'tags',
-                'date'
+                BlogPost::FIELD_IDENTIFY,
+                BlogPost::FIELD_GUID,
+                BlogPost::FIELD_TYPE,
+                BlogPost::FIELD_VERSION,
+                BlogPost::FIELD_DISPLAY_NAME,
+                BlogPost::FIELD_ACTIVE,
+                BlogPost::FIELD_LOCKED,
+                BlogPost::FIELD_TRASHED,
+                BlogPost::FIELD_CREATED,
+                BlogPost::FIELD_UPDATED,
+                BlogPost::FIELD_OWNER,
+                BlogPost::FIELD_EDITOR,
+                BlogPost::FIELD_PAGE_H1,
+                BlogPost::FIELD_PAGE_META_TITLE,
+                BlogPost::FIELD_PAGE_META_KEYWORDS,
+                BlogPost::FIELD_PAGE_META_DESCRIPTION,
+                BlogPost::FIELD_PAGE_LAYOUT,
+                BlogPost::FIELD_PAGE_SLUG,
+                BlogPost::FIELD_ANNOUNCEMENT,
+                BlogPost::FIELD_PAGE_CONTENTS,
+                BlogPost::FIELD_CATEGORY,
+                BlogPost::FIELD_TAGS,
+                BlogPost::FIELD_PUBLISH_TIME,
+                BlogPost::FIELD_COMMENTS_COUNT,
+                BlogPost::FIELD_OLD_URL
             ]
         ]
     ]

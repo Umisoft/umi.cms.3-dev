@@ -107,10 +107,10 @@ return [
         ],
         NewsSubject::FIELD_RSS => [
             'type'         => IField::TYPE_MANY_TO_MANY,
-            'target'       => 'rssImportScenario',
+            'target'       => 'newsRssImportScenario',
             'bridge'       => 'rssScenarioSubject',
             'relatedField' => 'subject',
-            'targetField'  => 'rssImportScenario',
+            'targetField'  => 'newsRssImportScenario',
         ],
         NewsSubject::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,

@@ -66,10 +66,10 @@ return [
             'columnName' => 'editor_id',
             'target'     => 'user'
         ],
-        'rssImportScenario'           => [
+        'newsRssImportScenario'           => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'rss_import_scenario_id',
-            'target'     => 'rssImportScenario'
+            'target'     => 'newsRssImportScenario'
         ],
         'subject'                     => [
             'type'       => IField::TYPE_BELONGS_TO,
@@ -91,7 +91,7 @@ return [
                 CmsObject::FIELD_DISPLAY_NAME,
                 CmsObject::FIELD_OWNER,
                 CmsObject::FIELD_EDITOR,
-                'rssImportScenario',
+                'newsRssImportScenario',
                 'subject'
             ]
         ]

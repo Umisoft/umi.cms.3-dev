@@ -2,6 +2,6 @@
 
 return [
     'dataSource' => [
-        'sourceName' => 'demohunt_blog_post_tag'
+        'sourceName' => 'demohunt_blog_blog_post_tag'
     ]
 ];

@@ -11,13 +11,13 @@ use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\news\api\object\RssImportScenario;
+use umicms\project\module\news\api\object\NewsRssImportScenario;
 
 return [
 
     'options' => [
         'dictionaries' => [
-            'collection.rssImportScenario', 'collection', 'form'
+            'collection.newsRssImportScenario', 'collection', 'form'
         ]
     ],
 
@@ -27,11 +27,11 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'common',
             'elements' => [
-                RssImportScenario::FIELD_DISPLAY_NAME => [
+                NewsRssImportScenario::FIELD_DISPLAY_NAME => [
                     'type' => Text::TYPE_NAME,
-                    'label' => RssImportScenario::FIELD_DISPLAY_NAME,
+                    'label' => NewsRssImportScenario::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => RssImportScenario::FIELD_DISPLAY_NAME
+                        'dataSource' => NewsRssImportScenario::FIELD_DISPLAY_NAME
                     ],
                 ]
             ]
@@ -41,25 +41,25 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'importSetting',
             'elements' => [
-                RssImportScenario::FIELD_RSS_URL => [
+                NewsRssImportScenario::FIELD_RSS_URL => [
                     'type' => Text::TYPE_NAME,
-                    'label' => RssImportScenario::FIELD_RSS_URL,
+                    'label' => NewsRssImportScenario::FIELD_RSS_URL,
                     'options' => [
-                        'dataSource' => RssImportScenario::FIELD_RSS_URL
+                        'dataSource' => NewsRssImportScenario::FIELD_RSS_URL
                     ],
                 ],
-                RssImportScenario::FIELD_RUBRIC => [
+                NewsRssImportScenario::FIELD_RUBRIC => [
                     'type' => Select::TYPE_NAME,
-                    'label' => RssImportScenario::FIELD_RUBRIC,
+                    'label' => NewsRssImportScenario::FIELD_RUBRIC,
                     'options' => [
-                        'dataSource' => RssImportScenario::FIELD_RUBRIC
+                        'dataSource' => NewsRssImportScenario::FIELD_RUBRIC
                     ],
                 ],
-                RssImportScenario::FIELD_SUBJECTS => [
+                NewsRssImportScenario::FIELD_SUBJECTS => [
                     'type' => MultiSelect::TYPE_NAME,
-                    'label' => RssImportScenario::FIELD_SUBJECTS,
+                    'label' => NewsRssImportScenario::FIELD_SUBJECTS,
                     'options' => [
-                        'dataSource' => RssImportScenario::FIELD_SUBJECTS
+                        'dataSource' => NewsRssImportScenario::FIELD_SUBJECTS
                     ]
                 ]
             ]
