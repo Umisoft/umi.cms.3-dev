@@ -13,7 +13,7 @@ use umicms\project\site\component\SiteComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\module\blog\site\tag\Component',
+    SiteComponent::OPTION_CLASS => 'umicms\project\module\blog\site\tag\BlogTagComponent',
     SiteComponent::OPTION_CONTROLLERS => [
     ],
     SiteComponent::OPTION_WIDGET => [

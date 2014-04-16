@@ -7,25 +7,25 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\tag;
+namespace umicms\project\module\news\site\subject;
 
 use umicms\exception\RuntimeException;
 use umicms\orm\object\ICmsPage;
-use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\news\api\object\NewsSubject;
 use umicms\project\site\component\SiteComponent;
 
 /**
- * Компонент "Тэги".
+ * Компонент "Новостные сюжеты".
  */
-class Component extends SiteComponent
+class NewsSubjectComponent extends SiteComponent
 {
     /**
      * {@inheritdoc}
      */
-    public function getPageUri(ICmsPage $page)
-    {
-        if ($page instanceof BlogTag) {
-            return $this->getRouter()->assemble('tag', ['slug' => $page->slug]);
+    public function getPageUri(ICmsPage $page) {
+
+        if ($page instanceof NewsSubject) {
+            return $this->getRouter()->assemble('subject', ['slug' => $page->slug]);
         }
 
         throw new RuntimeException(

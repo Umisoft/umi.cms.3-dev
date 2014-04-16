@@ -14,7 +14,7 @@ use umicms\project\site\component\SiteComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\module\news\site\rubric\Component',
+    SiteComponent::OPTION_CLASS => 'umicms\project\module\news\site\rubric\NewsRubricComponent',
     
     SiteComponent::OPTION_CONTROLLERS => [
         'index' => __NAMESPACE__ . '\controller\IndexController',

@@ -7,25 +7,25 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\category;
+namespace umicms\project\module\blog\site\tag;
 
 use umicms\exception\RuntimeException;
 use umicms\orm\object\ICmsPage;
-use umicms\project\module\blog\api\object\BlogCategory;
+use umicms\project\module\blog\api\object\BlogTag;
 use umicms\project\site\component\SiteComponent;
 
 /**
- * Компонент "Категории".
+ * Компонент "Тэги".
  */
-class Component extends SiteComponent
+class BlogTagComponent extends SiteComponent
 {
     /**
      * {@inheritdoc}
      */
-    public function getPageUri(ICmsPage $page) {
-
-        if ($page instanceof BlogCategory) {
-            return $this->getRouter()->assemble('category', ['url' => $page->getURL()]);
+    public function getPageUri(ICmsPage $page)
+    {
+        if ($page instanceof BlogTag) {
+            return $this->getRouter()->assemble('tag', ['slug' => $page->slug]);
         }
 
         throw new RuntimeException(

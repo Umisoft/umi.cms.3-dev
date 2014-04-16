@@ -17,7 +17,7 @@ use umicms\project\site\component\SiteComponent;
 /**
  * Компонент "Новостные рубрики".
  */
-class Component extends SiteComponent
+class NewsRubricComponent extends SiteComponent
 {
     /**
      * {@inheritdoc}
