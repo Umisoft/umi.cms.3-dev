@@ -150,6 +150,16 @@ define([], function(){
                     }
                 }
                 return isDirty;
+            },
+            updateRelationhipsMap: function(){
+                var loadedRelationships = this.get('loadedRelationshipsByName');
+                var changedRelationships = this.get('changedRelationshipsByName');
+                for(var property in changedRelationships){
+                    if(changedRelationships.hasOwnProperty(property)){
+                        loadedRelationships[property] = changedRelationships[property];
+                    }
+                }
+                this.set('changedRelationshipsByName', {});
             }
         });
 

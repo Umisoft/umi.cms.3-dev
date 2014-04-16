@@ -102,6 +102,7 @@ define([], function(){
                     }
                     params.object.save().then(
                         function(){
+                            params.object.updateRelationhipsMap();
                             if(params.handler){
                                 $(params.handler).removeClass('loading');
                             }

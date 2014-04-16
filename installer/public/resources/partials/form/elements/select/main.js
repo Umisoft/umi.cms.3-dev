@@ -35,10 +35,6 @@ define(['App'], function(UMI){
                     }
                 });
 
-                object.on('didUpdate', function(){// TODO: Событие всплывает 2 раза подряд
-                    Ember.set(object.get('loadedRelationshipsByName'), property, self.get('selection.id') || undefined);
-                });
-
                 return Ember.RSVP.all(promises).then(function(results){
                     Ember.set(object.get('loadedRelationshipsByName'), property, results[0] ? results[0].get('id') : undefined);
                     self.set('selection', results[0]);
