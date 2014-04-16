@@ -4,7 +4,11 @@ define(['App'], function(UMI){
     return function(){
         UMI.TableControlController = Ember.ObjectController.extend({
             limit: 100,
-            total: 46,
+            total: function(){
+                var collectionName = this.get('controllers.component').settings.layout.collection;
+                var metaForCollection = this.get('store').metadataFor(collectionName);
+                return metaForCollection.total || 0;
+            }.property('objects.content.isFulfilled'),
             offset: 0,
             sortByProperty: null,
             filters: function(){

@@ -122,6 +122,16 @@ define(
                 }
                 return payload;
             },
+            extractMeta: function(store, type, payload){
+                if(payload && payload.result && payload.result.meta){
+                    var meta = store.metadataFor(type) || {};
+                    for(var property in payload.result.meta){
+                        meta[property] = payload.result.meta[property];
+                    }
+                    store.metaForType(type, meta);
+                    delete payload.result.meta;
+                }
+            },
             serializeHasMany: function(record, json, relationship){
                 var key = relationship.key;
 
