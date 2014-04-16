@@ -143,8 +143,7 @@ return [
         NewsRubric::FIELD_NEWS                  => [
             'type'        => IField::TYPE_HAS_MANY,
             'target'      => 'newsItem',
-            'targetField' => NewsItem::FIELD_RUBRIC,
-            'readOnly'    => true
+            'targetField' => NewsItem::FIELD_RUBRIC
         ],
         NewsRubric::FIELD_CHILDREN              => [
             'type'        => IField::TYPE_HAS_MANY,
