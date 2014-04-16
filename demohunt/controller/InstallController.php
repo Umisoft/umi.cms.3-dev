@@ -90,7 +90,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             $this->getObjectPersister()->commit();
             $this->getObjectManager()->unloadObjects();
 
-            //$this->installSearch();
+            $this->installSearch();
             $this->installBackup();
         } catch (DBALException $e) {
             var_dump($e->getMessage());
