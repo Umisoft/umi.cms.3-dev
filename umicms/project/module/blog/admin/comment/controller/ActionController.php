@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\admin\category\controller;
+namespace umicms\project\module\blog\admin\comment\controller;
 
 use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
@@ -63,14 +63,14 @@ class ActionController extends BaseRestActionController
     {
         $collectionName = $this->getRequiredQueryVar('collection');
 
-        if ($collectionName != $this->api->category()->getName()) {
+        if ($collectionName != $this->api->comment()->getName()) {
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
         }
 
         $typeName = $this->getRequiredQueryVar('type');
         $formName = $this->getRequiredQueryVar('form');
 
-        return $this->api->category()->getForm($typeName, $formName);
+        return $this->api->comment()->getForm($typeName, $formName);
     }
 
     protected function actionMove()
@@ -81,24 +81,24 @@ class ActionController extends BaseRestActionController
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot get object to move.');
         }
 
-        $object = $this->api->category()->getById($data['object'][IObject::FIELD_IDENTIFY]);
+        $object = $this->api->comment()->getById($data['object'][IObject::FIELD_IDENTIFY]);
         $object->setVersion($data['object'][IObject::FIELD_VERSION]);
 
         if (isset($data['branch'])) {
-            $branch = $this->api->category()->getById($data['branch'][IObject::FIELD_IDENTIFY]);
+            $branch = $this->api->comment()->getById($data['branch'][IObject::FIELD_IDENTIFY]);
             $branch->setVersion($data['branch'][IObject::FIELD_VERSION]);
         } else {
             $branch = null;
         }
 
         if (isset($data['sibling'])) {
-            $previousSibling = $this->api->category()->getById($data['sibling'][IObject::FIELD_IDENTIFY]);
+            $previousSibling = $this->api->comment()->getById($data['sibling'][IObject::FIELD_IDENTIFY]);
             $previousSibling->setVersion($data['sibling'][IObject::FIELD_VERSION]);
         } else {
             $previousSibling = null;
         }
 
-        $this->api->category()->move($object, $branch, $previousSibling);
+        $this->api->comment()->move($object, $branch, $previousSibling);
 
         return '';
     }
@@ -109,7 +109,7 @@ class ActionController extends BaseRestActionController
      */
     protected function actionTrash()
     {
-        $object = $this->api->category()
+        $object = $this->api->comment()
             ->getById($this->getRequiredQueryVar('id'));
         $this->api->category()
             ->trash($object);
@@ -125,7 +125,7 @@ class ActionController extends BaseRestActionController
      */
     protected function actionUntrash()
     {
-        $object = $this->api->category()
+        $object = $this->api->comment()
             ->getById($this->getRequiredQueryVar('id'));
         $this->api->category()
             ->untrash($object);
@@ -141,36 +141,10 @@ class ActionController extends BaseRestActionController
      */
     protected function actionEmptyTrash()
     {
-        $this->api->category()
+        $this->api->comment()
             ->emptyTrash();
         $this->getObjectPersister()
             ->commit();
         return '';
-    }
-
-    /**
-     * Возвращает список резервных копий.
-     * @return Backup[]
-     */
-    protected function actionBackups()
-    {
-        $blogCategoryId = $this->getRequiredQueryVar('id');
-
-        return $this->api->category()->getBackupList(
-            $this->api->category()->getById($blogCategoryId)
-        );
-    }
-
-    /**
-     * Возвращает резервную копию.
-     * @return BlogCategory
-     */
-    protected function actionBackup()
-    {
-        $blogCategoryId = $this->getRequiredQueryVar('id');
-        $backupId = $this->getRequiredQueryVar('backupId');
-        $blogCategory = $this->api->category()->getById($blogCategoryId);
-
-        return $this->api->category()->wakeUpBackup($blogCategory, $backupId);
     }
 }

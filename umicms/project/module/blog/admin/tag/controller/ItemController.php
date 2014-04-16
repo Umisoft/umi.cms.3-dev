@@ -7,17 +7,18 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\admin\post\controller;
+namespace umicms\project\module\blog\admin\tag\controller;
 
-use umicms\project\admin\api\controller\BaseRestListController;
+use umicms\orm\object\ICmsObject;
+use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\project\module\blog\api\BlogModule;
+use umicms\project\module\blog\api\object\BlogTag;
 
 /**
- * Контроллер действий над списком.
+ * Контроллер Read-Update-Delete операций над объектом.
  */
-class ListController extends BaseRestListController
+class ItemController extends BaseRestItemController
 {
-
     /**
      * @var BlogModule $api
      */
@@ -35,25 +36,20 @@ class ListController extends BaseRestListController
     /**
      * {@inheritdoc}
      */
-    protected function getCollectionName()
+    protected function get()
     {
-        return $this->api->post()->getName();
+        $id = $this->getRouteVar('id');
+        return $this->api->tag()->getById($id);
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function getList()
+    protected function delete(ICmsObject $object)
     {
-        return  $this->api->post()->select(false);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function create(array $data)
-    {
-
+        if ($object instanceof BlogTag) {
+            $this->api->tag()->delete($object);
+            $this->getObjectPersister()->commit();
+        }
     }
 }
- 

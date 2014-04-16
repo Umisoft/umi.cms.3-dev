@@ -18,6 +18,7 @@ return [
     SecureAdminComponent::OPTION_CONTROLLERS => [
         SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
         SecureAdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
+        SecureAdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
         SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
     SecureAdminComponent::OPTION_ACL => [
@@ -27,14 +28,14 @@ return [
         IAclFactory::OPTION_RESOURCES => [
             'controller:settings',
             'controller:action',
-            //'controller:item',
+            'controller:item',
             'controller:list'
         ],
         IAclFactory::OPTION_RULES => [
             'editor' => [
                 'controller:settings' => [],
                 'controller:action' => [],
-                //'controller:item' => [],
+                'controller:item' => [],
                 'controller:list' => []
             ],
         ]

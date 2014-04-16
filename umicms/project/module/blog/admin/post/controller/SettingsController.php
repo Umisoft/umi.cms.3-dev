@@ -26,19 +26,13 @@ class SettingsController extends BaseSettingsController
     private $layout = [
         'collection' => 'blogPost',
         'emptyContext' => [
-            'sideBar' => [
-                'controls' => ['tree']
-            ],
             'contents' => [
-                'controls' => ['filter', 'children']
+                'controls' => ['filter']
             ]
         ],
         'selectedContext' => [
-            'sideBar' => [
-                'controls' => ['tree']
-            ],
             'contents' => [
-                'controls' => ['form', 'children']
+                'controls' => ['form']
             ]
         ]
     ];

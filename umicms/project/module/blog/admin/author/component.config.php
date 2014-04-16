@@ -18,7 +18,7 @@ return [
     SecureAdminComponent::OPTION_CONTROLLERS => [
         SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
         SecureAdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
-        SecureAdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\PostController',
+        SecureAdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
         SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
     SecureAdminComponent::OPTION_ACL => [

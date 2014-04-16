@@ -15,7 +15,7 @@ use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\site\component\SiteComponent;
 
 /**
- * Компонент "Новости".
+ * Компонент "Посты".
  */
 class Component extends SiteComponent
 {

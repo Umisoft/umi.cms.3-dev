@@ -9,14 +9,16 @@
 
 namespace umicms\project\module\blog\admin\category\controller;
 
-use umicms\exception\RuntimeException;
-use umicms\project\admin\api\controller\BaseRestListController;
+use umicms\orm\object\ICmsObject;
+use umicms\project\admin\api\controller\BaseRestItemController;
 use umicms\project\module\blog\api\BlogModule;
+use umicms\project\module\blog\api\object\BlogCategory;
+use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Контроллер действий над списком.
+ * Контроллер Read-Update-Delete операций над объектом.
  */
-class ListController extends BaseRestListController
+class ItemController extends BaseRestItemController
 {
     /**
      * @var BlogModule $api
@@ -35,25 +37,20 @@ class ListController extends BaseRestListController
     /**
      * {@inheritdoc}
      */
-    protected function getCollectionName()
+    protected function get()
     {
-        return $this->api->category()->getName();
+        $id = $this->getRouteVar('id');
+        return $this->api->category()->getById($id);
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function getList()
+    protected function delete(ICmsObject $object)
     {
-        return $this->api->category()->select(false);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function create(array $data)
-    {
-
+        if ($object instanceof BlogCategory) {
+            $this->api->category()->delete($object);
+            $this->getObjectPersister()->commit();
+        }
     }
 }
- 

@@ -7,36 +7,28 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\admin\author\controller;
+namespace umicms\project\module\blog\admin\rss\controller;
 
 use umicms\project\admin\api\controller\BaseRestListController;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\users\api\UsersModule;
 
 /**
  * Контроллер действий над списком.
  */
 class ListController extends BaseRestListController
 {
-
     /**
      * @var BlogModule $api
      */
     protected $api;
-    /**
-     * @var UsersModule $user
-     */
-    protected $users;
 
     /**
      * Конструктор.
      * @param BlogModule $api
-     * @param UsersModule $users
      */
-    public function __construct(BlogModule $api, UsersModule $users)
+    public function __construct(BlogModule $api)
     {
         $this->api = $api;
-        $this->users = $users;
     }
 
     /**
@@ -44,7 +36,7 @@ class ListController extends BaseRestListController
      */
     protected function getCollectionName()
     {
-        return $this->api->author()->getName();
+        return $this->api->rssImport()->getName();
     }
 
     /**
@@ -52,7 +44,7 @@ class ListController extends BaseRestListController
      */
     protected function getList()
     {
-        return $this->api->author()->select(false);
+        return $this->api->rssImport()->select();
     }
 
     /**
@@ -60,7 +52,22 @@ class ListController extends BaseRestListController
      */
     protected function create(array $data)
     {
+        // TODO: forms
+        $object = $this->api->rssImport()->add();
 
+        foreach ($data as $propertyName => $value) {
+            if ($object->hasProperty($propertyName)
+                && !$object->getProperty($propertyName)->getIsReadOnly()
+                && !is_array($value)
+
+            ) {
+                $object->setValue($propertyName, $value);
+            }
+        }
+
+        $this->getObjectPersister()->commit();
+
+        return $object;
     }
 }
  

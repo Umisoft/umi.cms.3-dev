@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\admin\tag\controller;
+namespace umicms\project\module\blog\admin\rss\controller;
 
 use umicms\project\admin\api\controller\BaseSettingsController;
 
@@ -17,14 +17,12 @@ use umicms\project\admin\api\controller\BaseSettingsController;
 class SettingsController extends BaseSettingsController
 {
     private $controls = [
-        'tree' => [],
-        'children' => [],
         'filter' => [],
         'form' => [],
     ];
 
     private $layout = [
-        'collection' => 'blogTag',
+        'collection' => 'blogRssImportScenario',
         'emptyContext' => [
             'contents' => [
                 'controls' => ['filter']

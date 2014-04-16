@@ -21,7 +21,8 @@ return [
         'post' => '{#lazy:~/project/module/blog/admin/post/component.config.php}',
         'author' => '{#lazy:~/project/module/blog/admin/author/component.config.php}',
         'comment' => '{#lazy:~/project/module/blog/admin/comment/component.config.php}',
-        'tag' => '{#lazy:~/project/module/blog/admin/tag/component.config.php}'
+        'tag' => '{#lazy:~/project/module/blog/admin/tag/component.config.php}',
+        'rss' => '{#lazy:~/project/module/blog/admin/rss/component.config.php}'
     ],
 
     SecureAdminComponent::OPTION_ACL => [
@@ -30,18 +31,21 @@ return [
             IAclFactory::OPTION_ROLES => [
                 'categoryEditor' => [],
                 'postEditor' => [],
+                'authorEditor' => [],
                 'tagEditor' => [],
                 'rssEditor' => []
             ],
             IAclFactory::OPTION_RESOURCES => [
                 'component:category',
                 'component:post',
+                'component:author',
                 'component:tag',
                 'component:rss'
             ],
             IAclFactory::OPTION_RULES => [
                 'categoryEditor' => ['component:category' => []],
                 'postEditor' => ['component:post' => []],
+                'authorEditor' => ['component:author' => []],
                 'tagEditor' => ['component:tag' => []],
                 'rssEditor' => ['component:rss' => []]
             ]

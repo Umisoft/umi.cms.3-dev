@@ -22,6 +22,7 @@ use umicms\module\BaseModule;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\blog\api\collection\BlogAuthorCollection;
 use umicms\project\module\blog\api\collection\BlogCategoryCollection;
+use umicms\project\module\blog\api\collection\BlogCommentCollection;
 use umicms\project\module\blog\api\collection\BlogPostCollection;
 use umicms\project\module\blog\api\collection\BlogRssImportScenarioCollection;
 use umicms\project\module\blog\api\collection\BlogTagCollection;
@@ -82,6 +83,15 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function rssImport()
     {
         return $this->getCollection('blogRssImportScenario');
+    }
+
+    /**
+     * Возвращает коллекцию комментариев.
+     * @return BlogCommentCollection
+     */
+    public function comment()
+    {
+        return $this->getCollection('blogComment');
     }
 
     /**
