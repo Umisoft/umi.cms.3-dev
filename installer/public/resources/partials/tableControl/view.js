@@ -197,20 +197,18 @@ define(['App'], function(UMI){
                 classNameBindings: ['isActive:active'],
                 sortAscending: true,
                 isActive: function(){
-                    var sortByProperty = this.get('controller.sortByProperty');
-                    if(sortByProperty){
-                        return this.get('propertyName') === sortByProperty.name;
+                    var orderByProperty = this.get('controller.orderByProperty');
+                    if(orderByProperty){
+                        return this.get('propertyName') === orderByProperty.property;
                     }
-                }.property('controller.sortByProperty'),
+                }.property('controller.orderByProperty'),
                 click: function(){
-                    var sortByProperty = {};
-                    sortByProperty.name = this.get('propertyName');
-
+                    var propertyName = this.get('propertyName');
                     if(this.get('isActive')){
                         this.toggleProperty('sortAscending');
                     }
-                    sortByProperty.sortAscending = this.get('orderDirection');
-                    this.get('controller').set('sortByProperty', sortByProperty);
+                    var sortAscending = this.get('sortAscending');
+                    this.get('controller').send('orderByProperty', propertyName, sortAscending);
                 }
             })
         });
