@@ -10,7 +10,6 @@
 namespace demohunt\controller;
 
 use Doctrine\DBAL\DBALException;
-use Mockery\CountValidator\Exception;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\driver\IDialect;
 use umi\http\Response;
@@ -97,8 +96,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         } catch (DBALException $e) {
             var_dump($e->getMessage());
         }
-
-
 
         return $this->createResponse('Installed');
     }
@@ -810,6 +807,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     UNIQUE KEY `blog_category_pid_slug` (`pid`, `slug`),
                     KEY `blog_category_type` (`type`),
                     KEY `blog_category_pid` (`pid`),
+                    KEY `blog_category_layout` (`layout_id`),
                     CONSTRAINT `FK_blog_category_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_blog_category_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_blog_category_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE

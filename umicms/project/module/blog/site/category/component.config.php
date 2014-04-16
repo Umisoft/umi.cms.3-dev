@@ -6,15 +6,16 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\post;
+namespace umicms\project\module\blog\site\category;
 
 use umi\route\IRouteFactory;
 use umicms\project\site\component\SiteComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\module\blog\site\post\Component',
+    SiteComponent::OPTION_CLASS => 'umicms\project\module\blog\site\category\Component',
     SiteComponent::OPTION_CONTROLLERS => [
+
     ],
     SiteComponent::OPTION_WIDGET => [
     ],
@@ -27,17 +28,17 @@ return [
     ],
     SiteComponent::OPTION_ROUTES => [
         'rss' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'route' => '/rss',
+            'type'     => IRouteFactory::ROUTE_REGEXP,
+            'route' => '/rss/(?P<url>.+)',
             'defaults' => [
                 'controller' => 'rss'
             ]
         ],
-        'post' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{slug}',
+        'category' => [
+            'type'     => IRouteFactory::ROUTE_REGEXP,
+            'route'    => '/(?P<url>.+)',
             'defaults' => [
-                'controller' => 'post'
+                'controller' => 'category'
             ]
         ],
         'index' => [

@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\blog\admin;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\admin\component\SecureAdminComponent;
 
@@ -24,7 +25,27 @@ return [
     ],
 
     SecureAdminComponent::OPTION_ACL => [
+        SecureAdminComponent::OPTION_ACL => [
 
+            IAclFactory::OPTION_ROLES => [
+                'categoryEditor' => [],
+                'postEditor' => [],
+                'tagEditor' => [],
+                'rssEditor' => []
+            ],
+            IAclFactory::OPTION_RESOURCES => [
+                'component:category',
+                'component:post',
+                'component:tag',
+                'component:rss'
+            ],
+            IAclFactory::OPTION_RULES => [
+                'categoryEditor' => ['component:category' => []],
+                'postEditor' => ['component:post' => []],
+                'tagEditor' => ['component:tag' => []],
+                'rssEditor' => ['component:rss' => []]
+            ]
+        ],
     ],
 
     SecureAdminComponent::OPTION_ROUTES      => [

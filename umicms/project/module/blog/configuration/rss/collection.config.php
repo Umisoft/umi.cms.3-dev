@@ -11,6 +11,7 @@ use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
+    'class' => 'umicms\project\module\blog\api\collection\BlogRssImportScenarioCollection',
     'handlers' => [
         'admin' => 'blog.rss',
         'site' => 'blog.rss'

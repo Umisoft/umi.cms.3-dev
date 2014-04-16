@@ -7,18 +7,20 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\admin\post\controller;
+namespace umicms\project\module\blog\admin\category\controller;
 
 use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
+use umi\orm\object\IObject;
+use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\api\BlogModule;;
+use umicms\project\module\blog\api\object\BlogCategory;
 use umicms\project\module\service\api\object\Backup;
 
 /**
- * Контроллер Read-Update-Delete операций над объектом.
+ * Контроллер операций.
  */
 class ActionController extends BaseRestActionController
 {
@@ -49,7 +51,7 @@ class ActionController extends BaseRestActionController
      */
     public function getModifyActions()
     {
-        return ['trash', 'untrash', 'emptyTrash'];
+        return ['move', 'trash', 'untrash', 'emptyTrash'];
     }
 
     /**
@@ -61,25 +63,55 @@ class ActionController extends BaseRestActionController
     {
         $collectionName = $this->getRequiredQueryVar('collection');
 
-        if ($collectionName != $this->api->post()->getName()) {
+        if ($collectionName != $this->api->category()->getName()) {
             throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot use requested collection.');
         }
 
         $typeName = $this->getRequiredQueryVar('type');
         $formName = $this->getRequiredQueryVar('form');
 
-        return $this->api->post()->getForm($typeName, $formName);
+        return $this->api->category()->getForm($typeName, $formName);
+    }
+
+    protected function actionMove()
+    {
+        $data = $this->getIncomingData();
+
+        if (!isset($data['object'])) {
+            throw new HttpException(Response::HTTP_BAD_REQUEST, 'Cannot get object to move.');
+        }
+
+        $object = $this->api->category()->getById($data['object'][IObject::FIELD_IDENTIFY]);
+        $object->setVersion($data['object'][IObject::FIELD_VERSION]);
+
+        if (isset($data['branch'])) {
+            $branch = $this->api->category()->getById($data['branch'][IObject::FIELD_IDENTIFY]);
+            $branch->setVersion($data['branch'][IObject::FIELD_VERSION]);
+        } else {
+            $branch = null;
+        }
+
+        if (isset($data['sibling'])) {
+            $previousSibling = $this->api->category()->getById($data['sibling'][IObject::FIELD_IDENTIFY]);
+            $previousSibling->setVersion($data['sibling'][IObject::FIELD_VERSION]);
+        } else {
+            $previousSibling = null;
+        }
+
+        $this->api->category()->move($object, $branch, $previousSibling);
+
+        return '';
     }
 
     /**
-     * Удаляет объект в корзину
+     * Удаляет объект в корзину.
      * @return string
      */
     protected function actionTrash()
     {
-        $object = $this->api->post()
+        $object = $this->api->category()
             ->getById($this->getRequiredQueryVar('id'));
-        $this->api->post()
+        $this->api->category()
             ->trash($object);
         $this->getObjectPersister()
             ->commit();
@@ -88,14 +120,14 @@ class ActionController extends BaseRestActionController
     }
 
     /**
-     * Восстанавливает объект из корзины
+     * Восстанавливает объект из корзины.
      * @return string
      */
     protected function actionUntrash()
     {
-        $object = $this->api->post()
+        $object = $this->api->category()
             ->getById($this->getRequiredQueryVar('id'));
-        $this->api->post()
+        $this->api->category()
             ->untrash($object);
         $this->getObjectPersister()
             ->commit();
@@ -104,16 +136,15 @@ class ActionController extends BaseRestActionController
     }
 
     /**
-     * Очищает корзину
+     * Очищает корзину.
      * @return string
      */
     protected function actionEmptyTrash()
     {
-        $this->api->post()
+        $this->api->category()
             ->emptyTrash();
         $this->getObjectPersister()
             ->commit();
-
         return '';
     }
 
@@ -123,23 +154,23 @@ class ActionController extends BaseRestActionController
      */
     protected function actionBackups()
     {
-        $blogPostId = $this->getRequiredQueryVar('id');
+        $newsRubricId = $this->getRequiredQueryVar('id');
 
-        return $this->api->post()->getBackupList(
-            $this->api->post()->getById($blogPostId)
+        return $this->api->category()->getBackupList(
+            $this->api->category()->getById($newsRubricId)
         );
     }
 
     /**
      * Возвращает резервную копию.
-     * @return BlogPost
+     * @return BlogCategory
      */
     protected function actionBackup()
     {
-        $blogPostId = $this->getRequiredQueryVar('id');
+        $newsRubricId = $this->getRequiredQueryVar('id');
         $backupId = $this->getRequiredQueryVar('backupId');
-        $blogPost = $this->api->post()->getById($blogPostId);
+        $newsRubric = $this->api->category()->getById($newsRubricId);
 
-        return $this->api->post()->wakeUpBackup($blogPost, $backupId);
+        return $this->api->category()->wakeUpBackup($newsRubric, $backupId);
     }
 }

@@ -17,9 +17,8 @@ return [
     SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
 
     SiteComponent::OPTION_COMPONENTS => [
-        //'rubric' => '{#lazy:~/project/module/blog/site/rubric/component.config.php}',
         'post' => '{#lazy:~/project/module/blog/site/post/component.config.php}',
-        //'subject' => '{#lazy:~/project/module/blog/site/subject/component.config.php}'
+        'category' => '{#lazy:~/project/module/blog/site/category/component.config.php}',
     ],
 
     SiteComponent::OPTION_CONTROLLERS => [
