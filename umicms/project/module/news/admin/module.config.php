@@ -10,20 +10,20 @@ namespace umicms\project\module\news\admin;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    SecureAdminComponent::OPTION_COMPONENTS => [
+    AdminComponent::OPTION_COMPONENTS => [
         'rubric' => '{#lazy:~/project/module/news/admin/rubric/component.config.php}',
         'item' => '{#lazy:~/project/module/news/admin/item/component.config.php}',
         'subject' => '{#lazy:~/project/module/news/admin/subject/component.config.php}',
         'rss' => '{#lazy:~/project/module/news/admin/rss/component.config.php}'
     ],
 
-    SecureAdminComponent::OPTION_ACL => [
+    AdminComponent::OPTION_ACL => [
 
         IAclFactory::OPTION_ROLES => [
             'rubricEditor' => [],
@@ -45,7 +45,7 @@ return [
         ]
     ],
 
-    SecureAdminComponent::OPTION_ROUTES      => [
+    AdminComponent::OPTION_ROUTES      => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{component}'

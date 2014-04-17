@@ -8,13 +8,13 @@
 
 namespace umicms\project\module\models\admin;
 
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    SecureAdminComponent::OPTION_SETTINGS => [
+    AdminComponent::OPTION_SETTINGS => [
 
     ]
 ];

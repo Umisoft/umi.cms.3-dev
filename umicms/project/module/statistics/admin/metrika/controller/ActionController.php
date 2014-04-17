@@ -12,13 +12,13 @@ namespace umicms\project\module\statistics\admin\metrika\controller;
 use umi\http\Response;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\InvalidArgumentException;
-use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\admin\api\controller\DefaultRestActionController;
 use umicms\project\module\statistics\admin\metrika\model\MetrikaApi;
 
 /**
  * Контроллер операций компонента Метрики.
  */
-class ActionController extends BaseRestActionController
+class ActionController extends DefaultRestActionController
 {
     /**
      * API для запросов к Яндекс.Метрике

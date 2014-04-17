@@ -11,7 +11,7 @@ use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\news\api\collection\RssImportScenarioCollection',
+    'class' => 'umicms\project\module\news\api\collection\NewsRssImportScenarioCollection',
     'handlers' => [
         'admin' => 'news.rss',
         'site' => 'news.rss'
@@ -22,6 +22,6 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection\rssImportScenario', 'collection'
+        'collection\newsRssImportScenario', 'collection'
     ]
 ];

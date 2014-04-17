@@ -7,7 +7,21 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
+use umicms\orm\collection\ICmsCollection;
 
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC
+    'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
+    'class' => 'umicms\project\module\blog\api\collection\BlogCategoryCollection',
+    'handlers' => [
+        'admin' => 'blog.category',
+        'site' => 'blog.category'
+    ],
+    'forms' => [
+        'base' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/category/form/base.edit.config.php}'
+        ]
+    ],
+    'dictionaries' => [
+        'collection\blogCategory', 'collection'
+    ]
 ];

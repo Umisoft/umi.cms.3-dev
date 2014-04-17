@@ -10,13 +10,13 @@
 namespace umicms\project\module\search\admin\controller;
 
 use umi\http\Response;
-use umicms\project\admin\api\controller\BaseRestActionController;
+use umicms\project\admin\api\controller\DefaultRestActionController;
 use umicms\project\module\search\api\SearchApi;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
  */
-class ActionController extends BaseRestActionController
+class ActionController extends DefaultRestActionController
 {
     /**
      * @var SearchApi $api

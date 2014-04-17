@@ -6,151 +6,202 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
-use umi\orm\object\IHierarchicObject;
-use umicms\orm\object\CmsObject;
+use umi\validation\IValidatorFactory;
+use umicms\project\module\blog\api\object\BlogCategory;
+use umicms\project\module\blog\api\object\BlogPost;
 
 return [
     'dataSource' => [
         'sourceName' => 'umi_blog_category'
     ],
-    'fields'     => [
-
-        IHierarchicObject::FIELD_IDENTIFY        => [
-            'type'       => IField::TYPE_IDENTIFY,
+    'fields' => [
+        BlogCategory::FIELD_IDENTIFY => [
+            'type' => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
-            'accessor'   => 'getId'
+            'accessor' => 'getId',
+            'readOnly' => true
         ],
-        IHierarchicObject::FIELD_GUID            => [
-            'type'       => IField::TYPE_GUID,
+        BlogCategory::FIELD_GUID => [
+            'type' => IField::TYPE_GUID,
             'columnName' => 'guid',
-            'accessor'   => 'getGuid',
-            'mutator'    => 'setGuid'
+            'accessor' => 'getGuid',
+            'readOnly' => true
         ],
-        IHierarchicObject::FIELD_TYPE            => [
-            'type'       => IField::TYPE_STRING,
+        BlogCategory::FIELD_TYPE => [
+            'type' => IField::TYPE_STRING,
             'columnName' => 'type',
-            'accessor'   => 'getType',
-            'readOnly'   => true
+            'accessor' => 'getType',
+            'readOnly' => true
         ],
-        IHierarchicObject::FIELD_VERSION         => [
-            'type'         => IField::TYPE_VERSION,
-            'columnName'   => 'version',
-            'accessor'     => 'getVersion',
-            'mutator'      => 'setVersion',
+        BlogCategory::FIELD_VERSION => [
+            'type' => IField::TYPE_VERSION,
+            'columnName' => 'version',
+            'accessor' => 'getVersion',
+            'readOnly' => true,
             'defaultValue' => 1
         ],
-        IHierarchicObject::FIELD_PARENT          => [
-            'type'       => IField::TYPE_BELONGS_TO,
+        BlogCategory::FIELD_PARENT => [
+            'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'pid',
-            'accessor'   => 'getParent',
-            'target'     => 'blogCategory',
-            'readOnly'   => true
+            'accessor' => 'getParent',
+            'target' => 'blogCategory',
+            'readOnly' => true
         ],
-        IHierarchicObject::FIELD_MPATH           => [
-            'type'       => IField::TYPE_MPATH,
+        BlogCategory::FIELD_MPATH => [
+            'type' => IField::TYPE_MPATH,
             'columnName' => 'mpath',
-            'accessor'   => 'getMaterializedPath',
-            'readOnly'   => true
+            'accessor' => 'getMaterializedPath',
+            'readOnly' => true
         ],
-        IHierarchicObject::FIELD_SLUG            => [
-            'type'       => IField::TYPE_SLUG,
+        BlogCategory::FIELD_SLUG => [
+            'type' => IField::TYPE_SLUG,
             'columnName' => 'slug',
-            'accessor'   => 'getSlug',
-            'readOnly'   => true
+            'accessor' => 'getSlug',
+            'readOnly' => true
         ],
-        IHierarchicObject::FIELD_URI             => [
-            'type'       => IField::TYPE_URI,
+        BlogCategory::FIELD_URI => [
+            'type' => IField::TYPE_URI,
             'columnName' => 'uri',
-            'accessor'   => 'getURI',
-            'readOnly'   => true
+            'accessor' => 'getURI',
+            'readOnly' => true
         ],
-        IHierarchicObject::FIELD_CHILD_COUNT     => [
-            'type'         => IField::TYPE_COUNTER,
-            'columnName'   => 'child_count',
-            'accessor'     => 'getChildCount',
-            'readOnly'     => true,
+        BlogCategory::FIELD_CHILD_COUNT => [
+            'type' => IField::TYPE_COUNTER,
+            'columnName' => 'child_count',
+            'accessor' => 'getChildCount',
+            'readOnly' => true,
             'defaultValue' => 0
         ],
-        IHierarchicObject::FIELD_ORDER           => [
-            'type'       => IField::TYPE_ORDER,
+        BlogCategory::FIELD_ORDER => [
+            'type' => IField::TYPE_ORDER,
             'columnName' => 'order',
-            'accessor'   => 'getOrder',
-            'readOnly'   => true
+            'accessor' => 'getOrder',
+            'readOnly' => true
         ],
-        IHierarchicObject::FIELD_HIERARCHY_LEVEL => [
-            'type'       => IField::TYPE_LEVEL,
+        BlogCategory::FIELD_HIERARCHY_LEVEL => [
+            'type' => IField::TYPE_LEVEL,
             'columnName' => 'level',
-            'accessor'   => 'getLevel',
-            'readOnly'   => true
+            'accessor' => 'getLevel',
+            'readOnly' => true
         ],
-        CmsObject::FIELD_OWNER => [
+        BlogCategory::FIELD_DISPLAY_NAME => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'display_name',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
+        ],
+        BlogCategory::FIELD_ACTIVE => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'active',
+            'defaultValue' => 1
+        ],
+        BlogCategory::FIELD_LOCKED => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'locked',
+            'readOnly' => true,
+            'defaultValue' => 0
+        ],
+        BlogCategory::FIELD_TRASHED => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'trashed',
+            'defaultValue' => 0,
+            'readOnly' => true,
+        ],
+        BlogCategory::FIELD_CREATED => [
+            'type' => IField::TYPE_DATE_TIME,
+            'columnName' => 'created',
+            'readOnly' => true
+        ],
+        BlogCategory::FIELD_UPDATED => [
+            'type' => IField::TYPE_DATE_TIME,
+            'columnName' => 'updated',
+            'readOnly' => true
+        ],
+        BlogCategory::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
             'target' => 'user'
         ],
-        CmsObject::FIELD_EDITOR => [
+        BlogCategory::FIELD_EDITOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
-        'active'                                 => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'active',
-            'defaultValue' => 1
+        BlogCategory::FIELD_PAGE_META_TITLE => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'meta_title'
         ],
-        'locked'                                 => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'locked',
-            'defaultValue' => 0
+        BlogCategory::FIELD_PAGE_META_KEYWORDS => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'meta_keywords'
         ],
-        'trashed'                                 => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'trashed',
-            'defaultValue' => 0
+        BlogCategory::FIELD_PAGE_META_DESCRIPTION => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'meta_description'
         ],
-        'created'                                => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        'updated'                                => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
-        'displayName'                            => ['type' => IField::TYPE_STRING, 'columnName' => 'display_name'],
-        'h1'                                     => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
-        'metaTitle'                              => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
-        'metaKeywords'                           => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_keywords'],
-        'metaDescription'                        => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_description'],
-        'contents'                                => ['type' => IField::TYPE_TEXT, 'columnName' => 'contents'],
-        'posts'                                  => [
-            'type'        => IField::TYPE_HAS_MANY,
-            'target'      => 'blogPost',
-            'targetField' => 'category'
+        BlogCategory::FIELD_PAGE_H1 => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'h1'
+        ],
+        BlogCategory::FIELD_PAGE_CONTENTS => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'contents'
+        ],
+        BlogCategory::FIELD_PAGE_LAYOUT => [
+            'type' => IField::TYPE_BELONGS_TO,
+            'columnName' => 'layout_id',
+            'target' => 'layout'
+        ],
+        BlogCategory::FIELD_POSTS => [
+            'type' => IField::TYPE_HAS_MANY,
+            'target' => 'blogPost',
+            'targetField' => BlogPost::FIELD_CATEGORY,
+            'readOnly' => true
+        ],
+        BlogCategory::FIELD_CHILDREN => [
+            'type' => IField::TYPE_HAS_MANY,
+            'target' => 'blogCategory',
+            'targetField' => BlogCategory::FIELD_PARENT,
+            'readOnly' => true
         ]
-
     ],
-    'types'      => [
+    'types' => [
         'base' => [
+            'objectClass' => 'umicms\project\module\blog\api\object\BlogCategory',
             'fields' => [
-                'id',
-                'guid',
-                'type',
-                'version',
-                'parent',
-                'mpath',
-                'slug',
-                'uri',
-                'level',
-                'order',
-                'childCount',
-                CmsObject::FIELD_OWNER,
-                CmsObject::FIELD_EDITOR,
-                'active',
-                'locked',
-                'created',
-                'updated',
-                'displayName',
-                'h1',
-                'metaTitle',
-                'metaKeywords',
-                'metaDescription',
-                'contents',
-                'posts'
+                BlogCategory::FIELD_IDENTIFY,
+                BlogCategory::FIELD_GUID,
+                BlogCategory::FIELD_TYPE,
+                BlogCategory::FIELD_VERSION,
+                BlogCategory::FIELD_PARENT,
+                BlogCategory::FIELD_MPATH,
+                BlogCategory::FIELD_SLUG,
+                BlogCategory::FIELD_URI,
+                BlogCategory::FIELD_CHILD_COUNT,
+                BlogCategory::FIELD_ORDER,
+                BlogCategory::FIELD_HIERARCHY_LEVEL,
+                BlogCategory::FIELD_DISPLAY_NAME,
+                BlogCategory::FIELD_ACTIVE,
+                BlogCategory::FIELD_LOCKED,
+                BlogCategory::FIELD_TRASHED,
+                BlogCategory::FIELD_CREATED,
+                BlogCategory::FIELD_UPDATED,
+                BlogCategory::FIELD_PAGE_META_TITLE,
+                BlogCategory::FIELD_PAGE_META_KEYWORDS,
+                BlogCategory::FIELD_PAGE_META_DESCRIPTION,
+                BlogCategory::FIELD_PAGE_H1,
+                BlogCategory::FIELD_PAGE_CONTENTS,
+                BlogCategory::FIELD_PAGE_LAYOUT,
+                BlogCategory::FIELD_OWNER,
+                BlogCategory::FIELD_EDITOR,
+                BlogCategory::FIELD_POSTS,
+                BlogCategory::FIELD_CHILDREN
             ]
         ]
     ]

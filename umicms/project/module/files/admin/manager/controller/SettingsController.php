@@ -9,12 +9,13 @@
 
 namespace umicms\project\module\files\admin\manager\controller;
 
-use umicms\project\admin\api\controller\BaseSettingsController;
+use umicms\hmvc\controller\BaseSecureController;
+use umicms\project\admin\api\controller\DefaultRestSettingsController;
 
 /**
  * Контроллер вывода настроек компонента
  */
-class SettingsController extends BaseSettingsController
+class SettingsController extends BaseSecureController
 {
     private $controls = [
         'fileManager' => [
@@ -33,12 +34,40 @@ class SettingsController extends BaseSettingsController
     /**
      * {@inheritdoc}
      */
+    public function __invoke()
+    {
+        return $this->createViewResponse(
+            'settings',
+            [
+                'settings' => $this->getSettings()
+            ]
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function getSettings()
     {
         return [
-            self::OPTION_INTERFACE_CONTROLS => $this->buildControlsInfo($this->controls),
-            self::OPTION_INTERFACE_LAYOUT => $this->buildLayoutInfo($this->layout),
-            self::OPTION_INTERFACE_ACTIONS => $this->buildActionsInfo()
+            DefaultRestSettingsController::OPTION_INTERFACE_CONTROLS => $this->buildControlsInfo(),
+            DefaultRestSettingsController::OPTION_INTERFACE_LAYOUT => $this->layout
         ];
+    }
+
+    /**
+     * Возвращает информацию о контролах компонента.
+     * @return array
+     */
+    protected function buildControlsInfo()
+    {
+        $controlsInfo = [];
+
+        foreach($this->controls as $controlName => $options) {
+            $options['displayName'] = $this->translate('control:' . $controlName . ':displayName');
+            $controlsInfo[$controlName] = $options;
+        }
+
+        return $controlsInfo;
     }
 }

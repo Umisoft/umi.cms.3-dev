@@ -19,7 +19,7 @@ return [
         ApiApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
 
         'settings' => __NAMESPACE__ . '\controller\ApiSettingsController',
-        'action' => __NAMESPACE__ . '\controller\ActionController'
+        'action' => __NAMESPACE__ . '\controller\ApiActionController'
     ],
 
     ApiApplication::OPTION_COMPONENTS => [
@@ -33,7 +33,8 @@ return [
         'search' => '{#lazy:~/project/module/search/admin/module.config.php}',
         'statistics' => '{#lazy:~/project/module/statistics/admin/module.config.php}',
         'structure' => '{#lazy:~/project/module/structure/admin/module.config.php}',
-        'users' => '{#lazy:~/project/module/users/admin/module.config.php}'
+        'users' => '{#lazy:~/project/module/users/admin/module.config.php}',
+        'testmodule' => '{#lazy:~/project/module/testmodule/admin/module.config.php}'
     ],
 
     ApiApplication::OPTION_ACL => [
