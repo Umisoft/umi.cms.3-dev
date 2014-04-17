@@ -38,7 +38,7 @@ define([], function(){
              @method model
              @return
              **/
-            model: function(){
+            model: function(params, transition){
                 var self = this;
                 return $.get(UmiSettings.baseApiURL).then(function(results){
                     var result = results.result;
@@ -50,7 +50,7 @@ define([], function(){
                         self.controllerFor('dock').set('modules', result.modules);
                     }
                 }, function(error){
-                    self.globalHttpError(error);
+                    transition.send('globalHttpError', error);
                 });
             },
             actions: {
@@ -120,33 +120,32 @@ define([], function(){
                             );
                         }
                     );
-                }
-            },
-
-            globalHttpError: function(error){
-                var message;
-                if(error.hasOwnProperty('responseJSON')){
-                    if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
-                        message = error.responseJSON.result.error.message;
+                },
+                globalHttpError: function(error){
+                    var message;
+                    if(error.hasOwnProperty('responseJSON')){
+                        if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
+                            message = error.responseJSON.result.error.message;
+                        }
+                    } else{
+                        message = error.responseText;
                     }
-                } else{
-                    message = error.responseText;
-                }
-                var data = {
-                    'close': false,
-                    'title': error.status + '. ' + error.statusText,
-                    'content': message
-                };
-                UMI.dialog.open(data).then();
-            },
+                    var data = {
+                        'close': true,
+                        'title': error.status + '. ' + error.statusText,
+                        'content': message
+                    };
+                    UMI.dialog.open(data).then();
+                },
 
-            backgroundError: function(error){
-                UMI.notification.create({
-                    type: 'error',
-                    title: error.title,
-                    text: error.text,
-                    duration: false
-                });
+                backgroundError: function(error){
+                    UMI.notification.create({
+                        type: 'error',
+                        title: error.title,
+                        text: error.text,
+                        duration: false
+                    });
+                }
             }
         });
 
@@ -394,7 +393,7 @@ define([], function(){
                             routeData.viewSettings = results.result;
                             return routeData;
                         }, function(error){
-                            throw new Error('Не получена мета информация для action form ' + actionResource + '.' + error);
+                            transition.send('globalHttpError', error);
                         });
                     }
                     return routeData;
