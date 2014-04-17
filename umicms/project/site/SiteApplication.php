@@ -30,7 +30,6 @@ use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
-use umicms\project\module\structure\api\StructureModule;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\TSerializationAware;
 
@@ -90,11 +89,10 @@ class SiteApplication extends SiteComponent
 
     /**
      * {@inheritdoc}
-     * @param StructureModule $structureApi
      */
-    public function __construct($name, $path, array $options = [], StructureModule $structureApi)
+    public function __construct($name, $path, array $options = [])
     {
-        parent::__construct($name, $path, $options, $structureApi);
+        parent::__construct($name, $path, $options);
 
         $this->registerSiteSettings();
         $this->registerPageCallStack();

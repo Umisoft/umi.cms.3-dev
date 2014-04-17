@@ -33,7 +33,7 @@ class BlogPostController extends SitePageController
     public function __invoke()
     {
         $slug = $this->getRouteVar('slug');
-        $newsItem = $this->api->post()->getBySlug($slug);
+        $newsItem = $this->api->post()->getByUri($slug);
 
         $this->pushCurrentPage($newsItem);
 
