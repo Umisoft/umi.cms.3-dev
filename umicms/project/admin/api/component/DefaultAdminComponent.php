@@ -14,6 +14,7 @@ use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\route\IRouteFactory;
 use umicms\exception\RuntimeException;
+use umicms\hmvc\component\ICollectionComponent;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
@@ -25,14 +26,10 @@ use umicms\project\admin\component\AdminComponent;
 /**
  * Компонент административной панели.
  */
-class DefaultAdminComponent extends AdminComponent implements ICollectionManagerAware
+class DefaultAdminComponent extends AdminComponent implements ICollectionComponent, ICollectionManagerAware
 {
     use TCollectionManagerAware;
 
-    /**
-     * Опция для задания имени коллекции, с которой работает компонент.
-     */
-    const OPTION_COLLECTION_NAME = 'collectionName';
     /**
      * Опция для задания дополнительного списка доступных действий на запрос данных
      */
@@ -42,16 +39,19 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionManager
      */
     const OPTION_MODIFY_ACTIONS = 'modifyActions';
 
+    /**
+     * @var array $defaultOptions настройки компонента по умолчанию
+     */
     public $defaultOptions = [
 
-        DefaultAdminComponent::OPTION_CONTROLLERS => [
-            DefaultAdminComponent::LIST_CONTROLLER =>  'umicms\project\admin\api\controller\DefaultRestListController',
-            DefaultAdminComponent::ITEM_CONTROLLER => 'umicms\project\admin\api\controller\DefaultRestItemController',
-            DefaultAdminComponent::ACTION_CONTROLLER => 'umicms\project\admin\api\controller\DefaultRestActionController',
-            DefaultAdminComponent::SETTINGS_CONTROLLER => 'umicms\project\admin\api\controller\DefaultRestSettingsController',
+        self::OPTION_CONTROLLERS => [
+            self::LIST_CONTROLLER =>  'umicms\project\admin\api\controller\DefaultRestListController',
+            self::ITEM_CONTROLLER => 'umicms\project\admin\api\controller\DefaultRestItemController',
+            self::ACTION_CONTROLLER => 'umicms\project\admin\api\controller\DefaultRestActionController',
+            self::SETTINGS_CONTROLLER => 'umicms\project\admin\api\controller\DefaultRestSettingsController',
         ],
 
-        DefaultAdminComponent::OPTION_ACL => [
+        self::OPTION_ACL => [
 
             IAclFactory::OPTION_ROLES => [
                 'editor' => []
@@ -72,13 +72,13 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionManager
             ]
         ],
 
-        DefaultAdminComponent::OPTION_ROUTES      => [
+        self::OPTION_ROUTES      => [
 
             'action' => [
                 'type'     => IRouteFactory::ROUTE_SIMPLE,
                 'route'    => '/action/{action}',
                 'defaults' => [
-                    'controller' => DefaultAdminComponent::ACTION_CONTROLLER
+                    'controller' => self::ACTION_CONTROLLER
                 ]
             ],
 
@@ -86,14 +86,14 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionManager
                 'type'     => IRouteFactory::ROUTE_FIXED,
                 'route'    => '/collection',
                 'defaults' => [
-                    'controller' => DefaultAdminComponent::LIST_CONTROLLER
+                    'controller' => self::LIST_CONTROLLER
                 ],
                 'subroutes' => [
                     'item' => [
                         'type'     => IRouteFactory::ROUTE_SIMPLE,
                         'route'    => '/{id:integer}',
                         'defaults' => [
-                            'controller' => DefaultAdminComponent::ITEM_CONTROLLER
+                            'controller' => self::ITEM_CONTROLLER
                         ]
                     ]
                 ]
@@ -102,7 +102,7 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionManager
             'settings' => [
                 'type' => IRouteFactory::ROUTE_FIXED,
                 'defaults' => [
-                    'controller' => DefaultAdminComponent::SETTINGS_CONTROLLER
+                    'controller' => self::SETTINGS_CONTROLLER
                 ]
             ]
         ]
@@ -118,9 +118,7 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionManager
     }
 
     /**
-     * Возвращает коллекцию, с которой работает компонент.
-     * @throws RuntimeException если в конфигурации не указано имя коллекции
-     * @return ICmsCollection
+     * {@inheritdoc}
      */
     public function getCollection()
     {
