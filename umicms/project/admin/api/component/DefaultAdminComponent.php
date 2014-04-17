@@ -18,8 +18,7 @@ use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsCollection;
-use umicms\orm\collection\PageCollection;
-use umicms\orm\collection\PageHierarchicCollection;
+use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\project\admin\component\AdminComponent;
 
@@ -156,7 +155,7 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionManager
             $defaultActions[] = 'backup';
         }
 
-        if ($collection instanceof PageCollection || $collection instanceof PageHierarchicCollection) {
+        if ($collection instanceof ICmsPageCollection) {
             $defaultActions[] = 'viewOnSite';
         }
 
@@ -183,7 +182,7 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionManager
         if ($collection instanceof SimpleHierarchicCollection) {
             $defaultActions[] = 'move';
         }
-        if ($collection instanceof PageCollection || $collection instanceof PageHierarchicCollection) {
+        if ($collection instanceof ICmsPageCollection) {
             $defaultActions[] = 'changeSlug';
         }
         if ($collection instanceof IRecyclableCollection) {

@@ -34,7 +34,7 @@ class NewsItemController extends SitePageController
     public function __invoke()
     {
         $slug = $this->getRouteVar('slug');
-        $newsItem = $this->api->news()->getBySlug($slug);
+        $newsItem = $this->api->news()->getByUri($slug);
 
         $this->pushCurrentPage($newsItem);
 

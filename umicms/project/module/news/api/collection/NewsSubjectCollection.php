@@ -21,7 +21,7 @@ use umicms\project\module\news\api\object\NewsSubject;
  * @method NewsSubject get($guid, $withLocalization = false) Возвращает сюжет по GUID
  * @method NewsSubject getById($objectId, $withLocalization = false) Возвращает сюжет по id
  * @method NewsSubject add($typeName = IObjectType::BASE) Создает и возвращает сюжет
- * @method NewsSubject getBySlug($slug, $withLocalization = false) Возвращает сюжет по его последней части ЧПУ
+ * @method NewsSubject getByUri($uri, $withLocalization = false) Возвращает сюжет по его последней части ЧПУ
  */
 class NewsSubjectCollection extends PageCollection
 {

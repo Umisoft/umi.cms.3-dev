@@ -33,7 +33,7 @@ class SubjectController extends SitePageController
     public function __invoke()
     {
         $slug = $this->getRouteVar('slug');
-        $subject = $this->api->subject()->getBySlug($slug);
+        $subject = $this->api->subject()->getByUri($slug);
 
         $this->pushCurrentPage($subject);
 
