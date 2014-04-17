@@ -113,6 +113,11 @@ $umi-dark-border-color: #CCD9E2;
         a, .icon, .move{
             cursor: default;
         }
+        .umi-item{
+            &:hover{
+                background: transparent;
+            }
+        }
     }
 
     // Выпадающее меню --------------------------------------

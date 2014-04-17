@@ -5363,6 +5363,8 @@ ul.umi-search-result {
     text-decoration: underline; }
   .umi-tree.drag-inside a, .umi-tree.drag-inside .icon, .umi-tree.drag-inside .move {
     cursor: default; }
+  .umi-tree.drag-inside .umi-item:hover {
+    background: transparent; }
   .umi-tree .umi-tree-context-menu {
     display: none;
     position: absolute;
