@@ -149,6 +149,12 @@ return [
         BlogComment::FIELD_PUBLISH_TIME => [
             'type' => IField::TYPE_DATE_TIME,
             'columnName' => 'publish_time'
+        ],
+        BlogComment::FIELD_CHILDREN => [
+            'type' => IField::TYPE_HAS_MANY,
+            'target' => 'blogComment',
+            'targetField' => BlogComment::FIELD_PARENT,
+            'readOnly' => true
         ]
     ],
     'types' => [
@@ -177,7 +183,8 @@ return [
                 BlogComment::FIELD_AUTHOR,
                 BlogComment::FIELD_POST,
                 BlogComment::FIELD_CONTENTS,
-                BlogComment::FIELD_PUBLISH_TIME
+                BlogComment::FIELD_PUBLISH_TIME,
+                BlogComment::FIELD_CHILDREN
             ]
         ]
     ]

@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\post\controller;
+namespace umicms\project\module\blog\site\comment\controller;
 
 use umicms\project\site\controller\SitePageController;
 use umicms\project\module\blog\api\BlogModule;
@@ -15,7 +15,7 @@ use umicms\project\module\blog\api\BlogModule;
 /**
  * Контроллер отображения постов.
  */
-class BlogPostController extends SitePageController
+class BlogCommentController extends SitePageController
 {
     /**
      * @var BlogModule $api
@@ -35,12 +35,12 @@ class BlogPostController extends SitePageController
         $slug = $this->getRouteVar('slug');
         $blogPost = $this->api->post()->getByUri($slug);
 
-        $this->pushCurrentPage($blogPost);
+        $blogComment = $this->api->getCommentByPost($blogPost);
 
         return $this->createViewResponse(
             'view',
             [
-                'blogPost' => $blogPost
+                'blogPostComment' => $blogComment
             ]
         );
     }

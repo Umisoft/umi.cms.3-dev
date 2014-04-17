@@ -7,17 +7,17 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\category\widget;
+namespace umicms\project\module\blog\site\author\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogCategory;
+use umicms\project\module\blog\api\object\BlogAuthor;
 
 /**
- * Виджет для вывода списка постов по категориям.
+ * Виджет для вывода списка постов по автору.
  */
-class CategoryPostListWidget extends BaseSecureWidget
+class BlogAuthorPostListWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -29,10 +29,10 @@ class CategoryPostListWidget extends BaseSecureWidget
      */
     public $limit;
     /**
-     * @var array|BlogCategory[]|BlogCategory|null $category категория, список категорий блога или GUID, из которых выводятся посты.
-     * Если не указаны, то посты выводятся из всех категорий
+     * @var array|BlogAuthor[]|BlogAuthor|null $blogAuthor авторы, список авторов блога или GUID, посты которых выводятся.
+     * Если не указаны, то посты выводятся всех авторов
      */
-    public $categories;
+    public $blogAuthors;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
@@ -53,20 +53,20 @@ class CategoryPostListWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        $categories = (array) $this->categories;
+        $blogAuthors = (array) $this->blogAuthors;
 
-        foreach ($categories as &$category) {
-            if (is_string($category)) {
-                $category = $this->api->category()->get($category);
+        foreach ($blogAuthors as &$blogAuthor) {
+            if (is_string($blogAuthor)) {
+                $blogAuthor = $this->api->author()->get($blogAuthor);
             }
 
-            if (isset($category) && !$category instanceof BlogCategory) {
+            if (isset($blogAuthor) && !$blogAuthor instanceof BlogAuthor) {
                 throw new InvalidArgumentException(
                     $this->translate(
                         'Widget parameter "{param} should be instance of "{class}".',
                         [
-                            'param' => 'categories',
-                            'class' => 'BlogCategory'
+                            'param' => 'blogAuthors',
+                            'class' => 'BlogAuthor'
                         ]
                     )
                 );
@@ -76,7 +76,7 @@ class CategoryPostListWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'posts' => $this->api->getPostByCategory($categories, $this->limit)
+                'posts' => $this->api->getPostsByAuthor($blogAuthors, $this->limit)
             ]
         );
     }

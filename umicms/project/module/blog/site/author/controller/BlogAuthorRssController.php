@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\post\controller;
+namespace umicms\project\module\blog\site\author\controller;
 
 use umi\http\Response;
 use umicms\hmvc\controller\BaseSecureController;
@@ -17,9 +17,9 @@ use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 
 /**
- * Контроллер вывода общей RSS-ленты.
+ * Контроллер вывода RSS-ленты автора.
  */
-class BlogPostRssController extends BaseSecureController implements ISiteSettingsAware
+class BlogAuthorRssController extends BaseSecureController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 
@@ -43,12 +43,16 @@ class BlogPostRssController extends BaseSecureController implements ISiteSetting
      */
     public function __invoke()
     {
-        $blogPosts = $this->api->getPosts();
+        $urlAuthor = $this->getRouteVar('slug');
+
+        $blogAuthor = $this->api->author()->getByUri($urlAuthor);
+
+        $blogAuthorPosts = $this->api->getPostsByAuthor([$blogAuthor]);
 
         $rssFeed = $this->api->getPostRssFeed(
-            $this->getSiteDefaultTitle(),
-            $this->getSiteDefaultDescription(),
-            $blogPosts
+            $blogAuthor->displayName,
+            $blogAuthor->contents,
+            $blogAuthorPosts
         );
 
         $response = $this->createResponse($rssFeed);

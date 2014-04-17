@@ -7,20 +7,25 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\post\widget;
+namespace umicms\project\module\blog\site\author\widget;
 
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
- * Виджет для вывода URL на RSS-ленту по категории.
+ * Виджет для вывода списка авторов.
  */
-class BlogPostListRssUrlWidget extends BaseSecureWidget
+class BlogAuthorListWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'rssLink';
+    public $template = 'list';
+    /**
+     * @var int $limit максимальное количество выводимых авторов.
+     * Если не указано, выводятся все авторы.
+     */
+    public $limit;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
@@ -44,7 +49,7 @@ class BlogPostListRssUrlWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'url' => $this->getUrl('rss')
+                'authors' => $this->api->getAuthors($this->limit)
             ]
         );
     }

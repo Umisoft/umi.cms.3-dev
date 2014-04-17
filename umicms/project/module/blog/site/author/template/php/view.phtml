@@ -1,0 +1,9 @@
+<?php
+/**
+ * @var umicms\project\module\blog\api\object\BlogAuthor $blogAuthor
+ */
+?>
+<h1><?= $blogAuthor->h1 ?></h1>
+<?= $blogAuthor->contents ?>
+
+<?= $this->widget('blog.author.postList', ['blogAuthors' => [$blogAuthor], 'template' => 'postList']); ?>

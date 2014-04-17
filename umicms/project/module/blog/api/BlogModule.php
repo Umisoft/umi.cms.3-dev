@@ -28,6 +28,7 @@ use umicms\project\module\blog\api\collection\BlogRssImportScenarioCollection;
 use umicms\project\module\blog\api\collection\BlogTagCollection;
 use umicms\project\module\blog\api\object\BlogAuthor;
 use umicms\project\module\blog\api\object\BlogCategory;
+use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\blog\api\object\BlogRssImportScenario;
 use umicms\project\module\blog\api\object\BlogTag;
@@ -209,15 +210,37 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
+     * Возвращает селектор для выборки авторов.
+     * @param int $limit максимальное количество авторов
+     * @return CmsSelector|BlogTag[]
+     */
+    public function getAuthors($limit = null)
+    {
+        $authors = $this->author()->select();
+
+        if ($limit) {
+            $authors->limit($limit);
+        }
+
+        return $authors;
+    }
+
+    /**
      * Возвращает селектор для выбора постов автора.
-     * @param BlogAuthor $author категория
+     * @param BlogAuthor[] $authors категория
      * @return CmsSelector|BlogPost[]
      */
-    public function getPostsByAuthor(BlogAuthor $author)
+    public function getPostsByAuthor(array $authors = [])
     {
-        return $this->post()->select()
-            ->where(BlogPost::FIELD_AUTHOR)
-            ->equals($author);
+        $posts = $this->getPosts();
+
+        $posts->begin(IFieldConditionGroup::MODE_OR);
+        foreach ($authors as $author) {
+            $posts->where(BlogPost::FIELD_AUTHOR)->equals($author);
+        }
+        $posts->end();
+
+        return $posts;
     }
 
     /**
@@ -238,17 +261,48 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         return $posts;
     }
 
+    /**
+     * Возвращает селектор для выборки комментариев.
+     * @return CmsSelector|BlogComment[]
+     */
+    public function getComment()
+    {
+        $comments = $this->comment()->select()
+            ->orderBy(BlogComment::FIELD_PUBLISH_TIME, CmsSelector::ORDER_DESC);
+
+        return $comments;
+    }
+
+    /**
+     * Возвращает селектор для выборки комментариев к посту.
+     * @param BlogPost $blogPost
+     * @return CmsSelector|BlogComment[]
+     */
+    public function getCommentByPost(BlogPost $blogPost)
+    {
+        $comments = $this->getComment()
+            ->where(BlogComment::FIELD_POST)->equals($blogPost);
+
+        return $comments;
+    }
+
 
     /**
      * Возвращает селектор для выбора постов по тэгу.
-     * @param BlogTag $tag
+     * @param BlogTag[] $tags
      * @return CmsSelector|BlogPost[]
      */
-    public function getPostByTag(BlogTag $tag)
+    public function getPostByTag(array $tags = [])
     {
-        return $this->post()->select()
-            ->where(BlogPost::FIELD_TAGS)
-            ->equals($tag);
+        $posts = $this->getPosts();
+
+        $posts->begin(IFieldConditionGroup::MODE_OR);
+        foreach ($tags as $tag) {
+            $posts->where(BlogPost::FIELD_TAGS)->equals($tag);
+        }
+        $posts->end();
+
+        return $posts;
     }
 
     /**

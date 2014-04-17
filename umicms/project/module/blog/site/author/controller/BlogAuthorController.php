@@ -7,15 +7,15 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\post\controller;
+namespace umicms\project\module\blog\site\author\controller;
 
 use umicms\project\site\controller\SitePageController;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
- * Контроллер отображения постов.
+ * Контроллер отображения авторов.
  */
-class BlogPostController extends SitePageController
+class BlogAuthorController extends SitePageController
 {
     /**
      * @var BlogModule $api
@@ -33,14 +33,14 @@ class BlogPostController extends SitePageController
     public function __invoke()
     {
         $slug = $this->getRouteVar('slug');
-        $blogPost = $this->api->post()->getByUri($slug);
+        $blogAuthor = $this->api->author()->getByUri($slug);
 
-        $this->pushCurrentPage($blogPost);
+        $this->pushCurrentPage($blogAuthor);
 
         return $this->createViewResponse(
             'view',
             [
-                'blogPost' => $blogPost
+                'blogAuthor' => $blogAuthor
             ]
         );
     }

@@ -7,17 +7,17 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\category\widget;
+namespace umicms\project\module\blog\site\tag\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogCategory;
+use umicms\project\module\blog\api\object\BlogTag;
 
 /**
  * Виджет для вывода списка постов по категориям.
  */
-class CategoryPostListWidget extends BaseSecureWidget
+class BlogTagPostListWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -29,10 +29,10 @@ class CategoryPostListWidget extends BaseSecureWidget
      */
     public $limit;
     /**
-     * @var array|BlogCategory[]|BlogCategory|null $category категория, список категорий блога или GUID, из которых выводятся посты.
-     * Если не указаны, то посты выводятся из всех категорий
+     * @var array|BlogTag[]|BlogTag|null $tags тэг, список тэгов блога или GUID, из которых выводятся посты.
+     * Если не указаны, то посты выводятся из всех тэгов
      */
-    public $categories;
+    public $tags;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
@@ -53,20 +53,20 @@ class CategoryPostListWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        $categories = (array) $this->categories;
+        $tags = (array) $this->tags;
 
-        foreach ($categories as &$category) {
-            if (is_string($category)) {
-                $category = $this->api->category()->get($category);
+        foreach ($tags as &$tag) {
+            if (is_string($tag)) {
+                $tag = $this->api->tag()->get($tag);
             }
 
-            if (isset($category) && !$category instanceof BlogCategory) {
+            if (isset($tag) && !$tag instanceof BlogTag) {
                 throw new InvalidArgumentException(
                     $this->translate(
                         'Widget parameter "{param} should be instance of "{class}".',
                         [
-                            'param' => 'categories',
-                            'class' => 'BlogCategory'
+                            'param' => 'tags',
+                            'class' => 'BlogTag'
                         ]
                     )
                 );
@@ -76,7 +76,7 @@ class CategoryPostListWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'posts' => $this->api->getPostByCategory($categories, $this->limit)
+                'posts' => $this->api->getPostByTag($tags)
             ]
         );
     }

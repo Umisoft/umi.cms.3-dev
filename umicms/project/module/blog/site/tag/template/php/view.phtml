@@ -1,0 +1,9 @@
+<?php
+/**
+ * @var umicms\project\module\blog\api\object\BlogTag $blogTag
+ */
+?>
+<h1><?= $blogTag->displayName ?></h1>
+<?= $blogTag->contents ?>
+
+<?= $this->widget('blog.tag.postList', ['tags' => [$blogTag], 'template' => 'postList']); ?>

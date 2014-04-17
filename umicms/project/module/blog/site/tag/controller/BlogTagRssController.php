@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\post\controller;
+namespace umicms\project\module\blog\site\tag\controller;
 
 use umi\http\Response;
 use umicms\hmvc\controller\BaseSecureController;
@@ -19,7 +19,7 @@ use umicms\project\site\config\TSiteSettingsAware;
 /**
  * Контроллер вывода общей RSS-ленты.
  */
-class BlogPostRssController extends BaseSecureController implements ISiteSettingsAware
+class BlogTagRssController extends BaseSecureController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 
@@ -43,12 +43,16 @@ class BlogPostRssController extends BaseSecureController implements ISiteSetting
      */
     public function __invoke()
     {
-        $blogPosts = $this->api->getPosts();
+        $slugTag = $this->getRouteVar('slug');
+
+        $blogTag = $this->api->tag()->getByUri($slugTag);
+
+        $BlogTagPosts = $this->api->getPostByTag([$blogTag]);
 
         $rssFeed = $this->api->getPostRssFeed(
-            $this->getSiteDefaultTitle(),
-            $this->getSiteDefaultDescription(),
-            $blogPosts
+            $blogTag->displayName,
+            $blogTag->contents,
+            $BlogTagPosts
         );
 
         $response = $this->createResponse($rssFeed);

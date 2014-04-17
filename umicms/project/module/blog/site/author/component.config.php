@@ -15,9 +15,14 @@ return [
 
     SiteComponent::OPTION_CLASS => 'umicms\project\module\blog\site\author\BlogAuthorComponent',
     SiteComponent::OPTION_CONTROLLERS => [
-
+        'author' => __NAMESPACE__ . '\controller\BlogAuthorController',
+        'rss' => __NAMESPACE__ . '\controller\BlogAuthorRssController'
     ],
     SiteComponent::OPTION_WIDGET => [
+        'view' => __NAMESPACE__ . '\widget\BlogAuthorWidget',
+        'postList' => __NAMESPACE__ . '\widget\BlogAuthorPostListWidget',
+        'list' => __NAMESPACE__ . '\widget\BlogAuthorListWidget',
+        'rss' => __NAMESPACE__ . '\widget\BlogAuthorListRssUrlWidget'
     ],
     SiteComponent::OPTION_VIEW => [
         'type' => 'php',
@@ -27,6 +32,13 @@ return [
     SiteComponent::OPTION_ACL => [
     ],
     SiteComponent::OPTION_ROUTES => [
+        'rss' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/rss/{slug}',
+            'defaults' => [
+                'controller' => 'rss'
+            ]
+        ],
         'author' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/{slug}',

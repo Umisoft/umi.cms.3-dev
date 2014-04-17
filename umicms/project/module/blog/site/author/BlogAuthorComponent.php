@@ -22,8 +22,8 @@ class BlogAuthorComponent extends SiteComponent
     /**
      * {@inheritdoc}
      */
-    public function getPageUri(ICmsPage $page) {
-
+    public function getPageUri(ICmsPage $page)
+    {
         if ($page instanceof BlogAuthor) {
             return $this->getRouter()->assemble('author', ['slug' => $page->slug]);
         }

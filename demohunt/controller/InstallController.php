@@ -79,6 +79,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     public function __invoke()
     {
         try {
+            $this->dropTables();
             $this->installDbStructure();
 
             $this->installUsers();
@@ -256,8 +257,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $author = $structureCollection->add('authors', 'system', $blogPage)
             ->setValue('displayName', 'Авторы блога')
             ->setGUID('2ac90e34-16d0-4113-ab7c-de37c0287516');
-        $comment->getProperty('componentName')->setValue('author');
-        $comment->getProperty('componentPath')->setValue('blog.author');
+        $author->getProperty('componentName')->setValue('author');
+        $author->getProperty('componentPath')->setValue('blog.author');
 
         $category = $categoryCollection->add('hunters')
             ->setValue('displayName', 'Блог')
@@ -320,6 +321,12 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>Существует ли разговорник для общения с НЛО? Основы этикета?</p>')
             ->setValue('post', $post2);
         $comment3->getValue('publishTime')->setTimestamp(strtotime('2012-11-15 15:05:34'));
+
+        $comment4 = $commentCollection->add('comment1', IObjectType::BASE, $comment2)
+            ->setValue('displayName', 'Вложенный комментарий')
+            ->setValue('contents', '<p>О, да. Это вложенный комментарий.</p>')
+            ->setValue('post', $post1);
+        $comment4->getValue('publishTime')->setTimestamp(strtotime('2012-11-15 15:07:31'));
     }
 
     protected function installNews()
@@ -650,6 +657,24 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
     }
 
+    protected function dropTables()
+    {
+        $connection = $this->dbCluster->getConnection();
+        /**
+         * @var IDialect $dialect
+         */
+        $dialect = $connection->getDatabasePlatform();
+        $connection->exec($dialect->getDisableForeignKeysSQL());
+
+        $tables = $connection->getDriver()->getSchemaManager($connection)->listTableNames();
+
+        foreach ($tables as $table) {
+            if ($connection->getDriver()->getSchemaManager($connection)->tablesExist($table)) {
+                $connection->getDriver()->getSchemaManager($connection)->dropTable($table);
+            }
+        }
+    }
+
     protected function installDbStructure()
     {
         $connection = $this->dbCluster->getConnection();
@@ -858,7 +883,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     CONSTRAINT `FK_blog_post_category` FOREIGN KEY (`category_id`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_blog_post_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_blog_post_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_post_author` FOREIGN KEY (`author_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_post_author` FOREIGN KEY (`author_id`) REFERENCES `demohunt_blog_author` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_blog_post_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
@@ -969,7 +994,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     KEY `blog_comment_post` (`post_id`),
                     CONSTRAINT `FK_blog_comment_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_blog_comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_blog_comment_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_comment_author` FOREIGN KEY (`author_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_comment_author` FOREIGN KEY (`author_id`) REFERENCES `demohunt_blog_author` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_blog_comment_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_blog_comment_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8

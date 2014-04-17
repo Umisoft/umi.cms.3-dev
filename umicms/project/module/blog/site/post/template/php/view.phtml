@@ -8,3 +8,6 @@
     <?= $blogPost->publishTime->format('d.m.Y | H:i')?>
 </time>
 <?= $blogPost->contents ?>
+
+<h1>Комментарии:</h1>
+<?= $this->widget('blog.comment.list', ['blogPost' => $blogPost, 'template' => 'list']); ?>

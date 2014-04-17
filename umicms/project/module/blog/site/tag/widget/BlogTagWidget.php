@@ -7,20 +7,26 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\post\widget;
+namespace umicms\project\module\blog\site\tag\widget;
 
+use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
+use umicms\project\module\blog\api\object\BlogTag;
 
 /**
- * Виджет для вывода URL на RSS-ленту по категории.
+ * Виджет вывода постов.
  */
-class BlogPostListRssUrlWidget extends BaseSecureWidget
+class BlogTagWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'rssLink';
+    public $template = 'view';
+    /**
+     * @var string|BlogTag $BlogTag GUID поста
+     */
+    public $blogTag;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
@@ -41,10 +47,26 @@ class BlogPostListRssUrlWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
+        if (is_string($this->blogTag)) {
+            $this->blogTag = $this->api->tag()->get($this->blogTag);
+        }
+
+        if (isset($this->blogTag) && !$this->blogTag instanceof BlogTag) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Widget parameter "{param} should be instance of "{class}".',
+                    [
+                        'param' => 'blogPost',
+                        'class' => 'blogPost'
+                    ]
+                )
+            );
+        }
+
         return $this->createResult(
             $this->template,
             [
-                'url' => $this->getUrl('rss')
+                'blogTag' => $this->blogTag
             ]
         );
     }
