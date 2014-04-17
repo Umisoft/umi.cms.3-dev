@@ -72,12 +72,4 @@ class SimpleHierarchicCollection extends FrameworkSimpleHierarchicCollection imp
         return $selector;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getByUri($uri, $withLocalization = false)
-    {
-        // TODO: Is this right?
-        return parent::getByUri('/' . ltrim($uri, '/'), $withLocalization);
-    }
 }

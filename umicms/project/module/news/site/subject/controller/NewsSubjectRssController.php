@@ -45,7 +45,7 @@ class NewsSubjectRssController extends BaseSecureController implements ISiteSett
     {
         $slugSubject = $this->getRouteVar('slug');
 
-        $newsSubject = $this->api->subject()->getBySlug($slugSubject);
+        $newsSubject = $this->api->subject()->getByUri($slugSubject);
 
         $newsSubjectItems = $this->api->getNewsBySubjects([$newsSubject]);
 

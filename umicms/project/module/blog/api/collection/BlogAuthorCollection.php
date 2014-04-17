@@ -21,7 +21,7 @@ use umicms\project\module\blog\api\object\BlogAuthor;
  * @method BlogAuthor get($guid, $withLocalization = false) Возвращает автора по GUID
  * @method BlogAuthor getById($objectId, $withLocalization = false) Возвращает автора по id
  * @method BlogAuthor add($typeName = IObjectType::BASE) Создает и возвращает автора
- * @method BlogAuthor getBySlug($slug, $withLocalization = false) Возвращает автора по его последней части ЧПУ
+ * @method BlogAuthor getByUri($uri, $withLocalization = false) Возвращает автора по его последней части ЧПУ
  */
 class BlogAuthorCollection extends PageCollection
 {
