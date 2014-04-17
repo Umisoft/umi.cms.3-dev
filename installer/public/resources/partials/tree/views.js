@@ -17,7 +17,15 @@ define(['App'], function(UMI){
 
             active: function(){
                 return this.get('controller.controllers.treeControl.activeContext.id') === this.get('model.id');
-            }.property('controller.controllers.treeControl.activeContext.id')
+            }.property('controller.controllers.treeControl.activeContext.id'),
+
+            savedDisplayName: function(){
+                if(this.get('model.id') === 'root'){
+                    return this.get('model.displayName');
+                } else{
+                    return this.get('model.content._data.displayName');
+                }
+            }.property('model.currentState.loaded.saved')//TODO: Отказаться от использования _data
         });
 
         UMI.TreeControlView = Ember.View.extend({
