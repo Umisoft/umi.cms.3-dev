@@ -10,33 +10,30 @@ namespace umicms\project\module\news\site\subject;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\project\site\component\DefaultSitePageComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\module\news\site\subject\NewsSubjectComponent',
+    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
+    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'newsSubject',
     
-    SiteComponent::OPTION_CONTROLLERS => [
-        'index' => __NAMESPACE__ . '\controller\IndexController',
-        'subject' => __NAMESPACE__ . '\controller\SubjectController',
+    DefaultSitePageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\NewsSubjectRssController'
     ],
 
-    SiteComponent::OPTION_WIDGET => [
+    DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\SubjectWidget',
         'newsList' => __NAMESPACE__ . '\widget\SubjectNewsListWidget',
         'list' => __NAMESPACE__ . '\widget\SubjectListWidget',
         'rss' => __NAMESPACE__ . '\widget\SubjectNewsRssUrlWidget'
     ],
 
-    SiteComponent::OPTION_ACL => [
+    DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'subjectViewer' => [],
-            'subjectRssViewer' => []
+            'viewer' => [],
+            'rssViewer' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:index',
-            'controller:subject',
             'controller:rss',
             'widget:view',
             'widget:list',
@@ -44,45 +41,30 @@ return [
             'widget:rss'
         ],
         IAclFactory::OPTION_RULES => [
-            'subjectViewer' => [
-                'controller:index' => [],
-                'controller:subject' => [],
+            'viewer' => [
                 'widget:view' => [],
                 'widget:list' => [],
                 'widget:newsList' => []
             ],
-            'subjectRssViewer' => [
+            'rssViewer' => [
                 'controller:rss' => [],
                 'widget:rss' => []
             ]
         ]
     ],
 
-    SiteComponent::OPTION_VIEW        => [
+    DefaultSitePageComponent::OPTION_VIEW        => [
         'type'      => 'php',
         'extension' => 'phtml',
         'directory' => __DIR__ . '/template/php',
     ],
 
-    SiteComponent::OPTION_ROUTES      => [
+    DefaultSitePageComponent::OPTION_ROUTES      => [
         'rss' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/rss/{slug}',
             'defaults' => [
                 'controller' => 'rss'
-            ]
-        ],
-        'subject' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{slug}',
-            'defaults' => [
-                'controller' => 'subject'
-            ]
-        ],
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'index'
             ]
         ]
     ]

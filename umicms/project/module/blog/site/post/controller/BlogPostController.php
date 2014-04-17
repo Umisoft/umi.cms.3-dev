@@ -13,7 +13,7 @@ use umicms\project\site\controller\SitePageController;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
- * Контроллер отображения постов.
+ * Контроллер отображения новости.
  */
 class BlogPostController extends SitePageController
 {
@@ -33,14 +33,14 @@ class BlogPostController extends SitePageController
     public function __invoke()
     {
         $slug = $this->getRouteVar('slug');
-        $blogPost = $this->api->post()->getByUri($slug);
+        $newsItem = $this->api->post()->getByUri($slug);
 
-        $this->pushCurrentPage($blogPost);
+        $this->pushCurrentPage($newsItem);
 
         return $this->createViewResponse(
             'view',
             [
-                'blogPost' => $blogPost
+                'blogPost' => $newsItem
             ]
         );
     }

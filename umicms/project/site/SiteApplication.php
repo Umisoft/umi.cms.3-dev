@@ -25,7 +25,9 @@ use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\TCmsCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
+use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
+use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
@@ -78,6 +80,7 @@ class SiteApplication extends SiteComponent
      */
     const DEFAULT_REQUEST_FORMAT = 'html';
 
+    public $defaultOptions = [];
     /**
      * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
      */
@@ -109,7 +112,23 @@ class SiteApplication extends SiteComponent
             $this->pageCallStack->pop();
         }
 
-        return parent::onDispatchRequest($context, $request);
+        $element = null;
+        if (isset($context->getRouteParams()[self::MATCH_STRUCTURE_ELEMENT])) {
+            $element = $context->getRouteParams()[self::MATCH_STRUCTURE_ELEMENT];
+
+            if ($element instanceof ICmsPage) {
+
+                if ($element instanceof StaticPage) {
+                    foreach ($element->getAncestry() as $parent) {
+                        $this->pushCurrentPage($parent);
+                    }
+                }
+
+                $this->pushCurrentPage($element);
+            }
+        }
+
+        return null;
     }
 
     /**

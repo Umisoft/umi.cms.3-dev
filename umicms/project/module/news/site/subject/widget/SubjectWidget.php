@@ -22,7 +22,7 @@ class SubjectWidget extends BaseWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'view';
+    public $template = 'page';
     /**
      * @var string|NewsSubject $subject сюжет или GUID
      */
