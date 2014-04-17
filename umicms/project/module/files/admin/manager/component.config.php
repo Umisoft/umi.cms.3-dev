@@ -9,18 +9,18 @@
 namespace umicms\project\module\files\admin\manager;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    SecureAdminComponent::OPTION_CONTROLLERS => [
+    AdminComponent::OPTION_CONTROLLERS => [
         'connector' => __NAMESPACE__ . '\controller\ConnectorController',
-        SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
+        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
     ],
 
-    SecureAdminComponent::OPTION_ROUTES      => [
+    AdminComponent::OPTION_ROUTES      => [
 
         'connector' => [
             'type' => IRouteFactory::ROUTE_FIXED,
@@ -33,7 +33,7 @@ return [
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => SecureAdminComponent::SETTINGS_CONTROLLER
+                'controller' => AdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]

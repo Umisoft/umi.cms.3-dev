@@ -22,7 +22,7 @@ use umicms\project\module\blog\api\object\BlogPost;
  * @method BlogPost get($guid, $withLocalization = false) Возвращает пост по GUID
  * @method BlogPost getById($objectId, $withLocalization = false) Возвращает пост по id
  * @method BlogPost add($typeName = IObjectType::BASE) Создает и возвращает пост
- * @method BlogPost getBySlug($slug, $withLocalization = false) Возвращает пост по его последней части ЧПУ
+ * @method BlogPost getByUri($uri, $withLocalization = false) Возвращает пост по его последней части ЧПУ
  */
 class BlogPostCollection extends PageCollection
 {

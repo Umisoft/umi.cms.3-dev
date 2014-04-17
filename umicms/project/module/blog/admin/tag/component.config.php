@@ -8,25 +8,9 @@
 
 namespace umicms\project\module\blog\admin\tag;
 
-use umi\route\IRouteFactory;
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\api\component\DefaultAdminComponent;
 
 return [
-
-    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
-    SecureAdminComponent::OPTION_CONTROLLERS => [
-        SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
-    ],
-    SecureAdminComponent::OPTION_ACL => [
-
-    ],
-    SecureAdminComponent::OPTION_ROUTES => [
-
-        'settings' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => SecureAdminComponent::SETTINGS_CONTROLLER
-            ]
-        ]
-    ]
+    DefaultAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultAdminComponent',
+    DefaultAdminComponent::OPTION_COLLECTION_NAME => 'blogTag'
 ];

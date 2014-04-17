@@ -118,6 +118,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Посетители');
 
         $visitors->roles = [
+            'project' => ['visitor'],
+            'project.admin' => ['visitor'],
             'project.site.structure' => ['staticPageViewer'],
             'project.site.structure.menu' => ['menuViewer'],
             'project.site.news' => ['newsViewer'],
@@ -220,6 +222,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $blogPage = $structureCollection->add('blogik', 'system')
             ->setValue('displayName', 'Блог')
+            ->setValue('h1', 'Блог')
             ->setGUID('e6b89f38-7af3-4bda-80fd-3d5a4cf080cf')
             ->setValue('inMenu', true)
             ->setValue('layout', $this->testLayout);
@@ -955,6 +958,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
                     `display_name` varchar(255) DEFAULT NULL,
                     `post_id` bigint(20) unsigned,
+                    `author_id` bigint(20) unsigned,
                     `contents` text,
                     `publish_time` datetime DEFAULT NULL,
 
@@ -966,6 +970,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     KEY `blog_comment_post` (`post_id`),
                     CONSTRAINT `FK_blog_comment_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_blog_comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_blog_comment_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_blog_comment_author` FOREIGN KEY (`author_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_blog_comment_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_blog_comment_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8

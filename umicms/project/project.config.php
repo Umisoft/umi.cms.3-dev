@@ -8,6 +8,7 @@
 
 namespace umicms\project;
 
+use umi\acl\IAclFactory;
 use umi\authentication\adapter\ORMAdapter;
 use umi\authentication\toolbox\AuthenticationTools;
 use umi\extension\twig\TwigTemplateEngine;
@@ -178,6 +179,19 @@ return [
 
         I18nTools::NAME => [
             'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
+        ]
+    ],
+
+    IComponent::OPTION_ACL => [
+
+        IAclFactory::OPTION_ROLES => [
+            'visitor' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'component:admin'
+        ],
+        IAclFactory::OPTION_RULES => [
+            'visitor' => ['component:admin' => []]
         ]
     ],
 

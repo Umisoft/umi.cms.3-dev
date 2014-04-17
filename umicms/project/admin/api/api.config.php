@@ -19,7 +19,7 @@ return [
         ApiApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
 
         'settings' => __NAMESPACE__ . '\controller\ApiSettingsController',
-        'action' => __NAMESPACE__ . '\controller\ActionController'
+        'action' => __NAMESPACE__ . '\controller\ApiActionController'
     ],
 
     ApiApplication::OPTION_COMPONENTS => [

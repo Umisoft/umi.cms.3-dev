@@ -9,17 +9,17 @@
 namespace umicms\project\module\seo\admin;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
 
-    SecureAdminComponent::OPTION_COMPONENTS => [
+    AdminComponent::OPTION_COMPONENTS => [
         'megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/component.config.php}',
         'yandex' => '{#lazy:~/project/module/seo/admin/yandex/component.config.php}',
     ],
-    SecureAdminComponent::OPTION_ROUTES      => [
+    AdminComponent::OPTION_ROUTES      => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{component}'

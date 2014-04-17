@@ -1,7 +1,13 @@
 <?php
 /**
- * @var umicms\project\module\structure\api\object\SystemPage $page
- */
+* @var umicms\project\module\structure\api\object\SystemPage $page
+*/
 ?>
 <h1><?= $page->h1 ?></h1>
 <?= $page->contents ?>
+
+<?= $this->widget('blog.post.rss', ['template' => 'rssLink']); ?>
+<h2>Категории</h2>
+<?= $this->widget('blog.category.list', ['template' => 'list']) ?>
+<h2>Все категории</h2>
+<?= $this->widget('blog.post.list', ['template' => 'list']) ?>

@@ -19,10 +19,12 @@ return [
     SiteComponent::OPTION_COMPONENTS => [
         'post' => '{#lazy:~/project/module/blog/site/post/component.config.php}',
         'category' => '{#lazy:~/project/module/blog/site/category/component.config.php}',
+        'author' => '{#lazy:~/project/module/blog/site/author/component.config.php}',
+        'tag' => '{#lazy:~/project/module/blog/site/tag/component.config.php}'
     ],
 
     SiteComponent::OPTION_CONTROLLERS => [
-        //'index' => 'umicms\project\module\blog\site\controller\IndexController'
+        'index' => 'umicms\project\module\blog\site\controller\IndexController'
     ],
 
     SiteComponent::OPTION_ACL => [

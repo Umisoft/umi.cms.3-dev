@@ -7,7 +7,6 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-use umi\form\element\html5\DateTime;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;

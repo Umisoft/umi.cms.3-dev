@@ -209,7 +209,7 @@ class UrlManager implements IUrlManager
     {
         $collectionResourceUrl = $this->baseRestUrl;
         $collectionResourceUrl .= '/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
-        $collectionResourceUrl .= '/collection/' . $collection->getName();
+        $collectionResourceUrl .= '/collection';
 
         if ($object) {
             $collectionResourceUrl .= '/' . $object->getId();

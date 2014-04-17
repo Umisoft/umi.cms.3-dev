@@ -21,7 +21,7 @@ use umicms\project\module\blog\api\object\BlogTag;
  * @method BlogTag get($guid, $withLocalization = false) Возвращает тэг по GUID
  * @method BlogTag getById($objectId, $withLocalization = false) Возвращает тэг по id
  * @method BlogTag add($typeName = IObjectType::BASE) Создает и возвращает тэг
- * @method BlogTag getBySlug($slug, $withLocalization = false) Возвращает тэг по его последней части ЧПУ
+ * @method BlogTag getByUri($uri, $withLocalization = false) Возвращает тэг по его последней части ЧПУ
  */
 class BlogTagCollection extends PageCollection
 {
