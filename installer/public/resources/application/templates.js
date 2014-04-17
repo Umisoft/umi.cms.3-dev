@@ -25,8 +25,7 @@ define([
         Ember.TEMPLATES['UMI/megaindexReport'] = Ember.Handlebars.compile(megaIndexTpl);
         Ember.TEMPLATES['UMI/yandexWebmasterReport'] = Ember.Handlebars.compile(yandexWebmasterTpl);
 
-        Ember.TEMPLATES['UMI/error'] = Ember.Handlebars.compile(errorsTpl);
-        Ember.TEMPLATES['UMI/module/error'] = Ember.Handlebars.compile(errorsTpl);
-        Ember.TEMPLATES['UMI/component/error'] = Ember.Handlebars.compile(errorsTpl);
+        Ember.TEMPLATES['UMI/module/errors'] = Ember.Handlebars.compile(errorsTpl);
+        Ember.TEMPLATES['UMI/component/errors'] = Ember.Handlebars.compile(errorsTpl);
     };
 });

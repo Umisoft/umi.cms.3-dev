@@ -16,9 +16,9 @@ define([], function(){
          */
         UMI.Router.map(function(){
             this.resource('module', {path: '/:module'}, function(){
-                this.route('error', {path: '/:status'});
+                this.route('errors', {path: '/:status'});
                 this.resource('component', {path: '/:component'}, function(){
-                    this.route('error', {path: '/:status'});
+                    this.route('errors', {path: '/:status'});
                     this.resource('action', {path: '/:action'}, function(){
                         this.resource('context', {path: '/:context'});
                     });
@@ -49,17 +49,8 @@ define([], function(){
                     if(result.modules){
                         self.controllerFor('dock').set('modules', result.modules);
                     }
-                }, function(errors){
-                    var message;
-                    if(errors.responseJSON.hasOwnProperty('result') && errors.responseJSON.result.hasOwnProperty('error')){
-                        message = errors.responseJSON.result.error.message;
-                    }
-                    var data = {
-                        'close': false,
-                        'title': errors.status + '. ' + errors.statusText,
-                        'content': message
-                    };
-                    return UMI.dialog.open(data).then();
+                }, function(error){
+                    self.globalHttpError(error);
                 });
             },
             actions: {
@@ -106,11 +97,6 @@ define([], function(){
                             if(params.handler){
                                 $(params.handler).removeClass('loading');
                             }
-                            /*UMI.notification.create({
-                             type: 'success',
-                             text: 'Изменения успешно сохранены.',
-                             duration: 3000
-                             });*/
                         },
                         function(results){
                             var self = this;
@@ -135,6 +121,32 @@ define([], function(){
                         }
                     );
                 }
+            },
+
+            globalHttpError: function(error){
+                var message;
+                if(error.hasOwnProperty('responseJSON')){
+                    if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
+                        message = error.responseJSON.result.error.message;
+                    }
+                } else{
+                    message = error.responseText;
+                }
+                var data = {
+                    'close': false,
+                    'title': error.status + '. ' + error.statusText,
+                    'content': message
+                };
+                UMI.dialog.open(data).then();
+            },
+
+            backgroundError: function(error){
+                UMI.notification.create({
+                    type: 'error',
+                    title: error.title,
+                    text: error.text,
+                    duration: false
+                });
             }
         });
 

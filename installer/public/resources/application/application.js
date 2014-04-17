@@ -105,12 +105,20 @@ define(
             ajaxError: function(jqXHR){
                 var error = this._super(jqXHR);
 
-                if (jqXHR && jqXHR.status === 500) {
-                    var jsonErrors = jqXHR.responseJSON.result.error.message;
-                    return new DS.InvalidError(jsonErrors);
-                } else {
-                    return error;
+                var message;
+                if(error.hasOwnProperty('responseJSON')){
+                    if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
+                        message = error.responseJSON.result.error.message;
+                    }
+                } else{
+                    message = error.responseText;
                 }
+                var data = {
+                    'close': true,
+                    'title': error.status + '. ' + error.statusText,
+                    'content': message
+                };
+                UMI.dialog.open(data).then();
             }
         });
 
