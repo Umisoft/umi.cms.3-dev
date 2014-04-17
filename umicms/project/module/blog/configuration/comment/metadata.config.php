@@ -127,6 +127,11 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ]
         ],
+        BlogComment::FIELD_ACTIVE => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'active',
+            'defaultValue' => 1
+        ],
         BlogComment::FIELD_AUTHOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'author_id',
@@ -168,6 +173,7 @@ return [
                 BlogComment::FIELD_CREATED,
                 BlogComment::FIELD_UPDATED,
                 BlogComment::FIELD_DISPLAY_NAME,
+                BlogComment::FIELD_ACTIVE,
                 BlogComment::FIELD_AUTHOR,
                 BlogComment::FIELD_POST,
                 BlogComment::FIELD_CONTENTS,

@@ -19,8 +19,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.blogPost',
-            'collection'
+            'collection.blogPost', 'collection', 'form'
         ]
     ],
     'elements' => [

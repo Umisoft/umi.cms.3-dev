@@ -17,8 +17,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.BlogAuthor',
-            'collection'
+            'collection.blogAuthor', 'collection', 'form'
         ]
     ],
     'elements' => [

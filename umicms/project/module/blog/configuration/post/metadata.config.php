@@ -149,10 +149,6 @@ return [
         BlogPost::FIELD_COMMENTS_COUNT => [
             'type' => IField::TYPE_COUNTER,
             'columnName' => 'comments_count'
-        ],
-        BlogPost::FIELD_OLD_URL => [
-            'type' => IField::TYPE_STRING,
-            'columnName' => 'old_url'
         ]
     ],
     'types' => [
@@ -182,8 +178,7 @@ return [
                 BlogPost::FIELD_CATEGORY,
                 BlogPost::FIELD_TAGS,
                 BlogPost::FIELD_PUBLISH_TIME,
-                BlogPost::FIELD_COMMENTS_COUNT,
-                BlogPost::FIELD_OLD_URL
+                BlogPost::FIELD_COMMENTS_COUNT
             ]
         ]
     ]
