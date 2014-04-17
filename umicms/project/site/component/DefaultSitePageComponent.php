@@ -9,29 +9,22 @@
 
 namespace umicms\project\site\component;
 
-use RuntimeException;
 use umi\acl\IAclFactory;
-use umi\orm\collection\ICollectionManagerAware;
-use umi\orm\collection\TCollectionManagerAware;
 use umi\route\IRouteFactory;
-use umicms\hmvc\component\ICollectionComponent;
-use umicms\orm\collection\PageCollection;
 
 /**
  * Компонент для вывода простых страниц на сайте.
  */
-class DefaultSitePageComponent extends SiteComponent implements ICollectionComponent, ICollectionManagerAware
+class DefaultSitePageComponent extends BaseDefaultSitePageComponent
 {
-    use TCollectionManagerAware;
-
     /**
      * @var array $defaultOptions настройки компонента по умолчанию
      */
     public $defaultOptions = [
 
         self::OPTION_CONTROLLERS => [
-            'index' => 'umicms\project\site\controller\DefaultIndexController',
-            'item' => 'umicms\project\site\controller\DefaultItemController'
+            'index' => 'umicms\project\site\controller\DefaultStructurePageController',
+            'page' => 'umicms\project\site\controller\DefaultPageController'
         ],
 
         self::OPTION_ACL => [
@@ -39,77 +32,35 @@ class DefaultSitePageComponent extends SiteComponent implements ICollectionCompo
                 'viewer' => [],
             ],
             IAclFactory::OPTION_RESOURCES => [
-                'controller:index',
-                'controller:item'
+                'index' => 'controller:index',
+                'page' => 'controller:page'
             ],
             IAclFactory::OPTION_RULES => [
                 'viewer' => [
                     'controller:index' => [],
-                    'controller:item' => []
+                    'controller:page' => []
                 ]
             ]
         ],
 
         self::OPTION_ROUTES      => [
-            'item' => [
+            'page' => [
                 'type'     => IRouteFactory::ROUTE_SIMPLE,
+                'priority'  => 100,
                 'route'    => '/{uri}',
                 'defaults' => [
-                    'controller' => 'item'
+                    'controller' => 'page'
                 ]
             ],
             'index' => [
                 'type' => IRouteFactory::ROUTE_FIXED,
+                'priority'  => 200,
                 'defaults' => [
                     'controller' => 'index'
                 ]
             ]
         ]
     ];
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct($name, $path, array $options = [])
-    {
-        $options = $this->mergeConfigOptions($this->defaultOptions, $options);
-        parent::__construct($name, $path, $options);
-    }
-
-    /**
-     * Возвращает коллекцию, с которой работает компонент.
-     * @throws RuntimeException если в конфигурации не указано имя коллекции
-     * @return PageCollection
-     */
-    public function getCollection()
-    {
-        if (!isset($this->options[self::OPTION_COLLECTION_NAME])) {
-            throw new RuntimeException(
-                $this->translate(
-                    'Option "{option}" is required for component "{path}".',
-                    [
-                        'option' => self::OPTION_COLLECTION_NAME,
-                        'path' => $this->getPath()
-                    ]
-                )
-            );
-        }
-
-        $collection = $this->getCollectionManager()->getCollection($this->options[self::OPTION_COLLECTION_NAME]);
-        if (!$collection instanceof PageCollection) {
-            throw new RuntimeException(
-                $this->translate(
-                    'Collection "{collection}" for component "{path}" should be instance of PageCollection.',
-                    [
-                        'collection' => self::OPTION_COLLECTION_NAME,
-                        'path' => $this->getPath()
-                    ]
-                )
-            );
-        }
-
-        return $collection;
-    }
 
 }
  

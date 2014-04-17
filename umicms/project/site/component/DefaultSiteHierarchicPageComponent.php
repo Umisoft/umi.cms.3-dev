@@ -9,11 +9,58 @@
 
 namespace umicms\project\site\component;
 
+use umi\acl\IAclFactory;
+use umi\orm\collection\TCollectionManagerAware;
+use umi\route\IRouteFactory;
+
 /**
  * Компонент для вывода иерархических страниц на сайте.
  */
-class DefaultSiteHierarchicPageComponent extends SiteComponent
+class DefaultSiteHierarchicPageComponent extends BaseDefaultSitePageComponent
 {
+    /**
+     * @var array $defaultOptions настройки компонента по умолчанию
+     */
+    public $defaultOptions = [
 
+        self::OPTION_CONTROLLERS => [
+            'index' => 'umicms\project\site\controller\DefaultStructurePageController',
+            'page' => 'umicms\project\site\controller\DefaultPageController'
+        ],
+
+        self::OPTION_ACL => [
+            IAclFactory::OPTION_ROLES => [
+                'viewer' => [],
+            ],
+            IAclFactory::OPTION_RESOURCES => [
+                'index' => 'controller:index',
+                'page' => 'controller:page'
+            ],
+            IAclFactory::OPTION_RULES => [
+                'viewer' => [
+                    'controller:index' => [],
+                    'controller:page' => []
+                ]
+            ]
+        ],
+
+        self::OPTION_ROUTES => [
+            'page' => [
+                'type'     => IRouteFactory::ROUTE_REGEXP,
+                'priority'  => 100,
+                'route'    => '/(?P<uri>.+)',
+                'defaults' => [
+                    'controller' => 'page'
+                ]
+            ],
+            'index' => [
+                'type' => IRouteFactory::ROUTE_FIXED,
+                'priority'  => 200,
+                'defaults' => [
+                    'controller' => 'index'
+                ]
+            ]
+        ]
+    ];
 }
  
