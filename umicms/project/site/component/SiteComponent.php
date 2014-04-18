@@ -11,10 +11,8 @@ namespace umicms\project\site\component;
 
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\http\Request;
-use umicms\exception\RuntimeException;
 use umicms\hmvc\component\BaseComponent;
 use umicms\orm\object\ICmsPage;
-use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
 
@@ -31,21 +29,6 @@ class SiteComponent extends BaseComponent implements IPageCallStackAware
     const MATCH_STRUCTURE_ELEMENT = 'element';
 
     /**
-     * Возвращает URI страницы относительно компонента.
-     * @param ICmsPage $page страница
-     * @throws RuntimeException если невозможно получить URI
-     */
-    public function getPageUri(ICmsPage $page) {
-
-        throw new RuntimeException(
-            $this->translate(
-                'Component "{path}" does not support URI generation.',
-                ['path' => $this->getPath()]
-            )
-        );
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
@@ -55,18 +38,12 @@ class SiteComponent extends BaseComponent implements IPageCallStackAware
             $element = $context->getRouteParams()[self::MATCH_STRUCTURE_ELEMENT];
 
             if ($element instanceof ICmsPage) {
-
-                if ($element instanceof StaticPage) {
-                    foreach ($element->getAncestry() as $parent) {
-                        $this->pushCurrentPage($parent);
-                    }
-                }
-
                 $this->pushCurrentPage($element);
             }
         }
 
         return null;
     }
+
 }
  

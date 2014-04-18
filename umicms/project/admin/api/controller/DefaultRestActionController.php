@@ -101,16 +101,16 @@ class DefaultRestActionController extends BaseDefaultRestController
     }
 
     /**
-     * Возвращает форму для объектного типа коллекции.
+     * Возвращает форму для редактирования объекта коллекции.
      * @throws HttpException
      * @return IForm
      */
-    protected function actionForm()
+    protected function actionGetEditForm()
     {
         $typeName = $this->getRequiredQueryVar('type');
         $formName = $this->getRequiredQueryVar('form');
 
-        return $this->getCollection()->getForm($typeName, $formName);
+        return $this->getCollection()->getForm($formName, $typeName);
     }
 
     /**
@@ -210,7 +210,7 @@ class DefaultRestActionController extends BaseDefaultRestController
      * @throws RuntimeException если невозможно выполнить действие
      * @return Backup[]
      */
-    protected function actionBackupList()
+    protected function actionGetBackupList()
     {
         $collection = $this->getCollection();
         $object = $collection->getById($this->getRequiredQueryVar('id'));
@@ -234,7 +234,7 @@ class DefaultRestActionController extends BaseDefaultRestController
      * @throws RuntimeException если невозможно выполнить действие
      * @return ICmsObject
      */
-    protected function actionBackup()
+    protected function actionGetBackup()
     {
         $collection = $this->getCollection();
         $object = $collection->getById($this->getRequiredQueryVar('id'));
@@ -337,7 +337,7 @@ class DefaultRestActionController extends BaseDefaultRestController
     private function checkSupportedAction($action, array $supportedActions)
     {
         if (!in_array($action, $supportedActions)) {
-            throw new HttpNotFound('Action not found.');
+            throw new HttpNotFound('Action is not supported.');
         }
     }
 

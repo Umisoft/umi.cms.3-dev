@@ -8,43 +8,16 @@
 
 namespace umicms\project\module\blog\site\post;
 
-use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\project\site\component\DefaultSitePageComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\module\blog\site\tag\BlogTagComponent',
-    SiteComponent::OPTION_CONTROLLERS => [
-    ],
-    SiteComponent::OPTION_WIDGET => [
-    ],
-    SiteComponent::OPTION_VIEW => [
+    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
+    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogAuthor',
+
+    DefaultSitePageComponent::OPTION_VIEW => [
         'type' => 'php',
         'extension' => 'phtml',
         'directory' => __DIR__ . '/template/php',
-    ],
-    SiteComponent::OPTION_ACL => [
-    ],
-    SiteComponent::OPTION_ROUTES => [
-        'rss' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'route' => '/rss',
-            'defaults' => [
-                'controller' => 'rss'
-            ]
-        ],
-        'tag' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{slug}',
-            'defaults' => [
-                'controller' => 'tag'
-            ]
-        ],
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'index'
-            ]
-        ]
     ]
 ];

@@ -8,37 +8,16 @@
 
 namespace umicms\project\module\blog\site\author;
 
-use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\project\site\component\DefaultSitePageComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\module\blog\site\author\BlogAuthorComponent',
-    SiteComponent::OPTION_CONTROLLERS => [
+    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
+    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogAuthor',
 
-    ],
-    SiteComponent::OPTION_WIDGET => [
-    ],
-    SiteComponent::OPTION_VIEW => [
+    DefaultSitePageComponent::OPTION_VIEW => [
         'type' => 'php',
         'extension' => 'phtml',
         'directory' => __DIR__ . '/template/php',
-    ],
-    SiteComponent::OPTION_ACL => [
-    ],
-    SiteComponent::OPTION_ROUTES => [
-        'author' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{slug}',
-            'defaults' => [
-                'controller' => 'author'
-            ]
-        ],
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'index'
-            ]
-        ]
     ]
 ];

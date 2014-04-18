@@ -10,68 +10,54 @@ namespace umicms\project\module\blog\site\post;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\project\site\component\DefaultSitePageComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\module\blog\site\post\BlogPostComponent',
-    SiteComponent::OPTION_CONTROLLERS => [
-        'post' => __NAMESPACE__ . '\controller\BlogPostController',
+    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
+    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
+    
+    DefaultSitePageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\BlogPostRssController'
     ],
-    SiteComponent::OPTION_WIDGET => [
+    DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogPostWidget',
         'list' => __NAMESPACE__ . '\widget\BlogPostListWidget',
         'rss' => __NAMESPACE__ . '\widget\BlogPostListRssUrlWidget'
     ],
-    SiteComponent::OPTION_VIEW => [
+    DefaultSitePageComponent::OPTION_VIEW => [
         'type' => 'php',
         'extension' => 'phtml',
         'directory' => __DIR__ . '/template/php',
     ],
-    SiteComponent::OPTION_ACL => [
+    DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'blogPostViewer' => [],
-            'blogPostRssViewer' => []
+            'viewer' => [],
+            'rssViewer' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:item',
             'controller:rss',
             'widget:view',
             'widget:list',
             'widget:rss'
         ],
         IAclFactory::OPTION_RULES => [
-            'blogPostViewer' => [
-                'controller:item' => [],
+            'viewer' => [
                 'widget:view' => [],
                 'widget:list' => []
             ],
-            'blogPostRssViewer' => [
+            'rssViewer' => [
                 'controller:rss' => [],
                 'widget:rss' => []
             ]
         ]
     ],
-    SiteComponent::OPTION_ROUTES => [
+    DefaultSitePageComponent::OPTION_ROUTES => [
         'rss' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'route' => '/rss',
             'defaults' => [
                 'controller' => 'rss'
-            ]
-        ],
-        'post' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{slug}',
-            'defaults' => [
-                'controller' => 'post'
-            ]
-        ],
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'index'
             ]
         ]
     ]

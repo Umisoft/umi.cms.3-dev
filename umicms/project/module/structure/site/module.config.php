@@ -21,7 +21,7 @@ return [
     ],
 
     SiteComponent::OPTION_CONTROLLERS => [
-        'static' => 'umicms\project\module\structure\site\controller\StaticPageController',
+        'static' => 'umicms\project\site\controller\DefaultStructurePageController',
     ],
 
     SiteComponent::OPTION_VIEW        => [
@@ -32,13 +32,13 @@ return [
 
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'staticPageViewer' => []
+            'viewer' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:static',
         ],
         IAclFactory::OPTION_RULES => [
-            'staticPageViewer' => [
+            'viewer' => [
                 'controller:static' => []
             ]
         ]

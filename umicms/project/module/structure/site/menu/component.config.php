@@ -21,13 +21,13 @@ return [
 
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'menuViewer' => []
+            'viewer' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'widget:auto',
         ],
         IAclFactory::OPTION_RULES => [
-            'menuViewer' => [
+            'viewer' => [
                 'widget:auto' => []
             ]
         ]

@@ -18,7 +18,6 @@ use umicms\hmvc\component\ICollectionComponent;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
-use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\project\admin\component\AdminComponent;
@@ -38,6 +37,47 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionCompone
      * Опция для задания дополнительного списка доступных действий на изменение данных
      */
     const OPTION_MODIFY_ACTIONS = 'modifyActions';
+
+    /**
+     * Действие для получения формы редактирования
+     */
+    const ACTION_GET_EDIT_FORM = 'getEditForm';
+    /**
+     * Действие для получения формы создания
+     */
+    const ACTION_GET_CREATE_FORM = 'getCreateForm';
+    /**
+     * Действие для получения списка резервных копий
+     */
+    const ACTION_GET_BACKUP_LIST = 'getBackupList';
+    /**
+     * Действие для получения бэкапа объекта
+     */
+    const ACTION_GET_BACKUP = 'getBackup';
+    /**
+     * Действие для просмотра страницы на сайте
+     */
+    const ACTION_VIEW_ON_SITE = 'viewOnSite';
+    /**
+     * Действие для изменения активности
+     */
+    const ACTION_SWITCH_ACTIVITY = 'switchActivity';
+    /**
+     * Действие для изменения ЧПУ объекта
+     */
+    const ACTION_CHANGE_SLUG = 'changeSlug';
+    /**
+     * Действие для перемещения объекта
+     */
+    const ACTION_MOVE = 'move';
+    /**
+     * Действие для удаления объекта в корзину
+     */
+    const ACTION_TRASH = 'trash';
+    /**
+     * Действие для восстановления объекта из корзины
+     */
+    const ACTION_UNTRASH = 'untrash';
 
     /**
      * @var array $defaultOptions настройки компонента по умолчанию
@@ -113,7 +153,7 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionCompone
      */
     public function __construct($name, $path, array $options = [])
     {
-        $options = $this->mergeConfigOptions($this->defaultOptions, $options);
+        $options = $this->mergeConfigOptions($options, $this->defaultOptions);
         parent::__construct($name, $path, $options);
     }
 
@@ -144,17 +184,18 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionCompone
     public function getQueryActions()
     {
         $defaultActions = [
-            'form'
+            self::ACTION_GET_EDIT_FORM,
+            self::ACTION_GET_CREATE_FORM
         ];
 
         $collection = $this->getCollection();
         if ($collection instanceof IRecoverableCollection) {
-            $defaultActions[] = 'backupList';
-            $defaultActions[] = 'backup';
+            $defaultActions[] = self::ACTION_GET_BACKUP_LIST;
+            $defaultActions[] = self::ACTION_GET_BACKUP;
         }
 
         if ($collection instanceof ICmsPageCollection) {
-            $defaultActions[] = 'viewOnSite';
+            $defaultActions[] = self::ACTION_VIEW_ON_SITE;
         }
 
         $actions = [];
@@ -175,17 +216,17 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionCompone
         $collection = $this->getCollection();
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $defaultActions[] = 'switchActivity';
+            $defaultActions[] = self::ACTION_SWITCH_ACTIVITY;
         }
         if ($collection instanceof SimpleHierarchicCollection) {
-            $defaultActions[] = 'move';
+            $defaultActions[] = self::ACTION_MOVE;
         }
         if ($collection instanceof ICmsPageCollection) {
-            $defaultActions[] = 'changeSlug';
+            $defaultActions[] = self::ACTION_CHANGE_SLUG;
         }
         if ($collection instanceof IRecyclableCollection) {
-            $defaultActions[] = 'trash';
-            $defaultActions[] = 'untrash';
+            $defaultActions[] = self::ACTION_TRASH;
+            $defaultActions[] = self::ACTION_UNTRASH;
         }
 
         $actions = [];

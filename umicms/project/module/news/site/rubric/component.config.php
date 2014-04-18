@@ -10,33 +10,30 @@ namespace umicms\project\module\news\site\rubric;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\project\site\component\DefaultSiteHierarchicPageComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\module\news\site\rubric\NewsRubricComponent',
-    
-    SiteComponent::OPTION_CONTROLLERS => [
-        'index' => __NAMESPACE__ . '\controller\IndexController',
-        'rubric' => __NAMESPACE__ . '\controller\RubricController',
+    DefaultSiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSiteHierarchicPageComponent',
+    DefaultSiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'newsRubric',
+
+    DefaultSiteHierarchicPageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\NewsRubricRssController'
     ],
 
-    SiteComponent::OPTION_WIDGET => [
+    DefaultSiteHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ .  '\widget\RubricWidget',
         'newsList' => __NAMESPACE__ . '\widget\RubricNewsListWidget',
         'list' => __NAMESPACE__ .  '\widget\RubricListWidget',
         'rss' => __NAMESPACE__ .  '\widget\RubricNewsRssUrlWidget'
     ],
 
-    SiteComponent::OPTION_ACL => [
+    DefaultSiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'rubricViewer' => [],
-            'rubricRssViewer' => []
+            'viewer' => [],
+            'rssViewer' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:index',
-            'controller:rubric',
             'controller:rss',
             'widget:view',
             'widget:list',
@@ -44,45 +41,30 @@ return [
             'widget:rss'
         ],
         IAclFactory::OPTION_RULES => [
-            'rubricViewer' => [
-                'controller:index' => [],
-                'controller:rubric' => [],
+            'viewer' => [
                 'widget:view' => [],
                 'widget:list' => [],
                 'widget:newsList' => []
             ],
-            'rubricRssViewer' => [
+            'rssViewer' => [
                 'controller:rss' => [],
                 'widget:rss' => []
             ]
         ]
     ],
 
-    SiteComponent::OPTION_VIEW        => [
+    DefaultSiteHierarchicPageComponent::OPTION_VIEW        => [
         'type'      => 'php',
         'extension' => 'phtml',
         'directory' => __DIR__ . '/template/php',
     ],
 
-    SiteComponent::OPTION_ROUTES      => [
+    DefaultSiteHierarchicPageComponent::OPTION_ROUTES      => [
         'rss' => [
             'type'     => IRouteFactory::ROUTE_REGEXP,
             'route' => '/rss/(?P<url>.+)',
             'defaults' => [
                 'controller' => 'rss'
-            ]
-        ],
-        'rubric' => [
-            'type'     => IRouteFactory::ROUTE_REGEXP,
-            'route'    => '/(?P<url>.+)',
-            'defaults' => [
-                'controller' => 'rubric'
-            ]
-        ],
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'index'
             ]
         ]
     ]

@@ -22,7 +22,7 @@ class NewsItemWidget extends BaseSecureWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'view';
+    public $template = 'page';
     /**
      * @var string|NewsItem $newsItem GUID новости
      */
