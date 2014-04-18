@@ -13,7 +13,7 @@ use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
- * Виджет для вывода списка постов
+ * Виджет для вывода списка постов.
  */
 class BlogPostListWidget extends BaseSecureWidget
 {

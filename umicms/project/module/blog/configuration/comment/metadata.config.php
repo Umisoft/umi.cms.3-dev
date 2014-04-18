@@ -127,6 +127,11 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ]
         ],
+        BlogComment::FIELD_ACTIVE => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'active',
+            'defaultValue' => 1
+        ],
         BlogComment::FIELD_AUTHOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'author_id',
@@ -144,6 +149,12 @@ return [
         BlogComment::FIELD_PUBLISH_TIME => [
             'type' => IField::TYPE_DATE_TIME,
             'columnName' => 'publish_time'
+        ],
+        BlogComment::FIELD_CHILDREN => [
+            'type' => IField::TYPE_HAS_MANY,
+            'target' => 'blogComment',
+            'targetField' => BlogComment::FIELD_PARENT,
+            'readOnly' => true
         ]
     ],
     'types' => [
@@ -168,10 +179,12 @@ return [
                 BlogComment::FIELD_CREATED,
                 BlogComment::FIELD_UPDATED,
                 BlogComment::FIELD_DISPLAY_NAME,
+                BlogComment::FIELD_ACTIVE,
                 BlogComment::FIELD_AUTHOR,
                 BlogComment::FIELD_POST,
                 BlogComment::FIELD_CONTENTS,
-                BlogComment::FIELD_PUBLISH_TIME
+                BlogComment::FIELD_PUBLISH_TIME,
+                BlogComment::FIELD_CHILDREN
             ]
         ]
     ]

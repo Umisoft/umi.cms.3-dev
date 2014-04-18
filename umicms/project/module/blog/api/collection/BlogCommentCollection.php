@@ -11,6 +11,8 @@ namespace umicms\project\module\blog\api\collection;
 
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
+use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
+use umicms\orm\collection\behaviour\TActiveAccessibleCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\blog\api\object\BlogComment;
@@ -24,8 +26,8 @@ use umicms\project\module\blog\api\object\BlogComment;
  * @method BlogComment getByUri($uri, $withLocalization = false) Возвращает комментарий блога по его URI
  * @method BlogComment add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Создает и возвращает комментарий блога
  */
-class BlogCommentCollection extends SimpleHierarchicCollection
+class BlogCommentCollection extends SimpleHierarchicCollection implements IActiveAccessibleCollection
 {
-
+    use TActiveAccessibleCollection;
 }
  

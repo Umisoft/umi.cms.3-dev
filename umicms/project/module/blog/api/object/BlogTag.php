@@ -15,10 +15,11 @@ use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
 
 /**
- * Тэги.
+ * Тэги блога.
  *
  * @property IManyToManyObjectSet $posts список постов, относящихся к тэгу
  * @property IManyToManyObjectSet $rss RSS-ленты тэга
+ * @property int $postsCount количество постов, относящихся к тэгу
  */
 class BlogTag extends CmsObject implements ICmsPage
 {
@@ -32,5 +33,9 @@ class BlogTag extends CmsObject implements ICmsPage
      * Имя поля для хранения RSS-ленты
      */
     const FIELD_RSS = 'rss';
+    /**
+     * Имя поля для хранения количества постов, которые относятся к тэгу
+     */
+    const FIELD_POSTS_COUNT = 'postsCount';
 }
  

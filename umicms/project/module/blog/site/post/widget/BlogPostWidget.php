@@ -15,7 +15,7 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет вывода постов
+ * Виджет вывода постов.
  */
 class BlogPostWidget extends BaseSecureWidget
 {

@@ -22,7 +22,7 @@ class CategoryPostListWidget extends BaseSecureWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'newsList';
+    public $template = 'postList';
     /**
      * @var int $limit максимальное количество выводимых постов.
      * Если не указано, выводятся все посты.

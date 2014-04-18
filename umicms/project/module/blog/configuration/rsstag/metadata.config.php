@@ -71,7 +71,7 @@ return [
         ],
         'blogRssImportScenario'                    => [
             'type'       => IField::TYPE_BELONGS_TO,
-            'columnName' => 'rss_post_id',
+            'columnName' => 'rss_import_scenario_id',
             'target'     => 'blogRssImportScenario'
         ],
         'tag'                     => [

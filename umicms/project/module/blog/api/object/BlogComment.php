@@ -21,6 +21,7 @@ use umicms\project\module\users\api\UsersModule;
  * @property BlogPost $post пост, к которому относится комментарий
  * @property string $contents комментарий
  * @property DateTime $publishTime дата и время публикации комментария
+ * @property bool $active активность комментария
  */
 class BlogComment extends CmsHierarchicObject implements IRecyclableObject
 {
@@ -40,5 +41,9 @@ class BlogComment extends CmsHierarchicObject implements IRecyclableObject
      * Имя поля для хранения даты и времени публикации комментария
      */
     const FIELD_PUBLISH_TIME = 'publishTime';
+    /**
+     * Имя поля для хранения активности комментария
+     */
+    const FIELD_ACTIVE = 'active';
 }
  

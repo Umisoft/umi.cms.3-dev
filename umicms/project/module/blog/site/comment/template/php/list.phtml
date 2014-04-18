@@ -1,0 +1,15 @@
+<?php
+/**
+ * @var umi\orm\selector\ISelector $comments
+ * @var umicms\project\module\blog\api\object\BlogComment $blogComment
+ */
+?>
+<?php if ($comments->getTotal()) :?>
+    <ul>
+        <?php foreach ($comments as $blogComment) : ?>
+            <li>
+                <?= $this->widget('blog.comment.view', ['blogComment' => $blogComment, 'template' => 'view']); ?>
+            </li>
+        <?php endforeach;?>
+    </ul>
+<?php endif; ?>

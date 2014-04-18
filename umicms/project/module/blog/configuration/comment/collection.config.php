@@ -22,6 +22,6 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection\blogComment', 'collection'
+        'collection.blogComment', 'collection'
     ]
 ];
