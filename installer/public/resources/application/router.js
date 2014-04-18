@@ -416,7 +416,7 @@ define([], function(){
                     if(collectionName){
                         actionParams.collection = collectionName;
                     }
-                    if(actionName === 'form'){
+                    if(actionName === 'editForm'){
                         actionParams.form = 'edit';
                     }
                     if(model.get('type')){
@@ -429,12 +429,12 @@ define([], function(){
                             routeData.viewSettings = results.settings;
                             return routeData;
                         });
-                    } else if(actionName === 'form'){
+                    } else if(actionName === 'editForm' || actionName === 'addForm'){
                         actionParams = actionParams ? '?' + $.param(actionParams) : '';
-                        var actionResource = componentController.get('settings').actions[actionName].source + actionParams;
+                        var actionResource = componentController.get('settings').actions['get' + Ember.String.capitalize(actionName)].source + actionParams;
 
                         return Ember.$.get(actionResource).then(function(results){
-                            routeData.viewSettings = results.result;
+                            routeData.viewSettings = results.result['get' + Ember.String.capitalize(actionName)];
                             return routeData;
                         }, function(error){
                             transition.send('templateLogs', error, 'component');

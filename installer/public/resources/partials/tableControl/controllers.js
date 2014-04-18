@@ -15,7 +15,7 @@ define(['App'], function(UMI){
             getObjects: function(){
                 var self = this;
                 var query = this.get('query');
-                var collectionName = self.get('controllers.component').settings.layout.collection;
+                var collectionName = self.get('controllers.component.collectionName');
                 var objects = self.store.find(collectionName, query);
                 var orderByProperty = this.get('orderByProperty');
                 var sortProperties = orderByProperty && orderByProperty.property ? orderByProperty.property : 'id';
@@ -110,7 +110,7 @@ define(['App'], function(UMI){
              */
             contextChanged: function(){
                 // Вычисляем фильтр в зависимости от типа коллекции
-                var collectionName = this.get('controllers.component').settings.layout.collection;
+                var collectionName = this.get('controllers.component.collectionName');
                 var metaForCollection = this.get('store').metadataFor(collectionName);
                 var contextFilter = {};
                 if(metaForCollection && metaForCollection.collectionType === 'hierarchic'){
@@ -125,7 +125,7 @@ define(['App'], function(UMI){
                 Ember.run.next(this, function(){
                     var self = this;
                     this.get('objects.content').then(function(){
-                        var collectionName = self.get('controllers.component').settings.layout.collection;
+                        var collectionName = self.get('controllers.component.collectionName');
                         var metaForCollection = self.get('store').metadataFor(collectionName);
                         self.set('total', metaForCollection.total);
                     });

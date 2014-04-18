@@ -37,7 +37,7 @@ define(
             hasFieldset: function(){
                 var hasFieldset;
                 try{
-                    hasFieldset = this.get('content.viewSettings.form.elements').isAny('type', 'fieldset');
+                    hasFieldset = this.get('content.viewSettings.elements').isAny('type', 'fieldset');
                 } catch(error){
                     var errorObject = {
                         'statusText': error.name,
