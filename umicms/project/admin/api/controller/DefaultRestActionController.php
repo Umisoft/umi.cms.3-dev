@@ -143,7 +143,7 @@ class DefaultRestActionController extends BaseDefaultRestController
 
         $this->getObjectPersister()->commit();
 
-        return $object;
+        return '';
     }
 
     /**
