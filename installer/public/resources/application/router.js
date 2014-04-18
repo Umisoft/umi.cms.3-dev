@@ -114,14 +114,18 @@ define([], function(){
                                     //https://github.com/emberjs/data/issues/1632
                                     //params.object.transitionTo('updated.uncommitted');
                                     console.log(params.object.get('currentState.stateName'), results, self);
-                                   /* params.object.rollback();
-                                    params.object.reload();*/
+                                    /* params.object.rollback();
+                                     params.object.reload();*/
                                 }
                             );
                         }
                     );
                 },
                 globalHttpError: function(error){
+                    if(error.status === 403){
+                        this.send('logout');
+                        return;
+                    }
                     var message;
                     if(error.hasOwnProperty('responseJSON')){
                         if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
@@ -145,6 +149,32 @@ define([], function(){
                         text: error.text,
                         duration: false
                     });
+                },
+
+                templateLogs: function(error, parentRoute){
+                    parentRoute = parentRoute || 'module';
+                    if(error.status === 403){
+                        this.send('logout');
+                        return;
+                    }
+
+                    var message;
+                    if(error.hasOwnProperty('responseJSON')){
+                        if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
+                            message = error.responseJSON.result.error.message;
+                        }
+                    } else{
+                        message = error.responseText || error.message;
+                    }
+
+                    var model = Ember.Object.create({
+                        'status': error.status,
+                        'statusText': error.statusText,
+                        'message': message,
+                        'stack': error.stack
+                    });
+
+                    this.intermediateTransitionTo(parentRoute + '.errors', model);
                 }
             }
         });
@@ -172,7 +202,7 @@ define([], function(){
          * @extends Ember.Route
          */
         UMI.ModuleRoute = Ember.Route.extend({
-            model: function(params){
+            model: function(params, transition){
                 var deferred = Ember.RSVP.defer();
                 var modules = this.controllerFor('dock').get('content');
                 var module = modules.findBy('name', params.module);
@@ -180,11 +210,13 @@ define([], function(){
                     this.controllerFor('dock').set('activeModule', module);
                     deferred.resolve(module);
                 } else{
-                    deferred.reject({
+                    var error = {
                         'status': 404,
                         'statusText': 'Module not found.',
                         'message': 'The module "' + params.module + '" was not found.'
-                    });
+                    };
+                    transition.send('templateLogs', error);
+                    deferred.reject();
                 }
                 return deferred.promise;
             },
@@ -201,7 +233,10 @@ define([], function(){
                             'statusText': 'Components not found.',
                             'message': 'For module "' + model.get('name') + '" components not found.'
                         };
-                        deferred.reject(self.transitionTo('module.error', error));
+                        Ember.run.next(function(){
+                            transition.send('templateLogs', error);
+                        });
+                        deferred.reject();
                     }
                     return deferred.promise;
                 }
@@ -230,23 +265,18 @@ define([], function(){
                         componentController.set('settings', settings);
                         componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
                         deferred.resolve(model);
-                    }, function(errors){
-                        var message;
-                        if(errors.responseJSON.hasOwnProperty('result') && errors.responseJSON.result.hasOwnProperty('error')){
-                            message = errors.responseJSON.result.error.message;
-                        }
-                        deferred.reject({
-                            'status': errors.status,
-                            'statusText': errors.statusText,
-                            'message': message
-                        });
+                    }, function(error){
+                        transition.send('templateLogs', error);
+                        deferred.reject();
                     });
                 } else{
-                    deferred.reject({
+                    var error = {
                         'status': 404,
                         'statusText': 'Component not found.',
                         'message': 'The component "' + transition.params.component.component + '" was not found.'
-                    });
+                    };
+                    transition.send('templateLogs', error);
+                    deferred.reject();
                 }
                 return deferred.promise;
             },
@@ -263,7 +293,10 @@ define([], function(){
                             'statusText': 'Actions not found.',
                             'message': 'For component "' + model.get('name') + '" actions not found.'
                         };
-                        deferred.reject(self.transitionTo('component.error', error));
+                        Ember.run.next(function(){
+                            transition.send('templateLogs', error, 'component');
+                        });
+                        deferred.reject();
                     }
                     return deferred.promise;
                 }
@@ -274,10 +307,19 @@ define([], function(){
             renderTemplate: function(controller){
                 this.render();
                 if(controller.get('sideBarControl')){
-                    this.render(controller.get('sideBarControl.name'), {
-                        into: 'component',
-                        outlet: 'sideBar'
-                    });
+                    try{
+                        this.render(controller.get('sideBarControl.name'), {
+                            into: 'component',
+                            outlet: 'sideBar'
+                        });
+                    } catch(error){
+                        var errorObject = {
+                            'statusText': error.name,
+                            'message': error.message,
+                            'stack': error.stack
+                        };
+                        this.send('templateLogs', errorObject, 'component');
+                    }
                 }
             }
         });
@@ -294,11 +336,13 @@ define([], function(){
                 if(action){
                     deferred.resolve(action);
                 } else{
-                    deferred.reject({
+                    var error = {
                         'status': 404,
                         'statusText': 'Action not found.',
                         'message': 'The action "' + params.action + '" for component "' + self.modelFor("component").get('name') + '" was not found.'
-                    });
+                    };
+                    transition.send('templateLogs', error, 'component');
+                    deferred.reject();
                 }
                 return deferred.promise;
             },
@@ -393,10 +437,12 @@ define([], function(){
                             routeData.viewSettings = results.result;
                             return routeData;
                         }, function(error){
-                            transition.send('globalHttpError', error);
+                            transition.send('templateLogs', error, 'component');
                         });
                     }
                     return routeData;
+                }, function(error){
+                    transition.send('templateLogs', error, 'component');
                 });
             },
             serialize: function(routeData){
@@ -405,8 +451,17 @@ define([], function(){
                 }
             },
             renderTemplate: function(){
-                var templateType = this.modelFor('action').get('name');
-                this.render(templateType);
+                try{
+                    var templateType = this.modelFor('action').get('name');
+                    this.render(templateType);
+                } catch(error){
+                    var errorObject = {
+                        'statusText': error.name,
+                        'message': error.message,
+                        'stack': error.stack
+                    };
+                    this.send('templateLogs', errorObject, 'component');
+                }
             },
             actions: {
                 /**

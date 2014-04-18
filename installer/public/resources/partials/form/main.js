@@ -35,7 +35,19 @@ define(
                 return settings;
             }.property(),
             hasFieldset: function(){
-                return this.get('content.viewSettings.form.elements').isAny('type', 'fieldset');
+                var hasFieldset;
+                try{
+                    hasFieldset = this.get('content.viewSettings.form.elements').isAny('type', 'fieldset');
+                } catch(error){
+                    var errorObject = {
+                        'statusText': error.name,
+                        'message': error.message,
+                        'stack': error.stack
+                    };
+                    this.send('templateLogs', errorObject, 'component');
+                } finally{
+                    return hasFieldset;
+                }
             }.property('model.@each'),
             hasBackups: function(){
                 return !!this.get('settings').actions.backups;

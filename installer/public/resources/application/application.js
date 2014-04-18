@@ -104,7 +104,10 @@ define(
             },
             ajaxError: function(jqXHR){
                 var error = this._super(jqXHR);
-
+                if(error.status === 403){
+                    UMI.__container__.lookup('router:main').send('logout');
+                    return;
+                }
                 var message;
                 if(error.hasOwnProperty('responseJSON')){
                     if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
