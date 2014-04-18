@@ -9,6 +9,9 @@
 
 namespace umicms\hmvc\url;
 
+use umi\i18n\ILocalizable;
+use umi\i18n\TLocalizable;
+use umicms\exception\RuntimeException;
 use umicms\hmvc\dispatcher\Dispatcher;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
@@ -16,13 +19,15 @@ use umicms\orm\object\ICmsPage;
 use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\StructureElement;
-use umicms\project\site\component\SiteComponent;
+use umicms\project\site\component\BaseDefaultSitePageComponent;
 
 /**
  * URL-менеджер.
  */
-class UrlManager implements IUrlManager
+class UrlManager implements IUrlManager, ILocalizable
 {
+    use TLocalizable;
+
     /**
      * @var Dispatcher $dispatcher диспетчер компонентов
      */
@@ -153,13 +158,21 @@ class UrlManager implements IUrlManager
         $collection = $page->getCollection();
         $handler = $collection->getHandlerPath('site');
 
-        /**
-         * @var SiteComponent $component
-         */
         $component = $this->dispatcher->getSiteComponentByPath($handler);
+        if (!$component instanceof BaseDefaultSitePageComponent) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot get url for page with GUID "{guid}". Component "{path}" shoul be instance of "{class}".',
+                    [
+                        'guid' => $page->getGUID(),
+                        'path' => $component->getPath(),
+                        'class' => 'umicms\project\site\component\BaseDefaultSitePageComponent'
+                    ]
+                )
+            );
+        }
 
         return $this->getSystemPageUrl($handler, $isAbsolute) . $component->getPageUri($page);
-
     }
 
     /**

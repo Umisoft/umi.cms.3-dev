@@ -35,7 +35,7 @@ abstract class BaseDefaultRestController extends BaseSecureController implements
     use TObjectPersisterAware;
 
     /**
-     * Возвращает компонент, которому принадлежит контроллер.
+     * Возвращает компонент, у которого вызван контроллер.
      * @throws RuntimeException при неверном классе компонента
      * @return DefaultAdminComponent
      */

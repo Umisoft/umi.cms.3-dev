@@ -7,25 +7,13 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\controller;
-
-use umicms\project\site\controller\SitePageController;
-use umicms\project\module\structure\api\StructureModule;
+namespace umicms\project\site\controller;
 
 /**
- * Контроллер отображения системной страницы модуля "Блоги".
+ * Контроллер вывода системных страниц компонентов.
  */
-class IndexController extends SitePageController
+class DefaultStructurePageController extends SitePageController
 {
-    /**
-     * @var StructureModule $structureApi
-     */
-    protected $structureApi;
-
-    public function __construct(StructureModule $structureApi) {
-        $this->structureApi = $structureApi;
-    }
-
     /**
      * {@inheritdoc}
      */

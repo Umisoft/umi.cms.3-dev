@@ -153,7 +153,7 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionCompone
      */
     public function __construct($name, $path, array $options = [])
     {
-        $options = $this->mergeConfigOptions($this->defaultOptions, $options);
+        $options = $this->mergeConfigOptions($options, $this->defaultOptions);
         parent::__construct($name, $path, $options);
     }
 
