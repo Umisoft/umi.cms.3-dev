@@ -223,7 +223,7 @@ define(['App'], function(UMI){
                 var object = this.get('object');
                 var template;
                 if(meta.name === 'displayName'){
-                    template = '{{#link-to "context" "form" object.id class="edit-link"}}' + object.get(meta.name) + '{{/link-to}}';
+                    template = '{{#link-to "context" "editForm" object.id class="edit-link"}}' + object.get(meta.name) + '{{/link-to}}';
                 } else{
                     template = object.get(meta.name) + '&nbsp;';
                 }
