@@ -38,10 +38,10 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
      */
     public $limit;
     /**
-     * @var string $page имя GET-параметра, из которого берется текущая страница для построения
+     * @var string $pageParam имя GET-параметра, из которого берется текущая страница для построения
      * постраничной навигации. Указывается при необходимости строить постраничную навигацию.
      */
-    public $page;
+    public $pageParam;
     /**
      * @var string $type тип постраничной навигации (all, sliding, jumping, elastic).
      * Указывается при необходимости строить постраничную навигацию.
@@ -99,7 +99,7 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
     {
         static $helper;
 
-        if (!$this->type || !$this->page || !$this->limit) {
+        if (!$this->type || !$this->pageParam || !$this->limit) {
             return [];
         }
 
@@ -121,7 +121,7 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
 
         $pagination = call_user_func([$helper, $this->type], $paginator, $this->pagesCount);
 
-        return $pagination + $helper->buildLinksContext($pagination, $this->page);
+        return $pagination + $helper->buildLinksContext($pagination, $this->pageParam);
     }
 
     /**
@@ -156,7 +156,7 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
         return $this->getContext()
             ->getDispatcher()
             ->getCurrentRequest()
-            ->query->get($this->page, 1);
+            ->query->get($this->pageParam, 1);
     }
 
 }

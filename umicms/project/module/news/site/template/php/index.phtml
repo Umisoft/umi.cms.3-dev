@@ -12,4 +12,4 @@
 <h2>Сюжеты</h2>
 <?= $this->widget('news.subject.list') ?>
 <h2>Все новости</h2>
-<?= $this->widget('news.item.list') ?>
+<?= $this->widget('news.item.list', ['limit' => '3', 'pageParam' => 'p', 'type' => 'sliding', 'pagesCount' => 5]) ?>
