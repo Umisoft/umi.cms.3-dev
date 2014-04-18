@@ -122,7 +122,7 @@ define([], function(){
                     );
                 },
                 globalHttpError: function(error){
-                    if(error.status === 403){
+                    if(error.status === 403 || error.status === 401){
                         this.send('logout');
                         return;
                     }
@@ -153,7 +153,7 @@ define([], function(){
 
                 templateLogs: function(error, parentRoute){
                     parentRoute = parentRoute || 'module';
-                    if(error.status === 403){
+                    if(error.status === 403 || error.status === 401){
                         this.send('logout');
                         return;
                     }
