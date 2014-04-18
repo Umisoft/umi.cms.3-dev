@@ -150,7 +150,7 @@ define(
 
                 if (relationshipType === 'manyToNone' || relationshipType === 'manyToMany' || relationshipType === 'manyToOne'){
                     if(record.relationPropertyIsDirty(key)){
-                        json[key] = Ember.get(record, key).mapBy('id');
+                        json[key] = Ember.get(record, 'changedRelationshipsByName.' + key);
                     }
                 }
             }
