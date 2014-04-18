@@ -27,12 +27,27 @@ define(['App'], function(UMI){
                         return this.get('children.length');
                     }.property('children.length'),
                     children: function(){
-                        var nodes = self.store.find(collectionName, {'filters[parent]': 'null()'/*, 'fields': 'displayName,order,active,childCount,children,parent'*/});
-                        var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-                            content: nodes,
-                            sortProperties: ['order', 'id'],
-                            sortAscending: true
-                        });
+                        var children;
+                        try{
+                            if(!collectionName){
+                                throw new Error('Collection name is not defined.');
+                            }
+                            var nodes = self.store.find(collectionName, {'filters[parent]': 'null()'/*, 'fields': 'displayName,order,active,childCount,children,parent'*/});
+                            var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+                                content: nodes,
+                                sortProperties: ['order', 'id'],
+                                sortAscending: true
+                            });
+                        } catch(error){
+                            var errorObject = {
+                                'statusText': error.name,
+                                'message': error.message,
+                                'stack': error.stack
+                            };
+                            Ember.run.next(function(){
+                                self.send('templateLogs', errorObject, 'component');
+                            });
+                        }
                         return children;
                     }.property(),
                     updateChildren: function(id, parentId){

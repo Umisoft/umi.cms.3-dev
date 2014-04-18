@@ -13,7 +13,7 @@ define([], function(){
             collectionName: function(){
                 var settings = this.get('settings');
                 if(settings){
-                    return settings.layout.collection;
+                    return settings.collection;
                 }
             }.property('settings'),
             settings: null,
@@ -67,11 +67,15 @@ define([], function(){
                 var self = this;
                 try{
                     var settings = this.get('settings');
-                    if(settings && settings.layout.emptyContext.hasOwnProperty('sideBar')){
-                        var control = settings.layout.emptyContext.sideBar.controls[0];
-                        sideBarControl = settings.controls[control];
-                        sideBarControl.name = control;
-                        sideBarControl = Ember.Object.create(sideBarControl);
+                    if(settings && settings.layout.hasOwnProperty('sideBar')){
+                        var control;
+                        for(control in settings.layout.sideBar){
+                            if(settings.layout.sideBar.hasOwnProperty(control)){
+                                sideBarControl = settings.layout.sideBar[control];
+                                sideBarControl.name = control;
+                                sideBarControl = Ember.Object.create(sideBarControl);
+                            }
+                        }
                     }
                 } catch(error){
                     var errorObject = {
