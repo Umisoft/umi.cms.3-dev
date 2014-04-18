@@ -12,9 +12,7 @@ define([], function(){
         UMI.ComponentController = Ember.ObjectController.extend({
             collectionName: function(){
                 var settings = this.get('settings');
-                if(settings){
-                    return settings.collection;
-                }
+                return settings.collectionName;
             }.property('settings'),
             settings: null,
             /**
@@ -36,12 +34,15 @@ define([], function(){
                 if(settings){
                     try{
                         var selectedContext = this.get('selectedContext') === 'root' ? 'emptyContext' : 'selectedContext';
-                        var controls = settings.layout[selectedContext].contents.controls;
+                        var controls = settings.layout.contents[selectedContext];
+                        var key;
                         var control;
-                        for(var i = 0; i < controls.length; i++){
-                            control = settings.controls[controls[i]];
-                            control.name = controls[i];
-                            contentControls.push(Ember.Object.create(control));
+                        for(key in controls){
+                            if(controls.hasOwnProperty(key)){
+                                control = controls[key];
+                                control.name = key;
+                                contentControls.push(Ember.Object.create(control));
+                            }
                         }
                     } catch(error){
                         var errorObject = {
