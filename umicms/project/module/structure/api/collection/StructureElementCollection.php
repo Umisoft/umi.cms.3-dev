@@ -29,6 +29,11 @@ use umicms\project\module\structure\api\object\SystemPage;
 class StructureElementCollection extends PageHierarchicCollection
 {
     /**
+     * Имя типа для системных страниц.
+     */
+    const TYPE_SYSTEM = 'system';
+
+    /**
      * Возвращает системную страницу по пути ее компонента-обработчика
      * @param string $componentPath путь ее компонента-обработчика
      * @throws NonexistentEntityException если такой страницы нет
@@ -61,6 +66,6 @@ class StructureElementCollection extends PageHierarchicCollection
      */
     public function selectSystem()
     {
-        return $this->select()->types(['system']);
+        return $this->select()->types([self::TYPE_SYSTEM]);
     }
 }

@@ -13,6 +13,7 @@ use umi\form\TFormAware;
 use umi\i18n\TLocalizable;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\metadata\IMetadata;
+use umi\orm\metadata\IObjectType;
 use umi\spl\config\TConfigSupport;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\OutOfBoundsException;
@@ -84,9 +85,9 @@ trait TCmsCollection
     /**
      * @see ICmsCollection::getForm()
      */
-    public function getForm($typeName, $formName, CmsObject $object = null)
+    public function getForm($formName, $typeName = IObjectType::BASE, CmsObject $object = null)
     {
-        if (!$this->hasForm($typeName, $formName)) {
+        if (!$this->hasForm($formName, $typeName)) {
             throw new NonexistentEntityException(
                 sprintf(
                     'Form "%s" for collection "%s" and type "%s" is not registered.',
@@ -105,7 +106,7 @@ trait TCmsCollection
     /**
      * @see ICmsCollection::hasForm()
      */
-    public function hasForm($typeName, $formName)
+    public function hasForm($formName, $typeName = IObjectType::BASE)
     {
         if (!$this->getMetadata()->getTypeExists($typeName)) {
             return false;
