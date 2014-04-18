@@ -64,12 +64,24 @@ define([], function(){
              */
             sideBarControl: function(){
                 var sideBarControl;
-                var settings = this.get('settings');
-                if(settings && settings.layout.emptyContext.hasOwnProperty('sideBar')){
-                    var control = settings.layout.emptyContext.sideBar.controls[0];
-                    sideBarControl = settings.controls[control];
-                    sideBarControl.name = control;
-                    sideBarControl = Ember.Object.create(sideBarControl);
+                var self = this;
+                try{
+                    var settings = this.get('settings');
+                    if(settings && settings.layout.emptyContext.hasOwnProperty('sideBar')){
+                        var control = settings.layout.emptyContext.sideBar.controls[0];
+                        sideBarControl = settings.controls[control];
+                        sideBarControl.name = control;
+                        sideBarControl = Ember.Object.create(sideBarControl);
+                    }
+                } catch(error){
+                    var errorObject = {
+                        'statusText': error.name,
+                        'message': error.message,
+                        'stack': error.stack
+                    };
+                    Ember.run.next(function(){
+                        self.send('templateLogs', errorObject, 'component');
+                    });
                 }
                 return sideBarControl;
             }.property('settings')
