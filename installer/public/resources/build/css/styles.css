@@ -196,7 +196,7 @@ small {
 
 code {
   font-family: Consolas, 'Liberation Mono', Courier, monospace;
-  font-weight: bold;
+  font-weight: normal;
   color: #833332; }
 
 /* Lists */
