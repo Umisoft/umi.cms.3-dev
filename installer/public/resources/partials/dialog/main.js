@@ -40,7 +40,9 @@ define(['App', 'text!./dialog-layout.hbs', 'text!./dialog.hbs'], function(UMI, d
         didInsertElement: function(){
             var element = this.$();
             var dialog = element.children('.umi-dialog');
-            dialog.css({'marginTop': - dialog[0].offsetHeight/2});
+            var screenSize = $(document).height();
+            var dialogMarginTop = screenSize > dialog[0].offsetHeight ? - dialog[0].offsetHeight/2 : - dialog[0].offsetHeight/2 + dialog[0].offsetHeight - screenSize;
+            dialog.css({'marginTop': dialogMarginTop});
             dialog.addClass('visible');
         },
         actions: {

@@ -27,12 +27,27 @@ define(['App'], function(UMI){
                         return this.get('children.length');
                     }.property('children.length'),
                     children: function(){
-                        var nodes = self.store.find(collectionName, {'filters[parent]': 'null()'/*, 'fields': 'displayName,order,active,childCount,children,parent'*/});
-                        var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-                            content: nodes,
-                            sortProperties: ['order', 'id'],
-                            sortAscending: true
-                        });
+                        var children;
+                        try{
+                            if(!collectionName){
+                                throw new Error('Collection name is not defined.');
+                            }
+                            var nodes = self.store.find(collectionName, {'filters[parent]': 'null()'/*, 'fields': 'displayName,order,active,childCount,children,parent'*/});
+                            var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+                                content: nodes,
+                                sortProperties: ['order', 'id'],
+                                sortAscending: true
+                            });
+                        } catch(error){
+                            var errorObject = {
+                                'statusText': error.name,
+                                'message': error.message,
+                                'stack': error.stack
+                            };
+                            Ember.run.next(function(){
+                                self.send('templateLogs', errorObject, 'component');
+                            });
+                        }
                         return children;
                     }.property(),
                     updateChildren: function(id, parentId){
@@ -55,29 +70,11 @@ define(['App'], function(UMI){
             }.property('root.childCount', 'controllers.component.sideBarControl'),
             rootChildren: null,
             filters: function(){
-                return [
-                    {
-                        "displayName": "Показывать неактивные страницы",
-                        "checkbox": true,
-                        "isActive": true,
-                        "filter": {
-                            "property": "active",
-                            "value": false
-                        }
-                    },
-                    {
-                        "displayName": "Показывать системные страницы",
-                        "checkbox": true,
-                        "isActive": true,
-                        "filter": {
-                            "property": "type",
-                            "value": "system"
-                        }
-                    }
-                ];
-            }.property(),
-            hideFilters: function(){
-                return this.get('filters').filterBy('isActive', false).mapBy('filter');
+                var filters = this.get('controllers.component.sideBarControl.filters');
+                return filters;
+            }.property('controllers.component.sideBarControl'),
+            activeFilters: function(){
+                return this.get('filters').filterBy('isActive', true);
             }.property('filters.@each.isActive'),
             /**
              Активный контекст
@@ -173,18 +170,18 @@ define(['App'], function(UMI){
                 });
             }.property('children'),
             visible: function(){
-                var counter = 0;
+                var visible = true;
                 var filters = this.get('filters');
                 var model = this.get('model');
                 var i;
                 for(i = 0; i < filters.length; i++){
-                    if(model.get(filters[i].property) === filters[i].value){
-                        ++counter;
+                    if(!filters[i].allow.contains(model.get(filters[i].fieldName))){
+                        visible = false;
                     }
                 }
-                return (counter ? false : true);
+                return visible;
             }.property('model', 'filters'),
-            filters: Ember.computed.alias("controllers.treeControl.hideFilters"),
+            filters: Ember.computed.alias("controllers.treeControl.activeFilters"),
             needs: 'treeControl',
             isExpanded: function(){
                 var activeContext = this.get('controllers.treeControl.activeContext');
