@@ -63,62 +63,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
      */
     const CONTROL_FILTER = 'createForm';
 
-    /**
-     * @var array $defaultControls список контролов, используемых для управления простой коллекцией.
-     */
-    protected $defaultControls = [
-        'filter' => [],
-        'form' => [],
-    ];
-
-    /**
-     * @var array $defaultHierarchicControls список контролов, используемых для управления иерархической коллекцией.
-     */
-    protected $defaultHierarchicControls = [
-        'tree' => [],
-        'children' => [],
-        'filter' => [],
-        'form' => [],
-    ];
-
-
-    /**
-     * @var array $defaultLayout настройки интерфейса управления простой коллекцией
-     */
-    public $defaultLayout = [
-        'emptyContext' => [
-            'contents' => [
-                'controls' => ['filter']
-            ]
-        ],
-        'selectedContext' => [
-            'contents' => [
-                'controls' => ['form']
-            ]
-        ]
-    ];
-
-    /**
-     * @var array $defaultHierarchicLayout настройки интерфейса управления иерархической коллекцией
-     */
-    public $defaultHierarchicLayout = [
-        'emptyContext' => [
-            'sideBar' => [
-                'controls' => ['tree']
-            ],
-            'contents' => [
-                'controls' => ['filter', 'children']
-            ]
-        ],
-        'selectedContext' => [
-            'sideBar' => [
-                'controls' => ['tree']
-            ],
-            'contents' => [
-                'controls' => ['form', 'children']
-            ]
-        ]
-    ];
 
     /**
      * {@inheritdoc}
@@ -140,8 +84,9 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
     protected function getSettings()
     {
         return [
-            self::OPTION_INTERFACE_LAYOUT => $this->buildLayoutInfo(),
-            self::OPTION_INTERFACE_ACTIONS => $this->buildActionsInfo()
+            'collectionName' => $this->getCollectionName(),
+            'layout' => $this->buildLayoutInfo(),
+            'actions' => $this->buildActionsInfo()
         ];
     }
 
