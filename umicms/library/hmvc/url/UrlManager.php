@@ -251,6 +251,61 @@ class UrlManager implements IUrlManager, ILocalizable
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getCurrentUrl($isAbsolute = false)
+    {
+        if (null !== $qs = $this->getQueryString()) {
+            $qs = '?'.$qs;
+        }
+
+        return $this->getRequestedUrl($isAbsolute) . $qs;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCurrentUrlWithParam($paramName, $paramValue, $isAbsolute = false)
+    {
+
+        $url = $this->getRequestedUrl($isAbsolute);
+
+        $request = $this->dispatcher->getCurrentRequest();
+        $queryString = $request->getQueryString();
+
+        parse_str($queryString, $query);
+        $query[$paramName] = $paramValue;
+
+        return $url . '?' . http_build_query($query);
+    }
+
+    /**
+     * Возвращает текущий URL без GET-параметров
+     * @param bool $isAbsolute генерировать ли абсолютный URL
+     * @return string
+     */
+    protected function getRequestedUrl($isAbsolute = false)
+    {
+        $request = $this->dispatcher->getCurrentRequest();
+
+        $url = $request->getBaseUrl() . $request->getPathInfo();
+        if ($isAbsolute) {
+            $url = $request->getSchemeAndHttpHost() . $url;
+        }
+
+        return $url;
+    }
+
+    /**
+     * Возвращает строку GET-параметров запроса
+     * @return null|string
+     */
+    protected function getQueryString()
+    {
+        return $this->dispatcher->getCurrentRequest()->getQueryString();
+    }
+
+    /**
      * Возвращает URL компонента относительно API-компонента.
      * @param AdminComponent $component
      * @return string

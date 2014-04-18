@@ -10,24 +10,15 @@
 namespace umicms\project\module\blog\site\category\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogCategory;
 
 /**
  * Виджет для вывода списка категорий блога.
  */
-class CategoryListWidget extends BaseSecureWidget
+class CategoryListWidget extends BaseListWidget
 {
-    /**
-     * @var string $template имя шаблона, по которому выводится виджет
-     */
-    public $template = 'list';
-    /**
-     * @var int $limit максимальное количество выводимых категорий.
-     * Если не указано, выводятся все категории.
-     */
-    public $limit;
     /**
      * @var string|null|BlogCategory $parentCategory категория блога или GUID, из которой выводятся дочерние категории.
      * Если не указан, выводятся все корневые категории.
@@ -51,7 +42,7 @@ class CategoryListWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
         if (is_string($this->parentCategory)) {
             $this->parentCategory = $this->api->category()->get($this->parentCategory);
@@ -69,12 +60,7 @@ class CategoryListWidget extends BaseSecureWidget
             );
         }
 
-        return $this->createResult(
-            $this->template,
-            [
-                'categories' => $this->api->getCategories($this->parentCategory, $this->limit)
-            ]
-        );
+        return  $this->api->getCategories($this->parentCategory);
     }
 }
  

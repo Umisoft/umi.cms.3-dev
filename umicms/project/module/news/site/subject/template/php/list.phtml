@@ -1,14 +1,14 @@
 <?php
 /**
  * @var umicms\project\module\news\api\object\NewsSubject $subject
- * @var umi\orm\selector\ISelector $subjects
+ * @var umicms\orm\selector\CmsSelector $list
  */
 ?>
 
-<?php if ($subjects->getTotal()) :?>
+<?php if ($list->getTotal()) :?>
 
     <ul>
-        <?php foreach ($subjects as $subject) : ?>
+        <?php foreach ($list as $subject) : ?>
             <li>
                 <?= $this->widget('news.subject.view', ['subject' => $subject, 'template' => 'shortView']); ?>
                 <?= $this->widget('news.subject.rss', ['subject' => $subject, 'template' => 'rssLink']); ?>

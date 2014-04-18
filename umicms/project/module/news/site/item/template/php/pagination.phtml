@@ -1,0 +1,20 @@
+<?php
+/**
+ * @var array $pagination
+ */
+?>
+
+<? if (isset($pagination['pagesCount'])) :?>
+
+    <ul>
+        <? foreach ($pagination['pagesRange'] as $page) : ?>
+
+            <? if ($page != $pagination['currentPage']) :?>
+                <li><a href="<?= $pagination['pagesRangeUrl'][$page] ?>"><?= $page ?></a></li>
+            <? else : ?>
+                <li><?= $page ?></li>
+            <? endif; ?>
+
+        <? endforeach;?>
+    </ul>
+<? endif; ?>
