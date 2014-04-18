@@ -38,6 +38,7 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/stemming/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/acl/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/rss/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/pagination/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/module/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/model/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php')

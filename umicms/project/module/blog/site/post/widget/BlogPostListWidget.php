@@ -9,24 +9,14 @@
 
 namespace umicms\project\module\blog\site\post\widget;
 
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
  * Виджет для вывода списка постов
  */
-class BlogPostListWidget extends BaseSecureWidget
+class BlogPostListWidget extends BaseListWidget
 {
-    /**
-     * @var string $template имя шаблона, по которому выводится виджет
-     */
-    public $template = 'list';
-    /**
-     * @var int $limit максимальное количество выводимых постов.
-     * Если не указано, выводятся все посты.
-     */
-    public $limit;
-
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -44,14 +34,9 @@ class BlogPostListWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
-        return $this->createResult(
-            $this->template,
-            [
-                'posts' => $this->api->getPosts($this->limit)
-            ]
-        );
+        return $this->api->getPosts();
     }
 }
  

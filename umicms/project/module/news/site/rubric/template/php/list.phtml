@@ -1,14 +1,14 @@
 <?php
 /**
  * @var umicms\project\module\news\api\object\NewsRubric $rubric
- * @var umi\orm\selector\ISelector $rubrics
+ * @var umicms\orm\selector\CmsSelector $list
  */
 ?>
 
-<?php if ($rubrics->getTotal()) :?>
+<?php if ($list->getTotal()) :?>
 
     <ul>
-        <?php foreach ($rubrics as $rubric) : ?>
+        <?php foreach ($list as $rubric) : ?>
             <li>
                 <?= $this->widget('news.rubric.view', ['rubric' => $rubric, 'template' => 'shortView']); ?>
                 <?= $this->widget('news.rubric.rss', ['rubric' => $rubric, 'template' => 'rssLink']); ?>
