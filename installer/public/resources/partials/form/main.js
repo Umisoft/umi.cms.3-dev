@@ -49,6 +49,9 @@ define(
                     return hasFieldset;
                 }
             }.property('model.@each'),
+            switchActivity: function(){
+                return !!this.get('settings').actions.switchActivity;
+            }.property('model.@each'),
             hasBackups: function(){
                 return !!this.get('settings').actions.getBackupList;
             }.property('model.@each'),
@@ -231,6 +234,19 @@ define(
                 },
                 toggleProperty: function(property){
                     this.get('model.object').toggleProperty(property);
+                },
+                switchActivity: function(){
+                    var object = this.get('object');
+                    var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+                    var switchActivitySource = this.get('settings').actions.switchActivity.source;
+                    $.ajax({
+                        url: switchActivitySource + '?id=' + object.get('id'),
+                        type: "POST",
+                        data: serializeObject,
+                        contentType: 'application/json; charset=UTF-8'
+                    }).then(function(data){
+                        object.reload();
+                    });
                 }
             }
         });
