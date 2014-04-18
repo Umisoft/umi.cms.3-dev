@@ -11,8 +11,13 @@ namespace umicms\project\admin\api\controller;
 
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\orm\collection\SimpleCollection;
+use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
+use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
+use umicms\orm\object\ICmsObject;
+use umicms\project\admin\api\component\DefaultAdminComponent;
+use umicms\project\module\structure\api\collection\StructureElementCollection;
 
 /**
  * Контроллер вывода настроек компонента
@@ -30,9 +35,33 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
      */
     const OPTION_INTERFACE_LAYOUT = 'layout';
     /**
+     * Имя опции для задания SideBar части интерфейса
+     */
+    const OPTION_INTERFACE_LAYOUT_SIDEBAR = 'sideBar';
+    /**
+     * Имя опции для задания Contents части интерфейса
+     */
+    const OPTION_INTERFACE_LAYOUT_CONTENTS = 'contents';
+    /**
      * Имя опции для задания действий в компоненте
      */
     const OPTION_INTERFACE_ACTIONS = 'actions';
+    /**
+     * Имя контрола "Форма редактирования"
+     */
+    const CONTROL_EDIT_FORM = 'editForm';
+    /**
+     * Имя контрола "Форма создания"
+     */
+    const CONTROL_CREATE_FORM = 'createForm';
+    /**
+     * Имя контрола "Список дочерних элементов"
+     */
+    const CONTROL_CHILDREN = 'createForm';
+    /**
+     * Имя контрола "Фильтр элементов"
+     */
+    const CONTROL_FILTER = 'createForm';
 
     /**
      * @var array $defaultControls список контролов, используемых для управления простой коллекцией.
@@ -52,10 +81,11 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
         'form' => [],
     ];
 
+
     /**
      * @var array $defaultLayout настройки интерфейса управления простой коллекцией
      */
-    protected $defaultLayout = [
+    public $defaultLayout = [
         'emptyContext' => [
             'contents' => [
                 'controls' => ['filter']
@@ -71,7 +101,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
     /**
      * @var array $defaultHierarchicLayout настройки интерфейса управления иерархической коллекцией
      */
-    protected $defaultHierarchicLayout = [
+    public $defaultHierarchicLayout = [
         'emptyContext' => [
             'sideBar' => [
                 'controls' => ['tree']
@@ -110,8 +140,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
     protected function getSettings()
     {
         return [
-            self::OPTION_INTERFACE_CONTROLS => $this->buildControlsInfo($this->getControls()),
-            self::OPTION_INTERFACE_LAYOUT => $this->buildLayoutInfo($this->getLayout()),
+            self::OPTION_INTERFACE_LAYOUT => $this->buildLayoutInfo(),
             self::OPTION_INTERFACE_ACTIONS => $this->buildActionsInfo()
         ];
     }
@@ -134,13 +163,183 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
     }
 
     /**
-     * Возвращает информацию об интерфейсном отображении контролов.
-     * @param array $interfaceOptions настройки отображения контролов
+     * Возвращает информацию об интерфейсном отображении компонента.
      * @return array
      */
-    protected function buildLayoutInfo(array $interfaceOptions)
+    protected function buildLayoutInfo()
     {
-        return $interfaceOptions;
+        $layout = [];
+        $collection = $this->getCollection();
+        $layout[self::OPTION_INTERFACE_LAYOUT_SIDEBAR] = $this->buildSideBarInfo($collection);
+
+        $layout[self::OPTION_INTERFACE_LAYOUT_CONTENTS] = $this->buildContentsInfo($collection);
+
+        return $layout;
+    }
+
+    /**
+     * Возвращает информацию о контентной области компонента компонента.
+     * @param ICmsCollection $cmsCollection
+     * @return array
+     */
+    protected function buildContentsInfo(ICmsCollection $cmsCollection) {
+
+        return [
+            'emptyContext' => $this->buildEmptyContextInfo($cmsCollection),
+            'selectedContext' => $this->buildSelectedContextInfo($cmsCollection)
+        ];
+    }
+
+    /**
+     * Возвращает информацию о контентной области, когда контекст (объект) не выбран.
+     * @param ICmsCollection $cmsCollection
+     * @return array
+     */
+    protected function buildEmptyContextInfo(ICmsCollection $cmsCollection) {
+        $result =  [
+            'filter' => $this->buildFilterControlInfo($cmsCollection)
+        ];
+
+        if ($cmsCollection instanceof SimpleHierarchicCollection) {
+            $result['children'] = $this->buildChildrenControlInfo($cmsCollection);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Возвращает информацию о контентной области, когда контекст (объект) выбран.
+     * @param ICmsCollection $cmsCollection
+     * @return array
+     */
+    protected function buildSelectedContextInfo(ICmsCollection $cmsCollection) {
+        $result =  [
+            'editForm' => $this->buildEditFormControlInfo($cmsCollection),
+            'createForm' => $this->buildCreateFormControlInfo($cmsCollection)
+        ];
+
+        if ($cmsCollection instanceof SimpleHierarchicCollection) {
+            $result['children'] = $this->buildChildrenControlInfo($cmsCollection);
+        }
+
+        return $result;
+    }
+
+
+    /**
+     * Возвращает информацию о контроле "Форма редактирования"
+     * @param ICmsCollection $cmsCollection
+     * @return array
+     */
+    protected function buildEditFormControlInfo(ICmsCollection $cmsCollection) {
+        return [
+            'displayName' => $this->translate('control:editForm:displayName')
+        ];
+    }
+
+    /**
+     * Возвращает информацию о контроле "Форма создания"
+     * @param ICmsCollection $cmsCollection
+     * @return array
+     */
+    protected function buildCreateFormControlInfo(ICmsCollection $cmsCollection) {
+        return [
+            'displayName' => $this->translate('control:createForm:displayName')
+        ];
+    }
+
+    /**
+     * Возвращает информацию о контроле "Фильтр"
+     * @param ICmsCollection $cmsCollection
+     * @return array
+     */
+    protected function buildFilterControlInfo(ICmsCollection $cmsCollection) {
+        return [
+            'displayName' => $this->translate('control:filter:displayName')
+        ];
+    }
+
+    /**
+     * Возвращает информацию о контроле "Дочерние объекты"
+     * @param ICmsCollection $cmsCollection
+     * @return array
+     */
+    protected function buildChildrenControlInfo(ICmsCollection $cmsCollection) {
+        return [
+            'displayName' => $this->translate('control:children:displayName')
+        ];
+    }
+
+    /**
+     * Возвращает информацию о дереве компонента.
+     * @param ICmsCollection $collection
+     * @return array
+     */
+    protected function buildSideBarInfo(ICmsCollection $collection) {
+
+        if ($collection instanceof SimpleHierarchicCollection) {
+            return [
+                'tree' => $this->buildTreeControlInfo($collection)
+            ];
+        }
+
+        return [];
+
+    }
+
+    protected function buildTreeControlInfo(SimpleHierarchicCollection $collection) {
+        $tree = [
+            'displayName' => $this->translate('control:tree:displayName'),
+            'toolbar' => [
+                $this->buildTreeToolButtonInfo(DefaultAdminComponent::ACTION_GET_CREATE_FORM),
+                $this->buildTreeToolButtonInfo(DefaultAdminComponent::ACTION_GET_EDIT_FORM)
+            ],
+            'filters' => []
+        ];
+
+        if ($collection instanceof IActiveAccessibleCollection) {
+            $tree['toolbar'][] = $this->buildTreeToolButtonInfo(DefaultAdminComponent::ACTION_SWITCH_ACTIVITY);
+            $tree['filters'][] = $this->buildTreeFilterInfo(IActiveAccessibleObject::FIELD_ACTIVE, [true]);
+        }
+
+        if ($collection instanceof StructureElementCollection) {
+            $types = $collection->getMetadata()->getTypesList();
+            $types = array_values(array_diff($types, [StructureElementCollection::TYPE_SYSTEM]));
+            $tree['filters'][] = $this->buildTreeFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
+        }
+
+
+        return $tree;
+    }
+
+    /**
+     * Возвращает информацию о кнопке в тулбаре дерева
+     * @param string $buttonType тип кнопки
+     * @return array
+     */
+    protected function buildTreeToolButtonInfo($buttonType) {
+        return [
+            'type' => $buttonType,
+            'displayName' => 'control:tree:toolbar:' . $buttonType
+        ];
+    }
+
+    /**
+     * Возвращает информацию о фильтре по полю для дерева
+     * @param string $fieldName имя поля
+     * @param array $values список разрешенных значений
+     * @param bool $isActive активен ли фильтр
+     * @return array
+     */
+    protected function buildTreeFilterInfo($fieldName, array $values, $isActive = false) {
+        $filedFilterNamespace = 'control:tree:filter:';
+
+        return [
+            'fieldName' => $fieldName,
+            'isActive' => $isActive,
+            'displayName' => $filedFilterNamespace . IActiveAccessibleObject::FIELD_ACTIVE,
+            'allow' => $values
+        ];
     }
 
     /**
@@ -155,7 +354,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
         foreach ($component->getQueryActions() as $actionName) {
             $actions[$actionName] = [
                 'type' => 'query',
-                'displayName' => $this->translate('action:' . $actionName . ':displayName'),
                 'source' => $this->getUrlManager()->getAdminComponentActionResourceUrl($component, $actionName)
             ];
         }
@@ -163,7 +361,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
         foreach ($component->getModifyActions() as $actionName) {
             $actions[$actionName] = [
                 'type' => 'modify',
-                'displayName' => $this->translate('action:' . $actionName . ':displayName'),
                 'source' => $this->getUrlManager()->getAdminComponentActionResourceUrl($component, $actionName)
             ];
         }
@@ -171,41 +368,5 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
         return $actions;
     }
 
-    /**
-     * Возвращает список контролов, используемых для управления коллекцией.
-     * @return array
-     */
-    protected function getControls()
-    {
-        $collection = $this->getCollection();
-        if ($collection instanceof SimpleCollection) {
-            return $this->defaultControls;
-        }
-        if ($collection instanceof SimpleHierarchicCollection) {
-            return $this->defaultHierarchicControls;
-        }
-
-        return [];
-    }
-
-    /**
-     * Возвращает настройки интерфейса управления коллекцией.
-     * @return array
-     */
-    protected function getLayout()
-    {
-        $result = [];
-        $collection = $this->getCollection();
-        if ($collection instanceof SimpleCollection) {
-            $result = $this->defaultLayout;
-        }
-        if ($collection instanceof SimpleHierarchicCollection) {
-            $result = $this->defaultHierarchicLayout;
-        }
-
-        $result['collection'] = $collection->getName();
-
-        return $result;
-    }
 }
  

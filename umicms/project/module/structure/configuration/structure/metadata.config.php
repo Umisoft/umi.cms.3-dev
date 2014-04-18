@@ -9,6 +9,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
+use umicms\project\module\structure\api\collection\StructureElementCollection;
 use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\structure\api\object\SystemPage;
@@ -206,7 +207,7 @@ return [
                 StructureElement::FIELD_EDITOR
             ]
         ],
-        'system' => [
+        StructureElementCollection::TYPE_SYSTEM => [
             'objectClass' => 'umicms\project\module\structure\api\object\SystemPage',
             'fields'      => [
                 SystemPage::FIELD_IDENTIFY,

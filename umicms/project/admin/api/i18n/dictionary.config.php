@@ -13,14 +13,14 @@ return [
         'control:tree:displayName' => 'Tree',
         'control:children:displayName' => 'Children',
         'control:filter:displayName' => 'Filter',
-        'control:form:displayName' => 'Edit',
+        'control:editForm:displayName' => 'Edit',
     ],
 
     'ru-RU' => [
         'control:tree:displayName' => 'Дерево',
         'control:children:displayName' => 'Дочерние элементы',
         'control:filter:displayName' => 'Фильтр',
-        'control:form:displayName' => 'Редактирование',
+        'control:editForm:displayName' => 'Редактирование',
     ]
 
 ];
