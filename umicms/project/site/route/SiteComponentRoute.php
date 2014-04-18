@@ -11,6 +11,7 @@ namespace umicms\project\site\route;
 
 use umi\orm\metadata\field\special\UriField;
 use umi\route\type\BaseRoute;
+use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\site\component\SiteComponent;
@@ -58,6 +59,7 @@ class SiteComponentRoute extends BaseRoute implements IUrlManagerAware
         }
         $pageUri = UriField::URI_START_SYMBOL . $baseUrl . '/' . $slug;
 
+        // TODO: use cache for routing optimization
         $element = $this->structureApi->element()->selectSystem()
             ->where(SystemPage::FIELD_URI)
                 ->equals($pageUri)
@@ -80,7 +82,7 @@ class SiteComponentRoute extends BaseRoute implements IUrlManagerAware
      */
     public function assemble(array $params = [], array $options = [])
     {
-        return ''; // TODO
+        throw new RuntimeException('Cannot assemble url. Use IUrlManager for url generation.');
     }
 
 }
