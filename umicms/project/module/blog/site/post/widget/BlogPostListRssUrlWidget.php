@@ -13,7 +13,7 @@ use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
- * Виджет для вывода URL на RSS-ленту по рубрике.
+ * Виджет для вывода URL на RSS-ленту по категории.
  */
 class BlogPostListRssUrlWidget extends BaseSecureWidget
 {
@@ -23,17 +23,17 @@ class BlogPostListRssUrlWidget extends BaseSecureWidget
     public $template = 'rssLink';
 
     /**
-     * @var BlogModule $api API модуля "Новости"
+     * @var BlogModule $api API модуля "Блоги"
      */
     protected $api;
 
     /**
      * Конструктор.
-     * @param BlogModule $newsApi API модуля "Новости"
+     * @param BlogModule $blogModule API модуля "Блоги"
      */
-    public function __construct(BlogModule $newsApi)
+    public function __construct(BlogModule $blogModule)
     {
-        $this->api = $newsApi;
+        $this->api = $blogModule;
     }
 
     /**

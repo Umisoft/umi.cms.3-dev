@@ -7,6 +7,7 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\form\element\Checkbox;
 use umi\form\element\html5\DateTime;
 use umi\form\element\Select;
 use umi\form\element\Text;
@@ -18,8 +19,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.BlogComment',
-            'collection'
+            'collection.blogComment', 'collection', 'form'
         ]
     ],
     'elements' => [

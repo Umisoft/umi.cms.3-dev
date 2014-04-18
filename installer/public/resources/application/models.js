@@ -198,7 +198,7 @@ define([], function(){
                             break;
                         case 'dateTime':
                             params = {defaultValue: collection.fields[i]['default']};
-                            fieldValue = DS.attr('date', params);
+                            fieldValue = DS.attr('CustomDate', params);
                             break;
                         case 'belongsToRelation':
                             params = {async: true};

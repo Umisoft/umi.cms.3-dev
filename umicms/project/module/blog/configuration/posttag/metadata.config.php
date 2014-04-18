@@ -69,7 +69,7 @@ return [
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
-        'post' => [
+        'blogPost' => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'post_id',
             'target' => 'blogPost'
@@ -95,7 +95,7 @@ return [
                 CmsObject::FIELD_UPDATED,
                 CmsObject::FIELD_OWNER,
                 CmsObject::FIELD_EDITOR,
-                'post',
+                'blogPost',
                 'tag'
             ]
         ]

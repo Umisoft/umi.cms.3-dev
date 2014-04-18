@@ -22,6 +22,6 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection\blogRssImportScenario', 'collection'
+        'collection.blogRssImportScenario', 'collection'
     ]
 ];

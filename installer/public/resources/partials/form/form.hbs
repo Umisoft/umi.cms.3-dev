@@ -1,6 +1,6 @@
 {{#if hasFieldset}}
-    {{#view "magellan" elements=model.viewSettings.form.elements}}
-        {{#each formElement in model.viewSettings.form.elements itemController="FormElement"}}
+    {{#view "magellan" elements=model.viewSettings.elements}}
+        {{#each formElement in model.viewSettings.elements itemController="FormElement"}}
             {{#if isFieldset}}
                 {{#view view.buttonView model=formElement}}{{formElement.label}}{{/view}}
             {{/if}}
@@ -10,7 +10,7 @@
 
 <div class="row s-full-height collapse">
     <div class="columns small-12 maggelan-content">
-        {{#each formElements in model.viewSettings.form.elements itemController="FormElement"}}
+        {{#each formElements in model.viewSettings.elements itemController="FormElement"}}
             {{#if isFieldset}}
                 <fieldset id="fieldset-{{unbound formElements.name}}">
                     <legend {{action 'expand'}}><i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>{{formElements.label}}</legend>

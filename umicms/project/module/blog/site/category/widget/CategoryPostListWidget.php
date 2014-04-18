@@ -22,7 +22,7 @@ class CategoryPostListWidget extends BaseListWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'newsList';
+    public $template = 'postList';
     /**
      * @var array|BlogCategory[]|BlogCategory|null $category категория, список категорий блога или GUID, из которых выводятся посты.
      * Если не указаны, то посты выводятся из всех категорий

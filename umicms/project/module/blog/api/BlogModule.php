@@ -28,17 +28,27 @@ use umicms\project\module\blog\api\collection\BlogRssImportScenarioCollection;
 use umicms\project\module\blog\api\collection\BlogTagCollection;
 use umicms\project\module\blog\api\object\BlogAuthor;
 use umicms\project\module\blog\api\object\BlogCategory;
+use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\blog\api\object\BlogRssImportScenario;
 use umicms\project\module\blog\api\object\BlogTag;
 
 /**
- * Публичное API модуля "Блоги"
+ * Публичное API модуля "Блоги".
  */
 class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 {
     use TRssFeedAware;
     use TUrlManagerAware;
+
+    /**
+     * @var int $maxPostsCount максимальное количество постов у тега
+     */
+    protected $maxPostsCount;
+    /**
+     * @var int $minPostsCount минимальное количество постов у тега
+     */
+    protected $minPostsCount;
 
     /**
      * Возвращает коллекцию постов.
@@ -77,21 +87,21 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает коллекцию импортируемых RSS-лент.
-     * @return BlogRssImportScenarioCollection
-     */
-    public function rssImport()
-    {
-        return $this->getCollection('blogRssImportScenario');
-    }
-
-    /**
      * Возвращает коллекцию комментариев.
      * @return BlogCommentCollection
      */
     public function comment()
     {
         return $this->getCollection('blogComment');
+    }
+
+    /**
+     * Возвращает коллекцию импортируемых RSS-лент.
+     * @return BlogRssImportScenarioCollection
+     */
+    public function rssImport()
+    {
+        return $this->getCollection('blogRssImportScenario');
     }
 
     /**
@@ -186,25 +196,49 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
+     * Возвращает селектор для выборки авторов.
+     * @param int $limit максимальное количество авторов
+     * @return CmsSelector|BlogTag[]
+     */
+    public function getAuthors($limit = null)
+    {
+        $authors = $this->author()->select();
+
+        if ($limit) {
+            $authors->limit($limit);
+        }
+
+        return $authors;
+    }
+
+    /**
      * Возвращает селектор для выбора постов автора.
-     * @param BlogAuthor $author категория
+     * @param BlogAuthor[] $authors категория
+     * @param int $limit
      * @return CmsSelector|BlogPost[]
      */
-    public function getPostsByAuthor(BlogAuthor $author)
+    public function getPostsByAuthor(array $authors = [], $limit = null)
     {
-        return $this->post()->select()
-            ->where(BlogPost::FIELD_AUTHOR)
-            ->equals($author);
+        $posts = $this->getPosts($limit);
+
+        $posts->begin(IFieldConditionGroup::MODE_OR);
+        foreach ($authors as $author) {
+            $posts->where(BlogPost::FIELD_AUTHOR)->equals($author);
+        }
+        $posts->end();
+
+        return $posts;
     }
 
     /**
      * Возвращает селектор для выбора постов категорий.
      * @param BlogCategory[] $categories категории блога
+     * @param int $limit
      * @return CmsSelector|BlogPost[]
      */
-    public function getPostByCategory(array $categories = [])
+    public function getPostByCategory(array $categories = [], $limit = null)
     {
-        $posts = $this->getPosts();
+        $posts = $this->getPosts($limit);
 
         $posts->begin(IFieldConditionGroup::MODE_OR);
         foreach ($categories as $category) {
@@ -215,17 +249,53 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         return $posts;
     }
 
+    /**
+     * Возвращает селектор для выборки комментариев.
+     * @param int $limit
+     * @return CmsSelector|BlogComment[]
+     */
+    public function getComment($limit = null)
+    {
+        $comments = $this->comment()->select()
+            ->orderBy(BlogComment::FIELD_PUBLISH_TIME, CmsSelector::ORDER_DESC);
+
+        if ($limit) {
+            $comments->limit($limit);
+        }
+
+        return $comments;
+    }
+
+    /**
+     * Возвращает селектор для выборки комментариев к посту.
+     * @param BlogPost $blogPost
+     * @param int $limit
+     * @return CmsSelector|BlogComment[]
+     */
+    public function getCommentByPost(BlogPost $blogPost, $limit = null)
+    {
+        $comments = $this->getComment($limit)
+            ->where(BlogComment::FIELD_POST)->equals($blogPost);
+
+        return $comments;
+    }
 
     /**
      * Возвращает селектор для выбора постов по тэгу.
-     * @param BlogTag $tag
+     * @param BlogTag[] $tags
      * @return CmsSelector|BlogPost[]
      */
-    public function getPostByTag(BlogTag $tag)
+    public function getPostByTag(array $tags = [])
     {
-        return $this->post()->select()
-            ->where(BlogPost::FIELD_TAGS)
-            ->equals($tag);
+        $posts = $this->getPosts();
+
+        $posts->begin(IFieldConditionGroup::MODE_OR);
+        foreach ($tags as $tag) {
+            $posts->where(BlogPost::FIELD_TAGS)->equals($tag);
+        }
+        $posts->end();
+
+        return $posts;
     }
 
     /**
@@ -253,10 +323,33 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         $rssFeed = $this->createRssFeedFromSimpleXml($xml);
 
         foreach ($rssFeed->getRssItems() as $item) {
-            $this->importRssItem($item, $blogRssImportScenario);
+            $this->importRssPost($item, $blogRssImportScenario);
         }
 
         return $this;
+    }
+
+    /**
+     * Возвращает облако тегов.
+     * @param int $minFontSize минимальный размер шрифта
+     * @param int $maxFontSize максимальный размер шрифта
+     * @return array
+     */
+    public function getTagCloud($minFontSize, $maxFontSize)
+    {
+        $tagsCloud = [];
+
+        $tags = $this->getTags()->getResult()->fetchAll();
+        shuffle($tags);
+
+        foreach ($tags as $tag) {
+            $tagsCloud[] = [
+                'tag' => $tag,
+                'weight' => $this->getTagWeight($tag, $minFontSize, $maxFontSize)
+            ];
+        }
+
+        return $tagsCloud;
     }
 
     /**
@@ -264,7 +357,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      * @param RssItem $item
      * @param BlogRssImportScenario $blogRssImportScenario
      */
-    protected function importRssItem(RssItem $item, BlogRssImportScenario $blogRssImportScenario)
+    protected function importRssPost(RssItem $item, BlogRssImportScenario $blogRssImportScenario)
     {
         try {
             $this->post()->getPostBySource($item->getUrl());
@@ -275,7 +368,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
                 $blogPost->h1 = $item->getTitle();
             }
             if ($item->getContent()) {
-                $blogPost->contents = $item->getContent();
+                $blogPost->announcement = $item->getContent();
             }
             if ($item->getDate()) {
                 $blogPost->publishTime->setTimestamp($item->getDate()->getTimestamp());
@@ -293,4 +386,71 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         }
     }
 
+    /**
+     * Возвращает вес тэга.
+     * @param BlogTag $tag
+     * @param int $minFontSize минимальный размер шрифта
+     * @param int $maxFontSize максимальный размер шрифта
+     * @return float
+     */
+    protected function getTagWeight(BlogTag $tag, $minFontSize, $maxFontSize)
+    {
+        $postsCount = $tag->getValue(BlogTag::FIELD_POSTS_COUNT);
+
+        $minPostCount = $this->getMinPostsCount();
+        $maxPostCount = $this->getMaxPostsCount();
+
+        if ($minPostCount - $maxPostCount != 0) {
+            $weight =
+                ($postsCount - $this->getMinPostsCount()) / ($this->getMaxPostsCount() - $this->getMinPostsCount())
+                *
+                ($maxFontSize - $minFontSize) + $minFontSize;
+        } else {
+            $weight = $minFontSize;
+        }
+
+        return $weight;
+    }
+
+    /**
+     * Возвращает максимальное количество постов у тега
+     * @return int
+     */
+    protected function getMaxPostsCount()
+    {
+        if (!$this->maxPostsCount) {
+
+            $tag = $this->getTags()
+                ->fields([BlogTag::FIELD_POSTS_COUNT])
+                ->orderBy(BlogTag::FIELD_POSTS_COUNT, CmsSelector::ORDER_DESC)
+                ->limit(1)
+                ->getResult()
+                ->fetch();
+
+            $this->maxPostsCount = $tag->getValue(BlogTag::FIELD_POSTS_COUNT);
+        }
+
+        return $this->maxPostsCount;
+    }
+
+    /**
+     * Возвращает минимальное количество постов у тега
+     * @return int
+     */
+    protected function getMinPostsCount()
+    {
+        if (!$this->minPostsCount) {
+
+            $tag = $this->getTags()
+                ->fields(['postsCount'])
+                ->orderBy('postsCount', CmsSelector::ORDER_ASC)
+                ->limit(1)
+                ->getResult()
+                ->fetch();
+
+            $this->minPostsCount = $tag->getValue(BlogTag::FIELD_POSTS_COUNT);
+        }
+
+        return $this->minPostsCount;
+    }
 }

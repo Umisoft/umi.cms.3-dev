@@ -31,6 +31,7 @@ return [
             IAclFactory::OPTION_ROLES => [
                 'categoryEditor' => [],
                 'postEditor' => [],
+                'commentEditor' => [],
                 'authorEditor' => [],
                 'tagEditor' => [],
                 'rssEditor' => []
@@ -38,6 +39,7 @@ return [
             IAclFactory::OPTION_RESOURCES => [
                 'component:category',
                 'component:post',
+                'component:comment',
                 'component:author',
                 'component:tag',
                 'component:rss'
@@ -45,6 +47,7 @@ return [
             IAclFactory::OPTION_RULES => [
                 'categoryEditor' => ['component:category' => []],
                 'postEditor' => ['component:post' => []],
+                'commentEditor' => ['component:comment' => []],
                 'authorEditor' => ['component:author' => []],
                 'tagEditor' => ['component:tag' => []],
                 'rssEditor' => ['component:rss' => []]

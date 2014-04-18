@@ -92,11 +92,6 @@ return [
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
-        BlogPost::FIELD_AUTHOR => [
-            'type' => IField::TYPE_BELONGS_TO,
-            'columnName' => 'author_id',
-            'target' => 'blogAuthor'
-        ],
         BlogPost::FIELD_PUBLISH_TIME => [
             'type' => IField::TYPE_DATE_TIME,
             'columnName' => 'publish_time'
@@ -139,6 +134,11 @@ return [
             'columnName' => 'category_id',
             'target' => 'blogCategory'
         ],
+        BlogPost::FIELD_AUTHOR => [
+            'type' => IField::TYPE_BELONGS_TO,
+            'columnName' => 'author_id',
+            'target' => 'blogAuthor'
+        ],
         BlogPost::FIELD_TAGS => [
             'type' => IField::TYPE_MANY_TO_MANY,
             'target' => 'blogTag',
@@ -149,10 +149,6 @@ return [
         BlogPost::FIELD_COMMENTS_COUNT => [
             'type' => IField::TYPE_COUNTER,
             'columnName' => 'comments_count'
-        ],
-        BlogPost::FIELD_OLD_URL => [
-            'type' => IField::TYPE_STRING,
-            'columnName' => 'old_url'
         ]
     ],
     'types' => [
@@ -183,7 +179,7 @@ return [
                 BlogPost::FIELD_TAGS,
                 BlogPost::FIELD_PUBLISH_TIME,
                 BlogPost::FIELD_COMMENTS_COUNT,
-                BlogPost::FIELD_OLD_URL
+                BlogPost::FIELD_AUTHOR
             ]
         ]
     ]

@@ -130,4 +130,11 @@ return [
         'collection.newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/i18n/dictionary.config.php}',
         'collection.newsSubject' => '{#lazy:~/project/module/news/configuration/subject/i18n/dictionary.config.php}',
         'collection.newsRssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/i18n/dictionary.config.php}',
+
+        'collection.blogCategory' => '{#lazy:~/project/module/blog/configuration/category/i18n/dictionary.config.php}',
+        'collection.blogPost' => '{#lazy:~/project/module/blog/configuration/post/i18n/dictionary.config.php}',
+        'collection.blogAuthor' => '{#lazy:~/project/module/blog/configuration/author/i18n/dictionary.config.php}',
+        'collection.blogComment' => '{#lazy:~/project/module/blog/configuration/comment/i18n/dictionary.config.php}',
+        'collection.blogTag' => '{#lazy:~/project/module/blog/configuration/tag/i18n/dictionary.config.php}',
+        'collection.blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/i18n/dictionary.config.php}',
     ];

@@ -85,7 +85,7 @@ return [
         ],
         BlogRssImportScenario::FIELD_CATEGORY => [
             'type' => IField::TYPE_BELONGS_TO,
-            'columnName' => 'rubric_id',
+            'columnName' => 'category_id',
             'target' => 'blogCategory'
         ],
         BlogRssImportScenario::FIELD_TAGS => [
