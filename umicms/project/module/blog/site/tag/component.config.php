@@ -23,6 +23,7 @@ return [
         'view' => __NAMESPACE__ . '\widget\BlogTagWidget',
         'postList' => __NAMESPACE__ . '\widget\BlogTagPostListWidget',
         'list' => __NAMESPACE__ . '\widget\BlogTagListWidget',
+        'cloud' => __NAMESPACE__ . '\widget\BlogTagCloudWidget',
         'rss' => __NAMESPACE__ . '\widget\BlogTagListRssUrlWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [

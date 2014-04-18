@@ -134,7 +134,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             'project.site.blog.category' => ['viewer', 'rssViewer'],
             'project.site.blog.post' => ['viewer', 'rssViewer'],
             'project.site.blog.tag' => ['viewer', 'rssViewer'],
-            'project.site.blog.author' => ['viewer', 'rssViewer']
+            'project.site.blog.author' => ['viewer', 'rssViewer'],
+            'project.site.blog.comment' => ['viewer']
         ];
 
         /**
@@ -229,6 +230,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var SimpleCollection $tagCollection
          */
         $tagCollection = $this->getCollectionManager()->getCollection('blogTag');
+        /**
+         * @var SimpleCollection $rssScenarioCollection
+         */
+        $rssScenarioCollection = $this->getCollectionManager()->getCollection('blogRssImportScenario');
 
         $blogPage = $structureCollection->add('blogik', 'system')
             ->setValue('displayName', 'Блог')
@@ -336,6 +341,18 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>О, да. Это вложенный комментарий.</p>')
             ->setValue('post', $post1);
         $comment4->getValue('publishTime')->setTimestamp(strtotime('2012-11-15 15:07:31'));
+
+        $rssScenarioCollection->add()
+            ->setValue('displayName', 'Scripting News')
+            ->setValue('rssUrl', 'http://static.userland.com/gems/backend/rssTwoExample2.xml');
+
+        $rssScenarioCollection->add()
+            ->setValue('displayName', 'Хабрахабр / Захабренные / Тематические / Посты')
+            ->setValue('rssUrl', 'http://habrahabr.ru/rss/hubs/');
+
+        $rssScenarioCollection->add()
+            ->setValue('displayName', 'DLE-News (windows-1251)')
+            ->setValue('rssUrl', 'http://dle-news.ru/rss.xml');
     }
 
     protected function installNews()
@@ -806,6 +823,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_tag`");
         $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_blog_post_tag`");
         $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_author`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_rss_import_scenario_tag`");
+        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_rss_import_scenario`");
 
         $connection->exec(
             "
@@ -916,6 +935,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
 
+                    `posts_count` bigint(20) unsigned DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_description` varchar(255) DEFAULT NULL,
@@ -1048,6 +1068,65 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     CONSTRAINT `FK_blog_author_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_blog_author_profile` FOREIGN KEY (`profile_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_blog_author_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_blog_rss_import_scenario_tag` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255),
+                    `type` varchar(255),
+                    `version` int(10) unsigned DEFAULT '1',
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
+                    `rss_import_scenario_id` bigint(20) unsigned,
+                    `tag_id` bigint(20) unsigned,
+
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `rss_rss_post_tag_guid` (`guid`),
+                    KEY `rss_rss_post_tag_type` (`type`),
+                    KEY `rss_rss_post_tag_item` (`rss_import_scenario_id`),
+                    KEY `rss_import_scenario_tag` (`tag_id`),
+                    CONSTRAINT `FK_rss_rss_item_tag_item` FOREIGN KEY (`rss_import_scenario_id`) REFERENCES `demohunt_news_rss_import_scenario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_import_scenario_tag` FOREIGN KEY (`tag_id`) REFERENCES `demohunt_blog_tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_import_scenario_tag_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_import_scenario_tag_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_blog_rss_import_scenario` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255),
+                    `type` varchar(255),
+                    `version` int(10) unsigned DEFAULT '1',
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
+                    `rss_url` varchar(255) DEFAULT NULL,
+                    `category_id` bigint(20) unsigned DEFAULT NULL,
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `rss_rss_post_guid` (`guid`),
+                    KEY `rss_rss_post_type` (`type`),
+                    KEY `rss_rss_post_category` (`category_id`),
+                    CONSTRAINT `FK_rss_rss_post_category` FOREIGN KEY (`category_id`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_rss_post_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_rss_rss_post_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );

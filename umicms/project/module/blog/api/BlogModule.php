@@ -42,6 +42,15 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     use TUrlManagerAware;
 
     /**
+     * @var int $maxPostsCount максимальное количество постов у тега
+     */
+    protected $maxPostsCount;
+    /**
+     * @var int $minPostsCount минимальное количество постов у тега
+     */
+    protected $minPostsCount;
+
+    /**
      * Возвращает коллекцию постов.
      * @return BlogPostCollection
      */
@@ -344,6 +353,29 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
+     * Возвращает облако тегов.
+     * @param int $minFontSize минимальный размер шрифта
+     * @param int $maxFontSize максимальный размер шрифта
+     * @return array
+     */
+    public function getTagCloud($minFontSize, $maxFontSize)
+    {
+        $tagsCloud = [];
+
+        $tags = $this->getTags()->getResult()->fetchAll();
+        shuffle($tags);
+
+        foreach ($tags as $tag) {
+            $tagsCloud[] = [
+                'tag' => $tag,
+                'weight' => $this->getTagWeight($tag, $minFontSize, $maxFontSize)
+            ];
+        }
+
+        return $tagsCloud;
+    }
+
+    /**
      * Импортирует пост из RSS-ленты.
      * @param RssItem $item
      * @param BlogRssImportScenario $blogRssImportScenario
@@ -377,4 +409,71 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         }
     }
 
+    /**
+     * Возвращает вес тэга.
+     * @param BlogTag $tag
+     * @param int $minFontSize минимальный размер шрифта
+     * @param int $maxFontSize максимальный размер шрифта
+     * @return float
+     */
+    protected function getTagWeight(BlogTag $tag, $minFontSize, $maxFontSize)
+    {
+        $postsCount = $tag->getValue(BlogTag::FIELD_POSTS_COUNT);
+
+        $minPostCount = $this->getMinPostsCount();
+        $maxPostCount = $this->getMaxPostsCount();
+
+        if ($minPostCount - $maxPostCount != 0) {
+            $weight =
+                ($postsCount - $this->getMinPostsCount()) / ($this->getMaxPostsCount() - $this->getMinPostsCount())
+                *
+                ($maxFontSize - $minFontSize) + $minFontSize;
+        } else {
+            $weight = $minFontSize;
+        }
+
+        return $weight;
+    }
+
+    /**
+     * Возвращает максимальное количество постов у тега
+     * @return int
+     */
+    protected function getMaxPostsCount()
+    {
+        if (!$this->maxPostsCount) {
+
+            $tag = $this->getTags()
+                ->fields([BlogTag::FIELD_POSTS_COUNT])
+                ->orderBy(BlogTag::FIELD_POSTS_COUNT, CmsSelector::ORDER_DESC)
+                ->limit(1)
+                ->getResult()
+                ->fetch();
+
+            $this->maxPostsCount = $tag->getValue(BlogTag::FIELD_POSTS_COUNT);
+        }
+
+        return $this->maxPostsCount;
+    }
+
+    /**
+     * Возвращает минимальное количество постов у тега
+     * @return int
+     */
+    protected function getMinPostsCount()
+    {
+        if (!$this->minPostsCount) {
+
+            $tag = $this->getTags()
+                ->fields(['postsCount'])
+                ->orderBy('postsCount', CmsSelector::ORDER_ASC)
+                ->limit(1)
+                ->getResult()
+                ->fetch();
+
+            $this->minPostsCount = $tag->getValue(BlogTag::FIELD_POSTS_COUNT);
+        }
+
+        return $this->minPostsCount;
+    }
 }
