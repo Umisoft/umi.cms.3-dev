@@ -50,14 +50,14 @@ define(
                 }
             }.property('model.@each'),
             hasBackups: function(){
-                return !!this.get('settings').actions.backups;
+                return !!this.get('settings').actions.getBackupList;
             }.property('model.@each'),
             backups: function(){// TODO: Выполняется лишний раз при уходе с роута http://youtrack.umicloud.ru/issue/cms-308
                 var backups = {};
                 var object = this.get('object');
                 var settings = this.get('settings');
-                if(this.get('settings').actions.backups){
-                    backups.displayName = settings.actions.backups.displayName;
+                if(this.get('settings').actions.getBackupList){
+                    backups.displayName = settings.actions.getBackupList.displayName;
                     var currentVersion = {
                         objectId: object.get('id'),
                         date: object.get('updated'),
@@ -70,8 +70,8 @@ define(
                     var params = '?id=' + object.get('id');
 
                     var promiseArray = DS.PromiseArray.create({
-                        promise: $.get(settings.actions.backups.source + params).then(function(data){
-                            return results.concat(data.result.backups.serviceBackup);
+                        promise: $.get(settings.actions.getBackupList.source + params).then(function(data){
+                            return results.concat(data.result.getBackupList.serviceBackup);
                         })
                     });
                     backups.list = Ember.ArrayProxy.create({
@@ -223,7 +223,7 @@ define(
                         setCurrent();
                     } else{
                         var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
-                        $.get(self.get('settings').actions.backup.source + params).then(function(data){
+                        $.get(self.get('settings').actions.getBackup.source + params).then(function(data){
                             object.setProperties(data.result.backup);
                             setCurrent();
                         });
