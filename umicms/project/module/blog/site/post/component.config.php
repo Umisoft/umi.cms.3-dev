@@ -16,7 +16,6 @@ return [
 
     DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
     DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\BlogPostRssController'
     ],

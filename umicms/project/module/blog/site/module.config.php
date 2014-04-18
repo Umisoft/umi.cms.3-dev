@@ -20,7 +20,8 @@ return [
         'post' => '{#lazy:~/project/module/blog/site/post/component.config.php}',
         'category' => '{#lazy:~/project/module/blog/site/category/component.config.php}',
         'author' => '{#lazy:~/project/module/blog/site/author/component.config.php}',
-        'tag' => '{#lazy:~/project/module/blog/site/tag/component.config.php}'
+        'tag' => '{#lazy:~/project/module/blog/site/tag/component.config.php}',
+        'comment' => '{#lazy:~/project/module/blog/site/comment/component.config.php}'
     ],
 
     SiteComponent::OPTION_CONTROLLERS => [

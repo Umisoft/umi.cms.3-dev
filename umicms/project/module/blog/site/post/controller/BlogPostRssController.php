@@ -43,12 +43,12 @@ class BlogPostRssController extends BaseSecureController implements ISiteSetting
      */
     public function __invoke()
     {
-        $newsItems = $this->api->getPosts();
+        $blogPosts = $this->api->getPosts();
 
         $rssFeed = $this->api->getPostRssFeed(
             $this->getSiteDefaultTitle(),
             $this->getSiteDefaultDescription(),
-            $newsItems
+            $blogPosts
         );
 
         $response = $this->createResponse($rssFeed);

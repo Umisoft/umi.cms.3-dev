@@ -56,10 +56,6 @@ class BlogPost extends CmsObject implements ICmsPage
      */
     const FIELD_COMMENTS_COUNT = 'commentsCount';
     /**
-     * Имя поля для хранения старого URL поста
-     */
-    const FIELD_OLD_URL = 'oldUrl';
-    /**
      * Имя поля для хранения источника поста
      */
     const FIELD_SOURCE = 'source';

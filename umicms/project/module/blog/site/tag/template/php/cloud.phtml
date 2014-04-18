@@ -1,0 +1,17 @@
+<?php
+/**
+ * @var umi\orm\selector\ISelector $tags
+ * @var umicms\project\module\blog\api\object\BlogTag $tag
+ * @var umicms\project\module\blog\api\object\BlogTag $blogTag
+ */
+?>
+<?php foreach ($tags as $blogTag) : ?>
+
+    <?php $tag = $blogTag['tag']; ?>
+
+    <p style="font-size: <?=$blogTag['weight']?>px">
+        <a href="<?= $tag->getPageUrl() ?>">
+            <?= $tag->displayName; ?>
+        </a>
+    </p>
+<?php endforeach;?>

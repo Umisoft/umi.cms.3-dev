@@ -215,7 +215,7 @@ class NewsModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
                 $newsItem->h1 = $item->getTitle();
             }
             if ($item->getContent()) {
-                $newsItem->contents = $item->getContent();
+                $newsItem->announcement = $item->getContent();
             }
             if ($item->getDate()) {
                 $newsItem->date->setTimestamp($item->getDate()->getTimestamp());
