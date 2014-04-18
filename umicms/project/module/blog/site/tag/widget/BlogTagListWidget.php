@@ -26,7 +26,6 @@ class BlogTagListWidget extends BaseSecureWidget
      * Если не указано, выводятся все посты.
      */
     public $limit;
-
     /**
      * @var BlogModule $api API модуля "Блоги"
      */

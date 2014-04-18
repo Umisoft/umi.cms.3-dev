@@ -15,14 +15,14 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogAuthor;
 
 /**
- * Виджет вывода авторов
+ * Виджет вывода авторов.
  */
 class BlogAuthorWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'view';
+    public $template = 'page';
     /**
      * @var string|BlogAuthor $blogAuthor GUID автора
      */

@@ -22,7 +22,7 @@ class BlogTagWidget extends BaseSecureWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'view';
+    public $template = 'page';
     /**
      * @var string|BlogTag $BlogTag GUID поста
      */

@@ -16,15 +16,14 @@ return [
 
     DefaultSiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSiteHierarchicPageComponent',
     DefaultSiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogCategory',
-
     DefaultSiteHierarchicPageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\BlogCategoryRssController'
     ],
     DefaultSiteHierarchicPageComponent::OPTION_WIDGET => [
-        'view' => __NAMESPACE__ .  '\widget\CategoryWidget',
+        'view' => __NAMESPACE__ . '\widget\CategoryWidget',
         'postList' => __NAMESPACE__ . '\widget\CategoryPostListWidget',
-        'list' => __NAMESPACE__ .  '\widget\CategoryListWidget',
-        'rss' => __NAMESPACE__ .  '\widget\CategoryPostRssUrlWidget'
+        'list' => __NAMESPACE__ . '\widget\CategoryListWidget',
+        'rss' => __NAMESPACE__ . '\widget\CategoryPostRssUrlWidget'
     ],
     DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
         'type' => 'php',

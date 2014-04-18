@@ -34,7 +34,7 @@ use umicms\project\module\blog\api\object\BlogRssImportScenario;
 use umicms\project\module\blog\api\object\BlogTag;
 
 /**
- * Публичное API модуля "Блоги"
+ * Публичное API модуля "Блоги".
  */
 class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 {
@@ -78,21 +78,21 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает коллекцию импортируемых RSS-лент.
-     * @return BlogRssImportScenarioCollection
-     */
-    public function rssImport()
-    {
-        return $this->getCollection('blogRssImportScenario');
-    }
-
-    /**
      * Возвращает коллекцию комментариев.
      * @return BlogCommentCollection
      */
     public function comment()
     {
         return $this->getCollection('blogComment');
+    }
+
+    /**
+     * Возвращает коллекцию импортируемых RSS-лент.
+     * @return BlogRssImportScenarioCollection
+     */
+    public function rssImport()
+    {
+        return $this->getCollection('blogRssImportScenario');
     }
 
     /**
@@ -228,11 +228,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выбора постов автора.
      * @param BlogAuthor[] $authors категория
+     * @param int $limit
      * @return CmsSelector|BlogPost[]
      */
-    public function getPostsByAuthor(array $authors = [])
+    public function getPostsByAuthor(array $authors = [], $limit = null)
     {
-        $posts = $this->getPosts();
+        $posts = $this->getPosts($limit);
 
         $posts->begin(IFieldConditionGroup::MODE_OR);
         foreach ($authors as $author) {
@@ -246,11 +247,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выбора постов категорий.
      * @param BlogCategory[] $categories категории блога
+     * @param int $limit
      * @return CmsSelector|BlogPost[]
      */
-    public function getPostByCategory(array $categories = [])
+    public function getPostByCategory(array $categories = [], $limit = null)
     {
-        $posts = $this->getPosts();
+        $posts = $this->getPosts($limit);
 
         $posts->begin(IFieldConditionGroup::MODE_OR);
         foreach ($categories as $category) {
@@ -263,12 +265,17 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает селектор для выборки комментариев.
+     * @param int $limit
      * @return CmsSelector|BlogComment[]
      */
-    public function getComment()
+    public function getComment($limit = null)
     {
         $comments = $this->comment()->select()
             ->orderBy(BlogComment::FIELD_PUBLISH_TIME, CmsSelector::ORDER_DESC);
+
+        if ($limit) {
+            $comments->limit($limit);
+        }
 
         return $comments;
     }
@@ -276,16 +283,16 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выборки комментариев к посту.
      * @param BlogPost $blogPost
+     * @param int $limit
      * @return CmsSelector|BlogComment[]
      */
-    public function getCommentByPost(BlogPost $blogPost)
+    public function getCommentByPost(BlogPost $blogPost, $limit = null)
     {
-        $comments = $this->getComment()
+        $comments = $this->getComment($limit)
             ->where(BlogComment::FIELD_POST)->equals($blogPost);
 
         return $comments;
     }
-
 
     /**
      * Возвращает селектор для выбора постов по тэгу.
@@ -330,7 +337,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         $rssFeed = $this->createRssFeedFromSimpleXml($xml);
 
         foreach ($rssFeed->getRssItems() as $item) {
-            $this->importRssItem($item, $blogRssImportScenario);
+            $this->importRssPost($item, $blogRssImportScenario);
         }
 
         return $this;
@@ -341,7 +348,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      * @param RssItem $item
      * @param BlogRssImportScenario $blogRssImportScenario
      */
-    protected function importRssItem(RssItem $item, BlogRssImportScenario $blogRssImportScenario)
+    protected function importRssPost(RssItem $item, BlogRssImportScenario $blogRssImportScenario)
     {
         try {
             $this->post()->getPostBySource($item->getUrl());
@@ -352,7 +359,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
                 $blogPost->h1 = $item->getTitle();
             }
             if ($item->getContent()) {
-                $blogPost->contents = $item->getContent();
+                $blogPost->announcement = $item->getContent();
             }
             if ($item->getDate()) {
                 $blogPost->publishTime->setTimestamp($item->getDate()->getTimestamp());

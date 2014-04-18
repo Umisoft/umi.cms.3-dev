@@ -13,7 +13,7 @@ use umi\orm\objectset\ManyToManyObjectSet;
 use umicms\orm\object\CmsObject;
 
 /**
- * RSS.
+ * Сценарий иморта внешней RSS ленты.
  *
  * @property string $rssUrl URL RSS-ленты, которую необходимо импортировать
  * @property BlogCategory|null $category имя поля для хранения категории, к которой относятся импортируемые посты

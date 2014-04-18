@@ -15,7 +15,7 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет для вывода списка постов
+ * Виджет для вывода списка постов.
  */
 class BlogCommentListWidget extends BaseSecureWidget
 {

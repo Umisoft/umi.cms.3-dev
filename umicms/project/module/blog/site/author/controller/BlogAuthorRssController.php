@@ -46,7 +46,6 @@ class BlogAuthorRssController extends BaseSecureController implements ISiteSetti
         $urlAuthor = $this->getRouteVar('slug');
 
         $blogAuthor = $this->api->author()->getByUri($urlAuthor);
-
         $blogAuthorPosts = $this->api->getPostsByAuthor([$blogAuthor]);
 
         $rssFeed = $this->api->getPostRssFeed(

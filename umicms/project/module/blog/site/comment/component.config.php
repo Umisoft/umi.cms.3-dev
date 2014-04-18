@@ -9,25 +9,24 @@
 namespace umicms\project\module\blog\site\comment;
 
 use umi\acl\IAclFactory;
-use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\project\site\component\DefaultSiteHierarchicPageComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\module\blog\site\comment\BlogCommentComponent',
-    SiteComponent::OPTION_CONTROLLERS => [
-        'comment' => __NAMESPACE__ . '\controller\BlogCommentController',
+    DefaultSiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSiteHierarchicPageComponent',
+    DefaultSiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
+    DefaultSiteHierarchicPageComponent::OPTION_CONTROLLERS => [
     ],
-    SiteComponent::OPTION_WIDGET => [
+    DefaultSiteHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogCommentWidget',
         'list' => __NAMESPACE__ . '\widget\BlogCommentListWidget'
     ],
-    SiteComponent::OPTION_VIEW => [
+    DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
         'type' => 'php',
         'extension' => 'phtml',
         'directory' => __DIR__ . '/template/php',
     ],
-    SiteComponent::OPTION_ACL => [
+    DefaultSiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'blogCommentViewer' => [],
         ],
@@ -41,14 +40,6 @@ return [
                 'controller:item' => [],
                 'widget:view' => [],
                 'widget:list' => []
-            ]
-        ]
-    ],
-    SiteComponent::OPTION_ROUTES => [
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'index'
             ]
         ]
     ]
