@@ -34,13 +34,6 @@ return [
                     'options' => [
                         'dataSource' => BlogComment::FIELD_DISPLAY_NAME
                     ],
-                ],
-                BlogComment::FIELD_ACTIVE => [
-                    'type' => Checkbox::TYPE_NAME,
-                    'label' => BlogComment::FIELD_ACTIVE,
-                    'options' => [
-                        'dataSource' => BlogComment::FIELD_ACTIVE
-                    ],
                 ]
             ]
         ],
