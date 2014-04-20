@@ -118,7 +118,7 @@ class DefaultRestActionController extends BaseDefaultRestController
      * @throws RuntimeException если невозможно выполнить действие
      * @return ICmsObject
      */
-    protected function actionSwitchActivity()
+    protected function actionActivate()
     {
         $collection = $this->getCollection();
         $object = $collection->getById($this->getRequiredQueryVar('id'));
@@ -135,11 +135,36 @@ class DefaultRestActionController extends BaseDefaultRestController
         /**
          * @var IActiveAccessibleObject $object
          */
-        if ($object->active) {
-            $collection->deactivate($object);
-        } else {
-            $collection->activate($object);
+         $collection->activate($object);
+
+        $this->getObjectPersister()->commit();
+
+        return '';
+    }
+
+    /**
+     * Изменяет активность объекта.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return ICmsObject
+     */
+    protected function actionDeactivate()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IActiveAccessibleCollection || !$object instanceof IActiveAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot switch object activity. Collection "{collection}" and its objects should be active accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
         }
+
+        /**
+         * @var IActiveAccessibleObject $object
+         */
+        $collection->deactivate($object);
 
         $this->getObjectPersister()->commit();
 
