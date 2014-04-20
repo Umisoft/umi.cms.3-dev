@@ -109,7 +109,7 @@ class BackupCollection extends SimpleCollection
         $backup = $this->add();
         $backup->objectId = $object->getId();
         $backup->collectionName = $object->getCollectionName();
-        $backup->date->setCurrent();
+        $backup->date = new \DateTime();
         $backup->user = $object->editor;
         $backup->getProperty(Backup::FIELD_DATA)->setValue(serialize($object));
 
