@@ -22,7 +22,7 @@
                 {{view.savedDisplayName}}
             {{/link-to}}
 
-            {{view 'treeControlContextMenu'}}
+            {{view view.parentView.contextMenuView}}
         {{/view}}
 
         {{#if node.childCount}}

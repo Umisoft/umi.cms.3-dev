@@ -3,6 +3,9 @@ define(['App'], function(UMI){
     return function(){
 
         UMI.TreeControlController = Ember.ObjectController.extend({
+            controlName: function(){
+                return this.get('controllers.component.collectionName');
+            }.property('controllers.component.collectionName'),
             /**
              Возвращает корневой элемент
              @property root
@@ -160,8 +163,58 @@ define(['App'], function(UMI){
                             self.send('backgroundError', error);
                         }
                     );
+                },
+
+                toggleFastAction: function(action){
+                    var selectAction;
+                    var controlName = this.get('controlName');
+                    if(!this.get('selectAction') || this.get('selectAction').type !== action.type){
+                        selectAction = action;
+                    } else{
+                        selectAction = null;
+                    }
+                    this.set('selectAction', selectAction);
+                    UMI.Utils.LS.set('treeControls.' + controlName + '.contextAction', selectAction);
+                },
+
+                selectAction: function(action, object){
+                    switch(action.type){
+                        case 'getCreateForm':
+                            break;
+                        case 'getEditForm':
+
+                            break;
+                        case 'switchActivity':
+                                this.get('controllers.component').send('switchActivity', object);
+                            break;
+                    }
                 }
-            }
+            },
+            selectAction: function(){
+                var controlName = this.get('controlName');
+                return UMI.Utils.LS.get('treeControls.' + controlName + '.contextAction');
+            }.property('controlName'),
+            selectActionIcon: function(){
+                var iconType;
+                if(this.get('selectAction')){
+                    switch(this.get('selectAction.type')){
+                        case 'getCreateForm':
+                            iconType = 'add';
+                            break;
+                        case 'getEditForm':
+                            iconType = 'edit';
+                            break;
+                        case 'switchActivity':
+                            iconType = 'pause';
+                            break;
+                    }
+                    return 'icon-' + iconType;
+                }
+
+            }.property('selectAction'),
+            actionList: function(){
+                return this.get('controllers.component.sideBarControl.toolbar');
+            }.property()
         });
 
         UMI.TreeItemController = Ember.ObjectController.extend({
@@ -205,9 +258,6 @@ define(['App'], function(UMI){
             actions: {
                 expanded: function(){
                     this.set('isExpanded', !this.get('isExpanded'));
-                },
-                fastAction: function(){
-                    this.transitionToRoute('context', 'add');
                 }
             }
         });

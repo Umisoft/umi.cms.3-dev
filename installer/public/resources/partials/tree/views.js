@@ -9,11 +9,11 @@ define(['App'], function(UMI){
 
             root: function(){
                 return this.get('model.id') === 'root';
-            }.property('root'),
+            }.property('model.root'),
 
             inActive: function(){
                 return !this.get('model.active');
-            }.property('active'),
+            }.property('model.active'),
 
             active: function(){
                 return this.get('controller.controllers.treeControl.activeContext.id') === this.get('model.id');
@@ -229,6 +229,39 @@ define(['App'], function(UMI){
                         }
                     }
                 }
+            }),
+
+            contextMenuView: Ember.View.extend({
+                tagName: 'ul',
+                classNames: ['button-group', 'umi-tree-context-menu', 'right'],
+                layoutName: 'treeControlContextMenu',
+                isOpen: false,
+                setParentIsOpen: function(){
+                    this.get('parentView').set('contextMenuIsOpen', this.get('isOpen'));
+                }.observes('isOpen'),
+                actions: {
+                    open: function(){
+                        var self = this;
+                        var el = this.$();
+                        this.toggleProperty('isOpen');
+                        if(this.get('isOpen')){
+                            $('body').on('click.umi.tree.contextMenu', function(event){
+                                var targetElement = $(event.target).closest('.umi-tree-context-menu');
+                                if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
+                                    $('body').off('.umi.tree.contextMenu.click');
+                                    self.set('isOpen', false);
+                                }
+                            });
+                        }
+                    }
+                },
+                itemView: Ember.View.extend({
+                    tagName: 'li',
+                    isFastAction: function(){
+                        var selectAction = this.get('controller.controllers.treeControl.selectAction');
+                        return selectAction ? this.get('action').type === selectAction.type : false;
+                    }.property('controller.controllers.treeControl.selectAction')
+                })
             })
         });
     };

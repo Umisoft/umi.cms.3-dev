@@ -237,16 +237,7 @@ define(
                 },
                 switchActivity: function(){
                     var object = this.get('object');
-                    var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
-                    var switchActivitySource = this.get('settings').actions.switchActivity.source;
-                    $.ajax({
-                        url: switchActivitySource + '?id=' + object.get('id'),
-                        type: "POST",
-                        data: serializeObject,
-                        contentType: 'application/json; charset=UTF-8'
-                    }).then(function(data){
-                        object.reload();
-                    });
+                    this.get('controllers.component').send('switchActivity', object);
                 }
             }
         });
