@@ -20,7 +20,6 @@ use umicms\exception\RuntimeException;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
-use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\collection\PageCollection;
 use umicms\orm\collection\PageHierarchicCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
