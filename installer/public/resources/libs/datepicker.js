@@ -68,11 +68,11 @@ var jdPicker = (function($){
 
             this.wrapp = this.input.wrap('<div class="jdpicker_w">');
 
-            //                        if(this.input.context.type!="hidden"){
-            //                            var clearer = $('<span class="date_clearer">&times;</span>');
-            //                            clearer.click(this.bindToObj(function(){this.input.val(""); this.selectDate();}));
-            //                            this.input.after(clearer);
-            //                        }
+            if(this.input.context.type!="hidden"){
+                var clearer = $('<span class="date_clearer">&times;</span>');
+                clearer.click(this.bindToObj(function(){this.input.val('').change(); this.selectDate();}));
+                this.input.after(clearer);
+            }
 
             switch(this.date_format){
                 case "dd/mm/YYYY":
