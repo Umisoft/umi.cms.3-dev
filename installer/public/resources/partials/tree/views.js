@@ -9,11 +9,11 @@ define(['App'], function(UMI){
 
             root: function(){
                 return this.get('model.id') === 'root';
-            }.property('root'),
+            }.property('model.root'),
 
             inActive: function(){
                 return !this.get('model.active');
-            }.property('active'),
+            }.property('model.active'),
 
             active: function(){
                 return this.get('controller.controllers.treeControl.activeContext.id') === this.get('model.id');

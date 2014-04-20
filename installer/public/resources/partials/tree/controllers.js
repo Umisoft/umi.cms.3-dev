@@ -177,11 +177,16 @@ define(['App'], function(UMI){
                     UMI.Utils.LS.set('treeControls.' + controlName + '.contextAction', selectAction);
                 },
 
-                selectAction: function(action){
-                    if(action.type === 'query'){
+                selectAction: function(action, object){
+                    switch(action.type){
+                        case 'getCreateForm':
+                            break;
+                        case 'getEditForm':
 
-                    } else if(action.type === 'modify'){
-
+                            break;
+                        case 'switchActivity':
+                                this.get('controllers.component').send('switchActivity', object);
+                            break;
                     }
                 }
             },

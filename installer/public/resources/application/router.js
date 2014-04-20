@@ -146,6 +146,20 @@ define([], function(){
                     var dataError = this.parseError(error);
                     var model = Ember.Object.create(dataError);
                     this.intermediateTransitionTo(parentRoute + '.errors', model);
+                },
+
+                /// global actions
+                switchActivity: function(object){
+                    var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+                    var switchActivitySource = this.controllerFor('component').get('settings').actions.switchActivity.source;
+                    $.ajax({
+                        url: switchActivitySource + '?id=' + object.get('id'),
+                        type: "POST",
+                        data: serializeObject,
+                        contentType: 'application/json; charset=UTF-8'
+                    }).then(function(){
+                        object.reload();
+                    });
                 }
             },
             /**
