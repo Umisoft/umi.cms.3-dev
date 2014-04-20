@@ -50,7 +50,9 @@ define([], function(){
                         self.controllerFor('dock').set('modules', result.modules);
                     }
                 }, function(error){
-                    transition.send('globalHttpError', error);
+                    var becameError = new Error();
+                    error.stack = becameError.stack;
+                    transition.send('templateLogs', error);
                 });
             },
             actions: {
@@ -121,25 +123,11 @@ define([], function(){
                         }
                     );
                 },
-                globalHttpError: function(error){
-                    if(error.status === 403 || error.status === 401){
-                        this.send('logout');
-                        return;
-                    }
-                    var message;
-                    if(error.hasOwnProperty('responseJSON')){
-                        if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
-                            message = error.responseJSON.result.error.message;
-                        }
-                    } else{
-                        message = error.responseText;
-                    }
-                    var data = {
-                        'close': true,
-                        'title': error.status + '. ' + error.statusText,
-                        'content': message
-                    };
-                    UMI.dialog.open(data).then();
+                dialogError: function(error){
+                    var settings = this.parseError(error);
+                    settings.close = true;
+                    settings.title = error.status + '. ' + error.statusText;
+                    UMI.dialog.open(settings).then();
                 },
                 /**
                  Метод генерирует фоновую ошибку
@@ -155,27 +143,8 @@ define([], function(){
 
                 templateLogs: function(error, parentRoute){
                     parentRoute = parentRoute || 'module';
-                    if(error.status === 403 || error.status === 401){
-                        this.send('logout');
-                        return;
-                    }
-
-                    var message;
-                    if(error.hasOwnProperty('responseJSON')){
-                        if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
-                            message = error.responseJSON.result.error.message;
-                        }
-                    } else{
-                        message = error.responseText || error.message;
-                    }
-
-                    var model = Ember.Object.create({
-                        'status': error.status,
-                        'statusText': error.statusText,
-                        'message': message,
-                        'stack': error.stack
-                    });
-
+                    var dataError = this.parseError(error);
+                    var model = Ember.Object.create(dataError);
                     this.intermediateTransitionTo(parentRoute + '.errors', model);
                 }
             },
@@ -300,11 +269,8 @@ define([], function(){
                         deferred.reject();
                     });
                 } else{
-                    var error = {
-                        'status': 404,
-                        'statusText': 'Component not found.',
-                        'message': 'The component "' + transition.params.component.component + '" was not found.'
-                    };
+                    var error = new URIError('The component "' + transition.params.component.component + '" was not found.');
+                    error.statusText = 'Component not found.';
                     transition.send('templateLogs', error);
                     deferred.reject();
                 }
@@ -318,11 +284,8 @@ define([], function(){
                     if(defaultAction){
                         deferred.resolve(self.transitionTo('action', defaultAction));
                     } else{
-                        var error = {
-                            'status': 404,
-                            'statusText': 'Actions not found.',
-                            'message': 'For component "' + model.get('name') + '" actions not found.'
-                        };
+                        var error = new URIError('The component "' + transition.params.component.component + '" was not found.');
+                        error.statusText = 'Actions not found.';
                         Ember.run.next(function(){
                             transition.send('templateLogs', error, 'component');
                         });
