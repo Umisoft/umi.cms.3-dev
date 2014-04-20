@@ -11,8 +11,9 @@ $umi-alert-wrapper-index: 1000;
             color: darken($success-color, 30%);
         }
     }
-    &.alert{
+    &.alert, &.error{
         background-color: lighten($alert-color, 40%);
+        border-color: #F5F5F5;
         .close{
             color: darken($alert-color, 30%);
         }

@@ -198,11 +198,16 @@ define(
          */
         UMI.CustomDateTransform = DS.Transform.extend({
             deserialize: function(deserialized){
-                Ember.set(deserialized, 'date', moment(deserialized.date).format('DD/MM/YYYY'));
-                return deserialized;
+                if(deserialized.date){
+                    Ember.set(deserialized, 'date', moment(deserialized.date).format('DD/MM/YYYY'));
+                }
+                return JSON.stringify(deserialized);
             },
             serialize: function(serialized){
-                Ember.set(serialized, 'date', moment(serialized.date, 'DD/MM/YYYY').format('YYYY-MM-DD h:mm:ss'));
+                serialized = JSON.parse(serialized);
+                if(serialized.date){
+                    Ember.set(serialized, 'date', moment(serialized.date, 'DD/MM/YYYY').format('YYYY-MM-DD h:mm:ss'));
+                }
                 return serialized;
             }
         });

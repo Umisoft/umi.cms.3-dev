@@ -6506,11 +6506,16 @@ label {
   margin-left: 3px; }
 
 .jdpicker_w .date_clearer {
-  color: #a00;
-  padding-left: 3px;
   cursor: pointer;
-  font-weight: bold;
-  font-family: sans-serif; }
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  right: 35px;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  line-height: 17px;
+  display: inline-block; }
 
 .jdpicker_w .date_selector_ieframe {
   position: absolute;
@@ -6766,9 +6771,10 @@ label {
     background-color: #cfecda; }
     .alert-box.success .close {
       color: #183e26; }
-  .alert-box.alert {
-    background-color: #f1dcdc; }
-    .alert-box.alert .close {
+  .alert-box.alert, .alert-box.error {
+    background-color: #f1dcdc;
+    border-color: #F5F5F5; }
+    .alert-box.alert .close, .alert-box.error .close {
       color: #4b1e1d; }
   .alert-box.secondary {
     background-color: white; }
