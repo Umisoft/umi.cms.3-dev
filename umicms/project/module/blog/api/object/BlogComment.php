@@ -45,5 +45,9 @@ class BlogComment extends CmsHierarchicObject implements IRecyclableObject
      * Имя поля для хранения активности комментария
      */
     const FIELD_ACTIVE = 'active';
+    /**
+     * Форма добавления комментария
+     */
+    const FORM_ADD_COMMENT = 'addComment';
 }
  

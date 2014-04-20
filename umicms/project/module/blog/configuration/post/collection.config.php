@@ -8,6 +8,7 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\blog\api\object\BlogPost;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -18,7 +19,8 @@ return [
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/post/form/base.edit.config.php}'
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/post/form/base.edit.config.php}',
+            BlogPost::FORM_ADD_POST => '{#lazy:~/project/module/blog/site/post/form/base.addPost.config.php}'
         ]
     ],
     'dictionaries' => [
