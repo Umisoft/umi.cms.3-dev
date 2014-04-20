@@ -6771,9 +6771,10 @@ label {
     background-color: #cfecda; }
     .alert-box.success .close {
       color: #183e26; }
-  .alert-box.alert {
-    background-color: #f1dcdc; }
-    .alert-box.alert .close {
+  .alert-box.alert, .alert-box.error {
+    background-color: #f1dcdc;
+    border-color: #F5F5F5; }
+    .alert-box.alert .close, .alert-box.error .close {
       color: #4b1e1d; }
   .alert-box.secondary {
     background-color: white; }

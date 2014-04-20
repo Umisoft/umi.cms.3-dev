@@ -141,14 +141,16 @@ define([], function(){
                     };
                     UMI.dialog.open(data).then();
                 },
-
+                /**
+                 Метод генерирует фоновую ошибку
+                 @method backgroundError
+                 @property error Object {status: status, title: title, content: content, stack: stack}
+                 */
                 backgroundError: function(error){
-                    UMI.notification.create({
-                        type: 'error',
-                        title: error.title,
-                        text: error.text,
-                        duration: false
-                    });
+                    var settings = this.parseError(error);
+                    settings.type = 'error';
+                    settings.duration = false;
+                    UMI.notification.create(settings);
                 },
 
                 templateLogs: function(error, parentRoute){
@@ -176,6 +178,34 @@ define([], function(){
 
                     this.intermediateTransitionTo(parentRoute + '.errors', model);
                 }
+            },
+            /**
+             Метод парсит ошибку и возвпращает её в виде объекта
+             @method parseError
+             @return Object|null {status: status, title: title, content: content, stack: stack}
+             */
+            parseError: function(error){
+                var parsedError = {
+                    status: error.status,
+                    title: error.statusText,
+                    stack: error.stack
+                };
+
+                if(error.status === 403 || error.status === 401){
+                    this.send('logout');
+                    return;
+                }
+
+                var content;
+                if(error.hasOwnProperty('responseJSON')){
+                    if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
+                        content = error.responseJSON.result.error.message;
+                    }
+                } else{
+                    content = error.responseText || error.message;
+                }
+                parsedError.content = content;
+                return parsedError;
             }
         });
 
