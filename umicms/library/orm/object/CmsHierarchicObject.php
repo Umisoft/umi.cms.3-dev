@@ -11,7 +11,6 @@ namespace umicms\orm\object;
 
 use umi\orm\object\HierarchicObject;
 use umi\orm\objectset\IObjectSet;
-use umi\orm\selector\ISelector;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\orm\selector\CmsSelector;
 
