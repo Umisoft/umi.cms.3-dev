@@ -20,11 +20,14 @@ use umicms\exception\RuntimeException;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\PageCollection;
+use umicms\orm\collection\PageHierarchicCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\object\ICmsPage;
 use umicms\project\module\service\api\object\Backup;
 
 /**
@@ -113,12 +116,57 @@ class DefaultRestActionController extends BaseDefaultRestController
         return $this->getCollection()->getForm($formName, $typeName);
     }
 
+    protected function changeSlug()
+    {
+
+        $data = $this->getIncomingData();
+        $object = $this->getEditedObject($data);
+
+        if (isset($data[ICmsPage::FIELD_PAGE_SLUG])) {
+            throw new HttpException(
+                Response::HTTP_BAD_REQUEST,
+                $this->translate('Cannot change object slug. Slug is required.')
+            );
+        }
+
+        if (!$object instanceof ICmsPage) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot change object slug. Object should be instance of "{class}".',
+                    ['class' => 'umicms\orm\object\ICmsPage']
+                )
+            );
+        }
+
+        $collection = $this->getCollection();
+
+        /**
+         * @var CmsHierarchicObject|ICmsPage $object
+         */
+        if ($collection instanceof PageHierarchicCollection) {
+            $collection->changeSlug($object, $data[ICmsPage::FIELD_PAGE_SLUG]);
+        } elseif ($collection instanceof PageCollection) {
+            $collection->changeSlug($object, $data[ICmsPage::FIELD_PAGE_SLUG]);
+        } else {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot change object slug. Collection "{collection}" should be either instance of PageHierarchicCollection or instance of PageCollection.',
+                    [
+                        'collection' => $collection->getName()
+                    ]
+                )
+            );
+        }
+
+        return $object;
+    }
+
     /**
      * Изменяет активность объекта.
      * @throws RuntimeException если невозможно выполнить действие
      * @return ICmsObject
      */
-    protected function actionSwitchActivity()
+    protected function actionActivate()
     {
         $collection = $this->getCollection();
         $object = $collection->getById($this->getRequiredQueryVar('id'));
@@ -135,11 +183,36 @@ class DefaultRestActionController extends BaseDefaultRestController
         /**
          * @var IActiveAccessibleObject $object
          */
-        if ($object->active) {
-            $collection->deactivate($object);
-        } else {
-            $collection->activate($object);
+         $collection->activate($object);
+
+        $this->getObjectPersister()->commit();
+
+        return '';
+    }
+
+    /**
+     * Изменяет активность объекта.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return ICmsObject
+     */
+    protected function actionDeactivate()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IActiveAccessibleCollection || !$object instanceof IActiveAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot switch object activity. Collection "{collection}" and its objects should be active accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
         }
+
+        /**
+         * @var IActiveAccessibleObject $object
+         */
+        $collection->deactivate($object);
 
         $this->getObjectPersister()->commit();
 

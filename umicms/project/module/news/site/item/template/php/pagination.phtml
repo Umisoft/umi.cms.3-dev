@@ -7,10 +7,10 @@
 <? if (isset($pagination['pagesCount'])) :?>
 
     <ul>
-        <? foreach ($pagination['pagesRange'] as $page) : ?>
+        <? foreach ($pagination['pagesRange'] as $page => $link) : ?>
 
             <? if ($page != $pagination['currentPage']) :?>
-                <li><a href="<?= $pagination['pagesRangeUrl'][$page] ?>"><?= $page ?></a></li>
+                <li><a href="<?= $link ?>"><?= $page ?></a></li>
             <? else : ?>
                 <li><?= $page ?></li>
             <? endif; ?>

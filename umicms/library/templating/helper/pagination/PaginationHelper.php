@@ -42,7 +42,7 @@ class PaginationHelper extends FrameworkPaginationHelper implements IUrlManagerA
             $pagesRangeUrl[$page] = $this->getPageUrl($page, $pageParamName);
         }
 
-        return $result + ['pagesRangeUrl' => $pagesRangeUrl];
+        return $result + ['pagesRange' => $pagesRangeUrl];
 
     }
 

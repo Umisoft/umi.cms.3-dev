@@ -13,6 +13,7 @@ use umi\hmvc\exception\http\HttpNotFound;
 use umi\pagination\IPaginationAware;
 use umi\pagination\IPaginator;
 use umi\pagination\TPaginationAware;
+use umicms\exception\InvalidArgumentException;
 use umicms\exception\OutOfBoundsException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
@@ -34,24 +35,23 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
     public $template = 'list';
     /**
      * @var int $limit максимальное количество выводимых элементов.
-     * Если не указано, выводятся все элементы и постраничная навигация не будет сформирована.
+     * Если не указано, выводятся все элементы.
      */
     public $limit;
     /**
-     * @var string $pageParam имя GET-параметра, из которого берется текущая страница для построения
-     * постраничной навигации. Указывается при необходимости строить постраничную навигацию.
+     * @var array $pagination настройки вывода постраничной навигации в формате
+     * [
+     *      'pageParam' => $pageParam,
+     *      'type' => $type,
+     *      'pagesCount' => $pagesCount
+     * ], где
+     *  $pageParam имя GET-параметра, из которого берется текущая страница навигации,
+     *  $type тип постраничной навигации (all, sliding, jumping, elastic),
+     *  $pagesCount количество страниц отображаемых в ряду
+     * Если не указано, постраничная навигация не будет сформирована.
+     *
      */
-    public $pageParam;
-    /**
-     * @var string $type тип постраничной навигации (all, sliding, jumping, elastic).
-     * Указывается при необходимости строить постраничную навигацию.
-     */
-    public $type;
-    /**
-     * @var int $pagesCount количество страниц отображаемых в ряду.
-     * Указывается при необходимости строить постраничную навигацию с типом sliding, jumping, elastic.
-     */
-    public $pagesCount;
+    public $pagination = [];
 
     /**
      * Возвращает выборку для постраничной навигации.
@@ -66,13 +66,12 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
     {
         $selector = $this->getSelector();
 
-        return $this->createResult(
-            $this->template,
-            [
-                'list' => $this->applySelectorConditions($selector),
-                'pagination' => $this->getPagination($selector)
-            ]
-        );
+        $result = ['list' => $this->applySelectorConditions($selector)];
+        if ($this->pagination) {
+            $result['pagination'] = $this->getPagination($selector);
+        }
+
+        return $this->createResult($this->template, $result);
     }
 
     /**
@@ -92,6 +91,7 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
     /**
      * Возвращает контекст постраничной навигации.
      * @param CmsSelector $selector выборка объектов
+     * @throws InvalidArgumentException если заданы не все настройки
      * @throws OutOfBoundsException если задан неверный тип
      * @return array
      */
@@ -99,8 +99,40 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
     {
         static $helper;
 
-        if (!$this->type || !$this->pageParam || !$this->limit) {
-            return [];
+        if (!isset($this->limit)) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Cannot create pagination. Parameter "{param}" is required.',
+                    ['param' => 'limit']
+                )
+            );
+        }
+
+        if (!isset($this->pagination['type'])) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Cannot create pagination. Option "{param}" is required for pagination.',
+                    ['param' => 'type']
+                )
+            );
+        }
+
+        if (!isset($this->pagination['pageParam'])) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Cannot create pagination. Option "{param}" is required for pagination.',
+                    ['param' => 'pageParam']
+                )
+            );
+        }
+
+        if ($this->pagination['type'] != 'all' && !isset($this->pagination['pagesCount'])) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Cannot create pagination. Option "{param}" is required for pagination.',
+                    ['param' => 'pagesCount']
+                )
+            );
         }
 
         $paginator = $this->getPaginator($selector);
@@ -110,18 +142,27 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
             $helper->setUrlManager($this->getUrlManager());
         }
 
-        if (!method_exists($helper, $this->type)) {
-            throw new OutOfBoundsException(
+        if (!isset($this->pagination['type'])) {
+            throw new InvalidArgumentException(
                 $this->translate(
-                    'Cannot create pagination. Pagination "{type}" is unknown.',
-                    ['type' => $this->type]
+                    'Cannot create pagination. Parameter "{param}" is required.',
+                    ['param' => 'type']
                 )
             );
         }
 
-        $pagination = call_user_func([$helper, $this->type], $paginator, $this->pagesCount);
+        if (!method_exists($helper, $this->pagination['type'])) {
+            throw new OutOfBoundsException(
+                $this->translate(
+                    'Cannot create pagination. Pagination "{type}" is unknown.',
+                    ['type' => $this->pagination['type']]
+                )
+            );
+        }
 
-        return $pagination + $helper->buildLinksContext($pagination, $this->pageParam);
+        $pagination = call_user_func([$helper, $this->pagination['type']], $paginator, (int) $this->pagination['pagesCount']);
+
+        return array_merge($pagination, $helper->buildLinksContext($pagination, $this->pagination['pageParam']));
     }
 
     /**
@@ -132,7 +173,7 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
      */
     private function getPaginator(CmsSelector $selector)
     {
-        $paginator = $this->createObjectPaginator($selector, $this->limit);
+        $paginator = $this->createObjectPaginator($selector, (int) $this->limit);
 
         if ($paginator->getItemsCount() > 0) {
             try {
@@ -153,10 +194,10 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
      */
     private function getCurrentPage()
     {
-        return $this->getContext()
+        return (int) $this->getContext()
             ->getDispatcher()
             ->getCurrentRequest()
-            ->query->get($this->pageParam, 1);
+            ->query->get($this->pagination['pageParam'], 1);
     }
 
 }
