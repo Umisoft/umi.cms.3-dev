@@ -4,43 +4,19 @@ define(
     "use strict";
 
     var ContextMenuController = Ember.Controller.extend({
-        activeGroup: null,
         selectAction: function(){
             return UMI.Utils.LS.get('treeControls.contextAction');
         }.property(),
+        selectActionIcon: function(){
+            return 'icon-' + this.get('selectAction.icon');
+        }.property('selectAction'),
         actionList: function(){
             var actions = [
-                {
-                    name: 'add',
-                    list: [
-                        {name: 'addNews', displayName: 'Добавить новость', type: 'query'},
-                        {name: 'addRubric', displayName: 'Добавить рубрику', type: 'query'}
-                    ]
-                },
-                {
-                    name: 'pause',
-                    list: [
-                        {name: 'unActive', displayName: 'Снять активность', type: "modify"}
-                    ]
-                }
+                {name: 'addNews', displayName: 'Добавить новость', type: 'query',  icon: "add"},
+                {name: 'unActive', displayName: 'Снять активность', type: "modify", icon: "pause"}
             ];
-            this.set('activeGroup', actions[0]);
             return actions;
         }.property(),
-        selectActionIcon: function(){
-            var actionList = this.get('actionList');
-            var selectAction = this.get('selectAction');
-            if(!selectAction){
-                return;
-            }
-            var groupName;
-            actionList.forEach(function(group){
-                if(group.list.findBy('name', selectAction.name)){
-                    groupName = group.name;
-                }
-            });
-            return 'icon-' + groupName;
-        }.property('selectAction', 'actionList'),
         actions: {
             toggleFastAction: function(action){
                 var selectAction;
@@ -51,9 +27,6 @@ define(
                 }
                 this.set('selectAction', selectAction);
                 UMI.Utils.LS.set('treeControls.contextAction', selectAction);
-            },
-            setActiveGroup: function(action){
-                this.set('activeGroup', action);
             },
             selectAction: function(action){
                 if(action.type === 'query'){
@@ -91,13 +64,6 @@ define(
             }
         },
         controller: contextMenuController,
-        groupView: Ember.View.extend({
-            tagName: 'li',
-            classNameBindings: ['isActive:active'],
-            isActive: function(){
-                return this.get('action').name === this.get('parentView.controller.activeGroup').name;
-             }.property('parentView.controller.activeGroup')
-        }),
         itemView: Ember.View.extend({
             tagName: 'li',
             isFastAction: function(){

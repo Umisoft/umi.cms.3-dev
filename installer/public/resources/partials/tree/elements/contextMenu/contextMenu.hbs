@@ -16,24 +16,13 @@
     </div>
     {{#if view.isOpen}}
         <div class="umi-tree-drop-down s-unselectable">
-            <ul class="button-group">
-                {{#each view.controller.actionList}}
-                    {{#view view.groupView action=this}}
-                        <span class="small button square white" {{action "setActiveGroup" this}}>
-                            <i class="icon icon-{{unbound name}}"></i>
-                        </span>
+            <ul class="list-action">
+                {{#each actionList}}
+                    {{#view view.itemView action=this}}
+                        <i {{bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{action 'toggleFastAction' this}}></i>
+                        <span {{action 'selectAction' this}}>{{displayName}}</span>
                     {{/view}}
                 {{/each}}
-                {{#with view.controller.activeGroup}}
-                    <ul class="list-action">
-                        {{#each list}}
-                            {{#view view.itemView action=this}}
-                                <i {{bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{action 'toggleFastAction' this}}></i>
-                                <span {{action 'selectAction' this}}>{{displayName}}</span>
-                            {{/view}}
-                        {{/each}}
-                    </ul>
-                {{/with}}
             </ul>
         </div>
     {{/if}}
