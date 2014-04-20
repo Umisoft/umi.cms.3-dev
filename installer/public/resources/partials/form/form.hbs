@@ -45,15 +45,17 @@
             {{/if}}
         {{/view}}
     </li>
-    <li>
-        <span class="button white square" {{action 'toggleProperty' 'active'}}>
-            {{#if model.object.active}}
-                <i class="icon icon-pause"></i>
-            {{else}}
-                <i class="icon icon-pause white"></i>
-            {{/if}}
-        </span>
-    </li>
+    {{#if switchActivity}}
+        <li>
+            <span class="button white square" {{action 'switchActivity'}}>
+                {{#if model.object.active}}
+                    <i class="icon icon-pause"></i>
+                {{else}}
+                    <i class="icon icon-pause white"></i>
+                {{/if}}
+            </span>
+        </li>
+    {{/if}}
     <!-- Бэкапы -->
     {{#if hasBackups}}
         {{#view "formControlDropUp" tagName="li"}}

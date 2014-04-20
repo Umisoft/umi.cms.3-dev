@@ -106,19 +106,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает селектор для выборки постов.
-     * @param int $limit максимальное количество постов
      * @return CmsSelector|BlogPost[]
      */
-    public function getPosts($limit = null)
+    public function getPosts()
     {
-        $posts = $this->post()->select()
+        return $this->post()->select()
             ->orderBy(BlogPost::FIELD_PUBLISH_TIME, CmsSelector::ORDER_DESC);
-
-        if ($limit) {
-            $posts->limit($limit);
-        }
-
-        return $posts;
     }
 
     /**
@@ -150,12 +143,11 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выборки постов указанных категорий.
      * @param BlogCategory[] $categories список GUID категорий блога
-     * @param int $limit максимальное количество постов
      * @return CmsSelector|BlogCategory[]
      */
-    public function getCategoryPost(array $categories = [], $limit = null)
+    public function getCategoryPost(array $categories = [])
     {
-        $posts = $this->getPosts($limit);
+        $posts = $this->getPosts();
 
         $posts->begin(IFieldConditionGroup::MODE_OR);
         foreach ($categories as $category) {
@@ -169,12 +161,11 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выборки постов указанных тэгов.
      * @param BlogTag[] $tags список GUID тэгов постов
-     * @param int $limit максимальное количество постов
      * @return CmsSelector|BlogPost[]
      */
-    public function getTagPost(array $tags = [], $limit = null)
+    public function getTagPost(array $tags = [])
     {
-        $posts = $this->getPosts($limit);
+        $posts = $this->getPosts();
 
         $posts->begin(IFieldConditionGroup::MODE_OR);
         foreach ($tags as $tag) {
@@ -188,34 +179,20 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выборки постов в указанной категории.
      * @param BlogCategory|null $parentCategory GUID категории
-     * @param int $limit максимальное количество категорий
      * @return CmsSelector|BlogPost[]
      */
-    public function getCategories(BlogCategory $parentCategory = null, $limit = null)
+    public function getCategories(BlogCategory $parentCategory = null)
     {
-        $categories = $this->category()->selectChildren($parentCategory);
-
-        if ($limit) {
-            $categories->limit($limit);
-        }
-
-        return $categories;
+        return $this->category()->selectChildren($parentCategory);
     }
 
     /**
      * Возвращает селектор для выборки тэгов.
-     * @param int $limit максимальное количество тэгов
      * @return CmsSelector|BlogTag[]
      */
-    public function getTags($limit = null)
+    public function getTags()
     {
-        $tags = $this->tag()->select();
-
-        if ($limit) {
-            $tags->limit($limit);
-        }
-
-        return $tags;
+        return $this->tag()->select();
     }
 
     /**

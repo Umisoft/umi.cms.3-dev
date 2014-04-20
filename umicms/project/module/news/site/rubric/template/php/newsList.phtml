@@ -1,13 +1,13 @@
 <?php
 /**
- * @var umi\orm\selector\ISelector $news
+ * @var umicms\orm\selector\CmsSelector $list
  * @var umicms\project\module\news\api\object\NewsItem $newsItem
  */
 ?>
-<?php if ($news->getTotal()) :?>
+<?php if ($list->getTotal()) :?>
 
     <ul>
-        <?php foreach ($news as $newsItem) : ?>
+        <?php foreach ($list as $newsItem) : ?>
             <li>
                 <?= $this->widget('news.item.view', ['newsItem' => $newsItem, 'template' => 'shortView']); ?>
             </li>

@@ -59,9 +59,13 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionCompone
      */
     const ACTION_VIEW_ON_SITE = 'viewOnSite';
     /**
-     * Действие для изменения активности
+     * Действие для активации объекта
      */
-    const ACTION_SWITCH_ACTIVITY = 'switchActivity';
+    const ACTION_ACTIVATE = 'activate';
+    /**
+     * Действие для деактивации объекта
+     */
+    const ACTION_DEACTIVATE = 'deactivate';
     /**
      * Действие для изменения ЧПУ объекта
      */
@@ -216,7 +220,8 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionCompone
         $collection = $this->getCollection();
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $defaultActions[] = self::ACTION_SWITCH_ACTIVITY;
+            $defaultActions[] = self::ACTION_ACTIVATE;
+            $defaultActions[] = self::ACTION_DEACTIVATE;
         }
         if ($collection instanceof SimpleHierarchicCollection) {
             $defaultActions[] = self::ACTION_MOVE;

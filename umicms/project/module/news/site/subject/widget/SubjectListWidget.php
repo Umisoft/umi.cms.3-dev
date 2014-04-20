@@ -9,23 +9,14 @@
 
 namespace umicms\project\module\news\site\subject\widget;
 
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\news\api\NewsModule;
-use umicms\hmvc\widget\BaseWidget;
 
 /**
  * Виджет для вывода списка новостных сюжетов
  */
-class SubjectListWidget extends BaseWidget
+class SubjectListWidget extends BaseListWidget
 {
-    /**
-     * @var string $template имя шаблона, по которому выводится виджет
-     */
-    public $template = 'list';
-    /**
-     * @var int $limit максимальное количество выводимых сюжетов.
-     * Если не указано, выводятся все сюжеты.
-     */
-    public $limit;
     /**
      * @var NewsModule $api API модуля "Новости"
      */
@@ -43,14 +34,9 @@ class SubjectListWidget extends BaseWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
-        return $this->createResult(
-            $this->template,
-            [
-                'subjects' => $this->api->getSubjects($this->limit)
-            ]
-        );
+        return $this->api->getSubjects();
     }
 }
  

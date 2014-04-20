@@ -155,6 +155,9 @@ define(['App'], function(UMI){
                                     self.get('root')[0].updateChildren(id, parentId);
                                 }
                             });
+                        },
+                        function(error){
+                            self.send('backgroundError', error);
                         }
                     );
                 }
