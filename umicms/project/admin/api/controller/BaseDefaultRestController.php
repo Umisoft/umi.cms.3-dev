@@ -178,14 +178,10 @@ abstract class BaseDefaultRestController extends BaseSecureController implements
             );
         }
 
-        /**
-         * @var DateTime $dateTime
-         */
-        $dateTime = $object->getValue($propertyName);
-
-        $dateTime->setTimestamp(strtotime($value['date']));
-        if (isset($value['timezone'])) {
-            $dateTime->setTimezone(new \DateTimeZone($value['timezone']));
+        if ($value['date']) {
+            $object->setValue($propertyName, new \DateTime($value['date']));
+        } else {
+            $object->setValue($propertyName, null);
         }
     }
 

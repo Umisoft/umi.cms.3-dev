@@ -296,8 +296,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('h1', 'Девиантное поведение призраков и домовых и способы влияния на него')
             ->setValue('contents', '<p>Причины девиантного поведения домашних призраков кроются безусловно во влиянии MTV и пропаганде агрессивной альтернативной музыки.<br /><br />Также наблюдается рост домовых, практикующих экстремальное катание на роликовых коньках, скейт-бордах, BMX, что повышает общий уровень черепно-мозговых травм среди паранормальных существ. <br /><br />Не может не оказывать влияния проникновение культуры эмо в быт и уклад домашних призраков, что ведет к росту самоубийств и депрессивных состояний среди этих в общем-то жизнерадостных<br /> созданий.<br /><br />В качестве метода влияния на отклонения у домашний призраков я вижу их обращение в более позитивные и миролюбивые культуры, их пропаганда и популяризация в среде домашних призраков.<br /><br /><strong>Екатерина Джа-Дуплинская</strong></p>')
             ->setValue('slug', 'deviant')
-            ->setGUID('8e675484-bea4-4fb5-9802-4750cc21e509');
-        $post1->getValue('publishTime')->setTimestamp(strtotime('2010-08-11 17:35:00'));
+            ->setGUID('8e675484-bea4-4fb5-9802-4750cc21e509')
+            ->setValue('publishTime', new \DateTime('2010-08-11 17:35:00'));
 
         $post2 = $postCollection->add()
             ->setValue('displayName', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
@@ -306,8 +306,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>')
             ->setValue('category', $category)
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj')
-            ->setGUID('2ff677ee-765c-42ee-bb97-778f03f00c50');
-        $post2->getValue('publishTime')->setTimestamp(strtotime('2010-08-14 17:35:00'));
+            ->setGUID('2ff677ee-765c-42ee-bb97-778f03f00c50')
+            ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
 
         $authorCollection->add()
             ->setValue('displayName', 'Бивес')
@@ -321,26 +321,26 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $comment1 = $commentCollection->add('comment1')
             ->setValue('displayName', 'Re: Девиантное поведение призраков и домовых и способы влияния на него')
             ->setValue('contents', '<p>О да. Недавно в нашем замке один милый маленький призрак покончил с собой. Мы были уверены, что это невозможно, но каким-то образом ему удалось раствориться в воде, наполняющей наш древний колодец.</p>')
-            ->setValue('post', $post1);
-        $comment1->getValue('publishTime')->setTimestamp(strtotime('2012-11-15 15:07:31'));
+            ->setValue('post', $post1)
+            ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'));
 
         $comment2 = $commentCollection->add('comment2', IObjectType::BASE, $comment1)
             ->setValue('displayName', 'Re: Re: Девиантное поведение призраков и домовых и способы влияния на него')
             ->setValue('contents', '<p>Возможно, вашего призрака еще удастся спасти. Попробуйте насыпать в колодец пару столовых ложек молотых семян бессмертника. Это должно помочь призраку снова сконденсировать свое нематериальное тело. И да, важно, чтобы семена были собраны в новолуние.</p>')
-            ->setValue('post', $post1);
-        $comment2->getValue('publishTime')->setTimestamp(strtotime('2012-11-15 15:11:21'));
+            ->setValue('post', $post1)
+            ->setValue('publishTime', new \DateTime('2012-11-15 15:11:21'));
 
-        $comment3 = $commentCollection->add('comment3')
+        $commentCollection->add('comment3')
             ->setValue('displayName', 'важный вопрос')
             ->setValue('contents', '<p>Существует ли разговорник для общения с НЛО? Основы этикета?</p>')
-            ->setValue('post', $post2);
-        $comment3->getValue('publishTime')->setTimestamp(strtotime('2012-11-15 15:05:34'));
+            ->setValue('post', $post2)
+            ->setValue('publishTime', new \DateTime('2012-11-15 15:05:34'));
 
-        $comment4 = $commentCollection->add('comment1', IObjectType::BASE, $comment2)
+        $commentCollection->add('comment1', IObjectType::BASE, $comment2)
             ->setValue('displayName', 'Вложенный комментарий')
             ->setValue('contents', '<p>О, да. Это вложенный комментарий.</p>')
-            ->setValue('post', $post1);
-        $comment4->getValue('publishTime')->setTimestamp(strtotime('2012-11-15 15:07:31'));
+            ->setValue('post', $post1)
+            ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'));
 
         $rssScenarioCollection->add()
             ->setValue('displayName', 'Scripting News')
@@ -470,9 +470,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>По результатам исследования Ассоциации любителей и ненавистников зомби, главной причиной социопатии зомби является еда из ресторанов МакДональдс.  Ученые давно бьют тревогу по поводу образа жизни молодых зомби и сейчас активно занялись пропагандой спорта, фитнес-клубов, активных игр на воздухе и популяризацией вегетарианской пищи среди представителей этого вида.  Пока ученые занимаются всеми этими вещами, молодые зомби курят по подъездам, впадают в депрессивные состоянии, примыкают к эмо-группировкам и совершенно не хотят работать.  &laquo;А между тем, этих ребят еще можно спасти, &mdash; комментирует Виктория Евдокимова, Охотница за привидениями со стажем, &mdash; и это в силах каждого из нас. Если увидите на улице одинокого зомби, подойдите и поинтересуйтесь, как обстоят дела с его девчонкой, какие у него планы на выходные, и что он делал прошлым летом&raquo;.</p>')
             ->setValue('rubric', $rubric)
             ->setGUID('d6eb9ad1-667e-429d-a476-fa64c5eec115')
-            ->setValue('slug', 'zombi');
-
-        $item->getValue('date')->setTimestamp(strtotime('2010-08-01 17:34:00'));
+            ->setValue('slug', 'zombi')
+            ->setValue('date', new \DateTime('2010-08-01 17:34:00'));
 
         $subjects = $item->getValue('subjects');
         $subjects->attach($subject1);
@@ -487,7 +486,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('rubric', $rubric)
             ->setGUID('35806ed8-1306-41b5-bbf9-fe2faedfc835')
             ->setValue('slug', 'bikini')
-            ->getValue('date')->setTimestamp(strtotime('2010-08-03 17:36:00'));
+            ->setValue('date', new \DateTime('2010-08-03 17:36:00'));
 
         foreach (range(10, 50) as $num) {
             $newsCollection->add()
@@ -497,8 +496,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 ->setValue('announcement', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>')
                 ->setValue('contents', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>')
                 ->setValue('rubric', $rubric)
-                ->setValue('slug', 'privideniya-'.$num)
-                ->getValue('date')->setTimestamp(strtotime('2010-08-02 17:35:00'));
+                ->setValue('slug', 'privideniya-'.$num);
         }
 
         $rssScenarioCollection->add()
@@ -542,7 +540,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('rubric', $gratitude)
             ->setValue('slug', 'natasha')
             ->setGUID('da5ec9a8-229c-4120-949c-2bb9eb641f24')
-            ->getValue('date')->setTimestamp(strtotime('2013-06-24 19:11'));
+            ->setValue('date', new \DateTime('2013-06-24 19:11'));
 
         $newsCollection->add()
             ->setValue('displayName', 'Александр')
@@ -553,7 +551,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('rubric', $gratitude)
             ->setGUID('60744128-996a-4cea-a937-c20ebc5c8c77')
             ->setValue('slug', 'aleksandr')
-            ->getValue('date')->setTimestamp(strtotime('2013-06-24 19:14'));
+            ->setValue('date', new \DateTime('2013-06-24 19:14'));
 
     }
 
