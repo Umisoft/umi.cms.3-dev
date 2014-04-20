@@ -17,7 +17,7 @@ return [
     DefaultSiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSiteHierarchicPageComponent',
     DefaultSiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
     DefaultSiteHierarchicPageComponent::OPTION_CONTROLLERS => [
-        'addComment' => __NAMESPACE__ . '\controller\BlogAddComment',
+        'addComment' => __NAMESPACE__ . '\controller\BlogAddCommentController',
     ],
     DefaultSiteHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogCommentWidget',

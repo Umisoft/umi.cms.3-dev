@@ -23,7 +23,7 @@ use umicms\project\module\blog\api\object\BlogComment;
 /**
  * Контроллер добавления комментария.
  */
-class BlogAddComment extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class BlogAddCommentController extends BaseSecureController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;

@@ -9,4 +9,5 @@
 <?= $this->widget('blog.category.list', ['parentCategory' => $page, 'template' => 'list']); ?>
 <?= $this->widget('blog.category.postList', ['categories' => [$page], 'template' => 'postList']); ?>
 
-<?= $this->widget('blog.post.addPost', ['blogCategory' => $page, 'template' => 'addPost']); ?>
+<h1>Создать пост</h1>
+<?= $this->widget('blog.post.addPost', ['blogCategory' => $page, 'template' => 'addPostForm']); ?>

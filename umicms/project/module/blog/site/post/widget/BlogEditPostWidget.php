@@ -13,22 +13,21 @@ use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogCategory;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет добавления поста.
+ * Виджет редактирования поста.
  */
-class BlogAddPostWidget extends BaseSecureWidget
+class BlogEditPostWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'addPostForm';
+    public $template = 'addPost';
     /**
-     * @var string|BlogCategory $blogCategory рубрика или GUID родительской рубрики
+     * @var string|BlogPost $blogPost пост или GUID редактируемого поста
      */
-    public $blogCategory;
+    public $blogPost;
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -48,28 +47,25 @@ class BlogAddPostWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        if (is_string($this->blogCategory)) {
-            $this->blogCategory = $this->api->category()->get($this->blogCategory);
+        if (is_string($this->blogPost)) {
+            $this->blogPost = $this->api->post()->get($this->blogPost);
         }
 
-        if (isset($this->blogCategory) && !$this->blogCategory instanceof BlogCategory) {
+        if (isset($this->blogPost) && !$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param} should be instance of "{class}".',
                     [
-                        'param' => 'blogCategory',
-                        'class' => 'BlogCategory'
+                        'param' => 'blogPost',
+                        'class' => 'BlogPost'
                     ]
                 )
             );
         }
 
-        $post = $this->api->post()->add();
-        $post->category = $this->blogCategory;
+        $formAddPost = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $this->blogPost);
 
-        $formAddPost = $this->api->post()->getForm(BlogPost::FORM_ADD_POST, IObjectType::BASE, $post);
-
-        $formAddPost->setAction($this->getUrl('addPost'));
+        $formAddPost->setAction($this->getUrl('editPost', ['id' => $this->blogPost->getId()]));
         $formAddPost->setMethod('post');
 
         return $this->createResult(

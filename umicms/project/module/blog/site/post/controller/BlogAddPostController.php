@@ -20,7 +20,7 @@ use umicms\hmvc\controller\BaseSecureController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
-class BlogAddPost extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class BlogAddPostController extends BaseSecureController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;

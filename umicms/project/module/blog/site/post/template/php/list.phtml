@@ -9,6 +9,7 @@
         <?php foreach ($posts as $blogPost) : ?>
             <li>
                 <?= $this->widget('blog.post.view', ['blogPost' => $blogPost, 'template' => 'shortView']); ?>
+                <?= $this->widget('blog.post.editPostLink', ['blogPost' => $blogPost, 'template' => 'editPostLink']); ?>
             </li>
         <?php endforeach;?>
     </ul>
