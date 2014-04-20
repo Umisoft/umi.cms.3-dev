@@ -1,11 +1,8 @@
-{{#if view.controller.selectAction}}
+{{#if controllers.treeControl.selectAction}}
     <li class="tree-control-select-action">
-        <span class="tiny button flat square" {{action 'selectAction' view.controller.selectAction}}>
-            <i {{bind-attr class=":icon view.controller.selectActionIcon"}}></i>
+        <span class="tiny button flat square" {{action 'selectAction' controllers.treeControl.selectAction}}>
+            <i {{bind-attr class=":icon controllers.treeControl.selectActionIcon"}}></i>
         </span>
-        <div class="tree-control-select-action-tooltip">
-            {{view.controller.selectAction.displayName}}
-        </div>
     </li>
 {{/if}}
 <li class="umi-tree-drop-down-wrapper">
@@ -17,7 +14,7 @@
     {{#if view.isOpen}}
         <div class="umi-tree-drop-down s-unselectable">
             <ul class="list-action">
-                {{#each actionList}}
+                {{#each controllers.treeControl.actionList}}
                     {{#view view.itemView action=this}}
                         <i {{bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{action 'toggleFastAction' this}}></i>
                         <span {{action 'selectAction' this}}>{{displayName}}</span>
