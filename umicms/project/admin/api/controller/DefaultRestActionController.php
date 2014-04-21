@@ -20,6 +20,7 @@ use umicms\exception\RuntimeException;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\PageCollection;
 use umicms\orm\collection\PageHierarchicCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
@@ -111,9 +112,20 @@ class DefaultRestActionController extends BaseDefaultRestController
     protected function actionGetEditForm()
     {
         $typeName = $this->getRequiredQueryVar('type');
-        $formName = $this->getRequiredQueryVar('form');
 
-        return $this->getCollection()->getForm($formName, $typeName);
+        return $this->getCollection()->getForm(ICmsCollection::FORM_EDIT, $typeName);
+    }
+
+    /**
+     * Возвращает форму для создания объекта коллекции.
+     * @throws HttpException
+     * @return IForm
+     */
+    protected function actionGetCreateForm()
+    {
+        $typeName = $this->getRequiredQueryVar('type');
+
+        return $this->getCollection()->getForm(ICmsCollection::FORM_CREATE, $typeName);
     }
 
     protected function changeSlug()

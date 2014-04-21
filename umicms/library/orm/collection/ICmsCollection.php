@@ -28,6 +28,10 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
      * Имя формы для редактирования объектов по умолчанию
      */
     const FORM_EDIT = 'edit';
+    /**
+     * Имя формы для создания объектов по умолчанию
+     */
+    const FORM_CREATE = 'create';
 
     /**
      * Возвращает тип коллекции.
