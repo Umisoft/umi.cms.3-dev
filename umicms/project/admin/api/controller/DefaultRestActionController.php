@@ -128,6 +128,12 @@ class DefaultRestActionController extends BaseDefaultRestController
         return $this->getCollection()->getForm(ICmsCollection::FORM_CREATE, $typeName);
     }
 
+    /**
+     * Изменяет последнюю часть ЧПУ страницы.
+     * @throws RuntimeException если невозможно изменить
+     * @throws HttpException если пришли неверные данные
+     * @return ICmsPage
+     */
     protected function changeSlug()
     {
 

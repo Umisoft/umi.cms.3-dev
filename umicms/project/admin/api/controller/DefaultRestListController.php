@@ -365,7 +365,7 @@ class DefaultRestListController extends BaseDefaultRestController implements IOb
             );
         }
 
-        $typeName = isset($data['typeName']) ? $data['typeName'] : IObjectType::BASE;
+        $typeName = isset($data['type']) ? $data['type'] : IObjectType::BASE;
         $parent = null;
         if (isset($data['parent'])) {
             /**
