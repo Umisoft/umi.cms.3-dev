@@ -98,13 +98,13 @@ define(
                         var current = list.findBy('id', backup.id);
                         Ember.set(current, 'isActive', true);
                     };
+                    object.rollback();
                     if(backup.current){
-                        object.rollback();
                         setCurrent();
                     } else{
                         var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
                         $.get(self.get('settings').actions.getBackup.source + params).then(function(data){
-                            object.setProperties(data.result.backup);
+                            object.setProperties(data.result.getBackup);
                             setCurrent();
                         });
                     }
