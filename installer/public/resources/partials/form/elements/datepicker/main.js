@@ -28,6 +28,8 @@ define(['App'], function(UMI){
                     }
                     dateProperty.date = value;
                     dateProperty = JSON.stringify(dateProperty);
+                } else{
+                    dateProperty = null;
                 }
                 this.get('object').set(this.get('property'), dateProperty);
             }.observes('valueObject'),
