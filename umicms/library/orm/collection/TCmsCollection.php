@@ -91,8 +91,8 @@ trait TCmsCollection
             );
         }
 
+        /** @noinspection PhpUndefinedMethodInspection */
         /** @noinspection PhpUndefinedClassInspection */
-
         return parent::delete($object);
     }
 
