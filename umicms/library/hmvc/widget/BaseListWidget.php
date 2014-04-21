@@ -160,7 +160,8 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
             );
         }
 
-        $pagination = call_user_func([$helper, $this->pagination['type']], $paginator, (int) $this->pagination['pagesCount']);
+        $pagesCount = isset($this->pagination['pagesCount']) ? (int) $this->pagination['pagesCount'] : null;
+        $pagination = call_user_func([$helper, $this->pagination['type']], $paginator, $pagesCount);
 
         return array_merge($pagination, $helper->buildLinksContext($pagination, $this->pagination['pageParam']));
     }

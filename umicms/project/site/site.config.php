@@ -8,6 +8,9 @@
 
 namespace umicms\project\site;
 
+use umi\route\IRouteFactory;
+use umicms\project\site\controller\SiteRestWidgetController;
+
 return [
     SiteApplication::OPTION_CLASS => 'umicms\project\site\SiteApplication',
 
@@ -30,6 +33,7 @@ return [
     SiteApplication::OPTION_CONTROLLERS => [
         SiteApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
         SiteApplication::LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
+        SiteRestWidgetController::NAME => __NAMESPACE__ . '\controller\SiteRestWidgetController',
     ],
 
     SiteApplication::OPTION_WIDGET => [
@@ -39,10 +43,17 @@ return [
     SiteApplication::OPTION_VIEW        => [
         'type'      => 'twig',
         'extension' => 'twig',
-        'directory' => __DIR__ . '/template/twig'
+        'directories' => __DIR__ . '/template/twig'
     ],
 
     SiteApplication::OPTION_ROUTES => [
+        'widget' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/widget/{path:string}',
+            'defaults' => [
+                'controller' => SiteRestWidgetController::NAME
+            ]
+        ],
         'page' => [
             'type' => 'SiteStaticPageRoute'
         ],
