@@ -10,9 +10,10 @@ define(
         './elements/select/main',
         './elements/multiSelect/main',
         './elements/datepicker/main',
-        './elements/magellan/main'
+        './elements/magellan/main',
+        './formTypes/createForm/main'
     ],
-    function(UMI, formTpl, mixin, inputElement, checkboxElement, textareaElement, htmlEditorElement, selectElement, multiSelectElement, datepickerElement, magellanElement){
+    function(UMI, formTpl, mixin, inputElement, checkboxElement, textareaElement, htmlEditorElement, selectElement, multiSelectElement, datepickerElement, magellanElement, createForm){
         'use strict';
 
         Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
@@ -97,13 +98,13 @@ define(
                         var current = list.findBy('id', backup.id);
                         Ember.set(current, 'isActive', true);
                     };
+                    object.rollback();
                     if(backup.current){
-                        object.rollback();
                         setCurrent();
                     } else{
                         var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
                         $.get(self.get('settings').actions.getBackup.source + params).then(function(data){
-                            object.setProperties(data.result.backup);
+                            object.setProperties(data.result.getBackup);
                             setCurrent();
                         });
                     }
@@ -247,4 +248,5 @@ define(
             }
         });
 
+        createForm();
     });

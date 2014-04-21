@@ -167,7 +167,7 @@ define([], function(){
 
                 },
 
-                createForm: function(object){
+                getCreateForm: function(object){
                     this.transitionTo('context', 'createForm', object.get('id'));
                 },
 
@@ -440,7 +440,7 @@ define([], function(){
                     var actionParams = {};
 
                     if(actionName === 'createForm'){
-                        routeData.object = self.store.createRecord(collectionName, {
+                        routeData.createObject = self.store.createRecord(collectionName, {
                             parent: model
                         });
                     }
