@@ -20,7 +20,8 @@ return [
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/layout/form/base.edit.config.php}'
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/layout/form/base.edit.config.php}',
+            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/layout/form/base.create.config.php}'
         ]
     ]
 ];

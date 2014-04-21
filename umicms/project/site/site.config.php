@@ -37,7 +37,7 @@ return [
     ],
 
     SiteApplication::OPTION_WIDGET => [
-        SiteApplication::ERROR_WIDGET => __NAMESPACE__ . '\widget\ErrorWidget',
+        SiteApplication::ERROR_WIDGET => __NAMESPACE__ . '\widget\ErrorWidget'
     ],
 
     SiteApplication::OPTION_VIEW        => [

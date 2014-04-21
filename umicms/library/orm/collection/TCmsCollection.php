@@ -17,7 +17,7 @@ use umi\orm\metadata\IObjectType;
 use umi\spl\config\TConfigSupport;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\OutOfBoundsException;
-use umicms\orm\object\CmsObject;
+use umicms\orm\object\ICmsObject;
 use umicms\orm\selector\CmsSelector;
 
 /**
@@ -85,7 +85,7 @@ trait TCmsCollection
     /**
      * @see ICmsCollection::getForm()
      */
-    public function getForm($formName, $typeName = IObjectType::BASE, CmsObject $object = null)
+    public function getForm($formName, $typeName = IObjectType::BASE, ICmsObject $object = null)
     {
         if (!$this->hasForm($formName, $typeName)) {
             throw new NonexistentEntityException(

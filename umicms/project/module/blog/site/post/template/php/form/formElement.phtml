@@ -1,0 +1,43 @@
+<?php
+/**
+ * @var \umi\form\IFormEntity $element
+ */
+
+use umi\form\element\Checkbox;
+use umi\form\element\CheckboxGroup;
+use umi\form\element\IFormButton;
+use umi\form\element\IFormInput;
+use umi\form\element\Select;
+use umi\form\element\Textarea;
+
+switch(true)
+{
+    case $element instanceof Textarea: {
+        echo $this->render('form/element/textarea.phtml', ['textarea' => $element]);
+        break;
+    }
+    case $element instanceof Select: {
+        echo $this->render('form/element/select.phtml', ['select' => $element]);
+        break;
+    }
+    case $element instanceof CheckboxGroup: {
+        echo $this->render('form/element/checkboxGroup.phtml', ['checkboxGroup' => $element]);
+        break;
+    }
+    case $element instanceof Checkbox: {
+        echo $this->render('form/element/checkbox.phtml', ['checkbox' => $element]);
+        break;
+    }
+    case $element instanceof IFormButton: {
+        echo $this->render('form/element/button.phtml', ['button' => $element]);
+        break;
+    }
+    case $element instanceof IFormInput: {
+        echo $this->render('form/element/input.phtml', ['input' => $element]);
+        break;
+    }
+    default:
+        throw new InvalidArgumentException(
+            sprintf('Cannot build element "%s". Element type is unknown.', $element->getName())
+        );
+}

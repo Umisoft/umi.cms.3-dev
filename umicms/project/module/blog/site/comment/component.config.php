@@ -9,6 +9,7 @@
 namespace umicms\project\module\blog\site\comment;
 
 use umi\acl\IAclFactory;
+use umi\route\IRouteFactory;
 use umicms\project\site\component\DefaultSiteHierarchicPageComponent;
 
 return [
@@ -16,10 +17,12 @@ return [
     DefaultSiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSiteHierarchicPageComponent',
     DefaultSiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
     DefaultSiteHierarchicPageComponent::OPTION_CONTROLLERS => [
+        'addComment' => __NAMESPACE__ . '\controller\BlogAddCommentController',
     ],
     DefaultSiteHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogCommentWidget',
-        'list' => __NAMESPACE__ . '\widget\BlogCommentListWidget'
+        'list' => __NAMESPACE__ . '\widget\BlogCommentListWidget',
+        'addComment' => __NAMESPACE__ . '\widget\BlogAddCommentWidget'
     ],
     DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
         'type' => 'php',
@@ -40,6 +43,16 @@ return [
                 'controller:item' => [],
                 'widget:view' => [],
                 'widget:list' => []
+            ]
+        ]
+    ],
+    DefaultSiteHierarchicPageComponent::OPTION_ROUTES => [
+        'addComment' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/addComment/{parent:integer}',
+            'defaults' => [
+                'controller' => 'addComment',
+                'parent' => null
             ]
         ]
     ]
