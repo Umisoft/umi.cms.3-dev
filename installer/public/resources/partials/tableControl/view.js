@@ -93,7 +93,7 @@ define(['App'], function(UMI){
                                 $('body').on('mouseup.umi.tableControl', function(){
                                     $(handler).removeClass('on-resize');
                                     $('body').off('mousemove');
-                                    $('body').off('.umi.tableControl.mouseup');
+                                    $('body').off('mouseup.umi.tableControl');
                                     scrollContent.refresh();
                                 });
                             });
