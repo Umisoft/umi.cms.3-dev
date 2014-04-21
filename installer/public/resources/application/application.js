@@ -215,6 +215,17 @@ define(
             }
         });
 
+        $.ajaxSetup({
+            error: function(error){
+                var activeTransition = UMI.__container__.lookup('router:main').router.activeTransition;
+                if(activeTransition){
+                    activeTransition.send('backgroundError', error);
+                } else{
+                    UMI.__container__.lookup('route:application').send('backgroundError', error);
+                }
+            }
+        });
+
         templates(UMI);
         models(UMI);
         router(UMI);

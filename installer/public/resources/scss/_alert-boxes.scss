@@ -12,10 +12,11 @@ $umi-alert-wrapper-index: 1000;
         }
     }
     &.alert, &.error{
-        background-color: lighten($alert-color, 40%);
-        border-color: #F5F5F5;
-        .close{
-            color: darken($alert-color, 30%);
+        background-color: #9C2625;
+        border-color: #AA0909;
+        color: #fff;
+        .subheader, .close{
+            color: #fff;
         }
     }
     &.secondary{

@@ -6615,10 +6615,11 @@ label {
     .alert-box.success .close {
       color: #183e26; }
   .alert-box.alert, .alert-box.error {
-    background-color: #f1dcdc;
-    border-color: #F5F5F5; }
-    .alert-box.alert .close, .alert-box.error .close {
-      color: #4b1e1d; }
+    background-color: #9C2625;
+    border-color: #AA0909;
+    color: #fff; }
+    .alert-box.alert .subheader, .alert-box.alert .close, .alert-box.error .subheader, .alert-box.error .close {
+      color: #fff; }
   .alert-box.secondary {
     background-color: white; }
     .alert-box.secondary .close {
