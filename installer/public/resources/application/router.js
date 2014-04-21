@@ -167,7 +167,7 @@ define([], function(){
 
                 },
 
-                createForm: function(object){
+                getCreateForm: function(object){
                     this.transitionTo('context', 'createForm', object.get('id'));
                 },
 
