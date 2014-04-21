@@ -13,6 +13,7 @@ use umi\hmvc\acl\IComponentRoleResolver;
 use umi\hmvc\component\IComponent;
 use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\CmsObject;
 
@@ -21,7 +22,8 @@ use umicms\orm\object\CmsObject;
  *
  * @property IManyToManyObjectSet $groups группы, в которые входит пользователь
  */
-abstract class BaseUser extends CmsObject implements IComponentRoleResolver, IRecyclableObject, IActiveAccessibleObject
+abstract class BaseUser extends CmsObject
+    implements IComponentRoleResolver, IRecyclableObject, IActiveAccessibleObject, ILockedAccessibleObject
 {
 
     /**

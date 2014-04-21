@@ -27,7 +27,6 @@ class CmsObjectSerializer extends BaseSerializer
         ICmsObject::FIELD_IDENTIFY,
         ICmsObject::FIELD_GUID,
         ICmsObject::FIELD_VERSION,
-        ICmsObject::FIELD_LOCKED,
         ICmsObject::FIELD_DISPLAY_NAME,
         IActiveAccessibleObject::FIELD_ACTIVE
     ];

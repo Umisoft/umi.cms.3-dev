@@ -61,12 +61,6 @@ return [
             'columnName' => 'active',
             'defaultValue' => 1
         ],
-        BlogAuthor::FIELD_LOCKED => [
-            'type' => IField::TYPE_BOOL,
-            'columnName' => 'locked',
-            'readOnly' => true,
-            'defaultValue' => 0
-        ],
         BlogAuthor::FIELD_TRASHED => [
             'type' => IField::TYPE_BOOL,
             'columnName' => 'trashed',
@@ -152,7 +146,6 @@ return [
                 BlogAuthor::FIELD_VERSION,
                 BlogAuthor::FIELD_DISPLAY_NAME,
                 BlogAuthor::FIELD_ACTIVE,
-                BlogAuthor::FIELD_LOCKED,
                 BlogAuthor::FIELD_TRASHED,
                 BlogAuthor::FIELD_CREATED,
                 BlogAuthor::FIELD_UPDATED,

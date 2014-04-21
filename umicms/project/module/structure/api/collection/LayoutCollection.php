@@ -10,6 +10,7 @@
 namespace umicms\project\module\structure\api\collection;
 
 use umi\orm\metadata\IObjectType;
+use umicms\orm\collection\behaviour\ILockedAccessibleCollection;
 use umicms\orm\collection\SimpleCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\structure\api\object\Layout;
@@ -24,7 +25,7 @@ use umicms\project\site\config\TSiteSettingsAware;
  * @method Layout getById($objectId, $withLocalization = false) Возвращает шаблон по id.
  * @method Layout add($typeName = IObjectType::BASE) Создает и возвращает шаблон.
  */
-class LayoutCollection extends SimpleCollection implements ISiteSettingsAware
+class LayoutCollection extends SimpleCollection implements ILockedAccessibleCollection, ISiteSettingsAware
 {
     use TSiteSettingsAware;
 

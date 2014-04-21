@@ -23,7 +23,6 @@ use umicms\project\module\blog\api\object\BlogComment;
  * @method CmsSelector|BlogComment[] select() Возвращает селектор для выбора комментария блога.
  * @method BlogComment get($guid, $withLocalization = false) Возвращает комментарий блога по его GUID.
  * @method BlogComment getById($objectId, $withLocalization = false) Возвращает комментарий блога по его id
- * @method BlogComment getByUri($uri, $withLocalization = false) Возвращает комментарий блога по его URI
  * @method BlogComment add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Создает и возвращает комментарий блога
  */
 class BlogCommentCollection extends SimpleHierarchicCollection implements IActiveAccessibleCollection

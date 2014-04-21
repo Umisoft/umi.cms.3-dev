@@ -117,6 +117,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $visitors = $groupCollection->add()
             ->setValue('displayName', 'Посетители');
+        $visitors->getProperty('locked')->setValue(true);
 
         $visitors->roles = [
             'project' => ['visitor'],
@@ -167,6 +168,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('login', 'sv')
             ->setValue('email', 'sv@umisoft.ru')
             ->setGUID('68347a1d-c6ea-49c0-9ec3-b7406e42b01e');
+        $sv->getProperty('locked')->setValue(true);
 
         $this->usersApi->setUserPassword($sv, '1');
 
@@ -199,6 +201,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $guest = $userCollection->add('guest')
             ->setValue('displayName', 'Гость')
             ->setGUID('552802d2-278c-46c2-9525-cd464bbed63e');
+        $guest->getProperty('locked')->setValue(true);
 
         $guest->groups->attach($visitors);
 
@@ -241,36 +244,48 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setGUID('e6b89f38-7af3-4bda-80fd-3d5a4cf080cf')
             ->setValue('inMenu', true)
             ->setValue('layout', $this->testLayout);
+
+        $blogPage->getProperty('locked')->setValue(true);
         $blogPage->getProperty('componentName')->setValue('blog');
         $blogPage->getProperty('componentPath')->setValue('blog');
 
         $category = $structureCollection->add('kategorii', 'system', $blogPage)
             ->setValue('displayName', 'Категория блога')
             ->setGUID('29449a5c-e0b0-42ad-9f1c-3d015540b024');
+
+        $category->getProperty('locked')->setValue(true);
         $category->getProperty('componentName')->setValue('category');
         $category->getProperty('componentPath')->setValue('blog.category');
 
         $tag = $structureCollection->add('blogtag', 'system', $blogPage)
             ->setValue('displayName', 'Тэг блога')
             ->setGUID('3fa39832-9239-48a5-a82a-1dd2fcd0f042');
+
+        $tag->getProperty('locked')->setValue(true);
         $tag->getProperty('componentName')->setValue('tag');
         $tag->getProperty('componentPath')->setValue('blog.tag');
 
         $post = $structureCollection->add('blogpost', 'system', $blogPage)
             ->setValue('displayName', 'Пост блога')
             ->setGUID('257fb155-9fbf-4b99-8b1c-c0ae179070ca');
+
+        $post->getProperty('locked')->setValue(true);
         $post->getProperty('componentName')->setValue('post');
         $post->getProperty('componentPath')->setValue('blog.post');
 
         $comment = $structureCollection->add('blogcomment', 'system', $blogPage)
             ->setValue('displayName', 'Комментарий блога')
             ->setGUID('2099184c-013c-4653-8882-21c06d5e4e83');
+
+        $comment->getProperty('locked')->setValue(true);
         $comment->getProperty('componentName')->setValue('comment');
         $comment->getProperty('componentPath')->setValue('blog.comment');
 
         $author = $structureCollection->add('authors', 'system', $blogPage)
             ->setValue('displayName', 'Авторы блога')
             ->setGUID('2ac90e34-16d0-4113-ab7c-de37c0287516');
+
+        $author->getProperty('locked')->setValue(true);
         $author->getProperty('componentName')->setValue('author');
         $author->getProperty('componentPath')->setValue('blog.author');
 
@@ -393,6 +408,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('inMenu', true)
             ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN)
             ->setValue('layout', $this->testLayout);
+
+        $newsPage->getProperty('locked')->setValue(true);
         $newsPage->getProperty('componentName')->setValue('news');
         $newsPage->getProperty('componentPath')->setValue('news');
 
@@ -400,6 +417,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Новостная рубрика')
             ->setGUID('9ee6745f-f40d-46d8-8043-d95959462811');
 
+        $rubric->getProperty('locked')->setValue(true);
         $rubric->getProperty('componentName')->setValue('rubric');
         $rubric->getProperty('componentPath')->setValue('news.rubric');
 
@@ -407,6 +425,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Новостной сюжет')
             ->setGUID('9ee6745f-f40d-46d8-8043-d95959462822');
 
+        $subject->getProperty('locked')->setValue(true);
         $subject->getProperty('componentName')->setValue('subject');
         $subject->getProperty('componentPath')->setValue('news.subject');
 
@@ -414,6 +433,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Новость')
             ->setGUID('9ee6745f-f40d-46d8-8043-d95959462833');
 
+        $item->getProperty('locked')->setValue(true);
         $item->getProperty('componentName')->setValue('item');
         $item->getProperty('componentPath')->setValue('news.item');
 
@@ -585,11 +605,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $structurePage = $structureCollection->add('structure', 'system')
             ->setValue('displayName', 'Структура');
+
+        $structurePage->getProperty('locked')->setValue(true);
         $structurePage->getProperty('componentName')->setValue('structure');
         $structurePage->getProperty('componentPath')->setValue('structure');
 
         $menuPage = $structureCollection->add('menu', 'system', $structurePage)
             ->setValue('displayName', 'Меню');
+
+        $menuPage->getProperty('locked')->setValue(true);
         $menuPage->getProperty('componentName')->setValue('menu');
         $menuPage->getProperty('componentPath')->setValue('structure.menu');
 
@@ -788,7 +812,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -842,7 +865,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
                     `display_name` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -880,7 +902,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -926,7 +947,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -962,7 +982,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
                     `display_name` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
@@ -1002,7 +1021,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -1039,7 +1057,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -1079,7 +1096,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
@@ -1110,7 +1126,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
@@ -1159,7 +1174,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `child_count` int(10) unsigned DEFAULT '0',
 
                     `display_name` varchar(255) DEFAULT NULL,
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
@@ -1197,7 +1211,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `version` int(10) unsigned DEFAULT '1',
                     `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
@@ -1239,7 +1252,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `version` int(10) unsigned DEFAULT '1',
                     `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
@@ -1274,7 +1286,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -1306,7 +1317,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
@@ -1337,7 +1347,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
@@ -1450,9 +1459,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var SimpleHierarchicCollection $structureCollection
          */
         $structureCollection = $this->getCollectionManager()->getCollection('structure');
-        $searchRoot = $structureCollection->add('search', 'system');
-        $searchRoot->setValue('displayName', 'Поиск')
+        $searchRoot = $structureCollection->add('search', 'system')
+            ->setValue('displayName', 'Поиск')
             ->setGUID('9ee6745f-f40d-46d8-8043-d901234628ce');
+
+        $searchRoot->getProperty('locked')->setValue(true);
         $searchRoot->getProperty('componentName')->setValue('search');
         $searchRoot->getProperty('componentPath')->setValue('search');
 
@@ -1467,7 +1478,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 `version` int(10) unsigned DEFAULT '1',
                 `type` varchar(255),
                 `display_name` varchar(255) DEFAULT NULL,
-                `locked` tinyint(1) unsigned DEFAULT '0',
                 `active` tinyint(1) unsigned DEFAULT '1',
                 `created` datetime DEFAULT NULL,
                 `updated` datetime DEFAULT NULL,
