@@ -168,17 +168,15 @@ abstract class BaseDefaultRestController extends BaseSecureController implements
 
     protected function setDateTimeValue(ICmsObject $object, $propertyName, $value)
     {
-
-        if (!is_array($value) || !isset($value['date'])) {
-            throw new UnexpectedValueException(
-                $this->translate(
-                    'Cannot set data for DateTime property "{propertyName}". Data should be an array an contain "date" option.',
-                    ['propertyName' => $propertyName]
-                )
-            );
-        }
-
-        if ($value['date']) {
+        if (!is_null($value)) {
+            if (!is_array($value) || !isset($value['date'])) {
+                throw new UnexpectedValueException(
+                    $this->translate(
+                        'Cannot set data for DateTime property "{propertyName}". Data should be null or an array and contain "date" option.',
+                        ['propertyName' => $propertyName]
+                    )
+                );
+            }
             $object->setValue($propertyName, new \DateTime($value['date']));
         } else {
             $object->setValue($propertyName, null);
