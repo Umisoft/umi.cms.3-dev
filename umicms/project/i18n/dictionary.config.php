@@ -7,6 +7,9 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
+use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
@@ -52,7 +55,6 @@ return [
             'en-US' => [
                 ICmsObject::FIELD_CREATED => 'Creation date',
                 ICmsObject::FIELD_DISPLAY_NAME => 'Display name',
-                ICmsObject::FIELD_LOCKED => 'Locked',
                 ICmsObject::FIELD_UPDATED => 'Update date',
                 ICmsObject::FIELD_GUID => 'GUID',
                 ICmsObject::FIELD_IDENTIFY => 'Identifier',
@@ -67,7 +69,6 @@ return [
                 CmsHierarchicObject::FIELD_PARENT => 'Parent',
                 CmsHierarchicObject::FIELD_URI => 'URI',
 
-                ICmsPage::FIELD_ACTIVE => 'Active',
                 ICmsPage::FIELD_PAGE_CONTENTS => 'Contents',
                 ICmsPage::FIELD_PAGE_H1 => 'H1',
                 ICmsPage::FIELD_PAGE_LAYOUT => 'Layout',
@@ -76,13 +77,14 @@ return [
                 ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
                 ICmsPage::FIELD_PAGE_SLUG => 'Slug',
 
-                ICmsPage::FIELD_TRASHED => 'Trashed'
+                IRecyclableObject::FIELD_TRASHED => 'Trashed',
+                ILockedAccessibleObject::FIELD_LOCKED => 'Locked',
+                IActiveAccessibleObject::FIELD_ACTIVE => 'Active',
             ],
 
             'ru-RU' => [
                 ICmsObject::FIELD_CREATED => 'Дата создания',
                 ICmsObject::FIELD_DISPLAY_NAME => 'Имя отображения',
-                ICmsObject::FIELD_LOCKED => 'Заблокировано',
                 ICmsObject::FIELD_UPDATED => 'Дата последнего обновления',
                 ICmsObject::FIELD_GUID => 'GUID',
                 ICmsObject::FIELD_IDENTIFY => 'Идентификатор',
@@ -97,7 +99,6 @@ return [
                 CmsHierarchicObject::FIELD_PARENT => 'Родительская сущность',
                 CmsHierarchicObject::FIELD_URI => 'URI',
 
-                ICmsPage::FIELD_ACTIVE => 'Активность',
                 ICmsPage::FIELD_PAGE_CONTENTS => 'Контент',
                 ICmsPage::FIELD_PAGE_H1 => 'H1',
                 ICmsPage::FIELD_PAGE_LAYOUT => 'Шаблон',
@@ -106,7 +107,9 @@ return [
                 ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
                 ICmsPage::FIELD_PAGE_SLUG => 'Псевдостатический адрес',
 
-                ICmsPage::FIELD_TRASHED => 'В корзине'
+                IRecyclableObject::FIELD_TRASHED => 'В корзине',
+                ILockedAccessibleObject::FIELD_LOCKED => 'Заблокировано',
+                IActiveAccessibleObject::FIELD_ACTIVE => 'Активность',
             ]
         ],
 

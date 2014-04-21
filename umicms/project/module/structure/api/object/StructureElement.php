@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\structure\api\object;
 
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
@@ -21,7 +22,7 @@ use umicms\orm\object\TCmsPage;
  * @property bool $inMenu признак включения в меню
  * @property int $submenuState состояние дочернего меню
  */
-abstract class StructureElement extends CmsHierarchicObject implements ICmsPage
+abstract class StructureElement extends CmsHierarchicObject implements ICmsPage, ILockedAccessibleObject
 {
     use TCmsPage;
 

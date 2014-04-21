@@ -56,12 +56,6 @@ return [
             'columnName'   => 'active',
             'defaultValue' => 1
         ],
-        NewsSubject::FIELD_LOCKED                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'locked',
-            'readOnly'     => true,
-            'defaultValue' => 0
-        ],
         NewsSubject::FIELD_TRASHED               => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'trashed',
@@ -132,7 +126,6 @@ return [
                 NewsSubject::FIELD_TYPE,
                 NewsSubject::FIELD_VERSION,
                 NewsSubject::FIELD_ACTIVE,
-                NewsSubject::FIELD_LOCKED,
                 NewsSubject::FIELD_CREATED,
                 NewsSubject::FIELD_UPDATED,
                 NewsSubject::FIELD_TRASHED,

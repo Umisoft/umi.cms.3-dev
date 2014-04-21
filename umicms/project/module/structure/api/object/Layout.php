@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\structure\api\object;
 
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\CmsObject;
 
 /**
@@ -16,7 +17,7 @@ use umicms\orm\object\CmsObject;
  *
  * @property string $fileName имя файла шаблона
  */
-class Layout extends CmsObject
+class Layout extends CmsObject implements ILockedAccessibleObject
 {
     /**
      * Имя поля для хранения имени файла шаблона
