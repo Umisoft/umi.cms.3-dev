@@ -55,7 +55,7 @@ define(
             hasBackups: function(){
                 return !!this.get('settings').actions.getBackupList;
             }.property('model.@each'),
-            backups: function(){// TODO: Выполняется лишний раз при уходе с роута http://youtrack.umicloud.ru/issue/cms-308
+            backups: function(){
                 var backups = {};
                 var object = this.get('object');
                 var settings = this.get('settings');

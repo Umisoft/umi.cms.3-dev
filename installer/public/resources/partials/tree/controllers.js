@@ -179,18 +179,6 @@ define(['App'], function(UMI){
 
                 sendAction: function(action, object){
                     this.send(action.type, object);
-                },
-
-                getCreateForm: function(object){
-                    this.get('controllers.component').send('createForm', object);
-                },
-
-                getEditForm: function(object){
-                    this.transitionToRoute('context', 'editForm', object.get('id'));
-                },
-
-                switchActivity: function(object){
-                    this.get('controllers.component').send('switchActivity', object);
                 }
             },
             selectAction: function(){

@@ -169,6 +169,16 @@ define([], function(){
 
                 createForm: function(object){
                     this.transitionTo('context', 'createForm', object.get('id'));
+                },
+
+                getEditForm: function(object){
+                    this.transitionTo('context', 'editForm', object.get('id'));
+                },
+
+                viewOnSite: function(object){
+                    //console.log(this.store.metaFor('meta'));
+                    var tab = window.open(object.get('meta.pageUrl'), '_blank');
+                    tab.focus();
                 }
             },
             /**
@@ -428,14 +438,9 @@ define([], function(){
                      */
                     var actionName = activeAction.get('name');
                     var actionParams = {};
-                    if(collectionName){
-                        actionParams.collection = collectionName;
-                    }
-                    if(actionName === 'editForm'){
-                        actionParams.form = 'edit';
-                    }
-                    if(actionName === 'addForm'){
-                        actionParams.object = this.store.createRecord(collectionName, {
+
+                    if(actionName === 'createForm'){
+                        routeData.object = self.store.createRecord(collectionName, {
                             parent: model
                         });
                     }
@@ -449,7 +454,7 @@ define([], function(){
                             routeData.viewSettings = results.settings;
                             return routeData;
                         });
-                    } else if(actionName === 'editForm' || actionName === 'addForm'){
+                    } else if(actionName === 'editForm' || actionName === 'createForm'){
                         actionParams = actionParams ? '?' + $.param(actionParams) : '';
                         var actionResource = componentController.get('settings').actions['get' + Ember.String.capitalize(actionName)].source + actionParams;
 
