@@ -143,7 +143,7 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function getSitePageUrl(ICmsPage $page, $isAbsolute = false)
+    public function getSitePageUrl(ICmsPage $page, $isAbsolute = false, $handler = ICmsCollection::HANDLER_SITE)
     {
         if ($page instanceof StructureElement) {
             $pageUrl = $isAbsolute ? $this->domainUrl : '';
@@ -156,7 +156,7 @@ class UrlManager implements IUrlManager, ILocalizable
          * @var ICmsCollection $collection
          */
         $collection = $page->getCollection();
-        $handler = $collection->getHandlerPath('site');
+        $handler = $collection->getHandlerPath($handler);
 
         $component = $this->dispatcher->getSiteComponentByPath($handler);
         if (!$component instanceof BaseDefaultSitePageComponent) {

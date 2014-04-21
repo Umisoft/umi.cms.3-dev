@@ -32,6 +32,14 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
      * Имя формы для создания объектов по умолчанию
      */
     const FORM_CREATE = 'create';
+    /**
+     * Компонент обработчик коллекций в сайтовой панеле
+     */
+    const HANDLER_SITE = 'site';
+    /**
+     * Компонент обработчик коллекций в административной части
+     */
+    const HANDLER_ADMIN = 'admin';
 
     /**
      * Возвращает тип коллекции.
