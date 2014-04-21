@@ -50,7 +50,7 @@ define(
                 }
             }.property('model.@each'),
             switchActivity: function(){
-                return !!this.get('settings').actions.switchActivity;
+                return this.get('settings').actions.activate && this.get('settings').actions.deactivate;
             }.property('model.@each'),
             hasBackups: function(){
                 return !!this.get('settings').actions.getBackupList;
