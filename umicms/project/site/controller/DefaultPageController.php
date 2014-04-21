@@ -10,6 +10,7 @@
 namespace umicms\project\site\controller;
 
 use umicms\exception\RuntimeException;
+use umicms\orm\object\ICmsPage;
 use umicms\project\site\component\BaseDefaultSitePageComponent;
 
 /**
@@ -18,12 +19,22 @@ use umicms\project\site\component\BaseDefaultSitePageComponent;
 class DefaultPageController extends SitePageController
 {
     /**
+     * Возвращает страницу для отображения.
+     * @param string $uri
+     * @return ICmsPage
+     */
+    protected function getPage($uri)
+    {
+        return $this->getComponent()->getCollection()->getByUri($uri);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function __invoke()
     {
         $uri = $this->getRouteVar('uri');
-        $page = $this->getComponent()->getCollection()->getByUri($uri);
+        $page = $this->getPage($uri);
 
         $this->pushCurrentPage($page);
 

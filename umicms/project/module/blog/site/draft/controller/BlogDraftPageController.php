@@ -9,35 +9,23 @@
 
 namespace umicms\project\module\blog\site\draft\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseSecureController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\site\controller\DefaultPageController;
 
 /**
  * Контроллер редактирования черновика блога.
  */
-class BlogDraftPageController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class BlogDraftPageController extends DefaultPageController
 {
-    use TFormAware;
-    use TObjectPersisterAware;
-
-    public $template = 'blogDraft';
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
     protected $api;
-    /**
-     * @var BlogPost $blogDraft пост или GUID редактируемого черновика
-     */
-    protected $blogDraft;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $blogModule
      */
     public function __construct(BlogModule $blogModule)
     {
@@ -45,21 +33,13 @@ class BlogDraftPageController extends BaseSecureController implements IFormAware
     }
 
     /**
-     * {@inheritdoc}
+     * Возвращает страницу для отображения.
+     * @param string $uri
+     * @return BlogPost
      */
-    public function __invoke()
+    public function getPage($uri)
     {
-        $uri = $this->getRouteVar('uri');
-        $page = $this->api->post()->getDraftByUri($uri);
-
-        //$this->pushCurrentPage($page);
-
-        return $this->createViewResponse(
-            'page',
-            [
-                'page' => $page
-            ]
-        );
+        return $this->api->post()->getDraftByUri($uri);
     }
 }
  

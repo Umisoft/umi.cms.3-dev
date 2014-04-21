@@ -24,7 +24,7 @@ class BlogCommentWidget extends BaseSecureWidget
      */
     public $template = 'view';
     /**
-     * @var string|BlogComment $blogComment GUID комментария
+     * @var string|BlogComment $blogComment комментарий или GUID комментария
      */
     public $blogComment;
 

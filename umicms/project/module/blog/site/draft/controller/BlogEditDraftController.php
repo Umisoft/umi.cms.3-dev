@@ -34,7 +34,7 @@ class BlogEditDraftController extends BaseSecureController implements IFormAware
      */
     protected $api;
     /**
-     * @var BlogPost $blogDraft пост или GUID редактируемого черновика
+     * @var BlogPost $blogDraft черновик или GUID редактируемого черновика
      */
     protected $blogDraft;
 

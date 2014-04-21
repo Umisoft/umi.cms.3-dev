@@ -14,6 +14,7 @@ use umi\rss\IRssFeed;
 use umi\rss\IRssFeedAware;
 use umi\rss\RssItem;
 use umi\rss\TRssFeedAware;
+use umicms\exception\InvalidArgumentException;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManagerAware;
@@ -32,6 +33,7 @@ use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\blog\api\object\BlogRssImportScenario;
 use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\users\api\UsersModule;
 
 /**
  * Публичное API модуля "Блоги".
@@ -42,6 +44,11 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     use TUrlManagerAware;
 
     /**
+     * @var BlogAuthor $currentAuthor текущий автор блога
+     */
+    protected $currentAuthor;
+
+    /**
      * @var int $maxPostsCount максимальное количество постов у тега
      */
     protected $maxPostsCount;
@@ -49,6 +56,16 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      * @var int $minPostsCount минимальное количество постов у тега
      */
     protected $minPostsCount;
+
+    /**
+     * @var UsersModule $usersModule API пользователей
+     */
+    protected $usersModule;
+
+    public function __construct(UsersModule $usersModule)
+    {
+        $this->usersModule = $usersModule;
+    }
 
     /**
      * Возвращает коллекцию постов.
@@ -413,7 +430,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает максимальное количество постов у тега
+     * Возвращает максимальное количество постов у тега.
      * @return int
      */
     protected function getMaxPostsCount()
@@ -434,7 +451,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает минимальное количество постов у тега
+     * Возвращает минимальное количество постов у тега.
      * @return int
      */
     protected function getMinPostsCount()
@@ -452,5 +469,36 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         }
 
         return $this->minPostsCount;
+    }
+
+    /**
+     * Возвращает текущего автора блога.
+     * @throws InvalidArgumentException
+     * @return mixed
+     */
+    public function getCurrentAuthor()
+    {
+        if ($this->currentAuthor) {
+            return $this->currentAuthor;
+        }
+
+        $this->currentAuthor = $this->author()->select()
+            ->where(BlogAuthor::FIELD_PROFILE)->equals($this->usersModule->getCurrentUser())
+            ->getResult()
+            ->fetch();
+
+        if (isset($this->currentAuthor) && !$this->currentAuthor instanceof BlogAuthor) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Method parameter "{param} should be instance of "{class}".',
+                    [
+                        'param' => 'currentAuthor',
+                        'class' => 'BlogAuthor'
+                    ]
+                )
+            );
+        }
+
+        return $this->currentAuthor;
     }
 }
