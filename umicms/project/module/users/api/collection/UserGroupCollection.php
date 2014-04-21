@@ -11,6 +11,7 @@ namespace umicms\project\module\users\api\collection;
 
 use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\behaviour\ILockedAccessibleCollection;
+use umicms\orm\collection\behaviour\TLockedAccessibleCollection;
 use umicms\orm\collection\SimpleCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\users\api\object\UserGroup;
@@ -25,6 +26,6 @@ use umicms\project\module\users\api\object\UserGroup;
  */
 class UserGroupCollection extends SimpleCollection implements ILockedAccessibleCollection
 {
-
+    use TLockedAccessibleCollection;
 }
  

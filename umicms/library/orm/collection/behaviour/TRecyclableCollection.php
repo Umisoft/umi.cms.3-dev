@@ -9,6 +9,8 @@
 
 namespace umicms\orm\collection\behaviour;
 
+use umicms\exception\NotAllowedOperationException;
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
 
@@ -22,6 +24,10 @@ trait TRecyclableCollection
      * @return CmsSelector
      */
     abstract protected function selectInternal();
+    /**
+     * @see ILocalizable::translate()
+     */
+    abstract protected function translate($message, array $placeholders = [], $localeId = null);
 
     /**
      * @see IRecyclableCollection::selectTrashed()
@@ -37,6 +43,15 @@ trait TRecyclableCollection
      */
     public function trash(IRecyclableObject $object)
     {
+        if ($object instanceof ILockedAccessibleObject && $object->locked) {
+            throw new NotAllowedOperationException(
+                $this->translate(
+                    'Cannot trash locked object with GUID "{guid}" from collection "{collection}".',
+                    ['guid' => $object->guid, 'collection' => $object->getCollectionName()]
+                )
+            );
+        }
+
         $object->getProperty(IRecyclableObject::FIELD_TRASHED)->setValue(true);
 
         return $this;

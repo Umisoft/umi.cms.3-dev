@@ -10,12 +10,16 @@
 namespace umicms\project\module\users\api\collection;
 
 use umi\orm\metadata\IObjectType;
+use umicms\exception\NotAllowedOperationException;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\ILockedAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\behaviour\TActiveAccessibleCollection;
+use umicms\orm\collection\behaviour\TLockedAccessibleCollection;
 use umicms\orm\collection\behaviour\TRecyclableCollection;
 use umicms\orm\collection\SimpleCollection;
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\users\api\object\BaseUser;
 
@@ -31,6 +35,21 @@ class UserCollection extends SimpleCollection
     implements IRecyclableCollection, IActiveAccessibleCollection, ILockedAccessibleCollection
 {
     use TRecyclableCollection;
-    use TActiveAccessibleCollection;
+    use TLockedAccessibleCollection;
+    use TActiveAccessibleCollection {
+        TActiveAccessibleCollection::deactivate as deactivateInternal;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function deactivate(IActiveAccessibleObject $object)
+    {
+        if ($object instanceof ILockedAccessibleObject && $object->locked) {
+            throw new NotAllowedOperationException('Cannot deactivate locked user.');
+        }
+
+        return $this->deactivateInternal($object);
+    }
 
 }

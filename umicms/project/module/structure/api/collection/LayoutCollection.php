@@ -11,6 +11,7 @@ namespace umicms\project\module\structure\api\collection;
 
 use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\behaviour\ILockedAccessibleCollection;
+use umicms\orm\collection\behaviour\TLockedAccessibleCollection;
 use umicms\orm\collection\SimpleCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\structure\api\object\Layout;
@@ -27,6 +28,7 @@ use umicms\project\site\config\TSiteSettingsAware;
  */
 class LayoutCollection extends SimpleCollection implements ILockedAccessibleCollection, ISiteSettingsAware
 {
+    use TLockedAccessibleCollection;
     use TSiteSettingsAware;
 
     /**
