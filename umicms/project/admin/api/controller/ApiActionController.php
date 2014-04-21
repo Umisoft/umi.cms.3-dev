@@ -120,7 +120,7 @@ class ApiActionController extends BaseController implements IUrlManagerAware
      */
     protected function actionForm()
     {
-        $form = $this->api->user()->getForm('authorized', 'login');
+        $form = $this->api->user()->getForm('login', 'authorized');
         /**
          * @var ApiApplication $component
          */

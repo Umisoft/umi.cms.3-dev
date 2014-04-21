@@ -19,10 +19,10 @@
             {{/if}}
 
             {{#link-to "context" node.id class="tree-item-link"}}
-                {{node.displayName}}
+                {{view.savedDisplayName}}
             {{/link-to}}
 
-            {{view 'treeControlContextMenu'}}
+            {{view view.parentView.contextMenuView}}
         {{/view}}
 
         {{#if node.childCount}}

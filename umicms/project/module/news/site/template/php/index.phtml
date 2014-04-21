@@ -8,8 +8,8 @@
 
 <?= $this->widget('news.item.rss', ['template' => 'rssLink']); ?>
 <h2>Рубрики</h2>
-<?= $this->widget('news.rubric.list', ['template' => 'list']) ?>
+<?= $this->widget('news.rubric.list') ?>
 <h2>Сюжеты</h2>
-<?= $this->widget('news.subject.list', ['template' => 'list']) ?>
+<?= $this->widget('news.subject.list') ?>
 <h2>Все новости</h2>
-<?= $this->widget('news.item.list', ['template' => 'list']) ?>
+<?= $this->widget('news.item.list', ['limit' => '3', 'pagination' => ['pageParam' => 'p', 'type' => 'sliding', 'pagesCount' => 5]]) ?>

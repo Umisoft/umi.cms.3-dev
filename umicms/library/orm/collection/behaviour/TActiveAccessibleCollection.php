@@ -9,7 +9,9 @@
 
 namespace umicms\orm\collection\behaviour;
 
+use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
+use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\selector\CmsSelector;
 
 /**
@@ -46,6 +48,16 @@ trait TActiveAccessibleCollection
      */
     public function activate(IActiveAccessibleObject $object)
     {
+        if ($object instanceof CmsHierarchicObject && $this instanceof SimpleHierarchicCollection) {
+            $ancestry = $this->selectAncestry($object);
+            /**
+             * @var CmsHierarchicObject $parent
+             */
+            foreach($ancestry as $parent) {
+                $parent->getProperty(IActiveAccessibleObject::FIELD_ACTIVE)->setValue(true);
+            }
+        }
+
         $object->getProperty(IActiveAccessibleObject::FIELD_ACTIVE)->setValue(true);
 
         return $this;
@@ -56,6 +68,13 @@ trait TActiveAccessibleCollection
      */
     public function deactivate(IActiveAccessibleObject $object)
     {
+        if ($object instanceof CmsHierarchicObject && $this instanceof SimpleHierarchicCollection) {
+            $descendants = $this->selectDescendants($object);
+            foreach($descendants as $descendant) {
+                $descendant->getProperty(IActiveAccessibleObject::FIELD_ACTIVE)->setValue(false);
+            }
+        }
+
         $object->getProperty(IActiveAccessibleObject::FIELD_ACTIVE)->setValue(false);
 
         return $this;

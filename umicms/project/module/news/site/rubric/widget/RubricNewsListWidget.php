@@ -10,24 +10,19 @@
 namespace umicms\project\module\news\site\rubric\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsRubric;
 
 /**
  * Виджет для вывода списка новостей по рубрикам
  */
-class RubricNewsListWidget extends BaseSecureWidget
+class RubricNewsListWidget extends BaseListWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'newsList';
-    /**
-     * @var int $limit максимальное количество выводимых новостей.
-     * Если не указано, выводятся все новости.
-     */
-    public $limit;
     /**
      * @var array|NewsRubric[]|NewsRubric|null $rubrics рубрика, список новостных рубрик или GUID, из которых выводятся новости.
      * Если не указаны, то новости выводятся из всех рубрик
@@ -51,7 +46,7 @@ class RubricNewsListWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
         $rubrics = (array) $this->rubrics;
 
@@ -73,12 +68,7 @@ class RubricNewsListWidget extends BaseSecureWidget
             }
         }
 
-        return $this->createResult(
-            $this->template,
-            [
-                'news' => $this->api->getNewsByRubrics($rubrics, $this->limit)
-            ]
-        );
+        return  $this->api->getNewsByRubrics($rubrics);
     }
 }
  

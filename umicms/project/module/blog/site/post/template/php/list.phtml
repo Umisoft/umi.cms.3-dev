@@ -1,12 +1,12 @@
 <?php
 /**
- * @var umi\orm\selector\ISelector $posts
+ * @var umicms\orm\selector\CmsSelector $list
  * @var umicms\project\module\blog\api\object\BlogPost $blogPost
  */
 ?>
-<?php if ($posts->getTotal()) :?>
+<?php if ($list->getTotal()) :?>
     <ul>
-        <?php foreach ($posts as $blogPost) : ?>
+        <?php foreach ($list as $blogPost) : ?>
             <li>
                 <?= $this->widget('blog.post.view', ['blogPost' => $blogPost, 'template' => 'shortView']); ?>
                 <?= $this->widget('blog.post.editPostLink', ['blogPost' => $blogPost, 'template' => 'editPostLink']); ?>

@@ -63,62 +63,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
      */
     const CONTROL_FILTER = 'createForm';
 
-    /**
-     * @var array $defaultControls список контролов, используемых для управления простой коллекцией.
-     */
-    protected $defaultControls = [
-        'filter' => [],
-        'form' => [],
-    ];
-
-    /**
-     * @var array $defaultHierarchicControls список контролов, используемых для управления иерархической коллекцией.
-     */
-    protected $defaultHierarchicControls = [
-        'tree' => [],
-        'children' => [],
-        'filter' => [],
-        'form' => [],
-    ];
-
-
-    /**
-     * @var array $defaultLayout настройки интерфейса управления простой коллекцией
-     */
-    public $defaultLayout = [
-        'emptyContext' => [
-            'contents' => [
-                'controls' => ['filter']
-            ]
-        ],
-        'selectedContext' => [
-            'contents' => [
-                'controls' => ['form']
-            ]
-        ]
-    ];
-
-    /**
-     * @var array $defaultHierarchicLayout настройки интерфейса управления иерархической коллекцией
-     */
-    public $defaultHierarchicLayout = [
-        'emptyContext' => [
-            'sideBar' => [
-                'controls' => ['tree']
-            ],
-            'contents' => [
-                'controls' => ['filter', 'children']
-            ]
-        ],
-        'selectedContext' => [
-            'sideBar' => [
-                'controls' => ['tree']
-            ],
-            'contents' => [
-                'controls' => ['form', 'children']
-            ]
-        ]
-    ];
 
     /**
      * {@inheritdoc}
@@ -140,8 +84,9 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
     protected function getSettings()
     {
         return [
-            self::OPTION_INTERFACE_LAYOUT => $this->buildLayoutInfo(),
-            self::OPTION_INTERFACE_ACTIONS => $this->buildActionsInfo()
+            'collectionName' => $this->getCollectionName(),
+            'layout' => $this->buildLayoutInfo(),
+            'actions' => $this->buildActionsInfo()
         ];
     }
 
@@ -287,6 +232,11 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
 
     }
 
+    /**
+     * Возвращает информацию о дереве компонента.
+     * @param SimpleHierarchicCollection $collection
+     * @return array
+     */
     protected function buildTreeControlInfo(SimpleHierarchicCollection $collection) {
         $tree = [
             'displayName' => $this->translate('control:tree:displayName'),
@@ -298,7 +248,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
         ];
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $tree['toolbar'][] = $this->buildTreeToolButtonInfo(DefaultAdminComponent::ACTION_SWITCH_ACTIVITY);
+            $tree['toolbar'][] = $this->buildTreeToolButtonInfo('switchActivity');
             $tree['filters'][] = $this->buildTreeFilterInfo(IActiveAccessibleObject::FIELD_ACTIVE, [true]);
         }
 
@@ -320,7 +270,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
     protected function buildTreeToolButtonInfo($buttonType) {
         return [
             'type' => $buttonType,
-            'displayName' => 'control:tree:toolbar:' . $buttonType
+            'displayName' => $this->translate('control:tree:toolbar:' . $buttonType)
         ];
     }
 
@@ -332,12 +282,11 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
      * @return array
      */
     protected function buildTreeFilterInfo($fieldName, array $values, $isActive = false) {
-        $filedFilterNamespace = 'control:tree:filter:';
 
         return [
             'fieldName' => $fieldName,
             'isActive' => $isActive,
-            'displayName' => $filedFilterNamespace . IActiveAccessibleObject::FIELD_ACTIVE,
+            'displayName' => $this->translate('control:tree:filter:' . $fieldName),
             'allow' => $values
         ];
     }

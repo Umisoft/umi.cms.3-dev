@@ -130,5 +130,21 @@ interface IUrlManager
      */
     public function getAdminComponentActionResourceUrl(AdminComponent $component, $actionName);
 
+    /**
+     * Возвращает текущий URL запроса.
+     * @param bool $isAbsolute генерировать ли абсолютный URL
+     * @return string
+     */
+    public function getCurrentUrl($isAbsolute = false);
+
+    /**
+     * Возвращает текущий URL запроса с подменой значения GET-параметра.
+     * @param string $paramName
+     * @param mixed $paramValue
+     * @param bool $isAbsolute генерировать ли абсолютный URL
+     * @return string
+     */
+    public function getCurrentUrlWithParam($paramName, $paramValue, $isAbsolute = false);
+
 }
  

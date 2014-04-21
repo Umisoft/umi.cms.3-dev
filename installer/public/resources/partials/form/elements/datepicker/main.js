@@ -8,12 +8,20 @@ define(['App'], function(UMI){
             object: null,
             property: null,
             valueObject: function(){
-                return this.get('object.' + this.get("property") + '.date');
+                var dateProperty = this.get('object.' + this.get("property"));
+                if(dateProperty){
+                    dateProperty = JSON.parse(dateProperty).date;
+                }
+                return dateProperty;
             }.property('object', 'property'),
             changeValueObject: function(){
-                var property = this.get('object.' + this.get("property"));
-                property.date = this.get('valueObject');
-                this.get('object').set(this.get('property'), property);
+                var dateProperty = this.get('object.' + this.get("property")) || null;
+                if(dateProperty){
+                    dateProperty = JSON.parse(dateProperty);
+                    dateProperty.date = this.get('valueObject');
+                    dateProperty = JSON.stringify(dateProperty);
+                }
+                this.get('object').set(this.get('property'), dateProperty);
             }.observes('valueObject'),
             layout: Ember.Handlebars.compile('{{input type="text" class="umi-date" value=valueObject}}'),
             didInsertElement: function(){

@@ -9,24 +9,14 @@
 
 namespace umicms\project\module\news\site\item\widget;
 
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\news\api\NewsModule;
 
 /**
  * Виджет для вывода списка новостей
  */
-class NewsItemListWidget extends BaseSecureWidget
+class NewsItemListWidget extends BaseListWidget
 {
-    /**
-     * @var string $template имя шаблона, по которому выводится виджет
-     */
-    public $template = 'list';
-    /**
-     * @var int $limit максимальное количество выводимых новостей.
-     * Если не указано, выводятся все новости.
-     */
-    public $limit;
-
     /**
      * @var NewsModule $api API модуля "Новости"
      */
@@ -44,14 +34,9 @@ class NewsItemListWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
-        return $this->createResult(
-            $this->template,
-            [
-                'news' => $this->api->getNews($this->limit)
-            ]
-        );
+        return $this->api->getNews();
     }
 }
  
