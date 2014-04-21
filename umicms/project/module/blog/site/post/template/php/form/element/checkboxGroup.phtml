@@ -1,0 +1,30 @@
+<?php
+/**
+ * @var \umi\form\element\CheckboxGroup $checkboxGroup
+ */
+
+$attributes = array_merge(
+    $checkboxGroup->getAttributes(),
+    [
+        'name' => $checkboxGroup->getElementName(),
+        'type' => $checkboxGroup->getInputType()
+    ]
+);
+
+$html = '';
+$selected = (array) $checkboxGroup->getValue();
+
+foreach ($checkboxGroup->getChoices() as $value => $label) {
+    $attr = ['value' => $value];
+
+    if (in_array($value, $selected)) {
+        $attr += [
+            'checked' => 'checked'
+        ];
+    }
+
+    $html .= '<label><input ' . buildAttributes($attributes + $attr) .' />'. $label .'</label>';
+
+}
+
+echo $html;

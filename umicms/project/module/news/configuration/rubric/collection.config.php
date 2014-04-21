@@ -18,7 +18,8 @@ return [
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/news/configuration/rubric/form/base.edit.config.php}'
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/news/configuration/rubric/form/base.edit.config.php}',
+            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/news/configuration/rubric/form/base.create.config.php}'
         ]
     ],
     'dictionaries' => [

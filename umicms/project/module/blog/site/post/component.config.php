@@ -17,12 +17,17 @@ return [
     DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
     DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
+        'addPost' => __NAMESPACE__ . '\controller\BlogAddPostController',
+        'editPost' => __NAMESPACE__ . '\controller\BlogEditPostController',
         'rss' => __NAMESPACE__ . '\controller\BlogPostRssController'
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogPostWidget',
         'list' => __NAMESPACE__ . '\widget\BlogPostListWidget',
-        'rss' => __NAMESPACE__ . '\widget\BlogPostListRssUrlWidget'
+        'rss' => __NAMESPACE__ . '\widget\BlogPostListRssUrlWidget',
+        'addPost' => __NAMESPACE__ . '\widget\BlogAddPostWidget',
+        'editPost' => __NAMESPACE__ . '\widget\BlogEditPostWidget',
+        'editPostLink' => __NAMESPACE__ . '\widget\BlogEditPostUrlWidget'
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
         'type' => 'php',
@@ -57,6 +62,20 @@ return [
             'route' => '/rss',
             'defaults' => [
                 'controller' => 'rss'
+            ]
+        ],
+        'addPost' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route' => '/addPost',
+            'defaults' => [
+                'controller' => 'addPost'
+            ]
+        ],
+        'editPost' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/editPost/{id:integer}',
+            'defaults' => [
+                'controller' => 'editPost'
             ]
         ]
     ]

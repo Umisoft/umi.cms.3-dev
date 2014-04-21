@@ -41,5 +41,9 @@ class BlogComment extends CmsHierarchicObject implements IRecyclableObject, IAct
      * Имя поля для хранения даты и времени публикации комментария
      */
     const FIELD_PUBLISH_TIME = 'publishTime';
+    /**
+     * Форма добавления комментария
+     */
+    const FORM_ADD_COMMENT = 'addComment';
 }
  

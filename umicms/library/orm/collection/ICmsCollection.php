@@ -17,7 +17,7 @@ use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\metadata\IObjectType;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\OutOfBoundsException;
-use umicms\orm\object\CmsObject;
+use umicms\orm\object\ICmsObject;
 
 /**
  * Интерфейс коллекции объектов UMI.CMS
@@ -28,6 +28,10 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
      * Имя формы для редактирования объектов по умолчанию
      */
     const FORM_EDIT = 'edit';
+    /**
+     * Имя формы для создания объектов по умолчанию
+     */
+    const FORM_CREATE = 'create';
 
     /**
      * Возвращает тип коллекции.
@@ -39,11 +43,11 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
      * Возвращает форму для типа объектов коллекции.
      * @param string $formName имя формы
      * @param string $typeName имя типа
-     * @param CmsObject $object объект, для которого создается форма
+     * @param ICmsObject $object объект, для которого создается форма
      * @throws NonexistentEntityException если форма не зарегистрирована
      * @return IForm
      */
-    public function getForm($formName, $typeName = IObjectType::BASE, CmsObject $object = null);
+    public function getForm($formName, $typeName = IObjectType::BASE, ICmsObject $object = null);
 
     /**
      * Проверяет, зарегистрирована ли форма для типа объектов коллекции.

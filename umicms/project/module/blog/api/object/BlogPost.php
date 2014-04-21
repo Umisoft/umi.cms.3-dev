@@ -59,5 +59,13 @@ class BlogPost extends CmsObject implements ICmsPage
      * Имя поля для хранения источника поста
      */
     const FIELD_SOURCE = 'source';
+    /**
+     * Форма добавления поста
+     */
+    const FORM_ADD_POST = 'addPost';
+    /**
+     * Форма редактирования поста
+     */
+    const FORM_EDIT_POST = 'editPost';
 }
  

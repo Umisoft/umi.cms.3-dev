@@ -1,0 +1,35 @@
+<?php
+/**
+ * @var umi\form\IForm $form
+ */
+?>
+
+<form <?=buildAttributes($form->getAttributes())?>>
+    <?php
+    foreach ($form as $formElement) {
+        echo $this->render('form/formElement.phtml', ['element' => $formElement]);
+    }
+    ?>
+    <input value="Отправить" type="submit" />
+</form>
+
+<?php
+
+/**
+ * Генерирует строку аттрибутов для элемента.
+ * @param array $attributes массив аттрибутов элемента
+ * @return string
+ */
+function buildAttributes(array $attributes)
+{
+    $strings = [];
+
+    foreach ($attributes as $key => $value) {
+        if (is_array($value)) {
+            continue;
+        }
+        $strings[] = $key . '="' . $value . '"';
+    }
+
+    return implode(' ', $strings);
+}
