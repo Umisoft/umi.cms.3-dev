@@ -228,10 +228,7 @@ define(['App'], function(UMI){
                     template = object.get(meta.name) + '&nbsp;';
                 }
                 return Ember.Handlebars.compile(template);
-            }.property('object','column'),
-            didInsertElement: function(){
-                console.log('didInsertElement');
-            }
+            }.property('object','column')
         });
     };
 });
