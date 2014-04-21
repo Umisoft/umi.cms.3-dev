@@ -87,17 +87,31 @@ define([], function(){
                  params.handler - элемент (кнопка) вызвавший событие сохранение
                  */
                 save: function(params){
+                    var isNewObject;
+                    var self = this;
                     if(!params.object.get('isValid')){
                         if(params.handler){
                             $(params.handler).removeClass('loading');
                         }
                         return;
                     }
-                    params.object.save().then(
+                    if(params.object.get('currentState.stateName') === 'root.loaded.created.uncommitted'){
+                        isNewObject = true;
+                    }
+                    return params.object.save().then(
                         function(){
                             params.object.updateRelationhipsMap();
                             if(params.handler){
                                 $(params.handler).removeClass('loading');
+                            }
+                            if(isNewObject){
+                                if(params.object.store.metadataFor(params.object.constructor.typeKey).collectionType === 'hierarchic'){
+                                    return params.object.get('parent').then(function(parent){
+                                        parent.reload();
+                                        self.send('getEditForm', params.object);
+                                    });
+                                }
+                                self.send('getEditForm', params.object);
                             }
                         },
                         function(results){
@@ -123,6 +137,7 @@ define([], function(){
                         }
                     );
                 },
+
                 dialogError: function(error){
                     var settings = this.parseError(error);
                     settings.close = true;
@@ -164,7 +179,6 @@ define([], function(){
                     } catch(error){
                         this.send('backgroundError', error);
                     }
-
                 },
 
                 getCreateForm: function(object){
@@ -440,9 +454,8 @@ define([], function(){
                     var actionParams = {};
 
                     if(actionName === 'createForm'){
-                        routeData.createObject = self.store.createRecord(collectionName, {
-                            parent: model
-                        });
+                        var createdParams =  model.get('id') !== 'root' ? {parent: model} : null;
+                        routeData.createObject = self.store.createRecord(collectionName, createdParams);
                     }
                     if(model.get('type')){
                         actionParams.type = model.get('type');
