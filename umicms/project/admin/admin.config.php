@@ -41,7 +41,7 @@ return [
     AdminComponent::OPTION_VIEW        => [
         'type'      => 'php',
         'extension' => 'phtml',
-        'directory' => __DIR__ . '/template/php'
+        'directories' => __DIR__ . '/template/php'
     ],
 
     AdminComponent::OPTION_ROUTES => [

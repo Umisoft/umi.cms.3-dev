@@ -43,7 +43,7 @@ return [
     SiteComponent::OPTION_VIEW        => [
         'type'      => 'php',
         'extension' => 'phtml',
-        'directory' => __DIR__ . '/template/php',
+        'directories' => __DIR__ . '/template/php',
     ],
 
     SiteComponent::OPTION_ROUTES      => [

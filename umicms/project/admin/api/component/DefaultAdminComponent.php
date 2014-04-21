@@ -55,10 +55,6 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionCompone
      */
     const ACTION_GET_BACKUP = 'getBackup';
     /**
-     * Действие для просмотра страницы на сайте
-     */
-    const ACTION_VIEW_ON_SITE = 'viewOnSite';
-    /**
      * Действие для активации объекта
      */
     const ACTION_ACTIVATE = 'activate';
@@ -196,10 +192,6 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionCompone
         if ($collection instanceof IRecoverableCollection) {
             $defaultActions[] = self::ACTION_GET_BACKUP_LIST;
             $defaultActions[] = self::ACTION_GET_BACKUP;
-        }
-
-        if ($collection instanceof ICmsPageCollection) {
-            $defaultActions[] = self::ACTION_VIEW_ON_SITE;
         }
 
         $actions = [];

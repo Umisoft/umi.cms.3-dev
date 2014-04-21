@@ -46,4 +46,3 @@ class SiteComponent extends BaseComponent implements IPageCallStackAware
     }
 
 }
- 
