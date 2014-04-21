@@ -10,6 +10,7 @@
 namespace umicms\serialization\xml\object;
 
 use umi\orm\object\property\IProperty;
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\serialization\xml\BaseSerializer;
@@ -27,7 +28,7 @@ class CmsObjectSerializer extends BaseSerializer
         CmsHierarchicObject::FIELD_IDENTIFY,
         ICmsObject::FIELD_GUID,
         ICmsObject::FIELD_VERSION,
-        ICmsObject::FIELD_ACTIVE,
+        IActiveAccessibleObject::FIELD_ACTIVE,
         ICmsObject::FIELD_LOCKED,
         ICmsObject::FIELD_DISPLAY_NAME
     ];
