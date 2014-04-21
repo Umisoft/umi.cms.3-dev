@@ -98,58 +98,5 @@
             </div>
         {{/view}}
     {{/if}}
-    <!-- Права доступа -->
-    {{#view "formControlDropUp" tagName="li"}}
-        <span class="button white square" {{action "open" target="view"}}>
-            <i class="icon icon-key"></i>
-        </span>
-        <div class="f-dropdown umi-dropup dropdown-rows">
-            <div class="row collapse">
-                <div class="columns small-12">
-                    <strong>{{access.displayName}}</strong>
-                    <div class="right icons-group">
-                        {{#each access.actions}}
-                            <i class="icon icon-{{unbound name}}"></i>
-                        {{/each}}
-                    </div>
-                </div>
-            </div>
-            <div class="s-scroll-wrap">
-                <div>
-                    <div class="row collapse">
-                        <div class="columns small-12">
-                            {{access.global.displayName}}
-                            <div class="right checkbox-group">
-                                {{#each access.global.actions}}
-                                    {{view "checkboxCustom" checkedBinding="allow"}}
-                                {{/each}}
-                            </div>
-                        </div>
-                    </div>
-                    {{#each user in access.users}}
-                        <div class="row collapse">
-                            <div class="columns small-12">
-                                {{#if user.displayName}}
-                                    {{user.displayName}}
-                                {{else}}
-                                    Пустое значение
-                                {{/if}}
-                                <div class="right checkbox-group">
-                                    {{#each user.actions}}
-                                        {{view "checkboxCustom" checkedBinding="allow"}}
-                                    {{/each}}
-                                </div>
-                            </div>
-                        </div>
-                    {{/each}}
-                </div>
-            </div>
-            <div class="row collapse">
-                <div class="columns small-12">
-                    <input type="text" class="s-margin-clear" {{bind-attr placeholder="access.action.displayName"}}/>
-                </div>
-            </div>
-        </div>
-    {{/view}}
     <li><span class="button white">Удалить</span></li>
 </ul>

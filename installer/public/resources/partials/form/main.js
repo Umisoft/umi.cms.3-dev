@@ -50,12 +50,12 @@ define(
                 }
             }.property('model.@each'),
             switchActivity: function(){
-                return !!this.get('settings').actions.switchActivity;
+                return this.get('settings').actions.activate && this.get('settings').actions.deactivate;
             }.property('model.@each'),
             hasBackups: function(){
                 return !!this.get('settings').actions.getBackupList;
             }.property('model.@each'),
-            backups: function(){// TODO: Выполняется лишний раз при уходе с роута http://youtrack.umicloud.ru/issue/cms-308
+            backups: function(){
                 var backups = {};
                 var object = this.get('object');
                 var settings = this.get('settings');
@@ -83,131 +83,7 @@ define(
                     return backups;
                 }
             }.property('model.@each'),
-            access: function(){
-                var globalAllow = [
-                    {
-                        "name": "create",
-                        "allow": true
-                    },
-                    {
-                        "name": "read",
-                        "allow": true
-                    },
-                    {
-                        "name": "update",
-                        "allow": false
-                    },
-                    {
-                        "name": "delete",
-                        "allow": false
-                    }
-                ];
-                var AccessObject = Ember.Object.extend({
-                    displayName: 'Права доступа',
-                    action: {
-                        displayName: 'Добавить пользователя'
-                    },
-                    actions: [
-                        {
-                            "name": "create",
-                            "displayName": "Добавление"
-                        },
-                        {
-                            "name": "read",
-                            "displayName": "Чтение"
-                        },
-                        {
-                            "name": "update",
-                            "displayName": "Редактирование"
-                        },
-                        {
-                            "name": "delete",
-                            "displayName": "Удаление"
-                        }
-                    ],
-                    global: {
-                        "displayName": "Все пользователи",
-                        "actions": [
-                            {
-                                "name": "create",
-                                "allow": true
-                            },
-                            {
-                                "name": "read",
-                                "allow": true
-                            },
-                            {
-                                "name": "update",
-                                "allow": false
-                            },
-                            {
-                                "name": "delete",
-                                "allow": false
-                            }
-                        ]
-                    },
-                    users: [
-                        {
-                            "id": 1,
-                            "displayName": "Супервайзер",
-                            "actions": [
-                                {
-                                    "name": "create",
-                                    "allow": true
-                                },
-                                {
-                                    "name": "read",
-                                    "allow": true
-                                },
-                                {
-                                    "name": "update",
-                                    "allow": true
-                                },
-                                {
-                                    "name": "delete",
-                                    "allow": true
-                                }
-                            ]
-                        },
-                        {
-                            "id": 2,
-                            "displayName": "Администратор",
-                            "actions": [
-                                {
-                                    "name": "create",
-                                    "allow": true
-                                },
-                                {
-                                    "name": "read",
-                                    "allow": true
-                                },
-                                {
-                                    "name": "update",
-                                    "allow": false
-                                },
-                                {
-                                    "name": "delete",
-                                    "allow": false
-                                }
-                            ]
-                        }
-                    ],
-                    usersAllow: function(){// Жесть!
-                        var users = this.get('users');
-                        var global = this.get('global');
-                        global.actions.forEach(function(action){
-                            var oldAllow = globalAllow.findBy('name', action.name);
-                            if(action.allow !== oldAllow.allow){
-                                oldAllow.allow = action.allow;
-                                users.forEach(function(user){
-                                    Ember.set(user.actions.findBy('name', action.name), 'allow', action.allow);
-                                });
-                            }
-                        });
-                    }.observes('global.actions.@each.allow')
-                });
-                return AccessObject.create({});
-            }.property('model.object'),
+
             actions: {
                 applyBackup: function(backup){
                     if(backup.isActive){

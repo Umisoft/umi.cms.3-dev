@@ -5545,7 +5545,6 @@ ul.umi-search-result {
     position: absolute;
     z-index: 1;
     right: 0;
-    width: 160px;
     background: #FFFFFF;
     box-shadow: 0 0px 3px 0px #7C99AC; }
     .umi-tree .umi-tree-drop-down .button {

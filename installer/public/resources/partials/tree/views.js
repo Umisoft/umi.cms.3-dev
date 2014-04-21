@@ -222,7 +222,7 @@ define(['App'], function(UMI){
                             $('body').on('click.umi.tree.filterMenu', function(event){
                                 var targetElement = $(event.target).closest('.umi-tree-control-filters');
                                 if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
-                                    $('body').off('.umi.tree.filterMenu.click');
+                                    $('body').off('click.umi.tree.filterMenu');
                                     self.set('isOpen', false);
                                 }
                             });
@@ -248,7 +248,7 @@ define(['App'], function(UMI){
                             $('body').on('click.umi.tree.contextMenu', function(event){
                                 var targetElement = $(event.target).closest('.umi-tree-context-menu');
                                 if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
-                                    $('body').off('.umi.tree.contextMenu.click');
+                                    $('body').off('click.umi.tree.contextMenu');
                                     self.set('isOpen', false);
                                 }
                             });
