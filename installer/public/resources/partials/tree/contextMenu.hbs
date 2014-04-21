@@ -1,6 +1,6 @@
 {{#if controllers.treeControl.selectAction}}
     <li class="tree-control-select-action">
-        <span class="tiny button flat square" {{action 'selectAction' controllers.treeControl.selectAction controller.model}}>
+        <span class="tiny button flat square" {{action 'sendAction' controllers.treeControl.selectAction controller.model}}>
             <i {{bind-attr class=":icon controllers.treeControl.selectActionIcon"}}></i>
         </span>
     </li>

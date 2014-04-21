@@ -176,8 +176,8 @@ define([], function(){
                 },
 
                 viewOnSite: function(object){
-                    //console.log(this.store.metaFor('meta'));
-                    var tab = window.open(object.get('meta.pageUrl'), '_blank');
+                    var link = window.location.host + window.UmiSettings.baseSiteURL + object._data.meta.pageUrl;
+                    var tab = window.open('//' + link.replace('\/\/', '\/'), '_blank');
                     tab.focus();
                 }
             },
