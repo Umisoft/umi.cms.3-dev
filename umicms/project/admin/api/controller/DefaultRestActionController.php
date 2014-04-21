@@ -398,14 +398,14 @@ class DefaultRestActionController extends BaseDefaultRestController
      */
     protected function getEditedObject(array $data)
     {
-        if (isset($data[ICmsObject::FIELD_IDENTIFY])) {
+        if (!isset($data[ICmsObject::FIELD_IDENTIFY])) {
             throw new HttpException(
                 Response::HTTP_BAD_REQUEST,
                 $this->translate('Cannot get object. Object id required.')
             );
         }
 
-        if (isset($data[ICmsObject::FIELD_VERSION])) {
+        if (!isset($data[ICmsObject::FIELD_VERSION])) {
             throw new HttpException(
                 Response::HTTP_BAD_REQUEST,
                 $this->translate('Cannot get object. Object version required.')
