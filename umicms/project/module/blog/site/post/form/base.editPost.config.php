@@ -45,13 +45,6 @@ return [
                 'dataSource' => BlogPost::FIELD_PAGE_H1
             ],
         ],
-        BlogPost::FIELD_PAGE_SLUG => [
-            'type' => Text::TYPE_NAME,
-            'label' => BlogPost::FIELD_PAGE_SLUG,
-            'options' => [
-                'dataSource' => BlogPost::FIELD_PAGE_SLUG
-            ],
-        ],
         BlogPost::FIELD_ANNOUNCEMENT => [
             'type' => Wysiwyg::TYPE_NAME,
             'label' => BlogPost::FIELD_ANNOUNCEMENT,
