@@ -12,9 +12,11 @@ namespace umicms\project\module\structure\api\collection;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umicms\exception\NonexistentEntityException;
+use umicms\exception\NotAllowedOperationException;
 use umicms\orm\collection\behaviour\ILockedAccessibleCollection;
 use umicms\orm\collection\behaviour\TLockedAccessibleCollection;
 use umicms\orm\collection\PageHierarchicCollection;
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\structure\api\object\SystemPage;
@@ -36,6 +38,21 @@ class StructureElementCollection extends PageHierarchicCollection implements ILo
      * Имя типа для системных страниц.
      */
     const TYPE_SYSTEM = 'system';
+
+    /**
+     * {@inheritdoc}
+     */
+    public function move(IHierarchicObject $object, IHierarchicObject $branch = null, IHierarchicObject $previousSibling = null) {
+
+        /**
+         * @var ILockedAccessibleObject|IHierarchicObject $object
+         */
+        if ($object instanceof ILockedAccessibleObject && $object->locked && $branch !== $object->getParent()) {
+            throw new NotAllowedOperationException('Cannot move locked page.');
+        }
+
+        return parent::move($object, $branch, $previousSibling);
+    }
 
     /**
      * Возвращает системную страницу по пути ее компонента-обработчика
