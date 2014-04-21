@@ -12,6 +12,7 @@ namespace umicms\project\site\route;
 use umi\orm\exception\NonexistentEntityException;
 use umi\orm\metadata\field\special\UriField;
 use umi\route\type\BaseRoute;
+use umicms\exception\RuntimeException;
 use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
@@ -63,7 +64,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware, IPage
      */
     public function assemble(array $params = [], array $options = [])
     {
-        return ''; // TODO
+        throw new RuntimeException('Cannot assemble url. Use IUrlManager for url generation.');
     }
 
 

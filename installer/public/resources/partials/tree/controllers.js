@@ -180,9 +180,10 @@ define(['App'], function(UMI){
                 selectAction: function(action, object){
                     switch(action.type){
                         case 'getCreateForm':
+                            this.get('controllers.component').send('createForm', object);
                             break;
                         case 'getEditForm':
-
+                            this.transitionToRoute('context', 'editForm', object.get('id'));
                             break;
                         case 'switchActivity':
                                 this.get('controllers.component').send('switchActivity', object);

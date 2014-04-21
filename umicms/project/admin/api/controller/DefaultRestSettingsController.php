@@ -12,7 +12,9 @@ namespace umicms\project\admin\api\controller;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
+use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsCollection;
+use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\ICmsObject;
@@ -124,29 +126,29 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
 
     /**
      * Возвращает информацию о контентной области компонента компонента.
-     * @param ICmsCollection $cmsCollection
+     * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildContentsInfo(ICmsCollection $cmsCollection) {
+    protected function buildContentsInfo(ICmsCollection $collection) {
 
         return [
-            'emptyContext' => $this->buildEmptyContextInfo($cmsCollection),
-            'selectedContext' => $this->buildSelectedContextInfo($cmsCollection)
+            'emptyContext' => $this->buildEmptyContextInfo($collection),
+            'selectedContext' => $this->buildSelectedContextInfo($collection)
         ];
     }
 
     /**
      * Возвращает информацию о контентной области, когда контекст (объект) не выбран.
-     * @param ICmsCollection $cmsCollection
+     * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildEmptyContextInfo(ICmsCollection $cmsCollection) {
+    protected function buildEmptyContextInfo(ICmsCollection $collection) {
         $result =  [
-            'filter' => $this->buildFilterControlInfo($cmsCollection)
+            'filter' => $this->buildFilterControlInfo($collection)
         ];
 
-        if ($cmsCollection instanceof SimpleHierarchicCollection) {
-            $result['children'] = $this->buildChildrenControlInfo($cmsCollection);
+        if ($collection instanceof SimpleHierarchicCollection) {
+            $result['children'] = $this->buildChildrenControlInfo($collection);
         }
 
         return $result;
@@ -154,17 +156,17 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
 
     /**
      * Возвращает информацию о контентной области, когда контекст (объект) выбран.
-     * @param ICmsCollection $cmsCollection
+     * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildSelectedContextInfo(ICmsCollection $cmsCollection) {
+    protected function buildSelectedContextInfo(ICmsCollection $collection) {
         $result =  [
-            'editForm' => $this->buildEditFormControlInfo($cmsCollection),
-            'createForm' => $this->buildCreateFormControlInfo($cmsCollection)
+            'editForm' => $this->buildEditFormControlInfo($collection),
+            'createForm' => $this->buildCreateFormControlInfo($collection)
         ];
 
-        if ($cmsCollection instanceof SimpleHierarchicCollection) {
-            $result['children'] = $this->buildChildrenControlInfo($cmsCollection);
+        if ($collection instanceof SimpleHierarchicCollection) {
+            $result['children'] = $this->buildChildrenControlInfo($collection);
         }
 
         return $result;
@@ -173,43 +175,122 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
 
     /**
      * Возвращает информацию о контроле "Форма редактирования"
-     * @param ICmsCollection $cmsCollection
+     * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildEditFormControlInfo(ICmsCollection $cmsCollection) {
-        return [
-            'displayName' => $this->translate('control:editForm:displayName')
+    protected function buildEditFormControlInfo(ICmsCollection $collection) {
+        $result = [
+            'displayName' => $this->translate('control:editForm:displayName'),
+            'toolbar' => [
+                $this->buildEditFormButtonInfo('apply')
+            ]
         ];
+
+        if ($collection instanceof IActiveAccessibleCollection) {
+            $result['toolbar'][] = $this->buildEditFormButtonInfo('switchActivity');
+        }
+
+        if ($collection instanceof IRecyclableCollection) {
+            $result['toolbar'][] = $this->buildEditFormButtonInfo(DefaultAdminComponent::ACTION_TRASH);
+        } else {
+            $result['toolbar'][] = $this->buildEditFormButtonInfo('delete');
+        }
+
+        if ($collection instanceof IRecyclableCollection) {
+            $result['toolbar'][] = $this->buildEditFormButtonInfo('backupList');
+        }
+
+        return $result;
     }
 
     /**
      * Возвращает информацию о контроле "Форма создания"
-     * @param ICmsCollection $cmsCollection
+     * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildCreateFormControlInfo(ICmsCollection $cmsCollection) {
+    protected function buildCreateFormControlInfo(ICmsCollection $collection) {
         return [
-            'displayName' => $this->translate('control:createForm:displayName')
+            'displayName' => $this->translate('control:createForm:displayName'),
+            'toolbar' => [
+                $this->buildEditFormButtonInfo('create')
+            ]
+        ];
+    }
+
+    /**
+     * Возвращает информацию о кнопке в тулбаре формы редактирования
+     * @param string $buttonType тип кнопки
+     * @return array
+     */
+    protected function buildEditFormButtonInfo($buttonType) {
+        return [
+            'type' => $buttonType,
+            'displayName' => $this->translate('control:editForm:toolbar:' . $buttonType)
+        ];
+    }
+
+    /**
+     * Возвращает информацию о кнопке в тулбаре формы создания
+     * @param string $buttonType тип кнопки
+     * @return array
+     */
+    protected function buildCreateFormButtonInfo($buttonType) {
+        return [
+            'type' => $buttonType,
+            'displayName' => $this->translate('control:createForm:toolbar:' . $buttonType)
         ];
     }
 
     /**
      * Возвращает информацию о контроле "Фильтр"
-     * @param ICmsCollection $cmsCollection
+     * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildFilterControlInfo(ICmsCollection $cmsCollection) {
+    protected function buildFilterControlInfo(ICmsCollection $collection) {
+        $result = [
+            'displayName' => $this->translate('control:filter:displayName'),
+            'toolbar' => [
+                $this->buildTreeToolButtonInfo(DefaultAdminComponent::ACTION_GET_CREATE_FORM),
+                $this->buildTreeToolButtonInfo(DefaultAdminComponent::ACTION_GET_EDIT_FORM)
+            ]
+        ];
+
+        if ($collection instanceof IActiveAccessibleCollection) {
+            $result['toolbar'][] = $this->buildTreeToolButtonInfo('switchActivity');
+            $result['filters'][] = $this->buildTreeFilterInfo(IActiveAccessibleObject::FIELD_ACTIVE, [true]);
+        }
+
+        if ($collection instanceof ICmsPageCollection) {
+            $result['toolbar'][] = $this->buildTreeToolButtonInfo('viewOnSite');
+        }
+
+        if ($collection instanceof StructureElementCollection) {
+            $types = $collection->getMetadata()->getTypesList();
+            $types = array_values(array_diff($types, [StructureElementCollection::TYPE_SYSTEM]));
+            $result['filters'][] = $this->buildTreeFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Возвращает информацию о кнопке в тулбаре формы создания
+     * @param string $buttonType тип кнопки
+     * @return array
+     */
+    protected function buildFilterToolButtonInfo($buttonType) {
         return [
-            'displayName' => $this->translate('control:filter:displayName')
+            'type' => $buttonType,
+            'displayName' => $this->translate('control:filter:toolbar:' . $buttonType)
         ];
     }
 
     /**
      * Возвращает информацию о контроле "Дочерние объекты"
-     * @param ICmsCollection $cmsCollection
+     * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildChildrenControlInfo(ICmsCollection $cmsCollection) {
+    protected function buildChildrenControlInfo(ICmsCollection $collection) {
         return [
             'displayName' => $this->translate('control:children:displayName')
         ];
@@ -238,7 +319,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
      * @return array
      */
     protected function buildTreeControlInfo(SimpleHierarchicCollection $collection) {
-        $tree = [
+        $result = [
             'displayName' => $this->translate('control:tree:displayName'),
             'toolbar' => [
                 $this->buildTreeToolButtonInfo(DefaultAdminComponent::ACTION_GET_CREATE_FORM),
@@ -248,18 +329,22 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
         ];
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $tree['toolbar'][] = $this->buildTreeToolButtonInfo('switchActivity');
-            $tree['filters'][] = $this->buildTreeFilterInfo(IActiveAccessibleObject::FIELD_ACTIVE, [true]);
+            $result['toolbar'][] = $this->buildTreeToolButtonInfo('switchActivity');
+            $result['filters'][] = $this->buildTreeFilterInfo(IActiveAccessibleObject::FIELD_ACTIVE, [true]);
+        }
+
+        if ($collection instanceof ICmsPageCollection) {
+            $result['toolbar'][] = $this->buildTreeToolButtonInfo('viewOnSite');
         }
 
         if ($collection instanceof StructureElementCollection) {
             $types = $collection->getMetadata()->getTypesList();
             $types = array_values(array_diff($types, [StructureElementCollection::TYPE_SYSTEM]));
-            $tree['filters'][] = $this->buildTreeFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
+            $result['filters'][] = $this->buildTreeFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
         }
 
 
-        return $tree;
+        return $result;
     }
 
     /**

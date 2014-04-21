@@ -160,6 +160,10 @@ define([], function(){
                     }).then(function(){
                         object.reload();
                     });
+                },
+
+                createForm: function(object){
+                    this.transitionTo('context', 'createForm', object.get('id'));
                 }
             },
             /**
@@ -417,14 +421,18 @@ define([], function(){
                     /**
                      * Мета информация для action
                      */
-                    var actionName = transition.params.action.action;
+                    var actionName = activeAction.get('name');
                     var actionParams = {};
-                    var collectionName = componentController.get('collectionName');
                     if(collectionName){
                         actionParams.collection = collectionName;
                     }
                     if(actionName === 'editForm'){
                         actionParams.form = 'edit';
+                    }
+                    if(actionName === 'addForm'){
+                        actionParams.object = this.store.createRecord(collectionName, {
+                            parent: model
+                        });
                     }
                     if(model.get('type')){
                         actionParams.type = model.get('type');

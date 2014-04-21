@@ -15,10 +15,18 @@ define(['App'], function(UMI){
                 return dateProperty;
             }.property('object', 'property'),
             changeValueObject: function(){
-                var dateProperty = this.get('object.' + this.get("property")) || null;
-                if(dateProperty){
-                    dateProperty = JSON.parse(dateProperty);
-                    dateProperty.date = this.get('valueObject');
+                var value = this.get('valueObject');
+                var dateProperty = this.get('object.' + this.get("property"));
+                if(value){
+                    if(dateProperty){
+                        dateProperty = JSON.parse(dateProperty);
+                    } else{// TODO: http://youtrack.umicloud.ru/issue/cms-355
+                       dateProperty = {
+                            timezone_type: 3,
+                            timezone: "Europe/Moscow"
+                        };
+                    }
+                    dateProperty.date = value;
                     dateProperty = JSON.stringify(dateProperty);
                 }
                 this.get('object').set(this.get('property'), dateProperty);
