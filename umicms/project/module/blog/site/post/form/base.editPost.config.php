@@ -10,6 +10,7 @@
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umicms\form\element\Wysiwyg;
+use umicms\project\module\blog\api\object\BlogCategory;
 use umicms\project\module\blog\api\object\BlogPost;
 
 return [
@@ -23,7 +24,11 @@ return [
             'type' => Select::TYPE_NAME,
             'label' => BlogPost::FIELD_CATEGORY,
             'options' => [
-                'dataSource' => BlogPost::FIELD_CATEGORY
+                'dataSource' => BlogPost::FIELD_CATEGORY,
+                'choicesSource' => [
+                    'value' => BlogCategory::FIELD_IDENTIFY,
+                    'label' => BlogCategory::FIELD_DISPLAY_NAME
+                ]
             ]
         ],
         BlogPost::FIELD_DISPLAY_NAME => [

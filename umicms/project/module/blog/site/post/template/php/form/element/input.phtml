@@ -1,0 +1,14 @@
+<?php
+/**
+ * @var \umi\form\element\IFormInput $input
+ */
+$attributes = array_merge(
+    $input->getAttributes(),
+    [
+        'type' => $input->getInputType(),
+        'name' => $input->getElementName(),
+        'value' => $input->getValue()
+    ]
+);
+
+echo '<label>' . $input->getName() . '<input ' . buildAttributes($attributes) .' />';
