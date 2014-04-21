@@ -13,6 +13,7 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\behaviour\ILockedAccessibleCollection;
+use umicms\orm\collection\behaviour\TLockedAccessibleCollection;
 use umicms\orm\collection\PageHierarchicCollection;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\structure\api\object\StructureElement;
@@ -29,6 +30,8 @@ use umicms\project\module\structure\api\object\SystemPage;
  */
 class StructureElementCollection extends PageHierarchicCollection implements ILockedAccessibleCollection
 {
+    use TLockedAccessibleCollection;
+
     /**
      * Имя типа для системных страниц.
      */

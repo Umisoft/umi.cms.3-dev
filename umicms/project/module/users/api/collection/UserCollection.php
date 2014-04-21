@@ -14,6 +14,7 @@ use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\ILockedAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\behaviour\TActiveAccessibleCollection;
+use umicms\orm\collection\behaviour\TLockedAccessibleCollection;
 use umicms\orm\collection\behaviour\TRecyclableCollection;
 use umicms\orm\collection\SimpleCollection;
 use umicms\orm\selector\CmsSelector;
@@ -32,5 +33,6 @@ class UserCollection extends SimpleCollection
 {
     use TRecyclableCollection;
     use TActiveAccessibleCollection;
+    use TLockedAccessibleCollection;
 
 }
