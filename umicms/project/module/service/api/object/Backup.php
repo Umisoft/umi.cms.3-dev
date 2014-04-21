@@ -9,7 +9,6 @@
 
 namespace umicms\project\module\service\api\object;
 
-use umi\orm\object\property\datetime\DateTime;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsObject;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -19,7 +18,7 @@ use umicms\project\module\users\api\object\AuthorizedUser;
  *
  * @property int $objectId идентификатор объекта, которому принадлежит резервная копия
  * @property string $collectionName имя коллекции к которой относится объект
- * @property DateTime $date дата
+ * @property \DateTime $date дата
  * @property AuthorizedUser $user пользователь редактировавший объект
  * @property ICmsObject $data данные резервной копии объекта
  */

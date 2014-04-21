@@ -59,7 +59,7 @@ define(
                 var backups = {};
                 var object = this.get('object');
                 var settings = this.get('settings');
-                if(this.get('settings').actions.getBackupList){
+                if(this.get('hasBackups')){
                     backups.displayName = settings.actions.getBackupList.displayName;
                     var currentVersion = {
                         objectId: object.get('id'),
@@ -370,4 +370,5 @@ define(
                 this.set('iScroll', scroll);
             }
         });
+
     });
