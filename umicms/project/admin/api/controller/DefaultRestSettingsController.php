@@ -189,7 +189,8 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
      */
     protected function buildEmptyContextInfo(ICmsCollection $collection) {
         $result =  [
-            'filter' => $this->buildFilterControlInfo($collection)
+            'filter' => $this->buildFilterControlInfo($collection),
+            'createForm' => $this->buildCreateFormControlInfo($collection)
         ];
 
         if ($collection instanceof SimpleHierarchicCollection) {
