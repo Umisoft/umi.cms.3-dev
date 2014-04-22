@@ -6,6 +6,22 @@ define(['App'], function(UMI){
             controlName: function(){
                 return 'treeControl' + Ember.String.capitalize(this.get('controllers.component.collectionName'));
             }.property('controllers.component.collectionName'),
+
+            expandedBranches: [],
+
+            activeContextChange: function(){
+                var expandedBranches = this.get('expandedBranches');
+                var activeContext = this.get('activeContext');
+                if(activeContext){
+                    var mpath = [];
+                    if(activeContext.get('id') !== 'root'){
+                        mpath = activeContext.get('mpath').without(activeContext.get('id')) || [];
+                    }
+                    mpath.push('root');
+                    this.set('expandedBranches', expandedBranches.concat(mpath).uniq());
+                }
+            }.observes('activeContext').on('init'),
+
             /**
              Возвращает корневой элемент
              @property root
@@ -71,19 +87,25 @@ define(['App'], function(UMI){
                 var root = Root.create({});
                 return [root];// Намеренно возвращается значение в виде массива, так как шаблон ожидает именно такой формат
             }.property('root.childCount', 'controllers.component.sideBarControl'),
+
             rootChildren: null,
+
             filters: function(){
                 var filters = this.get('controllers.component.sideBarControl.filters');
                 return filters;
             }.property('controllers.component.sideBarControl'),
+
             activeFilters: function(){
                 return this.get('filters').filterBy('isActive', true);
             }.property('filters.@each.isActive'),
+
             /**
              Активный контекст
              */
             activeContextBinding: 'controllers.context.model.object',
+
             needs: ['component', 'context'],
+
             actions: {
                 /**
                  Сохранение результата drag and drop
@@ -157,6 +179,9 @@ define(['App'], function(UMI){
                                 if(parentId !== oldParentId && (parentId === 'root' || oldParentId === 'root')){
                                     self.get('root')[0].updateChildren(id, parentId);
                                 }
+
+                                //
+
                             });
                         },
                         function(error){
@@ -181,10 +206,12 @@ define(['App'], function(UMI){
                     this.send(action.type, object);
                 }
             },
+
             selectAction: function(){
                 var controlName = this.get('controlName');
                 return UMI.Utils.LS.get('treeControls.' + controlName + '.contextAction');
             }.property('controlName'),
+
             selectActionIcon: function(){
                 var iconType;
                 if(this.get('selectAction')){
@@ -206,8 +233,8 @@ define(['App'], function(UMI){
                     }
                     return 'icon-' + iconType;
                 }
-
             }.property('selectAction'),
+
             actionList: function(){
                 return this.get('controllers.component.sideBarControl.toolbar');
             }.property()
@@ -234,7 +261,9 @@ define(['App'], function(UMI){
                 }
                 return visible;
             }.property('model', 'filters'),
+
             filters: Ember.computed.alias("controllers.treeControl.activeFilters"),
+
             needs: 'treeControl'
         });
     };

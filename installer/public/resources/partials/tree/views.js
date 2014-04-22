@@ -5,6 +5,18 @@ define(['App'], function(UMI){
         UMI.TreeControlView = Ember.View.extend({
             classNames: ['row', 's-full-height'],
 
+            actions: {
+                expandItem: function(id){
+                    var itemView = this.$().find('[data-id='+ id +']');
+                    if(itemView.length){
+                        itemView = Ember.View.views[itemView[0].id];
+                        if(itemView){
+                            itemView.set('isExpanded', true);
+                        }
+                    }
+                }
+            },
+
             didInsertElement: function(){
                 var scrollContainer = this.$().find('.umi-tree-wrapper')[0];
                 new IScroll(scrollContainer, UMI.config.iScroll);
@@ -71,9 +83,9 @@ define(['App'], function(UMI){
 
                         // Раскрытие ноды имеющую потомков
                         var setExpanded = function(node){
-                            var itemController = Ember.View.views[node.id].get('controller');
-                            if(itemController.get('model.childCount')){
-                                itemController.set('isExpanded', true);
+                            var itemView = Ember.View.views[node.id];
+                            if(itemView.get('controller.model.childCount')){
+                                itemView.set('isExpanded', true);
                             }
                         };
                         // Проверим находимся мы над деревом или нет
@@ -155,6 +167,7 @@ define(['App'], function(UMI){
                             }(placeholder));
                             var parentId = list.getAttribute('data-parent-id');
                             self.get('controller').send('updateSortOrder', placeholder.getAttribute('data-id'), parentId, prevSiblingId, nextSibling);
+                            self.send('expandItem', parentId);
                         }
                         // Удаление плэйсхолдера
                         if(placeholder.parentNode){
@@ -207,59 +220,82 @@ define(['App'], function(UMI){
 
         UMI.TreeItemView = Ember.View.extend({
             templateName: 'treeItem',
+
             tagName: 'li',
-            classNameBindings: ['node.isDragged:hide'],
+
+            classNameBindings: ['controller.model.isDragged:hide'],
+
             attributeBindings: ['dataId:data-id'],
+
             dataId: function(){
-                return this.get('model.id');
-            }.property('model'),
+                return this.get('controller.model.id');
+            }.property('controller.model'),
+
             inActive: function(){
-                return !this.get('model.active');
-            }.property('model.active'),
+                return !this.get('controller.model.active');
+            }.property('controller.model.active'),
 
             active: function(){
-                return this.get('controller.controllers.treeControl.activeContext.id') === this.get('model.id');
+                return this.get('controller.controllers.treeControl.activeContext.id') === this.get('controller.model.id');
             }.property('controller.controllers.treeControl.activeContext.id'),
 
             savedDisplayName: function(){
-                if(this.get('model.id') === 'root'){
-                    return this.get('model.displayName');
+                if(this.get('controller.model.id') === 'root'){
+                    return this.get('controller.model.displayName');
                 } else{
-                    return this.get('model.content._data.displayName');
+                    return this.get('controller.model._data.displayName');
                 }
-            }.property('model.currentState.loaded.saved'),//TODO: Отказаться от использования _data
+            }.property('controller.model.currentState.loaded.saved'),//TODO: Отказаться от использования _data
 
-            isExpanded: function(){
-                var activeContext = this.get('controller.controllers.treeControl.activeContext');
-                if(this.get('model.id') === 'root'){
-                    return true;
-                } else{
-                    if(!activeContext || activeContext.get('id') === 'root'){
-                        return false;
+            expandActiveContext: function(){
+                Ember.run.once(this, function(){
+                    var expandedBranches = this.get('controller.controllers.treeControl.expandedBranches') || [];
+                    if(expandedBranches){
+                        if(this.get('controller.model.id') === 'root'){
+                            return this.set('isExpanded', true);
+                        }
+                        var contains = expandedBranches.contains(parseFloat(this.get('controller.model.id')));
+                        if(contains){
+                            return this.set('isExpanded', true);
+                        }
                     }
-                    var contains = activeContext.get('mpath').contains(parseFloat(this.get('model.id')));
-                    if(contains && activeContext.get('id') !== this.get('model.id')){
-                        return true;
-                    } else{
-                        return false;
-                    }
-                }
-            }.property('model'),
+                });
+            },
+
             actions: {
                 expanded: function(){
+                    var id = this.get('controller.model.id');
+                    id = id === 'root' ? id : parseFloat(id);
+                    var treeControl = this.get('controller.controllers.treeControl');
+                    var expandedBranches = treeControl.get('expandedBranches');
                     this.set('isExpanded', !this.get('isExpanded'));
+                    if(this.get('isExpanded')){
+                        expandedBranches.push(id);
+                    } else{
+                        expandedBranches = expandedBranches.without(id);
+                    }
+                    treeControl.set('expandedBranches', expandedBranches);
                 }
+            },
+
+            didInsertElement: function(){
+                this.expandActiveContext();
             }
         });
 
         UMI.TreeControlContextMenuView = Ember.View.extend({
             tagName: 'ul',
+
             classNames: ['button-group', 'umi-tree-context-menu', 'right'],
+
             layoutName: 'treeControlContextMenu',
+
             isOpen: false,
+
             setParentIsOpen: function(){
                 this.get('parentView').set('contextMenuIsOpen', this.get('isOpen'));
             }.observes('isOpen'),
+
             actions: {
                 open: function(){
                     var self = this;
@@ -276,6 +312,7 @@ define(['App'], function(UMI){
                     }
                 }
             },
+
             itemView: Ember.View.extend({
                 tagName: 'li',
                 isFastAction: function(){
@@ -283,6 +320,6 @@ define(['App'], function(UMI){
                     return selectAction ? this.get('action').type === selectAction.type : false;
                 }.property('controller.controllers.treeControl.selectAction')
             })
-        })
+        });
     };
 });
