@@ -188,6 +188,20 @@ trait TCmsCollection
     }
 
     /**
+     * Возвращает значение настройки для коллекции.
+     * @param string $settingName имя настройки
+     * @param mixed $defaultValue значение по умолчанию
+     * @return mixed
+     */
+    protected function getSetting($settingName, $defaultValue = null) {
+        if (isset($this->traitGetConfig()['settings'][$settingName])) {
+            return $this->traitGetConfig()['settings'][$settingName];
+        }
+
+        return $defaultValue;
+    }
+
+    /**
      * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
      * @return CmsSelector
      */

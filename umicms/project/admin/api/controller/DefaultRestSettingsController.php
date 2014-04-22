@@ -9,9 +9,8 @@
 
 namespace umicms\project\admin\api\controller;
 
-use umicms\hmvc\url\IUrlManagerAware;
-use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
+use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\ICmsPageCollection;
@@ -24,10 +23,8 @@ use umicms\project\module\structure\api\collection\StructureElementCollection;
 /**
  * Контроллер вывода настроек компонента
  */
-class DefaultRestSettingsController extends BaseDefaultRestController implements IUrlManagerAware
+class DefaultRestSettingsController extends BaseDefaultRestController
 {
-    use TUrlManagerAware;
-
     /**
      * Имя опции для задания контролов компонента.
      */
@@ -196,7 +193,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
             $result['toolbar'][] = $this->buildEditFormButtonInfo('delete');
         }
 
-        if ($collection instanceof IRecyclableCollection) {
+        if ($collection instanceof IRecoverableCollection && $collection->isBackupEnabled()) {
             $result['toolbar'][] = $this->buildEditFormButtonInfo('backupList');
         }
 
