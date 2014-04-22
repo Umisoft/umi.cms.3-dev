@@ -2,6 +2,27 @@
 /**
  * @var umi\form\IForm $form
  */
+
+/**
+ * Генерирует строку аттрибутов для элемента.
+ * @param array $attributes массив аттрибутов элемента
+ * @return string
+ */
+if (!function_exists('buildAttributes')) {
+    function buildAttributes(array $attributes)
+    {
+        $strings = [];
+
+        foreach ($attributes as $key => $value) {
+            if (is_array($value)) {
+                continue;
+            }
+            $strings[] = $key . '="' . $value . '"';
+        }
+
+        return implode(' ', $strings);
+    }
+}
 ?>
 
 <form <?=buildAttributes($form->getAttributes())?>>
@@ -12,24 +33,3 @@
     ?>
     <input value="Отправить" type="submit" />
 </form>
-
-<?php
-
-/**
- * Генерирует строку аттрибутов для элемента.
- * @param array $attributes массив аттрибутов элемента
- * @return string
- */
-function buildAttributes(array $attributes)
-{
-    $strings = [];
-
-    foreach ($attributes as $key => $value) {
-        if (is_array($value)) {
-            continue;
-        }
-        $strings[] = $key . '="' . $value . '"';
-    }
-
-    return implode(' ', $strings);
-}
