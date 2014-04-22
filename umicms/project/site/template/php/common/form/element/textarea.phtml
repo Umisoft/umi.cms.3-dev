@@ -7,4 +7,4 @@ $attributes = array_merge(
     ['name' => $textarea->getElementName()]
 );
 
-echo '<textarea ' . buildAttributes($attributes) . ' >' . $textarea->getValue() . '</textarea>';
+echo '<label>' . $textarea->getName() . '<textarea ' . buildAttributes($attributes) . ' >' . $textarea->getValue() . '</textarea></label>';

@@ -1,6 +1,7 @@
 <?php
 /**
  * @var umi\form\IForm $form
+ * @var array $submit
  */
 
 /**
@@ -33,5 +34,6 @@ if (!function_exists('buildAttributes')) {
         echo $this->render('form/formElement.phtml', ['element' => $formElement]);
     }
     ?>
-    <input value="Отправить" type="submit" />
+
+    <input <?php echo isset($submit) ? buildAttributes($submit) : 'value="Отправить" type="submit"' ?>  />
 </form>

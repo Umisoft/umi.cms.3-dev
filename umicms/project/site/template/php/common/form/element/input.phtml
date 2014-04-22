@@ -11,4 +11,4 @@ $attributes = array_merge(
     ]
 );
 
-echo '<label>' . $input->getName() . '<input ' . buildAttributes($attributes) .' /></label>';
+echo '<label>' . (($input->getInputType() != 'hidden') ? $input->getName() : '') . '<input ' . buildAttributes($attributes) .' /></label>';

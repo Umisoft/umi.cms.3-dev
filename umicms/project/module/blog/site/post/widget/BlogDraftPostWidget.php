@@ -23,7 +23,7 @@ class BlogDraftPostWidget extends BaseSecureWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'draftPostForm';
+    public $template = 'unPublishPostForm';
     /**
      * @var string|BlogPost $blogPost пост или GUID поста
      */
