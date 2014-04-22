@@ -167,7 +167,7 @@ define([], function(){
 
                 },
 
-                createForm: function(object){
+                getCreateForm: function(object){
                     this.transitionTo('context', 'createForm', object.get('id'));
                 },
 
@@ -176,8 +176,8 @@ define([], function(){
                 },
 
                 viewOnSite: function(object){
-                    //console.log(this.store.metaFor('meta'));
-                    var tab = window.open(object.get('meta.pageUrl'), '_blank');
+                    var link = window.location.host + window.UmiSettings.baseSiteURL + object._data.meta.pageUrl;
+                    var tab = window.open('//' + link.replace('\/\/', '\/'), '_blank');
                     tab.focus();
                 }
             },
@@ -440,7 +440,7 @@ define([], function(){
                     var actionParams = {};
 
                     if(actionName === 'createForm'){
-                        routeData.object = self.store.createRecord(collectionName, {
+                        routeData.createObject = self.store.createRecord(collectionName, {
                             parent: model
                         });
                     }

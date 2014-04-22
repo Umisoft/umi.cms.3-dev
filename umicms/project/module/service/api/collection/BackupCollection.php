@@ -53,7 +53,8 @@ class BackupCollection extends SimpleCollection
     {
         return $this->select()
             ->where(Backup::FIELD_OBJECT_ID)->equals($object->getId())
-            ->where(Backup::FIELD_COLLECTION_NAME)->equals($object->getCollectionName());
+            ->where(Backup::FIELD_COLLECTION_NAME)->equals($object->getCollectionName())
+            ->orderBy(Backup::FIELD_DATE, CmsSelector::ORDER_DESC);
     }
 
     /**

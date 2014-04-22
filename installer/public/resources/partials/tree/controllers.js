@@ -198,6 +198,11 @@ define(['App'], function(UMI){
                         case 'switchActivity':
                             iconType = 'pause';
                             break;
+                        case 'viewOnSite':
+                            iconType = 'eye';
+                            break;
+                        default:
+                            iconType = this.get('selectAction.type');
                     }
                     return 'icon-' + iconType;
                 }
