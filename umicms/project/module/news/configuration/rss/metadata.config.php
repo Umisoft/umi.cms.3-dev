@@ -52,12 +52,6 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ]
         ],
-        NewsRssImportScenario::FIELD_LOCKED                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'locked',
-            'readOnly'     => true,
-            'defaultValue' => 0
-        ],
         NewsRssImportScenario::FIELD_CREATED               => [
             'type'       => IField::TYPE_DATE_TIME,
             'columnName' => 'created',
@@ -104,7 +98,6 @@ return [
                 NewsRssImportScenario::FIELD_GUID,
                 NewsRssImportScenario::FIELD_TYPE,
                 NewsRssImportScenario::FIELD_VERSION,
-                NewsRssImportScenario::FIELD_LOCKED,
                 NewsRssImportScenario::FIELD_CREATED,
                 NewsRssImportScenario::FIELD_UPDATED,
                 NewsRssImportScenario::FIELD_DISPLAY_NAME,

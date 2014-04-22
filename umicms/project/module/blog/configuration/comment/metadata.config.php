@@ -95,12 +95,6 @@ return [
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
-        BlogComment::FIELD_LOCKED => [
-            'type' => IField::TYPE_BOOL,
-            'columnName' => 'locked',
-            'readOnly' => true,
-            'defaultValue' => 0
-        ],
         BlogComment::FIELD_TRASHED => [
             'type' => IField::TYPE_BOOL,
             'columnName' => 'trashed',
@@ -174,7 +168,6 @@ return [
                 BlogComment::FIELD_HIERARCHY_LEVEL,
                 BlogComment::FIELD_OWNER,
                 BlogComment::FIELD_EDITOR,
-                BlogComment::FIELD_LOCKED,
                 BlogComment::FIELD_TRASHED,
                 BlogComment::FIELD_CREATED,
                 BlogComment::FIELD_UPDATED,

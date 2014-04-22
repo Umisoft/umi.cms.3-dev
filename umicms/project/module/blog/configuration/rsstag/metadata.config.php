@@ -43,12 +43,6 @@ return [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name'
         ],
-        CmsObject::FIELD_LOCKED       => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'locked',
-            'readOnly'     => true,
-            'defaultValue' => 0
-        ],
         CmsObject::FIELD_CREATED      => [
             'type'       => IField::TYPE_DATE_TIME,
             'columnName' => 'created',
@@ -88,7 +82,6 @@ return [
                 CmsObject::FIELD_GUID,
                 CmsObject::FIELD_TYPE,
                 CmsObject::FIELD_VERSION,
-                CmsObject::FIELD_LOCKED,
                 CmsObject::FIELD_CREATED,
                 CmsObject::FIELD_UPDATED,
                 CmsObject::FIELD_DISPLAY_NAME,

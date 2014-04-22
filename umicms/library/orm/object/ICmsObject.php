@@ -21,7 +21,6 @@ use umicms\project\module\users\api\object\BaseUser;
  * @property IObjectType $type тип
  * @property string $displayName выводимое в интерфейсах имя
  * @property int $version версия
- * @property bool $locked признак заблокированности элемента на удаление
  * @property DateTime $created время создания элемента
  * @property DateTime $updated время обновления элемента
  * @property BaseUser $owner владелец объекта
@@ -29,10 +28,6 @@ use umicms\project\module\users\api\object\BaseUser;
  */
 interface ICmsObject extends IObject
 {
-    /**
-     *  Имя поля для хранения состояния заблокированности объекта на удаление
-     */
-    const FIELD_LOCKED = 'locked';
     /**
      *  Имя поля для хранения времени создания объекта
      */

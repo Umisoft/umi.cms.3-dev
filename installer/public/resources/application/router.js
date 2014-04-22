@@ -150,20 +150,35 @@ define([], function(){
 
                 /// global actions
                 switchActivity: function(object){
-                    var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
-                    var switchActivitySource = this.controllerFor('component').get('settings').actions.switchActivity.source;
-                    $.ajax({
-                        url: switchActivitySource + '?id=' + object.get('id'),
-                        type: "POST",
-                        data: serializeObject,
-                        contentType: 'application/json; charset=UTF-8'
-                    }).then(function(){
-                        object.reload();
-                    });
+                    try{
+                        var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+                        var switchActivitySource = this.controllerFor('component').get('settings').actions[(object.get('active') ? 'de' : '') + 'activate'].source;
+                        $.ajax({
+                            url: switchActivitySource + '?id=' + object.get('id'),
+                            type: "POST",
+                            data: serializeObject,
+                            contentType: 'application/json; charset=UTF-8'
+                        }).then(function(){
+                            object.reload();
+                        });
+                    } catch(error){
+                        this.send('backgroundError', error);
+                    }
+
                 },
 
-                createForm: function(object){
+                getCreateForm: function(object){
                     this.transitionTo('context', 'createForm', object.get('id'));
+                },
+
+                getEditForm: function(object){
+                    this.transitionTo('context', 'editForm', object.get('id'));
+                },
+
+                viewOnSite: function(object){
+                    var link = window.location.host + window.UmiSettings.baseSiteURL + object._data.meta.pageUrl;
+                    var tab = window.open('//' + link.replace('\/\/', '\/'), '_blank');
+                    tab.focus();
                 }
             },
             /**
@@ -423,14 +438,9 @@ define([], function(){
                      */
                     var actionName = activeAction.get('name');
                     var actionParams = {};
-                    if(collectionName){
-                        actionParams.collection = collectionName;
-                    }
-                    if(actionName === 'editForm'){
-                        actionParams.form = 'edit';
-                    }
-                    if(actionName === 'addForm'){
-                        actionParams.object = this.store.createRecord(collectionName, {
+
+                    if(actionName === 'createForm'){
+                        routeData.createObject = self.store.createRecord(collectionName, {
                             parent: model
                         });
                     }
@@ -444,7 +454,7 @@ define([], function(){
                             routeData.viewSettings = results.settings;
                             return routeData;
                         });
-                    } else if(actionName === 'editForm' || actionName === 'addForm'){
+                    } else if(actionName === 'editForm' || actionName === 'createForm'){
                         actionParams = actionParams ? '?' + $.param(actionParams) : '';
                         var actionResource = componentController.get('settings').actions['get' + Ember.String.capitalize(actionName)].source + actionParams;
 

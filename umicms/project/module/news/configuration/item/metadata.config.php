@@ -57,12 +57,6 @@ return [
             'columnName'   => 'active',
             'defaultValue' => 1
         ],
-        NewsItem::FIELD_LOCKED                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'locked',
-            'readOnly'     => true,
-            'defaultValue' => 0
-        ],
         NewsItem::FIELD_TRASHED               => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'trashed',
@@ -143,7 +137,6 @@ return [
                 NewsItem::FIELD_TYPE,
                 NewsItem::FIELD_VERSION,
                 NewsItem::FIELD_ACTIVE,
-                NewsItem::FIELD_LOCKED,
                 NewsItem::FIELD_TRASHED,
                 NewsItem::FIELD_CREATED,
                 NewsItem::FIELD_UPDATED,
