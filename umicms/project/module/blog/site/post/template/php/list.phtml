@@ -10,6 +10,7 @@
             <li>
                 <?= $this->widget('blog.post.view', ['blogPost' => $blogPost, 'template' => 'shortView']); ?>
                 <?= $this->widget('blog.post.editPostLink', ['blogPost' => $blogPost, 'template' => 'editPostLink']); ?>
+                <?= $this->widget('blog.post.unPublish', ['blogPost' => $blogPost, 'template' => 'unPublishPostForm']); ?>
             </li>
         <?php endforeach;?>
     </ul>

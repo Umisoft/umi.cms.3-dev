@@ -32,10 +32,6 @@ class BlogEditPostController extends BaseSecureController implements IFormAware,
      * @var BlogModule $api API модуля "Блоги"
      */
     protected $api;
-    /**
-     * @var BlogPost $blogPost пост или GUID редактируемого поста
-     */
-    protected $blogPost;
 
     /**
      * Конструктор.
@@ -58,7 +54,7 @@ class BlogEditPostController extends BaseSecureController implements IFormAware,
 
         if ($this->isRequestMethodPost()) {
 
-            $form = $this->api->post()->getForm(BlogPost::FORM_ADD_POST, IObjectType::BASE, $blogPost);
+            $form = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $blogPost);
             $formData = $this->getAllPostVars();
 
             if ($form->setData($formData) && $form->isValid()) {

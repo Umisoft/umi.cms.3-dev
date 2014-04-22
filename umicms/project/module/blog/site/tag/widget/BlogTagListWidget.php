@@ -13,7 +13,7 @@ use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
- * Виджет для вывода списка постов.
+ * Виджет для вывода списка тэгов.
  */
 class BlogTagListWidget extends BaseSecureWidget
 {
@@ -21,11 +21,6 @@ class BlogTagListWidget extends BaseSecureWidget
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'list';
-    /**
-     * @var int $limit максимальное количество выводимых постов.
-     * Если не указано, выводятся все посты.
-     */
-    public $limit;
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -48,7 +43,7 @@ class BlogTagListWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'tags' => $this->api->getTags($this->limit)
+                'tags' => $this->api->getTags()
             ]
         );
     }

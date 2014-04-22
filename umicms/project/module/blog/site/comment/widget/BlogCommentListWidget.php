@@ -15,7 +15,7 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет для вывода списка постов.
+ * Виджет для вывода списка коментов.
  */
 class BlogCommentListWidget extends BaseSecureWidget
 {
@@ -23,11 +23,6 @@ class BlogCommentListWidget extends BaseSecureWidget
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'list';
-    /**
-     * @var int $limit максимальное количество выводимых постов.
-     * Если не указано, выводятся все посты.
-     */
-    public $limit;
     /**
      * * @var BlogPost $blogPost пост блога, к которому необходимо вывести комментарии
      */

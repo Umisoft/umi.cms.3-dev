@@ -1,0 +1,18 @@
+<?php
+/**
+ * @var umicms\orm\selector\CmsSelector $list
+ * @var umicms\project\module\blog\api\object\BlogPost $blogDraft
+ */
+?>
+
+<?php if ($list->getTotal()) :?>
+    <ul>
+        <?php foreach ($list as $blogDraft) : ?>
+            <li>
+                <?= $this->widget('blog.draft.view', ['blogDraft' => $blogDraft, 'template' => 'shortView']); ?>
+                <?= $this->widget('blog.draft.editDraftLink', ['blogDraft' => $blogDraft, 'template' => 'editDraftLink']); ?>
+                <?= $this->widget('blog.draft.publishDraft', ['blogDraft' => $blogDraft, 'template' => 'publishDraftForm']); ?>
+            </li>
+        <?php endforeach;?>
+    </ul>
+<?php endif; ?>

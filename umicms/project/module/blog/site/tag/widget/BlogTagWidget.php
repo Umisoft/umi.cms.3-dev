@@ -15,7 +15,7 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogTag;
 
 /**
- * Виджет вывода постов.
+ * Виджет вывода тэга.
  */
 class BlogTagWidget extends BaseSecureWidget
 {
@@ -24,7 +24,7 @@ class BlogTagWidget extends BaseSecureWidget
      */
     public $template = 'page';
     /**
-     * @var string|BlogTag $BlogTag GUID поста
+     * @var string|BlogTag $BlogTag GUID тэга
      */
     public $blogTag;
 
