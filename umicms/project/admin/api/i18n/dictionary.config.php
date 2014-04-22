@@ -14,6 +14,11 @@ return [
         'control:children:displayName' => 'Children',
         'control:filter:displayName' => 'Filter',
         'control:editForm:displayName' => 'Edit',
+        'control:createForm:displayName' => 'Create',
+        'control:tree:toolbar:getCreateForm' => 'Create',
+        'control:tree:toolbar:getEditForm' => 'Edit',
+        'control:tree:toolbar:switchActivity' => 'Switch activity',
+        'control:tree:toolbar:viewOnSite' => 'View on site',
     ],
 
     'ru-RU' => [
@@ -21,6 +26,11 @@ return [
         'control:children:displayName' => 'Дочерние элементы',
         'control:filter:displayName' => 'Фильтр',
         'control:editForm:displayName' => 'Редактирование',
+        'control:createForm:displayName' => 'Создание',
+        'control:tree:toolbar:getCreateForm' => 'Создать',
+        'control:tree:toolbar:getEditForm' => 'Редактировать',
+        'control:tree:toolbar:switchActivity' => 'Сменить активность',
+        'control:tree:toolbar:viewOnSite' => 'Посмотреть на сайте',
     ]
 
 ];
