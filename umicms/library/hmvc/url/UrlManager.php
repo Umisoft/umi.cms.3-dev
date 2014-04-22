@@ -242,10 +242,14 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function getAdminComponentActionResourceUrl(AdminComponent $component, $actionName)
+    public function getAdminComponentActionResourceUrl(AdminComponent $component, $actionName, array $params = [])
     {
         $actionUrl = $this->getAdminComponentResourceUrl($component);
         $actionUrl .= $component->getRouter()->assemble('action', ['action' => $actionName]);
+
+        if ($params) {
+            $actionUrl .= '?' . http_build_query($params);
+        }
 
         return $actionUrl;
     }
