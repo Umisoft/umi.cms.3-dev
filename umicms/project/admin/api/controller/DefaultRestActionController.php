@@ -136,7 +136,6 @@ class DefaultRestActionController extends BaseDefaultRestController
      */
     protected function changeSlug()
     {
-
         $data = $this->getIncomingData();
         $object = $this->getEditedObject($data);
 

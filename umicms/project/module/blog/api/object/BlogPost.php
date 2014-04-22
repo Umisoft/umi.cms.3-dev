@@ -11,9 +11,11 @@ namespace umicms\project\module\blog\api\object;
 
 use DateTime;
 use umi\orm\objectset\IManyToManyObjectSet;
+use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
+use umicms\project\module\blog\api\collection\BlogPostCollection;
 
 /**
  * Пост блога.
@@ -67,5 +69,15 @@ class BlogPost extends CmsObject implements ICmsPage
      * Форма редактирования поста
      */
     const FORM_EDIT_POST = 'editPost';
+    /**
+     * Форма помещения и извлечения поста в черновики
+     */
+    const FORM_DRAFT_POST = 'draftPost';
+
+    public function getPageUrl($isAbsolute = false)
+    {
+        $handler = $this->active ? ICmsCollection::HANDLER_SITE : BlogPostCollection::HANDLER_DRAFT;
+        return $this->getUrlManager()->getSitePageUrl($this, $isAbsolute, $handler);
+    }
 }
  

@@ -273,6 +273,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $post->getProperty('componentName')->setValue('post');
         $post->getProperty('componentPath')->setValue('blog.post');
 
+        $post = $structureCollection->add('drafts', 'system', $blogPage)
+            ->setValue('displayName', 'Черновики блога');
+        $post->getProperty('componentName')->setValue('draft');
+        $post->getProperty('componentPath')->setValue('blog.draft');
+
         $comment = $structureCollection->add('blogcomment', 'system', $blogPage)
             ->setValue('displayName', 'Комментарий блога')
             ->setGUID('2099184c-013c-4653-8882-21c06d5e4e83');

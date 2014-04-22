@@ -155,8 +155,7 @@ return [
         BlogCategory::FIELD_POSTS => [
             'type' => IField::TYPE_HAS_MANY,
             'target' => 'blogPost',
-            'targetField' => BlogPost::FIELD_CATEGORY,
-            'readOnly' => true
+            'targetField' => BlogPost::FIELD_CATEGORY
         ],
         BlogCategory::FIELD_CHILDREN => [
             'type' => IField::TYPE_HAS_MANY,

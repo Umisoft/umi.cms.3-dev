@@ -14,6 +14,7 @@ use umi\rss\IRssFeed;
 use umi\rss\IRssFeedAware;
 use umi\rss\RssItem;
 use umi\rss\TRssFeedAware;
+use umicms\exception\InvalidArgumentException;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManagerAware;
@@ -32,6 +33,7 @@ use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\blog\api\object\BlogRssImportScenario;
 use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\users\api\UsersModule;
 
 /**
  * Публичное API модуля "Блоги".
@@ -42,6 +44,11 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     use TUrlManagerAware;
 
     /**
+     * @var BlogAuthor $currentAuthor текущий автор блога
+     */
+    protected $currentAuthor;
+
+    /**
      * @var int $maxPostsCount максимальное количество постов у тега
      */
     protected $maxPostsCount;
@@ -49,6 +56,16 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      * @var int $minPostsCount минимальное количество постов у тега
      */
     protected $minPostsCount;
+
+    /**
+     * @var UsersModule $usersModule API пользователей
+     */
+    protected $usersModule;
+
+    public function __construct(UsersModule $usersModule)
+    {
+        $this->usersModule = $usersModule;
+    }
 
     /**
      * Возвращает коллекцию постов.
@@ -395,7 +412,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     protected function getTagWeight(BlogTag $tag, $minFontSize, $maxFontSize)
     {
-        $postsCount = $tag->getValue(BlogTag::FIELD_POSTS_COUNT);
+        $postsCount = $tag->postsCount;
 
         $minPostCount = $this->getMinPostsCount();
         $maxPostCount = $this->getMaxPostsCount();
@@ -413,13 +430,13 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает максимальное количество постов у тега
+     * Возвращает максимальное количество постов у тега.
      * @return int
      */
     protected function getMaxPostsCount()
     {
         if (!$this->maxPostsCount) {
-
+            /** @var BlogTag $tag */
             $tag = $this->getTags()
                 ->fields([BlogTag::FIELD_POSTS_COUNT])
                 ->orderBy(BlogTag::FIELD_POSTS_COUNT, CmsSelector::ORDER_DESC)
@@ -427,20 +444,20 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
                 ->getResult()
                 ->fetch();
 
-            $this->maxPostsCount = $tag->getValue(BlogTag::FIELD_POSTS_COUNT);
+            $this->maxPostsCount = $tag->postsCount;
         }
 
         return $this->maxPostsCount;
     }
 
     /**
-     * Возвращает минимальное количество постов у тега
+     * Возвращает минимальное количество постов у тега.
      * @return int
      */
     protected function getMinPostsCount()
     {
         if (!$this->minPostsCount) {
-
+            /** @var BlogTag $tag */
             $tag = $this->getTags()
                 ->fields(['postsCount'])
                 ->orderBy('postsCount', CmsSelector::ORDER_ASC)
@@ -448,9 +465,50 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
                 ->getResult()
                 ->fetch();
 
-            $this->minPostsCount = $tag->getValue(BlogTag::FIELD_POSTS_COUNT);
+            $this->minPostsCount = $tag->postsCount;
         }
 
         return $this->minPostsCount;
+    }
+
+    /**
+     * Возвращает текущего автора блога.
+     * @throws InvalidArgumentException
+     * @return mixed
+     */
+    public function getCurrentAuthor()
+    {
+        if ($this->currentAuthor) {
+            return $this->currentAuthor;
+        }
+
+        $this->currentAuthor = $this->author()->select()
+            ->where(BlogAuthor::FIELD_PROFILE)->equals($this->usersModule->getCurrentUser())
+            ->getResult()
+            ->fetch();
+
+        if (isset($this->currentAuthor) && !$this->currentAuthor instanceof BlogAuthor) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Method parameter "{param} should be instance of "{class}".',
+                    [
+                        'param' => 'currentAuthor',
+                        'class' => 'BlogAuthor'
+                    ]
+                )
+            );
+        }
+
+        return $this->currentAuthor;
+    }
+
+    /**
+     * Возвращает список черновиков текущего пользователя.
+     * @return CmsSelector|BlogPost
+     */
+    public function getOwnDrafts()
+    {
+        return $this->post()->getDrafts()
+            ->where(BlogPost::FIELD_AUTHOR)->equals($this->getCurrentAuthor());
     }
 }

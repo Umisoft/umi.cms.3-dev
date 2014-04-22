@@ -17,8 +17,9 @@ return [
     DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
     DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
-        'addPost' => __NAMESPACE__ . '\controller\BlogAddPostController',
-        'editPost' => __NAMESPACE__ . '\controller\BlogEditPostController',
+        'add' => __NAMESPACE__ . '\controller\BlogAddPostController',
+        'edit' => __NAMESPACE__ . '\controller\BlogEditPostController',
+        'unPublish' => __NAMESPACE__ . '\controller\BlogDraftPostController',
         'rss' => __NAMESPACE__ . '\controller\BlogPostRssController'
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
@@ -27,12 +28,16 @@ return [
         'rss' => __NAMESPACE__ . '\widget\BlogPostListRssUrlWidget',
         'addPost' => __NAMESPACE__ . '\widget\BlogAddPostWidget',
         'editPost' => __NAMESPACE__ . '\widget\BlogEditPostWidget',
+        'unPublish' => __NAMESPACE__ . '\widget\BlogDraftPostWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\BlogEditPostUrlWidget'
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
         'type' => 'php',
         'extension' => 'phtml',
-        'directories' => __DIR__ . '/template/php',
+        'directories' => [
+            __DIR__ . '/template/php',
+            CMS_LIBRARY_DIR . '/../project/site/template/php/common'
+        ]
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -64,18 +69,25 @@ return [
                 'controller' => 'rss'
             ]
         ],
-        'addPost' => [
+        'add' => [
             'type'     => IRouteFactory::ROUTE_FIXED,
-            'route' => '/addPost',
+            'route' => '/add',
             'defaults' => [
-                'controller' => 'addPost'
+                'controller' => 'add'
             ]
         ],
-        'editPost' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/editPost/{id:integer}',
+        'unPublish' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route' => '/unPublish',
             'defaults' => [
-                'controller' => 'editPost'
+                'controller' => 'unPublish'
+            ]
+        ],
+        'edit' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/edit/{id:integer}',
+            'defaults' => [
+                'controller' => 'edit'
             ]
         ]
     ]

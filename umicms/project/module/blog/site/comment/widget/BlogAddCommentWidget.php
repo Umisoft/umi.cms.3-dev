@@ -26,7 +26,7 @@ class BlogAddCommentWidget extends BaseSecureWidget
      */
     public $template = 'addComment';
     /**
-     * @var string|BlogPost $blogPost пост или GUID родительского поста
+     * @var string|BlogPost $blogPost пост или GUID поста
      */
     public $blogPost;
     /**

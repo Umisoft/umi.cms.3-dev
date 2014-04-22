@@ -15,7 +15,7 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogTag;
 
 /**
- * Виджет для вывода списка постов по категориям.
+ * Виджет для вывода списка постов по тэгам.
  */
 class BlogTagPostListWidget extends BaseSecureWidget
 {
@@ -23,11 +23,6 @@ class BlogTagPostListWidget extends BaseSecureWidget
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'postList';
-    /**
-     * @var int $limit максимальное количество выводимых постов.
-     * Если не указано, выводятся все посты.
-     */
-    public $limit;
     /**
      * @var array|BlogTag[]|BlogTag|null $tags тэг, список тэгов блога или GUID, из которых выводятся посты.
      * Если не указаны, то посты выводятся из всех тэгов

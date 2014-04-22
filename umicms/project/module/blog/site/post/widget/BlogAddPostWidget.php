@@ -69,7 +69,7 @@ class BlogAddPostWidget extends BaseSecureWidget
 
         $formAddPost = $this->api->post()->getForm(BlogPost::FORM_ADD_POST, IObjectType::BASE, $post);
 
-        $formAddPost->setAction($this->getUrl('addPost'));
+        $formAddPost->setAction($this->getUrl('add'));
         $formAddPost->setMethod('post');
 
         return $this->createResult(

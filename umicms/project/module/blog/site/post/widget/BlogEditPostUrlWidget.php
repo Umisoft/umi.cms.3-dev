@@ -66,7 +66,7 @@ class BlogEditPostUrlWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'url' => $this->getUrl('editPost', ['id' => $url])
+                'url' => $this->getUrl('edit', ['id' => $url])
             ]
         );
     }
