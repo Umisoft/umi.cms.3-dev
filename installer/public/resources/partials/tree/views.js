@@ -2,31 +2,11 @@ define(['App'], function(UMI){
     'use strict';
     return function(){
 
-        UMI.TreeItemView = Ember.View.extend({
-            tagName: 'div',
-            classNames: ['umi-item'],
-            classNameBindings: ['inActive', 'active', 'contextMenuIsOpen'],
-
-            inActive: function(){
-                return !this.get('model.active');
-            }.property('model.active'),
-
-            active: function(){
-                return this.get('controller.controllers.treeControl.activeContext.id') === this.get('model.id');
-            }.property('controller.controllers.treeControl.activeContext.id'),
-
-            savedDisplayName: function(){
-                if(this.get('model.id') === 'root'){
-                    return this.get('model.displayName');
-                } else{
-                    return this.get('model.content._data.displayName');
-                }
-            }.property('model.currentState.loaded.saved')//TODO: Отказаться от использования _data
-        });
-
         UMI.TreeControlView = Ember.View.extend({
             tagName: 'div',
+
             classNames: ['row', 's-full-height'],
+
             didInsertElement: function(){
                 var scrollContainer = this.$().find('.umi-tree-wrapper')[0];
                 new IScroll(scrollContainer, UMI.config.iScroll);
@@ -206,6 +186,7 @@ define(['App'], function(UMI){
                     }
                 });
             },
+
             filtersView: Ember.View.extend({
                 classNames: ['umi-tree-control-filters'],
                 isOpen: false,
@@ -259,6 +240,31 @@ define(['App'], function(UMI){
                     }.property('controller.controllers.treeControl.selectAction')
                 })
             })
+        });
+
+
+        UMI.TreeItemView = Ember.View.extend({
+            tagName: 'div',
+
+            classNames: ['umi-item'],
+
+            classNameBindings: ['inActive', 'active', 'contextMenuIsOpen'],
+
+            inActive: function(){
+                return !this.get('model.active');
+            }.property('model.active'),
+
+            active: function(){
+                return this.get('controller.controllers.treeControl.activeContext.id') === this.get('model.id');
+            }.property('controller.controllers.treeControl.activeContext.id'),
+
+            savedDisplayName: function(){
+                if(this.get('model.id') === 'root'){
+                    return this.get('model.displayName');
+                } else{
+                    return this.get('model.content._data.displayName');
+                }
+            }.property('model.currentState.loaded.saved')//TODO: Отказаться от использования _data
         });
     };
 });
