@@ -221,6 +221,7 @@ define(['App'], function(UMI){
                     sortAscending: true
                 });
             }.property('children'),
+
             visible: function(){
                 var visible = true;
                 var filters = this.get('filters');
@@ -234,28 +235,7 @@ define(['App'], function(UMI){
                 return visible;
             }.property('model', 'filters'),
             filters: Ember.computed.alias("controllers.treeControl.activeFilters"),
-            needs: 'treeControl',
-            isExpanded: function(){
-                var activeContext = this.get('controllers.treeControl.activeContext');
-                if(this.get('id') === 'root'){
-                    return true;
-                } else{
-                    if(!activeContext || activeContext.get('id') === 'root'){
-                        return false;
-                    }
-                    var contains = activeContext.get('mpath').contains(parseFloat(this.get('id')));
-                    if(contains && activeContext.get('id') !== this.get('id')){
-                        return true;
-                    } else{
-                        return false;
-                    }
-                }
-            }.property('root'),
-            actions: {
-                expanded: function(){
-                    this.set('isExpanded', !this.get('isExpanded'));
-                }
-            }
+            needs: 'treeControl'
         });
     };
 });

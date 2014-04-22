@@ -3,8 +3,6 @@ define(['App'], function(UMI){
     return function(){
 
         UMI.TreeControlView = Ember.View.extend({
-            tagName: 'div',
-
             classNames: ['row', 's-full-height'],
 
             didInsertElement: function(){
@@ -73,9 +71,7 @@ define(['App'], function(UMI){
 
                         // Раскрытие ноды имеющую потомков
                         var setExpanded = function(node){
-                            // Предполагаем что div всегда будет первым потомком в li
-                            // но так делать не круто
-                            var itemController = Ember.View.views[node.firstElementChild.id].get('controller');
+                            var itemController = Ember.View.views[node.id].get('controller');
                             if(itemController.get('model.childCount')){
                                 itemController.set('isExpanded', true);
                             }
@@ -84,7 +80,7 @@ define(['App'], function(UMI){
                         if($(elem).closest('.umi-tree').length){
                             hoverElement = $(elem).closest('li')[0];
                             // Устанавливаем плэйсхолдер рядом с элементом
-                            if(hoverElement && hoverElement !== placeholder && !$(hoverElement).hasClass('root')){
+                            if(hoverElement && hoverElement !== placeholder && hoverElement.getAttribute('data-id') !== 'root'){
                                 elemHeight = hoverElement.offsetHeight;
                                 elemPositionTop = hoverElement.getBoundingClientRect().top;
                                 // Помещаем плэйсхолдер:
@@ -206,50 +202,17 @@ define(['App'], function(UMI){
                         }
                     }
                 }
-            }),
-
-            contextMenuView: Ember.View.extend({
-                tagName: 'ul',
-                classNames: ['button-group', 'umi-tree-context-menu', 'right'],
-                layoutName: 'treeControlContextMenu',
-                isOpen: false,
-                setParentIsOpen: function(){
-                    this.get('parentView').set('contextMenuIsOpen', this.get('isOpen'));
-                }.observes('isOpen'),
-                actions: {
-                    open: function(){
-                        var self = this;
-                        var el = this.$();
-                        this.toggleProperty('isOpen');
-                        if(this.get('isOpen')){
-                            $('body').on('click.umi.tree.contextMenu', function(event){
-                                var targetElement = $(event.target).closest('.umi-tree-context-menu');
-                                if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
-                                    $('body').off('click.umi.tree.contextMenu');
-                                    self.set('isOpen', false);
-                                }
-                            });
-                        }
-                    }
-                },
-                itemView: Ember.View.extend({
-                    tagName: 'li',
-                    isFastAction: function(){
-                        var selectAction = this.get('controller.controllers.treeControl.selectAction');
-                        return selectAction ? this.get('action').type === selectAction.type : false;
-                    }.property('controller.controllers.treeControl.selectAction')
-                })
             })
         });
 
-
         UMI.TreeItemView = Ember.View.extend({
-            tagName: 'div',
-
-            classNames: ['umi-item'],
-
-            classNameBindings: ['inActive', 'active', 'contextMenuIsOpen'],
-
+            templateName: 'treeItem',
+            tagName: 'li',
+            classNameBindings: ['node.isDragged:hide'],
+            attributeBindings: ['dataId:data-id'],
+            dataId: function(){
+                return this.get('model.id');
+            }.property('model'),
             inActive: function(){
                 return !this.get('model.active');
             }.property('model.active'),
@@ -264,7 +227,62 @@ define(['App'], function(UMI){
                 } else{
                     return this.get('model.content._data.displayName');
                 }
-            }.property('model.currentState.loaded.saved')//TODO: Отказаться от использования _data
+            }.property('model.currentState.loaded.saved'),//TODO: Отказаться от использования _data
+
+            isExpanded: function(){
+                var activeContext = this.get('controller.controllers.treeControl.activeContext');
+                if(this.get('model.id') === 'root'){
+                    return true;
+                } else{
+                    if(!activeContext || activeContext.get('id') === 'root'){
+                        return false;
+                    }
+                    var contains = activeContext.get('mpath').contains(parseFloat(this.get('model.id')));
+                    if(contains && activeContext.get('id') !== this.get('model.id')){
+                        return true;
+                    } else{
+                        return false;
+                    }
+                }
+            }.property('model'),
+            actions: {
+                expanded: function(){
+                    this.set('isExpanded', !this.get('isExpanded'));
+                }
+            }
         });
+
+        UMI.TreeControlContextMenuView = Ember.View.extend({
+            tagName: 'ul',
+            classNames: ['button-group', 'umi-tree-context-menu', 'right'],
+            layoutName: 'treeControlContextMenu',
+            isOpen: false,
+            setParentIsOpen: function(){
+                this.get('parentView').set('contextMenuIsOpen', this.get('isOpen'));
+            }.observes('isOpen'),
+            actions: {
+                open: function(){
+                    var self = this;
+                    var el = this.$();
+                    this.toggleProperty('isOpen');
+                    if(this.get('isOpen')){
+                        $('body').on('click.umi.tree.contextMenu', function(event){
+                            var targetElement = $(event.target).closest('.umi-tree-context-menu');
+                            if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
+                                $('body').off('click.umi.tree.contextMenu');
+                                self.set('isOpen', false);
+                            }
+                        });
+                    }
+                }
+            },
+            itemView: Ember.View.extend({
+                tagName: 'li',
+                isFastAction: function(){
+                    var selectAction = this.get('controller.controllers.treeControl.selectAction');
+                    return selectAction ? this.get('action').type === selectAction.type : false;
+                }.property('controller.controllers.treeControl.selectAction')
+            })
+        })
     };
 });
