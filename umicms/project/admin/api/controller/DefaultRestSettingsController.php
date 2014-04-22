@@ -9,6 +9,7 @@
 
 namespace umicms\project\admin\api\controller;
 
+use umi\orm\metadata\IObjectType;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
@@ -85,11 +86,55 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
      */
     protected function getSettings()
     {
+        $collection = $this->getCollection();
         return [
-            'collectionName' => $this->getCollectionName(),
-            'layout' => $this->buildLayoutInfo(),
+            'collectionName' => $collection->getName(),
+            'layout' => $this->buildLayoutInfo($collection),
+            'types' => [$this->buildTypesTreeNode($collection)],
             'actions' => $this->buildActionsInfo()
         ];
+    }
+
+    /**
+     * Возвращает дерево типов коллекции компонента
+     * @param ICmsCollection $collection
+     * @param string $typeName имя типа
+     * @return array
+     */
+    protected function buildTypesTreeNode(ICmsCollection $collection, $typeName = IObjectType::BASE) {
+
+        $result = [
+            'name' => $typeName,
+            'displayName' => $this->translate('type:' . $typeName . ':displayName'),
+
+        ];
+
+        if ($collection->hasForm(ICmsCollection::FORM_CREATE, $typeName)) {
+            $result[ICmsCollection::FORM_CREATE] = $this->getUrlManager()->getAdminComponentActionResourceUrl(
+                $this->getComponent(),
+                DefaultAdminComponent::ACTION_GET_CREATE_FORM,
+                ['type' => $typeName]
+            );
+        }
+
+        if ($collection->hasForm(ICmsCollection::FORM_EDIT, $typeName)) {
+            $result[ICmsCollection::FORM_EDIT] = $this->getUrlManager()->getAdminComponentActionResourceUrl(
+                $this->getComponent(),
+                DefaultAdminComponent::ACTION_GET_EDIT_FORM,
+                ['type' => $typeName]
+            );
+        }
+
+        $childTypes = [];
+        foreach ($collection->getMetadata()->getChildTypesList($typeName) as $childTypeName) {
+            $childTypes[] = $this->buildTypesTreeNode($collection, $childTypeName);
+        }
+
+        if ($childTypes) {
+            $result['types'] = $childTypes;
+        }
+
+        return $result;
     }
 
     /**
@@ -111,12 +156,12 @@ class DefaultRestSettingsController extends BaseDefaultRestController implements
 
     /**
      * Возвращает информацию об интерфейсном отображении компонента.
+     * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildLayoutInfo()
+    protected function buildLayoutInfo(ICmsCollection $collection)
     {
         $layout = [];
-        $collection = $this->getCollection();
         $layout[self::OPTION_INTERFACE_LAYOUT_SIDEBAR] = $this->buildSideBarInfo($collection);
 
         $layout[self::OPTION_INTERFACE_LAYOUT_CONTENTS] = $this->buildContentsInfo($collection);

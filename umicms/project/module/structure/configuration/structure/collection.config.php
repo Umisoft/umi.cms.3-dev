@@ -19,10 +19,6 @@ return [
         'site' => 'structure'
     ],
     'forms' => [
-        'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/structure/form/base.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/structure/form/base.create.config.php}'
-        ],
         'static' => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/structure/form/static.edit.config.php}',
             ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/structure/form/static.create.config.php}'

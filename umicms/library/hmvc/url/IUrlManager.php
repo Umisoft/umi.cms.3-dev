@@ -126,9 +126,10 @@ interface IUrlManager
      * Возвращает URL действия компонента
      * @param AdminComponent $component
      * @param string $actionName имя действия
+     * @param array $params список GET-параметров
      * @return string
      */
-    public function getAdminComponentActionResourceUrl(AdminComponent $component, $actionName);
+    public function getAdminComponentActionResourceUrl(AdminComponent $component, $actionName, array $params = []);
 
     /**
      * Возвращает текущий URL запроса.
