@@ -13,9 +13,9 @@ use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
- * Виджет для вывода ссылки на спискок черновиков.
+ * Виджет для вывода ссылки на спискок всех авторов.
  */
-class BlogDraftListUrlWidget extends BaseSecureWidget
+class BlogOwnDraftListUrlWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -44,7 +44,7 @@ class BlogDraftListUrlWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'url' => $this->getUrl('all')
+                'url' => $this->getUrl('index')
             ]
         );
     }

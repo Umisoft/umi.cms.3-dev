@@ -28,7 +28,6 @@ class BlogEditDraftController extends BaseSecureController implements IFormAware
     use TFormAware;
     use TObjectPersisterAware;
 
-    public $template = 'blogDraft';
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -70,7 +69,7 @@ class BlogEditDraftController extends BaseSecureController implements IFormAware
         }
 
         return $this->createViewResponse(
-            $this->template,
+            'blogDraft',
             [
                 'blogDraft' => $blogDraft
             ]

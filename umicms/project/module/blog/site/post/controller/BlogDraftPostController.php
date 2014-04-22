@@ -62,7 +62,7 @@ class BlogDraftPostController extends BaseSecureController implements IFormAware
 
             $blogPost = $this->api->post()->getById($blogPostId);
 
-            $this->api->post()->draftPost($blogPost);
+            $this->api->post()->deactivate($blogPost);
             $this->getObjectPersister()->commit();
 
             return $this->createRedirectResponse($this->getRequest()->getReferer());

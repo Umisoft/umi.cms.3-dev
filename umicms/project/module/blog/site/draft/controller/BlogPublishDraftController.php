@@ -21,9 +21,9 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Контроллер помещения публикации черновика.
+ * Контроллер публикации черновика.
  */
-class BlogPostDraftController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class BlogPublishDraftController extends BaseSecureController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;
@@ -62,7 +62,7 @@ class BlogPostDraftController extends BaseSecureController implements IFormAware
 
             $blogPost = $this->api->post()->getDraftById($blogPostId);
 
-            $this->api->post()->postDraft($blogPost);
+            $this->api->post()->activate($blogPost);
             $this->getObjectPersister()->commit();
 
             return $this->createRedirectResponse($this->getRequest()->getReferer());

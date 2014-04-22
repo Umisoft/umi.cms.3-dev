@@ -17,12 +17,15 @@ return [
     DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\BlogDraftPageController',
+        'all' => __NAMESPACE__ . '\controller\BlogDraftListController',
         'editDraft' => __NAMESPACE__ . '\controller\BlogEditDraftController',
-        'postDraft' => __NAMESPACE__ . '\controller\BlogPostDraftController'
+        'publish' => __NAMESPACE__ . '\controller\BlogPublishDraftController'
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogDraftWidget',
         'list' => __NAMESPACE__ . '\widget\BlogDraftListWidget',
+        'ownList' => __NAMESPACE__ . '\widget\BlogOwnDraftListWidget',
+        'ownListUrl' => __NAMESPACE__ . '\widget\BlogOwnDraftListUrlWidget',
         'editDraft' => __NAMESPACE__ . '\widget\BlogEditDraftWidget',
         'postDraft' => __NAMESPACE__ . '\widget\BlogPostDraftWidget',
         'editDraftLink' => __NAMESPACE__ . '\widget\BlogEditDraftUrlWidget',
@@ -46,11 +49,18 @@ return [
                 'controller' => 'editDraft'
             ]
         ],
-        'postDraft' => [
+        'publish' => [
             'type'     => IRouteFactory::ROUTE_FIXED,
-            'route' => '/postDraft',
+            'route' => '/publish',
             'defaults' => [
-                'controller' => 'postDraft'
+                'controller' => 'publish'
+            ]
+        ],
+        'all' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route' => '/all',
+            'defaults' => [
+                'controller' => 'all'
             ]
         ]
     ]

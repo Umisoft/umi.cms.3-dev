@@ -7,16 +7,15 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\draft\controller;
+namespace umicms\project\module\blog\site\draft\widget;
 
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\site\controller\DefaultPageController;
 
 /**
- * Контроллер вывода черновика блога.
+ * Виджет для вывода списка черновиков текущего автора.
  */
-class BlogDraftPageController extends DefaultPageController
+class BlogOwnDraftListWidget extends BaseListWidget
 {
     /**
      * @var BlogModule $api API модуля "Блоги"
@@ -25,7 +24,7 @@ class BlogDraftPageController extends DefaultPageController
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule
+     * @param BlogModule $blogModule API модуля "Блоги"
      */
     public function __construct(BlogModule $blogModule)
     {
@@ -33,13 +32,11 @@ class BlogDraftPageController extends DefaultPageController
     }
 
     /**
-     * Возвращает страницу для отображения.
-     * @param string $uri
-     * @return BlogPost
+     * {@inheritdoc}
      */
-    public function getPage($uri)
+    protected function getSelector()
     {
-        return $this->api->post()->getDraftByUri($uri);
+        return $this->api->getOwnDrafts();
     }
 }
  

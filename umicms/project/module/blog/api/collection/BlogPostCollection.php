@@ -115,26 +115,4 @@ class BlogPostCollection extends PageCollection
 
         return $blogDraft;
     }
-
-    /**
-     * Помещает пост в черновики.
-     * @param BlogPost $blogPost
-     */
-    public function draftPost(BlogPost $blogPost)
-    {
-        if ($blogPost->active) {
-            $blogPost->active = false;
-        }
-    }
-
-    /**
-     * Публикует пост.
-     * @param BlogPost $blogPost
-     */
-    public function postDraft(BlogPost $blogPost)
-    {
-        if (!$blogPost->active) {
-            $blogPost->active = true;
-        }
-    }
 }

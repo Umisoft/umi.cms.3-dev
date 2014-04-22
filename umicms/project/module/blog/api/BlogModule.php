@@ -412,7 +412,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     protected function getTagWeight(BlogTag $tag, $minFontSize, $maxFontSize)
     {
-        $postsCount = $tag->getValue(BlogTag::FIELD_POSTS_COUNT);
+        $postsCount = $tag->postsCount;
 
         $minPostCount = $this->getMinPostsCount();
         $maxPostCount = $this->getMaxPostsCount();
@@ -436,7 +436,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     protected function getMaxPostsCount()
     {
         if (!$this->maxPostsCount) {
-
+            /** @var BlogTag $tag */
             $tag = $this->getTags()
                 ->fields([BlogTag::FIELD_POSTS_COUNT])
                 ->orderBy(BlogTag::FIELD_POSTS_COUNT, CmsSelector::ORDER_DESC)
@@ -444,7 +444,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
                 ->getResult()
                 ->fetch();
 
-            $this->maxPostsCount = $tag->getValue(BlogTag::FIELD_POSTS_COUNT);
+            $this->maxPostsCount = $tag->postsCount;
         }
 
         return $this->maxPostsCount;
@@ -457,7 +457,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     protected function getMinPostsCount()
     {
         if (!$this->minPostsCount) {
-
+            /** @var BlogTag $tag */
             $tag = $this->getTags()
                 ->fields(['postsCount'])
                 ->orderBy('postsCount', CmsSelector::ORDER_ASC)
@@ -465,7 +465,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
                 ->getResult()
                 ->fetch();
 
-            $this->minPostsCount = $tag->getValue(BlogTag::FIELD_POSTS_COUNT);
+            $this->minPostsCount = $tag->postsCount;
         }
 
         return $this->minPostsCount;
@@ -500,5 +500,15 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         }
 
         return $this->currentAuthor;
+    }
+
+    /**
+     * Возвращает список черновиков текущего пользователя.
+     * @return CmsSelector|BlogPost
+     */
+    public function getOwnDrafts()
+    {
+        return $this->post()->getDrafts()
+            ->where(BlogPost::FIELD_AUTHOR)->equals($this->getCurrentAuthor());
     }
 }
