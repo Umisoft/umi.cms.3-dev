@@ -198,6 +198,7 @@ define(['App'], function(UMI){
 
             willDestroyElement: function(){
                 this.get('controller').removeObserver('controllers.component.collectionName');
+                this.get('controller').removeObserver('activeContext');
             },
 
             filtersView: Ember.View.extend({
