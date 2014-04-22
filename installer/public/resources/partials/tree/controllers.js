@@ -4,7 +4,7 @@ define(['App'], function(UMI){
 
         UMI.TreeControlController = Ember.ObjectController.extend({
             controlName: function(){
-                return this.get('controllers.component.collectionName');
+                return 'treeControl' + Ember.String.capitalize(this.get('controllers.component.collectionName'));
             }.property('controllers.component.collectionName'),
             /**
              Возвращает корневой элемент
