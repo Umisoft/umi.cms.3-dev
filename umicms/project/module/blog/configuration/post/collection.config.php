@@ -24,7 +24,8 @@ return [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/post/form/base.edit.config.php}',
             ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/post/form/base.create.config.php}',
             BlogPost::FORM_ADD_POST => '{#lazy:~/project/module/blog/site/post/form/base.addPost.config.php}',
-            BlogPost::FORM_EDIT_POST => '{#lazy:~/project/module/blog/site/post/form/base.editPost.config.php}'
+            BlogPost::FORM_EDIT_POST => '{#lazy:~/project/module/blog/site/post/form/base.editPost.config.php}',
+            BlogPost::FORM_DRAFT_POST => '{#lazy:~/project/module/blog/site/post/form/base.draftPost.config.php}'
         ]
     ],
     'dictionaries' => [

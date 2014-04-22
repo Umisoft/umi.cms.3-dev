@@ -69,6 +69,10 @@ class BlogPost extends CmsObject implements ICmsPage
      * Форма редактирования поста
      */
     const FORM_EDIT_POST = 'editPost';
+    /**
+     * Форма помещения и извлечения поста в черновики
+     */
+    const FORM_DRAFT_POST = 'draftPost';
 
     public function getPageUrl($isAbsolute = false)
     {

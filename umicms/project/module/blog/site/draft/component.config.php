@@ -17,12 +17,14 @@ return [
     DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\BlogDraftPageController',
-        'editDraft' => __NAMESPACE__ . '\controller\BlogEditDraftController'
+        'editDraft' => __NAMESPACE__ . '\controller\BlogEditDraftController',
+        'postDraft' => __NAMESPACE__ . '\controller\BlogPostDraftController'
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogDraftWidget',
         'list' => __NAMESPACE__ . '\widget\BlogDraftListWidget',
         'editDraft' => __NAMESPACE__ . '\widget\BlogEditDraftWidget',
+        'postDraft' => __NAMESPACE__ . '\widget\BlogPostDraftWidget',
         'editDraftLink' => __NAMESPACE__ . '\widget\BlogEditDraftUrlWidget',
         'editListDraftUrl' => __NAMESPACE__ . '\widget\BlogDraftListUrlWidget'
     ],
@@ -42,6 +44,13 @@ return [
             'route' => '/editDraft/{id:integer}',
             'defaults' => [
                 'controller' => 'editDraft'
+            ]
+        ],
+        'postDraft' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route' => '/postDraft',
+            'defaults' => [
+                'controller' => 'postDraft'
             ]
         ]
     ]
