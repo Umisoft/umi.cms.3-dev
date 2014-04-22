@@ -11,6 +11,7 @@ use umicms\project\module\blog\api\object\BlogPost;
 
 return [
         'en-US' => [
+            BlogPost::FIELD_ANNOUNCEMENT => 'Announcement',
             BlogPost::FIELD_CATEGORY => 'Category',
             BlogPost::FIELD_TAGS => 'Tags',
             BlogPost::FIELD_AUTHOR => 'Author',
@@ -19,6 +20,7 @@ return [
         ],
 
         'ru-RU' => [
+            BlogPost::FIELD_ANNOUNCEMENT => 'Анонс',
             BlogPost::FIELD_CATEGORY => 'Категория',
             BlogPost::FIELD_TAGS => 'Тэги',
             BlogPost::FIELD_AUTHOR => 'Автор',
