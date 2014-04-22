@@ -65,7 +65,7 @@ class BlogEditPostWidget extends BaseSecureWidget
 
         $formAddPost = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $this->blogPost);
 
-        $formAddPost->setAction($this->getUrl('editPost', ['id' => $this->blogPost->getId()]));
+        $formAddPost->setAction($this->getUrl('edit', ['id' => $this->blogPost->getId()]));
         $formAddPost->setMethod('post');
 
         return $this->createResult(

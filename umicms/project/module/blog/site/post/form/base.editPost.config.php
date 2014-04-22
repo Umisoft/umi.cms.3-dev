@@ -7,11 +7,13 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\api\object\BlogCategory;
 use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\api\object\BlogTag;
 
 return [
     'options' => [
@@ -57,6 +59,17 @@ return [
             'label' => BlogPost::FIELD_PAGE_CONTENTS,
             'options' => [
                 'dataSource' => BlogPost::FIELD_PAGE_CONTENTS
+            ]
+        ],
+        BlogPost::FIELD_TAGS=> [
+            'type' => MultiSelect::TYPE_NAME,
+            'label' => BlogPost::FIELD_TAGS,
+            'options' => [
+                'dataSource' => BlogPost::FIELD_TAGS,
+                'choicesSource' => [
+                    'value' => BlogTag::FIELD_IDENTIFY,
+                    'label' => BlogTag::FIELD_DISPLAY_NAME
+                ]
             ]
         ]
     ]
