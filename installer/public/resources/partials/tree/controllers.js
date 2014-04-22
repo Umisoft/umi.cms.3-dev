@@ -9,13 +9,17 @@ define(['App'], function(UMI){
 
             expandedBranches: [],
 
+            clearExpanded: function(){
+                this.set('expandedBranches', []);
+            }.observes('controllers.component.collectionName'),
+
             activeContextChange: function(){
                 var expandedBranches = this.get('expandedBranches');
                 var activeContext = this.get('activeContext');
                 if(activeContext){
                     var mpath = [];
                     if(activeContext.get('id') !== 'root'){
-                        mpath = activeContext.get('mpath').without(activeContext.get('id')) || [];
+                        mpath = activeContext.get('mpath').without(parseFloat(activeContext.get('id'))) || [];
                     }
                     mpath.push('root');
                     this.set('expandedBranches', expandedBranches.concat(mpath).uniq());

@@ -196,6 +196,10 @@ define(['App'], function(UMI){
                 });
             },
 
+            willDestroyElement: function(){
+                this.get('controller').removeObserver('controllers.component.collectionName');
+            },
+
             filtersView: Ember.View.extend({
                 classNames: ['umi-tree-control-filters'],
                 isOpen: false,
