@@ -13,7 +13,7 @@ use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
- * Виджет для вывода ссылки на спискок черновиков.
+ * Виджет для вывода ссылки на спискок всех черновиков.
  */
 class BlogDraftListUrlWidget extends BaseSecureWidget
 {

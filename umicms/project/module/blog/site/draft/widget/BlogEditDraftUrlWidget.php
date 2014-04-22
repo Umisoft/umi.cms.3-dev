@@ -66,7 +66,7 @@ class BlogEditDraftUrlWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'url' => $this->getUrl('editDraft', ['id' => $url])
+                'url' => $this->getUrl('edit', ['id' => $url])
             ]
         );
     }

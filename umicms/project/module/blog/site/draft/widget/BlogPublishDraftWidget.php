@@ -18,7 +18,7 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет публикации черновика.
  */
-class BlogPostDraftWidget extends BaseSecureWidget
+class BlogPublishDraftWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

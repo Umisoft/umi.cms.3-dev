@@ -65,7 +65,7 @@ class BlogEditDraftWidget extends BaseSecureWidget
 
         $formEditDraft = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $this->blogDraft);
 
-        $formEditDraft->setAction($this->getUrl('editDraft', ['id' => $this->blogDraft->getId()]));
+        $formEditDraft->setAction($this->getUrl('edit', ['id' => $this->blogDraft->getId()]));
         $formEditDraft->setMethod('post');
 
         return $this->createResult(

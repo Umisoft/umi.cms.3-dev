@@ -18,7 +18,7 @@ return [
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\BlogDraftPageController',
         'all' => __NAMESPACE__ . '\controller\BlogDraftListController',
-        'editDraft' => __NAMESPACE__ . '\controller\BlogEditDraftController',
+        'edit' => __NAMESPACE__ . '\controller\BlogEditDraftController',
         'publish' => __NAMESPACE__ . '\controller\BlogPublishDraftController'
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
@@ -27,9 +27,9 @@ return [
         'ownList' => __NAMESPACE__ . '\widget\BlogOwnDraftListWidget',
         'ownListUrl' => __NAMESPACE__ . '\widget\BlogOwnDraftListUrlWidget',
         'editDraft' => __NAMESPACE__ . '\widget\BlogEditDraftWidget',
-        'postDraft' => __NAMESPACE__ . '\widget\BlogPostDraftWidget',
+        'publishDraft' => __NAMESPACE__ . '\widget\BlogPublishDraftWidget',
         'editDraftLink' => __NAMESPACE__ . '\widget\BlogEditDraftUrlWidget',
-        'editListDraftUrl' => __NAMESPACE__ . '\widget\BlogDraftListUrlWidget'
+        'allListUrl' => __NAMESPACE__ . '\widget\BlogDraftListUrlWidget'
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
         'type' => 'php',
@@ -42,11 +42,11 @@ return [
     DefaultSitePageComponent::OPTION_ACL => [
     ],
     DefaultSitePageComponent::OPTION_ROUTES => [
-        'editDraft' => [
+        'edit' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/editDraft/{id:integer}',
+            'route' => '/edit/{id:integer}',
             'defaults' => [
-                'controller' => 'editDraft'
+                'controller' => 'edit'
             ]
         ],
         'publish' => [
