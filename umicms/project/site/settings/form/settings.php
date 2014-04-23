@@ -7,6 +7,7 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\form\element\Select;
 use umi\form\element\Text;
 use umicms\project\site\SiteApplication;
 
@@ -66,6 +67,31 @@ return [
             'options' => [
                 'dataSource' => SiteApplication::SETTING_DEFAULT_LAYOUT_GUID
             ]
-        ]
+        ],
+        SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE => [
+            'type' => Select::TYPE_NAME,
+            'label' => SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE,
+            'options' => [
+                'dataSource' => SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE,
+                'choices' => [
+                    'php' => 'php',
+                    'twig' => 'twig'
+                ]
+            ]
+        ],
+        SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION => [
+            'type' => Text::TYPE_NAME,
+            'label' => SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION,
+            'options' => [
+                'dataSource' => SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION
+            ]
+        ],
+        SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => [
+            'type' => Text::TYPE_NAME,
+            'label' => SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY,
+            'options' => [
+                'dataSource' => SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY
+            ]
+        ],
     ]
 ];

@@ -10,18 +10,28 @@
 namespace umicms\project\site\component;
 
 use umi\hmvc\dispatcher\IDispatchContext;
+use umi\hmvc\model\IModelAware;
+use umi\hmvc\view\IViewRenderer;
 use umi\http\Request;
 use umicms\hmvc\component\BaseComponent;
 use umicms\orm\object\ICmsPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
+use umicms\project\site\config\ISiteSettingsAware;
+use umicms\project\site\config\TSiteSettingsAware;
 
 /**
  * Компонент сайта.
  */
-class SiteComponent extends BaseComponent implements IPageCallStackAware
+class SiteComponent extends BaseComponent implements IPageCallStackAware, ISiteSettingsAware
 {
     use TPageCallStackAware;
+    use TSiteSettingsAware;
+
+    /**
+     * @var IViewRenderer $viewRenderer рендерер шаблонов
+     */
+    private $viewRenderer;
 
     /**
      * Имя параметра маршрута для определения элемента структуры.
@@ -43,6 +53,50 @@ class SiteComponent extends BaseComponent implements IPageCallStackAware
         }
 
         return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getViewRenderer()
+    {
+        if (!$this->viewRenderer) {
+
+            $config = $this->getViewRendererConfig();
+
+            $viewRenderer = $this->createMvcViewRenderer($config);
+
+            if ($viewRenderer instanceof IModelAware) {
+                $viewRenderer->setModelFactory($this->getModelsFactory());
+            }
+
+            return $this->viewRenderer = $viewRenderer;
+        }
+
+        return $this->viewRenderer;
+    }
+
+    protected function getViewRendererConfig()
+    {
+        $config = isset($this->options[self::OPTION_VIEW]) ? $this->options[self::OPTION_VIEW] : [];
+        $config = $this->configToArray($config, true);
+
+        if (!isset($config['type'])) {
+            $config['type'] = $this->getSiteDefaultTemplateEngineType();
+        }
+
+        if (!isset($config['extension'])) {
+            $config['extension'] = $this->getSiteDefaultTemplateExtension();
+        }
+
+        if ($commonDirectory = $this->getSiteCommonTemplateDirectory()) {
+            $directories = isset($config['directories']) ? (array) $config['directories'] : [];
+            $directories[] = $commonDirectory;
+
+            $config['directories'] = $directories;
+        }
+
+        return $config;
     }
 
 }

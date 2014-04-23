@@ -31,17 +31,16 @@ use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
 use umicms\serialization\ISerializationAware;
+use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
 
 /**
  * Приложение сайта.
  */
 class SiteApplication extends SiteComponent
-    implements IHttpAware, IToolkitAware, ISiteSettingsAware, ISerializationAware, IUrlManagerAware
+    implements IHttpAware, IToolkitAware, ISerializationAware, IUrlManagerAware
 {
-    use TSiteSettingsAware;
     use THttpAware;
     use TToolkitAware;
     use TSerializationAware;
@@ -50,31 +49,44 @@ class SiteApplication extends SiteComponent
     /**
      * Имя настройки для задания guid главной страницы
      */
-    const SETTING_DEFAULT_PAGE_GUID = 'default-page';
+    const SETTING_DEFAULT_PAGE_GUID = 'defaultPage';
     /**
      * Имя настройки для задания guid шаблона по умолчанию
      */
-    const SETTING_DEFAULT_LAYOUT_GUID = 'default-layout';
+    const SETTING_DEFAULT_LAYOUT_GUID = 'defaultLayout';
     /**
      * Имя настройки для задания title страниц по умолчанию
      */
-    const SETTING_DEFAULT_TITLE = 'default-meta-title';
+    const SETTING_DEFAULT_TITLE = 'defaultMetaTitle';
     /**
      * Имя настройки для задания префикса title страниц
      */
-    const SETTING_TITLE_PREFIX = 'meta-title-prefix';
+    const SETTING_TITLE_PREFIX = 'metaTitlePrefix';
     /**
      * Имя настройки для задания keywords страниц по умолчанию
      */
-    const SETTING_DEFAULT_KEYWORDS = 'default-meta-keywords';
+    const SETTING_DEFAULT_KEYWORDS = 'defaultMetaKeywords';
     /**
      * Имя настройки для задания description страниц по умолчанию
      */
-    const SETTING_DEFAULT_DESCRIPTION = 'default-meta-description';
+    const SETTING_DEFAULT_DESCRIPTION = 'defaultMetaDescription';
     /**
      * Имя настройки для задания постфикса всех URL
      */
-    const SETTING_URL_POSTFIX = 'url-postfix';
+    const SETTING_URL_POSTFIX = 'urlPostfix';
+    /**
+     * Имя настройки для задания шаблонизатора по умолчанию
+     */
+    const SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE = 'defaultTemplatingEngineType';
+    /**
+     * Имя настройки для задания расширения файлов с шаблонами по умолчанию
+     */
+    const SETTING_DEFAULT_TEMPLATE_EXTENSION = 'defaultTemplateExtension';
+    /**
+     * Имя настройки для задания расширения файлов с шаблонами по умолчанию
+     */
+    const SETTING_COMMON_TEMPLATE_DIRECTORY = 'commonTemplateDirectory';
+
     /**
      * Формат запроса по умолчанию.
      */
@@ -107,6 +119,7 @@ class SiteApplication extends SiteComponent
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
         $this->registerSelectorInitializer();
+        $this->registerSerializers();
 
         while (!$this->pageCallStack->isEmpty()) {
             $this->pageCallStack->pop();
@@ -172,6 +185,37 @@ class SiteApplication extends SiteComponent
         }
 
         return $response;
+    }
+
+    /**
+     * Регистрирует сериализаторы, необходимые для приложения.
+     */
+    protected function registerSerializers()
+    {
+        /**
+         * @var ISerializerFactory $serializerFactory
+         */
+        $serializerFactory = $this->getToolkit()->getService('umicms\serialization\ISerializerFactory');
+
+        $types = [
+            ISerializerFactory::TYPE_XML => [
+                'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
+                'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\object\CmsElementSerializer',
+                'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\object\FieldSerializer'
+            ],
+            ISerializerFactory::TYPE_JSON => [
+                'umi\orm\metadata\ObjectType' => 'umicms\serialization\json\orm\ObjectTypeSerializer',
+                'umi\orm\metadata\field\BaseField' => 'umicms\serialization\json\orm\FieldSerializer',
+                'umicms\orm\object\CmsObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
+                'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
+                'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer',
+                // form
+                'umi\form\fieldset\FieldSet' => 'umicms\serialization\json\form\FieldSetSerializer',
+                'umi\form\element\BaseFormElement' => 'umicms\serialization\json\form\BaseFormElementSerializer',
+            ]
+        ];
+
+        $serializerFactory->registerSerializers($types);
     }
 
     /**

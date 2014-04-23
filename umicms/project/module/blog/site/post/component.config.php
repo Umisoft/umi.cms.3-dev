@@ -32,12 +32,7 @@ return [
         'editPostLink' => __NAMESPACE__ . '\widget\BlogEditPostUrlWidget'
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
-        'type' => 'php',
-        'extension' => 'phtml',
-        'directories' => [
-            __DIR__ . '/template/php',
-            CMS_LIBRARY_DIR . '/../project/site/template/php/common'
-        ]
+        'directories' => __DIR__ . '/template/php'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
