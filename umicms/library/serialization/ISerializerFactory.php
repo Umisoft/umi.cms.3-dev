@@ -36,4 +36,11 @@ interface ISerializerFactory
      * @return ISerializer|callable
      */
     public function getSerializer($type, $object);
+
+    /**
+     * Регистрирует сериализаторы
+     * @param array $serializers конфигурация сериализаторов в формате [$type => [$instanceClass => $serializerClass, ...], ...]
+     * @return self
+     */
+    public function registerSerializers(array $serializers);
 }

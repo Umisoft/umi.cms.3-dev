@@ -33,6 +33,7 @@ use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 use umicms\serialization\ISerializationAware;
+use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
 
 /**
@@ -107,6 +108,7 @@ class SiteApplication extends SiteComponent
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
         $this->registerSelectorInitializer();
+        $this->registerSerializers();
 
         while (!$this->pageCallStack->isEmpty()) {
             $this->pageCallStack->pop();
@@ -172,6 +174,37 @@ class SiteApplication extends SiteComponent
         }
 
         return $response;
+    }
+
+    /**
+     * Регистрирует сериализаторы, необходимые для приложения.
+     */
+    protected function registerSerializers()
+    {
+        /**
+         * @var ISerializerFactory $serializerFactory
+         */
+        $serializerFactory = $this->getToolkit()->getService('umicms\serialization\ISerializerFactory');
+
+        $types = [
+            ISerializerFactory::TYPE_XML => [
+                'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
+                'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\object\CmsElementSerializer',
+                'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\object\FieldSerializer'
+            ],
+            ISerializerFactory::TYPE_JSON => [
+                'umi\orm\metadata\ObjectType' => 'umicms\serialization\json\orm\ObjectTypeSerializer',
+                'umi\orm\metadata\field\BaseField' => 'umicms\serialization\json\orm\FieldSerializer',
+                'umicms\orm\object\CmsObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
+                'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
+                'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer',
+                // form
+                'umi\form\fieldset\FieldSet' => 'umicms\serialization\json\form\FieldSetSerializer',
+                'umi\form\element\BaseFormElement' => 'umicms\serialization\json\form\BaseFormElementSerializer',
+            ]
+        ];
+
+        $serializerFactory->registerSerializers($types);
     }
 
     /**

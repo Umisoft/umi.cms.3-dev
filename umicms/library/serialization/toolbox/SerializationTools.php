@@ -9,6 +9,7 @@
 
 namespace umicms\serialization\toolbox;
 
+use umi\toolkit\exception\UnsupportedServiceException;
 use umi\toolkit\toolbox\IToolbox;
 use umi\toolkit\toolbox\TToolbox;
 use umicms\serialization\ISerializationAware;
@@ -51,6 +52,21 @@ class SerializationTools implements IToolbox
         if ($object instanceof ISerializationAware) {
             $object->setSerializerFactory($this->getSerializerFactory());
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getService($serviceInterfaceName, $concreteClassName)
+    {
+        switch ($serviceInterfaceName) {
+            case 'umicms\serialization\ISerializerFactory':
+                return $this->getSerializerFactory();
+        }
+        throw new UnsupportedServiceException($this->translate(
+            'Toolbox "{name}" does not support service "{interface}".',
+            ['name' => self::NAME, 'interface' => $serviceInterfaceName]
+        ));
     }
 
     /**
