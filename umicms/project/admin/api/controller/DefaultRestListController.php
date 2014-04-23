@@ -361,7 +361,9 @@ class DefaultRestListController extends BaseDefaultRestController implements IOb
     {
         if (!isset($data['slug'])) {
             throw new RuntimeException(
-                $this->translate('Cannot create hierarchic object. Option "{option}" required.')
+                $this->translate('Cannot create hierarchic object. Option "{option}" required.',
+                    ['option' => 'slug']
+                )
             );
         }
 
