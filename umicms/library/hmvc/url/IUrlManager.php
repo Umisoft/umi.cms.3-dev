@@ -14,6 +14,7 @@ use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\settings\component\SettingsComponent;
 
 /**
  * Интерфейс URL-менеджера.
@@ -43,6 +44,13 @@ interface IUrlManager
     public function setBaseRestUrl($baseRestUrl);
 
     /**
+     * Устанавливает базовый URL для запросов связанных с настройками.
+     * @param string $baseSettingsUrl
+     * @return self
+     */
+    public function setBaseSettingsUrl($baseSettingsUrl);
+
+    /**
      * Устанавливает базовый URL для административной панели.
      * @param string $baseAdminUrl
      * @return self
@@ -69,6 +77,12 @@ interface IUrlManager
     public function getBaseRestUrl();
 
     /**
+     * Возвращает базовый URL для запросов связанных с настройками.
+     * @return string
+     */
+    public function getBaseSettingsUrl();
+
+    /**
      * Возвращает базовый URL для административной панели.
      * @return string
      */
@@ -92,14 +106,6 @@ interface IUrlManager
     public function getSystemPageUrl($componentPath, $isAbsolute = false);
 
     /**
-     * Возвращает URL компонента в административной панели.
-     * @param AdminComponent $component
-     * @param bool $isAbsolute генерировать ли абсолютный URL
-     * @return string
-     */
-    public function getAdminComponentUrl(AdminComponent $component, $isAbsolute = false);
-
-    /**
      * Возвращает ссылку на редактирование объекта в административной панели.
      * @param ICmsObject $object
      * @param bool $isAbsolute генерировать ли абсолютный URL
@@ -116,7 +122,15 @@ interface IUrlManager
     public function getCollectionResourceUrl(ICmsCollection $collection, ICmsObject $object = null);
 
     /**
-     * Возвращает URL ресурса компонента
+     * Возвращает URL компонента в административной панели.
+     * @param AdminComponent $component
+     * @param bool $isAbsolute генерировать ли абсолютный URL
+     * @return string
+     */
+    public function getAdminComponentUrl(AdminComponent $component, $isAbsolute = false);
+
+    /**
+     * Возвращает URL ресурса компонента.
      * @param AdminComponent $component
      * @return string
      */
@@ -130,6 +144,13 @@ interface IUrlManager
      * @return string
      */
     public function getAdminComponentActionResourceUrl(AdminComponent $component, $actionName, array $params = []);
+
+    /**
+     * Возвращает URL ресурса компонента настроек.
+     * @param SettingsComponent $component
+     * @return string
+     */
+    public function getSettingsComponentResourceUrl(SettingsComponent $component);
 
     /**
      * Возвращает текущий URL запроса.

@@ -120,25 +120,13 @@ class Bootstrap implements IProjectConfigAware
         $baseProjectUrl = isset($routeMatches['uri']) ? $routeMatches['uri'] : '';
         $routePath = $routeResult->getUnmatchedUrl() ? : '/';
 
+        $this->configureUrlManager($project, $routeResult, $baseProjectUrl);
+
         if (preg_match('|\.([\w]+)$|u', $routePath, $matches)) {
             $format = $matches[1];
             $routePath = substr($routePath, 0, -strlen($format) - 1);
             $request->setRequestFormat($format);
         }
-
-        /**
-         * @var IUrlManager $urlManager
-         */
-        $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
-        $domainUrl  = substr($routeResult->getMatchedUrl(), 0, -strlen($baseProjectUrl));
-        $urlManager->setProjectDomainUrl($domainUrl);
-        $urlManager->setBaseUrl($baseProjectUrl);
-
-        $baseAdminUrl = $baseProjectUrl . $project->getRouter()->assemble('admin');
-        $adminComponent = $project->getChildComponent('admin');
-
-        $urlManager->setBaseAdminUrl($baseAdminUrl);
-        $urlManager->setBaseRestUrl($baseAdminUrl . $adminComponent->getRouter()->assemble('api'));
 
         /**
          * @var IDispatcher $dispatcher
@@ -424,6 +412,37 @@ class Bootstrap implements IProjectConfigAware
                     $object->setProjectConfig($this->getProjectConfig());
                 }
             }
+        );
+    }
+
+    /**
+     * Конфигурирует URL-менеджер для проекта.
+     * @param IComponent $project проект
+     * @param IRouteResult $routeResult результат маршрутизации до проекта
+     * @param string $baseProjectUrl базовый URL проекта
+     */
+    protected function configureUrlManager(IComponent $project, IRouteResult $routeResult, $baseProjectUrl)
+    {
+        /**
+         * @var IUrlManager $urlManager
+         */
+        $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
+        $domainUrl = substr($routeResult->getMatchedUrl(), 0, -strlen($baseProjectUrl));
+        $urlManager->setProjectDomainUrl($domainUrl);
+        $urlManager->setBaseUrl($baseProjectUrl);
+
+        $baseAdminUrl = $baseProjectUrl . $project->getRouter()
+                ->assemble('admin');
+        $adminComponent = $project->getChildComponent('admin');
+
+        $urlManager->setBaseAdminUrl($baseAdminUrl);
+        $urlManager->setBaseRestUrl(
+            $baseAdminUrl . $adminComponent->getRouter()
+                ->assemble('api')
+        );
+        $urlManager->setBaseSettingsUrl(
+            $baseAdminUrl . $adminComponent->getRouter()
+                ->assemble('settings')
         );
     }
 

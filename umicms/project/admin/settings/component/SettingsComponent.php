@@ -11,12 +11,16 @@ namespace umicms\project\admin\settings\component;
 
 use umi\acl\IAclResource;
 use umicms\hmvc\component\BaseComponent;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
 
 /**
  * Компонент настроек.
  */
-class SettingsComponent extends BaseComponent implements IAclResource
+class SettingsComponent extends BaseComponent implements IAclResource, IUrlManagerAware
 {
+    use TUrlManagerAware;
+
     /**
      * Префикс имени ACL-ресурса
      */
@@ -28,6 +32,19 @@ class SettingsComponent extends BaseComponent implements IAclResource
     public function getAclResourceName()
     {
         return self::ACL_RESOURCE_PREFIX . $this->name;
+    }
+
+    /**
+     * Возвращает информацию о компоненте.
+     * @return array
+     */
+    public function getComponentInfo()
+    {
+        return [
+            'name'        => $this->getName(),
+            'displayName' => $this->translate('component:' . $this->getName() . ':displayName'),
+            'resource' => $this->getUrlManager()->getSettingsComponentResourceUrl($this)
+        ];
     }
 
 }

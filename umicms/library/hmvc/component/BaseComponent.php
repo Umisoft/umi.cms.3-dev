@@ -55,4 +55,16 @@ abstract class BaseComponent extends FrameworkComponent
         return [];
     }
 
+    /**
+     * Возвращает информацию о компоненте.
+     * @return array
+     */
+    public function getComponentInfo()
+    {
+        return [
+            'name'        => $this->getName(),
+            'displayName' => $this->translate('component:' . $this->getName() . ':displayName')
+        ];
+    }
+
 }
