@@ -46,4 +46,10 @@ interface IRecoverableCollection extends ICmsCollection
      * @return IRecoverableObject
      */
     public function wakeUpBackup(IRecoverableObject $object, $backupId);
+
+    /**
+     * Проверяет, включены ли резервные копии.
+     * @return bool
+     */
+    public function isBackupEnabled();
 }

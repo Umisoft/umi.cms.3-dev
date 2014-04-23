@@ -15,8 +15,6 @@ use umi\pagination\IPaginator;
 use umi\pagination\TPaginationAware;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\OutOfBoundsException;
-use umicms\hmvc\url\IUrlManagerAware;
-use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\selector\CmsSelector;
 use umicms\templating\helper\pagination\PaginationHelper;
 
@@ -24,10 +22,9 @@ use umicms\templating\helper\pagination\PaginationHelper;
  * Базовый класс виджета вывода списков с постраничной навигацией.
  * Применяет условия выборки для списка и формирует постраничную навигацию, если требуется.
  */
-abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAware, IUrlManagerAware
+abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAware
 {
     use TPaginationAware;
-    use TUrlManagerAware;
 
     /**
      * @var string $template имя шаблона, по которому выводится виджет

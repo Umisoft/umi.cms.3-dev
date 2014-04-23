@@ -16,7 +16,7 @@ return [
     ApiApplication::OPTION_CLASS => 'umicms\project\admin\api\ApiApplication',
 
     ApiApplication::OPTION_CONTROLLERS => [
-        ApiApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
+        ApiApplication::ERROR_CONTROLLER   => 'umicms\project\admin\controller\ErrorController',
 
         'settings' => __NAMESPACE__ . '\controller\ApiSettingsController',
         'action' => __NAMESPACE__ . '\controller\ApiActionController'

@@ -26,6 +26,10 @@ use umicms\project\module\service\api\object\Backup;
  */
 class BackupCollection extends SimpleCollection
 {
+    /**
+     * Настройка для задания максимального количества резервных копий для одного объекта
+     */
+    const SETTING_OBJECT_HISTORY_SIZE = 'objectHistorySize';
 
     /**
      * Возвращает селектор для выбора резервных копий.
@@ -100,13 +104,27 @@ class BackupCollection extends SimpleCollection
     }
 
     /**
+     * Проверяет, включены ли резервные копии.
+     * @return bool
+     */
+    public function isBackupEnabled()
+    {
+        return (bool) $this->getSetting(self::SETTING_OBJECT_HISTORY_SIZE);
+    }
+
+    /**
      * Создаёт резервную копию объекта.
      * @param IRecoverableObject $object
      * @return $this
      */
     public function createBackup(IRecoverableObject $object)
     {
-        /** @var Backup $backup */
+        if (!$this->isBackupEnabled()) {
+            return $this;
+        }
+
+        $this->clearOldBackups($object);
+
         $backup = $this->add();
         $backup->objectId = $object->getId();
         $backup->collectionName = $object->getCollectionName();
@@ -115,6 +133,25 @@ class BackupCollection extends SimpleCollection
         $backup->getProperty(Backup::FIELD_DATA)->setValue(serialize($object));
 
         return $this;
+    }
+
+    /**
+     * Очищает устаревшие резервные копии объекта.
+     * @param IRecoverableObject $object
+     */
+    protected function clearOldBackups(IRecoverableObject $object)
+    {
+        $historySize = (int) $this->getSetting(self::SETTING_OBJECT_HISTORY_SIZE) - 1;
+
+        $oldBackups = $this->getList($object);
+
+        if ($historySize > 0) {
+            $oldBackups->limit(PHP_INT_MAX, $historySize);
+        }
+
+        foreach ($oldBackups as $oldBackup) {
+            $this->delete($oldBackup);
+        }
     }
 }
  

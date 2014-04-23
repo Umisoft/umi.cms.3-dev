@@ -10,13 +10,11 @@
 namespace umicms\project\admin\api\controller;
 
 use umi\form\IForm;
-use umi\hmvc\controller\BaseController;
 use umi\hmvc\exception\http\HttpForbidden;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\hmvc\exception\http\HttpUnauthorized;
 use umi\http\Response;
-use umicms\hmvc\url\IUrlManagerAware;
-use umicms\hmvc\url\TUrlManagerAware;
+use umicms\hmvc\controller\BaseController;
 use umicms\project\admin\api\ApiApplication;
 use umicms\project\module\users\api\UsersModule;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -24,10 +22,8 @@ use umicms\project\module\users\api\object\AuthorizedUser;
 /**
  * Контроллер действий авторизации пользователя в административной панели.
  */
-class ApiActionController extends BaseController implements IUrlManagerAware
+class ApiActionController extends BaseController
 {
-    use TUrlManagerAware;
-
     /**
      * @var UsersModule $api
      */
