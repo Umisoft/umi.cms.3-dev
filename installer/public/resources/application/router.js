@@ -370,6 +370,7 @@ define([], function(){
 
         UMI.ActionRoute = Ember.Route.extend({
             model: function(params, transition){
+                console.log('ActionRoute', params);
                 if(transition.params.hasOwnProperty('context') && this.controllerFor('component').get('selectedContext') !== transition.params.context.context){
                     this.controllerFor('component').set('selectedContext', transition.params.context.context);
                 }
@@ -418,7 +419,7 @@ define([], function(){
                  */
                 var activeAction = this.modelFor('action');
                 var firstAction = componentController.get('contentControls.firstObject');
-                if(oldContext !== params.context && firstAction.get('name') !== activeAction.get('name')){
+                if((oldContext === 'root' || params.context === 'root') && oldContext !== params.context && firstAction.get('name') !== activeAction.get('name')){
                     return this.transitionTo('action', firstAction.get('name'));
                 }
 
@@ -513,7 +514,9 @@ define([], function(){
                  */
                 willTransition: function(transition){
                     var model = this.modelFor('context').object;
-
+                    if('createObject' in this.modelFor('context') && this.modelFor('context').createObject.get('isNew')){
+                        this.modelFor('context').createObject.deleteRecord();
+                    }
                     if(model.get('isDirty')){
                         transition.abort();
                         var data = {
