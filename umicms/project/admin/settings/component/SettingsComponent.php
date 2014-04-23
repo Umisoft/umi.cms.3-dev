@@ -40,11 +40,16 @@ class SettingsComponent extends BaseComponent implements IAclResource, IUrlManag
      */
     public function getComponentInfo()
     {
-        return [
+        $result = [
             'name'        => $this->getName(),
             'displayName' => $this->translate('component:' . $this->getName() . ':displayName'),
-            'resource' => $this->getUrlManager()->getSettingsComponentResourceUrl($this)
         ];
+
+        if ($this->hasController('index')) {
+            $result['resource'] = $this->getUrlManager()->getSettingsComponentResourceUrl($this);
+        }
+
+        return $result;
     }
 
 }
