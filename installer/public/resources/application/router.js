@@ -370,7 +370,6 @@ define([], function(){
 
         UMI.ActionRoute = Ember.Route.extend({
             model: function(params, transition){
-                console.log('ActionRoute', params);
                 if(transition.params.hasOwnProperty('context') && this.controllerFor('component').get('selectedContext') !== transition.params.context.context){
                     this.controllerFor('component').set('selectedContext', transition.params.context.context);
                 }
