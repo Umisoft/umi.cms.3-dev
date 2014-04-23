@@ -8,16 +8,16 @@
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\admin\settings\component\SettingsComponent;
+use umicms\project\admin\settings\component\DefaultSettingsComponent;
 
 return [
 
-    SettingsComponent::OPTION_CLASS => 'umicms\project\admin\settings\component\SettingsComponent',
+    DefaultSettingsComponent::OPTION_CLASS => 'umicms\project\admin\settings\component\SettingsComponent',
 
-    SettingsComponent::OPTION_COMPONENTS => [
+    DefaultSettingsComponent::OPTION_COMPONENTS => [
         'backup' => '{#lazy:~/project/module/service/settings/backup/component.config.php}'
     ],
-    SettingsComponent::OPTION_ACL => [
+    DefaultSettingsComponent::OPTION_ACL => [
 
         IAclFactory::OPTION_ROLES => [
             'configurator' => []
@@ -30,7 +30,7 @@ return [
         ]
     ],
 
-    SettingsComponent::OPTION_ROUTES      => [
+    DefaultSettingsComponent::OPTION_ROUTES      => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{component}'

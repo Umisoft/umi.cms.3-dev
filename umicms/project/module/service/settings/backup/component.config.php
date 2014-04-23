@@ -6,27 +6,16 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-use umi\route\IRouteFactory;
-use umicms\project\admin\settings\component\SettingsComponent;
+use umicms\project\admin\settings\component\DefaultSettingsComponent;
 
 return [
 
-    SettingsComponent::OPTION_CLASS => 'umicms\project\admin\settings\component\SettingsComponent',
+    DefaultSettingsComponent::OPTION_CLASS => 'umicms\project\admin\settings\component\DefaultSettingsComponent',
 
-    SettingsComponent::OPTION_CONTROLLERS => [
-        'index' => 'umicms\project\admin\settings\controller\SettingsController'
-    ],
+    DefaultSettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/module/service/configuration/backup/collection.settings.config.php',
 
-    SettingsComponent::OPTION_FORMS => [
+    DefaultSettingsComponent::OPTION_FORMS => [
         'settings' => '{#lazy:~/project/module/service/settings/backup/form/settings.php}'
     ],
 
-    SettingsComponent::OPTION_ROUTES => [
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'index'
-            ]
-        ]
-    ]
 ];

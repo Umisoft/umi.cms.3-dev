@@ -11,12 +11,14 @@ namespace umicms\project\admin\settings\controller;
 
 use umi\config\io\IConfigIOAware;
 use umi\config\io\TConfigIOAware;
+use umicms\exception\RuntimeException;
 use umicms\hmvc\controller\BaseController;
+use umicms\project\admin\settings\component\DefaultSettingsComponent;
 
 /**
  * Контроллер чтения и сохранения настроек
  */
-class SettingsController extends BaseController implements IConfigIOAware
+class DefaultSettingsController extends BaseController implements IConfigIOAware
 {
     use TConfigIOAware;
 
@@ -25,14 +27,13 @@ class SettingsController extends BaseController implements IConfigIOAware
      */
     const SETTINGS_FORM_NAME = 'settings';
 
-    protected $configPath = '~/project/module/service/configuration/backup/collection.settings.config.php';
-
     /**
      * {@inheritdoc}
      */
     public function __invoke()
     {
-        $config = $this->readConfig($this->configPath);
+        $config = $this->readConfig($this->getComponent()->getSettingsConfigAlias());
+
         $form = $this->getForm(self::SETTINGS_FORM_NAME, $config);
         $form->setAction($this->getUrl('index'));
 
@@ -56,6 +57,30 @@ class SettingsController extends BaseController implements IConfigIOAware
                 'form' => $form
             ]
         );
+    }
+
+    /**
+     * Возвращает компонент, у которого вызван контроллер.
+     * @throws RuntimeException при неверном классе компонента
+     * @return DefaultSettingsComponent
+     */
+    protected function getComponent()
+    {
+        $component = parent::getComponent();
+
+        if (!$component instanceof DefaultSettingsComponent) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Component for controller "{controllerClass}" should be instance of "{componentClass}".',
+                    [
+                        'controllerClass' => get_class($this),
+                        'componentClass' => 'umicms\project\admin\settings\component\DefaultSettingsComponent'
+                    ]
+                )
+            );
+        }
+
+        return $component;
     }
 }
  

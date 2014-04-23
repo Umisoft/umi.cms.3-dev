@@ -29,5 +29,6 @@ class SettingsComponent extends BaseComponent implements IAclResource
     {
         return self::ACL_RESOURCE_PREFIX . $this->name;
     }
+
 }
  
