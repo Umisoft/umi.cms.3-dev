@@ -1,0 +1,9 @@
+{% if (list.getTotal()) %}
+    <ul>
+        {% for rubric in list %}
+            <li>
+                {{ widget('news.rubric.view', {'rubric' : rubric, 'template' : 'shortView'}) }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

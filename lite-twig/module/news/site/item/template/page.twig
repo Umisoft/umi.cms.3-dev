@@ -1,0 +1,11 @@
+<div class="blog-post">
+    <h2 class="blog-post-title">{{ page.h1 }}</h2>
+    <p class="blog-post-meta">
+        <time datetime="{{ page.date.format('c') }}">
+            {{ page.date.format('d.m.Y | H:i') }}
+        </time>
+        <a href="#">Mark</a>
+    </p>
+
+    {{ page.contents | raw }}
+</div>

@@ -1,0 +1,5 @@
+<h1>{{ page.h1 }}</h1>
+{{ page.contents }}
+
+{{ widget('news.rubric.list', {'parentRubric' : page, 'template' : 'list'}) }}
+{{ widget('news.rubric.newsList', {'rubrics' : [page], 'template' : 'newsList'}) }}

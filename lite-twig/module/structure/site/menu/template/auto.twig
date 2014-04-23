@@ -1,0 +1,9 @@
+{% if (menu) %}
+    <nav class="blog-nav">
+        {% for pageInfo in menu %}
+            <a class="blog-nav-item {{ pageInfo.active ? 'active' }}" href="{{ pageInfo.page.getPageUrl() }}">
+                {{ pageInfo.page.displayName }}
+            </a>
+        {% endfor %}
+    </nav>
+{% endif %}
