@@ -8,7 +8,11 @@
         <?= $newsItem->h1 ?>
     </a>
 </h3>
-<time datetime="<?= $newsItem->date->format('c')?>">
-    <?= $newsItem->date->format('d.m.Y | H:i')?>
-</time>
+
+<? if ($newsItem->date) :?>
+    <time datetime="<?= $newsItem->date->format('c')?>">
+        <?= $newsItem->date->format('d.m.Y | H:i')?>
+    </time>
+<? endif; ?>
+
 <?= $newsItem->announcement ?>

@@ -61,11 +61,22 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
      */
     public function __invoke()
     {
-        $selector = $this->getSelector();
+        $selector = $this->applySelectorConditions($this->getSelector());
 
-        $result = ['list' => $this->applySelectorConditions($selector)];
         if ($this->pagination) {
-            $result['pagination'] = $this->getPagination($selector);
+            /**
+             * @var IPaginator $paginator
+             */
+            list ($paginator, $pagination) = $this->getPagination($selector);
+            $result = [
+                'list' => $paginator->getPageItems(),
+                'pagination' => $pagination
+            ];
+        } else {
+            if ($this->limit) {
+                $selector->limit($this->limit);
+            }
+            $result = ['list' => $selector];
         }
 
         return $this->createResult($this->template, $result);
@@ -78,10 +89,7 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
      */
     protected function applySelectorConditions(CmsSelector $selector)
     {
-        if ($this->limit) {
-            $selector->limit($this->limit);
-        }
-
+        //TODO применение фильтров
         return $selector;
     }
 
@@ -160,7 +168,9 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
         $pagesCount = isset($this->pagination['pagesCount']) ? (int) $this->pagination['pagesCount'] : null;
         $pagination = call_user_func([$helper, $this->pagination['type']], $paginator, $pagesCount);
 
-        return array_merge($pagination, $helper->buildLinksContext($pagination, $this->pagination['pageParam']));
+        $pagination = array_merge($pagination, $helper->buildLinksContext($pagination, $this->pagination['pageParam']));
+
+        return [$paginator, $pagination];
     }
 
     /**
