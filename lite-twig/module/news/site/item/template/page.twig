@@ -4,8 +4,7 @@
         <time datetime="{{ page.date.format('c') }}">
             {{ page.date.format('d.m.Y | H:i') }}
         </time>
-        <a href="#">Mark</a>
+        {{ widget('news.subject.list', {'template' :'listInline'}) }}
     </p>
-
     {{ page.contents | raw }}
 </div>

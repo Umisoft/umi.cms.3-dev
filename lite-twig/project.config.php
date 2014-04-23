@@ -1,5 +1,4 @@
 <?php
-namespace demohunt;
 
 use umi\dbal\toolbox\DbalTools;
 use umi\hmvc\component\IComponent;

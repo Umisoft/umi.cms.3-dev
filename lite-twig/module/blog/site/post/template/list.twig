@@ -1,0 +1,11 @@
+{% if (list.getTotal()) %}
+    <ul>
+        {% for blogPost in list %}
+            <li>
+                {{ widget('blog.post.view', {'blogPost' : blogPost, 'template' : 'shortView'}) }}
+                {{ widget('blog.post.editPostLink', {'blogPost' : blogPost, 'template' : 'editPostLink'}) }}
+                {{ widget('blog.post.unPublish', {'blogPost' : blogPost, 'template' : 'unPublishPostForm'}) }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

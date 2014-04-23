@@ -6,14 +6,12 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace litetwig\module\news\site;
-
 use umicms\project\site\component\SiteComponent;
 
 return [
     SiteComponent::OPTION_VIEW        => [
-        'type'      => 'twig',
-        'extension' => 'twig',
-        'directories' => __DIR__ . '/template'
+        'directories' => [
+            __DIR__ . '/template'
+        ]
     ],
 ];
