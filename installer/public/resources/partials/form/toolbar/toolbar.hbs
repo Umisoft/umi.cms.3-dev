@@ -64,8 +64,8 @@
 
     {{#if isTrash}}
         <li>
-            <span class="button white" {{action "trash" parentController.parentController.model.object "form"}}>
-                {{displayName}}
+            <span class="button white square" {{action "trash" parentController.parentController.model.object "form"}}>
+                <i class="icon icon-delete"></i>
             </span>
         </li>
     {{/if}}
