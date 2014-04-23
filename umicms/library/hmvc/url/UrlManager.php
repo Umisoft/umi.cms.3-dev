@@ -312,9 +312,14 @@ class UrlManager implements IUrlManager, ILocalizable
         $queryString = $request->getQueryString();
 
         parse_str($queryString, $query);
-        $query[$paramName] = $paramValue;
 
-        return $url . '?' . http_build_query($query);
+        if (is_null($paramValue)) {
+            unset($query[$paramName]);
+        } else {
+            $query[$paramName] = $paramValue;
+        }
+
+        return $query ? $url . '?' . http_build_query($query) : $url;
     }
 
     /**
