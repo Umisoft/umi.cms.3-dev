@@ -44,7 +44,7 @@ class ApiApplication extends AdminComponent implements ISerializationAware, IToo
     /**
      * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
      */
-    protected $supportedRequestPostfixes = ['json', 'xml'];
+    protected $supportedRequestPostfixes = ['json'];
 
     /**
      * {@inheritdoc}
@@ -126,11 +126,6 @@ class ApiApplication extends AdminComponent implements ISerializationAware, IToo
         $serializerFactory = $this->getToolkit()->getService('umicms\serialization\ISerializerFactory');
 
         $types = [
-            ISerializerFactory::TYPE_XML => [
-                'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
-                'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\object\CmsElementSerializer',
-                'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\object\FieldSerializer'
-            ],
             ISerializerFactory::TYPE_JSON => [
                 'umi\orm\collection\BaseCollection' => 'umicms\serialization\json\orm\CollectionSerializer',
                 'umi\orm\metadata\Metadata' => 'umicms\serialization\json\orm\MetadataSerializer',
