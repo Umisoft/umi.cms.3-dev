@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\blog\site\draft;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\DefaultSitePageComponent;
 
@@ -31,6 +32,63 @@ return [
         'editDraftLink' => __NAMESPACE__ . '\widget\BlogEditDraftUrlWidget',
         'allListUrl' => __NAMESPACE__ . '\widget\BlogDraftListUrlWidget'
     ],
+    DefaultSitePageComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'author' => ['viewer'],
+            'moderator' => ['author']
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'controller:all',
+            'controller:edit',
+            'controller:publish',
+            'widget:view',
+            'widget:list',
+            'widget:ownList',
+            'widget:ownListUrl',
+            'widget:editDraft',
+            'widget:publishDraft',
+            'widget:editDraftLink',
+            'widget:allListUrl',
+        ],
+        IAclFactory::OPTION_RULES => [
+            'author' => [
+                'controller:edit' => [
+                    'edit' => ['own']
+                ],
+                'controller:publish' => [
+                    'publish' => ['own', 'unpublished']
+                ],
+                'widget:ownList' => [],
+                'widget:ownListUrl' => [],
+                'widget:editDraft' => [
+                    'edit' => ['own']
+                ],
+                'widget:publishDraft' => [
+                    'publish' => ['own', 'unpublished']
+                ],
+                'widget:editDraftLink' => [
+                    'draft' => ['own']
+                ],
+            ],
+            'moderator' => [
+                'controller:all' => [],
+                'widget:allListUrl' => [],
+                'controller:edit' => [
+                    'edit' => []
+                ],
+                'controller:publish' => [
+                    'publish' => ['unpublished']
+                ],
+                'widget:ownList' => [],
+                'widget:ownListUrl' => [],
+                'widget:editDraft' => [],
+                'widget:publishDraft' => [
+                    'publish' => ['published']
+                ],
+                'widget:editDraftLink' => [],
+            ]
+        ]
+    ],
     DefaultSitePageComponent::OPTION_VIEW => [
         'type' => 'php',
         'extension' => 'phtml',
@@ -38,8 +96,6 @@ return [
             __DIR__ . '/template/php',
             CMS_LIBRARY_DIR . '/../project/site/template/php/common'
         ]
-    ],
-    DefaultSitePageComponent::OPTION_ACL => [
     ],
     DefaultSitePageComponent::OPTION_ROUTES => [
         'edit' => [

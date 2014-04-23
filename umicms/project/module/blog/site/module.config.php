@@ -31,14 +31,49 @@ return [
 
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'viewer' => []
+            'viewer' => [],
+            'author' => ['viewer'],
+            'moderator' => ['author']
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:index'
+            'controller:index',
+            'component:post',
+            'component:draft',
+            'component:category',
+            'component:author',
+            'component:tag',
+            'component:comment'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
-                'controller:index' => []
+                'controller:index' => [],
+                'component:post' => [],
+                'component:category' => [],
+                'component:author' => [],
+                'component:tag' => [],
+                'component:comment' => []
+            ],
+            'author' => [
+                'component:post' => [
+                    'edit' => ['own'],
+                    'publish' => ['own', 'unpublished'],
+                    'draft' => ['own', 'published']
+                ],
+                'component:draft' => [
+                    'edit' => ['own'],
+                    'publish' => ['own', 'unpublished'],
+                ],
+            ],
+            'moderator' => [
+                'component:post' => [
+                    'edit' => [],
+                    'publish' => ['unpublished'],
+                    'draft' => ['published']
+                ],
+                'component:draft' => [
+                    'edit' => [],
+                    'publish' => ['unpublished'],
+                ],
             ]
         ]
     ],
