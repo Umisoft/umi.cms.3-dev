@@ -77,6 +77,14 @@ trait TRecoverableCollection
     }
 
     /**
+     * @see IRecoverableCollection::isBackupEnabled()
+     */
+    public function isBackupEnabled()
+    {
+        return $this->getBackupCollection()->isBackupEnabled();
+    }
+
+    /**
      * Возвращает коллекцию резервных копий.
      * @return BackupCollection
      */

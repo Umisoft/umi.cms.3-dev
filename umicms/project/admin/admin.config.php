@@ -23,18 +23,22 @@ return [
 
     AdminComponent::OPTION_COMPONENTS => [
         'api' => '{#lazy:~/project/admin/api/api.config.php}',
+        'settings' => '{#lazy:~/project/admin/settings/settings.config.php}',
     ],
 
     AdminComponent::OPTION_ACL => [
 
         IAclFactory::OPTION_ROLES => [
-            'visitor' => []
+            'visitor' => [],
+            'configurator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'component:api'
+            'component:api',
+            'component:settings',
         ],
         IAclFactory::OPTION_RULES => [
-            'visitor' => ['component:api' => []]
+            'visitor' => ['component:api' => []],
+            'configurator' => ['component:settings' => []]
         ]
     ],
 
@@ -51,6 +55,14 @@ return [
             'route' => '/api',
             'defaults' => [
                 'component' => 'api'
+            ]
+        ],
+
+        'settings' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'route' => '/settings',
+            'defaults' => [
+                'component' => 'settings'
             ]
         ],
 

@@ -17,5 +17,6 @@ return [
     ],
     'dictionaries' => [
         'collection.backup', 'collection'
-    ]
+    ],
+    'settings' => '{#partial:~/project/module/service/configuration/backup/collection.settings.config.php}'
 ];

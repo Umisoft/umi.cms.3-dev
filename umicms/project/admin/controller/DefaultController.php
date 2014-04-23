@@ -12,18 +12,14 @@ use umi\http\Response;
 use umi\i18n\ILocalesAware;
 use umi\i18n\TLocalesAware;
 use umicms\hmvc\controller\BaseController;
-use umicms\hmvc\url\IUrlManagerAware;
-use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\users\api\UsersModule;
 
 /**
  * Контроллер интерфейса административной панели.
  */
-class DefaultController extends BaseController implements ILocalesAware, IUrlManagerAware
+class DefaultController extends BaseController implements ILocalesAware
 {
-
     use TLocalesAware;
-    use TUrlManagerAware;
 
     /**
      * @var Response $response содержимое страницы

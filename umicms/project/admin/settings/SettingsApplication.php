@@ -7,27 +7,22 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\admin\api;
+namespace umicms\project\admin\settings;
 
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Request;
 use umi\http\Response;
-use umicms\orm\collection\behaviour\IRecyclableCollection;
-use umicms\orm\collection\TCmsCollection;
-use umicms\orm\object\behaviour\IRecyclableObject;
-use umicms\orm\selector\CmsSelector;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\settings\component\DefaultSettingsComponent;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\TSerializationAware;
 
 /**
- * Приложение административной панели.
+ * Приложение управления настройками.
  */
-class ApiApplication extends AdminComponent implements ISerializationAware
+class SettingsApplication extends DefaultSettingsComponent implements ISerializationAware
 {
     use TSerializationAware;
-
     /**
      * Формат запроса по умолчанию.
      */
@@ -47,8 +42,6 @@ class ApiApplication extends AdminComponent implements ISerializationAware
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        $this->registerSelectorInitializer();
-
         $requestFormat = $request->getRequestFormat(self::DEFAULT_REQUEST_FORMAT);
 
         if (!$this->isRequestFormatSupported($requestFormat)) {
@@ -93,21 +86,5 @@ class ApiApplication extends AdminComponent implements ISerializationAware
     {
         return in_array($format, $this->supportedRequestPostfixes);
     }
-
-    /**
-     * Регистрирует иницициализотор для всех селекторов.
-     */
-    protected function registerSelectorInitializer()
-    {
-        TCmsCollection::setSelectorInitializer(function(CmsSelector $selector) {
-
-            $collection = $selector->getCollection();
-
-            if ($collection instanceof IRecyclableCollection) {
-                $selector->where(IRecyclableObject::FIELD_TRASHED)->notEquals(true);
-            }
-
-        });
-    }
-
 }
+ 

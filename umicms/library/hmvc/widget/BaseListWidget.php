@@ -15,8 +15,6 @@ use umi\pagination\IPaginator;
 use umi\pagination\TPaginationAware;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\OutOfBoundsException;
-use umicms\hmvc\url\IUrlManagerAware;
-use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\selector\CmsSelector;
 use umicms\templating\helper\pagination\PaginationHelper;
 
@@ -24,10 +22,9 @@ use umicms\templating\helper\pagination\PaginationHelper;
  * Базовый класс виджета вывода списков с постраничной навигацией.
  * Применяет условия выборки для списка и формирует постраничную навигацию, если требуется.
  */
-abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAware, IUrlManagerAware
+abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAware
 {
     use TPaginationAware;
-    use TUrlManagerAware;
 
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -64,11 +61,22 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
      */
     public function __invoke()
     {
-        $selector = $this->getSelector();
+        $selector = $this->applySelectorConditions($this->getSelector());
 
-        $result = ['list' => $this->applySelectorConditions($selector)];
         if ($this->pagination) {
-            $result['pagination'] = $this->getPagination($selector);
+            /**
+             * @var IPaginator $paginator
+             */
+            list ($paginator, $pagination) = $this->getPagination($selector);
+            $result = [
+                'list' => $paginator->getPageItems(),
+                'pagination' => $pagination
+            ];
+        } else {
+            if ($this->limit) {
+                $selector->limit($this->limit);
+            }
+            $result = ['list' => $selector];
         }
 
         return $this->createResult($this->template, $result);
@@ -81,10 +89,7 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
      */
     protected function applySelectorConditions(CmsSelector $selector)
     {
-        if ($this->limit) {
-            $selector->limit($this->limit);
-        }
-
+        //TODO применение фильтров
         return $selector;
     }
 
@@ -163,7 +168,9 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
         $pagesCount = isset($this->pagination['pagesCount']) ? (int) $this->pagination['pagesCount'] : null;
         $pagination = call_user_func([$helper, $this->pagination['type']], $paginator, $pagesCount);
 
-        return array_merge($pagination, $helper->buildLinksContext($pagination, $this->pagination['pageParam']));
+        $pagination = array_merge($pagination, $helper->buildLinksContext($pagination, $this->pagination['pageParam']));
+
+        return [$paginator, $pagination];
     }
 
     /**
