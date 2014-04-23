@@ -14,14 +14,7 @@ use umicms\project\site\controller\SiteRestWidgetController;
 return [
     SiteApplication::OPTION_CLASS => 'umicms\project\site\SiteApplication',
 
-    SiteApplication::OPTION_SETTINGS => [
-        SiteApplication::SETTING_URL_POSTFIX => '',
-
-        SiteApplication::SETTING_DEFAULT_DESCRIPTION => 'UMI.CMS',
-        SiteApplication::SETTING_DEFAULT_TITLE => 'UMI.CMS',
-        SiteApplication::SETTING_TITLE_PREFIX => 'UMI.CMS - ',
-        SiteApplication::SETTING_DEFAULT_KEYWORDS => 'UMI.CMS',
-    ],
+    SiteApplication::OPTION_SETTINGS => '{#lazy:~/project/site/site.settings.config.php}',
 
     SiteApplication::OPTION_COMPONENTS => [
         'structure' => '{#lazy:~/project/module/structure/site/module.config.php}',

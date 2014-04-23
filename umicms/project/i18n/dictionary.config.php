@@ -39,7 +39,6 @@ return [
 
         'project.admin.api.service' => '{#lazy:~/project/module/service/admin/i18n/dictionary.config.php}',
         'project.admin.api.service.backup' => '{#lazy:~/project/module/service/admin/backup/i18n/dictionary.config.php}',
-        'project.admin.settings.service.backup' => '{#lazy:~/project/module/service/settings/backup/i18n/dictionary.config.php}',
 
         'project.admin.api.seo' => '{#lazy:~/project/module/seo/admin/i18n/dictionary.config.php}',
         'project.admin.api.seo.megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/i18n/dictionary.config.php}',
@@ -50,6 +49,11 @@ return [
         'project.admin.api.blog' => '{#lazy:~/project/module/blog/admin/i18n/dictionary.config.php}',
 
         'project.admin.api.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
+
+
+        'project.admin.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
+        'project.admin.settings.service' => '{#lazy:~/project/module/service/settings/i18n/dictionary.config.php}',
+        'project.admin.settings.service.backup' => '{#lazy:~/project/module/service/settings/backup/i18n/dictionary.config.php}',
 
         'collection' => [
 

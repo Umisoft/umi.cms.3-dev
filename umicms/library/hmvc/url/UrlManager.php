@@ -17,6 +17,7 @@ use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\settings\component\SettingsComponent;
 use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\site\component\BaseDefaultSitePageComponent;
@@ -44,6 +45,10 @@ class UrlManager implements IUrlManager, ILocalizable
      * @var string $baseRestUrl базовый URL для REST-запросов
      */
     protected $baseRestUrl = '/';
+    /**
+     * @var string $baseSettingsUrl базовый URL для запросов связанных с настройками
+     */
+    protected $baseSettingsUrl = '/';
     /**
      * @var string $baseAdminUrl базовый URL для административной панели
      */
@@ -97,6 +102,16 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
+    public function setBaseSettingsUrl($baseSettingsUrl)
+    {
+        $this->baseSettingsUrl = $baseSettingsUrl;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setBaseAdminUrl($baseAdminUrl)
     {
         $this->baseAdminUrl = $baseAdminUrl;
@@ -130,6 +145,14 @@ class UrlManager implements IUrlManager, ILocalizable
     public function getBaseRestUrl()
     {
         return $this->baseRestUrl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBaseSettingsUrl()
+    {
+        return $this->baseSettingsUrl;
     }
 
     /**
@@ -190,16 +213,6 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function getAdminComponentUrl(AdminComponent $component, $isAbsolute = false)
-    {
-        $domainUrl = $isAbsolute ? $this->domainUrl : '';
-
-        return $domainUrl . $this->baseAdminUrl . $this->getRelativeComponentUrl($component);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getObjectEditLinkUrl(ICmsObject $object, $isAbsolute = false)
     {
         /**
@@ -234,9 +247,19 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
+    public function getAdminComponentUrl(AdminComponent $component, $isAbsolute = false)
+    {
+        $domainUrl = $isAbsolute ? $this->domainUrl : '';
+
+        return $domainUrl . $this->baseAdminUrl . $this->getAdminRelativeComponentUrl($component);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getAdminComponentResourceUrl(AdminComponent $component)
     {
-        return $this->baseRestUrl . $this->getRelativeComponentUrl($component);
+        return $this->baseRestUrl . $this->getAdminRelativeComponentUrl($component);
     }
 
     /**
@@ -252,6 +275,17 @@ class UrlManager implements IUrlManager, ILocalizable
         }
 
         return $actionUrl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSettingsComponentResourceUrl(SettingsComponent $component)
+    {
+        $url = $this->baseSettingsUrl;
+        $url .= str_replace(SettingsComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 22));
+
+        return $url;
     }
 
     /**
@@ -310,13 +344,14 @@ class UrlManager implements IUrlManager, ILocalizable
     }
 
     /**
-     * Возвращает URL компонента относительно API-компонента.
+     * Возвращает URL админ-компонента относительно API-компонента.
      * @param AdminComponent $component
      * @return string
      */
-    protected function getRelativeComponentUrl(AdminComponent $component)
+    protected function getAdminRelativeComponentUrl(AdminComponent $component)
     {
         return str_replace(AdminComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 17));
     }
+
 }
  

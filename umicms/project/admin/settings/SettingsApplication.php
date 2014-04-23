@@ -13,14 +13,14 @@ use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Request;
 use umi\http\Response;
-use umicms\project\admin\settings\component\SettingsComponent;
+use umicms\project\admin\settings\component\DefaultSettingsComponent;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\TSerializationAware;
 
 /**
  * Приложение управления настройками.
  */
-class SettingsApplication extends SettingsComponent implements ISerializationAware
+class SettingsApplication extends DefaultSettingsComponent implements ISerializationAware
 {
     use TSerializationAware;
     /**

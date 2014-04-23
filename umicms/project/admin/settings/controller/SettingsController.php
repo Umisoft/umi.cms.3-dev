@@ -9,53 +9,78 @@
 
 namespace umicms\project\admin\settings\controller;
 
-use umi\config\io\IConfigIOAware;
-use umi\config\io\TConfigIOAware;
-use umicms\hmvc\controller\BaseController;
+use umi\acl\IAclResource;
+use umicms\hmvc\controller\BaseSecureController;
+use umicms\project\admin\settings\component\SettingsComponent;
+use umicms\project\admin\settings\SettingsApplication;
 
 /**
- * Контроллер чтения и сохранения настроек
+ * Контроллер списка настроек.
  */
-class SettingsController extends BaseController implements IConfigIOAware
+class SettingsController extends BaseSecureController
 {
-    use TConfigIOAware;
-
-    /**
-     * Имя формы редактирования конфигурации
-     */
-    const SETTINGS_FORM_NAME = 'settings';
-
-    protected $configPath = '~/project/module/service/configuration/backup/collection.settings.config.php';
 
     /**
      * {@inheritdoc}
      */
     public function __invoke()
     {
-        $config = $this->readConfig($this->configPath);
-        $form = $this->getForm(self::SETTINGS_FORM_NAME, $config);
-        $form->setAction($this->getUrl('index'));
-
-        if ($this->isRequestMethodPost()) {
-
-            $formData = $this->getAllPostVars();
-
-            if ($form->setData($formData) && $form->isValid()) {
-                $this->writeConfig($config);
-
-                return $this->createRedirectResponse(
-                    $this->getRequest()->getReferer()
-                );
-            }
-
-        }
-
         return $this->createViewResponse(
             'settings',
             [
-                'form' => $form
+                'components'     => $this->getModulesInfo(),
             ]
         );
     }
+
+    /**
+     * Возвращает информацию о модулях.
+     * @return array
+     */
+    protected function getModulesInfo()
+    {
+        /**
+         * @var SettingsApplication $application
+         */
+        $application = $this->getComponent();
+        $applicationInfo = $this->getComponentInfo($application);
+
+        return isset($applicationInfo['components']) ? $applicationInfo['components'] : [];
+    }
+
+    /**
+     * Возвращает информацию о компонентах на всю глубину с учетом проверки прав.
+     * @param SettingsComponent $component компонент
+     * @param SettingsComponent $context контескт, в котором проверяются права
+     * @return array
+     */
+    protected function getComponentInfo(SettingsComponent $component, SettingsComponent $context = null)
+    {
+        $componentInfo = [];
+
+        if (
+            !$component instanceof IAclResource || is_null($context) ||
+            $this->getContext()->getDispatcher()->checkPermissions($context, $component)
+        ) {
+            $componentInfo = $component->getComponentInfo();
+
+            $childComponentsInfo = [];
+
+            foreach ($component->getChildComponentNames() as $childComponentName) {
+                $childComponent = $component->getChildComponent($childComponentName);
+
+                if ($childComponentInfo = $this->getComponentInfo($childComponent, $component)) {
+                    $childComponentsInfo[] = $childComponentInfo;
+                }
+            }
+
+            if ($childComponentsInfo) {
+                $componentInfo['components'] = $childComponentsInfo;
+            }
+        }
+
+        return $componentInfo;
+    }
+
 }
  

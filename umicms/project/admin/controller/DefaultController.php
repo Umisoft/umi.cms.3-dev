@@ -47,17 +47,21 @@ class DefaultController extends BaseController implements ILocalesAware
      */
     public function __invoke()
     {
+        $result = [
+            'contents' => $this->response->getContent(),
+            'baseUrl' => $this->getUrlManager()->getBaseAdminUrl(),
+            'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
+            'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
+            'locale' => $this->getCurrentLocale(),
+            'authenticated' => $this->isApiAllowed()
+        ];
+
+        if ($this->isSettingsAllowed()) {
+            $result['baseSettingsUrl'] = $this->getUrlManager()->getBaseSettingsUrl();
+        }
 
         $response = $this->createViewResponse(
-            'layout',
-            [
-                'contents' => $this->response->getContent(),
-                'baseUrl' => $this->getUrlManager()->getBaseAdminUrl(),
-                'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
-                'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
-                'locale' => $this->getCurrentLocale(),
-                'authenticated' => $this->getIsUserAuthenticated()
-            ]
+            'layout', $result
         );
 
         $response->setStatusCode($this->response->getStatusCode());
@@ -67,15 +71,32 @@ class DefaultController extends BaseController implements ILocalesAware
     }
 
     /**
-     * Проверяет, залогинен ли пользователь в административную панель
+     * Проверяет, имеет ли пользователь доступ к API
      * @return bool
      */
-    protected function getIsUserAuthenticated()
+    protected function isApiAllowed()
     {
         if ($this->api->isAuthenticated()) {
 
-            $apiComponent = $this->getComponent()->getChildComponent('api');
-            if ($this->api->getCurrentUser()->isAllowed($apiComponent, 'controller:settings')) {
+            $application = $this->getComponent()->getChildComponent('api');
+            if ($this->api->getCurrentUser()->isAllowed($application, 'controller:settings')) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Проверяет, имеет ли пользователь доступ к настройкам
+     * @return bool
+     */
+    protected function isSettingsAllowed()
+    {
+        if ($this->api->isAuthenticated()) {
+
+            $application = $this->getComponent()->getChildComponent('settings');
+            if ($this->api->getCurrentUser()->isAllowed($application, 'controller:settings')) {
                 return true;
             }
         }

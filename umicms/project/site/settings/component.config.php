@@ -12,10 +12,10 @@ return [
 
     DefaultSettingsComponent::OPTION_CLASS => 'umicms\project\admin\settings\component\DefaultSettingsComponent',
 
-    DefaultSettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/module/service/configuration/backup/collection.settings.config.php',
+    DefaultSettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/site/site.settings.config.php',
 
     DefaultSettingsComponent::OPTION_FORMS => [
-        'settings' => '{#lazy:~/project/module/service/settings/backup/form/settings.php}'
+        'settings' => '{#lazy:~/project/site/settings/form/settings.php}'
     ],
 
 ];
