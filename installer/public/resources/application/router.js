@@ -193,6 +193,10 @@ define([], function(){
                     var link = window.location.host + window.UmiSettings.baseSiteURL + object._data.meta.pageUrl;
                     var tab = window.open('//' + link.replace('\/\/', '\/'), '_blank');
                     tab.focus();
+                },
+
+                trash: function(object, type){
+                    console.log('trash');
                 }
             },
             /**

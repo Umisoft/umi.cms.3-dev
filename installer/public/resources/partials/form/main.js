@@ -11,9 +11,10 @@ define(
         './elements/multiSelect/main',
         './elements/datepicker/main',
         './elements/magellan/main',
-        './formTypes/createForm/main'
+        './formTypes/createForm/main',
+        './toolbar/main'
     ],
-    function(UMI, formTpl, mixin, inputElement, checkboxElement, textareaElement, htmlEditorElement, selectElement, multiSelectElement, datepickerElement, magellanElement, createForm){
+    function(UMI, formTpl, mixin, inputElement, checkboxElement, textareaElement, htmlEditorElement, selectElement, multiSelectElement, datepickerElement, magellanElement, createForm, toolbar){
         'use strict';
 
         Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
@@ -27,14 +28,27 @@ define(
         multiSelectElement();
         datepickerElement();
         magellanElement();
+        toolbar();
 
         UMI.FormControlController = Ember.ObjectController.extend({
             needs: ['component'],
+
             settings: function(){
                 var settings = {};
                 settings = this.get('controllers.component.settings');
                 return settings;
-            }.property(),
+            }.property('controllers.component.settings'),
+
+            toolbar: function(){
+                var editForm = this.get('controllers.component.contentControls').findBy('name','editForm');
+                return editForm && editForm.toolbar;
+            }.property('controllers.component.contentControls'),
+
+            hasToolbar: function(){
+                var toolbar = this.get('toolbar');
+                return toolbar && toolbar.length;
+            }.property('toolbar'),
+
             hasFieldset: function(){
                 var hasFieldset;
                 try{
@@ -49,74 +63,7 @@ define(
                 } finally{
                     return hasFieldset;
                 }
-            }.property('model.@each'),
-            switchActivity: function(){
-                return this.get('settings').actions.activate && this.get('settings').actions.deactivate;
-            }.property('model.@each'),
-            hasBackups: function(){
-                return !!this.get('settings').actions.getBackupList;
-            }.property('model.@each'),
-            backups: function(){
-                var backups = {};
-                var object = this.get('object');
-                var settings = this.get('settings');
-                if(this.get('hasBackups')){
-                    backups.displayName = settings.actions.getBackupList.displayName;
-                    var currentVersion = {
-                        objectId: object.get('id'),
-                        date: object.get('updated'),
-                        user: null,
-                        id: 'current',
-                        current: true,
-                        isActive: true
-                    };
-                    var results = [currentVersion];
-                    var params = '?id=' + object.get('id');
-
-                    var promiseArray = DS.PromiseArray.create({
-                        promise: $.get(settings.actions.getBackupList.source + params).then(function(data){
-                            return results.concat(data.result.getBackupList.serviceBackup);
-                        })
-                    });
-                    backups.list = Ember.ArrayProxy.create({
-                        content: promiseArray
-                    });
-                    return backups;
-                }
-            }.property('model.@each'),
-
-            actions: {
-                applyBackup: function(backup){
-                    if(backup.isActive){
-                        return;
-                    }
-                    var self = this;
-                    var object = this.get('model.object');
-                    var list = self.get('backups.list');
-                    var setCurrent = function(){
-                        list.setEach('isActive', false);
-                        var current = list.findBy('id', backup.id);
-                        Ember.set(current, 'isActive', true);
-                    };
-                    object.rollback();
-                    if(backup.current){
-                        setCurrent();
-                    } else{
-                        var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
-                        $.get(self.get('settings').actions.getBackup.source + params).then(function(data){
-                            object.setProperties(data.result.getBackup);
-                            setCurrent();
-                        });
-                    }
-                },
-                toggleProperty: function(property){
-                    this.get('model.object').toggleProperty(property);
-                },
-                switchActivity: function(){
-                    var object = this.get('object');
-                    this.get('controllers.component').send('switchActivity', object);
-                }
-            }
+            }.property('model.@each')
         });
 
         UMI.FormElementController = Ember.ObjectController.extend({
