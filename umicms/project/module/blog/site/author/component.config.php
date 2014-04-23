@@ -25,8 +25,6 @@ return [
         'rss' => __NAMESPACE__ . '\widget\BlogAuthorListRssUrlWidget'
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
-        'type' => 'php',
-        'extension' => 'phtml',
         'directories' => __DIR__ . '/template/php',
     ],
     DefaultSitePageComponent::OPTION_ROUTES => [

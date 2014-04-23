@@ -51,9 +51,7 @@ return [
         ]
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
-        'type' => 'php',
-        'extension' => 'phtml',
-        'directories' => __DIR__ . '/template/php',
+        'directories' => __DIR__ . '/template/php'
     ],
     DefaultSitePageComponent::OPTION_ROUTES => [
         'rss' => [

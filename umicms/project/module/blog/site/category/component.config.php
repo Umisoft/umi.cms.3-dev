@@ -26,8 +26,6 @@ return [
         'rss' => __NAMESPACE__ . '\widget\CategoryPostRssUrlWidget'
     ],
     DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
-        'type' => 'php',
-        'extension' => 'phtml',
         'directories' => __DIR__ . '/template/php',
     ],
     DefaultSiteHierarchicPageComponent::OPTION_ACL => [

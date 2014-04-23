@@ -110,6 +110,31 @@ trait TSiteSettingsAware
         return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_DESCRIPTION);
     }
 
+    /**
+     * Возвращает тип шаблонизатора по умолчанию
+     * @return string
+     */
+    protected function getSiteDefaultTemplateEngineType()
+    {
+        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE);
+    }
 
+    /**
+     * Возвращает расширение файлов шаблонов по умолчанию
+     * @return string
+     */
+    protected function getSiteDefaultTemplateExtension()
+    {
+        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION);
+    }
+
+    /**
+     * Возвращает путь директории с общими шаблонами сайта
+     * @return string
+     */
+    protected function getSiteCommonTemplateDirectory()
+    {
+        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY);
+    }
 
 }

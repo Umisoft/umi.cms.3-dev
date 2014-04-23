@@ -31,7 +31,6 @@ use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
@@ -40,9 +39,8 @@ use umicms\serialization\TSerializationAware;
  * Приложение сайта.
  */
 class SiteApplication extends SiteComponent
-    implements IHttpAware, IToolkitAware, ISiteSettingsAware, ISerializationAware, IUrlManagerAware
+    implements IHttpAware, IToolkitAware, ISerializationAware, IUrlManagerAware
 {
-    use TSiteSettingsAware;
     use THttpAware;
     use TToolkitAware;
     use TSerializationAware;
@@ -51,31 +49,44 @@ class SiteApplication extends SiteComponent
     /**
      * Имя настройки для задания guid главной страницы
      */
-    const SETTING_DEFAULT_PAGE_GUID = 'default-page';
+    const SETTING_DEFAULT_PAGE_GUID = 'defaultPage';
     /**
      * Имя настройки для задания guid шаблона по умолчанию
      */
-    const SETTING_DEFAULT_LAYOUT_GUID = 'default-layout';
+    const SETTING_DEFAULT_LAYOUT_GUID = 'defaultLayout';
     /**
      * Имя настройки для задания title страниц по умолчанию
      */
-    const SETTING_DEFAULT_TITLE = 'default-meta-title';
+    const SETTING_DEFAULT_TITLE = 'defaultMetaTitle';
     /**
      * Имя настройки для задания префикса title страниц
      */
-    const SETTING_TITLE_PREFIX = 'meta-title-prefix';
+    const SETTING_TITLE_PREFIX = 'metaTitlePrefix';
     /**
      * Имя настройки для задания keywords страниц по умолчанию
      */
-    const SETTING_DEFAULT_KEYWORDS = 'default-meta-keywords';
+    const SETTING_DEFAULT_KEYWORDS = 'defaultMetaKeywords';
     /**
      * Имя настройки для задания description страниц по умолчанию
      */
-    const SETTING_DEFAULT_DESCRIPTION = 'default-meta-description';
+    const SETTING_DEFAULT_DESCRIPTION = 'defaultMetaDescription';
     /**
      * Имя настройки для задания постфикса всех URL
      */
-    const SETTING_URL_POSTFIX = 'url-postfix';
+    const SETTING_URL_POSTFIX = 'urlPostfix';
+    /**
+     * Имя настройки для задания шаблонизатора по умолчанию
+     */
+    const SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE = 'defaultTemplatingEngineType';
+    /**
+     * Имя настройки для задания расширения файлов с шаблонами по умолчанию
+     */
+    const SETTING_DEFAULT_TEMPLATE_EXTENSION = 'defaultTemplateExtension';
+    /**
+     * Имя настройки для задания расширения файлов с шаблонами по умолчанию
+     */
+    const SETTING_COMMON_TEMPLATE_DIRECTORY = 'commonTemplateDirectory';
+
     /**
      * Формат запроса по умолчанию.
      */
