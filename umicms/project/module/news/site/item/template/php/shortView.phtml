@@ -9,10 +9,10 @@
     </a>
 </h3>
 
-<? if ($newsItem->date) :?>
+<?php if ($newsItem->date) :?>
     <time datetime="<?= $newsItem->date->format('c')?>">
         <?= $newsItem->date->format('d.m.Y | H:i')?>
     </time>
-<? endif; ?>
+<?php endif; ?>
 
 <?= $newsItem->announcement ?>

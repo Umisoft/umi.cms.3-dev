@@ -4,17 +4,17 @@
  */
 ?>
 
-<? if (isset($pagination['pagesCount'])) :?>
+<?php if (isset($pagination['pagesCount'])) :?>
 
     <ul>
-        <? foreach ($pagination['pagesRange'] as $page => $link) : ?>
+        <?php foreach ($pagination['pagesRange'] as $page => $link) :?>
 
-            <? if ($page != $pagination['currentPage']) :?>
+            <?php if ($page != $pagination['currentPage']) :?>
                 <li><a href="<?= $link ?>"><?= $page ?></a></li>
-            <? else : ?>
+            <?php else : ?>
                 <li><?= $page ?></li>
-            <? endif; ?>
+            <?php endif; ?>
 
-        <? endforeach;?>
+        <?php endforeach;?>
     </ul>
-<? endif; ?>
+<?php endif; ?>

@@ -28,7 +28,7 @@ class SettingsController extends BaseSecureController
         return $this->createViewResponse(
             'settings',
             [
-                'modules'     => $this->getModulesInfo(),
+                'components'     => $this->getModulesInfo(),
             ]
         );
     }

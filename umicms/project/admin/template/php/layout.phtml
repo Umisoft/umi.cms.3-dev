@@ -10,9 +10,9 @@
                 "authenticated": <?= $authenticated ? 'true' : 'false' ?>,
                 "baseURL": '<?= $baseUrl ?>',
                 "baseApiURL": '<?= $baseApiUrl ?>',
-                <? if (isset($baseSettingsUrl)) :?>
+                <?php if (isset($baseSettingsUrl)) :?>
                     "baseSettingsURL": '<?= $baseSettingsUrl ?>',
-                <? endif; ?>
+                <?php endif; ?>
                 "baseSiteURL": '<?= $baseSiteUrl ?>',
                 "locale": '<?= $locale ?>'
             }
