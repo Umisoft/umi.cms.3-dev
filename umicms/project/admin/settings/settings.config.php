@@ -16,6 +16,7 @@ return [
 
     SettingsApplication::OPTION_COMPONENTS => [
         'service' => '{#lazy:~/project/module/service/settings/module.config.php}',
+        'site' => '{#lazy:~/project/site/settings/component.config.php}',
     ],
 
     SettingsApplication::OPTION_CONTROLLERS => [
@@ -28,15 +29,18 @@ return [
         IAclFactory::OPTION_ROLES => [
             'configurator' => [],
             'serviceConfigurator' => ['configurator'],
+            'siteConfigurator' => ['configurator'],
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:settings',
             'component:service',
+            'component:site',
         ],
         IAclFactory::OPTION_RULES => [
 
             'configurator' => ['controller:settings' => []],
-            'serviceConfigurator' => ['component:service' => []]
+            'serviceConfigurator' => ['component:service' => []],
+            'siteConfigurator' => ['component:site' => []]
         ]
     ],
 

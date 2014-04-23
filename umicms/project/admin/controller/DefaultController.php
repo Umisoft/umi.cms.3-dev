@@ -47,17 +47,20 @@ class DefaultController extends BaseController implements ILocalesAware
      */
     public function __invoke()
     {
+        $result = [
+            'contents' => $this->response->getContent(),
+            'baseUrl' => $this->getUrlManager()->getBaseAdminUrl(),
+            'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
+            'baseSettingsUrl' => $this->getUrlManager()->getBaseSettingsUrl(),
+            'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
+            'locale' => $this->getCurrentLocale(),
+            'authenticated' => $this->getIsUserAuthenticated()
+        ];
+
+
 
         $response = $this->createViewResponse(
-            'layout',
-            [
-                'contents' => $this->response->getContent(),
-                'baseUrl' => $this->getUrlManager()->getBaseAdminUrl(),
-                'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
-                'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
-                'locale' => $this->getCurrentLocale(),
-                'authenticated' => $this->getIsUserAuthenticated()
-            ]
+            'layout', $result
         );
 
         $response->setStatusCode($this->response->getStatusCode());
