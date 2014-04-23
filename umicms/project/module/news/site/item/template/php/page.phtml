@@ -3,9 +3,9 @@
  * @var umicms\project\module\news\api\object\NewsItem $page
  */
 ?>
-<? if ($page->date) :?>
+<?php if ($page->date) :?>
     <time datetime="<?= $page->date->format('c')?>">
         <?= $page->date->format('d.m.Y | H:i')?>
     </time>
-<? endif; ?>
+<?php endif; ?>
 <?= $page->contents ?>
