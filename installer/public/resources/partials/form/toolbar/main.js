@@ -4,7 +4,7 @@ define(['App', 'text!./toolbar.hbs'], function(UMI, toolbarTpl){
     return function(){
 
         UMI.FormToolbarController = Ember.ArrayController.extend({
-            backupList: function(){
+            getBackupList: function(){
                 var backupList;
                 var object = this.get('parentController.object');
                 var settings = this.get('parentController.settings');
@@ -31,8 +31,18 @@ define(['App', 'text!./toolbar.hbs'], function(UMI, toolbarTpl){
                     content: promiseArray
                 });
                 return backupList;
+            },
 
-            }.property('parentController.object'),
+            backupList: null,
+
+            updateBackupList: function(){
+                var self = this;
+                self.set('backupList', self.getBackupList());
+                self.get('parentController.object').off('didUpdate');
+                self.get('parentController.object').on('didUpdate', function(){
+                    self.set('backupList', self.getBackupList());
+                });
+            }.observes('parentController.object').on('init'),
 
             actions: {
                 applyBackup: function(backup){
@@ -53,6 +63,8 @@ define(['App', 'text!./toolbar.hbs'], function(UMI, toolbarTpl){
                     } else{
                         var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
                         $.get(self.get('parentController.settings').actions.getBackup.source + params).then(function(data){
+                            delete data.result.getBackup.version;
+                            delete data.result.getBackup.id;
                             object.setProperties(data.result.getBackup);
                             setCurrent();
                         });
