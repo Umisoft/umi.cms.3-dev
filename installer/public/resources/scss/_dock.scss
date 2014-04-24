@@ -202,7 +202,7 @@ $dock-components-height: 35;
                     width: 3px;
                     height: 100%;
                     top: 0;
-                    left: 0;
+                    left: -1px;
                     background: url(img/shadows/toRightShadow.png);
                 }
                 &:after{

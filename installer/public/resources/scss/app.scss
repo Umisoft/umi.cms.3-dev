@@ -1,6 +1,7 @@
 @import "foundation/_functions";
 @import "_settings";
 //@import "foundation";
+
 //Переделаываем компоненты Foundation
 @import "foundationOverridden/_global";// Для чего переопределен global?
 @import "foundationOverridden/_type";
@@ -8,6 +9,8 @@
 @import "foundationOverridden/_offcanvas";
 @import "foundationOverridden/_switch";
 @import "foundationOverridden/_visibility";
+@import "foundationOverridden/_forms";
+
 //Подключаем компоненты Foundation
 @import "foundation/components/_accordion";
 @import "foundation/components/_alert-boxes";
@@ -42,6 +45,7 @@
 @import "foundation/components/_tooltips";
 //@import "foundation/components/_offcanvas";
 //@import "foundation/components/_visibility";
+
 //Добавляем стили
 @import "_snippets";
 @import "_grid";
@@ -54,10 +58,9 @@
 @import "_tree";
 @import "_table-control";
 @import "_forms";
-@import "_maggelan";
+@import "_magellan";
 @import "_dropdown";
 @import "_elements";
-@import "_datepicker";
 @import "_popup";
 @import "_alert-boxes";
 @import "_dialog";
@@ -65,8 +68,13 @@
 @import "_search";
 @import "_accordion";
 @import "_table";
+@import "_pagination";
+
 @import "_file-manager";
+
 //Перебиваем стили сторонних модулей
+@import "antiVendor/_datepicker";
+@import "antiVendor/_timepicker";
 @import "antiVendor/_iScroll";
 @import "antiVendor/_ckEditor";
 

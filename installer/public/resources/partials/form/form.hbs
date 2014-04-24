@@ -9,7 +9,7 @@
 {{/if}}
 
 <div class="row s-full-height collapse">
-    <div class="columns small-12 maggelan-content">
+    <div class="columns small-12 magellan-content">
         {{#each formElements in model.viewSettings.form.elements itemController="FormElement"}}
             {{#if isFieldset}}
                 <fieldset id="fieldset-{{unbound formElements.name}}">
@@ -119,7 +119,8 @@
                             {{access.global.displayName}}
                             <div class="right checkbox-group">
                                 {{#each access.global.actions}}
-                                    {{view "checkboxCustom" checkedBinding="allow"}}
+                                    {{!view "checkboxCustom" checkedBinding="allow"}}
+                                    <input type="checkbox" />
                                 {{/each}}
                             </div>
                         </div>
@@ -134,7 +135,8 @@
                                 {{/if}}
                                 <div class="right checkbox-group">
                                     {{#each user.actions}}
-                                        {{view "checkboxCustom" checkedBinding="allow"}}
+                                        <input type="checkbox" />
+                                        {{!view "checkboxCustom" checkedBinding="allow"}}
                                     {{/each}}
                                 </div>
                             </div>

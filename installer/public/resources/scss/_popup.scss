@@ -22,13 +22,29 @@
     filter: blur(4px);
 }
 
+.umi-popup-invisible-overlay{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+
+.umi-popup-visible-overlay{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(255,255,255,0.5);
+}
+
 .umi-popup{
-    display: none;
     float: left;
     position: absolute;
     z-index: 10000;
-    top: 300px;
-    left: 0;
+    top: 200px;
+    left: calc(50% - 250px);
     margin: 0 auto;
     width: 600px;
     height: 400px;
@@ -37,27 +53,50 @@
     padding-bottom: 35px;
 }
 
+.umi-popup-content{
+    overflow: hidden;
+    background: #F5F6F7;
+    height: 100%;
+    width: 100%;
+    margin-top: 35px;
+}
+
 .umi-popup-header{
     float: left;
     width: 100%;
-    height: 30px;
+    height: 34px;
     border-bottom: 1px solid #DDE3E6;
+}
+
+.umi-popup-title{
+    display: inline-block;
+    line-height: 34px;
+    font-weight: bold;
+    padding-left: 8px;
+    color: #788E9F;
 }
 
 .umi-popup-close-button{
     float: right;
     i{
-        margin: 5px 10px;
+        margin: 8px;
     }
 }
 
-.umi-popup-content{
-    position: relative;
+.umi-popup-resizer{
+    display: none;
+    z-index: 100;
+    position: absolute;
     float: left;
-    width:100%;
-    height: 200px;
-    margin: 30px 0;
-    overflow-x: hidden;
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 10px 10px;
+    border-color: transparent transparent #575e6c transparent;
 }
 
 .umi-table-control-column-list{
@@ -81,7 +120,7 @@
 .umi-table-control-column-list-wrapper{
     position: relative;
     float: left;
-    width:100%;
+    width: 100%;
     height: 290px;
     margin: 30px 0;
     overflow: hidden;

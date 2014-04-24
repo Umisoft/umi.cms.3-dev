@@ -218,6 +218,7 @@ define(['App'], function(UMI){
         UMI.TableCellContentView = Ember.View.extend({
             classNames: ['umi-table-control-content-cell-div'],
             classNameBindings: ['columnId'],
+
             template: function(){
                 var meta = this.get('column');
                 var object = this.get('object');
@@ -229,8 +230,17 @@ define(['App'], function(UMI){
                 }
                 return Ember.Handlebars.compile(template);
             }.property('object','column'),
+
             didInsertElement: function(){
                 console.log('didInsertElement');
+            }
+        });
+
+        UMI.TableControlColumnSelectorPopupView = Ember.View.extend({
+            controller: UMI.tableControlColumnSelectorPopup,
+            didInsertElement: function(){
+                console.log(this.get('parentView.width'));
+                console.log('TablePopupView');
             }
         });
     };

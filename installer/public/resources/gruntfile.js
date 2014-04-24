@@ -94,7 +94,7 @@ module.exports = function(grunt){
                     separator: ';'
                 },
                 src: [
-                    'partials/fileManager/elFinder/jquery/jquery-ui-1.10.4.custom.min.js',
+//                    'partials/fileManager/elFinder/jquery/jquery-ui-1.10.4.custom.min.js',
                     // Файлы перечислены в необходимом порядке соединения
                     'partials/fileManager/elFinder/js/elFinder.js',
                     'partials/fileManager/elFinder/js/jquery.elfinder.js',

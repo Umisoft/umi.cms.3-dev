@@ -64,5 +64,9 @@ define([], function(){
         });
 
         UMI.ContextController = Ember.ObjectController.extend({});
+
+        UMI.ComponentView = Ember.View.extend({
+            classNames: ['umi-content', 's-full-height']
+        });
     };
 });
