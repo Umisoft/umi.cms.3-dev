@@ -12,7 +12,11 @@ namespace umicms\project\module\structure\api\collection;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umicms\exception\NonexistentEntityException;
+use umicms\exception\NotAllowedOperationException;
+use umicms\orm\collection\behaviour\ILockedAccessibleCollection;
+use umicms\orm\collection\behaviour\TLockedAccessibleCollection;
 use umicms\orm\collection\PageHierarchicCollection;
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\structure\api\object\SystemPage;
@@ -26,8 +30,30 @@ use umicms\project\module\structure\api\object\SystemPage;
  * @method StructureElement getByUri($uri, $withLocalization = false) Возвращает элемент по URI.
  * @method StructureElement add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Добавляет элемент.
  */
-class StructureElementCollection extends PageHierarchicCollection
+class StructureElementCollection extends PageHierarchicCollection implements ILockedAccessibleCollection
 {
+    use TLockedAccessibleCollection;
+
+    /**
+     * Имя типа для системных страниц.
+     */
+    const TYPE_SYSTEM = 'system';
+
+    /**
+     * {@inheritdoc}
+     */
+    public function move(IHierarchicObject $object, IHierarchicObject $branch = null, IHierarchicObject $previousSibling = null) {
+
+        /**
+         * @var ILockedAccessibleObject|IHierarchicObject $object
+         */
+        if ($object instanceof ILockedAccessibleObject && $object->locked && $branch !== $object->getParent()) {
+            throw new NotAllowedOperationException('Cannot move locked page.');
+        }
+
+        return parent::move($object, $branch, $previousSibling);
+    }
+
     /**
      * Возвращает системную страницу по пути ее компонента-обработчика
      * @param string $componentPath путь ее компонента-обработчика
@@ -61,6 +87,6 @@ class StructureElementCollection extends PageHierarchicCollection
      */
     public function selectSystem()
     {
-        return $this->select()->types(['system']);
+        return $this->select()->types([self::TYPE_SYSTEM]);
     }
 }

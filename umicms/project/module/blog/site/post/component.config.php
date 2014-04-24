@@ -8,24 +8,96 @@
 
 namespace umicms\project\module\blog\site\post;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\project\site\component\DefaultSitePageComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\module\blog\site\post\Component',
-    SiteComponent::OPTION_CONTROLLERS => [
+    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
+    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
+    DefaultSitePageComponent::OPTION_CONTROLLERS => [
+        'add' => __NAMESPACE__ . '\controller\BlogAddPostController',
+        'edit' => __NAMESPACE__ . '\controller\BlogEditPostController',
+        'unPublish' => __NAMESPACE__ . '\controller\BlogDraftPostController',
+        'rss' => __NAMESPACE__ . '\controller\BlogPostRssController'
     ],
-    SiteComponent::OPTION_WIDGET => [
+    DefaultSitePageComponent::OPTION_WIDGET => [
+        'view' => __NAMESPACE__ . '\widget\BlogPostWidget',
+        'list' => __NAMESPACE__ . '\widget\BlogPostListWidget',
+        'rss' => __NAMESPACE__ . '\widget\BlogPostListRssUrlWidget',
+        'add' => __NAMESPACE__ . '\widget\BlogAddPostWidget',
+        'edit' => __NAMESPACE__ . '\widget\BlogEditPostWidget',
+        'unPublish' => __NAMESPACE__ . '\widget\BlogDraftPostWidget',
+        'editPostLink' => __NAMESPACE__ . '\widget\BlogEditPostUrlWidget'
     ],
-    SiteComponent::OPTION_VIEW => [
-        'type' => 'php',
-        'extension' => 'phtml',
-        'directory' => __DIR__ . '/template/php',
+    DefaultSitePageComponent::OPTION_VIEW => [
+        'directories' => ['module/blog/post'],
     ],
-    SiteComponent::OPTION_ACL => [
+    DefaultSitePageComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'viewer' => [],
+            'rssViewer' => [],
+            'author' => [],
+            'moderator' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'controller:rss',
+            'controller:add',
+            'controller:edit',
+            'controller:unPublish',
+            'widget:view',
+            'widget:list',
+            'widget:rss',
+            'widget:addPost',
+            'widget:editPost',
+            'widget:unPublish',
+            'widget:editPostLink',
+        ],
+        IAclFactory::OPTION_RULES => [
+            'viewer' => [
+                'widget:view' => [],
+                'widget:list' => []
+            ],
+            'rssViewer' => [
+                'controller:rss' => [],
+                'widget:rss' => [],
+            ],
+            'author' => [
+                'controller:add' => [],
+                'controller:edit' => [
+                    'edit' => ['own']
+                ],
+                'controller:unPublish' => [
+                    'publish' => ['own', 'published']
+                ],
+                'widget:addPost' => [],
+                'widget:editPost' => [
+                    'edit' => ['own']
+                ],
+                'widget:unPublish' => [
+                    'publish' => ['own', 'published']
+                ],
+                'widget:editPostLink' => [
+                    'edit' => ['own']
+                ],
+            ],
+            'moderator' => [
+                'controller:add' => [],
+                'controller:edit' => [],
+                'controller:unPublish' => [
+                    'publish' => ['published']
+                ],
+                'widget:addPost' => [],
+                'widget:editPost' => [],
+                'widget:unPublish' => [
+                    'publish' => ['published']
+                ],
+                'widget:editPostLink' => [],
+            ]
+        ]
     ],
-    SiteComponent::OPTION_ROUTES => [
+    DefaultSitePageComponent::OPTION_ROUTES => [
         'rss' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'route' => '/rss',
@@ -33,17 +105,25 @@ return [
                 'controller' => 'rss'
             ]
         ],
-        'post' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{slug}',
+        'add' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route' => '/add',
             'defaults' => [
-                'controller' => 'post'
+                'controller' => 'add'
             ]
         ],
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
+        'unPublish' => [
+            'type'     => IRouteFactory::ROUTE_FIXED,
+            'route' => '/unPublish',
             'defaults' => [
-                'controller' => 'index'
+                'controller' => 'unPublish'
+            ]
+        ],
+        'edit' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/edit/{id:integer}',
+            'defaults' => [
+                'controller' => 'edit'
             ]
         ]
     ]

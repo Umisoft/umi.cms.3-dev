@@ -1,0 +1,33 @@
+<?php
+/**
+ * @var \umi\form\element\Select $select
+ */
+use umi\form\element\MultiSelect;
+
+$attributes = array_merge(
+    ['name' => $select->getElementName()],
+    $select->getAttributes()
+);
+
+if ($select instanceof MultiSelect) {
+    $attributes['multiple'] = 'multiple';
+}
+
+$html = '<label>' . $select->getName() . '<select ' . buildAttributes($attributes) . ' >';
+$selected = (array) $select->getValue();
+
+foreach ($select->getChoices() as $value => $label) {
+    $attr = ['value' => $value];
+
+    if (in_array($value, $selected)) {
+        $attr += [
+            'selected' => 'selected'
+        ];
+    }
+
+    $html .= '<option ' . buildAttributes($attr) . '>' . $label . '</option>';
+}
+
+$html .= '</select></label>';
+
+echo $html;

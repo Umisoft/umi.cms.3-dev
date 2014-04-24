@@ -9,25 +9,25 @@
 namespace umicms\project\module\seo\admin\yandex;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
-    SecureAdminComponent::OPTION_MODELS => [
+    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    AdminComponent::OPTION_MODELS => [
         'umicms\project\module\seo\model\YandexModel'
     ],
-    SecureAdminComponent::OPTION_SETTINGS => [
+    AdminComponent::OPTION_SETTINGS => [
         'options' => [
             'hostId' => '3478487',
             'oauthToken' => '26ccbadbc7494266a7a0b2981a47d27d',
         ]
     ],
-    SecureAdminComponent::OPTION_CONTROLLERS => [
-        SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
+    AdminComponent::OPTION_CONTROLLERS => [
+        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
+        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
     ],
-    SecureAdminComponent::OPTION_ROUTES => [
+    AdminComponent::OPTION_ROUTES => [
         'action' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/action/{action}',
@@ -39,7 +39,7 @@ return [
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => SecureAdminComponent::SETTINGS_CONTROLLER
+                'controller' => AdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]

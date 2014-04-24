@@ -1,0 +1,18 @@
+<?php
+/**
+ * @var umicms\project\module\news\api\object\NewsRubric $rubric
+ * @var umicms\orm\selector\CmsSelector $list
+ */
+?>
+
+<?php if ($list->getTotal()) :?>
+
+    <ul>
+        <?php foreach ($list as $rubric) : ?>
+            <li>
+                <?= $this->widget('news.rubric.view', ['rubric' => $rubric, 'template' => 'shortView']); ?>
+                <?= $this->widget('news.rubric.rss', ['rubric' => $rubric, 'template' => 'rssLink']); ?>
+            </li>
+        <?php endforeach;?>
+    </ul>
+<?php endif; ?>

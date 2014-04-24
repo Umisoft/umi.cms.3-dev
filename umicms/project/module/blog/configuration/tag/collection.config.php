@@ -18,10 +18,11 @@ return [
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/tag/form/base.edit.config.php}'
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/tag/form/base.edit.config.php}',
+            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/tag/form/base.create.config.php}'
         ]
     ],
     'dictionaries' => [
-        'collection\blogTag', 'collection'
+        'collection.blogTag', 'collection'
     ]
 ];

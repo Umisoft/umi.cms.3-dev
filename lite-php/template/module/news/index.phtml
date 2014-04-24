@@ -1,0 +1,15 @@
+<?php
+/**
+ * @var umicms\project\module\structure\api\object\SystemPage $page
+ */
+?>
+<h1><?= $page->h1 ?></h1>
+<?= $page->contents ?>
+
+<?= $this->widget('news.item.rss', ['template' => 'rssLink']); ?>
+<h2>Рубрики</h2>
+<?= $this->widget('news.rubric.list') ?>
+<h2>Сюжеты</h2>
+<?= $this->widget('news.subject.list') ?>
+<h2>Все новости</h2>
+<?= $this->widget('news.item.list', ['limit' => '3', 'pagination' => ['pageParam' => 'p', 'type' => 'sliding', 'pagesCount' => 5]]) ?>

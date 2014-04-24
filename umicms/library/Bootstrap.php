@@ -13,7 +13,6 @@ use umi\config\io\IConfigIO;
 use umi\extension\twig\TemplatingTwigExtension;
 use umi\extension\twig\TwigTemplateEngine;
 use umi\hmvc\component\IComponent;
-use umi\hmvc\dispatcher\IDispatcher;
 use umi\hmvc\IMvcEntityFactory;
 use umi\http\Request;
 use umi\http\Response;
@@ -23,15 +22,16 @@ use umi\route\result\IRouteResult;
 use umi\spl\config\TConfigSupport;
 use umi\templating\engine\ITemplateEngineFactory;
 use umi\templating\engine\php\PhpTemplateEngine;
-use umi\templating\engine\php\TemplatingPhpExtension;
 use umi\toolkit\IToolkit;
 use umi\toolkit\Toolkit;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManager;
 use umicms\project\config\IProjectConfigAware;
 use umicms\project\config\TProjectConfigAware;
+use umicms\templating\engine\php\TemplatingPhpExtension;
 use umicms\templating\engine\php\ViewPhpExtension;
 use umicms\templating\engine\twig\ViewTwigExtension;
 
@@ -118,7 +118,9 @@ class Bootstrap implements IProjectConfigAware
         }
 
         $baseProjectUrl = isset($routeMatches['uri']) ? $routeMatches['uri'] : '';
-        $routePath = $routeResult->getUnmatchedUrl() ? : '/';
+        $routePath = $routeResult->getUnmatchedUrl();
+
+        $this->configureUrlManager($project, $routeResult, $baseProjectUrl);
 
         if (preg_match('|\.([\w]+)$|u', $routePath, $matches)) {
             $format = $matches[1];
@@ -126,22 +128,9 @@ class Bootstrap implements IProjectConfigAware
             $request->setRequestFormat($format);
         }
 
+        $routePath = $routePath ?: '/';
         /**
-         * @var IUrlManager $urlManager
-         */
-        $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
-        $domainUrl  = substr($routeResult->getMatchedUrl(), 0, -strlen($baseProjectUrl));
-        $urlManager->setProjectDomainUrl($domainUrl);
-        $urlManager->setBaseUrl($baseProjectUrl);
-
-        $baseAdminUrl = $baseProjectUrl . $project->getRouter()->assemble('admin');
-        $adminComponent = $project->getChildComponent('admin');
-
-        $urlManager->setBaseAdminUrl($baseAdminUrl);
-        $urlManager->setBaseRestUrl($baseAdminUrl . $adminComponent->getRouter()->assemble('api'));
-
-        /**
-         * @var IDispatcher $dispatcher
+         * @var CmsDispatcher $dispatcher
          */
         $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
         $this->initTemplateEngines($dispatcher);
@@ -288,11 +277,16 @@ class Bootstrap implements IProjectConfigAware
     protected function prepareRequest(Request $request)
     {
         $pathInfo = $request->getPathInfo();
+        $requestedUri = $request->getRequestUri();
+        $queryString = $request->getQueryString();
 
-        if ($pathInfo != '/' && substr($pathInfo, -1, 1) == '/') {
+        if (
+            ($pathInfo != '/' && substr($pathInfo, -1, 1) == '/') ||
+            (substr($requestedUri, -1, 1) == '?') && !$queryString)
+        {
 
             $url = rtrim($pathInfo, '/');
-            if ($queryString = $request->getQueryString()) {
+            if ($queryString) {
                 $url .= '?' . $queryString;
             }
             $redirectLocation = $request->getSchemeAndHttpHost() . $url;
@@ -351,9 +345,9 @@ class Bootstrap implements IProjectConfigAware
 
     /**
      * Задает инициализаторы для добавления расширений в шаблонизаторы
-     * @param IDispatcher $dispatcher
+     * @param CmsDispatcher $dispatcher
      */
-    protected function initTemplateEngines(IDispatcher $dispatcher)
+    protected function initTemplateEngines(CmsDispatcher $dispatcher)
     {
         /**
          * @var ITemplateEngineFactory $templateEngineFactory
@@ -424,6 +418,37 @@ class Bootstrap implements IProjectConfigAware
                     $object->setProjectConfig($this->getProjectConfig());
                 }
             }
+        );
+    }
+
+    /**
+     * Конфигурирует URL-менеджер для проекта.
+     * @param IComponent $project проект
+     * @param IRouteResult $routeResult результат маршрутизации до проекта
+     * @param string $baseProjectUrl базовый URL проекта
+     */
+    protected function configureUrlManager(IComponent $project, IRouteResult $routeResult, $baseProjectUrl)
+    {
+        /**
+         * @var IUrlManager $urlManager
+         */
+        $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
+        $domainUrl = substr($routeResult->getMatchedUrl(), 0, -strlen($baseProjectUrl));
+        $urlManager->setProjectDomainUrl($domainUrl);
+        $urlManager->setBaseUrl($baseProjectUrl);
+
+        $baseAdminUrl = $baseProjectUrl . $project->getRouter()
+                ->assemble('admin');
+        $adminComponent = $project->getChildComponent('admin');
+
+        $urlManager->setBaseAdminUrl($baseAdminUrl);
+        $urlManager->setBaseRestUrl(
+            $baseAdminUrl . $adminComponent->getRouter()
+                ->assemble('api')
+        );
+        $urlManager->setBaseSettingsUrl(
+            $baseAdminUrl . $adminComponent->getRouter()
+                ->assemble('settings')
         );
     }
 

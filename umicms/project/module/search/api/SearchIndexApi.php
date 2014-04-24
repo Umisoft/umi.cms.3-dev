@@ -77,7 +77,7 @@ class SearchIndexApi extends BaseSearchApi implements IStemmingAware, IConfigIOA
                     SearchIndex::FIELD_CONTENT,
                     $this->normalizeIndexString($this->extractSearchableContent($record))
                 );
-            $newIndexRecord->getValue(SearchIndex::FIELD_DATE_INDEXED)->setTimestamp(time());
+            $newIndexRecord->setValue(SearchIndex::FIELD_DATE_INDEXED, new \DateTime());
         }
     }
 

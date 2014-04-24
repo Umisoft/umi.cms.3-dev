@@ -11,8 +11,8 @@ namespace umicms\orm\object;
 
 use umi\orm\object\HierarchicObject;
 use umi\orm\objectset\IObjectSet;
-use umi\orm\selector\ISelector;
 use umicms\hmvc\url\IUrlManagerAware;
+use umicms\orm\selector\CmsSelector;
 
 /**
  * Класс иерархического объекта UMI.CMS.
@@ -54,7 +54,7 @@ class CmsHierarchicObject extends HierarchicObject implements ICmsObject, IUrlMa
 
     /**
      * Возвращает селектор для выбора родителей страницы.
-     * @return ISelector
+     * @return CmsSelector
      */
     public function getAncestry()
     {

@@ -9,14 +9,14 @@
 namespace umicms\project\module\seo\admin\yandex\controller;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\project\admin\api\controller\BaseRestActionController;
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\api\controller\DefaultRestActionController;
+use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\seo\model\YandexModel;
 
 /**
  * Контроллер операций с API Яндекс.Вебмастер.
  */
-class ActionController extends BaseRestActionController
+class ActionController extends DefaultRestActionController
 {
     /**
      * @var array $options настройки Яндекс.Вебмастер.
@@ -99,7 +99,7 @@ class ActionController extends BaseRestActionController
      */
     protected function getModel()
     {
-        /** @var $component SecureAdminComponent */
+        /** @var $component AdminComponent */
         $component = $this->getComponent();
         $options = $component->getSettings()['options'];
         if (!isset($options['oauthToken'])) {
@@ -119,7 +119,7 @@ class ActionController extends BaseRestActionController
     protected function getHostId()
     {
         if (is_null($this->hostId)) {
-            /** @var $component SecureAdminComponent */
+            /** @var $component AdminComponent */
             $component = $this->getComponent();
             $options = $component->getSettings()['options'];
             if (!isset($options['hostId'])) {

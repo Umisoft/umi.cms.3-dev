@@ -22,7 +22,7 @@ class RubricWidget extends BaseSecureWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'view';
+    public $template = 'page';
     /**
      * @var string|NewsRubric $rubric рубрика или GUID рубрики
      */
@@ -54,7 +54,7 @@ class RubricWidget extends BaseSecureWidget
         if (isset($this->rubric) && !$this->rubric instanceof NewsRubric) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Widget parameter "{param} should be instance of "{class}".',
+                    'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'rubric',
                         'class' => 'NewsRubric'

@@ -10,14 +10,19 @@
 namespace umicms\serialization\json\form;
 
 use umi\form\element\BaseFormElement;
+use umi\form\element\IChoiceFormElement;
 use umi\i18n\translator\ITranslator;
+use umi\validation\IValidationAware;
+use umi\validation\TValidationAware;
 use umicms\serialization\json\BaseSerializer;
 
 /**
  * JSON-сериализатор для элемента формы.
  */
-class BaseFormElementSerializer extends BaseSerializer
+class BaseFormElementSerializer extends BaseSerializer implements IValidationAware
 {
+    use TValidationAware;
+
     /**
      * @var ITranslator $translator транслятор для перевода лейблов элементов
      */
@@ -43,9 +48,9 @@ class BaseFormElementSerializer extends BaseSerializer
             'name' => $element->getName()
         ];
 
+        $dictionaries = isset($options['dictionaries']) ? $options['dictionaries'] : [];
         if ($label = $element->getLabel()) {
-            $labelDictionaries = isset($options['dictionaries']) ? $options['dictionaries'] : [];
-            $result['label'] = $this->translator->translate($labelDictionaries, $label);
+            $result['label'] = $this->translator->translate($dictionaries, $label);
         }
 
         if ($attributes = $element->getAttributes()) {
@@ -56,7 +61,46 @@ class BaseFormElementSerializer extends BaseSerializer
             $result['dataSource'] = $dataSource;
         }
 
-        $this->delegate($result);
+        if ($value = $element->getValue()) {
+            $result['value'] = $value;
+        }
+
+        if ($validatorsConfig = $element->getValidatorsConfig()) {
+
+            $result['validators'] = [];
+            foreach ($validatorsConfig as $validatorType => $validatorOptions) {
+                $validator = $this->createValidator($validatorType, $validatorOptions);
+                $result['validators'][] = [
+                    'type' => $validatorType,
+                    'message' => $this->translator->translate($dictionaries, $validator->getErrorLabel()),
+                    'options' => $validatorOptions
+                ];
+            }
+        }
+
+        if ($filtersConfig = $element->getFiltersConfig()) {
+            $result['filters'] = [];
+            foreach ($filtersConfig as $filterType => $filterOptions) {
+                $result['filters'][] = [
+                    'type' => $filterType,
+                    'options' => $filterOptions
+                ];
+            }
+        }
+
+        if ($element instanceof IChoiceFormElement) {
+            if ($choices = $element->getStaticChoices()) {
+                $result['choices'] = [];
+                foreach ($choices as $value => $label) {
+                    $result['choices'][] = [
+                        'value' => $value,
+                        'label' => $this->translator->translate($dictionaries, $label)
+                    ];
+                }
+            }
+        }
+
+        $this->delegate($result, $options);
     }
 }
  

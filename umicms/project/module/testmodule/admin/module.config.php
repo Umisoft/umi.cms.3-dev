@@ -9,15 +9,15 @@
 namespace umicms\project\module\testmodule\admin;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
-    SecureAdminComponent::OPTION_COMPONENTS => [
+    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    AdminComponent::OPTION_COMPONENTS => [
         'test' => '{#lazy:~/project/module/testmodule/admin/test/component.config.php}'
     ],
-    SecureAdminComponent::OPTION_ROUTES => [
+    AdminComponent::OPTION_ROUTES => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{component}'

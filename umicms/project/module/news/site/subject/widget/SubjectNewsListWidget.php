@@ -10,24 +10,19 @@
 namespace umicms\project\module\news\site\subject\widget;
 
 use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\news\api\NewsModule;
-use umicms\hmvc\widget\BaseWidget;
 use umicms\project\module\news\api\object\NewsSubject;
 
 /**
  * Виджет для вывода списка новостей по сюжетам
  */
-class SubjectNewsListWidget extends BaseWidget
+class SubjectNewsListWidget extends BaseListWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'newsList';
-    /**
-     * @var int $limit максимальное количество выводимых новостей.
-     * Если не указано, выводятся все новости.
-     */
-    public $limit;
     /**
      * @var array|NewsSubject[]|NewsSubject|null $subjects сюжет, новостных сюжетов или GUID, из которых выводятся новости.
      * Если не указаны, то выводятся новости всех сюжетов
@@ -51,7 +46,7 @@ class SubjectNewsListWidget extends BaseWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
         $subjects = (array) $this->subjects;
 
@@ -63,7 +58,7 @@ class SubjectNewsListWidget extends BaseWidget
             if (isset($subject) && !$subject instanceof NewsSubject) {
                 throw new InvalidArgumentException(
                     $this->translate(
-                        'Widget parameter "{param} should be instance of "{class}".',
+                        'Widget parameter "{param}" should be instance of "{class}".',
                         [
                             'param' => 'subjects',
                             'class' => 'NewsSubject'
@@ -73,12 +68,7 @@ class SubjectNewsListWidget extends BaseWidget
             }
         }
 
-        return $this->createResult(
-            $this->template,
-            [
-                'news' => $this->api->getNewsBySubjects($subjects, $this->limit)
-            ]
-        );
+        return $this->api->getNewsBySubjects($subjects);
     }
 }
  

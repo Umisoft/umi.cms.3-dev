@@ -1,0 +1,11 @@
+<?php
+/**
+ * @var umicms\project\module\news\api\object\NewsItem $page
+ */
+?>
+<?php if ($page->date) :?>
+    <time datetime="<?= $page->date->format('c')?>">
+        <?= $page->date->format('d.m.Y | H:i')?>
+    </time>
+<?php endif; ?>
+<?= $page->contents ?>

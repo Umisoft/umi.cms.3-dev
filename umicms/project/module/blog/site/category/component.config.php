@@ -8,43 +8,56 @@
 
 namespace umicms\project\module\blog\site\category;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\project\site\component\DefaultSiteHierarchicPageComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\module\blog\site\category\Component',
-    SiteComponent::OPTION_CONTROLLERS => [
-
+    DefaultSiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSiteHierarchicPageComponent',
+    DefaultSiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogCategory',
+    DefaultSiteHierarchicPageComponent::OPTION_CONTROLLERS => [
+        'rss' => __NAMESPACE__ . '\controller\BlogCategoryRssController'
     ],
-    SiteComponent::OPTION_WIDGET => [
+    DefaultSiteHierarchicPageComponent::OPTION_WIDGET => [
+        'view' => __NAMESPACE__ . '\widget\CategoryWidget',
+        'postList' => __NAMESPACE__ . '\widget\CategoryPostListWidget',
+        'list' => __NAMESPACE__ . '\widget\CategoryListWidget',
+        'rss' => __NAMESPACE__ . '\widget\CategoryPostRssUrlWidget'
     ],
-    SiteComponent::OPTION_VIEW => [
-        'type' => 'php',
-        'extension' => 'phtml',
-        'directory' => __DIR__ . '/template/php',
+    DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
+        'directories' => ['module/blog/category'],
     ],
-    SiteComponent::OPTION_ACL => [
+    DefaultSiteHierarchicPageComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'viewer' => [],
+            'rssViewer' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'controller:rss',
+            'widget:view',
+            'widget:postList',
+            'widget:list',
+            'widget:rss'
+        ],
+        IAclFactory::OPTION_RULES => [
+            'viewer' => [
+                'widget:view' => [],
+                'widget:list' => [],
+                'widget:postList' => []
+            ],
+            'rssViewer' => [
+                'controller:rss' => [],
+                'widget:rss' => []
+            ]
+        ]
     ],
-    SiteComponent::OPTION_ROUTES => [
+    DefaultSiteHierarchicPageComponent::OPTION_ROUTES => [
         'rss' => [
             'type'     => IRouteFactory::ROUTE_REGEXP,
             'route' => '/rss/(?P<url>.+)',
             'defaults' => [
                 'controller' => 'rss'
-            ]
-        ],
-        'category' => [
-            'type'     => IRouteFactory::ROUTE_REGEXP,
-            'route'    => '/(?P<url>.+)',
-            'defaults' => [
-                'controller' => 'category'
-            ]
-        ],
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'index'
             ]
         ]
     ]

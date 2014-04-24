@@ -8,17 +8,32 @@
 
 namespace umicms\project\site;
 
+use umi\route\IRouteFactory;
+use umicms\project\site\controller\SiteRestWidgetController;
+use umicms\serialization\ISerializerFactory;
+
 return [
     SiteApplication::OPTION_CLASS => 'umicms\project\site\SiteApplication',
 
-    SiteApplication::OPTION_SETTINGS => [
-        SiteApplication::SETTING_URL_POSTFIX => '',
-
-        SiteApplication::SETTING_DEFAULT_DESCRIPTION => 'UMI.CMS',
-        SiteApplication::SETTING_DEFAULT_TITLE => 'UMI.CMS',
-        SiteApplication::SETTING_TITLE_PREFIX => 'UMI.CMS - ',
-        SiteApplication::SETTING_DEFAULT_KEYWORDS => 'UMI.CMS',
+    SiteApplication::OPTION_SERIALIZERS => [
+        ISerializerFactory::TYPE_XML => [
+            'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
+            'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\object\CmsElementSerializer',
+            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\object\FieldSerializer',
+            'umicms\hmvc\view\CmsView' => 'umicms\serialization\xml\view\CmsViewSerializer'
+        ],
+        ISerializerFactory::TYPE_JSON => [
+            'umi\orm\metadata\ObjectType' => 'umicms\serialization\json\orm\ObjectTypeSerializer',
+            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\json\orm\FieldSerializer',
+            'umicms\orm\object\CmsObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
+            'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
+            'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer',
+            'umi\form\fieldset\FieldSet' => 'umicms\serialization\json\form\FieldSetSerializer',
+            'umi\form\element\BaseFormElement' => 'umicms\serialization\json\form\BaseFormElementSerializer',
+        ]
     ],
+
+    SiteApplication::OPTION_SETTINGS => '{#lazy:~/project/site/site.settings.config.php}',
 
     SiteApplication::OPTION_COMPONENTS => [
         'structure' => '{#lazy:~/project/module/structure/site/module.config.php}',
@@ -30,19 +45,25 @@ return [
     SiteApplication::OPTION_CONTROLLERS => [
         SiteApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
         SiteApplication::LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
+        SiteRestWidgetController::NAME => __NAMESPACE__ . '\controller\SiteRestWidgetController',
     ],
 
     SiteApplication::OPTION_WIDGET => [
-        SiteApplication::ERROR_WIDGET => __NAMESPACE__ . '\widget\ErrorWidget',
+        SiteApplication::ERROR_WIDGET => __NAMESPACE__ . '\widget\ErrorWidget'
     ],
 
     SiteApplication::OPTION_VIEW        => [
-        'type'      => 'twig',
-        'extension' => 'twig',
-        'directory' => __DIR__ . '/template/twig'
+        'directories' => ['.']
     ],
 
     SiteApplication::OPTION_ROUTES => [
+        'widget' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/widget/{path:string}',
+            'defaults' => [
+                'controller' => SiteRestWidgetController::NAME
+            ]
+        ],
         'page' => [
             'type' => 'SiteStaticPageRoute'
         ],

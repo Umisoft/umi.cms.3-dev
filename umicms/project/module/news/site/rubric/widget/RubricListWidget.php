@@ -10,24 +10,15 @@
 namespace umicms\project\module\news\site\rubric\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsRubric;
 
 /**
  * Виджет для вывода списка новостных рубрик
  */
-class RubricListWidget extends BaseSecureWidget
+class RubricListWidget extends BaseListWidget
 {
-    /**
-     * @var string $template имя шаблона, по которому выводится виджет
-     */
-    public $template = 'list';
-    /**
-     * @var int $limit максимальное количество выводимых рубрик.
-     * Если не указано, выводятся все рубрики.
-     */
-    public $limit;
     /**
      * @var string|null|NewsRubric $parentRubric новостная рубрика или GUID, из которой выводятся дочерние рубрики.
      * Если не указан, выводятся все корневые рубрики.
@@ -51,7 +42,7 @@ class RubricListWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
         if (is_string($this->parentRubric)) {
             $this->parentRubric = $this->api->rubric()->get($this->parentRubric);
@@ -60,7 +51,7 @@ class RubricListWidget extends BaseSecureWidget
         if (isset($this->parentRubric) && !$this->parentRubric instanceof NewsRubric) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Widget parameter "{param} should be instance of "{class}".',
+                    'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'parentRubric',
                         'class' => 'NewsRubric'
@@ -69,12 +60,7 @@ class RubricListWidget extends BaseSecureWidget
             );
         }
 
-        return $this->createResult(
-            $this->template,
-            [
-                'rubrics' => $this->api->getRubrics($this->parentRubric, $this->limit)
-            ]
-        );
+        return $this->api->getRubrics($this->parentRubric);
     }
 }
  

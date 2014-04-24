@@ -7,6 +7,9 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
+use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
@@ -47,12 +50,16 @@ return [
 
         'project.admin.api.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
 
+
+        'project.admin.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
+        'project.admin.settings.service' => '{#lazy:~/project/module/service/settings/i18n/dictionary.config.php}',
+        'project.admin.settings.service.backup' => '{#lazy:~/project/module/service/settings/backup/i18n/dictionary.config.php}',
+
         'collection' => [
 
             'en-US' => [
                 ICmsObject::FIELD_CREATED => 'Creation date',
                 ICmsObject::FIELD_DISPLAY_NAME => 'Display name',
-                ICmsObject::FIELD_LOCKED => 'Locked',
                 ICmsObject::FIELD_UPDATED => 'Update date',
                 ICmsObject::FIELD_GUID => 'GUID',
                 ICmsObject::FIELD_IDENTIFY => 'Identifier',
@@ -67,7 +74,6 @@ return [
                 CmsHierarchicObject::FIELD_PARENT => 'Parent',
                 CmsHierarchicObject::FIELD_URI => 'URI',
 
-                ICmsPage::FIELD_ACTIVE => 'Active',
                 ICmsPage::FIELD_PAGE_CONTENTS => 'Contents',
                 ICmsPage::FIELD_PAGE_H1 => 'H1',
                 ICmsPage::FIELD_PAGE_LAYOUT => 'Layout',
@@ -76,13 +82,14 @@ return [
                 ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
                 ICmsPage::FIELD_PAGE_SLUG => 'Slug',
 
-                ICmsPage::FIELD_TRASHED => 'Trashed'
+                IRecyclableObject::FIELD_TRASHED => 'Trashed',
+                ILockedAccessibleObject::FIELD_LOCKED => 'Locked',
+                IActiveAccessibleObject::FIELD_ACTIVE => 'Active',
             ],
 
             'ru-RU' => [
                 ICmsObject::FIELD_CREATED => 'Дата создания',
                 ICmsObject::FIELD_DISPLAY_NAME => 'Имя отображения',
-                ICmsObject::FIELD_LOCKED => 'Заблокировано',
                 ICmsObject::FIELD_UPDATED => 'Дата последнего обновления',
                 ICmsObject::FIELD_GUID => 'GUID',
                 ICmsObject::FIELD_IDENTIFY => 'Идентификатор',
@@ -97,7 +104,6 @@ return [
                 CmsHierarchicObject::FIELD_PARENT => 'Родительская сущность',
                 CmsHierarchicObject::FIELD_URI => 'URI',
 
-                ICmsPage::FIELD_ACTIVE => 'Активность',
                 ICmsPage::FIELD_PAGE_CONTENTS => 'Контент',
                 ICmsPage::FIELD_PAGE_H1 => 'H1',
                 ICmsPage::FIELD_PAGE_LAYOUT => 'Шаблон',
@@ -106,7 +112,9 @@ return [
                 ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
                 ICmsPage::FIELD_PAGE_SLUG => 'Псевдостатический адрес',
 
-                ICmsPage::FIELD_TRASHED => 'В корзине'
+                IRecyclableObject::FIELD_TRASHED => 'В корзине',
+                ILockedAccessibleObject::FIELD_LOCKED => 'Заблокировано',
+                IActiveAccessibleObject::FIELD_ACTIVE => 'Активность',
             ]
         ],
 
@@ -130,4 +138,11 @@ return [
         'collection.newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/i18n/dictionary.config.php}',
         'collection.newsSubject' => '{#lazy:~/project/module/news/configuration/subject/i18n/dictionary.config.php}',
         'collection.newsRssImportScenario' => '{#lazy:~/project/module/news/configuration/rss/i18n/dictionary.config.php}',
+
+        'collection.blogCategory' => '{#lazy:~/project/module/blog/configuration/category/i18n/dictionary.config.php}',
+        'collection.blogPost' => '{#lazy:~/project/module/blog/configuration/post/i18n/dictionary.config.php}',
+        'collection.blogAuthor' => '{#lazy:~/project/module/blog/configuration/author/i18n/dictionary.config.php}',
+        'collection.blogComment' => '{#lazy:~/project/module/blog/configuration/comment/i18n/dictionary.config.php}',
+        'collection.blogTag' => '{#lazy:~/project/module/blog/configuration/tag/i18n/dictionary.config.php}',
+        'collection.blogRssImportScenario' => '{#lazy:~/project/module/blog/configuration/rss/i18n/dictionary.config.php}',
     ];

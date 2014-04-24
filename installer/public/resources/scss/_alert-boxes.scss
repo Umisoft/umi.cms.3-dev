@@ -11,10 +11,12 @@ $umi-alert-wrapper-index: 1000;
             color: darken($success-color, 30%);
         }
     }
-    &.alert{
-        background-color: lighten($alert-color, 40%);
-        .close{
-            color: darken($alert-color, 30%);
+    &.alert, &.error{
+        background-color: #9C2625;
+        border-color: #AA0909;
+        color: #fff;
+        .subheader, .close{
+            color: #fff;
         }
     }
     &.secondary{

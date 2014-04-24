@@ -21,21 +21,19 @@ return [
 
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'menuViewer' => []
+            'viewer' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'widget:auto',
         ],
         IAclFactory::OPTION_RULES => [
-            'menuViewer' => [
+            'viewer' => [
                 'widget:auto' => []
             ]
         ]
     ],
 
     SiteComponent::OPTION_VIEW        => [
-        'type'      => 'twig',
-        'extension' => 'twig',
-        'directory' => __DIR__ . '/template/twig'
+        'directories' => ['module/structure/menu']
     ],
 ];

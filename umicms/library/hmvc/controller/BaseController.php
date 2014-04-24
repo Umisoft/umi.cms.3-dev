@@ -12,12 +12,29 @@ namespace umicms\hmvc\controller;
 use umi\hmvc\controller\BaseController as FrameworkController;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
+use umicms\hmvc\view\CmsView;
 
 /**
  * Базовый контроллер UMI.CMS
  */
-abstract class BaseController extends FrameworkController
+abstract class BaseController extends FrameworkController implements IUrlManagerAware
 {
+    use TUrlManagerAware;
+
+    /**
+     * Устанавливает опции сериализации результата работы контроллера в XML или JSON.
+     * Может быть переопределен в конкретном контроллере для задания переменных,
+     * которые будут преобразованы в атрибуты xml, а так же переменные, которые будут проигнорированы
+     * в xml или json.
+     * @param CmsView $view результат работы виджета
+     */
+    protected function setSerializationOptions(CmsView $view)
+    {
+
+    }
+
     /**
      * Возвращает значение параметра из GET-параметров запроса.
      * @param string $name имя параметра
@@ -37,6 +54,34 @@ abstract class BaseController extends FrameworkController
         }
 
         return $value;
+    }
+
+    /**
+     * Возвращает URL маршрута компонента.
+     * @param string $routeName
+     * @param array $routeParams параметры маршрута
+     * @param bool $isAbsolute возвращать ли абсолютный URL
+     * @return string
+     */
+    protected function getUrl($routeName, array $routeParams = [], $isAbsolute = false)
+    {
+        $url = rtrim($this->getUrlManager()->getProjectUrl($isAbsolute), '/');
+        $url .= $this->getContext()->getBaseUrl();
+        $url .= $this->getComponent()->getRouter()->assemble($routeName, $routeParams);
+
+        return $url;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createView($templateName, array $variables = [])
+    {
+        $view = new CmsView($this, $this->getContext(), $templateName, $variables);
+
+        $this->setSerializationOptions($view);
+
+        return $view;
     }
 
 }

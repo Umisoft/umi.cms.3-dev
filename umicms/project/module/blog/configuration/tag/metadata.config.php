@@ -60,12 +60,6 @@ return [
             'columnName' => 'active',
             'defaultValue' => 1
         ],
-        BlogTag::FIELD_LOCKED => [
-            'type' => IField::TYPE_BOOL,
-            'columnName' => 'locked',
-            'readOnly' => true,
-            'defaultValue' => 0
-        ],
         BlogTag::FIELD_TRASHED => [
             'type' => IField::TYPE_BOOL,
             'columnName' => 'trashed',
@@ -124,6 +118,10 @@ return [
             'relatedField' => 'tag',
             'targetField' => 'blogPost',
         ],
+        BlogTag::FIELD_POSTS_COUNT => [
+            'type' => IField::TYPE_COUNTER,
+            'columnName' => 'posts_count'
+        ],
         BlogTag::FIELD_RSS => [
             'type' => IField::TYPE_MANY_TO_MANY,
             'target' => 'blogRssImportScenario',
@@ -142,7 +140,6 @@ return [
                 BlogTag::FIELD_VERSION,
                 BlogTag::FIELD_DISPLAY_NAME,
                 BlogTag::FIELD_ACTIVE,
-                BlogTag::FIELD_LOCKED,
                 BlogTag::FIELD_TRASHED,
                 BlogTag::FIELD_CREATED,
                 BlogTag::FIELD_UPDATED,
@@ -156,6 +153,7 @@ return [
                 BlogTag::FIELD_POSTS,
                 BlogTag::FIELD_RSS,
                 BlogTag::FIELD_OWNER,
+                BlogTag::FIELD_POSTS_COUNT,
                 BlogTag::FIELD_EDITOR
             ]
         ]

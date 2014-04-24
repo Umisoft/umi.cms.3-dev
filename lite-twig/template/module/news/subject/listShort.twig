@@ -1,0 +1,10 @@
+{% if (list.getTotal()) %}
+    <ol class="list-unstyled">
+        {% for subject in list %}
+            <li>
+                {{ widget('news.subject.view', {'subject' : subject, 'template' : 'shortView'}) }}
+                {{ widget('news.subject.rss', {'subject' : subject, 'template' : 'rssLink'}) }}
+            </li>
+        {% endfor %}
+    </ol>
+{% endif %}

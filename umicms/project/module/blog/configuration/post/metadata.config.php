@@ -60,12 +60,6 @@ return [
             'columnName' => 'active',
             'defaultValue' => 1
         ],
-        BlogPost::FIELD_LOCKED => [
-            'type' => IField::TYPE_BOOL,
-            'columnName' => 'locked',
-            'readOnly' => true,
-            'defaultValue' => 0
-        ],
         BlogPost::FIELD_TRASHED => [
             'type' => IField::TYPE_BOOL,
             'columnName' => 'trashed',
@@ -91,11 +85,6 @@ return [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
             'target' => 'user'
-        ],
-        BlogPost::FIELD_AUTHOR => [
-            'type' => IField::TYPE_BELONGS_TO,
-            'columnName' => 'author_id',
-            'target' => 'blogAuthor'
         ],
         BlogPost::FIELD_PUBLISH_TIME => [
             'type' => IField::TYPE_DATE_TIME,
@@ -139,6 +128,11 @@ return [
             'columnName' => 'category_id',
             'target' => 'blogCategory'
         ],
+        BlogPost::FIELD_AUTHOR => [
+            'type' => IField::TYPE_BELONGS_TO,
+            'columnName' => 'author_id',
+            'target' => 'blogAuthor'
+        ],
         BlogPost::FIELD_TAGS => [
             'type' => IField::TYPE_MANY_TO_MANY,
             'target' => 'blogTag',
@@ -149,10 +143,6 @@ return [
         BlogPost::FIELD_COMMENTS_COUNT => [
             'type' => IField::TYPE_COUNTER,
             'columnName' => 'comments_count'
-        ],
-        BlogPost::FIELD_OLD_URL => [
-            'type' => IField::TYPE_STRING,
-            'columnName' => 'old_url'
         ]
     ],
     'types' => [
@@ -165,7 +155,6 @@ return [
                 BlogPost::FIELD_VERSION,
                 BlogPost::FIELD_DISPLAY_NAME,
                 BlogPost::FIELD_ACTIVE,
-                BlogPost::FIELD_LOCKED,
                 BlogPost::FIELD_TRASHED,
                 BlogPost::FIELD_CREATED,
                 BlogPost::FIELD_UPDATED,
@@ -183,7 +172,7 @@ return [
                 BlogPost::FIELD_TAGS,
                 BlogPost::FIELD_PUBLISH_TIME,
                 BlogPost::FIELD_COMMENTS_COUNT,
-                BlogPost::FIELD_OLD_URL
+                BlogPost::FIELD_AUTHOR
             ]
         ]
     ]

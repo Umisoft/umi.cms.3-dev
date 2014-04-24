@@ -101,12 +101,6 @@ return [
             'columnName' => 'active',
             'defaultValue' => 1
         ],
-        BlogCategory::FIELD_LOCKED => [
-            'type' => IField::TYPE_BOOL,
-            'columnName' => 'locked',
-            'readOnly' => true,
-            'defaultValue' => 0
-        ],
         BlogCategory::FIELD_TRASHED => [
             'type' => IField::TYPE_BOOL,
             'columnName' => 'trashed',
@@ -161,8 +155,7 @@ return [
         BlogCategory::FIELD_POSTS => [
             'type' => IField::TYPE_HAS_MANY,
             'target' => 'blogPost',
-            'targetField' => BlogPost::FIELD_CATEGORY,
-            'readOnly' => true
+            'targetField' => BlogPost::FIELD_CATEGORY
         ],
         BlogCategory::FIELD_CHILDREN => [
             'type' => IField::TYPE_HAS_MANY,
@@ -188,7 +181,6 @@ return [
                 BlogCategory::FIELD_HIERARCHY_LEVEL,
                 BlogCategory::FIELD_DISPLAY_NAME,
                 BlogCategory::FIELD_ACTIVE,
-                BlogCategory::FIELD_LOCKED,
                 BlogCategory::FIELD_TRASHED,
                 BlogCategory::FIELD_CREATED,
                 BlogCategory::FIELD_UPDATED,

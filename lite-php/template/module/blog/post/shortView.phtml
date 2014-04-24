@@ -1,0 +1,14 @@
+<?php
+/**
+ * @var umicms\project\module\blog\api\object\BlogPost $blogPost
+ */
+?>
+<h3>
+    <a href="<?= $blogPost->getPageUrl() ?>">
+        <?= $blogPost->h1 ?>
+    </a>
+</h3>
+<time datetime="<?= $blogPost->publishTime->format('c')?>">
+    <?= $blogPost->publishTime->format('d.m.Y | H:i')?>
+</time>
+<?= $blogPost->announcement ?>

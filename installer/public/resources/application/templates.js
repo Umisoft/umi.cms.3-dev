@@ -11,7 +11,8 @@ define([
         'text!./templates/actions/counters.hbs',
         'text!./templates/actions/counter.hbs',
         'text!./templates/actions/megaIndex.hbs',
-        'text!./templates/actions/yandexWebmaster.hbs'
+        'text!./templates/actions/yandexWebmaster.hbs',
+    'text!./templates/actions/createForm.hbs',
 
 ], function(
     applicationTpl,
@@ -26,7 +27,8 @@ define([
         countersTpl,
         counterTpl,
         megaIndexTpl,
-        yandexWebmasterTpl
+        yandexWebmasterTpl,
+        createFormTpl
     ){
     'use strict';
     return function(){
@@ -46,5 +48,6 @@ define([
             Ember.TEMPLATES['UMI/counter'] = Ember.Handlebars.compile(counterTpl);
             Ember.TEMPLATES['UMI/megaindexReport'] = Ember.Handlebars.compile(megaIndexTpl);
             Ember.TEMPLATES['UMI/yandexWebmasterReport'] = Ember.Handlebars.compile(yandexWebmasterTpl);
+            Ember.TEMPLATES['UMI/createForm'] = Ember.Handlebars.compile(createFormTpl);
     };
 });

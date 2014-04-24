@@ -106,13 +106,24 @@ define(
             },
             ajaxError: function(jqXHR){
                 var error = this._super(jqXHR);
-
-                if (jqXHR && jqXHR.status === 500) {
-                    var jsonErrors = jqXHR.responseJSON.result.error.message;
-                    return new DS.InvalidError(jsonErrors);
-                } else {
-                    return error;
+                if(error.status === 403 || error.status === 401){
+                    UMI.__container__.lookup('router:main').send('logout');
+                    return;
                 }
+                var message;
+                if(error.hasOwnProperty('responseJSON')){
+                    if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
+                        message = error.responseJSON.result.error.message;
+                    }
+                } else{
+                    message = error.responseText;
+                }
+                var data = {
+                    'close': true,
+                    'title': error.status + '. ' + error.statusText,
+                    'content': message
+                };
+                UMI.dialog.open(data).then();
             }
         });
 
@@ -124,6 +135,16 @@ define(
                 }
                 return payload;
             },
+            extractMeta: function(store, type, payload){
+                if(payload && payload.result && payload.result.meta){
+                    var meta = store.metadataFor(type) || {};
+                    for(var property in payload.result.meta){
+                        meta[property] = payload.result.meta[property];
+                    }
+                    store.metaForType(type, meta);
+                    delete payload.result.meta;
+                }
+            },
             serializeHasMany: function(record, json, relationship){
                 var key = relationship.key;
 
@@ -131,7 +152,7 @@ define(
 
                 if (relationshipType === 'manyToNone' || relationshipType === 'manyToMany' || relationshipType === 'manyToOne'){
                     if(record.relationPropertyIsDirty(key)){
-                        json[key] = Ember.get(record, key).mapBy('id');
+                        json[key] = Ember.get(record, 'changedRelationshipsByName.' + key);
                     }
                 }
             }
@@ -177,14 +198,33 @@ define(
          * DS.attr('date')
          * @type {*|void|Object}
          */
-        UMI.DateTransform = DS.Transform.extend({
-            serialize: function(deserialized){
-                //Ember.set(deserialized, 'date', moment(deserialized.date).format('YYYY-MM-DD h:mm:ss'));
+        UMI.CustomDateTransform = DS.Transform.extend({
+            deserialize: function(deserialized){
+                if(deserialized && deserialized.date){
+                    Ember.set(deserialized, 'date', moment(deserialized.date).format('DD/MM/YYYY'));
+                    deserialized = JSON.stringify(deserialized);
+                }
                 return deserialized;
             },
-            deserialize: function(serialized){
-                //Ember.set(serialized, 'date', moment(serialized.date).format('DD/MM/YYYY'));
+            serialize: function(serialized){
+                if(serialized){
+                    serialized = JSON.parse(serialized);
+                    if(serialized.date){
+                        Ember.set(serialized, 'date', moment(serialized.date, 'DD/MM/YYYY').format('YYYY-MM-DD h:mm:ss'));
+                    }
+                }
                 return serialized;
+            }
+        });
+
+        $.ajaxSetup({
+            error: function(error){
+                var activeTransition = UMI.__container__.lookup('router:main').router.activeTransition;
+                if(activeTransition){
+                    activeTransition.send('backgroundError', error);
+                } else{
+                    UMI.__container__.lookup('route:application').send('backgroundError', error);
+                }
             }
         });
 

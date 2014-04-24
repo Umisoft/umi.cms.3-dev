@@ -8,6 +8,7 @@
 
 namespace umicms\project\admin;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\admin\component\AdminComponent;
 
@@ -22,12 +23,29 @@ return [
 
     AdminComponent::OPTION_COMPONENTS => [
         'api' => '{#lazy:~/project/admin/api/api.config.php}',
+        'settings' => '{#lazy:~/project/admin/settings/settings.config.php}',
+    ],
+
+    AdminComponent::OPTION_ACL => [
+
+        IAclFactory::OPTION_ROLES => [
+            'visitor' => [],
+            'configurator' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'component:api',
+            'component:settings',
+        ],
+        IAclFactory::OPTION_RULES => [
+            'visitor' => ['component:api' => []],
+            'configurator' => ['component:settings' => []]
+        ]
     ],
 
     AdminComponent::OPTION_VIEW        => [
         'type'      => 'php',
         'extension' => 'phtml',
-        'directory' => __DIR__ . '/template/php'
+        'directories' => __DIR__ . '/template/php'
     ],
 
     AdminComponent::OPTION_ROUTES => [
@@ -37,6 +55,14 @@ return [
             'route' => '/api',
             'defaults' => [
                 'component' => 'api'
+            ]
+        ],
+
+        'settings' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'route' => '/settings',
+            'defaults' => [
+                'component' => 'settings'
             ]
         ],
 

@@ -32,11 +32,16 @@
 }
 
 .jdpicker_w .date_clearer{
-    color: #a00;
-    padding-left:3px;
-    cursor:pointer;
-    font-weight:bold;
-    font-family:sans-serif
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+    right: 35px;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    line-height: 17px;
+    display: inline-block;
 }
 
 .jdpicker_w .date_selector_ieframe {

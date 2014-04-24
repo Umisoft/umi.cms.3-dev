@@ -8,6 +8,7 @@
 
 namespace umicms\project;
 
+use umi\acl\IAclFactory;
 use umi\authentication\adapter\ORMAdapter;
 use umi\authentication\toolbox\AuthenticationTools;
 use umi\extension\twig\TwigTemplateEngine;
@@ -23,6 +24,7 @@ use umicms\form\element\File;
 use umicms\form\element\Image;
 use umicms\form\element\Wysiwyg;
 use umicms\module\toolbox\ModuleTools;
+use umicms\templating\engine\xslt\XsltTemplateEngine;
 
 return [
 
@@ -37,6 +39,8 @@ return [
         require(FRAMEWORK_LIBRARY_DIR . '/stemming/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/acl/toolbox/config.php'),
         require(FRAMEWORK_LIBRARY_DIR . '/rss/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/pagination/toolbox/config.php'),
+        require(FRAMEWORK_LIBRARY_DIR . '/stream/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/module/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/model/toolbox/config.php'),
         require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php')
@@ -72,7 +76,8 @@ return [
             'factories' => [
                 'engine' => [
                     'engineClasses' => [
-                        TwigTemplateEngine::NAME => 'umi\extension\twig\TwigTemplateEngine'
+                        TwigTemplateEngine::NAME => 'umi\extension\twig\TwigTemplateEngine',
+                        XsltTemplateEngine::NAME => 'umicms\templating\engine\xslt\XsltTemplateEngine',
                     ]
                 ]
             ]
@@ -178,6 +183,19 @@ return [
 
         I18nTools::NAME => [
             'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
+        ]
+    ],
+
+    IComponent::OPTION_ACL => [
+
+        IAclFactory::OPTION_ROLES => [
+            'visitor' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'component:admin'
+        ],
+        IAclFactory::OPTION_RULES => [
+            'visitor' => ['component:admin' => []]
         ]
     ],
 

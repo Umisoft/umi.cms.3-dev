@@ -38,12 +38,7 @@ class SerializerFactory implements IFactory, ISerializerFactory
             'double' => 'umicms\serialization\xml\ScalarSerializer',
             'string' => 'umicms\serialization\xml\ScalarSerializer',
             // null
-            'NULL' => 'umicms\serialization\xml\NullSerializer',
-            // cms objects
-            'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
-            'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\object\CmsElementSerializer',
-            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\object\FieldSerializer'
-
+            'NULL' => 'umicms\serialization\xml\NullSerializer'
         ],
         self::TYPE_JSON => [
             'Exception' => 'umicms\serialization\json\ExceptionSerializer',
@@ -55,18 +50,8 @@ class SerializerFactory implements IFactory, ISerializerFactory
             'double' => 'umicms\serialization\json\ScalarSerializer',
             'string' => 'umicms\serialization\json\ScalarSerializer',
             // null
-            'NULL' => 'umicms\serialization\json\NullSerializer',
-            // orm
-            'umi\orm\collection\BaseCollection' => 'umicms\serialization\json\orm\CollectionSerializer',
-            'umi\orm\metadata\Metadata' => 'umicms\serialization\json\orm\MetadataSerializer',
-            'umi\orm\metadata\ObjectType' => 'umicms\serialization\json\orm\ObjectTypeSerializer',
-            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\json\orm\FieldSerializer',
-            'umicms\orm\object\CmsObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
-            'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
-            'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer',
-            // form
-            'umi\form\fieldset\FieldSet' => 'umicms\serialization\json\form\FieldSetSerializer',
-            'umi\form\element\BaseFormElement' => 'umicms\serialization\json\form\BaseFormElementSerializer',
+            'NULL' => 'umicms\serialization\json\NullSerializer'
+
         ]
     ];
 
@@ -94,6 +79,16 @@ class SerializerFactory implements IFactory, ISerializerFactory
                 }
             )
             ->createSingleInstance();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function registerSerializers(array $serializers)
+    {
+        $this->types = array_merge_recursive($this->types, $serializers);
+
+        return $this;
     }
 
     /**

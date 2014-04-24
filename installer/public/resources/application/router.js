@@ -16,9 +16,9 @@ define([], function(){
          */
         UMI.Router.map(function(){
             this.resource('module', {path: '/:module'}, function(){
-                this.route('error', {path: '/:status'});
+                this.route('errors', {path: '/:status'});
                 this.resource('component', {path: '/:component'}, function(){
-                    this.route('error', {path: '/:status'});
+                    this.route('errors', {path: '/:status'});
                     this.resource('action', {path: '/:action'}, function(){
                         this.resource('context', {path: '/:context'});
                     });
@@ -38,7 +38,7 @@ define([], function(){
              @method model
              @return
              **/
-            model: function(){
+            model: function(params, transition){
                 var self = this;
                 return $.get(UmiSettings.baseApiURL).then(function(results){
                     var result = results.result;
@@ -49,17 +49,10 @@ define([], function(){
                     if(result.modules){
                         self.controllerFor('dock').set('modules', result.modules);
                     }
-                }, function(errors){
-                    var message;
-                    if(errors.responseJSON.hasOwnProperty('result') && errors.responseJSON.result.hasOwnProperty('error')){
-                        message = errors.responseJSON.result.error.message;
-                    }
-                    var data = {
-                        'close': false,
-                        'title': errors.status + '. ' + errors.statusText,
-                        'content': message
-                    };
-                    return UMI.dialog.open(data).then();
+                }, function(error){
+                    var becameError = new Error();
+                    error.stack = becameError.stack;
+                    transition.send('templateLogs', error);
                 });
             },
             actions: {
@@ -106,11 +99,6 @@ define([], function(){
                             if(params.handler){
                                 $(params.handler).removeClass('loading');
                             }
-                            /*UMI.notification.create({
-                             type: 'success',
-                             text: 'Изменения успешно сохранены.',
-                             duration: 3000
-                             });*/
                         },
                         function(results){
                             var self = this;
@@ -128,12 +116,69 @@ define([], function(){
                                     //https://github.com/emberjs/data/issues/1632
                                     //params.object.transitionTo('updated.uncommitted');
                                     console.log(params.object.get('currentState.stateName'), results, self);
-                                   /* params.object.rollback();
-                                    params.object.reload();*/
+                                    /* params.object.rollback();
+                                     params.object.reload();*/
                                 }
                             );
                         }
                     );
+                },
+                dialogError: function(error){
+                    var settings = this.parseError(error);
+                    settings.close = true;
+                    settings.title = error.status + '. ' + error.statusText;
+                    UMI.dialog.open(settings).then();
+                },
+                /**
+                 Метод генерирует фоновую ошибку
+                 @method backgroundError
+                 @property error Object {status: status, title: title, content: content, stack: stack}
+                 */
+                backgroundError: function(error){
+                    var settings = this.parseError(error);
+                    settings.type = 'error';
+                    settings.duration = false;
+                    UMI.notification.create(settings);
+                },
+
+                templateLogs: function(error, parentRoute){
+                    parentRoute = parentRoute || 'module';
+                    var dataError = this.parseError(error);
+                    var model = Ember.Object.create(dataError);
+                    this.intermediateTransitionTo(parentRoute + '.errors', model);
+                },
+
+                /// global actions
+                switchActivity: function(object){
+                    try{
+                        var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+                        var switchActivitySource = this.controllerFor('component').get('settings').actions[(object.get('active') ? 'de' : '') + 'activate'].source;
+                        $.ajax({
+                            url: switchActivitySource + '?id=' + object.get('id'),
+                            type: "POST",
+                            data: serializeObject,
+                            contentType: 'application/json; charset=UTF-8'
+                        }).then(function(){
+                            object.reload();
+                        });
+                    } catch(error){
+                        this.send('backgroundError', error);
+                    }
+
+                },
+
+                getCreateForm: function(object){
+                    this.transitionTo('context', 'createForm', object.get('id'));
+                },
+
+                getEditForm: function(object){
+                    this.transitionTo('context', 'editForm', object.get('id'));
+                },
+
+                viewOnSite: function(object){
+                    var link = window.location.host + window.UmiSettings.baseSiteURL + object._data.meta.pageUrl;
+                    var tab = window.open('//' + link.replace('\/\/', '\/'), '_blank');
+                    tab.focus();
                 },
 
                 showPopup: function(popupType, object, meta){
@@ -144,6 +189,34 @@ define([], function(){
                         meta: meta
                     }).append();
                 }
+            },
+            /**
+             Метод парсит ошибку и возвпращает её в виде объекта
+             @method parseError
+             @return Object|null {status: status, title: title, content: content, stack: stack}
+             */
+            parseError: function(error){
+                var parsedError = {
+                    status: error.status,
+                    title: error.statusText,
+                    stack: error.stack
+                };
+
+                if(error.status === 403 || error.status === 401){
+                    this.send('logout');
+                    return;
+                }
+
+                var content;
+                if(error.hasOwnProperty('responseJSON')){
+                    if(error.responseJSON.hasOwnProperty('result') && error.responseJSON.result.hasOwnProperty('error')){
+                        content = error.responseJSON.result.error.message;
+                    }
+                } else{
+                    content = error.responseText || error.message;
+                }
+                parsedError.content = content;
+                return parsedError;
             }
         });
 
@@ -170,7 +243,7 @@ define([], function(){
          * @extends Ember.Route
          */
         UMI.ModuleRoute = Ember.Route.extend({
-            model: function(params){
+            model: function(params, transition){
                 var deferred = Ember.RSVP.defer();
                 var modules = this.controllerFor('dock').get('content');
                 var module = modules.findBy('name', params.module);
@@ -178,11 +251,13 @@ define([], function(){
                     this.controllerFor('dock').set('activeModule', module);
                     deferred.resolve(module);
                 } else{
-                    deferred.reject({
+                    var error = {
                         'status': 404,
                         'statusText': 'Module not found.',
                         'message': 'The module "' + params.module + '" was not found.'
-                    });
+                    };
+                    transition.send('templateLogs', error);
+                    deferred.reject();
                 }
                 return deferred.promise;
             },
@@ -199,7 +274,10 @@ define([], function(){
                             'statusText': 'Components not found.',
                             'message': 'For module "' + model.get('name') + '" components not found.'
                         };
-                        deferred.reject(self.transitionTo('module.error', error));
+                        Ember.run.next(function(){
+                            transition.send('templateLogs', error);
+                        });
+                        deferred.reject();
                     }
                     return deferred.promise;
                 }
@@ -228,23 +306,15 @@ define([], function(){
                         componentController.set('settings', settings);
                         componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
                         deferred.resolve(model);
-                    }, function(errors){
-                        var message;
-                        if(errors.responseJSON.hasOwnProperty('result') && errors.responseJSON.result.hasOwnProperty('error')){
-                            message = errors.responseJSON.result.error.message;
-                        }
-                        deferred.reject({
-                            'status': errors.status,
-                            'statusText': errors.statusText,
-                            'message': message
-                        });
+                    }, function(error){
+                        transition.send('templateLogs', error);
+                        deferred.reject();
                     });
                 } else{
-                    deferred.reject({
-                        'status': 404,
-                        'statusText': 'Component not found.',
-                        'message': 'The component "' + transition.params.component.component + '" was not found.'
-                    });
+                    var error = new URIError('The component "' + transition.params.component.component + '" was not found.');
+                    error.statusText = 'Component not found.';
+                    transition.send('templateLogs', error);
+                    deferred.reject();
                 }
                 return deferred.promise;
             },
@@ -256,12 +326,12 @@ define([], function(){
                     if(defaultAction){
                         deferred.resolve(self.transitionTo('action', defaultAction));
                     } else{
-                        var error = {
-                            'status': 404,
-                            'statusText': 'Actions not found.',
-                            'message': 'For component "' + model.get('name') + '" actions not found.'
-                        };
-                        deferred.reject(self.transitionTo('component.error', error));
+                        var error = new URIError('The component "' + transition.params.component.component + '" was not found.');
+                        error.statusText = 'Actions not found.';
+                        Ember.run.next(function(){
+                            transition.send('templateLogs', error, 'component');
+                        });
+                        deferred.reject();
                     }
                     return deferred.promise;
                 }
@@ -272,10 +342,19 @@ define([], function(){
             renderTemplate: function(controller){
                 this.render();
                 if(controller.get('sideBarControl')){
-                    this.render(controller.get('sideBarControl.name'), {
-                        into: 'component',
-                        outlet: 'sideBar'
-                    });
+                    try{
+                        this.render(controller.get('sideBarControl.name'), {
+                            into: 'component',
+                            outlet: 'sideBar'
+                        });
+                    } catch(error){
+                        var errorObject = {
+                            'statusText': error.name,
+                            'message': error.message,
+                            'stack': error.stack
+                        };
+                        this.send('templateLogs', errorObject, 'component');
+                    }
                 }
             }
         });
@@ -292,11 +371,13 @@ define([], function(){
                 if(action){
                     deferred.resolve(action);
                 } else{
-                    deferred.reject({
+                    var error = {
                         'status': 404,
                         'statusText': 'Action not found.',
                         'message': 'The action "' + params.action + '" for component "' + self.modelFor("component").get('name') + '" was not found.'
-                    });
+                    };
+                    transition.send('templateLogs', error, 'component');
+                    deferred.reject();
                 }
                 return deferred.promise;
             },
@@ -364,14 +445,13 @@ define([], function(){
                     /**
                      * Мета информация для action
                      */
-                    var actionName = transition.params.action.action;
+                    var actionName = activeAction.get('name');
                     var actionParams = {};
-                    var collectionName = componentController.get('collectionName');
-                    if(collectionName){
-                        actionParams.collection = collectionName;
-                    }
-                    if(actionName === 'form'){
-                        actionParams.form = 'edit';
+
+                    if(actionName === 'createForm'){
+                        routeData.createObject = self.store.createRecord(collectionName, {
+                            parent: model
+                        });
                     }
                     if(model.get('type')){
                         actionParams.type = model.get('type');
@@ -383,18 +463,20 @@ define([], function(){
                             routeData.viewSettings = results.settings;
                             return routeData;
                         });
-                    } else if(actionName === 'form'){
+                    } else if(actionName === 'editForm' || actionName === 'createForm'){
                         actionParams = actionParams ? '?' + $.param(actionParams) : '';
-                        var actionResource = componentController.get('settings').actions[actionName].source + actionParams;
+                        var actionResource = componentController.get('settings').actions['get' + Ember.String.capitalize(actionName)].source + actionParams;
 
                         return Ember.$.get(actionResource).then(function(results){
-                            routeData.viewSettings = results.result;
+                            routeData.viewSettings = results.result['get' + Ember.String.capitalize(actionName)];
                             return routeData;
                         }, function(error){
-                            throw new Error('Не получена мета информация для action form ' + actionResource + '.' + error);
+                            transition.send('templateLogs', error, 'component');
                         });
                     }
                     return routeData;
+                }, function(error){
+                    transition.send('templateLogs', error, 'component');
                 });
             },
             serialize: function(routeData){
@@ -403,8 +485,17 @@ define([], function(){
                 }
             },
             renderTemplate: function(){
-                var templateType = this.modelFor('action').get('name');
-                this.render(templateType);
+                try{
+                    var templateType = this.modelFor('action').get('name');
+                    this.render(templateType);
+                } catch(error){
+                    var errorObject = {
+                        'statusText': error.name,
+                        'message': error.message,
+                        'stack': error.stack
+                    };
+                    this.send('templateLogs', errorObject, 'component');
+                }
             },
             actions: {
                 /**

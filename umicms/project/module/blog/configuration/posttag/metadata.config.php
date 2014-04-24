@@ -43,12 +43,6 @@ return [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name'
         ],
-        CmsObject::FIELD_LOCKED => [
-            'type' => IField::TYPE_BOOL,
-            'columnName' => 'locked',
-            'readOnly' => true,
-            'defaultValue' => 0
-        ],
         CmsObject::FIELD_CREATED => [
             'type' => IField::TYPE_DATE_TIME,
             'columnName' => 'created',
@@ -69,7 +63,7 @@ return [
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
-        'post' => [
+        'blogPost' => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'post_id',
             'target' => 'blogPost'
@@ -90,12 +84,11 @@ return [
                 CmsObject::FIELD_OWNER,
                 CmsObject::FIELD_EDITOR,
                 CmsObject::FIELD_DISPLAY_NAME,
-                CmsObject::FIELD_LOCKED,
                 CmsObject::FIELD_CREATED,
                 CmsObject::FIELD_UPDATED,
                 CmsObject::FIELD_OWNER,
                 CmsObject::FIELD_EDITOR,
-                'post',
+                'blogPost',
                 'tag'
             ]
         ]

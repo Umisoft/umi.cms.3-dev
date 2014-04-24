@@ -93,7 +93,7 @@ define(['App'], function(UMI){
                                 $('body').on('mouseup.umi.tableControl', function(){
                                     $(handler).removeClass('on-resize');
                                     $('body').off('mousemove');
-                                    $('body').off('.umi.tableControl.mouseup');
+                                    $('body').off('mouseup.umi.tableControl');
                                     scrollContent.refresh();
                                 });
                             });
@@ -134,6 +134,8 @@ define(['App'], function(UMI){
 
             willDestroyElement: function(){
                 $(window).off('.umi.tableControl');
+                // Удаляем Observes для контоллера
+                this.get('controller').removeObserver('content.object.id');
             },
 
             paginationView: Ember.View.extend({
@@ -197,20 +199,18 @@ define(['App'], function(UMI){
                 classNameBindings: ['isActive:active'],
                 sortAscending: true,
                 isActive: function(){
-                    var sortByProperty = this.get('controller.sortByProperty');
-                    if(sortByProperty){
-                        return this.get('propertyName') === sortByProperty.name;
+                    var orderByProperty = this.get('controller.orderByProperty');
+                    if(orderByProperty){
+                        return this.get('propertyName') === orderByProperty.property;
                     }
-                }.property('controller.sortByProperty'),
+                }.property('controller.orderByProperty'),
                 click: function(){
-                    var sortByProperty = {};
-                    sortByProperty.name = this.get('propertyName');
-
+                    var propertyName = this.get('propertyName');
                     if(this.get('isActive')){
                         this.toggleProperty('sortAscending');
                     }
-                    sortByProperty.sortAscending = this.get('orderDirection');
-                    this.get('controller').set('sortByProperty', sortByProperty);
+                    var sortAscending = this.get('sortAscending');
+                    this.get('controller').send('orderByProperty', propertyName, sortAscending);
                 }
             })
         });
@@ -224,24 +224,12 @@ define(['App'], function(UMI){
                 var object = this.get('object');
                 var template;
                 if(meta.name === 'displayName'){
-                    template = '{{#link-to "context" "form" object.id class="edit-link"}}' + object.get(meta.name) + '{{/link-to}}';
+                    template = '{{#link-to "context" "editForm" object.id class="edit-link"}}' + object.get(meta.name) + '{{/link-to}}';
                 } else{
                     template = object.get(meta.name) + '&nbsp;';
                 }
                 return Ember.Handlebars.compile(template);
-            }.property('object','column'),
-
-            didInsertElement: function(){
-                console.log('didInsertElement');
-            }
-        });
-
-        UMI.TableControlColumnSelectorPopupView = Ember.View.extend({
-            controller: UMI.tableControlColumnSelectorPopup,
-            didInsertElement: function(){
-                console.log(this.get('parentView.width'));
-                console.log('TablePopupView');
-            }
+            }.property('object','column')
         });
     };
 });

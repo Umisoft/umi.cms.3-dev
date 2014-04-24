@@ -8,20 +8,27 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\blog\api\collection\BlogPostCollection;
+use umicms\project\module\blog\api\object\BlogPost;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
     'class' => 'umicms\project\module\blog\api\collection\BlogPostCollection',
     'handlers' => [
-        'admin' => 'blog.post',
-        'site' => 'blog.post'
+        ICmsCollection::HANDLER_ADMIN => 'blog.post',
+        ICmsCollection::HANDLER_SITE => 'blog.post',
+        BlogPostCollection::HANDLER_DRAFT => 'blog.draft'
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/post/form/base.edit.config.php}'
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/post/form/base.edit.config.php}',
+            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/post/form/base.create.config.php}',
+            BlogPost::FORM_ADD_POST => '{#lazy:~/project/module/blog/site/post/form/base.addPost.config.php}',
+            BlogPost::FORM_EDIT_POST => '{#lazy:~/project/module/blog/site/post/form/base.editPost.config.php}',
+            BlogPost::FORM_DRAFT_POST => '{#lazy:~/project/module/blog/site/post/form/base.draftPost.config.php}'
         ]
     ],
     'dictionaries' => [
-        'collection\blogPost', 'collection'
+        'collection.blogPost', 'collection'
     ]
 ];

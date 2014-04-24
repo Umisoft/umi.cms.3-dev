@@ -16,8 +16,10 @@ use umi\http\IHttpAware;
 use umi\http\Request;
 use umi\http\Response;
 use umi\http\THttpAware;
+use umi\stream\IStreamService;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
@@ -25,22 +27,22 @@ use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\TCmsCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
+use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
+use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
-use umicms\project\module\structure\api\StructureModule;
 use umicms\serialization\ISerializationAware;
+use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
 
 /**
  * Приложение сайта.
  */
 class SiteApplication extends SiteComponent
-    implements IHttpAware, IToolkitAware, ISiteSettingsAware, ISerializationAware, IUrlManagerAware
+    implements IHttpAware, IToolkitAware, ISerializationAware, IUrlManagerAware
 {
-    use TSiteSettingsAware;
     use THttpAware;
     use TToolkitAware;
     use TSerializationAware;
@@ -49,36 +51,60 @@ class SiteApplication extends SiteComponent
     /**
      * Имя настройки для задания guid главной страницы
      */
-    const SETTING_DEFAULT_PAGE_GUID = 'default-page';
+    const SETTING_DEFAULT_PAGE_GUID = 'defaultPage';
     /**
      * Имя настройки для задания guid шаблона по умолчанию
      */
-    const SETTING_DEFAULT_LAYOUT_GUID = 'default-layout';
+    const SETTING_DEFAULT_LAYOUT_GUID = 'defaultLayout';
     /**
      * Имя настройки для задания title страниц по умолчанию
      */
-    const SETTING_DEFAULT_TITLE = 'default-meta-title';
+    const SETTING_DEFAULT_TITLE = 'defaultMetaTitle';
     /**
      * Имя настройки для задания префикса title страниц
      */
-    const SETTING_TITLE_PREFIX = 'meta-title-prefix';
+    const SETTING_TITLE_PREFIX = 'metaTitlePrefix';
     /**
      * Имя настройки для задания keywords страниц по умолчанию
      */
-    const SETTING_DEFAULT_KEYWORDS = 'default-meta-keywords';
+    const SETTING_DEFAULT_KEYWORDS = 'defaultMetaKeywords';
     /**
      * Имя настройки для задания description страниц по умолчанию
      */
-    const SETTING_DEFAULT_DESCRIPTION = 'default-meta-description';
+    const SETTING_DEFAULT_DESCRIPTION = 'defaultMetaDescription';
     /**
      * Имя настройки для задания постфикса всех URL
      */
-    const SETTING_URL_POSTFIX = 'url-postfix';
+    const SETTING_URL_POSTFIX = 'urlPostfix';
+    /**
+     * Имя настройки для задания шаблонизатора по умолчанию
+     */
+    const SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE = 'defaultTemplatingEngineType';
+    /**
+     * Имя настройки для задания расширения файлов с шаблонами по умолчанию
+     */
+    const SETTING_DEFAULT_TEMPLATE_EXTENSION = 'defaultTemplateExtension';
+    /**
+     * Имя настройки для задания директории общих шаблонов
+     */
+    const SETTING_COMMON_TEMPLATE_DIRECTORY = 'commonTemplateDirectory';
+    /**
+     * Имя настройки для задания директории шаблонов
+     */
+    const SETTING_TEMPLATE_DIRECTORY = 'templateDirectory';
+    /**
+     * Опция для задания сериализаторов приложения
+     */
+    const OPTION_SERIALIZERS = 'serializers';
     /**
      * Формат запроса по умолчанию.
      */
     const DEFAULT_REQUEST_FORMAT = 'html';
 
+    /**
+     * Имя протокола для вызова виджетов
+     */
+    const WIDGET_PROTOCOL = 'widget';
     /**
      * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
      */
@@ -90,11 +116,10 @@ class SiteApplication extends SiteComponent
 
     /**
      * {@inheritdoc}
-     * @param StructureModule $structureApi
      */
-    public function __construct($name, $path, array $options = [], StructureModule $structureApi)
+    public function __construct($name, $path, array $options = [])
     {
-        parent::__construct($name, $path, $options, $structureApi);
+        parent::__construct($name, $path, $options);
 
         $this->registerSiteSettings();
         $this->registerPageCallStack();
@@ -106,12 +131,34 @@ class SiteApplication extends SiteComponent
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
         $this->registerSelectorInitializer();
+        $this->registerSerializers();
+
+        $dispatcher = $context->getDispatcher();
+        if ($dispatcher instanceof CmsDispatcher) {
+            $this->registerStreams($dispatcher);
+        }
 
         while (!$this->pageCallStack->isEmpty()) {
             $this->pageCallStack->pop();
         }
 
-        return parent::onDispatchRequest($context, $request);
+        $element = null;
+        if (isset($context->getRouteParams()[self::MATCH_STRUCTURE_ELEMENT])) {
+            $element = $context->getRouteParams()[self::MATCH_STRUCTURE_ELEMENT];
+
+            if ($element instanceof ICmsPage) {
+
+                if ($element instanceof StaticPage) {
+                    foreach ($element->getAncestry() as $parent) {
+                        $this->pushCurrentPage($parent);
+                    }
+                }
+
+                $this->pushCurrentPage($element);
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -144,17 +191,43 @@ class SiteApplication extends SiteComponent
                 ));
             }
 
-            $result = [
-                'result' => $response->getContent()
-            ];
-
-            $serializer = $this->getSerializer($requestFormat, $result);
-            $serializer->init();
-            $serializer($result);
-            $response->setContent($serializer->output());
+            $result = $this->serializeResult($requestFormat, $response->getContent());
+            $response->setContent($result);
         }
 
         return $response;
+    }
+
+    /**
+     * Сериализует результат в указанный формат
+     * @param string $format формат
+     * @param mixed $variables список переменных
+     * @return string
+     */
+    protected function serializeResult($format, $variables) {
+        $serializer = $this->getSerializer($format, []);
+        $serializer->init();
+        $serializer([
+            'result' => $variables
+        ]);
+
+        return $serializer->output();
+    }
+
+    /**
+     * Регистрирует сериализаторы, необходимые для приложения.
+     */
+    protected function registerSerializers()
+    {
+        if (isset($this->options[self::OPTION_SERIALIZERS])) {
+            $serializersConfig = $this->configToArray($this->options[self::OPTION_SERIALIZERS], true);
+            /**
+             * @var ISerializerFactory $serializerFactory
+             */
+            $serializerFactory = $this->getToolkit()->getService('umicms\serialization\ISerializerFactory');
+
+            $serializerFactory->registerSerializers($serializersConfig);
+        }
     }
 
     /**
@@ -282,6 +355,29 @@ class SiteApplication extends SiteComponent
                 $selector->where(IActiveAccessibleObject::FIELD_ACTIVE)->equals(true);
             }
 
+        });
+    }
+
+    /**
+     * Регистрирует стримы для XSLT.
+     * @param CmsDispatcher $dispatcher
+     */
+    protected function registerStreams(CmsDispatcher $dispatcher)
+    {
+        /**
+         * @var IStreamService $streams
+         */
+        $streams = $this->getToolkit()->getService('umi\stream\IStreamService');
+        $streams->registerStream(self::WIDGET_PROTOCOL, function($uri) use ($dispatcher) {
+            $widgetInfo = parse_url($uri);
+            $widgetParams = [];
+            if (isset($widgetInfo['query'])) {
+                parse_str($widgetInfo['query'], $widgetParams);
+            }
+
+            return $this->serializeResult(ISerializerFactory::TYPE_XML, [
+                'contents' => $dispatcher->executeWidgetByPath($widgetInfo['host'], $widgetParams)
+            ]);
         });
     }
 

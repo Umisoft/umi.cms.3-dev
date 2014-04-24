@@ -15,7 +15,7 @@ use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsSubject;
 
 /**
- * Виджет для вывода URL на RSS-ленту по сюжету.
+ * Виджет для вывода ссылки на RSS-ленту по сюжету.
  */
 class SubjectNewsRssUrlWidget extends BaseSecureWidget
 {
@@ -55,7 +55,7 @@ class SubjectNewsRssUrlWidget extends BaseSecureWidget
         if (isset($this->subject) && !$this->subject instanceof NewsSubject) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Widget parameter "{param} should be instance of "{class}".',
+                    'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'subject',
                         'class' => 'NewsSubject'

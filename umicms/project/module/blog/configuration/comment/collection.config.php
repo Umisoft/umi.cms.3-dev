@@ -8,19 +8,23 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\blog\api\object\BlogComment;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
+    'class' => 'umicms\project\module\blog\api\collection\BlogCommentCollection',
     'handlers' => [
         'admin' => 'blog.comment',
         'site' => 'blog.comment'
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/comment/form/base.edit.config.php}'
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/comment/form/base.edit.config.php}',
+            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/comment/form/base.create.config.php}',
+            BlogComment::FORM_ADD_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.addComment.config.php}'
         ]
     ],
     'dictionaries' => [
-        'collection\blogComment', 'collection'
+        'collection.blogComment', 'collection'
     ]
 ];

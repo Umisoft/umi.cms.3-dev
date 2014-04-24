@@ -22,7 +22,7 @@ class NewsItemWidget extends BaseSecureWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'view';
+    public $template = 'page';
     /**
      * @var string|NewsItem $newsItem GUID новости
      */
@@ -54,7 +54,7 @@ class NewsItemWidget extends BaseSecureWidget
         if (isset($this->newsItem) && !$this->newsItem instanceof NewsItem) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Widget parameter "{param} should be instance of "{class}".',
+                    'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'newsItem',
                         'class' => 'NewsItem'

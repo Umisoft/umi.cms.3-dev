@@ -39,7 +39,7 @@ class SimpleHierarchicCollection extends FrameworkSimpleHierarchicCollection imp
      * @param CmsHierarchicObject|null $object объект, либо null, если нужна выборка от корня
      * @param int|null $depth глубина выбора потомков, по умолчанию выбираются на всю глубину
      * @throws InvalidArgumentException если глубина указана не верно
-     * @return CmsSelector
+     * @return CmsSelector|CmsHierarchicObject[]
      */
     public function selectDescendants(CmsHierarchicObject $object = null, $depth = null)
     {
@@ -72,12 +72,4 @@ class SimpleHierarchicCollection extends FrameworkSimpleHierarchicCollection imp
         return $selector;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getByUri($uri, $withLocalization = false)
-    {
-        // TODO: Is this right?
-        return parent::getByUri('/' . ltrim($uri, '/'), $withLocalization);
-    }
 }

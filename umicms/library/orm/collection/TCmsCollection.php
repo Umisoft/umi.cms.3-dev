@@ -13,10 +13,14 @@ use umi\form\TFormAware;
 use umi\i18n\TLocalizable;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\metadata\IMetadata;
+use umi\orm\metadata\IObjectType;
+use umi\orm\object\IObject;
 use umi\spl\config\TConfigSupport;
 use umicms\exception\NonexistentEntityException;
+use umicms\exception\NotAllowedOperationException;
 use umicms\exception\OutOfBoundsException;
-use umicms\orm\object\CmsObject;
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
+use umicms\orm\object\ICmsObject;
 use umicms\orm\selector\CmsSelector;
 
 /**
@@ -74,6 +78,25 @@ trait TCmsCollection
     }
 
     /**
+     * @see ICmsCollection::delete()
+     */
+    public function delete(IObject $object)
+    {
+        if ($object instanceof ILockedAccessibleObject && $object->locked) {
+            throw new NotAllowedOperationException(
+                $this->translate(
+                    'Cannot delete locked object with GUID "{guid}" from collection "{collection}".',
+                    ['guid' => $object->guid, 'collection' => $object->getCollectionName()]
+                )
+            );
+        }
+
+        /** @noinspection PhpUndefinedMethodInspection */
+        /** @noinspection PhpUndefinedClassInspection */
+        return parent::delete($object);
+    }
+
+    /**
      * @see ICmsCollection::getType()
      */
     public function getType()
@@ -84,9 +107,9 @@ trait TCmsCollection
     /**
      * @see ICmsCollection::getForm()
      */
-    public function getForm($typeName, $formName, CmsObject $object = null)
+    public function getForm($formName, $typeName = IObjectType::BASE, ICmsObject $object = null)
     {
-        if (!$this->hasForm($typeName, $formName)) {
+        if (!$this->hasForm($formName, $typeName)) {
             throw new NonexistentEntityException(
                 sprintf(
                     'Form "%s" for collection "%s" and type "%s" is not registered.',
@@ -105,7 +128,7 @@ trait TCmsCollection
     /**
      * @see ICmsCollection::hasForm()
      */
-    public function hasForm($typeName, $formName)
+    public function hasForm($formName, $typeName = IObjectType::BASE)
     {
         if (!$this->getMetadata()->getTypeExists($typeName)) {
             return false;
@@ -162,6 +185,20 @@ trait TCmsCollection
         $dictionaries = $this->configToArray($dictionaries);
 
         return $dictionaries;
+    }
+
+    /**
+     * Возвращает значение настройки для коллекции.
+     * @param string $settingName имя настройки
+     * @param mixed $defaultValue значение по умолчанию
+     * @return mixed
+     */
+    protected function getSetting($settingName, $defaultValue = null) {
+        if (isset($this->traitGetConfig()['settings'][$settingName])) {
+            return $this->traitGetConfig()['settings'][$settingName];
+        }
+
+        return $defaultValue;
     }
 
     /**

@@ -18,8 +18,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.BlogComment',
-            'collection'
+            'collection.blogComment', 'collection', 'form'
         ]
     ],
     'elements' => [

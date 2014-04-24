@@ -13,6 +13,7 @@ use umi\form\element\html5\DateTime;
 use umi\form\element\html5\Email;
 use umi\form\element\html5\Number;
 use umi\form\element\html5\Time;
+use umi\form\element\Password;
 use umi\form\element\Radio;
 use umi\form\element\Text;
 use umi\form\element\Textarea;
@@ -64,7 +65,7 @@ return [
                     'label' => TestObject::RADIO,
                 ],
                 TestObject::PASSWORD => [
-                    'type' => Radio::TYPE_NAME,
+                    'type' => Password::TYPE_NAME,
                     'label' => TestObject::PASSWORD,
                     'options' => [
                         'dataSource' => TestObject::PASSWORD

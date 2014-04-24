@@ -10,76 +10,55 @@ namespace umicms\project\module\news\site\item;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\project\site\component\DefaultSitePageComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\module\news\site\item\Component',
-    
-    SiteComponent::OPTION_CONTROLLERS => [
-        'index' => __NAMESPACE__ . '\controller\IndexController',
-        'item' => __NAMESPACE__ . '\controller\NewsItemController',
+    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
+    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'newsItem',
+
+    DefaultSitePageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\NewsItemRssController'
     ],
 
-    SiteComponent::OPTION_WIDGET => [
+    DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\NewsItemWidget',
         'list' => __NAMESPACE__ . '\widget\NewsItemListWidget',
         'rss' => __NAMESPACE__ . '\widget\NewsItemListRssUrlWidget'
     ],
 
-    SiteComponent::OPTION_VIEW        => [
-        'type'      => 'php',
-        'extension' => 'phtml',
-        'directory' => __DIR__ . '/template/php',
+    DefaultSitePageComponent::OPTION_VIEW => [
+        'directories' => ['module/news/item']
     ],
 
-    SiteComponent::OPTION_ACL => [
+    DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'newsItemViewer' => [],
-            'newsItemRssViewer' => []
+            'rssViewer' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:index',
-            'controller:item',
             'controller:rss',
             'widget:view',
             'widget:list',
             'widget:rss'
         ],
         IAclFactory::OPTION_RULES => [
-            'newsItemViewer' => [
-                'controller:index' => [],
-                'controller:item' => [],
+            'viewer' => [
                 'widget:view' => [],
                 'widget:list' => []
             ],
-            'newsItemRssViewer' => [
+            'rssViewer' => [
                 'controller:rss' => [],
                 'widget:rss' => []
             ]
         ]
     ],
 
-    SiteComponent::OPTION_ROUTES      => [
+    DefaultSitePageComponent::OPTION_ROUTES      => [
         'rss' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'route' => '/rss',
             'defaults' => [
                 'controller' => 'rss'
-            ]
-        ],
-        'item' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/{slug}',
-            'defaults' => [
-                'controller' => 'item'
-            ]
-        ],
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'index'
             ]
         ]
     ]

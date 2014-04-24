@@ -14,7 +14,8 @@ return [
         'component:category:displayName' => 'Category',
         'component:post:displayName' => 'Posts',
         'component:author:displayName' => 'Authors',
-        'component:tag:displayName' => 'Tags'
+        'component:tag:displayName' => 'Tags',
+        'component:rss:displayName' => 'Import RSS feed'
     ],
 
     'ru-RU' => [
@@ -23,7 +24,8 @@ return [
         'component:post:displayName' => 'Посты',
         'component:author:displayName' => 'Авторы',
         'component:comment:displayName' => 'Комментарии',
-        'component:tag:displayName' => 'Тэги'
+        'component:tag:displayName' => 'Тэги',
+        'component:rss:displayName' => 'Импорт RSS-лент'
     ]
 
 ];

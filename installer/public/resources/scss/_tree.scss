@@ -113,6 +113,11 @@ $umi-dark-border-color: #CCD9E2;
         a, .icon, .move{
             cursor: default;
         }
+        .umi-item{
+            &:hover{
+                background: transparent;
+            }
+        }
     }
 
     // Выпадающее меню --------------------------------------
@@ -234,7 +239,6 @@ $umi-dark-border-color: #CCD9E2;
         position: absolute;
         z-index: 1;
         right: 0;
-        width: 160px;
         background: #FFFFFF;
         box-shadow: 0 0px 3px 0px #7C99AC;
 //        border-top: 1px solid #BEC9D0;
@@ -242,86 +246,30 @@ $umi-dark-border-color: #CCD9E2;
             border: none !important;
         }
 
-        .button-group{
-            margin: 0;
-            padding: 0;
-            height: 28px;
-            &:after{
-                content: "";
-                position: absolute;
-                display: block;
-                width: 100%;
-                height: 3px;
-                top: 28px;
-                left: 0;
-                background: url(img/shadows/toTopShadow.png);
-                z-index: 1;
-            }
-            > li{
+        .list-action{
+            background: #fff;
+            padding: 4px 0;
+            width: 100%;
+            li{
+                padding: 0 10px;
+                padding-left: 30px;
+                height: 28px;
+                line-height: 28px;
                 position: relative;
-                z-index: 1;
-                &.active{
-                    z-index: 2;
-                    &:before {
-                        content: "";
-                        position: absolute;
-                        display: block;
-                        width: 3px;
-                        height: 32px;
-                        top: -1px;
-                        left: -3px;
-                        background: url(img/shadows/toLeftShadow.png);
-                    }
-                    &:after{
-                        content: "";
-                        position: absolute;
-                        display: block;
-                        width: 3px;
-                        height: 32px;
-                        top: -1px;
-                        left: auto;
-                        right: -3px;
-                        background: url(img/shadows/toRightShadow.png);
-                    }
-                    &:first-of-type:before{
-                        display: none;
-                    }
-                    > .button{
-
-                    }
-                    .list-action{
-                        display: block;
-                    }
+                &:nth-child(even){
+                    background: #E8EDEF;
                 }
-            }
-            .button{
-                margin: 0;
-            }
-            .list-action{
-                background: #fff;
-                padding: 4px 0;
-                width: 100%;
-                li{
-                    padding: 0 10px;
-                    padding-left: 30px;
-                    height: 28px;
-                    line-height: 28px;
-                    position: relative;
-                    &:nth-child(even){
-                        background: #E8EDEF;
-                    }
-                    .icon{
-                        position: absolute;
-                        left: 5px;
-                        top: 5px;
+                .icon{
+                    position: absolute;
+                    left: 5px;
+                    top: 5px;
+                    cursor: pointer;
+                }
+                span{
+                    color: #535E6D;
+                    &:hover{
                         cursor: pointer;
-                    }
-                    span{
-                        color: #535E6D;
-                        &:hover{
-                            cursor: pointer;
-                            border-bottom: 1px solid $umi-font-color;
-                        }
+                        border-bottom: 1px solid $umi-font-color;
                     }
                 }
             }

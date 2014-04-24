@@ -1,17 +1,23 @@
 <div class="umi-component s-full-height">
     <div class="row">
-        <div class="small-12 columns text-center">
+        <div class="small-10 columns small-centered text-center">
             <p></p>
             <div>
                 <h2>
                     {{#if status}}
                         {{status}}.
                     {{/if}}
-                    {{statusText}}
+                    {{title}}
                 </h2>
 
-                {{#if message}}
-                    <p>{{message}}</p>
+                {{#if model.content}}
+                    <p>{{model.content}}</p>
+                {{/if}}
+
+                {{#if stack}}
+                    <div class="text-left">
+                        <code>{{stack}}</code>
+                    </div>
                 {{/if}}
 
                 {{#if lists}}

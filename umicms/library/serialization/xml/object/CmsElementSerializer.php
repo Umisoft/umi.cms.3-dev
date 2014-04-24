@@ -9,6 +9,7 @@
 
 namespace umicms\serialization\xml\object;
 
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 
 /**
@@ -24,11 +25,10 @@ class CmsElementSerializer extends CmsObjectSerializer
         CmsHierarchicObject::FIELD_IDENTIFY,
         CmsHierarchicObject::FIELD_GUID,
         CmsHierarchicObject::FIELD_VERSION,
-        CmsHierarchicObject::FIELD_ACTIVE,
-        CmsHierarchicObject::FIELD_LOCKED,
         CmsHierarchicObject::FIELD_DISPLAY_NAME,
         CmsHierarchicObject::FIELD_SLUG,
-        CmsHierarchicObject::FIELD_MPATH
+        CmsHierarchicObject::FIELD_MPATH,
+        IActiveAccessibleObject::FIELD_ACTIVE
     ];
 
 }

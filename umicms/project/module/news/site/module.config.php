@@ -23,27 +23,25 @@ return [
     ],
 
     SiteComponent::OPTION_CONTROLLERS => [
-        'index' => 'umicms\project\module\news\site\controller\IndexController'
+        'index' => 'umicms\project\site\controller\DefaultStructurePageController'
     ],
 
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'newsViewer' => []
+            'viewer' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:index'
         ],
         IAclFactory::OPTION_RULES => [
-            'newsViewer' => [
+            'viewer' => [
                 'controller:index' => []
             ]
         ]
     ],
 
     SiteComponent::OPTION_VIEW        => [
-        'type'      => 'php',
-        'extension' => 'phtml',
-        'directory' => __DIR__ . '/template/php',
+        'directories' => ['module/news']
     ],
 
     SiteComponent::OPTION_ROUTES      => [

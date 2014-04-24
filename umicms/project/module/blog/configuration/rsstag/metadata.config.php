@@ -43,12 +43,6 @@ return [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name'
         ],
-        CmsObject::FIELD_LOCKED       => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'locked',
-            'readOnly'     => true,
-            'defaultValue' => 0
-        ],
         CmsObject::FIELD_CREATED      => [
             'type'       => IField::TYPE_DATE_TIME,
             'columnName' => 'created',
@@ -71,7 +65,7 @@ return [
         ],
         'blogRssImportScenario'                    => [
             'type'       => IField::TYPE_BELONGS_TO,
-            'columnName' => 'rss_post_id',
+            'columnName' => 'rss_import_scenario_id',
             'target'     => 'blogRssImportScenario'
         ],
         'tag'                     => [
@@ -88,7 +82,6 @@ return [
                 CmsObject::FIELD_GUID,
                 CmsObject::FIELD_TYPE,
                 CmsObject::FIELD_VERSION,
-                CmsObject::FIELD_LOCKED,
                 CmsObject::FIELD_CREATED,
                 CmsObject::FIELD_UPDATED,
                 CmsObject::FIELD_DISPLAY_NAME,

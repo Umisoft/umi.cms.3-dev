@@ -26,9 +26,7 @@ return [
     ],
 
     SiteComponent::OPTION_VIEW        => [
-        'type'      => 'php',
-        'extension' => 'phtml',
-        'directory' => __DIR__ . '/template/php',
+        'directories' => ['module/search'],
     ],
 
     SiteComponent::OPTION_ROUTES      => [

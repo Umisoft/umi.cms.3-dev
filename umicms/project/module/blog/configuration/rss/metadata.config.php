@@ -52,12 +52,6 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ]
         ],
-        BlogRssImportScenario::FIELD_LOCKED                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'locked',
-            'readOnly'     => true,
-            'defaultValue' => 0
-        ],
         BlogRssImportScenario::FIELD_CREATED               => [
             'type'       => IField::TYPE_DATE_TIME,
             'columnName' => 'created',
@@ -85,7 +79,7 @@ return [
         ],
         BlogRssImportScenario::FIELD_CATEGORY => [
             'type' => IField::TYPE_BELONGS_TO,
-            'columnName' => 'rubric_id',
+            'columnName' => 'category_id',
             'target' => 'blogCategory'
         ],
         BlogRssImportScenario::FIELD_TAGS => [
@@ -104,7 +98,6 @@ return [
                 BlogRssImportScenario::FIELD_GUID,
                 BlogRssImportScenario::FIELD_TYPE,
                 BlogRssImportScenario::FIELD_VERSION,
-                BlogRssImportScenario::FIELD_LOCKED,
                 BlogRssImportScenario::FIELD_CREATED,
                 BlogRssImportScenario::FIELD_UPDATED,
                 BlogRssImportScenario::FIELD_DISPLAY_NAME,

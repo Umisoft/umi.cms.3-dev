@@ -63,7 +63,7 @@ trait TPageCallStackAware
 
     /**
      * Возвращает стек вызова страниц.
-     * @return SplStack
+     * @return SplStack|[]ICmsPage
      * @throws RequiredDependencyException
      */
     protected function getPageCallStack()

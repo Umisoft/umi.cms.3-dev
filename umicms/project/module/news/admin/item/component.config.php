@@ -8,78 +8,9 @@
 
 namespace umicms\project\module\news\admin\item;
 
-use umi\acl\IAclFactory;
-use umi\route\IRouteFactory;
-use umicms\project\admin\component\SecureAdminComponent;
+use umicms\project\admin\api\component\DefaultAdminComponent;
 
 return [
-
-    SecureAdminComponent::OPTION_CLASS => 'umicms\project\admin\component\SecureAdminComponent',
-
-    SecureAdminComponent::OPTION_CONTROLLERS => [
-        SecureAdminComponent::LIST_CONTROLLER => __NAMESPACE__ . '\controller\ListController',
-        SecureAdminComponent::ITEM_CONTROLLER => __NAMESPACE__ . '\controller\ItemController',
-        SecureAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        SecureAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
-    ],
-
-    SecureAdminComponent::OPTION_ACL => [
-
-        IAclFactory::OPTION_ROLES => [
-            'editor' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:settings',
-            'controller:action',
-            'controller:item',
-            'controller:list'
-        ],
-        IAclFactory::OPTION_RULES => [
-            'editor' => [
-                'controller:settings' => [],
-                'controller:action' => [],
-                'controller:item' => [],
-                'controller:list' => []
-            ],
-        ]
-    ],
-
-    SecureAdminComponent::OPTION_ROUTES      => [
-
-        'action' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route'    => '/action/{action}',
-            'defaults' => [
-                'controller' => SecureAdminComponent::ACTION_CONTROLLER
-            ]
-        ],
-
-        'collection' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route'    => '/collection',
-            'subroutes' => [
-                'item' => [
-                    'type'     => IRouteFactory::ROUTE_SIMPLE,
-                    'route'    => '/{collection}/{id:integer}',
-                    'defaults' => [
-                        'controller' => SecureAdminComponent::ITEM_CONTROLLER
-                    ]
-                ],
-                'list' => [
-                    'type'     => IRouteFactory::ROUTE_SIMPLE,
-                    'route'    => '/{collection}',
-                    'defaults' => [
-                        'controller' => SecureAdminComponent::LIST_CONTROLLER
-                    ]
-                ]
-            ]
-        ],
-
-        'settings' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => SecureAdminComponent::SETTINGS_CONTROLLER
-            ]
-        ]
-    ]
+    DefaultAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultAdminComponent',
+    DefaultAdminComponent::OPTION_COLLECTION_NAME => 'newsItem'
 ];

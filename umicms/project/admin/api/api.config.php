@@ -10,16 +10,31 @@ namespace umicms\project\admin\api;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
+use umicms\serialization\ISerializerFactory;
 
 return [
 
     ApiApplication::OPTION_CLASS => 'umicms\project\admin\api\ApiApplication',
 
+    ApiApplication::OPTION_SERIALIZERS => [
+        ISerializerFactory::TYPE_JSON => [
+            'umi\orm\collection\BaseCollection' => 'umicms\serialization\json\orm\CollectionSerializer',
+            'umi\orm\metadata\Metadata' => 'umicms\serialization\json\orm\MetadataSerializer',
+            'umi\orm\metadata\ObjectType' => 'umicms\serialization\json\orm\ObjectTypeSerializer',
+            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\json\orm\FieldSerializer',
+            'umicms\orm\object\CmsObject' => 'umicms\serialization\json\orm\CmsAdminObjectSerializer',
+            'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\json\orm\CmsAdminObjectSerializer',
+            'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer',
+            'umi\form\fieldset\FieldSet' => 'umicms\serialization\json\form\FieldSetSerializer',
+            'umi\form\element\BaseFormElement' => 'umicms\serialization\json\form\BaseFormElementSerializer',
+        ]
+    ],
+
     ApiApplication::OPTION_CONTROLLERS => [
-        ApiApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
+        ApiApplication::ERROR_CONTROLLER   => 'umicms\project\admin\controller\ErrorController',
 
         'settings' => __NAMESPACE__ . '\controller\ApiSettingsController',
-        'action' => __NAMESPACE__ . '\controller\ActionController'
+        'action' => __NAMESPACE__ . '\controller\ApiActionController'
     ],
 
     ApiApplication::OPTION_COMPONENTS => [

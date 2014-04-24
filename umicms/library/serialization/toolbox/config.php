@@ -17,5 +17,8 @@ return [
     'class'    => __NAMESPACE__ . '\SerializationTools',
     'awareInterfaces' => [
         'umicms\serialization\ISerializationAware'
+    ],
+    'services' => [
+        'umicms\serialization\ISerializerFactory'
     ]
 ];

@@ -9,22 +9,28 @@
 
 namespace umicms\hmvc\url;
 
-use umicms\hmvc\dispatcher\Dispatcher;
+use umi\i18n\ILocalizable;
+use umi\i18n\TLocalizable;
+use umicms\exception\RuntimeException;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\settings\component\SettingsComponent;
 use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\StructureElement;
-use umicms\project\site\component\SiteComponent;
+use umicms\project\site\component\BaseDefaultSitePageComponent;
 
 /**
  * URL-менеджер.
  */
-class UrlManager implements IUrlManager
+class UrlManager implements IUrlManager, ILocalizable
 {
+    use TLocalizable;
+
     /**
-     * @var Dispatcher $dispatcher диспетчер компонентов
+     * @var CmsDispatcher $dispatcher диспетчер компонентов
      */
     protected $dispatcher;
     /**
@@ -40,6 +46,10 @@ class UrlManager implements IUrlManager
      */
     protected $baseRestUrl = '/';
     /**
+     * @var string $baseSettingsUrl базовый URL для запросов связанных с настройками
+     */
+    protected $baseSettingsUrl = '/';
+    /**
      * @var string $baseAdminUrl базовый URL для административной панели
      */
     protected $baseAdminUrl;
@@ -50,10 +60,10 @@ class UrlManager implements IUrlManager
 
     /**
      * Конструктор.
-     * @param Dispatcher $dispatcher диспетчер компонентов
+     * @param CmsDispatcher $dispatcher диспетчер компонентов
      * @param StructureModule $structureApi
      */
-    public function __construct(Dispatcher $dispatcher, StructureModule $structureApi)
+    public function __construct(CmsDispatcher $dispatcher, StructureModule $structureApi)
     {
         $this->dispatcher = $dispatcher;
         $this->structureApi = $structureApi;
@@ -85,6 +95,16 @@ class UrlManager implements IUrlManager
     public function setBaseRestUrl($baseRestUrl)
     {
         $this->baseRestUrl = $baseRestUrl;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setBaseSettingsUrl($baseSettingsUrl)
+    {
+        $this->baseSettingsUrl = $baseSettingsUrl;
 
         return $this;
     }
@@ -130,6 +150,14 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
+    public function getBaseSettingsUrl()
+    {
+        return $this->baseSettingsUrl;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getBaseAdminUrl()
     {
         return $this->baseAdminUrl;
@@ -138,7 +166,7 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
-    public function getSitePageUrl(ICmsPage $page, $isAbsolute = false)
+    public function getSitePageUrl(ICmsPage $page, $isAbsolute = false, $handler = ICmsCollection::HANDLER_SITE)
     {
         if ($page instanceof StructureElement) {
             $pageUrl = $isAbsolute ? $this->domainUrl : '';
@@ -151,15 +179,23 @@ class UrlManager implements IUrlManager
          * @var ICmsCollection $collection
          */
         $collection = $page->getCollection();
-        $handler = $collection->getHandlerPath('site');
+        $handler = $collection->getHandlerPath($handler);
 
-        /**
-         * @var SiteComponent $component
-         */
         $component = $this->dispatcher->getSiteComponentByPath($handler);
+        if (!$component instanceof BaseDefaultSitePageComponent) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot get url for page with GUID "{guid}". Component "{path}" shoul be instance of "{class}".',
+                    [
+                        'guid' => $page->getGUID(),
+                        'path' => $component->getPath(),
+                        'class' => 'umicms\project\site\component\BaseDefaultSitePageComponent'
+                    ]
+                )
+            );
+        }
 
         return $this->getSystemPageUrl($handler, $isAbsolute) . $component->getPageUri($page);
-
     }
 
     /**
@@ -172,16 +208,6 @@ class UrlManager implements IUrlManager
         $pageUrl .= $this->structureApi->element()->getSystemPageByComponentPath($componentPath)->getURL();
 
         return $pageUrl;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAdminComponentUrl(AdminComponent $component, $isAbsolute = false)
-    {
-        $domainUrl = $isAbsolute ? $this->domainUrl : '';
-
-        return $domainUrl . $this->baseAdminUrl . $this->getRelativeComponentUrl($component);
     }
 
     /**
@@ -209,7 +235,7 @@ class UrlManager implements IUrlManager
     {
         $collectionResourceUrl = $this->baseRestUrl;
         $collectionResourceUrl .= '/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
-        $collectionResourceUrl .= '/collection/' . $collection->getName();
+        $collectionResourceUrl .= '/collection';
 
         if ($object) {
             $collectionResourceUrl .= '/' . $object->getId();
@@ -221,30 +247,116 @@ class UrlManager implements IUrlManager
     /**
      * {@inheritdoc}
      */
-    public function getAdminComponentResourceUrl(AdminComponent $component)
+    public function getAdminComponentUrl(AdminComponent $component, $isAbsolute = false)
     {
-        return $this->baseRestUrl . $this->getRelativeComponentUrl($component);
+        $domainUrl = $isAbsolute ? $this->domainUrl : '';
+
+        return $domainUrl . $this->baseAdminUrl . $this->getAdminRelativeComponentUrl($component);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getAdminComponentActionResourceUrl(AdminComponent $component, $actionName)
+    public function getAdminComponentResourceUrl(AdminComponent $component)
+    {
+        return $this->baseRestUrl . $this->getAdminRelativeComponentUrl($component);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAdminComponentActionResourceUrl(AdminComponent $component, $actionName, array $params = [])
     {
         $actionUrl = $this->getAdminComponentResourceUrl($component);
         $actionUrl .= $component->getRouter()->assemble('action', ['action' => $actionName]);
+
+        if ($params) {
+            $actionUrl .= '?' . http_build_query($params);
+        }
 
         return $actionUrl;
     }
 
     /**
-     * Возвращает URL компонента относительно API-компонента.
+     * {@inheritdoc}
+     */
+    public function getSettingsComponentResourceUrl(SettingsComponent $component)
+    {
+        $url = $this->baseSettingsUrl;
+        $url .= str_replace(SettingsComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 22));
+
+        return $url;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCurrentUrl($isAbsolute = false)
+    {
+        if (null !== $qs = $this->getQueryString()) {
+            $qs = '?'.$qs;
+        }
+
+        return $this->getRequestedUrl($isAbsolute) . $qs;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCurrentUrlWithParam($paramName, $paramValue, $isAbsolute = false)
+    {
+
+        $url = $this->getRequestedUrl($isAbsolute);
+
+        $request = $this->dispatcher->getCurrentRequest();
+        $queryString = $request->getQueryString();
+
+        parse_str($queryString, $query);
+
+        if (is_null($paramValue)) {
+            unset($query[$paramName]);
+        } else {
+            $query[$paramName] = $paramValue;
+        }
+
+        return $query ? $url . '?' . http_build_query($query) : $url;
+    }
+
+    /**
+     * Возвращает текущий URL без GET-параметров
+     * @param bool $isAbsolute генерировать ли абсолютный URL
+     * @return string
+     */
+    protected function getRequestedUrl($isAbsolute = false)
+    {
+        $request = $this->dispatcher->getCurrentRequest();
+
+        $url = $request->getBaseUrl() . $request->getPathInfo();
+        if ($isAbsolute) {
+            $url = $request->getSchemeAndHttpHost() . $url;
+        }
+
+        return $url;
+    }
+
+    /**
+     * Возвращает строку GET-параметров запроса
+     * @return null|string
+     */
+    protected function getQueryString()
+    {
+        return $this->dispatcher->getCurrentRequest()->getQueryString();
+    }
+
+    /**
+     * Возвращает URL админ-компонента относительно API-компонента.
      * @param AdminComponent $component
      * @return string
      */
-    protected function getRelativeComponentUrl(AdminComponent $component)
+    protected function getAdminRelativeComponentUrl(AdminComponent $component)
     {
         return str_replace(AdminComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 17));
     }
+
 }
  

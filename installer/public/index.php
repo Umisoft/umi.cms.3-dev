@@ -16,6 +16,7 @@ $autoLoaderPath = $vendorDirectory . '/autoload.php';
 
 error_reporting(-1);
 ini_set('display_errors', 1);
+set_time_limit(1);
 
 $umicmsStartTime = microtime(true);
 

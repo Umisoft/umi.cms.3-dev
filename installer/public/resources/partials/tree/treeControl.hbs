@@ -17,10 +17,8 @@
                 <ul class="f-dropdown umi-dropup">
                     {{#each filters}}
                         <li>
-                            {{#if checkbox}}
-                                {{view "checkboxCustom" checkedBinding="isActive"}}
-                                <span class="title">{{displayName}}</span>
-                            {{/if}}
+                            {{view "checkboxCustom" checkedBinding="isActive"}}
+                            <span class="title">{{displayName}}</span>
                         </li>
                     {{/each}}
                 </ul>

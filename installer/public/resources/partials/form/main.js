@@ -21,7 +21,8 @@ define(
         './elements/datetime/main',
         './elements/file/main',
         './elements/image/main',
-        './elements/textarea/main'
+        './elements/textarea/main',
+        './formTypes/createForm/main'
     ],
     function(
             UMI,
@@ -45,7 +46,8 @@ define(
             datetimeElement,
             fileElement,
             imageElement,
-            textareaElement
+            textareaElement,
+            createForm
         ){
         'use strict';
 
@@ -82,19 +84,33 @@ define(
             }.property(),
 
             hasFieldset: function(){
-                return this.get('content.viewSettings.form.elements').isAny('type', 'fieldset');
+                var hasFieldset;
+                try{
+                    hasFieldset = this.get('content.viewSettings.elements').isAny('type', 'fieldset');
+                } catch(error){
+                    var errorObject = {
+                        'statusText': error.name,
+                        'message': error.message,
+                        'stack': error.stack
+                    };
+                    this.send('templateLogs', errorObject, 'component');
+                } finally{
+                    return hasFieldset;
+                }
             }.property('model.@each'),
 
+            switchActivity: function(){
+                return this.get('settings').actions.activate && this.get('settings').actions.deactivate;
+            }.property('model.@each'),
             hasBackups: function(){
-                return !!this.get('settings').actions.backups;
+                return !!this.get('settings').actions.getBackupList;
             }.property('model.@each'),
-
-            backups: function(){// TODO: Выполняется лишний раз при уходе с роута http://youtrack.umicloud.ru/issue/cms-308
+            backups: function(){
                 var backups = {};
                 var object = this.get('object');
                 var settings = this.get('settings');
-                if(this.get('settings').actions.backups){
-                    backups.displayName = settings.actions.backups.displayName;
+                if(this.get('hasBackups')){
+                    backups.displayName = settings.actions.getBackupList.displayName;
                     var currentVersion = {
                         objectId: object.get('id'),
                         date: object.get('updated'),
@@ -107,8 +123,8 @@ define(
                     var params = '?id=' + object.get('id');
 
                     var promiseArray = DS.PromiseArray.create({
-                        promise: $.get(settings.actions.backups.source + params).then(function(data){
-                            return results.concat(data.result.backups.serviceBackup);
+                        promise: $.get(settings.actions.getBackupList.source + params).then(function(data){
+                            return results.concat(data.result.getBackupList.serviceBackup);
                         })
                     });
                     backups.list = Ember.ArrayProxy.create({
@@ -117,7 +133,6 @@ define(
                     return backups;
                 }
             }.property('model.@each'),
-
             access: function(){
                 var globalAllow = [
                     {
@@ -243,7 +258,6 @@ define(
                 });
                 return AccessObject.create({});
             }.property('model.object'),
-
             actions: {
                 applyBackup: function(backup){
                     if(backup.isActive){
@@ -257,32 +271,33 @@ define(
                         var current = list.findBy('id', backup.id);
                         Ember.set(current, 'isActive', true);
                     };
+                    object.rollback();
                     if(backup.current){
-                        object.rollback();
                         setCurrent();
                     } else{
                         var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
-                        $.get(self.get('settings').actions.backup.source + params).then(function(data){
-                            object.setProperties(data.result.backup);
+                        $.get(self.get('settings').actions.getBackup.source + params).then(function(data){
+                            object.setProperties(data.result.getBackup);
                             setCurrent();
                         });
                     }
                 },
                 toggleProperty: function(property){
                     this.get('model.object').toggleProperty(property);
+                },
+                switchActivity: function(){
+                    var object = this.get('object');
+                    this.get('controllers.component').send('switchActivity', object);
                 }
             }
         });
 
         UMI.FormElementController = Ember.ObjectController.extend({
             objectBinding: 'parentController.model.object',
-
             isFieldset: function(){
                 return this.get('content.type') === 'fieldset';
             }.property(),
-
             isExpanded: true,
-
             actions: {
                 expand: function(){
                     this.toggleProperty('isExpanded');
@@ -294,8 +309,7 @@ define(
             tagName: 'form',
             templateName: 'formControl',
             classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control'],
-
-            submit: function(){ //TODO перенести в action?
+            submit: function(){
                 return false;
             }
         });
@@ -303,12 +317,10 @@ define(
         UMI.FieldView = Ember.View.extend({
             classNames: ['umi-columns'],
             classNameBindings: ['wide', 'isError:error'],
-
             isError: function(){
                 var meta = this.get('meta');
                 return !!this.get('object.validErrors.' + meta.dataSource);
             }.property('object.validErrors'),
-
             wide: function(){
                 return this.get('meta.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12';
             }.property('meta.type'),
@@ -390,7 +402,6 @@ define(
                     }
                 }
             },
-
             didInsertElement: function(){
                 var el = this.$();
                 var scroll;
@@ -401,5 +412,6 @@ define(
                 this.set('iScroll', scroll);
             }
         });
+        createForm();
     }
 );

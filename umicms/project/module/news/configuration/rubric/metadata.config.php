@@ -102,12 +102,6 @@ return [
             'columnName'   => 'active',
             'defaultValue' => 1
         ],
-        NewsRubric::FIELD_LOCKED                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'locked',
-            'readOnly'     => true,
-            'defaultValue' => 0
-        ],
         NewsRubric::FIELD_TRASHED               => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'trashed',
@@ -179,7 +173,6 @@ return [
                 NewsRubric::FIELD_ORDER,
                 NewsRubric::FIELD_CHILD_COUNT,
                 NewsRubric::FIELD_ACTIVE,
-                NewsRubric::FIELD_LOCKED,
                 NewsRubric::FIELD_TRASHED,
                 NewsRubric::FIELD_CREATED,
                 NewsRubric::FIELD_UPDATED,

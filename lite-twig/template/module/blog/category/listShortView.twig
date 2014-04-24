@@ -1,0 +1,4 @@
+<a href="{{ category.getPageUrl() }}">
+    {{ category.h1 }}
+</a> {{ widget('blog.category.rss', {'category' : category, 'template' : 'rssLink'}) }}
+{{ widget('blog.category.list', {'parentCategory' : category, 'template' : 'listShort'}) }}
