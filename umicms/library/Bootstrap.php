@@ -358,7 +358,7 @@ class Bootstrap implements IProjectConfigAware
             function (PhpTemplateEngine $templateEngine) use ($dispatcher) {
 
                 $viewExtension = new ViewPhpExtension($dispatcher);
-                $templateExtension = new TemplatingPhpExtension();
+                $templateExtension = new TemplatingPhpExtension($dispatcher);
 
                 $templateEngine
                     ->addExtension($viewExtension)

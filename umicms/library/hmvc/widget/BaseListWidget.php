@@ -16,7 +16,7 @@ use umi\pagination\TPaginationAware;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\OutOfBoundsException;
 use umicms\orm\selector\CmsSelector;
-use umicms\templating\helper\pagination\PaginationHelper;
+use umicms\templating\helper\PaginationHelper;
 
 /**
  * Базовый класс виджета вывода списков с постраничной навигацией.
