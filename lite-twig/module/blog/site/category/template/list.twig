@@ -3,7 +3,6 @@
         {% for category in list %}
             <li>
                 {{ widget('blog.category.view', {'category' : category, 'template' : 'shortView'}) }}
-                {{ widget('blog.category.rss', {'category' : category, 'template' : 'rssLink'}) }}
             </li>
         {% endfor %}
     </ul>

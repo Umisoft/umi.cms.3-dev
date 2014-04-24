@@ -1,6 +1,6 @@
 <h2>
     <a href="{{ category.getPageUrl() }}">
         {{ category.h1 }}
-    </a>
+    </a> {{ widget('blog.category.rss', {'category' : category, 'template' : 'rssLink'}) }}
 </h2>
 {{ widget('blog.category.list', {'parentCategory' : category, 'template' : 'list'}) }}
