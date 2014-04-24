@@ -83,9 +83,13 @@ class SiteApplication extends SiteComponent
      */
     const SETTING_DEFAULT_TEMPLATE_EXTENSION = 'defaultTemplateExtension';
     /**
-     * Имя настройки для задания расширения файлов с шаблонами по умолчанию
+     * Имя настройки для задания директории общих шаблонов
      */
     const SETTING_COMMON_TEMPLATE_DIRECTORY = 'commonTemplateDirectory';
+    /**
+     * Имя настройки для задания директории шаблонов
+     */
+    const SETTING_TEMPLATE_DIRECTORY = 'templateDirectory';
     /**
      * Опция для задания сериализаторов приложения
      */

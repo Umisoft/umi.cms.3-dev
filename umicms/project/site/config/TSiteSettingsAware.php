@@ -129,6 +129,15 @@ trait TSiteSettingsAware
     }
 
     /**
+     * Возвращает путь директории с шаблонами сайта
+     * @return string
+     */
+    protected function getSiteTemplateDirectory()
+    {
+        return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_TEMPLATE_DIRECTORY);
+    }
+
+    /**
      * Возвращает путь директории с общими шаблонами сайта
      * @return string
      */

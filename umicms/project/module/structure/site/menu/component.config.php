@@ -34,6 +34,6 @@ return [
     ],
 
     SiteComponent::OPTION_VIEW        => [
-        'directories' => __DIR__ . '/template/php'
+        'directories' => ['module/structure/menu']
     ],
 ];

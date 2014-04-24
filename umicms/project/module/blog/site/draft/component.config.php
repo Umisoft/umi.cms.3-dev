@@ -90,7 +90,7 @@ return [
         ]
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
-        'directories' => __DIR__ . '/template/php'
+        'directories' => ['module/blog/draft'],
     ],
     DefaultSitePageComponent::OPTION_ROUTES => [
         'edit' => [
