@@ -12,9 +12,10 @@ define(
         './elements/datepicker/main',
         './elements/magellan/main',
         './formTypes/createForm/main',
+        './formTypes/basicForm/main',
         './toolbar/main'
     ],
-    function(UMI, formTpl, mixin, inputElement, checkboxElement, textareaElement, htmlEditorElement, selectElement, multiSelectElement, datepickerElement, magellanElement, createForm, toolbar){
+    function(UMI, formTpl, mixin, inputElement, checkboxElement, textareaElement, htmlEditorElement, selectElement, multiSelectElement, datepickerElement, magellanElement, createForm, basicForm, toolbar){
         'use strict';
 
         Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
@@ -196,4 +197,5 @@ define(
         });
 
         createForm();
+        basicForm();
     });

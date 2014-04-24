@@ -10,8 +10,10 @@ define([
     'text!./templates/actions/counter.hbs',
     'text!./templates/actions/megaIndex.hbs',
     'text!./templates/actions/yandexWebmaster.hbs',
-    'text!./templates/errors/errors.hbs'
-], function(applicationTpl, componentTpl, childrenTpl, createFormTpl, editFormTpl, filesTpl, treeTpl, countersTpl, counterTpl, megaIndexTpl, yandexWebmasterTpl, errorsTpl){
+    'text!./templates/errors/errors.hbs',
+    'text!./templates/settings/settings.hbs',
+    'text!./templates/settings/settingComponent.hbs'
+], function(applicationTpl, componentTpl, childrenTpl, createFormTpl, editFormTpl, filesTpl, treeTpl, countersTpl, counterTpl, megaIndexTpl, yandexWebmasterTpl, errorsTpl, settingsTpl, settingComponentTpl){
     'use strict';
     return function(){
         Ember.TEMPLATES['UMI/application'] = Ember.Handlebars.compile(applicationTpl);
@@ -29,5 +31,8 @@ define([
 
         Ember.TEMPLATES['UMI/module/errors'] = Ember.Handlebars.compile(errorsTpl);
         Ember.TEMPLATES['UMI/component/errors'] = Ember.Handlebars.compile(errorsTpl);
+
+        Ember.TEMPLATES['UMI/settings'] = Ember.Handlebars.compile(settingsTpl);
+        Ember.TEMPLATES['UMI/settings/component'] = Ember.Handlebars.compile(settingComponentTpl);
     };
 });

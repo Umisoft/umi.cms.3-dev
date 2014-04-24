@@ -540,5 +540,41 @@ define([], function(){
                 }
             }
         });
+
+
+        if('baseSettingsURL' in window.UmiSettings){
+            UMI.Router.map(function(){
+                this.resource('settings', {path: '/configure'}, function(){
+                    this.route('component', {path: '/:component'});
+                });
+            });
+
+
+            UMI.SettingsRoute = Ember.Route.extend({
+                model: function(){
+                    return $.get(window.UmiSettings.baseSettingsURL).then(
+                        function(settings){
+                            var treeControl = settings.result.components;
+                            return treeControl;
+                        }
+                    );
+                }
+            });
+
+            UMI.SettingsComponentRoute = Ember.Route.extend({
+                model: function(params){
+                    var settings = this.modelFor('settings');
+                    var component = settings.findBy('name', params.component);
+                    return $.get(component.resource).then(function(data){
+                        component.form = data.result.form;
+                        return component;
+                    });
+                },
+                serialize: function(model){
+                    console.log(arguments);
+                     ///return {component: model.get('name')};
+                }
+            });
+        }
     };
 });
