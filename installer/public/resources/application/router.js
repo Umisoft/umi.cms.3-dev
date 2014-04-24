@@ -564,15 +564,30 @@ define([], function(){
             UMI.SettingsComponentRoute = Ember.Route.extend({
                 model: function(params){
                     var settings = this.modelFor('settings');
-                    var component = settings.findBy('name', params.component);
+                    var findDepth = function findDepth(components, propertyName, propertyValue){
+                        var i;
+                        var component;
+                        var result;
+                        for(i = 0; i < components.length; i++){
+                            if(components[i][propertyName] === propertyValue){
+                                component = components[i];
+                            }
+                            if('components' in components[i]){
+                                result = findDepth(components[i].components, propertyName, propertyValue);
+                                if(result){
+                                    component = result;
+                                }
+                            }
+                        }
+                        return component;
+                    };
+                    var component = findDepth(settings, 'name', params.component);
                     return $.get(component.resource).then(function(data){
-                        component.form = data.result.form;
+                        Ember.set(component, 'form', data.result.form);
                         return component;
                     });
                 },
-                serialize: function(model){
-                    console.log(arguments);
-                     ///return {component: model.get('name')};
+                serialize: function(){
                 }
             });
         }

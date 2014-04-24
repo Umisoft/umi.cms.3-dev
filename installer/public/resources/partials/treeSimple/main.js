@@ -14,12 +14,12 @@ define([
         tagName: 'li',
         template: Ember.Handlebars.compile(itemTpl),
         isExpanded: false,
-        active: function(){
+        expanded: function(){
             var params = this.get('controller.target.router.state.params');
-            if(params && 'settings.component' in params){
-                return params['settings.component'].component === this.get('context.name');
+            if(params && 'settings.component' in params && params['settings.component'].component === this.get('context.name')){
+                this.set('isExpanded', true);
             }
-        }.property('controller.parentController.target.router.state.params'),
+        }.property(),
         actions: {
             expanded: function(){
                 this.toggleProperty('isExpanded');
