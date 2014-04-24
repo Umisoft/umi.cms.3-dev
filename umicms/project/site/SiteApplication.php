@@ -131,7 +131,7 @@ class SiteApplication extends SiteComponent
     {
         $this->registerSelectorInitializer();
         $this->registerSerializers();
-        $this->registerStreams();
+        $this->registerStreams($context);
 
         while (!$this->pageCallStack->isEmpty()) {
             $this->pageCallStack->pop();
@@ -344,15 +344,16 @@ class SiteApplication extends SiteComponent
     }
 
     /**
-     * Регистрирует стримы для XSLT
+     * @param IDispatchContext $context
      */
-    protected function registerStreams()
+    protected function registerStreams(IDispatchContext $context)
     {
         /**
          * @var IStreamService $streams
          */
         $streams = $this->getToolkit()->getService('umi\stream\IStreamService');
-        $streams->registerStream(self::WIDGET_PROTOCOL, function($uri) {
+        $streams->registerStream(self::WIDGET_PROTOCOL, function($uri) use ($context) {
+
             return '<a>' . $uri . '</a>';
         });
     }

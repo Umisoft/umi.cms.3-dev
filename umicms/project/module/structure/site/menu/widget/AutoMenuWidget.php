@@ -57,7 +57,7 @@ class AutoMenuWidget extends BaseSecureWidget
             $this->branch = $this->api->element()->get($this->branch);
         }
 
-        if (true || isset($this->branch) && !$this->branch instanceof StructureElement) {
+        if (isset($this->branch) && !$this->branch instanceof StructureElement) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
