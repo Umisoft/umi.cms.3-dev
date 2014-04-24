@@ -1,0 +1,23 @@
+<div {{bind-attr class=":umi-item view.active view.inActive"}}>
+    {{#if components}}
+        <span {{action "expanded" on="mouseDown" target="view"}} {{bind-attr class=":umi-expand"}}>
+            <i {{bind-attr class=":icon view.isExpanded:icon-bottom:icon-right"}}></i>
+        </span>
+        <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document"}}></i>
+    {{else}}
+        <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document"}}></i>
+    {{/if}}
+
+    {{#link-to "settings.component" name class="tree-item-link"}}
+        {{displayName}}
+    {{/link-to}}
+</div>
+
+{{#if view.isExpanded}}
+    <ul class="umi-tree-list">
+        {{#each components}}
+            {{view "treeSimpleItem"}}
+        {{/each}}
+    </ul>
+{{/if}}
+
