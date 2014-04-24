@@ -16,9 +16,21 @@ return [
         ]
     ],
 
-    'twig' => [
+    'demohunt_en' => [
         'type' => IRouteFactory::ROUTE_EXTENDED,
-        'route' => 'http://realloc.srv09.megaserver.umisoft.ru{uri}',
+        'route' => 'http://umicms3{uri}',
+        'rules' => [
+            'uri' => '/en'
+        ],
+        'defaults' => [
+            'destination' => '~/demohunt',
+            'config' => '~/project/project.config.php',
+            'locale' => 'en-US'
+        ]
+    ],
+    'demohunt_twig' => [
+        'type' => IRouteFactory::ROUTE_EXTENDED,
+        'route' => 'http://umicms3{uri}',
         'rules' => [
             'uri' => '/twig'
         ],
@@ -28,36 +40,13 @@ return [
             'locale' => 'ru-RU'
         ]
     ],
-
-    'php_en' => [
+    'demohunt_ru' => [
         'type' => IRouteFactory::ROUTE_EXTENDED,
-        'route' => 'http://realloc.srv09.megaserver.umisoft.ru{uri}',
-        'rules' => [
-            'uri' => '/en'
-        ],
+        'route' => 'http://umicms3',
         'defaults' => [
-            'destination' => '~/lite-php',
-            'config' => '~/project/project.config.php',
-            'locale' => 'en-US'
-        ]
-    ],
-
-    'php_ru' => [
-        'type' => IRouteFactory::ROUTE_EXTENDED,
-        'route' => 'http://realloc.srv09.megaserver.umisoft.ru',
-        'defaults' => [
-            'destination' => '~/lite-php',
+            'destination' => '~/demohunt',
             'config' => '~/project/project.config.php',
             'locale' => 'ru-RU'
         ]
     ],
-    'dasha_ru' => [
-        'type' => IRouteFactory::ROUTE_EXTENDED,
-        'route' => 'http://xn--80aak5f.xn--p1ai',
-        'defaults' => [
-            'destination' => '~/lite-php',
-            'config' => '~/project/project.config.php',
-            'locale' => 'ru-RU'
-        ]
-    ]
 ];

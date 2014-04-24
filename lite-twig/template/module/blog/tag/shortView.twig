@@ -1,0 +1,6 @@
+<h3>
+    <a href="{{ blogTag.getPageUrl() }}">
+        {{ blogTag.displayName }}
+    </a> {{ widget('blog.tag.rss', {'blogTag' : blogTag, 'template' : 'rssLink'}) }}
+</h3>
+{{ blogTag.contents }}
