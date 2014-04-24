@@ -1,0 +1,10 @@
+<?php
+/**
+ * @var \umi\form\element\Textarea $textarea
+ */
+$attributes = array_merge(
+    $textarea->getAttributes(),
+    ['name' => $textarea->getElementName()]
+);
+
+echo '<label>' . $textarea->getName() . '<textarea ' . buildAttributes($attributes) . ' >' . $textarea->getValue() . '</textarea></label>';

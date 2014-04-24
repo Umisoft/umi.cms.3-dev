@@ -26,8 +26,8 @@ return [
         'view' => __NAMESPACE__ . '\widget\BlogPostWidget',
         'list' => __NAMESPACE__ . '\widget\BlogPostListWidget',
         'rss' => __NAMESPACE__ . '\widget\BlogPostListRssUrlWidget',
-        'addPost' => __NAMESPACE__ . '\widget\BlogAddPostWidget',
-        'editPost' => __NAMESPACE__ . '\widget\BlogEditPostWidget',
+        'add' => __NAMESPACE__ . '\widget\BlogAddPostWidget',
+        'edit' => __NAMESPACE__ . '\widget\BlogEditPostWidget',
         'unPublish' => __NAMESPACE__ . '\widget\BlogDraftPostWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\BlogEditPostUrlWidget'
     ],
@@ -37,13 +37,22 @@ return [
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
-            'rssViewer' => []
+            'rssViewer' => [],
+            'author' => [],
+            'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:rss',
+            'controller:add',
+            'controller:edit',
+            'controller:unPublish',
             'widget:view',
             'widget:list',
-            'widget:rss'
+            'widget:rss',
+            'widget:addPost',
+            'widget:editPost',
+            'widget:unPublish',
+            'widget:editPostLink',
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -52,7 +61,39 @@ return [
             ],
             'rssViewer' => [
                 'controller:rss' => [],
-                'widget:rss' => []
+                'widget:rss' => [],
+            ],
+            'author' => [
+                'controller:add' => [],
+                'controller:edit' => [
+                    'edit' => ['own']
+                ],
+                'controller:unPublish' => [
+                    'publish' => ['own', 'published']
+                ],
+                'widget:addPost' => [],
+                'widget:editPost' => [
+                    'edit' => ['own']
+                ],
+                'widget:unPublish' => [
+                    'publish' => ['own', 'published']
+                ],
+                'widget:editPostLink' => [
+                    'edit' => ['own']
+                ],
+            ],
+            'moderator' => [
+                'controller:add' => [],
+                'controller:edit' => [],
+                'controller:unPublish' => [
+                    'publish' => ['published']
+                ],
+                'widget:addPost' => [],
+                'widget:editPost' => [],
+                'widget:unPublish' => [
+                    'publish' => ['published']
+                ],
+                'widget:editPostLink' => [],
             ]
         ]
     ],

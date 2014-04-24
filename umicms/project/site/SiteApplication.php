@@ -90,13 +90,10 @@ class SiteApplication extends SiteComponent
      * Опция для задания сериализаторов приложения
      */
     const OPTION_SERIALIZERS = 'serializers';
-
     /**
      * Формат запроса по умолчанию.
      */
     const DEFAULT_REQUEST_FORMAT = 'html';
-
-    public $defaultOptions = [];
     /**
      * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
      */

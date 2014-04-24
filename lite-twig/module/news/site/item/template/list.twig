@@ -1,0 +1,7 @@
+{% if (list.getTotal()) %}
+    {% for newsItem in list %}
+        {{ widget('news.item.view', {'newsItem' : newsItem, 'template' : 'shortView'}) }}
+    {% endfor %}
+
+    {{ include('pagination.twig', {'pagination' : pagination}) }}
+{% endif %}

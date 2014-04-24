@@ -19,7 +19,8 @@ return [
         ISerializerFactory::TYPE_XML => [
             'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
             'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\object\CmsElementSerializer',
-            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\object\FieldSerializer'
+            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\object\FieldSerializer',
+            'umicms\hmvc\view\CmsView' => 'umicms\serialization\xml\view\CmsViewSerializer'
         ],
         ISerializerFactory::TYPE_JSON => [
             'umi\orm\metadata\ObjectType' => 'umicms\serialization\json\orm\ObjectTypeSerializer',

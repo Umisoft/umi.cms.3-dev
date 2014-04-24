@@ -1,0 +1,17 @@
+{% if (pagination.pagesCount) %}
+    <ul class="pagination">
+        {% if (pagination.previousPageUrl) %}
+            <li><a href="{{ pagination.previousPageUrl }}">Назад</a></li>
+        {% endif %}
+        {% for page, link in pagination.pagesRange %}
+            {% if (page != pagination.currentPage) %}
+                <li><a href="{{ link }}">{{ page }}</a></li>
+            {% else %}
+                <li class="active"><span>{{ page }}</span></li>
+            {% endif %}
+        {% endfor %}
+        {% if (pagination.nextPageUrl) %}
+            <li><a href="{{ pagination.nextPageUrl }}">Дальше</a></li>
+        {% endif %}
+    </ul>
+{% endif %}

@@ -1,0 +1,13 @@
+<?php
+/**
+ * @var umicms\project\module\blog\api\object\BlogPost $page
+ */
+?>
+<h1><?= $page->h1 ?></h1>
+<time datetime="<?= $page->publishTime->format('c')?>">
+    <?= $page->publishTime->format('d.m.Y | H:i')?>
+</time>
+<?= $page->contents ?>
+
+<h1>Комментарии:</h1>
+<?= $this->widget('blog.comment.list', ['blogPost' => $page, 'template' => 'list']); ?>

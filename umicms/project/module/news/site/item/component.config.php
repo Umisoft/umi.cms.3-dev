@@ -28,7 +28,7 @@ return [
     ],
 
     DefaultSitePageComponent::OPTION_VIEW => [
-        'directories' => __DIR__ . '/template/php'
+        'directories' => [__DIR__ . '/template/php']
     ],
 
     DefaultSitePageComponent::OPTION_ACL => [

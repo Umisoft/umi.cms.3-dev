@@ -10,7 +10,6 @@ namespace umicms\project\site\controller;
 
 use umi\http\Response;
 use umicms\hmvc\controller\BaseController;
-use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\api\StructureModule;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
@@ -31,19 +30,19 @@ class LayoutController extends BaseController implements ISiteSettingsAware, IPa
      */
     protected $response;
     /**
-     * @var StructureModule $structureApi
+     * @var StructureModule $structure
      */
-    protected $structureApi;
+    protected $structure;
 
     /**
      * Конструктор.
      * @param Response $response
-     * @param StructureModule $structureApi
+     * @param StructureModule $structure
      */
-    public function __construct(Response $response, StructureModule $structureApi)
+    public function __construct(Response $response, StructureModule $structure)
     {
         $this->response = $response;
-        $this->structureApi = $structureApi;
+        $this->structure = $structure;
     }
 
     /**
@@ -51,15 +50,17 @@ class LayoutController extends BaseController implements ISiteSettingsAware, IPa
      */
     public function __invoke()
     {
-        $response = $this->createViewResponse(
-            $this->getLayoutName(),
-            [
-                'title' => $this->getMetaTitle(),
-                'description' => $this->getMetaDescription(),
-                'keywords' => $this->getMetaKeywords(),
-                'contents' => $this->response->getContent()
-            ]
-        );
+        $variables = [];
+
+        if ($this->hasCurrentPage()) {
+            $variables['title'] = $this->getMetaTitle();
+            $variables['description'] = $this->getMetaDescription();
+            $variables['keywords'] = $this->getMetaKeywords();
+        }
+
+        $variables['contents'] = $this->response->getContent();
+
+        $response = $this->createViewResponse($this->getLayoutName(), $variables);
 
         $response->setStatusCode($this->response->getStatusCode());
         $response->headers->replace($this->response->headers->all());
@@ -67,71 +68,66 @@ class LayoutController extends BaseController implements ISiteSettingsAware, IPa
         return $response;
     }
 
-
+    /**
+     * Вычисляет meta-title.
+     * @return string
+     */
     protected function getMetaTitle()
     {
         $titlePrefix = $this->getSiteTitlePrefix();
 
-        if ($this->hasCurrentPage()) {
-            /**
-             * @var ICmsPage $page
-             */
-            foreach ($this->getPageCallStack() as $page) {
-                if ($page->metaTitle) {
-                    return $titlePrefix . $page->metaTitle;
-                }
+        foreach ($this->getPageCallStack() as $page) {
+            if ($page->metaTitle) {
+                return $titlePrefix . $page->metaTitle;
             }
         }
 
         return $titlePrefix . $this->getSiteDefaultTitle();
     }
 
+    /**
+     * Вычисляет meta-keywords.
+     * @return string
+     */
     protected function getMetaKeywords()
     {
-        if ($this->hasCurrentPage()) {
-            /**
-             * @var ICmsPage $page
-             */
-            foreach ($this->getPageCallStack() as $page) {
-                if ($page->metaKeywords) {
-                    return $page->metaKeywords;
-                }
+        foreach ($this->getPageCallStack() as $page) {
+            if ($page->metaKeywords) {
+                return $page->metaKeywords;
             }
         }
 
         return $this->getSiteDefaultKeywords();
     }
 
+    /**
+     * Вычисляет meta-description.
+     * @return string
+     */
     protected function getMetaDescription()
     {
-        if ($this->hasCurrentPage()) {
-            /**
-             * @var ICmsPage $page
-             */
-            foreach ($this->getPageCallStack() as $page) {
-                if ($page->metaDescription) {
-                    return $page->metaDescription;
-                }
+        foreach ($this->getPageCallStack() as $page) {
+            if ($page->metaDescription) {
+                return $page->metaDescription;
             }
         }
 
         return $this->getSiteDefaultDescription();
     }
 
+    /**
+     * Вычисляет имя шаблона-сетки.
+     * @return string
+     */
     protected function getLayoutName()
     {
-        if ($this->hasCurrentPage()) {
-            /**
-             * @var ICmsPage $page
-             */
-            foreach ($this->getPageCallStack() as $page) {
-                if ($page->layout) {
-                    return $page->layout->fileName;
-                }
+        foreach ($this->getPageCallStack() as $page) {
+            if ($page->layout) {
+                return $page->layout->fileName;
             }
         }
 
-        return $this->structureApi->layout()->getDefaultLayout()->fileName;
+        return $this->structure->layout()->getDefaultLayout()->fileName;
     }
 
 }

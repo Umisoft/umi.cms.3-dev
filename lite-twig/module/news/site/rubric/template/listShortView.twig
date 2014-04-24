@@ -1,0 +1,4 @@
+<a href="{{ rubric.getPageUrl() }}">
+    {{ rubric.h1 }}
+</a> {{ widget('news.rubric.rss', {'rubric' : rubric, 'template' : 'rssLink'}) }}
+{{ widget('news.rubric.list', {'parentRubric' : rubric, 'template' : 'listShort'}) }}

@@ -14,6 +14,7 @@ use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\hmvc\view\CmsView;
 
 /**
  * Базовый контроллер UMI.CMS
@@ -21,6 +22,18 @@ use umicms\hmvc\url\TUrlManagerAware;
 abstract class BaseController extends FrameworkController implements IUrlManagerAware
 {
     use TUrlManagerAware;
+
+    /**
+     * Устанавливает опции сериализации результата работы контроллера в XML или JSON.
+     * Может быть переопределен в конкретном контроллере для задания переменных,
+     * которые будут преобразованы в атрибуты xml, а так же переменные, которые будут проигнорированы
+     * в xml или json.
+     * @param CmsView $view результат работы виджета
+     */
+    protected function setSerializationOptions(CmsView $view)
+    {
+
+    }
 
     /**
      * Возвращает значение параметра из GET-параметров запроса.
@@ -57,6 +70,18 @@ abstract class BaseController extends FrameworkController implements IUrlManager
         $url .= $this->getComponent()->getRouter()->assemble($routeName, $routeParams);
 
         return $url;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createView($templateName, array $variables = [])
+    {
+        $view = new CmsView($this, $this->getContext(), $templateName, $variables);
+
+        $this->setSerializationOptions($view);
+
+        return $view;
     }
 
 }

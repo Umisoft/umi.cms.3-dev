@@ -36,13 +36,15 @@ return [
             'widget:view',
             'widget:list',
             'widget:postList',
-            'widget:rss'
+            'widget:rss',
+            'widget:cloud'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'widget:view' => [],
                 'widget:list' => [],
-                'widget:postList' => []
+                'widget:postList' => [],
+                'widget:cloud' => []
             ],
             'rssViewer' => [
                 'controller:rss' => [],
