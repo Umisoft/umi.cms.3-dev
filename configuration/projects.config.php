@@ -16,6 +16,19 @@ return [
         ]
     ],
 
+    'twig' => [
+        'type' => IRouteFactory::ROUTE_EXTENDED,
+        'route' => 'http://realloc.srv09.megaserver.umisoft.ru{uri}',
+        'rules' => [
+            'uri' => '/twig'
+        ],
+        'defaults' => [
+            'destination' => '~/lite-twig',
+            'config' => '~/project/project.config.php',
+            'locale' => 'ru-RU'
+        ]
+    ],
+
     'demohunt_en' => [
         'type' => IRouteFactory::ROUTE_EXTENDED,
         'route' => 'http://realloc.srv09.megaserver.umisoft.ru{uri}',
