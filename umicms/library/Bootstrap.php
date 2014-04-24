@@ -276,11 +276,16 @@ class Bootstrap implements IProjectConfigAware
     protected function prepareRequest(Request $request)
     {
         $pathInfo = $request->getPathInfo();
+        $requestedUri = $request->getRequestUri();
+        $queryString = $request->getQueryString();
 
-        if ($pathInfo != '/' && substr($pathInfo, -1, 1) == '/') {
+        if (
+            ($pathInfo != '/' && substr($pathInfo, -1, 1) == '/') ||
+            (substr($requestedUri, -1, 1) == '?') && !$queryString)
+        {
 
             $url = rtrim($pathInfo, '/');
-            if ($queryString = $request->getQueryString()) {
+            if ($queryString) {
                 $url .= '?' . $queryString;
             }
             $redirectLocation = $request->getSchemeAndHttpHost() . $url;
