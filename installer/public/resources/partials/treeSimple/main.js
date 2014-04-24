@@ -13,7 +13,7 @@ define([
     UMI.TreeSimpleItemView = Ember.View.extend({
         tagName: 'li',
         template: Ember.Handlebars.compile(itemTpl),
-        isExpanded: false,
+        isExpanded: true,
         expanded: function(){
             var params = this.get('controller.target.router.state.params');
             if(params && 'settings.component' in params && params['settings.component'].component === this.get('context.name')){
