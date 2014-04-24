@@ -19,6 +19,7 @@ use umi\http\THttpAware;
 use umi\stream\IStreamService;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
@@ -131,7 +132,11 @@ class SiteApplication extends SiteComponent
     {
         $this->registerSelectorInitializer();
         $this->registerSerializers();
-        $this->registerStreams($context);
+
+        $dispatcher = $context->getDispatcher();
+        if ($dispatcher instanceof CmsDispatcher) {
+            $this->registerStreams($dispatcher);
+        }
 
         while (!$this->pageCallStack->isEmpty()) {
             $this->pageCallStack->pop();
@@ -186,17 +191,27 @@ class SiteApplication extends SiteComponent
                 ));
             }
 
-            $result = [
-                'result' => $response->getContent()
-            ];
-
-            $serializer = $this->getSerializer($requestFormat, $result);
-            $serializer->init();
-            $serializer($result);
-            $response->setContent($serializer->output());
+            $result = $this->serializeResult($requestFormat, $response->getContent());
+            $response->setContent($result);
         }
 
         return $response;
+    }
+
+    /**
+     * Сериализует результат в указанный формат
+     * @param string $format формат
+     * @param mixed $variables список переменных
+     * @return string
+     */
+    protected function serializeResult($format, $variables) {
+        $serializer = $this->getSerializer($format, []);
+        $serializer->init();
+        $serializer([
+            'result' => $variables
+        ]);
+
+        return $serializer->output();
     }
 
     /**
@@ -344,17 +359,25 @@ class SiteApplication extends SiteComponent
     }
 
     /**
-     * @param IDispatchContext $context
+     * Регистрирует стримы для XSLT.
+     * @param CmsDispatcher $dispatcher
      */
-    protected function registerStreams(IDispatchContext $context)
+    protected function registerStreams(CmsDispatcher $dispatcher)
     {
         /**
          * @var IStreamService $streams
          */
         $streams = $this->getToolkit()->getService('umi\stream\IStreamService');
-        $streams->registerStream(self::WIDGET_PROTOCOL, function($uri) use ($context) {
+        $streams->registerStream(self::WIDGET_PROTOCOL, function($uri) use ($dispatcher) {
+            $widgetInfo = parse_url($uri);
+            $widgetParams = [];
+            if (isset($widgetInfo['query'])) {
+                parse_str($widgetInfo['query'], $widgetParams);
+            }
 
-            return '<a>' . $uri . '</a>';
+            return $this->serializeResult(ISerializerFactory::TYPE_XML, [
+                'contents' => $dispatcher->executeWidgetByPath($widgetInfo['host'], $widgetParams)
+            ]);
         });
     }
 

@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace project\lite_php\controller;
+namespace project\install\controller;
 
 use Doctrine\DBAL\DBALException;
 use umi\dbal\cluster\IDbCluster;

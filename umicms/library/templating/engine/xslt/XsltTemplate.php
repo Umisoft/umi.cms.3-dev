@@ -49,8 +49,15 @@ class XsltTemplate implements ISerializationAware
     public static function callWidget($widgetName, $paramString = '')
     {
         $uri = SiteApplication::WIDGET_PROTOCOL . '://' . $widgetName;
+        if ($paramString) {
+            $uri .= '?' . $paramString;
+        }
         $result = file_get_contents($uri);
-        return (new DOMDocument('1.0', 'utf8'))->loadXML($result);
+
+        $dom = new DOMDocument('1.0', 'utf8');
+        $dom->loadXML($result);
+
+        return $dom;
     }
 
     /**

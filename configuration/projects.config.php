@@ -3,7 +3,7 @@
 use umi\route\IRouteFactory;
 
 return [
-    'xslt' => [
+    'lite-xslt' => [
         'type' => IRouteFactory::ROUTE_EXTENDED,
         'route' => 'http://realloc.srv09.megaserver.umisoft.ru{uri}',
         'rules' => [
@@ -16,21 +16,9 @@ return [
         ]
     ],
 
-    'demohunt_en' => [
+    'lite-twig' => [
         'type' => IRouteFactory::ROUTE_EXTENDED,
-        'route' => 'http://umicms3{uri}',
-        'rules' => [
-            'uri' => '/en'
-        ],
-        'defaults' => [
-            'destination' => '~/demohunt',
-            'config' => '~/project/project.config.php',
-            'locale' => 'en-US'
-        ]
-    ],
-    'demohunt_twig' => [
-        'type' => IRouteFactory::ROUTE_EXTENDED,
-        'route' => 'http://umicms3{uri}',
+        'route' => 'http://realloc.srv09.megaserver.umisoft.ru{uri}',
         'rules' => [
             'uri' => '/twig'
         ],
@@ -40,13 +28,27 @@ return [
             'locale' => 'ru-RU'
         ]
     ],
-    'demohunt_ru' => [
+
+    'lite-php-en' => [
         'type' => IRouteFactory::ROUTE_EXTENDED,
-        'route' => 'http://umicms3',
+        'route' => 'http://realloc.srv09.megaserver.umisoft.ru{uri}',
+        'rules' => [
+            'uri' => '/en'
+        ],
         'defaults' => [
-            'destination' => '~/demohunt',
+            'destination' => '~/lite-php',
+            'config' => '~/project/project.config.php',
+            'locale' => 'en-US'
+        ]
+    ],
+    'lite-php-ru' => [
+        'type' => IRouteFactory::ROUTE_EXTENDED,
+        'route' => 'http://realloc.srv09.megaserver.umisoft.ru',
+        'defaults' => [
+            'destination' => '~/lite-php',
             'config' => '~/project/project.config.php',
             'locale' => 'ru-RU'
         ]
     ],
+
 ];

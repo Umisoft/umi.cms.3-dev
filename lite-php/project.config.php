@@ -16,10 +16,10 @@ return [
                     'connection' => [
                         'type' => DbalTools::CONNECTION_TYPE_PDOMYSQL,
                         'options' => [
-                            'dbname' => 'umicms3',
-                            'user' => 'pma',
-                            'password' => 'pma',
-                            'host' => 'localhost',
+                            'dbname' => 'srv09realloc',
+                            'user' => 'srv09realloc',
+                            'password' => 'srv09realloc',
+                            'host' => 'srv01.megaserver.umisoft.ru',
                             'charset' => 'utf8'
                         ]
                     ]
@@ -32,7 +32,7 @@ return [
     ],
 
     IComponent::OPTION_CONTROLLERS => [
-        'install' =>   'demohunt\controller\InstallController'
+        'install' =>   'project\install\controller\InstallController'
     ],
 
     IComponent::OPTION_ROUTES => [

@@ -28,6 +28,7 @@
             <body>
                 <umi:widget name="structure.menu.auto" />
 
+                <xsl:apply-templates select="document('widget://structure.menu.auto?params=1')/result" />
 
                 <xsl:apply-templates select="result/contents/page" />
             </body>
