@@ -54,7 +54,7 @@ return [
     ],
 
     DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
-        'directories' => [__DIR__ . '/template/php']
+        'directories' => ['module/news/rubric']
     ],
 
     DefaultSiteHierarchicPageComponent::OPTION_ROUTES      => [

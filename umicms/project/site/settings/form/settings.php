@@ -75,7 +75,8 @@ return [
                 'dataSource' => SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE,
                 'choices' => [
                     'php' => 'php',
-                    'twig' => 'twig'
+                    'twig' => 'twig',
+                    'xslt' => 'xslt'
                 ]
             ]
         ],
@@ -84,6 +85,13 @@ return [
             'label' => SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION,
             'options' => [
                 'dataSource' => SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION
+            ]
+        ],
+        SiteApplication::SETTING_TEMPLATE_DIRECTORY => [
+            'type' => Text::TYPE_NAME,
+            'label' => SiteApplication::SETTING_TEMPLATE_DIRECTORY,
+            'options' => [
+                'dataSource' => SiteApplication::SETTING_TEMPLATE_DIRECTORY
             ]
         ],
         SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => [

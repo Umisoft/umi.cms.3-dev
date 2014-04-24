@@ -50,7 +50,7 @@ return [
         ]
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
-        'directories' => __DIR__ . '/template/php',
+        'directories' => ['module/blog/author'],
     ],
     DefaultSitePageComponent::OPTION_ROUTES => [
         'rss' => [

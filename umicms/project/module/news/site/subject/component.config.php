@@ -54,7 +54,7 @@ return [
     ],
 
     DefaultSitePageComponent::OPTION_VIEW        => [
-        'directories' => [__DIR__ . '/template/php']
+        'directories' => ['module/news/subject']
     ],
 
     DefaultSitePageComponent::OPTION_ROUTES      => [

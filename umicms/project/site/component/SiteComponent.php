@@ -9,6 +9,9 @@
 
 namespace umicms\project\site\component;
 
+use umi\config\exception\RuntimeException;
+use umi\config\io\IConfigAliasResolverAware;
+use umi\config\io\TConfigAliasResolverAware;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\model\IModelAware;
 use umi\hmvc\view\IViewRenderer;
@@ -23,10 +26,11 @@ use umicms\project\site\config\TSiteSettingsAware;
 /**
  * Компонент сайта.
  */
-class SiteComponent extends BaseComponent implements IPageCallStackAware, ISiteSettingsAware
+class SiteComponent extends BaseComponent implements IPageCallStackAware, ISiteSettingsAware, IConfigAliasResolverAware
 {
     use TPageCallStackAware;
     use TSiteSettingsAware;
+    use TConfigAliasResolverAware;
 
     /**
      * @var IViewRenderer $viewRenderer рендерер шаблонов
@@ -76,6 +80,10 @@ class SiteComponent extends BaseComponent implements IPageCallStackAware, ISiteS
         return $this->viewRenderer;
     }
 
+    /**
+     * Возвращает конфигурацию щаблонизатора.
+     * @return array
+     */
     protected function getViewRendererConfig()
     {
         $config = isset($this->options[self::OPTION_VIEW]) ? $this->options[self::OPTION_VIEW] : [];
@@ -89,11 +97,33 @@ class SiteComponent extends BaseComponent implements IPageCallStackAware, ISiteS
             $config['extension'] = $this->getSiteDefaultTemplateExtension();
         }
 
-        if ($commonDirectory = $this->getSiteCommonTemplateDirectory()) {
-            $directories = isset($config['directories']) ? (array) $config['directories'] : [];
-            $directories[] = $commonDirectory;
+        $templateDirectory = $this->getSiteTemplateDirectory();
+        if ($templateDirectory) {
+            try {
+                list (, $localDirectory) = $this->getFilesByAlias($templateDirectory);
+                $templateDirectory = $localDirectory;
+            } catch(RuntimeException $e) {}
+        }
+        if ($templateDirectory) {
+            $templateDirectory .= DIRECTORY_SEPARATOR;
+        }
 
-            $config['directories'] = $directories;
+        $commonTemplateDirectory = $this->getSiteCommonTemplateDirectory();
+        if ($commonTemplateDirectory) {
+            try {
+                list (, $localDirectory) = $this->getFilesByAlias($commonTemplateDirectory);
+                $commonTemplateDirectory = $localDirectory;
+            } catch(RuntimeException $e) {}
+        }
+
+        $directories = isset($config['directories']) ? (array) $config['directories'] : [];
+
+        $config['directories'] = [];
+        foreach ($directories as $directory) {
+            $config['directories'][] = $templateDirectory . $directory;
+        }
+        if ($commonTemplateDirectory) {
+            $config['directories'][] = $commonTemplateDirectory;
         }
 
         return $config;

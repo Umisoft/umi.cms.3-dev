@@ -53,7 +53,7 @@ return [
         ]
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
-        'directories' => __DIR__ . '/template/php'
+        'directories' => ['module/blog/tag'],
     ],
     DefaultSitePageComponent::OPTION_ROUTES => [
         'rss' => [

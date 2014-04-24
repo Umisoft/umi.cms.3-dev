@@ -79,7 +79,7 @@ return [
     ],
 
     SiteComponent::OPTION_VIEW => [
-        'directories' => __DIR__ . '/template/php'
+        'directories' => ['module/blog'],
     ],
 
     SiteComponent::OPTION_ROUTES      => [

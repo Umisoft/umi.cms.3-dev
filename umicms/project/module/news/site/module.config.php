@@ -41,7 +41,7 @@ return [
     ],
 
     SiteComponent::OPTION_VIEW        => [
-        'directories' => [__DIR__ . '/template/php']
+        'directories' => ['module/news']
     ],
 
     SiteComponent::OPTION_ROUTES      => [

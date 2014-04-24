@@ -15,4 +15,6 @@ return [
     SiteApplication::SETTING_DEFAULT_TITLE => 'UMI.CMS',
     SiteApplication::SETTING_TITLE_PREFIX => 'UMI.CMS - ',
     SiteApplication::SETTING_DEFAULT_KEYWORDS => 'UMI.CMS',
+
+    SiteApplication::SETTING_TEMPLATE_DIRECTORY => '~/project/template'
 ];
