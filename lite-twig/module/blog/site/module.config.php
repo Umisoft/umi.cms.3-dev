@@ -9,9 +9,7 @@
 use umicms\project\site\component\SiteComponent;
 
 return [
-    SiteComponent::OPTION_VIEW        => [
-        'type'      => 'twig',
-        'extension' => 'twig',
+    SiteComponent::OPTION_VIEW => [
         'directories' => __DIR__ . '/template'
     ],
 ];

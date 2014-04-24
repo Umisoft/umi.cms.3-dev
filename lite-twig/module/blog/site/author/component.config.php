@@ -10,8 +10,6 @@ use umicms\project\site\SiteApplication;
 
 return [
     SiteApplication::OPTION_VIEW => [
-        'type' => 'twig',
-        'extension' => 'twig',
         'directories' => __DIR__ . '/template'
     ]
 ];

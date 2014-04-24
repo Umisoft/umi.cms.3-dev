@@ -6,12 +6,10 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-use umicms\project\site\SiteApplication;
+use umicms\project\site\component\SiteComponent;
 
 return [
-    SiteApplication::OPTION_VIEW => [
-        'type' => 'twig',
-        'extension' => 'twig',
-        'directories' => __DIR__ . '/template'
+    SiteComponent::OPTION_VIEW => [
+        'directories' => [__DIR__ . '/template']
     ]
 ];

@@ -1,0 +1,6 @@
+<h2>
+    <a href="{{ category.getPageUrl() }}">
+        {{ category.h1 }}
+    </a>
+</h2>
+{{ widget('blog.category.list', {'parentCategory' : category, 'template' : 'list'}) }}
