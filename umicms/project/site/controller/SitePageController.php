@@ -11,7 +11,7 @@ namespace umicms\project\site\controller;
 
 use umi\hmvc\component\IComponent;
 use umicms\hmvc\controller\BaseSecureController;
-use umicms\hmvc\dispatcher\Dispatcher;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
 
@@ -40,7 +40,7 @@ abstract class SitePageController extends BaseSecureController implements IPageC
      */
     private function getShortPath()
     {
-        $relativePath = substr($this->getComponent()->getPath(), strlen(Dispatcher::SITE_COMPONENT_PATH) + 1);
+        $relativePath = substr($this->getComponent()->getPath(), strlen(CmsDispatcher::SITE_COMPONENT_PATH) + 1);
         $relativePath .= IComponent::PATH_SEPARATOR . $this->getName();
 
         return $relativePath;

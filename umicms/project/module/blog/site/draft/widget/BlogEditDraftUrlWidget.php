@@ -53,7 +53,7 @@ class BlogEditDraftUrlWidget extends BaseSecureWidget
         if (isset($this->blogDraft) && !$this->blogDraft instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Widget parameter "{param} should be instance of "{class}".',
+                    'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogDraft',
                         'class' => 'BlogPost'

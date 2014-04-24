@@ -12,7 +12,7 @@ namespace umicms\hmvc\url;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umicms\exception\RuntimeException;
-use umicms\hmvc\dispatcher\Dispatcher;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
@@ -30,7 +30,7 @@ class UrlManager implements IUrlManager, ILocalizable
     use TLocalizable;
 
     /**
-     * @var Dispatcher $dispatcher диспетчер компонентов
+     * @var CmsDispatcher $dispatcher диспетчер компонентов
      */
     protected $dispatcher;
     /**
@@ -60,10 +60,10 @@ class UrlManager implements IUrlManager, ILocalizable
 
     /**
      * Конструктор.
-     * @param Dispatcher $dispatcher диспетчер компонентов
+     * @param CmsDispatcher $dispatcher диспетчер компонентов
      * @param StructureModule $structureApi
      */
-    public function __construct(Dispatcher $dispatcher, StructureModule $structureApi)
+    public function __construct(CmsDispatcher $dispatcher, StructureModule $structureApi)
     {
         $this->dispatcher = $dispatcher;
         $this->structureApi = $structureApi;

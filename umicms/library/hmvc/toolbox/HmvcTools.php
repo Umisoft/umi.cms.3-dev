@@ -10,6 +10,7 @@
 namespace umicms\hmvc\toolbox;
 
 use umi\hmvc\toolbox\HmvcTools as FrameworkHmvcTools;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManager;
 use umicms\hmvc\url\IUrlManagerAware;
 
@@ -27,7 +28,7 @@ class HmvcTools extends FrameworkHmvcTools
     /**
      * {@inheritdoc}
      */
-    public $dispatcherClass = 'umicms\hmvc\dispatcher\Dispatcher';
+    public $dispatcherClass = 'umicms\hmvc\dispatcher\CmsDispatcher';
 
     /**
      * {@inheritdoc}
@@ -52,6 +53,19 @@ class HmvcTools extends FrameworkHmvcTools
         }
 
         parent::injectDependencies($object);
+    }
+
+    /**
+     * Возвращает диспетчер MVC-компонентов.
+     * @return CmsDispatcher
+     */
+    protected function getDispatcher()
+    {
+        return $this->getPrototype(
+            $this->dispatcherClass,
+            ['umicms\hmvc\dispatcher\CmsDispatcher']
+        )
+            ->createSingleInstance();
     }
 
     /**

@@ -14,6 +14,7 @@ use DOMNode;
 use DOMXPath;
 use umi\templating\exception\RuntimeException;
 use umicms\exception\LibXMLException;
+use umicms\project\site\SiteApplication;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\TSerializationAware;
 use XSLTProcessor;
@@ -37,6 +38,26 @@ class XsltTemplate implements ISerializationAware
     public function __construct(XsltTemplateEngine $templateEngine)
     {
         $this->templateEngine = $templateEngine;
+    }
+
+    /**
+     * Вызывает виджет через стрим.
+     * @param $widgetName
+     * @param string $paramString
+     * @return string
+     */
+    public static function callWidget($widgetName, $paramString = '')
+    {
+        $uri = SiteApplication::WIDGET_PROTOCOL . '://' . $widgetName;
+        if ($paramString) {
+            $uri .= '?' . $paramString;
+        }
+        $result = file_get_contents($uri);
+
+        $dom = new DOMDocument('1.0', 'utf8');
+        $dom->loadXML($result);
+
+        return $dom;
     }
 
     /**
@@ -82,7 +103,7 @@ class XsltTemplate implements ISerializationAware
         foreach ($xpath->query('//umi:widget') as $widgetNode) {
             if ($widgetName = $widgetNode->attributes->getNamedItem('name')) {
                 $functionNode = $template->createElement('xsl:apply-templates');
-                $function = 'php:function(\'umicms\templating\engine\xslt\XsltTemplateEngine::callWidget\'';
+                $function = 'php:function(\'' .__CLASS__ . '::callWidget\'';
                 $function .= ', \'' . $widgetName->nodeValue . '\')/result';
                 $functionNode->setAttribute('select', $function);
 

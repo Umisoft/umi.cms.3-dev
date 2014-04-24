@@ -9,21 +9,76 @@
 
 namespace umicms\templating\engine\php;
 
-use umi\templating\engine\php\ViewPhpExtension as FrameworkViewPhpExtension;
-use umicms\hmvc\dispatcher\Dispatcher;
+use umi\hmvc\view\helper\IsAllowedHelper;
+use umi\templating\engine\php\IPhpExtension;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 
 /**
- * {@inheritdoc}
+ * Расширение для подключения помощников вида в PHP-шаблонах.
  */
-class ViewPhpExtension extends FrameworkViewPhpExtension
+class ViewPhpExtension implements IPhpExtension
 {
     /**
-     * @var Dispatcher $dispatcher диспетчер
+     * @var string $widgetFunctionName имя функции для вызова виджета
+     */
+    public $widgetFunctionName = 'widget';
+    /**
+     * @var string $isAllowedFunctionName имя функции для проверки прав
+     */
+    public $isAllowedFunctionName = 'isAllowed';
+
+    /**
+     * @var CmsDispatcher $dispatcher диспетчер
      */
     protected $dispatcher;
 
     /**
+     * @var IsAllowedHelper $isAllowedHelper
+     */
+    private $isAllowedHelper;
+
+    /**
+     * Конструктор.
+     * @param CmsDispatcher $dispatcher диспетчер
+     */
+    public function __construct(CmsDispatcher $dispatcher) {
+        $this->dispatcher = $dispatcher;
+    }
+
+    /**
      * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return __CLASS__;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFunctions()
+    {
+        return [
+            $this->widgetFunctionName => $this->getWidgetHelper(),
+            $this->isAllowedFunctionName => $this->getIsAllowedHelper()
+        ];
+    }
+
+    /**
+     * Возвращает помощник вида для проверки прав.
+     * @return callable
+     */
+    protected function getIsAllowedHelper()
+    {
+        if (!$this->isAllowedHelper) {
+            $this->isAllowedHelper = new IsAllowedHelper($this->dispatcher);
+        }
+        return $this->isAllowedHelper;
+    }
+
+    /**
+     * Возвращает помощник вида для вызова виджетов
+     * @return callable
      */
     protected function getWidgetHelper()
     {

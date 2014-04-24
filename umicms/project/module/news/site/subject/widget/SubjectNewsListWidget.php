@@ -58,7 +58,7 @@ class SubjectNewsListWidget extends BaseListWidget
             if (isset($subject) && !$subject instanceof NewsSubject) {
                 throw new InvalidArgumentException(
                     $this->translate(
-                        'Widget parameter "{param} should be instance of "{class}".',
+                        'Widget parameter "{param}" should be instance of "{class}".',
                         [
                             'param' => 'subjects',
                             'class' => 'NewsSubject'

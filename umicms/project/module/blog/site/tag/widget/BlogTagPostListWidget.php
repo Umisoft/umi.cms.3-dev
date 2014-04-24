@@ -58,7 +58,7 @@ class BlogTagPostListWidget extends BaseSecureWidget
             if (isset($tag) && !$tag instanceof BlogTag) {
                 throw new InvalidArgumentException(
                     $this->translate(
-                        'Widget parameter "{param} should be instance of "{class}".',
+                        'Widget parameter "{param}" should be instance of "{class}".',
                         [
                             'param' => 'tags',
                             'class' => 'BlogTag'

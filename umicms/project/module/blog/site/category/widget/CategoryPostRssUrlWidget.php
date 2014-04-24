@@ -56,7 +56,7 @@ class CategoryPostRssUrlWidget extends BaseSecureWidget
         if (isset($this->category) && !$this->category instanceof BlogCategory) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Widget parameter "{param} should be instance of "{class}".',
+                    'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'category',
                         'class' => 'BlogModule'
