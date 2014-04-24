@@ -51,7 +51,7 @@ class CategoryListWidget extends BaseListWidget
         if (isset($this->parentCategory) && !$this->parentCategory instanceof BlogCategory) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Widget parameter "{param} should be instance of "{class}".',
+                    'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'parentRubric',
                         'class' => 'BlogCategory'

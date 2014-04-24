@@ -9,22 +9,7 @@ use umicms\Bootstrap;
 return [
     Bootstrap::OPTION_TOOLS_SETTINGS => [
         DbalTools::NAME => [
-            'servers' => [
-                [
-                    'id'     => 'master',
-                    'type'   => 'master',
-                    'connection' => [
-                        'type' => DbalTools::CONNECTION_TYPE_PDOMYSQL,
-                        'options' => [
-                            'dbname' => 'umicms3',
-                            'user' => 'pma',
-                            'password' => 'pma',
-                            'host' => 'localhost',
-                            'charset' => 'utf8'
-                        ]
-                    ]
-                ]
-            ]
+            'servers' => require (__DIR__ . '/../configuration/db.config.php')
         ],
         I18nTools::NAME => [
             'defaultLocale' => 'ru-RU'
@@ -32,7 +17,7 @@ return [
     ],
 
     IComponent::OPTION_CONTROLLERS => [
-        'install' =>   'demohunt\controller\InstallController'
+        'install' =>   'project\install\controller\InstallController'
     ],
 
     IComponent::OPTION_ROUTES => [

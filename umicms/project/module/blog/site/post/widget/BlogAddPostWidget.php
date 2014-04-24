@@ -55,7 +55,7 @@ class BlogAddPostWidget extends BaseSecureWidget
         if (isset($this->blogCategory) && !$this->blogCategory instanceof BlogCategory) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Widget parameter "{param} should be instance of "{class}".',
+                    'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogCategory',
                         'class' => 'BlogCategory'

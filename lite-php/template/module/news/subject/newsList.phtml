@@ -4,13 +4,8 @@
  * @var umicms\project\module\news\api\object\NewsItem $newsItem
  */
 ?>
-<?php if ($list->getTotal()) :?>
-
-    <ul>
-        <?php foreach ($list as $newsItem) : ?>
-            <li>
-                <?= $this->widget('news.item.view', ['newsItem' => $newsItem, 'template' => 'shortView']); ?>
-            </li>
-        <?php endforeach;?>
-    </ul>
+<?php if ($list->getTotal()) : ?>
+    <?php foreach ($list as $newsItem) : ?>
+        <?= $this->widget('news.item.view', ['newsItem' => $newsItem, 'template' => 'shortView']); ?>
+    <?php endforeach; ?>
 <?php endif; ?>

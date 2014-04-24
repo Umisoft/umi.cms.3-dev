@@ -1,0 +1,12 @@
+<div class="sidebar-module sidebar-module-inset">
+    <h4>RSS ленты</h4>
+    <p>Новости: <?=$this->widget('news.item.rss', ['template' => 'rssLink'])?></p>
+</div>
+<div class="sidebar-module">
+    <h4>Рубрики</h4>
+    <?=$this->widget('news.rubric.list', ['template' => 'listShort'])?>
+</div>
+<div class="sidebar-module">
+    <h4>Сюжеты</h4>
+    <?=$this->widget('news.subject.list', ['template' => 'listShort'])?>
+</div>

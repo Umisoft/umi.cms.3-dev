@@ -9,7 +9,7 @@
         "psr-4": {
             "umicms\\": "umicms/library",
             "umicms\\project\\" : "umicms/project",
-            "demohunt\\" : "demohunt"
+            "project\\" : ""
         },
         "classmap": ["umicms/project/module/files/admin/manager/elfinder"]
     },
