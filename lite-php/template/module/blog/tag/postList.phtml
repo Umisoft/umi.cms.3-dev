@@ -5,12 +5,8 @@
  */
 ?>
 
-<?php if ($posts->getTotal()) :?>
-    <ul>
-        <?php foreach ($posts as $blogPost) : ?>
-            <li>
-                <?= $this->widget('blog.post.view', ['blogPost' => $blogPost, 'template' => 'shortView']); ?>
-            </li>
-        <?php endforeach;?>
-    </ul>
+<?php if ($posts->getTotal()) : ?>
+    <?php foreach ($posts as $blogPost) : ?>
+        <?= $this->widget('blog.post.view', ['blogPost' => $blogPost, 'template' => 'shortView']); ?>
+    <?php endforeach; ?>
 <?php endif; ?>

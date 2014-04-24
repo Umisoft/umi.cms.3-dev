@@ -10,7 +10,6 @@
         <?php foreach ($list as $category) : ?>
             <li>
                 <?= $this->widget('blog.category.view', ['category' => $category, 'template' => 'shortView']); ?>
-                <?= $this->widget('blog.category.rss', ['category' => $category, 'template' => 'rssLink']); ?>
             </li>
         <?php endforeach;?>
     </ul>

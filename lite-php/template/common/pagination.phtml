@@ -4,17 +4,24 @@
  */
 ?>
 
-<?php if (isset($pagination['pagesCount'])) :?>
-
-    <ul>
-        <?php foreach ($pagination['pagesRange'] as $page => $link) :?>
-
-            <?php if ($page != $pagination['currentPage']) :?>
-                <li><a href="<?= $link ?>"><?= $page ?></a></li>
-            <?php else : ?>
-                <li><?= $page ?></li>
+<?php if (isset($pagination['pagesCount'])) : ?>
+    <?php if (isset($pagination['pagesCount'])) : ?>
+        <ul class="pagination">
+            <?php if ($pagination['previousPageUrl']) : ?>
+                <li><a href="<?= $pagination['previousPageUrl'] ?>">Назад</a></li>
             <?php endif; ?>
+            <?php foreach ($pagination['pagesRange'] as $page => $link) : ?>
 
-        <?php endforeach;?>
-    </ul>
+                <?php if ($page != $pagination['currentPage']) : ?>
+                    <li><a href="<?= $link ?>"><?= $page ?></a></li>
+                <?php else : ?>
+                    <li class="active"><span><?= $page ?></span></li>
+                <?php endif; ?>
+
+            <?php endforeach; ?>
+            <?php if ($pagination['nextPageUrl']) : ?>
+                <li><a href="<?= $pagination['nextPageUrl'] ?>">Дальше</a></li>
+            <?php endif; ?>
+        </ul>
+    <?php endif; ?>
 <?php endif; ?>
