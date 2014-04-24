@@ -11,7 +11,7 @@ namespace umicms\hmvc\widget;
 
 use umi\hmvc\component\IComponent;
 use umi\hmvc\widget\BaseWidget as FrameworkWidget;
-use umicms\hmvc\dispatcher\Dispatcher;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\hmvc\view\CmsView;
@@ -71,7 +71,7 @@ abstract class BaseWidget extends FrameworkWidget implements IUrlManagerAware
      */
     private function getShortPath()
     {
-        $relativePath = substr($this->getComponent()->getPath(), strlen(Dispatcher::SITE_COMPONENT_PATH) + 1);
+        $relativePath = substr($this->getComponent()->getPath(), strlen(CmsDispatcher::SITE_COMPONENT_PATH) + 1);
         $relativePath .= IComponent::PATH_SEPARATOR . $this->getName();
 
         return $relativePath;

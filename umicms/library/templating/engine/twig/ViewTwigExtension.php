@@ -10,7 +10,7 @@
 namespace umicms\templating\engine\twig;
 
 use umi\extension\twig\ViewTwigExtension as FrameworkViewTwigExtension;
-use umicms\hmvc\dispatcher\Dispatcher;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 
 /**
  * {@inheritdoc}
@@ -18,7 +18,7 @@ use umicms\hmvc\dispatcher\Dispatcher;
 class ViewTwigExtension extends FrameworkViewTwigExtension
 {
     /**
-     * @var Dispatcher $dispatcher диспетчер
+     * @var CmsDispatcher $dispatcher диспетчер
      */
     protected $dispatcher;
 

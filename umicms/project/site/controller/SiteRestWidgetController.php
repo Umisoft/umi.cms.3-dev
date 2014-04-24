@@ -10,7 +10,7 @@
 namespace umicms\project\site\controller;
 
 use umicms\hmvc\controller\BaseController;
-use umicms\hmvc\dispatcher\Dispatcher;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 
 /**
  * Контроллер для REST-вызова виджета.
@@ -30,7 +30,7 @@ class SiteRestWidgetController extends BaseController
         $widgetPath = $this->getRouteVar('path');
 
         /**
-         * @var Dispatcher $dispatcher
+         * @var CmsDispatcher $dispatcher
          */
         $dispatcher = $this->getContext()->getDispatcher();
 
