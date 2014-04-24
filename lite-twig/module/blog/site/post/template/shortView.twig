@@ -1,10 +1,15 @@
-<h3>
-    <a href="{{ blogPost.getPageUrl() }}">
-        {{ blogPost.h1 }}
-    </a>
-</h3>
-<time datetime="{{ blogPost.publishTime.format('c') }}">
-    {{ blogPost.publishTime.format('d.m.Y | H:i') }}
-    Автор: {{ blogPost.author.displayName }}
-</time>
-{{ blogPost.announcement }}
+<div class="blog-post">
+    <h1>{{ blogPost.h1 }}</h1>
+    <p class="blog-post-meta">
+        <time datetime="{{ blogPost.publishTime.format('c') }}">
+            {{ blogPost.publishTime.format('d.m.Y | H:i') }}
+        </time>
+        Автор: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
+        {{ widget('blog.post.editPostLink', {'blogPost' : blogPost, 'template' : 'editPostLink'}) }}
+    </p>
+
+    {{ blogPost.announcement | raw }}
+
+    <a href="{{ blogPost.getPageUrl() }}">Читать далее</a>
+    {{ widget('blog.post.unPublish', {'blogPost' : blogPost, 'template' : 'unPublishPostForm'}) }}
+</div>

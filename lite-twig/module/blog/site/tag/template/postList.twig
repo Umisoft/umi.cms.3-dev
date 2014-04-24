@@ -1,5 +1,5 @@
-{% if (list.getTotal()) %}
-    {% for blogPost in list %}
+{% if (posts.getTotal()) %}
+    {% for blogPost in posts %}
         {{ widget('blog.post.view', {'blogPost' : blogPost, 'template' : 'shortView'}) }}
     {% endfor %}
 {% endif %}
