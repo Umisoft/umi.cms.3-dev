@@ -55,7 +55,7 @@ class BlogTagListRssUrlWidget extends BaseSecureWidget
         if (isset($this->blogTag) && !$this->blogTag instanceof BlogTag) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Widget parameter "{param} should be instance of "{class}".',
+                    'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'tag',
                         'class' => 'BlogTag'

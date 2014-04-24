@@ -54,7 +54,7 @@ class RubricWidget extends BaseSecureWidget
         if (isset($this->rubric) && !$this->rubric instanceof NewsRubric) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Widget parameter "{param} should be instance of "{class}".',
+                    'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'rubric',
                         'class' => 'NewsRubric'

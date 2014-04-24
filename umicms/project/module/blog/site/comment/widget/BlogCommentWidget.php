@@ -54,7 +54,7 @@ class BlogCommentWidget extends BaseSecureWidget
         if (isset($this->blogComment) && !$this->blogComment instanceof BlogComment) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Widget parameter "{param} should be instance of "{class}".',
+                    'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogComment',
                         'class' => 'BlogComment'
