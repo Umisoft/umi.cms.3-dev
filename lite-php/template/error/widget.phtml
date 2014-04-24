@@ -3,7 +3,7 @@
 /** @var int $code */
 ?>
 
-<?php if($code == 403): ?>
+<?php if(isset($code) && $code == 403): ?>
     <pre><?= $error->getMessage() ?></pre>
 <?php else: ?>
 

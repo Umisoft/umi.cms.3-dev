@@ -16,6 +16,7 @@ use umi\http\IHttpAware;
 use umi\http\Request;
 use umi\http\Response;
 use umi\http\THttpAware;
+use umi\stream\IStreamService;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
 use umicms\hmvc\url\IUrlManagerAware;
@@ -83,9 +84,13 @@ class SiteApplication extends SiteComponent
      */
     const SETTING_DEFAULT_TEMPLATE_EXTENSION = 'defaultTemplateExtension';
     /**
-     * Имя настройки для задания расширения файлов с шаблонами по умолчанию
+     * Имя настройки для задания директории общих шаблонов
      */
     const SETTING_COMMON_TEMPLATE_DIRECTORY = 'commonTemplateDirectory';
+    /**
+     * Имя настройки для задания директории шаблонов
+     */
+    const SETTING_TEMPLATE_DIRECTORY = 'templateDirectory';
     /**
      * Опция для задания сериализаторов приложения
      */
@@ -94,6 +99,11 @@ class SiteApplication extends SiteComponent
      * Формат запроса по умолчанию.
      */
     const DEFAULT_REQUEST_FORMAT = 'html';
+
+    /**
+     * Имя протокола для вызова виджетов
+     */
+    const WIDGET_PROTOCOL = 'widget';
     /**
      * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
      */
@@ -121,6 +131,7 @@ class SiteApplication extends SiteComponent
     {
         $this->registerSelectorInitializer();
         $this->registerSerializers();
+        $this->registerStreams();
 
         while (!$this->pageCallStack->isEmpty()) {
             $this->pageCallStack->pop();
@@ -329,6 +340,20 @@ class SiteApplication extends SiteComponent
                 $selector->where(IActiveAccessibleObject::FIELD_ACTIVE)->equals(true);
             }
 
+        });
+    }
+
+    /**
+     * Регистрирует стримы для XSLT
+     */
+    protected function registerStreams()
+    {
+        /**
+         * @var IStreamService $streams
+         */
+        $streams = $this->getToolkit()->getService('umi\stream\IStreamService');
+        $streams->registerStream(self::WIDGET_PROTOCOL, function($uri) {
+            return '<a>' . $uri . '</a>';
         });
     }
 

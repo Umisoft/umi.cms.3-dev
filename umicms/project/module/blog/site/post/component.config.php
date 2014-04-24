@@ -32,7 +32,7 @@ return [
         'editPostLink' => __NAMESPACE__ . '\widget\BlogEditPostUrlWidget'
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
-        'directories' => __DIR__ . '/template/php'
+        'directories' => ['module/blog/post'],
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [

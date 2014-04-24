@@ -9,6 +9,6 @@ return [
 
     SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE => 'php',
     SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION => 'phtml',
-    SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => CMS_LIBRARY_DIR . '/../project/site/template/php/common'
+    SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => '~/project/template/common'
 
 ];

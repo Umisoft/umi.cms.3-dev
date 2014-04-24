@@ -16,24 +16,37 @@ return [
         ]
     ],
 
-    'demohunt_en' => [
+    'twig' => [
+        'type' => IRouteFactory::ROUTE_EXTENDED,
+        'route' => 'http://realloc.srv09.megaserver.umisoft.ru{uri}',
+        'rules' => [
+            'uri' => '/twig'
+        ],
+        'defaults' => [
+            'destination' => '~/lite-twig',
+            'config' => '~/project/project.config.php',
+            'locale' => 'ru-RU'
+        ]
+    ],
+
+    'php_en' => [
         'type' => IRouteFactory::ROUTE_EXTENDED,
         'route' => 'http://realloc.srv09.megaserver.umisoft.ru{uri}',
         'rules' => [
             'uri' => '/en'
         ],
         'defaults' => [
-            'destination' => '~/demohunt',
+            'destination' => '~/lite-php',
             'config' => '~/project/project.config.php',
             'locale' => 'en-US'
         ]
     ],
 
-    'demohunt_ru' => [
+    'php_ru' => [
         'type' => IRouteFactory::ROUTE_EXTENDED,
         'route' => 'http://realloc.srv09.megaserver.umisoft.ru',
         'defaults' => [
-            'destination' => '~/demohunt',
+            'destination' => '~/lite-php',
             'config' => '~/project/project.config.php',
             'locale' => 'ru-RU'
         ]
@@ -42,7 +55,7 @@ return [
         'type' => IRouteFactory::ROUTE_EXTENDED,
         'route' => 'http://xn--80aak5f.xn--p1ai',
         'defaults' => [
-            'destination' => '~/demohunt',
+            'destination' => '~/lite-php',
             'config' => '~/project/project.config.php',
             'locale' => 'ru-RU'
         ]

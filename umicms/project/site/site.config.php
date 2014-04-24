@@ -53,7 +53,7 @@ return [
     ],
 
     SiteApplication::OPTION_VIEW        => [
-        'directories' => __DIR__ . '/template/php'
+        'directories' => ['.']
     ],
 
     SiteApplication::OPTION_ROUTES => [
