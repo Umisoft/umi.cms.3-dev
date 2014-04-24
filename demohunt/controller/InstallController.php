@@ -58,7 +58,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     /**
      * @var string $testLayout
      */
-    protected $testLayout;
+    protected $blogLayout;
     /**
      * @var SearchApi $searchApi
      */
@@ -243,7 +243,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('h1', 'Блог')
             ->setGUID('e6b89f38-7af3-4bda-80fd-3d5a4cf080cf')
             ->setValue('inMenu', true)
-            ->setValue('layout', $this->testLayout);
+            ->setValue('layout', $this->blogLayout);
 
         $blogPage->getProperty('locked')->setValue(true);
         $blogPage->getProperty('componentName')->setValue('blog');
@@ -411,8 +411,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Новости')
             ->setGUID('9ee6745f-f40d-46d8-8043-d959594628ce')
             ->setValue('inMenu', true)
-            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN)
-            ->setValue('layout', $this->testLayout);
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
 
         $newsPage->getProperty('locked')->setValue(true);
         $newsPage->getProperty('componentName')->setValue('news');
@@ -604,9 +603,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Основной')
             ->setGUID('d6cb8b38-7e2d-4b36-8d15-9fe8947d66c7');
 
-        $this->testLayout = $layoutCollection->add()
-            ->setValue('fileName', 'test')
-            ->setValue('displayName', 'Тестовый');
+        $this->blogLayout = $layoutCollection->add()
+            ->setValue('fileName', 'blog')
+            ->setValue('displayName', 'Блог');
 
         $structurePage = $structureCollection->add('structure', 'system')
             ->setValue('displayName', 'Структура');
