@@ -13,7 +13,7 @@ use umi\acl\IAclManager;
 use umi\hmvc\acl\ComponentRoleProvider;
 use umi\hmvc\acl\IComponentRoleResolver;
 use umi\hmvc\component\IComponent;
-use umi\hmvc\dispatcher\Dispatcher as FrameworkDispatcher;
+use umi\hmvc\dispatcher\Dispatcher;
 use umi\hmvc\view\IView;
 use umicms\authentication\CmsAuthStorage;
 use umicms\exception\InvalidArgumentException;
@@ -25,7 +25,7 @@ use umicms\project\module\users\api\object\Supervisor;
 /**
  * {@inheritdoc}
  */
-class Dispatcher extends FrameworkDispatcher implements IUrlManagerAware
+class CmsDispatcher extends Dispatcher implements IUrlManagerAware
 {
     use TUrlManagerAware;
 

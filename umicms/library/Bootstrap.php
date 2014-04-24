@@ -13,7 +13,6 @@ use umi\config\io\IConfigIO;
 use umi\extension\twig\TemplatingTwigExtension;
 use umi\extension\twig\TwigTemplateEngine;
 use umi\hmvc\component\IComponent;
-use umi\hmvc\dispatcher\IDispatcher;
 use umi\hmvc\IMvcEntityFactory;
 use umi\http\Request;
 use umi\http\Response;
@@ -23,15 +22,16 @@ use umi\route\result\IRouteResult;
 use umi\spl\config\TConfigSupport;
 use umi\templating\engine\ITemplateEngineFactory;
 use umi\templating\engine\php\PhpTemplateEngine;
-use umi\templating\engine\php\TemplatingPhpExtension;
 use umi\toolkit\IToolkit;
 use umi\toolkit\Toolkit;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManager;
 use umicms\project\config\IProjectConfigAware;
 use umicms\project\config\TProjectConfigAware;
+use umicms\templating\engine\php\TemplatingPhpExtension;
 use umicms\templating\engine\php\ViewPhpExtension;
 use umicms\templating\engine\twig\ViewTwigExtension;
 
@@ -130,7 +130,7 @@ class Bootstrap implements IProjectConfigAware
 
         $routePath = $routePath ?: '/';
         /**
-         * @var IDispatcher $dispatcher
+         * @var CmsDispatcher $dispatcher
          */
         $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
         $this->initTemplateEngines($dispatcher);
@@ -345,9 +345,9 @@ class Bootstrap implements IProjectConfigAware
 
     /**
      * Задает инициализаторы для добавления расширений в шаблонизаторы
-     * @param IDispatcher $dispatcher
+     * @param CmsDispatcher $dispatcher
      */
-    protected function initTemplateEngines(IDispatcher $dispatcher)
+    protected function initTemplateEngines(CmsDispatcher $dispatcher)
     {
         /**
          * @var ITemplateEngineFactory $templateEngineFactory

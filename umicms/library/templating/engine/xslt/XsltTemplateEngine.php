@@ -12,7 +12,7 @@ namespace umicms\templating\engine\xslt;
 use DOMDocument;
 use umi\hmvc\dispatcher\IDispatcher;
 use umi\templating\engine\ITemplateEngine;
-use umicms\hmvc\dispatcher\Dispatcher;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\ISerializer;
 use umicms\serialization\ISerializerFactory;
@@ -51,7 +51,7 @@ class XsltTemplateEngine implements ITemplateEngine, ISerializationAware
     private $templateDirectories;
 
     /**
-     * @var Dispatcher $dispatcher
+     * @var CmsDispatcher $dispatcher
      */
     private static $dispatcher;
 
