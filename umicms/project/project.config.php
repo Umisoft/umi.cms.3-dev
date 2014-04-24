@@ -24,6 +24,7 @@ use umicms\form\element\File;
 use umicms\form\element\Image;
 use umicms\form\element\Wysiwyg;
 use umicms\module\toolbox\ModuleTools;
+use umicms\templating\engine\xslt\XsltTemplateEngine;
 
 return [
 
@@ -74,7 +75,8 @@ return [
             'factories' => [
                 'engine' => [
                     'engineClasses' => [
-                        TwigTemplateEngine::NAME => 'umi\extension\twig\TwigTemplateEngine'
+                        TwigTemplateEngine::NAME => 'umi\extension\twig\TwigTemplateEngine',
+                        XsltTemplateEngine::NAME => 'umicms\templating\engine\xslt\XsltTemplateEngine',
                     ]
                 ]
             ]

@@ -71,7 +71,5 @@ class CmsObjectSerializer extends BaseSerializer
 
             $this->getXmlWriter()->endElement();
         }
-
-
     }
 }
