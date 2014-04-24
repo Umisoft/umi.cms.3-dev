@@ -9,12 +9,8 @@
 
 namespace umicms\templating\engine\xslt;
 
-use DOMDocument;
-use umi\hmvc\dispatcher\IDispatcher;
 use umi\templating\engine\ITemplateEngine;
-use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\serialization\ISerializationAware;
-use umicms\serialization\ISerializer;
 use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
 
@@ -51,37 +47,6 @@ class XsltTemplateEngine implements ITemplateEngine, ISerializationAware
     private $templateDirectories;
 
     /**
-     * @var CmsDispatcher $dispatcher
-     */
-    private static $dispatcher;
-
-    /**
-     * @var ISerializer $dispatcher
-     */
-    private static $serializer;
-
-    /**
-     * @param IDispatcher $dispatcher
-     */
-    public function __construct(IDispatcher $dispatcher)
-    {
-        self::$dispatcher = $dispatcher;
-        self::$serializer = $this->getSerializer(ISerializerFactory::TYPE_XML, []);
-    }
-
-    public static function callWidget($widgetPath, $queryString = "")
-    {
-        parse_str($queryString, $params);
-
-        $variables = self::$dispatcher->executeWidgetByPath($widgetPath, $params);
-        $xml = self::serializeVariablesToXml(['contents' => $variables]);
-        $dom = new DOMDocument('1.0', 'utf8');
-        $dom->loadXML($xml);
-
-        return $dom;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function setOptions(array $options)
@@ -98,7 +63,7 @@ class XsltTemplateEngine implements ITemplateEngine, ISerializationAware
         return (new XsltTemplate($this))
             ->render(
                 $this->getTemplateFilename($templateFile),
-                self::serializeVariablesToXml($variables)
+                $this->serializeVariablesToXml($variables)
             );
     }
 
@@ -117,18 +82,19 @@ class XsltTemplateEngine implements ITemplateEngine, ISerializationAware
 
     /**
      * Сериализует переменные в xml
-     * @param $variables
+     * @param array $variables
      * @return string
      */
-    protected static function serializeVariablesToXml($variables) {
+    protected function serializeVariablesToXml(array $variables) {
         $result = ['result' => $variables];
 
-        $serializer = self::$serializer;
+        $serializer = $this->getSerializer(ISerializerFactory::TYPE_XML, $result);
         $serializer->init();
         $serializer($result);
 
         return $serializer->output();
     }
+
     /**
      * Возрващает имя файла шаблона по имени шаблона.
      * @param string $templateName имя шаблона

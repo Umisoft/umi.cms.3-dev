@@ -33,6 +33,7 @@ class SiteRestWidgetController extends BaseController
          * @var CmsDispatcher $dispatcher
          */
         $dispatcher = $this->getContext()->getDispatcher();
+
         $result = $dispatcher->executeWidgetByPath($widgetPath, $this->getAllQueryVars());
 
         $response = $this->createResponse($result);

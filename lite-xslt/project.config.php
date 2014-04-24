@@ -32,7 +32,7 @@ return [
     ],
 
     IComponent::OPTION_CONTROLLERS => [
-        'install' =>   'demohunt\controller\InstallController'
+        'install' =>   'project\install\controller\InstallController'
     ],
 
     IComponent::OPTION_ROUTES => [

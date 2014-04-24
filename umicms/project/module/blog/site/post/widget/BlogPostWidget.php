@@ -54,7 +54,7 @@ class BlogPostWidget extends BaseSecureWidget
         if (isset($this->blogPost) && !$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Widget parameter "{param} should be instance of "{class}".',
+                    'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
                         'class' => 'blogPost'

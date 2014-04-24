@@ -51,7 +51,7 @@ class RubricListWidget extends BaseListWidget
         if (isset($this->parentRubric) && !$this->parentRubric instanceof NewsRubric) {
             throw new InvalidArgumentException(
                 $this->translate(
-                    'Widget parameter "{param} should be instance of "{class}".',
+                    'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'parentRubric',
                         'class' => 'NewsRubric'
