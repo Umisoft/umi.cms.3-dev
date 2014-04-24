@@ -1,0 +1,8 @@
+{% import "form/buildAttributes.twig" as forms %}
+
+<form {{ forms.buildAttributes(form.getAttributes()) }}>
+    {% for formElement in form %}
+        {*{ include('form/formElement.twig', {'element' : formElement}) }}
+    {% endfor %}
+    <input {{ submit ? forms.buildAttributes(submit) : 'value="Отправить" type="submit"' }} />
+</form>

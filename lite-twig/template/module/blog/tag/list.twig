@@ -1,0 +1,9 @@
+{% if (tags.getTotal()) %}
+    <ol class="list-unstyled">
+        {% for blogTag in tags %}
+            <li>
+                {{ widget('blog.tag.view', {'blogTag' : blogTag, 'template' : 'shortView'}) }}
+            </li>
+        {% endfor %}
+    </ol>
+{%  endif %}
