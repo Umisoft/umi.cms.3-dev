@@ -5,14 +5,8 @@
  */
 ?>
 
-<?php if ($list->getTotal()) :?>
-    <ul>
-        <?php foreach ($list as $blogDraft) : ?>
-            <li>
-                <?= $this->widget('blog.draft.view', ['blogDraft' => $blogDraft, 'template' => 'shortView']); ?>
-                <?= $this->widget('blog.draft.editDraftLink', ['blogDraft' => $blogDraft, 'template' => 'editDraftLink']); ?>
-                <?= $this->widget('blog.draft.publishDraft', ['blogDraft' => $blogDraft, 'template' => 'publishDraftForm']); ?>
-            </li>
-        <?php endforeach;?>
-    </ul>
+<?php if ($list->getTotal()) : ?>
+    <?php foreach ($list as $blogDraft) : ?>
+        <?= $this->widget('blog.draft.view', ['blogDraft' => $blogDraft, 'template' => 'shortView']); ?>
+    <?php endforeach; ?>
 <?php endif; ?>

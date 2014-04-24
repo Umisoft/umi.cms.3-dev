@@ -67,4 +67,14 @@ abstract class BaseComponent extends FrameworkComponent
         ];
     }
 
+    /**
+     * Возвращает список имен словарей в которых будет производиться поиск перевода сообщений и лейблов
+     * данного компонента. Приоритет поиска соответсвует последовательности словарей в списке.
+     * @return array
+     */
+    public function getDictionariesNames()
+    {
+        return $this->getI18nDictionaryNames();
+    }
+
 }

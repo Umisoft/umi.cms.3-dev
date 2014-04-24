@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\templating\helper\pagination;
+namespace umicms\templating\helper;
 
 use umi\templating\helper\pagination\PaginationHelper as FrameworkPaginationHelper;
 use umicms\hmvc\url\IUrlManagerAware;

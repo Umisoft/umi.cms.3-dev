@@ -3,8 +3,6 @@
  * @var umicms\project\module\news\api\object\NewsSubject $subject
  */
 ?>
-<h2>
-    <a href="<?= $subject->getPageUrl() ?>">
-        <?= $subject->displayName ?>
-    </a>
-</h2>
+<a href="<?= $subject->getPageUrl() ?>">
+    <?= $subject->displayName ?>
+</a>

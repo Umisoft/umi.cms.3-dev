@@ -10,5 +10,4 @@ $attributes = array_merge(
         'value' => $input->getValue()
     ]
 );
-
-echo '<label>' . (($input->getInputType() != 'hidden') ? $input->getName() : '') . '<input ' . buildAttributes($attributes) .' /></label>';
+echo '<div class="form-group"><label>' . (($input->getInputType() != 'hidden') ? $input->getName() : '') . '</label><input class="form-control" ' . buildAttributes($attributes) .' /></div>';

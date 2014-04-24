@@ -3,9 +3,15 @@
  * @var umicms\project\module\news\api\object\NewsItem $page
  */
 ?>
-<?php if ($page->date) :?>
-    <time datetime="<?= $page->date->format('c')?>">
-        <?= $page->date->format('d.m.Y | H:i')?>
-    </time>
-<?php endif; ?>
-<?= $page->contents ?>
+<div class="blog-post">
+    <h2 class="blog-post-title"><?=$page->h1?></h2>
+    <p class="blog-post-meta">
+        <?php if ($page->date) :?>
+            <time datetime="<?= $page->date->format('c')?>">
+                <?= $page->date->format('d.m.Y | H:i')?>
+            </time>
+        <?php endif; ?>
+        <?=$this->widget('news.subject.list', ['template' => 'listInline'])?>
+    </p>
+    <?=$page->contents?>
+</div>

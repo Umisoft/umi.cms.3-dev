@@ -10,7 +10,8 @@
 namespace umicms\templating\engine\php;
 
 use umi\templating\engine\php\IPhpExtension;
-use umi\templating\helper\TranslationHelper;
+use umicms\hmvc\dispatcher\CmsDispatcher;
+use umicms\templating\helper\TranslationHelper;
 
 /**
  * Расширение для подключения помощников шаблонов в PHP-шаблонах.
@@ -21,6 +22,19 @@ class TemplatingPhpExtension implements IPhpExtension
      * @var string $translateFunctionName имя функции для перевода
      */
     public $translateFunctionName = 'translate';
+
+    /**
+     * @var CmsDispatcher $dispatcher диспетчер
+     */
+    protected $dispatcher;
+
+    /**
+     * Конструктор.
+     * @param CmsDispatcher $dispatcher диспетчер
+     */
+    public function __construct(CmsDispatcher $dispatcher) {
+        $this->dispatcher = $dispatcher;
+    }
 
     /**
      * {@inheritdoc}
@@ -49,7 +63,7 @@ class TemplatingPhpExtension implements IPhpExtension
         static $helper;
 
         if (!$helper) {
-            $helper = new TranslationHelper();
+            $helper = new TranslationHelper($this->dispatcher);
         }
 
         return $helper;
