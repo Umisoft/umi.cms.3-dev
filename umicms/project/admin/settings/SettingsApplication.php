@@ -29,6 +29,10 @@ class SettingsApplication extends DefaultSettingsComponent implements ISerializa
     use TToolkitAware;
 
     /**
+     * Опция для задания сериализаторов приложения
+     */
+    const OPTION_SERIALIZERS = 'serializers';
+    /**
      * Формат запроса по умолчанию.
      */
     const DEFAULT_REQUEST_FORMAT = 'json';
@@ -99,19 +103,15 @@ class SettingsApplication extends DefaultSettingsComponent implements ISerializa
      */
     protected function registerSerializers()
     {
-        /**
-         * @var ISerializerFactory $serializerFactory
-         */
-        $serializerFactory = $this->getToolkit()->getService('umicms\serialization\ISerializerFactory');
+        if (isset($this->options[self::OPTION_SERIALIZERS])) {
+            $serializersConfig = $this->configToArray($this->options[self::OPTION_SERIALIZERS], true);
+            /**
+             * @var ISerializerFactory $serializerFactory
+             */
+            $serializerFactory = $this->getToolkit()->getService('umicms\serialization\ISerializerFactory');
 
-        $types = [
-            ISerializerFactory::TYPE_JSON => [
-                'umi\form\fieldset\FieldSet' => 'umicms\serialization\json\form\FieldSetSerializer',
-                'umi\form\element\BaseFormElement' => 'umicms\serialization\json\form\BaseFormElementSerializer',
-            ]
-        ];
-
-        $serializerFactory->registerSerializers($types);
+            $serializerFactory->registerSerializers($serializersConfig);
+        }
     }
 }
  
