@@ -1,6 +1,4 @@
 <?php
-namespace demohunt\site;
-
 use umicms\project\site\SiteApplication;
 
 return [

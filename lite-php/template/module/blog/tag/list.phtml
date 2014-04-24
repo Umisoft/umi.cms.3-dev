@@ -5,12 +5,11 @@
  */
 ?>
 <?php if ($tags->getTotal()) :?>
-    <ul>
+    <ol class="list-unstyled">
         <?php foreach ($tags as $blogTag) : ?>
             <li>
                 <?= $this->widget('blog.tag.view', ['blogTag' => $blogTag, 'template' => 'shortView']); ?>
-                <?= $this->widget('blog.tag.rss', ['blogTag' => $blogTag, 'template' => 'rssLink']); ?>
             </li>
         <?php endforeach;?>
-    </ul>
+    </ol>
 <?php endif; ?>

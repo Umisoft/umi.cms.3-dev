@@ -5,17 +5,10 @@
  * @var umicms\project\module\news\api\object\NewsItem $newsItem
  */
 ?>
-<?php if ($list->getTotal()) :?>
+<?php if ($list->getTotal()) : ?>
+    <?php foreach ($list as $newsItem) : ?>
+        <?= $this->widget('news.item.view', ['newsItem' => $newsItem, 'template' => 'shortView']); ?>
+    <?php endforeach; ?>
 
-    <ul>
-        <?php foreach ($list as $newsItem) : ?>
-            <li>
-                <?= $this->widget('news.item.view', ['newsItem' => $newsItem, 'template' => 'shortView']); ?>
-            </li>
-        <?php endforeach;?>
-    </ul>
-
-    <!--TODO: сделать общий шаблон для пагинации-->
     <?= $this->render('pagination.phtml', ['pagination' => $pagination]); ?>
-
 <?php endif; ?>

@@ -1,0 +1,10 @@
+<?php if ($list->getTotal()) : ?>
+    <ol class="list-unstyled">
+        <?php foreach ($list as $subject) : ?>
+            <li>
+                <?=$this->widget('news.subject.view', ['subject' => $subject, 'template' => 'shortView'])?>
+                <?=$this->widget('news.subject.rss', ['subject' => $subject, 'template' => 'rssLink'])?>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+<?php endif; ?>

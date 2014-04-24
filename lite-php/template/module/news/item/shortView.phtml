@@ -3,16 +3,20 @@
  * @var umicms\project\module\news\api\object\NewsItem $newsItem
  */
 ?>
-<h3>
+<div class="blog-post">
+    <h2 class="blog-post-title"><?=$newsItem->h1?></h2>
+    <p class="blog-post-meta">
+        <?php if ($newsItem->date) :?>
+            <time datetime="<?= $newsItem->date->format('c')?>">
+                <?= $newsItem->date->format('d.m.Y | H:i')?>
+            </time>
+        <?php endif; ?>
+        <?=$this->widget('news.subject.list', ['template' => 'listInline'])?>
+    </p>
+
+    <?= $newsItem->announcement ?>
+
     <a href="<?= $newsItem->getPageUrl() ?>">
-        <?= $newsItem->h1 ?>
+        Читать далее
     </a>
-</h3>
-
-<?php if ($newsItem->date) :?>
-    <time datetime="<?= $newsItem->date->format('c')?>">
-        <?= $newsItem->date->format('d.m.Y | H:i')?>
-    </time>
-<?php endif; ?>
-
-<?= $newsItem->announcement ?>
+</div>

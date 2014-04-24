@@ -13,7 +13,7 @@ if ($select instanceof MultiSelect) {
     $attributes['multiple'] = 'multiple';
 }
 
-$html = '<label>' . $select->getName() . '<select ' . buildAttributes($attributes) . ' >';
+$html = '<div class="form-group"><label>' . $select->getName() . '</label><select class="form-control" ' . buildAttributes($attributes) . ' >';
 $selected = (array) $select->getValue();
 
 foreach ($select->getChoices() as $value => $label) {
@@ -28,6 +28,6 @@ foreach ($select->getChoices() as $value => $label) {
     $html .= '<option ' . buildAttributes($attr) . '>' . $label . '</option>';
 }
 
-$html .= '</select></label>';
+$html .= '</select></div>';
 
 echo $html;
