@@ -1,0 +1,7 @@
+{% for blogTag in tags %}
+    <p style="font-size: {{ blogTag.weight }}px">
+        <a href="{{ blogTag.tag.getPageUrl() }}">
+            {{ blogTag.tag.displayName }}
+        </a>
+    </p>
+{% endfor %}

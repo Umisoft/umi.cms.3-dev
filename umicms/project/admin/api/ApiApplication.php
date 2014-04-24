@@ -13,21 +13,29 @@ use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Request;
 use umi\http\Response;
+use umi\toolkit\IToolkitAware;
+use umi\toolkit\TToolkitAware;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\TCmsCollection;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\admin\component\AdminComponent;
 use umicms\serialization\ISerializationAware;
+use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
 
 /**
  * Приложение административной панели.
  */
-class ApiApplication extends AdminComponent implements ISerializationAware
+class ApiApplication extends AdminComponent implements ISerializationAware, IToolkitAware
 {
     use TSerializationAware;
+    use TToolkitAware;
 
+    /**
+     * Опция для задания сериализаторов приложения
+     */
+    const OPTION_SERIALIZERS = 'serializers';
     /**
      * Формат запроса по умолчанию.
      */
@@ -40,7 +48,7 @@ class ApiApplication extends AdminComponent implements ISerializationAware
     /**
      * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
      */
-    protected $supportedRequestPostfixes = ['json', 'xml'];
+    protected $supportedRequestPostfixes = ['json'];
 
     /**
      * {@inheritdoc}
@@ -48,6 +56,7 @@ class ApiApplication extends AdminComponent implements ISerializationAware
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
         $this->registerSelectorInitializer();
+        $this->registerSerializers();
 
         $requestFormat = $request->getRequestFormat(self::DEFAULT_REQUEST_FORMAT);
 
@@ -108,6 +117,22 @@ class ApiApplication extends AdminComponent implements ISerializationAware
             }
 
         });
+    }
+
+    /**
+     * Регистрирует сериализаторы, необходимые для приложения.
+     */
+    protected function registerSerializers()
+    {
+        if (isset($this->options[self::OPTION_SERIALIZERS])) {
+            $serializersConfig = $this->configToArray($this->options[self::OPTION_SERIALIZERS], true);
+            /**
+             * @var ISerializerFactory $serializerFactory
+             */
+            $serializerFactory = $this->getToolkit()->getService('umicms\serialization\ISerializerFactory');
+
+            $serializerFactory->registerSerializers($serializersConfig);
+        }
     }
 
 }

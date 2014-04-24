@@ -25,9 +25,7 @@ return [
         'addComment' => __NAMESPACE__ . '\widget\BlogAddCommentWidget'
     ],
     DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
-        'type' => 'php',
-        'extension' => 'phtml',
-        'directories' => __DIR__ . '/template/php',
+        'directories' => ['module/blog/comment'],
     ],
     DefaultSiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [

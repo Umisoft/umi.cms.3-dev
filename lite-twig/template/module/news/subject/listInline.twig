@@ -1,0 +1,5 @@
+{% if (list.getTotal()) %}
+    {% for subject in list %}
+        {{- loop.first ? '' : ',' }} <a href="{{ subject.getPageUrl }}">{{ subject.displayName }}</a>
+    {%- endfor %}
+{% endif %}

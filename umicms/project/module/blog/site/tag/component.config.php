@@ -36,13 +36,15 @@ return [
             'widget:view',
             'widget:list',
             'widget:postList',
-            'widget:rss'
+            'widget:rss',
+            'widget:cloud'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'widget:view' => [],
                 'widget:list' => [],
-                'widget:postList' => []
+                'widget:postList' => [],
+                'widget:cloud' => []
             ],
             'rssViewer' => [
                 'controller:rss' => [],
@@ -51,9 +53,7 @@ return [
         ]
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
-        'type' => 'php',
-        'extension' => 'phtml',
-        'directories' => __DIR__ . '/template/php',
+        'directories' => ['module/blog/tag'],
     ],
     DefaultSitePageComponent::OPTION_ROUTES => [
         'rss' => [

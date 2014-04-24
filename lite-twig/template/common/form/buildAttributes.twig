@@ -1,0 +1,5 @@
+{% macro buildAttributes(attributes) %}
+    {%- for key,value in attributes %}
+        {{ key }}="{{ value }}"
+    {%- endfor %}
+{% endmacro %}

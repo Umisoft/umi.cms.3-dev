@@ -1,0 +1,23 @@
+<div class="sidebar-module sidebar-module-inset">
+    <h4>RSS ленты</h4>
+    <p>Блоги: {{ widget('blog.post.rss', {'template' : 'rssLink'}) }}</p>
+</div>
+<div class="sidebar-module">
+    <h4>Категории</h4>
+    {{ widget('blog.category.list', {'template' : 'listShort'}) }}
+</div>
+<div class="sidebar-module">
+    <h4>Облако тэгов</h4>
+    {{ widget('blog.tag.cloud', {'template' : 'cloud'}) }}
+</div>
+<div class="sidebar-module">
+    <h4>Авторы</h4>
+    {{ widget('blog.author.list', {'template' : 'listShort'}) }}
+</div>
+<div class="sidebar-module">
+    <h4>Модерирование</h4>
+    <ol class="list-unstyled">
+        <li>Черновики автора: {{ widget('blog.draft.ownListUrl', {'template' : 'draftLinkAuthor'}) }}</li>
+        <li>Все черновики: {{ widget('blog.draft.allListUrl', {'template' : 'draftLinkAll'}) }}</li>
+    </ol>
+</div>

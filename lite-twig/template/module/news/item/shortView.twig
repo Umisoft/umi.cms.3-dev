@@ -1,0 +1,15 @@
+<div class="blog-post">
+    <h2 class="blog-post-title">{{ newsItem.h1 }}</h2>
+    <p class="blog-post-meta">
+        <time datetime="{{ newsItem.date.format('c') }}">
+            {{ newsItem.date.format('d.m.Y | H:i') }}
+        </time>
+        {{ widget('news.subject.list', {'template' :'listInline'}) }}
+    </p>
+
+    {{ newsItem.announcement | raw }}
+
+    <a href="{{ newsItem.getPageUrl() }}">
+        Читать далее
+    </a>
+</div>

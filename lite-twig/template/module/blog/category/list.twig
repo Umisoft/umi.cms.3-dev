@@ -1,0 +1,9 @@
+{% if (list.getTotal()) %}
+    <ul>
+        {% for category in list %}
+            <li>
+                {{ widget('blog.category.view', {'category' : category, 'template' : 'shortView'}) }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

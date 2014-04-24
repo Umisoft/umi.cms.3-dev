@@ -13,16 +13,25 @@ use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Request;
 use umi\http\Response;
+use umi\toolkit\IToolkitAware;
+use umi\toolkit\TToolkitAware;
 use umicms\project\admin\settings\component\DefaultSettingsComponent;
 use umicms\serialization\ISerializationAware;
+use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
 
 /**
  * Приложение управления настройками.
  */
-class SettingsApplication extends DefaultSettingsComponent implements ISerializationAware
+class SettingsApplication extends DefaultSettingsComponent implements ISerializationAware, IToolkitAware
 {
     use TSerializationAware;
+    use TToolkitAware;
+
+    /**
+     * Опция для задания сериализаторов приложения
+     */
+    const OPTION_SERIALIZERS = 'serializers';
     /**
      * Формат запроса по умолчанию.
      */
@@ -42,6 +51,8 @@ class SettingsApplication extends DefaultSettingsComponent implements ISerializa
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
+        $this->registerSerializers();
+
         $requestFormat = $request->getRequestFormat(self::DEFAULT_REQUEST_FORMAT);
 
         if (!$this->isRequestFormatSupported($requestFormat)) {
@@ -85,6 +96,22 @@ class SettingsApplication extends DefaultSettingsComponent implements ISerializa
     protected function isRequestFormatSupported($format)
     {
         return in_array($format, $this->supportedRequestPostfixes);
+    }
+
+    /**
+     * Регистрирует сериализаторы, необходимые для приложения.
+     */
+    protected function registerSerializers()
+    {
+        if (isset($this->options[self::OPTION_SERIALIZERS])) {
+            $serializersConfig = $this->configToArray($this->options[self::OPTION_SERIALIZERS], true);
+            /**
+             * @var ISerializerFactory $serializerFactory
+             */
+            $serializerFactory = $this->getToolkit()->getService('umicms\serialization\ISerializerFactory');
+
+            $serializerFactory->registerSerializers($serializersConfig);
+        }
     }
 }
  

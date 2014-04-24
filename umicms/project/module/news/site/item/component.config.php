@@ -27,13 +27,8 @@ return [
         'rss' => __NAMESPACE__ . '\widget\NewsItemListRssUrlWidget'
     ],
 
-    DefaultSitePageComponent::OPTION_VIEW        => [
-        'type'      => 'php',
-        'extension' => 'phtml',
-        'directories' => [
-            __DIR__ . '/template/php',
-            CMS_LIBRARY_DIR . '/../project/site/template/php/common'
-        ]
+    DefaultSitePageComponent::OPTION_VIEW => [
+        'directories' => ['module/news/item']
     ],
 
     DefaultSitePageComponent::OPTION_ACL => [

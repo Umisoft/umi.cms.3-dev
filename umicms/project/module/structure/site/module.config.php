@@ -25,9 +25,7 @@ return [
     ],
 
     SiteComponent::OPTION_VIEW        => [
-        'type'      => 'php',
-        'extension' => 'phtml',
-        'directories' => __DIR__ . '/template/php',
+        'directories' => ['module/structure']
     ],
 
     SiteComponent::OPTION_ACL => [
