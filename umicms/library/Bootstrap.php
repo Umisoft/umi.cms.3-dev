@@ -118,7 +118,7 @@ class Bootstrap implements IProjectConfigAware
         }
 
         $baseProjectUrl = isset($routeMatches['uri']) ? $routeMatches['uri'] : '';
-        $routePath = $routeResult->getUnmatchedUrl() ? : '/';
+        $routePath = $routeResult->getUnmatchedUrl();
 
         $this->configureUrlManager($project, $routeResult, $baseProjectUrl);
 
@@ -128,6 +128,7 @@ class Bootstrap implements IProjectConfigAware
             $request->setRequestFormat($format);
         }
 
+        $routePath = $routePath ?: '/';
         /**
          * @var IDispatcher $dispatcher
          */
