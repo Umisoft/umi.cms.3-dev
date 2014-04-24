@@ -15,7 +15,7 @@ use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsSubject;
 
 /**
- * Виджет для вывода URL на RSS-ленту по сюжету.
+ * Виджет для вывода ссылки на RSS-ленту по сюжету.
  */
 class SubjectNewsRssUrlWidget extends BaseSecureWidget
 {

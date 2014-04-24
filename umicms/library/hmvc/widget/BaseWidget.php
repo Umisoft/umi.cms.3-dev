@@ -9,9 +9,12 @@
 
 namespace umicms\hmvc\widget;
 
+use umi\hmvc\component\IComponent;
 use umi\hmvc\widget\BaseWidget as FrameworkWidget;
+use umicms\hmvc\dispatcher\Dispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\hmvc\view\CmsView;
 
 /**
  * Базовый виджет UMI.CMS
@@ -19,6 +22,18 @@ use umicms\hmvc\url\TUrlManagerAware;
 abstract class BaseWidget extends FrameworkWidget implements IUrlManagerAware
 {
     use TUrlManagerAware;
+
+    /**
+     * Устанавливает опции сериализации результата работы виджета в XML или JSON.
+     * Может быть переопределен в конкретном виджете для задания переменных,
+     * которые будут преобразованы в атрибуты xml, а так же переменные, которые будут проигнорированы
+     * в xml или json.
+     * @param CmsView $view результат работы виджета
+     */
+    protected function setSerializationOptions(CmsView $view)
+    {
+
+    }
 
     /**
      * Возвращает URL маршрута компонента.
@@ -34,6 +49,32 @@ abstract class BaseWidget extends FrameworkWidget implements IUrlManagerAware
         $url .= $this->getComponent()->getRouter()->assemble($routeName, $routeParams);
 
         return $url;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createResult($templateName, array $variables)
+    {
+        $variables['widget'] = $this->getShortPath();
+        $view = new CmsView($this, $this->getContext(), $templateName, $variables);
+
+        $view->setXmlAttributes(['widget']);
+        $this->setSerializationOptions($view);
+
+        return $view;
+    }
+
+    /**
+     * Возвращает короткий путь виджета, относительно приложения сайта
+     * @return string
+     */
+    private function getShortPath()
+    {
+        $relativePath = substr($this->getComponent()->getPath(), strlen(Dispatcher::SITE_COMPONENT_PATH) + 1);
+        $relativePath .= IComponent::PATH_SEPARATOR . $this->getName();
+
+        return $relativePath;
     }
 }
  

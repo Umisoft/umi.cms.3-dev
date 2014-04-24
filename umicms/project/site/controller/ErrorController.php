@@ -55,7 +55,7 @@ class ErrorController extends BaseController
                 'stack' => $stack
             ]
         )
-            ->setStatusCode($code);
+            ;//->setStatusCode($code);
     }
 
     /**

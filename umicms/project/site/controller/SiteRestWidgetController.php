@@ -35,7 +35,9 @@ class SiteRestWidgetController extends BaseController
         $dispatcher = $this->getContext()->getDispatcher();
         $result = $dispatcher->executeWidgetByPath($widgetPath, $this->getAllQueryVars());
 
-        return $this->createResponse($result);
+        $response = $this->createResponse($result);
+
+        return $response;
     }
 }
  
