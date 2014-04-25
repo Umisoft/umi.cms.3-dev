@@ -10,6 +10,7 @@ namespace umicms\project\site;
 
 use SplDoublyLinkedList;
 use SplStack;
+use umi\config\entity\IConfig;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpNotFound;
@@ -20,6 +21,7 @@ use umi\http\THttpAware;
 use umi\stream\IStreamService;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
+use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
@@ -34,6 +36,7 @@ use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
+use umicms\project\site\config\TSiteSettingsAware;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
@@ -48,6 +51,7 @@ class SiteApplication extends SiteComponent
     use TToolkitAware;
     use TSerializationAware;
     use TUrlManagerAware;
+    use TSiteSettingsAware;
 
     /**
      * Имя настройки для задания guid главной страницы
@@ -93,6 +97,10 @@ class SiteApplication extends SiteComponent
      * Имя настройки для задания директории шаблонов
      */
     const SETTING_TEMPLATE_DIRECTORY = 'templateDirectory';
+    /**
+     * Имя настройки для включения/выключения кэширования страниц браузером
+     */
+    const SETTING_BROWSER_CACHE_ENABLED = 'browserCacheEnabled';
     /**
      * Опция для задания сериализаторов приложения
      */
@@ -196,6 +204,8 @@ class SiteApplication extends SiteComponent
                 'page' => $response->getContent()
             ]);
             $response->setContent($result);
+        } elseif ($this->getSiteBrowserCacheEnabled()) {
+            $this->setBrowserCacheHeaders($request, $response);
         }
 
         return $response;
@@ -213,6 +223,25 @@ class SiteApplication extends SiteComponent
         }
 
         return file_get_contents($uri);
+    }
+
+    /**
+     * Возвращает настройки сайта.
+     * @throws RequiredDependencyException если настройки не были установлены
+     * @return IConfig
+     */
+    protected function getSiteSettings() {
+        return $this->getSettings();
+    }
+    /**
+     * Устанавливает ETag для браузерного кэширования страниц.
+     * @param Request $request
+     * @param Response $response
+     */
+    protected function setBrowserCacheHeaders(Request $request, Response $response) {
+        $response->setETag(md5($response->getContent()));
+        $response->setPublic();
+        $response->isNotModified($request);
     }
 
     /**
