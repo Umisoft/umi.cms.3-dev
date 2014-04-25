@@ -106,7 +106,7 @@ define(['App'], function(UMI){
             /**
              Активный контекст
              */
-            activeContextBinding: 'controllers.context.model.object',
+            activeContextBinding: 'controllers.context.model',
 
             needs: ['component', 'context'],
 
