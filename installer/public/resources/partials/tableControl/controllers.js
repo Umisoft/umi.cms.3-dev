@@ -151,5 +151,13 @@ define(['App'], function(UMI){
 
             needs: ['component']
         });
+
+        UMI.TableControlColumnSelectorPopupController = Ember.ObjectController.extend({
+            init: function(){
+
+            }
+        });
+
+        UMI.tableControlColumnSelectorPopup = UMI.TableControlColumnSelectorPopupController.create();
     };
 });

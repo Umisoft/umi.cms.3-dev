@@ -2,37 +2,44 @@ require.config({
     baseUrl: '/resources',
 
     paths: {
-        text: 'libs/requirejs-text/text',
+        text:       'libs/requirejs-text/text',
 
-        App: 'application/application',
+        App:        'application/application',
 
-        Modernizr: 'libs/modernizr/modernizr',
-        jQuery: 'libs/jquery/dist/jquery',
+        Modernizr:  'libs/modernizr/modernizr',
+        jQuery:     'libs/jquery/dist/jquery',
+        jQueryUI:   'libs/jqueryui/ui/jquery-ui',
         Handlebars: 'libs/handlebars/handlebars',
-        Ember: 'libs/ember/ember',
-        DS: 'libs/ember-data/ember-data',
+        Ember:      'libs/ember/ember',
+        DS:         'libs/ember-data/ember-data',
 
-        iscroll: 'libs/iscroll-probe-5.1.1',
-        ckEditor: 'libs/ckeditor/ckeditor',
+        iscroll:    'libs/iscroll-probe-5.1.1',
+        ckEditor:   'libs/ckeditor/ckeditor',
         datepicker: 'libs/datepicker',
-        moment: 'libs/momentjs/min/moment-with-langs.min',
-        elFinder: 'libs/elFinder',
-        chartJs: 'libs/chartjs/Chart'
-
-        //jQueryUI: 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min' //TODO Сейчас подключается с файлами elFinder. Нужно перепелить.
+        timepicker: 'libs/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
+        moment:     'libs/momentjs/min/moment-with-langs.min',
+        elFinder:   'libs/elFinder',
+        chartJs:    'libs/chartjs/Chart'
     },
 
     shim: {
         //Устанавливаем зависимости между библиотеками
         Modernizr:  {exports: 'Modernizr'},
         jQuery:     {exports: 'jQuery'},
-        elFinder:   {exports: 'elFinder',   deps: ['jQuery']},
+
+        /*
+        * jQueryUI
+        * elfinder требует selectable, draggable, droppable
+        * datetime требует datepicker, slider
+        * */
+        jQueryUI:   {exports: 'jQueryUI',   deps: ['jQuery']},
+        elFinder:   {exports: 'elFinder',   deps: ['jQuery', 'jQueryUI']},
         Ember:      {exports: 'Ember',      deps: ['Handlebars', 'jQuery']},
         DS:         {exports: 'DS',         deps: ['Ember']},
         ckEditor:   {exports: 'ckEditor'},
         datepicker: {exports: 'datepicker', deps: ['jQuery']},
+        timepicker: {exports: 'timepicker', deps: ['jQuery', 'jQueryUI']},
         chartJs:    {exports: 'chartJs'}
-        //Требует elFinder jQueryUI: {deps: ['jQuery'],exports: 'jQueryUI'},
     },
 
     packages: [

@@ -23,10 +23,12 @@ define([], function(){
                     Ember.assert('Local Storage не поддерживается браузером', typeof(localStorage) !== "undefined");
                 }
             }()),
+
             get: function(key){
                 var data = JSON.parse(localStorage['UMI']);
                 return Ember.get(data, key);
             },
+
             set: function(keyPath, value){
                 var data = JSON.parse(localStorage['UMI']);
                 var keys = keyPath.split('.');
@@ -50,24 +52,12 @@ define([], function(){
 
         //Проверка браузера на мобильность
         window.mobileDetection = {
-            Android: function(){
-                return navigator.userAgent.match(/Android/i);
-            },
-            BlackBerry: function(){
-                return navigator.userAgent.match(/BlackBerry/i);
-            },
-            iOS: function(){
-                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-            },
-            Opera: function(){
-                return navigator.userAgent.match(/Opera Mini/i);
-            },
-            Windows: function(){
-                return navigator.userAgent.match(/IEMobile/i);
-            },
-            any: function(){
-                return (this.Android() || this.BlackBerry() || this.iOS() || this.Opera() || this.Windows());
-            }
+            Android:    function(){return navigator.userAgent.match(/Android/i);},
+            BlackBerry: function(){return navigator.userAgent.match(/BlackBerry/i);},
+            iOS:        function(){return navigator.userAgent.match(/iPhone|iPad|iPod/i);},
+            Opera:      function(){return navigator.userAgent.match(/Opera Mini/i);},
+            Windows:    function(){return navigator.userAgent.match(/IEMobile/i);},
+            any:        function(){return (this.Android() || this.BlackBerry() || this.iOS() || this.Opera() || this.Windows());}
         };
 
         if(mobileDetection.any()){

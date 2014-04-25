@@ -6,7 +6,7 @@ define([], function(){
          @submodule Router
          **/
         UMI.Router.reopen({
-            location: 'history',
+            location: 'auto',
             rootURL: window.UmiSettings.baseURL
         });
 
@@ -197,6 +197,15 @@ define([], function(){
 
                 trash: function(object, type){
                     console.log('trash');
+                },
+
+                showPopup: function(popupType, object, meta){
+                    var popup = UMI.PopupView.create({
+                        container: this.container,
+                        popupType: popupType,
+                        object: object,
+                        meta: meta
+                    }).append();
                 }
             },
             /**

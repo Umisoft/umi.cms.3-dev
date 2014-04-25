@@ -218,6 +218,7 @@ define(['App'], function(UMI){
         UMI.TableCellContentView = Ember.View.extend({
             classNames: ['umi-table-control-content-cell-div'],
             classNameBindings: ['columnId'],
+
             template: function(){
                 var meta = this.get('column');
                 var object = this.get('object');
