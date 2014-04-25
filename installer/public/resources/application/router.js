@@ -19,8 +19,8 @@ define([], function(){
                 this.route('errors', {path: '/:status'});
                 this.resource('component', {path: '/:component'}, function(){
                     this.route('errors', {path: '/:status'});
-                    this.resource('action', {path: '/:action'}, function(){
-                        this.resource('context', {path: '/:context'});
+                    this.resource('context', {path: '/:context'}, function(){
+                        this.resource('action', {path: '/:action'});
                     });
                 });
             });
@@ -178,11 +178,11 @@ define([], function(){
                 },
 
                 getCreateForm: function(object){
-                    this.transitionTo('context', 'createForm', object.get('id'));
+                    this.transitionTo('action', object.get('id'), 'createForm');
                 },
 
                 getEditForm: function(object){
-                    this.transitionTo('context', 'editForm', object.get('id'));
+                    this.transitionTo('action', object.get('id'), 'editForm');
                 },
 
                 viewOnSite: function(object){
@@ -341,20 +341,7 @@ define([], function(){
             },
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
-                    var deferred = Ember.RSVP.defer();
-                    var self = this;
-                    var defaultAction = this.controllerFor('component').get('contentControls.firstObject.name');
-                    if(defaultAction){
-                        deferred.resolve(self.transitionTo('action', defaultAction));
-                    } else{
-                        var error = new URIError('The component "' + transition.params.component.component + '" was not found.');
-                        error.statusText = 'Actions not found.';
-                        Ember.run.next(function(){
-                            transition.send('templateLogs', error, 'component');
-                        });
-                        deferred.reject();
-                    }
-                    return deferred.promise;
+                    this.transitionTo('context', 'root');
                 }
             },
             serialize: function(model){
@@ -380,61 +367,15 @@ define([], function(){
             }
         });
 
-        UMI.ActionRoute = Ember.Route.extend({
-            model: function(params, transition){
-                if(transition.params.hasOwnProperty('context') && this.controllerFor('component').get('selectedContext') !== transition.params.context.context){
-                    this.controllerFor('component').set('selectedContext', transition.params.context.context);
-                }
-                var self = this;
-                var deferred = Ember.RSVP.defer();
-                var actions = this.controllerFor('component').get('contentControls');
-                var action = actions.findBy('name', params.action);
-                if(action){
-                    deferred.resolve(action);
-                } else{
-                    var error = {
-                        'status': 404,
-                        'statusText': 'Action not found.',
-                        'message': 'The action "' + params.action + '" for component "' + self.modelFor("component").get('name') + '" was not found.'
-                    };
-                    transition.send('templateLogs', error, 'component');
-                    deferred.reject();
-                }
-                return deferred.promise;
-            },
-            redirect: function(model, transition){
-                if(transition.targetName === this.routeName + '.index'){
-                    var contextId = this.controllerFor('component').get('selectedContext');
-                    return this.transitionTo('context', contextId);
-                }
-            },
-            serialize: function(model){
-                if(model){
-                    return {action: model.get('name')};
-                }
-            }
-        });
-
         UMI.ContextRoute = Ember.Route.extend({
-            model: function(params, transition){
-                var self = this;
-                var model;
-                var routeData = {};
-                var RootModel;
+            model: function(params){
                 var componentController = this.controllerFor('component');
                 var collectionName = componentController.get('collectionName');
-                var oldContext = componentController.get('selectedContext');
-                componentController.set('selectedContext', params.context);
-                /**
-                 * Редирект на Action если контекст не имеет action
-                 */
-                var activeAction = this.modelFor('action');
-                var firstAction = componentController.get('contentControls.firstObject');
-                if((oldContext === 'root' || params.context === 'root') && oldContext !== params.context && firstAction.get('name') !== activeAction.get('name')){
-                    return this.transitionTo('action', firstAction.get('name'));
-                }
+                var RootModel;
+                var model;
 
-                // Вот это место мне особенно не нравится
+                componentController.set('selectedContext', params.context);
+
                 if(!collectionName){
                     RootModel = Ember.Object.extend({});
                     model = new Ember.RSVP.Promise(function(resolve){
@@ -460,53 +401,76 @@ define([], function(){
                         model = this.store.find(collectionName, params.context);
                     }
                 }
+                return model;
+            },
+            redirect: function(model, transition){
+                if(transition.targetName === this.routeName + '.index'){
+                    var firstControl = this.controllerFor('component').get('contentControls')[0];
+                    return this.transitionTo('action', firstControl.name);
+                }
+            },
+            serialize: function(model){
+                if(model){
+                    return {context: model.get('id')};
+                }
+            }
+        });
 
-                return model.then(function(model){
-                    routeData.object = model;
+        UMI.ActionRoute = Ember.Route.extend({
+            model: function(params, transition){
+                var self = this;
+                var actionName = params.action;
+                var contextModel = this.modelFor('context');
+                var componentController = this.controllerFor('component');
+                var collectionName = componentController.get('collectionName');
+                var actions = componentController.get('contentControls');
+                var action = actions.findBy('name', actionName);
+                var data = {
+                    'object': contextModel,
+                    'action': action
+                };
+                if(action){
                     /**
                      * Мета информация для action
                      */
-                    var actionName = activeAction.get('name');
                     var actionParams = {};
-
                     if(actionName === 'createForm'){
-                        var createdParams =  model.get('id') !== 'root' ? {parent: model} : null;
-                        routeData.createObject = self.store.createRecord(collectionName, createdParams);
+                        var createdParams =  contextModel.get('id') !== 'root' ? {parent: contextModel} : null;
+                        data.createObject = self.store.createRecord(collectionName, createdParams);
                     }
-                    if(model.get('type')){
-                        actionParams.type = model.get('type');
+                    if(contextModel.get('type')){
+                        actionParams.type = contextModel.get('type');
                     }
-
                     // Временное решение для таблицы
                     if(actionName === 'children' || actionName === 'filter'){
                         return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
-                            routeData.viewSettings = results.settings;
-                            return routeData;
+                            data.viewSettings = results.settings;
+                            return data;
                         });
                     } else if(actionName === 'editForm' || actionName === 'createForm'){
                         actionParams = actionParams ? '?' + $.param(actionParams) : '';
                         var actionResource = componentController.get('settings').actions['get' + Ember.String.capitalize(actionName)].source + actionParams;
 
                         return Ember.$.get(actionResource).then(function(results){
-                            routeData.viewSettings = results.result['get' + Ember.String.capitalize(actionName)];
-                            return routeData;
+                            data.viewSettings = results.result['get' + Ember.String.capitalize(actionName)];
+                            return data;
                         }, function(error){
                             transition.send('templateLogs', error, 'component');
                         });
                     }
-                    return routeData;
-                }, function(error){
-                    transition.send('templateLogs', error, 'component');
-                });
-            },
-            serialize: function(routeData){
-                if(routeData.object){
-                    return {context: routeData.object.get('id')};
+                    return data;
+                } else{
+                    this.transitionTo('context', contextModel.get('id'));
                 }
             },
-            renderTemplate: function(){
+            serialize: function(data){
+                if(data.action){
+                    return {action: data.action.get('name')};
+                }
+            },
+            renderTemplate: function(controller, model){
                 try{
-                    var templateType = this.modelFor('action').get('name');
+                    var templateType = model.action.get('name');
                     this.render(templateType);
                 } catch(error){
                     var errorObject = {
@@ -515,6 +479,15 @@ define([], function(){
                         'stack': error.stack
                     };
                     this.send('templateLogs', errorObject, 'component');
+                }
+            },
+            setupController: function(controller, model){
+                var context = this.modelFor('context');
+                if(model.object.get('id') !== context.get('id')){
+                    Ember.set(model, 'object', context);
+                    this._super(controller, model);
+                } else{
+                    this._super(controller, model);
                 }
             },
             actions: {
