@@ -16,6 +16,7 @@ use umi\hmvc\IMvcEntityFactory;
 use umi\http\Request;
 use umi\http\Response;
 use umi\i18n\ILocalesService;
+use umi\i18n\translator\ITranslator;
 use umi\route\IRouteFactory;
 use umi\route\result\IRouteResult;
 use umi\spl\config\TConfigSupport;
@@ -353,12 +354,17 @@ class Bootstrap implements IProjectConfigAware
          * @var ITemplateEngineFactory $templateEngineFactory
          */
         $templateEngineFactory = $this->toolkit->getService('umi\templating\engine\ITemplateEngineFactory');
+        /**
+         * @var ITranslator $translator
+         */
+        $translator = $this->toolkit->getService('umi\i18n\translator\ITranslator');
+
         $templateEngineFactory->setInitializer(
             ITemplateEngineFactory::PHP_ENGINE,
-            function (PhpTemplateEngine $templateEngine) use ($dispatcher) {
+            function (PhpTemplateEngine $templateEngine) use ($dispatcher, $translator) {
 
                 $viewExtension = new ViewPhpExtension($dispatcher);
-                $templateExtension = new TemplatingPhpExtension($dispatcher);
+                $templateExtension = new TemplatingPhpExtension($dispatcher, $translator);
 
                 $templateEngine
                     ->addExtension($viewExtension)
@@ -368,10 +374,10 @@ class Bootstrap implements IProjectConfigAware
 
         $templateEngineFactory->setInitializer(
             TwigTemplateEngine::NAME,
-            function (TwigTemplateEngine $templateEngine) use ($dispatcher) {
+            function (TwigTemplateEngine $templateEngine) use ($dispatcher, $translator) {
 
                 $viewExtension = new ViewTwigExtension($dispatcher);
-                $templateExtension = new TemplatingTwigExtension($dispatcher);
+                $templateExtension = new TemplatingTwigExtension($dispatcher, $translator);
 
                 $templateEngine
                     ->addExtension($viewExtension)

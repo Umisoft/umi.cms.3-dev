@@ -11,6 +11,7 @@ namespace umicms\templating\engine\twig;
 
 use Twig_Extension;
 use Twig_SimpleFunction;
+use umi\i18n\translator\ITranslator;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\templating\helper\TranslationHelper;
 
@@ -28,13 +29,19 @@ class TemplatingTwigExtension extends Twig_Extension
      * @var CmsDispatcher $dispatcher диспетчер
      */
     protected $dispatcher;
+    /**
+     * @var ITranslator $translator
+     */
+    protected $translator;
 
     /**
      * Конструктор.
      * @param CmsDispatcher $dispatcher диспетчер
+     * @param ITranslator $translator
      */
-    public function __construct(CmsDispatcher $dispatcher) {
+    public function __construct(CmsDispatcher $dispatcher, ITranslator $translator) {
         $this->dispatcher = $dispatcher;
+        $this->translator = $translator;
     }
 
     /**
@@ -68,6 +75,7 @@ class TemplatingTwigExtension extends Twig_Extension
 
         if (!$helper) {
             $helper = new TranslationHelper($this->dispatcher);
+            $helper->setTranslator($this->translator);
         }
 
         return $helper;
