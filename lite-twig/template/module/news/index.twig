@@ -1,4 +1,11 @@
 <h1>{{ page.displayName }}</h1>
 {{ page.contents }}
 
-{{ widget('news.item.list', {'limit' : '3', 'pagination' : {'pageParam' : 'p', 'type' : 'sliding', 'pagesCount' : 5}}) }}
+{{ widget('news.item.list', {
+    'limit' : 3,
+    'pagination' : {
+        'pageParam' : 'p',
+        'type' : 'sliding',
+        'pagesCount' : 5
+    }
+}) }}

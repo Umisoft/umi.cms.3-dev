@@ -4,12 +4,12 @@
         <time datetime="{{ blogPost.publishTime.format('c') }}">
             {{ blogPost.publishTime.format('d.m.Y | H:i') }}
         </time>
-        Автор: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
+        {{ translate('Автор') }}: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
         {{ widget('blog.post.editPostLink', {'blogPost' : blogPost, 'template' : 'editPostLink'}) }}
     </p>
 
     {{ blogPost.announcement | raw }}
 
-    <a href="{{ blogPost.getPageUrl() }}">Читать далее</a>
+    <a href="{{ blogPost.getPageUrl() }}">{{ translate('Читать далее') }}</a>
     {{ widget('blog.post.unPublish', {'blogPost' : blogPost, 'template' : 'unPublishPostForm'}) }}
 </div>
