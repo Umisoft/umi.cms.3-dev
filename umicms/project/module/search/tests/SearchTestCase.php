@@ -15,7 +15,7 @@ use umi\orm\selector\Selector;
 use umi\spl\config\TConfigSupport;
 use umi\toolkit\IToolkit;
 use umi\toolkit\Toolkit;
-use umicms\Bootstrap;
+use umicms\project\Bootstrap;
 use umicms\Environment;
 use UnexpectedValueException;
 

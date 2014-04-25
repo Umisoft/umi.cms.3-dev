@@ -10,7 +10,7 @@
 namespace umicms\configuration;
 
 use umi\route\toolbox\RouteTools;
-use umicms\Bootstrap;
+use umicms\project\Bootstrap;
 
 return [
     /**

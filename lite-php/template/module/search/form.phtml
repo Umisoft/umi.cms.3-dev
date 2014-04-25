@@ -8,6 +8,6 @@ use umicms\project\module\search\highlight\Fragmenter;
 <div class="mod-search-form">
     <form action="<?=$this->url('search')?>" method="get">
         <input type="text" name="query" value="<?=$query ?>"/>
-        <button type="submit">Искать</button>
+        <button type="submit"><?=$this->translate('Искать')?></button>
     </form>
 </div>
