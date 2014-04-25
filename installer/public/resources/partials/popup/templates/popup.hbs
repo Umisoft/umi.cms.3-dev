@@ -1,8 +1,10 @@
-<div class="umi-popup">
-    <div class="umi-popup-header">
-        <a href="#" class="umi-popup-close-button"><i class="icon icon-delete"></i></a>
-    </div>
-    <div class="umi-popup-content">
-        {{render "tableControlColumnSelectorPopup"}}
-    </div>
+<div class="umi-popup-header">
+    <span class="umi-popup-title">{{view.title}}</span>
+    <a href="#" class="umi-popup-close-button" {{action "closePopup" target="view"}}>
+        <i class="icon icon-delete"></i>
+    </a>
 </div>
+<div class="umi-popup-content">
+    {{yield}}
+</div>
+<div class="umi-popup-resizer"></div>

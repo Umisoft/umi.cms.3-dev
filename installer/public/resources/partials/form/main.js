@@ -3,38 +3,101 @@ define(
         'App',
         'text!./form.hbs',
         './mixins',
-        './elements/input/main',
-        './elements/checkbox/main',
-        './elements/textarea/main',
-        './elements/htmlEditor/main',
+
+        './elements/wysiwyg/main',
         './elements/select/main',
-        './elements/multiSelect/main',
-        './elements/datepicker/main',
+        './elements/multi-select/main',
         './elements/magellan/main',
-        './formTypes/createForm/main'
+
+        /* TODO плавно переносим элементы на другую структуру + стандартизированные названия */
+        './elements/checkbox/main',
+        './elements/radio/main',
+        './elements/text/main',
+        './elements/number/main',
+        './elements/email/main',
+        './elements/password/main',
+        './elements/time/main',
+        './elements/date/main',
+        './elements/datetime/main',
+        './elements/file/main',
+        './elements/image/main',
+        './elements/textarea/main',
+        './formTypes/createForm/main',
+        './formTypes/basicForm/main',
+        './toolbar/main'
     ],
-    function(UMI, formTpl, mixin, inputElement, checkboxElement, textareaElement, htmlEditorElement, selectElement, multiSelectElement, datepickerElement, magellanElement, createForm){
+    function(
+        UMI,
+        formTpl,
+        mixin,
+
+        wysiwygElement,
+        selectElement,
+        multiSelectElement,
+        magellanElement,
+
+        /* TODO плавно переносим элементы на другую структуру + стандартизированные названия */
+        checkboxElement,
+        radioElement,
+        textElement,
+        numberElement,
+        emailElement,
+        passwordElement,
+        timeElement,
+        dateElement,
+        datetimeElement,
+        fileElement,
+        imageElement,
+        textareaElement,
+        createForm,
+        basicForm,
+        toolbar
+        ){
         'use strict';
 
         Ember.TEMPLATES['UMI/formControl'] = Ember.Handlebars.compile(formTpl);
 
         mixin();
-        inputElement();
-        checkboxElement();
-        textareaElement();
-        htmlEditorElement();
+
+        wysiwygElement();
         selectElement();
         multiSelectElement();
-        datepickerElement();
         magellanElement();
+
+        /* TODO плавно переносим элементы на другую структуру + стандартизированные названия */
+        checkboxElement();
+        radioElement();
+        textElement();
+        numberElement();
+        emailElement();
+        passwordElement();
+        timeElement();
+        dateElement();
+        datetimeElement();
+        fileElement();
+        imageElement();
+        textareaElement();
+        toolbar();
 
         UMI.FormControlController = Ember.ObjectController.extend({
             needs: ['component'],
+
             settings: function(){
                 var settings = {};
                 settings = this.get('controllers.component.settings');
                 return settings;
             }.property(),
+
+            toolbar: function(){
+                var editForm = this.get('controllers.component.contentControls').findBy('name','editForm');
+                return editForm && editForm.toolbar;
+            }.property('controllers.component.contentControls'),
+
+            hasToolbar: function(){
+                var toolbar = this.get('toolbar');
+                return toolbar && toolbar.length;
+            }.property('toolbar'),
+
             hasFieldset: function(){
                 var hasFieldset;
                 try{
@@ -49,74 +112,7 @@ define(
                 } finally{
                     return hasFieldset;
                 }
-            }.property('model.@each'),
-            switchActivity: function(){
-                return this.get('settings').actions.activate && this.get('settings').actions.deactivate;
-            }.property('model.@each'),
-            hasBackups: function(){
-                return !!this.get('settings').actions.getBackupList;
-            }.property('model.@each'),
-            backups: function(){
-                var backups = {};
-                var object = this.get('object');
-                var settings = this.get('settings');
-                if(this.get('hasBackups')){
-                    backups.displayName = settings.actions.getBackupList.displayName;
-                    var currentVersion = {
-                        objectId: object.get('id'),
-                        date: object.get('updated'),
-                        user: null,
-                        id: 'current',
-                        current: true,
-                        isActive: true
-                    };
-                    var results = [currentVersion];
-                    var params = '?id=' + object.get('id');
-
-                    var promiseArray = DS.PromiseArray.create({
-                        promise: $.get(settings.actions.getBackupList.source + params).then(function(data){
-                            return results.concat(data.result.getBackupList.serviceBackup);
-                        })
-                    });
-                    backups.list = Ember.ArrayProxy.create({
-                        content: promiseArray
-                    });
-                    return backups;
-                }
-            }.property('model.@each'),
-
-            actions: {
-                applyBackup: function(backup){
-                    if(backup.isActive){
-                        return;
-                    }
-                    var self = this;
-                    var object = this.get('model.object');
-                    var list = self.get('backups.list');
-                    var setCurrent = function(){
-                        list.setEach('isActive', false);
-                        var current = list.findBy('id', backup.id);
-                        Ember.set(current, 'isActive', true);
-                    };
-                    object.rollback();
-                    if(backup.current){
-                        setCurrent();
-                    } else{
-                        var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
-                        $.get(self.get('settings').actions.getBackup.source + params).then(function(data){
-                            object.setProperties(data.result.getBackup);
-                            setCurrent();
-                        });
-                    }
-                },
-                toggleProperty: function(property){
-                    this.get('model.object').toggleProperty(property);
-                },
-                switchActivity: function(){
-                    var object = this.get('object');
-                    this.get('controllers.component').send('switchActivity', object);
-                }
-            }
+            }.property('model.@each')
         });
 
         UMI.FormElementController = Ember.ObjectController.extend({
@@ -151,42 +147,33 @@ define(
             wide: function(){
                 return this.get('meta.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12';
             }.property('meta.type'),
-            layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{meta.label}}</label></div>{{yield}}'),
+
+            layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{meta.label}}</span></div>{{yield}}'),
+
             template: function(){
                 var meta = this.get('meta');
                 var template;
+
                 switch(meta.type){
-                    case 'text':
-                        template = '{{input type="text" value=object.' + meta.dataSource + ' placeholder=meta.placeholder validator="collection" dataSource=meta.dataSource}}';
-                        break;
-                    case 'textarea':
-                        template = '{{textarea value=object.' + meta.dataSource + ' placeholder=meta.placeholder validator="collection" dataSource=meta.dataSource}}';
-                        break;
-                    case 'wysiwyg':
-                        template = '{{html-editor object=object property="' + meta.dataSource + '" validator="collection" dataSource=meta.dataSource}}';
-                        break;
-                    case 'number': // TODO: Поле типа "number" в firefox не работает
-                        template = '{{input type="number" value=object.' + meta.dataSource + ' validator="collection" dataSource=meta.dataSource}}';
-                        break;
-                    case 'checkbox':
-                        template = '{{input type="checkbox" checked=object.' + meta.dataSource + ' name=meta.name validator="collection" dataSource=meta.dataSource}}<label for="' + meta.name + '"></label>';
-                        break;
-                    case 'select':
-                        template = '{{view "select" object=object meta=meta}}';
-                        break;
-                    case 'multi-select':
-                        template = '{{view "multiSelect" object=object meta=meta}}';
-                        break;
-                    case 'datetime':
-                        template = '{{date-picker object=object property="' + meta.dataSource + '"}}';
-                        break;
-                    case 'file':
-                        template = '<div class="umi-input-wrapper-file">{{input type="file" class="umi-file" value=object.' + meta.dataSource + '}}<i class="icon icon-cloud"></i></div>';
-                        break;
-                    default:
-                        template = '<div>Для поля типа <b>' + meta.type + '</b> не предусмотрен шаблон.</div>';
-                        break;
+                    case 'wysiwyg':         template = '{{html-editor           object=object property="' + meta.dataSource + '" validator="collection" dataSource=meta.dataSource}}'; break;
+                    case 'select':          template = '{{view "select"         object=object meta=meta}}'; break;
+                    case 'multi-select':    template = '{{view "multiSelect"    object=object meta=meta}}'; break;
+
+                    case 'text':            template = '{{text-element          object=object meta=meta}}'; break;
+                    case 'email':           template = '{{email-element         object=object meta=meta}}'; break;
+                    case 'password':        template = '{{password-element      object=object meta=meta}}'; break;
+                    case 'checkbox':        template = '{{checkbox-element      object=object meta=meta}}'; break;
+                    case 'radio':           template = '{{radio-element         object=object meta=meta}}'; break;
+                    case 'time':            template = '{{time-element          object=object meta=meta}}'; break;
+                    case 'date':            template = '{{date-element          object=object meta=meta}}'; break;
+                    case 'file':            template = '{{file-element          object=object meta=meta}}'; break;
+                    case 'image':           template = '{{image-element         object=object meta=meta}}'; break;
+                    case 'number':          template = '{{number-element        object=object meta=meta}}'; break;
+                    case 'textarea':        template = '{{textarea-element      object=object meta=meta}}'; break;
+
+                    default:                template = '<div>Для поля типа <b>' + meta.type + '</b> не предусмотрен шаблон.</div>'; break;
                 }
+
                 template += '{{#if object.validErrors.' + meta.dataSource + '}}' + '<small class="error">' + '{{#each error in object.validErrors.' + meta.dataSource + '}}' + '{{error.message}}' + '{{/each}}' + '</small>' + '{{/if}}';
                 template = Ember.Handlebars.compile(template);
                 return template;
@@ -197,6 +184,7 @@ define(
         UMI.SaveButtonView = Ember.View.extend({
             tagName: 'button',
             classNameBindings: ['model.isDirty::disabled', 'model.isValid::disabled'],
+
             click: function(event){
                 if(this.get('model.isDirty') && this.get('model.isValid')){
                     var button = this.$();
@@ -249,4 +237,6 @@ define(
         });
 
         createForm();
-    });
+        basicForm();
+    }
+);

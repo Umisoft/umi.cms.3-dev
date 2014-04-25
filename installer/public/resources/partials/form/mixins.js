@@ -4,6 +4,7 @@ define(['App'], function(UMI){
     return function(){
         UMI.InputValidate = Ember.Mixin.create({
             validator: null,
+
             focusOut: function(){
                 if(this.get('validator') === 'collection'){
                     var object = this.get('templateData.view.object');
@@ -11,11 +12,21 @@ define(['App'], function(UMI){
                     object.validateProperty(this.get('dataSource'));
                 }
             },
+
             focusIn: function(){
                 if(this.get('validator') === 'collection'){
-                    this.get('templateData.view.object').clearValidateForProperty(this.get('dataSource'));
+                    var object = this.get('templateData.view.object');
+                    object.clearValidateForProperty(this.get('dataSource'));
                 }
-            }
+            },
+
+            valueObject: function(){
+                return this.get('object.' + this.get("meta.dataSource"));
+            }.property('object', 'meta.dataSource'),
+
+            changeValueObject: function(){
+                this.get('object').set(this.get('meta.dataSource'), this.get('valueObject'));
+            }.observes('valueObject')
         });
     };
 });

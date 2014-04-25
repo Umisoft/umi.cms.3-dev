@@ -7,10 +7,21 @@
                     Открыть сайт в новом окне
                 </a>
             </li>
+            {{#if controller.settingsAllowed}}
+                <li>
+                    {{#link-to 'settings' class="left-off-canvas-toggle"}}
+                        <i class="icon white icon-settings"></i>
+                    {{/link-to}}
+                </li>
+            {{/if}}
 
-            <li class="right has-dropdown">
+            <!--<li>-->
+                <!--{{!view "notification"}}-->
+            <!--</li>-->
+
+            <li class="right has-dropdown umi-top-bar-user-menu">
                 <a href="#">mail@yandex.ru</a>
-                <ul class="dropdown">
+                <ul class="dropdown umi-top-bar-user-menu-drop-down">
                     <li><a href="#">Сменить пароль</a></li>
                     <li><a href="#" {{action 'logout'}}>Выход из системы</a></li>
                 </ul>

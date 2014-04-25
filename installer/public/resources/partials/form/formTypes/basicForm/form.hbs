@@ -1,0 +1,16 @@
+<div class="row s-full-height collapse">
+    <div class="columns small-12 maggelan-content">
+        <br>
+        {{#each object in model.elements}}
+            {{view "basicField" object=object}}
+        {{/each}}
+    </div>
+</div>
+
+<ul class="button-group umi-form-control-buttons">
+    <li>
+        <button {{bind-attr class=":button :primary :s-margin-clear :wide view.loading"}}>
+            Сохранить
+        </button>
+    </li>
+</ul>

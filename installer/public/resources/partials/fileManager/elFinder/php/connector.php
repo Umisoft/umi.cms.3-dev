@@ -256,7 +256,7 @@ $opts = array(
 			'accessControl' => 'access',
 			'acceptedName'    => '/^[^\.].*$/',
 			// 'disabled' => array('extract', 'archive'),
-			// 'tmbSize' => 128,
+			 'tmbSize' => 128,
 			'attributes' => array(
 				array(
 					'pattern' => '/\.js$/',

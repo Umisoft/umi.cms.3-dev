@@ -17,6 +17,10 @@
     background: #F5F6F7;
 }
 
+::-webkit-scrollbar-corner{
+    background: #F5F6F7;
+}
+
 // Объявнение переменной намеренно вынесено, для расчета высоты $umi-header-height
 $umi-dock-height: 85px;
 

@@ -18,6 +18,7 @@
     /*border: 1px solid #DDE3E6;*/
     border-top: none;
     box-sizing: border-box;
+    line-height: 1;
 }
 
 .elfinder-cwd table tr:last-of-type{
@@ -26,6 +27,7 @@
 
 .elfinder-cwd-wrapper-list {
     padding: 0;
+    background: #D6E0E9;
 }
 
 .elfinder-cwd-wrapper:before {
@@ -85,12 +87,12 @@
 /* ltr/rtl enviroment */
 .elfinder-ltr .elfinder-cwd-view-icons .elfinder-cwd-file {
     float: left;
-    margin: 0 3px 12px 0;
+    margin: 10px;
 }
 
 .elfinder-rtl .elfinder-cwd-view-icons .elfinder-cwd-file {
     float: right;
-    margin: 0 0 5px 3px;
+    margin: 10px;
 }
 
 /* remove ui hover class border */
@@ -163,6 +165,11 @@
 .elfinder-cwd-icon-postscript {
     background-position: 0 -250px;
 }
+
+//.elfinder-cwd-icon-image{
+//    border: 1px solid #A7B9C5;
+//    box-sizing: border-box;
+//}
 
 .elfinder-cwd-icon-audio {
     background-position: 0 -300px;
@@ -374,10 +381,6 @@
 
 .elfinder-odd-row {
     background: #eee;
-}
-
-.elfinder-cwd-view-list{
-    background: #D6E0E9;
 }
 
 .elfinder-cwd-view-list table{

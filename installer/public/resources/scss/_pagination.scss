@@ -1,0 +1,9 @@
+.umi-table-footer-fixed{
+    ul.pagination{
+        margin: 5px;
+        float: left;
+        .current{
+            background: #259CEC;
+        }
+    }
+}

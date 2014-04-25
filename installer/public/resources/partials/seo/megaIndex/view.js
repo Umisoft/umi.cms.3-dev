@@ -4,14 +4,18 @@ define(['App'], function(UMI){
     return function(){
         UMI.SeoMegaIndexView = Ember.View.extend({
             templateName: 'seoMegaIndex',
-            classNames: ['umi-table-ajax'],
+            classNames: ['umi-table'],
             headers: [],
             data: [],
 
             didInsertElement: function(){
                 var that = this;
 
-                var megaIndexScroll = new IScroll('.umi-table-ajax-control-content-center', UMI.config.iScroll);
+                var megaIndexScroll = new IScroll('.umi-table-content', UMI.config.iScroll);
+                var umiTableHeader = document.querySelector('.umi-table-header-fixed');
+                megaIndexScroll.on('scroll', function(){
+                    umiTableHeader.style.marginLeft = this.x + 'px';
+                });
 
                 //Получаем список счётчиков
                 (function getCounters(){
@@ -34,10 +38,14 @@ define(['App'], function(UMI){
                             console.log('ARRAY:', response.result.siteAnalyze.data);
                             that.set('headers', response.result.siteAnalyze.data.shift());
                             that.set('data', response.result.siteAnalyze.data);
-
                             setTimeout(function(){
                                 megaIndexScroll.refresh();
-                            }, 200);
+                                $('.umi-table-content thead .umi-table-title-div').each(function(index, element){
+                                    $('.umi-table-header-fixed .umi-table-title-div').eq(index).width(function(){
+                                        return $(element).width();
+                                    });
+                                });
+                            }, 0);
                         },
 
                         error: function(code){
