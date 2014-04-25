@@ -39,7 +39,8 @@ return [
         'structure' => '{#lazy:~/project/module/structure/site/module.config.php}',
         'news' => '{#lazy:~/project/module/news/site/module.config.php}',
         'blog' => '{#lazy:~/project/module/blog/site/module.config.php}',
-        'search' => '{#lazy:~/project/module/search/site/module.config.php}'
+        'search' => '{#lazy:~/project/module/search/site/module.config.php}',
+        'users' => '{#lazy:~/project/module/users/site/module.config.php}'
     ],
 
     SiteApplication::OPTION_CONTROLLERS => [

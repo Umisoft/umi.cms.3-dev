@@ -113,6 +113,27 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $groupCollection = $this->getCollectionManager()->getCollection('userGroup');
 
         /**
+         * @var SimpleHierarchicCollection $structureCollection
+         */
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+
+        $usersPage = $structureCollection->add('users', 'system')
+            ->setValue('displayName', 'Пользователи')
+            ->setValue('metaTitle', 'Пользователи')
+            ->setValue('h1', 'Пользователи');
+
+        $usersPage->getProperty('componentName')->setValue('users');
+        $usersPage->getProperty('componentPath')->setValue('users');
+
+        $authorizationPage = $structureCollection->add('auth', 'system', $usersPage)
+            ->setValue('displayName', 'Авторизация')
+            ->setValue('metaTitle', 'Авторизация')
+            ->setValue('h1', 'Авторизация');
+
+        $authorizationPage->getProperty('componentName')->setValue('authorization');
+        $authorizationPage->getProperty('componentPath')->setValue('users.authorization');
+
+        /**
          * @var UserGroup $visitors
          */
         $visitors = $groupCollection->add()
@@ -123,6 +144,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $visitors->roles = [
             'project' => ['visitor'],
             'project.admin' => ['visitor'],
+
+            'project.site.users' => ['viewer'],
+            'project.site.users.authorization' => ['viewer'],
 
             'project.site.structure' => ['viewer'],
             'project.site.structure.menu' => ['viewer'],
