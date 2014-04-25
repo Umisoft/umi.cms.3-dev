@@ -4,7 +4,6 @@
  * @var umicms\project\module\blog\api\object\BlogPost $blogDraft
  */
 ?>
-
 <?php if ($list->getTotal()) : ?>
     <?php foreach ($list as $blogDraft) : ?>
         <?= $this->widget('blog.draft.view', ['blogDraft' => $blogDraft, 'template' => 'shortView']); ?>

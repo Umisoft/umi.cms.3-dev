@@ -1,4 +1,9 @@
+<?php
+/**
+ * @var umicms\project\module\blog\api\object\BlogCategory $category
+ */
+?>
 <a href="<?=$category->getPageUrl()?>">
-    <?=$category->h1?>
+    <?=$category->displayName?>
 </a> <?=$this->widget('blog.category.rss', ['category' => $category, 'template' => 'rssLink'])?>
 <?=$this->widget('blog.category.list', ['parentCategory' => $category, 'template' => 'listShort'])?>
