@@ -87,17 +87,31 @@ define([], function(){
                  params.handler - элемент (кнопка) вызвавший событие сохранение
                  */
                 save: function(params){
+                    var isNewObject;
+                    var self = this;
                     if(!params.object.get('isValid')){
                         if(params.handler){
                             $(params.handler).removeClass('loading');
                         }
                         return;
                     }
-                    params.object.save().then(
+                    if(params.object.get('currentState.stateName') === 'root.loaded.created.uncommitted'){
+                        isNewObject = true;
+                    }
+                    return params.object.save().then(
                         function(){
                             params.object.updateRelationhipsMap();
                             if(params.handler){
                                 $(params.handler).removeClass('loading');
+                            }
+                            if(isNewObject){
+                                if(params.object.store.metadataFor(params.object.constructor.typeKey).collectionType === 'hierarchic'){
+                                    return params.object.get('parent').then(function(parent){
+                                        parent.reload();
+                                        self.send('getEditForm', params.object);
+                                    });
+                                }
+                                self.send('getEditForm', params.object);
                             }
                         },
                         function(results){
@@ -123,6 +137,7 @@ define([], function(){
                         }
                     );
                 },
+
                 dialogError: function(error){
                     var settings = this.parseError(error);
                     settings.close = true;
@@ -164,7 +179,6 @@ define([], function(){
                     } catch(error){
                         this.send('backgroundError', error);
                     }
-
                 },
 
                 getCreateForm: function(object){
@@ -179,6 +193,10 @@ define([], function(){
                     var link = window.location.host + window.UmiSettings.baseSiteURL + object._data.meta.pageUrl;
                     var tab = window.open('//' + link.replace('\/\/', '\/'), '_blank');
                     tab.focus();
+                },
+
+                trash: function(object, type){
+                    console.log('trash');
                 },
 
                 showPopup: function(popupType, object, meta){
@@ -409,7 +427,7 @@ define([], function(){
                  */
                 var activeAction = this.modelFor('action');
                 var firstAction = componentController.get('contentControls.firstObject');
-                if(oldContext !== params.context && firstAction.get('name') !== activeAction.get('name')){
+                if((oldContext === 'root' || params.context === 'root') && oldContext !== params.context && firstAction.get('name') !== activeAction.get('name')){
                     return this.transitionTo('action', firstAction.get('name'));
                 }
 
@@ -449,9 +467,8 @@ define([], function(){
                     var actionParams = {};
 
                     if(actionName === 'createForm'){
-                        routeData.createObject = self.store.createRecord(collectionName, {
-                            parent: model
-                        });
+                        var createdParams =  model.get('id') !== 'root' ? {parent: model} : null;
+                        routeData.createObject = self.store.createRecord(collectionName, createdParams);
                     }
                     if(model.get('type')){
                         actionParams.type = model.get('type');
@@ -505,7 +522,9 @@ define([], function(){
                  */
                 willTransition: function(transition){
                     var model = this.modelFor('context').object;
-
+                    if('createObject' in this.modelFor('context') && this.modelFor('context').createObject.get('isNew')){
+                        this.modelFor('context').createObject.deleteRecord();
+                    }
                     if(model.get('isDirty')){
                         transition.abort();
                         var data = {
@@ -530,5 +549,56 @@ define([], function(){
                 }
             }
         });
+
+
+        if('baseSettingsURL' in window.UmiSettings){
+            UMI.Router.map(function(){
+                this.resource('settings', {path: '/configure'}, function(){
+                    this.route('component', {path: '/:component'});
+                });
+            });
+
+
+            UMI.SettingsRoute = Ember.Route.extend({
+                model: function(){
+                    return $.get(window.UmiSettings.baseSettingsURL).then(
+                        function(settings){
+                            var treeControl = settings.result.components;
+                            return treeControl;
+                        }
+                    );
+                }
+            });
+
+            UMI.SettingsComponentRoute = Ember.Route.extend({
+                model: function(params){
+                    var settings = this.modelFor('settings');
+                    var findDepth = function findDepth(components, propertyName, propertyValue){
+                        var i;
+                        var component;
+                        var result;
+                        for(i = 0; i < components.length; i++){
+                            if(components[i][propertyName] === propertyValue){
+                                component = components[i];
+                            }
+                            if('components' in components[i]){
+                                result = findDepth(components[i].components, propertyName, propertyValue);
+                                if(result){
+                                    component = result;
+                                }
+                            }
+                        }
+                        return component;
+                    };
+                    var component = findDepth(settings, 'name', params.component);
+                    return $.get(component.resource).then(function(data){
+                        Ember.set(component, 'form', data.result.form);
+                        return component;
+                    });
+                },
+                serialize: function(){
+                }
+            });
+        }
     };
 });

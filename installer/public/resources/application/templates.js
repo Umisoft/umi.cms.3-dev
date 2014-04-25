@@ -4,15 +4,17 @@ define([
     'text!./templates/errors/errors.hbs',
 
     /* TODO Удалить после рефакторинга лишних шаблонов */
-        'text!./templates/actions/children.hbs',
-        'text!./templates/actions/editForm.hbs',
-        'text!./templates/actions/files.hbs',
-        'text!./templates/actions/tree.hbs',
-        'text!./templates/actions/counters.hbs',
-        'text!./templates/actions/counter.hbs',
-        'text!./templates/actions/megaIndex.hbs',
-        'text!./templates/actions/yandexWebmaster.hbs',
+    'text!./templates/actions/children.hbs',
+    'text!./templates/actions/editForm.hbs',
+    'text!./templates/actions/files.hbs',
+    'text!./templates/actions/tree.hbs',
+    'text!./templates/actions/counters.hbs',
+    'text!./templates/actions/counter.hbs',
+    'text!./templates/actions/megaIndex.hbs',
+    'text!./templates/actions/yandexWebmaster.hbs',
     'text!./templates/actions/createForm.hbs',
+    'text!./templates/settings/settings.hbs',
+    'text!./templates/settings/settingComponent.hbs'
 
 ], function(
     applicationTpl,
@@ -28,7 +30,9 @@ define([
         counterTpl,
         megaIndexTpl,
         yandexWebmasterTpl,
-        createFormTpl
+        createFormTpl,
+        settingsTpl, 
+        settingComponentTpl
     ){
     'use strict';
     return function(){
@@ -39,15 +43,18 @@ define([
         Ember.TEMPLATES['UMI/component'] = Ember.Handlebars.compile(componentTpl);
 
         /* TODO Удалить после рефакторинга лишних шаблонов */
-            Ember.TEMPLATES['UMI/children'] = Ember.Handlebars.compile(childrenTpl);
-            Ember.TEMPLATES['UMI/editForm'] = Ember.Handlebars.compile(editFormTpl);
-            Ember.TEMPLATES['UMI/filter'] = Ember.Handlebars.compile(childrenTpl);
-            Ember.TEMPLATES['UMI/fileManager'] = Ember.Handlebars.compile(filesTpl);
-            Ember.TEMPLATES['UMI/tree'] = Ember.Handlebars.compile(treeTpl);
-            Ember.TEMPLATES['UMI/counters'] = Ember.Handlebars.compile(countersTpl);
-            Ember.TEMPLATES['UMI/counter'] = Ember.Handlebars.compile(counterTpl);
-            Ember.TEMPLATES['UMI/megaindexReport'] = Ember.Handlebars.compile(megaIndexTpl);
-            Ember.TEMPLATES['UMI/yandexWebmasterReport'] = Ember.Handlebars.compile(yandexWebmasterTpl);
-            Ember.TEMPLATES['UMI/createForm'] = Ember.Handlebars.compile(createFormTpl);
+        Ember.TEMPLATES['UMI/children'] = Ember.Handlebars.compile(childrenTpl);
+        Ember.TEMPLATES['UMI/editForm'] = Ember.Handlebars.compile(editFormTpl);
+        Ember.TEMPLATES['UMI/filter'] = Ember.Handlebars.compile(childrenTpl);
+        Ember.TEMPLATES['UMI/fileManager'] = Ember.Handlebars.compile(filesTpl);
+        Ember.TEMPLATES['UMI/tree'] = Ember.Handlebars.compile(treeTpl);
+        Ember.TEMPLATES['UMI/counters'] = Ember.Handlebars.compile(countersTpl);
+        Ember.TEMPLATES['UMI/counter'] = Ember.Handlebars.compile(counterTpl);
+        Ember.TEMPLATES['UMI/megaindexReport'] = Ember.Handlebars.compile(megaIndexTpl);
+        Ember.TEMPLATES['UMI/yandexWebmasterReport'] = Ember.Handlebars.compile(yandexWebmasterTpl);
+        Ember.TEMPLATES['UMI/createForm'] = Ember.Handlebars.compile(createFormTpl);
+
+        Ember.TEMPLATES['UMI/settings'] = Ember.Handlebars.compile(settingsTpl);
+        Ember.TEMPLATES['UMI/settings/component'] = Ember.Handlebars.compile(settingComponentTpl);
     };
 });

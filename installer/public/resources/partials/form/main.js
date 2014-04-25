@@ -22,32 +22,36 @@ define(
         './elements/file/main',
         './elements/image/main',
         './elements/textarea/main',
-        './formTypes/createForm/main'
+        './formTypes/createForm/main',
+        './formTypes/basicForm/main',
+        './toolbar/main'
     ],
     function(
-            UMI,
-            formTpl,
-            mixin,
+        UMI,
+        formTpl,
+        mixin,
 
-            wysiwygElement,
-            selectElement,
-            multiSelectElement,
-            magellanElement,
+        wysiwygElement,
+        selectElement,
+        multiSelectElement,
+        magellanElement,
 
-            /* TODO плавно переносим элементы на другую структуру + стандартизированные названия */
-            checkboxElement,
-            radioElement,
-            textElement,
-            numberElement,
-            emailElement,
-            passwordElement,
-            timeElement,
-            dateElement,
-            datetimeElement,
-            fileElement,
-            imageElement,
-            textareaElement,
-            createForm
+        /* TODO плавно переносим элементы на другую структуру + стандартизированные названия */
+        checkboxElement,
+        radioElement,
+        textElement,
+        numberElement,
+        emailElement,
+        passwordElement,
+        timeElement,
+        dateElement,
+        datetimeElement,
+        fileElement,
+        imageElement,
+        textareaElement,
+        createForm,
+        basicForm,
+        toolbar
         ){
         'use strict';
 
@@ -73,6 +77,7 @@ define(
         fileElement();
         imageElement();
         textareaElement();
+        toolbar();
 
         UMI.FormControlController = Ember.ObjectController.extend({
             needs: ['component'],
@@ -82,6 +87,16 @@ define(
                 settings = this.get('controllers.component.settings');
                 return settings;
             }.property(),
+
+            toolbar: function(){
+                var editForm = this.get('controllers.component.contentControls').findBy('name','editForm');
+                return editForm && editForm.toolbar;
+            }.property('controllers.component.contentControls'),
+
+            hasToolbar: function(){
+                var toolbar = this.get('toolbar');
+                return toolbar && toolbar.length;
+            }.property('toolbar'),
 
             hasFieldset: function(){
                 var hasFieldset;
@@ -97,199 +112,7 @@ define(
                 } finally{
                     return hasFieldset;
                 }
-            }.property('model.@each'),
-
-            switchActivity: function(){
-                return this.get('settings').actions.activate && this.get('settings').actions.deactivate;
-            }.property('model.@each'),
-            hasBackups: function(){
-                return !!this.get('settings').actions.getBackupList;
-            }.property('model.@each'),
-            backups: function(){
-                var backups = {};
-                var object = this.get('object');
-                var settings = this.get('settings');
-                if(this.get('hasBackups')){
-                    backups.displayName = settings.actions.getBackupList.displayName;
-                    var currentVersion = {
-                        objectId: object.get('id'),
-                        date: object.get('updated'),
-                        user: null,
-                        id: 'current',
-                        current: true,
-                        isActive: true
-                    };
-                    var results = [currentVersion];
-                    var params = '?id=' + object.get('id');
-
-                    var promiseArray = DS.PromiseArray.create({
-                        promise: $.get(settings.actions.getBackupList.source + params).then(function(data){
-                            return results.concat(data.result.getBackupList.serviceBackup);
-                        })
-                    });
-                    backups.list = Ember.ArrayProxy.create({
-                        content: promiseArray
-                    });
-                    return backups;
-                }
-            }.property('model.@each'),
-            access: function(){
-                var globalAllow = [
-                    {
-                        "name": "create",
-                        "allow": true
-                    },
-                    {
-                        "name": "read",
-                        "allow": true
-                    },
-                    {
-                        "name": "update",
-                        "allow": false
-                    },
-                    {
-                        "name": "delete",
-                        "allow": false
-                    }
-                ];
-                var AccessObject = Ember.Object.extend({
-                    displayName: 'Права доступа',
-                    action: {
-                        displayName: 'Добавить пользователя'
-                    },
-                    actions: [
-                        {
-                            "name": "create",
-                            "displayName": "Добавление"
-                        },
-                        {
-                            "name": "read",
-                            "displayName": "Чтение"
-                        },
-                        {
-                            "name": "update",
-                            "displayName": "Редактирование"
-                        },
-                        {
-                            "name": "delete",
-                            "displayName": "Удаление"
-                        }
-                    ],
-                    global: {
-                        "displayName": "Все пользователи",
-                        "actions": [
-                            {
-                                "name": "create",
-                                "allow": true
-                            },
-                            {
-                                "name": "read",
-                                "allow": true
-                            },
-                            {
-                                "name": "update",
-                                "allow": false
-                            },
-                            {
-                                "name": "delete",
-                                "allow": false
-                            }
-                        ]
-                    },
-                    users: [
-                        {
-                            "id": 1,
-                            "displayName": "Супервайзер",
-                            "actions": [
-                                {
-                                    "name": "create",
-                                    "allow": true
-                                },
-                                {
-                                    "name": "read",
-                                    "allow": true
-                                },
-                                {
-                                    "name": "update",
-                                    "allow": true
-                                },
-                                {
-                                    "name": "delete",
-                                    "allow": true
-                                }
-                            ]
-                        },
-                        {
-                            "id": 2,
-                            "displayName": "Администратор",
-                            "actions": [
-                                {
-                                    "name": "create",
-                                    "allow": true
-                                },
-                                {
-                                    "name": "read",
-                                    "allow": true
-                                },
-                                {
-                                    "name": "update",
-                                    "allow": false
-                                },
-                                {
-                                    "name": "delete",
-                                    "allow": false
-                                }
-                            ]
-                        }
-                    ],
-                    usersAllow: function(){// Жесть!
-                        var users = this.get('users');
-                        var global = this.get('global');
-                        global.actions.forEach(function(action){
-                            var oldAllow = globalAllow.findBy('name', action.name);
-                            if(action.allow !== oldAllow.allow){
-                                oldAllow.allow = action.allow;
-                                users.forEach(function(user){
-                                    Ember.set(user.actions.findBy('name', action.name), 'allow', action.allow);
-                                });
-                            }
-                        });
-                    }.observes('global.actions.@each.allow')
-                });
-                return AccessObject.create({});
-            }.property('model.object'),
-            actions: {
-                applyBackup: function(backup){
-                    if(backup.isActive){
-                        return;
-                    }
-                    var self = this;
-                    var object = this.get('model.object');
-                    var list = self.get('backups.list');
-                    var setCurrent = function(){
-                        list.setEach('isActive', false);
-                        var current = list.findBy('id', backup.id);
-                        Ember.set(current, 'isActive', true);
-                    };
-                    object.rollback();
-                    if(backup.current){
-                        setCurrent();
-                    } else{
-                        var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
-                        $.get(self.get('settings').actions.getBackup.source + params).then(function(data){
-                            object.setProperties(data.result.getBackup);
-                            setCurrent();
-                        });
-                    }
-                },
-                toggleProperty: function(property){
-                    this.get('model.object').toggleProperty(property);
-                },
-                switchActivity: function(){
-                    var object = this.get('object');
-                    this.get('controllers.component').send('switchActivity', object);
-                }
-            }
+            }.property('model.@each')
         });
 
         UMI.FormElementController = Ember.ObjectController.extend({
@@ -412,6 +235,8 @@ define(
                 this.set('iScroll', scroll);
             }
         });
+
         createForm();
+        basicForm();
     }
 );

@@ -2,7 +2,10 @@ define([], function(){
     'use strict';
     return function(UMI){
         UMI.ApplicationController = Ember.ObjectController.extend({
-            settings: null
+            settings: null,
+            settingsAllowed: function(){
+                return 'baseSettingsURL' in window.UmiSettings;
+            }.property()
         });
 
         /**

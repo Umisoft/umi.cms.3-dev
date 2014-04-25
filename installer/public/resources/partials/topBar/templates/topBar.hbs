@@ -7,6 +7,13 @@
                     Открыть сайт в новом окне
                 </a>
             </li>
+            {{#if controller.settingsAllowed}}
+                <li>
+                    {{#link-to 'settings' class="left-off-canvas-toggle"}}
+                        <i class="icon white icon-settings"></i>
+                    {{/link-to}}
+                </li>
+            {{/if}}
 
             <!--<li>-->
                 <!--{{!view "notification"}}-->

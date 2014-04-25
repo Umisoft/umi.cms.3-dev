@@ -1,8 +1,10 @@
 <div class="columns small-12" style="overflow: hidden;">
     <div class="row s-full-height umi-tree-wrapper">
         <ul class="umi-tree-list umi-tree">
-            {{#each node in root itemController="treeItem"}}
-                {{partial "treeItem"}}
+            {{#each root itemController="treeItem"}}
+                {{#if visible}}
+                    {{view "treeItem"}}
+                {{/if}}
             {{/each}}
         </ul>
     </div>
