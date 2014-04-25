@@ -11,9 +11,9 @@ use umicms\project\module\search\highlight\Fragmenter;
 <div>
     <?= $this->widget('search.search', ['query'=>$query]) ?>
     <?php if (is_null($results)) :?>
-        <p>No query</p>
+        <p><?=$this->translate('Запрос пустой')?></p>
     <?php elseif(empty($results)) :?>
-        <p>No results</p>
+        <p><?=$this->translate('Ничего не найдено')?></p>
     <?php else :?>
         <?php foreach ($results as $result) :?>
             <div>
