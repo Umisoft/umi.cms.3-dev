@@ -70,12 +70,6 @@ class LoginController extends SitePageController
                      */
                     $refererInput = $form->get('referer');
 
-/*                    var_dump(
-                        $this->getUrlManager()->getProjectDomainUrl(),
-                        $this->getUrlManager()->getProjectUrl(true)
-                    );
-                    exit();*/
-
                     $referer = $refererInput->getValue() ? $refererInput->getValue() : $this->getRequest()->getReferer();
                     if ($referer && strpos($referer, $this->getUrlManager()->getProjectUrl(true)) === 0) {
                         return $this->createRedirectResponse($referer);
