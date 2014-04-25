@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \umicms\orm\selector\CmsSelector $list
+ * @var \umicms\project\module\news\api\object\NewsSubject $subject
+ */
+?>
 <?php if ($list->getTotal()) : ?>
     <?php $i=0; foreach ($list as $subject) : ?>
         <a href="<?=$subject->getPageUrl()?>"><?=$subject->displayName?></a><?php $i++; if ($list->getTotal() != $i) echo ', ';?>
