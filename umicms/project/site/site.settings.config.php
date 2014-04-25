@@ -17,5 +17,7 @@ return [
     SiteApplication::SETTING_DEFAULT_KEYWORDS => 'UMI.CMS',
 
     SiteApplication::SETTING_TEMPLATE_DIRECTORY => '~/project/template',
-    SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => '~/project/template/common'
+    SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => '~/project/template/common',
+
+    SiteApplication::SETTING_BROWSER_CACHE_ENABLED => false
 ];
