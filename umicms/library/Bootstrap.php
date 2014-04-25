@@ -10,7 +10,6 @@ namespace umicms;
 
 use umi\config\entity\IConfig;
 use umi\config\io\IConfigIO;
-use umi\extension\twig\TemplatingTwigExtension;
 use umi\extension\twig\TwigTemplateEngine;
 use umi\hmvc\component\IComponent;
 use umi\hmvc\IMvcEntityFactory;
@@ -33,6 +32,7 @@ use umicms\project\config\IProjectConfigAware;
 use umicms\project\config\TProjectConfigAware;
 use umicms\templating\engine\php\TemplatingPhpExtension;
 use umicms\templating\engine\php\ViewPhpExtension;
+use umicms\templating\engine\twig\TemplatingTwigExtension;
 use umicms\templating\engine\twig\ViewTwigExtension;
 
 /**
@@ -371,7 +371,7 @@ class Bootstrap implements IProjectConfigAware
             function (TwigTemplateEngine $templateEngine) use ($dispatcher) {
 
                 $viewExtension = new ViewTwigExtension($dispatcher);
-                $templateExtension = new TemplatingTwigExtension();
+                $templateExtension = new TemplatingTwigExtension($dispatcher);
 
                 $templateEngine
                     ->addExtension($viewExtension)
