@@ -26,7 +26,6 @@ define(['App', 'text!./textareaElement.hbs'], function(UMI, textareaElement){
 
                         $('html').addClass('s-unselectable');
                         $('body').mousemove(function(event){
-                            console.log('posY', posY);
                             var h = event.pageY - posY;
 
                             if(h < 60){h = 60}

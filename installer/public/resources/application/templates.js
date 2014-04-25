@@ -5,7 +5,7 @@ define([
 
     /* TODO Удалить после рефакторинга лишних шаблонов */
         'text!./templates/actions/children.hbs',
-        'text!./templates/actions/form.hbs',
+        'text!./templates/actions/editForm.hbs',
         'text!./templates/actions/files.hbs',
         'text!./templates/actions/tree.hbs',
         'text!./templates/actions/counters.hbs',
@@ -21,7 +21,7 @@ define([
 
     /* TODO Удалить после рефакторинга лишних шаблонов */
         childrenTpl,
-        formTpl,
+        editFormTpl,
         filesTpl,
         treeTpl,
         countersTpl,
@@ -40,7 +40,7 @@ define([
 
         /* TODO Удалить после рефакторинга лишних шаблонов */
             Ember.TEMPLATES['UMI/children'] = Ember.Handlebars.compile(childrenTpl);
-            Ember.TEMPLATES['UMI/form'] = Ember.Handlebars.compile(formTpl);
+            Ember.TEMPLATES['UMI/editForm'] = Ember.Handlebars.compile(editFormTpl);
             Ember.TEMPLATES['UMI/filter'] = Ember.Handlebars.compile(childrenTpl);
             Ember.TEMPLATES['UMI/fileManager'] = Ember.Handlebars.compile(filesTpl);
             Ember.TEMPLATES['UMI/tree'] = Ember.Handlebars.compile(treeTpl);

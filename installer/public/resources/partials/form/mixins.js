@@ -21,12 +21,10 @@ define(['App'], function(UMI){
             },
 
             valueObject: function(){
-                console.log('valueObject', this.get('object.' + this.get("meta.dataSource")));
                 return this.get('object.' + this.get("meta.dataSource"));
             }.property('object', 'meta.dataSource'),
 
             changeValueObject: function(){
-                console.log('changeValueObject', this.valueObject);
                 this.get('object').set(this.get('meta.dataSource'), this.get('valueObject'));
             }.observes('valueObject')
         });

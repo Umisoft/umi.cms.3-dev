@@ -19,7 +19,6 @@ define(['App'], function(UMI){
             layoutName: 'popup',
 
             checkContentParams: function(){
-                console.log(this.contentParams.fileInfo);
                 this.get('object').set(this.get('meta.dataSource'), this.contentParams.fileInfo.path);
             }.observes('contentParams'),
 
@@ -33,7 +32,7 @@ define(['App'], function(UMI){
                 switch(templateName){
                     case 'fileManager': template = '{{view "' + templateName + '" object=view.object meta=view.meta}}'; break;
                     case 'tableControlColumnSelectorPopup': template = '{{view "' + templateName + '" object=view.object meta=view.meta}}'; break;
-                    default: console.log('Не получено имя шаблона');
+                    default: template = 'Не получено имя шаблона';
                 }
 
                 return Ember.Handlebars.compile(template);
