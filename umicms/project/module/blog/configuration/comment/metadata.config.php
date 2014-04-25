@@ -119,6 +119,10 @@ return [
             ],
             'validators' => [
                 IValidatorFactory::TYPE_REQUIRED => []
+            ],
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'display_name'],
+                'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
         BlogComment::FIELD_ACTIVE => [
