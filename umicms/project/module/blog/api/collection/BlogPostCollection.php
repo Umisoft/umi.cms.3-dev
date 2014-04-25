@@ -59,9 +59,8 @@ class BlogPostCollection extends PageCollection
      */
     public function getDrafts()
     {
-        return $this->selectInternal()
-            ->where(BlogPost::FIELD_TRASHED)->equals(false)
-            ->where(BlogPost::FIELD_ACTIVE)->equals(false);
+        return $this->select()
+            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_DRAFT);
     }
 
     /**

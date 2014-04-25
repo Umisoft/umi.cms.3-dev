@@ -54,6 +54,10 @@ class BlogPost extends CmsObject implements ICmsPage
      */
     const FIELD_PUBLISH_TIME = 'publishTime';
     /**
+     * Имя поля для хранения статуса публикации поста
+     */
+    const FIELD_PUBLISH_STATUS = 'publishStatus';
+    /**
      * Имя поля для хранения количества комментариев к посту
      */
     const FIELD_COMMENTS_COUNT = 'commentsCount';
@@ -73,6 +77,22 @@ class BlogPost extends CmsObject implements ICmsPage
      * Форма помещения и извлечения поста в черновики
      */
     const FORM_DRAFT_POST = 'draftPost';
+    /**
+     * Статус поста: черновик
+     */
+    const POST_STATUS_DRAFT = 'draft';
+    /**
+     * Статус поста: опубликован
+     */
+    const POST_STATUS_PUBLISH = 'publish';
+    /**
+     * Статус поста: не опубликован
+     */
+    const POST_STATUS_UNPUBLISH = 'unPublish';
+    /**
+     * Статус поста: требует модерации
+     */
+    const POST_STATUS_NEED_MODERATE = 'moderate';
 
     public function getPageUrl($isAbsolute = false)
     {

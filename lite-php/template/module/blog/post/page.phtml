@@ -19,6 +19,6 @@
 </div>
 
 <h1><?=$this->translate('Комментарии')?>:</h1>
-<?= $this->widget('blog.comment.list', ['blogPost' => $page, 'template' => 'list']); ?>
+<?= $this->widget('blog.comment.list', ['blogPost' => $page, 'template' => 'tree']); ?>
 
 <?= $this->widget('blog.comment.addComment', ['blogPost' => $page, 'template' => 'addComment']); ?>

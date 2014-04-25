@@ -128,6 +128,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function getPosts()
     {
         return $this->post()->select()
+            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_PUBLISH)
             ->orderBy(BlogPost::FIELD_PUBLISH_TIME, CmsSelector::ORDER_DESC);
     }
 
