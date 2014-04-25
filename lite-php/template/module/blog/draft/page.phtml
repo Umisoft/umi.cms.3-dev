@@ -11,14 +11,14 @@
             <?= $page->publishTime->format('d.m.Y | H:i')?>
         </time>
         <?php endif; ?>
-        <?php if ($page->author) : ?>Автор: <a href="<?=$page->author->getPageUrl()?>"><?=$page->author->displayName?></a><?php endif ?>
+        <?php if ($page->author) : ?><?=$this->translate('Автор')?>: <a href="<?=$page->author->getPageUrl()?>"><?=$page->author->displayName?></a><?php endif ?>
     </p>
 
     <?= $page->contents ?>
 
 </div>
 
-<h1>Комментарии:</h1>
+<h1><?=$this->translate('Комментарии')?>:</h1>
 
 <?=$this->widget('blog.comment.list', ['blogPost' => $page, 'template' => 'list']); ?>
 

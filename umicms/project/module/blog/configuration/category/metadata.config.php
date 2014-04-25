@@ -59,7 +59,10 @@ return [
             'type' => IField::TYPE_SLUG,
             'columnName' => 'slug',
             'accessor' => 'getSlug',
-            'readOnly' => true
+            'readOnly' => true,
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         BlogCategory::FIELD_URI => [
             'type' => IField::TYPE_URI,
@@ -94,6 +97,10 @@ return [
             ],
             'validators' => [
                 IValidatorFactory::TYPE_REQUIRED => []
+            ],
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'display_name'],
+                'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
         BlogCategory::FIELD_ACTIVE => [

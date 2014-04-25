@@ -146,4 +146,13 @@ trait TSiteSettingsAware
         return (string) $this->getSiteSettings()->get(SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY);
     }
 
+    /**
+     * Возвращает настройку, отвечающую за кэширование страниц браузером
+     * @return bool
+     */
+    protected function getSiteBrowserCacheEnabled()
+    {
+        return (bool) $this->getSiteSettings()->get(SiteApplication::SETTING_BROWSER_CACHE_ENABLED);
+    }
+
 }

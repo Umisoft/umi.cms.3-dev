@@ -9,6 +9,7 @@
 
 namespace umicms\templating\engine\php;
 
+use umi\i18n\translator\ITranslator;
 use umi\templating\engine\php\IPhpExtension;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\templating\helper\TranslationHelper;
@@ -27,13 +28,19 @@ class TemplatingPhpExtension implements IPhpExtension
      * @var CmsDispatcher $dispatcher диспетчер
      */
     protected $dispatcher;
+    /**
+     * @var ITranslator $translator
+     */
+    protected $translator;
 
     /**
      * Конструктор.
      * @param CmsDispatcher $dispatcher диспетчер
+     * @param ITranslator $translator
      */
-    public function __construct(CmsDispatcher $dispatcher) {
+    public function __construct(CmsDispatcher $dispatcher, ITranslator $translator) {
         $this->dispatcher = $dispatcher;
+        $this->translator = $translator;
     }
 
     /**
@@ -64,6 +71,7 @@ class TemplatingPhpExtension implements IPhpExtension
 
         if (!$helper) {
             $helper = new TranslationHelper($this->dispatcher);
+            $helper->setTranslator($this->translator);
         }
 
         return $helper;

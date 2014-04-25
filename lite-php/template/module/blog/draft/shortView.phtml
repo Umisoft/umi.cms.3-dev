@@ -11,12 +11,12 @@
             <?= $blogDraft->publishTime->format('d.m.Y | H:i')?>
         </time>
         <?php endif; ?>
-        <?php if ($blogDraft->author) : ?>Автор: <a href="<?=$blogDraft->author->getPageUrl()?>"><?=$blogDraft->author->displayName?></a><?php endif; ?>
+        <?php if ($blogDraft->author) : ?><?=$this->translate('Автор')?>: <a href="<?=$blogDraft->author->getPageUrl()?>"><?=$blogDraft->author->displayName?></a><?php endif; ?>
         <?=$this->widget('blog.draft.editDraftLink', ['blogDraft' => $blogDraft, 'template' => 'editDraftLink'])?>
     </p>
 
     <?= $blogDraft->announcement ?>
 
-    <a href="<?= $blogDraft->getPageUrl() ?>">Читать далее</a>
+    <a href="<?= $blogDraft->getPageUrl() ?>"><?=$this->translate('Читать далее')?></a>
     <?=$this->widget('blog.draft.publishDraft', ['blogDraft' => $blogDraft, 'template' => 'publishDraftForm'])?>
 </div>

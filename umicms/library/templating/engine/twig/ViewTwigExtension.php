@@ -9,21 +9,85 @@
 
 namespace umicms\templating\engine\twig;
 
-use umi\extension\twig\ViewTwigExtension as FrameworkViewTwigExtension;
+use Twig_Extension;
+use Twig_SimpleFunction;
+use umi\hmvc\view\helper\IsAllowedHelper;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 
 /**
- * {@inheritdoc}
+ * Расширение Twig для подключения помощников вида.
  */
-class ViewTwigExtension extends FrameworkViewTwigExtension
+class ViewTwigExtension extends Twig_Extension
 {
+    /**
+     * @var string $widgetFunctionName имя функции для вызова виджета
+     */
+    public $widgetFunctionName = 'widget';
+    /**
+     * @var string $isAllowedFunctionName имя функции для проверки прав
+     */
+    public $isAllowedFunctionName = 'isAllowed';
+
     /**
      * @var CmsDispatcher $dispatcher диспетчер
      */
     protected $dispatcher;
 
     /**
+     * @var IsAllowedHelper $isAllowedHelper
+     */
+    private $isAllowedHelper;
+
+    /**
+     * Конструктор.
+     * @param CmsDispatcher $dispatcher диспетчер
+     */
+    public function __construct(CmsDispatcher $dispatcher) {
+        $this->dispatcher = $dispatcher;
+    }
+
+    /**
      * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return __CLASS__;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFunctions()
+    {
+
+        return [
+            new Twig_SimpleFunction(
+                $this->widgetFunctionName,
+                $this->getWidgetHelper(),
+                ['is_safe' => ['html']]
+            ),
+            new Twig_SimpleFunction(
+                $this->isAllowedFunctionName,
+                $this->getIsAllowedHelper()
+            )
+        ];
+    }
+
+    /**
+     * Возвращает помощник вида для проверки прав.
+     * @return callable
+     */
+    protected function getIsAllowedHelper()
+    {
+        if (!$this->isAllowedHelper) {
+            $this->isAllowedHelper = new IsAllowedHelper($this->dispatcher);
+        }
+        return $this->isAllowedHelper;
+    }
+
+    /**
+     * Возвращает помощник вида для вызова виджетов
+     * @return callable
      */
     protected function getWidgetHelper()
     {

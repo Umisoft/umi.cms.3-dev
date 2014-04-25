@@ -50,6 +50,10 @@ return [
             ],
             'validators' => [
                 IValidatorFactory::TYPE_REQUIRED => []
+            ],
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'display_name'],
+                'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
         TestObject::TEXT => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::TEXT],
