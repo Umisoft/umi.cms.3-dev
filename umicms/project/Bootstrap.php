@@ -6,7 +6,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms;
+namespace umicms\project;
 
 use umi\config\entity\IConfig;
 use umi\config\io\IConfigIO;

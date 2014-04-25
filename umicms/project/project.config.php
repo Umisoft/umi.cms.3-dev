@@ -19,7 +19,7 @@ use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\OrmTools;
 use umi\route\IRouteFactory;
 use umi\templating\toolbox\TemplatingTools;
-use umicms\Bootstrap;
+use umicms\project\Bootstrap;
 use umicms\form\element\File;
 use umicms\form\element\Image;
 use umicms\form\element\Wysiwyg;
