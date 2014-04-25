@@ -1,0 +1,24 @@
+<?php
+/**
+ * @var umicms\project\module\structure\api\object\SystemPage $page
+ * @var umi\form\IForm $form
+ * @var bool $authenticated
+ */
+?>
+
+<div class="blog-post">
+    <h2 class="blog-post-title"><?=$page->displayName?></h2>
+    <?=$page->contents?>
+
+    <?php if ($authenticated) : ?>
+        <?= $this->translate("Вы уже авторизованы.") ?>
+        <?= $this->widget('users.authorization.logoutLink', ['template' => 'logoutLink']); ?>
+    <?php else : ?>
+        <?php if (isset($error)) : ?>
+            <?= $error ?>
+        <?php endif; ?>
+        <?= $this->render('form/form.phtml', ['form' => $form]) ?>
+    <?php endif; ?>
+
+
+</div>
