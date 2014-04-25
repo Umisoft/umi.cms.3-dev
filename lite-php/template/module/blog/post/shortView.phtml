@@ -4,12 +4,14 @@
  */
 ?>
 <div class="blog-post">
-    <h1><?=$blogPost->h1?></h1>
+    <h1><?=$blogPost->displayName?></h1>
     <p class="blog-post-meta">
+        <?php if ($blogPost->publishTime) : ?>
         <time datetime="<?= $blogPost->publishTime->format('c')?>">
             <?= $blogPost->publishTime->format('d.m.Y | H:i')?>
         </time>
-        Автор: <?php if ($blogPost->author) : ?><a href="<?=$blogPost->author->getPageUrl()?>"><?=$blogPost->author->displayName?></a><?php endif; ?>
+        <?php endif; ?>
+        <?php if ($blogPost->author) : ?>Автор: <a href="<?=$blogPost->author->getPageUrl()?>"><?=$blogPost->author->displayName?></a><?php endif; ?>
         <?=$this->widget('blog.post.editPostLink', ['blogPost' => $blogPost, 'template' => 'editPostLink'])?>
     </p>
 

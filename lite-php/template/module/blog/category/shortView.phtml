@@ -5,7 +5,7 @@
 ?>
 <h2>
     <a href="<?= $category->getPageUrl() ?>">
-        <?= $category->h1 ?>
+        <?= $category->displayName ?>
     </a> <?=$this->widget('blog.category.rss', ['category' => $category, 'template' => 'rssLink'])?>
 </h2>
 <?= $this->widget('blog.category.list', ['parentCategory' => $category, 'template' => 'list']); ?>
