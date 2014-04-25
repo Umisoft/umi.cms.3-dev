@@ -73,11 +73,7 @@ define([], function(){
                         }, 800);
                     });
                 },
-                targetBlank: function(url){
-                    url = '//' + window.location.host + '/' + url;
-                    var tab = window.open(url, '_blank');
-                    tab.focus();
-                },
+
                 /**
                  Сохраняет обьект
 
@@ -190,7 +186,14 @@ define([], function(){
                 },
 
                 viewOnSite: function(object){
-                    var link = window.location.host + window.UmiSettings.baseSiteURL + object._data.meta.pageUrl;
+                    var link;
+                    if(object){
+                        link = object._data.meta.pageUrl;
+                    } else{
+                        link = window.UmiSettings.baseSiteURL;
+                    }
+
+                    link = window.location.host + link;
                     var tab = window.open('//' + link.replace('\/\/', '\/'), '_blank');
                     tab.focus();
                 },
