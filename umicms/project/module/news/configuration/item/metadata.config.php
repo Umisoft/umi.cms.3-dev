@@ -99,7 +99,11 @@ return [
         ],
         NewsItem::FIELD_ANNOUNCEMENT          => [
             'type' => IField::TYPE_TEXT,
-            'columnName' => 'announcement'
+            'columnName' => 'announcement',
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'announcement'],
+                'en-US' => ['columnName' => 'announcement_en']
+            ]
         ],
         NewsItem::FIELD_SOURCE          => [
             'type' => IField::TYPE_TEXT,

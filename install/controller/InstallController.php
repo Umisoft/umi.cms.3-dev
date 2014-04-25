@@ -330,6 +330,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Deviant behavior of ghosts and goblins and ways to influence him', 'en-US')
             ->setValue('metaTitle', 'Девиантное поведение призраков и домовых и способы влияния на него')
             ->setValue('h1', 'Девиантное поведение призраков и домовых и способы влияния на него')
+            ->setValue('announcement', '<p>Причины девиантного поведения домашних призраков кроются безусловно во влиянии MTV и пропаганде агрессивной альтернативной музыки.<br /><br />Также наблюдается рост домовых, практикующих экстремальное катание на роликовых коньках, скейт-бордах, BMX, что повышает общий уровень черепно-мозговых травм среди паранормальных существ. <br /><br />Не может не оказывать влияния проникновение культуры эмо в быт и уклад домашних призраков, что ведет к росту самоубийств и депрессивных состояний среди этих в общем-то жизнерадостных<br /> созданий.<br /><br />В качестве метода влияния на отклонения у домашний призраков я вижу их обращение в более позитивные и миролюбивые культуры, их пропаганда и популяризация в среде домашних призраков.<br /><br /><strong>Екатерина Джа-Дуплинская</strong></p>')
+            ->setValue('announcement', '<p>Causes of deviant behavior of domestic ghosts certainly lie in the influence of MTV and the aggressive promotion of alternative music.</p>', 'en-US')
             ->setValue('contents', '<p>Причины девиантного поведения домашних призраков кроются безусловно во влиянии MTV и пропаганде агрессивной альтернативной музыки.<br /><br />Также наблюдается рост домовых, практикующих экстремальное катание на роликовых коньках, скейт-бордах, BMX, что повышает общий уровень черепно-мозговых травм среди паранормальных существ. <br /><br />Не может не оказывать влияния проникновение культуры эмо в быт и уклад домашних призраков, что ведет к росту самоубийств и депрессивных состояний среди этих в общем-то жизнерадостных<br /> созданий.<br /><br />В качестве метода влияния на отклонения у домашний призраков я вижу их обращение в более позитивные и миролюбивые культуры, их пропаганда и популяризация в среде домашних призраков.<br /><br /><strong>Екатерина Джа-Дуплинская</strong></p>')
             ->setValue('slug', 'deviant')
             ->setGUID('8e675484-bea4-4fb5-9802-4750cc21e509')
@@ -340,6 +342,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Conflict resolution method UFO Renata Litvinova', 'en-US')
             ->setValue('metaTitle', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
             ->setValue('h1', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
+            ->setValue('announcement', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер.</p>')
+            ->setValue('announcement', '<p>Renata Litvinova announced and allowed to use methods of conflict-author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen, try to remember how your evening ended yesterday.</p>', 'en-US')
             ->setValue('contents', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>')
             ->setValue('category', $category)
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj')
@@ -515,6 +519,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('metaTitle', 'Российские биатлонисты взяли первые три места')
             ->setValue('h1', 'Российские биатлонисты взяли первые три места')
             ->setValue('announcement', '<p>Чудо на олимпиаде в Сочи</p>')
+            ->setValue('announcement', '<p>Miracle at the Olympics in Sochi</ p>', 'en-US')
             ->setValue('contents', '<p>На олимпиаде в Сочи российские биатлонисты взяли все медали.</p>')
             ->setValue('rubric', $ski)
             ->setValue('slug', 'biathlon');
@@ -531,6 +536,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('metaTitle', 'Названа причина социопатии современных зомби')
             ->setValue('h1', 'Названа причина социопатии современных зомби')
             ->setValue('announcement', '<p>По результатам исследования Ассоциации любителей и ненавистников зомби, главной причиной социопатии зомби является еда из ресторанов МакДональдс.</p>')
+            ->setValue('announcement', "<p>The study lovers and haters of the Association of zombies, the main reason is sociopathy zombie food from McDonald's restaurants.</p>", 'en-US')
             ->setValue('contents', '<p>По результатам исследования Ассоциации любителей и ненавистников зомби, главной причиной социопатии зомби является еда из ресторанов МакДональдс.  Ученые давно бьют тревогу по поводу образа жизни молодых зомби и сейчас активно занялись пропагандой спорта, фитнес-клубов, активных игр на воздухе и популяризацией вегетарианской пищи среди представителей этого вида.  Пока ученые занимаются всеми этими вещами, молодые зомби курят по подъездам, впадают в депрессивные состоянии, примыкают к эмо-группировкам и совершенно не хотят работать.  &laquo;А между тем, этих ребят еще можно спасти, &mdash; комментирует Виктория Евдокимова, Охотница за привидениями со стажем, &mdash; и это в силах каждого из нас. Если увидите на улице одинокого зомби, подойдите и поинтересуйтесь, как обстоят дела с его девчонкой, какие у него планы на выходные, и что он делал прошлым летом&raquo;.</p>')
             ->setValue('rubric', $rubric)
             ->setGUID('d6eb9ad1-667e-429d-a476-fa64c5eec115')
@@ -547,6 +553,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('metaTitle', 'Смена состава в Отряде в бикини')
             ->setValue('h1', 'Смена состава в Отряде в бикини')
             ->setValue('announcement', '<p>Внимание: в составе Отряда в бикини произошли небольшие перестановки. В связи с испорченным маникюром и плохим настроением место Лолиты Андреевой займет Маша Шикова.</p>')
+            ->setValue('announcement', '<p>Note: The detachment occurred in bikini small permutations. In connection with a broken nail polish and a bad mood takes place Lolita Masha Andreeva Shikova.</p>', 'en-US')
             ->setValue('contents', '<p>Внимание: в составе Отряда в бикини произошли небольшие перестановки. В связи с испорченным маникюром и плохим настроением место Лолиты Андреевой займет Маша Шикова.  Маша Шикова имеет большой опыт в борьбе с домашними призраками и два столкновения с вампирами. Новая Охотница прекрасно вписалась в наш дружный женский коллектив и в ожидании интересных заданий уже пополнила свой гардероб пятью новыми комплектами бикини.   Лолита Андреева на редкость вяло комментирует свой выход из отряда. По нашим данным, это связано с тем, что маникюрный мастер девушки, с которым у нее был длительный роман, без предупреждения уехал в отпуск на Бали и оставил ее "подыхать в одиночестве".</p>')
             ->setValue('rubric', $rubric)
             ->setGUID('35806ed8-1306-41b5-bbf9-fe2faedfc835')
@@ -560,6 +567,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 ->setValue('metaTitle', 'Открыт метод устранения неврозов у привидений')
                 ->setValue('h1', 'Открыт метод устранения неврозов у привидений-'.$num)
                 ->setValue('announcement', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>')
+                ->setValue('announcement', '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>', 'en-US')
                 ->setValue('contents', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>')
                 ->setValue('rubric', $rubric)
                 ->setValue('slug', 'privideniya-'.$num);
@@ -606,6 +614,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('metaTitle', 'Наташа Рублева, домохозяйка')
             ->setValue('h1', 'Наташа Рублева, домохозяйка')
             ->setValue('announcement', '<p>Не то, чтобы я верю в привидения, но пару месяцев назад я начала регулярно находить в нашем супружеском ложе чьи-то светлые волосы, сережки и следы губной помады. Муж тоже отрицает существование привидений, однако так дальше продолжаться не могло</p>')
+            ->setValue('announcement', '<p>Not that I believe in ghosts, but a couple of months ago I started regularly find in our marital bed someones blonde hair, earrings and lipstick traces. Husband also denies the existence of ghosts, but so could not continue</p>', 'en-US')
             ->setValue('contents', '<p>Не то, чтобы я верю в привидения, но пару месяцев назад я начала регулярно находить в нашем супружеском ложе чьи-то светлые волосы, сережки и следы губной помады. Муж тоже отрицает существование привидений, однако так дальше продолжаться не могло. Я вызвала наряд охотниц за привидениями, и теперь мы избавлены от этих проблем. Сотрудница организации рекомендовала мне воспользоваться услугами спецподразделения &laquo;Отряд в бикини&raquo;. Я не пожалела, и, кажется, муж остался доволен.</p>')
             ->setValue('rubric', $gratitude)
             ->setValue('slug', 'natasha')
@@ -618,6 +627,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('metaTitle', 'Александр, 35 лет, топ-менеджер сети строительных магазинов')
             ->setValue('h1', 'Александр, 35 лет, топ-менеджер сети строительных магазинов')
             ->setValue('announcement', '<p>С 18 лет меня довольно регулярно похищали инопланетяне.&nbsp;Но последней каплей стало похищение в ноябре сего года, во время которого они насильственным способом изменили мои предпочтения в еде</p>')
+            ->setValue('announcement', '<p>With 18 years I pretty regularly abducted by aliens. But the last straw was the kidnapping in November of this year, during which they violently changed my eating habits</p>')
             ->setValue('contents', '<p>С 18 лет меня довольно регулярно похищали инопланетяне. Но последней каплей стало похищение в ноябре сего года, во время которого они насильственным способом изменили мои предпочтения в еде &ndash; я перестал смыслить свою жизнь без пива и чипсов. Я был вынужден обратиться к профессионалам. Как мне помогли Охотницы? Инициировав повторный сеанс связи, они совершили настоящий переворот. Теперь я замечательно обхожусь пряниками и шоколадом. Особую благодарность хочу выразить Охотнице Елене Жаровой за красивые глаза.</p>')
             ->setValue('rubric', $gratitude)
             ->setGUID('60744128-996a-4cea-a937-c20ebc5c8c77')
@@ -986,6 +996,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `meta_description` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `announcement` text,
+                    `announcement_en` text,
                     `source` varchar(255) DEFAULT NULL,
                     `contents` text,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
@@ -1300,6 +1311,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `date` datetime DEFAULT NULL,
                     `contents` text,
                     `announcement` text,
+                    `announcement_en` text,
                     `source` varchar(255) DEFAULT NULL,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
