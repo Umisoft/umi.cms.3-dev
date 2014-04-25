@@ -483,6 +483,11 @@ define([], function(){
             },
             setupController: function(controller, model){
                 var context = this.modelFor('context');
+                var actions = this.controllerFor('component').get('contentControls');
+                var action = actions.findBy('name', model.action.get('name'));
+                if(!action){
+                    return this.transitionTo('context', context.get('id'));
+                }
                 if(model.object.get('id') !== context.get('id')){
                     Ember.set(model, 'object', context);
                     this._super(controller, model);
