@@ -26,11 +26,11 @@
 
             </head>
             <body>
-                <umi:widget name="structure.menu.auto" />
 
-                <xsl:apply-templates select="document('widget://structure.menu.auto?params=1')/result" />
 
-                <xsl:apply-templates select="result/contents/page" />
+                <!-- xsl:apply-templates select="document('widget://structure.menu.auto')/result" /-->
+
+                <xsl:apply-templates select="page/contents/page" />
             </body>
         </html>
 
@@ -40,7 +40,7 @@
         <xsl:value-of select="property[@name = 'contents']/value" disable-output-escaping="yes" />
     </xsl:template>
 
-    <xsl:template match="result/contents[@widget = 'structure.menu.auto']">
+    <!-- xsl:template match="result/contents[@widget = 'structure.menu.auto']">
         <ul>
             <xsl:apply-templates select="menu/item" />
         </ul>
@@ -50,6 +50,6 @@
         <li>
             <a href="#"><xsl:value-of select="page/@displayName" /></a>
         </li>
-    </xsl:template>
+    </xsl:template -->
 
 </xsl:stylesheet>

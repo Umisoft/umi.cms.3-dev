@@ -59,7 +59,10 @@ return [
             'type' => IField::TYPE_SLUG,
             'columnName' => 'slug',
             'accessor' => 'getSlug',
-            'readOnly' => true
+            'readOnly' => true,
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         BlogCategory::FIELD_URI => [
             'type' => IField::TYPE_URI,

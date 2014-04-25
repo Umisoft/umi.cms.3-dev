@@ -8,8 +8,8 @@
  */
 
 use Composer\Autoload\ClassLoader;
-use umicms\Bootstrap;
-use umicms\Environment;
+use umicms\project\Bootstrap;
+use umicms\project\Environment;
 
 $vendorDirectory = dirname(dirname(__DIR__)) . '/vendor';
 $autoLoaderPath = $vendorDirectory . '/autoload.php';
