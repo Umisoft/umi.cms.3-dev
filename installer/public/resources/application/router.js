@@ -200,7 +200,7 @@ define([], function(){
                 },
 
                 showPopup: function(popupType, object, meta){
-                    var popup = UMI.PopupView.create({
+                    UMI.PopupView.create({
                         container: this.container,
                         popupType: popupType,
                         object: object,
