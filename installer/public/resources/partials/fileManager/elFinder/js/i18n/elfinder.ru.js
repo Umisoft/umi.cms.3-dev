@@ -166,7 +166,6 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'February'    : 'Февраль',
 			'March'       : 'Март',
 			'April'       : 'Апрель',
-			'May'         : 'Май',
 			'June'        : 'Июнь',
 			'July'        : 'Июль',
 			'August'      : 'Август',

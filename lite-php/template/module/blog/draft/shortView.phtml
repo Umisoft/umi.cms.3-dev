@@ -4,12 +4,14 @@
  */
 ?>
 <div class="blog-post">
-    <h1><?= $blogDraft->h1 ?></h1>
+    <h1><?= $blogDraft->displayName ?></h1>
     <p class="blog-post-meta">
+        <?php if ($blogDraft->publishTime) : ?>
         <time datetime="<?= $blogDraft->publishTime->format('c')?>">
             <?= $blogDraft->publishTime->format('d.m.Y | H:i')?>
         </time>
-        Автор: <?php if ($blogDraft->author) : ?><a href="<?=$blogDraft->author->getPageUrl()?>"><?=$blogDraft->author->displayName?></a><?php endif; ?>
+        <?php endif; ?>
+        <?php if ($blogDraft->author) : ?>Автор: <a href="<?=$blogDraft->author->getPageUrl()?>"><?=$blogDraft->author->displayName?></a><?php endif; ?>
         <?=$this->widget('blog.draft.editDraftLink', ['blogDraft' => $blogDraft, 'template' => 'editDraftLink'])?>
     </p>
 

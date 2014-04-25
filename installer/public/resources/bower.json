@@ -2,6 +2,8 @@
     "name": "UMI3",
     "dependencies": {
         "jquery": "2.1.0",
+        "jqueryui": "latest",
+        "jqueryui-timepicker-addon": "latest",
         "requirejs": "~2.1.9",
         "requirejs-text": "~2.0.10",
         "ember": "1.5.0",

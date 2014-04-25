@@ -2,7 +2,10 @@ define([], function(){
     'use strict';
     return function(UMI){
         UMI.ApplicationController = Ember.ObjectController.extend({
-            settings: null
+            settings: null,
+            settingsAllowed: function(){
+                return 'baseSettingsURL' in window.UmiSettings;
+            }.property()
         });
 
         /**
@@ -93,5 +96,9 @@ define([], function(){
         });
 
         UMI.ContextController = Ember.ObjectController.extend({});
+
+        UMI.ComponentView = Ember.View.extend({
+            classNames: ['umi-content', 's-full-height']
+        });
     };
 });

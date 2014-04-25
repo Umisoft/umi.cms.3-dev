@@ -7,6 +7,7 @@ define(
         'dock',
         'tableControl',
         'fileManager',
+        'treeSimple',
         'tree',
         'form',
         'search',

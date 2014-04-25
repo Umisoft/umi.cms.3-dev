@@ -1,4 +1,9 @@
+<?php
+/**
+ * @var \umicms\project\module\news\api\object\NewsRubric $rubric
+ */
+?>
 <a href="<?=$rubric->getPageUrl()?>">
-    <?=$rubric->h1?>
+    <?=$rubric->displayName?>
 </a> <?=$this->widget('news.rubric.rss', ['rubric' => $rubric, 'template' => 'rssLink'])?>
 <?=$this->widget('news.rubric.list', ['parentRubric' => $rubric, 'template' => 'listShort'])?>

@@ -10,13 +10,13 @@ namespace umicms\project;
 
 use umi\config\entity\IConfig;
 use umi\config\io\IConfigIO;
-use umi\extension\twig\TemplatingTwigExtension;
 use umi\extension\twig\TwigTemplateEngine;
 use umi\hmvc\component\IComponent;
 use umi\hmvc\IMvcEntityFactory;
 use umi\http\Request;
 use umi\http\Response;
 use umi\i18n\ILocalesService;
+use umi\i18n\translator\ITranslator;
 use umi\route\IRouteFactory;
 use umi\route\result\IRouteResult;
 use umi\spl\config\TConfigSupport;
@@ -33,6 +33,7 @@ use umicms\project\config\IProjectConfigAware;
 use umicms\project\config\TProjectConfigAware;
 use umicms\templating\engine\php\TemplatingPhpExtension;
 use umicms\templating\engine\php\ViewPhpExtension;
+use umicms\templating\engine\twig\TemplatingTwigExtension;
 use umicms\templating\engine\twig\ViewTwigExtension;
 
 /**
@@ -353,12 +354,17 @@ class Bootstrap implements IProjectConfigAware
          * @var ITemplateEngineFactory $templateEngineFactory
          */
         $templateEngineFactory = $this->toolkit->getService('umi\templating\engine\ITemplateEngineFactory');
+        /**
+         * @var ITranslator $translator
+         */
+        $translator = $this->toolkit->getService('umi\i18n\translator\ITranslator');
+
         $templateEngineFactory->setInitializer(
             ITemplateEngineFactory::PHP_ENGINE,
-            function (PhpTemplateEngine $templateEngine) use ($dispatcher) {
+            function (PhpTemplateEngine $templateEngine) use ($dispatcher, $translator) {
 
                 $viewExtension = new ViewPhpExtension($dispatcher);
-                $templateExtension = new TemplatingPhpExtension();
+                $templateExtension = new TemplatingPhpExtension($dispatcher, $translator);
 
                 $templateEngine
                     ->addExtension($viewExtension)
@@ -368,10 +374,10 @@ class Bootstrap implements IProjectConfigAware
 
         $templateEngineFactory->setInitializer(
             TwigTemplateEngine::NAME,
-            function (TwigTemplateEngine $templateEngine) use ($dispatcher) {
+            function (TwigTemplateEngine $templateEngine) use ($dispatcher, $translator) {
 
                 $viewExtension = new ViewTwigExtension($dispatcher);
-                $templateExtension = new TemplatingTwigExtension();
+                $templateExtension = new TemplatingTwigExtension($dispatcher, $translator);
 
                 $templateEngine
                     ->addExtension($viewExtension)

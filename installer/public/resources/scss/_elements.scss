@@ -15,31 +15,217 @@
 
 // checkboxes ----------------------------------------------
 
-input[type="checkbox"] {
-    position: absolute;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    width: 1px;
-    margin: -1px;
-    padding: 0;
-    border: 0;
+//input[type="checkbox"] {
+//    position: absolute;
+//    overflow: hidden;
+//    clip: rect(0 0 0 0);
+//    height: 1px;
+//    width: 1px;
+//    margin: -1px;
+//    padding: 0;
+//    border: 0;
+//}
+//
+//input[type="checkbox"] + label{
+//    padding-left: 20px;
+//    height: 20px;
+//    display: inline-block;
+//    line-height: 20px;
+//    background: url(svg/elements/checkbox.svg) left top no-repeat;
+//    vertical-align: middle;
+//    cursor:pointer;
+//}
+//
+//input[type="checkbox"]:checked + label{
+//    background: url(svg/elements/checkbox-checked.svg) left top no-repeat;
+//}
+//
+//label{
+//    margin: 0!important;
+//}
+
+input[type="checkbox"]{
+    display:none;
 }
 
 input[type="checkbox"] + label{
-    padding-left: 20px;
-    height: 20px;
-    display: inline-block;
-    line-height: 20px;
-    background: url(svg/elements/checkbox.svg) left top no-repeat;
-    vertical-align: middle;
-    cursor:pointer;
+    touch-callout: none;
+    user-drag: none;
+    tap-hightlight-color: rgba(0, 0, 0, 0);
+    user-select: none;
 }
 
-input[type="checkbox"]:checked + label{
+input[type="checkbox"] + label span{
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    margin: -2px 4px 0 0!important;
+    vertical-align: middle;
+    line-height: 18px;
+    background: url(svg/elements/checkbox.svg) left top no-repeat;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label span{
     background: url(svg/elements/checkbox-checked.svg) left top no-repeat;
+}
+
+
+// radiobuttons ----------------------------------------------
+
+//input[type="radio"] {
+//    position: absolute;
+//    overflow: hidden;
+//    clip: rect(0 0 0 0);
+//    height: 1px;
+//    width: 1px;
+//    margin: -1px;
+//    padding: 0;
+//    border: 0;
+//}
+//
+//input[type="radio"] + label{
+//    padding-left: 20px;
+//    height: 20px;
+//    display: inline-block;
+//    line-height: 20px;
+//    background: url(svg/elements/radio.svg) left top no-repeat;
+//    vertical-align: middle;
+//    cursor:pointer;
+//}
+//
+//input[type="radio"]:checked + label{
+//    background: url(svg/elements/radio-checked.svg) left top no-repeat;
+//}
+
+input[type="radio"]{
+    display:none;
+}
+
+input[type="radio"] + label{
+    touch-callout: none;
+    user-drag: none;
+    tap-hightlight-color: rgba(0, 0, 0, 0);
+    user-select: none;
+}
+
+input[type="radio"] + label span{
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    margin: -2px 4px 0 0!important;
+    vertical-align: middle;
+    line-height: 18px;
+    background: url(svg/elements/radio.svg) left top no-repeat;
+    cursor: pointer;
+}
+
+input[type="radio"]:checked + label span{
+    background: url(svg/elements/radio-checked.svg) left top no-repeat;
 }
 
 label{
     margin: 0!important;
+}
+
+// textarea -------------------------------------------------
+.umi-element-textarea{
+    position: relative;
+//    height: 60px;
+    min-height: 60px;
+    textarea{
+        padding-bottom: 14px;
+        transition: none!important;
+        resize: none;
+        overflow: auto;
+    }
+}
+
+.umi-element-textarea-resizer{
+    position: absolute;
+    width: calc(100% - 1px);
+    height: 10px;
+    margin-top: -24px;
+    margin-left: 1px;
+    background: #D3D7DA;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    cursor: s-resize;
+}
+
+// inputs ---------------------------------------------------
+
+input::-ms-clear { //Убираем крестик браузера из поля
+    display: none;
+}
+
+.umi-element{
+    height: 30px;
+    background: #FFFFFF;
+    border-radius: 3px;
+    border: 1px solid #d3d7da;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+
+    input{
+        border: none;
+        transition: none;
+        box-shadow: none;
+        background: none;
+        height: 30px;
+    }
+}
+
+.umi-element-left{
+    position: relative;
+    float: left;
+    .umi-element-image-icon{
+        width: 24px;
+        height: 24px;
+        margin: 3px;
+    }
+    &:hover .umi-element-image-preview{
+        display: block;
+    }
+}
+
+.umi-element-center{
+    float: left;
+}
+
+
+/* Вычитаем ширину левой и правой частей из центральной части*/
+.umi-element-left-text      {width: 0px;}    .umi-element-center-text       {width: calc(100% - 0px - 32px)}     .umi-element-right-text    {width: 32px;}
+.umi-element-left-number    {width: 0px;}    .umi-element-center-number     {width: calc(100% - 0px - 32px)}     .umi-element-right-number  {width: 32px;}
+.umi-element-left-email     {width: 0px;}    .umi-element-center-email      {width: calc(100% - 0px - 32px)}     .umi-element-right-email   {width: 32px;}
+.umi-element-left-password  {width: 0px;}    .umi-element-center-password   {width: calc(100% - 0px - 32px)}     .umi-element-right-password{width: 32px;}
+.umi-element-left-file      {width: 0px;}    .umi-element-center-file       {width: calc(100% - 0px - 64px)}     .umi-element-right-file    {width: 64px;}
+.umi-element-left-image     {width: 32px;}   .umi-element-center-image      {width: calc(100% - 32px - 64px)}    .umi-element-right-image   {width: 64px;}
+.umi-element-left-time      {width: 0px;}    .umi-element-center-time       {width: calc(100% - 0px - 64px)}     .umi-element-right-time    {width: 64px;}
+.umi-element-left-date      {width: 0px;}    .umi-element-center-date       {width: calc(100% - 0px - 64px)}     .umi-element-right-date    {width: 64px;}
+
+.umi-element-right{
+    float: right;
+    .icon{
+        float: right;
+        margin: 6px 7px 0 0;
+        &:last-of-type{
+            margin-left: 4px;
+        }
+        cursor: pointer;
+    }
+}
+
+.umi-element-image-preview{
+    position: absolute;
+    display: none;
+    float: left;
+    width: 200px;
+    height: 200px;
+    top: 30px;
+    left: 32px;
+    padding: 5px;
+    background: #FFFFFF;
+    border: 1px solid #d3d7da;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 }

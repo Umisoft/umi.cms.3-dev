@@ -1,4 +1,9 @@
-<h1><?=$page->h1?></h1>
+<?php
+/**
+ * @var \umicms\project\module\blog\api\object\BlogTag $page
+ */
+?>
+<h1><?=$page->displayName?></h1>
 <?=$page->contents?>
 
 <?=$this->widget('blog.tag.list', ['template' => 'list'])?>

@@ -3,7 +3,7 @@
  * @var umicms\project\module\news\api\object\NewsSubject $page
  */
 ?>
-<h1><?= $page->h1 ?></h1>
+<h1><?= $page->displayName ?></h1>
 <?= $page->contents ?>
 
 <?= $this->widget('news.subject.newsList', ['subjects' => [$page], 'template' => 'newsList']); ?>
