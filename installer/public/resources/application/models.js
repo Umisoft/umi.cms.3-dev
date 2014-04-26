@@ -13,6 +13,7 @@ define([], function(){
         };
 
         DS.Model.reopen({
+            needReloadHasMany: Ember.K,
             validErrors: null,
             filterProperty: function(propertyName){
                 if(this.get('filters').hasOwnProperty(propertyName)){

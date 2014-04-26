@@ -105,7 +105,9 @@ define([], function(){
                                     var parent = params.object.get('parent');
                                     if(parent && 'isFulfilled' in parent){
                                         return parent.then(function(parent){
-                                            parent.reload();
+                                            parent.reload().then(function(parent){
+                                                parent.trigger('needReloadHasMany');
+                                            });
                                             self.send('getEditForm', params.object);
                                         });
                                     } else{
