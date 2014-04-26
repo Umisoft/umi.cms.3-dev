@@ -102,10 +102,15 @@ define([], function(){
                             }
                             if(isNewObject){
                                 if(params.object.store.metadataFor(params.object.constructor.typeKey).collectionType === 'hierarchic'){
-                                    return params.object.get('parent').then(function(parent){
-                                        parent.reload();
+                                    var parent = params.object.get('parent');
+                                    if(parent && 'isFulfilled' in parent){
+                                        return parent.then(function(parent){
+                                            parent.reload();
+                                            self.send('getEditForm', params.object);
+                                        });
+                                    } else{
                                         self.send('getEditForm', params.object);
-                                    });
+                                    }
                                 }
                                 self.send('getEditForm', params.object);
                             }
@@ -395,7 +400,7 @@ define([], function(){
                             }.property()
                         });
                         model = new Ember.RSVP.Promise(function(resolve){
-                            resolve(RootModel.create({'id': 'root'}));
+                            resolve(RootModel.create({'id': 'root', type: 'base'}));
                         });
                     } else{
                         model = this.store.find(collectionName, params.context);
