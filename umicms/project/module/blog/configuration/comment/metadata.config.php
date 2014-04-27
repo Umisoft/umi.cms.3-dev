@@ -142,7 +142,11 @@ return [
         ],
         BlogComment::FIELD_CONTENTS => [
             'type' => IField::TYPE_TEXT,
-            'columnName' => 'contents'
+            'columnName' => 'contents',
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'contents'],
+                'en-US' => ['columnName' => 'contents_en']
+            ]
         ],
         BlogComment::FIELD_PUBLISH_TIME => [
             'type' => IField::TYPE_DATE_TIME,

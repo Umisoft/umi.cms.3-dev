@@ -86,7 +86,14 @@ return [
             'columnName' => 'meta_description'
         ],
         NewsSubject::FIELD_PAGE_H1               => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
-        NewsSubject::FIELD_PAGE_CONTENTS         => ['type' => IField::TYPE_TEXT, 'columnName' => 'contents'],
+        NewsSubject::FIELD_PAGE_CONTENTS         => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'contents',
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'contents'],
+                'en-US' => ['columnName' => 'contents_en']
+            ]
+        ],
         NewsSubject::FIELD_PAGE_LAYOUT           => [
             'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'layout_id',
