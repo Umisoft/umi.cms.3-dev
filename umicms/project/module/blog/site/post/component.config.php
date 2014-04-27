@@ -19,7 +19,7 @@ return [
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
         'add' => __NAMESPACE__ . '\controller\BlogAddPostController',
         'edit' => __NAMESPACE__ . '\controller\BlogEditPostController',
-        'unPublish' => __NAMESPACE__ . '\controller\BlogDraftPostController',
+        'unPublished' => __NAMESPACE__ . '\controller\BlogDraftPostController',
         'rss' => __NAMESPACE__ . '\controller\BlogPostRssController'
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
@@ -28,7 +28,7 @@ return [
         'rss' => __NAMESPACE__ . '\widget\BlogPostListRssUrlWidget',
         'add' => __NAMESPACE__ . '\widget\BlogAddPostWidget',
         'edit' => __NAMESPACE__ . '\widget\BlogEditPostWidget',
-        'unPublish' => __NAMESPACE__ . '\widget\BlogDraftPostWidget',
+        'unPublished' => __NAMESPACE__ . '\widget\BlogDraftPostWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\BlogEditPostUrlWidget'
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
@@ -112,11 +112,11 @@ return [
                 'controller' => 'add'
             ]
         ],
-        'unPublish' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route' => '/unPublish',
+        'unPublished' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/unPublish/{id:integer}',
             'defaults' => [
-                'controller' => 'unPublish'
+                'controller' => 'unPublished'
             ]
         ],
         'edit' => [

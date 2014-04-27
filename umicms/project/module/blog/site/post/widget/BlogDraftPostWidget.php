@@ -65,7 +65,7 @@ class BlogDraftPostWidget extends BaseSecureWidget
 
         $formDraftPost = $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE, $this->blogPost);
 
-        $formDraftPost->setAction($this->getUrl('unPublish'));
+        $formDraftPost->setAction($this->getUrl('unPublished', ['id' => $this->blogPost->getId()]));
         $formDraftPost->setMethod('post');
 
         return $this->createResult(

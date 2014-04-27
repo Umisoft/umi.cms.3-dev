@@ -25,6 +25,7 @@ use umicms\project\module\blog\api\collection\BlogPostCollection;
  * @property BlogCategory|null $category категория поста
  * @property IManyToManyObjectSet $tags тэги, к которым относится пост
  * @property DateTime $publishTime дата публикации поста
+ * @property string $publishStatus статус публикации поста
  * @property int $commentsCount количество комментариев к посту
  * @property string $oldUrl старый URL поста
  * @property string $source источник поста
@@ -94,10 +95,25 @@ class BlogPost extends CmsObject implements ICmsPage
      */
     const POST_STATUS_NEED_MODERATE = 'moderate';
 
+    /**
+     * Возвращает URL поста.
+     * @param bool $isAbsolute абсолютный ли URL
+     * @return string
+     */
     public function getPageUrl($isAbsolute = false)
     {
         $handler = $this->active ? ICmsCollection::HANDLER_SITE : BlogPostCollection::HANDLER_DRAFT;
         return $this->getUrlManager()->getSitePageUrl($this, $isAbsolute, $handler);
+    }
+
+    /**
+     * Перемещает пост в черновики.
+     * @return $this
+     */
+    public function toDraft()
+    {
+        $this->publishStatus = self::POST_STATUS_DRAFT;
+        return $this;
     }
 }
  
