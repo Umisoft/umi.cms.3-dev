@@ -357,6 +357,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>Причины девиантного поведения домашних призраков кроются безусловно во влиянии MTV и пропаганде агрессивной альтернативной музыки.<br /><br />Также наблюдается рост домовых, практикующих экстремальное катание на роликовых коньках, скейт-бордах, BMX, что повышает общий уровень черепно-мозговых травм среди паранормальных существ. <br /><br />Не может не оказывать влияния проникновение культуры эмо в быт и уклад домашних призраков, что ведет к росту самоубийств и депрессивных состояний среди этих в общем-то жизнерадостных<br /> созданий.<br /><br />В качестве метода влияния на отклонения у домашний призраков я вижу их обращение в более позитивные и миролюбивые культуры, их пропаганда и популяризация в среде домашних призраков.<br /><br /><strong>Екатерина Джа-Дуплинская</strong></p>')
             ->setValue('announcement', '<p>Causes of deviant behavior of domestic ghosts certainly lie in the influence of MTV and the aggressive promotion of alternative music.</p>', 'en-US')
             ->setValue('contents', '<p>Причины девиантного поведения домашних призраков кроются безусловно во влиянии MTV и пропаганде агрессивной альтернативной музыки.<br /><br />Также наблюдается рост домовых, практикующих экстремальное катание на роликовых коньках, скейт-бордах, BMX, что повышает общий уровень черепно-мозговых травм среди паранормальных существ. <br /><br />Не может не оказывать влияния проникновение культуры эмо в быт и уклад домашних призраков, что ведет к росту самоубийств и депрессивных состояний среди этих в общем-то жизнерадостных<br /> созданий.<br /><br />В качестве метода влияния на отклонения у домашний призраков я вижу их обращение в более позитивные и миролюбивые культуры, их пропаганда и популяризация в среде домашних призраков.<br /><br /><strong>Екатерина Джа-Дуплинская</strong></p>')
+            ->setValue('contents', '<p>Causes of deviant behavior home ghosts certainly lie in the influence of MTV and the aggressive promotion of alternative music . <br /> <br /> Also, an increase in brownies, practicing extreme inline skating , skateboarding , BMX, which increases the overall level of traumatic injuries of paranormal creatures. <br /> <br /> It can not affect the penetration of emo culture and way of life of the home of ghosts , which leads to an increase in suicide and depression among those in general cheerful <br /> creatures . <br /> <br / > as a method of influence on the deflection at home I see the ghosts of their treatment in a positive and peaceful culture , their propaganda and popularization in the home environment ghosts . <br /> <br /> <strong> Catherine Jar Duplinskaya </strong> </p>', 'en-US')
             ->setValue('slug', 'deviant')
             ->setGUID('8e675484-bea4-4fb5-9802-4750cc21e509')
             ->setValue('publishTime', new \DateTime('2010-08-11 17:35:00'));
@@ -369,6 +370,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер.</p>')
             ->setValue('announcement', '<p>Renata Litvinova announced and allowed to use methods of conflict-author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen, try to remember how your evening ended yesterday.</p>', 'en-US')
             ->setValue('contents', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>')
+            ->setValue('contents', '<p>Renata Litvinova announced and allowed to use methods of conflict- author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen , try to remember how your evening ended yesterday . Even if you can not remember , behave naturally, as if nothing had happened . Invite him to drink a cup of coffee, play chess , wash the dishes . <br /> <br /> 2) no need to be afraid . Even if the aliens landed you in the park or entrance , explain to them that a stranger UFOs do not communicate . They can offer you to get acquainted . decide - and suddenly it\'s fate ? <br /> <br /> 3)In all there are positive things . Even if after 10 years of marriage, you will find that your husband is an alien, do not rush to send into space negative questions. Space did everything right . But you still are not familiar with his mom.</p>', 'en-US')
             ->setValue('category', $category)
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj')
             ->setGUID('2ff677ee-765c-42ee-bb97-778f03f00c50')
@@ -379,6 +381,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Bives', 'en-US')
             ->setValue('h1', 'Бивес')
             ->setValue('contents', 'Бивес')
+            ->setValue('contents', 'Bives', 'en-US')
             ->setValue('slug', 'bives');
 
         /**
@@ -388,6 +391,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Re: Девиантное поведение призраков и домовых и способы влияния на него')
             ->setValue('displayName', 'Re: Deviant behavior of ghosts and goblins and ways to influence him', 'en-US')
             ->setValue('contents', '<p>О да. Недавно в нашем замке один милый маленький призрак покончил с собой. Мы были уверены, что это невозможно, но каким-то образом ему удалось раствориться в воде, наполняющей наш древний колодец.</p>')
+            ->setValue('contents', '<p>Oh yeah. Recently in our castle one cute little ghost committed suicide. We were sure that it was impossible, but somehow he managed to dissolve in water, filling our ancient well.</p>', 'en-US')
             ->setValue('post', $post1)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'));
 
@@ -395,6 +399,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Re: Re: Девиантное поведение призраков и домовых и способы влияния на него')
             ->setValue('displayName', 'Re: Re: Deviant behavior of ghosts and goblins and ways to influence him', 'en-US')
             ->setValue('contents', '<p>Возможно, вашего призрака еще удастся спасти. Попробуйте насыпать в колодец пару столовых ложек молотых семян бессмертника. Это должно помочь призраку снова сконденсировать свое нематериальное тело. И да, важно, чтобы семена были собраны в новолуние.</p>')
+            ->setValue('contents', '<p>Perhaps your ghost still be salvaged. Try to pour into the well a couple of tablespoons of ground seeds Helichrysum. This should help the ghost again condense his intangible body. And yes, it is important that the seeds have been collected in the new moon.</p>', 'en-US')
             ->setValue('post', $post1)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:11:21'));
 
@@ -402,6 +407,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'важный вопрос')
             ->setValue('displayName', 'important question', 'en-US')
             ->setValue('contents', '<p>Существует ли разговорник для общения с НЛО? Основы этикета?</p>')
+            ->setValue('contents', '<p>Is there a phrase book to communicate with UFO? Basics of etiquette?</p>', 'en-US')
             ->setValue('post', $post2)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:05:34'));
 
@@ -409,6 +415,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Вложенный комментарий')
             ->setValue('displayName', 'nested comment', 'en-US')
             ->setValue('contents', '<p>О, да. Это вложенный комментарий.</p>')
+            ->setValue('contents', '<p>Oh, yeah. This nested comment.</p>', 'en-US')
             ->setValue('post', $post1)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'));
 
@@ -543,8 +550,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('metaTitle', 'Российские биатлонисты взяли первые три места')
             ->setValue('h1', 'Российские биатлонисты взяли первые три места')
             ->setValue('announcement', '<p>Чудо на олимпиаде в Сочи</p>')
-            ->setValue('announcement', '<p>Miracle at the Olympics in Sochi</ p>', 'en-US')
+            ->setValue('announcement', '<p>Miracle at the Olympics in Sochi</p>', 'en-US')
             ->setValue('contents', '<p>На олимпиаде в Сочи российские биатлонисты взяли все медали.</p>')
+            ->setValue('contents', '<p>At the Olympic Games in Sochi Russian biathletes took all the medals.</p>', 'en-US')
             ->setValue('rubric', $ski)
             ->setValue('slug', 'biathlon');
 
@@ -562,6 +570,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>По результатам исследования Ассоциации любителей и ненавистников зомби, главной причиной социопатии зомби является еда из ресторанов МакДональдс.</p>')
             ->setValue('announcement', "<p>The study lovers and haters of the Association of zombies, the main reason is sociopathy zombie food from McDonald's restaurants.</p>", 'en-US')
             ->setValue('contents', '<p>По результатам исследования Ассоциации любителей и ненавистников зомби, главной причиной социопатии зомби является еда из ресторанов МакДональдс.  Ученые давно бьют тревогу по поводу образа жизни молодых зомби и сейчас активно занялись пропагандой спорта, фитнес-клубов, активных игр на воздухе и популяризацией вегетарианской пищи среди представителей этого вида.  Пока ученые занимаются всеми этими вещами, молодые зомби курят по подъездам, впадают в депрессивные состоянии, примыкают к эмо-группировкам и совершенно не хотят работать.  &laquo;А между тем, этих ребят еще можно спасти, &mdash; комментирует Виктория Евдокимова, Охотница за привидениями со стажем, &mdash; и это в силах каждого из нас. Если увидите на улице одинокого зомби, подойдите и поинтересуйтесь, как обстоят дела с его девчонкой, какие у него планы на выходные, и что он делал прошлым летом&raquo;.</p>')
+            ->setValue('contents', '<p>The study lovers and haters of the Association of zombies , the main reason is sociopathy zombie food from McDonald\'s restaurants . Scientists have long been sounding the alarm about the lifestyle of young zombies and is now actively engaged in the promotion of sports, fitness clubs , active games on the air and promotion of vegetarian food of this species . While scientists are engaged in all these things , young zombie smoking on the entrances , fall into the doldrums abut Emo groups and did not want to work. " In the meantime , these guys can still be saved - Victoria commented Evdokimov Ghost Hunter with experience - and it forces each of us. If you see on the street a lone zombie , go and ask how things are going with his girl , what are the plans for the weekend , and what he did last summer ». </p>', 'en-US')
             ->setValue('rubric', $rubric)
             ->setGUID('d6eb9ad1-667e-429d-a476-fa64c5eec115')
             ->setValue('slug', 'zombi')
@@ -579,6 +588,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>Внимание: в составе Отряда в бикини произошли небольшие перестановки. В связи с испорченным маникюром и плохим настроением место Лолиты Андреевой займет Маша Шикова.</p>')
             ->setValue('announcement', '<p>Note: The detachment occurred in bikini small permutations. In connection with a broken nail polish and a bad mood takes place Lolita Masha Andreeva Shikova.</p>', 'en-US')
             ->setValue('contents', '<p>Внимание: в составе Отряда в бикини произошли небольшие перестановки. В связи с испорченным маникюром и плохим настроением место Лолиты Андреевой займет Маша Шикова.  Маша Шикова имеет большой опыт в борьбе с домашними призраками и два столкновения с вампирами. Новая Охотница прекрасно вписалась в наш дружный женский коллектив и в ожидании интересных заданий уже пополнила свой гардероб пятью новыми комплектами бикини.   Лолита Андреева на редкость вяло комментирует свой выход из отряда. По нашим данным, это связано с тем, что маникюрный мастер девушки, с которым у нее был длительный роман, без предупреждения уехал в отпуск на Бали и оставил ее "подыхать в одиночестве".</p>')
+            ->setValue('contents', '<p>Note: The detachment occurred in bikini small permutations . In connection with a broken nail polish and a bad mood takes place Lolita Masha Andreeva Shikova . Masha Shikova has extensive experience in dealing with household ghosts and two encounters with vampires. New Hunter perfectly fit into our friendly female staff in anticipation of interesting jobs already added your wardrobe with five new sets of bikini. Lolita Andreeva extremely sluggish comments on his way out of the squad . According to our data , this is due to the fact that girls manicure master , with whom she had a long affair , without warning, went on holiday to Bali and left her " to die alone ."</p>', 'en-US')
             ->setValue('rubric', $rubric)
             ->setGUID('35806ed8-1306-41b5-bbf9-fe2faedfc835')
             ->setValue('slug', 'bikini')
@@ -593,6 +603,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 ->setValue('announcement', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>')
                 ->setValue('announcement', '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>', 'en-US')
                 ->setValue('contents', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>')
+                ->setValue('contents', '<p>By many scientific studies and laboratory experiments , Catherine Shvetsov , honored Hunter Ghost , made ​​the discovery that the best way to influence the ghosts were, are and will be a beautiful female feet . " I have long sought this discovery, and the path to it has made a lot of other small openings , but the best practical application it got my feet " - discoverer says . In his large-scale scientific work she gives advice on the correct use of the method of ghosts and people , as well as the effective length of the skirt and the optimum height of the heel.</p>', 'en-US')
                 ->setValue('rubric', $rubric)
                 ->setValue('slug', 'privideniya-'.$num);
         }
@@ -640,6 +651,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>Не то, чтобы я верю в привидения, но пару месяцев назад я начала регулярно находить в нашем супружеском ложе чьи-то светлые волосы, сережки и следы губной помады. Муж тоже отрицает существование привидений, однако так дальше продолжаться не могло</p>')
             ->setValue('announcement', '<p>Not that I believe in ghosts, but a couple of months ago I started regularly find in our marital bed someones blonde hair, earrings and lipstick traces. Husband also denies the existence of ghosts, but so could not continue</p>', 'en-US')
             ->setValue('contents', '<p>Не то, чтобы я верю в привидения, но пару месяцев назад я начала регулярно находить в нашем супружеском ложе чьи-то светлые волосы, сережки и следы губной помады. Муж тоже отрицает существование привидений, однако так дальше продолжаться не могло. Я вызвала наряд охотниц за привидениями, и теперь мы избавлены от этих проблем. Сотрудница организации рекомендовала мне воспользоваться услугами спецподразделения &laquo;Отряд в бикини&raquo;. Я не пожалела, и, кажется, муж остался доволен.</p>')
+            ->setValue('contents', '<p>Not that I believe in ghosts, but a couple of months ago I started regularly find in our marital bed someone\'s blonde hair, earrings and lipstick traces. Husband also denies the existence of ghosts, but so could not continue. I called the outfit hunters for ghosts, and now we are delivered from these problems. Employee organization was recommended to me to use the services of Special Forces "A squad in bikini." I do not regret, and it seems her husband was pleased.</p>', 'en-US')
             ->setValue('rubric', $gratitude)
             ->setValue('slug', 'natasha')
             ->setGUID('da5ec9a8-229c-4120-949c-2bb9eb641f24')
@@ -651,8 +663,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('metaTitle', 'Александр, 35 лет, топ-менеджер сети строительных магазинов')
             ->setValue('h1', 'Александр, 35 лет, топ-менеджер сети строительных магазинов')
             ->setValue('announcement', '<p>С 18 лет меня довольно регулярно похищали инопланетяне.&nbsp;Но последней каплей стало похищение в ноябре сего года, во время которого они насильственным способом изменили мои предпочтения в еде</p>')
-            ->setValue('announcement', '<p>With 18 years I pretty regularly abducted by aliens. But the last straw was the kidnapping in November of this year, during which they violently changed my eating habits</p>')
+            ->setValue('announcement', '<p>With 18 years I pretty regularly abducted by aliens. But the last straw was the kidnapping in November of this year, during which they violently changed my eating habits</p>', 'en-US')
             ->setValue('contents', '<p>С 18 лет меня довольно регулярно похищали инопланетяне. Но последней каплей стало похищение в ноябре сего года, во время которого они насильственным способом изменили мои предпочтения в еде &ndash; я перестал смыслить свою жизнь без пива и чипсов. Я был вынужден обратиться к профессионалам. Как мне помогли Охотницы? Инициировав повторный сеанс связи, они совершили настоящий переворот. Теперь я замечательно обхожусь пряниками и шоколадом. Особую благодарность хочу выразить Охотнице Елене Жаровой за красивые глаза.</p>')
+            ->setValue('contents', '<p>With 18 years I pretty regularly abducted by aliens. But the last straw was the kidnapping in November of this year, during which they violently changed my eating habits - I stopped smyslit life without beer and crisps. I was forced to turn to professionals. How can I help the Huntress? Initiating a second session, they made a real revolution. Now I get around wonderful cakes and chocolate. Special thanks to Helen Huntress Zharova for beautiful eyes.</p>', 'en-US')
             ->setValue('rubric', $gratitude)
             ->setGUID('60744128-996a-4cea-a937-c20ebc5c8c77')
             ->setValue('slug', 'aleksandr')
@@ -716,6 +729,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('metaTitle', 'Об отряде')
             ->setValue('h1', 'Об отряде')
             ->setValue('contents', '<p>Мы &mdash; отряд Охотниц за привидениями. Цвет волос, уровень IQ, размер груди, длина ног и количество высших образований не оказывают существенного влияния при отборе кадров в наши подразделения.</p><p>Единственно значимым критерием является наличие у Охотницы следующих навыков:</p><blockquote>метод десятипальцевой печати;<br /> тайский массаж;<br /> метод левой руки;<br /> техника скорочтения;</blockquote><p>Миссия нашей компании: Спасение людей от привидений во имя спокойствия самих привидений.<br /><br /> 12 лет нашей работы доказали, что предлагаемые нами услуги востребованы человечеством. За это время мы получили:</p><blockquote>1588 искренних благодарностей от клиентов; <br /> 260080 комплиментов; <br /> 5 интересных предложений руки и сердца.</blockquote><p>Нам не только удалось пережить кризис августа 1998 года, но и выйти на новый, рекордный уровень рентабельности.<br /> В своей работе мы используем             <strong>сверхсекретные</strong> супер-пупер-технологии.</p>')
+            ->setValue('contents', '<p>we - Ghost Huntress squad . Hair color, level of IQ, breast size , leg length and the number of higher education does not have a significant influence in the selection of personnel in our units . </p> <p> only relevant criterion is the presence of the Huntress following skills : </p> <blockquote> Ten- printing method ; <br /> Thai massage ; <br /> method left hand ; <br /> skorochteniya appliances ; </blockquote> <p> our mission : Saving people from ghosts in the name of peace ghosts themselves . <br / > <br /> 12 years of our work proved that the services we offer in demand humanity. During this time we got : </p> <blockquote> 1588 sincere appreciation from the clients ; <br /> 260080 compliments ; <br /> 5 interesting marriage proposals . </blockquote> <p> We not only managed to survive the crisis in August 1998 , but also to achieve new record level of profitability . <br /> In our work we use <strong> top-secret </strong> super -duper technology.</p>', 'en-US')
             ->setValue('inMenu', true)
             ->setValue('submenuState', StructureElement::SUBMENU_CURRENT_SHOWN)
             ->setGUID('d534fd83-0f12-4a0d-9853-583b9181a948');
@@ -729,6 +743,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('metaTitle', 'Работа, за которую мы никогда не возьмемся')
             ->setValue('h1', 'Работа, за которую мы никогда не возьмемся')
             ->setValue('contents', '<ul><li>Безосновательный вызов призраков на дом</li><li>Гадания на картах, кофейной гуще, блюдечке</li><li>Толкование снов</li><li>Интим-услуги. Мы не такие!</li></ul>')
+            ->setValue('contents', '<ul><li> groundless call ghosts home </li> <li> tarot cards, tea leaves, a silver platter </li> <li> Interpretation of Dreams </li> <li> Intimacy services. We are not! </li></ul>', 'en-US')
             ->setGUID('3d765c94-bb80-4e8f-b6d9-b66c3ea7a5a4');
         $no->getProperty('componentName')->setValue('structure');
         $no->getProperty('componentPath')->setValue('structure');
@@ -740,6 +755,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('metaTitle', 'Услуги')
             ->setValue('h1', 'Услуги')
             ->setValue('contents', '<p><strong>Дипломатические переговоры с домовыми</strong></p><p>Домовые требуют особого подхода. Выгонять домового из дома категорически запрещено, т.к. его призвание &mdash; охранять дом. Однако, некоторые домовые приносят своим хозяевам немало хлопот из-за своенравного характера. <br /><br />Хорошие отношения с домовым &mdash; наша работы. Правильно провести дипломатические переговоры с домовым, с учетом его знака зодиака, типа температмента и других психографических характеристик, настроить его на позитивный лад, избавить от личных переживаний, разобраться в ваших разногласиях и провести результативные переговоры может грамотный специалист с широким набором характеристик и знаний.<br /><br /><em>Работает Охотница Ольга Карпова <br />Спецнавыки: паранормальная дипломатия, психология поведения духов и разрешение конфликтов</em></p><p><br /><br /><strong>Изгнание призраков царских кровей и других элитных духов<br /></strong><br />Вы купили замок? Хотите провести профилактические работы? Или уже столкнулись с присутствием призраков один на один?<br /><br />Вам &mdash; в наше элитное подразделение. Духи царских кровей отличаются кичливым поведением и высокомерием, однако до сих пор подразделение Охотниц в бикини всегда справлялось с поставленными задачами.<br /><br />Среди наших побед:</p><p>- тень отца Гамлета, вызвавшая переполох в женской раздевалке фитнес-клуба; <br />- призрак Ленина, пытающийся заказать роллы Калифорния на вынос; <br />- призрак Цезаря на неделе миланской моды в Москве.&nbsp; <br /><br /><em>Работает Охотница Елена&nbsp; Жарова <br />Спецнавыки: искусство душевного разговора</em></p>')
+            ->setValue('contents', '<p><strong> Diplomatic negotiations with household </strong> </p> <p> homes require a special approach. Brownie expel from home is strictly prohibited , as his vocation - guard the house . However, some brownies bring their owners a lot of trouble because of the capricious nature . <br /> <br /> Good relations with brownies - our work. Right to hold diplomatic talks with brownies , given its zodiac sign , type temperatmenta and other psychographic characteristics that set it in a positive way , get rid of personal experiences , sort out your differences and conduct productive negotiations can a qualified specialist with a wide range of characteristics and knowledge. < br /> <br /> <em> Works Hunter Olga Karpova <br /> Craft : paranormal diplomacy , psychology behavior spirits and conflict resolution </em> </p> <p> <br /> <br /> <strong> Exile ghosts of royal blood and other elite spirits <br /> </strong> <br /> you bought the castle? Want to conduct preventive work ? Or have already faced with the presence of ghosts alone ? <br /> <br /> You - in our elite unit . Perfume royal blood differ snobby behavior and arrogance , but still in a bikini division Huntress always cope with the task . <br /> <br /> Our Ratio : </p> <p> - shadow of Hamlet\'s father , caused a stir in women\'s locker room fitness club ; <br /> - the ghost of Lenin, trying to order take-out California rolls ; <br /> - the ghost of Caesar on the Milan fashion week in Moscow. <br /> <br /> <em> Works Hunter Elena Zharov <br /> Craft : The Art of Mental Talk </em></p>', 'en-US')
             ->setGUID('98751ebf-7f76-4edb-8210-c2c3305bd8a0');
         $service->getProperty('componentName')->setValue('structure');
         $service->getProperty('componentPath')->setValue('structure');
@@ -750,6 +766,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('metaTitle', 'Тарифы и цены')
             ->setValue('h1', 'Тарифы и цены')
             ->setValue('contents', '<p><strong>Если вас регулярно посещают привидения, призраки, НЛО, &laquo;Летучий голландец&raquo;, феномен черных рук, демоны, фантомы, вампиры и чупакабры...</strong></p><p>Мы предлагаем вам воспользоваться нашим <strong>тарифом абонентской платы</strong>, который составляет <span style="color: #ff6600;"><strong>1 995</strong></span> у.е. в год. Счастливый год без привидений!</p><p><strong>Если паранормальное явление появился в вашей жизни неожиданно, знакомьтесь с прайсом*:<br /></strong></p><blockquote>Дипломатические переговоры с домовым &ndash; <span style="color: #ff6600;"><strong>120</strong></span> у.е.<br />Нейтрализация вампира &ndash; <span style="color: #ff6600;"><strong>300</strong></span> у.е.<br />Изгнание привидения стандартного &ndash; <span style="color: #ff6600;"><strong>200</strong></span> у.е.<br />Изгнание привидений царей, принцев и принцесс, вождей революций и другой элиты &ndash; <span style="color: #ff6600;"><strong>1250</strong></span> у.е.<br />Борьба с НЛО &ndash; рассчитывается <span style="text-decoration: underline;">индивидуально</span>.</blockquote><p><strong>Специальная услуга: </strong>ВЫЗОВ ОТРЯДА В БИКИНИ</p><p><span style="font-size: x-small;"><em>Стандартные услуги в сочетании с эстетическим удовольствием!</em></span></p><p><strong>Скидки оптовым и постоянным клиентам:</strong><br />При заказе устранения от 5 духов (любого происхождения, включая элиту) предоставляется скидка 12% от общей цены. Скидки по акциям не суммируются.</p><p><span>*Цена за одну особь!</span></p>')
+            ->setValue('contents', '<p><strong> If you regularly attend a ghost , ghosts , UFOs, "Flying Dutchman" , the phenomenon of black hands , demons, ghosts , vampires and chupacabra ... </strong> </p> <p> We offer you use our <strong> rate monthly fee </strong>, which is <span style="color: #ff6600;"> <strong> 1995 </strong> </span> cu per year. Happy year without ghosts ! </p> <p> <strong> If paranormal phenomenon appeared in your life unexpectedly , meet and Price *: <br /> </strong> </p> <blockquote> Diplomatic negotiations with brownies - <span style="color: #ff6600;"> <strong> 120 </strong> </span> <br /> cu Neutralization vampire - <span style="color: #ff6600;"> <strong> 300 </strong> </span> <br /> cu Exile ghosts standard - <span style="color: #ff6600;"> <strong> 200 </strong> </span> <br /> cu Exile ghosts of kings, princes and princesses , and other leaders of the revolution of the elite - <span style="color: #ff6600;"> <strong> 1250 </strong> </span> <br /> cu Fighting UFO - calculated individually <span style="text-decoration: underline;"> </span>. </blockquote> <p> <strong> Special service : </strong> CALL SQUAD in bikini </p> <p> <span style = "font-size: x-small;"> <em> Standard services combined with aesthetic pleasure ! </em> </span> </p> <p> <strong> Discount wholesale and regular customers : </strong> <br /> When ordering removal from 5 spirits ( of any origin , including the elite ) and 12% discount off the total price . Discounts on shares are not cumulative . </p> <p> <span> * Price for one individual ! </span></p>', 'en-US')
             ->setGUID('c81d6d87-25c6-4ab8-b213-ef3a0f044ce6');
         $price->getProperty('componentName')->setValue('structure');
         $price->getProperty('componentPath')->setValue('structure');
@@ -980,6 +997,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `meta_description` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `contents` text,
+                    `contents_en` text,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
 
                     PRIMARY KEY (`id`),
@@ -1023,6 +1041,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `announcement_en` text,
                     `source` varchar(255) DEFAULT NULL,
                     `contents` text,
+                    `contents_en` text,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
                     `comments_count` bigint(20) unsigned DEFAULT NULL,
@@ -1066,6 +1085,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `meta_description` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `contents` text,
+                    `contents_en` text,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
 
                     PRIMARY KEY (`id`),
@@ -1138,6 +1158,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `post_id` bigint(20) unsigned,
                     `author_id` bigint(20) unsigned,
                     `contents` text,
+                    `contents_en` text,
                     `publish_time` datetime DEFAULT NULL,
 
                     PRIMARY KEY (`id`),
@@ -1180,6 +1201,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `h1` varchar(255) DEFAULT NULL,
                     `last_activity` datetime DEFAULT NULL,
                     `contents` text,
+                    `contents_en` text,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
                     `comments_count` bigint(20) unsigned DEFAULT NULL,
@@ -1295,6 +1317,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
 
                     `contents` text,
+                    `contents_en` text,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
@@ -1334,6 +1357,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
                     `date` datetime DEFAULT NULL,
                     `contents` text,
+                    `contents_en` text,
                     `announcement` text,
                     `announcement_en` text,
                     `source` varchar(255) DEFAULT NULL,
@@ -1376,6 +1400,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
 
                     `contents` text,
+                    `contents_en` text,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
@@ -1545,6 +1570,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
 
                     `contents` text,
+                    `contents_en` text,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
                     `meta_title` varchar(255) DEFAULT NULL,
@@ -1709,9 +1735,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 `text` varchar(255) DEFAULT NULL,
                 `textarea` varchar(255) DEFAULT NULL,
                 `select` varchar(255) DEFAULT NULL,
+                `multiselect` varchar(255) DEFAULT NULL,
                 `radio` varchar(255) DEFAULT NULL,
                 `password` varchar(255) DEFAULT NULL,
                 `checkbox` varchar(255) DEFAULT NULL,
+                `checkbox_group` varchar(255) DEFAULT NULL,
 
                 `date` varchar(255) DEFAULT NULL,
                 `date_time` varchar(255) DEFAULT NULL,

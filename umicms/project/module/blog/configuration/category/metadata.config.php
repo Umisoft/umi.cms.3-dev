@@ -152,7 +152,11 @@ return [
         ],
         BlogCategory::FIELD_PAGE_CONTENTS => [
             'type' => IField::TYPE_TEXT,
-            'columnName' => 'contents'
+            'columnName' => 'contents',
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'contents'],
+                'en-US' => ['columnName' => 'contents_en']
+            ]
         ],
         BlogCategory::FIELD_PAGE_LAYOUT => [
             'type' => IField::TYPE_BELONGS_TO,
