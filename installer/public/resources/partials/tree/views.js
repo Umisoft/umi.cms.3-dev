@@ -5,13 +5,23 @@ define(['App'], function(UMI){
         UMI.TreeControlView = Ember.View.extend({
             classNames: ['row', 's-full-height'],
 
+
+            expandedBranchesChange: function(){
+                var expandedBranches = this.get('controller.expandedBranches');
+                for(var i = 0; i < expandedBranches.length; i++){
+                    this.send('expandItem', expandedBranches[i]);
+                }
+            }.observes('controller.expandedBranches'),
+
             actions: {
                 expandItem: function(id){
-                    var itemView = this.$().find('[data-id='+ id +']');
-                    if(itemView.length){
-                        itemView = Ember.View.views[itemView[0].id];
-                        if(itemView){
-                            itemView.set('isExpanded', true);
+                    if(this.$()){
+                        var itemView = this.$().find('[data-id='+ id +']');
+                        if(itemView.length){
+                            itemView = Ember.View.views[itemView[0].id];
+                            if(itemView && !itemView.get('isExpanded')){
+                                itemView.set('isExpanded', true);
+                            }
                         }
                     }
                 }
@@ -199,6 +209,7 @@ define(['App'], function(UMI){
             willDestroyElement: function(){
                 this.get('controller').removeObserver('controllers.component.collectionName');
                 this.get('controller').removeObserver('activeContext');
+                this.removeObserver('controller.expandedBranches');
             },
 
             filtersView: Ember.View.extend({

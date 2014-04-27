@@ -50,6 +50,10 @@ return [
             ],
             'validators' => [
                 IValidatorFactory::TYPE_REQUIRED => []
+            ],
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'display_name'],
+                'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
         NewsItem::FIELD_ACTIVE                => [
@@ -95,7 +99,11 @@ return [
         ],
         NewsItem::FIELD_ANNOUNCEMENT          => [
             'type' => IField::TYPE_TEXT,
-            'columnName' => 'announcement'
+            'columnName' => 'announcement',
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'announcement'],
+                'en-US' => ['columnName' => 'announcement_en']
+            ]
         ],
         NewsItem::FIELD_SOURCE          => [
             'type' => IField::TYPE_TEXT,

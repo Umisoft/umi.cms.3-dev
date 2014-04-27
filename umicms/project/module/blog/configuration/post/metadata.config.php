@@ -53,6 +53,10 @@ return [
             ],
             'validators' => [
                 IValidatorFactory::TYPE_REQUIRED => []
+            ],
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'display_name'],
+                'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
         BlogPost::FIELD_ACTIVE => [
@@ -108,7 +112,11 @@ return [
         ],
         BlogPost::FIELD_ANNOUNCEMENT => [
             'type' => IField::TYPE_TEXT,
-            'columnName' => 'announcement'
+            'columnName' => 'announcement',
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'announcement'],
+                'en-US' => ['columnName' => 'announcement_en']
+            ]
         ],
         BlogPost::FIELD_SOURCE => [
             'type' => IField::TYPE_TEXT,

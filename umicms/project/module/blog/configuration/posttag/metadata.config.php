@@ -41,7 +41,11 @@ return [
         ],
         CmsObject::FIELD_DISPLAY_NAME => [
             'type' => IField::TYPE_STRING,
-            'columnName' => 'display_name'
+            'columnName' => 'display_name',
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'display_name'],
+                'en-US' => ['columnName' => 'display_name_en']
+            ]
         ],
         CmsObject::FIELD_CREATED => [
             'type' => IField::TYPE_DATE_TIME,

@@ -106,7 +106,7 @@ define(['App'], function(UMI){
             /**
              Активный контекст
              */
-            activeContextBinding: 'controllers.context.model.object',
+            activeContextBinding: 'controllers.context.model',
 
             needs: ['component', 'context'],
 
@@ -245,13 +245,17 @@ define(['App'], function(UMI){
         });
 
         UMI.TreeItemController = Ember.ObjectController.extend({
-            sortedChildren: function(){
+            getChildren: function(){
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: this.get('children'),
                     sortProperties: ['order', 'id'],
                     sortAscending: true
                 });
-            }.property('children'),
+            },
+
+            sortedChildren: function(){
+                return this.getChildren();
+            }.property('didUpdate'),
 
             visible: function(){
                 var visible = true;
@@ -268,7 +272,18 @@ define(['App'], function(UMI){
 
             filters: Ember.computed.alias("controllers.treeControl.activeFilters"),
 
-            needs: 'treeControl'
+            needs: 'treeControl',
+
+            init: function(){
+                var self = this;
+                if('needReloadHasMany' in this.get('content')){
+                    this.get('content').on('needReloadHasMany', function(){
+                        self.get('children').then(function(children){
+                            children.reloadLinks();
+                        });
+                    });
+                }
+            }
         });
     };
 });

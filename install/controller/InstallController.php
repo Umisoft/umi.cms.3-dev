@@ -113,15 +113,40 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $groupCollection = $this->getCollectionManager()->getCollection('userGroup');
 
         /**
+         * @var SimpleHierarchicCollection $structureCollection
+         */
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+
+        $usersPage = $structureCollection->add('users', 'system')
+            ->setValue('displayName', 'Пользователи')
+            ->setValue('metaTitle', 'Пользователи')
+            ->setValue('h1', 'Пользователи');
+
+        $usersPage->getProperty('componentName')->setValue('users');
+        $usersPage->getProperty('componentPath')->setValue('users');
+
+        $authorizationPage = $structureCollection->add('auth', 'system', $usersPage)
+            ->setValue('displayName', 'Авторизация')
+            ->setValue('metaTitle', 'Авторизация')
+            ->setValue('h1', 'Авторизация');
+
+        $authorizationPage->getProperty('componentName')->setValue('authorization');
+        $authorizationPage->getProperty('componentPath')->setValue('users.authorization');
+
+        /**
          * @var UserGroup $visitors
          */
         $visitors = $groupCollection->add()
-            ->setValue('displayName', 'Посетители');
+            ->setValue('displayName', 'Посетители')
+            ->setValue('displayName', 'Visitors', 'en-US');
         $visitors->getProperty('locked')->setValue(true);
 
         $visitors->roles = [
             'project' => ['visitor'],
             'project.admin' => ['visitor'],
+
+            'project.site.users' => ['viewer'],
+            'project.site.users.authorization' => ['viewer'],
 
             'project.site.structure' => ['viewer'],
             'project.site.structure.menu' => ['viewer'],
@@ -143,7 +168,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var UserGroup $administrators
          */
         $administrators = $groupCollection->add()
-            ->setValue('displayName', 'Администраторы');
+            ->setValue('displayName', 'Администраторы')
+            ->setValue('displayName', 'Administrator', 'en-US');
         $administrators->roles = [
             'project.admin.api' => ['newsEditor', 'structureEditor', 'usersEditor'],
 
@@ -165,6 +191,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $sv = $userCollection->add('authorized.supervisor')
             ->setValue('displayName', 'Супервайзер')
+            ->setValue('displayName', 'Supervisor', 'en-US')
             ->setValue('login', 'sv')
             ->setValue('email', 'sv@umisoft.ru')
             ->setGUID('68347a1d-c6ea-49c0-9ec3-b7406e42b01e');
@@ -177,6 +204,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $admin = $userCollection->add('authorized')
             ->setValue('displayName', 'Администратор')
+            ->setValue('displayName', 'Administrator', 'en-US')
             ->setValue('login', 'admin')
             ->setValue('email', 'admin@umisoft.ru');
 
@@ -200,6 +228,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $guest = $userCollection->add('guest')
             ->setValue('displayName', 'Гость')
+            ->setValue('displayName', 'Guest', 'en-US')
             ->setGUID('552802d2-278c-46c2-9525-cd464bbed63e');
         $guest->getProperty('locked')->setValue(true);
 
@@ -240,6 +269,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $blogPage = $structureCollection->add('blogik', 'system')
             ->setValue('displayName', 'Блог')
+            ->setValue('displayName', 'Blog', 'en-US')
             ->setValue('h1', 'Блог')
             ->setGUID('e6b89f38-7af3-4bda-80fd-3d5a4cf080cf')
             ->setValue('inMenu', true)
@@ -251,6 +281,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $category = $structureCollection->add('kategorii', 'system', $blogPage)
             ->setValue('displayName', 'Категория блога')
+            ->setValue('displayName', 'Category', 'en-US')
             ->setGUID('29449a5c-e0b0-42ad-9f1c-3d015540b024');
 
         $category->getProperty('locked')->setValue(true);
@@ -259,6 +290,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $tag = $structureCollection->add('blogtag', 'system', $blogPage)
             ->setValue('displayName', 'Тэг блога')
+            ->setValue('displayName', 'Tag', 'en-US')
             ->setGUID('3fa39832-9239-48a5-a82a-1dd2fcd0f042');
 
         $tag->getProperty('locked')->setValue(true);
@@ -267,6 +299,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $post = $structureCollection->add('blogpost', 'system', $blogPage)
             ->setValue('displayName', 'Пост блога')
+            ->setValue('displayName', 'Post', 'en-US')
             ->setGUID('257fb155-9fbf-4b99-8b1c-c0ae179070ca');
 
         $post->getProperty('locked')->setValue(true);
@@ -274,12 +307,14 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $post->getProperty('componentPath')->setValue('blog.post');
 
         $post = $structureCollection->add('drafts', 'system', $blogPage)
-            ->setValue('displayName', 'Черновики блога');
+            ->setValue('displayName', 'Черновики блога')
+            ->setValue('displayName', 'Drafts', 'en-US');
         $post->getProperty('componentName')->setValue('draft');
         $post->getProperty('componentPath')->setValue('blog.draft');
 
         $comment = $structureCollection->add('blogcomment', 'system', $blogPage)
             ->setValue('displayName', 'Комментарий блога')
+            ->setValue('displayName', 'Comment', 'en-US')
             ->setGUID('2099184c-013c-4653-8882-21c06d5e4e83');
 
         $comment->getProperty('locked')->setValue(true);
@@ -288,6 +323,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $author = $structureCollection->add('authors', 'system', $blogPage)
             ->setValue('displayName', 'Авторы блога')
+            ->setValue('displayName', 'Authors', 'en-US')
             ->setGUID('2ac90e34-16d0-4113-ab7c-de37c0287516');
 
         $author->getProperty('locked')->setValue(true);
@@ -296,6 +332,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $category = $categoryCollection->add('hunters')
             ->setValue('displayName', 'Блог')
+            ->setValue('displayName', 'Blog', 'en-US')
             ->setValue('metaTitle', 'Блог Охотниц за приведениями')
             ->setValue('h1', 'Блог Охотниц за приведениями')
             ->setValue('contents', '<p>Это блого обо всем на свете...</p>')
@@ -303,17 +340,22 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $tag1 = $tagCollection->add()
             ->setValue('displayName', 'Призраки')
+            ->setValue('displayName', 'Ghosts', 'en-US')
             ->setValue('slug','prizraki');
 
         $tag2 = $tagCollection->add()
             ->setValue('displayName', 'Привидения')
+            ->setValue('displayName', 'Casts', 'en-US')
             ->setValue('slug','privideniya');
 
 
         $post1 = $postCollection->add()
             ->setValue('displayName', 'Девиантное поведение призраков и домовых и способы влияния на него')
+            ->setValue('displayName', 'Deviant behavior of ghosts and goblins and ways to influence him', 'en-US')
             ->setValue('metaTitle', 'Девиантное поведение призраков и домовых и способы влияния на него')
             ->setValue('h1', 'Девиантное поведение призраков и домовых и способы влияния на него')
+            ->setValue('announcement', '<p>Причины девиантного поведения домашних призраков кроются безусловно во влиянии MTV и пропаганде агрессивной альтернативной музыки.<br /><br />Также наблюдается рост домовых, практикующих экстремальное катание на роликовых коньках, скейт-бордах, BMX, что повышает общий уровень черепно-мозговых травм среди паранормальных существ. <br /><br />Не может не оказывать влияния проникновение культуры эмо в быт и уклад домашних призраков, что ведет к росту самоубийств и депрессивных состояний среди этих в общем-то жизнерадостных<br /> созданий.<br /><br />В качестве метода влияния на отклонения у домашний призраков я вижу их обращение в более позитивные и миролюбивые культуры, их пропаганда и популяризация в среде домашних призраков.<br /><br /><strong>Екатерина Джа-Дуплинская</strong></p>')
+            ->setValue('announcement', '<p>Causes of deviant behavior of domestic ghosts certainly lie in the influence of MTV and the aggressive promotion of alternative music.</p>', 'en-US')
             ->setValue('contents', '<p>Причины девиантного поведения домашних призраков кроются безусловно во влиянии MTV и пропаганде агрессивной альтернативной музыки.<br /><br />Также наблюдается рост домовых, практикующих экстремальное катание на роликовых коньках, скейт-бордах, BMX, что повышает общий уровень черепно-мозговых травм среди паранормальных существ. <br /><br />Не может не оказывать влияния проникновение культуры эмо в быт и уклад домашних призраков, что ведет к росту самоубийств и депрессивных состояний среди этих в общем-то жизнерадостных<br /> созданий.<br /><br />В качестве метода влияния на отклонения у домашний призраков я вижу их обращение в более позитивные и миролюбивые культуры, их пропаганда и популяризация в среде домашних призраков.<br /><br /><strong>Екатерина Джа-Дуплинская</strong></p>')
             ->setValue('slug', 'deviant')
             ->setGUID('8e675484-bea4-4fb5-9802-4750cc21e509')
@@ -321,8 +363,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $post2 = $postCollection->add()
             ->setValue('displayName', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
+            ->setValue('displayName', 'Conflict resolution method UFO Renata Litvinova', 'en-US')
             ->setValue('metaTitle', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
             ->setValue('h1', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
+            ->setValue('announcement', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер.</p>')
+            ->setValue('announcement', '<p>Renata Litvinova announced and allowed to use methods of conflict-author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen, try to remember how your evening ended yesterday.</p>', 'en-US')
             ->setValue('contents', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>')
             ->setValue('category', $category)
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj')
@@ -331,6 +376,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $authorCollection->add()
             ->setValue('displayName', 'Бивес')
+            ->setValue('displayName', 'Bives', 'en-US')
             ->setValue('h1', 'Бивес')
             ->setValue('contents', 'Бивес')
             ->setValue('slug', 'bives');
@@ -340,38 +386,45 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $comment1 = $commentCollection->add('comment1')
             ->setValue('displayName', 'Re: Девиантное поведение призраков и домовых и способы влияния на него')
+            ->setValue('displayName', 'Re: Deviant behavior of ghosts and goblins and ways to influence him', 'en-US')
             ->setValue('contents', '<p>О да. Недавно в нашем замке один милый маленький призрак покончил с собой. Мы были уверены, что это невозможно, но каким-то образом ему удалось раствориться в воде, наполняющей наш древний колодец.</p>')
             ->setValue('post', $post1)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'));
 
         $comment2 = $commentCollection->add('comment2', IObjectType::BASE, $comment1)
             ->setValue('displayName', 'Re: Re: Девиантное поведение призраков и домовых и способы влияния на него')
+            ->setValue('displayName', 'Re: Re: Deviant behavior of ghosts and goblins and ways to influence him', 'en-US')
             ->setValue('contents', '<p>Возможно, вашего призрака еще удастся спасти. Попробуйте насыпать в колодец пару столовых ложек молотых семян бессмертника. Это должно помочь призраку снова сконденсировать свое нематериальное тело. И да, важно, чтобы семена были собраны в новолуние.</p>')
             ->setValue('post', $post1)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:11:21'));
 
         $commentCollection->add('comment3')
             ->setValue('displayName', 'важный вопрос')
+            ->setValue('displayName', 'important question', 'en-US')
             ->setValue('contents', '<p>Существует ли разговорник для общения с НЛО? Основы этикета?</p>')
             ->setValue('post', $post2)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:05:34'));
 
         $commentCollection->add('comment1', IObjectType::BASE, $comment2)
             ->setValue('displayName', 'Вложенный комментарий')
+            ->setValue('displayName', 'nested comment', 'en-US')
             ->setValue('contents', '<p>О, да. Это вложенный комментарий.</p>')
             ->setValue('post', $post1)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'));
 
         $rssScenarioCollection->add()
             ->setValue('displayName', 'Scripting News')
+            ->setValue('displayName', 'Scripting News', 'en-US')
             ->setValue('rssUrl', 'http://static.userland.com/gems/backend/rssTwoExample2.xml');
 
         $rssScenarioCollection->add()
             ->setValue('displayName', 'Хабрахабр / Захабренные / Тематические / Посты')
+            ->setValue('displayName', 'Habrahabr / Zahabrennye / Thematic / Posts', 'en-US')
             ->setValue('rssUrl', 'http://habrahabr.ru/rss/hubs/');
 
         $rssScenarioCollection->add()
             ->setValue('displayName', 'DLE-News (windows-1251)')
+            ->setValue('displayName', 'DLE-News (windows-1251)', 'en-US')
             ->setValue('rssUrl', 'http://dle-news.ru/rss.xml');
     }
 
@@ -400,15 +453,18 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $subject1 = $subjectCollection->add()
             ->setValue('displayName', 'Призраки')
+            ->setValue('displayName', 'Ghosts', 'en-US')
             ->setValue('slug','prizraki');
 
         $subject2 = $subjectCollection->add()
             ->setValue('displayName', 'Привидения')
+            ->setValue('displayName', 'Casts', 'en-US')
             ->setValue('slug','privideniya')
             ->setGUID('0d106acb-92a9-4145-a35a-86acd5c802c7');
 
         $newsPage = $structureCollection->add('novosti', 'system')
             ->setValue('displayName', 'Новости')
+            ->setValue('displayName', 'News', 'en-US')
             ->setGUID('9ee6745f-f40d-46d8-8043-d959594628ce')
             ->setValue('inMenu', true)
             ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
@@ -419,6 +475,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $rubric = $structureCollection->add('rubriki', 'system', $newsPage)
             ->setValue('displayName', 'Новостная рубрика')
+            ->setValue('displayName', 'Second rubrics', 'en-US')
             ->setGUID('9ee6745f-f40d-46d8-8043-d95959462811');
 
         $rubric->getProperty('locked')->setValue(true);
@@ -427,6 +484,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $subject = $structureCollection->add('syuzhety', 'system', $newsPage)
             ->setValue('displayName', 'Новостной сюжет')
+            ->setValue('displayName', 'News subject', 'en-US')
             ->setGUID('9ee6745f-f40d-46d8-8043-d95959462822');
 
         $subject->getProperty('locked')->setValue(true);
@@ -435,6 +493,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $item = $structureCollection->add('item', 'system', $newsPage)
             ->setValue('displayName', 'Новость')
+            ->setValue('displayName', 'News', 'en-US')
             ->setGUID('9ee6745f-f40d-46d8-8043-d95959462833');
 
         $item->getProperty('locked')->setValue(true);
@@ -443,54 +502,65 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $rubric = $rubricCollection->add('company')
             ->setValue('displayName', 'Новости сайта')
+            ->setValue('displayName', 'Site news', 'en-US')
             ->setValue('metaTitle', 'Новости сайта')
             ->setValue('h1', 'Новости сайта')
             ->setGUID('8650706f-04ca-49b6-a93d-966a42377a61');
 
         $sport = $rubricCollection->add('sport')
             ->setValue('displayName', 'Новости спорта')
+            ->setValue('displayName', 'Sport news', 'en-US')
             ->setValue('metaTitle', 'Новости спорта')
             ->setValue('h1', 'Новости спорта');
 
         $winterSports = $rubricCollection->add('winter', IObjectType::BASE, $sport)
             ->setValue('displayName', 'Зимний спорт')
+            ->setValue('displayName', 'Winter sport', 'en-US')
             ->setValue('metaTitle', 'Зимний спорт')
             ->setValue('h1', 'Зимний спорт');
 
         $summerSports = $rubricCollection->add('summer', IObjectType::BASE, $sport)
             ->setValue('displayName', 'Летний спорт')
+            ->setValue('displayName', 'Summer sport', 'en-US')
             ->setValue('metaTitle', 'Летний спорт')
             ->setValue('h1', 'Летний спорт');
 
         $snowboard = $rubricCollection->add('snowboard', IObjectType::BASE, $winterSports)
             ->setValue('displayName', 'Сноуборд')
+            ->setValue('displayName', 'Snowboard', 'en-US')
             ->setValue('metaTitle', 'Сноуборд')
             ->setValue('h1', 'Сноуборд');
 
         $ski = $rubricCollection->add('ski', IObjectType::BASE, $winterSports)
             ->setValue('displayName', 'Лыжи')
+            ->setValue('displayName', 'skiing', 'en-US')
             ->setValue('metaTitle', 'Лыжи')
             ->setValue('h1', 'Лыжи');
 
         $item = $newsCollection->add()
             ->setValue('displayName', 'Российские биатлонисты взяли первые три места')
+            ->setValue('displayName', 'Russian biathletes took the first three places', 'en-US')
             ->setValue('metaTitle', 'Российские биатлонисты взяли первые три места')
             ->setValue('h1', 'Российские биатлонисты взяли первые три места')
             ->setValue('announcement', '<p>Чудо на олимпиаде в Сочи</p>')
+            ->setValue('announcement', '<p>Miracle at the Olympics in Sochi</ p>', 'en-US')
             ->setValue('contents', '<p>На олимпиаде в Сочи российские биатлонисты взяли все медали.</p>')
             ->setValue('rubric', $ski)
             ->setValue('slug', 'biathlon');
 
         $volleyball = $rubricCollection->add('volleyball', IObjectType::BASE, $summerSports)
             ->setValue('displayName', 'Волейбол')
+            ->setValue('displayName', 'Volleyball', 'en-US')
             ->setValue('metaTitle', 'Волейбол')
             ->setValue('h1', 'Волейбол');
 
         $item = $newsCollection->add()
             ->setValue('displayName', 'Названа причина социопатии современных зомби')
+            ->setValue('displayName', 'Named reason sociopathy modern zombie', 'en-US')
             ->setValue('metaTitle', 'Названа причина социопатии современных зомби')
             ->setValue('h1', 'Названа причина социопатии современных зомби')
             ->setValue('announcement', '<p>По результатам исследования Ассоциации любителей и ненавистников зомби, главной причиной социопатии зомби является еда из ресторанов МакДональдс.</p>')
+            ->setValue('announcement', "<p>The study lovers and haters of the Association of zombies, the main reason is sociopathy zombie food from McDonald's restaurants.</p>", 'en-US')
             ->setValue('contents', '<p>По результатам исследования Ассоциации любителей и ненавистников зомби, главной причиной социопатии зомби является еда из ресторанов МакДональдс.  Ученые давно бьют тревогу по поводу образа жизни молодых зомби и сейчас активно занялись пропагандой спорта, фитнес-клубов, активных игр на воздухе и популяризацией вегетарианской пищи среди представителей этого вида.  Пока ученые занимаются всеми этими вещами, молодые зомби курят по подъездам, впадают в депрессивные состоянии, примыкают к эмо-группировкам и совершенно не хотят работать.  &laquo;А между тем, этих ребят еще можно спасти, &mdash; комментирует Виктория Евдокимова, Охотница за привидениями со стажем, &mdash; и это в силах каждого из нас. Если увидите на улице одинокого зомби, подойдите и поинтересуйтесь, как обстоят дела с его девчонкой, какие у него планы на выходные, и что он делал прошлым летом&raquo;.</p>')
             ->setValue('rubric', $rubric)
             ->setGUID('d6eb9ad1-667e-429d-a476-fa64c5eec115')
@@ -503,9 +573,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $newsCollection->add()
             ->setValue('displayName', 'Смена состава в Отряде в бикини')
+            ->setValue('displayName', 'Change in the composition in the Troop in bikini', 'en-US')
             ->setValue('metaTitle', 'Смена состава в Отряде в бикини')
             ->setValue('h1', 'Смена состава в Отряде в бикини')
             ->setValue('announcement', '<p>Внимание: в составе Отряда в бикини произошли небольшие перестановки. В связи с испорченным маникюром и плохим настроением место Лолиты Андреевой займет Маша Шикова.</p>')
+            ->setValue('announcement', '<p>Note: The detachment occurred in bikini small permutations. In connection with a broken nail polish and a bad mood takes place Lolita Masha Andreeva Shikova.</p>', 'en-US')
             ->setValue('contents', '<p>Внимание: в составе Отряда в бикини произошли небольшие перестановки. В связи с испорченным маникюром и плохим настроением место Лолиты Андреевой займет Маша Шикова.  Маша Шикова имеет большой опыт в борьбе с домашними призраками и два столкновения с вампирами. Новая Охотница прекрасно вписалась в наш дружный женский коллектив и в ожидании интересных заданий уже пополнила свой гардероб пятью новыми комплектами бикини.   Лолита Андреева на редкость вяло комментирует свой выход из отряда. По нашим данным, это связано с тем, что маникюрный мастер девушки, с которым у нее был длительный роман, без предупреждения уехал в отпуск на Бали и оставил ее "подыхать в одиночестве".</p>')
             ->setValue('rubric', $rubric)
             ->setGUID('35806ed8-1306-41b5-bbf9-fe2faedfc835')
@@ -514,10 +586,12 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         foreach (range(10, 50) as $num) {
             $newsCollection->add()
-                ->setValue('displayName', 'Открыт метод устранения неврозов у привидений-'.$num)
+                ->setValue('displayName', 'Открыт метод устранения неврозов у привидений-' . $num)
+                ->setValue('displayName', 'Open method of elimination of neuroses in ghosts-' . $num, 'en-US')
                 ->setValue('metaTitle', 'Открыт метод устранения неврозов у привидений')
                 ->setValue('h1', 'Открыт метод устранения неврозов у привидений-'.$num)
                 ->setValue('announcement', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина<br />Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим<br />средством воздействия на привидения были, есть и будут красивые женские<br />ноги.</p>')
+                ->setValue('announcement', '<p>By many scientific studies and laboratory experiments, Catherine <br /> Shvetsov, honored Hunter Ghost, made ​​the discovery that the best way to influence <br /> ghosts were, are and will <br /> beautiful female feet.</p>', 'en-US')
                 ->setValue('contents', '<p>Путем долгих научных изысканий и лабораторных опытов, Екатерина Швецова, заслуженная Охотница за привидениями, сделала открытие, что лучшим средством воздействия на привидения были, есть и будут красивые женские ноги.  &laquo;Я долго шла к этому открытию, и на пути к нему совершила много других маленьких открытий, однако лучшее практическое применение получили именно мои ноги&raquo;, &mdash; рассказывает первооткрывательница.  В своем масштабном научном труде она дает рекомендации по правильному применению метода среди призраков и людей, а также эффективной длине юбке и оптимальной высоте каблука.</p>')
                 ->setValue('rubric', $rubric)
                 ->setValue('slug', 'privideniya-'.$num);
@@ -525,14 +599,17 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $rssScenarioCollection->add()
             ->setValue('displayName', 'Scripting News')
+            ->setValue('displayName', 'Scripting News', 'en-US')
             ->setValue('rssUrl', 'http://static.userland.com/gems/backend/rssTwoExample2.xml');
 
         $rssScenarioCollection->add()
             ->setValue('displayName', 'Хабрахабр / Захабренные / Тематические / Посты')
+            ->setValue('displayName', 'Habrahabr / Zahabrennye / Thematic / Posts', 'en-US')
             ->setValue('rssUrl', 'http://habrahabr.ru/rss/hubs/');
 
         $rssScenarioCollection->add()
             ->setValue('displayName', 'DLE-News (windows-1251)')
+            ->setValue('displayName', 'DLE-News (windows-1251)', 'en-US')
             ->setValue('rssUrl', 'http://dle-news.ru/rss.xml');
 
     }
@@ -550,16 +627,18 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $gratitude = $rubricCollection->add('gratitude')
             ->setValue('displayName', 'Благодарности')
+            ->setValue('displayName', 'Thanks', 'en-US')
             ->setValue('metaTitle', 'Благодарности')
             ->setValue('h1', 'Благодарности')
-            ->setValue('displayName', 'Благодарности')
             ->setGUID('4430239f-77f4-464d-b9eb-46f4c93eee8c');
 
         $newsCollection->add()
             ->setValue('displayName', 'Наташа')
+            ->setValue('displayName', 'Natasha', 'en-US')
             ->setValue('metaTitle', 'Наташа Рублева, домохозяйка')
             ->setValue('h1', 'Наташа Рублева, домохозяйка')
             ->setValue('announcement', '<p>Не то, чтобы я верю в привидения, но пару месяцев назад я начала регулярно находить в нашем супружеском ложе чьи-то светлые волосы, сережки и следы губной помады. Муж тоже отрицает существование привидений, однако так дальше продолжаться не могло</p>')
+            ->setValue('announcement', '<p>Not that I believe in ghosts, but a couple of months ago I started regularly find in our marital bed someones blonde hair, earrings and lipstick traces. Husband also denies the existence of ghosts, but so could not continue</p>', 'en-US')
             ->setValue('contents', '<p>Не то, чтобы я верю в привидения, но пару месяцев назад я начала регулярно находить в нашем супружеском ложе чьи-то светлые волосы, сережки и следы губной помады. Муж тоже отрицает существование привидений, однако так дальше продолжаться не могло. Я вызвала наряд охотниц за привидениями, и теперь мы избавлены от этих проблем. Сотрудница организации рекомендовала мне воспользоваться услугами спецподразделения &laquo;Отряд в бикини&raquo;. Я не пожалела, и, кажется, муж остался доволен.</p>')
             ->setValue('rubric', $gratitude)
             ->setValue('slug', 'natasha')
@@ -568,9 +647,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $newsCollection->add()
             ->setValue('displayName', 'Александр')
+            ->setValue('displayName', 'Alexandr', 'en-US')
             ->setValue('metaTitle', 'Александр, 35 лет, топ-менеджер сети строительных магазинов')
             ->setValue('h1', 'Александр, 35 лет, топ-менеджер сети строительных магазинов')
             ->setValue('announcement', '<p>С 18 лет меня довольно регулярно похищали инопланетяне.&nbsp;Но последней каплей стало похищение в ноябре сего года, во время которого они насильственным способом изменили мои предпочтения в еде</p>')
+            ->setValue('announcement', '<p>With 18 years I pretty regularly abducted by aliens. But the last straw was the kidnapping in November of this year, during which they violently changed my eating habits</p>')
             ->setValue('contents', '<p>С 18 лет меня довольно регулярно похищали инопланетяне. Но последней каплей стало похищение в ноябре сего года, во время которого они насильственным способом изменили мои предпочтения в еде &ndash; я перестал смыслить свою жизнь без пива и чипсов. Я был вынужден обратиться к профессионалам. Как мне помогли Охотницы? Инициировав повторный сеанс связи, они совершили настоящий переворот. Теперь я замечательно обхожусь пряниками и шоколадом. Особую благодарность хочу выразить Охотнице Елене Жаровой за красивые глаза.</p>')
             ->setValue('rubric', $gratitude)
             ->setGUID('60744128-996a-4cea-a937-c20ebc5c8c77')
@@ -590,7 +671,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $parent = null;
         for ($i = 0; $i < 20; $i++) {
             $parent = $structureCollection->add('item' . $i, 'static', $parent)
-                ->setValue('displayName', 'item' . $i);
+                ->setValue('displayName', 'Элемент ' . $i)
+                ->setValue('displayName', 'Item ' . $i, 'en-US');
         }
 
         /**
@@ -601,21 +683,25 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $layoutCollection->add()
             ->setValue('fileName', 'layout')
             ->setValue('displayName', 'Основной')
+            ->setValue('displayName', 'Main', 'en-US')
             ->setGUID('d6cb8b38-7e2d-4b36-8d15-9fe8947d66c7');
 
         $this->blogLayout = $layoutCollection->add()
             ->setValue('fileName', 'blog')
-            ->setValue('displayName', 'Блог');
+            ->setValue('displayName', 'Блог')
+            ->setValue('displayName', 'Blog', 'en-US');
 
         $structurePage = $structureCollection->add('structure', 'system')
-            ->setValue('displayName', 'Структура');
+            ->setValue('displayName', 'Структура')
+            ->setValue('displayName', 'Structure', 'en-US');
 
         $structurePage->getProperty('locked')->setValue(true);
         $structurePage->getProperty('componentName')->setValue('structure');
         $structurePage->getProperty('componentPath')->setValue('structure');
 
         $menuPage = $structureCollection->add('menu', 'system', $structurePage)
-            ->setValue('displayName', 'Меню');
+            ->setValue('displayName', 'Меню')
+            ->setValue('displayName', 'Menu', 'en-US');
 
         $menuPage->getProperty('locked')->setValue(true);
         $menuPage->getProperty('componentName')->setValue('menu');
@@ -626,6 +712,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $about = $structureCollection->add('ob_otryade', 'static')
             ->setValue('displayName', 'Об отряде')
+            ->setValue('displayName', 'About', 'en-US')
             ->setValue('metaTitle', 'Об отряде')
             ->setValue('h1', 'Об отряде')
             ->setValue('contents', '<p>Мы &mdash; отряд Охотниц за привидениями. Цвет волос, уровень IQ, размер груди, длина ног и количество высших образований не оказывают существенного влияния при отборе кадров в наши подразделения.</p><p>Единственно значимым критерием является наличие у Охотницы следующих навыков:</p><blockquote>метод десятипальцевой печати;<br /> тайский массаж;<br /> метод левой руки;<br /> техника скорочтения;</blockquote><p>Миссия нашей компании: Спасение людей от привидений во имя спокойствия самих привидений.<br /><br /> 12 лет нашей работы доказали, что предлагаемые нами услуги востребованы человечеством. За это время мы получили:</p><blockquote>1588 искренних благодарностей от клиентов; <br /> 260080 комплиментов; <br /> 5 интересных предложений руки и сердца.</blockquote><p>Нам не только удалось пережить кризис августа 1998 года, но и выйти на новый, рекордный уровень рентабельности.<br /> В своей работе мы используем             <strong>сверхсекретные</strong> супер-пупер-технологии.</p>')
@@ -638,6 +725,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $no = $structureCollection->add('no', 'static', $about)
             ->setValue('displayName', 'Работа, за которую мы никогда не возьмемся')
+            ->setValue('displayName', 'Work for which we never take', 'en-US')
             ->setValue('metaTitle', 'Работа, за которую мы никогда не возьмемся')
             ->setValue('h1', 'Работа, за которую мы никогда не возьмемся')
             ->setValue('contents', '<ul><li>Безосновательный вызов призраков на дом</li><li>Гадания на картах, кофейной гуще, блюдечке</li><li>Толкование снов</li><li>Интим-услуги. Мы не такие!</li></ul>')
@@ -648,6 +736,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $service = $structureCollection->add('services', 'static')
             ->setValue('displayName', 'Услуги')
+            ->setValue('displayName', 'Services', 'en-US')
             ->setValue('metaTitle', 'Услуги')
             ->setValue('h1', 'Услуги')
             ->setValue('contents', '<p><strong>Дипломатические переговоры с домовыми</strong></p><p>Домовые требуют особого подхода. Выгонять домового из дома категорически запрещено, т.к. его призвание &mdash; охранять дом. Однако, некоторые домовые приносят своим хозяевам немало хлопот из-за своенравного характера. <br /><br />Хорошие отношения с домовым &mdash; наша работы. Правильно провести дипломатические переговоры с домовым, с учетом его знака зодиака, типа температмента и других психографических характеристик, настроить его на позитивный лад, избавить от личных переживаний, разобраться в ваших разногласиях и провести результативные переговоры может грамотный специалист с широким набором характеристик и знаний.<br /><br /><em>Работает Охотница Ольга Карпова <br />Спецнавыки: паранормальная дипломатия, психология поведения духов и разрешение конфликтов</em></p><p><br /><br /><strong>Изгнание призраков царских кровей и других элитных духов<br /></strong><br />Вы купили замок? Хотите провести профилактические работы? Или уже столкнулись с присутствием призраков один на один?<br /><br />Вам &mdash; в наше элитное подразделение. Духи царских кровей отличаются кичливым поведением и высокомерием, однако до сих пор подразделение Охотниц в бикини всегда справлялось с поставленными задачами.<br /><br />Среди наших побед:</p><p>- тень отца Гамлета, вызвавшая переполох в женской раздевалке фитнес-клуба; <br />- призрак Ленина, пытающийся заказать роллы Калифорния на вынос; <br />- призрак Цезаря на неделе миланской моды в Москве.&nbsp; <br /><br /><em>Работает Охотница Елена&nbsp; Жарова <br />Спецнавыки: искусство душевного разговора</em></p>')
@@ -657,6 +746,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $price = $structureCollection->add('price', 'static')
             ->setValue('displayName', 'Тарифы и цены')
+            ->setValue('displayName', 'Tariffs and prices', 'en-US')
             ->setValue('metaTitle', 'Тарифы и цены')
             ->setValue('h1', 'Тарифы и цены')
             ->setValue('contents', '<p><strong>Если вас регулярно посещают привидения, призраки, НЛО, &laquo;Летучий голландец&raquo;, феномен черных рук, демоны, фантомы, вампиры и чупакабры...</strong></p><p>Мы предлагаем вам воспользоваться нашим <strong>тарифом абонентской платы</strong>, который составляет <span style="color: #ff6600;"><strong>1 995</strong></span> у.е. в год. Счастливый год без привидений!</p><p><strong>Если паранормальное явление появился в вашей жизни неожиданно, знакомьтесь с прайсом*:<br /></strong></p><blockquote>Дипломатические переговоры с домовым &ndash; <span style="color: #ff6600;"><strong>120</strong></span> у.е.<br />Нейтрализация вампира &ndash; <span style="color: #ff6600;"><strong>300</strong></span> у.е.<br />Изгнание привидения стандартного &ndash; <span style="color: #ff6600;"><strong>200</strong></span> у.е.<br />Изгнание привидений царей, принцев и принцесс, вождей революций и другой элиты &ndash; <span style="color: #ff6600;"><strong>1250</strong></span> у.е.<br />Борьба с НЛО &ndash; рассчитывается <span style="text-decoration: underline;">индивидуально</span>.</blockquote><p><strong>Специальная услуга: </strong>ВЫЗОВ ОТРЯДА В БИКИНИ</p><p><span style="font-size: x-small;"><em>Стандартные услуги в сочетании с эстетическим удовольствием!</em></span></p><p><strong>Скидки оптовым и постоянным клиентам:</strong><br />При заказе устранения от 5 духов (любого происхождения, включая элиту) предоставляется скидка 12% от общей цены. Скидки по акциям не суммируются.</p><p><span>*Цена за одну особь!</span></p>')
@@ -666,14 +756,16 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
 
         $menuItem1 = $structureCollection->add('menu_item_1', 'static')
-            ->setValue('displayName', 'Menu Item 1')
+            ->setValue('displayName', 'Элемент меню 1')
+            ->setValue('displayName', 'Menu Item 1', 'en-US')
             ->setValue('inMenu', true)
             ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
         $menuItem1->getProperty('componentName')->setValue('structure');
         $menuItem1->getProperty('componentPath')->setValue('structure');
 
         $menuItem11 = $structureCollection->add('menu_item_1_1', 'static', $menuItem1)
-            ->setValue('displayName', 'Menu Item 1.1')
+            ->setValue('displayName', 'Элемент меню 1.1')
+            ->setValue('displayName', 'Menu Item 1.1', 'en-US')
             ->setValue('inMenu', true)
             ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
         $menuItem11->getProperty('componentName')->setValue('structure');
@@ -681,6 +773,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $menuItem12 = $structureCollection->add('menu_item_1_2', 'static', $menuItem1)
             ->setValue('displayName', 'Menu Item 1.2')
+            ->setValue('displayName', 'Menu Item 1.2', 'en-US')
             ->setValue('inMenu', true)
             ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
         $menuItem12->getProperty('componentName')->setValue('structure');
@@ -688,6 +781,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $menuItem121 = $structureCollection->add('menu_item_1_2_1', 'static', $menuItem12)
             ->setValue('displayName', 'Menu Item 1.2.1')
+            ->setValue('displayName', 'Menu Item 1.2.1', 'en-US')
             ->setValue('inMenu', true)
             ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
         $menuItem121->getProperty('componentName')->setValue('structure');
@@ -695,6 +789,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $menuItem122 = $structureCollection->add('menu_item_1_2_2', 'static', $menuItem12)
             ->setValue('displayName', 'Menu Item 1.2.2')
+            ->setValue('displayName', 'Menu Item 1.2.2', 'en-US')
             ->setValue('inMenu', true)
             ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
         $menuItem122->getProperty('componentName')->setValue('structure');
@@ -702,6 +797,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $menuItem1221 = $structureCollection->add('menu_item_1_2_2_1', 'static', $menuItem122)
             ->setValue('displayName', 'Menu Item 1.2.2.1')
+            ->setValue('displayName', 'Menu Item 1.2.2.1', 'en-US')
             ->setValue('inMenu', true)
             ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
         $menuItem1221->getProperty('componentName')->setValue('structure');
@@ -761,6 +857,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
@@ -790,6 +887,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
@@ -816,6 +914,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -868,6 +967,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `level` int(10) unsigned DEFAULT NULL,
 
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
@@ -905,6 +1005,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
                     `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
@@ -919,6 +1020,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `meta_description` varchar(255) DEFAULT NULL,
                     `h1` varchar(255) DEFAULT NULL,
                     `announcement` text,
+                    `announcement_en` text,
                     `source` varchar(255) DEFAULT NULL,
                     `contents` text,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
@@ -950,6 +1052,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
                     `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
@@ -985,6 +1088,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `version` int(10) unsigned DEFAULT '1',
 
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -1030,6 +1134,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `updated` datetime DEFAULT NULL,
 
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `post_id` bigint(20) unsigned,
                     `author_id` bigint(20) unsigned,
                     `contents` text,
@@ -1060,6 +1165,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
                     `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
@@ -1099,6 +1205,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -1129,6 +1236,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -1178,6 +1286,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `child_count` int(10) unsigned DEFAULT '0',
 
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
@@ -1215,6 +1324,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `version` int(10) unsigned DEFAULT '1',
                     `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
@@ -1225,6 +1335,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `date` datetime DEFAULT NULL,
                     `contents` text,
                     `announcement` text,
+                    `announcement_en` text,
                     `source` varchar(255) DEFAULT NULL,
                     `meta_description` varchar(255) DEFAULT NULL,
                     `meta_keywords` varchar(255) DEFAULT NULL,
@@ -1256,6 +1367,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `version` int(10) unsigned DEFAULT '1',
                     `slug` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
@@ -1290,6 +1402,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -1320,6 +1433,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -1350,6 +1464,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -1385,6 +1500,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `version` int(10) unsigned DEFAULT '1',
                     `type` varchar(255),
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
                     `created` datetime DEFAULT NULL,
@@ -1419,6 +1535,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `level` int(10) unsigned DEFAULT NULL,
                     `child_count` int(10) unsigned DEFAULT '0',
                     `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
@@ -1482,6 +1599,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 `version` int(10) unsigned DEFAULT '1',
                 `type` varchar(255),
                 `display_name` varchar(255) DEFAULT NULL,
+                `display_name_en` varchar(255) DEFAULT NULL,
                 `active` tinyint(1) unsigned DEFAULT '1',
                 `created` datetime DEFAULT NULL,
                 `updated` datetime DEFAULT NULL,
@@ -1586,6 +1704,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 `version` int(10) unsigned DEFAULT '1',
                 `type` varchar(255),
                 `display_name` varchar(255) DEFAULT NULL,
+                `display_name_en` varchar(255) DEFAULT NULL,
 
                 `text` varchar(255) DEFAULT NULL,
                 `textarea` varchar(255) DEFAULT NULL,
