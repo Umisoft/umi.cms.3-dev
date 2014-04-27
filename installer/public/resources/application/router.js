@@ -111,6 +111,9 @@ define([], function(){
                                             self.send('getEditForm', params.object);
                                         });
                                     } else{
+                                        // Обновление связей рутовой ноды в дереве. TODO: подумать как можно избежать обращения к контроллеру дерева.
+                                        self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(params.object.get('id'), 'root');
+
                                         self.send('getEditForm', params.object);
                                     }
                                 }
