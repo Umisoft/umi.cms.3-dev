@@ -59,7 +59,7 @@ class BlogPublishDraftController extends BaseSecureController implements IFormAw
         if ($form->setData($formData) && $form->isValid()) {
 
             $blogPost = $this->api->post()->getDraftById($this->getRouteVar('id'));
-            $blogPost->published();
+            $blogPost->publish();
 
             $this->getObjectPersister()->commit();
 

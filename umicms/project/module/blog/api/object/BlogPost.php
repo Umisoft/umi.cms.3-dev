@@ -120,7 +120,7 @@ class BlogPost extends CmsObject implements ICmsPage
      * Публикует пост.
      * @return $this
      */
-    public function published()
+    public function publish()
     {
         $this->publishStatus = self::POST_STATUS_PUBLISH;
         return $this;
