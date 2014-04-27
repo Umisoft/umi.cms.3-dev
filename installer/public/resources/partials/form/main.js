@@ -115,26 +115,24 @@ define(
             }.property('model.@each')
         });
 
-        UMI.FormElementController = Ember.ObjectController.extend({
-            objectBinding: 'parentController.model.object',
-            isFieldset: function(){
-                return this.get('content.type') === 'fieldset';
-            }.property(),
-            isExpanded: true,
-            actions: {
-                expand: function(){
-                    this.toggleProperty('isExpanded');
-                }
-            }
-        });
-
         UMI.FormControlView = Ember.View.extend({
             tagName: 'form',
             templateName: 'formControl',
             classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control'],
             submit: function(){
                 return false;
-            }
+            },
+            elementView: Ember.View.extend({
+                isFieldset: function(){
+                    return this.get('content.type') === 'fieldset';
+                }.property(),
+                isExpanded: true,
+                actions: {
+                    expand: function(){
+                        this.toggleProperty('isExpanded');
+                    }
+                }
+            })
         });
 
         UMI.FieldView = Ember.View.extend({

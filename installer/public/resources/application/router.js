@@ -378,7 +378,13 @@ define([], function(){
         });
 
         UMI.ContextRoute = Ember.Route.extend({
-            model: function(params){
+            model: function(params, transition){
+                var actionRouteHandler = transition.state.handlerInfos.findBy('name', 'action');
+                if(actionRouteHandler && actionRouteHandler.handler.exit){
+                    actionRouteHandler.handler.exit();
+                    // TODO: тут написать метод сбрасывающий кэш дочернего роута
+                }
+
                 var componentController = this.controllerFor('component');
                 var collectionName = componentController.get('collectionName');
                 var RootModel;
@@ -481,7 +487,9 @@ define([], function(){
             renderTemplate: function(controller, model){
                 try{
                     var templateType = model.action.get('name');
-                    this.render(templateType);
+                    this.render(templateType, {
+                        controller: controller
+                    });
                 } catch(error){
                     var errorObject = {
                         'statusText': error.name,
