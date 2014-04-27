@@ -504,12 +504,25 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
+     * Проверяет существование текущего автора блога.
+     * @return bool
+     */
+    public function hasCurrentAuthor()
+    {
+        return $this->getCurrentAuthor() ? true : false;
+    }
+
+    /**
      * Возвращает список черновиков текущего пользователя.
      * @return CmsSelector|BlogPost
      */
     public function getOwnDrafts()
     {
-        return $this->post()->getDrafts()
-            ->where(BlogPost::FIELD_AUTHOR)->equals($this->getCurrentAuthor());
+        if ($this->hasCurrentAuthor()) {
+            return $this->post()->getDrafts()
+                ->where(BlogPost::FIELD_AUTHOR)->equals($this->getCurrentAuthor());
+        } else {
+            return $this->post()->emptySelect();
+        }
     }
 }

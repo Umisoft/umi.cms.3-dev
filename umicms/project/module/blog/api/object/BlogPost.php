@@ -84,11 +84,11 @@ class BlogPost extends CmsObject implements ICmsPage
     /**
      * Статус поста: опубликован
      */
-    const POST_STATUS_PUBLISH = 'publish';
+    const POST_STATUS_PUBLISH = 'published';
     /**
      * Статус поста: не опубликован
      */
-    const POST_STATUS_UNPUBLISH = 'unPublish';
+    const POST_STATUS_UNPUBLISH = 'unPublished';
     /**
      * Статус поста: требует модерации
      */
