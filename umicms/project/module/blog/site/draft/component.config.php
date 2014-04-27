@@ -20,7 +20,7 @@ return [
         'page' => __NAMESPACE__ . '\controller\BlogDraftPageController',
         'all' => __NAMESPACE__ . '\controller\BlogDraftListController',
         'edit' => __NAMESPACE__ . '\controller\BlogEditDraftController',
-        'publish' => __NAMESPACE__ . '\controller\BlogPublishDraftController'
+        'published' => __NAMESPACE__ . '\controller\BlogPublishDraftController'
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogDraftWidget',
@@ -40,7 +40,7 @@ return [
         IAclFactory::OPTION_RESOURCES => [
             'controller:all',
             'controller:edit',
-            'controller:publish',
+            'controller:published',
             'widget:view',
             'widget:list',
             'widget:ownList',
@@ -55,7 +55,7 @@ return [
                 'controller:edit' => [
                     'edit' => ['own']
                 ],
-                'controller:publish' => [
+                'controller:published' => [
                     'publish' => ['own', 'unpublished']
                 ],
                 'widget:ownList' => [],
@@ -76,7 +76,7 @@ return [
                 'controller:edit' => [
                     'edit' => []
                 ],
-                'controller:publish' => [
+                'controller:published' => [
                     'publish' => ['unpublished']
                 ],
                 'widget:ownList' => [],
@@ -100,11 +100,11 @@ return [
                 'controller' => 'edit'
             ]
         ],
-        'publish' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route' => '/publish',
+        'published' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/publish/{id:integer}',
             'defaults' => [
-                'controller' => 'publish'
+                'controller' => 'published'
             ]
         ],
         'all' => [
