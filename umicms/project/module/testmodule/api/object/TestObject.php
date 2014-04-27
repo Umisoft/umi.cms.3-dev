@@ -21,6 +21,8 @@ class TestObject extends CmsObject
     const SELECT = 'select';
     const RADIO = 'radio';
     const PASSWORD = 'password';
+    const MULTISELECT = 'multiselect';
+    const CHECKBOX_GROUP = 'checkbox_group';
     const CHECKBOX = 'checkbox';
 
     const DATE = 'date';

@@ -1753,9 +1753,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 `text` varchar(255) DEFAULT NULL,
                 `textarea` varchar(255) DEFAULT NULL,
                 `select` varchar(255) DEFAULT NULL,
+                `multiselect` varchar(255) DEFAULT NULL,
                 `radio` varchar(255) DEFAULT NULL,
                 `password` varchar(255) DEFAULT NULL,
                 `checkbox` varchar(255) DEFAULT NULL,
+                `checkbox_group` varchar(255) DEFAULT NULL,
 
                 `date` varchar(255) DEFAULT NULL,
                 `date_time` varchar(255) DEFAULT NULL,
