@@ -8,7 +8,7 @@ define(['App', 'text!./checkboxElement.hbs'], function(UMI, checkboxElement){
             classNames: ['umi-element-checkbox'],
 
             inputId: function(){
-                console.log('meta', this.get('meta'));
+                //console.log('meta', this.get('meta'));
                 return 'input-' + this.get('elementId');
             }.property()
 //
