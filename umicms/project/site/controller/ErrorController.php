@@ -8,6 +8,7 @@
 
 namespace umicms\project\site\controller;
 
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umicms\exception\NonexistentEntityException;
@@ -67,6 +68,8 @@ class ErrorController extends BaseController
         switch(true) {
             case $this->exception instanceof NonexistentEntityException:
                 return Response::HTTP_NOT_FOUND;
+            case $this->exception instanceof ResourceAccessForbiddenException:
+                return Response::HTTP_FORBIDDEN;
             case $this->exception instanceof HttpException:
                 return $this->exception->getCode();
             default:
