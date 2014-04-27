@@ -1,3 +1,5 @@
+<?=$this->render('partial/authorization.phtml') ?>
+
 <div class="sidebar-module sidebar-module-inset">
     <h4><?=$this->translate('RSS ленты')?></h4>
     <p><?=$this->translate('Новости')?>: <?=$this->widget('news.item.rss', ['template' => 'rssLink'])?></p>
