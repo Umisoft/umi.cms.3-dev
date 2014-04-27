@@ -1,7 +1,7 @@
 {% if (pagination.pagesCount) %}
     <ul class="pagination">
         {% if (pagination.previousPageUrl) %}
-            <li><a href="{{ pagination.previousPageUrl }}">Назад</a></li>
+            <li><a href="{{ pagination.previousPageUrl }}">{{ translate('Назад') }}</a></li>
         {% endif %}
         {% for page, link in pagination.pagesRange %}
             {% if (page != pagination.currentPage) %}
@@ -11,7 +11,7 @@
             {% endif %}
         {% endfor %}
         {% if (pagination.nextPageUrl) %}
-            <li><a href="{{ pagination.nextPageUrl }}">Дальше</a></li>
+            <li><a href="{{ pagination.nextPageUrl }}">{{ translate('Дальше') }}</a></li>
         {% endif %}
     </ul>
 {% endif %}

@@ -1,17 +1,17 @@
 <div class="blog-post">
-    <h1>{{ page.h1 }}</h1>
+    <h1>{{ page.displayName }}</h1>
     <p class="blog-post-meta">
         <time datetime="{{ page.publishTime.format('c') }}">
             {{ page.publishTime.format('d.m.Y | H:i') }}
         </time>
-        Автор: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
+        {{ translate('Автор') }}: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
     </p>
 
     {{ page.contents | raw }}
 
 </div>
 
-<h1>Комментарии:</h1>
+<h1>{{ translate('Комментарии') }}:</h1>
 {{ widget('blog.comment.list', {'blogPost' : page, 'template' : 'list'}) }}
 
 {{ widget('blog.comment.addComment', {'blogPost' : page, 'template' : 'addComment'}) }}

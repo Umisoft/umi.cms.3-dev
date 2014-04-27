@@ -1,8 +1,8 @@
-<h1>{{ page.h1 }}</h1>
+<h1>{{ page.displayName }}</h1>
 {{ page.contents | raw }}
 
 {{ widget('blog.category.list', {'parentCategory' : page, 'template' : 'list'}) }}
 {{ widget('blog.category.postList', {'categories' : [page], 'template' : 'postList'}) }}
 
-<h1>Создать пост</h1>
+<h1>{{ translate('Создать пост') }}</h1>
 <?= $this->widget('blog.post.add', ['blogCategory' => $page, 'template' => 'addPostForm']); ?>

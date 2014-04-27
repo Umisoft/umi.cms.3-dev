@@ -1,7 +1,10 @@
 define([
     'text!./templates/topBar.hbs',
     'App'
-], function(topBarTpl){
+], function(topBarTpl, UMI){
     'use strict';
-    Ember.TEMPLATES['UMI/topBar'] = Ember.Handlebars.compile(topBarTpl);
+
+    UMI.TopBarView = Ember.View.extend({
+        template: Ember.Handlebars.compile(topBarTpl)
+    });
 });

@@ -59,7 +59,8 @@ require.config({
         {name: 'table',             location: "partials/table"},
         {name: 'tableControl',      location: "partials/tableControl"},
         {name: 'topBar',            location: "partials/topBar"},
-        {name: 'tree',              location: "partials/tree"}
+        {name: 'tree',              location: "partials/tree"},
+        {name: 'treeSimple',        location: "partials/treeSimple"}
     ]
 });
 

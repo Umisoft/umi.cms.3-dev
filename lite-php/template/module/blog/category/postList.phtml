@@ -4,12 +4,8 @@
  * @var umicms\project\module\blog\api\object\BlogPost $blogPost
  */
 ?>
-<?php if ($list->getTotal()) :?>
-    <ul>
-        <?php foreach ($list as $blogPost) : ?>
-            <li>
-                <?= $this->widget('blog.post.view', ['blogPost' => $blogPost, 'template' => 'shortView']); ?>
-            </li>
-        <?php endforeach;?>
-    </ul>
+<?php if ($list->getTotal()) : ?>
+    <?php foreach ($list as $blogPost) : ?>
+        <?= $this->widget('blog.post.view', ['blogPost' => $blogPost, 'template' => 'shortView']); ?>
+    <?php endforeach; ?>
 <?php endif; ?>

@@ -1,12 +1,12 @@
 <div class="sidebar-module sidebar-module-inset">
-    <h4>RSS ленты</h4>
-    <p>Новости: {{ widget('news.item.rss', {'template' : 'rssLink'}) }}</p>
+    <h4>{{ translate('RSS ленты') }}</h4>
+    <p>{{ translate('Новости') }}: {{ widget('news.item.rss', {'template' : 'rssLink'}) }}</p>
 </div>
 <div class="sidebar-module">
-    <h4>Рубрики</h4>
+    <h4>{{ translate('Рубрики') }}</h4>
     {{ widget('news.rubric.list', {'template' : 'listShort'}) }}
 </div>
 <div class="sidebar-module">
-    <h4>Сюжеты</h4>
+    <h4>{{ translate('Сюжеты') }}</h4>
     {{ widget('news.subject.list', {'template' : 'listShort'}) }}
 </div>

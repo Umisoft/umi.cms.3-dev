@@ -4,19 +4,21 @@
  */
 ?>
 <div class="blog-post">
-    <h1><?=$page->h1?></h1>
+    <h1><?=$page->displayName?></h1>
     <p class="blog-post-meta">
+        <?php if ($page->publishTime) : ?>
         <time datetime="<?= $page->publishTime->format('c')?>">
             <?= $page->publishTime->format('d.m.Y | H:i')?>
         </time>
-        Автор: <?php if ($page->author) : ?><a href="<?=$page->author->getPageUrl()?>"><?=$page->author->displayName?></a><?php endif ?>
+        <?php endif; ?>
+        <?php if ($page->author) : ?><?=$this->translate('Автор')?>: <a href="<?=$page->author->getPageUrl()?>"><?=$page->author->displayName?></a><?php endif ?>
     </p>
 
     <?= $page->contents ?>
 
 </div>
 
-<h1>Комментарии:</h1>
+<h1><?=$this->translate('Комментарии')?>:</h1>
 
 <?=$this->widget('blog.comment.list', ['blogPost' => $page, 'template' => 'list']); ?>
 

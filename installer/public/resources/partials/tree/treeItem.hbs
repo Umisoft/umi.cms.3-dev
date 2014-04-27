@@ -1,38 +1,36 @@
-{{#if visible}}
-    <li data-id="{{unbound node.id}}" {{bind-attr class="node.isDragged:hide node.root"}}>
-        {{#view "treeItem" modelBinding="node"}} <!-- div -->
-            {{#if node.childCount}}
-                <span {{action "expanded" on="mouseDown"}} {{bind-attr class=":umi-expand"}}>
-                    {{#if node.isExpanded}}
-                        {{#if node.sortedChildren}}
-                            <i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>
-                        {{else}}
-                            <i class="animate animate-loader-20"></i>
-                        {{/if}}
-                    {{else}}
-                        <i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>
-                    {{/if}}
-                </span>
-                <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document node.root::move"}}></i>
+<div {{bind-attr class=":umi-item view.active view.inActive view.contextMenuIsOpen"}}>
+    {{#if childCount}}
+        <span {{action "expanded" on="mouseDown" target="view"}} {{bind-attr class=":umi-expand"}}>
+            {{#if view.isExpanded}}
+                {{#if sortedChildren}}
+                    <i {{bind-attr class=":icon view.isExpanded:icon-bottom:icon-right"}}></i>
+                {{else}}
+                    <i class="animate animate-loader-20"></i>
+                {{/if}}
             {{else}}
-                <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document node.root::move"}}></i>
+                <i {{bind-attr class=":icon view.isExpanded:icon-bottom:icon-right"}}></i>
             {{/if}}
+        </span>
+        <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document root::move"}}></i>
+    {{else}}
+        <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document root::move"}}></i>
+    {{/if}}
 
-            {{#link-to "context" node.id class="tree-item-link"}}
-                {{view.savedDisplayName}}
-            {{/link-to}}
+    {{#link-to "action" id "editForm" class="tree-item-link"}}
+        {{view.savedDisplayName}}
+    {{/link-to}}
 
-            {{view view.parentView.contextMenuView}}
-        {{/view}}
+    {{view "treeControlContextMenu"}}
+</div>
 
-        {{#if node.childCount}}
-            {{#if node.isExpanded}}
-                <ul class="umi-tree-list" data-parent-id="{{unbound node.id}}">
-                    {{#each node in node.sortedChildren itemController="treeItem"}}
-                        {{partial "treeItem"}}
-                    {{/each}}
-                </ul>
-            {{/if}}
-        {{/if}}
-    </li>
+{{#if childCount}}
+    {{#if view.isExpanded}}
+        <ul class="umi-tree-list" data-parent-id="{{unbound id}}">
+            {{#each sortedChildren itemController="treeItem"}}
+                {{#if visible}}
+                    {{view "treeItem"}}
+                {{/if}}
+            {{/each}}
+        </ul>
+    {{/if}}
 {{/if}}

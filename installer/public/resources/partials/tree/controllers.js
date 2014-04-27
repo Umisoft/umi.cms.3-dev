@@ -4,8 +4,28 @@ define(['App'], function(UMI){
 
         UMI.TreeControlController = Ember.ObjectController.extend({
             controlName: function(){
-                return this.get('controllers.component.collectionName');
+                return 'treeControl' + Ember.String.capitalize(this.get('controllers.component.collectionName'));
             }.property('controllers.component.collectionName'),
+
+            expandedBranches: [],
+
+            clearExpanded: function(){
+                this.set('expandedBranches', []);
+            }.observes('controllers.component.collectionName'),
+
+            activeContextChange: function(){
+                var expandedBranches = this.get('expandedBranches');
+                var activeContext = this.get('activeContext');
+                if(activeContext){
+                    var mpath = [];
+                    if(activeContext.get('id') !== 'root'){
+                        mpath = activeContext.get('mpath').without(parseFloat(activeContext.get('id'))) || [];
+                    }
+                    mpath.push('root');
+                    this.set('expandedBranches', expandedBranches.concat(mpath).uniq());
+                }
+            }.observes('activeContext').on('init'),
+
             /**
              Возвращает корневой элемент
              @property root
@@ -71,19 +91,25 @@ define(['App'], function(UMI){
                 var root = Root.create({});
                 return [root];// Намеренно возвращается значение в виде массива, так как шаблон ожидает именно такой формат
             }.property('root.childCount', 'controllers.component.sideBarControl'),
+
             rootChildren: null,
+
             filters: function(){
                 var filters = this.get('controllers.component.sideBarControl.filters');
                 return filters;
             }.property('controllers.component.sideBarControl'),
+
             activeFilters: function(){
                 return this.get('filters').filterBy('isActive', true);
             }.property('filters.@each.isActive'),
+
             /**
              Активный контекст
              */
-            activeContextBinding: 'controllers.context.model.object',
+            activeContextBinding: 'controllers.context.model',
+
             needs: ['component', 'context'],
+
             actions: {
                 /**
                  Сохранение результата drag and drop
@@ -157,6 +183,9 @@ define(['App'], function(UMI){
                                 if(parentId !== oldParentId && (parentId === 'root' || oldParentId === 'root')){
                                     self.get('root')[0].updateChildren(id, parentId);
                                 }
+
+                                //
+
                             });
                         },
                         function(error){
@@ -181,10 +210,12 @@ define(['App'], function(UMI){
                     this.send(action.type, object);
                 }
             },
+
             selectAction: function(){
                 var controlName = this.get('controlName');
                 return UMI.Utils.LS.get('treeControls.' + controlName + '.contextAction');
             }.property('controlName'),
+
             selectActionIcon: function(){
                 var iconType;
                 if(this.get('selectAction')){
@@ -206,21 +237,26 @@ define(['App'], function(UMI){
                     }
                     return 'icon-' + iconType;
                 }
-
             }.property('selectAction'),
+
             actionList: function(){
                 return this.get('controllers.component.sideBarControl.toolbar');
             }.property()
         });
 
         UMI.TreeItemController = Ember.ObjectController.extend({
-            sortedChildren: function(){
+            getChildren: function(){
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: this.get('children'),
                     sortProperties: ['order', 'id'],
                     sortAscending: true
                 });
-            }.property('children'),
+            },
+
+            sortedChildren: function(){
+                return this.getChildren();
+            }.property('didUpdate'),
+
             visible: function(){
                 var visible = true;
                 var filters = this.get('filters');
@@ -233,27 +269,19 @@ define(['App'], function(UMI){
                 }
                 return visible;
             }.property('model', 'filters'),
+
             filters: Ember.computed.alias("controllers.treeControl.activeFilters"),
+
             needs: 'treeControl',
-            isExpanded: function(){
-                var activeContext = this.get('controllers.treeControl.activeContext');
-                if(this.get('id') === 'root'){
-                    return true;
-                } else{
-                    if(!activeContext || activeContext.get('id') === 'root'){
-                        return false;
-                    }
-                    var contains = activeContext.get('mpath').contains(parseFloat(this.get('id')));
-                    if(contains && activeContext.get('id') !== this.get('id')){
-                        return true;
-                    } else{
-                        return false;
-                    }
-                }
-            }.property('root'),
-            actions: {
-                expanded: function(){
-                    this.set('isExpanded', !this.get('isExpanded'));
+
+            init: function(){
+                var self = this;
+                if('needReloadHasMany' in this.get('content')){
+                    this.get('content').on('needReloadHasMany', function(){
+                        self.get('children').then(function(children){
+                            children.reloadLinks();
+                        });
+                    });
                 }
             }
         });

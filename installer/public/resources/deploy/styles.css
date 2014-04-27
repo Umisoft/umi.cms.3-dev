@@ -5451,10 +5451,6 @@ ul.umi-search-result {
     padding: 0.125rem; }
     .umi-tree .umi-expand:hover {
       background: #FFFFFF; }
-    .umi-tree .umi-expand:not(:hover) {
-      -webkit-transition: 0.5s;
-      -o-transition: 0.5s;
-      transition: 0.5s; }
   .umi-tree .umi-tree-placeholder {
     height: 1.5rem;
     background: #C4D2DD;
@@ -5526,10 +5522,6 @@ ul.umi-search-result {
         .umi-tree .tree-control-select-action .button:hover ~ .tree-control-select-action-tooltip {
           visibility: visible;
           bottom: 32px; }
-      .umi-tree .tree-control-select-action .button:not(:hover) {
-        -webkit-transition: 0.5s;
-        -o-transition: 0.5s;
-        transition: 0.5s; }
   .umi-tree .tree-control-select-action-tooltip {
     z-index: 1;
     visibility: hidden;
@@ -6376,9 +6368,6 @@ select {
   /* Internet Explorer 10+ */
   color: #9BA7B3; }
 
-input {
-  color: #535E6D !important; }
-
 input[type="checkbox"] {
   display: none; }
 
@@ -6471,8 +6460,7 @@ input::-ms-clear {
     transition: none;
     box-shadow: none;
     background: none;
-    height: 30px;
-    padding-left: 10px; }
+    height: 30px; }
 
 .umi-element-left {
   position: relative;
@@ -6591,10 +6579,6 @@ input::-ms-clear {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px; }
 
-.umi-element-select {
-  color: #535E6D;
-  padding-left: 5px; }
-
 .umi-overlay {
   position: absolute;
   z-index: 9000;
@@ -6665,8 +6649,7 @@ input::-ms-clear {
   line-height: 34px;
   font-weight: bold;
   padding-left: 8px;
-  color: #575E6C;
-  font-size: 13px; }
+  color: #788E9F; }
 
 .umi-popup-close-button {
   float: right; }
@@ -7123,9 +7106,6 @@ table td {
   float: left; }
   .umi-table-footer-fixed ul.pagination .current {
     background: #259CEC; }
-
-.magellan-content {
-  overflow-y: scroll; }
 
 .umi-file-manager {
   height: 100%; }

@@ -2,7 +2,10 @@ define([], function(){
     'use strict';
     return function(UMI){
         UMI.ApplicationController = Ember.ObjectController.extend({
-            settings: null
+            settings: null,
+            settingsAllowed: function(){
+                return 'baseSettingsURL' in window.UmiSettings;
+            }.property()
         });
 
         /**
@@ -31,30 +34,29 @@ define([], function(){
                 var self = this;
                 var contentControls = [];
                 var settings = this.get('settings');
-                if(settings){
-                    try{
-                        var selectedContext = this.get('selectedContext') === 'root' ? 'emptyContext' : 'selectedContext';
-                        var controls = settings.layout.contents[selectedContext];
-                        var key;
-                        var control;
-                        for(key in controls){
-                            if(controls.hasOwnProperty(key)){
-                                control = controls[key];
-                                control.name = key;
-                                contentControls.push(Ember.Object.create(control));
-                            }
+                try{
+                    var selectedContext = this.get('selectedContext') === 'root' ? 'emptyContext' : 'selectedContext';
+                    var controls = settings.layout.contents[selectedContext];
+                    var key;
+                    var control;
+                    for(key in controls){
+                        if(controls.hasOwnProperty(key)){
+                            control = controls[key];
+                            control.name = key;
+                            contentControls.push(Ember.Object.create(control));
                         }
-                    } catch(error){
-                        var errorObject = {
-                            'statusText': error.name,
-                            'message': error.message,
-                            'stack': error.stack
-                        };
-                        Ember.run.next(function(){
-                            self.send('templateLogs', errorObject, 'component');
-                        });
                     }
+                } catch(error){
+                    var errorObject = {
+                        'statusText': error.name,
+                        'message': error.message,
+                        'stack': error.stack
+                    };
+                    Ember.run.next(function(){
+                        self.send('templateLogs', errorObject, 'component');
+                    });
                 }
+
                 return contentControls;
             }.property('settings', 'selectedContext'),
             /**

@@ -5,7 +5,7 @@
 ?>
 <h2>
     <a href="<?= $rubric->getPageUrl() ?>">
-        <?= $rubric->h1 ?>
+        <?= $rubric->displayName ?>
     </a>
 </h2>
 <?= $this->widget('news.rubric.list', ['parentRubric' => $rubric, 'template' => 'list']); ?>

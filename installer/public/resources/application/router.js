@@ -19,8 +19,8 @@ define([], function(){
                 this.route('errors', {path: '/:status'});
                 this.resource('component', {path: '/:component'}, function(){
                     this.route('errors', {path: '/:status'});
-                    this.resource('action', {path: '/:action'}, function(){
-                        this.resource('context', {path: '/:context'});
+                    this.resource('context', {path: '/:context'}, function(){
+                        this.resource('action', {path: '/:action'});
                     });
                 });
             });
@@ -55,7 +55,6 @@ define([], function(){
                     transition.send('templateLogs', error);
                 });
             },
-
             actions: {
                 logout: function(){
                     var applicationLayout = document.querySelector('.umi-main-view');
@@ -75,12 +74,6 @@ define([], function(){
                     });
                 },
 
-                targetBlank: function(url){
-                    url = '//' + window.location.host + '/' + url;
-                    var tab = window.open(url, '_blank');
-                    tab.focus();
-                },
-
                 /**
                  Сохраняет обьект
 
@@ -90,17 +83,38 @@ define([], function(){
                  params.handler - элемент (кнопка) вызвавший событие сохранение
                  */
                 save: function(params){
+                    var isNewObject;
+                    var self = this;
                     if(!params.object.get('isValid')){
                         if(params.handler){
                             $(params.handler).removeClass('loading');
                         }
                         return;
                     }
-                    params.object.save().then(
+                    if(params.object.get('currentState.stateName') === 'root.loaded.created.uncommitted'){
+                        isNewObject = true;
+                    }
+                    return params.object.save().then(
                         function(){
                             params.object.updateRelationhipsMap();
                             if(params.handler){
                                 $(params.handler).removeClass('loading');
+                            }
+                            if(isNewObject){
+                                if(params.object.store.metadataFor(params.object.constructor.typeKey).collectionType === 'hierarchic'){
+                                    var parent = params.object.get('parent');
+                                    if(parent && 'isFulfilled' in parent){
+                                        return parent.then(function(parent){
+                                            parent.reload().then(function(parent){
+                                                parent.trigger('needReloadHasMany');
+                                            });
+                                            self.send('getEditForm', params.object);
+                                        });
+                                    } else{
+                                        self.send('getEditForm', params.object);
+                                    }
+                                }
+                                self.send('getEditForm', params.object);
                             }
                         },
                         function(results){
@@ -133,7 +147,6 @@ define([], function(){
                     settings.title = error.status + '. ' + error.statusText;
                     UMI.dialog.open(settings).then();
                 },
-
                 /**
                  Метод генерирует фоновую ошибку
                  @method backgroundError
@@ -169,25 +182,35 @@ define([], function(){
                     } catch(error){
                         this.send('backgroundError', error);
                     }
-
                 },
 
                 getCreateForm: function(object){
-                    this.transitionTo('context', 'createForm', object.get('id'));
+                    this.transitionTo('action', object.get('id'), 'createForm');
                 },
 
                 getEditForm: function(object){
-                    this.transitionTo('context', 'editForm', object.get('id'));
+                    this.transitionTo('action', object.get('id'), 'editForm');
                 },
 
                 viewOnSite: function(object){
-                    var link = window.location.host + window.UmiSettings.baseSiteURL + object._data.meta.pageUrl;
+                    var link;
+                    if(object){
+                        link = object._data.meta.pageUrl;
+                    } else{
+                        link = window.UmiSettings.baseSiteURL;
+                    }
+
+                    link = window.location.host + link;
                     var tab = window.open('//' + link.replace('\/\/', '\/'), '_blank');
                     tab.focus();
                 },
 
+                trash: function(object, type){
+                    console.log('trash');
+                },
+
                 showPopup: function(popupType, object, meta){
-                    var popup = UMI.PopupView.create({
+                    UMI.PopupView.create({
                         container: this.container,
                         popupType: popupType,
                         object: object,
@@ -266,7 +289,6 @@ define([], function(){
                 }
                 return deferred.promise;
             },
-
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
                     var self = this;
@@ -288,7 +310,6 @@ define([], function(){
                     return deferred.promise;
                 }
             },
-
             serialize: function(model){
                 return {module: model.get('slug')};
             }
@@ -325,35 +346,14 @@ define([], function(){
                 }
                 return deferred.promise;
             },
-
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
-                    var deferred = Ember.RSVP.defer();
-                    var self = this;
-                    var defaultAction = this.controllerFor('component').get('contentControls.firstObject.name');
-                    console.log(this.controllerFor('component'));
-                    console.log(this.controllerFor('component').get('contentControls.firstObject.name'));
-
-                    if(defaultAction){
-                        deferred.resolve(self.transitionTo('action', defaultAction));
-                        console.log('redirect1');
-                    } else{
-                        console.log('redirect2');
-                        var error = new URIError('The component "' + transition.params.component.component + '" was not found.');
-                        error.statusText = 'Actions not found.';
-                        Ember.run.next(function(){
-                            transition.send('templateLogs', error, 'component');
-                        });
-                        deferred.reject();
-                    }
-                    return deferred.promise;
+                    this.transitionTo('context', 'root');
                 }
             },
-
             serialize: function(model){
                 return {component: model.get('name')};
             },
-
             renderTemplate: function(controller){
                 this.render();
                 if(controller.get('sideBarControl')){
@@ -374,63 +374,15 @@ define([], function(){
             }
         });
 
-        UMI.ActionRoute = Ember.Route.extend({
-            model: function(params, transition){
-                if(transition.params.hasOwnProperty('context') && this.controllerFor('component').get('selectedContext') !== transition.params.context.context){
-                    this.controllerFor('component').set('selectedContext', transition.params.context.context);
-                }
-                var self = this;
-                var deferred = Ember.RSVP.defer();
-                var actions = this.controllerFor('component').get('contentControls');
-                var action = actions.findBy('name', params.action);
-                if(action){
-                    deferred.resolve(action);
-                } else{
-                    var error = {
-                        'status': 404,
-                        'statusText': 'Action not found.',
-                        'message': 'The action "' + params.action + '" for component "' + self.modelFor("component").get('name') + '" was not found.'
-                    };
-                    transition.send('templateLogs', error, 'component');
-                    deferred.reject();
-                }
-                return deferred.promise;
-            },
-
-            redirect: function(model, transition){
-                if(transition.targetName === this.routeName + '.index'){
-                    var contextId = this.controllerFor('component').get('selectedContext');
-                    return this.transitionTo('context', contextId);
-                }
-            },
-
-            serialize: function(model){
-                if(model){
-                    return {action: model.get('name')};
-                }
-            }
-        });
-
         UMI.ContextRoute = Ember.Route.extend({
-            model: function(params, transition){
-                var self = this;
-                var model;
-                var routeData = {};
-                var RootModel;
+            model: function(params){
                 var componentController = this.controllerFor('component');
                 var collectionName = componentController.get('collectionName');
-                var oldContext = componentController.get('selectedContext');
-                componentController.set('selectedContext', params.context);
-                /**
-                 * Редирект на Action если контекст не имеет action
-                 */
-                var activeAction = this.modelFor('action');
-                var firstAction = componentController.get('contentControls.firstObject');
-                if(oldContext !== params.context && firstAction.get('name') !== activeAction.get('name')){
-                    return this.transitionTo('action', firstAction.get('name'));
-                }
+                var RootModel;
+                var model;
 
-                // Вот это место мне особенно не нравится
+                componentController.set('selectedContext', params.context);
+
                 if(!collectionName){
                     RootModel = Ember.Object.extend({});
                     model = new Ember.RSVP.Promise(function(resolve){
@@ -450,62 +402,82 @@ define([], function(){
                             }.property()
                         });
                         model = new Ember.RSVP.Promise(function(resolve){
-                            resolve(RootModel.create({'id': 'root'}));
+                            resolve(RootModel.create({'id': 'root', type: 'base'}));
                         });
                     } else{
                         model = this.store.find(collectionName, params.context);
                     }
                 }
+                return model;
+            },
+            redirect: function(model, transition){
+                if(transition.targetName === this.routeName + '.index'){
+                    var firstControl = this.controllerFor('component').get('contentControls')[0];
+                    return this.transitionTo('action', firstControl.name);
+                }
+            },
+            serialize: function(model){
+                if(model){
+                    return {context: model.get('id')};
+                }
+            }
+        });
 
-                return model.then(function(model){
-                    routeData.object = model;
+        UMI.ActionRoute = Ember.Route.extend({
+            model: function(params, transition){
+                var self = this;
+                var actionName = params.action;
+                var contextModel = this.modelFor('context');
+                var componentController = this.controllerFor('component');
+                var collectionName = componentController.get('collectionName');
+                var actions = componentController.get('contentControls');
+                var action = actions.findBy('name', actionName);
+                var data = {
+                    'object': contextModel,
+                    'action': action
+                };
+                if(action){
                     /**
                      * Мета информация для action
                      */
-                    var actionName = activeAction.get('name');
                     var actionParams = {};
-
                     if(actionName === 'createForm'){
-                        routeData.createObject = self.store.createRecord(collectionName, {
-                            parent: model
-                        });
+                        var createdParams =  contextModel.get('id') !== 'root' ? {parent: contextModel} : null;
+                        data.createObject = self.store.createRecord(collectionName, createdParams);
                     }
-                    if(model.get('type')){
-                        actionParams.type = model.get('type');
+                    if(contextModel.get('type')){
+                        actionParams.type = contextModel.get('type');
                     }
-
                     // Временное решение для таблицы
                     if(actionName === 'children' || actionName === 'filter'){
                         return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
-                            routeData.viewSettings = results.settings;
-                            return routeData;
+                            data.viewSettings = results.settings;
+                            return data;
                         });
                     } else if(actionName === 'editForm' || actionName === 'createForm'){
                         actionParams = actionParams ? '?' + $.param(actionParams) : '';
                         var actionResource = componentController.get('settings').actions['get' + Ember.String.capitalize(actionName)].source + actionParams;
 
                         return Ember.$.get(actionResource).then(function(results){
-                            routeData.viewSettings = results.result['get' + Ember.String.capitalize(actionName)];
-                            return routeData;
+                            data.viewSettings = results.result['get' + Ember.String.capitalize(actionName)];
+                            return data;
                         }, function(error){
                             transition.send('templateLogs', error, 'component');
                         });
                     }
-                    return routeData;
-                }, function(error){
-                    transition.send('templateLogs', error, 'component');
-                });
-            },
-
-            serialize: function(routeData){
-                if(routeData.object){
-                    return {context: routeData.object.get('id')};
+                    return data;
+                } else{
+                    this.transitionTo('context', contextModel.get('id'));
                 }
             },
-
-            renderTemplate: function(){
+            serialize: function(data){
+                if(data.action){
+                    return {action: data.action.get('name')};
+                }
+            },
+            renderTemplate: function(controller, model){
                 try{
-                    var templateType = this.modelFor('action').get('name');
+                    var templateType = model.action.get('name');
                     this.render(templateType);
                 } catch(error){
                     var errorObject = {
@@ -516,7 +488,20 @@ define([], function(){
                     this.send('templateLogs', errorObject, 'component');
                 }
             },
-
+            setupController: function(controller, model){
+                var context = this.modelFor('context');
+                var actions = this.controllerFor('component').get('contentControls');
+                var action = actions.findBy('name', model.action.get('name'));
+                if(!action){
+                    return this.transitionTo('context', context.get('id'));
+                }
+                if(model.object.get('id') !== context.get('id')){
+                    Ember.set(model, 'object', context);
+                    this._super(controller, model);
+                } else{
+                    this._super(controller, model);
+                }
+            },
             actions: {
                 /**
                  Метод вызывается при уходе с роута.
@@ -525,7 +510,9 @@ define([], function(){
                  */
                 willTransition: function(transition){
                     var model = this.modelFor('context').object;
-
+                    if('createObject' in this.modelFor('context') && this.modelFor('context').createObject.get('isNew')){
+                        this.modelFor('context').createObject.deleteRecord();
+                    }
                     if(model.get('isDirty')){
                         transition.abort();
                         var data = {
@@ -550,5 +537,56 @@ define([], function(){
                 }
             }
         });
+
+
+        if('baseSettingsURL' in window.UmiSettings){
+            UMI.Router.map(function(){
+                this.resource('settings', {path: '/configure'}, function(){
+                    this.route('component', {path: '/:component'});
+                });
+            });
+
+
+            UMI.SettingsRoute = Ember.Route.extend({
+                model: function(){
+                    return $.get(window.UmiSettings.baseSettingsURL).then(
+                        function(settings){
+                            var treeControl = settings.result.components;
+                            return treeControl;
+                        }
+                    );
+                }
+            });
+
+            UMI.SettingsComponentRoute = Ember.Route.extend({
+                model: function(params){
+                    var settings = this.modelFor('settings');
+                    var findDepth = function findDepth(components, propertyName, propertyValue){
+                        var i;
+                        var component;
+                        var result;
+                        for(i = 0; i < components.length; i++){
+                            if(components[i][propertyName] === propertyValue){
+                                component = components[i];
+                            }
+                            if('components' in components[i]){
+                                result = findDepth(components[i].components, propertyName, propertyValue);
+                                if(result){
+                                    component = result;
+                                }
+                            }
+                        }
+                        return component;
+                    };
+                    var component = findDepth(settings, 'name', params.component);
+                    return $.get(component.resource).then(function(data){
+                        Ember.set(component, 'form', data.result.form);
+                        return component;
+                    });
+                },
+                serialize: function(){
+                }
+            });
+        }
     };
 });

@@ -42,9 +42,9 @@ class XsltTemplate implements ISerializationAware
 
     /**
      * Вызывает виджет через стрим.
-     * @param $widgetName
-     * @param string $paramString
-     * @return string
+     * @param string $widgetName имя виджета
+     * @param string $paramString параметры для вызова виджета
+     * @return string результат работы виджета
      */
     public static function callWidget($widgetName, $paramString = '')
     {

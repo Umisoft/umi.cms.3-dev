@@ -10,7 +10,9 @@ namespace umicms\project\site;
 
 use SplDoublyLinkedList;
 use SplStack;
+use umi\config\entity\IConfig;
 use umi\hmvc\dispatcher\IDispatchContext;
+use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\IHttpAware;
 use umi\http\Request;
@@ -19,6 +21,7 @@ use umi\http\THttpAware;
 use umi\stream\IStreamService;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
+use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
@@ -33,6 +36,7 @@ use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
+use umicms\project\site\config\TSiteSettingsAware;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
@@ -47,6 +51,7 @@ class SiteApplication extends SiteComponent
     use TToolkitAware;
     use TSerializationAware;
     use TUrlManagerAware;
+    use TSiteSettingsAware;
 
     /**
      * Имя настройки для задания guid главной страницы
@@ -92,6 +97,10 @@ class SiteApplication extends SiteComponent
      * Имя настройки для задания директории шаблонов
      */
     const SETTING_TEMPLATE_DIRECTORY = 'templateDirectory';
+    /**
+     * Имя настройки для включения/выключения кэширования страниц браузером
+     */
+    const SETTING_BROWSER_CACHE_ENABLED = 'browserCacheEnabled';
     /**
      * Опция для задания сериализаторов приложения
      */
@@ -186,16 +195,53 @@ class SiteApplication extends SiteComponent
 
         if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
             if ($response->getIsCompleted()) {
-                throw new HttpNotFound($this->translate(
-                    'Resource not found.'
+                throw new HttpException(Response::HTTP_BAD_REQUEST, $this->translate(
+                    'Resource serialization is not supported.'
                 ));
             }
 
-            $result = $this->serializeResult($requestFormat, $response->getContent());
+            $result = $this->serializeResult($requestFormat, [
+                'page' => $response->getContent()
+            ]);
             $response->setContent($result);
+        } elseif ($this->getSiteBrowserCacheEnabled()) {
+            $this->setBrowserCacheHeaders($request, $response);
         }
 
         return $response;
+    }
+
+    /**
+     * Вызывает виджет по uri.
+     * @param string $uri URI виджета
+     * @return string результат работы виджета
+     */
+    public static function callWidgetByUri($uri)
+    {
+        if (!strpos($uri, self::WIDGET_PROTOCOL) !== 0) {
+            $uri = self::WIDGET_PROTOCOL . '://' . $uri;
+        }
+
+        return file_get_contents($uri);
+    }
+
+    /**
+     * Возвращает настройки сайта.
+     * @throws RequiredDependencyException если настройки не были установлены
+     * @return IConfig
+     */
+    protected function getSiteSettings() {
+        return $this->getSettings();
+    }
+    /**
+     * Устанавливает ETag для браузерного кэширования страниц.
+     * @param Request $request
+     * @param Response $response
+     */
+    protected function setBrowserCacheHeaders(Request $request, Response $response) {
+        $response->setETag(md5($response->getContent()));
+        $response->setPublic();
+        $response->isNotModified($request);
     }
 
     /**
@@ -205,11 +251,9 @@ class SiteApplication extends SiteComponent
      * @return string
      */
     protected function serializeResult($format, $variables) {
-        $serializer = $this->getSerializer($format, []);
+        $serializer = $this->getSerializer($format, $variables);
         $serializer->init();
-        $serializer([
-            'result' => $variables
-        ]);
+        $serializer($variables);
 
         return $serializer->output();
     }
@@ -376,7 +420,7 @@ class SiteApplication extends SiteComponent
             }
 
             return $this->serializeResult(ISerializerFactory::TYPE_XML, [
-                'contents' => $dispatcher->executeWidgetByPath($widgetInfo['host'], $widgetParams)
+                'widget' => $dispatcher->executeWidgetByPath($widgetInfo['host'], $widgetParams)
             ]);
         });
     }
