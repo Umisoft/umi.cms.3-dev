@@ -55,6 +55,7 @@ define([], function(){
                     transition.send('templateLogs', error);
                 });
             },
+
             actions: {
                 logout: function(){
                     var applicationLayout = document.querySelector('.umi-main-view');
@@ -73,11 +74,13 @@ define([], function(){
                         }, 800);
                     });
                 },
+
                 targetBlank: function(url){
                     url = '//' + window.location.host + '/' + url;
                     var tab = window.open(url, '_blank');
                     tab.focus();
                 },
+
                 /**
                  Сохраняет обьект
 
@@ -123,12 +126,14 @@ define([], function(){
                         }
                     );
                 },
+
                 dialogError: function(error){
                     var settings = this.parseError(error);
                     settings.close = true;
                     settings.title = error.status + '. ' + error.statusText;
                     UMI.dialog.open(settings).then();
                 },
+
                 /**
                  Метод генерирует фоновую ошибку
                  @method backgroundError
@@ -261,6 +266,7 @@ define([], function(){
                 }
                 return deferred.promise;
             },
+
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
                     var self = this;
@@ -282,6 +288,7 @@ define([], function(){
                     return deferred.promise;
                 }
             },
+
             serialize: function(model){
                 return {module: model.get('slug')};
             }
@@ -318,14 +325,20 @@ define([], function(){
                 }
                 return deferred.promise;
             },
+
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
                     var deferred = Ember.RSVP.defer();
                     var self = this;
                     var defaultAction = this.controllerFor('component').get('contentControls.firstObject.name');
+                    console.log(this.controllerFor('component'));
+                    console.log(this.controllerFor('component').get('contentControls.firstObject.name'));
+
                     if(defaultAction){
                         deferred.resolve(self.transitionTo('action', defaultAction));
+                        console.log('redirect1');
                     } else{
+                        console.log('redirect2');
                         var error = new URIError('The component "' + transition.params.component.component + '" was not found.');
                         error.statusText = 'Actions not found.';
                         Ember.run.next(function(){
@@ -336,9 +349,11 @@ define([], function(){
                     return deferred.promise;
                 }
             },
+
             serialize: function(model){
                 return {component: model.get('name')};
             },
+
             renderTemplate: function(controller){
                 this.render();
                 if(controller.get('sideBarControl')){
@@ -381,12 +396,14 @@ define([], function(){
                 }
                 return deferred.promise;
             },
+
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
                     var contextId = this.controllerFor('component').get('selectedContext');
                     return this.transitionTo('context', contextId);
                 }
             },
+
             serialize: function(model){
                 if(model){
                     return {action: model.get('name')};
@@ -479,11 +496,13 @@ define([], function(){
                     transition.send('templateLogs', error, 'component');
                 });
             },
+
             serialize: function(routeData){
                 if(routeData.object){
                     return {context: routeData.object.get('id')};
                 }
             },
+
             renderTemplate: function(){
                 try{
                     var templateType = this.modelFor('action').get('name');
@@ -497,6 +516,7 @@ define([], function(){
                     this.send('templateLogs', errorObject, 'component');
                 }
             },
+
             actions: {
                 /**
                  Метод вызывается при уходе с роута.

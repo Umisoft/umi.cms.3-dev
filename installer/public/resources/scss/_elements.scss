@@ -13,6 +13,10 @@
     color: #9BA7B3;
 }
 
+input{
+    color: #535E6D!important;
+}
+
 // checkboxes ----------------------------------------------
 
 //input[type="checkbox"] {
@@ -172,6 +176,8 @@ input::-ms-clear { //Убираем крестик браузера из пол�
         box-shadow: none;
         background: none;
         height: 30px;
+//        line-height: 30px;
+        padding-left: 10px;
     }
 }
 
@@ -228,4 +234,11 @@ input::-ms-clear { //Убираем крестик браузера из пол�
     border: 1px solid #d3d7da;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
+}
+
+// select ---------------------------------------------------------------------------------------
+.umi-element-select{
+    color: #535E6D;
+//    line-height: 14px;
+    padding-left: 5px;
 }

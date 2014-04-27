@@ -3,6 +3,7 @@ define(['App'], function(UMI){
 
     return function(){
         UMI.SelectView = Ember.Select.extend(UMI.InputValidate, {
+            classNames: ['umi-element-select'],
             attributeBindings: ['meta.dataSource:name'],
             optionLabelPath: 'content.displayName',
             optionValuePath: 'content.id',

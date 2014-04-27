@@ -90,6 +90,10 @@ $umi-dark-border-color: #CCD9E2;
             background: #FFFFFF;
 //            box-shadow: 0 0px 2px 0px #7C99AC;
         }
+
+        &:not(:hover) {
+            transition: .5s;
+        }
     }
 
     .umi-tree-placeholder{
@@ -200,8 +204,12 @@ $umi-dark-border-color: #CCD9E2;
                     bottom: 32px;
                 }
             }
+            &:not(:hover) {
+                transition: .5s;
+            }
         }
     }
+
     .tree-control-select-action-tooltip{
         z-index: 1;
         visibility: hidden;
