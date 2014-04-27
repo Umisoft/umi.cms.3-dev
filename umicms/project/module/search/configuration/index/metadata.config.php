@@ -46,6 +46,10 @@ return [
         SearchIndex::FIELD_CONTENT => [
             'type' => IField::TYPE_TEXT,
             'columnName' => 'contents',
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'contents'],
+                'en-US' => ['columnName' => 'contents_en']
+            ]
         ],
         SearchIndex::FIELD_COLLECTION_NAME => [
             'type' => IField::TYPE_STRING,
