@@ -53,13 +53,13 @@ class BlogDraftPostController extends BaseSecureController implements IFormAware
             throw new HttpNotFound('Page not found');
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE);
+        $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {
 
             $blogPost = $this->api->post()->getById($this->getRouteVar('id'));
-            $blogPost->toDraft();
+            $blogPost->draft();
 
             $this->getObjectPersister()->commit();
 
