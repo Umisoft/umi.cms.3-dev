@@ -24,7 +24,7 @@ class BlogEditDraftUrlWidget extends BaseSecureWidget
      */
     public $template = 'editDraftLink';
     /**
-     * @var BlogPost $blogPost черновик или GUID редактируемого черновика
+     * @var BlogPost $blogDraft черновик или GUID редактируемого черновика
      */
     public $blogDraft;
     /**
