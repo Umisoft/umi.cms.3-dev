@@ -42,7 +42,7 @@ define(['App'], function(UMI){
                 });
             },
             willDestroyElement: function(){
-                //console.log('willDestroyElement');
+                this.removeObserver('value');
             }
         });
     };

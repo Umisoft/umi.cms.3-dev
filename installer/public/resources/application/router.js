@@ -432,8 +432,10 @@ define([], function(){
             }
         });
 
+        var needRouteRefresh = true;
         UMI.ActionRoute = Ember.Route.extend({
             model: function(params, transition){
+                needRouteRefresh = false;
                 var self = this;
                 var actionName = params.action;
                 var contextModel = this.modelFor('context');
@@ -500,6 +502,12 @@ define([], function(){
                 }
             },
             setupController: function(controller, model){
+                if(needRouteRefresh){
+                    this.refresh();
+                    return;
+                } else{
+                    needRouteRefresh = false;
+                }
                 var context = this.modelFor('context');
                 var actions = this.controllerFor('component').get('contentControls');
                 var action = actions.findBy('name', model.action.get('name'));
@@ -508,9 +516,9 @@ define([], function(){
                 }
                 if(model.object.get('id') !== context.get('id')){
                     Ember.set(model, 'object', context);
-                    this._super(controller, model);
+                    controller.set('model', model);
                 } else{
-                    this._super(controller, model);
+                    controller.set('model', model);
                 }
             },
             actions: {
@@ -520,9 +528,9 @@ define([], function(){
                  @param {Object} transition
                  */
                 willTransition: function(transition){
-                    var model = this.modelFor('context').object;
-                    if('createObject' in this.modelFor('context') && this.modelFor('context').createObject.get('isNew')){
-                        this.modelFor('context').createObject.deleteRecord();
+                    var model = this.modelFor('action').object;
+                    if('createObject' in this.modelFor('action') && this.modelFor('action').createObject.get('isNew')){
+                        this.modelFor('action').createObject.deleteRecord();
                     }
                     if(model.get('isDirty')){
                         transition.abort();

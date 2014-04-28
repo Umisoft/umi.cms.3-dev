@@ -94,7 +94,10 @@ define(['App', 'text!./toolbar.hbs'], function(UMI, toolbarTpl){
         UMI.FormToolbarView = Ember.View.extend({
             layout: Ember.Handlebars.compile(toolbarTpl),
             tagName: 'ul',
-            classNames: ['button-group', 'umi-form-control-buttons']
+            classNames: ['button-group', 'umi-form-control-buttons'],
+            willDestroyElement: function(){
+                this.get('controller').removeObserver('parentController.object');
+            }
         });
     };
 });
