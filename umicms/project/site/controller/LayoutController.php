@@ -56,6 +56,7 @@ class LayoutController extends BaseController implements ISiteSettingsAware, IPa
             $variables['title'] = $this->getMetaTitle();
             $variables['description'] = $this->getMetaDescription();
             $variables['keywords'] = $this->getMetaKeywords();
+           // $variables['locales'] =
         }
 
         $variables['contents'] = $this->response->getContent();

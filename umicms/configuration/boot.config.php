@@ -37,6 +37,7 @@ return [
                     'types' => [
                         'SiteStaticPageRoute' => 'umicms\project\site\route\SiteStaticPageRoute',
                         'SiteComponentRoute' => 'umicms\project\site\route\SiteComponentRoute',
+                        'ProjectHostRoute' => 'umicms\route\ProjectHostRoute',
                     ]
                 ]
             ]

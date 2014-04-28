@@ -38,25 +38,25 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     protected $structureApi;
     /**
-     * @var string $baseUrl базовый URL проекта
+     * @var string $schemeAndHttpHost схема и HTTP-хост проекта
      */
-    protected $baseUrl = '/';
+    protected $schemeAndHttpHost;
     /**
-     * @var string $baseRestUrl базовый URL для REST-запросов
+     * @var string $urlPrefix префикс URL проекта
      */
-    protected $baseRestUrl = '/';
+    protected $urlPrefix;
     /**
-     * @var string $baseSettingsUrl базовый URL для запросов связанных с настройками
+     * @var string $adminUrlPrefix префикс URL для административной панели
      */
-    protected $baseSettingsUrl = '/';
+    protected $adminUrlPrefix;
     /**
-     * @var string $baseAdminUrl базовый URL для административной панели
+     * @var string $restUrlPrefix префикс URL для REST-запросов
      */
-    protected $baseAdminUrl;
+    protected $restUrlPrefix;
     /**
-     * @var string $domainUrl URL домена проекта
+     * @var string $settingsUrlPrefix префикс URL для запросов связанных с настройками
      */
-    protected $domainUrl;
+    protected $settingsUrlPrefix;
 
     /**
      * Конструктор.
@@ -72,9 +72,9 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function setBaseUrl($baseUrl)
+    public function setUrlPrefix($urlPrefix)
     {
-        $this->baseUrl = $baseUrl;
+        $this->urlPrefix = $urlPrefix;
 
         return $this;
     }
@@ -82,9 +82,9 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function setProjectDomainUrl($domainUrl)
+    public function setSchemeAndHttpHost($schemeAndHttpHost)
     {
-        $this->domainUrl = $domainUrl;
+        $this->schemeAndHttpHost = $schemeAndHttpHost;
 
         return $this;
     }
@@ -92,9 +92,9 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function setBaseRestUrl($baseRestUrl)
+    public function setRestUrlPrefix($restUrlPrefix)
     {
-        $this->baseRestUrl = $baseRestUrl;
+        $this->restUrlPrefix = $restUrlPrefix;
 
         return $this;
     }
@@ -102,9 +102,9 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function setBaseSettingsUrl($baseSettingsUrl)
+    public function setSettingsUrlPrefix($settingsUrlPrefix)
     {
-        $this->baseSettingsUrl = $baseSettingsUrl;
+        $this->settingsUrlPrefix = $settingsUrlPrefix;
 
         return $this;
     }
@@ -112,9 +112,9 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function setBaseAdminUrl($baseAdminUrl)
+    public function setAdminUrlPrefix($adminUrlPrefix)
     {
-        $this->baseAdminUrl = $baseAdminUrl;
+        $this->adminUrlPrefix = $adminUrlPrefix;
 
         return $this;
     }
@@ -125,18 +125,18 @@ class UrlManager implements IUrlManager, ILocalizable
     public function getProjectUrl($isAbsolute = false)
     {
         if ($isAbsolute) {
-            return $this->getProjectDomainUrl() . $this->baseUrl;
+            return $this->getSchemeAndHttpHost() . $this->urlPrefix;
         }
 
-        return $this->baseUrl ?: '/';
+        return $this->urlPrefix ?: '/';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getProjectDomainUrl()
+    public function getSchemeAndHttpHost()
     {
-        return $this->domainUrl;
+        return $this->schemeAndHttpHost;
     }
 
     /**
@@ -144,7 +144,7 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function getBaseRestUrl()
     {
-        return $this->baseRestUrl;
+        return $this->getBaseAdminUrl() . $this->restUrlPrefix;
     }
 
     /**
@@ -152,7 +152,7 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function getBaseSettingsUrl()
     {
-        return $this->baseSettingsUrl;
+        return $this->getBaseAdminUrl() . $this->settingsUrlPrefix;
     }
 
     /**
@@ -160,7 +160,7 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function getBaseAdminUrl()
     {
-        return $this->baseAdminUrl;
+        return $this->urlPrefix . $this->adminUrlPrefix;
     }
 
     /**
@@ -169,8 +169,8 @@ class UrlManager implements IUrlManager, ILocalizable
     public function getSitePageUrl(ICmsPage $page, $isAbsolute = false, $handler = ICmsCollection::HANDLER_SITE)
     {
         if ($page instanceof StructureElement) {
-            $pageUrl = $isAbsolute ? $this->domainUrl : '';
-            $pageUrl .= $this->baseUrl . '/';
+            $pageUrl = $isAbsolute ? $this->schemeAndHttpHost : '';
+            $pageUrl .= $this->urlPrefix . '/';
             $pageUrl .= $page->getURL();
 
             return $pageUrl;
@@ -203,8 +203,8 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function getSystemPageUrl($componentPath, $isAbsolute = false)
     {
-        $pageUrl = $isAbsolute ? $this->domainUrl : '';
-        $pageUrl .= $this->baseUrl . '/';
+        $pageUrl = $isAbsolute ? $this->schemeAndHttpHost : '';
+        $pageUrl .= $this->urlPrefix . '/';
         $pageUrl .= $this->structureApi->element()->getSystemPageByComponentPath($componentPath)->getURL();
 
         return $pageUrl;
@@ -220,8 +220,8 @@ class UrlManager implements IUrlManager, ILocalizable
          */
         $collection = $object->getCollection();
 
-        $editLink = $isAbsolute ? $this->domainUrl : '';
-        $editLink .= $this->baseAdminUrl;
+        $editLink = $isAbsolute ? $this->schemeAndHttpHost : '';
+        $editLink .= $this->adminUrlPrefix;
         $editLink .= '/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
         $editLink .= '/form/' . $object->getId();
 
@@ -233,7 +233,7 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function getCollectionResourceUrl(ICmsCollection $collection, ICmsObject $object = null)
     {
-        $collectionResourceUrl = $this->baseRestUrl;
+        $collectionResourceUrl = $this->restUrlPrefix;
         $collectionResourceUrl .= '/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
         $collectionResourceUrl .= '/collection';
 
@@ -249,9 +249,9 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function getAdminComponentUrl(AdminComponent $component, $isAbsolute = false)
     {
-        $domainUrl = $isAbsolute ? $this->domainUrl : '';
+        $domainUrl = $isAbsolute ? $this->schemeAndHttpHost : '';
 
-        return $domainUrl . $this->baseAdminUrl . $this->getAdminRelativeComponentUrl($component);
+        return $domainUrl . $this->adminUrlPrefix . $this->getAdminRelativeComponentUrl($component);
     }
 
     /**
@@ -259,7 +259,7 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function getAdminComponentResourceUrl(AdminComponent $component)
     {
-        return $this->baseRestUrl . $this->getAdminRelativeComponentUrl($component);
+        return $this->restUrlPrefix . $this->getAdminRelativeComponentUrl($component);
     }
 
     /**
@@ -282,7 +282,7 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function getSettingsComponentResourceUrl(SettingsComponent $component)
     {
-        $url = $this->baseSettingsUrl;
+        $url = $this->settingsUrlPrefix;
         $url .= str_replace(SettingsComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 22));
 
         return $url;

@@ -23,39 +23,39 @@ interface IUrlManager
 {
 
     /**
-     * Устанавливает базовый URL проекта.
-     * @param string $baseUrl
+     * Устанавливает префикс URL проекта.
+     * @param string $urlPrefix
      * @return self
      */
-    public function setBaseUrl($baseUrl);
+    public function setUrlPrefix($urlPrefix);
 
     /**
-     * Устанавливает URL домена проекта.
-     * @param string $domainUrl
+     * Устанавливает схему и HTTP-хост проета.
+     * @param string $schemeAndHttpHost
      * @return self
      */
-    public function setProjectDomainUrl($domainUrl);
+    public function setSchemeAndHttpHost($schemeAndHttpHost);
 
     /**
-     * Устанавливает базовый URL для REST-запросов.
-     * @param string $baseRestUrl
+     * Устанавливает префикс URL для REST-запросов.
+     * @param string $restUrlPrefix
      * @return self
      */
-    public function setBaseRestUrl($baseRestUrl);
+    public function setRestUrlPrefix($restUrlPrefix);
 
     /**
-     * Устанавливает базовый URL для запросов связанных с настройками.
-     * @param string $baseSettingsUrl
+     * Устанавливает префикс URL для запросов связанных с настройками.
+     * @param string $settingsUrlPrefix
      * @return self
      */
-    public function setBaseSettingsUrl($baseSettingsUrl);
+    public function setSettingsUrlPrefix($settingsUrlPrefix);
 
     /**
-     * Устанавливает базовый URL для административной панели.
-     * @param string $baseAdminUrl
+     * Устанавливает префикс URL для административной панели.
+     * @param string $adminUrlPrefix
      * @return self
      */
-    public function setBaseAdminUrl($baseAdminUrl);
+    public function setAdminUrlPrefix($adminUrlPrefix);
 
     /**
      * Возвращает базовый URL проекта.
@@ -65,10 +65,10 @@ interface IUrlManager
     public function getProjectUrl($isAbsolute = false);
 
     /**
-     * Возвращает URL домена проекта.
+     * Возвращает схему и HTTP-хост проета.
      * @return string
      */
-    public function getProjectDomainUrl();
+    public function getSchemeAndHttpHost();
 
     /**
      * Возвращает базовый URL для REST-запросов.
