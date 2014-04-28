@@ -52,29 +52,87 @@ body{
     }
 }
 
-.off-canvas-wrap{
-    &.move-right{
-        //TODO привязано к px, а не к rem-calc
-        width: unquote("calc(100% - 255px)");
-        overflow: visible;
+
+
+
+
+
+
+
+
+.umi-divider-wripper{
+    position: relative;
+}
+
+.umi-divider-left{
+    float: left;
+    position: relative;
+    width: 250px;
+    height: 100%;
+    background: #D2E1E9;
+
+    .umi-divider-left-toggle{
+        display: none;
+        right: 0;
+        position: absolute;
+        float: right;
+        padding: 5px;
     }
 }
 
-.umi-divider{
+.umi-divider-left-content{
+    overflow: hidden;
+    float: left;
+    height: 1000px;
+}
+
+.umi-divider-left-float{
+    z-index: 5000;
     position: absolute;
-    z-index: 100000;
-    top: -1px;
-    margin-left: -5px;
+
+    &:after{
+        content: "";
+        position: absolute;
+        float: left;
+        display: block;
+        height: 100%;
+        width: 3px;
+        right: -3px;
+        bottom: 0;
+        background: url(img/shadows/toRightShadow.png);
+    }
+}
+
+.umi-divider-left-toggle{
+
+}
+
+.umi-divider{
+    float: left;
     width: 4px;
-    height: unquote("calc(100% + 1px)");
+    margin-top: -1px;
     background: #E0E4E7;
     border-left: 1px solid #ADB9C5;
-    //    opacity: 0;
+    border-right: 1px solid #ADB9C5;
     &:hover{
-        // opacity: 1;
         cursor: e-resize;
     }
 }
+
+.umi-divider-right{
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .umi-mode{
     z-index: 10;
@@ -127,10 +185,6 @@ body{
             margin: rem-calc(5 2 0);
         }
     }
-    //	.left-off-canvas-toggle{
-    //		display: block;
-    //		padding: rem-calc(6 10);
-    //	}
 }
 
 .umi-component{

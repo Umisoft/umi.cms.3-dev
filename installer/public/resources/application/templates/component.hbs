@@ -1,45 +1,118 @@
 <div class="s-full-height">
     <div {{bind-attr class=":off-canvas-wrap :s-full-height sideBarControl:move-right"}}>
-        <div class="inner-wrap s-full-height">
+        <div class="umi-divider-wrapper s-full-height">
             {{#if sideBarControl}}
-                <aside class="left-off-canvas-menu s-unselectable" style="overflow: hidden;">
-                    {{outlet 'sideBar'}}
-                </aside>
-                <div class="umi-divider"></div>
+                <div class="umi-divider-left">
+                    <a class="umi-divider-left-toggle">
+                        <span class="icon icon-list"></span>
+                    </a>
+
+                    <div class="umi-divider-left-content">
+                        {{outlet 'sideBar'}}
+                    </div>
+
+                    <div class="umi-divider"></div>
+                </div>
             {{/if}}
-    
-            <div class="row s-full-height-before s-margin-clear umi-mode s-unselectable">
-                <section class="left">
-                    {{#if sideBarControl}}
-                        <a class="left-off-canvas-toggle">
-                            <span class="icon icon-list"></span>
-                        </a>
-                    {{/if}}
-                </section>
 
-                <script>
-                    //Хак-ускоритель переключения mode - переключает класс кнопки без задержки
-                    $('.umi-mode .button').mousedown(function(){
-                        $('.button-group .button').removeClass('active');
-                        $(this).addClass('active');
-                    });
-                </script>
+            <div class="umi-divider-right umi-mode">
+                <div class="s-unselectable">
+                    <section class="left">
+                        {{#if sideBarControl}}
+                            <a class="umi-divider-left-toggle">
+                                <span class="icon icon-list"></span>
+                            </a>
+                        {{else}}
+                            <a class="umi-divider-left-toggle">
+                                <span class="icon icon-list" style="opacity: 0.5"></span>
+                            </a>
+                        {{/if}}
+                    </section>
 
-                <ul class="button-group right">
-                    {{#each control in controller.contentControls}}
-                        <li>{{#link-to 'action' control.name classNames="button"}}{{control.displayName}}{{/link-to}}</li>
-                    {{/each}}
-                </ul>
+                    <script>
+                        //Хак-ускоритель переключения mode - переключает класс кнопки без задержки
+                        $('.umi-mode .button-group .button').mousedown(function(){
+                            $('.umi-mode .button-group .button').removeClass('active');
+                            $(this).addClass('active');
+                        });
+                    </script>
 
-                <h5>{{displayName}}</h5>
-            </div>
-    
-    
-            <div class="row s-full-height umi-component">
-                <div class="columns small-12 s-padding-clear">
-                    {{outlet}}
+                    <ul class="button-group right">
+                        {{#each control in controller.contentControls}}
+                            <li>
+                                {{#link-to 'action' control.name classNames="button"}}
+                                    {{control.displayName}}
+                                {{/link-to}}
+                            </li>
+                        {{/each}}
+                    </ul>
+
+                    <h5>{{displayName}}</h5>
+                </div>
+
+                <div class="umi-component">
+                    <div class="columns small-12 s-padding-clear">
+                        {{outlet}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $('.umi-divider-left-toggle').mousedown(function(){
+        $('.umi-divider-left').toggle();
+    });
+
+    var floatDivider = function(){
+        $('.umi-divider-left').addClass('umi-divider-left-float');
+        $('.umi-divider-right').css({marginLeft: 0});
+        $('.umi-divider-left .umi-divider-left-toggle').show();
+    };
+
+    var moveDivider = function(){
+        $('.umi-divider-left').removeClass('umi-divider-left-float');
+        $('.umi-divider-right').css({marginLeft: 250});
+        $('.umi-divider-left .umi-divider-left-toggle').hide();
+
+        var that = this;
+        $('body').on('mousedown', '.umi-divider', function(event){
+            console.log('mousedown .umi-divider');
+            if(event.button === 0){
+                var posX = $('.umi-divider').offset().left;
+
+                $('html').addClass('s-unselectable');
+
+                $('html').mousemove(function(event){
+                    console.log('mousemove .umi-divider');
+                    var w = event.pageX - posX;
+
+                    if(w < 150){w = 150}
+                    if(w > $(window).width() - 320){w = $(window).width() - 320}
+
+                    $('.umi-divider-left').css({width: w});
+                    $('.umi-divider').offset().left = w;
+                    $('.umi-divider-right').css({marginLeft: w + 6});
+
+                    $('html').on('mouseup', function(){
+                        $('html').off('mousemove');
+                        $('html').removeClass('s-unselectable');
+                    });
+                });
+            }
+        });
+    };
+
+    var checkWindowWidth = function(){
+        if($(window).width() < (320 + 250)){
+            floatDivider();
+        }else{
+            moveDivider();
+        }
+    };
+
+    window.onresize = function(){
+        checkWindowWidth();
+    };
+</script>

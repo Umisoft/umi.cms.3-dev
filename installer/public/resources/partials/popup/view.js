@@ -11,7 +11,8 @@ define(['App'], function(UMI){
                 this.get('parentView').setProperties({
                     'title': 'Выбор колонок в таблице',
                     'width': 300,
-                    'height': 150
+                    'height': 150,
+                    'contentOverflow': ['overflow', 'scroll']
                 })
             },
 
@@ -19,6 +20,10 @@ define(['App'], function(UMI){
                 this.$().find('li').mousedown(function(){
                     $(this).find('input').click();
                 });
+
+                if(window.pageYOffset || document.documentElement.scrollTop){
+
+                }
             }
         });
 
@@ -30,7 +35,7 @@ define(['App'], function(UMI){
             title: '',
             width: 600,
             height: 400,
-            contentOverflow: 'hidden',
+            contentOverflow: ['overflow', 'hidden'],
             blur: false,
             fade: false,
             drag: true,
@@ -60,7 +65,7 @@ define(['App'], function(UMI){
                 if(this.drag){this.allowDrag()}
                 if(this.resize){this.allowResize()}
                 if(this.contentOverflow !== 'hidden'){
-                    $('.umi-popup-content').css({'overflow': this.contentOverflow});
+                    $('.umi-popup-content').css(this.contentOverflow[0], this.contentOverflow[1]);
                 }
                 this.setSize();
             },
