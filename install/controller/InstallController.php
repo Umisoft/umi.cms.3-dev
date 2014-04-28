@@ -313,7 +313,13 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $post->getProperty('componentName')->setValue('draft');
         $post->getProperty('componentPath')->setValue('blog.draft');
 
-        $post = $structureCollection->add('moderate', 'system', $blogPage)
+        $post = $structureCollection->add('rejected', 'system', $blogPage)
+            ->setValue('displayName', 'Отклонённые посты')
+            ->setValue('displayName', 'Rejected posts', 'en-US');
+        $post->getProperty('componentName')->setValue('reject');
+        $post->getProperty('componentPath')->setValue('blog.reject');
+
+        $post = $structureCollection->add('needModeration', 'system', $blogPage)
             ->setValue('displayName', 'Посты на модерацию')
             ->setValue('displayName', 'Posts to moderate', 'en-US');
         $post->getProperty('componentName')->setValue('moderate');
@@ -866,10 +872,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $dialect = $connection->getDatabasePlatform();
 
         $tables = $connection->getDriver()->getSchemaManager($connection)->listTableNames();
+        $connection->exec($dialect->getDisableForeignKeysSQL());
 
         foreach ($tables as $table) {
             if ($connection->getDriver()->getSchemaManager($connection)->tablesExist($table)) {
-                $connection->exec($dialect->getDisableForeignKeysSQL());
                 $connection->getDriver()->getSchemaManager($connection)->dropTable($table);
             }
         }

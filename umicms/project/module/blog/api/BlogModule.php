@@ -539,4 +539,18 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             return $this->post()->emptySelect();
         }
     }
+
+    /**
+     * Возвращает список отклонённых постов текущего пользователя.
+     * @return CmsSelector|BlogPost
+     */
+    public function getOwnRejected()
+    {
+        if ($this->hasCurrentAuthor()) {
+            return $this->post()->getRejectedPosts()
+                ->where(BlogPost::FIELD_AUTHOR)->equals($this->getCurrentAuthor());
+        } else {
+            return $this->post()->emptySelect();
+        }
+    }
 }

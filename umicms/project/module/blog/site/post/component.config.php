@@ -17,6 +17,7 @@ return [
     DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
     DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
+        //'page' => __NAMESPACE__ . '\controller\BlogPostPageController',
         'add' => __NAMESPACE__ . '\controller\BlogAddPostController',
         'edit' => __NAMESPACE__ . '\controller\BlogEditPostController',
         'unPublished' => __NAMESPACE__ . '\controller\BlogDraftPostController',

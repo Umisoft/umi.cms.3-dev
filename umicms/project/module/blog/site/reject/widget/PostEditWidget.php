@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\moderate\widget;
+namespace umicms\project\module\blog\site\reject\widget;
 
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
@@ -16,7 +16,7 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет редактирования поста, требующего модерации.
+ * Виджет редактирования отклонённого поста.
  */
 class PostEditWidget extends BaseSecureWidget
 {
@@ -25,7 +25,7 @@ class PostEditWidget extends BaseSecureWidget
      */
     public $template = 'editPost';
     /**
-     * @var string|BlogPost $blogPost пост или GUID редактируемого поста, требующего модерации
+     * @var string|BlogPost $blogPost пост или GUID редактируемого отклонённого поста
      */
     public $blogPost;
     /**
@@ -48,7 +48,7 @@ class PostEditWidget extends BaseSecureWidget
     public function __invoke()
     {
         if (is_string($this->blogPost)) {
-            $this->blogPost = $this->api->post()->getNeedModeratePost($this->blogPost);
+            $this->blogPost = $this->api->post()->getRejectedPost($this->blogPost);
         }
 
         if (!$this->blogPost instanceof BlogPost) {

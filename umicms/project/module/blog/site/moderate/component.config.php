@@ -20,6 +20,7 @@ return [
         'edit' => __NAMESPACE__ . '\controller\PostEditController',
         'publish' => __NAMESPACE__ . '\controller\PostPublishController',
         'reject' => __NAMESPACE__ . '\controller\PostRejectController',
+        'draft' => __NAMESPACE__ . '\controller\PostDraftController',
         'all' => __NAMESPACE__ . '\controller\PostListController'
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
@@ -31,7 +32,8 @@ return [
         'editPost' => __NAMESPACE__ . '\widget\PostEditWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\PostEditLinkWidget',
         'publishModerate' => __NAMESPACE__ . '\widget\PostPublishWidget',
-        'rejectModerate' => __NAMESPACE__ . '\widget\PostRejectWidget'
+        'rejectModerate' => __NAMESPACE__ . '\widget\PostRejectWidget',
+        'draftModerate' => __NAMESPACE__ . '\widget\PostDraftWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
 
@@ -66,6 +68,13 @@ return [
             'route' => '/reject/{id:integer}',
             'defaults' => [
                 'controller' => 'reject'
+            ]
+        ],
+        'draft' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/draft/{id:integer}',
+            'defaults' => [
+                'controller' => 'draft'
             ]
         ]
     ]

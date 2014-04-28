@@ -19,7 +19,8 @@ return [
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\BlogDraftPageController',
         'edit' => __NAMESPACE__ . '\controller\BlogEditDraftController',
-        'publish' => __NAMESPACE__ . '\controller\BlogPublishDraftController'
+        'publish' => __NAMESPACE__ . '\controller\BlogPublishDraftController',
+        'sendToModeration' => __NAMESPACE__ . '\controller\PostSendToModerationController',
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogDraftWidget',
@@ -27,7 +28,8 @@ return [
         'ownListUrl' => __NAMESPACE__ . '\widget\BlogOwnDraftListUrlWidget',
         'editDraft' => __NAMESPACE__ . '\widget\BlogEditDraftWidget',
         'publishDraft' => __NAMESPACE__ . '\widget\BlogPublishDraftWidget',
-        'editDraftLink' => __NAMESPACE__ . '\widget\BlogEditDraftUrlWidget'
+        'editDraftLink' => __NAMESPACE__ . '\widget\BlogEditDraftUrlWidget',
+        'sendToModeration' => __NAMESPACE__ . '\widget\PostSendToModerationWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -98,6 +100,13 @@ return [
             'route' => '/publish/{id:integer}',
             'defaults' => [
                 'controller' => 'publish'
+            ]
+        ],
+        'sendToModeration' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/sendToModeration/{id:integer}',
+            'defaults' => [
+                'controller' => 'sendToModeration'
             ]
         ]
     ]

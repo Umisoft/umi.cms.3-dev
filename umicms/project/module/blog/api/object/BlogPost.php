@@ -102,7 +102,24 @@ class BlogPost extends CmsObject implements ICmsPage
      */
     public function getPageUrl($isAbsolute = false)
     {
-        $handler = $this->active ? ICmsCollection::HANDLER_SITE : BlogPostCollection::HANDLER_DRAFT;
+        switch ($this->publishStatus) {
+            case self::POST_STATUS_DRAFT : {
+                $handler = BlogPostCollection::HANDLER_DRAFT;
+                break;
+            }
+            case self::POST_STATUS_REJECTED : {
+                $handler = BlogPostCollection::HANDLER_REJECT;
+                break;
+            }
+            case self::POST_STATUS_NEED_MODERATE : {
+                $handler = BlogPostCollection::HANDLER_MODERATE;
+                break;
+            }
+            default : {
+                $handler = ICmsCollection::HANDLER_SITE;
+            }
+        }
+
         return $this->getUrlManager()->getSitePageUrl($this, $isAbsolute, $handler);
     }
 

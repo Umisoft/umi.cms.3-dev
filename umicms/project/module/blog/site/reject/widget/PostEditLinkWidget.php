@@ -7,25 +7,24 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\moderate\widget;
+namespace umicms\project\module\blog\site\reject\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет редактирования поста, требующего модерации.
+ * Виджет для вывода ссылки на редактирование отклонённого поста.
  */
-class PostEditWidget extends BaseSecureWidget
+class PostEditLinkWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'editPost';
+    public $template = 'editPostLink';
     /**
-     * @var string|BlogPost $blogPost пост или GUID редактируемого поста, требующего модерации
+     * @var string|BlogPost $blogPost пост или GUID отклонённого поста
      */
     public $blogPost;
     /**
@@ -48,7 +47,7 @@ class PostEditWidget extends BaseSecureWidget
     public function __invoke()
     {
         if (is_string($this->blogPost)) {
-            $this->blogPost = $this->api->post()->getNeedModeratePost($this->blogPost);
+            $this->blogPost = $this->api->post()->getRejectedPost($this->blogPost);
         }
 
         if (!$this->blogPost instanceof BlogPost) {
@@ -63,19 +62,11 @@ class PostEditWidget extends BaseSecureWidget
             );
         }
 
-        $formEdit = $this->api->post()->getForm(
-            BlogPost::FORM_EDIT_POST,
-            IObjectType::BASE,
-            $this->blogPost
-        );
-
-        $formEdit->setAction($this->getUrl('edit', ['id' => $this->blogPost->getId()]));
-        $formEdit->setMethod('post');
-
+        $url = $this->blogPost->getId();
         return $this->createResult(
             $this->template,
             [
-                'form' => $formEdit
+                'url' => $this->getUrl('edit', ['id' => $url])
             ]
         );
     }

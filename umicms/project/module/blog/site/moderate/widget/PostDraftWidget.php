@@ -16,16 +16,16 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет редактирования поста, требующего модерации.
+ * Виджет переноса поста с модерации в черновики.
  */
-class PostEditWidget extends BaseSecureWidget
+class PostDraftWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'editPost';
+    public $template = 'draftForm';
     /**
-     * @var string|BlogPost $blogPost пост или GUID редактируемого поста, требующего модерации
+     * @var string|BlogPost $blogPost пост или GUID поста на модерации, необходимого перенесте в черновики
      */
     public $blogPost;
     /**
@@ -63,19 +63,19 @@ class PostEditWidget extends BaseSecureWidget
             );
         }
 
-        $formEdit = $this->api->post()->getForm(
-            BlogPost::FORM_EDIT_POST,
+        $formPostModerate = $this->api->post()->getForm(
+            BlogPost::FORM_CHANGE_POST_STATUS,
             IObjectType::BASE,
             $this->blogPost
         );
 
-        $formEdit->setAction($this->getUrl('edit', ['id' => $this->blogPost->getId()]));
-        $formEdit->setMethod('post');
+        $formPostModerate->setAction($this->getUrl('draft', ['id' => $this->blogPost->getId()]));
+        $formPostModerate->setMethod('post');
 
         return $this->createResult(
             $this->template,
             [
-                'form' => $formEdit
+                'form' => $formPostModerate
             ]
         );
     }

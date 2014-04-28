@@ -22,6 +22,7 @@
     <ol class="list-unstyled">
         <li><?=$this->translate('Черновики')?>: <?=$this->widget('blog.draft.ownListUrl', ['template' => 'draftLinkAuthor'])?></li>
         <li><?=$this->translate('Посты на модерации')?>: <?=$this->widget('blog.moderate.ownListLink', ['template' => 'moderateLink'])?></li>
+        <li><?=$this->translate('Отклонённые посты')?>: <?=$this->widget('blog.reject.listLink', ['template' => 'listLink'])?></li>
     </ol>
 </div>
 <div class="sidebar-module">

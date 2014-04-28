@@ -20,6 +20,7 @@ return [
         'post' => '{#lazy:~/project/module/blog/site/post/component.config.php}',
         'draft' => '{#lazy:~/project/module/blog/site/draft/component.config.php}',
         'moderate' => '{#lazy:~/project/module/blog/site/moderate/component.config.php}',
+        'reject' => '{#lazy:~/project/module/blog/site/reject/component.config.php}',
         'category' => '{#lazy:~/project/module/blog/site/category/component.config.php}',
         'author' => '{#lazy:~/project/module/blog/site/author/component.config.php}',
         'tag' => '{#lazy:~/project/module/blog/site/tag/component.config.php}',

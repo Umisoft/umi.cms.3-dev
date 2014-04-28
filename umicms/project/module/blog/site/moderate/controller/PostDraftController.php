@@ -21,9 +21,9 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Контроллер отправки отклонённого поста на модерацию.
+ * Контроллер снятия поста с модерации и переноса в черновики.
  */
-class PostRejectController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PostDraftController extends BaseSecureController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;
@@ -58,7 +58,7 @@ class PostRejectController extends BaseSecureController implements IFormAware, I
 
         if ($form->setData($formData) && $form->isValid()) {
             $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
-            $blogPost->rejected();
+            $blogPost->draft();
 
             $this->getObjectPersister()->commit();
 
