@@ -1,11 +1,11 @@
 <?php
 /**
  * @var umicms\orm\selector\CmsSelector $list
- * @var umicms\project\module\blog\api\object\BlogPost $blogModerate
+ * @var umicms\project\module\blog\api\object\BlogPost $blogPost
  */
 ?>
 <?php if ($list->getTotal()) : ?>
-    <?php foreach ($list as $blogModerate) : ?>
-        <?= $this->widget('blog.moderate.view', ['blogModerate' => $blogModerate, 'template' => 'shortView']); ?>
+    <?php foreach ($list as $blogPost) : ?>
+        <?= $this->widget('blog.moderate.view', ['blogPost' => $blogPost, 'template' => 'shortView']); ?>
     <?php endforeach; ?>
 <?php endif; ?>

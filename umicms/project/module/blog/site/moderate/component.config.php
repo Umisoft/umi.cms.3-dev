@@ -17,21 +17,21 @@ return [
     DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\PostPageController',
-        'edit' => __NAMESPACE__ . '\controller\EditPostController',
-        'publish' => __NAMESPACE__ . '\controller\PublishPostController',
-        'reject' => __NAMESPACE__ . '\controller\RejectPostController',
+        'edit' => __NAMESPACE__ . '\controller\PostEditController',
+        'publish' => __NAMESPACE__ . '\controller\PostPublishController',
+        'reject' => __NAMESPACE__ . '\controller\PostRejectController',
         'all' => __NAMESPACE__ . '\controller\PostListController'
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
-        'view' => __NAMESPACE__ . '\widget\ModeratePostWidget',
+        'view' => __NAMESPACE__ . '\widget\PostWidget',
         'ownList' => __NAMESPACE__ . '\widget\OwnListWidget',
         'ownListLink' => __NAMESPACE__ . '\widget\OwnListLinkWidget',
         'allList' => __NAMESPACE__ . '\widget\AllListWidget',
         'allListLink' => __NAMESPACE__ . '\widget\AllListLinkWidget',
-        'editPost' => __NAMESPACE__ . '\widget\EditPostWidget',
-        'editPostLink' => __NAMESPACE__ . '\widget\EditPostLinkWidget',
-        'publishModerate' => __NAMESPACE__ . '\widget\PublishPostWidget',
-        'rejectModerate' => __NAMESPACE__ . '\widget\RejectPostWidget'
+        'editPost' => __NAMESPACE__ . '\widget\PostEditWidget',
+        'editPostLink' => __NAMESPACE__ . '\widget\PostEditLinkWidget',
+        'publishModerate' => __NAMESPACE__ . '\widget\PostPublishWidget',
+        'rejectModerate' => __NAMESPACE__ . '\widget\PostRejectWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
 

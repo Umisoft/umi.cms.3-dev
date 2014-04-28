@@ -1,23 +1,23 @@
 <?php
 /**
- * @var umicms\project\module\blog\api\object\BlogPost $blogModerate
+ * @var umicms\project\module\blog\api\object\BlogPost $blogPost
  */
 ?>
 <div class="blog-post">
-    <h1><?= $blogModerate->displayName ?></h1>
+    <h1><?= $blogPost->displayName ?></h1>
     <p class="blog-post-meta">
-        <?php if ($blogModerate->publishTime) : ?>
-        <time datetime="<?= $blogModerate->publishTime->format('c')?>">
-            <?= $blogModerate->publishTime->format('d.m.Y | H:i')?>
+        <?php if ($blogPost->publishTime) : ?>
+        <time datetime="<?= $blogPost->publishTime->format('c')?>">
+            <?= $blogPost->publishTime->format('d.m.Y | H:i')?>
         </time>
         <?php endif; ?>
-        <?php if ($blogModerate->author) : ?><?=$this->translate('Автор')?>: <a href="<?=$blogModerate->author->getPageUrl()?>"><?=$blogModerate->author->displayName?></a><?php endif; ?>
-        <?=$this->widget('blog.moderate.editPostLink', ['blogModerate' => $blogModerate, 'template' => 'editPostLink'])?>
+        <?php if ($blogPost->author) : ?><?=$this->translate('Автор')?>: <a href="<?=$blogPost->author->getPageUrl()?>"><?=$blogPost->author->displayName?></a><?php endif; ?>
+        <?=$this->widget('blog.moderate.editPostLink', ['blogPost' => $blogPost, 'template' => 'editPostLink'])?>
     </p>
 
-    <?= $blogModerate->announcement ?>
+    <?= $blogPost->announcement ?>
 
-    <a href="<?= $blogModerate->getPageUrl() ?>"><?=$this->translate('Читать далее')?></a>
-    <?=$this->widget('blog.moderate.publishModerate', ['blogModerate' => $blogModerate, 'template' => 'publishModerateForm'])?>
-    <?=$this->widget('blog.moderate.rejectModerate', ['blogModerate' => $blogModerate, 'template' => 'rejectModerateForm'])?>
+    <a href="<?= $blogPost->getPageUrl() ?>"><?=$this->translate('Читать далее')?></a>
+    <?=$this->widget('blog.moderate.publishModerate', ['blogPost' => $blogPost, 'template' => 'publishModerateForm'])?>
+    <?=$this->widget('blog.moderate.rejectModerate', ['blogPost' => $blogPost, 'template' => 'rejectModerateForm'])?>
 </div>

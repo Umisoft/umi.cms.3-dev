@@ -17,16 +17,16 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет вывода поста, требующего модерации.
  */
-class ModeratePostWidget extends BaseSecureWidget
+class PostWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'page';
     /**
-     * @var string|BlogPost $blogModerate пост или GUID поста требующего модерации
+     * @var string|BlogPost $blogPost пост или GUID поста требующего модерации
      */
-    public $blogModerate;
+    public $blogPost;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
@@ -47,16 +47,16 @@ class ModeratePostWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        if (is_string($this->blogModerate)) {
-            $this->blogModerate = $this->api->post()->getNeedModeratePost($this->blogModerate);
+        if (is_string($this->blogPost)) {
+            $this->blogPost = $this->api->post()->getNeedModeratePost($this->blogPost);
         }
 
-        if (!$this->blogModerate instanceof BlogPost) {
+        if (!$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogModerate',
+                        'param' => 'blogPost',
                         'class' => 'BlogPost'
                     ]
                 )
@@ -66,7 +66,7 @@ class ModeratePostWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'blogModerate' => $this->blogModerate
+                'blogPost' => $this->blogPost
             ]
         );
     }

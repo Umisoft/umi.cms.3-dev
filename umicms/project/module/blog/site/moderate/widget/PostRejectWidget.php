@@ -18,16 +18,16 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет отклонения поста, требующего модерации.
  */
-class RejectPostWidget extends BaseSecureWidget
+class PostRejectWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'publishModerateForm';
     /**
-     * @var string|BlogPost $blogModerate пост или GUID поста, тербующего модерации
+     * @var string|BlogPost $blogPost пост или GUID поста, тербующего модерации
      */
-    public $blogModerate;
+    public $blogPost;
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -47,16 +47,16 @@ class RejectPostWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        if (is_string($this->blogModerate)) {
-            $this->blogModerate = $this->api->post()->getNeedModeratePost($this->blogModerate);
+        if (is_string($this->blogPost)) {
+            $this->blogPost = $this->api->post()->getNeedModeratePost($this->blogPost);
         }
 
-        if (isset($this->blogModerate) && !$this->blogModerate instanceof BlogPost) {
+        if (isset($this->blogPost) && !$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogModerate',
+                        'param' => 'blogPost',
                         'class' => 'BlogPost'
                     ]
                 )
@@ -66,10 +66,10 @@ class RejectPostWidget extends BaseSecureWidget
         $formPostModerate = $this->api->post()->getForm(
             BlogPost::FORM_CHANGE_POST_STATUS,
             IObjectType::BASE,
-            $this->blogModerate
+            $this->blogPost
         );
 
-        $formPostModerate->setAction($this->getUrl('reject', ['id' => $this->blogModerate->getId()]));
+        $formPostModerate->setAction($this->getUrl('reject', ['id' => $this->blogPost->getId()]));
         $formPostModerate->setMethod('post');
 
         return $this->createResult(

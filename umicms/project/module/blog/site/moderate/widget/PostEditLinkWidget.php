@@ -17,16 +17,16 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет для вывода ссылки на редактирование поста, требующего модерации.
  */
-class EditPostLinkWidget extends BaseSecureWidget
+class PostEditLinkWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'editPostLink';
     /**
-     * @var BlogPost $blogModerate пост или GUID редактируемого поста, требующего модерации
+     * @var BlogPost $blogPost пост или GUID редактируемого поста, требующего модерации
      */
-    public $blogModerate;
+    public $blogPost;
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -46,23 +46,23 @@ class EditPostLinkWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        if (is_string($this->blogModerate)) {
-            $this->blogModerate = $this->api->post()->getNeedModeratePost($this->blogModerate);
+        if (is_string($this->blogPost)) {
+            $this->blogPost = $this->api->post()->getNeedModeratePost($this->blogPost);
         }
 
-        if (isset($this->blogModerate) && !$this->blogModerate instanceof BlogPost) {
+        if (isset($this->blogPost) && !$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogModerate',
+                        'param' => 'blogPost',
                         'class' => 'BlogPost'
                     ]
                 )
             );
         }
 
-        $url = $this->blogModerate->getId();
+        $url = $this->blogPost->getId();
         return $this->createResult(
             $this->template,
             [

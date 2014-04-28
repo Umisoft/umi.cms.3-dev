@@ -21,9 +21,9 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Контроллер редактирования поста блога, требующего модерации.
+ * Контроллер публикации поста, требующего модерации.
  */
-class EditPostController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PostPublishController extends BaseSecureController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;
@@ -49,32 +49,27 @@ class EditPostController extends BaseSecureController implements IFormAware, IOb
      */
     public function __invoke()
     {
-        $id = $this->getRouteVar('id');
-        $blogModerate = $this->api->post()->getNeedModeratePostById($id);
-
-        if ($this->isRequestMethodPost()) {
-
-            $form = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $blogModerate);
-            $formData = $this->getAllPostVars();
-
-            if ($form->setData($formData) && $form->isValid()) {
-
-                $this->getObjectPersister()->commit();
-
-                return $this->createRedirectResponse($this->getRequest()->getReferer());
-            } else {
-                //TODO ajax
-                var_dump($form->getMessages());
-                exit();
-            }
+        if (!$this->isRequestMethodPost()) {
+            throw new HttpNotFound('Page not found');
         }
 
-        return $this->createViewResponse(
-            'editPost',
-            [
-                'blogModerate' => $blogModerate
-            ]
-        );
+        $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
+        $formData = $this->getAllPostVars();
+
+        if ($form->setData($formData) && $form->isValid()) {
+
+
+            $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
+            $blogPost->published();
+
+            $this->getObjectPersister()->commit();
+
+            return $this->createRedirectResponse($this->getRequest()->getReferer());
+        } else {
+            //TODO ajax
+            var_dump($form->getMessages());
+            exit();
+        }
     }
 }
  

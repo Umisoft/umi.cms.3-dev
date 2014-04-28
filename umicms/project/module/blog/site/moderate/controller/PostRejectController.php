@@ -21,9 +21,9 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Контроллер публикации поста, требующего модерации.
+ * Контроллер отклонения поста, требующего модерации.
  */
-class PublishPostController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PostRejectController extends BaseSecureController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;
@@ -58,9 +58,8 @@ class PublishPostController extends BaseSecureController implements IFormAware, 
 
         if ($form->setData($formData) && $form->isValid()) {
 
-
             $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
-            $blogPost->published();
+            $blogPost->rejected();
 
             $this->getObjectPersister()->commit();
 

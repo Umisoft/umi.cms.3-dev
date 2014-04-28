@@ -18,16 +18,16 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет редактирования поста, требующего модерации.
  */
-class EditPostWidget extends BaseSecureWidget
+class PostEditWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'editPost';
     /**
-     * @var string|BlogPost $blogModerate пост или GUID редактируемого поста, требующего модерации
+     * @var string|BlogPost $blogPost пост или GUID редактируемого поста, требующего модерации
      */
-    public $blogModerate;
+    public $blogPost;
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -47,16 +47,16 @@ class EditPostWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        if (is_string($this->blogModerate)) {
-            $this->blogModerate = $this->api->post()->getNeedModeratePost($this->blogModerate);
+        if (is_string($this->blogPost)) {
+            $this->blogPost = $this->api->post()->getNeedModeratePost($this->blogPost);
         }
 
-        if (isset($this->blogModerate) && !$this->blogModerate instanceof BlogPost) {
+        if (isset($this->blogPost) && !$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogModerate',
+                        'param' => 'blogPost',
                         'class' => 'BlogPost'
                     ]
                 )
@@ -66,10 +66,10 @@ class EditPostWidget extends BaseSecureWidget
         $formEditModerate = $this->api->post()->getForm(
             BlogPost::FORM_EDIT_POST,
             IObjectType::BASE,
-            $this->blogModerate
+            $this->blogPost
         );
 
-        $formEditModerate->setAction($this->getUrl('edit', ['id' => $this->blogModerate->getId()]));
+        $formEditModerate->setAction($this->getUrl('edit', ['id' => $this->blogPost->getId()]));
         $formEditModerate->setMethod('post');
 
         return $this->createResult(
