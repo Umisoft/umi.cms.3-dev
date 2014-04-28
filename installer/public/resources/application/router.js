@@ -514,12 +514,15 @@ define([], function(){
                 if(!action){
                     return this.transitionTo('context', context.get('id'));
                 }
+
                 if(model.object.get('id') !== context.get('id')){
                     Ember.set(model, 'object', context);
-                    controller.set('model', model);
-                } else{
-                    controller.set('model', model);
                 }
+                if(model.createObject){
+                    Ember.set(model, 'object', model.createObject);
+                    Ember.set(model, 'createObject', null);
+                }
+                controller.set('model', model);
             },
             actions: {
                 /**

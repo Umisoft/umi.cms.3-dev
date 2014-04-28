@@ -36,12 +36,14 @@ define(['App', 'text!./toolbar.hbs'], function(UMI, toolbarTpl){
             backupList: null,
 
             updateBackupList: function(){
-                var self = this;
-                self.set('backupList', self.getBackupList());
-                self.get('parentController.object').off('didUpdate');
-                self.get('parentController.object').on('didUpdate', function(){
+                if(this.get('content').findBy('type', 'backupList')){
+                    var self = this;
                     self.set('backupList', self.getBackupList());
-                });
+                    self.get('parentController.object').off('didUpdate');
+                    self.get('parentController.object').on('didUpdate', function(){
+                        self.set('backupList', self.getBackupList());
+                    });
+                }
             }.observes('parentController.object').on('init'),
 
             actions: {
@@ -75,7 +77,7 @@ define(['App', 'text!./toolbar.hbs'], function(UMI, toolbarTpl){
 
         UMI.FormToolbarItemController = Ember.ObjectController.extend({
             isApply: function(){
-                return this.get('content.type') === 'apply';
+                return this.get('content.type') === 'apply' || this.get('content.type') === 'create';
             }.property(),
 
             isSwitchActivity: function(){
