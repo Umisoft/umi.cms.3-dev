@@ -45,6 +45,11 @@ class Bootstrap implements IProjectConfigAware
     use TProjectConfigAware;
 
     /**
+     * Имя куки сессии.
+     */
+    const SESSION_COOKIE_NAME = 'UMISESSID';
+
+    /**
      * Опция конфигурации для регистрации инструментов
      */
     const OPTION_TOOLS = 'toolkit';

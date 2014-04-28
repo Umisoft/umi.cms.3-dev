@@ -10,14 +10,19 @@
 namespace umicms\authentication;
 
 use umi\authentication\storage\SessionStorage;
+use umi\http\IHttpAware;
+use umi\http\THttpAware;
+use umicms\project\Bootstrap;
 use umicms\project\module\users\api\UsersModule;
 use umicms\project\module\users\api\object\Guest;
 
 /**
  * {@inheritdoc}
  */
-class CmsAuthStorage extends SessionStorage
+class CmsAuthStorage extends SessionStorage implements IHttpAware
 {
+    use THttpAware;
+
     /**
      * @var UsersModule $api
      */
@@ -49,5 +54,18 @@ class CmsAuthStorage extends SessionStorage
     {
         return $this->api->getGuest();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasIdentity()
+    {
+        if (!$this->getHttpRequest()->cookies->has(Bootstrap::SESSION_COOKIE_NAME)) {
+            return false;
+        }
+
+        return $this->hasSessionVar(self::ATTRIBUTE_NAME);
+    }
+
 }
  

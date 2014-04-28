@@ -54,7 +54,7 @@ abstract class BaseWidget extends FrameworkWidget implements IUrlManagerAware
     /**
      * {@inheritdoc}
      */
-    protected function createResult($templateName, array $variables)
+    protected function createResult($templateName, array $variables = [])
     {
         $variables['widget'] = $this->getShortPath();
         $view = new CmsView($this, $this->getContext(), $templateName, $variables);
