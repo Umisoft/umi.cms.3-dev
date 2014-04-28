@@ -222,8 +222,12 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                     self.set('selectedIds', results[0].mapBy('id'));
                     Ember.set(object.get('loadedRelationshipsByName'), property, results[0].mapBy('id'));
                 });
-            }
+            },
 
+            willDestroyElement: function(){
+                this.removeObserver('parentView.inputInFocus');
+                this.removeObserver('isOpen');
+            }
         });
     };
 });

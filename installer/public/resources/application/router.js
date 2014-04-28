@@ -111,6 +111,9 @@ define([], function(){
                                             self.send('getEditForm', params.object);
                                         });
                                     } else{
+                                        // Обновление связей рутовой ноды в дереве. TODO: подумать как можно избежать обращения к контроллеру дерева.
+                                        self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(params.object.get('id'), 'root');
+
                                         self.send('getEditForm', params.object);
                                     }
                                 }
@@ -375,7 +378,13 @@ define([], function(){
         });
 
         UMI.ContextRoute = Ember.Route.extend({
-            model: function(params){
+            model: function(params, transition){
+                var actionRouteHandler = transition.state.handlerInfos.findBy('name', 'action');
+                if(actionRouteHandler && actionRouteHandler.handler.exit){
+                    actionRouteHandler.handler.exit();
+                    // TODO: тут написать метод сбрасывающий кэш дочернего роута
+                }
+
                 var componentController = this.controllerFor('component');
                 var collectionName = componentController.get('collectionName');
                 var RootModel;
@@ -423,8 +432,10 @@ define([], function(){
             }
         });
 
+        var needRouteRefresh = true;
         UMI.ActionRoute = Ember.Route.extend({
             model: function(params, transition){
+                needRouteRefresh = false;
                 var self = this;
                 var actionName = params.action;
                 var contextModel = this.modelFor('context');
@@ -478,7 +489,9 @@ define([], function(){
             renderTemplate: function(controller, model){
                 try{
                     var templateType = model.action.get('name');
-                    this.render(templateType);
+                    this.render(templateType, {
+                        controller: controller
+                    });
                 } catch(error){
                     var errorObject = {
                         'statusText': error.name,
@@ -489,18 +502,27 @@ define([], function(){
                 }
             },
             setupController: function(controller, model){
+                if(needRouteRefresh){
+                    this.refresh();
+                    return;
+                } else{
+                    needRouteRefresh = false;
+                }
                 var context = this.modelFor('context');
                 var actions = this.controllerFor('component').get('contentControls');
                 var action = actions.findBy('name', model.action.get('name'));
                 if(!action){
                     return this.transitionTo('context', context.get('id'));
                 }
+
                 if(model.object.get('id') !== context.get('id')){
                     Ember.set(model, 'object', context);
-                    this._super(controller, model);
-                } else{
-                    this._super(controller, model);
                 }
+                if(model.createObject){
+                    Ember.set(model, 'object', model.createObject);
+                    Ember.set(model, 'createObject', null);
+                }
+                controller.set('model', model);
             },
             actions: {
                 /**
@@ -509,9 +531,9 @@ define([], function(){
                  @param {Object} transition
                  */
                 willTransition: function(transition){
-                    var model = this.modelFor('context').object;
-                    if('createObject' in this.modelFor('context') && this.modelFor('context').createObject.get('isNew')){
-                        this.modelFor('context').createObject.deleteRecord();
+                    var model = this.modelFor('action').object;
+                    if('createObject' in this.modelFor('action') && this.modelFor('action').createObject.get('isNew')){
+                        this.modelFor('action').createObject.deleteRecord();
                     }
                     if(model.get('isDirty')){
                         transition.abort();

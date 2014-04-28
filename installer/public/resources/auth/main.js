@@ -56,16 +56,6 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                                 valid = false;
                             }
                         }
-                        if(element.getAttribute('type') !== 'submit'){
-                            if(valid){
-                                $(element).closest('.columns').removeClass('error');
-                                element.onfocus = null;
-                            } else{
-                                $(element).closest('.columns').addClass('error');
-                                removeError(element);
-                                return false;
-                            }
-                        }
                     }
                     return true;
                 }
