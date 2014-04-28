@@ -15,7 +15,7 @@ return [
             'Рубрики' => 'Rubrics',
             'Сюжеты' => 'Subjects',
             'Demo lite twig' => 'Demo lite twig',
-            'Blank-шаблон созданный на Umicms 3' => '',
+            'Blank-шаблон созданный на Umicms 3' => 'Blank-template create on Umicms 3',
             'Demo lite twig build for {bootstrap} by {umicms}' => 'Demo lite twig build for {bootstrap} by {umicms}',
             'На верх' => 'Back to top',
             'Назад' => 'Previous',

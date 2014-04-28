@@ -16,12 +16,12 @@ use umicms\project\module\users\api\UsersModule;
 /**
  * Виджет вывода формы авторизации.
  */
-class FormWidget extends BaseSecureWidget
+class LoginFormWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'form';
+    public $template = 'loginForm';
 
     /**
      * @var UsersModule $api API модуля "Пользователи"
@@ -43,13 +43,13 @@ class FormWidget extends BaseSecureWidget
     public function __invoke()
     {
         $form = $this->api->user()->getForm('login', 'authorized');
-        $form->setAction($this->getUrlManager()->getSystemPageUrl($this->getComponent()->getPath()));
+        $form->setAction($this->getUrl('login'));
 
         /**
          * @var IFormElement $refererInput
          */
         $refererInput = $form->get('referer');
-        $refererInput->setValue($this->getUrlManager()->getCurrentUrl(), true);
+        $refererInput->setValue($this->getUrlManager()->getCurrentUrl(true));
 
         return $this->createResult(
             $this->template,

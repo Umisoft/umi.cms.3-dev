@@ -18,6 +18,8 @@ use umi\http\IHttpAware;
 use umi\http\Request;
 use umi\http\Response;
 use umi\http\THttpAware;
+use umi\session\ISessionAware;
+use umi\session\TSessionAware;
 use umi\stream\IStreamService;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
@@ -32,6 +34,7 @@ use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
+use umicms\project\Bootstrap;
 use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
@@ -45,13 +48,14 @@ use umicms\serialization\TSerializationAware;
  * Приложение сайта.
  */
 class SiteApplication extends SiteComponent
-    implements IHttpAware, IToolkitAware, ISerializationAware, IUrlManagerAware
+    implements IHttpAware, IToolkitAware, ISerializationAware, IUrlManagerAware, ISessionAware
 {
     use THttpAware;
     use TToolkitAware;
     use TSerializationAware;
     use TUrlManagerAware;
     use TSiteSettingsAware;
+    use TSessionAware;
 
     /**
      * Имя настройки для задания guid главной страницы
@@ -139,6 +143,10 @@ class SiteApplication extends SiteComponent
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
+        if ($response = $this->postRedirectGet($request)) {
+            return $response;
+        }
+
         $this->registerSelectorInitializer();
         $this->registerSerializers();
 
@@ -223,6 +231,39 @@ class SiteApplication extends SiteComponent
         }
 
         return file_get_contents($uri);
+    }
+
+    /**
+     * Реализация паттерна Post/Redirect/Get - PRG.
+     * @link http://en.wikipedia.org/wiki/Post/Redirect/Get
+     */
+    protected function postRedirectGet(Request $request)
+    {
+        $prgKey = 'prg_' . md5($request->getRequestUri());
+
+        if ($request->getMethod() === 'POST' &&
+            !empty($_FILES) &&
+            $request->getRequestFormat() == self::DEFAULT_REQUEST_FORMAT)
+        {
+
+            $post = $request->request->all();
+            $this->setSessionVar($prgKey, $post);
+
+            $response = $this->createHttpResponse();
+            $response->headers->set('Location', $request->getRequestUri());
+            $response->setStatusCode(Response::HTTP_FOUND);
+
+            return $response;
+
+        } elseif ($request->cookies->has(Bootstrap::SESSION_COOKIE_NAME) && $this->hasSessionVar($prgKey)) {
+
+            $request->server->set('REQUEST_METHOD', 'POST');
+            $request->request->replace($this->getSessionVar($prgKey));
+            $this->removeSessionVar($prgKey);
+
+            return null;
+        }
+        return null;
     }
 
     /**
