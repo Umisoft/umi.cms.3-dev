@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\draft\controller;
+namespace umicms\project\module\blog\site\moderate\controller;
 
 use umi\form\IFormAware;
 use umi\form\TFormAware;
@@ -21,9 +21,9 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Контроллер публикации черновика.
+ * Контроллер редактирования поста блога, требующего модерации.
  */
-class BlogPublishDraftController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class EditPostController extends BaseSecureController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;
@@ -49,25 +49,32 @@ class BlogPublishDraftController extends BaseSecureController implements IFormAw
      */
     public function __invoke()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
+        $id = $this->getRouteVar('id');
+        $blogModerate = $this->api->post()->getNeedModeratePostById($id);
+
+        if ($this->isRequestMethodPost()) {
+
+            $form = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $blogModerate);
+            $formData = $this->getAllPostVars();
+
+            if ($form->setData($formData) && $form->isValid()) {
+
+                $this->getObjectPersister()->commit();
+
+                return $this->createRedirectResponse($this->getRequest()->getReferer());
+            } else {
+                //TODO ajax
+                var_dump($form->getMessages());
+                exit();
+            }
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
-        $formData = $this->getAllPostVars();
-
-        if ($form->setData($formData) && $form->isValid()) {
-
-            $blogPost = $this->api->post()->getDraftById($this->getRouteVar('id'));
-            $blogPost->published();
-
-            $this->getObjectPersister()->commit();
-
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages()); exit();
-        }
+        return $this->createViewResponse(
+            'editPost',
+            [
+                'blogModerate' => $blogModerate
+            ]
+        );
     }
 }
  

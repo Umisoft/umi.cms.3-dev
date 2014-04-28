@@ -118,8 +118,8 @@ return [
                         'choices' => [
                             BlogPost::POST_STATUS_DRAFT => BlogPost::POST_STATUS_DRAFT,
                             BlogPost::POST_STATUS_NEED_MODERATE => BlogPost::POST_STATUS_NEED_MODERATE,
-                            BlogPost::POST_STATUS_UNPUBLISH => BlogPost::POST_STATUS_UNPUBLISH,
-                            BlogPost::POST_STATUS_PUBLISH => BlogPost::POST_STATUS_PUBLISH
+                            BlogPost::POST_STATUS_REJECTED => BlogPost::POST_STATUS_REJECTED,
+                            BlogPost::POST_STATUS_PUBLISHED => BlogPost::POST_STATUS_PUBLISHED
                         ]
                     ]
                 ],

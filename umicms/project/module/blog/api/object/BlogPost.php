@@ -77,7 +77,7 @@ class BlogPost extends CmsObject implements ICmsPage
     /**
      * Форма помещения и извлечения поста в черновики
      */
-    const FORM_DRAFT_POST = 'draftPost';
+    const FORM_CHANGE_POST_STATUS = 'changeStatusPost';
     /**
      * Статус поста: черновик
      */
@@ -85,11 +85,11 @@ class BlogPost extends CmsObject implements ICmsPage
     /**
      * Статус поста: опубликован
      */
-    const POST_STATUS_PUBLISH = 'published';
+    const POST_STATUS_PUBLISHED = 'published';
     /**
-     * Статус поста: не опубликован
+     * Статус поста: отклонён
      */
-    const POST_STATUS_UNPUBLISH = 'unPublished';
+    const POST_STATUS_REJECTED = 'rejected';
     /**
      * Статус поста: требует модерации
      */
@@ -107,22 +107,42 @@ class BlogPost extends CmsObject implements ICmsPage
     }
 
     /**
-     * Перемещает пост в черновики.
+     * Выставляет статус поста черновик.
      * @return $this
      */
-    public function toDraft()
+    public function draft()
     {
         $this->publishStatus = self::POST_STATUS_DRAFT;
         return $this;
     }
 
     /**
-     * Публикует пост.
+     * Выставляет статус поста опубликован.
      * @return $this
      */
-    public function publish()
+    public function published()
     {
-        $this->publishStatus = self::POST_STATUS_PUBLISH;
+        $this->publishStatus = self::POST_STATUS_PUBLISHED;
+        return $this;
+    }
+
+    /**
+     * Выставляет статус поста требует модерации.
+     * @return $this
+     */
+    public function needModerate()
+    {
+        $this->publishStatus = self::POST_STATUS_NEED_MODERATE;
+        return $this;
+    }
+
+    /**
+     * Выставляет статус поста отклонён.
+     * @return $this
+     */
+    public function rejected()
+    {
+        $this->publishStatus = self::POST_STATUS_REJECTED;
         return $this;
     }
 }

@@ -114,4 +114,67 @@ class BlogPostCollection extends PageCollection
 
         return $blogDraft;
     }
+
+    /**
+     * Возвращает список постов, требующих модерацию.
+     * @return CmsSelector
+     */
+    public function getNeedModeratePosts()
+    {
+        return $this->select()
+            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_NEED_MODERATE);
+    }
+
+    /**
+     * Возвращает пост, требующий модерации по GUID
+     * @param $guid
+     * @return null|BlogPost
+     */
+    public function getNeedModeratePost($guid)
+    {
+        $moderatePost = $this->getNeedModeratePosts()
+            ->where(BlogPost::FIELD_GUID)->equals($guid);
+
+        return $moderatePost->getResult()->fetch();
+    }
+
+    /**
+     * Возвращает пост, требующий модерации по Id
+     * @param $id
+     * @return null|BlogPost
+     */
+    public function getNeedModeratePostById($id)
+    {
+        $moderatePost = $this->getNeedModeratePosts()
+            ->where(BlogPost::FIELD_IDENTIFY)->equals($id);
+
+        return $moderatePost->getResult()->fetch();
+    }
+
+    /**
+     * Возвращает пост, требующий модерации по URI.
+     * @param string $uri URI
+     * @param bool $withLocalization загружать ли значения локализованных свойств объекта.
+     * @throws NonexistentEntityException если не удалось получить объект
+     * @return BlogPost
+     */
+    public function getNeedModeratePostByUri($uri, $withLocalization = false)
+    {
+        $selector = $this->getNeedModeratePosts()
+            ->withLocalization($withLocalization)
+            ->where(BlogPost::FIELD_PAGE_SLUG)
+            ->equals($uri);
+
+        $moderatePost = $selector->getResult()->fetch();
+
+        if (!$moderatePost instanceof BlogPost) {
+            throw new NonexistentEntityException($this->translate(
+                'Cannot get page by slug "{slug}" from collection "{collection}".',
+                ['slug' => $uri, 'collection' => $this->getName()]
+            ));
+        }
+
+        return $moderatePost;
+    }
+
 }

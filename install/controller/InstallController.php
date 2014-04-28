@@ -313,6 +313,12 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $post->getProperty('componentName')->setValue('draft');
         $post->getProperty('componentPath')->setValue('blog.draft');
 
+        $post = $structureCollection->add('moderate', 'system', $blogPage)
+            ->setValue('displayName', 'Посты на модерацию')
+            ->setValue('displayName', 'Posts to moderate', 'en-US');
+        $post->getProperty('componentName')->setValue('moderate');
+        $post->getProperty('componentPath')->setValue('blog.moderate');
+
         $comment = $structureCollection->add('blogcomment', 'system', $blogPage)
             ->setValue('displayName', 'Комментарий блога')
             ->setValue('displayName', 'Comment', 'en-US')
@@ -359,7 +365,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>Causes of deviant behavior of domestic ghosts certainly lie in the influence of MTV and the aggressive promotion of alternative music.</p>', 'en-US')
             ->setValue('contents', '<p>Причины девиантного поведения домашних призраков кроются безусловно во влиянии MTV и пропаганде агрессивной альтернативной музыки.<br /><br />Также наблюдается рост домовых, практикующих экстремальное катание на роликовых коньках, скейт-бордах, BMX, что повышает общий уровень черепно-мозговых травм среди паранормальных существ. <br /><br />Не может не оказывать влияния проникновение культуры эмо в быт и уклад домашних призраков, что ведет к росту самоубийств и депрессивных состояний среди этих в общем-то жизнерадостных<br /> созданий.<br /><br />В качестве метода влияния на отклонения у домашний призраков я вижу их обращение в более позитивные и миролюбивые культуры, их пропаганда и популяризация в среде домашних призраков.<br /><br /><strong>Екатерина Джа-Дуплинская</strong></p>')
             ->setValue('contents', '<p>Causes of deviant behavior home ghosts certainly lie in the influence of MTV and the aggressive promotion of alternative music . <br /> <br /> Also, an increase in brownies, practicing extreme inline skating , skateboarding , BMX, which increases the overall level of traumatic injuries of paranormal creatures. <br /> <br /> It can not affect the penetration of emo culture and way of life of the home of ghosts , which leads to an increase in suicide and depression among those in general cheerful <br /> creatures . <br /> <br / > as a method of influence on the deflection at home I see the ghosts of their treatment in a positive and peaceful culture , their propaganda and popularization in the home environment ghosts . <br /> <br /> <strong> Catherine Jar Duplinskaya </strong> </p>', 'en-US')
-            ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_PUBLISH)
+            ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_PUBLISHED)
             ->setValue('slug', 'deviant')
             ->setGUID('8e675484-bea4-4fb5-9802-4750cc21e509')
             ->setValue('publishTime', new \DateTime('2010-08-11 17:35:00'));
@@ -388,8 +394,21 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>Renata Litvinova announced and allowed to use methods of conflict-author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen, try to remember how your evening ended yesterday.</p>', 'en-US')
             ->setValue('contents', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>')
             ->setValue('category', $category)
-            ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_UNPUBLISH)
+            ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_REJECTED)
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj-2')
+            ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
+
+        $postCollection->add()
+            ->setValue('displayName', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой-3')
+            ->setValue('displayName', 'Conflict resolution method UFO Renata Litvinova', 'en-US')
+            ->setValue('metaTitle', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
+            ->setValue('h1', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
+            ->setValue('announcement', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер.</p>')
+            ->setValue('announcement', '<p>Renata Litvinova announced and allowed to use methods of conflict-author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen, try to remember how your evening ended yesterday.</p>', 'en-US')
+            ->setValue('contents', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>')
+            ->setValue('category', $category)
+            ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_NEED_MODERATE)
+            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj-3')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
 
         $authorCollection->add()
@@ -845,12 +864,12 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var IDialect $dialect
          */
         $dialect = $connection->getDatabasePlatform();
-        $connection->exec($dialect->getDisableForeignKeysSQL());
 
         $tables = $connection->getDriver()->getSchemaManager($connection)->listTableNames();
 
         foreach ($tables as $table) {
             if ($connection->getDriver()->getSchemaManager($connection)->tablesExist($table)) {
+                $connection->exec($dialect->getDisableForeignKeysSQL());
                 $connection->getDriver()->getSchemaManager($connection)->dropTable($table);
             }
         }
@@ -1061,7 +1080,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `category_id` bigint(20) unsigned DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
                     `comments_count` bigint(20) unsigned DEFAULT NULL,
-                    `publish_status` enum('draft','published','unPublished','moderate') DEFAULT NULL,
+                    `publish_status` enum('draft','published','rejected','moderate') DEFAULT NULL,
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_post_guid` (`guid`),

@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\draft\controller;
+namespace umicms\project\module\blog\site\moderate\controller;
 
 use umi\form\IFormAware;
 use umi\form\TFormAware;
@@ -21,9 +21,9 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Контроллер публикации черновика.
+ * Контроллер отклонения поста, требующего модерации.
  */
-class BlogPublishDraftController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class RejectPostController extends BaseSecureController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;
@@ -58,15 +58,16 @@ class BlogPublishDraftController extends BaseSecureController implements IFormAw
 
         if ($form->setData($formData) && $form->isValid()) {
 
-            $blogPost = $this->api->post()->getDraftById($this->getRouteVar('id'));
-            $blogPost->published();
+            $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
+            $blogPost->rejected();
 
             $this->getObjectPersister()->commit();
 
             return $this->createRedirectResponse($this->getRequest()->getReferer());
         } else {
             //TODO ajax
-            var_dump($form->getMessages()); exit();
+            var_dump($form->getMessages());
+            exit();
         }
     }
 }

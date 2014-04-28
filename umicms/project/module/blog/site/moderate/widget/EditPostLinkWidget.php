@@ -7,27 +7,26 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\draft\widget;
+namespace umicms\project\module\blog\site\moderate\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет публикации черновика.
+ * Виджет для вывода ссылки на редактирование поста, требующего модерации.
  */
-class BlogPublishDraftWidget extends BaseSecureWidget
+class EditPostLinkWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'publishDraftForm';
+    public $template = 'editPostLink';
     /**
-     * @var string|BlogPost $blogDraft черновик или GUID черновика
+     * @var BlogPost $blogModerate пост или GUID редактируемого поста, требующего модерации
      */
-    public $blogDraft;
+    public $blogModerate;
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -47,31 +46,27 @@ class BlogPublishDraftWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        if (is_string($this->blogDraft)) {
-            $this->blogDraft = $this->api->post()->getDraft($this->blogDraft);
+        if (is_string($this->blogModerate)) {
+            $this->blogModerate = $this->api->post()->getNeedModeratePost($this->blogModerate);
         }
 
-        if (isset($this->blogDraft) && !$this->blogDraft instanceof BlogPost) {
+        if (isset($this->blogModerate) && !$this->blogModerate instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogDraft',
+                        'param' => 'blogModerate',
                         'class' => 'BlogPost'
                     ]
                 )
             );
         }
 
-        $formPostDraft = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE, $this->blogDraft);
-
-        $formPostDraft->setAction($this->getUrl('publish', ['id' => $this->blogDraft->getId()]));
-        $formPostDraft->setMethod('post');
-
+        $url = $this->blogModerate->getId();
         return $this->createResult(
             $this->template,
             [
-                'form' => $formPostDraft
+                'url' => $this->getUrl('edit', ['id' => $url])
             ]
         );
     }
