@@ -57,8 +57,6 @@ class PostPublishController extends BaseSecureController implements IFormAware, 
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {
-
-
             $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
             $blogPost->published();
 

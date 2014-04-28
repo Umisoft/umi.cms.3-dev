@@ -57,7 +57,6 @@ class PostRejectController extends BaseSecureController implements IFormAware, I
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {
-
             $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
             $blogPost->rejected();
 
