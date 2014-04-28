@@ -23,7 +23,7 @@ class PostPublishWidget extends BaseSecureWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'publishModerateForm';
+    public $template = 'publishForm';
     /**
      * @var string|BlogPost $blogPost пост или GUID поста, тербующего модерации
      */
@@ -51,7 +51,7 @@ class PostPublishWidget extends BaseSecureWidget
             $this->blogPost = $this->api->post()->getNeedModeratePost($this->blogPost);
         }
 
-        if (isset($this->blogPost) && !$this->blogPost instanceof BlogPost) {
+        if (!$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',

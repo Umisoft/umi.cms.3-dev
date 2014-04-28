@@ -18,6 +18,6 @@
     <?= $blogPost->announcement ?>
 
     <a href="<?= $blogPost->getPageUrl() ?>"><?=$this->translate('Читать далее')?></a>
-    <?=$this->widget('blog.moderate.publishModerate', ['blogPost' => $blogPost, 'template' => 'publishModerateForm'])?>
-    <?=$this->widget('blog.moderate.rejectModerate', ['blogPost' => $blogPost, 'template' => 'rejectModerateForm'])?>
+    <?=$this->widget('blog.moderate.publishModerate', ['blogPost' => $blogPost, 'template' => 'publishForm'])?>
+    <?=$this->widget('blog.moderate.rejectModerate', ['blogPost' => $blogPost, 'template' => 'rejectForm'])?>
 </div>

@@ -24,7 +24,7 @@ class PostEditLinkWidget extends BaseSecureWidget
      */
     public $template = 'editPostLink';
     /**
-     * @var BlogPost $blogPost пост или GUID редактируемого поста, требующего модерации
+     * @var string|BlogPost $blogPost пост или GUID редактируемого поста, требующего модерации
      */
     public $blogPost;
     /**
@@ -50,7 +50,7 @@ class PostEditLinkWidget extends BaseSecureWidget
             $this->blogPost = $this->api->post()->getNeedModeratePost($this->blogPost);
         }
 
-        if (isset($this->blogPost) && !$this->blogPost instanceof BlogPost) {
+        if (!$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',

@@ -55,7 +55,7 @@ class BlogTagPostListWidget extends BaseSecureWidget
                 $tag = $this->api->tag()->get($tag);
             }
 
-            if (isset($tag) && !$tag instanceof BlogTag) {
+            if (!$tag instanceof BlogTag) {
                 throw new InvalidArgumentException(
                     $this->translate(
                         'Widget parameter "{param}" should be instance of "{class}".',
