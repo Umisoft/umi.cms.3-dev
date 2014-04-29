@@ -23,6 +23,6 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection\newsRubric', 'collection'
+        'collection.newsRubric', 'collection'
     ]
 ];
