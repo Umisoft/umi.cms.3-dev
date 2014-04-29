@@ -3,13 +3,14 @@
 return [
     'project.site' => [
         'en-US' => [
+            'Авторизация' => 'Sign in',
             'RSS ленты' => 'RSS feed',
             'Блоги' => 'Blogs',
             'Категории' => 'Categories',
             'Облако тэгов' => 'Tags cloud',
             'Авторы' => 'Authors',
             'Модерирование' => 'Moderate',
-            'Черновики автора' => 'Author\'s drafts',
+            'Посты автора' => 'Authors\'s posts',
             'Все черновики' => 'All drafts',
             'Новости' => 'News',
             'Рубрики' => 'Rubrics',
@@ -20,6 +21,15 @@ return [
             'Наверх' => 'Back to top',
             'Назад' => 'Previous',
             'Дальше' => 'Next',
+            'Черновики' => 'Drafts',
+            'Посты на модерации' => 'Post on moderation',
+            'Отклонённые посты' => 'Rejected posts',
+            'ru-RU' => 'RU',
+            'en-US' => 'EN',
+        ],
+        'ru-RU' => [
+            'ru-RU' => 'RU',
+            'en-US' => 'EN',
         ]
     ],
 

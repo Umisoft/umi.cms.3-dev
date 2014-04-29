@@ -6,38 +6,51 @@
 
 <body>
 
-<div class="blog-masthead">
+<div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
 
-        <?=$this->widget('structure.menu.auto', ['depth' => 1])?>
+        <div class="navbar-collapse collapse">
+            <?=$this->widget('structure.menu.auto', ['depth' => 1])?>
+
+            <?php if (count($locales)) : ?>
+                <ul class="nav navbar-nav navbar-right">
+                    <?php foreach ($locales as $localeId => $localeInfo) : ?>
+                        <li class="<?= $localeInfo['current'] ? 'active' : '' ?>">
+                            <a href="<?= $localeInfo['url'] ?>"><?= $this->translate($localeId) ?></a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+
+        </div>
 
     </div>
 </div>
 
 <div class="container">
 
-    <div class="blog-header">
+    <header class="blog-header">
         <h1 class="blog-title"><?=$this->translate('Demo lite twig')?></h1>
         <p class="lead blog-description"><?=$this->translate('Blank-шаблон созданный на Umicms 3')?></p>
-    </div>
+    </header>
 
-    <div class="row">
+    <main class="row">
 
-        <div class="col-sm-8 blog-main">
+        <section class="col-sm-8 blog-main">
 
             <?=$contents?>
 
-        </div>
+        </section>
 
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <aside class="col-sm-3 col-sm-offset-1 blog-sidebar">
             <?=$this->render('partial/sidebar-news.phtml', $scope) ?>
-        </div>
+        </aside>
 
-    </div>
+    </main>
 
 </div>
 
-<div class="blog-footer">
+<footer class="blog-footer">
     <p>
         <?=$this->translate(
             'Demo lite twig build for {bootstrap} by {umicms}',
@@ -50,7 +63,7 @@
     <p>
         <a href="#"><?=$this->translate('Наверх')?></a>
     </p>
-</div>
+</footer>
 
 
 <!-- Bootstrap core JavaScript

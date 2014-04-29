@@ -7,6 +7,7 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\form\element\Checkbox;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umicms\project\site\SiteApplication;
@@ -101,5 +102,12 @@ return [
                 'dataSource' => SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY
             ]
         ],
+        SiteApplication::SETTING_BROWSER_CACHE_ENABLED => [
+            'type' => Checkbox::TYPE_NAME,
+            'label' => SiteApplication::SETTING_BROWSER_CACHE_ENABLED,
+            'options' => [
+                'dataSource' => SiteApplication::SETTING_BROWSER_CACHE_ENABLED
+            ]
+        ]
     ]
 ];

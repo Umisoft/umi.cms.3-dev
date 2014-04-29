@@ -15,22 +15,25 @@ use umi\hmvc\component\IComponent;
 use umi\hmvc\IMvcEntityFactory;
 use umi\http\Request;
 use umi\http\Response;
-use umi\i18n\ILocalesService;
 use umi\i18n\translator\ITranslator;
 use umi\route\IRouteFactory;
+use umi\route\IRouter;
 use umi\route\result\IRouteResult;
 use umi\spl\config\TConfigSupport;
 use umi\templating\engine\ITemplateEngineFactory;
 use umi\templating\engine\php\PhpTemplateEngine;
 use umi\toolkit\IToolkit;
 use umi\toolkit\Toolkit;
-use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManager;
+use umicms\i18n\AdminLocale;
+use umicms\i18n\CmsLocalesService;
+use umicms\i18n\SiteLocale;
 use umicms\project\config\IProjectConfigAware;
 use umicms\project\config\TProjectConfigAware;
+use umicms\route\ProjectHostRoute;
 use umicms\templating\engine\php\TemplatingPhpExtension;
 use umicms\templating\engine\php\ViewPhpExtension;
 use umicms\templating\engine\twig\TemplatingTwigExtension;
@@ -111,22 +114,26 @@ class Bootstrap implements IProjectConfigAware
         $this->prepareRequest($request);
 
         $routeResult = $this->routeProject($request);
+
         $routeMatches = $routeResult->getMatches();
 
         $project = $this->createProject();
 
-        if (isset($routeMatches['locale'])) {
-            /**
-             * @var ILocalesService $localesService
-             */
-            $localesService = $this->toolkit->getService('umi\i18n\ILocalesService');
-            $localesService->setCurrentLocale($routeMatches['locale']);
-        }
-
-        $baseProjectUrl = isset($routeMatches['uri']) ? $routeMatches['uri'] : '';
+        $projectPrefix = isset($routeMatches['prefix']) ? $routeMatches['prefix'] : '';
         $routePath = $routeResult->getUnmatchedUrl();
 
-        $this->configureUrlManager($project, $routeResult, $baseProjectUrl);
+        /**
+         * @var IUrlManager $urlManager
+         */
+        $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
+        $domainUrl = $routeMatches[ProjectHostRoute::OPTION_SCHEME] . '://' . $routeMatches[ProjectHostRoute::OPTION_HOST];
+
+        $urlManager->setSchemeAndHttpHost($domainUrl);
+
+        $urlManager->setUrlPrefix($projectPrefix);
+
+
+        $this->configureAdminUrls($project);
 
         if (preg_match('|\.([\w]+)$|u', $routePath, $matches)) {
             $format = $matches[1];
@@ -142,7 +149,7 @@ class Bootstrap implements IProjectConfigAware
         $this->initTemplateEngines($dispatcher);
         $dispatcher->setCurrentRequest($request);
         $dispatcher->setInitialComponent($project);
-        $response = $dispatcher->dispatch($routePath, $baseProjectUrl);
+        $response = $dispatcher->dispatch($routePath, $projectPrefix);
 
         $this->sendResponse($response, $request);
     }
@@ -200,7 +207,7 @@ class Bootstrap implements IProjectConfigAware
      * @param Request $request
      * @throws RuntimeException
      * @throws UnexpectedValueException
-     * @return IRouteResult результат маршрутизации
+     * @return IRouteResult
      */
     protected function routeProject(Request $request)
     {
@@ -211,50 +218,68 @@ class Bootstrap implements IProjectConfigAware
             ));
         }
 
-        $siteRoutes = $this->loadConfig($this->environment->projectConfiguration);
-
+        $projectsConfig = $this->loadConfig($this->environment->projectConfiguration);
         /**
          * @var IRouteFactory $routeFactory
          */
         $routeFactory = $this->toolkit->getService('umi\route\IRouteFactory');
-        $siteRouter = $routeFactory->createRouter($siteRoutes);
 
-        $route = $request->getSchemeAndHttpHost() . $request->getBaseUrl() . $request->getPathInfo();
-        $routeResult = $siteRouter->match($route);
-        $routeMatches = $routeResult->getMatches();
+        $projectName = '';
+        $routeResult = null;
+        $router = null;
+
+        foreach ($projectsConfig as $projectName => $projectConfig) {
+            if (!is_array($projectConfig)) {
+                throw new UnexpectedValueException(sprintf(
+                    'Configuration for project "%s" should be an array.',
+                    $projectName
+                ));
+            }
+
+            if (!isset($projectConfig['routes']) || !is_array($projectConfig['routes'])) {
+                throw new UnexpectedValueException(sprintf(
+                    'Routes configuration for project "%s" should be an array.',
+                    $projectName
+                ));
+            }
+
+            $routes = $projectConfig['routes'];
+            $router = $routeFactory->createRouter($routes);
+
+            $route = $request->getSchemeAndHttpHost() . $request->getBaseUrl() . $request->getPathInfo();
+            $routeResult = $router->match($route);
+            $routeMatches = $routeResult->getMatches();
+
+            if (!empty($routeMatches)) {
+                break;
+            }
+        }
 
         if (empty($routeMatches)) {
             $this->send404('Project not found.');
+            exit();
         }
 
-        $destination = $this->getRequiredOption(
-            $routeMatches,
-            'destination',
-            function () {
-                throw new InvalidArgumentException(sprintf(
-                    'Cannot route project. Option "destination" required in "%s".',
-                    $this->environment->projectConfiguration
-                ));
-            }
-        );
+        if (!isset($projectConfig['destination'])) {
+            throw new UnexpectedValueException(sprintf(
+                'Cannot route project "%s". Option "destination" required.',
+                $projectName
+            ));
+        }
 
-        $configFileName = $this->getRequiredOption(
-            $routeMatches,
-            'config',
-            function () {
-                throw new InvalidArgumentException(sprintf(
-                    'Cannot route project. Option "config" required in "%s".',
-                    $this->environment->projectConfiguration
-                ));
-            }
-        );
+        if (!isset($projectConfig['config'])) {
+            throw new UnexpectedValueException(sprintf(
+                'Cannot route project "%s". Option "config" required.',
+                $projectName
+            ));
+        }
 
         /**
          * @var IConfigIO $configIO
          */
         $configIO = $this->toolkit->getService('umi\config\io\IConfigIO');
 
-        $directories = $configIO->getFilesByAlias($destination);
+        $directories = $configIO->getFilesByAlias($projectConfig['destination']);
         if (!isset($directories[1])) {
             throw new UnexpectedValueException('Cannot resolve project destination.');
         }
@@ -265,8 +290,9 @@ class Bootstrap implements IProjectConfigAware
             $directories[1]
         );
 
-        $this->registerProjectConfiguration($configFileName);
+        $this->registerProjectConfiguration($projectConfig['config']);
         $this->registerProjectTools();
+        $this->configureLocalesService($projectName, $projectConfig, $router, $routeMatches);
 
         return $routeResult;
     }
@@ -429,34 +455,23 @@ class Bootstrap implements IProjectConfigAware
     }
 
     /**
-     * Конфигурирует URL-менеджер для проекта.
+     * Конфигурирует URL-менеджер для ресурсов проекта.
      * @param IComponent $project проект
-     * @param IRouteResult $routeResult результат маршрутизации до проекта
-     * @param string $baseProjectUrl базовый URL проекта
      */
-    protected function configureUrlManager(IComponent $project, IRouteResult $routeResult, $baseProjectUrl)
+    protected function configureAdminUrls(IComponent $project)
     {
         /**
          * @var IUrlManager $urlManager
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
-        $domainUrl = $baseProjectUrl ? substr($routeResult->getMatchedUrl(), 0, -strlen($baseProjectUrl)) : $routeResult->getMatchedUrl();
-        $urlManager->setProjectDomainUrl($domainUrl);
-        $urlManager->setBaseUrl($baseProjectUrl);
 
-        $baseAdminUrl = $baseProjectUrl . $project->getRouter()
-                ->assemble('admin');
+        $urlManager->setAdminUrlPrefix($project->getRouter()->assemble('admin'));
+
         $adminComponent = $project->getChildComponent('admin');
 
-        $urlManager->setBaseAdminUrl($baseAdminUrl);
-        $urlManager->setBaseRestUrl(
-            $baseAdminUrl . $adminComponent->getRouter()
-                ->assemble('api')
-        );
-        $urlManager->setBaseSettingsUrl(
-            $baseAdminUrl . $adminComponent->getRouter()
-                ->assemble('settings')
-        );
+        $urlManager->setRestUrlPrefix($adminComponent->getRouter()->assemble('api'));
+
+        $urlManager->setSettingsUrlPrefix($adminComponent->getRouter()->assemble('settings'));
     }
 
     /**
@@ -515,6 +530,74 @@ class Bootstrap implements IProjectConfigAware
         }
 
         return $config;
+    }
+
+    /**
+     * Конфигурирует локали проекта
+     * @param string $projectName имя проекта
+     * @param array $projectConfig конфигурация проекта
+     * @param IRouter $router маршрутизатор проекта
+     * @param array $routeMatches параметры маршрутизации до проекта
+     * @throws UnexpectedValueException если конфигурация локалей невалидная
+     */
+    protected function configureLocalesService($projectName, array $projectConfig, IRouter $router, array $routeMatches)
+    {
+        /**
+         * @var CmsLocalesService $localesService
+         */
+        $localesService = $this->toolkit->getService('umi\i18n\ILocalesService');
+
+        if (isset($routeMatches['locale'])) {
+            $localesService->setCurrentLocale($routeMatches['locale']);
+        }
+
+        if (isset($projectConfig['locales']['site'])) {
+            $siteLocalesConfig = $projectConfig['locales']['site'];
+            if (!is_array($siteLocalesConfig)) {
+                throw new UnexpectedValueException(sprintf(
+                    'Cannot configure site locales for project "%s". Locales configuration should be an array.',
+                    $projectName
+                ));
+            }
+
+            $siteLocales = [];
+
+            foreach ($siteLocalesConfig as $localeId => $localeConfig) {
+
+                if (!isset($localeConfig['route'])) {
+                    throw new UnexpectedValueException(sprintf(
+                        'Cannot configure site locales for project "%s". Locale "%s" configuration should contain "route" option.',
+                        $projectName,
+                        $localeId
+                    ));
+                }
+
+                $sileLocale = new SiteLocale($localeId);
+                $sileLocale->setUrl($router->assemble($localeConfig['route']));
+
+                $siteLocales[] = $sileLocale;
+            }
+
+            $localesService->setSiteLocales($siteLocales);
+        }
+
+        if (isset($projectConfig['locales']['admin'])) {
+            $adminLocalesConfig = $projectConfig['locales']['admin'];
+            if (!is_array($adminLocalesConfig)) {
+                throw new UnexpectedValueException(sprintf(
+                    'Cannot configure admin locales for project "%s". Locales configuration should be an array.',
+                    $projectName
+                ));
+            }
+
+            $adminLocales = [];
+
+            foreach ($adminLocalesConfig as $localeId => $localeConfig) {
+                $adminLocales[] = new AdminLocale($localeId);
+            }
+
+            $localesService->setAdminLocales($adminLocales);
+        }
     }
 
 }

@@ -19,7 +19,6 @@ use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\OrmTools;
 use umi\route\IRouteFactory;
 use umi\templating\toolbox\TemplatingTools;
-use umicms\project\Bootstrap;
 use umicms\form\element\File;
 use umicms\form\element\Image;
 use umicms\form\element\Wysiwyg;
@@ -182,6 +181,8 @@ return [
         ],
 
         I18nTools::NAME => [
+
+            'localesServiceClass' => 'umicms\i18n\CmsLocalesService',
             'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
         ]
     ],
