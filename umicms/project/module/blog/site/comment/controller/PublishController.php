@@ -21,9 +21,9 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogComment;
 
 /**
- * Контроллер добавления комментария.
+ * Контроллер публикации комментария.
  */
-class BlogAddCommentController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PublishController extends BaseSecureController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;
@@ -53,15 +53,14 @@ class BlogAddCommentController extends BaseSecureController implements IFormAwar
             throw new HttpNotFound('Page not found');
         }
 
-        $parentCommentId = $this->getRouteVar('parent');
-        $parentComment = $parentCommentId ? $this->api->comment()->getById($parentCommentId) : null;
-
-        $comment = $this->api->comment()->add(null, IObjectType::BASE, $parentComment);
-
-        $form = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, IObjectType::BASE, $comment);
+        $form = $this->api->comment()->getForm(BlogComment::FORM_CHANGE_COMMENT_STATUS, IObjectType::BASE);
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {
+
+            $blogComment = $this->api->comment()->getById($this->getRouteVar('id'));
+            $blogComment->published();
+
             $this->getObjectPersister()->commit();
 
             return $this->createRedirectResponse($this->getRequest()->getReferer());

@@ -51,6 +51,10 @@ class BlogComment extends CmsHierarchicObject implements IRecyclableObject, IAct
      */
     const FORM_ADD_COMMENT = 'addComment';
     /**
+     * Форма одобрения комментария
+     */
+    const FORM_CHANGE_COMMENT_STATUS = 'changeStatus';
+    /**
      * Статус комментария: опубликован
      */
     const COMMENT_STATUS_PUBLISHED = 'published';

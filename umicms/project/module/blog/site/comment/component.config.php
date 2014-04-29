@@ -17,12 +17,16 @@ return [
     DefaultSiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSiteHierarchicPageComponent',
     DefaultSiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
     DefaultSiteHierarchicPageComponent::OPTION_CONTROLLERS => [
-        'addComment' => __NAMESPACE__ . '\controller\BlogAddCommentController',
+        'addComment' => __NAMESPACE__ . '\controller\AddController',
+        'publish' => __NAMESPACE__ . '\controller\PublishController',
+        'reject' => __NAMESPACE__ . '\controller\RejectController',
     ],
     DefaultSiteHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogCommentWidget',
         'list' => __NAMESPACE__ . '\widget\BlogCommentListWidget',
-        'addComment' => __NAMESPACE__ . '\widget\BlogAddCommentWidget'
+        'addComment' => __NAMESPACE__ . '\widget\BlogAddCommentWidget',
+        'publish' => __NAMESPACE__ . '\widget\PublishWidget',
+        'reject' => __NAMESPACE__ . '\widget\RejectWidget'
     ],
     DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/comment'],
@@ -46,11 +50,25 @@ return [
     ],
     DefaultSiteHierarchicPageComponent::OPTION_ROUTES => [
         'addComment' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/addComment/{parent:integer}',
             'defaults' => [
                 'controller' => 'addComment',
                 'parent' => null
+            ]
+        ],
+        'publish' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/publish/{id:integer}',
+            'defaults' => [
+                'controller' => 'publish'
+            ]
+        ],
+        'reject' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/reject/{id:integer}',
+            'defaults' => [
+                'controller' => 'reject'
             ]
         ]
     ]
