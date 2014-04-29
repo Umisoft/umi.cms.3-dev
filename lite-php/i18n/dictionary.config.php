@@ -20,6 +20,12 @@ return [
             'Наверх' => 'Back to top',
             'Назад' => 'Previous',
             'Дальше' => 'Next',
+            'ru-RU' => 'RU',
+            'en-US' => 'EN',
+        ],
+        'ru-RU' => [
+            'ru-RU' => 'RU',
+            'en-US' => 'EN',
         ]
     ],
 
