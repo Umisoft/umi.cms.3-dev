@@ -37,7 +37,6 @@ return [
             'moderator' => ['author']
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:page',
             'controller:edit',
             'controller:publish',
             'controller:sendToModeration',
@@ -70,7 +69,6 @@ return [
                 ],
             ],
             'moderator' => [
-                'controller:all' => [],
                 'controller:edit' => [
                     'edit' => []
                 ],

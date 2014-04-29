@@ -35,7 +35,6 @@ return [
             'author' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:page',
             'controller:edit',
             'controller:sendToModeration',
             'widget:view',

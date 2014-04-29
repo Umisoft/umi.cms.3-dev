@@ -34,7 +34,8 @@ return [
     DefaultSiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
-            'poster' => [],
+            'poster' => ['viewer'],
+            'moderator' => ['poster']
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:add',
@@ -47,10 +48,16 @@ return [
             'widget:reject'
         ],
         IAclFactory::OPTION_RULES => [
-            'blogPostViewer' => [
-                'controller:item' => [],
+            'viewer' => [
                 'widget:view' => [],
                 'widget:list' => []
+            ],
+            'poster' => [
+                'widget:add' => [],
+                'widget:publish' => [],
+            ],
+            'moderator' => [
+                'widget:reject' => []
             ]
         ]
     ],

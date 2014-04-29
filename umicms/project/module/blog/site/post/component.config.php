@@ -45,13 +45,13 @@ return [
             'controller:rss',
             'controller:add',
             'controller:edit',
-            'controller:unPublish',
+            'controller:unPublished',
             'widget:view',
             'widget:list',
             'widget:rss',
             'widget:addPost',
             'widget:editPost',
-            'widget:unPublish',
+            'widget:unPublished',
             'widget:editPostLink',
         ],
         IAclFactory::OPTION_RULES => [
@@ -68,14 +68,14 @@ return [
                 'controller:edit' => [
                     'edit' => ['own']
                 ],
-                'controller:unPublish' => [
+                'controller:unPublished' => [
                     'publish' => ['own', 'published']
                 ],
                 'widget:addPost' => [],
                 'widget:editPost' => [
                     'edit' => ['own']
                 ],
-                'widget:unPublish' => [
+                'widget:unPublished' => [
                     'publish' => ['own', 'published']
                 ],
                 'widget:editPostLink' => [
@@ -85,12 +85,12 @@ return [
             'moderator' => [
                 'controller:add' => [],
                 'controller:edit' => [],
-                'controller:unPublish' => [
+                'controller:unPublished' => [
                     'publish' => ['published']
                 ],
                 'widget:addPost' => [],
                 'widget:editPost' => [],
-                'widget:unPublish' => [
+                'widget:unPublished' => [
                     'publish' => ['published']
                 ],
                 'widget:editPostLink' => [],

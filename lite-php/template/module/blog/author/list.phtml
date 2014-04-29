@@ -9,7 +9,6 @@
         <?php foreach ($authors as $blogAuthor) : ?>
             <li>
                 <?=$this->widget('blog.author.view', ['blogAuthor' => $blogAuthor, 'template' => 'shortView']); ?>
-                <?=$this->widget('blog.author.rss', ['blogAuthor' => $blogAuthor, 'template' => 'rssLink']); ?>
             </li>
         <?php endforeach;?>
     </ul>
