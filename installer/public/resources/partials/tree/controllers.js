@@ -207,7 +207,7 @@ define(['App'], function(UMI){
                 },
 
                 sendAction: function(action, object){
-                    this.send(action.type, object);
+                    this.send(action.type, object, action);
                 }
             },
 
@@ -220,10 +220,10 @@ define(['App'], function(UMI){
                 var iconType;
                 if(this.get('selectAction')){
                     switch(this.get('selectAction.type')){
-                        case 'getCreateForm':
+                        case 'create':
                             iconType = 'add';
                             break;
-                        case 'getEditForm':
+                        case 'edit':
                             iconType = 'edit';
                             break;
                         case 'switchActivity':
