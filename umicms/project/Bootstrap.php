@@ -15,7 +15,6 @@ use umi\hmvc\component\IComponent;
 use umi\hmvc\IMvcEntityFactory;
 use umi\http\Request;
 use umi\http\Response;
-use umi\i18n\ILocalesService;
 use umi\i18n\translator\ITranslator;
 use umi\route\IRouteFactory;
 use umi\route\IRouter;
@@ -29,6 +28,9 @@ use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManager;
+use umicms\i18n\AdminLocale;
+use umicms\i18n\CmsLocalesService;
+use umicms\i18n\SiteLocale;
 use umicms\project\config\IProjectConfigAware;
 use umicms\project\config\TProjectConfigAware;
 use umicms\route\ProjectHostRoute;
@@ -120,14 +122,6 @@ class Bootstrap implements IProjectConfigAware
         $routeMatches = $routeResult->getMatches();
 
         $project = $this->createProject();
-
-        if (isset($routeMatches['locale'])) {
-            /**
-             * @var ILocalesService $localesService
-             */
-            $localesService = $this->toolkit->getService('umi\i18n\ILocalesService');
-            $localesService->setCurrentLocale($routeMatches['locale']);
-        }
 
         $projectPrefix = isset($routeMatches['prefix']) ? $routeMatches['prefix'] : '';
         $routePath = $routeResult->getUnmatchedUrl();
@@ -302,6 +296,7 @@ class Bootstrap implements IProjectConfigAware
 
         $this->registerProjectConfiguration($projectConfig['config']);
         $this->registerProjectTools();
+        $this->configureLocalesService($projectName, $projectConfig, $router, $routeMatches);
 
         return [$router, $routeResult];
     }
@@ -539,6 +534,74 @@ class Bootstrap implements IProjectConfigAware
         }
 
         return $config;
+    }
+
+    /**
+     * Конфигурирует локали проекта
+     * @param string $projectName имя проекта
+     * @param array $projectConfig конфигурация проекта
+     * @param IRouter $router маршрутизатор проекта
+     * @param array $routeMatches параметры маршрутизации до проекта
+     * @throws UnexpectedValueException если конфигурация локалей невалидная
+     */
+    protected function configureLocalesService($projectName, array $projectConfig, IRouter $router, array $routeMatches)
+    {
+        /**
+         * @var CmsLocalesService $localesService
+         */
+        $localesService = $this->toolkit->getService('umi\i18n\ILocalesService');
+
+        if (isset($routeMatches['locale'])) {
+            $localesService->setCurrentLocale($routeMatches['locale']);
+        }
+
+        if (isset($projectConfig['locales']['site'])) {
+            $siteLocalesConfig = $projectConfig['locales']['site'];
+            if (!is_array($siteLocalesConfig)) {
+                throw new UnexpectedValueException(sprintf(
+                    'Cannot configure site locales for project "%s". Locales configuration should be an array.',
+                    $projectName
+                ));
+            }
+
+            $siteLocales = [];
+
+            foreach ($siteLocalesConfig as $localeId => $localeConfig) {
+
+                if (!isset($localeConfig['route'])) {
+                    throw new UnexpectedValueException(sprintf(
+                        'Cannot configure site locales for project "%s". Locale "%s" configuration should contain "route" option.',
+                        $projectName,
+                        $localeId
+                    ));
+                }
+
+                $sileLocale = new SiteLocale($localeId);
+                $sileLocale->setUrl($router->assemble($localeConfig['route']));
+
+                $siteLocales[] = $sileLocale;
+            }
+
+            $localesService->setSiteLocales($siteLocales);
+        }
+
+        if (isset($projectConfig['locales']['admin'])) {
+            $adminLocalesConfig = $projectConfig['locales']['admin'];
+            if (!is_array($adminLocalesConfig)) {
+                throw new UnexpectedValueException(sprintf(
+                    'Cannot configure admin locales for project "%s". Locales configuration should be an array.',
+                    $projectName
+                ));
+            }
+
+            $adminLocales = [];
+
+            foreach ($adminLocalesConfig as $localeId => $localeConfig) {
+                $adminLocales[] = new AdminLocale($localeId);
+            }
+
+            $localesService->setAdminLocales($adminLocales);
+        }
     }
 
 }

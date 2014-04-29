@@ -10,6 +10,7 @@
 namespace umicms\hmvc\url;
 
 use umicms\exception\NonexistentEntityException;
+use umicms\exception\RuntimeException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
@@ -89,15 +90,32 @@ interface IUrlManager
     public function getBaseAdminUrl();
 
     /**
+     * Возвращает URL страницы без учета префиксов.
+     * @param ICmsPage $page страница
+     * @param string $handler имя компонента-обработчика страницы
+     * @throws RuntimeException если компонент не умеет формировать URL для страниц
+     * @return string
+     */
+    public function getRawPageUrl(ICmsPage $page, $handler = ICmsCollection::HANDLER_SITE);
+
+    /**
+     * Возвращает URL системной страницы по пути ее компонента-обработчика без учета префиксов.
+     * @param string $componentPath путь ее компонента-обработчика
+     * @return string
+     */
+    public function getRawSystemPageUrl($componentPath);
+
+    /**
      * Возвращает URL страницы для отображения на сайте.
      * @param ICmsPage $page страница
      * @param bool $isAbsolute генерировать ли абсолютный URL
+     * @param string $handler имя компонента-обработчика страницы
      * @return string
      */
-    public function getSitePageUrl(ICmsPage $page, $isAbsolute = false);
+    public function getSitePageUrl(ICmsPage $page, $isAbsolute = false, $handler = ICmsCollection::HANDLER_SITE);
 
     /**
-     * Возвращает URL системной страницы по пути ее компонента-обработчика
+     * Возвращает URL системной страницы по пути ее компонента-обработчика.
      * @param string $componentPath путь ее компонента-обработчика
      * @param bool $isAbsolute генерировать ли абсолютный URL
      * @throws NonexistentEntityException если такой страницы нет

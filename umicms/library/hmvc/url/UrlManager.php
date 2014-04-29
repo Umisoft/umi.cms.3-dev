@@ -163,29 +163,23 @@ class UrlManager implements IUrlManager, ILocalizable
         return $this->urlPrefix . $this->adminUrlPrefix;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getSitePageUrl(ICmsPage $page, $isAbsolute = false, $handler = ICmsCollection::HANDLER_SITE)
+    public function getRawPageUrl(ICmsPage $page, $handler = ICmsCollection::HANDLER_SITE)
     {
         if ($page instanceof StructureElement) {
-            $pageUrl = $isAbsolute ? $this->schemeAndHttpHost : '';
-            $pageUrl .= $this->urlPrefix . '/';
-            $pageUrl .= $page->getURL();
-
-            return $pageUrl;
+            return $page->getURL();
         }
+
         /**
          * @var ICmsCollection $collection
          */
         $collection = $page->getCollection();
-        $handler = $collection->getHandlerPath($handler);
+        $handlerPath = $collection->getHandlerPath($handler);
 
-        $component = $this->dispatcher->getSiteComponentByPath($handler);
+        $component = $this->dispatcher->getSiteComponentByPath($handlerPath);
         if (!$component instanceof BaseDefaultSitePageComponent) {
             throw new RuntimeException(
                 $this->translate(
-                    'Cannot get url for page with GUID "{guid}". Component "{path}" shoul be instance of "{class}".',
+                    'Cannot get url for page with GUID "{guid}". Component "{path}" should be instance of "{class}".',
                     [
                         'guid' => $page->getGUID(),
                         'path' => $component->getPath(),
@@ -195,7 +189,24 @@ class UrlManager implements IUrlManager, ILocalizable
             );
         }
 
-        return $this->getSystemPageUrl($handler, $isAbsolute) . $component->getPageUri($page);
+        return $this->getRawSystemPageUrl($handlerPath) . $component->getPageUri($page);
+    }
+
+    public function getRawSystemPageUrl($componentPath)
+    {
+        return $this->structureApi->element()->getSystemPageByComponentPath($componentPath)->getURL();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSitePageUrl(ICmsPage $page, $isAbsolute = false, $handler = ICmsCollection::HANDLER_SITE)
+    {
+        $pageUrl = $isAbsolute ? $this->schemeAndHttpHost : '';
+        $pageUrl .= $this->urlPrefix . '/';
+        $pageUrl .= $this->getRawPageUrl($page, $handler);
+
+        return $pageUrl;
     }
 
     /**
@@ -205,7 +216,7 @@ class UrlManager implements IUrlManager, ILocalizable
     {
         $pageUrl = $isAbsolute ? $this->schemeAndHttpHost : '';
         $pageUrl .= $this->urlPrefix . '/';
-        $pageUrl .= $this->structureApi->element()->getSystemPageByComponentPath($componentPath)->getURL();
+        $pageUrl .= $this->getRawSystemPageUrl($componentPath);
 
         return $pageUrl;
     }

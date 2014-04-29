@@ -9,7 +9,7 @@ return [
                     'route' => 'default'
                 ],
                 'en-US' => [
-                    'route' => 'en'
+                    'route' => 'en-US'
                 ]
             ],
             'admin' => [
@@ -48,7 +48,7 @@ return [
                     'route' => 'default'
                 ],
                 'en-US' => [
-                    'route' => 'en'
+                    'route' => 'en-US'
                 ]
             ],
             'admin' => [
@@ -88,7 +88,7 @@ return [
                     'route' => 'default'
                 ],
                 'en-US' => [
-                    'route' => 'en'
+                    'route' => 'en-US'
                 ]
             ],
             'admin' => [
