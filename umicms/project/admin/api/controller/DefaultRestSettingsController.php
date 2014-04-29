@@ -288,13 +288,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         $createLabel = $this->translate('control:tree:toolbar:create');
         foreach ($typeNames as $typeName) {
            if ($collection->hasForm(ICmsCollection::FORM_CREATE, $typeName)) {
-               $formResource = $this->getUrlManager()->getAdminComponentActionResourceUrl(
-                   $this->getComponent(),
-                   DefaultAdminComponent::ACTION_GET_CREATE_FORM,
-                   ['type' => $typeName]
-               );
-
-
                $result[] = [
                     'type' => 'create',
                     // TODO: type displayName
@@ -302,7 +295,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
                         'createLabel' => $createLabel,
                         'typeDisplayName' => $typeName
                     ]),
-                    'form' => $formResource
+                    'typeName' => $typeName
                ];
            }
         }
