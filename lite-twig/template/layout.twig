@@ -6,10 +6,23 @@
 
 <body>
 
-<div class="blog-masthead">
+<div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
 
-        {{ widget('structure.menu.auto', {'depth': 1})|raw }}
+        <div class="navbar-collapse collapse">
+            {{ widget('structure.menu.auto', {'depth': 1})|raw }}
+
+            {% if (locales) %}
+            <ul class="nav navbar-nav navbar-right">
+                {% for localeId,localeInfo in locales %}
+                    <li class="{{ localeInfo.current ? 'active' }}">
+                        <a href="{{ localeInfo.url }}">{{ translate(localeId) }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+        </div>
 
     </div>
 </div>
