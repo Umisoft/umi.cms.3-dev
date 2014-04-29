@@ -90,13 +90,14 @@ class LayoutController extends BaseController implements ISiteSettingsAware, IPa
      */
     protected function getLocales()
     {
-        $page = $this->hasCurrentPage() ? $this->getCurrentPage() : null;
         $urlManager = $this->getUrlManager();
+        $currentUrl = substr($urlManager->getCurrentUrl(true), strlen($urlManager->getProjectUrl(true)));
+
         $localesService = $this->getLocalesService();
 
         $locales = [];
         foreach ($localesService->getSiteLocales() as $locale) {
-            $url = $page ? $locale->getUrl() . '/' . $urlManager->getRawPageUrl($page) : $locale->getUrl();
+            $url = $locale->getUrl() . $currentUrl;
             $localeId = $locale->getId();
             $locales[$localeId] = [
                 'url' => $url,
