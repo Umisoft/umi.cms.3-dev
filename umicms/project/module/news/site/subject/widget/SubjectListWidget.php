@@ -13,7 +13,7 @@ use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\news\api\NewsModule;
 
 /**
- * Виджет для вывода списка новостных сюжетов
+ * Виджет для вывода списка новостных сюжетов.
  */
 class SubjectListWidget extends BaseListWidget
 {

@@ -15,7 +15,7 @@ use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsRubric;
 
 /**
- * Виджет вывода рубрики
+ * Виджет вывода рубрики.
  */
 class RubricWidget extends BaseSecureWidget
 {
@@ -51,7 +51,7 @@ class RubricWidget extends BaseSecureWidget
             $this->rubric = $this->api->rubric()->get($this->rubric);
         }
 
-        if (isset($this->rubric) && !$this->rubric instanceof NewsRubric) {
+        if (!$this->rubric instanceof NewsRubric) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
