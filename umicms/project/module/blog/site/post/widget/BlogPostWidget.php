@@ -24,7 +24,7 @@ class BlogPostWidget extends BaseSecureWidget
      */
     public $template = 'page';
     /**
-     * @var string|BlogPost $BlogPost GUID поста
+     * @var string|BlogPost $BlogPost GUID или поста
      */
     public $blogPost;
 
@@ -51,7 +51,7 @@ class BlogPostWidget extends BaseSecureWidget
             $this->blogPost = $this->api->post()->get($this->blogPost);
         }
 
-        if (isset($this->blogPost) && !$this->blogPost instanceof BlogPost) {
+        if (!$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',

@@ -24,7 +24,7 @@ class BlogCommentListWidget extends BaseSecureWidget
      */
     public $template = 'list';
     /**
-     * * @var BlogPost $blogPost пост блога, к которому необходимо вывести комментарии
+     * * @var string|BlogPost $blogPost GUID или пост блога, к которому необходимо вывести комментарии
      */
     public $blogPost;
     /**
@@ -50,7 +50,7 @@ class BlogCommentListWidget extends BaseSecureWidget
             $this->blogPost = $this->api->post()->get($this->blogPost);
         }
 
-        if (isset($this->blogPost) && !$this->blogPost instanceof BlogPost) {
+        if (!$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',

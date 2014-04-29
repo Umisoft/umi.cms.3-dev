@@ -106,6 +106,11 @@ return [
             'type' => IField::TYPE_STRING,
             'columnName' => 'meta_description'
         ],
+        BlogPost::FIELD_PUBLISH_STATUS => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'publish_status',
+            'defaultValue' => 1
+        ],
         BlogPost::FIELD_PAGE_H1 => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'h1'
@@ -183,6 +188,7 @@ return [
                 BlogPost::FIELD_CATEGORY,
                 BlogPost::FIELD_TAGS,
                 BlogPost::FIELD_PUBLISH_TIME,
+                BlogPost::FIELD_PUBLISH_STATUS,
                 BlogPost::FIELD_COMMENTS_COUNT,
                 BlogPost::FIELD_AUTHOR
             ]

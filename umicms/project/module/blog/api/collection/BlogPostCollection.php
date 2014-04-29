@@ -22,11 +22,12 @@ use umicms\project\module\blog\api\object\BlogPost;
  * @method BlogPost get($guid, $withLocalization = false) Возвращает пост по GUID
  * @method BlogPost getById($objectId, $withLocalization = false) Возвращает пост по id
  * @method BlogPost add($typeName = IObjectType::BASE) Создает и возвращает пост
- * @method BlogPost getByUri($uri, $withLocalization = false) Возвращает пост по его последней части ЧПУ
  */
 class BlogPostCollection extends PageCollection
 {
     const HANDLER_DRAFT = 'draft';
+    const HANDLER_MODERATE = 'moderate';
+    const HANDLER_REJECT = 'reject';
     /**
      * Возвращает пост по его источнику.
      * @param string $source
@@ -54,14 +55,39 @@ class BlogPostCollection extends PageCollection
     }
 
     /**
+     * Возвращает пост по URI, с учётом статуса публикации.
+     * @param string $uri URI
+     * @param bool $withLocalization загружать ли значения локализованных свойств объекта.
+     * @throws NonexistentEntityException если не удалось получить объект
+     * @return BlogPost
+     */
+    public function getByUri($uri, $withLocalization = false)
+    {
+        $selector = $this->select()
+            ->withLocalization($withLocalization)
+            ->where(BlogPost::FIELD_PAGE_SLUG)->equals($uri)
+            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_PUBLISHED);
+
+        $page = $selector->getResult()->fetch();
+
+        if (!$page instanceof BlogPost) {
+            throw new NonexistentEntityException($this->translate(
+                'Cannot get page by slug "{slug}" from collection "{collection}".',
+                ['slug' => $uri, 'collection' => $this->getName()]
+            ));
+        }
+
+        return $page;
+    }
+
+    /**
      * Возвращает селектор черновиков.
      * @return CmsSelector|BlogPost
      */
     public function getDrafts()
     {
-        return $this->selectInternal()
-            ->where(BlogPost::FIELD_TRASHED)->equals(false)
-            ->where(BlogPost::FIELD_ACTIVE)->equals(false);
+        return $this->select()
+            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_DRAFT);
     }
 
     /**
@@ -114,5 +140,129 @@ class BlogPostCollection extends PageCollection
         }
 
         return $blogDraft;
+    }
+
+    /**
+     * Возвращает список постов, требующих модерацию.
+     * @return CmsSelector|BlogPost
+     */
+    public function getNeedModeratePosts()
+    {
+        return $this->select()
+            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_NEED_MODERATE);
+    }
+
+    /**
+     * Возвращает пост, требующий модерации по GUID
+     * @param string $guid
+     * @return null|BlogPost
+     */
+    public function getNeedModeratePost($guid)
+    {
+        $moderatePost = $this->getNeedModeratePosts()
+            ->where(BlogPost::FIELD_GUID)->equals($guid);
+
+        return $moderatePost->getResult()->fetch();
+    }
+
+    /**
+     * Возвращает пост, требующий модерации по Id
+     * @param int $id
+     * @return null|BlogPost
+     */
+    public function getNeedModeratePostById($id)
+    {
+        $moderatePost = $this->getNeedModeratePosts()
+            ->where(BlogPost::FIELD_IDENTIFY)->equals($id);
+
+        return $moderatePost->getResult()->fetch();
+    }
+
+    /**
+     * Возвращает пост, требующий модерации по URI.
+     * @param string $uri URI
+     * @param bool $withLocalization загружать ли значения локализованных свойств объекта.
+     * @throws NonexistentEntityException если не удалось получить объект
+     * @return BlogPost
+     */
+    public function getNeedModeratePostByUri($uri, $withLocalization = false)
+    {
+        $selector = $this->getNeedModeratePosts()
+            ->withLocalization($withLocalization)
+            ->where(BlogPost::FIELD_PAGE_SLUG)
+            ->equals($uri);
+
+        $moderatePost = $selector->getResult()->fetch();
+
+        if (!$moderatePost instanceof BlogPost) {
+            throw new NonexistentEntityException($this->translate(
+                'Cannot get page by slug "{slug}" from collection "{collection}".',
+                ['slug' => $uri, 'collection' => $this->getName()]
+            ));
+        }
+
+        return $moderatePost;
+    }
+
+    /**
+     * Возвращает список отклонённых постов.
+     * @return CmsSelector|BlogPost
+     */
+    public function getRejectedPosts()
+    {
+        return $this->select()
+            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_REJECTED);
+    }
+
+    /**
+     * Возвращает отклонённый пост по GUID
+     * @param string $guid
+     * @return null|BlogPost
+     */
+    public function getRejectedPost($guid)
+    {
+        $rejectedPost = $this->getRejectedPosts()
+            ->where(BlogPost::FIELD_GUID)->equals($guid);
+
+        return $rejectedPost->getResult()->fetch();
+    }
+
+    /**
+     * Возвращает отклонённый пост по Id
+     * @param int $id
+     * @return null|BlogPost
+     */
+    public function getRejectedPostById($id)
+    {
+        $rejectedPost = $this->getRejectedPosts()
+            ->where(BlogPost::FIELD_IDENTIFY)->equals($id);
+
+        return $rejectedPost->getResult()->fetch();
+    }
+
+    /**
+     * Возвращает отклонённый пост по URI
+     * @param string $uri URI
+     * @param bool $withLocalization загружать ли значения локализованных свойств объекта.
+     * @throws NonexistentEntityException если не удалось получить объект
+     * @return null|BlogPost
+     */
+    public function getRejectedPostByUri($uri, $withLocalization = false)
+    {
+        $selector = $this->getRejectedPosts()
+            ->withLocalization($withLocalization)
+            ->where(BlogPost::FIELD_PAGE_SLUG)
+            ->equals($uri);
+
+        $rejectedPost = $selector->getResult()->fetch();
+
+        if (!$rejectedPost instanceof BlogPost) {
+            throw new NonexistentEntityException($this->translate(
+                'Cannot get page by slug "{slug}" from collection "{collection}".',
+                ['slug' => $uri, 'collection' => $this->getName()]
+            ));
+        }
+
+        return $rejectedPost;
     }
 }

@@ -15,7 +15,7 @@ use umicms\hmvc\widget\BaseWidget;
 use umicms\project\module\news\api\object\NewsSubject;
 
 /**
- * Виджет вывода сюжета новостей
+ * Виджет вывода сюжета новостей.
  */
 class SubjectWidget extends BaseWidget
 {
@@ -51,7 +51,7 @@ class SubjectWidget extends BaseWidget
             $this->subject = $this->api->rubric()->get($this->subject);
         }
 
-        if (isset($this->subject) && !$this->subject instanceof NewsSubject) {
+        if (!$this->subject instanceof NewsSubject) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',

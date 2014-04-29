@@ -7,14 +7,14 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\draft\controller;
+namespace umicms\project\module\blog\site\moderate\controller;
 
 use umicms\project\site\controller\SitePageController;
 
 /**
- * Контроллер вывода списка всех черновиков.
+ * Контроллер вывода списка всех постов, требующих модерирование.
  */
-class BlogDraftListController extends SitePageController
+class PostListController extends SitePageController
 {
     /**
      * {@inheritdoc}
@@ -26,4 +26,5 @@ class BlogDraftListController extends SitePageController
         );
     }
 }
+
  

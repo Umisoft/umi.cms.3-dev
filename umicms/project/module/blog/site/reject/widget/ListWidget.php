@@ -7,15 +7,15 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\draft\widget;
+namespace umicms\project\module\blog\site\reject\widget;
 
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
- * Виджет для вывода списка черновиков.
+ * Виджет для вывода списка отклонённых постов текущего автора.
  */
-class BlogDraftListWidget extends BaseListWidget
+class ListWidget extends BaseListWidget
 {
     /**
      * @var BlogModule $api API модуля "Блоги"
@@ -36,7 +36,7 @@ class BlogDraftListWidget extends BaseListWidget
      */
     protected function getSelector()
     {
-        return $this->api->post()->getDrafts();
+        return $this->api->getOwnRejected();
     }
 }
  

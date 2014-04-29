@@ -18,19 +18,18 @@ return [
     DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\BlogDraftPageController',
-        'all' => __NAMESPACE__ . '\controller\BlogDraftListController',
         'edit' => __NAMESPACE__ . '\controller\BlogEditDraftController',
-        'publish' => __NAMESPACE__ . '\controller\BlogPublishDraftController'
+        'publish' => __NAMESPACE__ . '\controller\BlogPublishDraftController',
+        'sendToModeration' => __NAMESPACE__ . '\controller\PostSendToModerationController',
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogDraftWidget',
-        'list' => __NAMESPACE__ . '\widget\BlogDraftListWidget',
         'ownList' => __NAMESPACE__ . '\widget\BlogOwnDraftListWidget',
         'ownListUrl' => __NAMESPACE__ . '\widget\BlogOwnDraftListUrlWidget',
         'editDraft' => __NAMESPACE__ . '\widget\BlogEditDraftWidget',
         'publishDraft' => __NAMESPACE__ . '\widget\BlogPublishDraftWidget',
         'editDraftLink' => __NAMESPACE__ . '\widget\BlogEditDraftUrlWidget',
-        'allListUrl' => __NAMESPACE__ . '\widget\BlogDraftListUrlWidget'
+        'sendToModeration' => __NAMESPACE__ . '\widget\PostSendToModerationWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -38,17 +37,14 @@ return [
             'moderator' => ['author']
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:all',
             'controller:edit',
             'controller:publish',
             'widget:view',
-            'widget:list',
             'widget:ownList',
             'widget:ownListUrl',
             'widget:editDraft',
             'widget:publishDraft',
             'widget:editDraftLink',
-            'widget:allListUrl',
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
@@ -72,7 +68,6 @@ return [
             ],
             'moderator' => [
                 'controller:all' => [],
-                'widget:allListUrl' => [],
                 'controller:edit' => [
                     'edit' => []
                 ],
@@ -101,17 +96,17 @@ return [
             ]
         ],
         'publish' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route' => '/publish',
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/publish/{id:integer}',
             'defaults' => [
                 'controller' => 'publish'
             ]
         ],
-        'all' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route' => '/all',
+        'sendToModeration' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/sendToModeration/{id:integer}',
             'defaults' => [
-                'controller' => 'all'
+                'controller' => 'sendToModeration'
             ]
         ]
     ]
