@@ -17,20 +17,19 @@ return [
     DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
     DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
-        //'page' => __NAMESPACE__ . '\controller\BlogPostPageController',
-        'add' => __NAMESPACE__ . '\controller\BlogAddPostController',
-        'edit' => __NAMESPACE__ . '\controller\BlogEditPostController',
-        'unPublished' => __NAMESPACE__ . '\controller\BlogDraftPostController',
-        'rss' => __NAMESPACE__ . '\controller\BlogPostRssController'
+        'add' => __NAMESPACE__ . '\controller\PostAddController',
+        'edit' => __NAMESPACE__ . '\controller\PostEditController',
+        'unPublished' => __NAMESPACE__ . '\controller\PostToDraftController',
+        'rss' => __NAMESPACE__ . '\controller\PostRssController'
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
-        'view' => __NAMESPACE__ . '\widget\BlogPostWidget',
-        'list' => __NAMESPACE__ . '\widget\BlogPostListWidget',
-        'rss' => __NAMESPACE__ . '\widget\BlogPostListRssUrlWidget',
-        'add' => __NAMESPACE__ . '\widget\BlogAddPostWidget',
-        'edit' => __NAMESPACE__ . '\widget\BlogEditPostWidget',
-        'unPublished' => __NAMESPACE__ . '\widget\BlogDraftPostWidget',
-        'editPostLink' => __NAMESPACE__ . '\widget\BlogEditPostUrlWidget'
+        'view' => __NAMESPACE__ . '\widget\PostWidget',
+        'list' => __NAMESPACE__ . '\widget\ListWidget',
+        'rss' => __NAMESPACE__ . '\widget\ListRssUrlWidget',
+        'add' => __NAMESPACE__ . '\widget\AddWidget',
+        'edit' => __NAMESPACE__ . '\widget\EditWidget',
+        'unPublished' => __NAMESPACE__ . '\widget\PostToDraftWidget',
+        'editPostLink' => __NAMESPACE__ . '\widget\EditUrlWidget'
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/post'],

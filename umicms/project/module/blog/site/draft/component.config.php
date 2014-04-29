@@ -23,28 +23,31 @@ return [
         'sendToModeration' => __NAMESPACE__ . '\controller\PostSendToModerationController',
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
-        'view' => __NAMESPACE__ . '\widget\BlogDraftWidget',
-        'ownList' => __NAMESPACE__ . '\widget\BlogOwnDraftListWidget',
-        'ownListUrl' => __NAMESPACE__ . '\widget\BlogOwnDraftListUrlWidget',
-        'editDraft' => __NAMESPACE__ . '\widget\BlogEditDraftWidget',
-        'publishDraft' => __NAMESPACE__ . '\widget\BlogPublishDraftWidget',
-        'editDraftLink' => __NAMESPACE__ . '\widget\BlogEditDraftUrlWidget',
-        'sendToModeration' => __NAMESPACE__ . '\widget\PostSendToModerationWidget'
+        'view' => __NAMESPACE__ . '\widget\DraftWidget',
+        'ownList' => __NAMESPACE__ . '\widget\DraftOwnListWidget',
+        'ownListUrl' => __NAMESPACE__ . '\widget\DraftOwnListUrlWidget',
+        'editDraft' => __NAMESPACE__ . '\widget\EditWidget',
+        'publishDraft' => __NAMESPACE__ . '\widget\PublishWidget',
+        'editDraftLink' => __NAMESPACE__ . '\widget\DraftEditUrlWidget',
+        'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'author' => ['viewer'],
+            'author' => [],
             'moderator' => ['author']
         ],
         IAclFactory::OPTION_RESOURCES => [
+            'controller:page',
             'controller:edit',
             'controller:publish',
+            'controller:sendToModeration',
             'widget:view',
             'widget:ownList',
             'widget:ownListUrl',
             'widget:editDraft',
             'widget:publishDraft',
             'widget:editDraftLink',
+            'widget:sendToModeration'
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [

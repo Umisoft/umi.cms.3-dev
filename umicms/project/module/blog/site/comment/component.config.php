@@ -17,14 +17,14 @@ return [
     DefaultSiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSiteHierarchicPageComponent',
     DefaultSiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
     DefaultSiteHierarchicPageComponent::OPTION_CONTROLLERS => [
-        'addComment' => __NAMESPACE__ . '\controller\AddController',
+        'add' => __NAMESPACE__ . '\controller\AddController',
         'publish' => __NAMESPACE__ . '\controller\PublishController',
         'reject' => __NAMESPACE__ . '\controller\RejectController',
     ],
     DefaultSiteHierarchicPageComponent::OPTION_WIDGET => [
-        'view' => __NAMESPACE__ . '\widget\BlogCommentWidget',
-        'list' => __NAMESPACE__ . '\widget\BlogCommentListWidget',
-        'addComment' => __NAMESPACE__ . '\widget\BlogAddCommentWidget',
+        'view' => __NAMESPACE__ . '\widget\CommentWidget',
+        'list' => __NAMESPACE__ . '\widget\ListWidget',
+        'add' => __NAMESPACE__ . '\widget\AddWidget',
         'publish' => __NAMESPACE__ . '\widget\PublishWidget',
         'reject' => __NAMESPACE__ . '\widget\RejectWidget'
     ],
@@ -33,12 +33,18 @@ return [
     ],
     DefaultSiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'blogCommentViewer' => [],
+            'viewer' => [],
+            'poster' => [],
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:item',
+            'controller:add',
+            'controller:publish',
+            'controller:reject',
             'widget:view',
             'widget:list',
+            'widget:add',
+            'widget:publish',
+            'widget:reject'
         ],
         IAclFactory::OPTION_RULES => [
             'blogPostViewer' => [
@@ -49,11 +55,11 @@ return [
         ]
     ],
     DefaultSiteHierarchicPageComponent::OPTION_ROUTES => [
-        'addComment' => [
+        'add' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/addComment/{parent:integer}',
+            'route' => '/add/{parent:integer}',
             'defaults' => [
-                'controller' => 'addComment',
+                'controller' => 'add',
                 'parent' => null
             ]
         ],

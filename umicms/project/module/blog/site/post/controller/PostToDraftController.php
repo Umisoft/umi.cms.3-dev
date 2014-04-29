@@ -21,9 +21,9 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Контроллер добавления поста
+ * Контроллер помещения поста блога в черновики.
  */
-class BlogAddPostController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PostToDraftController extends BaseSecureController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;
@@ -53,12 +53,13 @@ class BlogAddPostController extends BaseSecureController implements IFormAware, 
             throw new HttpNotFound('Page not found');
         }
 
-        $post = $this->api->post()->add();
-
-        $form = $this->api->post()->getForm(BlogPost::FORM_ADD_POST, IObjectType::BASE, $post);
+        $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {
+
+            $blogPost = $this->api->post()->getById($this->getRouteVar('id'));
+            $blogPost->draft();
 
             $this->getObjectPersister()->commit();
 

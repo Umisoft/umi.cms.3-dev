@@ -9,26 +9,26 @@
 
 namespace umicms\project\module\blog\site\tag\widget;
 
-use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogTag;
 
 /**
- * Виджет для вывода URL на RSS-ленту по тэгу.
+ * Виджет для вывода облака тэгов.
  */
-class BlogTagListRssUrlWidget extends BaseSecureWidget
+class TagCloudWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'rssLink';
-
+    public $template = 'cloud';
     /**
-     * @var string|BlogTag $blogTag тэг блога или GUID, по которому формируется RSS-лента
+     * @var int $minFontSize минимальный размер шрифта
      */
-    public $blogTag;
-
+    public $minFontSize = '13';
+    /**
+     * @var int $maxFontSize максимальный размер шрифта
+     */
+    public $maxFontSize = '24';
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -48,26 +48,11 @@ class BlogTagListRssUrlWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        if (is_string($this->blogTag)) {
-            $this->blogTag = $this->api->tag()->get($this->blogTag);
-        }
-
-        if (!$this->blogTag instanceof BlogTag) {
-            throw new InvalidArgumentException(
-                $this->translate(
-                    'Widget parameter "{param}" should be instance of "{class}".',
-                    [
-                        'param' => 'tag',
-                        'class' => 'BlogTag'
-                    ]
-                )
-            );
-        }
-
+        $tags = $this->api->getTagCloud($this->minFontSize, $this->maxFontSize);
         return $this->createResult(
             $this->template,
             [
-                'url' => $this->getUrl('rss', ['slug' => $this->blogTag->slug])
+                'tags' => $tags
             ]
         );
     }

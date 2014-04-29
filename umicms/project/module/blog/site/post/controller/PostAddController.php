@@ -21,9 +21,9 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Контроллер редактирования поста блога.
+ * Контроллер добавления поста
  */
-class BlogEditPostController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PostAddController extends BaseSecureController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;
@@ -49,31 +49,24 @@ class BlogEditPostController extends BaseSecureController implements IFormAware,
      */
     public function __invoke()
     {
-        $id = $this->getRouteVar('id');
-        $blogPost = $this->api->post()->getById($id);
-
-        if ($this->isRequestMethodPost()) {
-
-            $form = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $blogPost);
-            $formData = $this->getAllPostVars();
-
-            if ($form->setData($formData) && $form->isValid()) {
-
-                $this->getObjectPersister()->commit();
-
-                return $this->createRedirectResponse($this->getRequest()->getReferer());
-            } else {
-                //TODO ajax
-                var_dump($form->getMessages()); exit();
-            }
+        if (!$this->isRequestMethodPost()) {
+            throw new HttpNotFound('Page not found');
         }
 
-        return $this->createViewResponse(
-            'editPost',
-            [
-                'blogPost' => $blogPost
-            ]
-        );
+        $post = $this->api->post()->add();
+
+        $form = $this->api->post()->getForm(BlogPost::FORM_ADD_POST, IObjectType::BASE, $post);
+        $formData = $this->getAllPostVars();
+
+        if ($form->setData($formData) && $form->isValid()) {
+
+            $this->getObjectPersister()->commit();
+
+            return $this->createRedirectResponse($this->getRequest()->getReferer());
+        } else {
+            //TODO ajax
+            var_dump($form->getMessages()); exit();
+        }
     }
 }
  

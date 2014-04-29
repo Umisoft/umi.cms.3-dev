@@ -17,7 +17,7 @@ use umicms\project\module\blog\api\object\BlogTag;
 /**
  * Виджет для вывода списка постов по тэгам.
  */
-class BlogTagPostListWidget extends BaseSecureWidget
+class TagPostListWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

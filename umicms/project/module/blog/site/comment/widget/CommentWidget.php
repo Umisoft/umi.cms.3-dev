@@ -7,27 +7,27 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\post\widget;
+namespace umicms\project\module\blog\site\comment\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\api\object\BlogComment;
 
 /**
- * Виджет редактирования поста.
+ * Виджет вывода комментариев.
  */
-class BlogEditPostWidget extends BaseSecureWidget
+class CommentWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'addPost';
+    public $template = 'view';
     /**
-     * @var string|BlogPost $blogPost пост или GUID редактируемого поста
+     * @var string|BlogComment $blogComment комментарий или GUID комментария
      */
-    public $blogPost;
+    public $blogComment;
+
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -47,31 +47,26 @@ class BlogEditPostWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        if (is_string($this->blogPost)) {
-            $this->blogPost = $this->api->post()->get($this->blogPost);
+        if (is_string($this->blogComment)) {
+            $this->blogComment = $this->api->comment()->get($this->blogComment);
         }
 
-        if (!$this->blogPost instanceof BlogPost) {
+        if (!$this->blogComment instanceof BlogComment) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogPost',
-                        'class' => 'BlogPost'
+                        'param' => 'blogComment',
+                        'class' => 'BlogComment'
                     ]
                 )
             );
         }
 
-        $formAddPost = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $this->blogPost);
-
-        $formAddPost->setAction($this->getUrl('edit', ['id' => $this->blogPost->getId()]));
-        $formAddPost->setMethod('post');
-
         return $this->createResult(
             $this->template,
             [
-                'form' => $formAddPost
+                'blogComment' => $this->blogComment
             ]
         );
     }

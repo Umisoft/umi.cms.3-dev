@@ -7,27 +7,26 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\comment\widget;
+namespace umicms\project\module\blog\site\draft\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogComment;
+use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет вывода комментариев.
+ * Виджет для вывода URL на редактирование черновика.
  */
-class BlogCommentWidget extends BaseSecureWidget
+class DraftEditUrlWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'view';
+    public $template = 'editDraftLink';
     /**
-     * @var string|BlogComment $blogComment комментарий или GUID комментария
+     * @var BlogPost $blogDraft черновик или GUID редактируемого черновика
      */
-    public $blogComment;
-
+    public $blogDraft;
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -47,26 +46,27 @@ class BlogCommentWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        if (is_string($this->blogComment)) {
-            $this->blogComment = $this->api->comment()->get($this->blogComment);
+        if (is_string($this->blogDraft)) {
+            $this->blogDraft = $this->api->post()->getDraft($this->blogDraft);
         }
 
-        if (!$this->blogComment instanceof BlogComment) {
+        if (!$this->blogDraft instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogComment',
-                        'class' => 'BlogComment'
+                        'param' => 'blogDraft',
+                        'class' => 'BlogPost'
                     ]
                 )
             );
         }
 
+        $url = $this->blogDraft->getId();
         return $this->createResult(
             $this->template,
             [
-                'blogComment' => $this->blogComment
+                'url' => $this->getUrl('edit', ['id' => $url])
             ]
         );
     }

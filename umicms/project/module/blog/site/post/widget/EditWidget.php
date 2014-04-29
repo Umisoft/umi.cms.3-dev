@@ -9,25 +9,25 @@
 
 namespace umicms\project\module\blog\site\post\widget;
 
+use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет вывода постов.
+ * Виджет редактирования поста.
  */
-class BlogPostWidget extends BaseSecureWidget
+class EditWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'page';
+    public $template = 'addPost';
     /**
-     * @var string|BlogPost $BlogPost GUID или поста
+     * @var string|BlogPost $blogPost пост или GUID редактируемого поста
      */
     public $blogPost;
-
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -57,16 +57,21 @@ class BlogPostWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => 'blogPost'
+                        'class' => 'BlogPost'
                     ]
                 )
             );
         }
 
+        $formAddPost = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $this->blogPost);
+
+        $formAddPost->setAction($this->getUrl('edit', ['id' => $this->blogPost->getId()]));
+        $formAddPost->setMethod('post');
+
         return $this->createResult(
             $this->template,
             [
-                'blogPost' => $this->blogPost
+                'form' => $formAddPost
             ]
         );
     }

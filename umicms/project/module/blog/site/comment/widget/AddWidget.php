@@ -19,7 +19,7 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет добавления вывода формы добавления комментария.
  */
-class BlogAddCommentWidget extends BaseSecureWidget
+class AddWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -95,7 +95,7 @@ class BlogAddCommentWidget extends BaseSecureWidget
             $routeParams = ['parent' => $this->blogComment->getId()];
         }
 
-        $formAddComment->setAction($this->getUrl('addComment', $routeParams));
+        $formAddComment->setAction($this->getUrl('add', $routeParams));
         $formAddComment->setMethod('post');
 
         return $this->createResult(

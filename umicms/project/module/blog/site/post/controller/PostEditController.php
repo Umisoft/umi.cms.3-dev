@@ -21,9 +21,9 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Контроллер помещения поста блога в черновики.
+ * Контроллер редактирования поста блога.
  */
-class BlogDraftPostController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PostEditController extends BaseSecureController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;
@@ -49,25 +49,31 @@ class BlogDraftPostController extends BaseSecureController implements IFormAware
      */
     public function __invoke()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
+        $id = $this->getRouteVar('id');
+        $blogPost = $this->api->post()->getById($id);
+
+        if ($this->isRequestMethodPost()) {
+
+            $form = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $blogPost);
+            $formData = $this->getAllPostVars();
+
+            if ($form->setData($formData) && $form->isValid()) {
+
+                $this->getObjectPersister()->commit();
+
+                return $this->createRedirectResponse($this->getRequest()->getReferer());
+            } else {
+                //TODO ajax
+                var_dump($form->getMessages()); exit();
+            }
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
-        $formData = $this->getAllPostVars();
-
-        if ($form->setData($formData) && $form->isValid()) {
-
-            $blogPost = $this->api->post()->getById($this->getRouteVar('id'));
-            $blogPost->draft();
-
-            $this->getObjectPersister()->commit();
-
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages()); exit();
-        }
+        return $this->createViewResponse(
+            'editPost',
+            [
+                'blogPost' => $blogPost
+            ]
+        );
     }
 }
  

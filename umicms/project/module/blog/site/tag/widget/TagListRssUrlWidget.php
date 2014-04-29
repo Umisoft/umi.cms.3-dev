@@ -7,27 +7,28 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\draft\widget;
+namespace umicms\project\module\blog\site\tag\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\api\object\BlogTag;
 
 /**
- * Виджет редактирования черновика.
+ * Виджет для вывода URL на RSS-ленту по тэгу.
  */
-class BlogEditDraftWidget extends BaseSecureWidget
+class TagListRssUrlWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'editDraft';
+    public $template = 'rssLink';
+
     /**
-     * @var string|BlogPost $blogDraft черновик или GUID редактируемого черновика
+     * @var string|BlogTag $blogTag тэг блога или GUID, по которому формируется RSS-лента
      */
-    public $blogDraft;
+    public $blogTag;
+
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -47,31 +48,26 @@ class BlogEditDraftWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        if (is_string($this->blogDraft)) {
-            $this->blogDraft = $this->api->post()->getDraft($this->blogDraft);
+        if (is_string($this->blogTag)) {
+            $this->blogTag = $this->api->tag()->get($this->blogTag);
         }
 
-        if (!$this->blogDraft instanceof BlogPost) {
+        if (!$this->blogTag instanceof BlogTag) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogDraft',
-                        'class' => 'BlogPost'
+                        'param' => 'tag',
+                        'class' => 'BlogTag'
                     ]
                 )
             );
         }
 
-        $formEditDraft = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $this->blogDraft);
-
-        $formEditDraft->setAction($this->getUrl('edit', ['id' => $this->blogDraft->getId()]));
-        $formEditDraft->setMethod('post');
-
         return $this->createResult(
             $this->template,
             [
-                'form' => $formEditDraft
+                'url' => $this->getUrl('rss', ['slug' => $this->blogTag->slug])
             ]
         );
     }

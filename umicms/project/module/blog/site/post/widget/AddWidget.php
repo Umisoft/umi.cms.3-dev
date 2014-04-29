@@ -7,26 +7,28 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\draft\widget;
+namespace umicms\project\module\blog\site\post\widget;
 
+use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
+use umicms\project\module\blog\api\object\BlogCategory;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет для вывода URL на редактирование черновика.
+ * Виджет добавления поста.
  */
-class BlogEditDraftUrlWidget extends BaseSecureWidget
+class AddWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'editDraftLink';
+    public $template = 'addPostForm';
     /**
-     * @var BlogPost $blogDraft черновик или GUID редактируемого черновика
+     * @var string|BlogCategory $blogCategory рубрика или GUID родительской рубрики
      */
-    public $blogDraft;
+    public $blogCategory;
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -46,27 +48,34 @@ class BlogEditDraftUrlWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        if (is_string($this->blogDraft)) {
-            $this->blogDraft = $this->api->post()->getDraft($this->blogDraft);
+        if (is_string($this->blogCategory)) {
+            $this->blogCategory = $this->api->category()->get($this->blogCategory);
         }
 
-        if (!$this->blogDraft instanceof BlogPost) {
+        if (!$this->blogCategory instanceof BlogCategory) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogDraft',
-                        'class' => 'BlogPost'
+                        'param' => 'blogCategory',
+                        'class' => 'BlogCategory'
                     ]
                 )
             );
         }
 
-        $url = $this->blogDraft->getId();
+        $post = $this->api->post()->add();
+        $post->category = $this->blogCategory;
+
+        $formAddPost = $this->api->post()->getForm(BlogPost::FORM_ADD_POST, IObjectType::BASE, $post);
+
+        $formAddPost->setAction($this->getUrl('add'));
+        $formAddPost->setMethod('post');
+
         return $this->createResult(
             $this->template,
             [
-                'url' => $this->getUrl('edit', ['id' => $url])
+                'form' => $formAddPost
             ]
         );
     }

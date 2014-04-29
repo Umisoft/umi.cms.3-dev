@@ -9,26 +9,25 @@
 
 namespace umicms\project\module\blog\site\tag\widget;
 
+use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
+use umicms\project\module\blog\api\object\BlogTag;
 
 /**
- * Виджет для вывода облака тэгов.
+ * Виджет вывода тэга.
  */
-class BlogTagCloudWidget extends BaseSecureWidget
+class TagWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'cloud';
+    public $template = 'page';
     /**
-     * @var int $minFontSize минимальный размер шрифта
+     * @var string|BlogTag $BlogTag GUID тэга
      */
-    public $minFontSize = '13';
-    /**
-     * @var int $maxFontSize максимальный размер шрифта
-     */
-    public $maxFontSize = '24';
+    public $blogTag;
+
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -48,11 +47,26 @@ class BlogTagCloudWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        $tags = $this->api->getTagCloud($this->minFontSize, $this->maxFontSize);
+        if (is_string($this->blogTag)) {
+            $this->blogTag = $this->api->tag()->get($this->blogTag);
+        }
+
+        if (!$this->blogTag instanceof BlogTag) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Widget parameter "{param}" should be instance of "{class}".',
+                    [
+                        'param' => 'blogPost',
+                        'class' => 'blogPost'
+                    ]
+                )
+            );
+        }
+
         return $this->createResult(
             $this->template,
             [
-                'tags' => $tags
+                'blogTag' => $this->blogTag
             ]
         );
     }

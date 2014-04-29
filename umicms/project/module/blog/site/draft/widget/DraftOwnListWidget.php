@@ -15,7 +15,7 @@ use umicms\project\module\blog\api\BlogModule;
 /**
  * Виджет для вывода списка черновиков текущего автора.
  */
-class BlogOwnDraftListWidget extends BaseListWidget
+class DraftOwnListWidget extends BaseListWidget
 {
     /**
      * @var BlogModule $api API модуля "Блоги"
