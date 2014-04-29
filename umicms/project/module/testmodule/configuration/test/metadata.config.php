@@ -62,11 +62,11 @@ return [
         TestObject::PASSWORD => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::PASSWORD],
         TestObject::CHECKBOX => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::CHECKBOX],
 
-        TestObject::DATE => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::DATE],
-        TestObject::DATE_TIME => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::DATE_TIME],
+        TestObject::DATE => ['type' => IField::TYPE_DATE, 'columnName' => TestObject::DATE],
+        TestObject::TIME => ['type' => IField::TYPE_TIME, 'columnName' => TestObject::TIME],
+        TestObject::DATE_TIME => ['type' => IField::TYPE_DATE_TIME, 'columnName' => TestObject::DATE_TIME],
         TestObject::EMAIL => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::EMAIL],
-        TestObject::NUMBER => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::NUMBER],
-        TestObject::TIME => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::TIME],
+        TestObject::NUMBER => ['type' => IField::TYPE_INTEGER, 'columnName' => TestObject::NUMBER],
         TestObject::FILE => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::FILE],
         TestObject::IMAGE => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::IMAGE]
     ],

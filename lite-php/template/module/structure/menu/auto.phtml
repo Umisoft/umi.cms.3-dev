@@ -6,12 +6,11 @@ use umicms\project\module\structure\api\object\StructureElement;
 
 ?>
 <?php if (count($menu)) : ?>
-    <nav class="blog-nav">
-        <?php foreach ($menu as $pageInfo) : ?>
-            <a class="blog-nav-item <?= $pageInfo['active'] ? 'active' : '' ?>"
-               href="<?= $pageInfo['page']->getPageUrl() ?>">
-                <?= $pageInfo['page']->displayName ?>
-            </a>
-        <?php endforeach; ?>
-    </nav>
+    <ul class="nav navbar-nav">
+    <?php foreach ($menu as $pageInfo) : ?>
+        <li class="<?= $pageInfo['active'] ? 'active' : '' ?>">
+            <a href="<?= $pageInfo['page']->getPageUrl() ?>"><?= $pageInfo['page']->displayName ?></a>
+        </li>
+    <?php endforeach; ?>
+    </ul>
 <?php endif; ?>
