@@ -1784,11 +1784,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 `checkbox` varchar(255) DEFAULT NULL,
                 `checkbox_group` varchar(255) DEFAULT NULL,
 
-                `date` varchar(255) DEFAULT NULL,
-                `date_time` varchar(255) DEFAULT NULL,
+                `date` date DEFAULT NULL,
+                `date_time` datetime DEFAULT NULL,
                 `email` varchar(255) DEFAULT NULL,
                 `number` varchar(255) DEFAULT NULL,
-                `time` varchar(255) DEFAULT NULL,
+                `time` time DEFAULT NULL,
                 `file` varchar(255) DEFAULT NULL,
                 `image` varchar(255) DEFAULT NULL,
 
