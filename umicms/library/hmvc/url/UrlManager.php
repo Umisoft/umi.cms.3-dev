@@ -232,7 +232,7 @@ class UrlManager implements IUrlManager, ILocalizable
         $collection = $object->getCollection();
 
         $editLink = $isAbsolute ? $this->schemeAndHttpHost : '';
-        $editLink .= $this->adminUrlPrefix;
+        $editLink .= $this->getBaseAdminUrl();
         $editLink .= '/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
         $editLink .= '/form/' . $object->getId();
 
@@ -244,7 +244,7 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function getCollectionResourceUrl(ICmsCollection $collection, ICmsObject $object = null)
     {
-        $collectionResourceUrl = $this->restUrlPrefix;
+        $collectionResourceUrl = $this->getBaseRestUrl();
         $collectionResourceUrl .= '/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
         $collectionResourceUrl .= '/collection';
 
@@ -262,7 +262,7 @@ class UrlManager implements IUrlManager, ILocalizable
     {
         $domainUrl = $isAbsolute ? $this->schemeAndHttpHost : '';
 
-        return $domainUrl . $this->adminUrlPrefix . $this->getAdminRelativeComponentUrl($component);
+        return $domainUrl . $this->getBaseAdminUrl() . $this->getAdminRelativeComponentUrl($component);
     }
 
     /**
@@ -270,7 +270,7 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function getAdminComponentResourceUrl(AdminComponent $component)
     {
-        return $this->restUrlPrefix . $this->getAdminRelativeComponentUrl($component);
+        return $this->getBaseRestUrl() . $this->getAdminRelativeComponentUrl($component);
     }
 
     /**
@@ -293,7 +293,7 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function getSettingsComponentResourceUrl(SettingsComponent $component)
     {
-        $url = $this->settingsUrlPrefix;
+        $url = $this->getBaseSettingsUrl();
         $url .= str_replace(SettingsComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 22));
 
         return $url;
