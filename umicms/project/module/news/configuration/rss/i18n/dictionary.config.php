@@ -11,14 +11,18 @@ use umicms\project\module\news\api\object\NewsRssImportScenario;
 
 return [
         'en-US' => [
-            NewsRssImportScenario::FIELD_RSS_URL => 'URL RSS feed',
+            NewsRssImportScenario::FIELD_RSS_URL => 'RSS feed URL',
             NewsRssImportScenario::FIELD_SUBJECTS => 'Subjects',
-            NewsRssImportScenario::FIELD_RUBRIC => 'Rubric'
+            NewsRssImportScenario::FIELD_RUBRIC => 'Rubric',
+
+            'type:base:displayName' => 'RSS import'
         ],
 
         'ru-RU' => [
             NewsRssImportScenario::FIELD_RSS_URL => 'URL RSS-ленты',
             NewsRssImportScenario::FIELD_SUBJECTS => 'Сюжеты',
-            NewsRssImportScenario::FIELD_RUBRIC => 'Рубрика'
+            NewsRssImportScenario::FIELD_RUBRIC => 'Рубрика',
+
+            'type:base:displayName' => 'Импорт RSS'
         ]
     ];

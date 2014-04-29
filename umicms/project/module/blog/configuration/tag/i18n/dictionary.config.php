@@ -11,10 +11,12 @@ use umicms\project\module\blog\api\object\BlogTag;
 
 return [
         'en-US' => [
-            BlogTag::FIELD_RSS => 'RSS feeds'
+            BlogTag::FIELD_RSS => 'RSS feeds',
+            'type:base:displayName' => 'Tag'
         ],
 
         'ru-RU' => [
-            BlogTag::FIELD_RSS => 'RSS-ленты'
+            BlogTag::FIELD_RSS => 'RSS-ленты',
+            'type:base:displayName' => 'Тэг'
         ]
     ];

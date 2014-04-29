@@ -290,10 +290,9 @@ class DefaultRestSettingsController extends BaseDefaultRestController
            if ($collection->hasForm(ICmsCollection::FORM_CREATE, $typeName)) {
                $result[] = [
                     'type' => 'create',
-                    // TODO: type displayName
                     'displayName' =>  $this->translate('{createLabel} "{typeDisplayName}"', [
                         'createLabel' => $createLabel,
-                        'typeDisplayName' => $typeName
+                        'typeDisplayName' => $this->translate('type:' . $typeName . ':displayName')
                     ]),
                     'typeName' => $typeName
                ];
@@ -430,6 +429,17 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         }
 
         return $actions;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getI18nDictionaryNames()
+    {
+        $dictionaries = parent::getI18nDictionaryNames();
+        $dictionaries = array_merge($dictionaries, $this->getComponent()->getCollection()->getDictionaryNames());
+
+        return $dictionaries;
     }
 
 }

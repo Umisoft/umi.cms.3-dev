@@ -13,12 +13,22 @@ return [
         'en-US' => [
             AuthorizedUser::FIELD_PASSWORD => 'Password',
             AuthorizedUser::FIELD_LOGIN => 'Login',
-            AuthorizedUser::FIELD_EMAIL => 'E-mail'
+            AuthorizedUser::FIELD_EMAIL => 'E-mail',
+
+            'type:base:displayName' => 'User',
+            'type:guest:displayName' => 'Guest',
+            'type:authorized:displayName' => 'Authorized user',
+            'type:authorized.supervisor:displayName' => 'Supervisor',
         ],
 
         'ru-RU' => [
             AuthorizedUser::FIELD_PASSWORD => 'Пароль',
             AuthorizedUser::FIELD_LOGIN => 'Логин',
-            AuthorizedUser::FIELD_EMAIL => 'E-mail'
+            AuthorizedUser::FIELD_EMAIL => 'E-mail',
+
+            'type:base:displayName' => 'Пользователь',
+            'type:guest:displayName' => 'Гость',
+            'type:authorized:displayName' => 'Авторизованный пользователь',
+            'type:authorized.supervisor:displayName' => 'Супервайзер',
         ]
     ];

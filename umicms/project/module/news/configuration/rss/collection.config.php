@@ -23,6 +23,6 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection\newsRssImportScenario', 'collection'
+        'collection.newsRssImportScenario', 'collection'
     ]
 ];
