@@ -25,7 +25,7 @@ class BlogPublishDraftWidget extends BaseSecureWidget
      */
     public $template = 'publishDraftForm';
     /**
-     * @var string|BlogPost $blogPost черновик или GUID черновика
+     * @var string|BlogPost $blogDraft черновик или GUID черновика
      */
     public $blogDraft;
     /**
@@ -51,7 +51,7 @@ class BlogPublishDraftWidget extends BaseSecureWidget
             $this->blogDraft = $this->api->post()->getDraft($this->blogDraft);
         }
 
-        if (isset($this->blogDraft) && !$this->blogDraft instanceof BlogPost) {
+        if (!$this->blogDraft instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
@@ -63,9 +63,9 @@ class BlogPublishDraftWidget extends BaseSecureWidget
             );
         }
 
-        $formPostDraft = $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE, $this->blogDraft);
+        $formPostDraft = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE, $this->blogDraft);
 
-        $formPostDraft->setAction($this->getUrl('publish'));
+        $formPostDraft->setAction($this->getUrl('publish', ['id' => $this->blogDraft->getId()]));
         $formPostDraft->setMethod('post');
 
         return $this->createResult(

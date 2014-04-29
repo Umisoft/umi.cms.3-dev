@@ -10,6 +10,7 @@
 namespace umicms\configuration;
 
 use umi\route\toolbox\RouteTools;
+use umi\session\toolbox\SessionTools;
 use umicms\project\Bootstrap;
 
 return [
@@ -38,6 +39,12 @@ return [
                         'SiteComponentRoute' => 'umicms\project\site\route\SiteComponentRoute',
                     ]
                 ]
+            ]
+        ],
+
+        SessionTools::NAME => [
+            'storage' => [
+                'name' => Bootstrap::SESSION_COOKIE_NAME
             ]
         ]
     ]

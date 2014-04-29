@@ -15,7 +15,7 @@ use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsRubric;
 
 /**
- * Виджет для вывода списка новостных рубрик
+ * Виджет для вывода списка новостных рубрик.
  */
 class RubricListWidget extends BaseListWidget
 {

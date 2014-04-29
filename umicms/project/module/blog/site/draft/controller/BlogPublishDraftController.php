@@ -53,16 +53,14 @@ class BlogPublishDraftController extends BaseSecureController implements IFormAw
             throw new HttpNotFound('Page not found');
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE);
+        $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {
 
-            $blogPostId = isset($formData['id']) ? $formData['id'] : null;
+            $blogPost = $this->api->post()->getDraftById($this->getRouteVar('id'));
+            $blogPost->published();
 
-            $blogPost = $this->api->post()->getDraftById($blogPostId);
-
-            $this->api->post()->activate($blogPost);
             $this->getObjectPersister()->commit();
 
             return $this->createRedirectResponse($this->getRequest()->getReferer());

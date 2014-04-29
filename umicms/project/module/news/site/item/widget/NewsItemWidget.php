@@ -15,7 +15,7 @@ use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsItem;
 
 /**
- * Виджет вывода новости
+ * Виджет вывода новости.
  */
 class NewsItemWidget extends BaseSecureWidget
 {
@@ -24,7 +24,7 @@ class NewsItemWidget extends BaseSecureWidget
      */
     public $template = 'page';
     /**
-     * @var string|NewsItem $newsItem GUID новости
+     * @var string|NewsItem $newsItem новость или GUID новости
      */
     public $newsItem;
 
@@ -51,7 +51,7 @@ class NewsItemWidget extends BaseSecureWidget
             $this->newsItem = $this->api->news()->get($this->newsItem);
         }
 
-        if (isset($this->newsItem) && !$this->newsItem instanceof NewsItem) {
+        if (!$this->newsItem instanceof NewsItem) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',

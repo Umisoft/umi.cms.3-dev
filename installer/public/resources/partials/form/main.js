@@ -22,7 +22,6 @@ define(
         './elements/file/main',
         './elements/image/main',
         './elements/textarea/main',
-        './formTypes/createForm/main',
         './formTypes/basicForm/main',
         './toolbar/main'
     ],
@@ -49,7 +48,6 @@ define(
         fileElement,
         imageElement,
         textareaElement,
-        createForm,
         basicForm,
         toolbar
         ){
@@ -89,7 +87,8 @@ define(
             }.property(),
 
             toolbar: function(){
-                var editForm = this.get('controllers.component.contentControls').findBy('name','editForm');
+                var actionName = this.get('container').lookup('route:action').get('context.action.name');
+                var editForm = this.get('controllers.component.contentControls').findBy('name', actionName);
                 return editForm && editForm.toolbar;
             }.property('controllers.component.contentControls'),
 
@@ -115,26 +114,24 @@ define(
             }.property('model.@each')
         });
 
-        UMI.FormElementController = Ember.ObjectController.extend({
-            objectBinding: 'parentController.model.object',
-            isFieldset: function(){
-                return this.get('content.type') === 'fieldset';
-            }.property(),
-            isExpanded: true,
-            actions: {
-                expand: function(){
-                    this.toggleProperty('isExpanded');
-                }
-            }
-        });
-
         UMI.FormControlView = Ember.View.extend({
             tagName: 'form',
             templateName: 'formControl',
             classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control'],
             submit: function(){
                 return false;
-            }
+            },
+            elementView: Ember.View.extend({
+                isFieldset: function(){
+                    return this.get('content.type') === 'fieldset';
+                }.property(),
+                isExpanded: true,
+                actions: {
+                    expand: function(){
+                        this.toggleProperty('isExpanded');
+                    }
+                }
+            })
         });
 
         UMI.FieldView = Ember.View.extend({
@@ -159,7 +156,7 @@ define(
                     case 'select':          template = '{{view "select"         object=object meta=meta}}'; break;
                     case 'multi-select':    template = '{{view "multiSelect"    object=object meta=meta}}'; break;
 
-                    case 'text':            template = '{{text-element          object=object meta=meta}}'; break;
+                    case 'text':            template = '{{input              value=object.' + meta.dataSource + ' meta=meta}}'; break;
                     case 'email':           template = '{{email-element         object=object meta=meta}}'; break;
                     case 'password':        template = '{{password-element      object=object meta=meta}}'; break;
                     case 'checkbox':        template = '{{checkbox-element      object=object meta=meta}}'; break;
@@ -236,7 +233,6 @@ define(
             }
         });
 
-        createForm();
         basicForm();
     }
 );

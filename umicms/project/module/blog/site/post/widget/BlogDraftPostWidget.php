@@ -51,7 +51,7 @@ class BlogDraftPostWidget extends BaseSecureWidget
             $this->blogPost = $this->api->post()->get($this->blogPost);
         }
 
-        if (isset($this->blogPost) && !$this->blogPost instanceof BlogPost) {
+        if (!$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
@@ -63,9 +63,9 @@ class BlogDraftPostWidget extends BaseSecureWidget
             );
         }
 
-        $formDraftPost = $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE, $this->blogPost);
+        $formDraftPost = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE, $this->blogPost);
 
-        $formDraftPost->setAction($this->getUrl('unPublish'));
+        $formDraftPost->setAction($this->getUrl('unPublished', ['id' => $this->blogPost->getId()]));
         $formDraftPost->setMethod('post');
 
         return $this->createResult(

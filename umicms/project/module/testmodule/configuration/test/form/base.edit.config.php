@@ -8,6 +8,7 @@
  */
 
 use umi\form\element\Checkbox;
+use umi\form\element\CheckboxGroup;
 use umi\form\element\html5\Date;
 use umi\form\element\html5\DateTime;
 use umi\form\element\html5\Email;
@@ -15,6 +16,7 @@ use umi\form\element\html5\Number;
 use umi\form\element\html5\Time;
 use umi\form\element\Password;
 use umi\form\element\Radio;
+use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\element\Textarea;
 use umi\form\fieldset\FieldSet;
@@ -50,16 +52,20 @@ return [
                         'dataSource' => TestObject::TEXTAREA
                     ],
                 ],
-                /*Test::SELECT => [
+                TestObject::SELECT => [
                     'type' => Select::TYPE_NAME,
-                    'label' => Test::SELECT,
+                    'label' => TestObject::SELECT,
                     'options' => [
+                        'dataSource' => TestObject::SELECT,
                         'choices' => [
                             'msk' => 'Москва',
-                            'spt' => 'СПб'
+                            'spt' => 'СПб',
+                            'vlg' => 'Волгоград',
+                            'rostov' => 'Ростов',
+                            'krasnodar' => 'Краснодар'
                         ]
                     ],
-                ],*/
+                ],
                 TestObject::RADIO => [
                     'type' => Radio::TYPE_NAME,
                     'label' => TestObject::RADIO,
@@ -71,23 +77,34 @@ return [
                         'dataSource' => TestObject::PASSWORD
                     ],
                 ],
-                /*Test::MULTISELECT => [
+                TestObject::MULTISELECT => [
                     'type' => Select::TYPE_NAME,
-                    'label' => Test::SELECT,
+                    'label' => TestObject::MULTISELECT,
                     'options' => [
+                        'dataSource' => TestObject::MULTISELECT,
                         'choices' => [
                             'msk' => 'Москва',
-                            'spt' => 'СПб'
+                            'spt' => 'СПб',
+                            'vlg' => 'Волгоград',
+                            'rostov' => 'Ростов',
+                            'krasnodar' => 'Краснодар'
                         ]
                     ],
-                ],*/
-                /*Test::CHECKBOX_GROUP => [
-                    'type' => CSRF::TYPE_NAME,
-                    'label' => Test::CSRF,
+                ],
+                TestObject::CHECKBOX_GROUP => [
+                    'type' => CheckboxGroup::TYPE_NAME,
+                    'label' => TestObject::CHECKBOX_GROUP,
                     'options' => [
-                        'dataSource' => Test::CSRF
+                        'dataSource' => TestObject::CHECKBOX_GROUP,
+                        'choices' => [
+                            'msk' => 'Москва',
+                            'spt' => 'СПб',
+                            'vlg' => 'Волгоград',
+                            'rostov' => 'Ростов',
+                            'krasnodar' => 'Краснодар'
+                        ]
                     ],
-                ],*/
+                ],
                 TestObject::CHECKBOX => [
                     'type' => Checkbox::TYPE_NAME,
                     'label' => TestObject::CHECKBOX,

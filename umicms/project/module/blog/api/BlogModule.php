@@ -128,6 +128,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function getPosts()
     {
         return $this->post()->select()
+            ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_PUBLISHED)
             ->orderBy(BlogPost::FIELD_PUBLISH_TIME, CmsSelector::ORDER_DESC);
     }
 
@@ -503,12 +504,53 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
+     * Проверяет существование текущего автора блога.
+     * @return bool
+     */
+    public function hasCurrentAuthor()
+    {
+        return $this->getCurrentAuthor() ? true : false;
+    }
+
+    /**
      * Возвращает список черновиков текущего пользователя.
      * @return CmsSelector|BlogPost
      */
     public function getOwnDrafts()
     {
-        return $this->post()->getDrafts()
-            ->where(BlogPost::FIELD_AUTHOR)->equals($this->getCurrentAuthor());
+        if ($this->hasCurrentAuthor()) {
+            return $this->post()->getDrafts()
+                ->where(BlogPost::FIELD_AUTHOR)->equals($this->getCurrentAuthor());
+        } else {
+            return $this->post()->emptySelect();
+        }
+    }
+
+    /**
+     * Возвращает список постов текущего пользователя, требующих модерации.
+     * @return CmsSelector|BlogPost
+     */
+    public function getOwnModerate()
+    {
+        if ($this->hasCurrentAuthor()) {
+            return $this->post()->getNeedModeratePosts()
+                ->where(BlogPost::FIELD_AUTHOR)->equals($this->getCurrentAuthor());
+        } else {
+            return $this->post()->emptySelect();
+        }
+    }
+
+    /**
+     * Возвращает список отклонённых постов текущего пользователя.
+     * @return CmsSelector|BlogPost
+     */
+    public function getOwnRejected()
+    {
+        if ($this->hasCurrentAuthor()) {
+            return $this->post()->getRejectedPosts()
+                ->where(BlogPost::FIELD_AUTHOR)->equals($this->getCurrentAuthor());
+        } else {
+            return $this->post()->emptySelect();
+        }
     }
 }

@@ -7,20 +7,20 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\draft\widget;
+namespace umicms\project\module\blog\site\moderate\widget;
 
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
- * Виджет для вывода ссылки на спискок всех черновиков.
+ * Виджет для вывода ссылки на спискок постов текущего автора, требующих модерации.
  */
-class BlogDraftListUrlWidget extends BaseSecureWidget
+class OwnListLinkWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'draftLink';
+    public $template = 'moderateLink';
 
     /**
      * @var BlogModule $api API модуля "Блоги"
@@ -44,7 +44,7 @@ class BlogDraftListUrlWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'url' => $this->getUrl('all')
+                'url' => $this->getUrl('index')
             ]
         );
     }

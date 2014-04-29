@@ -1,3 +1,6 @@
+
+<?=$this->render('partial/authorization.phtml') ?>
+
 <div class="sidebar-module sidebar-module-inset">
     <h4><?=$this->translate('RSS ленты')?></h4>
     <p><?=$this->translate('Блоги')?>: <?=$this->widget('blog.post.rss', ['template' => 'rssLink'])?></p>
@@ -15,9 +18,16 @@
     <?=$this->widget('blog.author.list', ['template' => 'listShort'])?>
 </div>
 <div class="sidebar-module">
+    <h4><?=$this->translate('Посты автора')?></h4>
+    <ol class="list-unstyled">
+        <li><?=$this->translate('Черновики')?>: <?=$this->widget('blog.draft.ownListUrl', ['template' => 'draftLinkAuthor'])?></li>
+        <li><?=$this->translate('Посты на модерации')?>: <?=$this->widget('blog.moderate.ownListLink', ['template' => 'moderateLink'])?></li>
+        <li><?=$this->translate('Отклонённые посты')?>: <?=$this->widget('blog.reject.listLink', ['template' => 'listLink'])?></li>
+    </ol>
+</div>
+<div class="sidebar-module">
     <h4><?=$this->translate('Модерирование')?></h4>
     <ol class="list-unstyled">
-        <li><?=$this->translate('Черновики автора')?>: <?=$this->widget('blog.draft.ownListUrl', ['template' => 'draftLinkAuthor'])?></li>
-        <li><?=$this->translate('Все черновики')?>: <?=$this->widget('blog.draft.allListUrl', ['template' => 'draftLinkAll'])?></li>
+        <li><?=$this->translate('Посты на модерации')?>: <?=$this->widget('blog.moderate.allListLink', ['template' => 'moderateLink'])?></li>
     </ol>
 </div>

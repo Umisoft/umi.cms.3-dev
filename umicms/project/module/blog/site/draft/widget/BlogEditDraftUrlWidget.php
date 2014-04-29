@@ -24,7 +24,7 @@ class BlogEditDraftUrlWidget extends BaseSecureWidget
      */
     public $template = 'editDraftLink';
     /**
-     * @var BlogPost $blogPost черновик или GUID редактируемого черновика
+     * @var BlogPost $blogDraft черновик или GUID редактируемого черновика
      */
     public $blogDraft;
     /**
@@ -50,7 +50,7 @@ class BlogEditDraftUrlWidget extends BaseSecureWidget
             $this->blogDraft = $this->api->post()->getDraft($this->blogDraft);
         }
 
-        if (isset($this->blogDraft) && !$this->blogDraft instanceof BlogPost) {
+        if (!$this->blogDraft instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
