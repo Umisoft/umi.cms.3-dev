@@ -56,6 +56,7 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => TestObject::SELECT,
                     'options' => [
+                        'dataSource' => TestObject::SELECT,
                         'choices' => [
                             'msk' => 'Москва',
                             'spt' => 'СПб',
@@ -80,6 +81,7 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => TestObject::MULTISELECT,
                     'options' => [
+                        'dataSource' => TestObject::MULTISELECT,
                         'choices' => [
                             'msk' => 'Москва',
                             'spt' => 'СПб',
@@ -93,6 +95,7 @@ return [
                     'type' => CheckboxGroup::TYPE_NAME,
                     'label' => TestObject::CHECKBOX_GROUP,
                     'options' => [
+                        'dataSource' => TestObject::CHECKBOX_GROUP,
                         'choices' => [
                             'msk' => 'Москва',
                             'spt' => 'СПб',
