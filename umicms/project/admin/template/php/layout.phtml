@@ -6,6 +6,10 @@
         <title>UMI.CMS</title>
         <link rel="stylesheet" type="text/css" href="/resources/deploy/styles.css">
         <script>
+            // Ember settings
+            ENV = {
+                ENABLE_ALL_FEATURES: true
+            };
             window.UmiSettings = {
                 "authenticated": <?= $authenticated ? 'true' : 'false' ?>,
                 "baseURL": '<?= $baseUrl ?>',
