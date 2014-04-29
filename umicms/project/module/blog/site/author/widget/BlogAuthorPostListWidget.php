@@ -76,7 +76,7 @@ class BlogAuthorPostListWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'posts' => $this->api->getPostsByAuthor($blogAuthors, $this->limit)
+                'posts' => $this->api->getPostsByAuthor($blogAuthors)
             ]
         );
     }

@@ -49,7 +49,7 @@ class BlogAuthorListWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'authors' => $this->api->getAuthors($this->limit)
+                'authors' => $this->api->getAuthors()
             ]
         );
     }
