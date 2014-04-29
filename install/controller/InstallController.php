@@ -9,6 +9,7 @@
 
 namespace project\install\controller;
 
+use application\model\UserModel;
 use Doctrine\DBAL\DBALException;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\driver\IDialect;
@@ -66,6 +67,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     protected $backupRepository;
     private $searchIndexApi;
+    /**
+     * @var UserModel $userSv
+     */
+    private $userSv;
 
     public function __construct(IDbCluster $dbCluster, UsersModule $usersApi, SearchModule $searchModule)
     {
@@ -201,6 +206,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $this->usersApi->setUserPassword($sv, '1');
 
+        $this->userSv = $sv;
+
         /**
          * @var AuthorizedUser $admin
          */
@@ -268,6 +275,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var SimpleCollection $rssScenarioCollection
          */
         $rssScenarioCollection = $this->getCollectionManager()->getCollection('blogRssImportScenario');
+        /** @var SimpleCollection $userCollection */
+        $userCollection = $this->getCollectionManager()->getCollection('user');
+
 
         $blogPage = $structureCollection->add('blogik', 'system')
             ->setValue('displayName', 'Блог')
@@ -362,6 +372,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Casts', 'en-US')
             ->setValue('slug','privideniya');
 
+        $bives = $authorCollection->add()
+            ->setValue('displayName', 'Бивес')
+            ->setValue('displayName', 'Bives', 'en-US')
+            ->setValue('h1', 'Бивес')
+            ->setValue('contents', 'Бивес')
+            ->setValue('contents', 'Bives', 'en-US')
+            ->setValue('profile', $this->userSv)
+            ->setValue('slug', 'bives');
+
 
         $post1 = $postCollection->add()
             ->setValue('displayName', 'Девиантное поведение призраков и домовых и способы влияния на него')
@@ -373,6 +392,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>Причины девиантного поведения домашних призраков кроются безусловно во влиянии MTV и пропаганде агрессивной альтернативной музыки.<br /><br />Также наблюдается рост домовых, практикующих экстремальное катание на роликовых коньках, скейт-бордах, BMX, что повышает общий уровень черепно-мозговых травм среди паранормальных существ. <br /><br />Не может не оказывать влияния проникновение культуры эмо в быт и уклад домашних призраков, что ведет к росту самоубийств и депрессивных состояний среди этих в общем-то жизнерадостных<br /> созданий.<br /><br />В качестве метода влияния на отклонения у домашний призраков я вижу их обращение в более позитивные и миролюбивые культуры, их пропаганда и популяризация в среде домашних призраков.<br /><br /><strong>Екатерина Джа-Дуплинская</strong></p>')
             ->setValue('contents', '<p>Causes of deviant behavior home ghosts certainly lie in the influence of MTV and the aggressive promotion of alternative music . <br /> <br /> Also, an increase in brownies, practicing extreme inline skating , skateboarding , BMX, which increases the overall level of traumatic injuries of paranormal creatures. <br /> <br /> It can not affect the penetration of emo culture and way of life of the home of ghosts , which leads to an increase in suicide and depression among those in general cheerful <br /> creatures . <br /> <br / > as a method of influence on the deflection at home I see the ghosts of their treatment in a positive and peaceful culture , their propaganda and popularization in the home environment ghosts . <br /> <br /> <strong> Catherine Jar Duplinskaya </strong> </p>', 'en-US')
             ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_PUBLISHED)
+            ->setValue('author', $bives)
             ->setValue('slug', 'deviant')
             ->setGUID('8e675484-bea4-4fb5-9802-4750cc21e509')
             ->setValue('publishTime', new \DateTime('2010-08-11 17:35:00'));
@@ -388,6 +408,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>Renata Litvinova announced and allowed to use methods of conflict- author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen , try to remember how your evening ended yesterday . Even if you can not remember , behave naturally, as if nothing had happened . Invite him to drink a cup of coffee, play chess , wash the dishes . <br /> <br /> 2) no need to be afraid . Even if the aliens landed you in the park or entrance , explain to them that a stranger UFOs do not communicate . They can offer you to get acquainted . decide - and suddenly it\'s fate ? <br /> <br /> 3)In all there are positive things . Even if after 10 years of marriage, you will find that your husband is an alien, do not rush to send into space negative questions. Space did everything right . But you still are not familiar with his mom.</p>', 'en-US')
             ->setValue('category', $category)
             ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_DRAFT)
+            ->setValue('author', $bives)
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj')
             ->setGUID('2ff677ee-765c-42ee-bb97-778f03f00c50')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
@@ -402,6 +423,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>')
             ->setValue('category', $category)
             ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_REJECTED)
+            ->setValue('author', $bives)
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj-2')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
 
@@ -415,16 +437,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>')
             ->setValue('category', $category)
             ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_NEED_MODERATE)
+            ->setValue('author', $bives)
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj-3')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
-
-        $authorCollection->add()
-            ->setValue('displayName', 'Бивес')
-            ->setValue('displayName', 'Bives', 'en-US')
-            ->setValue('h1', 'Бивес')
-            ->setValue('contents', 'Бивес')
-            ->setValue('contents', 'Bives', 'en-US')
-            ->setValue('slug', 'bives');
 
         /**
          * @var IHierarchicObject $comment1
@@ -877,10 +892,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $dialect = $connection->getDatabasePlatform();
 
         $tables = $connection->getDriver()->getSchemaManager($connection)->listTableNames();
-        $connection->exec($dialect->getDisableForeignKeysSQL());
-
         foreach ($tables as $table) {
             if ($connection->getDriver()->getSchemaManager($connection)->tablesExist($table)) {
+                $connection->exec($dialect->getDisableForeignKeysSQL());
                 $connection->getDriver()->getSchemaManager($connection)->dropTable($table);
             }
         }
