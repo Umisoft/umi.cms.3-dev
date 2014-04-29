@@ -9,7 +9,12 @@
 namespace umicms\project\site\controller;
 
 use umi\http\Response;
+use umi\i18n\ILocalesAware;
+use umi\i18n\ILocalesService;
+use umi\i18n\TLocalesAware;
+use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\controller\BaseController;
+use umicms\i18n\CmsLocalesService;
 use umicms\project\module\structure\api\StructureModule;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
@@ -19,7 +24,7 @@ use umicms\project\site\config\TSiteSettingsAware;
 /**
  * Контроллер сетки сайта.
  */
-class LayoutController extends BaseController implements ISiteSettingsAware, IPageCallStackAware
+class LayoutController extends BaseController implements ISiteSettingsAware, IPageCallStackAware, ILocalesAware
 {
 
     use TSiteSettingsAware;
@@ -33,6 +38,10 @@ class LayoutController extends BaseController implements ISiteSettingsAware, IPa
      * @var StructureModule $structure
      */
     protected $structure;
+    /**
+     * @var CmsLocalesService $traitLocalesService сервис для работы с локалями
+     */
+    private $localesService;
 
     /**
      * Конструктор.
@@ -48,15 +57,22 @@ class LayoutController extends BaseController implements ISiteSettingsAware, IPa
     /**
      * {@inheritdoc}
      */
+    public function setLocalesService(ILocalesService $localesService)
+    {
+        $this->localesService = $localesService;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function __invoke()
     {
         $variables = [];
 
-        if ($this->hasCurrentPage()) {
-            $variables['title'] = $this->getMetaTitle();
-            $variables['description'] = $this->getMetaDescription();
-            $variables['keywords'] = $this->getMetaKeywords();
-        }
+        $variables['title'] = $this->getMetaTitle();
+        $variables['description'] = $this->getMetaDescription();
+        $variables['keywords'] = $this->getMetaKeywords();
+        $variables['locales'] = $this->getLocales();
 
         $variables['contents'] = $this->response->getContent();
 
@@ -66,6 +82,29 @@ class LayoutController extends BaseController implements ISiteSettingsAware, IPa
         $response->headers->replace($this->response->headers->all());
 
         return $response;
+    }
+
+    /**
+     * Возвращает список локалей сайта в формате [$localeId => $localeUrl, ...]
+     * @return array
+     */
+    protected function getLocales()
+    {
+        $page = $this->hasCurrentPage() ? $this->getCurrentPage() : null;
+        $urlManager = $this->getUrlManager();
+        $localesService = $this->getLocalesService();
+
+        $locales = [];
+        foreach ($localesService->getSiteLocales() as $locale) {
+            $url = $page ? $locale->getUrl() . '/' . $urlManager->getRawPageUrl($page) : $locale->getUrl();
+            $localeId = $locale->getId();
+            $locales[$localeId] = [
+                'url' => $url,
+                'current' => $localesService->getCurrentLocale() === $localeId
+            ];
+        }
+
+        return $locales;
     }
 
     /**
@@ -128,6 +167,23 @@ class LayoutController extends BaseController implements ISiteSettingsAware, IPa
         }
 
         return $this->structure->layout()->getDefaultLayout()->fileName;
+    }
+
+    /**
+     * Возвращает сервис для работы с локалями
+     * @throws RequiredDependencyException если сервис не был внедрен
+     * @return CmsLocalesService
+     */
+    protected function getLocalesService()
+    {
+        if (!$this->localesService) {
+            throw new RequiredDependencyException(sprintf(
+                'Locales service is not injected in class "%s".',
+                get_class($this)
+            ));
+        }
+
+        return $this->localesService;
     }
 
 }
