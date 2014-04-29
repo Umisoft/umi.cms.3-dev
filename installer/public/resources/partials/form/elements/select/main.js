@@ -35,8 +35,11 @@ define(['App'], function(UMI){
                 var object = this.get('object');
                 var property = this.get('meta.dataSource');
 
-                // Имеперическое правило: если нет choices то этот селект работает со связями.
-                if(!this.get('meta.choices')){
+                // Эмпирическое правило: если нет choices то этот селект работает со связями.
+                if(this.get('meta.choices')){
+                    self.set('selection', this.get('meta.choices').findBy('value', object.get(property)));
+                    self.set('content', this.get('meta.choices'));
+                } else{
                     var store = self.get('controller.store');
                     promises.push(object.get(property));
 
@@ -54,9 +57,6 @@ define(['App'], function(UMI){
                         self.set('selection', results[0]);
                         self.set('content', results[1]);
                     });
-                } else{
-                    self.set('selection', this.get('meta.choices').findBy('value', object.get(property)));
-                    self.set('content', this.get('meta.choices'));
                 }
             },
             willDestroyElement: function(){
