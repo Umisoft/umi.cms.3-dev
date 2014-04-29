@@ -113,11 +113,7 @@ class Bootstrap implements IProjectConfigAware
         $request = $this->toolkit->getService('umi\http\Request');
         $this->prepareRequest($request);
 
-        /**
-         * @var IRouter $router
-         * @var IRouteResult $routeResult
-         */
-        list($router, $routeResult) = $this->routeProject($request);
+        $routeResult = $this->routeProject($request);
 
         $routeMatches = $routeResult->getMatches();
 
@@ -211,7 +207,7 @@ class Bootstrap implements IProjectConfigAware
      * @param Request $request
      * @throws RuntimeException
      * @throws UnexpectedValueException
-     * @return array результат маршрутизации в формате [IRouter, IRouteResult]
+     * @return IRouteResult
      */
     protected function routeProject(Request $request)
     {
@@ -298,7 +294,7 @@ class Bootstrap implements IProjectConfigAware
         $this->registerProjectTools();
         $this->configureLocalesService($projectName, $projectConfig, $router, $routeMatches);
 
-        return [$router, $routeResult];
+        return $routeResult;
     }
 
     /**
