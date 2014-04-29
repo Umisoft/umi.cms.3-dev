@@ -12,11 +12,13 @@ use umicms\project\module\blog\api\object\BlogComment;
 return [
         'en-US' => [
             BlogComment::FIELD_AUTHOR => 'Author',
-            BlogComment::FIELD_PUBLISH_TIME => 'Publish time'
+            BlogComment::FIELD_PUBLISH_TIME => 'Publish time',
+            BlogComment::FIELD_PUBLISH_STATUS => 'Publish status'
         ],
 
         'ru-RU' => [
             BlogComment::FIELD_AUTHOR => 'Автор',
-            BlogComment::FIELD_PUBLISH_TIME => 'Дата публикации'
+            BlogComment::FIELD_PUBLISH_TIME => 'Дата публикации',
+            BlogComment::FIELD_PUBLISH_STATUS => 'Статус публикации'
         ]
     ];

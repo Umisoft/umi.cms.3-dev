@@ -152,6 +152,10 @@ return [
             'type' => IField::TYPE_DATE_TIME,
             'columnName' => 'publish_time'
         ],
+        BlogComment::FIELD_PUBLISH_STATUS => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'publish_status'
+        ],
         BlogComment::FIELD_CHILDREN => [
             'type' => IField::TYPE_HAS_MANY,
             'target' => 'blogComment',
@@ -185,6 +189,7 @@ return [
                 BlogComment::FIELD_POST,
                 BlogComment::FIELD_CONTENTS,
                 BlogComment::FIELD_PUBLISH_TIME,
+                BlogComment::FIELD_PUBLISH_STATUS,
                 BlogComment::FIELD_CHILDREN
             ]
         ]
