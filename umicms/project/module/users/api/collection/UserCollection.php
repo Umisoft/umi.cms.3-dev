@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\users\api\collection;
 
+use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umicms\exception\NotAllowedOperationException;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
@@ -27,8 +28,8 @@ use umicms\project\module\users\api\object\BaseUser;
  * Коллекция для работы с пользователями.
  *
  * @method CmsSelector|BaseUser[] select() Возвращает селектор для выбора пользователей.
- * @method BaseUser get($guid, $withLocalization = false)  Возвращает пользователя по GUID.
- * @method BaseUser getById($objectId, $withLocalization = false) Возвращает пользователя по id.
+ * @method BaseUser get($guid, $localization = ILocalesService::LOCALE_CURRENT)  Возвращает пользователя по GUID.
+ * @method BaseUser getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает пользователя по id.
  * @method BaseUser add($typeName = IObjectType::BASE) Создает и возвращает пользователя.
  */
 class UserCollection extends SimpleCollection
