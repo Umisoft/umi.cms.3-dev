@@ -9,23 +9,22 @@
 
 namespace umicms\project\module\blog\site\draft\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет отправки поста на модерацию.
+ * Виджет для вывода URL на редактирование черновика.
  */
-class PostSendToModerationWidget extends BaseSecureWidget
+class DraftEditUrlWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'publishForm';
+    public $template = 'editDraftLink';
     /**
-     * @var string|BlogPost $blogDraft черновик или GUID черновика отправляемого на модерацию
+     * @var BlogPost $blogDraft черновик или GUID редактируемого черновика
      */
     public $blogDraft;
     /**
@@ -63,19 +62,11 @@ class PostSendToModerationWidget extends BaseSecureWidget
             );
         }
 
-        $formPost = $this->api->post()->getForm(
-            BlogPost::FORM_CHANGE_POST_STATUS,
-            IObjectType::BASE,
-            $this->blogDraft
-        );
-
-        $formPost->setAction($this->getUrl('sendToModeration', ['id' => $this->blogDraft->getId()]));
-        $formPost->setMethod('post');
-
+        $url = $this->blogDraft->getId();
         return $this->createResult(
             $this->template,
             [
-                'form' => $formPost
+                'url' => $this->getUrl('edit', ['id' => $url])
             ]
         );
     }

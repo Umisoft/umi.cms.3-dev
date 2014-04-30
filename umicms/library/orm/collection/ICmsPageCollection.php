@@ -9,6 +9,7 @@
 
 namespace umicms\orm\collection;
 
+use umi\i18n\ILocalesService;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
@@ -23,11 +24,12 @@ interface ICmsPageCollection extends ICmsCollection, IRecoverableCollection, IRe
     /**
      * Возвращает объект по URI.
      * @param string $uri URI
-     * @param bool $withLocalization загружать ли значения локализованных свойств объекта.
+     * @param string $localization указание на локаль, в которой загружается объект.
+     * По умолчанию объект загружается в текущей локали. Можно указать другую конкретную локаль
      * @throws NonexistentEntityException если не удалось получить объект
      * @return ICmsPage
      */
-    public function getByUri($uri, $withLocalization = false);
+    public function getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT);
 
 }
  

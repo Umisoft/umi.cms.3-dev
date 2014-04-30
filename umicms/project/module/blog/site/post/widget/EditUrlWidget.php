@@ -9,23 +9,22 @@
 
 namespace umicms\project\module\blog\site\post\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет перемещения поста в черновики.
+ * Виджет для вывода URL на редактирование поста.
  */
-class BlogDraftPostWidget extends BaseSecureWidget
+class EditUrlWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'unPublishPostForm';
+    public $template = 'editPostLink';
     /**
-     * @var string|BlogPost $blogPost пост или GUID поста
+     * @var BlogPost $blogPost пост или GUID редактируемого поста
      */
     public $blogPost;
     /**
@@ -63,15 +62,11 @@ class BlogDraftPostWidget extends BaseSecureWidget
             );
         }
 
-        $formDraftPost = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE, $this->blogPost);
-
-        $formDraftPost->setAction($this->getUrl('unPublished', ['id' => $this->blogPost->getId()]));
-        $formDraftPost->setMethod('post');
-
+        $url = $this->blogPost->getId();
         return $this->createResult(
             $this->template,
             [
-                'form' => $formDraftPost
+                'url' => $this->getUrl('edit', ['id' => $url])
             ]
         );
     }

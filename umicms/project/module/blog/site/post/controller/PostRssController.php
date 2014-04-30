@@ -19,7 +19,7 @@ use umicms\project\site\config\TSiteSettingsAware;
 /**
  * Контроллер вывода общей RSS-ленты.
  */
-class BlogPostRssController extends BaseSecureController implements ISiteSettingsAware
+class PostRssController extends BaseSecureController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 

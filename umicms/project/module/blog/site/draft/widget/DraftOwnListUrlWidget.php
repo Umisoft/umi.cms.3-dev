@@ -7,20 +7,20 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\post\widget;
+namespace umicms\project\module\blog\site\draft\widget;
 
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
- * Виджет для вывода URL на RSS-ленту по категории.
+ * Виджет для вывода ссылки на спискок черновиков текущего автора.
  */
-class BlogPostListRssUrlWidget extends BaseSecureWidget
+class DraftOwnListUrlWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'rssLink';
+    public $template = 'draftLink';
 
     /**
      * @var BlogModule $api API модуля "Блоги"
@@ -29,11 +29,11 @@ class BlogPostListRssUrlWidget extends BaseSecureWidget
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $blogApi API модуля "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $blogApi)
     {
-        $this->api = $blogModule;
+        $this->api = $blogApi;
     }
 
     /**
@@ -44,7 +44,7 @@ class BlogPostListRssUrlWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'url' => $this->getUrl('rss')
+                'url' => $this->getUrl('index')
             ]
         );
     }

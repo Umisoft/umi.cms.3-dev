@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\news\api\collection;
 
+use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\SimpleCollection;
 use umicms\orm\selector\CmsSelector;
@@ -18,8 +19,8 @@ use umicms\project\module\news\api\object\NewsRssImportScenario;
  * Коллекция сценариев RSS-ипорта.
  *
  * @method CmsSelector|NewsRssImportScenario[] select() Возвращает селектор для выбора сценариев импорта.
- * @method NewsRssImportScenario get($guid, $withLocalization = false) Возвращает сценарий импорта по GUID
- * @method NewsRssImportScenario getById($objectId, $withLocalization = false) Возвращает сценарий импорта по id
+ * @method NewsRssImportScenario get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает сценарий импорта по GUID
+ * @method NewsRssImportScenario getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает сценарий импорта по id
  * @method NewsRssImportScenario add($typeName = IObjectType::BASE) Создает и возвращает сценарий импорта
  *
  */

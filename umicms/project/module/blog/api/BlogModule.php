@@ -215,16 +215,11 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает селектор для выборки авторов.
-     * @param int $limit максимальное количество авторов
      * @return CmsSelector|BlogTag[]
      */
-    public function getAuthors($limit = null)
+    public function getAuthors()
     {
         $authors = $this->author()->select();
-
-        if ($limit) {
-            $authors->limit($limit);
-        }
 
         return $authors;
     }
@@ -232,12 +227,11 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выбора постов автора.
      * @param BlogAuthor[] $authors категория
-     * @param int $limit
      * @return CmsSelector|BlogPost[]
      */
-    public function getPostsByAuthor(array $authors = [], $limit = null)
+    public function getPostsByAuthor(array $authors = [])
     {
-        $posts = $this->getPosts($limit);
+        $posts = $this->getPosts();
 
         $posts->begin(IFieldConditionGroup::MODE_OR);
         foreach ($authors as $author) {
@@ -251,12 +245,11 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выбора постов категорий.
      * @param BlogCategory[] $categories категории блога
-     * @param int $limit
      * @return CmsSelector|BlogPost[]
      */
-    public function getPostByCategory(array $categories = [], $limit = null)
+    public function getPostByCategory(array $categories = [])
     {
-        $posts = $this->getPosts($limit);
+        $posts = $this->getPosts();
 
         $posts->begin(IFieldConditionGroup::MODE_OR);
         foreach ($categories as $category) {
@@ -269,17 +262,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает селектор для выборки комментариев.
-     * @param int $limit
      * @return CmsSelector|BlogComment[]
      */
-    public function getComment($limit = null)
+    public function getComments()
     {
         $comments = $this->comment()->select()
             ->orderBy(BlogComment::FIELD_PUBLISH_TIME, CmsSelector::ORDER_DESC);
-
-        if ($limit) {
-            $comments->limit($limit);
-        }
 
         return $comments;
     }
@@ -287,12 +275,11 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * Возвращает селектор для выборки комментариев к посту.
      * @param BlogPost $blogPost
-     * @param int $limit
      * @return CmsSelector|BlogComment[]
      */
-    public function getCommentByPost(BlogPost $blogPost, $limit = null)
+    public function getCommentByPost(BlogPost $blogPost)
     {
-        $comments = $this->getComment($limit)
+        $comments = $this->getComments()
             ->where(BlogComment::FIELD_POST)->equals($blogPost);
 
         return $comments;

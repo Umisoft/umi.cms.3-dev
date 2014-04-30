@@ -15,18 +15,19 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет для вывода URL на редактирование поста.
+ * Виджет вывода постов.
  */
-class BlogEditPostUrlWidget extends BaseSecureWidget
+class PostWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'editPostLink';
+    public $template = 'page';
     /**
-     * @var BlogPost $blogPost пост или GUID редактируемого поста
+     * @var string|BlogPost $BlogPost GUID или поста
      */
     public $blogPost;
+
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -56,17 +57,16 @@ class BlogEditPostUrlWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => 'BlogPost'
+                        'class' => 'blogPost'
                     ]
                 )
             );
         }
 
-        $url = $this->blogPost->getId();
         return $this->createResult(
             $this->template,
             [
-                'url' => $this->getUrl('edit', ['id' => $url])
+                'blogPost' => $this->blogPost
             ]
         );
     }

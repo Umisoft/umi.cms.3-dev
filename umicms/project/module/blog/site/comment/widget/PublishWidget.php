@@ -9,25 +9,25 @@
 
 namespace umicms\project\module\blog\site\comment\widget;
 
+use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogComment;
 
 /**
- * Виджет вывода комментариев.
+ * Виджет публикации комментария.
  */
-class BlogCommentWidget extends BaseSecureWidget
+class PublishWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'view';
+    public $template = 'publishForm';
     /**
      * @var string|BlogComment $blogComment комментарий или GUID комментария
      */
     public $blogComment;
-
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -63,10 +63,15 @@ class BlogCommentWidget extends BaseSecureWidget
             );
         }
 
+        $form = $this->api->comment()->getForm(BlogComment::FORM_CHANGE_COMMENT_STATUS, IObjectType::BASE, $this->blogComment);
+
+        $form->setAction($this->getUrl('publish', ['id' => $this->blogComment->getId()]));
+        $form->setMethod('post');
+
         return $this->createResult(
             $this->template,
             [
-                'blogComment' => $this->blogComment
+                'form' => $form
             ]
         );
     }
