@@ -87,7 +87,8 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         return [
             'collectionName' => $collection->getName(),
             'layout' => $this->buildLayoutInfo($collection),
-            'actions' => $this->buildActionsInfo()
+            'actions' => $this->buildActionsInfo(),
+            'filters' => $this->buildCollectionFiltersInfo($collection)
         ];
     }
 
@@ -250,24 +251,16 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         $result = [
             'displayName' => $this->translate('control:filter:displayName'),
             'toolbar' => [
-                $this->buildTreeToolButtonInfo('create'),
-                $this->buildTreeToolButtonInfo('edit')
+                $this->buildTreeToolButtonInfo('create')
             ]
         ];
 
         if ($collection instanceof IActiveAccessibleCollection) {
             $result['toolbar'][] = $this->buildTreeToolButtonInfo('switchActivity');
-            $result['filters'][] = $this->buildTreeFilterInfo(IActiveAccessibleObject::FIELD_ACTIVE, [true]);
         }
 
         if ($collection instanceof ICmsPageCollection) {
             $result['toolbar'][] = $this->buildTreeToolButtonInfo('viewOnSite');
-        }
-
-        if ($collection instanceof StructureElementCollection) {
-            $types = $collection->getMetadata()->getTypesList();
-            $types = array_values(array_diff($types, [StructureElementCollection::TYPE_SYSTEM]));
-            $result['filters'][] = $this->buildTreeFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
         }
 
         return $result;
@@ -349,30 +342,18 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      */
     protected function buildTreeControlInfo(SimpleHierarchicCollection $collection) {
         $toolbar = $this->buildCreateButtonsInfo($collection);
-        $filters = [];
-
-        $toolbar[] = $this->buildTreeToolButtonInfo('edit');
 
         if ($collection instanceof IActiveAccessibleCollection) {
             $toolbar[] = $this->buildTreeToolButtonInfo('switchActivity');
-            $filters[] = $this->buildTreeFilterInfo(IActiveAccessibleObject::FIELD_ACTIVE, [true]);
         }
 
         if ($collection instanceof ICmsPageCollection) {
             $toolbar[] = $this->buildTreeToolButtonInfo('viewOnSite');
         }
 
-        if ($collection instanceof StructureElementCollection) {
-            $types = $collection->getMetadata()->getTypesList();
-            $types = array_values(array_diff($types, [StructureElementCollection::TYPE_SYSTEM]));
-            $filters[] = $this->buildTreeFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
-        }
-
-
         return [
             'displayName' => $this->translate('control:tree:displayName'),
-            'toolbar' => $toolbar,
-            'filters' => $filters
+            'toolbar' => $toolbar
         ];
     }
 
@@ -429,6 +410,44 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         }
 
         return $actions;
+    }
+
+    /**
+     * Возвращает информацию о возможных фильтрах коллекции.
+     * @param ICmsCollection $collection
+     * @return array
+     */
+    protected function buildCollectionFiltersInfo(ICmsCollection $collection) {
+        $result = [];
+
+        if ($collection instanceof IActiveAccessibleCollection) {
+            $result[] = $this->buildCollectionFilterInfo(IActiveAccessibleObject::FIELD_ACTIVE, [true]);
+        }
+
+        if ($collection instanceof StructureElementCollection) {
+            $types = $collection->getMetadata()->getTypesList();
+            $types = array_values(array_diff($types, [StructureElementCollection::TYPE_SYSTEM]));
+            $result[] = $this->buildCollectionFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Возвращает информацию о фильтре по полю для дерева
+     * @param string $fieldName имя поля
+     * @param array $values список разрешенных значений
+     * @param bool $isActive активен ли фильтр
+     * @return array
+     */
+    protected function buildCollectionFilterInfo($fieldName, array $values, $isActive = false) {
+
+        return [
+            'fieldName' => $fieldName,
+            'isActive' => $isActive,
+            'displayName' => $this->translate('filter:' . $fieldName),
+            'allow' => $values
+        ];
     }
 
     /**

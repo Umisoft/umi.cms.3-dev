@@ -9,25 +9,25 @@
 
 namespace umicms\project\module\blog\site\draft\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет публикации черновика.
+ * Виджет вывода черновика.
  */
-class BlogPublishDraftWidget extends BaseSecureWidget
+class DraftWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'publishDraftForm';
+    public $template = 'page';
     /**
-     * @var string|BlogPost $blogDraft черновик или GUID черновика
+     * @var string|BlogPost $blogDraft GUID или черновик
      */
     public $blogDraft;
+
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -63,15 +63,10 @@ class BlogPublishDraftWidget extends BaseSecureWidget
             );
         }
 
-        $formPostDraft = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE, $this->blogDraft);
-
-        $formPostDraft->setAction($this->getUrl('publish', ['id' => $this->blogDraft->getId()]));
-        $formPostDraft->setMethod('post');
-
         return $this->createResult(
             $this->template,
             [
-                'form' => $formPostDraft
+                'blogDraft' => $this->blogDraft
             ]
         );
     }

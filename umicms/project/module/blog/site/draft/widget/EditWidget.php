@@ -7,27 +7,27 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\tag\widget;
+namespace umicms\project\module\blog\site\draft\widget;
 
+use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет вывода тэга.
+ * Виджет редактирования черновика.
  */
-class BlogTagWidget extends BaseSecureWidget
+class EditWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'page';
+    public $template = 'editDraft';
     /**
-     * @var string|BlogTag $BlogTag GUID тэга
+     * @var string|BlogPost $blogDraft черновик или GUID редактируемого черновика
      */
-    public $blogTag;
-
+    public $blogDraft;
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -47,26 +47,31 @@ class BlogTagWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        if (is_string($this->blogTag)) {
-            $this->blogTag = $this->api->tag()->get($this->blogTag);
+        if (is_string($this->blogDraft)) {
+            $this->blogDraft = $this->api->post()->getDraft($this->blogDraft);
         }
 
-        if (!$this->blogTag instanceof BlogTag) {
+        if (!$this->blogDraft instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogPost',
-                        'class' => 'blogPost'
+                        'param' => 'blogDraft',
+                        'class' => 'BlogPost'
                     ]
                 )
             );
         }
 
+        $formEditDraft = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $this->blogDraft);
+
+        $formEditDraft->setAction($this->getUrl('edit', ['id' => $this->blogDraft->getId()]));
+        $formEditDraft->setMethod('post');
+
         return $this->createResult(
             $this->template,
             [
-                'blogTag' => $this->blogTag
+                'form' => $formEditDraft
             ]
         );
     }

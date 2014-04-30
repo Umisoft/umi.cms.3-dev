@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\blog\site\moderate;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\DefaultSitePageComponent;
 
@@ -36,7 +37,48 @@ return [
         'draftModerate' => __NAMESPACE__ . '\widget\PostDraftWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
-
+        IAclFactory::OPTION_ROLES => [
+            'author' => [],
+            'moderator' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'controller:edit',
+            'controller:publish',
+            'controller:reject',
+            'controller:draft',
+            'controller:all',
+            'widget:view',
+            'widget:ownList',
+            'widget:ownListLink',
+            'widget:allList',
+            'widget:allListLink',
+            'widget:editPost',
+            'widget:editPostLink',
+            'widget:publishModerate',
+            'widget:rejectModerate',
+            'widget:draftModerate'
+        ],
+        IAclFactory::OPTION_RULES => [
+            'author' => [
+                'controller:draft' => [],
+                'widget:draftModerate' => []
+            ],
+            'moderator' => [
+                'controller:edit' => [],
+                'controller:publish' => [],
+                'controller:reject' => [],
+                'controller:all' => [],
+                'widget:view' => [],
+                'widget:ownList' => [],
+                'widget:ownListLink' => [],
+                'widget:allList' => [],
+                'widget:allListLink' => [],
+                'widget:editPost' => [],
+                'widget:editPostLink' => [],
+                'widget:publishModerate' => [],
+                'widget:rejectModerate' => []
+            ]
+        ]
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/moderate'],

@@ -10,5 +10,7 @@
     <?= $blogComment->publishTime->format('d.m.Y | H:i') ?>
 </time>
 <?php endif; ?>
-<?= $blogComment->contents ?>
+    <?= $this->widget('blog.comment.publish', ['blogComment' => $blogComment, 'template' => 'publishForm']); ?>
+    <?= $this->widget('blog.comment.reject', ['blogComment' => $blogComment, 'template' => 'rejectForm']); ?>
+    <?= $blogComment->contents ?>
 </div>

@@ -7,25 +7,26 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\author\widget;
+namespace umicms\project\module\blog\site\comment\widget;
 
+use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
+use umicms\project\module\blog\api\object\BlogComment;
 
 /**
- * Виджет для вывода списка авторов.
+ * Виджет вывода комментариев.
  */
-class BlogAuthorListWidget extends BaseSecureWidget
+class CommentWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'list';
+    public $template = 'view';
     /**
-     * @var int $limit максимальное количество выводимых авторов.
-     * Если не указано, выводятся все авторы.
+     * @var string|BlogComment $blogComment комментарий или GUID комментария
      */
-    public $limit;
+    public $blogComment;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
@@ -46,10 +47,26 @@ class BlogAuthorListWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
+        if (is_string($this->blogComment)) {
+            $this->blogComment = $this->api->comment()->get($this->blogComment);
+        }
+
+        if (!$this->blogComment instanceof BlogComment) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Widget parameter "{param}" should be instance of "{class}".',
+                    [
+                        'param' => 'blogComment',
+                        'class' => 'BlogComment'
+                    ]
+                )
+            );
+        }
+
         return $this->createResult(
             $this->template,
             [
-                'authors' => $this->api->getAuthors()
+                'blogComment' => $this->blogComment
             ]
         );
     }

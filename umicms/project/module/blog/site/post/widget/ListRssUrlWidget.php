@@ -7,26 +7,20 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\draft\widget;
+namespace umicms\project\module\blog\site\post\widget;
 
-use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseSecureWidget;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет вывода черновика.
+ * Виджет для вывода URL на RSS-ленту по категории.
  */
-class BlogDraftWidget extends BaseSecureWidget
+class ListRssUrlWidget extends BaseSecureWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'page';
-    /**
-     * @var string|BlogPost $blogDraft GUID или черновик
-     */
-    public $blogDraft;
+    public $template = 'rssLink';
 
     /**
      * @var BlogModule $api API модуля "Блоги"
@@ -47,26 +41,10 @@ class BlogDraftWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        if (is_string($this->blogDraft)) {
-            $this->blogDraft = $this->api->post()->getDraft($this->blogDraft);
-        }
-
-        if (!$this->blogDraft instanceof BlogPost) {
-            throw new InvalidArgumentException(
-                $this->translate(
-                    'Widget parameter "{param}" should be instance of "{class}".',
-                    [
-                        'param' => 'blogDraft',
-                        'class' => 'BlogPost'
-                    ]
-                )
-            );
-        }
-
         return $this->createResult(
             $this->template,
             [
-                'blogDraft' => $this->blogDraft
+                'url' => $this->getUrl('rss')
             ]
         );
     }
