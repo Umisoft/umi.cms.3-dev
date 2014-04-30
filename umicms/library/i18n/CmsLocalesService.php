@@ -24,6 +24,14 @@ class CmsLocalesService extends LocalesService
      * @var AdminLocale[] $adminLocales локали административной панели
      */
     protected $adminLocales = [];
+    /**
+     * @var string $defaultAdminLocaleId локаль для административной панели по умолчанию
+     */
+    protected $defaultAdminLocaleId;
+    /**
+     * @var string $defaultSiteLocaleId локаль для сайта по умолчанию
+     */
+    protected $defaultSiteLocaleId;
 
     /**
      * Устанавливает локали, используемые на сайте.
@@ -65,6 +73,56 @@ class CmsLocalesService extends LocalesService
     public function getAdminLocales()
     {
         return $this->adminLocales;
+    }
+
+    /**
+     * Устанавливает локаль для административной панели по умолчанию
+     * @param $localeId
+     * @return $this
+     */
+    public function setDefaultAdminLocaleId($localeId)
+    {
+        $this->defaultAdminLocaleId = $localeId;
+
+        return $this;
+    }
+
+    /**
+     * Устанавливает локаль для сайта по умолчанию
+     * @param $localeId
+     * @return $this
+     */
+    public function setDefaultSiteLocaleId($localeId)
+    {
+        $this->defaultSiteLocaleId = $localeId;
+
+        return $this;
+    }
+
+    /**
+     * Возвращает локаль для административной панели по умолчанию
+     * @return string
+     */
+    public function getDefaultAdminLocaleId()
+    {
+        if (!$this->defaultAdminLocaleId) {
+            return $this->getDefaultLocale();
+        }
+
+        return $this->defaultAdminLocaleId;
+    }
+
+    /**
+     * Возвращает локаль для сайта по умолчанию
+     * @return string
+     */
+    public function getDefaultSiteLocaleId()
+    {
+        if (!$this->defaultSiteLocaleId) {
+            return $this->getDefaultLocale();
+        }
+
+        return $this->defaultSiteLocaleId;
     }
 }
  

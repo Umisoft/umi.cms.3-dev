@@ -12,7 +12,10 @@ namespace umicms\project\admin;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\http\Request;
 use umi\i18n\ILocalesAware;
+use umi\i18n\ILocalesService;
 use umi\i18n\TLocalesAware;
+use umicms\exception\RequiredDependencyException;
+use umicms\i18n\CmsLocalesService;
 use umicms\project\admin\component\AdminComponent;
 
 /**
@@ -25,12 +28,45 @@ class AdminApplication extends AdminComponent implements ILocalesAware
     const CURRENT_LOCALE_COOKIE_NAME = 'locale';
 
     /**
+     * @var CmsLocalesService $traitLocalesService сервис для работы с локалями
+     */
+    private $localesService;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLocalesService(ILocalesService $localesService)
+    {
+        $this->localesService = $localesService;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        $currentLocale = $request->cookies->get(self::CURRENT_LOCALE_COOKIE_NAME, $this->getCurrentLocale());
+        $defaultLocale = $this->getLocalesService()->getDefaultAdminLocaleId();
+        $currentLocale = $request->cookies->get(self::CURRENT_LOCALE_COOKIE_NAME, $defaultLocale);
+
         $this->setCurrentLocale($currentLocale);
+        $this->setDefaultLocale($defaultLocale);
+    }
+
+    /**
+     * Возвращает сервис для работы с локалями
+     * @throws RequiredDependencyException если сервис не был внедрен
+     * @return CmsLocalesService
+     */
+    protected function getLocalesService()
+    {
+        if (!$this->localesService) {
+            throw new RequiredDependencyException(sprintf(
+                'Locales service is not injected in class "%s".',
+                get_class($this)
+            ));
+        }
+
+        return $this->localesService;
     }
 }
  

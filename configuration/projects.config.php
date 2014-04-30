@@ -82,21 +82,6 @@ return [
 
     'default' => [
 
-        'locales' => [
-            'site' => [
-                'ru-RU' => [
-                    'route' => 'default'
-                ],
-                'en-US' => [
-                    'route' => 'en-US'
-                ]
-            ],
-            'admin' => [
-                'ru-RU' => [],
-                'en-US' => []
-            ]
-        ],
-
         'routes' => [
             'en-US' => [
                 'type' => 'ProjectHostRoute',
@@ -116,7 +101,6 @@ return [
 
         'destination' => '~/lite-php',
         'config' => '~/project/project.config.php',
-        'defaultLocale' => 'ru-RU'
     ]
 
 ];
