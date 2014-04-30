@@ -24,7 +24,14 @@ define(['App', 'text!./timeElement.hbs'], function(UMI, timeElement){
 //                    var y = $(this).offset().top;
 //                    $('body').append('<div class="umi-timepicker"></div>');
 //                });
-            }
+            },
+
+            inputView: Ember.View.extend({
+                template: function(){
+                    var dataSource = this.get('parentView.meta.dataSource');
+                    return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection"}}');
+                }.property()
+            })
         });
     };
 });

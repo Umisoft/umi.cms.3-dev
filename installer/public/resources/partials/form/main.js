@@ -163,6 +163,7 @@ define(
                     case 'email':           template = '{{email-element         object=object meta=meta}}'; break;
                     case 'password':        template = '{{password-element      object=object meta=meta}}'; break;
                     case 'checkbox':        template = '{{checkbox-element      object=object meta=meta}}'; break;
+                    case 'multi-checkbox':  template = '{{multi-checkbox-element object=object meta=meta}}'; break; //Хрень какая-то
                     case 'radio':           template = '{{radio-element         object=object meta=meta}}'; break;
                     case 'time':            template = '{{time-element          object=object meta=meta}}'; break;
                     case 'date':            template = '{{date-element          object=object meta=meta}}'; break;

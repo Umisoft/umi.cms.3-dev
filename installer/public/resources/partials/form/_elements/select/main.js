@@ -3,17 +3,13 @@ define(['App'], function(UMI){
 
     return function(){
         UMI.SelectView = Ember.Select.extend(UMI.InputValidate, {
-            classNames: ['umi-element-select'],
             attributeBindings: ['meta.dataSource:name'],
             optionLabelPath: 'content.displayName',
             optionValuePath: 'content.id',
-
             prompt: function(){
                 return this.get('meta.placeholder') || "Ничего не выбрано";
             }.property('meta.placeholder'),
-
             content: null,
-
             changeValue: function(){
                 var object = this.get('object');
                 var property = this.get('meta.dataSource');
@@ -21,7 +17,6 @@ define(['App'], function(UMI){
                 object.set(property, selectedObject || undefined);
                 object.changeRelationshipsValue(property, selectedObject ? selectedObject.get('id') : undefined);
             }.observes('value'),
-
             init: function(){
                 this._super();
                 var self = this;
@@ -46,7 +41,6 @@ define(['App'], function(UMI){
                     self.set('content', results[1]);
                 });
             },
-
             willDestroyElement: function(){
                 //console.log('willDestroyElement');
             }
