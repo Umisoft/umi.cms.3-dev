@@ -9,12 +9,19 @@
 
 namespace umicms\project\admin\api\controller;
 
+use Symfony\Component\HttpFoundation\Cookie;
+use umi\form\element\Select;
 use umi\form\IForm;
 use umi\hmvc\exception\http\HttpForbidden;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\hmvc\exception\http\HttpUnauthorized;
 use umi\http\Response;
+use umi\i18n\ILocalesAware;
+use umi\i18n\ILocalesService;
+use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\controller\BaseController;
+use umicms\i18n\CmsLocalesService;
+use umicms\project\admin\AdminApplication;
 use umicms\project\admin\api\ApiApplication;
 use umicms\project\module\users\api\UsersModule;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -22,12 +29,16 @@ use umicms\project\module\users\api\object\AuthorizedUser;
 /**
  * Контроллер действий авторизации пользователя в административной панели.
  */
-class ApiActionController extends BaseController
+class ApiActionController extends BaseController implements ILocalesAware
 {
     /**
      * @var UsersModule $api
      */
     protected $api;
+    /**
+     * @var CmsLocalesService $traitLocalesService сервис для работы с локалями
+     */
+    private $localesService;
 
     /**
      * Конструктор.
@@ -41,6 +52,14 @@ class ApiActionController extends BaseController
     /**
      * {@inheritdoc}
      */
+    public function setLocalesService(ILocalesService $localesService)
+    {
+        $this->localesService = $localesService;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function __invoke()
     {
         $action = $this->getRouteVar('action');
@@ -48,23 +67,16 @@ class ApiActionController extends BaseController
 
         if ($requestMethod == 'PUT' || $requestMethod == 'POST') {
             if ($action == 'login') {
-                return $this->createViewResponse(
-                    $action,
-                    [$action => $this->actionLogin()]
-                );
+                return $this->actionLogin();
             }
             if ($action == 'logout') {
-                $this->actionLogout();
-                return $this->createResponse('', Response::HTTP_NO_CONTENT);
+                return $this->actionLogout();
             }
         }
 
         if ($requestMethod == 'GET' && $action == 'form') {
 
-            return $this->createViewResponse(
-                $action,
-                [$action => $this->actionForm()]
-            );
+            return $this->actionForm();
         }
 
         throw new HttpNotFound('Action not found.');
@@ -96,7 +108,22 @@ class ApiActionController extends BaseController
             );
         }
 
-        return $user;
+        $response = $this->createViewResponse(
+            'login',
+            ['login' => $user]
+        );
+
+        if ($locale = $this->getPostVar('locale')) {
+            $cookie = new Cookie(
+                AdminApplication::CURRENT_LOCALE_COOKIE_NAME,
+                $locale,
+                new \DateTime('+5 year')
+            );
+            $response->headers->setCookie($cookie);
+        }
+
+        return $response;
+
     }
 
     /**
@@ -107,7 +134,7 @@ class ApiActionController extends BaseController
     {
         $this->api->logout();
 
-        return '';
+        return $this->createResponse('', Response::HTTP_NO_CONTENT);
     }
 
     /**
@@ -117,6 +144,18 @@ class ApiActionController extends BaseController
     protected function actionForm()
     {
         $form = $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_ADMIN, 'authorized');
+
+        $adminLocales = $this->getLocalesService()->getAdminLocales();
+        if (count($adminLocales) > 1) {
+
+            $locales = [];
+            foreach ($adminLocales as $adminLocale) {
+                $locales[$adminLocale->getId()] = $adminLocale->getId();
+            }
+            $localeInput = new Select('locale', [], ['choices' => $locales]);
+            $form->add($localeInput);
+        }
+
         /**
          * @var ApiApplication $component
          */
@@ -124,7 +163,28 @@ class ApiActionController extends BaseController
 
         $form->setAction($this->getUrlManager()->getAdminComponentActionResourceUrl($component, 'login'));
 
-        return $form;
+        return $this->createViewResponse(
+            'form',
+            ['form' => $form]
+        );
+
+    }
+
+    /**
+     * Возвращает сервис для работы с локалями
+     * @throws RequiredDependencyException если сервис не был внедрен
+     * @return CmsLocalesService
+     */
+    protected function getLocalesService()
+    {
+        if (!$this->localesService) {
+            throw new RequiredDependencyException(sprintf(
+                'Locales service is not injected in class "%s".',
+                get_class($this)
+            ));
+        }
+
+        return $this->localesService;
     }
 
 }

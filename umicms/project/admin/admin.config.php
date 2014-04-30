@@ -14,7 +14,7 @@ use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\project\admin\AdminApplication',
 
     AdminComponent::OPTION_CONTROLLERS => [
         AdminComponent::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',

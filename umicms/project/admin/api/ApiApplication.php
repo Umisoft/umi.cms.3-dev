@@ -25,7 +25,7 @@ use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
 
 /**
- * Приложение административной панели.
+ * REST-часть приложения административной панели.
  */
 class ApiApplication extends AdminComponent implements ISerializationAware, IToolkitAware
 {
