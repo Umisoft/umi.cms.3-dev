@@ -50,10 +50,12 @@ class PostAddController extends BaseSecureController implements IFormAware, IObj
     public function __invoke()
     {
         if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
+            throw new HttpNotFound(
+                $this->translate('Page not found')
+            );
         }
 
-        $post = $this->api->post()->add();
+        $post = $this->api->addPost();
 
         $form = $this->api->post()->getForm(BlogPost::FORM_ADD_POST, IObjectType::BASE, $post);
         $formData = $this->getAllPostVars();

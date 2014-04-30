@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\blog\api;
 
+use umi\orm\metadata\IObjectType;
 use umi\orm\selector\condition\IFieldConditionGroup;
 use umi\rss\IRssFeed;
 use umi\rss\IRssFeedAware;
@@ -119,6 +120,19 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function rssImport()
     {
         return $this->getCollection('blogRssImportScenario');
+    }
+
+    /**
+     * Создаёт пост от имени текущего автора.
+     * @param string $typeName имя дочернего типа
+     * @return BlogPost
+     */
+    public function addPost($typeName = IObjectType::BASE)
+    {
+        $post = $this->post()->add($typeName);
+        $post->author = $this->getCurrentAuthor();
+
+        return $post;
     }
 
     /**

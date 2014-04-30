@@ -10,12 +10,16 @@
 namespace umicms\project\module\blog\api\object;
 
 use DateTime;
+use umi\acl\IAclAssertionResolver;
+use umi\acl\IAclResource;
+use umi\hmvc\acl\ComponentRoleProvider;
 use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
 use umicms\project\module\blog\api\collection\BlogPostCollection;
+use umicms\project\module\users\api\object\AuthorizedUser;
 
 /**
  * Пост блога.
@@ -30,7 +34,7 @@ use umicms\project\module\blog\api\collection\BlogPostCollection;
  * @property string $oldUrl старый URL поста
  * @property string $source источник поста
  */
-class BlogPost extends CmsObject implements ICmsPage
+class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertionResolver
 {
     use TCmsPage;
 
@@ -162,5 +166,44 @@ class BlogPost extends CmsObject implements ICmsPage
         $this->publishStatus = self::POST_STATUS_REJECTED;
         return $this;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAclResourceName()
+    {
+        return 'model:blogPost';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAllowed($role, $operationName, array $assertions)
+    {
+        if (!$role instanceof ComponentRoleProvider || !$role->getIdentity() instanceof AuthorizedUser) {
+            return false;
+        }
+
+        /**
+         * @var AuthorizedUser $user
+         */
+        $user = $role->getIdentity();
+        $result = true;
+
+        foreach ($assertions as $assertion) {
+            switch($assertion) {
+                case 'own': {
+                    $result = $result && ($this->author->profile === $user);
+                    break;
+                }
+                default: {
+                return false;
+                }
+            }
+        }
+
+        return $result;
+    }
+
 }
  

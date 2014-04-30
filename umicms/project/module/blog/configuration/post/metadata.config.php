@@ -109,7 +109,7 @@ return [
         BlogPost::FIELD_PUBLISH_STATUS => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'publish_status',
-            'defaultValue' => 1
+            'defaultValue' => BlogPost::POST_STATUS_DRAFT
         ],
         BlogPost::FIELD_PAGE_H1 => [
             'type' => IField::TYPE_STRING,
