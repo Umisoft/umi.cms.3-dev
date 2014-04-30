@@ -9,6 +9,7 @@
 namespace umicms\project\module\blog\site\reject;
 
 use umi\acl\IAclFactory;
+use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\DefaultSitePageComponent;
 
@@ -42,10 +43,12 @@ return [
             'widget:listLink',
             'widget:editPost',
             'widget:editPostLink',
-            'widget:sendToModeration'
+            'widget:sendToModeration',
+            'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
+                'controller:index' => [],
                 'controller:page' => [],
                 'controller:edit' => [],
                 'controller:sendToModeration' => [],
@@ -54,7 +57,10 @@ return [
                 'widget:listLink' => [],
                 'widget:editPost' => [],
                 'widget:editPostLink' => [],
-                'widget:sendToModeration' => []
+                'widget:sendToModeration' => [],
+                'model:blogPost' => [
+                    IAclManager::OPERATION_ALL => ['own']
+                ]
             ]
         ]
     ],

@@ -71,6 +71,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      * @var UserModel $userSv
      */
     private $userSv;
+    /**
+     * @var UserModel $user
+     */
+    private $user;
 
     public function __construct(IDbCluster $dbCluster, UsersModule $usersApi, SearchModule $searchModule)
     {
@@ -86,7 +90,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     public function __invoke()
     {
         try {
-            $this->dropTables();
             $this->installDbStructure();
 
             $this->installUsers();
@@ -172,6 +175,22 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         ];
 
         /**
+         * @var UserGroup $authors
+         */
+        $authors = $groupCollection->add()
+            ->setValue('displayName', 'Авторы')
+            ->setValue('displayName', 'Authors', 'en-US');
+        $authors->getProperty('locked')->setValue(true);
+
+        $authors->roles = [
+            'project.site.blog.comment' => ['poster'],
+            'project.site.blog.moderate' => ['author'],
+            'project.site.blog.post' => ['author'],
+            'project.site.blog.reject' => ['author'],
+            'project.site.blog.draft' => ['author']
+        ];
+
+        /**
          * @var UserGroup $administrators
          */
         $administrators = $groupCollection->add()
@@ -230,7 +249,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('email', 'demo@umisoft.ru');
 
         $user->groups->attach($visitors);
+        $user->groups->attach($authors);
         $this->usersApi->setUserPassword($user, 'demo');
+
+        $this->user = $user;
 
         /**
          * @var Guest $guest
@@ -381,6 +403,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('profile', $this->userSv)
             ->setValue('slug', 'bives');
 
+        $buthead = $authorCollection->add()
+            ->setValue('displayName', 'Батхед')
+            ->setValue('displayName', 'Buthead', 'en-US')
+            ->setValue('h1', 'Батхед')
+            ->setValue('contents', 'Батхед')
+            ->setValue('contents', 'Buthead', 'en-US')
+            ->setValue('profile', $this->user)
+            ->setValue('slug', 'buthead');
+
 
         $post1 = $postCollection->add()
             ->setValue('displayName', 'Девиантное поведение призраков и домовых и способы влияния на него')
@@ -437,8 +468,36 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>')
             ->setValue('category', $category)
             ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_NEED_MODERATE)
-            ->setValue('author', $bives)
+            ->setValue('author', $buthead)
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj-3')
+            ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
+
+        $postCollection->add()
+            ->setValue('displayName', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой-4')
+            ->setValue('displayName', 'Conflict resolution method UFO Renata Litvinova', 'en-US')
+            ->setValue('metaTitle', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
+            ->setValue('h1', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
+            ->setValue('announcement', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер.</p>')
+            ->setValue('announcement', '<p>Renata Litvinova announced and allowed to use methods of conflict-author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen, try to remember how your evening ended yesterday.</p>', 'en-US')
+            ->setValue('contents', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>')
+            ->setValue('category', $category)
+            ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_REJECTED)
+            ->setValue('author', $buthead)
+            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj-4')
+            ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
+
+        $postCollection->add()
+            ->setValue('displayName', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой-5')
+            ->setValue('displayName', 'Conflict resolution method UFO Renata Litvinova', 'en-US')
+            ->setValue('metaTitle', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
+            ->setValue('h1', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
+            ->setValue('announcement', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер.</p>')
+            ->setValue('announcement', '<p>Renata Litvinova announced and allowed to use methods of conflict-author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen, try to remember how your evening ended yesterday.</p>', 'en-US')
+            ->setValue('contents', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>')
+            ->setValue('category', $category)
+            ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_PUBLISHED)
+            ->setValue('author', $buthead)
+            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj-5')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
 
         /**
@@ -886,17 +945,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     protected function dropTables()
     {
         $connection = $this->dbCluster->getConnection();
-        /**
-         * @var IDialect $dialect
-         */
-        $dialect = $connection->getDatabasePlatform();
 
         $tables = $connection->getDriver()->getSchemaManager($connection)->listTableNames();
         foreach ($tables as $table) {
-            if ($connection->getDriver()->getSchemaManager($connection)->tablesExist($table)) {
-                $connection->exec($dialect->getDisableForeignKeysSQL());
-                $connection->getDriver()->getSchemaManager($connection)->dropTable($table);
-            }
+            $connection->getDriver()->getSchemaManager($connection)->dropTable($table);
         }
     }
 
@@ -907,7 +959,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var IDialect $dialect
          */
         $dialect = $connection->getDatabasePlatform();
+
         $connection->exec($dialect->getDisableForeignKeysSQL());
+
+        $this->dropTables();
 
         $this->installStructureTables();
         $this->installNewsTables();
@@ -921,10 +976,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     protected function installUsersTables()
     {
         $connection = $this->dbCluster->getConnection();
-
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_user`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_user_group`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_user_user_group`");
 
         $connection->exec(
             "
@@ -1018,15 +1069,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     {
         $connection = $this->dbCluster->getConnection();
 
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_category`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_post`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_comment`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_tag`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_blog_post_tag`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_author`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_rss_import_scenario_tag`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_blog_rss_import_scenario`");
-
         $connection->exec(
             "
                 CREATE TABLE `demohunt_blog_category` (
@@ -1105,7 +1147,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `category_id` bigint(20) unsigned DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
                     `comments_count` bigint(20) unsigned DEFAULT NULL,
-                    `publish_status` enum('draft','published','rejected','moderate') DEFAULT NULL,
+                    `publish_status` enum('draft','published','rejected','moderate') DEFAULT 'draft',
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_post_guid` (`guid`),
@@ -1346,14 +1388,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     {
         $connection = $this->dbCluster->getConnection();
 
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_rubric`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_news_item`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_subject`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_news_item_subject`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_rss_import_scenario`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_rss_import_scenario_subject`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_news_rss_import_scenario`");
-
         $connection->exec(
             "
                 CREATE TABLE `demohunt_news_rubric` (
@@ -1577,9 +1611,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     {
         $connection = $this->dbCluster->getConnection();
 
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_structure`");
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_layout`");
-
         $connection->exec(
             "
                 CREATE TABLE `demohunt_layout` (
@@ -1679,8 +1710,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $connection = $this->dbCluster->getConnection();
 
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_search_index`");
-
         $connection->exec(
             "CREATE TABLE `demohunt_search_index` (
                 `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -1725,8 +1754,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     private function installBackup()
     {
         $connection = $this->dbCluster->getConnection();
-
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_backup`");
 
         $connection->exec(
             "CREATE TABLE `demohunt_backup` (
@@ -1783,8 +1810,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     protected function installTest()
     {
         $connection = $this->dbCluster->getConnection();
-
-        $connection->exec("DROP TABLE IF EXISTS `demohunt_module_test`");
 
         $connection->exec(
             "CREATE TABLE `demohunt_module_test` (

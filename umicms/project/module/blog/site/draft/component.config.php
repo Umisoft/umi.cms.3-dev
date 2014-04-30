@@ -9,6 +9,7 @@
 namespace umicms\project\module\blog\site\draft;
 
 use umi\acl\IAclFactory;
+use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\DefaultSitePageComponent;
 
@@ -34,7 +35,7 @@ return [
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
-            'moderator' => ['author']
+            'publisher' => ['author']
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:edit',
@@ -46,43 +47,32 @@ return [
             'widget:editDraft',
             'widget:publishDraft',
             'widget:editDraftLink',
-            'widget:sendToModeration'
+            'widget:sendToModeration',
+            'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
-                'controller:edit' => [
-                    'edit' => ['own']
-                ],
-                'controller:publish' => [
-                    'publish' => ['own', 'unpublished']
-                ],
+                'controller:index' => [],
+                'controller:page' => [],
+                'controller:edit' => [],
+                'controller:sendToModeration' => [],
+                'widget:view' => [],
                 'widget:ownList' => [],
                 'widget:ownListUrl' => [],
-                'widget:editDraft' => [
-                    'edit' => ['own']
-                ],
-                'widget:publishDraft' => [
-                    'publish' => ['own', 'unpublished']
-                ],
-                'widget:editDraftLink' => [
-                    'draft' => ['own']
-                ],
-            ],
-            'moderator' => [
-                'controller:edit' => [
-                    'edit' => []
-                ],
-                'controller:publish' => [
-                    'publish' => ['unpublished']
-                ],
-                'widget:ownList' => [],
-                'widget:ownListUrl' => [],
-                'widget:editDraft' => [],
-                'widget:publishDraft' => [
-                    'publish' => ['published']
-                ],
                 'widget:editDraftLink' => [],
-            ]
+                'widget:editDraft' => [],
+                'widget:sendToModeration' => [],
+                'model:blogPost' => [
+                    IAclManager::OPERATION_ALL => ['own']
+                ]
+            ],
+            'publisher' => [
+                'controller:publish' => [],
+                'widget:publishDraft' => [],
+                'model:blogPost' => [
+                    IAclManager::OPERATION_ALL => ['own']
+                ]
+            ],
         ]
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
