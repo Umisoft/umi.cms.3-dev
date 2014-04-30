@@ -184,10 +184,10 @@ define([], function(){
 
                 for(i = 0; i < collection.fields.length; i++){
                     switch(collection.fields[i].type){
-                        /*case 'string':
-                         params = {defaultValue: collection.fields[i]['default']};
-                         fieldValue = DS.attr('string', params);
-                         break;*/
+                        case 'string':
+                            params = {defaultValue: collection.fields[i]['default']};
+                            fieldValue = DS.attr('string', params);
+                            break;
                         case 'number':
                         case 'counter':
                             params = {defaultValue: collection.fields[i]['default']};

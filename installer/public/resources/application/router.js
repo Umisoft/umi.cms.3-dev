@@ -108,13 +108,16 @@ define([], function(){
                                             parent.reload().then(function(parent){
                                                 parent.trigger('needReloadHasMany');
                                             });
-                                            self.send('getEditForm', params.object);
+                                            self.send('edit', params.object);
                                         });
                                     } else{
-                                        self.send('getEditForm', params.object);
+                                        // Обновление связей рутовой ноды в дереве. TODO: подумать как можно избежать обращения к контроллеру дерева.
+                                        self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(params.object.get('id'), 'root');
+
+                                        self.send('edit', params.object);
                                     }
                                 }
-                                self.send('getEditForm', params.object);
+                                self.send('edit', params.object);
                             }
                         },
                         function(results){
@@ -184,11 +187,12 @@ define([], function(){
                     }
                 },
 
-                getCreateForm: function(object){
-                    this.transitionTo('action', object.get('id'), 'createForm');
+                create: function(parentObject, actionParam){
+                    var typeName = actionParam.typeName;
+                    this.transitionTo('action', parentObject.get('id'), 'createForm', {queryParams: {'typeName': typeName}});
                 },
 
-                getEditForm: function(object){
+                edit: function(object){
                     this.transitionTo('action', object.get('id'), 'editForm');
                 },
 
@@ -375,7 +379,7 @@ define([], function(){
         });
 
         UMI.ContextRoute = Ember.Route.extend({
-            model: function(params){
+            model: function(params, transition){
                 var componentController = this.controllerFor('component');
                 var collectionName = componentController.get('collectionName');
                 var RootModel;
@@ -424,6 +428,12 @@ define([], function(){
         });
 
         UMI.ActionRoute = Ember.Route.extend({
+            queryParams: {
+                typeName: {
+                    refreshModel: true,
+                    replace: true
+                }
+            },
             model: function(params, transition){
                 var self = this;
                 var actionName = params.action;
@@ -441,12 +451,17 @@ define([], function(){
                      * Мета информация для action
                      */
                     var actionParams = {};
+                    if(contextModel.get('type')){
+                        actionParams.type = contextModel.get('type');
+                    }
                     if(actionName === 'createForm'){
                         var createdParams =  contextModel.get('id') !== 'root' ? {parent: contextModel} : null;
                         data.createObject = self.store.createRecord(collectionName, createdParams);
-                    }
-                    if(contextModel.get('type')){
-                        actionParams.type = contextModel.get('type');
+                        if(transition.queryParams.typeName){
+                            actionParams.type = transition.queryParams.typeName;
+                        } else{
+                            throw new Error("Тип создаваемого объекта не был указан.");
+                        }
                     }
                     // Временное решение для таблицы
                     if(actionName === 'children' || actionName === 'filter'){
@@ -478,7 +493,9 @@ define([], function(){
             renderTemplate: function(controller, model){
                 try{
                     var templateType = model.action.get('name');
-                    this.render(templateType);
+                    this.render(templateType, {
+                        controller: controller
+                    });
                 } catch(error){
                     var errorObject = {
                         'statusText': error.name,
@@ -489,18 +506,18 @@ define([], function(){
                 }
             },
             setupController: function(controller, model){
+                this._super(controller, model);
                 var context = this.modelFor('context');
                 var actions = this.controllerFor('component').get('contentControls');
                 var action = actions.findBy('name', model.action.get('name'));
                 if(!action){
                     return this.transitionTo('context', context.get('id'));
                 }
-                if(model.object.get('id') !== context.get('id')){
-                    Ember.set(model, 'object', context);
-                    this._super(controller, model);
-                } else{
-                    this._super(controller, model);
+                if(model.createObject){
+                    Ember.set(model, 'object', model.createObject);
+                    Ember.set(model, 'createObject', null);
                 }
+                controller.set('model', model);
             },
             actions: {
                 /**
@@ -509,9 +526,12 @@ define([], function(){
                  @param {Object} transition
                  */
                 willTransition: function(transition){
-                    var model = this.modelFor('context').object;
-                    if('createObject' in this.modelFor('context') && this.modelFor('context').createObject.get('isNew')){
-                        this.modelFor('context').createObject.deleteRecord();
+                    if(transition.params.action && transition.params.action.action !== 'createForm'){
+                        this.get('controller').set('typeName', null);
+                    }
+                    var model = this.modelFor('action').object;
+                    if(this.modelFor('action').object.get('isNew')){// TODO: не удаляется мусор
+                        this.modelFor('action').createObject.deleteRecord();
                     }
                     if(model.get('isDirty')){
                         transition.abort();
@@ -555,6 +575,21 @@ define([], function(){
                             return treeControl;
                         }
                     );
+                },
+                redirect: function(model, transition){
+                    if(transition.targetName === this.routeName + '.index'){
+                        var objectWithResource;
+                        for(var i = 0; i < model.length; i++){
+                            if(model[i].resource){
+                                objectWithResource = model[i];
+                                break;
+                            }
+                        }
+                        if(!objectWithResource){
+                            throw new Error("Не один из объектов дерева не имеет поле resource.");
+                        }
+                        return this.transitionTo('settings.component', objectWithResource.name);
+                    }
                 }
             });
 

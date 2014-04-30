@@ -24,7 +24,7 @@ class BlogAuthorListRssUrlWidget extends BaseSecureWidget
      */
     public $template = 'rssLink';
     /**
-     * @var BlogAuthor $blogAuthor автор, для постов которого формировать RSS-ленту.
+     * @var string|BlogAuthor $blogAuthor автор, для постов которого формировать RSS-ленту.
      */
     public $blogAuthor;
     /**
@@ -50,7 +50,7 @@ class BlogAuthorListRssUrlWidget extends BaseSecureWidget
             $this->blogAuthor = $this->api->author()->get($this->blogAuthor);
         }
 
-        if (isset($this->blogAuthor) && !$this->blogAuthor instanceof BlogAuthor) {
+        if (!$this->blogAuthor instanceof BlogAuthor) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',

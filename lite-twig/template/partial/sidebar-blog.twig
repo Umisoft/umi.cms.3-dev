@@ -15,9 +15,16 @@
     {{ widget('blog.author.list', {'template' : 'listShort'}) }}
 </div>
 <div class="sidebar-module">
+    <h4>{{ translate('Посты автора') }}</h4>
+    <ol class="list-unstyled">
+        <li>{{ translate('Черновики') }}: {{ widget('blog.draft.ownListUrl', {'template' : 'draftLinkAuthor'}) }}</li>
+        <li>{{ translate('Посты на модерации') }}: {{ widget('blog.moderate.ownListLink', {'template' : 'moderateLink'}) }}</li>
+        <li>{{ translate('Отклонённые посты') }}: {{ widget('blog.reject.listLink', {'template' : 'listLink'}) }}</li>
+    </ol>
+</div>
+<div class="sidebar-module">
     <h4>{{ translate('Модерирование') }}</h4>
     <ol class="list-unstyled">
-        <li>{{ translate('Черновики автора') }}: {{ widget('blog.draft.ownListUrl', {'template' : 'draftLinkAuthor'}) }}</li>
-        <li>{{ translate('Все черновики') }}: {{ widget('blog.draft.allListUrl', {'template' : 'draftLinkAll'}) }}</li>
+        <li>{{ translate('Посты на модерации') }}: {{ widget('blog.moderate.allListLink', {'template' : 'moderateLink'}) }}</li>
     </ol>
 </div>

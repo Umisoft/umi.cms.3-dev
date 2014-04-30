@@ -55,7 +55,7 @@ class CategoryPostListWidget extends BaseListWidget
                 $category = $this->api->category()->get($category);
             }
 
-            if (isset($category) && !$category instanceof BlogCategory) {
+            if (!$category instanceof BlogCategory) {
                 throw new InvalidArgumentException(
                     $this->translate(
                         'Widget parameter "{param}" should be instance of "{class}".',

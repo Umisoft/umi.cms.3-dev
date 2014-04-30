@@ -51,7 +51,7 @@ class BlogAuthorWidget extends BaseSecureWidget
             $this->blogAuthor = $this->api->author()->get($this->blogAuthor);
         }
 
-        if (isset($this->blogAuthor) && !$this->blogAuthor instanceof BlogAuthor) {
+        if (!$this->blogAuthor instanceof BlogAuthor) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',

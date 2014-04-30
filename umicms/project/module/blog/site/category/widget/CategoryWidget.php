@@ -51,7 +51,7 @@ class CategoryWidget extends BaseSecureWidget
             $this->category = $this->api->category()->get($this->category);
         }
 
-        if (isset($this->category) && !$this->category instanceof BlogCategory) {
+        if (!$this->category instanceof BlogCategory) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',

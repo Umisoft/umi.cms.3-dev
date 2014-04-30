@@ -16,7 +16,8 @@ return [
             BlogPost::FIELD_TAGS => 'Tags',
             BlogPost::FIELD_AUTHOR => 'Author',
             BlogPost::FIELD_PUBLISH_TIME => 'Publish time',
-            BlogPost::FIELD_SOURCE => 'Source'
+            BlogPost::FIELD_SOURCE => 'Source',
+            'type:base:displayName' => 'Blog post'
         ],
 
         'ru-RU' => [
@@ -25,6 +26,7 @@ return [
             BlogPost::FIELD_TAGS => 'Тэги',
             BlogPost::FIELD_AUTHOR => 'Автор',
             BlogPost::FIELD_PUBLISH_TIME => 'Дата публикации',
-            BlogPost::FIELD_SOURCE => 'Источник публикации'
+            BlogPost::FIELD_SOURCE => 'Источник публикации',
+            'type:base:displayName' => 'Пост блога'
         ]
     ];

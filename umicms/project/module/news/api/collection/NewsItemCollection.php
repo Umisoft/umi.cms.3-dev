@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\news\api\collection;
 
+use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\PageCollection;
@@ -21,8 +22,8 @@ use umicms\project\module\news\api\object\NewsSubject;
  * Коллекция для работы с новостями.
  *
  * @method CmsSelector|NewsItem[] select() Возвращает селектор для выбора новостей.
- * @method NewsItem get($guid, $withLocalization = false) Возвращает новость по ее GUID.
- * @method NewsItem getById($objectId, $withLocalization = false) Возвращает новость по ее id.
+ * @method NewsItem get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает новость по ее GUID.
+ * @method NewsItem getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает новость по ее id.
  * @method NewsItem add($typeName = IObjectType::BASE) Создает и возвращает новость.
  */
 class NewsItemCollection extends PageCollection

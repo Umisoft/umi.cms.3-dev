@@ -11,5 +11,5 @@
     {{ blogPost.announcement | raw }}
 
     <a href="{{ blogPost.getPageUrl() }}">{{ translate('Читать далее') }}</a>
-    {{ widget('blog.post.unPublish', {'blogPost' : blogPost, 'template' : 'unPublishPostForm'}) }}
+    {{ widget('blog.post.unPublished', {'blogPost' : blogPost, 'template' : 'unPublishPostForm'}) }}
 </div>

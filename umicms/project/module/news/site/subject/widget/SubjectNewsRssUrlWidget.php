@@ -52,7 +52,7 @@ class SubjectNewsRssUrlWidget extends BaseSecureWidget
             $this->subject = $this->api->subject()->get($this->subject);
         }
 
-        if (isset($this->subject) && !$this->subject instanceof NewsSubject) {
+        if (!$this->subject instanceof NewsSubject) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',

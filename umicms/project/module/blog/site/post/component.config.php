@@ -17,42 +17,44 @@ return [
     DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
     DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
-        'add' => __NAMESPACE__ . '\controller\BlogAddPostController',
-        'edit' => __NAMESPACE__ . '\controller\BlogEditPostController',
-        'unPublish' => __NAMESPACE__ . '\controller\BlogDraftPostController',
-        'rss' => __NAMESPACE__ . '\controller\BlogPostRssController'
+        'add' => __NAMESPACE__ . '\controller\PostAddController',
+        'edit' => __NAMESPACE__ . '\controller\PostEditController',
+        'unPublished' => __NAMESPACE__ . '\controller\PostToDraftController',
+        'rss' => __NAMESPACE__ . '\controller\PostRssController'
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
-        'view' => __NAMESPACE__ . '\widget\BlogPostWidget',
-        'list' => __NAMESPACE__ . '\widget\BlogPostListWidget',
-        'rss' => __NAMESPACE__ . '\widget\BlogPostListRssUrlWidget',
-        'add' => __NAMESPACE__ . '\widget\BlogAddPostWidget',
-        'edit' => __NAMESPACE__ . '\widget\BlogEditPostWidget',
-        'unPublish' => __NAMESPACE__ . '\widget\BlogDraftPostWidget',
-        'editPostLink' => __NAMESPACE__ . '\widget\BlogEditPostUrlWidget'
+        'view' => __NAMESPACE__ . '\widget\PostWidget',
+        'list' => __NAMESPACE__ . '\widget\ListWidget',
+        'rss' => __NAMESPACE__ . '\widget\ListRssUrlWidget',
+        'add' => __NAMESPACE__ . '\widget\AddWidget',
+        'edit' => __NAMESPACE__ . '\widget\EditWidget',
+        'unPublished' => __NAMESPACE__ . '\widget\PostToDraftWidget',
+        'editPostLink' => __NAMESPACE__ . '\widget\EditUrlWidget'
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/post'],
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'viewer' => [],
             'rssViewer' => [],
-            'author' => [],
-            'moderator' => []
+            'viewer' => [],
+            'author' => ['viewer'],
+            'publisher' => ['author'],
+            'moderator' => ['publisher']
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:rss',
             'controller:add',
             'controller:edit',
-            'controller:unPublish',
+            'controller:unPublished',
             'widget:view',
             'widget:list',
             'widget:rss',
-            'widget:addPost',
+            'widget:add',
             'widget:editPost',
-            'widget:unPublish',
+            'widget:unPublished',
             'widget:editPostLink',
+            'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -61,39 +63,28 @@ return [
             ],
             'rssViewer' => [
                 'controller:rss' => [],
-                'widget:rss' => [],
+                'widget:rss' => []
             ],
             'author' => [
+                'controller:unPublished' => [],
+                'widget:unPublished' => [],
+                'model:blogPost' => [
+                    'unPublished' => ['own']
+                ]
+            ],
+            'publisher' => [
                 'controller:add' => [],
-                'controller:edit' => [
-                    'edit' => ['own']
-                ],
-                'controller:unPublish' => [
-                    'publish' => ['own', 'published']
-                ],
-                'widget:addPost' => [],
-                'widget:editPost' => [
-                    'edit' => ['own']
-                ],
-                'widget:unPublish' => [
-                    'publish' => ['own', 'published']
-                ],
-                'widget:editPostLink' => [
-                    'edit' => ['own']
-                ],
+                'widget:add' => []
             ],
             'moderator' => [
-                'controller:add' => [],
                 'controller:edit' => [],
-                'controller:unPublish' => [
-                    'publish' => ['published']
-                ],
-                'widget:addPost' => [],
+                'controller:unPublished' => [],
                 'widget:editPost' => [],
-                'widget:unPublish' => [
-                    'publish' => ['published']
-                ],
+                'widget:unPublished' => [],
                 'widget:editPostLink' => [],
+                'model:blogPost' => [
+                    'edit' => []
+                ]
             ]
         ]
     ],
@@ -112,11 +103,11 @@ return [
                 'controller' => 'add'
             ]
         ],
-        'unPublish' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route' => '/unPublish',
+        'unPublished' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/unPublish/{id:integer}',
             'defaults' => [
-                'controller' => 'unPublish'
+                'controller' => 'unPublished'
             ]
         ],
         'edit' => [

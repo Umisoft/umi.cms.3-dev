@@ -53,6 +53,7 @@ define([
                         case 'wysiwyg':
                             template = '{{html-editor name=object.name object=object property="value"}}';
                             break;
+                        case 'checkbox':        template = '<label>{{view Ember.Checkbox checked=object.value}} {{object.label}}</label>'; break;
                         default:
                             template = '<div>Для поля типа <b>' + object.type + '</b> не предусмотрен шаблон.</div>';
                             break;

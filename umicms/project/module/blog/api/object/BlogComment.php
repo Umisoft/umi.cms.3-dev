@@ -22,6 +22,7 @@ use umicms\project\module\users\api\UsersModule;
  * @property BlogPost $post пост, к которому относится комментарий
  * @property string $contents комментарий
  * @property DateTime $publishTime дата и время публикации комментария
+ * @property string $publishStatus статус публикации комментария
  */
 class BlogComment extends CmsHierarchicObject implements IRecyclableObject, IActiveAccessibleObject
 {
@@ -42,8 +43,58 @@ class BlogComment extends CmsHierarchicObject implements IRecyclableObject, IAct
      */
     const FIELD_PUBLISH_TIME = 'publishTime';
     /**
+     * Имя поля для хранения статуса публикации комментария
+     */
+    const FIELD_PUBLISH_STATUS = 'publishStatus';
+    /**
      * Форма добавления комментария
      */
     const FORM_ADD_COMMENT = 'addComment';
+    /**
+     * Форма одобрения комментария
+     */
+    const FORM_CHANGE_COMMENT_STATUS = 'changeStatus';
+    /**
+     * Статус комментария: опубликован
+     */
+    const COMMENT_STATUS_PUBLISHED = 'published';
+    /**
+     * Статус комментария: отклонён
+     */
+    const COMMENT_STATUS_REJECTED = 'rejected';
+    /**
+     * Статус комментария: требует модерации
+     */
+    const COMMENT_STATUS_NEED_MODERATE = 'moderate';
+
+    /**
+     * Выставляет статус комментария опубликован.
+     * @return $this
+     */
+    public function published()
+    {
+        $this->publishStatus = self::COMMENT_STATUS_PUBLISHED;
+        return $this;
+    }
+
+    /**
+     * Выставляет статус поста требует модерации.
+     * @return $this
+     */
+    public function needModerate()
+    {
+        $this->publishStatus = self::COMMENT_STATUS_NEED_MODERATE;
+        return $this;
+    }
+
+    /**
+     * Выставляет статус комментария отклонён.
+     * @return $this
+     */
+    public function rejected()
+    {
+        $this->publishStatus = self::COMMENT_STATUS_REJECTED;
+        return $this;
+    }
 }
  

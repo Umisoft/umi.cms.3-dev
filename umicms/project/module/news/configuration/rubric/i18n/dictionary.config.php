@@ -11,10 +11,12 @@ use umicms\project\module\news\api\object\NewsRubric;
 
 return [
         'en-US' => [
-            NewsRubric::FIELD_NEWS => 'News items'
+            NewsRubric::FIELD_NEWS => 'News items',
+           'type:base:displayName' => 'News rubric'
         ],
 
         'ru-RU' => [
-            NewsRubric::FIELD_NEWS => 'Новости'
+            NewsRubric::FIELD_NEWS => 'Новости',
+            'type:base:displayName' => 'Рубрика новостей'
         ]
     ];

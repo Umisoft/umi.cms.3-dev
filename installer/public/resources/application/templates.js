@@ -52,7 +52,7 @@ define([
         Ember.TEMPLATES['UMI/counter'] = Ember.Handlebars.compile(counterTpl);
         Ember.TEMPLATES['UMI/megaindexReport'] = Ember.Handlebars.compile(megaIndexTpl);
         Ember.TEMPLATES['UMI/yandexWebmasterReport'] = Ember.Handlebars.compile(yandexWebmasterTpl);
-        Ember.TEMPLATES['UMI/createForm'] = Ember.Handlebars.compile(createFormTpl);
+        Ember.TEMPLATES['UMI/createForm'] = Ember.Handlebars.compile(editFormTpl);
 
         Ember.TEMPLATES['UMI/settings'] = Ember.Handlebars.compile(settingsTpl);
         Ember.TEMPLATES['UMI/settings/component'] = Ember.Handlebars.compile(settingComponentTpl);

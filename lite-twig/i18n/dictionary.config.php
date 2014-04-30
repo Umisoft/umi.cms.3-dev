@@ -3,13 +3,14 @@
 return [
     'project.site' => [
         'en-US' => [
+            'Авторизация' => 'Sign in',
             'RSS ленты' => 'RSS feed',
             'Блоги' => 'Blogs',
             'Категории' => 'Categories',
             'Облако тэгов' => 'Tags cloud',
             'Авторы' => 'Authors',
             'Модерирование' => 'Moderate',
-            'Черновики автора' => 'Author\'s drafts',
+            'Посты автора' => 'Authors\'s posts',
             'Все черновики' => 'All drafts',
             'Новости' => 'News',
             'Рубрики' => 'Rubrics',
@@ -17,9 +18,18 @@ return [
             'Demo lite twig' => 'Demo lite twig',
             'Blank-шаблон созданный на Umicms 3' => 'Blank-template create on Umicms 3',
             'Demo lite twig build for {bootstrap} by {umicms}' => 'Demo lite twig build for {bootstrap} by {umicms}',
-            'На верх' => 'Back to top',
+            'Наверх' => 'Back to top',
             'Назад' => 'Previous',
             'Дальше' => 'Next',
+            'Черновики' => 'Drafts',
+            'Посты на модерации' => 'Post on moderation',
+            'Отклонённые посты' => 'Rejected posts',
+            'ru-RU' => 'RU',
+            'en-US' => 'EN',
+        ],
+        'ru-RU' => [
+            'ru-RU' => 'RU',
+            'en-US' => 'EN',
         ]
     ],
 

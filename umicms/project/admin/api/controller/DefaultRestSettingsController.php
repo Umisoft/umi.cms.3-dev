@@ -87,51 +87,9 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         return [
             'collectionName' => $collection->getName(),
             'layout' => $this->buildLayoutInfo($collection),
-            'types' => [$this->buildTypesTreeNode($collection)],
-            'actions' => $this->buildActionsInfo()
+            'actions' => $this->buildActionsInfo(),
+            'filters' => $this->buildCollectionFiltersInfo($collection)
         ];
-    }
-
-    /**
-     * Возвращает дерево типов коллекции компонента
-     * @param ICmsCollection $collection
-     * @param string $typeName имя типа
-     * @return array
-     */
-    protected function buildTypesTreeNode(ICmsCollection $collection, $typeName = IObjectType::BASE) {
-
-        $result = [
-            'name' => $typeName,
-            'displayName' => $this->translate('type:' . $typeName . ':displayName'),
-
-        ];
-
-        if ($collection->hasForm(ICmsCollection::FORM_CREATE, $typeName)) {
-            $result[ICmsCollection::FORM_CREATE] = $this->getUrlManager()->getAdminComponentActionResourceUrl(
-                $this->getComponent(),
-                DefaultAdminComponent::ACTION_GET_CREATE_FORM,
-                ['type' => $typeName]
-            );
-        }
-
-        if ($collection->hasForm(ICmsCollection::FORM_EDIT, $typeName)) {
-            $result[ICmsCollection::FORM_EDIT] = $this->getUrlManager()->getAdminComponentActionResourceUrl(
-                $this->getComponent(),
-                DefaultAdminComponent::ACTION_GET_EDIT_FORM,
-                ['type' => $typeName]
-            );
-        }
-
-        $childTypes = [];
-        foreach ($collection->getMetadata()->getChildTypesList($typeName) as $childTypeName) {
-            $childTypes[] = $this->buildTypesTreeNode($collection, $childTypeName);
-        }
-
-        if ($childTypes) {
-            $result['types'] = $childTypes;
-        }
-
-        return $result;
     }
 
     /**
@@ -293,24 +251,45 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         $result = [
             'displayName' => $this->translate('control:filter:displayName'),
             'toolbar' => [
-                $this->buildTreeToolButtonInfo(DefaultAdminComponent::ACTION_GET_CREATE_FORM),
-                $this->buildTreeToolButtonInfo(DefaultAdminComponent::ACTION_GET_EDIT_FORM)
+                $this->buildTreeToolButtonInfo('create')
             ]
         ];
 
         if ($collection instanceof IActiveAccessibleCollection) {
             $result['toolbar'][] = $this->buildTreeToolButtonInfo('switchActivity');
-            $result['filters'][] = $this->buildTreeFilterInfo(IActiveAccessibleObject::FIELD_ACTIVE, [true]);
         }
 
         if ($collection instanceof ICmsPageCollection) {
             $result['toolbar'][] = $this->buildTreeToolButtonInfo('viewOnSite');
         }
 
-        if ($collection instanceof StructureElementCollection) {
-            $types = $collection->getMetadata()->getTypesList();
-            $types = array_values(array_diff($types, [StructureElementCollection::TYPE_SYSTEM]));
-            $result['filters'][] = $this->buildTreeFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
+        return $result;
+    }
+
+    /**
+     * Возвращает информацию о кнопках создания объектов коллекции
+     * @param ICmsCollection $collection
+     * @return array
+     */
+    protected function buildCreateButtonsInfo(ICmsCollection $collection) {
+        $typeNames = [IObjectType::BASE];
+
+        $typeNames = array_merge($typeNames, $collection->getMetadata()->getDescendantTypesList());
+
+        $result = [];
+
+        $createLabel = $this->translate('control:tree:toolbar:create');
+        foreach ($typeNames as $typeName) {
+           if ($collection->hasForm(ICmsCollection::FORM_CREATE, $typeName)) {
+               $result[] = [
+                    'type' => 'create',
+                    'displayName' =>  $this->translate('{createLabel} "{typeDisplayName}"', [
+                        'createLabel' => $createLabel,
+                        'typeDisplayName' => $this->translate('type:' . $typeName . ':displayName')
+                    ]),
+                    'typeName' => $typeName
+               ];
+           }
         }
 
         return $result;
@@ -362,32 +341,20 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @return array
      */
     protected function buildTreeControlInfo(SimpleHierarchicCollection $collection) {
-        $result = [
-            'displayName' => $this->translate('control:tree:displayName'),
-            'toolbar' => [
-                $this->buildTreeToolButtonInfo(DefaultAdminComponent::ACTION_GET_CREATE_FORM),
-                $this->buildTreeToolButtonInfo(DefaultAdminComponent::ACTION_GET_EDIT_FORM)
-            ],
-            'filters' => []
-        ];
+        $toolbar = $this->buildCreateButtonsInfo($collection);
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $result['toolbar'][] = $this->buildTreeToolButtonInfo('switchActivity');
-            $result['filters'][] = $this->buildTreeFilterInfo(IActiveAccessibleObject::FIELD_ACTIVE, [true]);
+            $toolbar[] = $this->buildTreeToolButtonInfo('switchActivity');
         }
 
         if ($collection instanceof ICmsPageCollection) {
-            $result['toolbar'][] = $this->buildTreeToolButtonInfo('viewOnSite');
+            $toolbar[] = $this->buildTreeToolButtonInfo('viewOnSite');
         }
 
-        if ($collection instanceof StructureElementCollection) {
-            $types = $collection->getMetadata()->getTypesList();
-            $types = array_values(array_diff($types, [StructureElementCollection::TYPE_SYSTEM]));
-            $result['filters'][] = $this->buildTreeFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
-        }
-
-
-        return $result;
+        return [
+            'displayName' => $this->translate('control:tree:displayName'),
+            'toolbar' => $toolbar
+        ];
     }
 
     /**
@@ -443,6 +410,55 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         }
 
         return $actions;
+    }
+
+    /**
+     * Возвращает информацию о возможных фильтрах коллекции.
+     * @param ICmsCollection $collection
+     * @return array
+     */
+    protected function buildCollectionFiltersInfo(ICmsCollection $collection) {
+        $result = [];
+
+        if ($collection instanceof IActiveAccessibleCollection) {
+            $result[] = $this->buildCollectionFilterInfo(IActiveAccessibleObject::FIELD_ACTIVE, [true]);
+        }
+
+        if ($collection instanceof StructureElementCollection) {
+            $types = $collection->getMetadata()->getTypesList();
+            $types = array_values(array_diff($types, [StructureElementCollection::TYPE_SYSTEM]));
+            $result[] = $this->buildCollectionFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Возвращает информацию о фильтре по полю для дерева
+     * @param string $fieldName имя поля
+     * @param array $values список разрешенных значений
+     * @param bool $isActive активен ли фильтр
+     * @return array
+     */
+    protected function buildCollectionFilterInfo($fieldName, array $values, $isActive = false) {
+
+        return [
+            'fieldName' => $fieldName,
+            'isActive' => $isActive,
+            'displayName' => $this->translate('filter:' . $fieldName),
+            'allow' => $values
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getI18nDictionaryNames()
+    {
+        $dictionaries = parent::getI18nDictionaryNames();
+        $dictionaries = array_merge($dictionaries, $this->getComponent()->getCollection()->getDictionaryNames());
+
+        return $dictionaries;
     }
 
 }

@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\blog\api\collection;
 
+use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\PageCollection;
 use umicms\orm\selector\CmsSelector;
@@ -18,10 +19,10 @@ use umicms\project\module\blog\api\object\BlogAuthor;
  * Коллекция авторов блога.
  *
  * @method CmsSelector|BlogAuthor[] select() Возвращает селектор для выбора авторов.
- * @method BlogAuthor get($guid, $withLocalization = false) Возвращает автора по GUID
- * @method BlogAuthor getById($objectId, $withLocalization = false) Возвращает автора по id
+ * @method BlogAuthor get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает автора по GUID
+ * @method BlogAuthor getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает автора по id
  * @method BlogAuthor add($typeName = IObjectType::BASE) Создает и возвращает автора
- * @method BlogAuthor getByUri($uri, $withLocalization = false) Возвращает автора по его последней части ЧПУ
+ * @method BlogAuthor getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT) Возвращает автора по его последней части ЧПУ
  */
 class BlogAuthorCollection extends PageCollection
 {

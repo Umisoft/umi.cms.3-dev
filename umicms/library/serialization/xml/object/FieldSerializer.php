@@ -26,8 +26,7 @@ class FieldSerializer extends BaseSerializer
     public function __invoke(BaseField $field, array $options = [])
     {
         $this->writeElement('field', [
-            'type' => $field->getType(),
-            'dateType' => '111'
+            'type' => $field->getType()
         ]);
     }
 }

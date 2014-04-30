@@ -56,7 +56,7 @@ define(['App'], function(UMI){
                                 throw new Error('Collection name is not defined.');
                             }
                             var nodes = self.store.find(collectionName, {'filters[parent]': 'null()'/*, 'fields': 'displayName,order,active,childCount,children,parent'*/});
-                            var children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+                            children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                                 content: nodes,
                                 sortProperties: ['order', 'id'],
                                 sortAscending: true
@@ -100,7 +100,9 @@ define(['App'], function(UMI){
             }.property('controllers.component.sideBarControl'),
 
             activeFilters: function(){
-                return this.get('filters').filterBy('isActive', true);
+                if(this.get('filters')){
+                    return this.get('filters').filterBy('isActive', true);
+                }
             }.property('filters.@each.isActive'),
 
             /**
@@ -207,7 +209,7 @@ define(['App'], function(UMI){
                 },
 
                 sendAction: function(action, object){
-                    this.send(action.type, object);
+                    this.send(action.type, object, action);
                 }
             },
 
@@ -220,10 +222,10 @@ define(['App'], function(UMI){
                 var iconType;
                 if(this.get('selectAction')){
                     switch(this.get('selectAction.type')){
-                        case 'getCreateForm':
+                        case 'create':
                             iconType = 'add';
                             break;
-                        case 'getEditForm':
+                        case 'edit':
                             iconType = 'edit';
                             break;
                         case 'switchActivity':
@@ -259,7 +261,7 @@ define(['App'], function(UMI){
 
             visible: function(){
                 var visible = true;
-                var filters = this.get('filters');
+                var filters = this.get('filters') || [];
                 var model = this.get('model');
                 var i;
                 for(i = 0; i < filters.length; i++){

@@ -40,7 +40,7 @@ class LoginController extends SitePageController
     public function __invoke()
     {
 
-        $form = $this->api->user()->getForm('login', 'authorized');
+        $form = $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, 'authorized');
         $formValid = true;
 
         if ($this->isRequestMethodPost()) {

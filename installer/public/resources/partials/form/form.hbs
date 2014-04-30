@@ -1,8 +1,8 @@
 {{#if hasFieldset}}
     {{#view "magellan" elements=model.viewSettings.elements}}
-        {{#each formElement in model.viewSettings.elements itemController="FormElement"}}
-            {{#if isFieldset}}
-                {{#view view.buttonView model=formElement}}{{formElement.label}}{{/view}}
+        {{#each formElement in model.viewSettings.elements itemViewClass="view.elementView"}}
+            {{#if view.isFieldset}}
+                {{#view view.parentView.buttonView model=formElement}}{{formElement.label}}{{/view}}
             {{/if}}
         {{/each}}
     {{/view}}
@@ -10,18 +10,21 @@
 
 <div class="row s-full-height collapse">
     <div class="columns small-12 magellan-content">
-        {{#each formElements in model.viewSettings.elements itemController="FormElement"}}
-            {{#if isFieldset}}
+        {{#each formElements in model.viewSettings.elements itemViewClass="view.elementView"}}
+            {{#if view.isFieldset}}
                 <fieldset id="fieldset-{{unbound formElements.name}}">
-                    <legend {{action 'expand'}} class="s-unselectable"><i {{bind-attr class=":icon isExpanded:icon-bottom:icon-right"}}></i>{{formElements.label}}</legend>
-                    {{#if isExpanded}}
+                    <legend {{action 'expand' target="view"}} class="s-unselectable">
+                        <i {{bind-attr class=":icon view.isExpanded:icon-bottom:icon-right"}}></i>
+                        {{formElements.label}}
+                    </legend>
+                    {{#if view.isExpanded}}
                         {{#each meta in formElements.elements}}
-                            {{view "field" objectBinding="object" metaBinding="meta"}}
+                            {{view "field" objectBinding="model.object" metaBinding="meta"}}
                         {{/each}}
                     {{/if}}
                 </fieldset>
             {{else}}
-                {{view "field" objectBinding="object" metaBinding="this"}}
+                {{view "field" objectBinding="model.object" metaBinding="this"}}
             {{/if}}
         {{/each}}
     </div>
