@@ -100,7 +100,9 @@ define(['App'], function(UMI){
             }.property('controllers.component.sideBarControl'),
 
             activeFilters: function(){
-                return this.get('filters').filterBy('isActive', true);
+                if(this.get('filters')){
+                    return this.get('filters').filterBy('isActive', true);
+                }
             }.property('filters.@each.isActive'),
 
             /**
@@ -259,7 +261,7 @@ define(['App'], function(UMI){
 
             visible: function(){
                 var visible = true;
-                var filters = this.get('filters');
+                var filters = this.get('filters') || [];
                 var model = this.get('model');
                 var i;
                 for(i = 0; i < filters.length; i++){
