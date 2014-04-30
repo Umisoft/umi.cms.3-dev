@@ -14,6 +14,7 @@ use umi\i18n\ILocalesService;
 use umi\i18n\TLocalesAware;
 use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\view\CmsLayoutView;
 use umicms\i18n\CmsLocalesService;
 use umicms\project\module\structure\api\StructureModule;
 use umicms\project\site\callstack\IPageCallStackAware;
@@ -90,13 +91,14 @@ class LayoutController extends BaseController implements ISiteSettingsAware, IPa
      */
     protected function getLocales()
     {
-        $page = $this->hasCurrentPage() ? $this->getCurrentPage() : null;
         $urlManager = $this->getUrlManager();
+        $currentUrl = substr($urlManager->getCurrentUrl(true), strlen($urlManager->getProjectUrl(true)));
+
         $localesService = $this->getLocalesService();
 
         $locales = [];
         foreach ($localesService->getSiteLocales() as $locale) {
-            $url = $page ? $locale->getUrl() . '/' . $urlManager->getRawPageUrl($page) : $locale->getUrl();
+            $url = $locale->getUrl() . $currentUrl;
             $localeId = $locale->getId();
             $locales[$localeId] = [
                 'url' => $url,
@@ -184,6 +186,14 @@ class LayoutController extends BaseController implements ISiteSettingsAware, IPa
         }
 
         return $this->localesService;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createView($templateName, array $variables = [])
+    {
+        return new CmsLayoutView($this, $this->getContext(), $templateName, $variables);
     }
 
 }

@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\blog\api\collection;
 
+use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
@@ -21,8 +22,8 @@ use umicms\project\module\blog\api\object\BlogComment;
  * Коллекция комментариев блога.
  *
  * @method CmsSelector|BlogComment[] select() Возвращает селектор для выбора комментария блога.
- * @method BlogComment get($guid, $withLocalization = false) Возвращает комментарий блога по его GUID.
- * @method BlogComment getById($objectId, $withLocalization = false) Возвращает комментарий блога по его id
+ * @method BlogComment get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает комментарий блога по его GUID.
+ * @method BlogComment getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает комментарий блога по его id
  * @method BlogComment add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Создает и возвращает комментарий блога
  */
 class BlogCommentCollection extends SimpleHierarchicCollection implements IActiveAccessibleCollection

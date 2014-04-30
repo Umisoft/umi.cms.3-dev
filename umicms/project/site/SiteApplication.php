@@ -209,7 +209,7 @@ class SiteApplication extends SiteComponent
             }
 
             $result = $this->serializeResult($requestFormat, [
-                'page' => $response->getContent()
+                'layout' => $response->getContent()
             ]);
             $response->setContent($result);
         } elseif ($this->getSiteBrowserCacheEnabled()) {

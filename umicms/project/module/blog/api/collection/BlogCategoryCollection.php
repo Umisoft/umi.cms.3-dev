@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\blog\api\collection;
 
+use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umicms\orm\collection\PageHierarchicCollection;
@@ -20,9 +21,9 @@ use umicms\project\module\blog\api\object\BlogCategory;
  * Коллекция категорий блога.
  *
  * @method CmsSelector|BlogCategory[] select() Возвращает селектор для выбора категорий блога.
- * @method BlogCategory get($guid, $withLocalization = false) Возвращает категорию блога по ее GUID.
- * @method BlogCategory getById($objectId, $withLocalization = false) Возвращает категорию блога по ее id
- * @method BlogCategory getByUri($uri, $withLocalization = false) Возвращает категорию блога по ее URI
+ * @method BlogCategory get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает категорию блога по ее GUID.
+ * @method BlogCategory getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает категорию блога по ее id
+ * @method BlogCategory getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT) Возвращает категорию блога по ее URI
  * @method BlogCategory add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Создает и возвращает категорию блога
  */
 class BlogCategoryCollection extends PageHierarchicCollection

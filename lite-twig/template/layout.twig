@@ -6,50 +6,64 @@
 
 <body>
 
-<div class="blog-masthead">
+<div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
 
-        {{ widget('structure.menu.auto', {'depth': 1})|raw }}
+        <div class="navbar-collapse collapse">
+            {{ widget('structure.menu.auto', {'depth': 1})|raw }}
+
+            {% if (locales) %}
+                <ul class="nav navbar-nav navbar-right">
+                    {% for localeId,localeInfo in locales %}
+                        <li class="{{ localeInfo.current ? 'active' }}">
+                            <a href="{{ localeInfo.url }}">{{ translate(localeId) }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+        </div>
 
     </div>
 </div>
 
 <div class="container">
 
-    <div class="blog-header">
+    <header class="blog-header">
         <h1 class="blog-title">{{ translate('Demo lite twig') }}</h1>
+
         <p class="lead blog-description">{{ translate('Blank-шаблон созданный на Umicms 3') }}</p>
-    </div>
+    </header>
 
-    <div class="row">
+    <main class="row">
 
-        <div class="col-sm-8 blog-main">
+        <article class="col-sm-8 blog-main">
 
             {{ contents|raw }}
 
-        </div>
+        </article>
 
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <aside class="col-sm-3 col-sm-offset-1 blog-sidebar">
             {{ include('partial/sidebar-news.twig') }}
-        </div>
+        </aside>
 
-    </div>
+    </main>
 
 </div>
 
-<div class="blog-footer">
+<footer class="blog-footer">
     <p>
         {{ translate('Demo lite twig build for {bootstrap} by {umicms}',
-        {
-        'bootstrap' : '<a href="http://getbootstrap.com">Bootstrap</a>',
-        'umicms' : '<a href="http://umi-cms.ru">umi-cms</a>',
-        }
+            {
+                'bootstrap' : '<a href="http://getbootstrap.com">Bootstrap</a>',
+                'umicms' : '<a href="http://umi-cms.ru">umi-cms</a>',
+            }
         ) | raw }}.
     </p>
     <p>
         <a href="#">{{ translate('Наверх') }}</a>
     </p>
-</div>
+</footer>
 
 
 <!-- Bootstrap core JavaScript

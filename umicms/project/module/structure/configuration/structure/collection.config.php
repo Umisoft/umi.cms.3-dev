@@ -28,6 +28,6 @@ return [
         ]
     ],
     'dictionaries' => [
-        'collection\structure', 'collection'
+        'collection.structure', 'collection'
     ]
 ];

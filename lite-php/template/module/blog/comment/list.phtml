@@ -9,7 +9,7 @@
         <?php foreach ($comments as $blogComment) : ?>
             <li>
                 <?= $this->widget('blog.comment.view', ['blogComment' => $blogComment, 'template' => 'view']); ?>
-                <?= $this->widget('blog.comment.addComment', ['blogPost' => $blogComment->post, 'blogComment' => $blogComment, 'template' => 'addComment']); ?>
+                <?= $this->widget('blog.comment.add', ['blogPost' => $blogComment->post, 'blogComment' => $blogComment, 'template' => 'addComment']); ?>
             </li>
         <?php endforeach;?>
     </ul>

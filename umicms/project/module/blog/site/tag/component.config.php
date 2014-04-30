@@ -20,11 +20,11 @@ return [
         'rss' => __NAMESPACE__ . '\controller\BlogTagRssController'
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
-        'view' => __NAMESPACE__ . '\widget\BlogTagWidget',
-        'postList' => __NAMESPACE__ . '\widget\BlogTagPostListWidget',
-        'list' => __NAMESPACE__ . '\widget\BlogTagListWidget',
-        'cloud' => __NAMESPACE__ . '\widget\BlogTagCloudWidget',
-        'rss' => __NAMESPACE__ . '\widget\BlogTagListRssUrlWidget'
+        'view' => __NAMESPACE__ . '\widget\TagWidget',
+        'postList' => __NAMESPACE__ . '\widget\TagPostListWidget',
+        'list' => __NAMESPACE__ . '\widget\ListWidget',
+        'cloud' => __NAMESPACE__ . '\widget\TagCloudWidget',
+        'rss' => __NAMESPACE__ . '\widget\TagListRssUrlWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -34,10 +34,10 @@ return [
         IAclFactory::OPTION_RESOURCES => [
             'controller:rss',
             'widget:view',
-            'widget:list',
             'widget:postList',
-            'widget:rss',
-            'widget:cloud'
+            'widget:list',
+            'widget:cloud',
+            'widget:rss'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [

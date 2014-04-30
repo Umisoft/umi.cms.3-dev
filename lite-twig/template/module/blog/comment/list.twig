@@ -1,6 +1,6 @@
 {% if (comments.getTotal()) %}
     {% for blogComment in comments %}
         {{ widget('blog.comment.view', {'blogComment' : blogComment, 'template' : 'view'}) }}
-        {{ widget('blog.comment.addComment', {'blogPost' : blogComment.post, 'blogComment' : blogComment, 'template' : 'addComment'}) }}
+        {{ widget('blog.comment.add', {'blogPost' : blogComment.post, 'blogComment' : blogComment, 'template' : 'addComment'}) }}
     {% endfor %}
 {% endif %}

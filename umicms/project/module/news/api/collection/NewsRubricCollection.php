@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\news\api\collection;
 
+use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umicms\orm\collection\PageHierarchicCollection;
@@ -19,9 +20,9 @@ use umicms\project\module\news\api\object\NewsRubric;
  * Коллекция для работы с новостными рубриками.
  *
  * @method CmsSelector|NewsRubric[] select() Возвращает селектор для выбора новостных рубрик.
- * @method NewsRubric get($guid, $withLocalization = false) Возвращает рубрику по ее GUID.
- * @method NewsRubric getById($objectId, $withLocalization = false) Возвращает рубрику по ее id
- * @method NewsRubric getByUri($uri, $withLocalization = false) Возвращает новостую рубрику по ее URI
+ * @method NewsRubric get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает рубрику по ее GUID.
+ * @method NewsRubric getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает рубрику по ее id
+ * @method NewsRubric getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT) Возвращает новостую рубрику по ее URI
  * @method NewsRubric add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Создает и возвращает рубрику
  */
 class NewsRubricCollection extends PageHierarchicCollection

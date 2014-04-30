@@ -10,6 +10,7 @@
 namespace umicms\orm\collection;
 
 use umi\dbal\builder\SelectBuilder;
+use umi\i18n\ILocalesService;
 use umi\orm\metadata\field\IField;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
@@ -30,10 +31,10 @@ class PageCollection extends SimpleCollection implements ICmsPageCollection
     /**
      * {@inheritdoc}
      */
-    public function getByUri($uri, $withLocalization = false)
+    public function getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT)
     {
         $selector = $this->select()
-            ->withLocalization($withLocalization)
+            ->localization($localization)
             ->where(ICmsPage::FIELD_PAGE_SLUG)
             ->equals($uri);
 

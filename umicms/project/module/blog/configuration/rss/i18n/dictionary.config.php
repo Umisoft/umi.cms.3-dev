@@ -11,14 +11,17 @@ use umicms\project\module\blog\api\object\BlogRssImportScenario;
 
 return [
         'en-US' => [
-            BlogRssImportScenario::FIELD_RSS_URL => 'URL RSS feed',
+            BlogRssImportScenario::FIELD_RSS_URL => 'RSS feed URL',
             BlogRssImportScenario::FIELD_TAGS => 'Tags',
-            BlogRssImportScenario::FIELD_CATEGORY => 'Category'
+            BlogRssImportScenario::FIELD_CATEGORY => 'Category',
+            'type:base:displayName' => 'RSS import'
+
         ],
 
         'ru-RU' => [
             BlogRssImportScenario::FIELD_RSS_URL => 'URL RSS-ленты',
             BlogRssImportScenario::FIELD_TAGS => 'Тэги',
-            BlogRssImportScenario::FIELD_CATEGORY => 'Категория'
+            BlogRssImportScenario::FIELD_CATEGORY => 'Категория',
+            'type:base:displayName' => 'Импорт RSS'
         ]
     ];

@@ -8,6 +8,7 @@
 
 namespace umicms\project\module\blog\site\reject;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\DefaultSitePageComponent;
 
@@ -30,7 +31,32 @@ return [
 
     ],
     DefaultSitePageComponent::OPTION_ACL => [
-
+        IAclFactory::OPTION_ROLES => [
+            'author' => []
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'controller:edit',
+            'controller:sendToModeration',
+            'widget:view',
+            'widget:list',
+            'widget:listLink',
+            'widget:editPost',
+            'widget:editPostLink',
+            'widget:sendToModeration'
+        ],
+        IAclFactory::OPTION_RULES => [
+            'author' => [
+                'controller:page' => [],
+                'controller:edit' => [],
+                'controller:sendToModeration' => [],
+                'widget:view' => [],
+                'widget:list' => [],
+                'widget:listLink' => [],
+                'widget:editPost' => [],
+                'widget:editPostLink' => [],
+                'widget:sendToModeration' => []
+            ]
+        ]
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/reject'],
