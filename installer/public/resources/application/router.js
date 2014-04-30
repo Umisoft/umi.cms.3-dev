@@ -575,6 +575,21 @@ define([], function(){
                             return treeControl;
                         }
                     );
+                },
+                redirect: function(model, transition){
+                    if(transition.targetName === this.routeName + '.index'){
+                        var objectWithResource;
+                        for(var i = 0; i < model.length; i++){
+                            if(model[i].resource){
+                                objectWithResource = model[i];
+                                break;
+                            }
+                        }
+                        if(!objectWithResource){
+                            throw new Error("Не один из объектов дерева не имеет поле resource.");
+                        }
+                        return this.transitionTo('settings.component', objectWithResource.name);
+                    }
                 }
             });
 
