@@ -292,7 +292,7 @@ class Bootstrap implements IProjectConfigAware
 
         $this->registerProjectConfiguration($projectConfig['config']);
         $this->registerProjectTools();
-        $this->configureLocalesService($projectName, $projectConfig, $router, $routeMatches);
+        $this->configureLocalesService($projectName, $router, $routeMatches);
 
         return $routeResult;
     }
@@ -535,25 +535,25 @@ class Bootstrap implements IProjectConfigAware
     /**
      * Конфигурирует локали проекта
      * @param string $projectName имя проекта
-     * @param array $projectConfig конфигурация проекта
      * @param IRouter $router маршрутизатор проекта
      * @param array $routeMatches параметры маршрутизации до проекта
      * @throws UnexpectedValueException если конфигурация локалей невалидная
      */
-    protected function configureLocalesService($projectName, array $projectConfig, IRouter $router, array $routeMatches)
+    protected function configureLocalesService($projectName, IRouter $router, array $routeMatches)
     {
         /**
          * @var CmsLocalesService $localesService
          */
         $localesService = $this->toolkit->getService('umi\i18n\ILocalesService');
+        /**
+         * @var IConfigIO $configIO
+         */
+        $configIO = $this->toolkit->getService('umi\config\io\IConfigIO');
 
-        if (isset($routeMatches['locale'])) {
-            $localesService->setCurrentLocale($routeMatches['locale']);
-            $localesService->setCurrentDataLocale($routeMatches['locale']);
-        }
+        $localesConfig = $this->configToArray($configIO->read('~/project/configuration/locales.config.php'), true);
 
-        if (isset($projectConfig['locales']['site'])) {
-            $siteLocalesConfig = $projectConfig['locales']['site'];
+        if (isset($localesConfig['site'])) {
+            $siteLocalesConfig = $localesConfig['site'];
             if (!is_array($siteLocalesConfig)) {
                 throw new UnexpectedValueException(sprintf(
                     'Cannot configure site locales for project "%s". Locales configuration should be an array.',
@@ -582,8 +582,8 @@ class Bootstrap implements IProjectConfigAware
             $localesService->setSiteLocales($siteLocales);
         }
 
-        if (isset($projectConfig['locales']['admin'])) {
-            $adminLocalesConfig = $projectConfig['locales']['admin'];
+        if (isset($localesConfig['admin'])) {
+            $adminLocalesConfig = $localesConfig['admin'];
             if (!is_array($adminLocalesConfig)) {
                 throw new UnexpectedValueException(sprintf(
                     'Cannot configure admin locales for project "%s". Locales configuration should be an array.',
@@ -598,6 +598,21 @@ class Bootstrap implements IProjectConfigAware
             }
 
             $localesService->setAdminLocales($adminLocales);
+        }
+
+        if (isset($routeMatches['locale'])) {
+            $localesService->setCurrentLocale($routeMatches['locale']);
+            $localesService->setCurrentDataLocale($routeMatches['locale']);
+        }
+
+        if (isset($localesConfig['defaultSiteLocale'])) {
+            $localesService->setDefaultLocale($localesConfig['defaultSiteLocale']);
+            $localesService->setDefaultDataLocale($localesConfig['defaultSiteLocale']);
+            $localesService->setDefaultSiteLocaleId($localesConfig['defaultSiteLocale']);
+        }
+
+        if (isset($localesConfig['defaultAdminLocale'])) {
+            $localesService->setDefaultAdminLocaleId($localesConfig['defaultAdminLocale']);
         }
     }
 
