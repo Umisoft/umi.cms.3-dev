@@ -182,6 +182,17 @@ define(
         });
 
         /**
+         * http://youtrack.umicloud.ru/issue/cms-414
+         * DS.StringTransform
+         * @type {*|void|Object}
+         */
+        DS.StringTransform.reopen({
+            deserialize: function(serialized) {
+                return Ember.isNone(serialized) ? "" : String(serialized);
+            }
+        });
+
+        /**
          * DS.attr('raw')
          * @type {*|void|Object}
          */
