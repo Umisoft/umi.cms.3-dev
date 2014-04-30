@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\blog\api\collection;
 
+use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\PageCollection;
@@ -19,8 +20,8 @@ use umicms\project\module\blog\api\object\BlogPost;
  * Коллекция постов блога.
  *
  * @method CmsSelector|BlogPost[] select() Возвращает селектор для выбора постов.
- * @method BlogPost get($guid, $withLocalization = false) Возвращает пост по GUID
- * @method BlogPost getById($objectId, $withLocalization = false) Возвращает пост по id
+ * @method BlogPost get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает пост по GUID
+ * @method BlogPost getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает пост по id
  * @method BlogPost add($typeName = IObjectType::BASE) Создает и возвращает пост
  */
 class BlogPostCollection extends PageCollection
@@ -57,14 +58,15 @@ class BlogPostCollection extends PageCollection
     /**
      * Возвращает пост по URI, с учётом статуса публикации.
      * @param string $uri URI
-     * @param bool $withLocalization загружать ли значения локализованных свойств объекта.
+     * @param string $localization указание на локаль, в которой загружается объект.
+     * По умолчанию объект загружается в текущей локали. Можно указать другую конкретную локаль
      * @throws NonexistentEntityException если не удалось получить объект
      * @return BlogPost
      */
-    public function getByUri($uri, $withLocalization = false)
+    public function getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT)
     {
         $selector = $this->select()
-            ->withLocalization($withLocalization)
+            ->localization($localization)
             ->where(BlogPost::FIELD_PAGE_SLUG)->equals($uri)
             ->where(BlogPost::FIELD_PUBLISH_STATUS)->equals(BlogPost::POST_STATUS_PUBLISHED);
 
@@ -119,14 +121,15 @@ class BlogPostCollection extends PageCollection
     /**
      * Возвращает черновик по URI.
      * @param string $uri URI
-     * @param bool $withLocalization загружать ли значения локализованных свойств объекта.
+     * @param string $localization указание на локаль, в которой загружается объект.
+     * По умолчанию объект загружается в текущей локали. Можно указать другую конкретную локаль
      * @throws NonexistentEntityException если не удалось получить объект
      * @return BlogPost
      */
-    public function getDraftByUri($uri, $withLocalization = false)
+    public function getDraftByUri($uri, $localization = ILocalesService::LOCALE_CURRENT)
     {
         $selector = $this->getDrafts()
-            ->withLocalization($withLocalization)
+            ->localization($localization)
             ->where(BlogPost::FIELD_PAGE_SLUG)
             ->equals($uri);
 
@@ -181,14 +184,15 @@ class BlogPostCollection extends PageCollection
     /**
      * Возвращает пост, требующий модерации по URI.
      * @param string $uri URI
-     * @param bool $withLocalization загружать ли значения локализованных свойств объекта.
+     * @param string $localization указание на локаль, в которой загружается объект.
+     * По умолчанию объект загружается в текущей локали. Можно указать другую конкретную локаль
      * @throws NonexistentEntityException если не удалось получить объект
      * @return BlogPost
      */
-    public function getNeedModeratePostByUri($uri, $withLocalization = false)
+    public function getNeedModeratePostByUri($uri, $localization = ILocalesService::LOCALE_CURRENT)
     {
         $selector = $this->getNeedModeratePosts()
-            ->withLocalization($withLocalization)
+            ->localization($localization)
             ->where(BlogPost::FIELD_PAGE_SLUG)
             ->equals($uri);
 
@@ -243,14 +247,15 @@ class BlogPostCollection extends PageCollection
     /**
      * Возвращает отклонённый пост по URI
      * @param string $uri URI
-     * @param bool $withLocalization загружать ли значения локализованных свойств объекта.
+     * @param string $localization указание на локаль, в которой загружается объект.
+     * По умолчанию объект загружается в текущей локали. Можно указать другую конкретную локаль
      * @throws NonexistentEntityException если не удалось получить объект
      * @return null|BlogPost
      */
-    public function getRejectedPostByUri($uri, $withLocalization = false)
+    public function getRejectedPostByUri($uri, $localization = ILocalesService::LOCALE_CURRENT)
     {
         $selector = $this->getRejectedPosts()
-            ->withLocalization($withLocalization)
+            ->localization($localization)
             ->where(BlogPost::FIELD_PAGE_SLUG)
             ->equals($uri);
 

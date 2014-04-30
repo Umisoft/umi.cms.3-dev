@@ -49,7 +49,7 @@ class CmsUserAdapter extends ORMAdapter
         }
         $usersSelector->end();
         $usersSelector->limit(1);
-        $usersSelector->withLocalization();
+        $usersSelector->localization();
 
         $user = $usersSelector->result()
             ->fetch();

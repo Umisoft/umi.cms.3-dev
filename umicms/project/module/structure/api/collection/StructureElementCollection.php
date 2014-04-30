@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\structure\api\collection;
 
+use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umicms\exception\NonexistentEntityException;
@@ -25,9 +26,9 @@ use umicms\project\module\structure\api\object\SystemPage;
  * Коллекция для работы с элементами структуры сайта.
  *
  * @method CmsSelector|StructureElement[] select() Возвращает селектор для выбора элементов структуры.
- * @method StructureElement get($guid, $withLocalization = false) Возвращает элемент по GUID.
- * @method StructureElement getById($objectId, $withLocalization = false) Возвращает элемент по id.
- * @method StructureElement getByUri($uri, $withLocalization = false) Возвращает элемент по URI.
+ * @method StructureElement get($guid, $localization = ILocalesService::LOCALE_CURRENT) Возвращает элемент по GUID.
+ * @method StructureElement getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает элемент по id.
+ * @method StructureElement getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT) Возвращает элемент по URI.
  * @method StructureElement add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Добавляет элемент.
  */
 class StructureElementCollection extends PageHierarchicCollection implements ILockedAccessibleCollection

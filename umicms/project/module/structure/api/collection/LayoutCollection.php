@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\structure\api\collection;
 
+use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\behaviour\ILockedAccessibleCollection;
 use umicms\orm\collection\behaviour\TLockedAccessibleCollection;
@@ -22,8 +23,8 @@ use umicms\project\site\config\TSiteSettingsAware;
  * Коллекция для работы с шаблонами.
  *
  * @method CmsSelector|Layout[] select() Возвращает селектор для выбора шаблонов.
- * @method Layout get($guid, $withLocalization = false)  Возвращает шаблон по GUID.
- * @method Layout getById($objectId, $withLocalization = false) Возвращает шаблон по id.
+ * @method Layout get($guid, $localization = ILocalesService::LOCALE_CURRENT)  Возвращает шаблон по GUID.
+ * @method Layout getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает шаблон по id.
  * @method Layout add($typeName = IObjectType::BASE) Создает и возвращает шаблон.
  */
 class LayoutCollection extends SimpleCollection implements ILockedAccessibleCollection, ISiteSettingsAware

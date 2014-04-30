@@ -9,6 +9,7 @@
 
 namespace umicms\orm\collection;
 
+use umi\i18n\ILocalesService;
 use umi\orm\metadata\field\special\UriField;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\behaviour\TActiveAccessibleCollection;
@@ -28,7 +29,7 @@ class PageHierarchicCollection extends SimpleHierarchicCollection implements ICm
     /**
      * {@inheritdoc}
      */
-    public function getByUri($uri, $withLocalization = false)
+    public function getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT)
     {
         $uri = '/' . ltrim($uri, '/');
 
@@ -36,7 +37,7 @@ class PageHierarchicCollection extends SimpleHierarchicCollection implements ICm
             ->where(CmsHierarchicObject::FIELD_URI)
             ->equals(UriField::URI_START_SYMBOL . $uri)
             ->limit(1)
-            ->withLocalization($withLocalization)
+            ->localization($localization)
             ->result()
             ->fetch();
 
