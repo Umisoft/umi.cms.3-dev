@@ -116,7 +116,7 @@ class ApiActionController extends BaseController
      */
     protected function actionForm()
     {
-        $form = $this->api->user()->getForm('login', 'authorized');
+        $form = $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_ADMIN, 'authorized');
         /**
          * @var ApiApplication $component
          */

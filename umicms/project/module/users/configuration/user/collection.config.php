@@ -8,6 +8,7 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\users\api\object\AuthorizedUser;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -24,7 +25,8 @@ return [
         ],
         'authorized' => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/authorized.edit.config.php}',
-            'login' => '{#lazy:~/project/module/users/configuration/user/form/authorized.login.config.php}'
+            AuthorizedUser::FORM_LOGIN_ADMIN => '{#lazy:~/project/module/users/configuration/user/form/authorized.login.config.php}',
+            AuthorizedUser::FORM_LOGIN_SITE => '{#lazy:~/project/module/users/site/authorization/form/authorized.login.config.php}',
         ]
     ],
 ];

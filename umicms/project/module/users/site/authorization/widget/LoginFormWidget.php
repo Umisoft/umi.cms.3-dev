@@ -11,6 +11,7 @@ namespace umicms\project\module\users\site\authorization\widget;
 
 use umi\form\element\IFormElement;
 use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\UsersModule;
 
 /**
@@ -42,7 +43,7 @@ class LoginFormWidget extends BaseSecureWidget
      */
     public function __invoke()
     {
-        $form = $this->api->user()->getForm('login', 'authorized');
+        $form = $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, 'authorized');
         $form->setAction($this->getUrl('login'));
 
         /**

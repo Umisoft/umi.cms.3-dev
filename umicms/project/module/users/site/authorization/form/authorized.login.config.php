@@ -42,6 +42,9 @@ return [
                     IValidatorFactory::TYPE_REQUIRED => []
                 ]
             ],
+        ],
+        'referer' => [
+            'type' => Hidden::TYPE_NAME
         ]
     ]
 ];
