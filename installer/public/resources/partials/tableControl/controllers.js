@@ -149,18 +149,10 @@ define(['App'], function(UMI){
                 }
             },
 
-            needs: ['component'],
-
-            init: function(){
-                console.log('init');
-            }
+            needs: ['component']
         });
 
-        UMI.TableControlColumnSelectorPopupController = Ember.ObjectController.extend({
-            init: function(){
-
-            }
-        });
+        UMI.TableControlColumnSelectorPopupController = Ember.ObjectController.extend({});
 
         UMI.tableControlColumnSelectorPopup = UMI.TableControlColumnSelectorPopupController.create();
     };
