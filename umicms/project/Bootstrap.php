@@ -31,8 +31,6 @@ use umicms\hmvc\url\IUrlManager;
 use umicms\i18n\AdminLocale;
 use umicms\i18n\CmsLocalesService;
 use umicms\i18n\SiteLocale;
-use umicms\project\config\IProjectConfigAware;
-use umicms\project\config\TProjectConfigAware;
 use umicms\route\ProjectHostRoute;
 use umicms\templating\engine\php\TemplatingPhpExtension;
 use umicms\templating\engine\php\ViewPhpExtension;
@@ -42,10 +40,9 @@ use umicms\templating\engine\twig\ViewTwigExtension;
 /**
  * Загрузчик приложений UMI.CMS
  */
-class Bootstrap implements IProjectConfigAware
+class Bootstrap
 {
     use TConfigSupport;
-    use TProjectConfigAware;
 
     /**
      * Имя куки сессии.
@@ -79,11 +76,10 @@ class Bootstrap implements IProjectConfigAware
      * @var Toolkit $toolkit контейнер сервисов
      */
     protected $toolkit;
-
     /**
-     * @var IConfig $config конфигурация
+     * @var IConfig $config конфигурация текущего проекта
      */
-    protected $config;
+    protected $projectConfig;
 
     /**
      * Конструктор.
@@ -192,7 +188,7 @@ class Bootstrap implements IProjectConfigAware
      */
     protected function createProject()
     {
-        $config = $this->configToArray($this->getProjectConfig());
+        $config = $this->configToArray($this->projectConfig);
 
         /**
          * @var IMvcEntityFactory $mvcEntityFactory
@@ -442,16 +438,7 @@ class Bootstrap implements IProjectConfigAware
          * @var IConfigIO $configIO
          */
         $configIO = $this->toolkit->getService('umi\config\io\IConfigIO');
-        $this->setProjectConfig($configIO->read($configFileName));
-
-        $this->toolkit->registerAwareInterface(
-            'umicms\project\config\IProjectConfigAware',
-            function ($object) {
-                if ($object instanceof IProjectConfigAware) {
-                    $object->setProjectConfig($this->getProjectConfig());
-                }
-            }
-        );
+        $this->projectConfig = $configIO->read($configFileName);
     }
 
     /**
@@ -480,16 +467,15 @@ class Bootstrap implements IProjectConfigAware
      */
     protected function registerProjectTools()
     {
-        $config = $this->getProjectConfig();
-        if ($config->has(self::OPTION_TOOLS)) {
+        if ($this->projectConfig->has(self::OPTION_TOOLS)) {
             $this->toolkit->registerToolboxes(
-                $config->get(self::OPTION_TOOLS)
+                $this->projectConfig->get(self::OPTION_TOOLS)
             );
         }
 
-        if ($config->has(self::OPTION_TOOLS_SETTINGS)) {
+        if ($this->projectConfig->has(self::OPTION_TOOLS_SETTINGS)) {
             $this->toolkit->setSettings(
-                $config->get(self::OPTION_TOOLS_SETTINGS)
+                $this->projectConfig->get(self::OPTION_TOOLS_SETTINGS)
             );
         }
     }
