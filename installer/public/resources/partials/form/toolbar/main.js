@@ -59,12 +59,13 @@ define(['App', 'text!./toolbar.hbs'], function(UMI, toolbarTpl){
                         var current = list.findBy('id', backup.id);
                         Ember.set(current, 'isActive', true);
                     };
-                    object.rollback();
                     if(backup.current){
+                        object.rollback();
                         setCurrent();
                     } else{
                         var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
                         $.get(self.get('parentController.settings').actions.getBackup.source + params).then(function(data){
+                            object.rollback();
                             delete data.result.getBackup.version;
                             delete data.result.getBackup.id;
                             object.setProperties(data.result.getBackup);

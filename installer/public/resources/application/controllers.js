@@ -96,6 +96,11 @@ define([], function(){
 
         UMI.ContextController = Ember.ObjectController.extend({});
 
+        UMI.ActionController = Ember.ObjectController.extend({
+            queryParams: ['typeName'],
+            typeName: null
+        });
+
         UMI.ComponentView = Ember.View.extend({
             classNames: ['umi-content', 's-full-height']
         });

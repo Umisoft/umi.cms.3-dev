@@ -34,4 +34,13 @@ class AuthorizedUser extends BaseUser
      * Имя поля для хранения пароля
      */
     const FIELD_PASSWORD = 'password';
+
+    /**
+     * Форма авторизации пользователя на сайте
+     */
+    const FORM_LOGIN_SITE = 'login.site';
+    /**
+     * Форма авторизации пользователя в административной панели
+     */
+    const FORM_LOGIN_ADMIN = 'login.admin';
 }

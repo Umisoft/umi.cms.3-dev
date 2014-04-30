@@ -112,8 +112,8 @@ define(['App'], function(UMI){
                 // Вычисляем фильтр в зависимости от типа коллекции
                 var collectionName = this.get('controllers.component.collectionName');
                 var metaForCollection = this.get('store').metadataFor(collectionName);
-                var contextFilter = {};
-                if(metaForCollection && metaForCollection.collectionType === 'hierarchic'){
+                var contextFilter = {};// TODO: Убрать в условии значение filter
+                if(metaForCollection && metaForCollection.collectionType === 'hierarchic' && this.get('container').lookup('route:action').get('context.action').name !== 'filter'){
                     contextFilter.parent = this.get('model.object.id');
                 }
                 // Сбрасываем параметры запроса, не вызывая обсервер query
@@ -152,11 +152,7 @@ define(['App'], function(UMI){
             needs: ['component']
         });
 
-        UMI.TableControlColumnSelectorPopupController = Ember.ObjectController.extend({
-            init: function(){
-
-            }
-        });
+        UMI.TableControlColumnSelectorPopupController = Ember.ObjectController.extend({});
 
         UMI.tableControlColumnSelectorPopup = UMI.TableControlColumnSelectorPopupController.create();
     };

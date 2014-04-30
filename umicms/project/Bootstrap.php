@@ -549,6 +549,7 @@ class Bootstrap implements IProjectConfigAware
 
         if (isset($routeMatches['locale'])) {
             $localesService->setCurrentLocale($routeMatches['locale']);
+            $localesService->setCurrentDataLocale($routeMatches['locale']);
         }
 
         if (isset($projectConfig['locales']['site'])) {

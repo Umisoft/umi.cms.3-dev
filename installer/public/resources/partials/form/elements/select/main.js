@@ -39,6 +39,12 @@ define(['App'], function(UMI){
                 if(this.get('meta.choices')){
                     self.set('selection', this.get('meta.choices').findBy('value', object.get(property)));
                     self.set('content', this.get('meta.choices'));
+
+                    this.addObserver('object.' + property, function(){
+                        Ember.run.once(function(){
+                            self.set('selection', self.get('meta.choices').findBy('value', object.get(property)));
+                        });
+                    });
                 } else{
                     var store = self.get('controller.store');
                     promises.push(object.get(property));
@@ -61,6 +67,7 @@ define(['App'], function(UMI){
             },
             willDestroyElement: function(){
                 this.removeObserver('value');
+                this.removeObserver('object.' + this.get('meta.dataSource'));
             }
         });
     };
