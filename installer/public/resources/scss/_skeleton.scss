@@ -110,7 +110,7 @@ body{
 
 .umi-divider-left-content{
     overflow: hidden;
-    height: 1000px;
+//    height: 1000px;
     margin-right: 5px;
 }
 
@@ -154,16 +154,7 @@ body{
 .umi-divider-right{
     float: left;
     width: 100%;
-//    margin-left: 251px;
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -222,10 +213,12 @@ body{
     }
 }
 
+
 #component{
     position: relative;
     overflow: hidden;
 }
+
 
 $umi-header-height: $umi-dock-height + $topbar-height;
 //TODO: Заменить на сумму высот(отступов) элементов Dock
