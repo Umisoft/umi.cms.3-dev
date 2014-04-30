@@ -45,6 +45,7 @@ class CmsLayoutViewSerializer extends BaseSerializer
      */
     protected function serializeLocales(array $locales) {
         $this->getXmlWriter()->startElement('locales');
+
         foreach ($locales as $localeId => $localeInfo) {
             $this->getXmlWriter()->startElement('locale');
             $this->writeAttribute('id', $localeId);
