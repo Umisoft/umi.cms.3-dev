@@ -31,16 +31,6 @@
                 <div class="s-unselectable umi-mode">
 
                     <h5 style="float: left;">{{displayName}}</h5>
-
-                    <ul class="button-group" style="float: right;">
-                        {{#each control in controller.contentControls}}
-                            <li>
-                                {{#link-to 'action' control.name classNames="button"}}
-                                    {{control.displayName}}
-                                {{/link-to}}
-                            </li>
-                        {{/each}}
-                    </ul>
                 </div>
 
                 <div class="umi-component columns small-12 s-padding-clear">
