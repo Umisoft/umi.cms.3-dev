@@ -16,12 +16,6 @@ define([], function(){
             classNames: ['umi-content', 's-full-height'],
 
             didInsertElement: function(){
-                //Хак-ускоритель переключения mode - переключает класс кнопки без задержки
-                $('.umi-mode .button-group .button').mousedown(function(){
-                    $('.umi-mode .button-group .button').removeClass('active');
-                    $(this).addClass('active');
-                });
-
 
                 if(this.get('controller.sideBarControl')){
                     var showSideBarState = true; //{{!sideBarControl}}
