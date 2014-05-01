@@ -174,7 +174,6 @@ define([], function(){
             var j;
             var collection;
             var fieldValue;
-            var params = {};
 
             for(j = 0; j < collections.length; j++){
                 var fields = {};
@@ -183,26 +182,30 @@ define([], function(){
                 collection = collections[j];
 
                 for(i = 0; i < collection.fields.length; i++){
+                    var params = {};
+                    if(collection.fields[i].displayName){
+                        params.displayName = collection.fields[i].displayName;
+                    }
+                    if(collection.fields[i]['default']){
+                        params.defaultValue = collection.fields[i]['default'];
+                    }
+
                     switch(collection.fields[i].type){
                         case 'string':
-                            params = {defaultValue: collection.fields[i]['default']};
                             fieldValue = DS.attr('string', params);
                             break;
                         case 'number':
                         case 'counter':
-                            params = {defaultValue: collection.fields[i]['default']};
                             fieldValue = DS.attr('number', params);
                             break;
                         case 'bool':
-                            params = {defaultValue: collection.fields[i]['default']};
                             fieldValue = DS.attr('boolean', params);
                             break;
                         case 'dateTime':
-                            params = {defaultValue: collection.fields[i]['default']};
                             fieldValue = DS.attr('CustomDate', params);
                             break;
                         case 'belongsToRelation':
-                            params = {async: true};
+                            params.async = true;
                             //TODO: инверсия избыточна, но DS почему то без неё не может
                             if(collection.fields[i].targetCollection === collection.name){
                                 params.inverse = 'children';
@@ -210,15 +213,16 @@ define([], function(){
                             fieldValue = DS.belongsTo(collection.fields[i].targetCollection, params);
                             break;
                         case 'hasManyRelation':
-                            params = {async: true, inverse: collection.fields[i].targetField};
+                            params.async = true;
+                            params.inverse = collection.fields[i].targetField;
                             fieldValue = DS.hasMany(collection.fields[i].targetCollection, params);
                             break;
                         case 'manyToManyRelation':
-                            params = {async: true, inverse: collection.fields[i].mirrorField};
+                            params.async = true;
+                            params.inverse = collection.fields[i].mirrorField;
                             fieldValue = DS.hasMany(collection.fields[i].targetCollection, params);
                             break;
                         default:
-                            params = {defaultValue: collection.fields[i]['default']};
                             fieldValue = DS.attr('raw', params);
                             break;
                     }
