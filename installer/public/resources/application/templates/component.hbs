@@ -1,42 +1,49 @@
 <div class="s-full-height">
     <div {{bind-attr class=":off-canvas-wrap :s-full-height sideBarControl:move-right"}}>
-        <div class="inner-wrap s-full-height">
+        <div class="umi-divider-wrapper s-full-height">
             {{#if sideBarControl}}
-                <aside class="left-off-canvas-menu s-unselectable" style="overflow: hidden;">
-                    {{outlet 'sideBar'}}
-                </aside>
-                <div class="umi-divider"></div>
+                <div class="umi-divider-left">
+                    <div class="umi-divider-left-content">
+                        {{outlet 'sideBar'}}
+                    </div>
+
+                    <div class="umi-divider"></div>
+                </div>
             {{/if}}
-    
-            <div class="row s-full-height-before s-margin-clear umi-mode s-unselectable">
-                <section class="left">
-                    {{#if sideBarControl}}
-                        <a class="left-off-canvas-toggle">
-                            <span class="icon icon-list"></span>
-                        </a>
-                    {{/if}}
-                </section>
 
-                <script>
-                    //Хак-ускоритель переключения mode - переключает класс кнопки без задержки
-                    $('.umi-mode .button').mousedown(function(){
-                        $('.button-group .button').removeClass('active');
-                        $(this).addClass('active');
-                    });
-                </script>
+            <div class="umi-left-bottom-panel s-unselectable">
+                {{#if sideBarControl}}
+                    <a class="umi-divider-left-toggle">
+                        <i class="icon icon-list"></i>
+                    </a>
+                {{else}}
+                    <a href="">
+                        <i class="icon icon-list" style="opacity: 0.5"></i>
+                    </a>
+                {{/if}}
 
-                <ul class="button-group right">
-                    {{#each control in controller.contentControls}}
-                        <li>{{#link-to 'action' control.name classNames="button"}}{{control.displayName}}{{/link-to}}</li>
-                    {{/each}}
-                </ul>
-
-                <h5>{{displayName}}</h5>
+                <a href="">
+                    <i class="icon icon-eye"></i>
+                </a>
             </div>
-    
-    
-            <div class="row s-full-height umi-component">
-                <div class="columns small-12 s-padding-clear">
+
+            <div class="umi-divider-right">
+                <div class="s-unselectable umi-mode">
+
+                    <h5 style="float: left;">{{displayName}}</h5>
+
+                    <ul class="button-group" style="float: right;">
+                        {{#each control in controller.contentControls}}
+                            <li>
+                                {{#link-to 'action' control.name classNames="button"}}
+                                    {{control.displayName}}
+                                {{/link-to}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+
+                <div class="umi-component columns small-12 s-padding-clear">
                     {{outlet}}
                 </div>
             </div>

@@ -165,6 +165,7 @@ $dock-components-height: 35;
 }
 
 .dock-components{
+    overflow: hidden;
     position: relative;
     background-color: #e7ebee;// Временный фикс для FF в OS X
     background: linear-gradient(#FFFFFF, #E0E4E7);

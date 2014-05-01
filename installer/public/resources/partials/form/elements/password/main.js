@@ -12,7 +12,14 @@ define(['App', 'text!./passwordElement.hbs'], function(UMI, passwordElement){
                 el.find('.icon-delete').click(function(){
                     el.find('input').val('');
                 });
-            }
+            },
+
+            inputView: Ember.View.extend({
+                template: function(){
+                    var dataSource = this.get('parentView.meta.dataSource');
+                    return Ember.Handlebars.compile('{{input type="password" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection"}}');
+                }.property()
+            })
         });
     };
 });

@@ -3,6 +3,30 @@ define(['App'], function(UMI){
 
     return function(){
 
+        UMI.TableControlColumnSelectorPopupView = Ember.View.extend({
+            templateName: 'tableControlColumnSelectorPopup',
+            classNames: ['umi-table-control-column-selector-popup'],
+
+            init: function(){
+                this.get('parentView').setProperties({
+                    'title': 'Выбор колонок в таблице',
+                    'width': 300,
+                    'height': 150,
+                    'contentOverflow': ['overflow', 'scroll']
+                })
+            },
+
+            didInsertElement: function(){
+                this.$().find('li').mousedown(function(){
+                    $(this).find('input').click();
+                });
+
+                if(window.pageYOffset || document.documentElement.scrollTop){
+
+                }
+            }
+        });
+
         UMI.PopupView = Ember.View.extend({
             //Параметры приходящие из childView
                 contentParams: {},
@@ -11,7 +35,7 @@ define(['App'], function(UMI){
             title: '',
             width: 600,
             height: 400,
-            contentOverflow: 'hidden',
+            contentOverflow: ['overflow', 'hidden'],
             blur: false,
             fade: false,
             drag: true,
@@ -25,16 +49,13 @@ define(['App'], function(UMI){
             template: function(){
                 var template;
                 var templateName = this.get('popupType');
-                var object = this.get('object');
-                var meta = this.get('meta');
 
                 //TODO Разнести по файлам аналогично elements?
                 switch(templateName){
-                    case 'fileManager': template = '{{view "' + templateName + '" object=view.object meta=view.meta}}'; break;
-                    case 'tableControlColumnSelectorPopup': template = '{{view "' + templateName + '" object=view.object meta=view.meta}}'; break;
-                    default: template = 'Не получено имя шаблона';
+                    case 'fileManager':                         template = '{{view "fileManager" object=view.object meta=view.meta}}'; break;
+                    case 'tableControlColumnSelectorPopup':     template = '{{view "tableControlColumnSelectorPopup"}}'; break;
+                    default:                                    template = 'Шаблон не обнаружен в системе';
                 }
-
                 return Ember.Handlebars.compile(template);
             }.property('popupType'),
 
@@ -44,7 +65,7 @@ define(['App'], function(UMI){
                 if(this.drag){this.allowDrag()}
                 if(this.resize){this.allowResize()}
                 if(this.contentOverflow !== 'hidden'){
-                    $('.umi-popup-content').css({'overflow': this.contentOverflow});
+                    $('.umi-popup-content').css(this.contentOverflow[0], this.contentOverflow[1]);
                 }
                 this.setSize();
             },
@@ -79,6 +100,7 @@ define(['App'], function(UMI){
             },
 
             allowResize: function(){
+                var that = this;
                 $('.umi-popup-resizer').show();
                 $('body').on('mousedown', '.umi-popup-resizer', function(event){
                     if(event.button === 0){
@@ -87,17 +109,17 @@ define(['App'], function(UMI){
                         var posY = $('.umi-popup').offset().top;
 
                         $('html').addClass('s-unselectable');
-                        $('body').mousemove(function(event){
+                        $('html').mousemove(function(event){
                             var w = event.pageX - posX;
                             var h = event.pageY - posY;
 
-                            if(w < 600){w = 600}
-                            if(h < 300){h = 300}
+                            if(w < that.get('width')){w = that.get('width')}
+                            if(h < that.get('height')){h = that.get('height')}
 
                             $('.umi-popup').css({width: w, height: h});
 
-                            $('body').on('mouseup', function(){
-                                $('body').off('mousemove');
+                            $('html').on('mouseup', function(){
+                                $('html').off('mousemove');
                                 $('html').removeClass('s-unselectable');
                                 $('.umi-popup-invisible-overlay').remove();
                             });

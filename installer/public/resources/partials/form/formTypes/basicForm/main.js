@@ -38,6 +38,7 @@ define([
                 wide: function(){
                     return this.get('object.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12';
                 }.property('object.type'),
+                //TODO Вёрстка косячная. Здесь span или label?
                 layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{object.label}}</label></div>{{yield}}'),
                 template: function(){
                     var object = this.get('object');

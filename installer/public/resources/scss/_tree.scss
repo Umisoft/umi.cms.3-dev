@@ -33,7 +33,7 @@ $umi-dark-border-color: #CCD9E2;
     .umi-item{
         overflow: hidden;
         text-overflow: ellipsis;
-        padding:0 20px;
+        padding: 0 20px;
         white-space: nowrap;
         &:hover, &.active{
             margin-left: -10000px;
@@ -90,6 +90,10 @@ $umi-dark-border-color: #CCD9E2;
             background: #FFFFFF;
 //            box-shadow: 0 0px 2px 0px #7C99AC;
         }
+
+        &:not(:hover) {
+            transition: .5s;
+        }
     }
 
     .umi-tree-placeholder{
@@ -124,7 +128,7 @@ $umi-dark-border-color: #CCD9E2;
     .umi-tree-context-menu{
         display: none;
         position: absolute;
-        right: rem-calc(9);
+        right: rem-calc(4);
         margin: 0;
         padding: 0;
         margin-top: -24px;
@@ -188,6 +192,7 @@ $umi-dark-border-color: #CCD9E2;
         }
     }
 
+
     .tree-control-select-action{
         position: relative;
         .button{
@@ -200,8 +205,12 @@ $umi-dark-border-color: #CCD9E2;
                     bottom: 32px;
                 }
             }
+            &:not(:hover) {
+                transition: .5s;
+            }
         }
     }
+
     .tree-control-select-action-tooltip{
         z-index: 1;
         visibility: hidden;
@@ -320,7 +329,7 @@ $umi-dark-border-color: #CCD9E2;
         &.open{
             .button{
                 z-index: 2;
-                box-shadow: 0 1px 2px 1px #7C99AC;
+                box-shadow: 0 0px 3px 0px #7C99AC;
                 background: #fff;
                 border-top-color: #fff;
                 &:before{

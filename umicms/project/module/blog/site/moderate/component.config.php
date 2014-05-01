@@ -60,17 +60,22 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
+                'controller:index' => [],
                 'controller:draft' => [],
-                'widget:draftModerate' => []
+                'widget:draftModerate' => [],
+                'widget:view' => [],
+                'controller:page' => [],
+                'widget:ownList' => [],
+                'widget:ownListLink' => []
             ],
             'moderator' => [
+                'controller:index' => [],
                 'controller:edit' => [],
                 'controller:publish' => [],
                 'controller:reject' => [],
                 'controller:all' => [],
                 'widget:view' => [],
-                'widget:ownList' => [],
-                'widget:ownListLink' => [],
+                'controller:page' => [],
                 'widget:allList' => [],
                 'widget:allListLink' => [],
                 'widget:editPost' => [],

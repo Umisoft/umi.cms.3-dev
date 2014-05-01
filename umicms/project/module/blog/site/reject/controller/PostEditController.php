@@ -11,6 +11,7 @@ namespace umicms\project\module\blog\site\reject\controller;
 
 use umi\form\IFormAware;
 use umi\form\TFormAware;
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
 use umi\orm\metadata\IObjectType;
@@ -44,13 +45,20 @@ class PostEditController extends BaseSecureController implements IFormAware, IOb
 
     /**
      * Вызывает контроллер.
-     * @throws HttpNotFound
+     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
      * @return Response
      */
     public function __invoke()
     {
         $id = $this->getRouteVar('id');
         $blogPost = $this->api->post()->getRejectedPostById($id);
+
+        if (!$this->isAllowed($blogPost)) {
+            throw new ResourceAccessForbiddenException(
+                $blogPost,
+                $this->translate('Access denied')
+            );
+        }
 
         if ($this->isRequestMethodPost()) {
 

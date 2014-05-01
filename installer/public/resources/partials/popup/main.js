@@ -7,7 +7,7 @@ define([
     popupTpl,
     tableControlColumnSelectorPopupTpl,
     view
-    ){
+){
     'use strict';
 
     Ember.TEMPLATES['UMI/popup'] = Ember.Handlebars.compile(popupTpl);

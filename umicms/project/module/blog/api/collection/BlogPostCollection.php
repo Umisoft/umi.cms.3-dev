@@ -95,27 +95,51 @@ class BlogPostCollection extends PageCollection
     /**
      * Возвращает черновик по GUID.
      * @param string $guid
+     * @throws NonexistentEntityException если не удалось получить черновик
      * @return BlogPost
      */
     public function getDraft($guid)
     {
-        $draft = $this->getDrafts()
+        $selector = $this->getDrafts()
             ->where(BlogPost::FIELD_GUID)->equals($guid);
 
-        return $draft->getResult()->fetch();
+        $draft = $selector->getResult()->fetch();
+
+        if (!$draft instanceof BlogPost) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find draft by guid "{guid}".',
+                    ['guid' => $guid]
+                )
+            );
+        }
+
+        return $draft;
     }
 
     /**
      * Возвращает черновик по идентификатору.
      * @param int $id
+     * @throws NonexistentEntityException если не удалось получить черновик
      * @return BlogPost
      */
     public function getDraftById($id)
     {
-        $draft = $this->getDrafts()
+        $selector = $this->getDrafts()
             ->where(BlogPost::FIELD_IDENTIFY)->equals($id);
 
-        return $draft->getResult()->fetch();
+        $draft = $selector->getResult()->fetch();
+
+        if (!$draft instanceof BlogPost) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find draft by id "{id}".',
+                    ['id' => $id]
+                )
+            );
+        }
+
+        return $draft;
     }
 
     /**
@@ -158,27 +182,51 @@ class BlogPostCollection extends PageCollection
     /**
      * Возвращает пост, требующий модерации по GUID
      * @param string $guid
+     * @throws NonexistentEntityException если не удалось получить пост требующий модерации
      * @return null|BlogPost
      */
     public function getNeedModeratePost($guid)
     {
-        $moderatePost = $this->getNeedModeratePosts()
+        $selector = $this->getNeedModeratePosts()
             ->where(BlogPost::FIELD_GUID)->equals($guid);
 
-        return $moderatePost->getResult()->fetch();
+        $moderatePost = $selector->getResult()->fetch();
+
+        if (!$moderatePost instanceof BlogPost) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find post for moderation with guid "{guid}".',
+                    ['guid' => $guid]
+                )
+            );
+        }
+
+        return $moderatePost;
     }
 
     /**
      * Возвращает пост, требующий модерации по Id
      * @param int $id
+     * @throws NonexistentEntityException если не удалось получить пост требующий модерации
      * @return null|BlogPost
      */
     public function getNeedModeratePostById($id)
     {
-        $moderatePost = $this->getNeedModeratePosts()
+        $selector = $this->getNeedModeratePosts()
             ->where(BlogPost::FIELD_IDENTIFY)->equals($id);
 
-        return $moderatePost->getResult()->fetch();
+        $moderatePost = $selector->getResult()->fetch();
+
+        if (!$moderatePost instanceof BlogPost) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find post for moderation with id "{id}".',
+                    ['id' => $id]
+                )
+            );
+        }
+
+        return $moderatePost;
     }
 
     /**
@@ -221,27 +269,51 @@ class BlogPostCollection extends PageCollection
     /**
      * Возвращает отклонённый пост по GUID
      * @param string $guid
+     * @throws NonexistentEntityException если не удалить получить отклонённый пост
      * @return null|BlogPost
      */
     public function getRejectedPost($guid)
     {
-        $rejectedPost = $this->getRejectedPosts()
+        $selector = $this->getRejectedPosts()
             ->where(BlogPost::FIELD_GUID)->equals($guid);
 
-        return $rejectedPost->getResult()->fetch();
+        $rejectedPost = $selector->getResult()->fetch();
+
+        if (!$rejectedPost instanceof BlogPost) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find rejected post by guid "{guid}".',
+                    ['guid' => $guid]
+                )
+            );
+        }
+
+        return $rejectedPost;
     }
 
     /**
      * Возвращает отклонённый пост по Id
      * @param int $id
+     * @throws NonexistentEntityException если не удалось получить отклонённый пост
      * @return null|BlogPost
      */
     public function getRejectedPostById($id)
     {
-        $rejectedPost = $this->getRejectedPosts()
+        $selector = $this->getRejectedPosts()
             ->where(BlogPost::FIELD_IDENTIFY)->equals($id);
 
-        return $rejectedPost->getResult()->fetch();
+        $rejectedPost = $selector->getResult()->fetch();
+
+        if (!$rejectedPost instanceof BlogPost) {
+            throw new NonexistentEntityException(
+                $this->translate(
+                    'Cannot find rejected post by guid "{id}".',
+                    ['id' => $id]
+                )
+            );
+        }
+
+        return $rejectedPost;
     }
 
     /**

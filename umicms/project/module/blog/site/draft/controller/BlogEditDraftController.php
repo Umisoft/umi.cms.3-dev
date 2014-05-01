@@ -11,7 +11,7 @@ namespace umicms\project\module\blog\site\draft\controller;
 
 use umi\form\IFormAware;
 use umi\form\TFormAware;
-use umi\hmvc\exception\http\HttpNotFound;
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
@@ -44,13 +44,20 @@ class BlogEditDraftController extends BaseSecureController implements IFormAware
 
     /**
      * Вызывает контроллер.
-     * @throws HttpNotFound
+     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
      * @return Response
      */
     public function __invoke()
     {
         $id = $this->getRouteVar('id');
         $blogDraft = $this->api->post()->getDraftById($id);
+
+        if (!$this->isAllowed($blogDraft)) {
+            throw new ResourceAccessForbiddenException(
+                $blogDraft,
+                $this->translate('Access denied')
+            );
+        }
 
         if ($this->isRequestMethodPost()) {
 

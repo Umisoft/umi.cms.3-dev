@@ -55,9 +55,11 @@ return [
             'poster' => [
                 'widget:add' => [],
                 'widget:publish' => [],
+                'controller:publish' => []
             ],
             'moderator' => [
-                'widget:reject' => []
+                'widget:reject' => [],
+                'controller:reject' => []
             ]
         ]
     ],

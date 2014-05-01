@@ -210,28 +210,28 @@ define(['App'], function(UMI){
                 this.get('controller').removeObserver('controllers.component.collectionName');
                 this.get('controller').removeObserver('activeContext');
                 this.removeObserver('controller.expandedBranches');
-            },
+            }
 
-            filtersView: Ember.View.extend({
-                classNames: ['umi-tree-control-filters'],
-                isOpen: false,
-                actions: {
-                    toggleOpen: function(){
-                        var self = this;
-                        var el = this.$();
-                        this.toggleProperty('isOpen');
-                        if(this.get('isOpen')){
-                            $('body').on('click.umi.tree.filterMenu', function(event){
-                                var targetElement = $(event.target).closest('.umi-tree-control-filters');
-                                if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
-                                    $('body').off('click.umi.tree.filterMenu');
-                                    self.set('isOpen', false);
-                                }
-                            });
-                        }
-                    }
-                }
-            })
+//            filtersView: Ember.View.extend({
+//                classNames: ['umi-tree-control-filters'],
+//                isOpen: false,
+//                actions: {
+//                    toggleOpen: function(){
+//                        var self = this;
+//                        var el = this.$();
+//                        this.toggleProperty('isOpen');
+//                        if(this.get('isOpen')){
+//                            $('body').on('click.umi.tree.filterMenu', function(event){
+//                                var targetElement = $(event.target).closest('.umi-tree-control-filters');
+//                                if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
+//                                    $('body').off('click.umi.tree.filterMenu');
+//                                    self.set('isOpen', false);
+//                                }
+//                            });
+//                        }
+//                    }
+//                }
+//            })
         });
 
         UMI.TreeItemView = Ember.View.extend({

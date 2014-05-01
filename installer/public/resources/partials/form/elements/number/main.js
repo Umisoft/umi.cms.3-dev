@@ -12,7 +12,14 @@ define(['App', 'text!./numberElement.hbs'], function(UMI, numberElement){
                 el.find('.icon-delete').click(function(){
                     el.find('input').val('');
                 });
-            }
+            },
+
+            inputView: Ember.View.extend({
+                template: function(){
+                    var dataSource = this.get('parentView.meta.dataSource');
+                    return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection"}}');
+                }.property()
+            })
         });
     };
 });

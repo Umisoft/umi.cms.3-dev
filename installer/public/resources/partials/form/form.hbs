@@ -13,7 +13,7 @@
         {{#each formElements in model.viewSettings.elements itemViewClass="view.elementView"}}
             {{#if view.isFieldset}}
                 <fieldset id="fieldset-{{unbound formElements.name}}">
-                    <legend {{action 'expand' target="view"}}>
+                    <legend {{action 'expand' target="view"}} class="s-unselectable">
                         <i {{bind-attr class=":icon view.isExpanded:icon-bottom:icon-right"}}></i>
                         {{formElements.label}}
                     </legend>

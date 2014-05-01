@@ -11,6 +11,7 @@ namespace umicms\project\module\blog\site\draft\controller;
 
 use umi\form\IFormAware;
 use umi\form\TFormAware;
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
 use umi\orm\metadata\IObjectType;
@@ -44,21 +45,33 @@ class PostSendToModerationController extends BaseSecureController implements IFo
 
     /**
      * Вызывает контроллер.
+     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
      * @throws HttpNotFound
      * @return Response
      */
     public function __invoke()
     {
         if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
+            throw new HttpNotFound(
+                $this->translate('Page not found')
+            );
+        }
+
+        $blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
+
+        if (!$this->isAllowed($blogDraft)) {
+            throw new ResourceAccessForbiddenException(
+                $blogDraft,
+                $this->translate('Access denied')
+            );
         }
 
         $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {
-            $blogPost = $this->api->post()->getDraftById($this->getRouteVar('id'));
-            $blogPost->needModerate();
+
+            $blogDraft->needModerate();
 
             $this->getObjectPersister()->commit();
 

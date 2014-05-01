@@ -69,8 +69,12 @@
 @import "_accordion";
 @import "_table";
 @import "_pagination";
+@import "_form-control";
 
 @import "_file-manager";
+
+//Содержимое попапов
+@import "popups/_table-control-column-selector-popup";
 
 //Перебиваем стили сторонних модулей
 @import "antiVendor/_datepicker";

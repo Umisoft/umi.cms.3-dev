@@ -9,3 +9,22 @@
         </ul>
     </div>
 </div>
+<!--{{!#view view.filtersView}}-->
+    <!--<div {{!bind-attr class=":dropdown :right view.isOpen:open"}}>-->
+        <!--{{!#if filters}}-->
+            <!--<span class="button tiny flat square right" {{!action "toggleOpen" target="view"}}>-->
+                <!--<i class="icon icon-settings"></i>-->
+            <!--</span>-->
+            <!--{{!#if view.isOpen}}-->
+                <!--<ul class="f-dropdown umi-dropup">-->
+                    <!--{{!#each filters}}-->
+                        <!--<li>-->
+                            <!--{{!view "checkboxCustom" checkedBinding="isActive"}}-->
+                            <!--<span class="title">{{!displayName}}</span>-->
+                        <!--</li>-->
+                    <!--{{!/each}}-->
+                <!--</ul>-->
+            <!--{{!/if}}-->
+        <!--{{!/if}}-->
+    <!--</div>-->
+<!--{{!/view}}-->

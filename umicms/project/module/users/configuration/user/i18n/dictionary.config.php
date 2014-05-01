@@ -19,6 +19,8 @@ return [
             'type:guest:displayName' => 'Guest',
             'type:authorized:displayName' => 'Authorized user',
             'type:authorized.supervisor:displayName' => 'Supervisor',
+
+            'locale' => 'Language'
         ],
 
         'ru-RU' => [
@@ -30,5 +32,7 @@ return [
             'type:guest:displayName' => 'Гость',
             'type:authorized:displayName' => 'Авторизованный пользователь',
             'type:authorized.supervisor:displayName' => 'Супервайзер',
+
+            'locale' => 'Язык'
         ]
     ];

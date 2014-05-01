@@ -11,6 +11,7 @@ namespace umicms\project\module\blog\site\post\controller;
 
 use umi\form\IFormAware;
 use umi\form\TFormAware;
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
 use umi\orm\metadata\IObjectType;
@@ -44,6 +45,7 @@ class PostToDraftController extends BaseSecureController implements IFormAware, 
 
     /**
      * Вызывает контроллер.
+     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
      * @throws HttpNotFound
      * @return Response
      */
@@ -53,12 +55,20 @@ class PostToDraftController extends BaseSecureController implements IFormAware, 
             throw new HttpNotFound('Page not found');
         }
 
+        $blogPost = $this->api->post()->getById($this->getRouteVar('id'));
+
+        if (!$this->isAllowed($blogPost)) {
+            throw new ResourceAccessForbiddenException(
+                $blogPost,
+                $this->translate('Access denied')
+            );
+        }
+
         $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {
 
-            $blogPost = $this->api->post()->getById($this->getRouteVar('id'));
             $blogPost->draft();
 
             $this->getObjectPersister()->commit();

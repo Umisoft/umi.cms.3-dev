@@ -113,13 +113,6 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                         }
                     }
                     collection.objectAt(index).set('hover', true);
-                },
-                selectHover: function(){
-                    var collection = this.get('notSelectedObjects');
-                    var hoverObject = collection.findBy('hover', true);
-                    this.send('select', hoverObject.get('id'));
-                    hoverObject.set('hover', false);
-                    this.send('toggleList');
                 }
             },
 
@@ -145,7 +138,7 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                     }
                     return value;
                 }.property('parentView.selectedObjects'),
-                click: function(){
+                doubleClick: function(){
                     this.get('parentView').set('isOpen', true);
                 },
                 keyUp: function(){
@@ -155,7 +148,7 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                     }
                     var parentView = this.get('parentView');
                     parentView.set('filterOn', true);
-                    var pattern = new RegExp("^" + val, "i");
+                    var pattern = new RegExp("^" + val);// TODO: off math case
                     var collection = parentView.get('collection');
                     var filterIds = [];
                     var selectedIds = parentView.get('selectedIds');
@@ -192,7 +185,6 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                             break;
                         case 'Enter':
                             parentView.send('selectHover');
-                            event.preventDefault();// Предотвращаем submit form
                             break;
                         case 'Escape':
                             parentView.set('isOpen', false);

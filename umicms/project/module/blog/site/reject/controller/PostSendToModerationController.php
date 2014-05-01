@@ -11,6 +11,7 @@ namespace umicms\project\module\blog\site\reject\controller;
 
 use umi\form\IFormAware;
 use umi\form\TFormAware;
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
 use umi\orm\metadata\IObjectType;
@@ -44,6 +45,7 @@ class PostSendToModerationController extends BaseSecureController implements IFo
 
     /**
      * Вызывает контроллер.
+     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
      * @throws HttpNotFound
      * @return Response
      */
@@ -56,8 +58,15 @@ class PostSendToModerationController extends BaseSecureController implements IFo
         $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
         $formData = $this->getAllPostVars();
 
+        $blogPost = $this->api->post()->getRejectedPostById($this->getRouteVar('id'));
+        if (!$this->isAllowed($blogPost)) {
+            throw new ResourceAccessForbiddenException(
+                $blogPost,
+                $this->translate('Access denied')
+            );
+        }
+
         if ($form->setData($formData) && $form->isValid()) {
-            $blogPost = $this->api->post()->getRejectedPostById($this->getRouteVar('id'));
             $blogPost->needModerate();
 
             $this->getObjectPersister()->commit();

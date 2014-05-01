@@ -1,8 +1,8 @@
 <?php
 
 use umi\filter\IFilterFactory;
-use umi\form\element\Hidden;
 use umi\form\element\Password;
+use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\validation\IValidatorFactory;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -42,9 +42,6 @@ return [
                     IValidatorFactory::TYPE_REQUIRED => []
                 ]
             ],
-        ],
-        'referer' => [
-            'type' => Hidden::TYPE_NAME
         ]
     ]
 ];
