@@ -251,7 +251,7 @@ define(['App'], function(UMI){
                 return !this.get('controller.model.active');
             }.property('controller.model.active'),
 
-            active: function(){
+            active: function(){// TODO: можно сделать через lookup http://jsbin.com/iFEvATE/2/edit
                 return this.get('controller.controllers.treeControl.activeContext.id') === this.get('controller.model.id');
             }.property('controller.controllers.treeControl.activeContext.id'),
 
