@@ -9,6 +9,7 @@
 
 namespace umicms\model;
 
+use umi\config\entity\IConfig;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umi\spl\config\TConfigSupport;
@@ -62,7 +63,7 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
      */
     public function hasModel($modelName)
     {
-        return isset($this->getModelNames()[$modelName]);
+        return isset($this->modelsConfig[$modelName]);
     }
 
     /**
@@ -77,9 +78,7 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
             return $this->models[$modelName];
         }
 
-        $modelConfig = $this->getModelConfig($modelName);
-
-        $model = $this->getModelEntityFactory()->createModel($modelName, $modelConfig);
+        $model = $this->getModelEntityFactory()->createModel($modelName, $this->getModelConfig($modelName));
 
         return $this->models[$modelName] = $model;
 
@@ -88,11 +87,11 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
     /**
      * Добавляет модель.
      * @param string $modelName имя модели
-     * @param array $modelConfig конфигурация
+     * @param IConfig $modelConfig конфигурация
      * @throws AlreadyExistentEntityException если модель с заданным именем существует
      * @return Model
      */
-    public function addModel($modelName, array $modelConfig)
+    public function addModel($modelName, IConfig $modelConfig)
     {
         if ($this->hasModel($modelName)) {
             throw new AlreadyExistentEntityException(
@@ -128,7 +127,7 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
      * @param string $modelName имя модели
      * @throws NonexistentEntityException если модели с заданным именем не существует
      * @throws UnexpectedValueException если конфигурация невалидная
-     * @return array
+     * @return IConfig
      */
     protected function getModelConfig($modelName)
     {
@@ -141,14 +140,15 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
             );
         }
 
-        try {
-            return $this->configToArray($this->modelsConfig[$modelName], true);
-        } catch (\InvalidArgumentException $e) {
+        $modelConfig = $this->modelsConfig[$modelName];
+        if (!$modelConfig instanceof IConfig) {
             throw new UnexpectedValueException($this->translate(
                 'Invalid model "{modelName}" configuration.',
                 ['modelName' => $modelName]
-            ), 0, $e);
+            ));
         }
+
+        return $modelConfig;
     }
 
 }
