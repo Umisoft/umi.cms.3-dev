@@ -27,44 +27,6 @@ use umicms\project\module\structure\api\collection\StructureElementCollection;
 class DefaultRestSettingsController extends BaseDefaultRestController
 {
     /**
-     * Имя опции для задания контролов компонента.
-     */
-    const OPTION_INTERFACE_CONTROLS = 'controls';
-    /**
-     * Имя опции для задания настроек интерфейсного отображения контролов
-     */
-    const OPTION_INTERFACE_LAYOUT = 'layout';
-    /**
-     * Имя опции для задания SideBar части интерфейса
-     */
-    const OPTION_INTERFACE_LAYOUT_SIDEBAR = 'sideBar';
-    /**
-     * Имя опции для задания Contents части интерфейса
-     */
-    const OPTION_INTERFACE_LAYOUT_CONTENTS = 'contents';
-    /**
-     * Имя опции для задания действий в компоненте
-     */
-    const OPTION_INTERFACE_ACTIONS = 'actions';
-    /**
-     * Имя контрола "Форма редактирования"
-     */
-    const CONTROL_EDIT_FORM = 'editForm';
-    /**
-     * Имя контрола "Форма создания"
-     */
-    const CONTROL_CREATE_FORM = 'createForm';
-    /**
-     * Имя контрола "Список дочерних элементов"
-     */
-    const CONTROL_CHILDREN = 'createForm';
-    /**
-     * Имя контрола "Фильтр элементов"
-     */
-    const CONTROL_FILTER = 'createForm';
-
-
-    /**
      * {@inheritdoc}
      */
     public function __invoke()
@@ -99,9 +61,9 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      */
     protected function buildControlsInfo(array $controls)
     {
-       $controlsInfo = [];
+        $controlsInfo = [];
 
-       foreach($controls as $controlName => $options) {
+        foreach($controls as $controlName => $options) {
             $options['displayName'] = $this->translate('control:' . $controlName . ':displayName');
             $controlsInfo[$controlName] = $options;
         }
@@ -117,9 +79,9 @@ class DefaultRestSettingsController extends BaseDefaultRestController
     protected function buildLayoutInfo(ICmsCollection $collection)
     {
         $layout = [];
-        $layout[self::OPTION_INTERFACE_LAYOUT_SIDEBAR] = $this->buildSideBarInfo($collection);
+        $layout['sideBar'] = $this->buildSideBarInfo($collection);
 
-        $layout[self::OPTION_INTERFACE_LAYOUT_CONTENTS] = $this->buildContentsInfo($collection);
+        $layout['contents'] = $this->buildContentsInfo($collection);
 
         return $layout;
     }
@@ -148,10 +110,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             'createForm' => $this->buildCreateFormControlInfo($collection)
         ];
 
-        if ($collection instanceof SimpleHierarchicCollection) {
-            $result['children'] = $this->buildChildrenControlInfo($collection);
-        }
-
         return $result;
     }
 
@@ -165,10 +123,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             'editForm' => $this->buildEditFormControlInfo($collection),
             'createForm' => $this->buildCreateFormControlInfo($collection)
         ];
-
-        if ($collection instanceof SimpleHierarchicCollection) {
-            $result['children'] = $this->buildChildrenControlInfo($collection);
-        }
 
         return $result;
     }
@@ -280,16 +234,16 @@ class DefaultRestSettingsController extends BaseDefaultRestController
 
         $createLabel = $this->translate('control:tree:toolbar:create');
         foreach ($typeNames as $typeName) {
-           if ($collection->hasForm(ICmsCollection::FORM_CREATE, $typeName)) {
-               $result[] = [
+            if ($collection->hasForm(ICmsCollection::FORM_CREATE, $typeName)) {
+                $result[] = [
                     'type' => 'create',
                     'displayName' =>  $this->translate('{createLabel} "{typeDisplayName}"', [
-                        'createLabel' => $createLabel,
-                        'typeDisplayName' => $this->translate('type:' . $typeName . ':displayName')
-                    ]),
+                                'createLabel' => $createLabel,
+                                'typeDisplayName' => $this->translate('type:' . $typeName . ':displayName')
+                            ]),
                     'typeName' => $typeName
-               ];
-           }
+                ];
+            }
         }
 
         return $result;
@@ -304,17 +258,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         return [
             'type' => $buttonType,
             'displayName' => $this->translate('control:filter:toolbar:' . $buttonType)
-        ];
-    }
-
-    /**
-     * Возвращает информацию о контроле "Дочерние объекты"
-     * @param ICmsCollection $collection
-     * @return array
-     */
-    protected function buildChildrenControlInfo(ICmsCollection $collection) {
-        return [
-            'displayName' => $this->translate('control:children:displayName')
         ];
     }
 
@@ -462,4 +405,3 @@ class DefaultRestSettingsController extends BaseDefaultRestController
     }
 
 }
- 
