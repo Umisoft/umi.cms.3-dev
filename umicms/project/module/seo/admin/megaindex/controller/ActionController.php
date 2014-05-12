@@ -45,23 +45,30 @@ class ActionController extends DefaultRestActionController
     protected function getModel()
     {
         $component = $this->getComponent();
-        $options = $component->getSettings()['options'];
-        if (!isset($options['login'])) {
-            throw new InvalidArgumentException($this->translate("Option {option} is required", ['option' => 'login']));
-        }
-        if (!isset($options['password'])) {
+
+        $login = $component->getSetting(MegaindexModel::MEGAINDEX_LOGIN);
+        $password = $component->getSetting(MegaindexModel::MEGAINDEX_PASSWORD);
+        $siteUrl = $component->getSetting(MegaindexModel::MEGAINDEX_SITE_URL);
+
+        if (is_null($login)) {
             throw new InvalidArgumentException($this->translate(
                 "Option {option} is required",
-                ['option' => 'password']
+                ['option' => MegaindexModel::MEGAINDEX_LOGIN]
             ));
         }
-        if (!isset($options['siteUrl'])) {
+        if (is_null($password)) {
             throw new InvalidArgumentException($this->translate(
                 "Option {option} is required",
-                ['option' => 'siteUrl']
+                ['option' => MegaindexModel::MEGAINDEX_PASSWORD]
             ));
         }
-        return new MegaindexModel($options['login'], $options['password'], $options['siteUrl']);
+        if (is_null($siteUrl)) {
+            throw new InvalidArgumentException($this->translate(
+                "Option {option} is required",
+                ['option' => MegaindexModel::MEGAINDEX_SITE_URL]
+            ));
+        }
+        return new MegaindexModel($login, $password, $siteUrl);
     }
 
     /**

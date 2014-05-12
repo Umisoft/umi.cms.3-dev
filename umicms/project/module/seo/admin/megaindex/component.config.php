@@ -17,13 +17,7 @@ return [
     DefaultQueryAdminComponent::OPTION_MODELS => [
         'umicms\project\module\seo\model\MegaindexModel'
     ],
-    DefaultQueryAdminComponent::OPTION_SETTINGS => [
-        'options' => [
-            'login' => 'megaindex-api-test@megaindex.ru',
-            'password' => '123456',
-            'siteUrl' => 'umi-cms.ru',
-        ]
-    ],
+    DefaultQueryAdminComponent::OPTION_SETTINGS => '{#lazy:~/project/module/seo/configuration/megaindex/model.settings.config.php}',
     DefaultQueryAdminComponent::OPTION_CONTROLLERS => [
         DefaultQueryAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
         DefaultQueryAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
