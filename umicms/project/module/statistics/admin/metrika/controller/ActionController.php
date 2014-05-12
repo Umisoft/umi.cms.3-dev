@@ -12,8 +12,9 @@ namespace umicms\project\module\statistics\admin\metrika\controller;
 use umi\http\Response;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\InvalidArgumentException;
+use umicms\project\admin\api\component\DefaultQueryAdminComponent;
 use umicms\project\admin\api\controller\DefaultRestActionController;
-use umicms\project\module\statistics\admin\metrika\model\MetrikaApi;
+use umicms\project\module\statistics\admin\metrika\model\MetrikaModel;
 
 /**
  * Контроллер операций компонента Метрики.
@@ -22,33 +23,16 @@ class ActionController extends DefaultRestActionController
 {
     /**
      * API для запросов к Яндекс.Метрике
-     * @var MetrikaApi $api
+     * @var MetrikaModel $api
      */
     protected $api;
 
     /**
-     * Конструктор. Внедряет {@see $api API Метрики}.
-     * @param MetrikaApi $api
+     * Конструктор.
      */
-    public function __construct(MetrikaApi $api)
+    public function __construct()
     {
-        $this->api = $api;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getQueryActions()
-    {
-        return ['counter', 'counters', 'navigation'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModifyActions()
-    {
-        return [];
+        $this->api = new MetrikaModel;
     }
 
     /**
@@ -145,5 +129,13 @@ class ActionController extends DefaultRestActionController
             $navigation[] = $navigationGroup;
         }
         return $navigation;
+    }
+
+    /**
+     * @return DefaultQueryAdminComponent
+     */
+    protected function getComponent()
+    {
+        return $this->getContext()->getComponent();
     }
 }

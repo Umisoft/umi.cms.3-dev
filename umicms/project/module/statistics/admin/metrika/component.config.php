@@ -9,17 +9,20 @@
 namespace umicms\project\module\statistics\admin\metrika;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\api\component\DefaultQueryAdminComponent;
 
 return [
-
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
-    AdminComponent::OPTION_CONTROLLERS => [
-        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
+    DefaultQueryAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultQueryAdminComponent',
+    DefaultQueryAdminComponent::OPTION_CONTROLLERS => [
+        DefaultQueryAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
+        DefaultQueryAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
 
-    AdminComponent::OPTION_ROUTES => [
+    DefaultQueryAdminComponent::OPTION_QUERY_ACTIONS => [
+        'counter', 'counters', 'navigation'
+    ],
+
+    DefaultQueryAdminComponent::OPTION_ROUTES => [
         'action' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/action/{action}',
@@ -31,7 +34,7 @@ return [
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => AdminComponent::SETTINGS_CONTROLLER
+                'controller' => DefaultQueryAdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]

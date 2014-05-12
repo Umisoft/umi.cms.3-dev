@@ -18,7 +18,7 @@ use umicms\exception\InvalidArgumentException;
 /**
  * API Яндекс.Метрики. Производит запросы к Метрике, получает статистические отчеты, информацию о счетчиках и пр.
  */
-class MetrikaApi implements IConfigIOAware, ILocalizable
+class MetrikaModel implements IConfigIOAware, ILocalizable
 {
     use TConfigIOAware;
     use TConfigSupport;
