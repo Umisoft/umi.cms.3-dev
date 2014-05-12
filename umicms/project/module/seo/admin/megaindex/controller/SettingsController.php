@@ -9,6 +9,7 @@
 
 namespace umicms\project\module\seo\admin\megaindex\controller;
 
+use umicms\project\admin\api\component\DefaultQueryAdminComponent;
 use umicms\project\admin\api\controller\DefaultRestSettingsController;
 
 /**
@@ -21,9 +22,9 @@ class SettingsController extends DefaultRestSettingsController
     ];
 
     private $layout = [
-        'emptyContext' => [
-            'contents' => [
-                'controls' => ['megaindexReport']
+        'contents' => [
+            'emptyContext' => [
+                'megaindexReport' => []
             ]
         ],
     ];
@@ -34,9 +35,36 @@ class SettingsController extends DefaultRestSettingsController
     protected function getSettings()
     {
         return [
-            self::OPTION_INTERFACE_CONTROLS => $this->buildControlsInfo($this->controls),
-            self::OPTION_INTERFACE_LAYOUT => $this->buildLayoutInfo($this->layout),
-            self::OPTION_INTERFACE_ACTIONS => $this->buildActionsInfo()
+            'controls' => $this->controls,
+            'layout' => $this->layout,
+            'actions' => $this->buildActionsInfo()
         ];
+    }
+
+    /**
+     * Возвращает информацию о доступных действиях компонентов.
+     * @return array
+     */
+    protected function buildActionsInfo()
+    {
+        $actions = [];
+        $component = $this->getComponent();
+
+        foreach ($component->getQueryActions() as $actionName) {
+            $actions[$actionName] = [
+                'type' => 'query',
+                'source' => $this->getUrlManager()->getAdminComponentActionResourceUrl($component, $actionName)
+            ];
+        }
+
+        return $actions;
+    }
+
+    /**
+     * @return DefaultQueryAdminComponent
+     */
+    protected function getComponent()
+    {
+        return $this->getContext()->getComponent();
     }
 }

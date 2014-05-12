@@ -10,8 +10,8 @@
 namespace umicms\project\module\seo\admin\megaindex\controller;
 
 use umicms\exception\InvalidArgumentException;
+use umicms\project\admin\api\component\DefaultQueryAdminComponent;
 use umicms\project\admin\api\controller\DefaultRestActionController;
-use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\seo\model\MegaindexModel;
 
 /**
@@ -19,22 +19,6 @@ use umicms\project\module\seo\model\MegaindexModel;
  */
 class ActionController extends DefaultRestActionController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getQueryActions()
-    {
-        return ['siteAnalyze', 'getBacklinks'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModifyActions()
-    {
-        return [];
-    }
-
     /**
      * Возвращает данные отчета {@link http://api.megaindex.ru/description/siteAnalyze «Видимость сайта»}
      * @return array
@@ -60,7 +44,6 @@ class ActionController extends DefaultRestActionController
      */
     protected function getModel()
     {
-        /** @var $component AdminComponent */
         $component = $this->getComponent();
         $options = $component->getSettings()['options'];
         if (!isset($options['login'])) {
@@ -79,5 +62,13 @@ class ActionController extends DefaultRestActionController
             ));
         }
         return new MegaindexModel($options['login'], $options['password'], $options['siteUrl']);
+    }
+
+    /**
+     * @return DefaultQueryAdminComponent
+     */
+    protected function getComponent()
+    {
+        return $this->getContext()->getComponent();
     }
 }
