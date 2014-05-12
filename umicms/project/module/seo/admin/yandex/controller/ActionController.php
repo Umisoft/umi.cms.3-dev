@@ -9,6 +9,7 @@
 namespace umicms\project\module\seo\admin\yandex\controller;
 
 use umicms\exception\InvalidArgumentException;
+use umicms\project\admin\api\component\DefaultQueryAdminComponent;
 use umicms\project\admin\api\controller\DefaultRestActionController;
 use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\seo\model\YandexModel;
@@ -28,22 +29,6 @@ class ActionController extends DefaultRestActionController
     protected $hostId;
 
     /**
-     * {@inheritdoc}
-     */
-    public function getQueryActions()
-    {
-        return ['hosts', 'host', 'indexed', 'links', 'tops'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModifyActions()
-    {
-        return [];
-    }
-
-      /**
      * Возвращает список доступных сайтов
      * @return array
      */
@@ -131,5 +116,13 @@ class ActionController extends DefaultRestActionController
         }
 
         return $this->hostId;
+    }
+
+    /**
+     * @return DefaultQueryAdminComponent
+     */
+    protected function getComponent()
+    {
+        return $this->getContext()->getComponent();
     }
 }

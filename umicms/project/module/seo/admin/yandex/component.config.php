@@ -9,25 +9,29 @@
 namespace umicms\project\module\seo\admin\yandex;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\api\component\DefaultQueryAdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
-    AdminComponent::OPTION_MODELS => [
+    DefaultQueryAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultQueryAdminComponent',
+    DefaultQueryAdminComponent::OPTION_MODELS => [
         'umicms\project\module\seo\model\YandexModel'
     ],
-    AdminComponent::OPTION_SETTINGS => [
+    DefaultQueryAdminComponent::OPTION_SETTINGS => [
         'options' => [
             'hostId' => '3478487',
             'oauthToken' => '26ccbadbc7494266a7a0b2981a47d27d',
         ]
     ],
-    AdminComponent::OPTION_CONTROLLERS => [
-        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
+    DefaultQueryAdminComponent::OPTION_CONTROLLERS => [
+        DefaultQueryAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
+        DefaultQueryAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
-    AdminComponent::OPTION_ROUTES => [
+
+    DefaultQueryAdminComponent::OPTION_QUERY_ACTIONS => [
+        'hosts', 'host', 'indexed', 'links', 'tops'
+    ],
+    DefaultQueryAdminComponent::OPTION_ROUTES => [
         'action' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/action/{action}',
@@ -35,11 +39,10 @@ return [
                 'controller' => 'action',
             ],
         ],
-
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => AdminComponent::SETTINGS_CONTROLLER
+                'controller' => DefaultQueryAdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]
