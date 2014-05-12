@@ -56,6 +56,7 @@ return [
         'project.admin.settings.service.backup' => '{#lazy:~/project/module/service/settings/backup/i18n/dictionary.config.php}',
         'project.admin.settings.seo' => '{#lazy:~/project/module/seo/settings/i18n/dictionary.config.php}',
         'project.admin.settings.seo.megaindex' => '{#lazy:~/project/module/seo/settings/megaindex/i18n/dictionary.config.php}',
+        'project.admin.settings.seo.yandex' => '{#lazy:~/project/module/seo/settings/yandex/i18n/dictionary.config.php}',
 
         'collection' => [
 

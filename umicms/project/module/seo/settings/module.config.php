@@ -15,7 +15,8 @@ return [
     DefaultSettingsComponent::OPTION_CLASS => 'umicms\project\admin\settings\component\SettingsComponent',
 
     DefaultSettingsComponent::OPTION_COMPONENTS => [
-        'megaindex' => '{#lazy:~/project/module/seo/settings/megaindex/component.config.php}'
+        'megaindex' => '{#lazy:~/project/module/seo/settings/megaindex/component.config.php}',
+        'yandex' => '{#lazy:~/project/module/seo/settings/yandex/component.config.php}'
     ],
     DefaultSettingsComponent::OPTION_ACL => [
 
@@ -23,10 +24,14 @@ return [
             'configurator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'component:megaindex'
+            'component:megaindex',
+            'component:yandex'
         ],
         IAclFactory::OPTION_RULES => [
-            'configurator' => ['component:megaindex' => []]
+            'configurator' => [
+                'component:megaindex' => [],
+                'component:yandex' => []
+            ]
         ]
     ],
     DefaultSettingsComponent::OPTION_ROUTES => [

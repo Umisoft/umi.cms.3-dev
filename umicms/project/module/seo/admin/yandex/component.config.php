@@ -17,12 +17,7 @@ return [
     DefaultQueryAdminComponent::OPTION_MODELS => [
         'umicms\project\module\seo\model\YandexModel'
     ],
-    DefaultQueryAdminComponent::OPTION_SETTINGS => [
-        'options' => [
-            'hostId' => '3478487',
-            'oauthToken' => '26ccbadbc7494266a7a0b2981a47d27d',
-        ]
-    ],
+    DefaultQueryAdminComponent::OPTION_SETTINGS => '{#lazy:~/project/module/seo/configuration/yandex/model.settings.config.php}',
     DefaultQueryAdminComponent::OPTION_CONTROLLERS => [
         DefaultQueryAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
         DefaultQueryAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'

@@ -86,14 +86,15 @@ class ActionController extends DefaultRestActionController
     {
         /** @var $component AdminComponent */
         $component = $this->getComponent();
-        $options = $component->getSettings()['options'];
-        if (!isset($options['oauthToken'])) {
-            throw new InvalidArgumentException(
-                $this->translate("Option {option} is required", ['option' => 'oauthToken'])
-            );
+        $oauthToken = $component->getSetting(YandexModel::YANDEX_OAUTH_TOKEN);
+        if (is_null($oauthToken)) {
+            throw new InvalidArgumentException($this->translate(
+                "Option {option} is required",
+                ['option' => YandexModel::YANDEX_OAUTH_TOKEN]
+            ));
         }
 
-        return new YandexModel($options['oauthToken']);
+        return new YandexModel($oauthToken);
     }
 
     /**
@@ -106,13 +107,14 @@ class ActionController extends DefaultRestActionController
         if (is_null($this->hostId)) {
             /** @var $component AdminComponent */
             $component = $this->getComponent();
-            $options = $component->getSettings()['options'];
-            if (!isset($options['hostId'])) {
-                throw new InvalidArgumentException(
-                    $this->translate("Option {option} is required", ['option' => 'hostId'])
-                );
+            $hostId = $component->getSetting(YandexModel::YANDEX_HOST_ID);
+            if (is_null($hostId)) {
+                throw new InvalidArgumentException($this->translate(
+                    "Option {option} is required",
+                    ['option' => YandexModel::YANDEX_HOST_ID]
+                ));
             }
-            $this->hostId = $options['hostId'];
+            $this->hostId = $hostId;
         }
 
         return $this->hostId;
