@@ -17,26 +17,26 @@ class Environment
     /**
      * @var array $bootConfigMaster коробочная конфигурация загрузчика
      */
-    public $bootConfigMaster;
+    public static $bootConfigMaster;
     /**
      * @var string $bootConfigLocal пользовательская конфигурация загрузчика
      */
-    public $bootConfigLocal;
+    public static $bootConfigLocal;
     /**
      * @var string $directoryCms директория ядра UMI.CMS
      */
-    public $directoryCms;
+    public static $directoryCms;
     /**
      * @var string $directoryCmsProject директория файлов проекта UMI.CMS
      */
-    public $directoryCmsProject;
+    public static $directoryCmsProject;
     /**
      * @var string $directoryProjects директория для пользовательских проектов
      */
-    public $directoryProjects;
+    public static $directoryProjects;
     /**
      * @var string $projectConfiguration файл с настройками проектов
      */
-    public $projectConfiguration = '%directory-project%/configuration/projects.config.php';
+    public static $projectsConfiguration = '%directory-project%/configuration/projects.config.php';
 
 }

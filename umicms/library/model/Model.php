@@ -16,15 +16,18 @@ use umi\i18n\TLocalizable;
 use umicms\exception\AlreadyExistentEntityException;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\UnexpectedValueException;
+use umicms\model\manager\IModelManagerAware;
+use umicms\model\manager\TModelManagerAware;
 
 /**
  * Модель данных
  */
-class Model implements ILocalizable, IModelEntityFactoryAware
+class Model implements ILocalizable, IModelEntityFactoryAware, IModelManagerAware
 {
 
     use TLocalizable;
     use TModelEntityFactoryAware;
+    use TModelManagerAware;
 
     /**
      * @var string $name имя модели
@@ -73,7 +76,8 @@ class Model implements ILocalizable, IModelEntityFactoryAware
      */
     public function setIsModified()
     {
-        //TODO
+        $this->getModelManager()->markAsModified($this);
+        return $this;
     }
 
     /**

@@ -12,8 +12,9 @@ namespace umicms\model\toolbox;
 use umi\toolkit\toolbox\IToolbox;
 use umi\toolkit\toolbox\TToolbox;
 use umicms\model\IModelEntityFactoryAware;
+use umicms\model\manager\IModelManagerAware;
 use umicms\model\manager\ModelManager;
-use umicms\model\ModelEntityFactory;
+use umicms\model\toolbox\factory\ModelEntityFactory;
 
 /**
  * Инструментарий для работы с моделями.
@@ -30,7 +31,7 @@ class ModelTools implements IToolbox
     /**
      * @var string $modelEntityFactoryClass класс для создания фабрики сущностей моделей данных
      */
-    public $modelEntityFactoryClass = 'umicms\model\ModelEntityFactory';
+    public $modelEntityFactoryClass = 'umicms\model\toolbox\factory\ModelEntityFactory';
     /**
      * @var string $modelManagerClass класс для создания менеджера моделей данных
      */
@@ -44,7 +45,7 @@ class ModelTools implements IToolbox
         $this->registerFactory(
             'modelEntity',
             $this->modelEntityFactoryClass,
-            ['umicms\model\ModelEntityFactory']
+            ['umicms\model\toolbox\factory\ModelEntityFactory']
         );
     }
 
@@ -55,6 +56,9 @@ class ModelTools implements IToolbox
     {
         if ($object instanceof IModelEntityFactoryAware) {
             $object->setModelEntityFactory($this->getModelEntityFactory());
+        }
+        if ($object instanceof IModelManagerAware) {
+            $object->setModelManager($this->getModelManager());
         }
     }
 

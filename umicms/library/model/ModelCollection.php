@@ -48,6 +48,19 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
     }
 
     /**
+     * Помечает все модели как модифицированные.
+     * @return $this
+     */
+    public function migrateAll()
+    {
+        foreach ($this->getModels() as $model) {
+            $model->setIsModified();
+        }
+
+        return $this;
+    }
+
+    /**
      * Возвращает список имен моделей данных.
      * @return array
      */
@@ -82,6 +95,19 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
 
         return $this->models[$modelName] = $model;
 
+    }
+
+    /**
+     * Возвращает список всех моделей коллекции.
+     * @return Model[]
+     */
+    public function getModels()
+    {
+        $result = [];
+        foreach ($this->getModelNames() as $modelName) {
+            $result[] = $this->getModel($modelName);
+        }
+        return $result;
     }
 
     /**

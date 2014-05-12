@@ -7,11 +7,13 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\model;
+namespace umicms\model\toolbox\factory;
 
 use umi\config\entity\IConfig;
 use umi\toolkit\factory\IFactory;
 use umi\toolkit\factory\TFactory;
+use umicms\model\Model;
+use umicms\model\ModelCollection;
 use umicms\model\scheme\TableSchemeLoader;
 
 /**

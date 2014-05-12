@@ -21,8 +21,8 @@ use umicms\project\module\users\api\object\BaseUser;
  * @property IObjectType $type тип
  * @property string $displayName выводимое в интерфейсах имя
  * @property int $version версия
- * @property DateTime $created время создания элемента
- * @property DateTime $updated время обновления элемента
+ * @property DateTime $created время создания объекта
+ * @property DateTime $updated время обновления объекта
  * @property BaseUser $owner владелец объекта
  * @property BaseUser $editor последний редактор объекта
  */

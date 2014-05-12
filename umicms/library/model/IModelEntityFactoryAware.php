@@ -9,6 +9,8 @@
 
 namespace umicms\model;
 
+use umicms\model\toolbox\factory\ModelEntityFactory;
+
 /**
  * Интерфейс для внедрения фабрики сущностей моделей данных.
  */

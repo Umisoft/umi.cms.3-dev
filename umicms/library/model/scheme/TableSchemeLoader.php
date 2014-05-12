@@ -33,6 +33,7 @@ class TableSchemeLoader implements ILocalizable
     {
         $table = $this->createTable($config);
         $this->loadColumns($table, $config);
+        $this->loadIndexes($table, $config);
 
         return $table;
     }
@@ -61,6 +62,73 @@ class TableSchemeLoader implements ILocalizable
     }
 
     /**
+     * Добаляет индексы в таблицу.
+     * @param Table $table
+     * @param IConfig $config
+     * @throws UnexpectedValueException
+     */
+    protected function loadIndexes(Table $table, IConfig $config)
+    {
+        $indexesConfig = $config->get('indexes');
+
+        if (!$indexesConfig instanceof IConfig) {
+            throw new UnexpectedValueException(
+                $this->translate(
+                    'Cannot load table scheme from configuration. Option "indexes" should be an array.'
+                )
+            );
+        }
+
+        foreach ($indexesConfig as $indexName => $indexConfig) {
+            if (!$indexConfig instanceof IConfig) {
+                throw new UnexpectedValueException(
+                    $this->translate(
+                        'Cannot load table scheme from configuration. Index "{name}" configuration should be an array.',
+                        ['name' => $indexName]
+                    )
+                );
+            }
+
+            $this->loadIndex($table, $indexName, $indexConfig);
+        }
+
+    }
+
+    /**
+     * Добавляет индекс в таблицу.
+     * @param Table $table
+     * @param string $indexName
+     * @param IConfig $indexConfig
+     * @throws UnexpectedValueException
+     */
+    protected function loadIndex(Table $table, $indexName, IConfig $indexConfig)
+    {
+        $columnsConfig = $indexConfig->get('columns');
+        if (!$columnsConfig instanceof IConfig) {
+            throw new UnexpectedValueException(
+                $this->translate(
+                    'Cannot load index "{indexName}" info. Option "columns" should be an array.',
+                    ['indexName' => $indexName]
+                )
+            );
+        }
+        $columnNames = $columnsConfig->toArray();
+
+        if ($indexConfig->get('type') == 'primary') {
+            $table->setPrimaryKey($columnNames, $indexName);
+        } elseif ($indexConfig->get('type') == 'unique') {
+            $table->addUniqueIndex($columnNames, $indexName);
+        } else {
+            $flags = [];
+            if ($indexConfig->get('flags') instanceof IConfig) {
+                $flags = $indexConfig->get('flags')->toArray();
+            }
+
+            $table->addIndex($columnNames, $indexName, $flags);
+        }
+    }
+
+    /**
      * Добаляет колонки в таблицу.
      * @param Table $table
      * @param IConfig $config
@@ -70,7 +138,7 @@ class TableSchemeLoader implements ILocalizable
     {
         $columnsConfig = $config->get('columns');
 
-        if(!$columnsConfig instanceof IConfig) {
+        if (!$columnsConfig instanceof IConfig) {
             throw new UnexpectedValueException(
                 $this->translate(
                     'Cannot load table scheme from configuration. Option "columns" should be an array.'
@@ -80,7 +148,7 @@ class TableSchemeLoader implements ILocalizable
 
         foreach ($columnsConfig as $columnName => $columnConfig) {
 
-            if(!$columnConfig instanceof IConfig) {
+            if (!$columnConfig instanceof IConfig) {
                 throw new UnexpectedValueException(
                     $this->translate(
                         'Cannot load table scheme from configuration. Column "{name}" configuration should be an array.',
