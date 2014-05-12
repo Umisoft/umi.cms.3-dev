@@ -7,12 +7,13 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\model;
+namespace umicms\model\field;
 
 /**
- * Class Field
+ * Класс поля связи "один-к-одному".
  */
-class Field
+class HasOneRelationField extends HasManyRelationField
 {
 
 }
+ 
