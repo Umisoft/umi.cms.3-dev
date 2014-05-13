@@ -1692,6 +1692,29 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_infoblock` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255),
+                    `type` varchar(255),
+                    `version` int(10) unsigned DEFAULT '1',
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `infoblock_guid` (`guid`),
+                    KEY `infoblock_type` (`type`),
+                    CONSTRAINT `FK_infoblock_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_infoblock_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
     }
 
     private function installSearch()
