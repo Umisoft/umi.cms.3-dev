@@ -500,10 +500,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj-5')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
 
+
+        $commentBranch = $commentCollection->add('branch', 'branchComment')
+            ->setValue('displayName', $post1->getValue('displayName'))
+            ->setValue('post', $post1);
+
         /**
          * @var IHierarchicObject $comment1
          */
-        $comment1 = $commentCollection->add('comment1')
+        $comment1 = $commentCollection->add('comment1', 'comment',$commentBranch)
             ->setValue('displayName', 'Re: Девиантное поведение призраков и домовых и способы влияния на него')
             ->setValue('displayName', 'Re: Deviant behavior of ghosts and goblins and ways to influence him', 'en-US')
             ->setValue('contents', '<p>О да. Недавно в нашем замке один милый маленький призрак покончил с собой. Мы были уверены, что это невозможно, но каким-то образом ему удалось раствориться в воде, наполняющей наш древний колодец.</p>')
@@ -512,7 +517,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_PUBLISHED)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'));
 
-        $comment2 = $commentCollection->add('comment2', IObjectType::BASE, $comment1)
+        $comment2 = $commentCollection->add('comment2', 'comment', $comment1)
             ->setValue('displayName', 'Re: Re: Девиантное поведение призраков и домовых и способы влияния на него')
             ->setValue('displayName', 'Re: Re: Deviant behavior of ghosts and goblins and ways to influence him', 'en-US')
             ->setValue('contents', '<p>Возможно, вашего призрака еще удастся спасти. Попробуйте насыпать в колодец пару столовых ложек молотых семян бессмертника. Это должно помочь призраку снова сконденсировать свое нематериальное тело. И да, важно, чтобы семена были собраны в новолуние.</p>')
@@ -521,7 +526,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_REJECTED)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:11:21'));
 
-        $commentCollection->add('comment3')
+        $commentBranch2 = $commentCollection->add('branch', 'branchComment')
+            ->setValue('displayName', $post2->getValue('displayName'))
+            ->setValue('post', $post2);
+
+        $commentCollection->add('comment3', 'comment', $commentBranch2)
             ->setValue('displayName', 'важный вопрос')
             ->setValue('displayName', 'important question', 'en-US')
             ->setValue('contents', '<p>Существует ли разговорник для общения с НЛО? Основы этикета?</p>')
@@ -530,7 +539,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_PUBLISHED)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:05:34'));
 
-        $commentCollection->add('comment1', IObjectType::BASE, $comment2)
+        $commentCollection->add('comment1', 'comment', $comment2)
             ->setValue('displayName', 'Вложенный комментарий')
             ->setValue('displayName', 'nested comment', 'en-US')
             ->setValue('contents', '<p>О, да. Это вложенный комментарий.</p>')

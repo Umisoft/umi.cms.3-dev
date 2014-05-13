@@ -18,11 +18,11 @@ return [
         'site' => 'blog.comment'
     ],
     'forms' => [
-        'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/comment/form/base.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/comment/form/base.create.config.php}',
-            BlogComment::FORM_ADD_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.addComment.config.php}',
-            BlogComment::FORM_CHANGE_COMMENT_STATUS => '{#lazy:~/project/module/blog/site/comment/form/base.changeStatus.config.php}'
+        'comment' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/comment/form/comment.edit.config.php}',
+            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/comment/form/comment.create.config.php}',
+            BlogComment::FORM_ADD_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/comment.addComment.config.php}',
+            BlogComment::FORM_CHANGE_COMMENT_STATUS => '{#lazy:~/project/module/blog/site/comment/form/comment.changeStatus.config.php}'
         ]
     ],
     'dictionaries' => [
