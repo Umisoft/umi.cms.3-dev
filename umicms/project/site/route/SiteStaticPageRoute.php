@@ -93,7 +93,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware, IPage
     {
         $element =
             $this->structureApi->element()->select()
-            ->types(['static'])
+            ->types([StaticPage::TYPE])
             ->where(StaticPage::FIELD_URI)
                 ->equals(UriField::URI_START_SYMBOL . $url)
             ->limit(1)

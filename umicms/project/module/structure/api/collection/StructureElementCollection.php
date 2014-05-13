@@ -36,11 +36,6 @@ class StructureElementCollection extends PageHierarchicCollection implements ILo
     use TLockedAccessibleCollection;
 
     /**
-     * Имя типа для системных страниц.
-     */
-    const TYPE_SYSTEM = 'system';
-
-    /**
      * {@inheritdoc}
      */
     public function move(IHierarchicObject $object, IHierarchicObject $branch = null, IHierarchicObject $previousSibling = null) {
@@ -88,6 +83,6 @@ class StructureElementCollection extends PageHierarchicCollection implements ILo
      */
     public function selectSystem()
     {
-        return $this->select()->types([self::TYPE_SYSTEM]);
+        return $this->select()->types([SystemPage::TYPE]);
     }
 }

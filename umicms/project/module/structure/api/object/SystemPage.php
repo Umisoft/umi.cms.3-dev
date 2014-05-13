@@ -14,5 +14,8 @@ namespace umicms\project\module\structure\api\object;
  */
 class SystemPage extends StructureElement
 {
-
+    /**
+     * Тип объекта
+     */
+    const TYPE = 'system';
 }
