@@ -1,0 +1,9 @@
+
+{% if (elementInfo.element.getInputType() != 'hidden') %}
+    <div class="form-group">
+        <label> {{ elementInfo.label }} </label>
+        <input class="form-control" {{ elementInfo.attributes | raw }}/>
+    </div>
+{% else %}
+    <input {{ elementInfo.attributes | raw }}/>
+{% endif %}

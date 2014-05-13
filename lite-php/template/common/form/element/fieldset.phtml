@@ -6,8 +6,8 @@
 
 <fieldset <?= $elementInfo['attributes'] ?> >
 
-<?php foreach ($elementInfo['elements'] as $elementInfo) : ?>
-    <?= $this->render('form/element.phtml', ['elementInfo' => $elementInfo]); ?>
+<?php foreach ($elementInfo['elements'] as $childElementInfo) : ?>
+    <?= $this->render('form/element.phtml', ['elementInfo' => $childElementInfo]); ?>
 <?php endforeach; ?>
 
 </fieldset>
