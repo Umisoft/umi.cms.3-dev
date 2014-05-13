@@ -9,6 +9,7 @@
 
 use umi\form\element\Hidden;
 use umi\form\element\MultiSelect;
+use umi\form\element\Submit;
 use umi\form\element\Text;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\api\object\BlogPost;
@@ -73,6 +74,10 @@ return [
                     'label' => BlogTag::FIELD_DISPLAY_NAME
                 ]
             ]
+        ],
+        'submit' => [
+            'type' => Submit::TYPE_NAME,
+            'label' => 'Add'
         ]
     ]
 ];

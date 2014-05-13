@@ -8,6 +8,7 @@
  */
 
 use umi\form\element\Hidden;
+use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\form\element\Textarea;
 use umicms\project\module\blog\api\object\BlogComment;
@@ -39,6 +40,10 @@ return [
             'options' => [
                 'dataSource' => BlogComment::FIELD_CONTENTS
             ]
+        ],
+        'submit' => [
+            'type' => Submit::TYPE_NAME,
+            'label' => 'Add'
         ]
     ]
 ];

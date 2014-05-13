@@ -11,7 +11,7 @@
     <?=$page->contents?>
 
     <?php if ($authenticated) : ?>
-        <?= $this->translate("Вы уже авторизованы.") ?>
+        <?= $this->translate("You are already logged in") ?>.
         <?= $this->widget('users.authorization.logoutLink', ['template' => 'logoutLink']); ?>
     <?php else : ?>
         <?php if (isset($error)) : ?>
