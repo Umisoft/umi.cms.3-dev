@@ -63,7 +63,7 @@ class PublishWidget extends BaseSecureWidget
             );
         }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_CHANGE_COMMENT_STATUS, 'comment', $this->blogComment);
+        $form = $this->api->comment()->getForm(BlogComment::FORM_CHANGE_COMMENT_STATUS, BlogComment::TYPE, $this->blogComment);
 
         $form->setAction($this->getUrl('publish', ['id' => $this->blogComment->getId()]));
         $form->setMethod('post');

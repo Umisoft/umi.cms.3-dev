@@ -84,11 +84,11 @@ class AddWidget extends BaseSecureWidget
             );
         }
 
-        $comment = $this->api->comment()->add(null, 'comment', $this->blogComment);
+        $comment = $this->api->comment()->add(null, BlogComment::TYPE, $this->blogComment);
 
         $comment->post = $this->blogPost;
 
-        $formAddComment = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, 'comment', $comment);
+        $formAddComment = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, BlogComment::TYPE, $comment);
 
         $routeParams = [];
         if (isset($this->blogComment)) {

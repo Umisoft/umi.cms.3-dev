@@ -58,9 +58,9 @@ class AddController extends BaseSecureController implements IFormAware, IObjectP
 
         $post = $this->api->post()->getById($this->getPostVar('post'));
 
-        $comment = $this->api->addComment('comment', $post, $parentComment);
+        $comment = $this->api->addComment(BlogComment::TYPE, $post, $parentComment);
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, 'comment', $comment);
+        $form = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, BlogComment::TYPE, $comment);
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {

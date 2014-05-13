@@ -53,7 +53,7 @@ class PublishController extends BaseSecureController implements IFormAware, IObj
             throw new HttpNotFound('Page not found');
         }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_CHANGE_COMMENT_STATUS, 'comment');
+        $form = $this->api->comment()->getForm(BlogComment::FORM_CHANGE_COMMENT_STATUS, BlogComment::TYPE);
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {

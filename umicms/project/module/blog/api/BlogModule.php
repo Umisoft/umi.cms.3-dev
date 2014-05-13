@@ -282,13 +282,11 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      * @param null|BlogComment $parentComment родительский комментарий
      * @return BlogComment
      */
-    public function addComment($typeName = 'comment', BlogPost $post, BlogComment $parentComment = null)
+    public function addComment($typeName = BlogComment::TYPE, BlogPost $post, BlogComment $parentComment = null)
     {
         if (is_null($parentComment)) {
             $parentComment = $this->getBranchComment($post);
         }
-
-        var_dump(get_class($parentComment));die();
 
         return $this->comment()->add(null, $typeName, $parentComment);
     }
@@ -313,7 +311,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function getCommentByPost(BlogPost $blogPost)
     {
         $comments = $this->getComments()
-            ->types(['comment*'])
+            ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($blogPost);
 
         return $comments;
@@ -583,7 +581,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     protected  function getBranchCommentByPost(BlogPost $blogPost)
     {
         $branchComments = $this->getComments()
-            ->types(['branchComment'])
+            ->types([BlogBranchComment::TYPE])
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
             ->limit(1)
             ->result()
@@ -605,7 +603,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             return $branchComment;
         }
 
-        $comment = $this->comment()->add(null, 'branchComment');
+        $comment = $this->comment()->add(null, BlogBranchComment::TYPE);
         $comment->displayName = $post->displayName;
         $comment->post = $post;
 

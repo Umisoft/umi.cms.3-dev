@@ -9,7 +9,6 @@
 
 namespace umicms\project\module\blog\api\object;
 
-use DateTime;
 use umicms\project\module\users\api\UsersModule;
 
 /**
@@ -17,11 +16,14 @@ use umicms\project\module\users\api\UsersModule;
  *
  * @property UsersModule $author автор поста
  * @property string $contents комментарий
- * @property DateTime $publishTime дата и время публикации комментария
  * @property string $publishStatus статус публикации комментария
  */
 class BlogComment extends BlogBaseComment
 {
+    /**
+     * Тип объекта
+     */
+    const TYPE = 'comment';
     /**
      * Имя поля для хранения автора поста
      */
@@ -30,10 +32,6 @@ class BlogComment extends BlogBaseComment
      * Имя поля для хранения комментария
      */
     const FIELD_CONTENTS = 'contents';
-    /**
-     * Имя поля для хранения даты и времени публикации комментария
-     */
-    const FIELD_PUBLISH_TIME = 'publishTime';
     /**
      * Имя поля для хранения статуса публикации комментария
      */
