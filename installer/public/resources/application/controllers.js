@@ -59,6 +59,9 @@ define([], function(){
 
                 return contentControls;
             }.property('settings', 'selectedContext'),
+
+//            showSideBar: false,
+
             /**
              Контрол компонента в области сайд бара
              @property sideBarControl
@@ -90,6 +93,7 @@ define([], function(){
                         self.send('templateLogs', errorObject, 'component');
                     });
                 }
+//                this.set('showSideBar', sideBarControl);
                 return sideBarControl;
             }.property('settings')
         });

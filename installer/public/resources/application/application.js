@@ -73,7 +73,9 @@ define(
 
                 return url;
             },
+
             namespace: window.UmiSettings.baseApiURL.replace( /^\//g, ''),
+
             ajaxOptions: function(url, type, hash){
                 hash = hash || {};
                 hash.url = url;
@@ -104,6 +106,7 @@ define(
 
                 return hash;
             },
+
             ajaxError: function(jqXHR){
                 var error = this._super(jqXHR);
                 if(error.status === 403 || error.status === 401){
@@ -135,6 +138,7 @@ define(
                 }
                 return payload;
             },
+
             extractMeta: function(store, type, payload){
                 if(payload && payload.result && payload.result.meta){
                     var meta = store.metadataFor(type) || {};
@@ -145,6 +149,7 @@ define(
                     delete payload.result.meta;
                 }
             },
+
             serializeHasMany: function(record, json, relationship){
                 var key = relationship.key;
 

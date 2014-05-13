@@ -105,9 +105,9 @@ define([], function(){
 
 
                     checkWindowWidth();
-                    window.onresize = function(){
+                    $(window).on('resize', function(){
                         checkWindowWidth();
-                    };
+                    });
 
                 } else{
                     $('.umi-divider-left').hide();
@@ -118,11 +118,11 @@ define([], function(){
                     return $(window).height() - 144;
                 });
 
-                window.onresize = function(){
+                $(window).on('resize', function(){
                     $('.umi-component').height(function(){
                         return $(window).height() - 144;
                     });
-                };
+                });
             }
         });
     };

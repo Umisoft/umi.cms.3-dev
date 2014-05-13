@@ -3,7 +3,7 @@
     <div class="umi-table-control-header-fixed-left">
         <div class="umi-table-control-header-cell">
             <input type="checkbox" id="checkbox-id" class="s-margin-clear"/>
-            <label for="checkbox-id"></label>
+            <label for="checkbox-id"><span></span></label>
         </div>
         <div class="umi-table-control-control-cell-empty"></div>
     </div>
@@ -29,7 +29,7 @@
                     {{#each column in content.viewSettings.columns}}
                         <td class="umi-table-control-header-column">
                             <div class="umi-table-control-header-cell filter column-id-{{unbound column.name}}">
-                                <input type="text"/>
+                                <input type="text" />
                                 {{#view view.sortHandlerView propertyName=column.name}}
                                     <i {{bind-attr class=":icon :black view.sortAscending:icon-bottom-thin:icon-top-thin"}}></i>
                                 {{/view}}
@@ -45,7 +45,7 @@
     <div class="umi-table-control-header-fixed-right">
         <div class="umi-table-control-header-cell">
             <span class="button tiny flat" {{action "showPopup" "tableControlColumnSelectorPopup"}}>
-                <i class="icon icon-settings"></i>
+                <i class="icon icon-columns"></i>
             </span>
         </div>
         <div class="umi-table-control-control-cell-empty"></div>
@@ -64,7 +64,7 @@
                 </tr>
             {{#if objects.content.isFulfilled}}
                 {{#each object in objects}}
-                    <tr class="umi-table-control-content-row">
+                    <tr class="umi-table-control-content-row" data-objectId="{{unbound object.id}}">
                         {{#each column in content.viewSettings.columns}}
                             <td class="umi-table-control-content-cell">
                                 {{view "tableCellContent" objectBinding="object" column=column}}
@@ -90,19 +90,20 @@
             <!-- Пустая ячейка нужна всего лишь для правильного индекса строк-->
             <div class="umi-table-control-cell-drop-size"></div>
             {{#each object in objects}}
-                <div class="umi-table-control-column-fixed-cell">
-                    <input type="checkbox" id="checkbox-id" class="s-margin-clear"/>
-                    <label for="checkbox-id"></label>
+                <div class="umi-table-control-column-fixed-cell" data-objectId="{{unbound object.id}}">
+                    <input type="checkbox" id="checkbox-{{unbound object.id}}" class="s-margin-clear"/>
+                    <label for="checkbox-{{unbound object.id}}"><span></span></label>
                 </div>
             {{/each}}
         </div>
 
         <!-- Колонка справа от контента -->
+
         <div class="umi-table-control-content-fixed-right">
             <div class="umi-table-control-cell-drop-size"></div>
             {{#each object in objects}}
-                <div class="umi-table-control-column-fixed-cell">
-                    <i class="icon icon-delete"></i>
+                <div class="umi-table-control-column-fixed-cell" data-objectId="{{unbound object.id}}">
+                    <i class="icon icon-delete" {{action 'deleteObject' object target='view'}}></i>
                 </div>
             {{/each}}
         </div>
@@ -111,8 +112,17 @@
 
 <!-- Футер-->
 <div class="umi-table-control-footer s-unselectable">
+    {{#view view.groupCrudView}}
+        <div class="left umi-table-control-group-crud">
+            <a href="" {{action 'add' target='view'}}><i class="icon icon-add"></i></a>
+            <a href="" {{action 'pause' target='view'}}><i class="icon icon-pause"></i></a>
+            <a href="" {{action 'view' target='view'}}><i class="icon icon-view"></i></a>
+            <a href="" {{action 'delete' target='view'}}><i class="icon icon-delete"></i></a>
+        </div>
+    {{/view}}
+
     {{#view view.paginationView}}
-        <div class="left pagination-controls">
+        <div class="right pagination-controls">
             <span class="pagination-counter">
                 {{view.counter}}
             </span>
@@ -123,7 +133,8 @@
                 <i class="icon black icon-right-thin"></i>
             {{/view}}
         </div>
-        <div class="left pagination-limit">
+
+        <div class="right pagination-limit">
             <span class="pagination-label">Строк на странице:</span>
             {{view view.limitView}}
         </div>

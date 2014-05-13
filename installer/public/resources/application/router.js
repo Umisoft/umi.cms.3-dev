@@ -55,6 +55,7 @@ define([], function(){
                     transition.send('templateLogs', error);
                 });
             },
+
             actions: {
                 logout: function(){
                     var applicationLayout = document.querySelector('.umi-main-view');
@@ -85,21 +86,26 @@ define([], function(){
                 save: function(params){
                     var isNewObject;
                     var self = this;
+
                     if(!params.object.get('isValid')){
                         if(params.handler){
                             $(params.handler).removeClass('loading');
                         }
                         return;
                     }
+
                     if(params.object.get('currentState.stateName') === 'root.loaded.created.uncommitted'){
                         isNewObject = true;
                     }
+
                     return params.object.save().then(
                         function(){
                             params.object.updateRelationhipsMap();
+
                             if(params.handler){
                                 $(params.handler).removeClass('loading');
                             }
+
                             if(isNewObject){
                                 if(params.object.store.metadataFor(params.object.constructor.typeKey).collectionType === 'hierarchic'){
                                     var parent = params.object.get('parent');
@@ -111,31 +117,34 @@ define([], function(){
                                             self.send('edit', params.object);
                                         });
                                     } else{
-                                        // Обновление связей рутовой ноды в дереве. TODO: подумать как можно избежать обращения к контроллеру дерева.
+                                        // Обновление связей рутовой ноды в дереве.
+                                        // TODO: подумать как можно избежать обращения к контроллеру дерева.
                                         self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(params.object.get('id'), 'root');
-
                                         self.send('edit', params.object);
                                     }
                                 }
                                 self.send('edit', params.object);
                             }
                         },
+
                         function(results){
                             var self = this;
                             if(params.handler){
                                 $(params.handler).removeClass('loading');
                             }
+
                             var data = {
                                 'close': false,
                                 'title': results.errors,
                                 'content': results.message,
                                 'confirm': 'Загрузить объект с сервера'
                             };
+
                             return UMI.dialog.open(data).then(
                                 function(){
                                     //https://github.com/emberjs/data/issues/1632
                                     //params.object.transitionTo('updated.uncommitted');
-                                    console.log(params.object.get('currentState.stateName'), results, self);
+//                                    console.log(params.object.get('currentState.stateName'), results, self);
                                     /* params.object.rollback();
                                      params.object.reload();*/
                                 }
@@ -150,6 +159,8 @@ define([], function(){
                     settings.title = error.status + '. ' + error.statusText;
                     UMI.dialog.open(settings).then();
                 },
+
+                //Что значит фоновую ошибку?
                 /**
                  Метод генерирует фоновую ошибку
                  @method backgroundError
@@ -197,6 +208,7 @@ define([], function(){
                 },
 
                 viewOnSite: function(object){
+                    console.log('viewOnSite');
                     var link;
                     if(object){
                         link = object._data.meta.pageUrl;
@@ -222,6 +234,7 @@ define([], function(){
                     }).append();
                 }
             },
+
             /**
              Метод парсит ошибку и возвпращает её в виде объекта
              @method parseError
@@ -265,7 +278,7 @@ define([], function(){
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName){
                     var firstChild = this.controllerFor('dock').get('content.firstObject');
-                    return this.transitionTo('module', 'news');//firstChild.get('name'));
+                    return this.transitionTo('module', 'news'); //firstChild.get('name'));
                 }
             }
         });
@@ -293,6 +306,7 @@ define([], function(){
                 }
                 return deferred.promise;
             },
+
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
                     var self = this;
@@ -314,6 +328,7 @@ define([], function(){
                     return deferred.promise;
                 }
             },
+
             serialize: function(model){
                 return {module: model.get('slug')};
             }
@@ -350,16 +365,23 @@ define([], function(){
                 }
                 return deferred.promise;
             },
+
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
                     this.transitionTo('context', 'root');
                 }
             },
+
             serialize: function(model){
                 return {component: model.get('name')};
             },
+
             renderTemplate: function(controller){
                 this.render();
+                //Как я понял, здесь мы получаем данные ТОЛЬКО рутовой ноды
+                //если да - нужно переименовать sideBarControl во что-нибудь более подходящее,
+                //      (это даже не sideBar, это что-то вроде treeElement, если я правильно понял)
+                //если нет - запилить комментарий
                 if(controller.get('sideBarControl')){
                     try{
                         this.render(controller.get('sideBarControl.name'), {
@@ -405,6 +427,7 @@ define([], function(){
                                 }
                             }.property()
                         });
+
                         model = new Ember.RSVP.Promise(function(resolve){
                             resolve(RootModel.create({'id': 'root', type: 'base'}));
                         });
@@ -414,12 +437,14 @@ define([], function(){
                 }
                 return model;
             },
+
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
                     var firstControl = this.controllerFor('component').get('contentControls')[0];
                     return this.transitionTo('action', firstControl.name);
                 }
             },
+
             serialize: function(model){
                 if(model){
                     return {context: model.get('id')};
@@ -434,6 +459,7 @@ define([], function(){
                     replace: true
                 }
             },
+
             model: function(params, transition){
                 var self = this;
                 var actionName = params.action;
@@ -446,14 +472,17 @@ define([], function(){
                     'object': contextModel,
                     'action': action
                 };
+
                 if(action){
                     /**
                      * Мета информация для action
                      */
                     var actionParams = {};
+
                     if(contextModel.get('type')){
                         actionParams.type = contextModel.get('type');
                     }
+
                     if(actionName === 'createForm'){
                         var createdParams =  contextModel.get('id') !== 'root' ? {parent: contextModel} : null;
                         data.createObject = self.store.createRecord(collectionName, createdParams);
@@ -463,6 +492,7 @@ define([], function(){
                             throw new Error("Тип создаваемого объекта не был указан.");
                         }
                     }
+
                     // Временное решение для таблицы
                     if(actionName === 'children' || actionName === 'filter'){
                         return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
@@ -485,11 +515,13 @@ define([], function(){
                     this.transitionTo('context', contextModel.get('id'));
                 }
             },
+
             serialize: function(data){
                 if(data.action){
                     return {action: data.action.get('name')};
                 }
             },
+
             renderTemplate: function(controller, model){
                 try{
                     var templateType = model.action.get('name');
@@ -505,6 +537,7 @@ define([], function(){
                     this.send('templateLogs', errorObject, 'component');
                 }
             },
+
             setupController: function(controller, model){
                 this._super(controller, model);
                 var context = this.modelFor('context');
@@ -519,6 +552,7 @@ define([], function(){
                 }
                 controller.set('model', model);
             },
+
             actions: {
                 /**
                  Метод вызывается при уходе с роута.
@@ -565,7 +599,6 @@ define([], function(){
                     this.route('component', {path: '/:component'});
                 });
             });
-
 
             UMI.SettingsRoute = Ember.Route.extend({
                 model: function(){

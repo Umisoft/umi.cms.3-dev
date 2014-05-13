@@ -34,7 +34,47 @@ define(['App'], function(UMI){
                 }
             }.observes('controller.objects').on('didInsertElement'),
 
+            actions: {
+                deleteObject: function(object){
+                    console.log('deleteObject');
+                    $('.umi-table-control-content-fixed-left .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').remove();
+                    $('.umi-table-control-content-row[data-objectId=' + object.id + ']').remove();
+//                    .animate({'-webkit-transform': 'rotateX(-90deg)'}, 500, function(){
+//                        $(this).remove();
+//                    });
+                    $('.umi-table-control-content-fixed-right .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').remove();
+
+                    this.send('trash', object);
+                },
+
+                editObject: function(object){
+                    this.send('edit', object);
+                },
+
+                viewOnSiteObject: function(object){
+                    console.log('viewOnSiteObject');d
+                    this.send('viewOnSite', object);
+                },
+
+                switchActivityObject: function(object){
+                    this.send('switchActivity', object);
+                }
+
+//                saveObject: function(object){
+//                    var params = {};
+//                    params.object = object;
+//                    params.handler = null;
+//                    this.send('save', params);
+//                },
+//
+//                createObject: function(action, object){
+//                    this.send('create', object, action);
+//                }
+            },
+
             didInsertElement: function(){
+                this.moveGroupCrudBottomPanel();
+
                 var tableControl = this.$();
 
                 var self = this;
@@ -74,6 +114,7 @@ define(['App'], function(UMI){
 
                             // Событие изменения ширины колонки
                             tableControl.on('mousedown.umi.tableControl', '.umi-table-control-column-resizer', function(){
+                                $('html').addClass('s-unselectable');
                                 var handler = this;
                                 $(handler).addClass('on-resize');
                                 var columnEl = handler.parentNode.parentNode;
@@ -82,6 +123,7 @@ define(['App'], function(UMI){
                                 var columnOffset = $(columnEl).offset().left;
                                 var columnWidth;
                                 var contentCell = umiTableContentRowSize.querySelector('.' + columnName);
+
                                 $('body').on('mousemove.umi.tableControl', function(event){
                                     event.stopPropagation();
                                     columnWidth = event.pageX - columnOffset;
@@ -91,6 +133,7 @@ define(['App'], function(UMI){
                                 });
 
                                 $('body').on('mouseup.umi.tableControl', function(){
+                                    $('html').removeClass('s-unselectable');
                                     $(handler).removeClass('on-resize');
                                     $('body').off('mousemove');
                                     $('body').off('mouseup.umi.tableControl');
@@ -138,8 +181,41 @@ define(['App'], function(UMI){
                 this.get('controller').removeObserver('content.object.id');
             },
 
+            showSideBar: function(){
+                console.log('sideBar');
+                return this.get('controller.showSideBar');
+            }.property('controller.showSideBar'),
+
+            moveGroupCrudBottomPanel: function(){
+                console.log(this.get('showSideBar'));
+                if(this.get('showSideBar')){
+                    var margin = $('.umi-left-bottom-panel').width();
+                    $('.umi-table-control-group-crud').css('marginLeft', margin);
+                } else{
+                    $('.umi-table-control-group-crud').css('marginLeft', 0);
+                }
+            },
+
+            groupCrudView: Ember.View.extend({
+                actions: {
+                    add: function(parent){
+                        this.send('create', parent);
+                    },
+                    pause: function(){
+                        console.log('pause');
+                    },
+                    view: function(){
+                        console.log('view');
+                    },
+                    delete: function(){
+                        console.log('delete');
+                    }
+                }
+            }),
+
             paginationView: Ember.View.extend({
                 classNames: ['right', 'umi-table-control-pagination'],
+
                 counter: function(){
                     var label = 'из';
                     var limit = this.get('controller.limit');
@@ -150,41 +226,51 @@ define(['App'], function(UMI){
                     maxCount = maxCount < total ? maxCount : total;
                     return start + '-' + maxCount + ' ' + label + ' ' + total;
                 }.property('controller.limit', 'controller.offset', 'controller.total'),
+
                 prevButtonView: Ember.View.extend({
                     classNames: ['button', 'secondary', 'tiny'],
                     classNameBindings: ['isActive::disabled'],
+
                     isActive: function(){
                         return this.get('controller.offset');
                     }.property('controller.offset'),
+
                     click: function(){
                         if(this.get('isActive')){
                             this.get('controller').decrementProperty('offset');
                         }
                     }
                 }),
+
                 nextButtonView: Ember.View.extend({
                     classNames: ['button', 'secondary', 'tiny'],
                     classNameBindings: ['isActive::disabled'],
+
                     isActive: function(){
                         var limit = this.get('controller.limit');
                         var offset = this.get('controller.offset') + 1;
                         var total = this.get('controller.total');
                         return total > limit * offset;
                     }.property('controller.limit', 'controller.offset', 'controller.total'),
+
                     click: function(){
                         if(this.get('isActive')){
                             this.get('controller').incrementProperty('offset');
                         }
                     }
                 }),
+
                 limitView: Ember.View.extend({
                     tagName: 'input',
                     classNames: ['s-margin-clear'],
                     attributeBindings: ['value', 'type'],
+
                     value: function(){
                         return this.get('controller.limit');
                     }.property('controller.limit'),
+
                     type: 'text',
+
                     keyDown: function(event){
                         if(event.keyCode === 13){
                             // При изменении количества строк на странице сбрасывается offset
@@ -198,17 +284,23 @@ define(['App'], function(UMI){
                 classNames: ['button', 'flat', 'tiny', 'square', 'sort-handler'],
                 classNameBindings: ['isActive:active'],
                 sortAscending: true,
+
                 isActive: function(){
                     var orderByProperty = this.get('controller.orderByProperty');
                     if(orderByProperty){
                         return this.get('propertyName') === orderByProperty.property;
                     }
                 }.property('controller.orderByProperty'),
+
                 click: function(){
                     var propertyName = this.get('propertyName');
+
+                    $('.umi-table-control-header-cell .icon-top-thin:not(.active)').removeClass('icon-top-thin').addClass('icon-bottom-thin');
+
                     if(this.get('isActive')){
                         this.toggleProperty('sortAscending');
                     }
+
                     var sortAscending = this.get('sortAscending');
                     this.get('controller').send('orderByProperty', propertyName, sortAscending);
                 }
@@ -222,6 +314,7 @@ define(['App'], function(UMI){
             template: function(){
                 var meta = this.get('column');
                 var object = this.get('object');
+
                 var template;
                 if(meta.name === 'displayName'){
                     template = '{{#link-to "action" object.id "editForm" class="edit-link"}}' + object.get(meta.name) + '{{/link-to}}';
