@@ -295,12 +295,13 @@ class FormHelper implements ILocalizable
             [
                 'type' => $button->getButtonType(),
                 'name' => $button->getElementName(),
-                'value' => $button->getValue() ? $this->translator->translate($dictionaries, $button->getValue()) : '',
+                'value' => $button->getValue(),
             ]
         );
 
         return [
             'element' => $button,
+            'label' => $button->getLabel() ? $this->translator->translate($dictionaries, $button->getLabel()) : '',
             'type' => 'button',
             'attributes' => $this->buildAttributes($attributes)
         ];

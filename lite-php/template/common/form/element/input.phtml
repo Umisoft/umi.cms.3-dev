@@ -1,13 +1,16 @@
 <?php
 /**
- * @var \umi\form\element\IFormInput $input
+ * @var array $elementInfo
+ * @var \umi\form\element\IFormInput $element
  */
-$attributes = array_merge(
-    $input->getAttributes(),
-    [
-        'type' => $input->getInputType(),
-        'name' => $input->getElementName(),
-        'value' => $input->getValue()
-    ]
-);
-echo '<div class="form-group"><label>' . (($input->getInputType() != 'hidden') ? $input->getName() : '') . '</label><input class="form-control" ' . buildAttributes($attributes) .' /></div>';
+?>
+<?php $element = $elementInfo['element']?>
+
+<?php if ($element->getInputType() != 'hidden') : ?>
+    <div class="form-group">
+        <label><?= $elementInfo['label'] ?></label>
+        <input class="form-control" <?= $elementInfo['attributes'] ?> />
+    </div>
+<?php else : ?>
+    <input <?= $elementInfo['attributes'] ?> />
+<?php endif; ?>

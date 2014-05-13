@@ -1,0 +1,36 @@
+<?php
+/**
+ * @var array $elementInfo
+ */
+
+switch($elementInfo['type'])
+{
+    case 'fieldset': {
+        echo $this->render('form/element/textarea.phtml', ['elementInfo' => $elementInfo]);
+        break;
+    }
+    case 'textarea': {
+        echo $this->render('form/element/textarea.phtml', ['elementInfo' => $elementInfo]);
+        break;
+    }
+    case 'select': {
+        echo $this->render('form/element/select.phtml', ['elementInfo' => $elementInfo]);
+        break;
+    }
+    case 'checkboxGroup': {
+        echo $this->render('form/element/checkboxGroup.phtml', ['elementInfo' => $elementInfo]);
+        break;
+    }
+    case 'checkbox': {
+        echo $this->render('form/element/checkbox.phtml', ['elementInfo' => $elementInfo]);
+        break;
+    }
+    case 'button': {
+        echo $this->render('form/element/button.phtml', ['elementInfo' => $elementInfo]);
+        break;
+    }
+    case 'input': {
+        echo $this->render('form/element/input.phtml', ['elementInfo' => $elementInfo]);
+        break;
+    }
+}

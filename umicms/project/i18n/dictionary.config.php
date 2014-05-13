@@ -124,13 +124,17 @@ return [
                 'common' => 'Common',
                 'meta' => 'Meta',
                 'importSetting' => 'Import setting',
-                'contents' => 'Contents'
+                'contents' => 'Contents',
+
+                'Save' => 'Save'
             ],
             'ru-RU' => [
                 'common' => 'Общее',
                 'meta' => 'Мета-информация',
                 'importSetting' => 'Настройки импорта',
-                'contents' => 'Контент'
+                'contents' => 'Контент',
+
+                'Save' => 'Сохранить'
             ]
         ],
 

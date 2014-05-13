@@ -86,20 +86,18 @@ class TemplatingPhpExtension implements IPhpExtension
 
     /**
      * Возвращает помощник шаблонов для форм.
-     * @return callable
+     * @return FormHelper
      */
     protected function getFormHelper()
     {
-        return function () {
-            static $helper;
+        static $helper;
 
-            if (!$helper) {
-                $helper = new FormHelper();
-                $helper->setTranslator($this->translator);
-            }
+        if (!$helper) {
+            $helper = new FormHelper();
+            $helper->setTranslator($this->translator);
+        }
 
-            return $helper;
-        };
+        return $helper;
     }
 }
  
