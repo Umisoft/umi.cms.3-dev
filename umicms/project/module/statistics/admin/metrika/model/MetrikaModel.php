@@ -25,6 +25,15 @@ class MetrikaModel implements IConfigIOAware, ILocalizable
     use TLocalizable;
 
     /**
+     * Полученный oAuth token.
+     */
+    const OAUTH_TOKEN = 'oauthToken';
+    /**
+     * Список доступных ресурсов.
+     */
+    const API_RESOURCES = 'apiResources';
+
+    /**
      * Токен OAuth авторизации для отправки запросов к API
      * @var string $oauthToken
      */

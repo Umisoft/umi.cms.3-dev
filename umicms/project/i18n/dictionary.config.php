@@ -57,6 +57,8 @@ return [
         'project.admin.settings.seo' => '{#lazy:~/project/module/seo/settings/i18n/dictionary.config.php}',
         'project.admin.settings.seo.megaindex' => '{#lazy:~/project/module/seo/settings/megaindex/i18n/dictionary.config.php}',
         'project.admin.settings.seo.yandex' => '{#lazy:~/project/module/seo/settings/yandex/i18n/dictionary.config.php}',
+        'project.admin.settings.statistics' => '{#lazy:~/project/module/statistics/settings/i18n/dictionary.config.php}',
+        'project.admin.settings.statistics.metrika' => '{#lazy:~/project/module/statistics/settings/metrika/i18n/dictionary.config.php}',
 
         'project.site.users.authorization' => '{#lazy:~/project/module/users/site/authorization/i18n/dictionary.config.php}',
 
