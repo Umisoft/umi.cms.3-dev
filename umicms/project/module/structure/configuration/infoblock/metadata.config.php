@@ -44,6 +44,12 @@ return [
             'readOnly' => true,
             'defaultValue' => 1
         ],
+        BaseInfoBlock::FIELD_LOCKED => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'locked',
+            'readOnly' => true,
+            'defaultValue' => 0
+        ],
         BaseInfoBlock::FIELD_CREATED => [
             'type' => IField::TYPE_DATE_TIME,
             'columnName' => 'created'
@@ -80,7 +86,6 @@ return [
                 ]
             ]
         ],
-
         InfoBlock::FIELD_PHONE_NUMBER => [
             'type' => IField::TYPE_TEXT,
             'columnName' => 'phone_number',
@@ -223,6 +228,7 @@ return [
                 BaseInfoBlock::FIELD_TYPE,
                 BaseInfoBlock::FIELD_VERSION,
                 BaseInfoBlock::FIELD_DISPLAY_NAME,
+                BaseInfoBlock::FIELD_LOCKED,
                 BaseInfoBlock::FIELD_CREATED,
                 BaseInfoBlock::FIELD_UPDATED,
                 BaseInfoBlock::FIELD_OWNER,
@@ -236,6 +242,7 @@ return [
                 InfoBlock::FIELD_GUID,
                 InfoBlock::FIELD_TYPE,
                 InfoBlock::FIELD_VERSION,
+                InfoBlock::FIELD_LOCKED,
                 InfoBlock::FIELD_DISPLAY_NAME,
                 InfoBlock::FIELD_CREATED,
                 InfoBlock::FIELD_UPDATED,

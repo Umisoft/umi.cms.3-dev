@@ -9,12 +9,13 @@
 
 namespace umicms\project\module\structure\api\object;
 
+use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\CmsObject;
 
 /**
  * Информационный блок сайта.
  */
-abstract class BaseInfoBlock extends CmsObject
+abstract class BaseInfoBlock extends CmsObject implements ILockedAccessibleObject
 {
 
 }

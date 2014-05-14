@@ -857,11 +857,14 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setGUID('87f20300-197a-4309-b86b-cbe8ebcc358d')
             ->setValue('displayName', 'Общие')
             ->setValue('displayName', 'Common', 'en-US');
+        $structureInfoBlock->getProperty('locked')->setValue(true);
 
-        $structureInfoBlock->setValue(InfoBlock::FIELD_PHONE_NUMBER, '123456')
-            ->setValue(InfoBlock::FIELD_EMAIL, 'e@ma.il')
-            ->setValue(InfoBlock::FIELD_ADDRESS, 'СПб, ул. Красного Курсанта')
-            ->setValue(InfoBlock::FIELD_ADDRESS, 'SPb, st. Red Solider', 'en-US')
+        $structureInfoBlock
+            ->setValue(InfoBlock::FIELD_PHONE_NUMBER, '<p>Телефон в Санкт-Петербурге: +7 (812) 309-03-15</p>')
+            ->setValue(InfoBlock::FIELD_EMAIL, 'Общие вопросы: <a href="mailto:incoming@umi-cms.ru">incoming@umi-cms.ru</a>')
+            ->setValue(InfoBlock::FIELD_EMAIL, 'Common question: <a href="mailto:incoming@umi-cms.ru">incoming@umi-cms.ru</a>', 'en-US')
+            ->setValue(InfoBlock::FIELD_ADDRESS, 'БЦ «IT-Парк», Санкт-Петербург, ул. Красного Курсанта, д.25, лит.В')
+            ->setValue(InfoBlock::FIELD_ADDRESS, 'BC «IT-Park», Sankt-Peterburg, ul. Krasnogo Kursanta, d.25, lit.B', 'en-US')
             ->setValue(InfoBlock::FIELD_LOGO, '<h1 class="blog-title">Demo lite twig</h1><p class="lead blog-description">Blank-шаблон созданный на Umicms 3</p>')
             ->setValue(InfoBlock::FIELD_LOGO, '<h1 class="blog-title">Demo lite twig</h1><p class="lead blog-description">Blank-template create on Umicms 3</p>', 'en-US')
             ->setValue(InfoBlock::FIELD_COPYRIGHT, '<p>Демо сайт разработан на <a href="http://getbootstrap.com">Bootstrap</a> компанией <a href="http://umi-cms.ru/">umi-cms.ru</a></p>')
@@ -1732,6 +1735,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `version` int(10) unsigned DEFAULT '1',
                     `display_name` varchar(255) DEFAULT NULL,
                     `display_name_en` varchar(255) DEFAULT NULL,
+                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
