@@ -79,11 +79,56 @@ return [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
             'target' => 'user'
+        ],
+
+        InfoBlock::FIELD_PHONE_NUMBER => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'phone_number',
+        ],
+        InfoBlock::FIELD_EMAIL => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'email',
+        ],
+        InfoBlock::FIELD_ADDRESS => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'address',
+        ],
+        InfoBlock::FIELD_LOGO => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'logo',
+        ],
+        InfoBlock::FIELD_COPYRIGHT => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'copyright',
+        ],
+        InfoBlock::FIELD_COUNTER => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'counter',
+        ],
+        InfoBlock::FIELD_WIDGET_VK => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'widget_vk',
+        ],
+        InfoBlock::FIELD_WIDGET_FB => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'widget_fb',
+        ],
+        InfoBlock::FIELD_WIDGET_TW => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'widget_tw',
+        ],
+        InfoBlock::FIELD_SHARE => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'share',
+        ],
+        InfoBlock::FIELD_SOC_GROUP_LINK => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'soc_group_link',
         ]
     ],
     'types' => [
         IObjectType::BASE => [
-            'objectClass' => 'umicms\project\module\blog\api\object\BaseInfoBlock',
+            'objectClass' => 'umicms\project\module\structure\api\object\BaseInfoBlock',
             'fields' => [
                 BaseInfoBlock::FIELD_IDENTIFY,
                 BaseInfoBlock::FIELD_GUID,
@@ -97,7 +142,7 @@ return [
             ]
         ],
         InfoBlock::TYPE => [
-            'objectClass' => 'umicms\project\module\blog\api\object\InfoBlock',
+            'objectClass' => 'umicms\project\module\structure\api\object\InfoBlock',
             'fields' => [
                 InfoBlock::FIELD_IDENTIFY,
                 InfoBlock::FIELD_GUID,
@@ -107,7 +152,18 @@ return [
                 InfoBlock::FIELD_CREATED,
                 InfoBlock::FIELD_UPDATED,
                 InfoBlock::FIELD_OWNER,
-                InfoBlock::FIELD_EDITOR
+                InfoBlock::FIELD_EDITOR,
+                InfoBlock::FIELD_PHONE_NUMBER,
+                InfoBlock::FIELD_EMAIL,
+                InfoBlock::FIELD_ADDRESS,
+                InfoBlock::FIELD_LOGO,
+                InfoBlock::FIELD_COPYRIGHT,
+                InfoBlock::FIELD_COUNTER,
+                InfoBlock::FIELD_WIDGET_VK,
+                InfoBlock::FIELD_WIDGET_FB,
+                InfoBlock::FIELD_WIDGET_TW,
+                InfoBlock::FIELD_SHARE,
+                InfoBlock::FIELD_SOC_GROUP_LINK,
             ]
         ]
     ]

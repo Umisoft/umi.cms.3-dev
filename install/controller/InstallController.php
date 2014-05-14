@@ -31,6 +31,7 @@ use umicms\project\module\news\api\collection\NewsRssImportScenarioCollection;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchModule;
 use umicms\project\module\service\api\collection\BackupCollection;
+use umicms\project\module\structure\api\object\InfoBlock;
 use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -799,6 +800,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var SimpleHierarchicCollection $structureCollection
          */
         $structureCollection = $this->getCollectionManager()->getCollection('structure');
+        /**
+         * @var SimpleCollection $infoBlockCollection
+         */
+        $infoBlockCollection = $this->getCollectionManager()->getCollection('infoblock');
 
 
         $parent = null;
@@ -839,6 +844,16 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $menuPage->getProperty('locked')->setValue(true);
         $menuPage->getProperty('componentName')->setValue('menu');
         $menuPage->getProperty('componentPath')->setValue('structure.menu');
+
+        $structureInfoBlock = $infoBlockCollection->add('infoblock')
+            ->setValue('displayName', 'Информационные блоки')
+            ->setValue('displayName', 'Information block', 'en-US');
+
+        $structureInfoBlock->setValue(InfoBlock::FIELD_PHONE_NUMBER, '123456')
+            ->setValue(InfoBlock::FIELD_EMAIL, 'e@ma.il')
+            ->setValue(InfoBlock::FIELD_ADDRESS, 'СПб, ул. Красного Курсанта')
+            ->setValue(InfoBlock::FIELD_LOGO, '<img src="/images/qwe.png">')
+            ->setValue(InfoBlock::FIELD_COUNTER, 'Счетчики yandex, google');
 
         /**
          * @var StaticPage $about
@@ -1706,6 +1721,18 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
+
+                    `phone_number` TEXT DEFAULT NULL,
+                    `email` varchar(255) DEFAULT NULL,
+                    `address` TEXT DEFAULT NULL,
+                    `logo` TEXT DEFAULT NULL,
+                    `copyright` TEXT DEFAULT NULL,
+                    `counter` TEXT DEFAULT NULL,
+                    `widget_vk` TEXT DEFAULT NULL,
+                    `widget_fb` TEXT DEFAULT NULL,
+                    `widget_tw` TEXT DEFAULT NULL,
+                    `share` TEXT DEFAULT NULL,
+                    `soc_group_link` TEXT DEFAULT NULL,
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `infoblock_guid` (`guid`),
