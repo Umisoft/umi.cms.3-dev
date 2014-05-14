@@ -26,6 +26,10 @@ class ProjectHostRoute extends FixedRoute
      */
     const OPTION_HOST = 'host';
     /**
+     * Название опции для задания порта маршрута
+     */
+    const OPTION_PORT = 'port';
+    /**
      * Название опции для задания префикса относительных URL
      */
     const OPTION_PREFIX = 'prefix';
@@ -39,15 +43,23 @@ class ProjectHostRoute extends FixedRoute
 
         $scheme = isset($this->defaults[self::OPTION_SCHEME]) ? $this->defaults[self::OPTION_SCHEME] : $request->getScheme();
         $host = isset($this->defaults[self::OPTION_HOST]) ? $this->defaults[self::OPTION_HOST] : $request->getHost();
+        $port = isset($this->defaults[self::OPTION_PORT]) ? $this->defaults[self::OPTION_PORT] : $request->getPort();
         $prefix = isset($this->defaults[self::OPTION_PREFIX]) ? $this->defaults[self::OPTION_PREFIX] : '';
+
 
         $this->params = [
             self::OPTION_SCHEME => $scheme,
             self::OPTION_HOST => $host,
+            self::OPTION_PORT => $port,
             self::OPTION_PREFIX => $prefix
         ];
 
-        $this->route = $scheme . '://' . $host . $prefix;
+        $portPostfix = '';
+        if ($port && $port != 80) {
+            $portPostfix = ':' . $port;
+        }
+
+        $this->route = $scheme . '://' . $host . $portPostfix . $prefix;
 
     }
 }

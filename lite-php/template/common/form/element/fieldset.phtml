@@ -1,0 +1,13 @@
+<?php
+/**
+ * @var array $elementInfo
+ */
+?>
+
+<fieldset <?= $elementInfo['attributes'] ?> >
+
+<?php foreach ($elementInfo['elements'] as $childElementInfo) : ?>
+    <?= $this->render('form/element.phtml', ['elementInfo' => $childElementInfo]); ?>
+<?php endforeach; ?>
+
+</fieldset>

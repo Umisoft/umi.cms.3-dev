@@ -1,0 +1,19 @@
+
+<div class="blog-post">
+    <h2 class="blog-post-title">{{ page.displayName }} </h2>
+    {{ page.contents | raw }}
+
+    {% if (authenticated) %}
+        {{ translate("You are already logged in")  }}.
+        {{ widget('users.authorization.logoutLink', {'template' : 'logoutLink'}) }}
+    {% else %}
+
+        {% if (error) %}
+            {{ error }}
+        {% endif %}
+
+        {{ include('form/form.twig', {'form' : form})  }}
+
+    {% endif %}
+
+</div>
