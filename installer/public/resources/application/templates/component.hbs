@@ -29,7 +29,7 @@
 
             <div class="umi-divider-right">
                 <div class="s-unselectable umi-mode">
-
+                    {{view 'toolBar'}}
                     <h5 style="float: left;">{{displayName}}</h5>
                 </div>
 
@@ -40,3 +40,25 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="umi-tree-drop-down s-unselectable">-->
+    <!--<ul class="list-action">-->
+        <!--{{!#each controllers.treeControl.actionList}}-->
+            <!--{{!#view view.itemView action=this}}-->
+                <!--<i {{!bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{!action 'toggleFastAction' this}}></i>-->
+                <!--<span {{!action 'sendAction' this controller.model}}>{{!displayName}}</span>-->
+            <!--{{!/view}}-->
+        <!--{{!/each}}-->
+    <!--</ul>-->
+<!--</div>-->
