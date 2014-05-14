@@ -40,6 +40,10 @@ class AuthorizedUser extends BaseUser
      */
     const FORM_LOGIN_SITE = 'login.site';
     /**
+     * Форма разавторизации пользователя на сайте
+     */
+    const FORM_LOGOUT_SITE = 'logout.site';
+    /**
      * Форма авторизации пользователя в административной панели
      */
     const FORM_LOGIN_ADMIN = 'login.admin';

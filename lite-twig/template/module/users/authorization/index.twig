@@ -5,7 +5,7 @@
 
     {% if (authenticated) %}
         {{ translate("You are already logged in")  }}.
-        {{ widget('users.authorization.logoutLink', {'template' : 'logoutLink'}) }}
+        {{ widget('users.authorization.logoutForm', {'template' : 'logoutForm'}) }}
     {% else %}
 
         {% set errors = errors ?: null %}

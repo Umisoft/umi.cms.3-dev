@@ -12,7 +12,7 @@
 
     <?php if ($authenticated) : ?>
         <?= $this->translate("You are already logged in") ?>.
-        <?= $this->widget('users.authorization.logoutLink', ['template' => 'logoutLink']); ?>
+        <?= $this->widget('users.authorization.logoutForm', ['template' => 'logoutForm']); ?>
     <?php else : ?>
         <?php $errors = isset($errors) ? $errors : null ?>
         <?= $this->render('form/form.phtml', ['form' => $form, 'errors' => $errors]) ?>

@@ -24,7 +24,7 @@ return [
     SiteComponent::OPTION_WIDGET => [
         'loginForm' => __NAMESPACE__ . '\widget\LoginFormWidget',
         'loginLink' => __NAMESPACE__ . '\widget\LoginLinkWidget',
-        'logoutLink' => __NAMESPACE__ . '\widget\LogoutLinkWidget'
+        'logoutForm' => __NAMESPACE__ . '\widget\LogoutFormWidget'
     ],
 
     SiteComponent::OPTION_VIEW => [
@@ -39,14 +39,14 @@ return [
             'index' => 'controller:login',
             'loginForm'  => 'widget:loginForm',
             'loginLink'  => 'widget:loginLink',
-            'logoutLink'  => 'widget:logoutLink'
+            'logoutForm'  => 'widget:logoutForm'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'controller:login' => [],
                 'widget:loginForm' => [],
                 'widget:loginLink' => [],
-                'widget:logoutLink' => []
+                'widget:logoutForm' => []
             ]
         ]
     ],
