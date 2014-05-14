@@ -8,9 +8,7 @@
         {{ widget('users.authorization.logoutLink', {'template' : 'logoutLink'}) }}
     {% else %}
 
-        {% if (error) %}
-            {{ error }}
-        {% endif %}
+        {% set errors = errors ?: null %}
 
         {{ include('form/form.twig', {'form' : form})  }}
 

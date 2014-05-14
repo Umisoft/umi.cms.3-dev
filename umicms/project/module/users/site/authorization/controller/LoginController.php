@@ -75,7 +75,7 @@ class LoginController extends SitePageController
                         return $this->createRedirectResponse($referer);
                     }
                 } else {
-                    $error = $this->translate('Invalid login or password');
+                    $errors = [$this->translate('Invalid login or password')];
                 }
             }
         }
@@ -86,8 +86,8 @@ class LoginController extends SitePageController
             'authenticated' => $this->api->isAuthenticated()
         ];
 
-        if (isset($error)) {
-            $result['error'] = $error;
+        if (isset($errors)) {
+            $result['errors'] = $errors;
         }
 
         $response = $this->createViewResponse(
