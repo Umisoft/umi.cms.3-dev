@@ -5102,7 +5102,6 @@ body {
   width: 100%; }
 
 .umi-mode {
-  overflow: hidden;
   height: 34px;
   background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);
   background: linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);

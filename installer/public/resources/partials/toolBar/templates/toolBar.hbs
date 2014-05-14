@@ -1,16 +1,88 @@
 <style>
-    .umi-create-object-drop-down-button{
+    .umi-toolbar-create-button{
+        position: relative;
         float: left;
-        height: 34px;
-        line-height: 32px;
-        padding: 0 20px;
+        height: 33px;
+        border-top: 1px solid #6BC2FF;
         background: linear-gradient(to bottom, #3aadff, #0087d4);
+        cursor: pointer;
+    }
+
+    .umi-toolbar-create-button:hover{
+        color: #FFFFFF;
+    }
+
+    .umi-toolbar-create-text{
+        float: left;
         color: #FFFFFF;
         font-size: 13px;
         font-weight: bold;
         font-family: Arial;
-        cursor: pointer;
+        padding: 0 20px;
+        line-height: 32px;
+    }
+
+    .umi-toolbar-create-icon{
+        float: right;
+        height: 100%;
+        border-left: 1px solid #297AD1;
+    }
+
+    .umi-toolbar-create-icon i{
+        margin-top: 7px;
+        margin-right: 1px;
+    }
+
+    .umi-toolbar-create-list{
+        display: none;
+    }
+
+    .umi-toolbar-create-button:hover .umi-toolbar-create-list{
+        display: block;
+        position: absolute;
+        z-index: 10;
+        float: left;
+        min-width: 100%; /* Минимальная ширина соответствует ширине кнопки */
+        top: 34px;
+        left: 0;
+        background: #FFFFFF;
+        color: #535E6D;
+        font-size: 13px;
+        font-family: Arial;
+        line-height: 21px;
+        padding: 5px 0;
+        box-shadow: 0 0 3px 0 #7C99AC;
+    }
+
+    .umi-toolbar-create-list span{
+        float: left;
+        width: calc(100% - 20px);
+        height: 28px;
+        line-height: 28px;
+        padding: 0 10px;
+        white-space: nowrap;
+    }
+
+    .umi-toolbar-create-list span:nth-of-type(even){
+        background: #E8EDEF;
+    }
+
+    .umi-toolbar-create-list span:hover{
+        background: #A4DCF7;
     }
 </style>
 
-<a class="umi-create-object-drop-down-button" {{action 'sendAction' this controller.model}}>Создать</a>
+<a href="" class="umi-toolbar-create-button" {{action 'sendAction' this controller.model}}>
+    <span class="umi-toolbar-create-text">Создать</span>
+    <span class="umi-toolbar-create-icon">
+        <i class="icon icon-bottom"></i>
+    </span>
+    <span class="umi-toolbar-create-list">
+        <span>Создать объект</span><br />
+        <span>Создать</span><br />
+        <span>Создать</span><br />
+        {{#each action in actionList}}
+            <a href="" {{action 'sendAction' this controller.model}}>{{displayName}}</a>
+        {{/each}}
+    </span>
+</a>
