@@ -9,6 +9,7 @@
 
 use umi\form\element\MultiSelect;
 use umi\form\element\Select;
+use umi\form\element\Submit;
 use umi\form\element\Text;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\api\object\BlogCategory;
@@ -61,7 +62,7 @@ return [
                 'dataSource' => BlogPost::FIELD_PAGE_CONTENTS
             ]
         ],
-        BlogPost::FIELD_TAGS=> [
+        BlogPost::FIELD_TAGS => [
             'type' => MultiSelect::TYPE_NAME,
             'label' => BlogPost::FIELD_TAGS,
             'options' => [
@@ -71,6 +72,10 @@ return [
                     'label' => BlogTag::FIELD_DISPLAY_NAME
                 ]
             ]
+        ],
+        'submit' => [
+            'type' => Submit::TYPE_NAME,
+            'label' => 'Save'
         ]
     ]
 ];

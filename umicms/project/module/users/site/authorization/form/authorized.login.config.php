@@ -3,6 +3,7 @@
 use umi\filter\IFilterFactory;
 use umi\form\element\Hidden;
 use umi\form\element\Password;
+use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\validation\IValidatorFactory;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -11,7 +12,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.user', 'collection'
+            'collection.user', 'collection', 'project.site.users.authorization'
         ],
     ],
     'attributes' => [
@@ -45,6 +46,11 @@ return [
         ],
         'referer' => [
             'type' => Hidden::TYPE_NAME
+        ],
+
+        'submit' => [
+            'type' => Submit::TYPE_NAME,
+            'label' => 'Log in'
         ]
     ]
 ];

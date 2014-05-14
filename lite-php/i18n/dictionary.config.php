@@ -3,7 +3,6 @@
 return [
     'project.site' => [
         'en-US' => [
-            'Авторизация' => 'Sign in',
             'RSS ленты' => 'RSS feed',
             'Блоги' => 'Blogs',
             'Категории' => 'Categories',
