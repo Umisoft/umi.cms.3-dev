@@ -103,18 +103,18 @@ return [
                         'dataSource' => InfoBlock::FIELD_WIDGET_VK
                     ],
                 ],
-                InfoBlock::FIELD_WIDGET_FB => [
+                InfoBlock::FIELD_WIDGET_FACEBOOK => [
                     'type' => Textarea::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_WIDGET_FB,
+                    'label' => InfoBlock::FIELD_WIDGET_FACEBOOK,
                     'options' => [
-                        'dataSource' => InfoBlock::FIELD_WIDGET_FB
+                        'dataSource' => InfoBlock::FIELD_WIDGET_FACEBOOK
                     ],
                 ],
-                InfoBlock::FIELD_WIDGET_TW => [
+                InfoBlock::FIELD_WIDGET_TWITTER => [
                     'type' => Textarea::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_WIDGET_TW,
+                    'label' => InfoBlock::FIELD_WIDGET_TWITTER,
                     'options' => [
-                        'dataSource' => InfoBlock::FIELD_WIDGET_TW
+                        'dataSource' => InfoBlock::FIELD_WIDGET_TWITTER
                     ],
                 ],
                 InfoBlock::FIELD_SHARE => [
@@ -124,11 +124,11 @@ return [
                         'dataSource' => InfoBlock::FIELD_SHARE
                     ],
                 ],
-                InfoBlock::FIELD_SOC_GROUP_LINK => [
+                InfoBlock::FIELD_SOCIAL_GROUP_LINK => [
                     'type' => Textarea::TYPE_NAME,
-                    'label' => InfoBlock::FIELD_SOC_GROUP_LINK,
+                    'label' => InfoBlock::FIELD_SOCIAL_GROUP_LINK,
                     'options' => [
-                        'dataSource' => InfoBlock::FIELD_SOC_GROUP_LINK
+                        'dataSource' => InfoBlock::FIELD_SOCIAL_GROUP_LINK
                     ],
                 ],
             ]

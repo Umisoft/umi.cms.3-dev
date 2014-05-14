@@ -11,6 +11,18 @@ namespace umicms\project\module\structure\api\object;
 
 /**
  * Информационный блок.
+ *
+ * @property string $phoneNumber номер телефона
+ * @property string $email E-mail
+ * @property string $address адрес
+ * @property string $logo логотип
+ * @property string $copyright копирайт
+ * @property string $counter счётчик посещений
+ * @property string $widgetVk виджет Вконтакте
+ * @property string $widgetFacebook виджет FaceBook
+ * @property string $widgetTwitter виджет Twitter
+ * @property string $share виджет "Поделиться"
+ * @property string $socialGroupLink ссылки на группы в социальных сетях
  */
 class InfoBlock extends BaseInfoBlock
 {
@@ -47,11 +59,11 @@ class InfoBlock extends BaseInfoBlock
     /**
      * Имя поля для хранения виджета FaceBook
      */
-    const FIELD_WIDGET_FB = 'widgetFb';
+    const FIELD_WIDGET_FACEBOOK = 'widgetFacebook';
     /**
      * Имя поля для хранения виджета Twitter
      */
-    const FIELD_WIDGET_TW = 'widgetTw';
+    const FIELD_WIDGET_TWITTER = 'widgetTwitter';
     /**
      * Имя поля для хранения виджета "Поделиться"
      */
@@ -59,6 +71,6 @@ class InfoBlock extends BaseInfoBlock
     /**
      * Имя поля для хранения ссылок на группы в социальных сетях
      */
-    const FIELD_SOC_GROUP_LINK = 'socGroupLink';
+    const FIELD_SOCIAL_GROUP_LINK = 'socialGroupLink';
 }
  

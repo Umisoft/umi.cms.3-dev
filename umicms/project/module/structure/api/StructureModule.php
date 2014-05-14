@@ -10,6 +10,7 @@
 namespace umicms\project\module\structure\api;
 
 use umicms\module\BaseModule;
+use umicms\project\module\structure\api\collection\InfoBlockCollection;
 use umicms\project\module\structure\api\collection\LayoutCollection;
 use umicms\project\module\structure\api\collection\StructureElementCollection;
 use umicms\project\module\structure\api\object\Layout;
@@ -37,6 +38,15 @@ class StructureModule extends BaseModule
     public function layout()
     {
         return $this->getCollection('layout');
+    }
+
+    /**
+     * Возвращает коллекцию для работы с информационными блоками.
+     * @return InfoBlockCollection
+     */
+    public function infoBlock()
+    {
+        return $this->getCollection('infoblock');
     }
 
     /**

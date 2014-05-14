@@ -845,15 +845,30 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $menuPage->getProperty('componentName')->setValue('menu');
         $menuPage->getProperty('componentPath')->setValue('structure.menu');
 
-        $structureInfoBlock = $infoBlockCollection->add('infoblock')
+        $menuPage = $structureCollection->add('infoblock', 'system', $structurePage)
             ->setValue('displayName', 'Информационные блоки')
             ->setValue('displayName', 'Information block', 'en-US');
+
+        $menuPage->getProperty('locked')->setValue(true);
+        $menuPage->getProperty('componentName')->setValue('infoblock');
+        $menuPage->getProperty('componentPath')->setValue('structure.infoblock');
+
+        $structureInfoBlock = $infoBlockCollection->add('infoblock')
+            ->setGUID('87f20300-197a-4309-b86b-cbe8ebcc358d')
+            ->setValue('displayName', 'Общие')
+            ->setValue('displayName', 'Common', 'en-US');
 
         $structureInfoBlock->setValue(InfoBlock::FIELD_PHONE_NUMBER, '123456')
             ->setValue(InfoBlock::FIELD_EMAIL, 'e@ma.il')
             ->setValue(InfoBlock::FIELD_ADDRESS, 'СПб, ул. Красного Курсанта')
-            ->setValue(InfoBlock::FIELD_LOGO, '<img src="/images/qwe.png">')
-            ->setValue(InfoBlock::FIELD_COUNTER, 'Счетчики yandex, google');
+            ->setValue(InfoBlock::FIELD_ADDRESS, 'SPb, st. Red Solider', 'en-US')
+            ->setValue(InfoBlock::FIELD_LOGO, '<h1 class="blog-title">Demo lite twig</h1><p class="lead blog-description">Blank-шаблон созданный на Umicms 3</p>')
+            ->setValue(InfoBlock::FIELD_LOGO, '<h1 class="blog-title">Demo lite twig</h1><p class="lead blog-description">Blank-template create on Umicms 3</p>', 'en-US')
+            ->setValue(InfoBlock::FIELD_COPYRIGHT, '<p>Демо сайт разработан на <a href="http://getbootstrap.com">Bootstrap</a> компанией <a href="http://umi-cms.ru/">umi-cms.ru</a></p>')
+            ->setValue(InfoBlock::FIELD_COPYRIGHT, '<p>Demo site build for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="http://umi-cms.ru/">umi-cms.ru</a></p>', 'en-US')
+            ->setValue(InfoBlock::FIELD_WIDGET_VK, '<div id="vk_groups" class="vk-groups" data-width="312" data-height="290" data-group-id="23325076" style="height: 290px; width: 312px; background-image: none; background-position: initial initial; background-repeat: initial initial;"><iframe name="fXD2eb29" frameborder="0" src="http://vk.com/widget_community.php?app=2402617&amp;width=312px&amp;_ver=1&amp;gid=23325076&amp;mode=NaN&amp;color1=&amp;color2=&amp;color3=&amp;height=290&amp;url=http%3A%2F%2Fwww.umi-cms.ru%2F&amp;145fa6498df" width="312" height="200" scrolling="no" id="vkwidget1" style="overflow: hidden; height: 290px;"></iframe></div>')
+            ->setValue(InfoBlock::FIELD_WIDGET_FACEBOOK, '<div class="fb-like-box fb_iframe_widget" data-href="http://www.facebook.com/UMI.CMS" data-width="312" data-height="290" data-show-faces="true" data-stream="false" data-show-border="false" data-header="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;header=false&amp;height=290&amp;href=http%3A%2F%2Fwww.facebook.com%2FUMI.CMS&amp;locale=ru_RU&amp;sdk=joey&amp;show_border=false&amp;show_faces=true&amp;stream=false&amp;width=312"><span style="vertical-align: bottom; width: 312px; height: 290px;"><iframe name="f3df2c96ec" width="312px" height="290px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like_box Facebook Social Plugin" src="http://www.facebook.com/plugins/like_box.php?app_id=&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FdgdTycPTSRj.js%3Fversion%3D41%23cb%3Df3acd61564%26domain%3Dwww.umi-cms.ru%26origin%3Dhttp%253A%252F%252Fwww.umi-cms.ru%252Ff891a948%26relation%3Dparent.parent&amp;header=false&amp;height=290&amp;href=http%3A%2F%2Fwww.facebook.com%2FUMI.CMS&amp;locale=ru_RU&amp;sdk=joey&amp;show_border=false&amp;show_faces=true&amp;stream=false&amp;width=312" class="" style="border: none; visibility: visible; width: 312px; height: 290px;"></iframe></span></div>')
+            ->setValue(InfoBlock::FIELD_SHARE, '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script> <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir" data-yashareTheme="counter"></div>');
 
         /**
          * @var StaticPage $about
@@ -1723,16 +1738,27 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
 
                     `phone_number` TEXT DEFAULT NULL,
+                    `phone_number_en` TEXT DEFAULT NULL,
                     `email` varchar(255) DEFAULT NULL,
+                    `email_en` varchar(255) DEFAULT NULL,
                     `address` TEXT DEFAULT NULL,
+                    `address_en` TEXT DEFAULT NULL,
                     `logo` TEXT DEFAULT NULL,
+                    `logo_en` TEXT DEFAULT NULL,
                     `copyright` TEXT DEFAULT NULL,
+                    `copyright_en` TEXT DEFAULT NULL,
                     `counter` TEXT DEFAULT NULL,
+                    `counter_en` TEXT DEFAULT NULL,
                     `widget_vk` TEXT DEFAULT NULL,
-                    `widget_fb` TEXT DEFAULT NULL,
-                    `widget_tw` TEXT DEFAULT NULL,
+                    `widget_vk_en` TEXT DEFAULT NULL,
+                    `widget_facebook` TEXT DEFAULT NULL,
+                    `widget_facebook_en` TEXT DEFAULT NULL,
+                    `widget_twitter` TEXT DEFAULT NULL,
+                    `widget_twitter_en` TEXT DEFAULT NULL,
                     `share` TEXT DEFAULT NULL,
-                    `soc_group_link` TEXT DEFAULT NULL,
+                    `share_en` TEXT DEFAULT NULL,
+                    `social_group_link` TEXT DEFAULT NULL,
+                    `social_group_link_en` TEXT DEFAULT NULL,
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `infoblock_guid` (`guid`),

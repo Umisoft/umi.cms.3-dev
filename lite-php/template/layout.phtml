@@ -30,8 +30,7 @@
 <div class="container">
 
     <header class="blog-header">
-        <h1 class="blog-title"><?=$this->translate('Demo lite twig')?></h1>
-        <p class="lead blog-description"><?=$this->translate('Blank-шаблон созданный на Umicms 3')?></p>
+        <?=$this->widget('structure.infoblock.view')?>
     </header>
 
     <main class="row">
@@ -51,15 +50,8 @@
 </div>
 
 <footer class="blog-footer">
-    <p>
-        <?=$this->translate(
-            'Demo lite twig build for {bootstrap} by {umicms}',
-            [
-                'bootstrap' => '<a href="http://getbootstrap.com">Bootstrap</a>',
-                'umicms' => '<a href="http://umi-cms.ru/">umi-cms.ru</a>'
-            ]
-        )?>.
-    </p>
+    <?=$this->widget('structure.infoblock.view', ['template' => 'share'])?>
+    <?=$this->widget('structure.infoblock.view', ['template' => 'copyright'])?>
     <p>
         <a href="#"><?=$this->translate('Наверх')?></a>
     </p>

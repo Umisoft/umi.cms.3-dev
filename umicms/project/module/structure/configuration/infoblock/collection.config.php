@@ -16,7 +16,7 @@ return [
 
     'handlers' => [
         'admin' => 'structure.infoblock',
-        //'site' => 'infoblock'
+        'site' => 'structure.infoblock'
     ],
     'forms' => [
         InfoBlock::TYPE => [
