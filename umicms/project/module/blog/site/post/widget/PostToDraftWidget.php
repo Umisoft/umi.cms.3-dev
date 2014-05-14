@@ -63,17 +63,12 @@ class PostToDraftWidget extends BaseFormWidget
             );
         }
 
-        $formDraftPost = $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE, $this->blogPost);
+        $form = $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE, $this->blogPost);
 
-        $formDraftPost->setAction($this->getUrl('unPublished', ['id' => $this->blogPost->getId()]));
-        $formDraftPost->setMethod('post');
+        $form->setAction($this->getUrl('unPublished', ['id' => $this->blogPost->getId()]));
+        $form->setMethod('post');
 
-        return $this->createResult(
-            $this->template,
-            [
-                'form' => $formDraftPost
-            ]
-        );
+        return $form;
     }
 }
  
