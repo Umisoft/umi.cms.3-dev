@@ -1,0 +1,7 @@
+<fieldset {{ elementInfo.attributes | raw }} >
+
+    {% for childElementInfo in elementInfo.elements %}
+        {{ include('form/element.twig', {'elementInfo' : childElementInfo}) }}
+    {% endfor %}
+
+</fieldset>

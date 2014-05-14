@@ -209,8 +209,8 @@ class SiteApplication extends SiteComponent
             }
 
             $result = $this->serializeResult($requestFormat, [
-                'layout' => $response->getContent()
-            ]);
+                    'layout' => $response->getContent()
+                ]);
             $response->setContent($result);
         } elseif ($this->getSiteBrowserCacheEnabled()) {
             $this->setBrowserCacheHeaders($request, $response);
@@ -241,9 +241,10 @@ class SiteApplication extends SiteComponent
     {
         $prgKey = 'prg_' . md5($request->getRequestUri());
 
+        $requestFormat = $request->getRequestFormat(null);
         if ($request->getMethod() === 'POST' &&
-            !empty($_FILES) &&
-            $request->getRequestFormat() == self::DEFAULT_REQUEST_FORMAT)
+            empty($_FILES) &&
+            (is_null($requestFormat) || $requestFormat== self::DEFAULT_REQUEST_FORMAT))
         {
 
             $post = $request->request->all();
@@ -393,13 +394,13 @@ class SiteApplication extends SiteComponent
 
         $this->getToolkit()
             ->registerAwareInterface(
-            'umicms\project\site\config\ISiteSettingsAware',
-            function ($object) {
-                if ($object instanceof ISiteSettingsAware) {
-                    $object->setSiteSettings($this->getSettings());
+                'umicms\project\site\config\ISiteSettingsAware',
+                function ($object) {
+                    if ($object instanceof ISiteSettingsAware) {
+                        $object->setSiteSettings($this->getSettings());
+                    }
                 }
-            }
-        );
+            );
     }
 
     /**
@@ -430,17 +431,17 @@ class SiteApplication extends SiteComponent
     {
         TCmsCollection::setSelectorInitializer(function(CmsSelector $selector) {
 
-            $collection = $selector->getCollection();
+                $collection = $selector->getCollection();
 
-            if ($collection instanceof IRecyclableCollection) {
-                $selector->where(IRecyclableObject::FIELD_TRASHED)->notEquals(true);
-            }
+                if ($collection instanceof IRecyclableCollection) {
+                    $selector->where(IRecyclableObject::FIELD_TRASHED)->notEquals(true);
+                }
 
-            if ($collection instanceof IActiveAccessibleCollection) {
-                $selector->where(IActiveAccessibleObject::FIELD_ACTIVE)->equals(true);
-            }
+                if ($collection instanceof IActiveAccessibleCollection) {
+                    $selector->where(IActiveAccessibleObject::FIELD_ACTIVE)->equals(true);
+                }
 
-        });
+            });
     }
 
     /**
@@ -454,16 +455,16 @@ class SiteApplication extends SiteComponent
          */
         $streams = $this->getToolkit()->getService('umi\stream\IStreamService');
         $streams->registerStream(self::WIDGET_PROTOCOL, function($uri) use ($dispatcher) {
-            $widgetInfo = parse_url($uri);
-            $widgetParams = [];
-            if (isset($widgetInfo['query'])) {
-                parse_str($widgetInfo['query'], $widgetParams);
-            }
+                $widgetInfo = parse_url($uri);
+                $widgetParams = [];
+                if (isset($widgetInfo['query'])) {
+                    parse_str($widgetInfo['query'], $widgetParams);
+                }
 
-            return $this->serializeResult(ISerializerFactory::TYPE_XML, [
-                'widget' => $dispatcher->executeWidgetByPath($widgetInfo['host'], $widgetParams)
-            ]);
-        });
+                return $this->serializeResult(ISerializerFactory::TYPE_XML, [
+                        'widget' => $dispatcher->executeWidgetByPath($widgetInfo['host'], $widgetParams)
+                    ]);
+            });
     }
 
 }

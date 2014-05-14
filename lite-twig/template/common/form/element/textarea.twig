@@ -1,0 +1,4 @@
+<div class="form-group">
+    <label> {{ elementInfo.label }} </label>
+    <textarea class="form-control" rows="4" {{ elementInfo.attributes | raw }} > {{ elementInfo.element.getValue() }} </textarea>
+</div>

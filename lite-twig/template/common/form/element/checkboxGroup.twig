@@ -1,0 +1,6 @@
+{% for choiceInfo in elementInfo.choices %}
+    <label>
+        <input {{ choiceInfo.attributes |raw }}/>
+        {{ choiceInfo.label }}
+    </label>
+{% endfor %}

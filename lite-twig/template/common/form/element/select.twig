@@ -1,0 +1,11 @@
+
+<div class="form-group">
+    <label> {{ elementInfo.label }} </label>
+    <select class="form-control" {{ elementInfo.attributes | raw }} >
+        {% for choiceInfo in elementInfo.choices %}
+            <option {{ choiceInfo.attributes | raw }}>
+                {{ choiceInfo.label }}
+            </option>
+        {% endfor %}
+    </select>
+</div>
