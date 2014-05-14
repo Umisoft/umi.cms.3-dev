@@ -11,6 +11,7 @@ use umi\form\element\Hidden;
 use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\form\element\Textarea;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\api\object\BlogComment;
 
 return [
@@ -18,6 +19,9 @@ return [
         'dictionaries' => [
             'collection.blogComment', 'collection', 'form'
         ]
+    ],
+    'attributes' => [
+        'method' => 'post'
     ],
     'elements' => [
         BlogComment::FIELD_POST => [
@@ -40,6 +44,9 @@ return [
             'options' => [
                 'dataSource' => BlogComment::FIELD_CONTENTS
             ]
+        ],
+        BaseFormWidget::INPUT_REDIRECT_URL => [
+            'type' => Hidden::TYPE_NAME
         ],
         'submit' => [
             'type' => Submit::TYPE_NAME,

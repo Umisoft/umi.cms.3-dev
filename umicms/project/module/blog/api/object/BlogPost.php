@@ -79,9 +79,21 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
      */
     const FORM_EDIT_POST = 'editPost';
     /**
-     * Форма помещения и извлечения поста в черновики
+     * Форма публикации поста
      */
-    const FORM_CHANGE_POST_STATUS = 'changeStatusPost';
+    const FORM_PUBLISH_POST = 'publish';
+    /**
+     * Форма отправки поста на модерацию
+     */
+    const FORM_MODERATE_POST = 'moderate';
+    /**
+     * Форма отклонения поста для публикации
+     */
+    const FORM_REJECT_POST = 'moderate';
+    /**
+     * Форма помещения поста в черновики
+     */
+    const FORM_DRAFT_POST = 'draft';
     /**
      * Статус поста: черновик
      */
@@ -151,7 +163,7 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
      * Выставляет статус поста требует модерации.
      * @return $this
      */
-    public function needModerate()
+    public function needModeration()
     {
         $this->publishStatus = self::POST_STATUS_NEED_MODERATE;
         return $this;

@@ -11,14 +11,14 @@ namespace umicms\project\module\blog\site\post\widget;
 
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
  * Виджет перемещения поста в черновики.
  */
-class PostToDraftWidget extends BaseSecureWidget
+class PostToDraftWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -45,7 +45,7 @@ class PostToDraftWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getForm()
     {
         if (is_string($this->blogPost)) {
             $this->blogPost = $this->api->post()->get($this->blogPost);
@@ -57,13 +57,13 @@ class PostToDraftWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => 'BlogPost'
+                        'class' => 'umicms\project\module\blog\api\object\BlogPost'
                     ]
                 )
             );
         }
 
-        $formDraftPost = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE, $this->blogPost);
+        $formDraftPost = $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE, $this->blogPost);
 
         $formDraftPost->setAction($this->getUrl('unPublished', ['id' => $this->blogPost->getId()]));
         $formDraftPost->setMethod('post');

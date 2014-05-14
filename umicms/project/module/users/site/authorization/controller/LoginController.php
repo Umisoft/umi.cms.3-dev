@@ -11,6 +11,7 @@ namespace umicms\project\module\users\site\authorization\controller;
 
 use umi\form\element\IFormElement;
 use umi\http\Response;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\UsersModule;
 use umicms\project\site\controller\SitePageController;
@@ -68,7 +69,7 @@ class LoginController extends SitePageController
                     /**
                      * @var IFormElement $refererInput
                      */
-                    $refererInput = $form->get('referer');
+                    $refererInput = $form->get(BaseFormWidget::INPUT_REDIRECT_URL);
 
                     $referer = $refererInput->getValue() ? $refererInput->getValue() : $this->getRequest()->getReferer();
                     if ($referer && strpos($referer, $this->getUrlManager()->getProjectUrl(true)) === 0) {
