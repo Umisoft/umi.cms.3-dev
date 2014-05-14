@@ -19,6 +19,16 @@ use umi\i18n\TLocalizable;
 class YandexModel implements IModel, ILocalizable
 {
     use TLocalizable;
+
+    /**
+     * Идентификатор хоста.
+     */
+    const YANDEX_HOST_ID = 'hostId';
+    /**
+     * Полученный oAuth token.
+     */
+    const YANDEX_OAUTH_TOKEN = 'oauthToken';
+
     /**
      * @var string $oauthToken
      */

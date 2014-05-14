@@ -10,7 +10,7 @@
 namespace umicms\project\module\statistics\site\widget;
 
 use umicms\hmvc\widget\BaseWidget;
-use umicms\project\module\statistics\admin\metrika\model\MetrikaApi;
+use umicms\project\module\statistics\admin\metrika\model\MetrikaModel;
 
 /**
  * Получает от Яндекс.Метрики и выводит HTML-код счетчика,
@@ -23,15 +23,15 @@ class CounterWidget extends BaseWidget
      */
     public $counterId;
     /**
-     * @var MetrikaApi $api API Яндекс.Метрики
+     * @var MetrikaModel $api API Яндекс.Метрики
      */
     private $api;
 
     /**
      * Конструктор.
-     * @param MetrikaApi $api API Яндекс.Метрики
+     * @param MetrikaModel $api API Яндекс.Метрики
      */
-    public function __construct(MetrikaApi $api)
+    public function __construct(MetrikaModel $api)
     {
         $this->api = $api;
     }
