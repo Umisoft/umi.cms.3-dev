@@ -103,7 +103,7 @@
             <div class="umi-table-control-cell-drop-size"></div>
             {{#each object in objects}}
                 <div class="umi-table-control-column-fixed-cell" data-objectId="{{unbound object.id}}">
-                    <i class="icon icon-delete" {{action 'deleteObject' object target='view'}}></i>
+                    <i class="icon icon-delete" style="cursor: pointer;" {{action 'delete' object target='view'}}></i>
                 </div>
             {{/each}}
         </div>

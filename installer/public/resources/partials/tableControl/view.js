@@ -35,7 +35,7 @@ define(['App'], function(UMI){
             }.observes('controller.objects').on('didInsertElement'),
 
             actions: {
-                deleteObject: function(object){
+                delete: function(object){
                     console.log('deleteObject');
                     $('.umi-table-control-content-fixed-left .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').remove();
                     $('.umi-table-control-content-row[data-objectId=' + object.id + ']').remove();
@@ -44,32 +44,37 @@ define(['App'], function(UMI){
 //                    });
                     $('.umi-table-control-content-fixed-right .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').remove();
 
-                    this.send('trash', object);
+                    this.get('controller').send('trash', object);
                 },
 
-                editObject: function(object){
-                    this.send('edit', object);
+                edit: function(object){
+                    this.get('controller').send('edit', object);
                 },
 
-                viewOnSiteObject: function(object){
-                    console.log('viewOnSiteObject');d
-                    this.send('viewOnSite', object);
+                viewOnSite: function(object){
+                    console.log('viewOnSiteObject');
+                    this.get('controller').send('viewOnSite', object);
                 },
 
-                switchActivityObject: function(object){
-                    this.send('switchActivity', object);
+                switchActivity: function(object){
+                    this.get('controller').send('switchActivity', object);
+                },
+
+                save: function(object){
+                    var params = {};
+                    params.object = object;
+                    params.handler = null;
+                    this.send('save', params);
+                },
+
+                create: function(object){
+                    console.log(object);
+                    var parentObject = object.get('container.parent');
+                    var actionParam = {
+                        typeName: 'static'
+                    };
+                    this.get('controller').send('create', parentObject, actionParam);
                 }
-
-//                saveObject: function(object){
-//                    var params = {};
-//                    params.object = object;
-//                    params.handler = null;
-//                    this.send('save', params);
-//                },
-//
-//                createObject: function(action, object){
-//                    this.send('create', object, action);
-//                }
             },
 
             didInsertElement: function(){
