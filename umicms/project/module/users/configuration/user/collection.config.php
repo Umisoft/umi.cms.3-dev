@@ -27,6 +27,7 @@ return [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/authorized.edit.config.php}',
             AuthorizedUser::FORM_LOGIN_ADMIN => '{#lazy:~/project/module/users/configuration/user/form/authorized.login.config.php}',
             AuthorizedUser::FORM_LOGIN_SITE => '{#lazy:~/project/module/users/site/authorization/form/authorized.login.config.php}',
+            AuthorizedUser::FORM_LOGOUT_SITE => '{#lazy:~/project/module/users/site/authorization/form/authorized.logout.config.php}',
         ]
     ],
 ];

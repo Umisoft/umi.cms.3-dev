@@ -10,6 +10,7 @@
 namespace umicms\project\module\users\site\authorization\controller;
 
 use umicms\hmvc\controller\BaseController;
+use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\UsersModule;
 
 /**
@@ -36,7 +37,15 @@ class LogoutController extends BaseController
      */
     public function __invoke()
     {
-        $this->api->logout();
+
+        $form = $this->api->user()->getForm(AuthorizedUser::FORM_LOGOUT_SITE, 'authorized');
+
+        if ($this->isRequestMethodPost()) {
+            $form->setData($this->getAllPostVars());
+            if ($form->isValid()) {
+                $this->api->logout();
+            }
+        }
 
         $referer = $this->getRequest()->getReferer();
         if ($referer && strpos($referer, $this->getUrlManager()->getProjectUrl(true)) === 0) {

@@ -6,6 +6,7 @@ use umi\form\element\Password;
 use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\validation\IValidatorFactory;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\users\api\object\AuthorizedUser;
 
 return [
@@ -44,7 +45,7 @@ return [
                 ]
             ],
         ],
-        'referer' => [
+        BaseFormWidget::INPUT_REDIRECT_URL => [
             'type' => Hidden::TYPE_NAME
         ],
 

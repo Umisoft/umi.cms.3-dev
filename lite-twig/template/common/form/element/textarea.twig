@@ -1,4 +1,13 @@
 <div class="form-group">
     <label> {{ elementInfo.label }} </label>
+    {% if (not elementInfo.element.isValid()) %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for message in elementInfo.element.getMessages() %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
     <textarea class="form-control" rows="4" {{ elementInfo.attributes | raw }} > {{ elementInfo.element.getValue() }} </textarea>
 </div>

@@ -9,8 +9,6 @@
 
 namespace umicms\project\module\blog\site\reject\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
@@ -24,9 +22,8 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Контроллер отправки поста на модерацию.
  */
-class PostSendToModerationController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PostSendToModerationController extends BaseSecureController implements IObjectPersisterAware
 {
-    use TFormAware;
     use TObjectPersisterAware;
 
     /**
@@ -55,7 +52,7 @@ class PostSendToModerationController extends BaseSecureController implements IFo
             throw new HttpNotFound('Page not found');
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
+        $form = $this->api->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
         $formData = $this->getAllPostVars();
 
         $blogPost = $this->api->post()->getRejectedPostById($this->getRouteVar('id'));
@@ -67,7 +64,7 @@ class PostSendToModerationController extends BaseSecureController implements IFo
         }
 
         if ($form->setData($formData) && $form->isValid()) {
-            $blogPost->needModerate();
+            $blogPost->needModeration();
 
             $this->getObjectPersister()->commit();
 
