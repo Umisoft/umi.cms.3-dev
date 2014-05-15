@@ -1,0 +1,15 @@
+{% if (elementInfo.type == 'fieldset') %}
+    {{ include('form/element/fieldset.twig', {'elementInfo' : elementInfo}) }}
+{% elseif (elementInfo.type == 'textarea') %}
+    {{ include('form/element/textarea.twig', {'elementInfo' : elementInfo}) }}
+{% elseif (elementInfo.type == 'select') %}
+    {{ include('form/element/select.twig', {'elementInfo' : elementInfo}) }}
+{% elseif (elementInfo.type == 'checkboxGroup') %}
+    {{ include('form/element/checkboxGroup.twig', {'elementInfo' : elementInfo}) }}
+{% elseif (elementInfo.type == 'checkbox') %}
+    {{ include('form/element/checkbox.twig', {'elementInfo' : elementInfo}) }}
+{% elseif (elementInfo.type == 'button') %}
+    {{ include('form/element/button.twig', {'elementInfo' : elementInfo}) }}
+{% elseif (elementInfo.type == 'input') %}
+    {{ include('form/element/input.twig', {'elementInfo' : elementInfo}) }}
+{% endif %}

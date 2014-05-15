@@ -1,21 +1,10 @@
 <?php
 /**
- * @var \umi\form\element\Checkbox $input
+ * @var array $elementInfo
+ * @var umi\form\element\Checkbox $element
  */
+?>
+<?php $element = $elementInfo['element']?>
 
-$attributes = array_merge(
-    $input->getAttributes(),
-    [
-        'type' => $input->getInputType(),
-        'name' => $input->getElementName(),
-        'value' => 1
-    ]
-);
-
-if ($input->getValue()) {
-    $attributes['checked'] = 'checked';
-}
-$html = '<input type="hidden" value="0" name="' . $input->getElementName() . '"/>';
-$html .= '<input ' . buildAttributes($attributes) .' />';
-
-echo $html;
+<input type="hidden" value="0" name="<?= $element->getElementName() ?>"/>
+<label><input <?= $elementInfo['attributes'] ?> /><?= $elementInfo['label'] ?></label>

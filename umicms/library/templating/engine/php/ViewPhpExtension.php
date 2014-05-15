@@ -26,6 +26,22 @@ class ViewPhpExtension implements IPhpExtension
      * @var string $isAllowedFunctionName имя функции для проверки прав
      */
     public $isAllowedFunctionName = 'isAllowed';
+    /**
+     * @var string $escapeHtmlFunctionName имя функции для экранирования html
+     */
+    public $escapeHtmlFunctionName = 'escape';
+    /**
+     * @var string $escapeJsFunctionName имя функции для экранирования js
+     */
+    public $escapeJsFunctionName = 'escapeJs';
+    /**
+     * @var string $escapeCssFunctionName имя функции для экранирования css
+     */
+    public $escapeCssFunctionName = 'escapeCss';
+    /**
+     * @var string $escapeUrlFunctionName имя функции для экранирования url
+     */
+    public $escapeUrlFunctionName = 'escapeUrl';
 
     /**
      * @var CmsDispatcher $dispatcher диспетчер
@@ -60,7 +76,11 @@ class ViewPhpExtension implements IPhpExtension
     {
         return [
             $this->widgetFunctionName => $this->getWidgetHelper(),
-            $this->isAllowedFunctionName => $this->getIsAllowedHelper()
+            $this->isAllowedFunctionName => $this->getIsAllowedHelper(),
+            $this->escapeHtmlFunctionName => $this->getEscapeHtmlHelper(),
+            $this->escapeJsFunctionName => $this->getEscapeJsHelper(),
+            $this->escapeCssFunctionName => $this->getEscapeCssHelper(),
+            $this->escapeUrlFunctionName => $this->getEscapeUrlHelper()
         ];
     }
 
@@ -86,6 +106,86 @@ class ViewPhpExtension implements IPhpExtension
             return $this->dispatcher->executeWidgetByPath($widgetPath, $args);
         };
     }
+
+    /**
+     * Хелпер html-экранирования строки.
+     * @return callable
+     */
+    public function getEscapeHtmlHelper()
+    {
+        return function ($string) {
+            return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE);
+        };
+    }
+
+    /**
+     * Хелпер для экранирования url.
+     * @return callable
+     */
+    public function getEscapeUrlHelper()
+    {
+        return function ($string) {
+            return rawurlencode($string);
+        };
+    }
+
+
+    /**
+     * Хелпер js-экранирования строки.
+     * This function is adapted from code coming from Twig.
+     * @copyright 2009 Fabien Potencier
+     * @return callable
+     */
+    public function getEscapeJsHelper()
+    {
+        return function ($string) {
+            // strategy from twig template engine
+            return preg_replace_callback('#[^a-zA-Z0-9,\._]#Su', function($matches) {
+                    $char = $matches[0];
+
+                    // \xHH
+                    if (!isset($char[1])) {
+                        return '\\x' . strtoupper(substr('00'.bin2hex($char), -2));
+                    }
+
+                    // \uHHHH
+                    $char = mb_convert_encoding($char, 'UTF-16BE', 'UTF-8');
+
+                    return '\\u'.strtoupper(substr('0000'.bin2hex($char), -4));
+                }, $string);
+        };
+    }
+
+    /**
+     * Хелпер css-экранирования строки.
+     * This function is adapted from code coming from Twig.
+     * @copyright 2009 Fabien Potencier
+     * @return callable
+     */
+    public function getEscapeCssHelper()
+    {
+        return function ($string) {
+            return preg_replace_callback('#[^a-zA-Z0-9]#Su', function($matches) {
+                    $char = $matches[0];
+
+                    // \xHH
+                    if (!isset($char[1])) {
+                        $hex = ltrim(strtoupper(bin2hex($char)), '0');
+                        if (0 === strlen($hex)) {
+                            $hex = '0';
+                        }
+
+                        return '\\'.$hex.' ';
+                    }
+
+                    // \uHHHH
+                    $char = mb_convert_encoding($char, 'UTF-16BE', 'UTF-8');
+
+                    return '\\'.ltrim(strtoupper(bin2hex($char)), '0').' ';
+                }, $string);
+        };
+    }
+
 
 }
  

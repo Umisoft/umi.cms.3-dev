@@ -55,6 +55,8 @@ return [
         'project.admin.settings.service' => '{#lazy:~/project/module/service/settings/i18n/dictionary.config.php}',
         'project.admin.settings.service.backup' => '{#lazy:~/project/module/service/settings/backup/i18n/dictionary.config.php}',
 
+        'project.site.users.authorization' => '{#lazy:~/project/module/users/site/authorization/i18n/dictionary.config.php}',
+
         'collection' => [
 
             'en-US' => [
@@ -124,13 +126,19 @@ return [
                 'common' => 'Common',
                 'meta' => 'Meta',
                 'importSetting' => 'Import setting',
-                'contents' => 'Contents'
+                'contents' => 'Contents',
+
+                'Save' => 'Save',
+                'Add' => 'Add',
             ],
             'ru-RU' => [
                 'common' => 'Общее',
                 'meta' => 'Мета-информация',
                 'importSetting' => 'Настройки импорта',
-                'contents' => 'Контент'
+                'contents' => 'Контент',
+
+                'Save' => 'Сохранить',
+                'Add' => 'Добавить',
             ]
         ],
 
