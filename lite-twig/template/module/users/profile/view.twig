@@ -1,0 +1,7 @@
+<p>
+    {{ translate("Welcome")  }}, <br>
+    {{ user.getFullName() }} ({{ user.login }})
+</p>
+
+{{  widget('users.authorization.logoutForm', {'template' : 'logoutForm' }) }}
+{{  widget('users.profile.link', {'template' : 'link' }) }}

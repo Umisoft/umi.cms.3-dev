@@ -1,0 +1,12 @@
+<?php
+/**
+ * @var umicms\project\module\users\api\object\AuthorizedUser $user
+ */
+?>
+<p>
+    <?= $this->translate('Welcome') ?>, <br>
+    <?= $user->getFullName() ?> (<?= $user->login ?>)
+</p>
+
+<?= $this->widget('users.authorization.logoutForm', ['template' => 'logoutForm']); ?>
+<?= $this->widget('users.profile.link', ['template' => 'link']); ?>

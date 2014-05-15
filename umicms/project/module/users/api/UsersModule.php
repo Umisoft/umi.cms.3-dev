@@ -9,10 +9,10 @@
 
 namespace umicms\project\module\users\api;
 
+use umi\authentication\exception\RuntimeException;
 use umi\authentication\IAuthenticationAware;
 use umi\authentication\IAuthenticationFactory;
 use umi\authentication\TAuthenticationAware;
-use umicms\exception\RuntimeException;
 use umicms\module\BaseModule;
 use umicms\project\module\users\api\collection\UserCollection;
 use umicms\project\module\users\api\object\AuthorizedUser;

@@ -137,6 +137,27 @@ return [
             'columnName' => 'password_salt',
             'readOnly'   => true
         ],
+        AuthorizedUser::FIELD_FIRST_NAME         => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'first_name',
+            'filters'    => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ]
+        ],
+        AuthorizedUser::FIELD_MIDDLE_NAME         => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'middle_name',
+            'filters'    => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ]
+        ],
+        AuthorizedUser::FIELD_LAST_NAME         => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'last_name',
+            'filters'    => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ]
+        ],
 
     ],
     'types'      => [
@@ -193,6 +214,9 @@ return [
                 AuthorizedUser::FIELD_EMAIL,
                 AuthorizedUser::FIELD_PASSWORD,
                 AuthorizedUser::FIELD_PASSWORD_SALT,
+                AuthorizedUser::FIELD_FIRST_NAME,
+                AuthorizedUser::FIELD_MIDDLE_NAME,
+                AuthorizedUser::FIELD_LAST_NAME,
                 AuthorizedUser::FIELD_GROUPS,
                 AuthorizedUser::FIELD_OWNER,
                 AuthorizedUser::FIELD_EDITOR,
@@ -215,6 +239,9 @@ return [
                 Supervisor::FIELD_EMAIL,
                 Supervisor::FIELD_PASSWORD,
                 Supervisor::FIELD_PASSWORD_SALT,
+                Supervisor::FIELD_FIRST_NAME,
+                Supervisor::FIELD_MIDDLE_NAME,
+                Supervisor::FIELD_LAST_NAME,
                 Supervisor::FIELD_GROUPS,
                 Supervisor::FIELD_OWNER,
                 Supervisor::FIELD_EDITOR,

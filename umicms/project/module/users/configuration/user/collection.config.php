@@ -28,6 +28,7 @@ return [
             AuthorizedUser::FORM_LOGIN_ADMIN => '{#lazy:~/project/module/users/configuration/user/form/authorized.login.config.php}',
             AuthorizedUser::FORM_LOGIN_SITE => '{#lazy:~/project/module/users/site/authorization/form/authorized.login.config.php}',
             AuthorizedUser::FORM_LOGOUT_SITE => '{#lazy:~/project/module/users/site/authorization/form/authorized.logout.config.php}',
+            AuthorizedUser::FORM_EDIT_PROFILE => '{#lazy:~/project/module/users/site/profile/form/authorized.profile.edit.config.php}',
         ]
     ],
 ];

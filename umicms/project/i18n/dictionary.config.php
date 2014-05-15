@@ -50,12 +50,12 @@ return [
 
         'project.admin.api.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
 
-
         'project.admin.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
         'project.admin.settings.service' => '{#lazy:~/project/module/service/settings/i18n/dictionary.config.php}',
         'project.admin.settings.service.backup' => '{#lazy:~/project/module/service/settings/backup/i18n/dictionary.config.php}',
 
         'project.site.users.authorization' => '{#lazy:~/project/module/users/site/authorization/i18n/dictionary.config.php}',
+        'project.site.users.profile' => '{#lazy:~/project/module/users/site/profile/i18n/dictionary.config.php}',
 
         'project.site.blog.comment' => '{#lazy:~/project/module/blog/site/comment/i18n/dictionary.config.php}',
         'project.site.blog.post' => '{#lazy:~/project/module/blog/site/post/i18n/dictionary.config.php}',
