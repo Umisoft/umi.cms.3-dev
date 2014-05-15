@@ -23,6 +23,7 @@ use umi\form\IFormEntity;
 use umi\i18n\ILocalizable;
 use umi\i18n\translator\ITranslator;
 use umicms\exception\InvalidArgumentException;
+use umicms\form\element\Captcha;
 
 /**
  * Помощник шаблонов для вывода форм.
@@ -113,6 +114,9 @@ class FormHelper implements ILocalizable
             }
             case $element instanceof Textarea: {
                 return $this->buildTextarea($element, $dictionaries);
+            }
+            case $element instanceof Captcha: {
+                return $this->buildCaptcha($element, $dictionaries);
             }
             default:
                 throw new InvalidArgumentException(
@@ -309,6 +313,35 @@ class FormHelper implements ILocalizable
     }
 
     /**
+     * Генерирует массив для построения captcha.
+     * @param Captcha $captchaElement
+     * @param array $dictionaries имена словарей для перевода
+     * @return array
+     */
+    protected function buildCaptcha($captchaElement, $dictionaries)
+    {
+        $attributes = array_merge(
+            $captchaElement->getAttributes(),
+            [
+                'name' => $captchaElement->getElementName(),
+                'value' => $captchaElement->getValue()
+            ]
+        );
+
+        $captchaUrl = '';
+        $reloadUrl = '';
+
+        return [
+            'element' => $captchaElement,
+            'label' => $captchaElement->getLabel() ? $this->translator->translate($dictionaries, $captchaElement->getLabel()) : '',
+            'type' => 'captcha',
+            'captchaUrl' => $captchaUrl,
+            'reloadUrl' => $reloadUrl,
+            'attributes' => $this->buildAttributes($attributes)
+        ];
+    }
+
+    /**
      * Генерирует строку аттрибутов для элемента.
      * @param array $attributes массив аттрибутов элемента
      * @return string
@@ -326,5 +359,6 @@ class FormHelper implements ILocalizable
 
         return implode(' ', $strings);
     }
+
 }
  

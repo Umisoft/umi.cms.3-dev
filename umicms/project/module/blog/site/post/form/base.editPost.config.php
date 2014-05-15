@@ -11,6 +11,7 @@ use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Submit;
 use umi\form\element\Text;
+use umicms\form\element\Captcha;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\api\object\BlogCategory;
 use umicms\project\module\blog\api\object\BlogPost;
@@ -72,6 +73,9 @@ return [
                     'label' => BlogTag::FIELD_DISPLAY_NAME
                 ]
             ]
+        ],
+        'captcha' => [
+            'type' => Captcha::TYPE_NAME
         ],
         'submit' => [
             'type' => Submit::TYPE_NAME,

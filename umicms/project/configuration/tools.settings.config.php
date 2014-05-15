@@ -14,6 +14,7 @@ use umi\i18n\toolbox\I18nTools;
 use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
 use umi\templating\toolbox\TemplatingTools;
+use umicms\form\element\Captcha;
 use umicms\form\element\File;
 use umicms\form\element\Image;
 use umicms\form\element\Wysiwyg;
@@ -62,7 +63,8 @@ return [
                 'elementTypes' => [
                     Wysiwyg::TYPE_NAME => 'umicms\form\element\Wysiwyg',
                     File::TYPE_NAME => 'umicms\form\element\File',
-                    Image::TYPE_NAME => 'umicms\form\element\Image'
+                    Image::TYPE_NAME => 'umicms\form\element\Image',
+                    Captcha::TYPE_NAME => 'umicms\form\element\Captcha'
                 ]
             ]
         ]
