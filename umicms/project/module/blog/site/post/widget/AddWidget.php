@@ -11,7 +11,7 @@ namespace umicms\project\module\blog\site\post\widget;
 
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogCategory;
 use umicms\project\module\blog\api\object\BlogPost;
@@ -19,7 +19,7 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет добавления поста.
  */
-class AddWidget extends BaseSecureWidget
+class AddWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -46,7 +46,7 @@ class AddWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getForm()
     {
         if (is_string($this->blogCategory)) {
             $this->blogCategory = $this->api->category()->get($this->blogCategory);
@@ -58,7 +58,7 @@ class AddWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogCategory',
-                        'class' => 'BlogCategory'
+                        'class' => 'umicms\project\module\blog\api\object\BlogCategory'
                     ]
                 )
             );
@@ -67,17 +67,11 @@ class AddWidget extends BaseSecureWidget
         $post = $this->api->post()->add();
         $post->category = $this->blogCategory;
 
-        $formAddPost = $this->api->post()->getForm(BlogPost::FORM_ADD_POST, IObjectType::BASE, $post);
+        $form = $this->api->post()->getForm(BlogPost::FORM_ADD_POST, IObjectType::BASE, $post);
 
-        $formAddPost->setAction($this->getUrl('add'));
-        $formAddPost->setMethod('post');
+        $form->setAction($this->getUrl('add'));
 
-        return $this->createResult(
-            $this->template,
-            [
-                'form' => $formAddPost
-            ]
-        );
+        return $form;
     }
 }
  

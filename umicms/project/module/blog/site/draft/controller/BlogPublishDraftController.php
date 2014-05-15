@@ -66,7 +66,7 @@ class BlogPublishDraftController extends BaseSecureController implements IFormAw
             );
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
+        $form = $this->api->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE);
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {

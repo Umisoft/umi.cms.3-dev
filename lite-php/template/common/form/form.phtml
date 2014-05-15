@@ -7,6 +7,16 @@
 
 <?php $formInfo = $this->form($form); ?>
 
+<?php if (isset($errors)) : ?>
+    <div class="alert alert-danger">
+        <ul>
+            <?php foreach ($errors as $message) : ?>
+                <li><?= $message ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
 <form <?= $formInfo['attributes'] ?> >
 
     <?php foreach ($formInfo['elements'] as $elementInfo) : ?>

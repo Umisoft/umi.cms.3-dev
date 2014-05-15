@@ -5,12 +5,10 @@
 
     {% if (authenticated) %}
         {{ translate("You are already logged in")  }}.
-        {{ widget('users.authorization.logoutLink', {'template' : 'logoutLink'}) }}
+        {{ widget('users.authorization.logoutForm', {'template' : 'logoutForm'}) }}
     {% else %}
 
-        {% if (error) %}
-            {{ error }}
-        {% endif %}
+        {% set errors = errors ?: null %}
 
         {{ include('form/form.twig', {'form' : form})  }}
 

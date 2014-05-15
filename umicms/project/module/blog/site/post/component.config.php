@@ -27,7 +27,6 @@ return [
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'rss' => __NAMESPACE__ . '\widget\ListRssUrlWidget',
         'add' => __NAMESPACE__ . '\widget\AddWidget',
-        'edit' => __NAMESPACE__ . '\widget\EditWidget',
         'unPublished' => __NAMESPACE__ . '\widget\PostToDraftWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\EditUrlWidget'
     ],
@@ -51,7 +50,6 @@ return [
             'widget:list',
             'widget:rss',
             'widget:add',
-            'widget:editPost',
             'widget:unPublished',
             'widget:editPostLink',
             'model:blogPost'
@@ -79,7 +77,6 @@ return [
             'moderator' => [
                 'controller:edit' => [],
                 'controller:unPublished' => [],
-                'widget:editPost' => [],
                 'widget:unPublished' => [],
                 'widget:editPostLink' => [],
                 'model:blogPost' => [
