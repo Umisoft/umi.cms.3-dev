@@ -13,6 +13,7 @@ use umicms\project\admin\api\component\DefaultQueryAdminComponent;
 
 return [
     DefaultQueryAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultQueryAdminComponent',
+    DefaultQueryAdminComponent::OPTION_SETTINGS => '{#lazy:~/project/module/statistics/configuration/metrika/model.settings.config.php}',
     DefaultQueryAdminComponent::OPTION_CONTROLLERS => [
         DefaultQueryAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
         DefaultQueryAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'

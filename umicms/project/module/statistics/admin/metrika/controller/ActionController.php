@@ -11,6 +11,7 @@ namespace umicms\project\module\statistics\admin\metrika\controller;
 
 use umi\http\Response;
 use umi\orm\persister\TObjectPersisterAware;
+use umi\spl\config\TConfigSupport;
 use umicms\exception\InvalidArgumentException;
 use umicms\project\admin\api\component\DefaultQueryAdminComponent;
 use umicms\project\admin\api\controller\DefaultRestActionController;
@@ -21,19 +22,12 @@ use umicms\project\module\statistics\admin\metrika\model\MetrikaModel;
  */
 class ActionController extends DefaultRestActionController
 {
+    use TConfigSupport;
     /**
      * API для запросов к Яндекс.Метрике
-     * @var MetrikaModel $api
+     * @var MetrikaModel $model
      */
-    protected $api;
-
-    /**
-     * Конструктор.
-     */
-    public function __construct()
-    {
-        $this->api = new MetrikaModel;
-    }
+    protected $model;
 
     /**
      * Возвращает данные статистики для ресурса, собранные по указанному счетчику.
@@ -42,10 +36,12 @@ class ActionController extends DefaultRestActionController
      */
     public function actionCounter()
     {
+        $this->createModel();
+
         $counterId = $this->getRequiredQueryVar('counterId');
         $resource = $this->getRequiredQueryVar('resource');
-        $dateFrom = $this->api->normalizeDateFrom($this->getQueryVar('date1'));
-        $dateTo = $this->api->normalizeDateTo($this->getQueryVar('date2'));
+        $dateFrom = $this->model->normalizeDateFrom($this->getQueryVar('date1'));
+        $dateTo = $this->model->normalizeDateTo($this->getQueryVar('date2'));
         if (is_null($counterId)) {
             throw new InvalidArgumentException(
                 $this->translate("Incorrect Metrika counter id")
@@ -57,7 +53,7 @@ class ActionController extends DefaultRestActionController
             );
         }
 
-        $apiData = $this->api->statQuery(
+        $apiData = $this->model->statQuery(
             $resource,
             $counterId,
             $dateFrom,
@@ -66,8 +62,8 @@ class ActionController extends DefaultRestActionController
         );
 
         $response = [
-            'labels' => $this->api->extractFieldsLabel($resource, $apiData),
-            'report' => $this->api->extractReportData($resource, $apiData),
+            'labels' => $this->model->extractFieldsLabel($resource, $apiData),
+            'report' => $this->model->extractReportData($resource, $apiData),
             'date1' => $apiData['date1'],
             'date2' => $apiData['date2'],
             'rows' => $apiData['rows'],
@@ -93,13 +89,15 @@ class ActionController extends DefaultRestActionController
      */
     public function actionCounters()
     {
-        $listCounters = $this->api->listCounters();
+        $this->createModel();
+
+        $listCounters = $this->model->listCounters();
 
         foreach ($listCounters['counters'] as &$counter) {
             $counter['code_status'] = $this->translate($counter['code_status']);
         }
 
-        $counters['labels'] = $this->api->getFieldsReport($listCounters['counters'], 'counters');
+        $counters['labels'] = $this->model->getFieldsReport($listCounters['counters'], 'counters');
         $counters['counters'] = $listCounters['counters'];
 
         return $counters;
@@ -111,17 +109,19 @@ class ActionController extends DefaultRestActionController
      */
     public function actionNavigation()
     {
+        $this->createModel();
+
         $counterId = $this->getRequiredQueryVar('counterId');
         $navigation = [];
-        $apiResourceGroups = $this->api->getApiResources();
+        $apiResourceGroups = $this->model->getApiResources();
         foreach ($apiResourceGroups as $group => $resourceGroup) {
             $navigationGroup = [];
-            $navigationGroup['displayName'] = $this->api->getLabel($group);
+            $navigationGroup['displayName'] = $this->model->getLabel($group);
             $navigationGroup['children'] = [];
             foreach ($resourceGroup['resources'] as $resource) {
                 $query = ['counterId'=>$counterId, 'resource'=>$resource['name']];
                 $navigationGroup['children'][] = [
-                    'displayName' => $this->api->getLabel($resource['name']),
+                    'displayName' => $this->model->getLabel($resource['name']),
                     'uri' => '/counter/?' . http_build_query($query),
                     'resource' => $resource['name'],
                 ];
@@ -129,6 +129,27 @@ class ActionController extends DefaultRestActionController
             $navigation[] = $navigationGroup;
         }
         return $navigation;
+    }
+
+    /**
+     * Создает модель для отправки запросов к API Яндекс.Метрика.
+     * @throws InvalidArgumentException
+     */
+    protected function createModel()
+    {
+        $component = $this->getComponent();
+
+        $oauthToken = $component->getSetting(MetrikaModel::OAUTH_TOKEN);
+        $apiResources = $this->configToArray($component->getSetting(MetrikaModel::API_RESOURCES), true);
+
+        if (is_null($oauthToken)) {
+            throw new InvalidArgumentException($this->translate(
+                "Option {option} is required",
+                ['option' => MetrikaModel::OAUTH_TOKEN]
+            ));
+        }
+
+        $this->model = new MetrikaModel($oauthToken, $apiResources);
     }
 
     /**
