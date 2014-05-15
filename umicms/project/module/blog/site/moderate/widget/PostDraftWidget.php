@@ -70,7 +70,6 @@ class PostDraftWidget extends BaseFormWidget
         );
 
         $form->setAction($this->getUrl('draft', ['id' => $this->blogPost->getId()]));
-        $form->setMethod('post');
 
         return $form;
     }
