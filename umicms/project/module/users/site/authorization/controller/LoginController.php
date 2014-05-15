@@ -10,17 +10,19 @@
 namespace umicms\project\module\users\site\authorization\controller;
 
 use umi\form\element\IFormElement;
-use umi\http\Response;
-use umicms\hmvc\widget\BaseFormWidget;
+use umi\form\IForm;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\UsersModule;
 use umicms\project\site\controller\SitePageController;
+use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер авторизации пользователя
  */
 class LoginController extends SitePageController
 {
+    use TFormController;
+
     /**
      * @var UsersModule $api API модуля "Пользователи"
      */
@@ -38,68 +40,57 @@ class LoginController extends SitePageController
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getTemplateName()
     {
+        return 'index';
+    }
 
-        $form = $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, 'authorized');
-        $formValid = true;
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
+    {
+        return $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, 'authorized');
+    }
 
-        if ($this->isRequestMethodPost()) {
-
-            $form->setData($this->getAllPostVars());
-            $formValid = $form->isValid();
-
-
-            if ($formValid) {
-
-                if ($this->api->isAuthenticated()) {
-                    $this->api->logout();
-                }
-
-                /**
-                 * @var IFormElement $loginInput
-                 */
-                $loginInput = $form->get(AuthorizedUser::FIELD_LOGIN);
-                /**
-                 * @var IFormElement $passwordInput
-                 */
-                $passwordInput = $form->get(AuthorizedUser::FIELD_PASSWORD);
-
-                if ($this->api->login($loginInput->getValue(), $passwordInput->getValue())) {
-                    /**
-                     * @var IFormElement $refererInput
-                     */
-                    $refererInput = $form->get(BaseFormWidget::INPUT_REDIRECT_URL);
-
-                    $referer = $refererInput->getValue() ? $refererInput->getValue() : $this->getRequest()->getReferer();
-                    if ($referer && strpos($referer, $this->getUrlManager()->getProjectUrl(true)) === 0) {
-                        return $this->createRedirectResponse($referer);
-                    }
-                } else {
-                    $errors = [$this->translate('Invalid login or password')];
-                }
-            }
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        if ($this->api->isAuthenticated()) {
+            $this->api->logout();
         }
 
-        $result = [
+        /**
+         * @var IFormElement $loginInput
+         */
+        $loginInput = $form->get(AuthorizedUser::FIELD_LOGIN);
+        /**
+         * @var IFormElement $passwordInput
+         */
+        $passwordInput = $form->get(AuthorizedUser::FIELD_PASSWORD);
+
+        if ($this->api->login($loginInput->getValue(), $passwordInput->getValue())) {
+
+            return $this->buildRedirectResponse();
+
+        }
+
+        $this->errors[] = $this->translate('Invalid login or password');
+
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildResponseContent()
+    {
+        return [
             'page' => $this->getCurrentPage(),
-            'form' => $form,
             'authenticated' => $this->api->isAuthenticated()
         ];
-
-        if (isset($errors)) {
-            $result['errors'] = $errors;
-        }
-
-        $response = $this->createViewResponse(
-            'index',
-            $result
-        );
-
-        if (!$formValid) {
-            $response->getStatusCode(Response::HTTP_BAD_REQUEST);
-        }
-
-        return $response;
     }
+
 }
