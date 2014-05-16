@@ -1,5 +1,5 @@
 <h3>
     <a href="{{ blogAuthor.getPageUrl() }}">
         {{ blogAuthor.displayName }}
-    </a>
+    </a> {{ widget('blog.author.rss', {'blogAuthor' : blogAuthor, 'template' : 'rssLink'}) }}
 </h3>
