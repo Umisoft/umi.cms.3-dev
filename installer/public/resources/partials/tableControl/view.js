@@ -34,50 +34,85 @@ define(['App'], function(UMI){
                 }
             }.observes('controller.objects').on('didInsertElement'),
 
-            actions: {
-                delete: function(object){
-                    console.log('deleteObject');
-                    $('.umi-table-control-content-fixed-left .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').remove();
-                    $('.umi-table-control-content-row[data-objectId=' + object.id + ']').remove();
-//                    .animate({'-webkit-transform': 'rotateX(-90deg)'}, 500, function(){
-//                        $(this).remove();
-//                    });
-                    $('.umi-table-control-content-fixed-right .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').remove();
+//            actions: {
+//                delete: function(object){
+//                    console.log('deleteObject');
+//                    $('.umi-table-control-content-fixed-left .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').remove();
+//                    $('.umi-table-control-content-row[data-objectId=' + object.id + ']').remove();
+////                    .animate({'-webkit-transform': 'rotateX(-90deg)'}, 500, function(){
+////                        $(this).remove();
+////                    });
+//                    $('.umi-table-control-content-fixed-right .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').remove();
+//
+//                    this.get('controller').send('trash', object);
+//                },
+//
+//                edit: function(object){
+//                    this.get('controller').send('edit', object);
+//                },
+//
+//                viewOnSite: function(object){
+//                    this.get('controller').send('viewOnSite', object);
+//                },
+//
+//                switchActivity: function(object){
+//                    if($('.umi-table-control-content-row[data-objectId=' + object.id + ']').hasClass('umi-inactive')){
+//                        $('.umi-table-control-content-fixed-left .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').removeClass('umi-inactive');
+//                        $('.umi-table-control-content-row[data-objectId=' + object.id + ']').removeClass('umi-inactive');
+//                        $('.umi-table-control-content-fixed-right .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').removeClass('umi-inactive');
+//                    } else{
+//                        $('.umi-table-control-content-fixed-left .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').addClass('umi-inactive');
+//                        $('.umi-table-control-content-row[data-objectId=' + object.id + ']').addClass('umi-inactive');
+//                        $('.umi-table-control-content-fixed-right .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').addClass('umi-inactive');
+//                    }
+//
+//                    this.get('controller').send('switchActivity', object);
+//                },
+//
+//                save: function(object){
+//                    var params = {};
+//                    params.object = object;
+//                    params.handler = null;
+//                    this.send('save', params);
+//                },
+//
+//                create: function(object){
+//                    console.log('create');
+//                    var parentObject = object.get('container.parent');
+//                    var actionParam = {
+//                        typeName: 'static'
+//                    };
+//                    this.get('controller').send('create', parentObject, actionParam);
+//                }
+//            },
 
-                    this.get('controller').send('trash', object);
-                },
+            checkBoxes: function(){
+                $('.umi-table-control-header-cell').on('click', 'input', function(){
+                    var state = $(this).prop('checked');
+                    $('.umi-table-control-column-fixed-cell input').prop({checked: state});
+                });
 
-                edit: function(object){
-                    this.get('controller').send('edit', object);
-                },
+                $('.umi-table-control-header-cell, .umi-table-control-content-fixed-left').on('change', 'input', function(){
+                    if($('.umi-table-control-content-fixed-left input[checked="checked"]').length){
+                        $('.umi-table-control-group-crud a').removeClass('umi-disabled');
+                    }else{
+                        $('.umi-table-control-group-crud a').addClass('umi-disabled');
+                    }
+                });
+            },
 
-                viewOnSite: function(object){
-                    console.log('viewOnSiteObject');
-                    this.get('controller').send('viewOnSite', object);
-                },
-
-                switchActivity: function(object){
-                    this.get('controller').send('switchActivity', object);
-                },
-
-                save: function(object){
-                    var params = {};
-                    params.object = object;
-                    params.handler = null;
-                    this.send('save', params);
-                },
-
-                create: function(object){
-                    console.log(object);
-                    var parentObject = object.get('container.parent');
-                    var actionParam = {
-                        typeName: 'static'
-                    };
-                    this.get('controller').send('create', parentObject, actionParam);
+            moveGroupCrudBottomPanel: function(){
+                console.log(this.get('showSideBar'));
+                if(this.get('showSideBar')){
+                    var margin = $('.umi-left-bottom-panel').width();
+                    $('.umi-table-control-group-crud').css('marginLeft', margin);
+                } else{
+                    $('.umi-table-control-group-crud').css('marginLeft', 0);
                 }
             },
 
             didInsertElement: function(){
+                this.checkBoxes();
                 this.moveGroupCrudBottomPanel();
 
                 var tableControl = this.$();
@@ -120,7 +155,7 @@ define(['App'], function(UMI){
                             // Событие изменения ширины колонки
                             tableControl.on('mousedown.umi.tableControl', '.umi-table-control-column-resizer', function(){
                                 $('html').addClass('s-unselectable');
-                                var handler = this;
+                                var handler = this; //Почему не that или self? Зачем плодить понятия?
                                 $(handler).addClass('on-resize');
                                 var columnEl = handler.parentNode.parentNode;
                                 var columnName = columnEl.className;
@@ -150,9 +185,8 @@ define(['App'], function(UMI){
                             var getHoverElements = function(el){
                                 var isContentRow = $(el).hasClass('umi-table-control-content-row');
                                 var rows = el.parentNode.querySelectorAll(isContentRow ? '.umi-table-control-content-row' : '.umi-table-control-column-fixed-cell');
-                                var i;
 
-                                for(i = 0; i < rows.length; i++){
+                                for(var i = 0; i < rows.length; i++){
                                     if(rows[i] === el){
                                         break;
                                     }
@@ -187,36 +221,8 @@ define(['App'], function(UMI){
             },
 
             showSideBar: function(){
-                console.log('sideBar');
                 return this.get('controller.showSideBar');
             }.property('controller.showSideBar'),
-
-            moveGroupCrudBottomPanel: function(){
-                console.log(this.get('showSideBar'));
-                if(this.get('showSideBar')){
-                    var margin = $('.umi-left-bottom-panel').width();
-                    $('.umi-table-control-group-crud').css('marginLeft', margin);
-                } else{
-                    $('.umi-table-control-group-crud').css('marginLeft', 0);
-                }
-            },
-
-            groupCrudView: Ember.View.extend({
-                actions: {
-                    add: function(parent){
-                        this.send('create', parent);
-                    },
-                    pause: function(){
-                        console.log('pause');
-                    },
-                    view: function(){
-                        console.log('view');
-                    },
-                    delete: function(){
-                        console.log('delete');
-                    }
-                }
-            }),
 
             paginationView: Ember.View.extend({
                 classNames: ['right', 'umi-table-control-pagination'],

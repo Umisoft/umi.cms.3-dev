@@ -182,6 +182,7 @@ define([], function(){
 
                 /// global actions
                 switchActivity: function(object){
+                    console.log('switchActivity');
                     try{
                         var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
                         var switchActivitySource = this.controllerFor('component').get('settings').actions[(object.get('active') ? 'de' : '') + 'activate'].source;
@@ -199,11 +200,13 @@ define([], function(){
                 },
 
                 create: function(parentObject, actionParam){
+                    console.log('create');
                     var typeName = actionParam.typeName;
                     this.transitionTo('action', parentObject.get('id'), 'createForm', {queryParams: {'typeName': typeName}});
                 },
 
                 edit: function(object){
+                    console.log('edit');
                     this.transitionTo('action', object.get('id'), 'editForm');
                 },
 

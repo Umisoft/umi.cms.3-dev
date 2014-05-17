@@ -13,6 +13,7 @@ define([], function(){
          * @extends Ember.ObjectController
          */
         UMI.ComponentController = Ember.ObjectController.extend({
+//            needs: ['treeControl'],
             collectionName: function(){
                 var settings = this.get('settings');
                 return settings.collectionName;
@@ -60,8 +61,6 @@ define([], function(){
                 return contentControls;
             }.property('settings', 'selectedContext'),
 
-//            showSideBar: false,
-
             /**
              Контрол компонента в области сайд бара
              @property sideBarControl
@@ -93,7 +92,7 @@ define([], function(){
                         self.send('templateLogs', errorObject, 'component');
                     });
                 }
-//                this.set('showSideBar', sideBarControl);
+//                console.log('sideBarControl', sideBarControl);
                 return sideBarControl;
             }.property('settings')
         });

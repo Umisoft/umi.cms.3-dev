@@ -2,7 +2,8 @@ $table-control-left-column-width: 32px;
 $table-control-row-height: 32px;
 $table-control-cell-border-color: #E3E4E5;
 $table-control-header-height: 66px;
-$table-control-row-bg-hover: #b5dbf6;
+//$table-control-row-bg-hover: #b5dbf6;
+$table-control-row-bg-hover: rgba(181, 219, 246, .4);
 .umi-table-control{
     font-size: rem-calc(13);
     height: 100%;
@@ -21,7 +22,7 @@ $table-control-row-bg-hover: #b5dbf6;
 }
 
 .umi-table-control-header-center{
-    padding: 0 $table-control-left-column-width;
+    padding: 0 $table-control-left-column-width*2 0 $table-control-left-column-width;
 
     .umi-table-control-header{
         table-layout: fixed;
@@ -59,6 +60,7 @@ $table-control-row-bg-hover: #b5dbf6;
 }
 
 // В firefox position: relative, для td не работает, поэутому нужна обёртка
+// TODO И хорошо что не работает - какого хрена оно дожно работать? Для этого есть блочные элементы.
 .umi-table-control-cell-firefox-fix{
     position: relative;
 }
@@ -67,7 +69,7 @@ $table-control-row-bg-hover: #b5dbf6;
     position: absolute;
     right: 0;
     margin-right: -4px;
-    z-index: 100;
+    z-index: 1;
     width: 7px;
     height: 65px;
     top: 0;
@@ -82,14 +84,107 @@ $table-control-row-bg-hover: #b5dbf6;
 }
 
 // ------------ Фиксированая колонка слева
-.umi-table-control-content-fixed-left, .umi-table-control-content-fixed-right,
-.umi-table-control-header-fixed-left, .umi-table-control-header-fixed-right{
+.umi-table-control-header-fixed-left{
     position: absolute;
     z-index: 2;
     left: 0;
     top: 0;
     border-right: 1px solid $table-control-cell-border-color;
-    .umi-table-control-header-cell, .umi-table-control-column-fixed-cell{
+    .umi-table-control-header-cell{
+        height: $table-control-row-height + 1px;
+        width: $table-control-left-column-width;
+        display: block;
+        border: 0;
+        padding-left: rem-calc(7);
+        background: #fff;
+        border-bottom: 1px solid #E3E4E5;
+    }
+    .umi-table-control-column-fixed-cell{
+        height: $table-control-row-height;
+        width: $table-control-left-column-width;
+        display: block;
+        border: 0;
+        padding-left: rem-calc(7);
+        background: #fff;
+        border-bottom: 1px solid #E3E4E5;
+    }
+}
+
+.umi-table-control-header-fixed-right{
+    position: absolute;
+    z-index: 2;
+    width: $table-control-left-column-width*2 + 18; //Плюс ширина скролла
+    top: 0;
+    right: 0;
+    border-left: 1px solid #E3E4E5;
+    border-bottom: 1px solid #E3E4E5;
+    background: #FFFFFF;
+
+    .umi-table-control-header-title{
+        height: $table-control-row-height;
+        width: $table-control-left-column-width*2 + 18; //Плюс ширина скролла;
+        border-bottom: 1px solid #E3E4E5;
+        .umi-table-control-header-fixed-right-first{
+            float: left;
+        }
+        .umi-table-control-header-fixed-right-second{
+            float: left;
+            width: $table-control-left-column-width - 1;
+            border-left: 1px solid #E3E4E5;
+            padding-right: 18px; //Ширина скролла
+        }
+    }
+    .umi-table-control-header-filter{
+        height: $table-control-row-height;
+        background: #F5F6F7;
+    }
+}
+
+.umi-table-control-content-fixed-left{
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    border-right: 1px solid $table-control-cell-border-color;
+    border-bottom: 1px solid #A7B9C5;
+    .umi-table-control-header-cell{
+        height: $table-control-row-height;
+        width: $table-control-left-column-width;
+        display: block;
+        border: 0;
+        padding-left: rem-calc(7);
+        background: #fff;
+        border-bottom: 1px solid #E3E4E5;
+    }
+    .umi-table-control-column-fixed-cell{
+        background: #F5F6F7;
+        &:nth-of-type(even){
+            background: #E9F1F7;
+        }
+        height: $table-control-row-height;
+        width: $table-control-left-column-width;
+        display: block;
+        border: 0;
+        padding-left: rem-calc(7);
+    }
+    .umi-table-control-control-cell-empty{
+        background: #F5F6F7;
+        border-bottom: 0;
+        &:nth-of-type(odd){
+            background: #E9F1F7;
+        }
+    }
+}
+
+.umi-table-control-content-fixed-right{
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    border-right: none;
+    border-left: 1px solid #E3E4E5;
+    border-bottom: 1px solid #A7B9C5;
+    .umi-table-control-header-cell{
         height: $table-control-row-height;
         width: $table-control-left-column-width;
         display: block;
@@ -98,20 +193,30 @@ $table-control-row-bg-hover: #b5dbf6;
         background: #fff;
         border-bottom: 1px solid #E3E4E5;
     }
-}
-
-.umi-table-control-content-fixed-right, .umi-table-control-header-fixed-right{
-    left: auto;
-    right: 0;
-    border-right: none;
-    border-left: 1px solid #E3E4E5;
-}
-
-.umi-table-control-header-fixed-left, .umi-table-control-header-fixed-right{
-    .umi-table-control-header-cell{
-        height: $table-control-row-height + 1px;
+    .umi-table-control-column-fixed-cell{
+        background: #F5F6F7;
+        &:nth-of-type(even){
+            background: #E9F1F7;
+        }
+        height: $table-control-row-height;
+        width: $table-control-left-column-width*2 + 18px; //Плюс ширина скролла
+        display: block;
+        padding: 0;
+        border: 0;
+        .umi-table-control-content-fixed-right-second{
+            border-left: 1px solid #E3E4E5;
+            padding-right: 18px; //Ширина скролла
+        }
+    }
+    .umi-table-control-control-cell-empty{
+        background: #F5F6F7;
+        border-bottom: 0;
+        &:nth-of-type(odd){
+            background: #E9F1F7;
+        }
     }
 }
+
 
 // Фиксированнная колонка справа
 .umi-table-control-right-fixed{
@@ -150,17 +255,6 @@ $table-control-row-bg-hover: #b5dbf6;
     }
 }
 
-.umi-table-control-content-fixed-left, .umi-table-control-content-fixed-right{
-    border-bottom: 1px solid #A7B9C5;
-    .umi-table-control-column-fixed-cell, .umi-table-control-control-cell-empty{
-        background: #F5F6F7;
-        border-bottom: 0;
-        &:nth-of-type(odd){
-            background: #E9F1F7;
-        }
-    }
-}
-
 .umi-table-control-cell-drop-size{
     height: 0;
     border: none;
@@ -173,8 +267,8 @@ $table-control-row-bg-hover: #b5dbf6;
     border-collapse: collapse;
     table-layout: fixed;
     border: 0;
-    margin: 0 $table-control-row-height;
-    width: unquote("calc(100% - 64px)");
+    margin: 0 64px 0 32px;
+    width: unquote("calc(100% - 96px)");
 }
 
 .umi-table-control-content-row{
@@ -183,8 +277,11 @@ $table-control-row-bg-hover: #b5dbf6;
     &:nth-of-type(odd){
         background: #E9F1F7;
     }
+    &.umi-inactive{
+        background: #D6E0E9;
+    }
     &.hover{
-        background: $table-control-row-bg-hover;
+        background: $table-control-row-bg-hover!important;
     }
     .edit-link{
         color: $body-font-color;
@@ -194,7 +291,44 @@ $table-control-row-bg-hover: #b5dbf6;
     }
 }
 
-.umi-table-control-header-cell, .umi-table-control-column-fixed-cell{
+.umi-table-control-header-cell{
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: $table-control-row-height;
+    line-height: $table-control-row-height;
+    border-right: 1px solid $table-control-cell-border-color;
+    box-sizing: border-box;
+    overflow: hidden;
+    &.filter{
+        padding: rem-calc(0 10);
+        input{
+            padding: rem-calc(0 6);
+            margin: 5px 0;
+            height: 22px !important;
+            width: unquote("calc(100% - 18px)");
+            float: left;
+        }
+        .sort-handler{
+            margin: 4px -7px 0 0;
+            float: right;
+            opacity: .4;
+            &.active{
+                opacity: 1;
+            }
+        }
+    }
+    &.hover{
+        background: $table-control-row-bg-hover !important;
+    }
+}
+
+.umi-table-control-row .umi-table-control-header-cell{
+    padding: rem-calc(0 10);
+}
+
+
+.umi-table-control-column-fixed-cell{
     position: relative;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -203,7 +337,7 @@ $table-control-row-bg-hover: #b5dbf6;
     padding: rem-calc(0 10);
     border-right: 1px solid $table-control-cell-border-color;
     box-sizing: border-box;
-    overflow: hidden;
+//    overflow: hidden;
     &.filter{
         input{
             padding: 0 rem-calc(6);
@@ -222,7 +356,7 @@ $table-control-row-bg-hover: #b5dbf6;
         }
     }
     &.hover{
-        background: $table-control-row-bg-hover !important;
+        background: $table-control-row-bg-hover!important;
     }
 }
 
@@ -261,7 +395,7 @@ $table-control-row-bg-hover: #b5dbf6;
     position: absolute;
     width: 100%;
     bottom: 0;
-    z-index: 2;
+    z-index: 4;
     height: $table-control-row-height;
     background: #F5F6F7;
     &:before{
@@ -284,7 +418,7 @@ $table-control-row-bg-hover: #b5dbf6;
 }
 
 .umi-table-control-pagination{
-    padding: rem-calc(5 10);
+    padding: rem-calc(4 10);
     .pagination-controls{
         .pagination-counter{
             line-height: 24px;
@@ -315,6 +449,7 @@ $table-control-row-bg-hover: #b5dbf6;
         padding: rem-calc(0 5);
         height: rem-calc(24);
         width: 50px;
+        line-height: 20px;
     }
 }
 
@@ -348,5 +483,3 @@ $table-control-row-bg-hover: #b5dbf6;
     padding: 20px $table-control-left-column-width;
     line-height: normal;
 }
-
-//-----------------------------------------

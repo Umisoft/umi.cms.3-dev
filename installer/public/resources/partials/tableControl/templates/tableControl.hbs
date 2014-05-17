@@ -43,12 +43,19 @@
     </div>
 
     <div class="umi-table-control-header-fixed-right">
-        <div class="umi-table-control-header-cell">
-            <span class="button tiny flat" {{action "showPopup" "tableControlColumnSelectorPopup"}}>
-                <i class="icon icon-columns"></i>
-            </span>
+        <div class="umi-table-control-header-title">
+            <div class="umi-table-control-header-fixed-right-first">
+                <a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg" {{action "showPopup" "tableControlColumnSelectorPopup"}}>
+                    <i class="icon icon-columns"></i>
+                </a>
+            </div>
+            <div class="umi-table-control-header-fixed-right-second">
+
+            </div>
         </div>
-        <div class="umi-table-control-control-cell-empty"></div>
+        <div class="umi-table-control-header-filter">
+
+        </div>
     </div>
 </div>
 
@@ -87,8 +94,6 @@
 
         <!-- Колонка слева от контента -->
         <div class="umi-table-control-content-fixed-left">
-            <!-- Пустая ячейка нужна всего лишь для правильного индекса строк-->
-            <div class="umi-table-control-cell-drop-size"></div>
             {{#each object in objects}}
                 <div class="umi-table-control-column-fixed-cell" data-objectId="{{unbound object.id}}">
                     <input type="checkbox" id="checkbox-{{unbound object.id}}" class="s-margin-clear"/>
@@ -100,10 +105,35 @@
         <!-- Колонка справа от контента -->
 
         <div class="umi-table-control-content-fixed-right">
-            <div class="umi-table-control-cell-drop-size"></div>
             {{#each object in objects}}
                 <div class="umi-table-control-column-fixed-cell" data-objectId="{{unbound object.id}}">
-                    <i class="icon icon-delete" style="cursor: pointer;" {{action 'delete' object target='view'}}></i>
+
+                    <div class="umi-table-control-content-fixed-right-first">
+                        <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg s-hide" {{action 'view' object}}>
+                            <i class="icon icon-view"></i>
+                        </a>
+
+                        <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg s-hide" {{action 'switchActivity' object}}>
+                            <i class="icon icon-pause"></i>
+                        </a>
+
+                        <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg" {{action 'trash' object}}>
+                            <i class="icon icon-delete"></i>
+                        </a>
+                    </div>
+
+                    <div class="umi-table-control-content-fixed-right-second">
+                        <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg umi-table-action-list-show">
+                            <i class="icon icon-bottom"></i>
+                        </a>
+
+                        <ul class="umi-table-action-list umi-hide-on-html umi-list">
+                            <li><a href="javascript:void(0)" {{action 'viewOnSite' object}}>Показать на сайте</a></li>
+                            <li><a href="javascript:void(0)" {{action 'switchActivity' object}}>Не отображать на сайте</a></li>
+                            <li><a href="javascript:void(0)" {{action 'trash' object}}>Удалить</a></li>
+                        </ul>
+                    </div>
+
                 </div>
             {{/each}}
         </div>
@@ -112,15 +142,6 @@
 
 <!-- Футер-->
 <div class="umi-table-control-footer s-unselectable">
-    {{#view view.groupCrudView}}
-        <div class="left umi-table-control-group-crud">
-            <a href="" {{action 'add' target='view'}}><i class="icon icon-add"></i></a>
-            <a href="" {{action 'pause' target='view'}}><i class="icon icon-pause"></i></a>
-            <a href="" {{action 'view' target='view'}}><i class="icon icon-view"></i></a>
-            <a href="" {{action 'delete' target='view'}}><i class="icon icon-delete"></i></a>
-        </div>
-    {{/view}}
-
     {{#view view.paginationView}}
         <div class="right pagination-controls">
             <span class="pagination-counter">
