@@ -35,7 +35,8 @@ class PageController extends DefaultPageController
 
         $breadcrumbs = [];
         if (!is_null($page->category)) {
-            $breadcrumbs = array_merge($page->category->getAncestry()->result()->fetchAll(), [$page->category]);
+            $breadcrumbs = $page->category->getAncestry()->result()->fetchAll();
+            $breadcrumbs[] = $page->category;
         }
 
         return $breadcrumbs;
