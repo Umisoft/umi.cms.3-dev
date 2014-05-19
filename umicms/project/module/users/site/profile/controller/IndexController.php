@@ -7,21 +7,23 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\users\site\authorization\controller;
+namespace umicms\project\module\users\site\profile\controller;
 
-use umi\form\element\IFormElement;
 use umi\form\IForm;
+use umi\orm\persister\IObjectPersisterAware;
+use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\UsersModule;
 use umicms\project\site\controller\SitePageController;
 use umicms\project\site\controller\TFormController;
 
 /**
- * Контроллер авторизации пользователя
+ * Контроллер сохранения профиля пользователя
  */
-class LoginController extends SitePageController
+class IndexController extends SitePageController implements IObjectPersisterAware
 {
     use TFormController;
+    use TObjectPersisterAware;
 
     /**
      * @var UsersModule $api API модуля "Пользователи"
@@ -50,7 +52,11 @@ class LoginController extends SitePageController
      */
     protected function buildForm()
     {
-        return $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, AuthorizedUser::TYPE_NAME);
+        return $this->api->user()->getForm(
+            AuthorizedUser::FORM_EDIT_PROFILE,
+            AuthorizedUser::TYPE_NAME,
+            $this->api->getCurrentUser()
+        );
     }
 
     /**
@@ -58,28 +64,7 @@ class LoginController extends SitePageController
      */
     protected function processForm(IForm $form)
     {
-        if ($this->api->isAuthenticated()) {
-            $this->api->logout();
-        }
-
-        /**
-         * @var IFormElement $loginInput
-         */
-        $loginInput = $form->get(AuthorizedUser::FIELD_LOGIN);
-        /**
-         * @var IFormElement $passwordInput
-         */
-        $passwordInput = $form->get(AuthorizedUser::FIELD_PASSWORD);
-
-        if ($this->api->login($loginInput->getValue(), $passwordInput->getValue())) {
-
-            return $this->buildRedirectResponse();
-
-        }
-
-        $this->errors[] = $this->translate('Invalid login or password');
-
-        return null;
+        $this->getObjectPersister()->commit();
     }
 
     /**
@@ -88,9 +73,9 @@ class LoginController extends SitePageController
     protected function buildResponseContent()
     {
         return [
-            'page' => $this->getCurrentPage(),
-            'authenticated' => $this->api->isAuthenticated()
+            'user' => $this->api->getCurrentUser(),
+            'page' => $this->getCurrentPage()
         ];
     }
-
 }
+ 

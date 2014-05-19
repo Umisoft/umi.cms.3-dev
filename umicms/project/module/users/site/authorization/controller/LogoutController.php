@@ -38,7 +38,7 @@ class LogoutController extends BaseController
     public function __invoke()
     {
 
-        $form = $this->api->user()->getForm(AuthorizedUser::FORM_LOGOUT_SITE, 'authorized');
+        $form = $this->api->user()->getForm(AuthorizedUser::FORM_LOGOUT_SITE, AuthorizedUser::TYPE_NAME);
 
         if ($this->isRequestMethodPost()) {
             $form->setData($this->getAllPostVars());

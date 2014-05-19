@@ -9,15 +9,24 @@
 
 namespace umicms\project\module\users\api\object;
 
+use umicms\project\module\users\api\collection\UserCollection;
+
 /**
  * Пользователь.
  *
  * @property string $login логин
  * @property string $email e-mail
- * @property string $password пароль
+ * @property string $firstName имя
+ * @property string $middleName отчество
+ * @property string $lastName фамилия
  */
 class AuthorizedUser extends BaseUser
 {
+    /**
+     * Имя типа авторизованного пользователя
+     */
+    const TYPE_NAME = 'authorized';
+
     /**
      * Имя поля для хранения логина
      */
@@ -31,9 +40,25 @@ class AuthorizedUser extends BaseUser
      */
     const FIELD_PASSWORD_SALT = 'passwordSalt';
     /**
+     * Поле для хранения кода активации.
+     */
+    const FIELD_ACTIVATION_CODE = 'activationCode';
+    /**
      * Имя поля для хранения пароля
      */
     const FIELD_PASSWORD = 'password';
+    /**
+     * Имя поля для хранения имени пользователя
+     */
+    const FIELD_FIRST_NAME = 'firstName';
+    /**
+     * Имя поля для хранения фамилии пользователя
+     */
+    const FIELD_LAST_NAME = 'lastName';
+    /**
+     * Имя поля для хранения отчества пользователя
+     */
+    const FIELD_MIDDLE_NAME = 'middleName';
 
     /**
      * Форма авторизации пользователя на сайте
@@ -44,7 +69,188 @@ class AuthorizedUser extends BaseUser
      */
     const FORM_LOGOUT_SITE = 'logout.site';
     /**
+     * Форма редактирования профиля пользователя
+     */
+    const FORM_EDIT_PROFILE = 'editProfile';
+    /**
+     * Форма регистрации пользователя на сайте
+     */
+    const FORM_REGISTRATION = 'registration';
+    /**
      * Форма авторизации пользователя в административной панели
      */
     const FORM_LOGIN_ADMIN = 'login.admin';
+
+    /**
+     * @var string $passwordSalt маска соли для хэширования паролей
+     */
+    public $passwordSaltMask = '$2a$09${salt}$';
+
+    /**
+     * @var string $rawPassword устанавливаемый пароль
+     */
+    private $rawPassword;
+    /**
+     * @var string $passwordConfirmation подтверждение устанавливаемого пароля
+     */
+    private $passwordConfirmation;
+
+     /**
+     * Устанавливает пароль для пользователя.
+     * @param string|array $password
+     * @return $this
+     */
+    public function setPassword($password)
+    {
+        if (is_array($password)) {
+            if (isset($password[1])) {
+                $this->passwordConfirmation  = $password[1];
+            }
+            if (isset($password[0])) {
+                $password  = $password[0];
+            }
+        }
+
+        $oldPasswordSalt = $this->getProperty(self::FIELD_PASSWORD_SALT)->getValue();
+        if (crypt($password, $oldPasswordSalt) === $this->getProperty(self::FIELD_PASSWORD)->getValue()) {
+            return $this;
+        }
+
+        $this->rawPassword = $password;
+
+        $passwordSalt = strtr($this->passwordSaltMask, [
+                '{salt}' => uniqid('', true)
+            ]);
+        $passwordHash = crypt($password, $passwordSalt);
+
+        $this->getProperty(self::FIELD_PASSWORD_SALT)->setValue($passwordSalt);
+        $this->getProperty(self::FIELD_PASSWORD)->setValue($passwordHash);
+
+        return $this;
+    }
+
+    /**
+     * Возвращает пароль.
+     * @return string
+     */
+    public function getPassword()
+    {
+        return '';
+    }
+
+    /**
+     * Возвращает устанавливаемый пароль
+     * @return string
+     */
+    public function getRawPassword()
+    {
+        return $this->rawPassword;
+    }
+
+    /**
+     * Проверяет валидность логина.
+     * @return bool
+     */
+    public function validateLogin()
+    {
+        $result = true;
+
+        $users = $this->getCollection()
+            ->select()
+                ->fields([self::FIELD_IDENTIFY])
+            ->where(self::FIELD_LOGIN)
+                ->equals($this->login)
+            ->where(self::FIELD_IDENTIFY)
+                ->notEquals($this->getId())
+            ->getResult();
+
+        if (count($users->fetchAll())) {
+            $result = false;
+            $this->getProperty(self::FIELD_LOGIN)->addValidationErrors(
+                [$this->translate('Login is not unique')]
+            );
+        }
+
+        return $result;
+    }
+
+    /**
+     * Проверяет валидность логина.
+     * @return bool
+     */
+    public function validateEmail()
+    {
+        $result = true;
+
+        $users = $this->getCollection()
+            ->select()
+                ->fields([self::FIELD_IDENTIFY])
+            ->where(self::FIELD_EMAIL)
+                ->equals($this->email)
+            ->where(self::FIELD_IDENTIFY)
+                ->notEquals($this->getId())
+            ->getResult();
+
+        if (count($users->fetchAll())) {
+            $result = false;
+            $this->getProperty(self::FIELD_EMAIL)->addValidationErrors(
+                [$this->translate('Email is not unique')]
+            );
+        }
+
+        return $result;
+    }
+
+    /**
+     * Проверяет валидность пароля.
+     * @return bool
+     */
+    public function validatePassword()
+    {
+        if (!$this->getRawPassword()) {
+            return true;
+        }
+
+        $result = true;
+
+        /**
+         * @var UserCollection $collection
+         */
+        $collection = $this->getCollection();
+
+        if ($this->passwordConfirmation && $this->getRawPassword() !== $this->passwordConfirmation) {
+            $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
+                [$this->translate('Passwords are not equal')]
+            );
+
+            $result = false;
+        }
+
+        if ($collection->getIsPasswordAndLoginEqualityForbidden() && $this->getRawPassword() === $this->login) {
+            $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
+                [$this->translate('Password must not be equal to login')]
+            );
+
+            $result = false;
+        }
+
+        if ($minPasswordLength = $collection->getMinPasswordLength()) {
+
+            if (strlen($this->rawPassword) < $minPasswordLength) {
+                $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
+                    [$this->translate
+                        (
+                            'Password must contain at least {length} characters',
+                            ['length' => $minPasswordLength]
+                        )
+                    ]
+                );
+
+                $result = false;
+            }
+        }
+
+        return $result;
+    }
+
 }

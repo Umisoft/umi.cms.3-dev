@@ -18,6 +18,7 @@ use umicms\captcha\toolbox\CaptchaTools;
 use umicms\form\element\Captcha;
 use umicms\form\element\File;
 use umicms\form\element\Image;
+use umicms\form\element\PasswordWithConfirmation;
 use umicms\form\element\Wysiwyg;
 use umicms\module\toolbox\ModuleTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
@@ -65,14 +66,15 @@ return [
                     Wysiwyg::TYPE_NAME => 'umicms\form\element\Wysiwyg',
                     File::TYPE_NAME => 'umicms\form\element\File',
                     Image::TYPE_NAME => 'umicms\form\element\Image',
-                    Captcha::TYPE_NAME => 'umicms\form\element\Captcha'
+                    Captcha::TYPE_NAME => 'umicms\form\element\Captcha',
+                    PasswordWithConfirmation::TYPE_NAME => 'umicms\form\element\PasswordWithConfirmation'
                 ]
             ]
         ]
     ],
 
     ModuleTools::NAME => [
-        'modules' => '{#partial:~/project/module/modules.config.php}'
+        'modules' => '{#partial:~/project/configuration/modules.config.php}'
     ],
 
     OrmTools::NAME => [

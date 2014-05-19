@@ -7,26 +7,32 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\users\site\authorization\controller;
+namespace umicms\project\module\users\site\registration\controller;
 
-use umi\form\element\IFormElement;
 use umi\form\IForm;
+use umi\orm\persister\IObjectPersisterAware;
+use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\UsersModule;
 use umicms\project\site\controller\SitePageController;
 use umicms\project\site\controller\TFormController;
 
 /**
- * Контроллер авторизации пользователя
+ * Контроллер сохранения профиля пользователя
  */
-class LoginController extends SitePageController
+class IndexController extends SitePageController implements IObjectPersisterAware
 {
     use TFormController;
+    use TObjectPersisterAware;
 
     /**
      * @var UsersModule $api API модуля "Пользователи"
      */
     protected $api;
+    /**
+     * @var AuthorizedUser $user регистрируемый пользователь
+     */
+    private $user;
 
     /**
      * Конструктор.
@@ -50,7 +56,10 @@ class LoginController extends SitePageController
      */
     protected function buildForm()
     {
-        return $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, AuthorizedUser::TYPE_NAME);
+        $type = $this->getRouteVar('type', AuthorizedUser::TYPE_NAME);
+        $this->user = $this->api->user()->add($type);
+
+        return $this->api->user()->getForm(AuthorizedUser::FORM_REGISTRATION, $type, $this->user);
     }
 
     /**
@@ -58,28 +67,17 @@ class LoginController extends SitePageController
      */
     protected function processForm(IForm $form)
     {
-        if ($this->api->isAuthenticated()) {
-            $this->api->logout();
+        $this->api->register($this->user);
+
+        $this->getObjectPersister()->commit();
+
+        if ($this->user->active) {
+            $this->api->login($this->user->login, $this->user->getRawPassword());
         }
 
-        /**
-         * @var IFormElement $loginInput
-         */
-        $loginInput = $form->get(AuthorizedUser::FIELD_LOGIN);
-        /**
-         * @var IFormElement $passwordInput
-         */
-        $passwordInput = $form->get(AuthorizedUser::FIELD_PASSWORD);
+        //TODO отправка писем
 
-        if ($this->api->login($loginInput->getValue(), $passwordInput->getValue())) {
-
-            return $this->buildRedirectResponse();
-
-        }
-
-        $this->errors[] = $this->translate('Invalid login or password');
-
-        return null;
+        return $this->buildRedirectResponse();
     }
 
     /**
@@ -88,9 +86,10 @@ class LoginController extends SitePageController
     protected function buildResponseContent()
     {
         return [
-            'page' => $this->getCurrentPage(),
-            'authenticated' => $this->api->isAuthenticated()
+            'authenticated' => $this->api->isAuthenticated(),
+            'user' => $this->user,
+            'page' => $this->getCurrentPage()
         ];
     }
-
 }
+ 

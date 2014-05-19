@@ -11,7 +11,7 @@
     <?=$page->contents?>
 
     <?php if ($authenticated) : ?>
-        <?= $this->translate("You are already logged in") ?>.
+        <?= $this->translate("You are already registered") ?>.
         <p>
             <?= $this->widget('users.profile.link', ['template' => 'link']); ?>
         </p>
@@ -20,6 +20,5 @@
         <?php $errors = isset($errors) ? $errors : null ?>
         <?= $this->render('form/form.phtml', ['form' => $form, 'errors' => $errors]) ?>
     <?php endif; ?>
-
 
 </div>
