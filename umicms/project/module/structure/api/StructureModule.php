@@ -61,4 +61,13 @@ class StructureModule extends BaseModule
 
         return $element->layout;
     }
+
+    /**
+     * Возвращает страницу сайта по умолчанию.
+     * @return StructureElement $element
+     */
+    public function getDefaultPage()
+    {
+        return $this->element()->getDefaultPage();
+    }
 }

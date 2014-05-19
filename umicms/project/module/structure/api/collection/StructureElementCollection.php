@@ -21,6 +21,8 @@ use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\structure\api\object\SystemPage;
+use umicms\project\site\config\ISiteSettingsAware;
+use umicms\project\site\config\TSiteSettingsAware;
 
 /**
  * Коллекция для работы с элементами структуры сайта.
@@ -31,14 +33,24 @@ use umicms\project\module\structure\api\object\SystemPage;
  * @method StructureElement getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT) Возвращает элемент по URI.
  * @method StructureElement add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Добавляет элемент.
  */
-class StructureElementCollection extends PageHierarchicCollection implements ILockedAccessibleCollection
+class StructureElementCollection extends PageHierarchicCollection implements ILockedAccessibleCollection, ISiteSettingsAware
 {
     use TLockedAccessibleCollection;
+    use TSiteSettingsAware;
 
     /**
      * Имя типа для системных страниц.
      */
     const TYPE_SYSTEM = 'system';
+
+    /**
+     * Возвращает страницу сайта по умолчанию.
+     * @return StructureElement
+     */
+    public function getDefaultPage()
+    {
+        return $this->get($this->getSiteDefaultPageGuid());
+    }
 
     /**
      * {@inheritdoc}
