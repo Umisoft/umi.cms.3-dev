@@ -22,6 +22,11 @@ namespace umicms\project\module\users\api\object;
 class AuthorizedUser extends BaseUser
 {
     /**
+     * Имя типа авторизованного пользователя
+     */
+    const TYPE_NAME = 'authorized';
+
+    /**
      * Имя поля для хранения логина
      */
     const FIELD_LOGIN = 'login';
@@ -59,34 +64,105 @@ class AuthorizedUser extends BaseUser
      */
     const FORM_LOGOUT_SITE = 'logout.site';
     /**
-     * Форма разавторизации пользователя на сайте
+     * Форма редактирования профиля пользователя
      */
     const FORM_EDIT_PROFILE = 'editProfile';
+    /**
+     * Форма регистрации пользователя на сайте
+     */
+    const FORM_REGISTRATION = 'registration';
     /**
      * Форма авторизации пользователя в административной панели
      */
     const FORM_LOGIN_ADMIN = 'login.admin';
 
     /**
-     * Возвращает полное имя пользователя.
+     * @var string $passwordSalt маска соли для хэширования паролей
+     */
+    public $passwordSaltMask = '$2a$09${salt}$';
+
+    /**
+     * @var string $rawPassword устанавливаемый пароль
+     */
+    private $rawPassword;
+
+     /**
+     * Устанавливает пароль для пользователя.
+     * @param string $password
+     * @return $this
+     */
+    public function setPassword($password)
+    {
+        $oldPasswordSalt = $this->getProperty(self::FIELD_PASSWORD_SALT)->getValue();
+        if (crypt($password, $oldPasswordSalt) === $this->getProperty(self::FIELD_PASSWORD)->getValue()) {
+            return $this;
+        }
+
+        $this->rawPassword = $password;
+
+        $passwordSalt = strtr($this->passwordSaltMask, [
+                '{salt}' => uniqid('', true)
+            ]);
+        $passwordHash = crypt($password, $passwordSalt);
+
+        $this->getProperty(self::FIELD_PASSWORD_SALT)->setValue($passwordSalt);
+        $this->getProperty(self::FIELD_PASSWORD)->setValue($passwordHash);
+
+        return $this;
+    }
+
+    /**
+     * Возвращает пароль.
      * @return string
      */
-    public function getFullName()
+    public function getPassword()
     {
-        $names = [];
-
-        if ($this->firstName) {
-            $names[] = $this->firstName;
-        }
-
-        if ($this->middleName) {
-            $names[] = $this->middleName;
-        }
-
-        if ($this->lastName) {
-            $names[] = $this->lastName;
-        }
-
-        return implode(' ', $names);
+        return '';
     }
+
+    /**
+     * Проверяет валидность логина.
+     * @return bool
+     */
+    public function validateLogin()
+    {
+        //TODO учитывать настройки
+        $result = true;
+
+        $users = $this->getCollection()
+            ->select()
+                ->fields([self::FIELD_IDENTIFY])
+            ->where(self::FIELD_LOGIN)
+                ->equals($this->login)
+            ->where(self::FIELD_IDENTIFY)
+                ->notEquals($this->getId())
+            ->getResult();
+
+        if (count($users->fetchAll())) {
+            $result = false;
+            $this->getProperty(self::FIELD_LOGIN)->addValidationErrors(
+                [$this->translate('Login is not unique')]
+            );
+        }
+
+        return $result;
+    }
+
+    /**
+     * Проверяет валидность пароля.
+     * @return bool
+     */
+    public function validatePassword()
+    {
+        if (!$this->rawPassword) {
+            return true;
+        }
+
+        $result = true;
+
+        //TODO настройки валидации пароля
+
+        return $result;
+    }
+
 }

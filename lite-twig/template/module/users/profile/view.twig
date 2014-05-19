@@ -1,6 +1,6 @@
 <p>
     {{ translate("Welcome")  }}, <br>
-    {{ user.getFullName() }} ({{ user.login }})
+    {{ user.displayName }}
 </p>
 
 {{  widget('users.authorization.logoutForm', {'template' : 'logoutForm' }) }}

@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\users\site\profile\controller;
+namespace umicms\project\module\users\site\registration\controller;
 
 use umi\form\IForm;
 use umi\orm\persister\IObjectPersisterAware;
@@ -29,6 +29,10 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
      * @var UsersModule $api API модуля "Пользователи"
      */
     protected $api;
+    /**
+     * @var AuthorizedUser $user регистрируемый пользователь
+     */
+    private $user;
 
     /**
      * Конструктор.
@@ -52,11 +56,10 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
      */
     protected function buildForm()
     {
-        return $this->api->user()->getForm(
-            AuthorizedUser::FORM_EDIT_PROFILE,
-            AuthorizedUser::TYPE_NAME,
-            $this->api->getCurrentUser()
-        );
+        $type = $this->getRouteVar('type', AuthorizedUser::TYPE_NAME);
+        $this->user = $this->api->user()->add($type);
+
+        return $this->api->user()->getForm(AuthorizedUser::FORM_REGISTRATION, $type, $this->user);
     }
 
     /**
@@ -64,6 +67,9 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
      */
     protected function processForm(IForm $form)
     {
+        //TODO
+
+
         $this->getObjectPersister()->commit();
     }
 
@@ -73,7 +79,8 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     protected function buildResponseContent()
     {
         return [
-            'user' => $this->api->getCurrentUser(),
+            'authenticated' => $this->api->isAuthenticated(),
+            'user' => $this->user,
             'page' => $this->getCurrentPage()
         ];
     }

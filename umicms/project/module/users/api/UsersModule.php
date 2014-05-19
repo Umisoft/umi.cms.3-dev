@@ -34,10 +34,6 @@ class UsersModule extends BaseModule implements IAuthenticationAware
      * @var string $supervisorGuid GUID супервайзера
      */
     public $supervisorGuid = '68347a1d-c6ea-49c0-9ec3-b7406e42b01e';
-    /**
-     * @var string $passwordSalt маска соли для хэширования паролей
-     */
-    public $passwordSaltMask = '$2a$09${salt}$';
 
     /**
      * Возвращает репозиторий для работы с пользователями.
@@ -46,22 +42,6 @@ class UsersModule extends BaseModule implements IAuthenticationAware
     public function user()
     {
         return $this->getCollection('user');
-    }
-
-    /**
-     * Устанавливает пользователю новый пароль.
-     * @param AuthorizedUser $user авторизованный пользователь
-     * @param string $password пароль
-     */
-    public function setUserPassword(AuthorizedUser $user, $password)
-    {
-        $passwordSalt = strtr($this->passwordSaltMask, [
-                '{salt}' => uniqid('', true)
-            ]);
-        $passwordHash = crypt($password, $passwordSalt);
-
-        $user->getProperty(AuthorizedUser::FIELD_PASSWORD_SALT)->setValue($passwordSalt);
-        $user->getProperty(AuthorizedUser::FIELD_PASSWORD)->setValue($passwordHash);
     }
 
     /**

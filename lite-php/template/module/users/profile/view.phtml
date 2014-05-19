@@ -5,7 +5,7 @@
 ?>
 <p>
     <?= $this->translate('Welcome') ?>, <br>
-    <?= $user->getFullName() ?> (<?= $user->login ?>)
+    <?= $user->displayName ?>
 </p>
 
 <?= $this->widget('users.authorization.logoutForm', ['template' => 'logoutForm']); ?>

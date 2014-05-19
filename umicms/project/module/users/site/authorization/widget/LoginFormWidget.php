@@ -42,7 +42,7 @@ class LoginFormWidget extends BaseFormWidget
      */
     protected function getForm()
     {
-        return $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, 'authorized')
+        return $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, AuthorizedUser::TYPE_NAME)
             ->setAction($this->getUrl('login'));
     }
 }

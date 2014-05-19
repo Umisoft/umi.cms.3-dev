@@ -9,7 +9,6 @@
 
 namespace project\install\controller;
 
-use application\model\UserModel;
 use Doctrine\DBAL\DBALException;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\driver\IDialect;
@@ -37,7 +36,6 @@ use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\object\Guest;
 use umicms\project\module\users\api\object\Supervisor;
 use umicms\project\module\users\api\object\UserGroup;
-use umicms\project\module\users\api\UsersModule;
 
 /**
  * Class InstallController
@@ -54,11 +52,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     protected $dbCluster;
     /**
-     * @var UsersModule $usersApi
-     */
-    protected $usersApi;
-
-    /**
      * @var string $testLayout
      */
     protected $blogLayout;
@@ -68,18 +61,17 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     protected $backupRepository;
     private $searchIndexApi;
     /**
-     * @var UserModel $userSv
+     * @var AuthorizedUser $userSv
      */
     private $userSv;
     /**
-     * @var UserModel $user
+     * @var AuthorizedUser $user
      */
     private $user;
 
-    public function __construct(IDbCluster $dbCluster, UsersModule $usersApi, SearchModule $searchModule)
+    public function __construct(IDbCluster $dbCluster, SearchModule $searchModule)
     {
         $this->dbCluster = $dbCluster;
-        $this->usersApi = $usersApi;
         $this->searchIndexApi = $searchModule->getSearchApi();
     }
 
@@ -143,6 +135,14 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $authorizationPage->getProperty('componentName')->setValue('authorization');
         $authorizationPage->getProperty('componentPath')->setValue('users.authorization');
 
+        $registrationPage = $structureCollection->add('registration', 'system', $usersPage)
+            ->setValue('displayName', 'Регистрация')
+            ->setValue('metaTitle', 'Регистрация')
+            ->setValue('h1', 'Регистрация');
+
+        $registrationPage->getProperty('componentName')->setValue('registration');
+        $registrationPage->getProperty('componentPath')->setValue('users.registration');
+
         $profilePage = $structureCollection->add('profile', 'system', $usersPage)
             ->setValue('displayName', 'Профиль')
             ->setValue('metaTitle', 'Профиль')
@@ -165,6 +165,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
             'project.site.users' => ['viewer'],
             'project.site.users.authorization' => ['viewer'],
+            'project.site.users.registration' => ['viewer'],
 
             'project.site.structure' => ['viewer'],
             'project.site.structure.menu' => ['viewer'],
@@ -243,7 +244,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setGUID('68347a1d-c6ea-49c0-9ec3-b7406e42b01e');
         $sv->getProperty('locked')->setValue(true);
 
-        $this->usersApi->setUserPassword($sv, '1');
+        $sv->setPassword('1');
 
         $this->userSv = $sv;
 
@@ -260,7 +261,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $admin->groups->attach($visitors);
         $admin->groups->attach($registeredUsers);
         $admin->groups->attach($administrators);
-        $this->usersApi->setUserPassword($admin, 'admin');
+        $admin->setPassword('admin');
 
         /**
          * @var AuthorizedUser $user
@@ -274,7 +275,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $user->groups->attach($visitors);
         $user->groups->attach($authors);
         $user->groups->attach($registeredUsers);
-        $this->usersApi->setUserPassword($user, 'demo');
+        $user->setPassword('demo');
 
         $this->user = $user;
 

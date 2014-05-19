@@ -7,21 +7,25 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\users\site\authorization\widget;
+namespace umicms\project\module\users\site\registration\widget;
 
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\UsersModule;
 
 /**
- * Виджет формы "разавторизации".
+ * Виджет вывода формы регистрации пользователя.
  */
-class LogoutFormWidget extends BaseFormWidget
+class FormWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'logoutForm';
+    public $template = 'form';
+    /**
+     * @var string $type тип регистрируемого пользователя
+     */
+    public $type = AuthorizedUser::TYPE_NAME;
 
     /**
      * @var UsersModule $api API модуля "Пользователи"
@@ -42,8 +46,8 @@ class LogoutFormWidget extends BaseFormWidget
      */
     protected function getForm()
     {
-        return $this->api->user()->getForm(AuthorizedUser::FORM_LOGOUT_SITE, AuthorizedUser::TYPE_NAME)
-            ->setAction($this->getUrl('logout'));
+        return $this->api->user()->getForm(AuthorizedUser::FORM_REGISTRATION, $this->type)
+            ->setAction($this->getUrl('index'));
     }
 }
  

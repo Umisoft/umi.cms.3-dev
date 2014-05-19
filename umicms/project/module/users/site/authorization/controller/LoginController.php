@@ -50,7 +50,7 @@ class LoginController extends SitePageController
      */
     protected function buildForm()
     {
-        return $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, 'authorized');
+        return $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, AuthorizedUser::TYPE_NAME);
     }
 
     /**

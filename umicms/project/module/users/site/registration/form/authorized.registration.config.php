@@ -11,7 +11,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.user', 'collection', 'project.site.users.profile', 'form'
+            'collection.user', 'collection', 'project.site.users.regisration', 'form'
         ],
     ],
     'attributes' => [
@@ -20,11 +20,22 @@ return [
 
     'elements' => [
 
-        AuthorizedUser::FIELD_DISPLAY_NAME => [
+        AuthorizedUser::FIELD_LOGIN => [
             'type' => Text::TYPE_NAME,
-            'label' => AuthorizedUser::FIELD_DISPLAY_NAME,
+            'label' => AuthorizedUser::FIELD_LOGIN,
             'options' => [
-                'dataSource' => AuthorizedUser::FIELD_DISPLAY_NAME,
+                'dataSource' => AuthorizedUser::FIELD_LOGIN,
+                'filters' => [
+                    IFilterFactory::TYPE_STRING_TRIM => []
+                ]
+            ]
+        ],
+
+        AuthorizedUser::FIELD_PASSWORD => [
+            'type' => Text::TYPE_NAME,
+            'label' => AuthorizedUser::FIELD_PASSWORD,
+            'options' => [
+                'dataSource' => AuthorizedUser::FIELD_PASSWORD,
                 'filters' => [
                     IFilterFactory::TYPE_STRING_TRIM => []
                 ]
@@ -36,6 +47,17 @@ return [
             'label' => AuthorizedUser::FIELD_EMAIL,
             'options' => [
                 'dataSource' => AuthorizedUser::FIELD_EMAIL,
+                'filters' => [
+                    IFilterFactory::TYPE_STRING_TRIM => []
+                ]
+            ]
+        ],
+
+        AuthorizedUser::FIELD_DISPLAY_NAME => [
+            'type' => Text::TYPE_NAME,
+            'label' => AuthorizedUser::FIELD_DISPLAY_NAME,
+            'options' => [
+                'dataSource' => AuthorizedUser::FIELD_DISPLAY_NAME,
                 'filters' => [
                     IFilterFactory::TYPE_STRING_TRIM => []
                 ]
