@@ -156,7 +156,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $visitors = $groupCollection->add()
             ->setValue('displayName', 'Посетители')
-            ->setValue('displayName', 'Visitors', 'en-US');
+            ->setValue('displayName', 'Visitors', 'en-US')
+            ->setGUID('bedcbbac-7dd1-4b60-979a-f7d944ecb08a');
         $visitors->getProperty('locked')->setValue(true);
 
         $visitors->roles = [
@@ -188,7 +189,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $registeredUsers = $groupCollection->add()
             ->setValue('displayName', 'Зерегистрированные пользователи')
-            ->setValue('displayName', 'Registered users', 'en-US');
+            ->setValue('displayName', 'Registered users', 'en-US')
+            ->setGUID('daabebf8-f3b3-4f62-a23d-522eff9b7f68');
         $registeredUsers->getProperty('locked')->setValue(true);
 
         $registeredUsers->roles = [

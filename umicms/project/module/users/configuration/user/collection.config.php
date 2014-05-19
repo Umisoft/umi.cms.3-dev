@@ -32,4 +32,5 @@ return [
             AuthorizedUser::FORM_REGISTRATION => '{#lazy:~/project/module/users/site/registration/form/authorized.registration.config.php}',
         ]
     ],
+    'settings' => '{#lazy:~/project/module/users/configuration/user/collection.settings.config.php}'
 ];

@@ -42,6 +42,23 @@ class UserCollection extends SimpleCollection
     }
 
     /**
+     * Настройка для регистрации пользователей только после активации
+     */
+    const SETTING_REGISTRATION_WITH_ACTIVATION = 'registrationWithActivation';
+    /**
+     * Настройка для минимальной длины пароля
+     */
+    const SETTING_MIN_PASSWORD_LENGTH = 'minPasswordLength';
+    /**
+     * Настройка для запрещения совпадения пароля с логином
+     */
+    const SETTING_FORBID_PASSWORD_LOGIN_EQUALITY = 'forbidPasswordLoginEquality';
+    /**
+     * Настройка для групп зарегистрированных пользователей по умолчанию
+     */
+    const SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS = 'registeredUsersDefaultGroupGuids';
+
+    /**
      * {@inheritdoc}
      */
     public function deactivate(IActiveAccessibleObject $object)
