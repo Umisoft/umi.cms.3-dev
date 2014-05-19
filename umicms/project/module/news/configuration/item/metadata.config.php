@@ -13,7 +13,7 @@ use umicms\project\module\news\api\object\NewsItem;
 
 return [
     'dataSource' => [
-        'sourceName' => 'umi_news_item'
+        'sourceName' => 'project_news_item'
     ],
     'fields'     => [
 

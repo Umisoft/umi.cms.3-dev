@@ -25,9 +25,14 @@ use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseController;
+use umicms\model\manager\IModelManagerAware;
+use umicms\model\manager\TModelManagerAware;
+use umicms\module\IModuleAware;
+use umicms\module\TModuleAware;
 use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\news\api\collection\NewsRssImportScenarioCollection;
+use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchModule;
 use umicms\project\module\service\api\collection\BackupCollection;
@@ -42,12 +47,14 @@ use umicms\project\module\users\api\UsersModule;
 /**
  * Class InstallController
  */
-class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware, IObjectManagerAware
+class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware, IObjectManagerAware, IModuleAware, IModelManagerAware
 {
 
     use TCollectionManagerAware;
     use TObjectPersisterAware;
     use TObjectManagerAware;
+    use TModuleAware;
+    use TModelManagerAware;
 
     /**
      * @var IDbCluster $dbCluster

@@ -10,10 +10,9 @@
 namespace umicms\model;
 
 /**
- * Class Field
+ * Class FieldCollection
  */
-class Field
+class FieldCollection
 {
 
 }
- 

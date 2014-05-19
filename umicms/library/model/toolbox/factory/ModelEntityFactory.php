@@ -7,10 +7,14 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\model;
+namespace umicms\model\toolbox\factory;
 
+use umi\config\entity\IConfig;
 use umi\toolkit\factory\IFactory;
 use umi\toolkit\factory\TFactory;
+use umicms\model\Model;
+use umicms\model\ModelCollection;
+use umicms\model\scheme\TableSchemeLoader;
 
 /**
  * Фабрика сущностей моделей данных
@@ -27,6 +31,10 @@ class ModelEntityFactory implements IFactory
      * @var string $modelClass класс модели
      */
     public $modelClass = 'umicms\model\Model';
+    /**
+     * @var string $tableSchemeLoaderClass класс загрузчика схемы таблицы из конфигурации
+     */
+    public $tableSchemeLoaderClass = 'umicms\model\scheme\TableSchemeLoader';
 
     /**
      * Создает коллекцию моделей.
@@ -43,18 +51,31 @@ class ModelEntityFactory implements IFactory
     }
 
     /**
-     * Создает модель данных
+     * Создает модель данных.
      * @param string $modelName имя модели
-     * @param array $config конфигурация
+     * @param IConfig $config конфигурация
      * @return Model
      */
-    public function createModel($modelName, array $config)
+    public function createModel($modelName, IConfig $config)
     {
         return $this->getPrototype(
             $this->modelClass,
             ['umicms\model\Model']
         )
             ->createInstance([$modelName, $config]);
+    }
+
+    /**
+     * Возвращает загрузчик схемы таблицы из конфигурации.
+     * @return TableSchemeLoader
+     */
+    public function getTableSchemeLoader()
+    {
+        return $this->getPrototype(
+            $this->tableSchemeLoaderClass,
+            ['umicms\model\scheme\TableSchemeLoader']
+        )
+            ->createSingleInstance();
     }
 }
  

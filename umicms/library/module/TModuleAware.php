@@ -9,8 +9,6 @@
 
 namespace umicms\module;
 
-use umi\config\entity\IConfig;
-use umicms\exception\NonexistentEntityException;
 use umicms\exception\RequiredDependencyException;
 use umicms\module\toolbox\ModuleTools;
 
@@ -23,10 +21,6 @@ trait TModuleAware
      * @var ModuleTools $traitModuleTools
      */
     private $traitModuleTools;
-    /**
-     * @var array $traitModuleClasses список классов модулей в формате [$moduleName => $moduleClassName, ...]
-     */
-    private $traitModuleClasses;
 
     /**
      * @see IModuleAware::setModuleTools()
@@ -38,64 +32,14 @@ trait TModuleAware
 
     /**
      * Возвращает модуль по имени класса.
-     * @param string $moduleClassName
+     * @param string $className
      * @return BaseModule
      */
-    protected function getModule($moduleClassName)
+    protected function getModule($className)
     {
-        return $this->getModuleTools()->getService('umicms\module\BaseModule', $moduleClassName);
+        return $this->getModuleTools()->getModuleByClass($className);
     }
 
-    /**
-     * Возвращает модуль по имени.
-     * @param string $moduleName
-     * @throws NonexistentEntityException если модуля с заданным именем нет
-     * @return BaseModule
-     */
-    protected function getModuleByName($moduleName)
-    {
-        if (!isset($this->getModuleNames()[$moduleName])) {
-            throw new NonexistentEntityException(
-                sprintf('Module "%s" does not exist.', $moduleName)
-            );
-        }
-
-        return $this->getModule($this->getModuleNames()[$moduleName]);
-    }
-
-    /**
-     * Возвращает список имен зарегестрированных модулей.
-     * @return array
-     */
-    protected function getModuleNames()
-    {
-        return array_keys($this->getModuleClassesByName());
-    }
-
-    /**
-     * Возвращает имена классов модулей по именам.
-     * @return array
-     */
-    protected function getModuleClassesByName()
-    {
-        if (is_null($this->traitModuleClasses)) {
-            $moduleClasses = [];
-
-            /**
-             * @var IConfig $config
-             */
-            foreach ($this->getModuleTools()->modules as $moduleClass => $config) {
-                if ($config->has('name')) {
-                    $moduleClass = $config->has('className') ? $config->get('className') : $moduleClass;
-                    $moduleClasses[$config->get('name')] = $moduleClass;
-                }
-            }
-
-            $this->traitModuleClasses = $moduleClasses;
-        }
-
-        return $this->traitModuleClasses;
-    }
 
     /**
      * Возвращает инструментарий для работы с модулями.

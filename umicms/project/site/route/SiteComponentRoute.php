@@ -14,6 +14,7 @@ use umi\route\type\BaseRoute;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\SystemPage;
@@ -30,6 +31,11 @@ class SiteComponentRoute extends BaseRoute implements IUrlManagerAware
      * @var StructureModule $systemApi API работы со структурой
      */
     protected $structureApi;
+
+    /**
+     * @var StructureElement[] $cache
+     */
+    private static $cache = [];
 
     /**
      * {@inheritdoc}
@@ -55,21 +61,23 @@ class SiteComponentRoute extends BaseRoute implements IUrlManagerAware
 
         $projectUrl = $this->getUrlManager()->getProjectUrl();
         if ($projectUrl != '/' && strpos($baseUrl, $projectUrl) === 0) {
-            $baseUrl = substr_replace($baseUrl, '', 0, strlen($projectUrl));
+            $baseUrl = (string) substr($baseUrl, strlen($projectUrl));
         }
+
         $pageUri = UriField::URI_START_SYMBOL . $baseUrl . '/' . $slug;
 
-        // TODO: use cache for routing optimization
-        $element = $this->structureApi->element()->selectSystem()
-            ->where(SystemPage::FIELD_URI)
+        if (!isset(self::$cache[$pageUri])) {
+            self::$cache[$pageUri] = $this->structureApi->element()->selectSystem()
+                ->where(SystemPage::FIELD_URI)
                 ->equals($pageUri)
-            ->limit(1)
-            ->result()->fetch();
+                ->limit(1)
+                ->result()->fetch();
+        }
 
-        if ($element instanceof SystemPage) {
+        if (self::$cache[$pageUri] instanceof SystemPage) {
 
-            $this->params[SiteComponent::MATCH_COMPONENT] = $element->componentName;
-            $this->params[SiteComponent::MATCH_STRUCTURE_ELEMENT] = $element;
+            $this->params[SiteComponent::MATCH_COMPONENT] = self::$cache[$pageUri]->componentName;
+            $this->params[SiteComponent::MATCH_STRUCTURE_ELEMENT] = self::$cache[$pageUri];
 
             return strlen($slug) + 1;
         } else {

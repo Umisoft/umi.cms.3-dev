@@ -51,6 +51,14 @@ abstract class BaseModule implements IModule, ICollectionManagerAware, IModelEnt
     protected $modelCollection;
 
     /**
+     * Возаращает имя класса модуля.
+     * @return string
+     */
+    public static function className() {
+        return get_called_class();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getName()
