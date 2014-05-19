@@ -4,6 +4,7 @@ use umi\filter\IFilterFactory;
 use umi\form\element\Hidden;
 use umi\form\element\Submit;
 use umi\form\element\Text;
+use umicms\form\element\PasswordWithConfirmation;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\users\api\object\AuthorizedUser;
 
@@ -32,7 +33,7 @@ return [
         ],
 
         AuthorizedUser::FIELD_PASSWORD => [
-            'type' => Text::TYPE_NAME,
+            'type' => PasswordWithConfirmation::TYPE_NAME,
             'label' => AuthorizedUser::FIELD_PASSWORD,
             'options' => [
                 'dataSource' => AuthorizedUser::FIELD_PASSWORD,

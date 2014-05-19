@@ -11,12 +11,14 @@ return [
 
     'en-US' => [
         'Register' => 'Register',
-        'You are already registered' => 'You are already registered'
+        'You are already registered' => 'You are already registered',
+        'Password confirmation' => 'Password confirmation'
     ],
 
     'ru-RU' => [
         'Register' => 'Регистрация',
-        'You are already registered' => 'Вы уже зарегистрированы'
+        'You are already registered' => 'Вы уже зарегистрированы',
+        'Password confirmation' => 'Подтверждение пароля'
     ]
 
 ];
