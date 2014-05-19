@@ -90,14 +90,27 @@ class AuthorizedUser extends BaseUser
      * @var string $rawPassword устанавливаемый пароль
      */
     private $rawPassword;
+    /**
+     * @var string $passwordConfirmation подтверждение устанавливаемого пароля
+     */
+    private $passwordConfirmation;
 
      /**
      * Устанавливает пароль для пользователя.
-     * @param string $password
+     * @param string|array $password
      * @return $this
      */
     public function setPassword($password)
     {
+        if (is_array($password)) {
+            if (isset($password[1])) {
+                $this->passwordConfirmation  = $password[1];
+            }
+            if (isset($password[0])) {
+                $password  = $password[0];
+            }
+        }
+
         $oldPasswordSalt = $this->getProperty(self::FIELD_PASSWORD_SALT)->getValue();
         if (crypt($password, $oldPasswordSalt) === $this->getProperty(self::FIELD_PASSWORD)->getValue()) {
             return $this;
@@ -123,6 +136,15 @@ class AuthorizedUser extends BaseUser
     public function getPassword()
     {
         return '';
+    }
+
+    /**
+     * Возвращает устанавливаемый пароль
+     * @return string
+     */
+    public function getRawPassword()
+    {
+        return $this->rawPassword;
     }
 
     /**
@@ -185,7 +207,7 @@ class AuthorizedUser extends BaseUser
      */
     public function validatePassword()
     {
-        if (!$this->rawPassword) {
+        if (!$this->getRawPassword()) {
             return true;
         }
 
@@ -196,7 +218,15 @@ class AuthorizedUser extends BaseUser
          */
         $collection = $this->getCollection();
 
-        if ($collection->getIsPasswordAndLoginEqualityForbidden() && $this->rawPassword === $this->login) {
+        if ($this->passwordConfirmation && $this->getRawPassword() !== $this->passwordConfirmation) {
+            $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
+                [$this->translate('Passwords are not equal')]
+            );
+
+            $result = false;
+        }
+
+        if ($collection->getIsPasswordAndLoginEqualityForbidden() && $this->getRawPassword() === $this->login) {
             $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
                 [$this->translate('Password must not be equal to login')]
             );

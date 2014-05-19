@@ -67,10 +67,17 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
      */
     protected function processForm(IForm $form)
     {
-        //TODO
-
+        $this->api->register($this->user);
 
         $this->getObjectPersister()->commit();
+
+        if ($this->user->active) {
+            $this->api->login($this->user->login, $this->user->getRawPassword());
+        }
+
+        //TODO отправка писем
+
+        return $this->buildRedirectResponse();
     }
 
     /**
