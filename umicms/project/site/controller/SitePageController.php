@@ -10,7 +10,6 @@
 namespace umicms\project\site\controller;
 
 use umi\hmvc\component\IComponent;
-use umi\orm\object\IObject;
 use umicms\hmvc\controller\BaseSecureController;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\orm\object\ICmsPage;
