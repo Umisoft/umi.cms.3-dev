@@ -20,6 +20,14 @@ define([
                 this.set('isExpanded', true);
             }
         }.property(),
+        nestedSlug: function(){
+            var computedSlug = '';
+            if(this.get('parentView').constructor.toString() === '.TreeSimpleItemView'){
+                computedSlug = this.get('parentView').get('context.name') + '.';
+            }
+            computedSlug += this.get('context.name');
+            return computedSlug;
+        }.property(),
         actions: {
             expanded: function(){
                 this.toggleProperty('isExpanded');

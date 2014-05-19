@@ -596,21 +596,22 @@ define([], function(){
             UMI.SettingsComponentRoute = Ember.Route.extend({
                 model: function(params){
                     var settings = this.modelFor('settings');
-                    var findDepth = function findDepth(components, propertyName, propertyValue){
-                        var i;
+                    var findDepth = function(components, propertyName, slug){
                         var component;
-                        var result;
-                        for(i = 0; i < components.length; i++){
-                            if(components[i][propertyName] === propertyValue){
-                                component = components[i];
-                            }
-                            if('components' in components[i]){
-                                result = findDepth(components[i].components, propertyName, propertyValue);
-                                if(result){
-                                    component = result;
+                        slug = slug.split('.');
+
+                        for(var j = 0; j < slug.length; j++){
+                            component = components.findBy(propertyName, slug[j]);
+
+                            if(1 + j < slug.length && component){
+                                if('components' in component){
+                                    components = component.components;
+                                } else{
+                                    Ember.assert('Отсутствуют дочерние компоненты для раздела ' + component.name + '.');
                                 }
                             }
                         }
+
                         return component;
                     };
                     var component = findDepth(settings, 'name', params.component);
