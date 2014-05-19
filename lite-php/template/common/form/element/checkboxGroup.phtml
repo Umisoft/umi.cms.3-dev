@@ -1,8 +1,21 @@
 <?php
 /**
  * @var array $elementInfo
+ * @var umi\form\element\CheckboxGroup $element
  */
 ?>
+
+<?php $element = $elementInfo['element']?>
+
+<?php if (!$element->isValid()) : ?>
+    <div class="alert alert-danger">
+        <ul>
+            <?php foreach ($element->getMessages() as $message) : ?>
+                <li><?= $message ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
 
 <?php foreach ($elementInfo['choices'] as $choiceInfo) : ?>
     <label><input <?= $choiceInfo['attributes'] ?> /><?= $choiceInfo['label'] ?></label>

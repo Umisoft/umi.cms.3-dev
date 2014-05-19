@@ -8,13 +8,18 @@
  */
 
 use umi\form\element\Hidden;
+use umi\form\element\Submit;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\api\object\BlogPost;
 
 return [
     'options' => [
         'dictionaries' => [
-            'collection.blogPost', 'collection', 'form'
+            'project.site.blog.post'
         ]
+    ],
+    'attributes' => [
+        'method' => 'post'
     ],
     'elements' => [
         BlogPost::FIELD_IDENTIFY => [
@@ -23,6 +28,13 @@ return [
             'options' => [
                 'dataSource' => BlogPost::FIELD_IDENTIFY
             ],
+        ],
+        BaseFormWidget::INPUT_REDIRECT_URL => [
+            'type' => Hidden::TYPE_NAME
+        ],
+        'submit' => [
+            'type' => Submit::TYPE_NAME,
+            'label' => 'Revert to draft'
         ]
     ]
 ];

@@ -26,7 +26,6 @@ return [
         'view' => __NAMESPACE__ . '\widget\PostWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'listLink' => __NAMESPACE__ . '\widget\ListLinkWidget',
-        'editPost' => __NAMESPACE__ . '\widget\PostEditWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\PostEditLinkWidget',
         'sendToModeration' => __NAMESPACE__ . '\widget\PostSendToModerationWidget'
 
@@ -41,7 +40,6 @@ return [
             'widget:view',
             'widget:list',
             'widget:listLink',
-            'widget:editPost',
             'widget:editPostLink',
             'widget:sendToModeration',
             'model:blogPost'
@@ -55,7 +53,6 @@ return [
                 'widget:view' => [],
                 'widget:list' => [],
                 'widget:listLink' => [],
-                'widget:editPost' => [],
                 'widget:editPostLink' => [],
                 'widget:sendToModeration' => [],
                 'model:blogPost' => [

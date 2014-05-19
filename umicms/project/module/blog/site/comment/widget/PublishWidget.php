@@ -11,14 +11,14 @@ namespace umicms\project\module\blog\site\comment\widget;
 
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogComment;
 
 /**
  * Виджет публикации комментария.
  */
-class PublishWidget extends BaseSecureWidget
+class PublishWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -45,7 +45,7 @@ class PublishWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getForm()
     {
         if (is_string($this->blogComment)) {
             $this->blogComment = $this->api->comment()->get($this->blogComment);
@@ -57,23 +57,16 @@ class PublishWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogComment',
-                        'class' => 'BlogComment'
+                        'class' => 'umicms\project\module\blog\api\object\BlogComment'
                     ]
                 )
             );
         }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_CHANGE_COMMENT_STATUS, IObjectType::BASE, $this->blogComment);
-
+        $form = $this->api->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, IObjectType::BASE, $this->blogComment);
         $form->setAction($this->getUrl('publish', ['id' => $this->blogComment->getId()]));
-        $form->setMethod('post');
 
-        return $this->createResult(
-            $this->template,
-            [
-                'form' => $form
-            ]
-        );
+        return $form;
     }
 }
  

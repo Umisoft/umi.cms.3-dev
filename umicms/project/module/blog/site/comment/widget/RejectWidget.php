@@ -11,14 +11,14 @@ namespace umicms\project\module\blog\site\comment\widget;
 
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogComment;
 
 /**
  * Виджет отклонения комментария.
  */
-class RejectWidget extends BaseSecureWidget
+class RejectWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -45,7 +45,7 @@ class RejectWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getForm()
     {
         if (is_string($this->blogComment)) {
             $this->blogComment = $this->api->comment()->get($this->blogComment);
@@ -57,23 +57,17 @@ class RejectWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogComment',
-                        'class' => 'BlogComment'
+                        'class' => 'umicms\project\module\blog\api\object\BlogComment'
                     ]
                 )
             );
         }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_CHANGE_COMMENT_STATUS, IObjectType::BASE, $this->blogComment);
+        $form = $this->api->comment()->getForm(BlogComment::FORM_REJECT_COMMENT, IObjectType::BASE, $this->blogComment);
 
         $form->setAction($this->getUrl('reject', ['id' => $this->blogComment->getId()]));
-        $form->setMethod('post');
 
-        return $this->createResult(
-            $this->template,
-            [
-                'form' => $form
-            ]
-        );
+        return $form;
     }
 }
  

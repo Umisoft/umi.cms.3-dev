@@ -59,9 +59,10 @@ class BlogEditDraftController extends BaseSecureController implements IFormAware
             );
         }
 
+        $form = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $blogDraft);
+
         if ($this->isRequestMethodPost()) {
 
-            $form = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $blogDraft);
             $formData = $this->getAllPostVars();
 
             if ($form->setData($formData) && $form->isValid()) {
@@ -69,16 +70,14 @@ class BlogEditDraftController extends BaseSecureController implements IFormAware
                 $this->getObjectPersister()->commit();
 
                 return $this->createRedirectResponse($this->getRequest()->getReferer());
-            } else {
-                //TODO ajax
-                var_dump($form->getMessages()); exit();
             }
         }
 
         return $this->createViewResponse(
             'blogDraft',
             [
-                'blogDraft' => $blogDraft
+                'blogDraft' => $blogDraft,
+                'form' => $form
             ]
         );
     }

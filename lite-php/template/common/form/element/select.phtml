@@ -1,11 +1,25 @@
 <?php
 /**
  * @var array $elementInfo
+ * @var umi\form\element\Select $element
  */
 ?>
 
+<?php $element = $elementInfo['element']?>
+
 <div class="form-group">
     <label><?= $elementInfo['label'] ?></label>
+
+    <?php if (!$element->isValid()) : ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach ($element->getMessages() as $message) : ?>
+                    <li><?= $message ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+
     <select class="form-control" <?= $elementInfo['attributes'] ?> >
 
         <?php foreach ($elementInfo['choices'] as $choiceInfo) : ?>

@@ -1,4 +1,13 @@
 {% for choiceInfo in elementInfo.choices %}
+    {% if (not elementInfo.element.isValid()) %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for message in elementInfo.element.getMessages() %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
     <label>
         <input {{ choiceInfo.attributes |raw }}/>
         {{ choiceInfo.label }}
