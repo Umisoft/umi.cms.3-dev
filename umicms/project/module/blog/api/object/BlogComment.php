@@ -10,30 +10,22 @@
 namespace umicms\project\module\blog\api\object;
 
 use DateTime;
-use umicms\orm\object\behaviour\IActiveAccessibleObject;
-use umicms\orm\object\behaviour\IRecyclableObject;
-use umicms\orm\object\CmsHierarchicObject;
 use umicms\project\module\users\api\UsersModule;
 
 /**
  * Комментарий к посту.
  *
  * @property UsersModule $author автор поста
- * @property BlogPost $post пост, к которому относится комментарий
  * @property string $contents комментарий
  * @property DateTime $publishTime дата и время публикации комментария
  * @property string $publishStatus статус публикации комментария
  */
-class BlogComment extends CmsHierarchicObject implements IRecyclableObject, IActiveAccessibleObject
+class BlogComment extends BlogBaseComment
 {
     /**
      * Имя поля для хранения автора поста
      */
     const FIELD_AUTHOR = 'author';
-    /**
-     * Имя поля для хранения поста, к которому относится комментарий
-     */
-    const FIELD_POST = 'post';
     /**
      * Имя поля для хранения комментария
      */

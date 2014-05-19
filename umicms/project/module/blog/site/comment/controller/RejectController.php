@@ -53,7 +53,7 @@ class RejectController extends BaseSecureController implements IFormAware, IObje
             throw new HttpNotFound('Page not found');
         }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_REJECT_COMMENT, IObjectType::BASE);
+        $form = $this->api->comment()->getForm(BlogComment::FORM_CHANGE_COMMENT_STATUS, 'comment');
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {

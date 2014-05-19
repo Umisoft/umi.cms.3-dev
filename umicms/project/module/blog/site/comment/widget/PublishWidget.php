@@ -63,8 +63,9 @@ class PublishWidget extends BaseFormWidget
             );
         }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, IObjectType::BASE, $this->blogComment);
+        $form = $this->api->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, 'comment', $this->blogComment);
         $form->setAction($this->getUrl('publish', ['id' => $this->blogComment->getId()]));
+        $form->setMethod('post');
 
         return $form;
     }

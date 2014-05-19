@@ -9,6 +9,8 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
+use umicms\project\module\blog\api\object\BlogBaseComment;
+use umicms\project\module\blog\api\object\BlogBranchComment;
 use umicms\project\module\blog\api\object\BlogComment;
 
 return [
@@ -165,6 +167,55 @@ return [
     ],
     'types' => [
         'base' => [
+            'objectClass' => 'umicms\project\module\blog\api\object\BlogBaseComment',
+            'fields' => [
+                BlogBaseComment::FIELD_IDENTIFY,
+                BlogBaseComment::FIELD_GUID,
+                BlogBaseComment::FIELD_TYPE,
+                BlogBaseComment::FIELD_VERSION,
+                BlogBaseComment::FIELD_PARENT,
+                BlogBaseComment::FIELD_MPATH,
+                BlogBaseComment::FIELD_SLUG,
+                BlogBaseComment::FIELD_URI,
+                BlogBaseComment::FIELD_CHILD_COUNT,
+                BlogBaseComment::FIELD_ORDER,
+                BlogBaseComment::FIELD_HIERARCHY_LEVEL,
+                BlogBaseComment::FIELD_OWNER,
+                BlogBaseComment::FIELD_EDITOR,
+                BlogBaseComment::FIELD_TRASHED,
+                BlogBaseComment::FIELD_CREATED,
+                BlogBaseComment::FIELD_UPDATED,
+                BlogBaseComment::FIELD_DISPLAY_NAME,
+                BlogBaseComment::FIELD_ACTIVE,
+                BlogBaseComment::FIELD_POST,
+            ]
+        ],
+        'branchComment' => [
+            'objectClass' => 'umicms\project\module\blog\api\object\BlogBranchComment',
+            'fields' => [
+                BlogBranchComment::FIELD_IDENTIFY,
+                BlogBranchComment::FIELD_GUID,
+                BlogBranchComment::FIELD_TYPE,
+                BlogBranchComment::FIELD_VERSION,
+                BlogBranchComment::FIELD_PARENT,
+                BlogBranchComment::FIELD_MPATH,
+                BlogBranchComment::FIELD_SLUG,
+                BlogBranchComment::FIELD_URI,
+                BlogBranchComment::FIELD_CHILD_COUNT,
+                BlogBranchComment::FIELD_ORDER,
+                BlogBranchComment::FIELD_HIERARCHY_LEVEL,
+                BlogBranchComment::FIELD_OWNER,
+                BlogBranchComment::FIELD_EDITOR,
+                BlogBranchComment::FIELD_CREATED,
+                BlogBranchComment::FIELD_UPDATED,
+                BlogBranchComment::FIELD_DISPLAY_NAME,
+                BlogBranchComment::FIELD_ACTIVE,
+                BlogBranchComment::FIELD_POST,
+                BlogBranchComment::FIELD_PUBLISH_TIME,
+                BlogBranchComment::FIELD_CHILDREN
+            ]
+        ],
+        'comment' => [
             'objectClass' => 'umicms\project\module\blog\api\object\BlogComment',
             'fields' => [
                 BlogComment::FIELD_IDENTIFY,

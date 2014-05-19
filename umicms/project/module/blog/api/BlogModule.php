@@ -29,6 +29,7 @@ use umicms\project\module\blog\api\collection\BlogPostCollection;
 use umicms\project\module\blog\api\collection\BlogRssImportScenarioCollection;
 use umicms\project\module\blog\api\collection\BlogTagCollection;
 use umicms\project\module\blog\api\object\BlogAuthor;
+use umicms\project\module\blog\api\object\BlogBranchComment;
 use umicms\project\module\blog\api\object\BlogCategory;
 use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\module\blog\api\object\BlogPost;
@@ -275,6 +276,24 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
+     * Создаёт комментарий от имени текущего автора.
+     * @param string $typeName имя дочернего типа
+     * @param BlogPost $post пост, к которому добавляется комментарий
+     * @param null|BlogComment $parentComment родительский комментарий
+     * @return BlogComment
+     */
+    public function addComment($typeName = 'comment', BlogPost $post, BlogComment $parentComment = null)
+    {
+        if (is_null($parentComment)) {
+            $parentComment = $this->getBranchComment($post);
+        }
+
+        var_dump(get_class($parentComment));die();
+
+        return $this->comment()->add(null, $typeName, $parentComment);
+    }
+
+    /**
      * Возвращает селектор для выборки комментариев.
      * @return CmsSelector|BlogComment[]
      */
@@ -294,6 +313,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function getCommentByPost(BlogPost $blogPost)
     {
         $comments = $this->getComments()
+            ->types(['comment*'])
             ->where(BlogComment::FIELD_POST)->equals($blogPost);
 
         return $comments;
@@ -369,108 +389,6 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         }
 
         return $tagsCloud;
-    }
-
-    /**
-     * Импортирует пост из RSS-ленты.
-     * @param RssItem $item
-     * @param BlogRssImportScenario $blogRssImportScenario
-     */
-    protected function importRssPost(RssItem $item, BlogRssImportScenario $blogRssImportScenario)
-    {
-        try {
-            $this->post()->getPostBySource($item->getUrl());
-        } catch (NonexistentEntityException $e) {
-            $blogPost = $this->post()->add();
-            if ($item->getTitle()) {
-                $blogPost->displayName = $item->getTitle();
-                $blogPost->h1 = $item->getTitle();
-            }
-            if ($item->getContent()) {
-                $blogPost->announcement = $item->getContent();
-            }
-            if ($item->getDate()) {
-                $blogPost->publishTime->setTimestamp($item->getDate()->getTimestamp());
-                $blogPost->publishTime->setTimezone($item->getDate()->getTimezone());
-            }
-            if ($item->getUrl()) {
-                $blogPost->source = $item->getUrl();
-            }
-            $blogPost->slug = $blogPost->guid;
-            $blogPost->category = $blogRssImportScenario->category;
-
-            foreach ($blogRssImportScenario->tags as $subject) {
-                $blogPost->tags->attach($subject);
-            }
-        }
-    }
-
-    /**
-     * Возвращает вес тэга.
-     * @param BlogTag $tag
-     * @param int $minFontSize минимальный размер шрифта
-     * @param int $maxFontSize максимальный размер шрифта
-     * @return float
-     */
-    protected function getTagWeight(BlogTag $tag, $minFontSize, $maxFontSize)
-    {
-        $postsCount = $tag->postsCount;
-
-        $minPostCount = $this->getMinPostsCount();
-        $maxPostCount = $this->getMaxPostsCount();
-
-        if ($minPostCount - $maxPostCount != 0) {
-            $weight =
-                ($postsCount - $this->getMinPostsCount()) / ($this->getMaxPostsCount() - $this->getMinPostsCount())
-                *
-                ($maxFontSize - $minFontSize) + $minFontSize;
-        } else {
-            $weight = $minFontSize;
-        }
-
-        return $weight;
-    }
-
-    /**
-     * Возвращает максимальное количество постов у тега.
-     * @return int
-     */
-    protected function getMaxPostsCount()
-    {
-        if (!$this->maxPostsCount) {
-            /** @var BlogTag $tag */
-            $tag = $this->getTags()
-                ->fields([BlogTag::FIELD_POSTS_COUNT])
-                ->orderBy(BlogTag::FIELD_POSTS_COUNT, CmsSelector::ORDER_DESC)
-                ->limit(1)
-                ->getResult()
-                ->fetch();
-
-            $this->maxPostsCount = $tag->postsCount;
-        }
-
-        return $this->maxPostsCount;
-    }
-
-    /**
-     * Возвращает минимальное количество постов у тега.
-     * @return int
-     */
-    protected function getMinPostsCount()
-    {
-        if (!$this->minPostsCount) {
-            /** @var BlogTag $tag */
-            $tag = $this->getTags()
-                ->fields(['postsCount'])
-                ->orderBy('postsCount', CmsSelector::ORDER_ASC)
-                ->limit(1)
-                ->getResult()
-                ->fetch();
-
-            $this->minPostsCount = $tag->postsCount;
-        }
-
-        return $this->minPostsCount;
     }
 
     /**
@@ -553,5 +471,144 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         } else {
             return $this->post()->emptySelect();
         }
+    }
+
+    /**
+     * Импортирует пост из RSS-ленты.
+     * @param RssItem $item
+     * @param BlogRssImportScenario $blogRssImportScenario
+     */
+    protected function importRssPost(RssItem $item, BlogRssImportScenario $blogRssImportScenario)
+    {
+        try {
+            $this->post()->getPostBySource($item->getUrl());
+        } catch (NonexistentEntityException $e) {
+            $blogPost = $this->post()->add();
+            if ($item->getTitle()) {
+                $blogPost->displayName = $item->getTitle();
+                $blogPost->h1 = $item->getTitle();
+            }
+            if ($item->getContent()) {
+                $blogPost->announcement = $item->getContent();
+            }
+            if ($item->getDate()) {
+                $blogPost->publishTime->setTimestamp($item->getDate()->getTimestamp());
+                $blogPost->publishTime->setTimezone($item->getDate()->getTimezone());
+            }
+            if ($item->getUrl()) {
+                $blogPost->source = $item->getUrl();
+            }
+            $blogPost->slug = $blogPost->guid;
+            $blogPost->category = $blogRssImportScenario->category;
+
+            foreach ($blogRssImportScenario->tags as $subject) {
+                $blogPost->tags->attach($subject);
+            }
+        }
+    }
+
+    /**
+     * Возвращает вес тэга.
+     * @param BlogTag $tag
+     * @param int $minFontSize минимальный размер шрифта
+     * @param int $maxFontSize максимальный размер шрифта
+     * @return float
+     */
+    protected function getTagWeight(BlogTag $tag, $minFontSize, $maxFontSize)
+    {
+        $postsCount = $tag->postsCount;
+
+        $minPostCount = $this->getMinPostsCount();
+        $maxPostCount = $this->getMaxPostsCount();
+
+        if ($minPostCount - $maxPostCount != 0) {
+            $weight =
+                ($postsCount - $this->getMinPostsCount()) / ($this->getMaxPostsCount() - $this->getMinPostsCount())
+                *
+                ($maxFontSize - $minFontSize) + $minFontSize;
+        } else {
+            $weight = $minFontSize;
+        }
+
+        return $weight;
+    }
+
+    /**
+     * Возвращает минимальное количество постов у тега.
+     * @return int
+     */
+    protected function getMinPostsCount()
+    {
+        if (!$this->minPostsCount) {
+            /** @var BlogTag $tag */
+            $tag = $this->getTags()
+                ->fields(['postsCount'])
+                ->orderBy('postsCount', CmsSelector::ORDER_ASC)
+                ->limit(1)
+                ->getResult()
+                ->fetch();
+
+            $this->minPostsCount = $tag->postsCount;
+        }
+
+        return $this->minPostsCount;
+    }
+
+    /**
+     * Возвращает максимальное количество постов у тега.
+     * @return int
+     */
+    protected function getMaxPostsCount()
+    {
+        if (!$this->maxPostsCount) {
+            /** @var BlogTag $tag */
+            $tag = $this->getTags()
+                ->fields([BlogTag::FIELD_POSTS_COUNT])
+                ->orderBy(BlogTag::FIELD_POSTS_COUNT, CmsSelector::ORDER_DESC)
+                ->limit(1)
+                ->getResult()
+                ->fetch();
+
+            $this->maxPostsCount = $tag->postsCount;
+        }
+
+        return $this->maxPostsCount;
+    }
+
+    /**
+     * Возвращает ветку комментариев к посту.
+     * @param BlogPost $blogPost
+     * @return CmsSelector|BlogComment[]
+     */
+    protected  function getBranchCommentByPost(BlogPost $blogPost)
+    {
+        $branchComments = $this->getComments()
+            ->types(['branchComment'])
+            ->where(BlogComment::FIELD_POST)->equals($blogPost)
+            ->limit(1)
+            ->result()
+            ->fetch();
+
+        return $branchComments;
+    }
+
+    /**
+     * Возвращает корень ветки комментариев к посту.
+     * @param BlogPost $post
+     * @return BlogComment
+     */
+    protected function getBranchComment(BlogPost $post)
+    {
+        $branchComment = $this->getBranchCommentByPost($post);
+
+        if ($branchComment instanceof BlogBranchComment) {
+            return $branchComment;
+        }
+
+        $comment = $this->comment()->add(null, 'branchComment');
+        $comment->displayName = $post->displayName;
+        $comment->post = $post;
+
+        return $comment;
     }
 }

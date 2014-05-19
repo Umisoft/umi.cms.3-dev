@@ -63,7 +63,7 @@ class RejectWidget extends BaseFormWidget
             );
         }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_REJECT_COMMENT, IObjectType::BASE, $this->blogComment);
+        $form = $this->api->comment()->getForm(BlogComment::FORM_REJECT_COMMENT, 'comment', $this->blogComment);
 
         $form->setAction($this->getUrl('reject', ['id' => $this->blogComment->getId()]));
 

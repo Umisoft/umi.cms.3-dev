@@ -9,7 +9,6 @@
 
 namespace umicms\project\module\blog\site\comment\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -84,11 +83,11 @@ class AddWidget extends BaseFormWidget
             );
         }
 
-        $comment = $this->api->comment()->add(null, IObjectType::BASE, $this->blogComment);
+        $comment = $this->api->comment()->add(null, 'comment', $this->blogComment);
 
         $comment->post = $this->blogPost;
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, IObjectType::BASE, $comment);
+        $form = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, 'comment', $comment);
 
         $routeParams = isset($this->blogComment) ? ['parent' => $this->blogComment->getId()] : [];
 
