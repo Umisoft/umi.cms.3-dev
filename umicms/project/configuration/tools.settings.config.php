@@ -14,6 +14,7 @@ use umi\i18n\toolbox\I18nTools;
 use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
 use umi\templating\toolbox\TemplatingTools;
+use umicms\captcha\toolbox\CaptchaTools;
 use umicms\form\element\Captcha;
 use umicms\form\element\File;
 use umicms\form\element\Image;
@@ -157,8 +158,11 @@ return [
     ],
 
     I18nTools::NAME => [
-
         'localesServiceClass' => 'umicms\i18n\CmsLocalesService',
         'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
+    ],
+
+    CaptchaTools::NAME => [
+        'options' => '{#lazy:~/project/configuration/captcha.config.php}',
     ]
 ];

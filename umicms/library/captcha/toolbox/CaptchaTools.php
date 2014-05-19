@@ -33,7 +33,7 @@ class CaptchaTools implements IToolbox
     /**
      * @var array $options опции для генерации каптчи по умолчанию
      */
-    public $defaultOptions = [];
+    public $options = [];
 
 
     /**
@@ -56,7 +56,7 @@ class CaptchaTools implements IToolbox
             $this->generatorClassName,
             ['umicms\captcha\ICaptchaGenerator']
         )
-            ->createSingleInstance([$this->defaultOptions]);
+            ->createSingleInstance([$this->options]);
     }
 
 }

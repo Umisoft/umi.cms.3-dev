@@ -11,7 +11,6 @@ namespace umicms\captcha\gregwar;
 
 use Gregwar\Captcha\CaptchaBuilder;
 use umi\spl\config\TConfigSupport;
-use umicms\captcha\exception\UnexpectedValueException;
 use umicms\captcha\ICaptchaGenerator;
 
 /**
@@ -44,18 +43,16 @@ class CaptchaGenerator implements ICaptchaGenerator
 
         $builder = $this->createCaptchaBuilder($phrase);
 
-        if (isset($options['textColor']) && is_array($options['textColor'])) {
-            if (!isset($options['textColor']['R'], $options['textColor']['G'], $options['textColor']['B'])) {
-                throw new UnexpectedValueException('Cannot configure captcha. Option "textColor should be an array with keys R, G and B.');
-            }
-            $builder->setTextColor($options['textColor']['R'], $options['textColor']['G'], $options['textColor']['B']);
+        if (isset($options['textColor']) && $options['textColor']) {
+            $textColor = $this->hexToRgb($options['textColor']);
+            $builder->setTextColor($textColor[0], $textColor[1], $textColor[2]);
         }
-        if (isset($options['backgroundColor']) && is_array($options['backgroundColor'])) {
-            if (!isset($options['backgroundColor']['R'], $options['backgroundColor']['G'], $options['backgroundColor']['B'])) {
-                throw new UnexpectedValueException('Cannot configure captcha. Option "backgroundColor should be an array with keys R, G and B.');
-            }
-            $builder->setBackgroundColor($options['backgroundColor']['R'], $options['backgroundColor']['G'], $options['backgroundColor']['B']);
+
+        if (isset($options['backgroundColor']) && $options['backgroundColor']) {
+            $backgroundColor = $this->hexToRgb($options['backgroundColor']);
+            $builder->setBackgroundColor($backgroundColor[0], $backgroundColor[1], $backgroundColor[2]);
         }
+
         if (isset($options['interpolation'])) {
             $builder->setInterpolation((bool) $options['interpolation']);
         }
@@ -102,6 +99,25 @@ class CaptchaGenerator implements ICaptchaGenerator
             ->testPhrase($testPhrase);
     }
 
+    /**
+     * Переводит hex-строку в RGB
+     * @param string $hex
+     * @return array [R, G, B]
+     */
+    protected function hexToRgb($hex) {
+        $hex = ltrim($hex, '#');
+        if (strlen($hex) === 3) {
+            $hex .= $hex;
+        }
+
+        $dec = hexdec($hex);
+
+        return [
+            0xFF & $dec >> 0x10,
+            0xFF & ($dec >> 0x8),
+            0xFF & $dec
+        ];
+    }
     /**
      * Создает билдер каптчи.
      * @param string|null $phrase фраза для каптчи

@@ -51,14 +51,6 @@ class Captcha extends BaseFormElement implements ICaptchaAware, ISessionAware, I
      */
     public function getValue()
     {
-        $sessionKey = $this->getSessionKey();
-
-        if (!$this->hasSessionVar($sessionKey)) {
-            $options = $this->getOptions();
-            $options['phrase'] = $this->getCaptchaGenerator()->generatePhrase();
-            $this->setSessionVar($sessionKey, $options);
-        }
-
         return $this->value;
     }
 
@@ -68,12 +60,19 @@ class Captcha extends BaseFormElement implements ICaptchaAware, ISessionAware, I
      */
     public function getCaptchaInfo()
     {
-        $captchaUrl = $this->getUrlManager()->getProjectUrl() . 'captcha/' . $this->getSessionKey();
+        $sessionKey = $this->getSessionKey();
+
+        if (!$this->hasSessionVar($sessionKey)) {
+            $options = $this->getOptions();
+            $this->setSessionVar($sessionKey, $options);
+        }
+
+        $captchaUrl = $this->getUrlManager()->getProjectUrl() . 'captcha/' . rawurlencode($this->getSessionKey());
 
         return [
             'isHuman' => $this->validate($this->value),
-            'url' => $captchaUrl,
-            'reloadUrl' => $captchaUrl . '?reload=' . uniqid('')
+            'key' => $this->getSessionKey(),
+            'url' => $captchaUrl
         ];
     }
 
@@ -103,16 +102,24 @@ class Captcha extends BaseFormElement implements ICaptchaAware, ISessionAware, I
      */
     protected function getSessionKey()
     {
-        $names = [$this->getName()];
+        $names = $this->getName();
 
         $element = $this->getParent();
         while ($parent = $element->getParent()) {
-            $names[] = $parent->getName();
+            $names .= $parent->getName();
             $element = $parent;
         }
 
-        return 'captcha_' . implode('_', $names);
+        return 'c_' . md5($names);
+    }
 
+    /**
+     * Возвращает имя контейнера сессии.
+     * @return string
+     */
+    protected function getSessionNamespacePath()
+    {
+        return 'umicms\captcha';
     }
 
 }

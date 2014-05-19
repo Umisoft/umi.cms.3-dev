@@ -328,15 +328,10 @@ class FormHelper implements ILocalizable
             ]
         );
 
-        $captchaUrl = '';
-        $reloadUrl = '';
-
         return [
             'element' => $captchaElement,
             'label' => $captchaElement->getLabel() ? $this->translator->translate($dictionaries, $captchaElement->getLabel()) : '',
             'type' => 'captcha',
-            'captchaUrl' => $captchaUrl,
-            'reloadUrl' => $reloadUrl,
             'attributes' => $this->buildAttributes($attributes)
         ];
     }

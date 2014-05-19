@@ -13,6 +13,7 @@ use umi\form\element\Select;
 use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\validation\IValidatorFactory;
+use umicms\form\element\Captcha;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\api\object\BlogCategory;
 use umicms\project\module\blog\api\object\BlogPost;
@@ -88,6 +89,12 @@ return [
                     'value' => BlogTag::FIELD_IDENTIFY,
                     'label' => BlogTag::FIELD_DISPLAY_NAME
                 ]
+            ]
+        ],
+        'captcha' => [
+            'type' => Captcha::TYPE_NAME,
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
             ]
         ],
         'submit' => [

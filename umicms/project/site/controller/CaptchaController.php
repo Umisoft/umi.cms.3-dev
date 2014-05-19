@@ -9,7 +9,6 @@
 
 namespace umicms\project\site\controller;
 
-use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
@@ -31,7 +30,6 @@ class CaptchaController extends BaseController implements ICaptchaAware, ISessio
     public function __invoke()
     {
         $key = $this->getRouteVar('key');
-        $reload = $this->getQueryVar('reload');
 
         if (!$this->hasSessionVar($key)) {
             return $this->createResponse('Cannot generate captcha. Invalid session key.', Response::HTTP_NOT_FOUND)
@@ -40,10 +38,7 @@ class CaptchaController extends BaseController implements ICaptchaAware, ISessio
         $options = $this->getSessionVar($key);
 
         $generator = $this->getCaptchaGenerator();
-
-        if ($reload || !isset($options['phrase'])) {
-            $options['phrase'] = $generator->generatePhrase();
-        }
+        $options['phrase'] = $generator->generatePhrase();
 
         $this->setSessionVar($key, $options);
 
@@ -56,6 +51,15 @@ class CaptchaController extends BaseController implements ICaptchaAware, ISessio
 
         return $response;
 
+    }
+
+    /**
+     * Возвращает имя контейнера сессии.
+     * @return string
+     */
+    protected function getSessionNamespacePath()
+    {
+        return 'umicms\captcha';
     }
 }
  

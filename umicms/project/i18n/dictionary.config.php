@@ -55,6 +55,9 @@ return [
         'project.admin.settings.service' => '{#lazy:~/project/module/service/settings/i18n/dictionary.config.php}',
         'project.admin.settings.service.backup' => '{#lazy:~/project/module/service/settings/backup/i18n/dictionary.config.php}',
 
+        'project.admin.settings.security' => '{#lazy:~/project/module/security/settings/i18n/dictionary.config.php}',
+        'project.admin.settings.security.captcha' => '{#lazy:~/project/module/security/settings/captcha/i18n/dictionary.config.php}',
+
         'project.site.users.authorization' => '{#lazy:~/project/module/users/site/authorization/i18n/dictionary.config.php}',
 
         'project.site.blog.comment' => '{#lazy:~/project/module/blog/site/comment/i18n/dictionary.config.php}',
