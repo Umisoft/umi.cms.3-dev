@@ -39,11 +39,6 @@ class StructureElementCollection extends PageHierarchicCollection implements ILo
     use TSiteSettingsAware;
 
     /**
-     * Имя типа для системных страниц.
-     */
-    const TYPE_SYSTEM = 'system';
-
-    /**
      * Возвращает страницу сайта по умолчанию.
      * @return StructureElement
      */
@@ -100,6 +95,6 @@ class StructureElementCollection extends PageHierarchicCollection implements ILo
      */
     public function selectSystem()
     {
-        return $this->select()->types([self::TYPE_SYSTEM]);
+        return $this->select()->types([SystemPage::TYPE]);
     }
 }

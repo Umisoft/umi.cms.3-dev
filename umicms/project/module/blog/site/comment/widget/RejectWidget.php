@@ -9,7 +9,6 @@
 
 namespace umicms\project\module\blog\site\comment\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -63,7 +62,7 @@ class RejectWidget extends BaseFormWidget
             );
         }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_REJECT_COMMENT, 'comment', $this->blogComment);
+        $form = $this->api->comment()->getForm(BlogComment::FORM_REJECT_COMMENT, BlogComment::TYPE, $this->blogComment);
 
         $form->setAction($this->getUrl('reject', ['id' => $this->blogComment->getId()]));
 

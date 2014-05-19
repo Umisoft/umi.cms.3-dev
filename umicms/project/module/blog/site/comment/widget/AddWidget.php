@@ -83,11 +83,11 @@ class AddWidget extends BaseFormWidget
             );
         }
 
-        $comment = $this->api->comment()->add(null, 'comment', $this->blogComment);
+        $comment = $this->api->comment()->add(null, BlogComment::TYPE, $this->blogComment);
 
         $comment->post = $this->blogPost;
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, 'comment', $comment);
+        $form = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, BlogComment::TYPE, $comment);
 
         $routeParams = isset($this->blogComment) ? ['parent' => $this->blogComment->getId()] : [];
 

@@ -16,5 +16,12 @@ namespace umicms\project\module\structure\api\object;
  */
 class SystemPage extends StructureElement
 {
+    /**
+     * Тип объекта
+     */
+    const TYPE = 'system';
+    /**
+     * Имя поля для обозначения игнорирования вывода системной страницы в хлебных крошках
+     */
     const FIELD_SKIP_PAGE_IN_BREADCRUMBS = 'skipInBreadcrumbs';
 }

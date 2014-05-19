@@ -9,7 +9,6 @@
 
 namespace umicms\project\module\blog\site\comment\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -63,9 +62,8 @@ class PublishWidget extends BaseFormWidget
             );
         }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, 'comment', $this->blogComment);
+        $form = $this->api->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE, $this->blogComment);
         $form->setAction($this->getUrl('publish', ['id' => $this->blogComment->getId()]));
-        $form->setMethod('post');
 
         return $form;
     }

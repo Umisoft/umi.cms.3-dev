@@ -18,7 +18,7 @@ return [
         'site' => 'blog.comment'
     ],
     'forms' => [
-        'base' => [
+        BlogComment::TYPE => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/comment/form/comment.edit.config.php}',
             ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/comment/form/comment.create.config.php}',
             BlogComment::FORM_ADD_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/comment.addComment.config.php}',

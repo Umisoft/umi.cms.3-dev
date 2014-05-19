@@ -14,5 +14,8 @@ namespace umicms\project\module\blog\api\object;
  */
 class BlogBranchComment extends BlogBaseComment
 {
-
+    /**
+     * Тип объекта
+     */
+    const TYPE = 'branchComment';
 }

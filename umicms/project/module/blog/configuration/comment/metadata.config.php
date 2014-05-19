@@ -8,6 +8,7 @@
 
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
+use umi\orm\metadata\IObjectType;
 use umi\validation\IValidatorFactory;
 use umicms\project\module\blog\api\object\BlogBaseComment;
 use umicms\project\module\blog\api\object\BlogBranchComment;
@@ -166,7 +167,7 @@ return [
         ]
     ],
     'types' => [
-        'base' => [
+        IObjectType::BASE => [
             'objectClass' => 'umicms\project\module\blog\api\object\BlogBaseComment',
             'fields' => [
                 BlogBaseComment::FIELD_IDENTIFY,
@@ -190,7 +191,7 @@ return [
                 BlogBaseComment::FIELD_POST,
             ]
         ],
-        'branchComment' => [
+        BlogBranchComment::TYPE => [
             'objectClass' => 'umicms\project\module\blog\api\object\BlogBranchComment',
             'fields' => [
                 BlogBranchComment::FIELD_IDENTIFY,
@@ -215,7 +216,7 @@ return [
                 BlogBranchComment::FIELD_CHILDREN
             ]
         ],
-        'comment' => [
+        BlogComment::TYPE => [
             'objectClass' => 'umicms\project\module\blog\api\object\BlogComment',
             'fields' => [
                 BlogComment::FIELD_IDENTIFY,
