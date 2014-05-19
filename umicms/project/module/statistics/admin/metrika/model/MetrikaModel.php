@@ -8,21 +8,25 @@
  */
 namespace umicms\project\module\statistics\admin\metrika\model;
 
-use umi\config\io\IConfigIOAware;
-use umi\config\io\TConfigIOAware;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
-use umi\spl\config\TConfigSupport;
 use umicms\exception\InvalidArgumentException;
 
 /**
  * API Яндекс.Метрики. Производит запросы к Метрике, получает статистические отчеты, информацию о счетчиках и пр.
  */
-class MetrikaApi implements IConfigIOAware, ILocalizable
+class MetrikaModel implements ILocalizable
 {
-    use TConfigIOAware;
-    use TConfigSupport;
     use TLocalizable;
+
+    /**
+     * Полученный oAuth token.
+     */
+    const OAUTH_TOKEN = 'oauthToken';
+    /**
+     * Список доступных ресурсов.
+     */
+    const API_RESOURCES = 'apiResources';
 
     /**
      * Токен OAuth авторизации для отправки запросов к API
@@ -44,6 +48,17 @@ class MetrikaApi implements IConfigIOAware, ILocalizable
      * @var string $prefixLocalizable
      */
     private $prefixLocalizable = 'component:metrika:';
+
+    /**
+     * Конструктор.
+     * @param string $oauthToken авторизационный токен
+     * @param array $apiResources список доступных ресурсов
+     */
+    public function __construct($oauthToken, array $apiResources)
+    {
+        $this->oauthToken = $oauthToken;
+        $this->apiResources = $apiResources;
+    }
 
     /**
      * Список счетчиков статистики,

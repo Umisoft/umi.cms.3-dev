@@ -25,6 +25,8 @@ return [
     SettingsApplication::OPTION_COMPONENTS => [
         'site' => '{#lazy:~/project/site/settings/component.config.php}',
         'service' => '{#lazy:~/project/module/service/settings/module.config.php}',
+        'seo' => '{#lazy:~/project/module/seo/settings/module.config.php}',
+        'statistics' => '{#lazy:~/project/module/statistics/settings/module.config.php}',
     ],
 
     SettingsApplication::OPTION_CONTROLLERS => [
