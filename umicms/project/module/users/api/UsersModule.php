@@ -15,9 +15,11 @@ use umi\authentication\IAuthenticationFactory;
 use umi\authentication\TAuthenticationAware;
 use umicms\module\BaseModule;
 use umicms\project\module\users\api\collection\UserCollection;
+use umicms\project\module\users\api\collection\UserGroupCollection;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\object\Guest;
 use umicms\project\module\users\api\object\Supervisor;
+use umicms\project\module\users\api\object\UserGroup;
 
 /**
  * Модуль для работы с пользователями.
@@ -45,6 +47,15 @@ class UsersModule extends BaseModule implements IAuthenticationAware
     }
 
     /**
+     * Возвращает репозиторий для работы с группами пользователей.
+     * @return UserGroupCollection
+     */
+    public function userGroup()
+    {
+        return $this->getCollection('userGroup');
+    }
+
+    /**
      * Производит попытку авторизации в системе.
      * @param string $login логин пользователя
      * @param string $password пароль
@@ -64,6 +75,32 @@ class UsersModule extends BaseModule implements IAuthenticationAware
         return $this->getDefaultAuthManager()
             ->authenticate($provider)
             ->isSuccessful();
+    }
+
+    /**
+     * Регистрирует пользователя в системе.
+     * @param AuthorizedUser $user
+     * @return AuthorizedUser
+     */
+    public function register(AuthorizedUser $user)
+    {
+        $user->active = !$this->user()->getIsRegistrationWithActivation();
+        $user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->setValue(uniqid('', true));
+
+        $userGroups = $user->groups;
+
+        $defaultGroups = $this->userGroup()
+            ->select()
+            ->fields(UserGroup::FIELD_GUID)
+            ->where(UserGroup::FIELD_GUID)
+                ->in($this->user()->getRegisteredUsersDefaultGroupGuids());
+
+        foreach ($defaultGroups as $group)
+        {
+            $userGroups->link($group);
+        }
+
+        return $user;
     }
 
     /**

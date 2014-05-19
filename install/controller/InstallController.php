@@ -1027,6 +1027,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `first_name` varchar(255) DEFAULT NULL,
                     `middle_name` varchar(255) DEFAULT NULL,
                     `last_name` varchar(255) DEFAULT NULL,
+                    `activation_code` varchar(255) DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `user_guid` (`guid`),
                     KEY `user_type` (`type`),

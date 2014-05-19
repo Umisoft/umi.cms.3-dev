@@ -132,10 +132,21 @@ return [
             'columnName' => 'password',
             'mutator'    => 'setPassword',
             'accessor'   => 'getPassword',
+            'filters'    => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         AuthorizedUser::FIELD_PASSWORD_SALT => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'password_salt',
+            'readOnly'   => true
+        ],
+        AuthorizedUser::FIELD_ACTIVATION_CODE => [
+            'type'       => IField::TYPE_STRING,
+            'columnName' => 'activation_code',
             'readOnly'   => true
         ],
         AuthorizedUser::FIELD_FIRST_NAME    => [

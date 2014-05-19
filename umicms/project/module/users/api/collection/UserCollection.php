@@ -70,4 +70,40 @@ class UserCollection extends SimpleCollection
         return $this->deactivateInternal($object);
     }
 
+    /**
+     * Проверяет, необходимость активации при регистрации пользователя.
+     * @return bool
+     */
+    public function getIsRegistrationWithActivation()
+    {
+        return (bool) $this->getSetting(self::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS);
+    }
+
+    /**
+     * Возвращает минимальную длину пароля. 0, если длина неограничена.
+     * @return bool
+     */
+    public function getMinPasswordLength()
+    {
+        return (int) $this->getSetting(self::SETTING_MIN_PASSWORD_LENGTH);
+    }
+
+    /**
+     * Проверяет, запрещено ли совпадение пароля с логином.
+     * @return bool
+     */
+    public function getIsPasswordAndLoginEqualityForbidden()
+    {
+        return (bool) $this->getSetting(self::SETTING_FORBID_PASSWORD_LOGIN_EQUALITY);
+    }
+
+    /**
+     * Возвращает список GUID групп по умолчанию для зарегистрированных пользователей.
+     * @return array
+     */
+    public function getRegisteredUsersDefaultGroupGuids()
+    {
+        return (array) $this->getSetting(self::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS);
+    }
+
 }

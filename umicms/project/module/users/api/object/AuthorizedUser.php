@@ -9,12 +9,13 @@
 
 namespace umicms\project\module\users\api\object;
 
+use umicms\project\module\users\api\collection\UserCollection;
+
 /**
  * Пользователь.
  *
  * @property string $login логин
  * @property string $email e-mail
- * @property string $password пароль
  * @property string $firstName имя
  * @property string $middleName отчество
  * @property string $lastName фамилия
@@ -38,6 +39,10 @@ class AuthorizedUser extends BaseUser
      * Поле для хранения соли для хэширования пароля.
      */
     const FIELD_PASSWORD_SALT = 'passwordSalt';
+    /**
+     * Поле для хранения кода активации.
+     */
+    const FIELD_ACTIVATION_CODE = 'activationCode';
     /**
      * Имя поля для хранения пароля
      */
@@ -126,7 +131,6 @@ class AuthorizedUser extends BaseUser
      */
     public function validateLogin()
     {
-        //TODO учитывать настройки
         $result = true;
 
         $users = $this->getCollection()
@@ -149,6 +153,33 @@ class AuthorizedUser extends BaseUser
     }
 
     /**
+     * Проверяет валидность логина.
+     * @return bool
+     */
+    public function validateEmail()
+    {
+        $result = true;
+
+        $users = $this->getCollection()
+            ->select()
+                ->fields([self::FIELD_IDENTIFY])
+            ->where(self::FIELD_EMAIL)
+                ->equals($this->email)
+            ->where(self::FIELD_IDENTIFY)
+                ->notEquals($this->getId())
+            ->getResult();
+
+        if (count($users->fetchAll())) {
+            $result = false;
+            $this->getProperty(self::FIELD_EMAIL)->addValidationErrors(
+                [$this->translate('Email is not unique')]
+            );
+        }
+
+        return $result;
+    }
+
+    /**
      * Проверяет валидность пароля.
      * @return bool
      */
@@ -160,7 +191,34 @@ class AuthorizedUser extends BaseUser
 
         $result = true;
 
-        //TODO настройки валидации пароля
+        /**
+         * @var UserCollection $collection
+         */
+        $collection = $this->getCollection();
+
+        if ($collection->getIsPasswordAndLoginEqualityForbidden() && $this->rawPassword === $this->login) {
+            $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
+                [$this->translate('Password must not be equal to login')]
+            );
+
+            $result = false;
+        }
+
+        if ($minPasswordLength = $collection->getMinPasswordLength()) {
+
+            if (strlen($this->rawPassword) < $minPasswordLength) {
+                $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
+                    [$this->translate
+                        (
+                            'Password must contain at least {length} characters',
+                            ['length' => $minPasswordLength]
+                        )
+                    ]
+                );
+
+                $result = false;
+            }
+        }
 
         return $result;
     }
