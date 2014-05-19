@@ -74,7 +74,7 @@ return [
     ],
 
     ModuleTools::NAME => [
-        'modules' => '{#partial:~/project/configuration/modules.config.php}'
+        'modules' => '{#partial:~/project/module/modules.config.php}'
     ],
 
     OrmTools::NAME => [
