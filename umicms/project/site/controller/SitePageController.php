@@ -69,7 +69,7 @@ abstract class SitePageController extends BaseSecureController implements IPageC
         }
 
         /** @var StructureModule $structureModule */
-        $structureModule = $this->getModule('umicms\project\module\structure\api\StructureModule');
+        $structureModule = $this->getModule(StructureModule::className());
 
         $defaultPage = $structureModule->getDefaultPage();
         if ($defaultPage !== $callStack->bottom()) {
