@@ -89,7 +89,7 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
     /**
      * Форма отклонения поста для публикации
      */
-    const FORM_REJECT_POST = 'moderate';
+    const FORM_REJECT_POST = 'reject';
     /**
      * Форма помещения поста в черновики
      */
