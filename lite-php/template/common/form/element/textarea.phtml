@@ -6,7 +6,7 @@
 ?>
 <?php $element = $elementInfo['element']?>
 
-<div class="form-group">
+<div class="form-group <?= $element->isValid() ? '' : 'has-error' ?>">
     <label><?= $elementInfo['label'] ?></label>
 
     <?php if (!$element->isValid()) : ?>
