@@ -16,6 +16,7 @@ use umi\orm\toolbox\ORMTools;
 use umi\templating\toolbox\TemplatingTools;
 use umicms\form\element\File;
 use umicms\form\element\Image;
+use umicms\form\element\PasswordWithConfirmation;
 use umicms\form\element\Wysiwyg;
 use umicms\module\toolbox\ModuleTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
@@ -62,7 +63,8 @@ return [
                 'elementTypes' => [
                     Wysiwyg::TYPE_NAME => 'umicms\form\element\Wysiwyg',
                     File::TYPE_NAME => 'umicms\form\element\File',
-                    Image::TYPE_NAME => 'umicms\form\element\Image'
+                    Image::TYPE_NAME => 'umicms\form\element\Image',
+                    PasswordWithConfirmation::TYPE_NAME => 'umicms\form\element\PasswordWithConfirmation'
                 ]
             ]
         ]
