@@ -12,17 +12,21 @@ namespace umicms\project\site\controller;
 use umi\hmvc\component\IComponent;
 use umicms\hmvc\controller\BaseSecureController;
 use umicms\hmvc\dispatcher\CmsDispatcher;
+use umicms\module\IModuleAware;
+use umicms\module\TModuleAware;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\api\object\SystemPage;
+use umicms\project\module\structure\api\StructureModule;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
 
 /**
  * Базовый контроллер для сайта
  */
-abstract class SitePageController extends BaseSecureController implements IPageCallStackAware
+abstract class SitePageController extends BaseSecureController implements IPageCallStackAware, IModuleAware
 {
     use TPageCallStackAware;
+    use TModuleAware;
 
     /**
      * {@inheritdoc}
@@ -62,6 +66,14 @@ abstract class SitePageController extends BaseSecureController implements IPageC
                 $navigationAncestry = array_reverse($navigationAncestry);
                 $breadcrumbs = array_merge($breadcrumbs, $navigationAncestry);
             }
+        }
+
+        /** @var StructureModule $structureModule */
+        $structureModule = $this->getModule('umicms\project\module\structure\api\StructureModule');
+
+        $defaultPage = $structureModule->getDefaultPage();
+        if ($defaultPage !== $callStack->bottom()) {
+            $breadcrumbs[] = $this->getBreabcrumb($defaultPage);
         }
 
         $breadcrumbs = array_reverse($breadcrumbs);
