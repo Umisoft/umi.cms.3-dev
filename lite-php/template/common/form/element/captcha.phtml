@@ -1,0 +1,46 @@
+<?php
+/**
+ * @var array $elementInfo
+ * @var Captcha $element
+ */
+use umicms\form\element\Captcha;
+
+?>
+<?php
+    $element = $elementInfo['element'];
+    $captchaInfo = $element->getCaptchaInfo();
+?>
+
+
+<?php if (!$captchaInfo['isHuman']) : ?>
+
+    <div class="form-group <?= !$element->isValid() ? 'has-error' : '' ?>">
+        <label><?= $elementInfo['label'] ?></label>
+
+        <?php if (!$element->isValid()) : ?>
+            <div class="alert alert-danger">
+                <ul>
+                    <?php foreach ($element->getMessages() as $message) : ?>
+                        <li><?= $message ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
+        <script type="text/javascript">
+            function reloadCaptcha_<?=$captchaInfo['key']?>() {
+                var img = document.getElementById('<?=$captchaInfo['key']?>');
+                img.src = '<?=$captchaInfo['url']?>?t=' + (new Date()).getTime();
+            }
+        </script>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <img id="<?=$captchaInfo['key']?>" src="<?=$captchaInfo['url']?>" alt="<?= $elementInfo['label'] ?>" title="<?= $elementInfo['label'] ?>">
+                <button class="btn btn-default glyphicon glyphicon-refresh" onclick="reloadCaptcha_<?=$captchaInfo['key']?>();return false;"></button>
+            </span>
+            <input type="text" class="form-control input-lg" <?= $elementInfo['attributes'] ?>>
+        </div>
+
+    </div>
+
+<?php endif; ?>

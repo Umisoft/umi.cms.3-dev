@@ -48,6 +48,7 @@ return [
         SiteApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
         SiteApplication::LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
         SiteRestWidgetController::NAME => __NAMESPACE__ . '\controller\SiteRestWidgetController',
+        'captcha' => __NAMESPACE__ . '\controller\CaptchaController',
     ],
 
     SiteApplication::OPTION_WIDGET => [
@@ -59,6 +60,13 @@ return [
     ],
 
     SiteApplication::OPTION_ROUTES => [
+        'captcha' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/captcha/{key:string}',
+            'defaults' => [
+                'controller' => 'captcha'
+            ]
+        ],
         'widget' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/widget/{path:string}',

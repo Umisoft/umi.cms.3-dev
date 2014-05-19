@@ -61,6 +61,9 @@ return [
         'project.admin.settings.statistics' => '{#lazy:~/project/module/statistics/settings/i18n/dictionary.config.php}',
         'project.admin.settings.statistics.metrika' => '{#lazy:~/project/module/statistics/settings/metrika/i18n/dictionary.config.php}',
 
+        'project.admin.settings.security' => '{#lazy:~/project/module/security/settings/i18n/dictionary.config.php}',
+        'project.admin.settings.security.captcha' => '{#lazy:~/project/module/security/settings/captcha/i18n/dictionary.config.php}',
+
         'project.site.users.authorization' => '{#lazy:~/project/module/users/site/authorization/i18n/dictionary.config.php}',
 
         'project.site.blog.comment' => '{#lazy:~/project/module/blog/site/comment/i18n/dictionary.config.php}',

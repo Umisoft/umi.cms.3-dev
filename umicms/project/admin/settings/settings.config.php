@@ -27,6 +27,7 @@ return [
         'service' => '{#lazy:~/project/module/service/settings/module.config.php}',
         'seo' => '{#lazy:~/project/module/seo/settings/module.config.php}',
         'statistics' => '{#lazy:~/project/module/statistics/settings/module.config.php}',
+        'security' => '{#lazy:~/project/module/security/settings/module.config.php}',
     ],
 
     SettingsApplication::OPTION_CONTROLLERS => [
