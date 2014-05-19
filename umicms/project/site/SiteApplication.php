@@ -32,6 +32,7 @@ use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\TCmsCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
+use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\Bootstrap;
@@ -164,8 +165,7 @@ class SiteApplication extends SiteComponent
             $element = $context->getRouteParams()[self::MATCH_STRUCTURE_ELEMENT];
 
             if ($element instanceof ICmsPage) {
-
-                if ($element instanceof StaticPage) {
+                if ($element instanceof CmsHierarchicObject) {
                     foreach ($element->getAncestry() as $parent) {
                         $this->pushCurrentPage($parent);
                     }

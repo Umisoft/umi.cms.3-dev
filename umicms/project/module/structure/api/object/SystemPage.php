@@ -11,8 +11,10 @@ namespace umicms\project\module\structure\api\object;
 
 /**
  * Системная страница UMI.CMS.
+ *
+ * @property bool $skipInBreadcrumbs пропускать ли системную страницу при выводе хлебных крошек
  */
 class SystemPage extends StructureElement
 {
-
+    const FIELD_SKIP_PAGE_IN_BREADCRUMBS = 'skipInBreadcrumbs';
 }

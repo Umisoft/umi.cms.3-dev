@@ -1655,6 +1655,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `child_count` int(10) unsigned DEFAULT '0',
                     `display_name` varchar(255) DEFAULT NULL,
                     `display_name_en` varchar(255) DEFAULT NULL,
+                    `skip_in_breadcrumbs` tinyint(1) unsigned DEFAULT '0',
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',

@@ -3,6 +3,9 @@
  * @var umicms\project\module\news\api\object\NewsItem $page
  */
 ?>
+
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
 <div class="blog-post">
     <h2 class="blog-post-title"><?=$page->displayName?></h2>
     <p class="blog-post-meta">
