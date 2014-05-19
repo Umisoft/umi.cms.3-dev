@@ -1,5 +1,5 @@
 {% if (elementInfo.element.getInputType() != 'hidden') %}
-    <div class="form-group">
+    <div class="form-group {{ not elementInfo.element.isValid() ? 'has-error' }}">
         <label> {{ elementInfo.label }} </label>
 
         {% if (not elementInfo.element.isValid()) %}
