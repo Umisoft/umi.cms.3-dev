@@ -1,26 +1,19 @@
 <?php
 /**
- * @var array $elementInfo
- * @var Captcha $element
+ * @var umi\form\FormEntityView $element
  */
-use umicms\form\element\Captcha;
-
-?>
-<?php
-    $element = $elementInfo['element'];
-    $captchaInfo = $element->getCaptchaInfo();
 ?>
 
 
-<?php if (!$captchaInfo['isHuman']) : ?>
+<?php if (!$element->isHuman) : ?>
 
-    <div class="form-group <?= !$element->isValid() ? 'has-error' : '' ?>">
-        <label><?= $elementInfo['label'] ?></label>
+    <div class="form-group <?= !$element->valid ? 'has-error' : '' ?>">
+        <label><?= $element->label ?></label>
 
-        <?php if (!$element->isValid()) : ?>
+        <?php if (!$element->valid) : ?>
             <div class="alert alert-danger">
                 <ul>
-                    <?php foreach ($element->getMessages() as $message) : ?>
+                    <?php foreach ($element->errors as $message) : ?>
                         <li><?= $message ?></li>
                     <?php endforeach; ?>
                 </ul>
@@ -28,17 +21,17 @@ use umicms\form\element\Captcha;
         <?php endif; ?>
 
         <script type="text/javascript">
-            function reloadCaptcha_<?=$captchaInfo['key']?>() {
-                var img = document.getElementById('<?=$captchaInfo['key']?>');
-                img.src = '<?=$captchaInfo['url']?>?t=' + (new Date()).getTime();
+            function reloadCaptcha_<?= $element->sessionKey ?>() {
+                var img = document.getElementById('<?= $element->sessionKey ?>');
+                img.src = '<?= $element->url ?>?t=' + (new Date()).getTime();
             }
         </script>
         <div class="input-group">
             <span class="input-group-addon">
-                <img id="<?=$captchaInfo['key']?>" src="<?=$captchaInfo['url']?>" alt="<?= $elementInfo['label'] ?>" title="<?= $elementInfo['label'] ?>">
-                <button class="btn btn-default glyphicon glyphicon-refresh" onclick="reloadCaptcha_<?=$captchaInfo['key']?>();return false;"></button>
+                <img id="<?= $element->sessionKey ?>" src="<?= $element->url ?>" alt="<?= $element->label ?>" title="<?= $element->label ?>">
+                <button class="btn btn-default glyphicon glyphicon-refresh" onclick="reloadCaptcha_<?= $element->sessionKey ?>();return false;"></button>
             </span>
-            <input type="text" class="form-control input-lg" <?= $elementInfo['attributes'] ?>>
+            <input type="text" class="form-control input-lg" <?= $element->attributes ?>>
         </div>
 
     </div>

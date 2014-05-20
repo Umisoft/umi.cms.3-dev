@@ -1,29 +1,26 @@
 <?php
 /**
- * @var array $elementInfo
- * @var umi\form\element\Select $element
+ * @var umi\form\FormEntityView $element
  */
 ?>
 
-<?php $element = $elementInfo['element']?>
-
 <div class="form-group">
-    <label><?= $elementInfo['label'] ?></label>
+    <label><?= $element->label ?></label>
 
-    <?php if (!$element->isValid()) : ?>
+    <?php if (!$element->valid) : ?>
         <div class="alert alert-danger">
             <ul>
-                <?php foreach ($element->getMessages() as $message) : ?>
+                <?php foreach ($element->errors as $message) : ?>
                     <li><?= $message ?></li>
                 <?php endforeach; ?>
             </ul>
         </div>
     <?php endif; ?>
 
-    <select class="form-control" <?= $elementInfo['attributes'] ?> >
+    <select class="form-control" <?= $element->attributes ?> >
 
-        <?php foreach ($elementInfo['choices'] as $choiceInfo) : ?>
-            <option <?= $choiceInfo['attributes'] ?> > <?= $choiceInfo['label'] ?> </option>
+        <?php foreach ($element->choices as $choice) : ?>
+            <option <?= $choice['attributes'] ?> > <?= $choice['label'] ?> </option>
         <?php endforeach; ?>
 
     </select>

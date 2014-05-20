@@ -1,10 +1,8 @@
 <?php
 /**
- * @var array $elementInfo
- * @var umi\form\element\Checkbox $element
+ * @var umi\form\FormEntityView $element
  */
 ?>
-<?php $element = $elementInfo['element']?>
 
-<input type="hidden" value="0" name="<?= $element->getElementName() ?>"/>
-<label><input <?= $elementInfo['attributes'] ?> /><?= $elementInfo['label'] ?></label>
+<input type="hidden" value="0" name="<?= $element->attributes->name ?>"/>
+<label><input <?= $element->attributes ?> /><?= $element->label ?></label>

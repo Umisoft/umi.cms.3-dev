@@ -12,7 +12,6 @@ namespace umicms\templating\engine\php;
 use umi\i18n\translator\ITranslator;
 use umi\templating\engine\php\IPhpExtension;
 use umicms\hmvc\dispatcher\CmsDispatcher;
-use umicms\templating\helper\FormHelper;
 use umicms\templating\helper\TranslationHelper;
 
 /**
@@ -24,10 +23,6 @@ class TemplatingPhpExtension implements IPhpExtension
      * @var string $translateFunctionName имя функции для перевода
      */
     public $translateFunctionName = 'translate';
-    /**
-     * @var string $formFunctionName имя функции для вывода форм
-     */
-    public $formFunctionName = 'form';
 
     /**
      * @var CmsDispatcher $dispatcher диспетчер
@@ -62,7 +57,6 @@ class TemplatingPhpExtension implements IPhpExtension
     public function getFunctions()
     {
         return [
-            $this->formFunctionName => [$this->getFormHelper(), 'buildForm'],
             $this->translateFunctionName => [$this->getTranslationHelper(), 'translate']
         ];
     }
@@ -82,22 +76,6 @@ class TemplatingPhpExtension implements IPhpExtension
 
         return $helper;
 
-    }
-
-    /**
-     * Возвращает помощник шаблонов для форм.
-     * @return FormHelper
-     */
-    protected function getFormHelper()
-    {
-        static $helper;
-
-        if (!$helper) {
-            $helper = new FormHelper();
-            $helper->setTranslator($this->translator);
-        }
-
-        return $helper;
     }
 }
  

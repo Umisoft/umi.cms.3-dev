@@ -1,23 +1,20 @@
 <?php
 /**
- * @var array $elementInfo
- * @var umi\form\element\CheckboxGroup $element
+ * @var umi\form\FormEntityView $element
  */
 ?>
 
-<?php $element = $elementInfo['element']?>
-
-<?php if (!$element->isValid()) : ?>
+<?php if (!$element->valid) : ?>
     <div class="alert alert-danger">
         <ul>
-            <?php foreach ($element->getMessages() as $message) : ?>
+            <?php foreach ($element->errors as $message) : ?>
                 <li><?= $message ?></li>
             <?php endforeach; ?>
         </ul>
     </div>
 <?php endif; ?>
 
-<?php foreach ($elementInfo['choices'] as $choiceInfo) : ?>
-    <label><input <?= $choiceInfo['attributes'] ?> /><?= $choiceInfo['label'] ?></label>
+<?php foreach ($element->choices as $choice) : ?>
+    <label><input <?= $choice['attributes'] ?> /><?= $choice['label'] ?></label>
 <?php endforeach; ?>
 

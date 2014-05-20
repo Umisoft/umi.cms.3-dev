@@ -9,13 +9,12 @@
 
 namespace umicms\form\element;
 
-use umi\form\element\BaseFormElement;
-use umi\form\element\IFormInput;
+use umi\form\element\BaseFormInput;
 
 /**
  * Элемент формы файл.
  */
-class File extends BaseFormElement implements IFormInput
+class File extends BaseFormInput
 {
     /**
      * Тип элемента.
@@ -23,11 +22,8 @@ class File extends BaseFormElement implements IFormInput
     const TYPE_NAME = 'file';
 
     /**
-     * {@inheritdoc}
+     * @var string $inputType тип инпута
      */
-    public function getInputType()
-    {
-        return self::TYPE_NAME;
-    }
+    protected $inputType = self::TYPE_NAME;
 }
  
