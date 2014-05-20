@@ -14,12 +14,12 @@ define([
         tagName: 'li',
         template: Ember.Handlebars.compile(itemTpl),
         isExpanded: true,
-        expanded: function(){
+        checkExpanded: function(){
             var params = this.get('controller.target.router.state.params');
             if(params && 'settings.component' in params && params['settings.component'].component === this.get('context.name')){
                 this.set('isExpanded', true);
             }
-        }.property(),
+        },
         nestedSlug: function(){
             var computedSlug = '';
             if(this.get('parentView').constructor.toString() === '.TreeSimpleItemView'){
