@@ -7,6 +7,7 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\form\element\Checkbox;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
@@ -39,6 +40,13 @@ return [
                     'label' => SystemPage::FIELD_PAGE_LAYOUT,
                     'options' => [
                         'dataSource' => SystemPage::FIELD_PAGE_LAYOUT
+                    ],
+                ],
+                SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => [
+                    'type' => Checkbox::TYPE_NAME,
+                    'label' => SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS,
+                    'options' => [
+                        'dataSource' => SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS
                     ],
                 ]
             ]

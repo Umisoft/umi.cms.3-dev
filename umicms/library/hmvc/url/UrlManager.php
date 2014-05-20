@@ -57,6 +57,10 @@ class UrlManager implements IUrlManager, ILocalizable
      * @var string $settingsUrlPrefix префикс URL для запросов связанных с настройками
      */
     protected $settingsUrlPrefix;
+    /**
+     * @var array $systemPageUrls url системных страниц, по пути компонентов
+     */
+    protected $systemPageUrls = [];
 
     /**
      * Конструктор.
@@ -192,9 +196,19 @@ class UrlManager implements IUrlManager, ILocalizable
         return $this->getRawSystemPageUrl($handlerPath) . $component->getPageUri($page);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getRawSystemPageUrl($componentPath)
     {
-        return $this->structureApi->element()->getSystemPageByComponentPath($componentPath)->getURL();
+        if (!isset($this->systemPageUrls[$componentPath])) {
+            $this->systemPageUrls[$componentPath] = $this->structureApi
+                ->element()
+                ->getSystemPageByComponentPath($componentPath)
+                ->getURL();
+        }
+
+        return $this->systemPageUrls[$componentPath];
     }
 
     /**

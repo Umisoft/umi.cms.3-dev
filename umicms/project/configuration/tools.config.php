@@ -18,6 +18,7 @@ use umi\rss\toolbox\RssTools;
 use umi\stemming\toolbox\StemmingTools;
 use umi\stream\toolbox\StreamTools;
 use umi\validation\toolbox\ValidationTools;
+use umicms\captcha\toolbox\CaptchaTools;
 use umicms\model\toolbox\ModelTools;
 use umicms\module\toolbox\ModuleTools;
 use umicms\serialization\toolbox\SerializationTools;
@@ -37,5 +38,6 @@ return [
     StreamTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/stream/toolbox/config.php'),
     ModuleTools::NAME => require(CMS_LIBRARY_DIR . '/module/toolbox/config.php'),
     ModelTools::NAME => require(CMS_LIBRARY_DIR . '/model/toolbox/config.php'),
-    SerializationTools::NAME => require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php')
+    SerializationTools::NAME => require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php'),
+    CaptchaTools::NAME => require(CMS_LIBRARY_DIR . '/captcha/toolbox/config.php')
 ];

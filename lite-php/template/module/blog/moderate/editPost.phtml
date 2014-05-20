@@ -1,6 +1,6 @@
 <?php
 /**
- * @var umicms\project\module\blog\api\object\BlogPost $blogPost
+ * @var umi\form\IForm $form
  */
 ?>
-<?= $this->widget('blog.moderate.editPost', ['blogPost' => $blogPost, 'template' => 'editPostForm']); ?>
+<?=$this->render('form/form.phtml', ['form' => $form])?>

@@ -30,7 +30,6 @@ return [
         'ownListLink' => __NAMESPACE__ . '\widget\OwnListLinkWidget',
         'allList' => __NAMESPACE__ . '\widget\AllListWidget',
         'allListLink' => __NAMESPACE__ . '\widget\AllListLinkWidget',
-        'editPost' => __NAMESPACE__ . '\widget\PostEditWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\PostEditLinkWidget',
         'publishModerate' => __NAMESPACE__ . '\widget\PostPublishWidget',
         'rejectModerate' => __NAMESPACE__ . '\widget\PostRejectWidget',
@@ -52,7 +51,6 @@ return [
             'widget:ownListLink',
             'widget:allList',
             'widget:allListLink',
-            'widget:editPost',
             'widget:editPostLink',
             'widget:publishModerate',
             'widget:rejectModerate',
@@ -78,7 +76,6 @@ return [
                 'controller:page' => [],
                 'widget:allList' => [],
                 'widget:allListLink' => [],
-                'widget:editPost' => [],
                 'widget:editPostLink' => [],
                 'widget:publishModerate' => [],
                 'widget:rejectModerate' => []

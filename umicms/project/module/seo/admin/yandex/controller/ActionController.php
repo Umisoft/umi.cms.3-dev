@@ -9,6 +9,7 @@
 namespace umicms\project\module\seo\admin\yandex\controller;
 
 use umicms\exception\InvalidArgumentException;
+use umicms\project\admin\api\component\DefaultQueryAdminComponent;
 use umicms\project\admin\api\controller\DefaultRestActionController;
 use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\seo\model\YandexModel;
@@ -28,22 +29,6 @@ class ActionController extends DefaultRestActionController
     protected $hostId;
 
     /**
-     * {@inheritdoc}
-     */
-    public function getQueryActions()
-    {
-        return ['hosts', 'host', 'indexed', 'links', 'tops'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModifyActions()
-    {
-        return [];
-    }
-
-      /**
      * Возвращает список доступных сайтов
      * @return array
      */
@@ -101,14 +86,15 @@ class ActionController extends DefaultRestActionController
     {
         /** @var $component AdminComponent */
         $component = $this->getComponent();
-        $options = $component->getSettings()['options'];
-        if (!isset($options['oauthToken'])) {
-            throw new InvalidArgumentException(
-                $this->translate("Option {option} is required", ['option' => 'oauthToken'])
-            );
+        $oauthToken = $component->getSetting(YandexModel::YANDEX_OAUTH_TOKEN);
+        if (is_null($oauthToken)) {
+            throw new InvalidArgumentException($this->translate(
+                "Option {option} is required",
+                ['option' => YandexModel::YANDEX_OAUTH_TOKEN]
+            ));
         }
 
-        return new YandexModel($options['oauthToken']);
+        return new YandexModel($oauthToken);
     }
 
     /**
@@ -121,15 +107,24 @@ class ActionController extends DefaultRestActionController
         if (is_null($this->hostId)) {
             /** @var $component AdminComponent */
             $component = $this->getComponent();
-            $options = $component->getSettings()['options'];
-            if (!isset($options['hostId'])) {
-                throw new InvalidArgumentException(
-                    $this->translate("Option {option} is required", ['option' => 'hostId'])
-                );
+            $hostId = $component->getSetting(YandexModel::YANDEX_HOST_ID);
+            if (is_null($hostId)) {
+                throw new InvalidArgumentException($this->translate(
+                    "Option {option} is required",
+                    ['option' => YandexModel::YANDEX_HOST_ID]
+                ));
             }
-            $this->hostId = $options['hostId'];
+            $this->hostId = $hostId;
         }
 
         return $this->hostId;
+    }
+
+    /**
+     * @return DefaultQueryAdminComponent
+     */
+    protected function getComponent()
+    {
+        return $this->getContext()->getComponent();
     }
 }

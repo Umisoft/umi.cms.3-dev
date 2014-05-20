@@ -14,8 +14,11 @@ use umi\i18n\toolbox\I18nTools;
 use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
 use umi\templating\toolbox\TemplatingTools;
+use umicms\captcha\toolbox\CaptchaTools;
+use umicms\form\element\Captcha;
 use umicms\form\element\File;
 use umicms\form\element\Image;
+use umicms\form\element\PasswordWithConfirmation;
 use umicms\form\element\Wysiwyg;
 use umicms\module\toolbox\ModuleTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
@@ -62,14 +65,16 @@ return [
                 'elementTypes' => [
                     Wysiwyg::TYPE_NAME => 'umicms\form\element\Wysiwyg',
                     File::TYPE_NAME => 'umicms\form\element\File',
-                    Image::TYPE_NAME => 'umicms\form\element\Image'
+                    Image::TYPE_NAME => 'umicms\form\element\Image',
+                    Captcha::TYPE_NAME => 'umicms\form\element\Captcha',
+                    PasswordWithConfirmation::TYPE_NAME => 'umicms\form\element\PasswordWithConfirmation'
                 ]
             ]
         ]
     ],
 
     ModuleTools::NAME => [
-        'modules' => '{#partial:~/project/configuration/modules.config.php}'
+        'modules' => '{#partial:~/project/module/modules.config.php}'
     ],
 
     OrmTools::NAME => [
@@ -94,6 +99,7 @@ return [
         'metadata'    => [
             'structure' => '{#lazy:~/project/module/structure/configuration/structure/metadata.config.php}',
             'layout' => '{#lazy:~/project/module/structure/configuration/layout/metadata.config.php}',
+            'infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/metadata.config.php}',
 
             'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/metadata.config.php}',
             'newsItem' => '{#lazy:~/project/module/news/configuration/item/metadata.config.php}',
@@ -125,6 +131,7 @@ return [
         'collections' => [
             'structure'     => '{#lazy:~/project/module/structure/configuration/structure/collection.config.php}',
             'layout'     => '{#lazy:~/project/module/structure/configuration/layout/collection.config.php}',
+            'infoblock'     => '{#lazy:~/project/module/structure/configuration/infoblock/collection.config.php}',
 
             'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/collection.config.php}',
             'newsItem' => '{#lazy:~/project/module/news/configuration/item/collection.config.php}',
@@ -155,8 +162,11 @@ return [
     ],
 
     I18nTools::NAME => [
-
         'localesServiceClass' => 'umicms\i18n\CmsLocalesService',
         'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
+    ],
+
+    CaptchaTools::NAME => [
+        'options' => '{#lazy:~/project/configuration/captcha.config.php}',
     ]
 ];

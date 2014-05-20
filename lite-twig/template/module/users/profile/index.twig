@@ -1,0 +1,9 @@
+<div class="blog-post">
+    <h2 class="blog-post-title">{{ page.displayName }} </h2>
+    {{ page.contents | raw }}
+
+    {% set errors = errors ?: null %}
+
+    {{ include('form/form.twig', {'form' : form}) }}
+
+</div>

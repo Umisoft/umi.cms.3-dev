@@ -20,6 +20,7 @@ use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\ICmsObject;
 use umicms\project\admin\api\component\DefaultAdminComponent;
 use umicms\project\module\structure\api\collection\StructureElementCollection;
+use umicms\project\module\structure\api\object\SystemPage;
 
 /**
  * Контроллер вывода настроек компонента
@@ -160,10 +161,9 @@ class DefaultRestSettingsController extends BaseDefaultRestController
 
     /**
      * Возвращает информацию о контроле "Форма создания"
-     * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildCreateFormControlInfo(ICmsCollection $collection) {
+    protected function buildCreateFormControlInfo() {
         return [
             'displayName' => $this->translate('control:createForm:displayName'),
             'toolbar' => [
@@ -369,7 +369,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
 
         if ($collection instanceof StructureElementCollection) {
             $types = $collection->getMetadata()->getTypesList();
-            $types = array_values(array_diff($types, [StructureElementCollection::TYPE_SYSTEM]));
+            $types = array_values(array_diff($types, [SystemPage::TYPE]));
             $result[] = $this->buildCollectionFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
         }
 

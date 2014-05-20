@@ -3,6 +3,9 @@
  * @var \umicms\project\module\blog\api\object\BlogTag $page
  */
 ?>
+
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
 <h1><?=$page->displayName?></h1>
 <?=$page->contents?>
 

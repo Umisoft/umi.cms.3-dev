@@ -14,8 +14,6 @@ use umi\orm\metadata\field\special\UriField;
 use umi\route\type\BaseRoute;
 use umicms\exception\RuntimeException;
 use umicms\project\module\structure\api\object\StaticPage;
-use umicms\project\site\callstack\IPageCallStackAware;
-use umicms\project\site\callstack\TPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
@@ -25,10 +23,9 @@ use umicms\project\module\structure\api\object\StructureElement;
 /**
  * Правила маршрутизации статичных страниц для сайта.
  */
-class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware, IPageCallStackAware
+class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
-    use TPageCallStackAware;
 
     /**
      * @var StructureModule $systemApi API работы со структурой
@@ -93,7 +90,7 @@ class SiteStaticPageRoute extends BaseRoute implements ISiteSettingsAware, IPage
     {
         $element =
             $this->structureApi->element()->select()
-            ->types(['static'])
+            ->types([StaticPage::TYPE])
             ->where(StaticPage::FIELD_URI)
                 ->equals(UriField::URI_START_SYMBOL . $url)
             ->limit(1)
