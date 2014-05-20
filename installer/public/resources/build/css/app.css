@@ -3230,6 +3230,9 @@ html {
   .auth-layout.fade-out ~ .auth-mask, .umi-main-view.fade-out ~ .auth-mask {
     opacity: 0; }
 
+.umi-main-view {
+  background: #D6E0E9; }
+
 .auth-layout {
   overflow: hidden;
   height: 100%;
