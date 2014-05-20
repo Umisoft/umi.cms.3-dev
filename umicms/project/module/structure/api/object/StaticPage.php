@@ -11,9 +11,11 @@ namespace umicms\project\module\structure\api\object;
 
 /**
  * Простая статическая страница.
- *
  */
 class StaticPage extends StructureElement
 {
-
+    /**
+     * Тип объекта
+     */
+    const TYPE = 'static';
 }

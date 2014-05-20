@@ -1,3 +1,5 @@
+{{ include('breadcrumbs.twig') }}
+
 <h1>{{ page.displayName }}</h1>
 {{ page.contents | raw }}
 
@@ -5,4 +7,4 @@
 {{ widget('blog.category.postList', {'categories' : [page], 'template' : 'postList'}) }}
 
 <h1>{{ translate('Создать пост') }}</h1>
-<?= $this->widget('blog.post.add', ['blogCategory' => $page, 'template' => 'addPostForm']); ?>
+{{ widget('blog.post.add', {'blogCategory' : page, 'template' : 'addPostForm'}) }}

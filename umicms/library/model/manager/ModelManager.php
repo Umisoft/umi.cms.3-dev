@@ -80,7 +80,7 @@ class ModelManager implements IDbClusterAware
      */
     public function persist()
     {
-        //TODO
+        $this->applyDbMigrations();
     }
 
     protected function applyConfigChanges()
@@ -98,13 +98,14 @@ class ModelManager implements IDbClusterAware
             $this->getDbCluster()->getMaster()->getConnection()
         );
 
-        try {
-            $this->createModelSchemes($synchronizer);
-            $this->updateModelSchemes($synchronizer);
-            $this->dropModelSchemes($synchronizer);
-        } catch (\Exception $e) {
-            throw new RuntimeException('Cannot apply database migrations.', 0, $e);
+        $tables = [];
+        foreach ($this->modifiedModels as $model) {
+            $tables[] = $model->getTableScheme();
         }
+
+        $scheme = new Schema($tables);
+        var_dump($synchronizer->getUpdateSchema($scheme, true));
+        $synchronizer->updateSchema($scheme, true);
     }
 
     /**
@@ -121,6 +122,8 @@ class ModelManager implements IDbClusterAware
 
         $createScheme = new Schema($createTables);
 
+        var_dump($synchronizer->getCreateSchema($createScheme));
+        exit;
         $synchronizer->createSchema($createScheme);
     }
 

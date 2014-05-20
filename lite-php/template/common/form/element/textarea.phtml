@@ -6,7 +6,18 @@
 ?>
 <?php $element = $elementInfo['element']?>
 
-<div class="form-group">
+<div class="form-group <?= $element->isValid() ? '' : 'has-error' ?>">
     <label><?= $elementInfo['label'] ?></label>
+
+    <?php if (!$element->isValid()) : ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach ($element->getMessages() as $message) : ?>
+                    <li><?= $message ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+
     <textarea class="form-control" rows="4" <?= $elementInfo['attributes'] ?> > <?= $element->getValue() ?> </textarea>
 </div>

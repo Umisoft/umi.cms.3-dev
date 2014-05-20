@@ -12,4 +12,5 @@
 
     <a href="{{ blogDraft.getPageUrl() }}">{{ translate('Читать далее') }}</a>
     {{ widget('blog.draft.publishDraft', {'blogDraft' : blogDraft, 'template' : 'publishDraftForm'}) }}
+    {{ widget('blog.draft.sendToModeration', {'blogDraft' : blogDraft, 'template' : 'sendToModerationForm'}) }}
 </div>

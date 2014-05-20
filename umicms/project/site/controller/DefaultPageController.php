@@ -10,6 +10,7 @@
 namespace umicms\project\site\controller;
 
 use umicms\exception\RuntimeException;
+use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\site\component\BaseDefaultSitePageComponent;
 
@@ -35,6 +36,12 @@ class DefaultPageController extends SitePageController
     {
         $uri = $this->getRouteVar('uri');
         $page = $this->getPage($uri);
+
+        if ($page instanceof CmsHierarchicObject) {
+            foreach ($page->getAncestry() as $parent) {
+                $this->pushCurrentPage($parent);
+            }
+        }
 
         $this->pushCurrentPage($page);
 

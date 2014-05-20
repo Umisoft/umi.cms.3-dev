@@ -64,7 +64,7 @@ class PostToDraftController extends BaseSecureController implements IFormAware, 
             );
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
+        $form = $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE);
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {

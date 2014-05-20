@@ -46,12 +46,12 @@ return [
             'defaultValue' => 1
         ],
         BaseUser::FIELD_DISPLAY_NAME        => [
-            'type'       => IField::TYPE_STRING,
-            'columnName' => 'display_name',
-            'filters'    => [
+            'type'          => IField::TYPE_STRING,
+            'columnName'    => 'display_name',
+            'filters'       => [
                 IFilterFactory::TYPE_STRING_TRIM => []
             ],
-            'validators' => [
+            'validators'    => [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
@@ -87,15 +87,15 @@ return [
             'relatedField' => 'user',
             'targetField'  => 'userGroup'
         ],
-        BaseUser::FIELD_OWNER => [
-            'type' => IField::TYPE_BELONGS_TO,
+        BaseUser::FIELD_OWNER               => [
+            'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
-            'target' => 'user'
+            'target'     => 'user'
         ],
-        BaseUser::FIELD_EDITOR => [
-            'type' => IField::TYPE_BELONGS_TO,
+        BaseUser::FIELD_EDITOR              => [
+            'type'       => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
-            'target' => 'user'
+            'target'     => 'user'
         ],
         AuthorizedUser::FIELD_TRASHED       => [
             'type'         => IField::TYPE_BOOL,
@@ -104,7 +104,7 @@ return [
             'readOnly'     => true,
         ],
         AuthorizedUser::FIELD_LOGIN         => [
-            'type' => IField::TYPE_STRING,
+            'type'       => IField::TYPE_STRING,
             'columnName' => 'login',
             'filters'    => [
                 IFilterFactory::TYPE_STRING_TRIM => []
@@ -130,17 +130,50 @@ return [
         AuthorizedUser::FIELD_PASSWORD      => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'password',
-            'readOnly'   => true
+            'mutator'    => 'setPassword',
+            'accessor'   => 'getPassword',
+            'filters'    => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         AuthorizedUser::FIELD_PASSWORD_SALT => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'password_salt',
             'readOnly'   => true
         ],
+        AuthorizedUser::FIELD_ACTIVATION_CODE => [
+            'type'       => IField::TYPE_STRING,
+            'columnName' => 'activation_code',
+            'readOnly'   => true
+        ],
+        AuthorizedUser::FIELD_FIRST_NAME    => [
+            'type'       => IField::TYPE_STRING,
+            'columnName' => 'first_name',
+            'filters'    => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ]
+        ],
+        AuthorizedUser::FIELD_MIDDLE_NAME   => [
+            'type'       => IField::TYPE_STRING,
+            'columnName' => 'middle_name',
+            'filters'    => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ]
+        ],
+        AuthorizedUser::FIELD_LAST_NAME     => [
+            'type'       => IField::TYPE_STRING,
+            'columnName' => 'last_name',
+            'filters'    => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ]
+        ],
 
     ],
     'types'      => [
-        'base'       => [
+        'base'                    => [
             'objectClass' => 'umicms\project\module\users\api\object\BaseUser',
             'fields'      => [
                 BaseUser::FIELD_IDENTIFY,
@@ -158,7 +191,7 @@ return [
                 BaseUser::FIELD_EDITOR
             ]
         ],
-        'guest'      => [
+        'guest'                   => [
             'objectClass' => 'umicms\project\module\users\api\object\Guest',
             'fields'      => [
                 Guest::FIELD_IDENTIFY,
@@ -176,7 +209,7 @@ return [
                 Guest::FIELD_EDITOR
             ]
         ],
-        'authorized' => [
+        AuthorizedUser::TYPE_NAME => [
             'objectClass' => 'umicms\project\module\users\api\object\AuthorizedUser',
             'fields'      => [
                 AuthorizedUser::FIELD_IDENTIFY,
@@ -193,12 +226,15 @@ return [
                 AuthorizedUser::FIELD_EMAIL,
                 AuthorizedUser::FIELD_PASSWORD,
                 AuthorizedUser::FIELD_PASSWORD_SALT,
+                AuthorizedUser::FIELD_FIRST_NAME,
+                AuthorizedUser::FIELD_MIDDLE_NAME,
+                AuthorizedUser::FIELD_LAST_NAME,
                 AuthorizedUser::FIELD_GROUPS,
                 AuthorizedUser::FIELD_OWNER,
                 AuthorizedUser::FIELD_EDITOR,
             ]
         ],
-        'authorized.supervisor' => [
+        'authorized.supervisor'   => [
             'objectClass' => 'umicms\project\module\users\api\object\Supervisor',
             'fields'      => [
                 Supervisor::FIELD_IDENTIFY,
@@ -215,6 +251,9 @@ return [
                 Supervisor::FIELD_EMAIL,
                 Supervisor::FIELD_PASSWORD,
                 Supervisor::FIELD_PASSWORD_SALT,
+                Supervisor::FIELD_FIRST_NAME,
+                Supervisor::FIELD_MIDDLE_NAME,
+                Supervisor::FIELD_LAST_NAME,
                 Supervisor::FIELD_GROUPS,
                 Supervisor::FIELD_OWNER,
                 Supervisor::FIELD_EDITOR,

@@ -8,7 +8,8 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
-use umicms\project\module\structure\api\collection\StructureElementCollection;
+use umicms\project\module\structure\api\object\StaticPage;
+use umicms\project\module\structure\api\object\SystemPage;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
@@ -19,11 +20,11 @@ return [
         'site' => 'structure'
     ],
     'forms' => [
-        'static' => [
+        StaticPage::TYPE => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/structure/form/static.edit.config.php}',
             ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/structure/form/static.create.config.php}'
         ],
-        StructureElementCollection::TYPE_SYSTEM => [
+        SystemPage::TYPE => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/structure/form/system.edit.config.php}'
         ]
     ],

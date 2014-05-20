@@ -11,14 +11,14 @@ namespace umicms\project\module\blog\site\reject\widget;
 
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
  * Виджет отправки поста на модерацию.
  */
-class PostSendToModerationWidget extends BaseSecureWidget
+class PostSendToModerationWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -45,7 +45,7 @@ class PostSendToModerationWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getForm()
     {
         if (is_string($this->blogPost)) {
             $this->blogPost = $this->api->post()->getRejectedPost($this->blogPost);
@@ -57,27 +57,21 @@ class PostSendToModerationWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => 'BlogPost'
+                        'class' => 'umicms\project\module\blog\api\object\BlogPost'
                     ]
                 )
             );
         }
 
-        $formPost = $this->api->post()->getForm(
-            BlogPost::FORM_CHANGE_POST_STATUS,
+        $form = $this->api->post()->getForm(
+            BlogPost::FORM_MODERATE_POST,
             IObjectType::BASE,
             $this->blogPost
         );
 
-        $formPost->setAction($this->getUrl('sendToModeration', ['id' => $this->blogPost->getId()]));
-        $formPost->setMethod('post');
+        $form->setAction($this->getUrl('sendToModeration', ['id' => $this->blogPost->getId()]));
 
-        return $this->createResult(
-            $this->template,
-            [
-                'form' => $formPost
-            ]
-        );
+        return $form;
     }
 }
  

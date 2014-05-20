@@ -27,7 +27,6 @@ return [
         'view' => __NAMESPACE__ . '\widget\DraftWidget',
         'ownList' => __NAMESPACE__ . '\widget\DraftOwnListWidget',
         'ownListUrl' => __NAMESPACE__ . '\widget\DraftOwnListUrlWidget',
-        'editDraft' => __NAMESPACE__ . '\widget\EditWidget',
         'publishDraft' => __NAMESPACE__ . '\widget\PublishWidget',
         'editDraftLink' => __NAMESPACE__ . '\widget\DraftEditUrlWidget',
         'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
@@ -44,7 +43,6 @@ return [
             'widget:view',
             'widget:ownList',
             'widget:ownListUrl',
-            'widget:editDraft',
             'widget:publishDraft',
             'widget:editDraftLink',
             'widget:sendToModeration',
@@ -60,7 +58,6 @@ return [
                 'widget:ownList' => [],
                 'widget:ownListUrl' => [],
                 'widget:editDraftLink' => [],
-                'widget:editDraft' => [],
                 'widget:sendToModeration' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']

@@ -3,6 +3,9 @@
 * @var umicms\project\module\structure\api\object\SystemPage $page
 */
 ?>
+
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
 <h1><?= $page->displayName ?></h1>
 <?= $page->contents ?>
 

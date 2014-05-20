@@ -33,4 +33,8 @@ switch($elementInfo['type'])
         echo $this->render('form/element/input.phtml', ['elementInfo' => $elementInfo]);
         break;
     }
+    case 'captcha': {
+        echo $this->render('form/element/captcha.phtml', ['elementInfo' => $elementInfo]);
+        break;
+    }
 }

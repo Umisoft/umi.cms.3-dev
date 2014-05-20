@@ -1,0 +1,15 @@
+<?php
+/**
+ * @var array $breadcrumbs
+ */
+?>
+
+<ol class="breadcrumb">
+<?php
+$lastCrumb = array_pop($breadcrumbs);
+foreach ($breadcrumbs as $crumb) {
+    echo '<li><a href="' . $crumb['url'] . '">' . $crumb['displayName'] . '</a></li>';
+}
+echo '<li class="active">' . $lastCrumb['displayName'] . '</li>';
+?>
+</ol>

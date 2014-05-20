@@ -3,6 +3,9 @@
  * @var umicms\project\module\blog\api\object\BlogPost $page
  */
 ?>
+
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
 <div class="blog-post">
     <h1><?=$page->displayName?></h1>
     <p class="blog-post-meta">

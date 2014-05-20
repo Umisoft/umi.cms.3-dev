@@ -33,6 +33,7 @@ return [
         'project.admin.api.structure' => '{#lazy:~/project/module/structure/admin/i18n/dictionary.config.php}',
         'project.admin.api.structure.page' => '{#lazy:~/project/module/structure/admin/page/i18n/dictionary.config.php}',
         'project.admin.api.structure.layout' => '{#lazy:~/project/module/structure/admin/layout/i18n/dictionary.config.php}',
+        'project.admin.api.structure.infoblock' => '{#lazy:~/project/module/structure/admin/infoblock/i18n/dictionary.config.php}',
 
         'project.admin.api.statistics' => '{#lazy:~/project/module/statistics/admin/i18n/dictionary.config.php}',
         'project.admin.api.statistics.metrika' => '{#lazy:~/project/module/statistics/admin/metrika/i18n/dictionary.config.php}',
@@ -50,12 +51,25 @@ return [
 
         'project.admin.api.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
 
-
         'project.admin.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
         'project.admin.settings.service' => '{#lazy:~/project/module/service/settings/i18n/dictionary.config.php}',
         'project.admin.settings.service.backup' => '{#lazy:~/project/module/service/settings/backup/i18n/dictionary.config.php}',
+        'project.admin.settings.seo' => '{#lazy:~/project/module/seo/settings/i18n/dictionary.config.php}',
+        'project.admin.settings.seo.megaindex' => '{#lazy:~/project/module/seo/settings/megaindex/i18n/dictionary.config.php}',
+        'project.admin.settings.seo.yandex' => '{#lazy:~/project/module/seo/settings/yandex/i18n/dictionary.config.php}',
+        'project.admin.settings.statistics' => '{#lazy:~/project/module/statistics/settings/i18n/dictionary.config.php}',
+        'project.admin.settings.statistics.metrika' => '{#lazy:~/project/module/statistics/settings/metrika/i18n/dictionary.config.php}',
+        'project.admin.settings.users' => '{#lazy:~/project/module/users/settings/i18n/dictionary.config.php}',
+
+        'project.admin.settings.security' => '{#lazy:~/project/module/security/settings/i18n/dictionary.config.php}',
+        'project.admin.settings.security.captcha' => '{#lazy:~/project/module/security/settings/captcha/i18n/dictionary.config.php}',
 
         'project.site.users.authorization' => '{#lazy:~/project/module/users/site/authorization/i18n/dictionary.config.php}',
+        'project.site.users.registration' => '{#lazy:~/project/module/users/site/registration/i18n/dictionary.config.php}',
+        'project.site.users.profile' => '{#lazy:~/project/module/users/site/profile/i18n/dictionary.config.php}',
+
+        'project.site.blog.comment' => '{#lazy:~/project/module/blog/site/comment/i18n/dictionary.config.php}',
+        'project.site.blog.post' => '{#lazy:~/project/module/blog/site/post/i18n/dictionary.config.php}',
 
         'collection' => [
 
@@ -158,4 +172,5 @@ return [
 
         'collection.layout' => '{#lazy:~/project/module/structure/configuration/layout/i18n/dictionary.config.php}',
         'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',
+        'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',
     ];

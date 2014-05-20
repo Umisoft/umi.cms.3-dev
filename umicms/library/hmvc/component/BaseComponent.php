@@ -43,6 +43,21 @@ abstract class BaseComponent extends FrameworkComponent
     }
 
     /**
+     * Возвращает значение настройки для компонента.
+     * @param string $settingName имя настройки
+     * @param mixed $defaultValue значение по умолчанию
+     * @return mixed
+     */
+    public function getSetting($settingName, $defaultValue = null)
+    {
+        if (isset($this->getSettings()[$settingName])) {
+            return $this->getSettings()[$settingName];
+        }
+
+        return $defaultValue;
+    }
+
+    /**
      * Возвращает список имен дочерних компонентов.
      * @return array
      */

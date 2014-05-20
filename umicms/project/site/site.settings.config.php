@@ -19,5 +19,5 @@ return [
     SiteApplication::SETTING_TEMPLATE_DIRECTORY => '~/project/template',
     SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => '~/project/template/common',
 
-    SiteApplication::SETTING_BROWSER_CACHE_ENABLED => true
+    SiteApplication::SETTING_BROWSER_CACHE_ENABLED => false
 ];
