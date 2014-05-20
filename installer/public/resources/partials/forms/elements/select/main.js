@@ -5,15 +5,29 @@ define(['App'], function(UMI){
         UMI.SelectView = Ember.Select.extend(UMI.InputValidate, {
             attributeBindings: ['meta.dataSource:name'],
             optionLabelPath: function(){
-                return this.get('meta.choices') ? 'content.label': 'content.displayName';
+                return 'content.label';
             }.property(),
             optionValuePath: function(){
-                return this.get('meta.choices') ? 'content.value': 'content.id';
+                return 'content.value';
             }.property(),
             prompt: function(){
                 return this.get('meta.placeholder') || "Ничего не выбрано";
             }.property('meta.placeholder'),
             content: null,
+            init: function(){
+                this._super();
+                this.set('selection', this.get('object.choices').findBy('value', this.get('object.value')));
+                this.set('content', this.get('object.choices'));
+            }
+        });
+
+        UMI.SelectForModelView = UMI.SelectView.extend(UMI.InputValidate, {
+            optionLabelPath: function(){
+                return this.get('meta.choices') ? 'content.label': 'content.displayName';
+            }.property(),
+            optionValuePath: function(){
+                return this.get('meta.choices') ? 'content.value': 'content.id';
+            }.property(),
             changeValue: function(){
                 var object = this.get('object');
                 var property = this.get('meta.dataSource');
@@ -37,6 +51,7 @@ define(['App'], function(UMI){
 
                 // Эмпирическое правило: если нет choices то этот селект работает со связями.
                 if(this.get('meta.choices')){
+                    console.log(this.get('meta.choices'), this.get('object'));
                     self.set('selection', this.get('meta.choices').findBy('value', object.get(property)));
                     self.set('content', this.get('meta.choices'));
 
