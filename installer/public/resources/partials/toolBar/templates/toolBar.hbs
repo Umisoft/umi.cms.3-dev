@@ -35,7 +35,7 @@
         font-size: 13px;
         font-weight: normal;
         line-height: 21px;
-        padding: 5px 0;
+        padding: 4px 0;
         box-shadow: 0 0 3px 0 #7C99AC;
     }
 
@@ -58,7 +58,7 @@
 </style>
 
 <a class="umi-button umi-toolbar-create-button">
-    <span class="umi-toolbar-create-text">Создать</span>
+    <span class="umi-toolbar-create-text" {{action 'objectCreate' target='view'}}>Создать</span>
     <span class="umi-toolbar-create-icon">
         <i class="icon icon-bottom"></i>
     </span>
@@ -66,12 +66,9 @@
         <span>Создать объект</span>
         <span>Создать</span>
         <span>Создать</span>
-        <!--{{!#each controller.sideBarControl.toolbar}}-->
-            <!--{{!#view view.itemView action=this}}-->
-                <!--<i {{!bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{!action 'toggleFastAction' this}}></i>-->
-                <!--<span {{!action 'sendAction' this controller.model}}>{{!displayName}}</span>-->
-            <!--{{!/view}}-->
-        <!--{{!/each}}-->
+        {{!#each element in createMenu}}
+            <span>{{!element.displayName}}</span>
+        {{!/each}}
     </span>
 </a>
 

@@ -2600,7 +2600,7 @@ label.error {
     .umi-button-icon-32.umi-dark-bg:hover.umi-disabled {
       background: none; }
   .umi-button-icon-32.umi-light-bg:hover {
-    background: #B5DBF6; }
+    background: #C8DEEE; }
     .umi-button-icon-32.umi-light-bg:hover.umi-disabled {
       background: none; }
 
@@ -4272,7 +4272,7 @@ ul.umi-search-result {
   .umi-table-control-content-row.umi-inactive {
     background: #D6E0E9; }
   .umi-table-control-content-row.hover {
-    background: rgba(181, 219, 246, 0.4) !important; }
+    background: #C8DEEE !important; }
   .umi-table-control-content-row .edit-link {
     color: #535E6D; }
     .umi-table-control-content-row .edit-link:hover {
@@ -4302,7 +4302,7 @@ ul.umi-search-result {
       .umi-table-control-header-cell.filter .sort-handler.active {
         opacity: 1; }
   .umi-table-control-header-cell.hover {
-    background: rgba(181, 219, 246, 0.4) !important; }
+    background: #C8DEEE !important; }
 
 .umi-table-control-row .umi-table-control-header-cell {
   padding: 0 0.625rem; }
@@ -4329,7 +4329,7 @@ ul.umi-search-result {
     .umi-table-control-column-fixed-cell.filter .sort-handler.active {
       opacity: 1; }
   .umi-table-control-column-fixed-cell.hover {
-    background: rgba(181, 219, 246, 0.4) !important; }
+    background: #C8DEEE !important; }
 
 .umi-table-control-content-cell {
   padding: 0; }
@@ -4433,7 +4433,7 @@ ul.umi-search-result {
 .umi-list {
   background: #FFFFFF;
   list-style-type: none;
-  padding: 5px 0; }
+  padding: 4px 0; }
 
 .umi-list li {
   width: 100%;
@@ -4445,7 +4445,7 @@ ul.umi-search-result {
   background: #E8EDEF; }
 
 .umi-list li:hover {
-  background: #B5DBF6; }
+  background: #C8DEEE; }
 
 .umi-list a {
   display: block;

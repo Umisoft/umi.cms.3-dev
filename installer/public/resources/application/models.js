@@ -3,6 +3,10 @@ define([], function(){
 
     return function(UMI){
 
+        /**
+         * Фильтрация значения полей
+         * @type {{stringTrim: stringTrim, htmlSafe: htmlSafe}}
+         */
         var propertyFilters = {
             stringTrim: function(value){
                 return value.replace(/^\s+|\s+$/g, '');
@@ -84,13 +88,12 @@ define([], function(){
             },
 
             clearValidateForProperty: function(propertyName){
-                var i;
                 var activeErrors = this.get('validErrors');
                 if(activeErrors && activeErrors.hasOwnProperty(propertyName)){
                     delete activeErrors[propertyName];
                 }
                 // Объект пересобирается без свойств прототипа
-                i = 0;
+                var i = 0;
                 for(var error in activeErrors){
                     if(activeErrors.hasOwnProperty(error)){
                         ++i;
@@ -178,18 +181,17 @@ define([], function(){
          * @param array Массив обьектов
          */
         UMI.modelsFactory = function(collections){
-            var i;
-            var j;
+
             var collection;
             var fieldValue;
 
-            for(j = 0; j < collections.length; j++){
+            for(var j = 0; j < collections.length; j++){
                 var fields = {};
                 var filters = {};
                 var validators = {};
                 collection = collections[j];
 
-                for(i = 0; i < collection.fields.length; i++){
+                for(var i = 0; i < collection.fields.length; i++){
                     var params = {};
                     if(collection.fields[i].displayName){
                         params.displayName = collection.fields[i].displayName;

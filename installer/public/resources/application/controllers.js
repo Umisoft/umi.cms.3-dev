@@ -13,11 +13,11 @@ define([], function(){
          * @extends Ember.ObjectController
          */
         UMI.ComponentController = Ember.ObjectController.extend({
-//            needs: ['treeControl'],
             collectionName: function(){
                 var settings = this.get('settings');
                 return settings.collectionName;
             }.property('settings'),
+
             settings: null,
             /**
              Выбранный контекcт, соответствующий модели роута 'Context'
@@ -29,18 +29,19 @@ define([], function(){
             /**
              Вычисляемое свойсво возвращающее массив контролов для текущего контекста
              @method contentControls
-             @return Array Массив
+             @return Array Возвращает массив Ember объектов содержащий возможные действия текущего контрола
              */
             contentControls: function(){
                 var self = this;
                 var contentControls = [];
                 var settings = this.get('settings');
+                console.log('contentControlsSettings', settings);
                 try{
                     var selectedContext = this.get('selectedContext') === 'root' ? 'emptyContext' : 'selectedContext';
                     var controls = settings.layout.contents[selectedContext];
                     var key;
                     var control;
-                    for(key in controls){
+                    for(key in controls){ //for empty - createForm & filter
                         if(controls.hasOwnProperty(key)){
                             control = controls[key];
                             control.name = key;
@@ -71,7 +72,9 @@ define([], function(){
                 var sideBarControl;
                 var self = this;
                 try{
+
                     var settings = this.get('settings');
+                    console.log('settings', settings);
                     if(settings && settings.layout.hasOwnProperty('sideBar')){
                         var control;
                         for(control in settings.layout.sideBar){
@@ -82,6 +85,7 @@ define([], function(){
                             }
                         }
                     }
+
                 } catch(error){
                     var errorObject = {
                         'statusText': error.name,
@@ -92,7 +96,7 @@ define([], function(){
                         self.send('templateLogs', errorObject, 'component');
                     });
                 }
-//                console.log('sideBarControl', sideBarControl);
+
                 return sideBarControl;
             }.property('settings')
         });

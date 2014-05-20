@@ -3,9 +3,6 @@ define(['App'], function(UMI){
 
     return function(){
         UMI.ToolBarController = Ember.ObjectController.extend({
-//            actionList: function(){
-//                return this.get('controllers.component.sideBarControl.toolbar');
-//            }.property()
             needs: ['component']
         });
 
@@ -18,6 +15,23 @@ define(['App'], function(UMI){
                 });
             },
 
+            createMenu: function(){
+
+            },
+
+            actions: {
+                objectCreate: function(){
+//                    console.log('collectionName', this.get('controller.collectionName')); //newsRubric
+//                    console.log('selectedContext', this.get('controller.selectedContext')); //root
+//
+//                    console.log('settings', this.get('controller.settings'));
+                    console.log('contentControls', this.get('controller.contentControls')[1].toolbar);
+//                    console.log('sideBarControl', this.get('controller.sideBarControl'));
+
+                    //                        this controllers.treeControl.model
+                }
+            },
+
             groupCrudView: Ember.View.extend({
                 actions: {
                     pauseGroup: function(){
@@ -28,13 +42,6 @@ define(['App'], function(UMI){
                         console.log('deleteGroup');
                     }
                 }
-            }),
-
-            itemView: Ember.View.extend({
-                isFastAction: function(){
-                    var selectAction = this.get('controller.controllers.treeControl.selectAction');
-                    return selectAction ? this.get('action').type === selectAction.type : false;
-                }.property('controller.controllers.treeControl.selectAction')
             })
         });
     }

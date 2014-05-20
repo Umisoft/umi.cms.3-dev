@@ -43,6 +43,7 @@ define(
                 }
             })
         });
+
         UMI.deferReadiness();
 
         utils(UMI);
@@ -58,7 +59,7 @@ define(
 
              @method buildURL
              @return {String} CRUD ресурс для данной модели
-             **/
+             */
             buildURL: function(type, id) {
                 var url = [],
                     host = Ember.get(this, 'host'),
@@ -130,15 +131,12 @@ define(
             }
         });
 
-        UMI.ApplicationSerializer = DS.RESTSerializer.extend({
-            normalizePayload: function(type, payload){
-                payload = payload.result;
-                if(payload.hasOwnProperty('collection')){
-                    payload = payload.collection;
-                }
-                return payload;
-            },
 
+        UMI.ApplicationSerializer = DS.RESTSerializer.extend({
+            /**
+             Переносим в store metadata для коллекции
+             Чтобы получить: store.metadataFor(type)
+             */
             extractMeta: function(store, type, payload){
                 if(payload && payload.result && payload.result.meta){
                     var meta = store.metadataFor(type) || {};
@@ -150,6 +148,24 @@ define(
                 }
             },
 
+            /**
+             Удаление объекта-обёртки result из всех приходящих объектов
+             Удаление объекта-обёртки collection из всех объектов его содержащих
+             */
+            normalizePayload: function(type, payload){
+                payload = payload.result;
+                if(payload.hasOwnProperty('collection')){
+                    payload = payload.collection;
+                }
+                return payload;
+            },
+
+            /**
+             * При сохранении добавляет в объект тип связи и id связанных объектов (только если они изменялись)
+             * @param record
+             * @param json
+             * @param relationship
+             */
             serializeHasMany: function(record, json, relationship){
                 var key = relationship.key;
 
@@ -166,6 +182,9 @@ define(
         UMI.ApplicationAdapter = DS.UmiRESTAdapter;
 
         /**
+         Обновление связанных объектов (hasMany) при обновлении текущего
+         Проверить наличие реализации в стабильной версии Ember.Data
+
          Временное решение для обновления связи hasMany указанной в links
          Вопрос на stackoverflow: http://stackoverflow.com/questions/19983483/how-to-reload-an-async-with-links-hasmany-relationship
          Решение предложенное в коробку но пока не одобренное: https://github.com/emberjs/data/pull/1539
@@ -174,7 +193,7 @@ define(
          @extends DS.RecordArray
          */
         DS.ManyArray.reopen({
-            reloadLinks: function() {
+            reloadLinks: function(){
                 var get = Ember.get;
                 var store = get(this, 'store');
                 var owner = get(this, 'owner');
@@ -187,6 +206,7 @@ define(
         });
 
         /**
+         * Для строковых полей меняет null на ''
          * http://youtrack.umicloud.ru/issue/cms-414
          * DS.StringTransform
          * @type {*|void|Object}
@@ -198,19 +218,9 @@ define(
         });
 
         /**
-         * DS.attr('raw')
-         * @type {*|void|Object}
-         */
-        UMI.RawTransform = DS.Transform.extend({
-            serialize: function(deserialized){
-                return deserialized;
-            },
-            deserialize: function(serialized){
-                return serialized;
-            }
-        });
-
-        /**
+         * Приводит приходящий объект date:{} к нужному формату даты
+         * TODO Смена формата в зависимости от языка системы
+         * TODO Почему не прилылать в простом timeStamp
          * DS.attr('date')
          * @type {*|void|Object}
          */
@@ -233,6 +243,24 @@ define(
             }
         });
 
+        /**
+         * Позволяет незарегестрированным типам полей объектов отрабатывать в системе без ошибок (просто возвращает это поле)
+         * TODO Проверить все приходящие типы и подумать над необходимостью этих методов
+         * DS.attr('raw')
+         * @type {*|void|Object}
+         */
+        UMI.RawTransform = DS.Transform.extend({
+            serialize: function(deserialized){
+                return deserialized;
+            },
+            deserialize: function(serialized){
+                return serialized;
+            }
+        });
+
+        /**
+         * Вывод всех ajax ошибок в tooltip
+         */
         $.ajaxSetup({
             error: function(error){
                 var activeTransition = UMI.__container__.lookup('router:main').router.activeTransition;

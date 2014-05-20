@@ -40,6 +40,9 @@ define([], function(){
              **/
             model: function(params, transition){
                 var self = this;
+                /**
+                 * http://localhost/admin/api/settings
+                 */
                 return $.get(UmiSettings.baseApiURL).then(function(results){
                     var result = results.result;
                     self.controllerFor('application').set('settings', result);
@@ -63,15 +66,16 @@ define([], function(){
                     maskLayout.className = 'auth-mask';
                     maskLayout = document.body.appendChild(maskLayout);
                     $(applicationLayout).addClass('off');
-                    $.post(UmiSettings.baseApiURL + '/action/logout');
-                    require(['auth/main'], function(auth){
-                        auth();
-                        $(applicationLayout).addClass('fade-out');
-                        Ember.run.later('', function(){
-                            UMI.reset();
-                            UMI.deferReadiness();
-                            maskLayout.parentNode.removeChild(maskLayout);
-                        }, 800);
+                    $.post(UmiSettings.baseApiURL + '/action/logout').then(function(){
+                        require(['auth/main'], function(auth){
+                            auth();
+                            $(applicationLayout).addClass('fade-out');
+                            Ember.run.later('', function(){
+                                UMI.reset();
+                                UMI.deferReadiness();
+                                maskLayout.parentNode.removeChild(maskLayout);
+                            }, 800);
+                        });
                     });
                 },
 
@@ -80,8 +84,8 @@ define([], function(){
 
                  @method save
                  @param {Object} params Объект аргументов
-                 params.object - сохраняемый объект
-                 params.handler - элемент (кнопка) вызвавший событие сохранение
+                 params.object - сохраняемый объект (полностью объект системы)
+                 params.handler - элемент (кнопка) вызвавший событие сохранение - JS DOM Element
                  */
                 save: function(params){
                     var isNewObject;
@@ -160,9 +164,8 @@ define([], function(){
                     UMI.dialog.open(settings).then();
                 },
 
-                //Что значит фоновую ошибку?
                 /**
-                 Метод генерирует фоновую ошибку
+                 Метод генерирует фоновую ошибку (красный tooltip)
                  @method backgroundError
                  @property error Object {status: status, title: title, content: content, stack: stack}
                  */
@@ -173,6 +176,11 @@ define([], function(){
                     UMI.notification.create(settings);
                 },
 
+                /**
+                 Метод генерирует ошибку (выводится вместо шаблона)
+                 @method backgroundError
+                 @property error Object {status: status, title: title, content: content, stack: stack}
+                 */
                 templateLogs: function(error, parentRoute){
                     parentRoute = parentRoute || 'module';
                     var dataError = this.parseError(error);
@@ -239,7 +247,7 @@ define([], function(){
             },
 
             /**
-             Метод парсит ошибку и возвпращает её в виде объекта
+             Метод парсит ошибку и возвпращает её в виде объекта (ошибки с Back-end)
              @method parseError
              @return Object|null {status: status, title: title, content: content, stack: stack}
              */
@@ -350,6 +358,9 @@ define([], function(){
                 var components = this.modelFor('module').get('components');
                 var model = components.findBy('name', transition.params.component.component);
                 if(model){
+                    /**
+                     * Ресурс компонента
+                     */
                     Ember.$.get(model.get('resource')).then(function(results){
                         var componentController = self.controllerFor('component');
                         var settings = results.result.settings;
@@ -379,12 +390,14 @@ define([], function(){
                 return {component: model.get('name')};
             },
 
+            /**
+             * Отрисовываем компонент
+             * Если есть sideBar - его тоже отрисовываем
+             * @param controller
+             */
             renderTemplate: function(controller){
                 this.render();
-                //Как я понял, здесь мы получаем данные ТОЛЬКО рутовой ноды
-                //если да - нужно переименовать sideBarControl во что-нибудь более подходящее,
-                //      (это даже не sideBar, это что-то вроде treeElement, если я правильно понял)
-                //если нет - запилить комментарий
+
                 if(controller.get('sideBarControl')){
                     try{
                         this.render(controller.get('sideBarControl.name'), {
@@ -403,6 +416,10 @@ define([], function(){
             }
         });
 
+        /**
+         * Отрисовка выбранного объекта
+         * @type {*|void|Object}
+         */
         UMI.ContextRoute = Ember.Route.extend({
             model: function(params, transition){
                 var componentController = this.controllerFor('component');
@@ -596,6 +613,9 @@ define([], function(){
         });
 
 
+        /**
+         * При наличии доступа пользователя к настройкам системы, добаляем route к настройкам
+         */
         if('baseSettingsURL' in window.UmiSettings){
             UMI.Router.map(function(){
                 this.resource('settings', {path: '/configure'}, function(){
@@ -633,10 +653,9 @@ define([], function(){
                 model: function(params){
                     var settings = this.modelFor('settings');
                     var findDepth = function findDepth(components, propertyName, propertyValue){
-                        var i;
                         var component;
                         var result;
-                        for(i = 0; i < components.length; i++){
+                        for(var i = 0; i < components.length; i++){
                             if(components[i][propertyName] === propertyValue){
                                 component = components[i];
                             }

@@ -325,6 +325,7 @@ define(['App'], function(UMI){
 
             itemView: Ember.View.extend({
                 tagName: 'li',
+                action: null, //Получаем из шаблона
                 isFastAction: function(){
                     var selectAction = this.get('controller.controllers.treeControl.selectAction');
                     return selectAction ? this.get('action').type === selectAction.type : false;
