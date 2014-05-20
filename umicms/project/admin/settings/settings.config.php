@@ -24,7 +24,11 @@ return [
 
     SettingsApplication::OPTION_COMPONENTS => [
         'site' => '{#lazy:~/project/site/settings/component.config.php}',
+        'users' => '{#lazy:~/project/module/users/settings/component.config.php}',
         'service' => '{#lazy:~/project/module/service/settings/module.config.php}',
+        'seo' => '{#lazy:~/project/module/seo/settings/module.config.php}',
+        'statistics' => '{#lazy:~/project/module/statistics/settings/module.config.php}',
+        'security' => '{#lazy:~/project/module/security/settings/module.config.php}',
     ],
 
     SettingsApplication::OPTION_CONTROLLERS => [
@@ -38,16 +42,19 @@ return [
             'configurator' => [],
             'serviceConfigurator' => ['configurator'],
             'siteConfigurator' => ['configurator'],
+            'usersConfigurator' => ['configurator']
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:settings',
             'component:service',
             'component:site',
+            'component:users',
         ],
         IAclFactory::OPTION_RULES => [
 
             'configurator' => ['controller:settings' => []],
             'serviceConfigurator' => ['component:service' => []],
+            'usersConfigurator' => ['component:users' => []],
             'siteConfigurator' => ['component:site' => []]
         ]
     ],

@@ -15,7 +15,9 @@ return [
     SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
 
     SiteComponent::OPTION_COMPONENTS => [
-        'authorization' => '{#lazy:~/project/module/users/site/authorization/component.config.php}'
+        'authorization' => '{#lazy:~/project/module/users/site/authorization/component.config.php}',
+        'registration' => '{#lazy:~/project/module/users/site/registration/component.config.php}',
+        'profile' => '{#lazy:~/project/module/users/site/profile/component.config.php}',
     ],
 
     SiteComponent::OPTION_CONTROLLERS => [

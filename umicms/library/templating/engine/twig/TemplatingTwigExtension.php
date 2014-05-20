@@ -13,6 +13,7 @@ use Twig_Extension;
 use Twig_SimpleFunction;
 use umi\i18n\translator\ITranslator;
 use umicms\hmvc\dispatcher\CmsDispatcher;
+use umicms\templating\helper\FormHelper;
 use umicms\templating\helper\TranslationHelper;
 
 /**
@@ -24,6 +25,10 @@ class TemplatingTwigExtension extends Twig_Extension
      * @var string $translateFunctionName имя функции для перевода
      */
     public $translateFunctionName = 'translate';
+    /**
+     * @var string $formFunctionName имя функции для вывода форм
+     */
+    public $formFunctionName = 'form';
 
     /**
      * @var CmsDispatcher $dispatcher диспетчер
@@ -61,6 +66,10 @@ class TemplatingTwigExtension extends Twig_Extension
             new Twig_SimpleFunction(
                 $this->translateFunctionName,
                 [$this->getTranslationHelper(), 'translate']
+            ),
+            new Twig_SimpleFunction(
+                $this->formFunctionName,
+                [$this->getFormHelper(), 'buildForm']
             )
         ];
     }
@@ -79,7 +88,22 @@ class TemplatingTwigExtension extends Twig_Extension
         }
 
         return $helper;
+    }
 
+    /**
+     * Возвращает помощник шаблонов для форм.
+     * @return FormHelper
+     */
+    protected function getFormHelper()
+    {
+        static $helper;
+
+        if (!$helper) {
+            $helper = new FormHelper();
+            $helper->setTranslator($this->translator);
+        }
+
+        return $helper;
     }
 }
  

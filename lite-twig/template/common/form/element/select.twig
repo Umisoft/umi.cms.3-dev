@@ -1,0 +1,20 @@
+
+<div class="form-group">
+    <label> {{ elementInfo.label }} </label>
+    {% if (not elementInfo.element.isValid()) %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for message in elementInfo.element.getMessages() %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <select class="form-control" {{ elementInfo.attributes | raw }} >
+        {% for choiceInfo in elementInfo.choices %}
+            <option {{ choiceInfo.attributes | raw }}>
+                {{ choiceInfo.label }}
+            </option>
+        {% endfor %}
+    </select>
+</div>

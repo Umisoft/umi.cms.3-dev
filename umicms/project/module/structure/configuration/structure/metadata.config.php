@@ -9,7 +9,6 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\structure\api\collection\StructureElementCollection;
 use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\structure\api\object\SystemPage;
@@ -118,6 +117,11 @@ return [
             'columnName'   => 'active',
             'defaultValue' => 1
         ],
+        SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => [
+            'type'         => IField::TYPE_BOOL,
+            'columnName'   => 'skip_in_breadcrumbs',
+            'defaultValue' => 0
+        ],
         StructureElement::FIELD_LOCKED                => [
             'type'         => IField::TYPE_BOOL,
             'columnName'   => 'locked',
@@ -218,7 +222,7 @@ return [
                 StructureElement::FIELD_EDITOR
             ]
         ],
-        StructureElementCollection::TYPE_SYSTEM => [
+        SystemPage::TYPE => [
             'objectClass' => 'umicms\project\module\structure\api\object\SystemPage',
             'fields'      => [
                 SystemPage::FIELD_IDENTIFY,
@@ -234,6 +238,7 @@ return [
                 SystemPage::FIELD_ORDER,
                 SystemPage::FIELD_CHILD_COUNT,
                 SystemPage::FIELD_ACTIVE,
+                SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS,
                 SystemPage::FIELD_LOCKED,
                 SystemPage::FIELD_TRASHED,
                 SystemPage::FIELD_CREATED,
@@ -253,7 +258,7 @@ return [
                 SystemPage::FIELD_EDITOR
             ]
         ],
-        'static' => [
+        StaticPage::TYPE => [
             'objectClass' => 'umicms\project\module\structure\api\object\StaticPage',
             'fields'      => [
                 StaticPage::FIELD_IDENTIFY,

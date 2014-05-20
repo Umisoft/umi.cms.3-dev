@@ -1,14 +1,7 @@
 <?php
 /**
- * @var \umi\form\element\IFormButton $button
+ * @var array $elementInfo
  */
-$attributes = array_merge(
-    $button->getAttributes(),
-    [
-        'type' => $button->getButtonType(),
-        'name' => $button->getElementName(),
-        'value' => $button->getValue()
-    ]
-);
+?>
 
-echo '<button ' . buildAttributes($attributes) . ' />';
+<button class="btn btn-primary" <?= $elementInfo['attributes'] ?> ><?= $elementInfo['label'] ?></button>

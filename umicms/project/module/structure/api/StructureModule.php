@@ -10,6 +10,7 @@
 namespace umicms\project\module\structure\api;
 
 use umicms\module\BaseModule;
+use umicms\project\module\structure\api\collection\InfoBlockCollection;
 use umicms\project\module\structure\api\collection\LayoutCollection;
 use umicms\project\module\structure\api\collection\StructureElementCollection;
 use umicms\project\module\structure\api\object\Layout;
@@ -40,6 +41,15 @@ class StructureModule extends BaseModule
     }
 
     /**
+     * Возвращает коллекцию для работы с информационными блоками.
+     * @return InfoBlockCollection
+     */
+    public function infoBlock()
+    {
+        return $this->getCollection('infoblock');
+    }
+
+    /**
      * Возвращает API для работы с автогенерируемым меню структуры
      * @return AutoMenu
      */
@@ -60,5 +70,14 @@ class StructureModule extends BaseModule
         }
 
         return $element->layout;
+    }
+
+    /**
+     * Возвращает страницу сайта по умолчанию.
+     * @return StructureElement $element
+     */
+    public function getDefaultPage()
+    {
+        return $this->element()->getDefaultPage();
     }
 }

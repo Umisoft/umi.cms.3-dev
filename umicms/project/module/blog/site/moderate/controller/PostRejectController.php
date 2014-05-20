@@ -53,7 +53,7 @@ class PostRejectController extends BaseSecureController implements IFormAware, I
             throw new HttpNotFound('Page not found');
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
+        $form = $this->api->post()->getForm(BlogPost::FORM_REJECT_POST, IObjectType::BASE);
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {

@@ -1,6 +1,7 @@
 /.idea
 /composer.phar
 /composer.lock
+/configuration/db.config.php
 /vendor
 node_modules
 /Vagrantfile

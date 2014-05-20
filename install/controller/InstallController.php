@@ -9,7 +9,6 @@
 
 namespace project\install\controller;
 
-use application\model\UserModel;
 use Doctrine\DBAL\DBALException;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\driver\IDialect;
@@ -25,39 +24,41 @@ use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseController;
+use umicms\model\manager\IModelManagerAware;
+use umicms\model\manager\TModelManagerAware;
+use umicms\module\IModuleAware;
+use umicms\module\TModuleAware;
 use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\news\api\collection\NewsRssImportScenarioCollection;
+use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchModule;
 use umicms\project\module\service\api\collection\BackupCollection;
+use umicms\project\module\structure\api\object\InfoBlock;
 use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\object\Guest;
 use umicms\project\module\users\api\object\Supervisor;
 use umicms\project\module\users\api\object\UserGroup;
-use umicms\project\module\users\api\UsersModule;
 
 /**
  * Class InstallController
  */
-class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware, IObjectManagerAware
+class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware, IObjectManagerAware, IModuleAware, IModelManagerAware
 {
 
     use TCollectionManagerAware;
     use TObjectPersisterAware;
     use TObjectManagerAware;
+    use TModuleAware;
+    use TModelManagerAware;
 
     /**
      * @var IDbCluster $dbCluster
      */
     protected $dbCluster;
-    /**
-     * @var UsersModule $usersApi
-     */
-    protected $usersApi;
-
     /**
      * @var string $testLayout
      */
@@ -68,18 +69,17 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     protected $backupRepository;
     private $searchIndexApi;
     /**
-     * @var UserModel $userSv
+     * @var AuthorizedUser $userSv
      */
     private $userSv;
     /**
-     * @var UserModel $user
+     * @var AuthorizedUser $user
      */
     private $user;
 
-    public function __construct(IDbCluster $dbCluster, UsersModule $usersApi, SearchModule $searchModule)
+    public function __construct(IDbCluster $dbCluster, SearchModule $searchModule)
     {
         $this->dbCluster = $dbCluster;
-        $this->usersApi = $usersApi;
         $this->searchIndexApi = $searchModule->getSearchApi();
     }
 
@@ -143,12 +143,29 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $authorizationPage->getProperty('componentName')->setValue('authorization');
         $authorizationPage->getProperty('componentPath')->setValue('users.authorization');
 
+        $registrationPage = $structureCollection->add('registration', 'system', $usersPage)
+            ->setValue('displayName', 'Регистрация')
+            ->setValue('metaTitle', 'Регистрация')
+            ->setValue('h1', 'Регистрация');
+
+        $registrationPage->getProperty('componentName')->setValue('registration');
+        $registrationPage->getProperty('componentPath')->setValue('users.registration');
+
+        $profilePage = $structureCollection->add('profile', 'system', $usersPage)
+            ->setValue('displayName', 'Профиль')
+            ->setValue('metaTitle', 'Профиль')
+            ->setValue('h1', 'Профиль');
+
+        $profilePage->getProperty('componentName')->setValue('profile');
+        $profilePage->getProperty('componentPath')->setValue('users.profile');
+
         /**
          * @var UserGroup $visitors
          */
         $visitors = $groupCollection->add()
             ->setValue('displayName', 'Посетители')
-            ->setValue('displayName', 'Visitors', 'en-US');
+            ->setValue('displayName', 'Visitors', 'en-US')
+            ->setGUID('bedcbbac-7dd1-4b60-979a-f7d944ecb08a');
         $visitors->getProperty('locked')->setValue(true);
 
         $visitors->roles = [
@@ -157,6 +174,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
             'project.site.users' => ['viewer'],
             'project.site.users.authorization' => ['viewer'],
+            'project.site.users.registration' => ['viewer'],
 
             'project.site.structure' => ['viewer'],
             'project.site.structure.menu' => ['viewer'],
@@ -175,12 +193,24 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         ];
 
         /**
+         * @var UserGroup $registeredUsers
+         */
+        $registeredUsers = $groupCollection->add()
+            ->setValue('displayName', 'Зерегистрированные пользователи')
+            ->setValue('displayName', 'Registered users', 'en-US')
+            ->setGUID('daabebf8-f3b3-4f62-a23d-522eff9b7f68');
+        $registeredUsers->getProperty('locked')->setValue(true);
+
+        $registeredUsers->roles = [
+            'project.site.users.profile' => ['viewer']
+        ];
+
+        /**
          * @var UserGroup $authors
          */
         $authors = $groupCollection->add()
             ->setValue('displayName', 'Авторы')
             ->setValue('displayName', 'Authors', 'en-US');
-        $authors->getProperty('locked')->setValue(true);
 
         $authors->roles = [
             'project.site.blog.comment' => ['poster'],
@@ -219,11 +249,12 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Супервайзер')
             ->setValue('displayName', 'Supervisor', 'en-US')
             ->setValue('login', 'sv')
+            ->setValue('firstName', 'Супервайзер')
             ->setValue('email', 'sv@umisoft.ru')
             ->setGUID('68347a1d-c6ea-49c0-9ec3-b7406e42b01e');
         $sv->getProperty('locked')->setValue(true);
 
-        $this->usersApi->setUserPassword($sv, '1');
+        $sv->setPassword('1');
 
         $this->userSv = $sv;
 
@@ -233,24 +264,28 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $admin = $userCollection->add('authorized')
             ->setValue('displayName', 'Администратор')
             ->setValue('displayName', 'Administrator', 'en-US')
+            ->setValue('firstName', 'Администратор')
             ->setValue('login', 'admin')
             ->setValue('email', 'admin@umisoft.ru');
 
         $admin->groups->attach($visitors);
+        $admin->groups->attach($registeredUsers);
         $admin->groups->attach($administrators);
-        $this->usersApi->setUserPassword($admin, 'admin');
+        $admin->setPassword('admin');
 
         /**
          * @var AuthorizedUser $user
          */
         $user = $userCollection->add('authorized')
             ->setValue('displayName', 'Зарегистрированный пользователь')
+            ->setValue('firstName', 'Зарегистрированный пользователь')
             ->setValue('login', 'demo')
             ->setValue('email', 'demo@umisoft.ru');
 
         $user->groups->attach($visitors);
         $user->groups->attach($authors);
-        $this->usersApi->setUserPassword($user, 'demo');
+        $user->groups->attach($registeredUsers);
+        $user->setPassword('demo');
 
         $this->user = $user;
 
@@ -500,10 +535,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj-5')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
 
+
+        $commentBranch = $commentCollection->add('branch', 'branchComment')
+            ->setValue('displayName', $post1->getValue('displayName'))
+            ->setValue('post', $post1);
+
         /**
          * @var IHierarchicObject $comment1
          */
-        $comment1 = $commentCollection->add('comment1')
+        $comment1 = $commentCollection->add('comment1', 'comment',$commentBranch)
             ->setValue('displayName', 'Re: Девиантное поведение призраков и домовых и способы влияния на него')
             ->setValue('displayName', 'Re: Deviant behavior of ghosts and goblins and ways to influence him', 'en-US')
             ->setValue('contents', '<p>О да. Недавно в нашем замке один милый маленький призрак покончил с собой. Мы были уверены, что это невозможно, но каким-то образом ему удалось раствориться в воде, наполняющей наш древний колодец.</p>')
@@ -512,7 +552,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_PUBLISHED)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'));
 
-        $comment2 = $commentCollection->add('comment2', IObjectType::BASE, $comment1)
+        $comment2 = $commentCollection->add('comment2', 'comment', $comment1)
             ->setValue('displayName', 'Re: Re: Девиантное поведение призраков и домовых и способы влияния на него')
             ->setValue('displayName', 'Re: Re: Deviant behavior of ghosts and goblins and ways to influence him', 'en-US')
             ->setValue('contents', '<p>Возможно, вашего призрака еще удастся спасти. Попробуйте насыпать в колодец пару столовых ложек молотых семян бессмертника. Это должно помочь призраку снова сконденсировать свое нематериальное тело. И да, важно, чтобы семена были собраны в новолуние.</p>')
@@ -521,7 +561,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_REJECTED)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:11:21'));
 
-        $commentCollection->add('comment3')
+        $commentBranch2 = $commentCollection->add('branch', 'branchComment')
+            ->setValue('displayName', $post2->getValue('displayName'))
+            ->setValue('post', $post2);
+
+        $commentCollection->add('comment3', 'comment', $commentBranch2)
             ->setValue('displayName', 'важный вопрос')
             ->setValue('displayName', 'important question', 'en-US')
             ->setValue('contents', '<p>Существует ли разговорник для общения с НЛО? Основы этикета?</p>')
@@ -530,7 +574,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_PUBLISHED)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:05:34'));
 
-        $commentCollection->add('comment1', IObjectType::BASE, $comment2)
+        $commentCollection->add('comment1', 'comment', $comment2)
             ->setValue('displayName', 'Вложенный комментарий')
             ->setValue('displayName', 'nested comment', 'en-US')
             ->setValue('contents', '<p>О, да. Это вложенный комментарий.</p>')
@@ -799,6 +843,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var SimpleHierarchicCollection $structureCollection
          */
         $structureCollection = $this->getCollectionManager()->getCollection('structure');
+        /**
+         * @var SimpleCollection $infoBlockCollection
+         */
+        $infoBlockCollection = $this->getCollectionManager()->getCollection('infoblock');
 
 
         $parent = null;
@@ -839,6 +887,34 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $menuPage->getProperty('locked')->setValue(true);
         $menuPage->getProperty('componentName')->setValue('menu');
         $menuPage->getProperty('componentPath')->setValue('structure.menu');
+
+        $menuPage = $structureCollection->add('infoblock', 'system', $structurePage)
+            ->setValue('displayName', 'Информационные блоки')
+            ->setValue('displayName', 'Information block', 'en-US');
+
+        $menuPage->getProperty('locked')->setValue(true);
+        $menuPage->getProperty('componentName')->setValue('infoblock');
+        $menuPage->getProperty('componentPath')->setValue('structure.infoblock');
+
+        $structureInfoBlock = $infoBlockCollection->add('infoblock')
+            ->setGUID('87f20300-197a-4309-b86b-cbe8ebcc358d')
+            ->setValue('displayName', 'Общие')
+            ->setValue('displayName', 'Common', 'en-US');
+        $structureInfoBlock->getProperty('locked')->setValue(true);
+
+        $structureInfoBlock
+            ->setValue(InfoBlock::FIELD_PHONE_NUMBER, '<p>Телефон в Санкт-Петербурге: +7 (812) 309-03-15</p>')
+            ->setValue(InfoBlock::FIELD_EMAIL, 'Общие вопросы: <a href="mailto:incoming@umi-cms.ru">incoming@umi-cms.ru</a>')
+            ->setValue(InfoBlock::FIELD_EMAIL, 'Common question: <a href="mailto:incoming@umi-cms.ru">incoming@umi-cms.ru</a>', 'en-US')
+            ->setValue(InfoBlock::FIELD_ADDRESS, 'БЦ «IT-Парк», Санкт-Петербург, ул. Красного Курсанта, д.25, лит.В')
+            ->setValue(InfoBlock::FIELD_ADDRESS, 'BC «IT-Park», Sankt-Peterburg, ul. Krasnogo Kursanta, d.25, lit.B', 'en-US')
+            ->setValue(InfoBlock::FIELD_LOGO, '<h1 class="blog-title">Demo lite twig</h1><p class="lead blog-description">Blank-шаблон созданный на Umicms 3</p>')
+            ->setValue(InfoBlock::FIELD_LOGO, '<h1 class="blog-title">Demo lite twig</h1><p class="lead blog-description">Blank-template create on Umicms 3</p>', 'en-US')
+            ->setValue(InfoBlock::FIELD_COPYRIGHT, '<p>Демо сайт разработан на <a href="http://getbootstrap.com">Bootstrap</a> компанией <a href="http://umi-cms.ru/">umi-cms.ru</a></p>')
+            ->setValue(InfoBlock::FIELD_COPYRIGHT, '<p>Demo site build for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="http://umi-cms.ru/">umi-cms.ru</a></p>', 'en-US')
+            ->setValue(InfoBlock::FIELD_WIDGET_VK, '<div id="vk_groups" class="vk-groups" data-width="312" data-height="290" data-group-id="23325076" style="height: 290px; width: 312px; background-image: none; background-position: initial initial; background-repeat: initial initial;"><iframe name="fXD2eb29" frameborder="0" src="http://vk.com/widget_community.php?app=2402617&amp;width=312px&amp;_ver=1&amp;gid=23325076&amp;mode=NaN&amp;color1=&amp;color2=&amp;color3=&amp;height=290&amp;url=http%3A%2F%2Fwww.umi-cms.ru%2F&amp;145fa6498df" width="312" height="200" scrolling="no" id="vkwidget1" style="overflow: hidden; height: 290px;"></iframe></div>')
+            ->setValue(InfoBlock::FIELD_WIDGET_FACEBOOK, '<div class="fb-like-box fb_iframe_widget" data-href="http://www.facebook.com/UMI.CMS" data-width="312" data-height="290" data-show-faces="true" data-stream="false" data-show-border="false" data-header="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;header=false&amp;height=290&amp;href=http%3A%2F%2Fwww.facebook.com%2FUMI.CMS&amp;locale=ru_RU&amp;sdk=joey&amp;show_border=false&amp;show_faces=true&amp;stream=false&amp;width=312"><span style="vertical-align: bottom; width: 312px; height: 290px;"><iframe name="f3df2c96ec" width="312px" height="290px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like_box Facebook Social Plugin" src="http://www.facebook.com/plugins/like_box.php?app_id=&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FdgdTycPTSRj.js%3Fversion%3D41%23cb%3Df3acd61564%26domain%3Dwww.umi-cms.ru%26origin%3Dhttp%253A%252F%252Fwww.umi-cms.ru%252Ff891a948%26relation%3Dparent.parent&amp;header=false&amp;height=290&amp;href=http%3A%2F%2Fwww.facebook.com%2FUMI.CMS&amp;locale=ru_RU&amp;sdk=joey&amp;show_border=false&amp;show_faces=true&amp;stream=false&amp;width=312" class="" style="border: none; visibility: visible; width: 312px; height: 290px;"></iframe></span></div>')
+            ->setValue(InfoBlock::FIELD_SHARE, '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script> <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir" data-yashareTheme="counter"></div>');
 
         /**
          * @var StaticPage $about
@@ -997,6 +1073,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `email` varchar(255) DEFAULT NULL,
                     `password` varchar(255) DEFAULT NULL,
                     `password_salt` varchar(255) DEFAULT NULL,
+                    `first_name` varchar(255) DEFAULT NULL,
+                    `middle_name` varchar(255) DEFAULT NULL,
+                    `last_name` varchar(255) DEFAULT NULL,
+                    `activation_code` varchar(255) DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `user_guid` (`guid`),
                     KEY `user_type` (`type`),
@@ -1655,6 +1735,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `child_count` int(10) unsigned DEFAULT '0',
                     `display_name` varchar(255) DEFAULT NULL,
                     `display_name_en` varchar(255) DEFAULT NULL,
+                    `skip_in_breadcrumbs` tinyint(1) unsigned DEFAULT '0',
                     `locked` tinyint(1) unsigned DEFAULT '0',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `active` tinyint(1) unsigned DEFAULT '1',
@@ -1689,6 +1770,53 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     CONSTRAINT `FK_structure_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_structure_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_structure_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_infoblock` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255),
+                    `type` varchar(255),
+                    `version` int(10) unsigned DEFAULT '1',
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
+                    `locked` tinyint(1) unsigned DEFAULT '0',
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
+                    `phone_number` TEXT DEFAULT NULL,
+                    `phone_number_en` TEXT DEFAULT NULL,
+                    `email` varchar(255) DEFAULT NULL,
+                    `email_en` varchar(255) DEFAULT NULL,
+                    `address` TEXT DEFAULT NULL,
+                    `address_en` TEXT DEFAULT NULL,
+                    `logo` TEXT DEFAULT NULL,
+                    `logo_en` TEXT DEFAULT NULL,
+                    `copyright` TEXT DEFAULT NULL,
+                    `copyright_en` TEXT DEFAULT NULL,
+                    `counter` TEXT DEFAULT NULL,
+                    `counter_en` TEXT DEFAULT NULL,
+                    `widget_vk` TEXT DEFAULT NULL,
+                    `widget_vk_en` TEXT DEFAULT NULL,
+                    `widget_facebook` TEXT DEFAULT NULL,
+                    `widget_facebook_en` TEXT DEFAULT NULL,
+                    `widget_twitter` TEXT DEFAULT NULL,
+                    `widget_twitter_en` TEXT DEFAULT NULL,
+                    `share` TEXT DEFAULT NULL,
+                    `share_en` TEXT DEFAULT NULL,
+                    `social_group_link` TEXT DEFAULT NULL,
+                    `social_group_link_en` TEXT DEFAULT NULL,
+
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `infoblock_guid` (`guid`),
+                    KEY `infoblock_type` (`type`),
+                    CONSTRAINT `FK_infoblock_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_infoblock_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );

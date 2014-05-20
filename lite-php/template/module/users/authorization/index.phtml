@@ -11,13 +11,14 @@
     <?=$page->contents?>
 
     <?php if ($authenticated) : ?>
-        <?= $this->translate("Вы уже авторизованы.") ?>
-        <?= $this->widget('users.authorization.logoutLink', ['template' => 'logoutLink']); ?>
+        <?= $this->translate("You are already logged in") ?>.
+        <p>
+            <?= $this->widget('users.profile.link', ['template' => 'link']); ?>
+        </p>
+        <?= $this->widget('users.authorization.logoutForm', ['template' => 'logoutForm']); ?>
     <?php else : ?>
-        <?php if (isset($error)) : ?>
-            <?= $error ?>
-        <?php endif; ?>
-        <?= $this->render('form/form.phtml', ['form' => $form]) ?>
+        <?php $errors = isset($errors) ? $errors : null ?>
+        <?= $this->render('form/form.phtml', ['form' => $form, 'errors' => $errors]) ?>
     <?php endif; ?>
 
 

@@ -1,0 +1,20 @@
+{% if (elementInfo.element.getInputType() != 'hidden') %}
+    <div class="form-group {{ not elementInfo.element.isValid() ? 'has-error' }}">
+        <label> {{ elementInfo.label }} </label>
+
+        {% if (not elementInfo.element.isValid()) %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for message in elementInfo.element.getMessages() %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <input class="form-control" {{ elementInfo.attributes | raw }}/>
+    </div>
+
+{% else %}
+    <input {{ elementInfo.attributes | raw }}/>
+{% endif %}

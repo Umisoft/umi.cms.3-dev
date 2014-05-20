@@ -1,3 +1,5 @@
+{{ include('partial/authorization.twig') }}
+
 <div class="sidebar-module sidebar-module-inset">
     <h4>{{ translate('RSS ленты') }}</h4>
     <p>{{ translate('Новости') }}: {{ widget('news.item.rss', {'template' : 'rssLink'}) }}</p>

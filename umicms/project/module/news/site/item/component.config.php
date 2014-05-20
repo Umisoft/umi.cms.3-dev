@@ -18,6 +18,7 @@ return [
     DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'newsItem',
 
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
+        'page' => __NAMESPACE__ . '\controller\PageController',
         'rss' => __NAMESPACE__ . '\controller\NewsItemRssController'
     ],
 

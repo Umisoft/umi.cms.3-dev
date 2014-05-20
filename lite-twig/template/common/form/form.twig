@@ -1,8 +1,17 @@
-{% import "form/buildAttributes.twig" as forms %}
+{% set formInfo = form(form) %}
 
-<form {{ forms.buildAttributes(form.getAttributes()) }}>
-    {% for formElement in form %}
-        {*{ include('form/formElement.twig', {'element' : formElement}) }}
+{% if (errors) %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for message in errors %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+<form {{ formInfo.attributes | raw }}>
+    {% for elementInfo in formInfo.elements %}
+        {{ include('form/element.twig', {'elementInfo' : elementInfo}) }}
     {% endfor %}
-    <input {{ submit ? forms.buildAttributes(submit) : 'value="Отправить" type="submit"' }} />
 </form>

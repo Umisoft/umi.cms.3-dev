@@ -1,33 +1,30 @@
 <?php
 /**
- * @var \umi\form\element\Select $select
+ * @var array $elementInfo
+ * @var umi\form\element\Select $element
  */
-use umi\form\element\MultiSelect;
+?>
 
-$attributes = array_merge(
-    ['name' => $select->getElementName()],
-    $select->getAttributes()
-);
+<?php $element = $elementInfo['element']?>
 
-if ($select instanceof MultiSelect) {
-    $attributes['multiple'] = 'multiple';
-}
+<div class="form-group">
+    <label><?= $elementInfo['label'] ?></label>
 
-$html = '<div class="form-group"><label>' . $select->getName() . '</label><select class="form-control" ' . buildAttributes($attributes) . ' >';
-$selected = (array) $select->getValue();
+    <?php if (!$element->isValid()) : ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach ($element->getMessages() as $message) : ?>
+                    <li><?= $message ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 
-foreach ($select->getChoices() as $value => $label) {
-    $attr = ['value' => $value];
+    <select class="form-control" <?= $elementInfo['attributes'] ?> >
 
-    if (in_array($value, $selected)) {
-        $attr += [
-            'selected' => 'selected'
-        ];
-    }
+        <?php foreach ($elementInfo['choices'] as $choiceInfo) : ?>
+            <option <?= $choiceInfo['attributes'] ?> > <?= $choiceInfo['label'] ?> </option>
+        <?php endforeach; ?>
 
-    $html .= '<option ' . buildAttributes($attr) . '>' . $label . '</option>';
-}
-
-$html .= '</select></div>';
-
-echo $html;
+    </select>
+</div>

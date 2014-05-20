@@ -17,7 +17,8 @@ return [
     SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
 
     SiteComponent::OPTION_COMPONENTS => [
-        'menu' => '{#lazy:~/project/module/structure/site/menu/component.config.php}'
+        'menu' => '{#lazy:~/project/module/structure/site/menu/component.config.php}',
+        'infoblock' => '{#lazy:~/project/module/structure/site/infoblock/component.config.php}'
     ],
 
     SiteComponent::OPTION_CONTROLLERS => [

@@ -3,7 +3,6 @@
 return [
     'project.site' => [
         'en-US' => [
-            'Авторизация' => 'Sign in',
             'RSS ленты' => 'RSS feed',
             'Блоги' => 'Blogs',
             'Категории' => 'Categories',
@@ -44,7 +43,6 @@ return [
             'Черновики автора' => 'Drafts author',
             'Комментарии' => 'Comments',
             'Автор' => 'Author',
-            'Опубликовать' => 'Publish',
             'В черновики' => 'To drafts',
             'Читать далее' => 'Read more',
         ]

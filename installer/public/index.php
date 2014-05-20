@@ -38,8 +38,6 @@ if (!file_exists($autoLoaderPath)) {
 /** @var $loader ClassLoader */
 $loader = require $autoLoaderPath;
 
-$env = new Environment;
-
 $directoryCms = dirname(dirname(__DIR__)) . '/umicms';
 $directoryProjects = dirname(dirname(__DIR__));
 
@@ -49,13 +47,12 @@ defined('CMS_LIBRARY_DIR') or define('CMS_LIBRARY_DIR', $directoryCms . '/librar
 defined('FRAMEWORK_LIBRARY_DIR') or define('FRAMEWORK_LIBRARY_DIR', $toolkitPath);
 defined('PUBLIC_DIR') or define('PUBLIC_DIR', __DIR__);
 
-$env->bootConfigMaster = $directoryCms . '/configuration/boot.config.php';
-$env->bootConfigLocal = $directoryProjects . '/configuration/boot.config.php';
+Environment::$bootConfigMaster = $directoryCms . '/configuration/boot.config.php';
+Environment::$bootConfigLocal = $directoryProjects . '/configuration/boot.config.php';
 
-$env->projectConfiguration =  $directoryProjects . '/configuration/projects.config.php';
-$env->directoryCms = $directoryCms;
-$env->directoryCmsProject = $directoryCms . '/project';
-$env->directoryProjects = $directoryProjects;
+Environment::$projectsConfiguration =  $directoryProjects . '/configuration/projects.config.php';
+Environment::$directoryCms = $directoryCms;
+Environment::$directoryCmsProject = $directoryCms . '/project';
+Environment::$directoryProjects = $directoryProjects;
 
-$bootstrap = new Bootstrap($env);
-$bootstrap->run();
+(new Bootstrap())->run();
