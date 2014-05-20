@@ -51,19 +51,7 @@ define(
 
                 submit: function(){
                     return false;
-                },
-
-                elementView: Ember.View.extend({
-                    isFieldset: function(){
-                        return this.get('content.type') === 'fieldset';
-                    }.property(),
-                    isExpanded: true,
-                    actions: {
-                        expand: function(){
-                            this.toggleProperty('isExpanded');
-                        }
-                    }
-                })
+                }
             });
 
             UMI.FieldView = Ember.View.extend({

@@ -79,7 +79,32 @@ define([
                     $.post(self.get('action'), data).then(function(result){
                         self.toggleProperty('loading');
                     });
-                }
+                },
+
+                elementView: Ember.View.extend({
+                    classNameBindings: ['isField'],
+                    isFieldset: function(){
+                        return this.get('content.type') === 'fieldset';
+                    }.property(),
+                    isExpanded: true,
+                    isField: function(){
+                        if(!this.get('isFieldset')){
+                            return this.gridType();
+                        }
+                    }.property(),
+                    /**
+                     * @method gridType
+                     */
+                    gridType: function(){
+                        return 'umi-columns ' + (this.get('content.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12');
+                    },
+
+                    actions: {
+                        expand: function(){
+                            this.toggleProperty('isExpanded');
+                        }
+                    }
+                })
             });
 
 
@@ -91,22 +116,6 @@ define([
                  * @type String
                  */
                 metaBinding: 'object',
-                /**
-                 * @property classNames
-                 * @type Array
-                 */
-                classNames: ['umi-columns'],
-                /**
-                 * @property classNameBindings
-                 * @type Array
-                 */
-                classNameBindings: ['gridType'],
-                /**
-                 * @method gridType
-                 */
-                gridType: function(){
-                    return this.get('meta.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12';
-                }.property('meta.type'),
 
                 layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{meta.label}}</span></div>{{yield}}'),
 
