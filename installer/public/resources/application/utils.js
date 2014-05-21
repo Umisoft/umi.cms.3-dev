@@ -49,6 +49,22 @@ define([], function(){
             }
         };
 
+        $(document).mousedown(function(event){
+                var targetElement = $(event.target).closest('.umi-hide-on-html');
+                if(!targetElement.length){
+                    $('body').off('click.umi.tree.contextMenu');
+                    $('.umi-hide-on-html').hide();
+                }
+            event.stopPropagation();
+        });
+
+        $(document).on('click', '.umi-top-bar-user-menu', function(){
+            $('.umi-top-bar-user-menu-drop-down').toggle();
+        });
+
+        $(document).on('click', '.umi-table-action-list-show', function(){
+            $(this).siblings('.umi-table-action-list').toggle();
+        });
 
         //Проверка браузера на мобильность
         window.mobileDetection = {
@@ -64,12 +80,6 @@ define([], function(){
             console.log('mobile');
         }
 
-        //Проверка размеров экрана
-        if(screen.width < 800){
-            console.log('Минимальная поддерживаемая ширина экрана - 800px');
-        }
-
-
         //Проверка браузера на современность - проверка поддержки calc()
         Modernizr.addTest('csscalc', function(){
             var prop = 'width:';
@@ -78,7 +88,6 @@ define([], function(){
             el.style.cssText = prop + Modernizr._prefixes.join(value + prop);
             return !!el.style.length;
         });
-
 
         Modernizr.addTest('cssfilters', function() {
             var el = document.createElement('div');

@@ -5,7 +5,6 @@ define(['App'], function(UMI){
         UMI.TreeControlView = Ember.View.extend({
             classNames: ['row', 's-full-height'],
 
-
             expandedBranchesChange: function(){
                 var expandedBranches = this.get('controller.expandedBranches');
                 for(var i = 0; i < expandedBranches.length; i++){
@@ -212,6 +211,7 @@ define(['App'], function(UMI){
                 this.removeObserver('controller.expandedBranches');
             }
 
+//
 //            filtersView: Ember.View.extend({
 //                classNames: ['umi-tree-control-filters'],
 //                isOpen: false,
@@ -236,11 +236,8 @@ define(['App'], function(UMI){
 
         UMI.TreeItemView = Ember.View.extend({
             templateName: 'treeItem',
-
             tagName: 'li',
-
             classNameBindings: ['controller.model.isDragged:hide'],
-
             attributeBindings: ['dataId:data-id'],
 
             dataId: function(){
@@ -301,11 +298,8 @@ define(['App'], function(UMI){
 
         UMI.TreeControlContextMenuView = Ember.View.extend({
             tagName: 'ul',
-
             classNames: ['button-group', 'umi-tree-context-menu', 'right'],
-
             layoutName: 'treeControlContextMenu',
-
             isOpen: false,
 
             setParentIsOpen: function(){
@@ -331,6 +325,7 @@ define(['App'], function(UMI){
 
             itemView: Ember.View.extend({
                 tagName: 'li',
+                action: null, //Получаем из шаблона
                 isFastAction: function(){
                     var selectAction = this.get('controller.controllers.treeControl.selectAction');
                     return selectAction ? this.get('action').type === selectAction.type : false;

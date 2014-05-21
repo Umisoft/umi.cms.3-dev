@@ -2,7 +2,7 @@
 
     {{#if isApply}}
         <li>
-            {{#view "saveButton" class="button s-margin-clear wide left" model=parentController.parentController.model.object}}
+            {{#view "saveButton" class="umi-button wide" model=parentController.parentController.model.object}}
                 {{displayName}}
             {{/view}}
         </li>
@@ -10,21 +10,24 @@
 
     {{#if isSwitchActivity}}
         <li>
-            <span class="button white square" {{action 'switchActivity' parentController.parentController.model.object}}>
-                {{#if parentController.parentController.model.object.active}}
+            {{#if parentController.parentController.model.object.active}}
+                <a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg" {{action 'switchActivity' parentController.parentController.model.object}}>
                     <i class="icon icon-pause"></i>
-                {{else}}
-                    <i class="icon icon-pause white"></i>
-                {{/if}}
-            </span>
+                </a>
+            {{else}}
+                <a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg" {{action 'switchActivity' parentController.parentController.model.object}}>
+                    <!--TODO Сделать иконку play-->
+                    <i class="icon icon-triangle"></i>
+                </a>
+            {{/if}}
         </li>
     {{/if}}
 
     {{#if isBackups}}
         {{#view "formControlDropUp" tagName="li"}}
-            <span class="button white square" {{action "open" target="view"}}>
+            <a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg" {{action "open" target="view"}}>
                 <i class="icon icon-6"></i>
-            </span>
+            </a>
             <div class="f-dropdown umi-dropup dropdown-rows">
                 <div class="row collapse">
                     <div class="columns small-12">
@@ -64,9 +67,9 @@
 
     {{#if isTrash}}
         <li>
-            <span class="button white square" {{action "trash" parentController.parentController.model.object "form"}}>
+            <a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg" {{action "trash" parentController.parentController.model.object "form"}}>
                 <i class="icon icon-delete"></i>
-            </span>
+            </a>
         </li>
     {{/if}}
 {{/each}}

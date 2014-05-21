@@ -5,6 +5,7 @@ define(
         //Вызов partials
         'topBar',
         'dock',
+        'toolBar',
         'tableControl',
         'fileManager',
         'treeSimple',

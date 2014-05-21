@@ -15,8 +15,11 @@ define([], function(){
         UMI.ComponentView = Ember.View.extend({
             classNames: ['umi-content', 's-full-height'],
 
-            didInsertElement: function(){
+            filtersView: Ember.View.extend({
+                classNames: ['umi-tree-control-filters']
+            }),
 
+            didInsertElement: function(){
                 if(this.get('controller.sideBarControl')){
                     var showSideBarState = true; //{{!sideBarControl}}
                     var floatSideBarState = false;
@@ -40,19 +43,16 @@ define([], function(){
                     };
                     //                    showSideBar();
 
-
                     $('.umi-divider-left-toggle').mousedown(function(){
                         showSideBarState = !showSideBarState;
                         showSideBar();
                     });
-
 
                     var floatDivider = function(){
                         floatSideBarState = true;
                         $('.umi-divider-left').addClass('umi-divider-left-float'); //Делаем SideBar плавающим
                         $('.umi-divider-left .umi-divider').hide();                //Скрываем полоску для изменения ширины (на подумать - сейчас отталкиваюсь от того, что на моильных устройствах в ней нет необходимости, а случайные нажатия могут быть)
                     };
-
 
                     $('body').on('mousedown', '.umi-divider', function(event){
                         if(event.button === 0){
@@ -81,7 +81,6 @@ define([], function(){
                         }
                     });
 
-
                     var moveDivider = function(){
                         floatSideBarState = false;
 
@@ -94,7 +93,6 @@ define([], function(){
                         $('.umi-divider-left .umi-divider').show();                //Показываем тянучку
                     };
 
-
                     var checkWindowWidth = function(){
                         if($(window).width() < (320 + 250)){
                             floatDivider();
@@ -103,11 +101,10 @@ define([], function(){
                         }
                     };
 
-
                     checkWindowWidth();
-                    window.onresize = function(){
+                    $(window).on('resize', function(){
                         checkWindowWidth();
-                    };
+                    });
 
                 } else{
                     $('.umi-divider-left').hide();
@@ -115,14 +112,14 @@ define([], function(){
                 }
 
                 $('.umi-component').height(function(){
-                    return $(window).height() - 144;
+                    return $(window).height() - 141;
                 });
 
-                window.onresize = function(){
+                $(window).on('resize', function(){
                     $('.umi-component').height(function(){
-                        return $(window).height() - 144;
+                        return $(window).height() - 141;
                     });
-                };
+                });
             }
         });
     };

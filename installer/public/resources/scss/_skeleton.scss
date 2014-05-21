@@ -25,7 +25,7 @@
 $umi-dock-height: 85px;
 
 html{
-    height: 100%;
+    height: unquote(calc(100% + 1px)); //Костыль: по неясной причине, снизу экрана появляется полоска незанятого пикселя. Методом тыка найдено это решение
 }
 
 body{
@@ -159,8 +159,8 @@ body{
 
 
 .umi-mode{
-    overflow: hidden;
-    height: 34px;
+//    overflow: hidden;
+    height: 32px;
 
     @include s-gradient-grey();
     border-bottom: 1px solid #98A2AB;

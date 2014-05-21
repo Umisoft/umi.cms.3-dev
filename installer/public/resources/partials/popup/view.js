@@ -10,8 +10,8 @@ define(['App'], function(UMI){
             init: function(){
                 this.get('parentView').setProperties({
                     'title': 'Выбор колонок в таблице',
-                    'width': 300,
-                    'height': 150,
+                    'width': 400,
+                    'height': 300,
                     'contentOverflow': ['overflow', 'scroll']
                 })
             },
