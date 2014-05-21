@@ -1,5 +1,5 @@
-<input type="hidden" value="0" name="{{ elementInfo.element.getElementName() }} "/>
+<input type="hidden" value="0" name="{{ element.attributes.name }} "/>
 <label>
-    <input {{ elementInfo.attributes | raw }}/>
-    {{ elementInfo.label }}
+    <input {{ element.attributes | raw }}/>
+    {{ element.label }}
 </label>

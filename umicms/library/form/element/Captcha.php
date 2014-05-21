@@ -71,7 +71,9 @@ class Captcha extends BaseFormElement implements ICaptchaAware, ISessionAware, I
 
         $view->isHuman = $this->validate($this->value);
         $view->sessionKey = $sessionKey;
-        $view->url = $this->getUrlManager()->getProjectUrl() . 'captcha/' . rawurlencode($sessionKey);
+
+        $url = rtrim($this->getUrlManager()->getProjectUrl(), '/');
+        $view->url = $url . '/captcha/' . rawurlencode($sessionKey);
     }
 
     /**

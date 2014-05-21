@@ -1,4 +1,3 @@
-{% set formInfo = form(form) %}
 
 {% if (errors) %}
     <div class="alert alert-danger">
@@ -10,8 +9,8 @@
     </div>
 {% endif %}
 
-<form {{ formInfo.attributes | raw }}>
-    {% for elementInfo in formInfo.elements %}
-        {{ include('form/element.twig', {'elementInfo' : elementInfo}) }}
+<form {{ form.attributes | raw }}>
+    {% for element in form.elements %}
+        {{ include('form/element.twig', {'element' : element}) }}
     {% endfor %}
 </form>
