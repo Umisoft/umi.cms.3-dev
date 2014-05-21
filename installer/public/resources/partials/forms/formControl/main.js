@@ -1,12 +1,10 @@
 define(
-    ['App', 'text!./form.hbs', './toolbar/main'],
+    ['App', 'text!./form.hbs'],
 
-    function(UMI, formTpl, toolbar){
+    function(UMI, formTpl){
         "use strict";
 
         return function(){
-            toolbar();
-
             UMI.FormControlController = UMI.FormBaseController.extend({
                 needs: ['component'],
 
@@ -54,25 +52,26 @@ define(
                 }
             });
 
-            UMI.FieldView = Ember.View.extend({
-                classNameBindings: ['wide', 'isError:error'],
+            UMI.FieldFormControlView = UMI.FieldBaseView.extend({
+                classNameBindings: ['isError:error'],
 
                 isError: function(){
                     var meta = this.get('meta');
                     return !!this.get('object.validErrors.' + meta.dataSource);
                 }.property('object.validErrors'),
 
-                textTemplate: function(self){
-                    return '{{input value=object.' + self.get('meta').dataSource + ' meta=view.meta}}';
+                extendTemplate: function(template){
+                    var meta = this.get('meta');
+                    return template + '{{#if object.validErrors.' + meta.dataSource + '}}' + '<small class="error">' + '{{#each error in object.validErrors.' + meta.dataSource + '}}' + '{{error.message}}' + '{{/each}}' + '</small>' + '{{/if}}';
                 },
 
-                template: function(){
-                    var meta = this.get('meta');
-                    var template;
-                    template += '{{#if object.validErrors.' + meta.dataSource + '}}' + '<small class="error">' + '{{#each error in object.validErrors.' + meta.dataSource + '}}' + '{{error.message}}' + '{{/each}}' + '</small>' + '{{/if}}';
-                    template = Ember.Handlebars.compile(template);
-                    return template;
-                }.property('object', 'meta')
+                textTemplate: function(){
+                    return '{{input value=object.' + this.get('meta').dataSource + ' meta=view.meta}}';
+                }.property(),
+
+                selectTemplate: function(){
+                    return '{{view "selectCollection" object=object meta=view.meta}}';
+                }.property()
             });
         };
     }

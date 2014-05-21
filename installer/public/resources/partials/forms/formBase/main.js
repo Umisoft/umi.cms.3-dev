@@ -124,76 +124,90 @@ define(
                 layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{meta.label}}</span></div>{{yield}}'),
 
                 template: function(){
-                    var meta = this.get('meta');
-                    var templateMethod = this[Ember.String.camelize(meta.type) + 'Template'];
-
-                    if(Ember.typeOf(templateMethod) === 'function'){
-                        return Ember.Handlebars.compile(templateMethod(this));
-                    } else{
-                        Ember.assert('Для поля с типом ' + meta.type + ' не реализован шаблонный метод.');
-                        // TODO: В случае отсутствия шаблона нужно выводить ошибку.
+                    var meta;
+                    var template;
+                    try{
+                        meta = this.get('meta');
+                        template = this.get(Ember.String.camelize(meta.type) + 'Template') || '';
+                        if(!template){
+                            throw new Error('Для поля с типом ' + meta.type + ' не реализован шаблонный метод.');
+                        }
+                    } catch(error){
+                        this.get('controller').send('backgroundError', error);// TODO: при первой загрузке сообщения не всплывают.
+                    } finally{
+                        template = this.extendTemplate(template);
+                        return Ember.Handlebars.compile(template);
                     }
                 }.property('meta'),
+                /**
+                 * Метод используется декораторами для расширения базового шаблона.
+                 * @method extendTemplate
+                 * @param template
+                 * @returns String
+                 */
+                extendTemplate: function(template){
+                    return template;
+                },
 
                 textTemplate: function(){
                     return '{{input value=object.value meta=view.meta}}';
-                },
+                }.property(),
 
                 emailTemplate: function(){
                     return '{{email-element object=object meta=view.meta}}';
-                },
+                }.property(),
 
                 passwordTemplate: function(){
                     return '{{password-element object=object meta=view.meta}}';
-                },
+                }.property(),
 
                 numberTemplate: function(){
                     return '{{number-element object=object meta=view.meta}}';
-                },
+                }.property(),
 
                 wysiwygTemplate: function(){
                     return '{{html-editor object=object property="' + this.get('meta').dataSource + '" validator="collection" dataSource=view.meta.dataSource}}';
-                },
+                }.property(),
 
                 selectTemplate: function(){
                     return '{{view "select" object=object meta=view.meta}}';
-                },
+                }.property(),
 
                 multiSelectTemplate: function(){
                     return '{{view "multiSelect" object=object meta=view.meta}}';
-                },
+                }.property(),
 
                 checkboxTemplate: function(){
                     return '{{checkbox-element object=object meta=view.meta}}';
-                },
+                }.property(),
 
                 multiCheckboxTemplate: function(){
                     return '{{multi-checkbox-element object=object meta=view.meta}}';
-                },
+                }.property(),
 
                 radioTemplate: function(){
                     return '{{radio-element object=object meta=view.meta}}';
-                },
+                }.property(),
 
                 timeTemplate: function(){
                     return '{{time-element object=object meta=view.meta}}';
-                },
+                }.property(),
 
                 dateTemplate: function(){
                     return '{{date-element object=object meta=view.meta}}';
-                },
+                }.property(),
 
                 fileTemplate: function(){
                     return '{{file-element object=object meta=view.meta}}';
-                },
+                }.property(),
 
                 imageTemplate: function(){
                     return '{{image-element object=object meta=view.meta}}';
-                },
+                }.property(),
 
                 textareaTemplate: function(){
                     return '{{textarea-element object=object meta=view.meta}}';
-                }
+                }.property()
             });
         };
     }
