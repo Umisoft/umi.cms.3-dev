@@ -18,13 +18,13 @@
                         {{formElements.label}}
                     </legend>
                     {{#if view.isExpanded}}
-                        {{#each meta in formElements.elements}}
-                            {{view "field" objectBinding="model.object" metaBinding="meta"}}
+                        {{#each meta in formElements.elements itemViewClass="view.parentView.elementView"}}
+                            {{view "fieldFormControl" objectBinding="model.object" metaBinding="meta"}}
                         {{/each}}
                     {{/if}}
                 </fieldset>
             {{else}}
-                {{view "field" objectBinding="model.object" metaBinding="this"}}
+                {{view "fieldFormControl" objectBinding="model.object" metaBinding="this"}}
             {{/if}}
         {{/each}}
     </div>
