@@ -1,9 +1,12 @@
-define([
-    'App',
-    'text!./form.hbs',
-    'partials/forms/elements/main'
+define(
+    [
+        'App',
+        'text!./form.hbs',
+        'partials/forms/elements/main',
+        'partials/forms/partials/magellan/main',
+        'partials/forms/partials/toolbar/main'
     ],
-    function(UMI, formTpl, elements){
+    function(UMI, formTpl, elements, magellan, toolbar){
         'use strict';
 
         /**
@@ -15,12 +18,13 @@ define([
         return function(){
 
             elements();
+            magellan();
+            toolbar();
 
             UMI.FormBaseController = Ember.ObjectController.extend({
                 /**
                  * Toolbar кнопок для формы
                  * @method toolbar
-                 * @abstract
                  */
                 toolbar: function(){}.property(),
                 /**
