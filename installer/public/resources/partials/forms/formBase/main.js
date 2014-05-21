@@ -121,7 +121,7 @@ define(
                  */
                 metaBinding: 'object',
 
-                layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{meta.label}}</span></div>{{yield}}'),
+                layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{view.meta.label}}</span></div>{{yield}}'),
 
                 template: function(){
                     var meta;
