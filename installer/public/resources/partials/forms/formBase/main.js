@@ -207,6 +207,10 @@ define(
 
                 textareaTemplate: function(){
                     return '{{textarea-element object=object meta=view.meta}}';
+                }.property(),
+
+                colorTemplate: function(){
+                    return '{{input type="color" value=object.value meta=view.meta}}';
                 }.property()
             });
         };
