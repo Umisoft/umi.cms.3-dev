@@ -9,9 +9,8 @@
 
 namespace umicms\project\module\blog\site\comment\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\module\blog\api\object\BlogPost;
@@ -19,7 +18,7 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет добавления вывода формы добавления комментария.
  */
-class AddWidget extends BaseSecureWidget
+class AddWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -50,7 +49,7 @@ class AddWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getForm()
     {
         if (is_string($this->blogPost)) {
             $this->blogPost = $this->api->post()->get($this->blogPost);
@@ -62,7 +61,7 @@ class AddWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => 'BlogPost'
+                        'class' => 'umicms\project\module\blog\api\object\BlogPost'
                     ]
                 )
             );
@@ -77,33 +76,25 @@ class AddWidget extends BaseSecureWidget
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogPost',
-                        'class' => 'BlogComment'
+                        'param' => 'blogComment',
+                        'class' => 'umicms\project\module\blog\api\object\BlogComment'
                     ]
                 )
             );
         }
 
-        $comment = $this->api->comment()->add(null, IObjectType::BASE, $this->blogComment);
+        $comment = $this->api->comment()->add(null, BlogComment::TYPE, $this->blogComment);
 
         $comment->post = $this->blogPost;
 
-        $formAddComment = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, IObjectType::BASE, $comment);
+        $form = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, BlogComment::TYPE, $comment);
 
-        $routeParams = [];
-        if (isset($this->blogComment)) {
-            $routeParams = ['parent' => $this->blogComment->getId()];
-        }
+        $routeParams = isset($this->blogComment) ? ['parent' => $this->blogComment->getId()] : [];
 
-        $formAddComment->setAction($this->getUrl('add', $routeParams));
-        $formAddComment->setMethod('post');
+        $form->setAction($this->getUrl('add', $routeParams));
 
-        return $this->createResult(
-            $this->template,
-            [
-                'form' => $formAddComment
-            ]
-        );
+        return $form;
+
     }
 }
  

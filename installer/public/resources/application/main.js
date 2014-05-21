@@ -5,11 +5,12 @@ define(
         //Вызов partials
         'topBar',
         'dock',
+        'toolBar',
         'tableControl',
         'fileManager',
         'treeSimple',
         'tree',
-        'form',
+        'forms',
         'search',
         'notification',
         'dialog',

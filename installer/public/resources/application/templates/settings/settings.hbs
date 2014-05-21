@@ -1,12 +1,15 @@
 <div class="s-full-height">
     <div class="off-canvas-wrap s-full-height move-right">
-        <div class="inner-wrap s-full-height">
-            <aside class="left-off-canvas-menu s-unselectable" style="overflow: hidden;">
-                {{view 'treeSimple' collection=model}}
-            </aside>
-            <div class="umi-divider"></div>
-
-            {{outlet}}
+        <div class="umi-divider-wrapper s-full-height">
+            <div class="umi-divider-left">
+                <div class="umi-divider-left-content">
+                    {{view 'treeSimple' collection=model}}
+                </div>
+                <div class="umi-divider"></div>
+            </div>
+            <div class="umi-divider-right s-full-height" style="width: calc(100% - 251px);">
+                {{outlet}}
+            </div>
         </div>
     </div>
 </div>

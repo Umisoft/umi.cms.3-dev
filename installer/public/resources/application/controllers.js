@@ -17,6 +17,7 @@ define([], function(){
                 var settings = this.get('settings');
                 return settings.collectionName;
             }.property('settings'),
+
             settings: null,
             /**
              Выбранный контекcт, соответствующий модели роута 'Context'
@@ -28,7 +29,7 @@ define([], function(){
             /**
              Вычисляемое свойсво возвращающее массив контролов для текущего контекста
              @method contentControls
-             @return Array Массив
+             @return Array Возвращает массив Ember объектов содержащий возможные действия текущего контрола
              */
             contentControls: function(){
                 var self = this;
@@ -39,7 +40,7 @@ define([], function(){
                     var controls = settings.layout.contents[selectedContext];
                     var key;
                     var control;
-                    for(key in controls){
+                    for(key in controls){ //for empty - createForm & filter
                         if(controls.hasOwnProperty(key)){
                             control = controls[key];
                             control.name = key;
@@ -59,6 +60,7 @@ define([], function(){
 
                 return contentControls;
             }.property('settings', 'selectedContext'),
+
             /**
              Контрол компонента в области сайд бара
              @property sideBarControl
@@ -80,6 +82,7 @@ define([], function(){
                             }
                         }
                     }
+
                 } catch(error){
                     var errorObject = {
                         'statusText': error.name,
@@ -90,6 +93,7 @@ define([], function(){
                         self.send('templateLogs', errorObject, 'component');
                     });
                 }
+
                 return sideBarControl;
             }.property('settings')
         });

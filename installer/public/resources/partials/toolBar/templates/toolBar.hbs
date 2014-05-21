@@ -1,0 +1,87 @@
+<style>
+    .umi-toolbar-create-text{
+        float: left;
+        color: #FFFFFF;
+        font-size: 13px;
+        font-weight: bold;
+        font-family: Arial;
+        padding: 0 10px 0 0;
+        line-height: 31px;
+    }
+
+    .umi-toolbar-create-icon{
+        padding: 0 2px;
+        float: right;
+        margin-right: -20px;
+        height: 100%;
+        border-left: 1px solid #297AD1;
+    }
+
+    .umi-toolbar-create-icon i{
+        margin-top: 6px;
+        margin-right: 1px;
+    }
+
+    .umi-toolbar-create-list{
+        display: none;
+        position: absolute;
+        z-index: 20;
+        float: left;
+        min-width: calc(100% - 1px); /* Минимальная ширина соответствует ширине кнопки */
+        top: 31px;
+        left: 0;
+        background: #FFFFFF;
+        color: #535E6D;
+        font-size: 13px;
+        font-weight: normal;
+        line-height: 21px;
+        padding: 4px 0;
+        box-shadow: 0 0 3px 0 #7C99AC;
+    }
+
+    .umi-toolbar-create-list span{
+        display: block;
+        width: calc(100% - 20px);
+        height: 28px;
+        line-height: 28px;
+        padding: 0 10px;
+        white-space: nowrap;
+    }
+
+    .umi-toolbar-create-list span:nth-of-type(even){
+        background: #E8EDEF;
+    }
+
+    .umi-toolbar-create-list span:hover{
+        background: #A4DCF7;
+    }
+</style>
+
+<a class="umi-button umi-toolbar-create-button">
+    <span class="umi-toolbar-create-text" {{action 'objectCreate' target='view'}}>Создать</span>
+    <span class="umi-toolbar-create-icon">
+        <i class="icon icon-bottom"></i>
+    </span>
+    <span class="umi-toolbar-create-list umi-hide-on-html">
+        <span>Создать объект</span>
+        <span>Создать</span>
+        <span>Создать</span>
+        {{!#each element in createMenu}}
+            <span>{{!element.displayName}}</span>
+        {{!/each}}
+    </span>
+</a>
+
+{{#view view.groupCrudView}}
+    <div class="left umi-table-control-group-crud">
+
+        <a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg umi-disabled" {{action 'pauseGroup' target='view'}}>
+            <i class="icon icon-pause"></i>
+        </a>
+
+        <a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg umi-disabled" {{action 'deleteGroup' target='view'}}>
+            <i class="icon icon-delete"></i>
+        </a>
+
+    </div>
+{{/view}}

@@ -9,26 +9,24 @@
 namespace umicms\project\module\seo\admin\megaindex;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\api\component\DefaultQueryAdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
-    AdminComponent::OPTION_MODELS => [
+    DefaultQueryAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultQueryAdminComponent',
+    DefaultQueryAdminComponent::OPTION_MODELS => [
         'umicms\project\module\seo\model\MegaindexModel'
     ],
-    AdminComponent::OPTION_SETTINGS => [
-        'options' => [
-            'login' => 'megaindex-api-test@megaindex.ru',
-            'password' => 'et676e5rj',
-            'siteUrl' => 'umi-cms.ru',
-        ]
+    DefaultQueryAdminComponent::OPTION_SETTINGS => '{#lazy:~/project/module/seo/configuration/megaindex/model.settings.config.php}',
+    DefaultQueryAdminComponent::OPTION_CONTROLLERS => [
+        DefaultQueryAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
+        DefaultQueryAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
-    AdminComponent::OPTION_CONTROLLERS => [
-        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController'
+
+    DefaultQueryAdminComponent::OPTION_QUERY_ACTIONS => [
+        'siteAnalyze', 'getBacklinks'
     ],
-    AdminComponent::OPTION_ROUTES => [
+    DefaultQueryAdminComponent::OPTION_ROUTES => [
         'action' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/action/{action}',
@@ -39,7 +37,7 @@ return [
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => AdminComponent::SETTINGS_CONTROLLER
+                'controller' => DefaultQueryAdminComponent::SETTINGS_CONTROLLER
             ]
         ]
     ]

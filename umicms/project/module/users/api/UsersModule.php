@@ -9,15 +9,17 @@
 
 namespace umicms\project\module\users\api;
 
+use umi\authentication\exception\RuntimeException;
 use umi\authentication\IAuthenticationAware;
 use umi\authentication\IAuthenticationFactory;
 use umi\authentication\TAuthenticationAware;
-use umicms\exception\RuntimeException;
 use umicms\module\BaseModule;
 use umicms\project\module\users\api\collection\UserCollection;
+use umicms\project\module\users\api\collection\UserGroupCollection;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\object\Guest;
 use umicms\project\module\users\api\object\Supervisor;
+use umicms\project\module\users\api\object\UserGroup;
 
 /**
  * Модуль для работы с пользователями.
@@ -34,10 +36,6 @@ class UsersModule extends BaseModule implements IAuthenticationAware
      * @var string $supervisorGuid GUID супервайзера
      */
     public $supervisorGuid = '68347a1d-c6ea-49c0-9ec3-b7406e42b01e';
-    /**
-     * @var string $passwordSalt маска соли для хэширования паролей
-     */
-    public $passwordSaltMask = '$2a$09${salt}$';
 
     /**
      * Возвращает репозиторий для работы с пользователями.
@@ -49,19 +47,12 @@ class UsersModule extends BaseModule implements IAuthenticationAware
     }
 
     /**
-     * Устанавливает пользователю новый пароль.
-     * @param AuthorizedUser $user авторизованный пользователь
-     * @param string $password пароль
+     * Возвращает репозиторий для работы с группами пользователей.
+     * @return UserGroupCollection
      */
-    public function setUserPassword(AuthorizedUser $user, $password)
+    public function userGroup()
     {
-        $passwordSalt = strtr($this->passwordSaltMask, [
-                '{salt}' => uniqid('', true)
-            ]);
-        $passwordHash = crypt($password, $passwordSalt);
-
-        $user->getProperty(AuthorizedUser::FIELD_PASSWORD_SALT)->setValue($passwordSalt);
-        $user->getProperty(AuthorizedUser::FIELD_PASSWORD)->setValue($passwordHash);
+        return $this->getCollection('userGroup');
     }
 
     /**
@@ -84,6 +75,32 @@ class UsersModule extends BaseModule implements IAuthenticationAware
         return $this->getDefaultAuthManager()
             ->authenticate($provider)
             ->isSuccessful();
+    }
+
+    /**
+     * Регистрирует пользователя в системе.
+     * @param AuthorizedUser $user
+     * @return AuthorizedUser
+     */
+    public function register(AuthorizedUser $user)
+    {
+        $user->active = !$this->user()->getIsRegistrationWithActivation();
+        $user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->setValue(uniqid('', true));
+
+        $userGroups = $user->groups;
+
+        $defaultGroups = $this->userGroup()
+            ->select()
+            ->fields(UserGroup::FIELD_GUID)
+            ->where(UserGroup::FIELD_GUID)
+                ->in($this->user()->getRegisteredUsersDefaultGroupGuids());
+
+        foreach ($defaultGroups as $group)
+        {
+            $userGroups->link($group);
+        }
+
+        return $user;
     }
 
     /**

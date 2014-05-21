@@ -9,15 +9,14 @@
 
 namespace umicms\project\module\users\site\authorization\widget;
 
-use umi\form\element\IFormElement;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\UsersModule;
 
 /**
  * Виджет вывода формы авторизации.
  */
-class LoginFormWidget extends BaseSecureWidget
+class LoginFormWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -41,23 +40,10 @@ class LoginFormWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getForm()
     {
-        $form = $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, 'authorized');
-        $form->setAction($this->getUrl('login'));
-
-        /**
-         * @var IFormElement $refererInput
-         */
-        $refererInput = $form->get('referer');
-        $refererInput->setValue($this->getUrlManager()->getCurrentUrl(true));
-
-        return $this->createResult(
-            $this->template,
-            [
-                'form' => $form
-            ]
-        );
+        return $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, AuthorizedUser::TYPE_NAME)
+            ->setAction($this->getUrl('login'));
     }
 }
  

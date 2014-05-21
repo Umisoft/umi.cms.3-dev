@@ -3,10 +3,15 @@ define([], function(){
 
     return function(UMI){
 
+        /**
+         * Фильтрация значения полей
+         * @type {{stringTrim: stringTrim, htmlSafe: htmlSafe}}
+         */
         var propertyFilters = {
             stringTrim: function(value){
                 return value.replace(/^\s+|\s+$/g, '');
             },
+
             htmlSafe: function(value){
                 return Ember.String.htmlSafe(value);
             }
@@ -15,6 +20,7 @@ define([], function(){
         DS.Model.reopen({
             needReloadHasMany: Ember.K,
             validErrors: null,
+
             filterProperty: function(propertyName){
                 if(this.get('filters').hasOwnProperty(propertyName)){
                     var filters = this.get('filters')[propertyName];
@@ -27,6 +33,7 @@ define([], function(){
                     this.set(propertyName, value);
                 }
             },
+
             validateProperty: function(propertyName){
                 if(this.get('validators').hasOwnProperty(propertyName)){
                     var validators = this.get('validators')[propertyName];
@@ -79,14 +86,14 @@ define([], function(){
                     }
                 }
             },
+
             clearValidateForProperty: function(propertyName){
-                var i;
                 var activeErrors = this.get('validErrors');
                 if(activeErrors && activeErrors.hasOwnProperty(propertyName)){
                     delete activeErrors[propertyName];
                 }
                 // Объект пересобирается без свойств прототипа
-                i = 0;
+                var i = 0;
                 for(var error in activeErrors){
                     if(activeErrors.hasOwnProperty(error)){
                         ++i;
@@ -95,8 +102,10 @@ define([], function(){
                 activeErrors = i ? activeErrors : null;
                 this.set('validErrors', activeErrors);
             },
+
             loadedRelationshipsByName: {},
             changedRelationshipsByName: {},
+
             changeRelationshipsValue: function(property, value){
                 var loadedRelationships = this.get('loadedRelationshipsByName');
                 var changedRelationships = this.get('changedRelationshipsByName');
@@ -130,6 +139,7 @@ define([], function(){
                     }
                 }
             },
+
             relationPropertyIsDirty: function(property){
                 var loadedRelationships = this.get('loadedRelationshipsByName');
                 var changedRelationships = this.get('changedRelationshipsByName');
@@ -152,6 +162,7 @@ define([], function(){
                 }
                 return isDirty;
             },
+
             updateRelationhipsMap: function(){
                 var loadedRelationships = this.get('loadedRelationshipsByName');
                 var changedRelationships = this.get('changedRelationshipsByName');
@@ -170,18 +181,17 @@ define([], function(){
          * @param array Массив обьектов
          */
         UMI.modelsFactory = function(collections){
-            var i;
-            var j;
+
             var collection;
             var fieldValue;
 
-            for(j = 0; j < collections.length; j++){
+            for(var j = 0; j < collections.length; j++){
                 var fields = {};
                 var filters = {};
                 var validators = {};
                 collection = collections[j];
 
-                for(i = 0; i < collection.fields.length; i++){
+                for(var i = 0; i < collection.fields.length; i++){
                     var params = {};
                     if(collection.fields[i].displayName){
                         params.displayName = collection.fields[i].displayName;
@@ -206,6 +216,7 @@ define([], function(){
                             break;
                         case 'belongsToRelation':
                             params.async = true;
+                            // Что значит инверсия избыточна?
                             //TODO: инверсия избыточна, но DS почему то без неё не может
                             if(collection.fields[i].targetCollection === collection.name){
                                 params.inverse = 'children';

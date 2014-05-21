@@ -10,6 +10,7 @@
 namespace umicms\model;
 
 use umicms\exception\RequiredDependencyException;
+use umicms\model\toolbox\factory\ModelEntityFactory;
 
 /**
  * Трейт для внедрения фабрики сущностей моделей данных.

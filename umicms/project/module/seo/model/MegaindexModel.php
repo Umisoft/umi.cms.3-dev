@@ -16,6 +16,19 @@ use umi\hmvc\model\IModel;
 class MegaindexModel implements IModel
 {
     /**
+     * Логин в системе MegaIndex.
+     */
+    const MEGAINDEX_LOGIN = 'login';
+    /**
+     * Пароль в системе MegaIndex.
+     */
+    const MEGAINDEX_PASSWORD = 'password';
+    /**
+     * Адрес анализируемого сайта в системе MegaIndex.
+     */
+    const MEGAINDEX_SITE_URL = 'siteUrl';
+
+    /**
      * Логин в системе Мегаиндекс
      * @var string $login
      */
@@ -47,7 +60,7 @@ class MegaindexModel implements IModel
     /**
      * Универсальный метод, запрашивающий данные через API Мегаиндекса.
      * Возвращает массив данных
-     * @param string $method �?мя метода, методы перечислены в {@link http://api.megaindex.ru/description/ документации}
+     * @param string $method имя метода, методы перечислены в {@link http://api.megaindex.ru/description/ документации}
      * @param array $params Дополнительные параметры запроса
      * @return array
      */

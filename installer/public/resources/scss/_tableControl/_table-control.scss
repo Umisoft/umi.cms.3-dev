@@ -1,0 +1,485 @@
+$table-control-left-column-width: 32px;
+$table-control-row-height: 32px;
+$table-control-cell-border-color: #E3E4E5;
+$table-control-header-height: 66px;
+//$table-control-row-bg-hover: #b5dbf6;
+$table-control-row-bg-hover: #C8DEEE;
+.umi-table-control{
+    font-size: rem-calc(13);
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: #D6E0E9;
+    box-sizing: border-box;
+}
+
+// -------- Шапка таблицы
+.umi-table-control-header{
+    background: #F5F6F7;
+    .umi-table-control-control-cell-empty{
+        background: #F5F6F7;
+    }
+}
+
+.umi-table-control-header-center{
+    padding: 0 $table-control-left-column-width*2 0 $table-control-left-column-width;
+
+    .umi-table-control-header{
+        table-layout: fixed;
+        border: 0;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .umi-table-control-row{
+        width: 100%;
+        height: $table-control-row-height;
+        font-weight: bold;
+        color: #575E6C;
+        background: #FFFFFF;
+        &.filters{
+            background: #F5F6F7;
+        }
+    }
+
+    .umi-table-control-header-column{
+        table-layout: fixed;
+        position: relative;
+        padding: 0;
+        line-height: 1.375rem;
+        border-bottom: 1px solid #E2E3E4;
+        cursor: move;
+    }
+}
+
+.umi-table-control-empty-column{
+    float: none;
+    width: 100%;
+    right: 0;
+    border-bottom: 1px solid #E2E3E4;
+}
+
+// В firefox position: relative, для td не работает, поэутому нужна обёртка
+// TODO И хорошо что не работает - какого хрена оно дожно работать? Для этого есть блочные элементы.
+.umi-table-control-cell-firefox-fix{
+    position: relative;
+}
+
+.umi-table-control-column-resizer{
+    position: absolute;
+    right: 0;
+    margin-right: -4px;
+    z-index: 1;
+    width: 7px;
+    height: 65px;
+    top: 0;
+    border: 0;
+    cursor: e-resize;
+    &:hover{
+        background: #444444;
+    }
+    &.on-resize{
+        background: #444444;
+    }
+}
+
+// ------------ Фиксированая колонка слева
+.umi-table-control-header-fixed-left{
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    border-right: 1px solid $table-control-cell-border-color;
+    .umi-table-control-header-cell{
+        height: $table-control-row-height + 1px;
+        width: $table-control-left-column-width;
+        display: block;
+        border: 0;
+        padding-left: rem-calc(7);
+        background: #fff;
+        border-bottom: 1px solid #E3E4E5;
+    }
+    .umi-table-control-column-fixed-cell{
+        height: $table-control-row-height;
+        width: $table-control-left-column-width;
+        display: block;
+        border: 0;
+        padding-left: rem-calc(7);
+        background: #fff;
+        border-bottom: 1px solid #E3E4E5;
+    }
+}
+
+.umi-table-control-header-fixed-right{
+    position: absolute;
+    z-index: 2;
+    width: $table-control-left-column-width*2 + 18; //Плюс ширина скролла
+    top: 0;
+    right: 0;
+    border-left: 1px solid #E3E4E5;
+    border-bottom: 1px solid #E3E4E5;
+    background: #FFFFFF;
+
+    .umi-table-control-header-title{
+        height: $table-control-row-height;
+        width: $table-control-left-column-width*2 + 18; //Плюс ширина скролла;
+        border-bottom: 1px solid #E3E4E5;
+        .umi-table-control-header-fixed-right-first{
+            float: left;
+        }
+        .umi-table-control-header-fixed-right-second{
+            float: left;
+            width: $table-control-left-column-width - 1;
+            border-left: 1px solid #E3E4E5;
+            padding-right: 18px; //Ширина скролла
+        }
+    }
+    .umi-table-control-header-filter{
+        height: $table-control-row-height;
+        background: #F5F6F7;
+    }
+}
+
+.umi-table-control-content-fixed-left{
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    border-right: 1px solid $table-control-cell-border-color;
+    border-bottom: 1px solid #A7B9C5;
+    .umi-table-control-header-cell{
+        height: $table-control-row-height;
+        width: $table-control-left-column-width;
+        display: block;
+        border: 0;
+        padding-left: rem-calc(7);
+        background: #fff;
+        border-bottom: 1px solid #E3E4E5;
+    }
+    .umi-table-control-column-fixed-cell{
+        background: #F5F6F7;
+        &:nth-of-type(even){
+            background: #E9F1F7;
+        }
+        height: $table-control-row-height;
+        width: $table-control-left-column-width;
+        display: block;
+        border: 0;
+        padding-left: rem-calc(7);
+    }
+    .umi-table-control-control-cell-empty{
+        background: #F5F6F7;
+        border-bottom: 0;
+        &:nth-of-type(odd){
+            background: #E9F1F7;
+        }
+    }
+}
+
+.umi-table-control-content-fixed-right{
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    border-right: none;
+    border-left: 1px solid #E3E4E5;
+    border-bottom: 1px solid #A7B9C5;
+    .umi-table-control-header-cell{
+        height: $table-control-row-height;
+        width: $table-control-left-column-width;
+        display: block;
+        border: 0;
+        padding-left: rem-calc(8);
+        background: #fff;
+        border-bottom: 1px solid #E3E4E5;
+    }
+    .umi-table-control-column-fixed-cell{
+        background: #F5F6F7;
+        &:nth-of-type(even){
+            background: #E9F1F7;
+        }
+        height: $table-control-row-height;
+        width: $table-control-left-column-width*2 + 18px; //Плюс ширина скролла
+        display: block;
+        padding: 0;
+        border: 0;
+        .umi-table-control-content-fixed-right-second{
+            border-left: 1px solid #E3E4E5;
+            padding-right: 18px; //Ширина скролла
+        }
+    }
+    .umi-table-control-control-cell-empty{
+        background: #F5F6F7;
+        border-bottom: 0;
+        &:nth-of-type(odd){
+            background: #E9F1F7;
+        }
+    }
+}
+
+
+// Фиксированнная колонка справа
+.umi-table-control-right-fixed{
+    border-right: none;
+    border-left: 1px solid $table-control-cell-border-color;
+    left: auto;
+    right: 0;
+}
+
+.umi-table-control-control-cell-empty{
+    left: 0;
+    width: $table-control-left-column-width;
+    height: $table-control-row-height;
+    line-height: $table-control-row-height;
+}
+
+// ----------- table content
+.umi-table-control-content-wrapper{
+    height: calc(100% - 66px - 32px);
+    position: relative;
+    &:before{
+        content: "";
+        position: absolute;
+        float: left;
+        display: block;
+        height: 3px;
+        width: 100%;
+        left: 0;
+        top: -1px;
+        background: url(img/shadows/toBottomShadow.png);
+        z-index: 3;
+    }
+    .umi-table-control-empty-column{
+        border-bottom: 0;
+        padding: 0;
+    }
+}
+
+.umi-table-control-cell-drop-size{
+    height: 0;
+    border: none;
+    padding: 0;
+    background: none;
+}
+
+.umi-table-control-content{
+    float: left;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border: 0;
+    margin: 0 64px 0 32px;
+    width: unquote("calc(100% - 96px)");
+}
+
+.umi-table-control-content-row{
+    height: $table-control-row-height;
+    background: #F5F6F7;
+    &:nth-of-type(odd){
+        background: #E9F1F7;
+    }
+    &.umi-inactive{
+        background: #D6E0E9;
+    }
+    &.hover{
+        background: $table-control-row-bg-hover!important;
+    }
+    .edit-link{
+        color: $body-font-color;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
+
+.umi-table-control-header-cell{
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: $table-control-row-height;
+    line-height: $table-control-row-height;
+    border-right: 1px solid $table-control-cell-border-color;
+    box-sizing: border-box;
+    overflow: hidden;
+    &.filter{
+        padding: rem-calc(0 10);
+        input{
+            padding: rem-calc(0 6);
+            margin: 5px 0;
+            height: 22px !important;
+            width: unquote("calc(100% - 18px)");
+            float: left;
+        }
+        .sort-handler{
+            margin: 4px -7px 0 0;
+            float: right;
+            opacity: .4;
+            &.active{
+                opacity: 1;
+            }
+        }
+    }
+    &.hover{
+        background: $table-control-row-bg-hover !important;
+    }
+}
+
+.umi-table-control-row .umi-table-control-header-cell{
+    padding: rem-calc(0 10);
+}
+
+
+.umi-table-control-column-fixed-cell{
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: $table-control-row-height;
+    line-height: $table-control-row-height;
+    padding: rem-calc(0 10);
+    border-right: 1px solid $table-control-cell-border-color;
+    box-sizing: border-box;
+//    overflow: hidden;
+    &.filter{
+        input{
+            padding: 0 rem-calc(6);
+            margin: 5px 0;
+            height: 22px !important;
+            width: unquote("calc(100% - 18px)");
+            float: left;
+        }
+        .sort-handler{
+            margin: 4px -7px 0 0;
+            float: right;
+            opacity: .4;
+            &.active{
+                opacity: 1;
+            }
+        }
+    }
+    &.hover{
+        background: $table-control-row-bg-hover!important;
+    }
+}
+
+.umi-table-control-content-cell{
+    padding: 0;
+}
+
+.umi-table-control-content-cell-div{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    line-height: $table-control-row-height;
+    border-right: 1px solid #E3E4E5;
+    padding: rem-calc(0 10);
+}
+
+//TODO Нужно избавиться от селектора td
+.umi-table-control-content-row:last-of-type td{
+    border-bottom: 1px solid #A7B9C5;
+}
+
+.umi-table-control-content-cell-string{
+    max-width: 100%;
+}
+
+// --------- строка устанавливающая ширину в table content
+.umi-table-control-content-row-size{
+    .umi-table-control-content-cell{
+        border: none;
+    }
+}
+
+// ------------------ table footer
+.umi-table-control-footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 4;
+    height: $table-control-row-height;
+    background: #F5F6F7;
+    &:before{
+        content: "";
+        position: absolute;
+        display: block;
+        height: 3px;
+        width: 100%;
+        top: -3px;
+        background: url(img/shadows/toTopShadow.png);
+    }
+}
+
+.umi-table-control-group-crud{
+    a{
+        float: left;
+        padding: 6px;
+        border-right: 1px solid #c0c2ca;
+    }
+}
+
+.umi-table-control-pagination{
+    padding: rem-calc(4 10);
+    .pagination-controls{
+        .pagination-counter{
+            line-height: 24px;
+            margin-right: 15px;
+        }
+        ~ .pagination-limit{
+            margin-right: 30px;
+        }
+        .button{
+            margin-bottom: 0;
+            &.disabled{
+                .icon{
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+    .pagination-limit{
+
+    }
+    .pagination-label{
+        display: inline-block;
+        margin-right: 15px;
+        line-height: 24px;
+    }
+    input{
+        display: inline-block;
+        padding: rem-calc(0 5);
+        height: rem-calc(24);
+        width: 50px;
+        line-height: 20px;
+    }
+}
+
+//------------------- Загрузка контента
+.umi-table-control-loader-column{
+    float: none;
+    width: 100%;
+    right: 0;
+    height: 100px;
+    padding: 0;
+    .umi-table-control-content-loader{
+        background: #E9F1F7;
+        height: 100%;
+        margin: 0 -$table-control-left-column-width;
+        padding: 0;
+        border-bottom: 1px solid #A7B9C5;
+        text-align: center;
+        div{
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: 33px;
+        }
+    }
+}
+
+//----------------- Стили пустой таблицы
+.umi-table-control-content-div-empty{
+    // Компилятор sass вычисляет разницу 20px -$variable, вместо того чтобы оставить как есть. Поэтому margin разделен
+    margin-left: -$table-control-left-column-width;
+    margin-right: -$table-control-left-column-width;
+    padding: 20px $table-control-left-column-width;
+    line-height: normal;
+}

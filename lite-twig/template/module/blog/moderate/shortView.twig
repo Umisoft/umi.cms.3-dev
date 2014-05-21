@@ -15,6 +15,7 @@
     {{ blogPost.announcement | raw }}
 
     <a href="{{ blogPost.getPageUrl() }}">{{ translate('Читать далее') }}</a>
+
     {{ widget('blog.moderate.publishModerate', {'blogPost' : blogPost, 'template' : 'publishForm'}) }}
     {{ widget('blog.moderate.rejectModerate', {'blogPost' : blogPost, 'template' : 'rejectForm'}) }}
     {{ widget('blog.moderate.draftModerate', {'blogPost' : blogPost, 'template' : 'draftForm'}) }}

@@ -40,6 +40,9 @@ define([], function(){
              **/
             model: function(params, transition){
                 var self = this;
+                /**
+                 * http://localhost/admin/api/settings
+                 */
                 return $.get(UmiSettings.baseApiURL).then(function(results){
                     var result = results.result;
                     self.controllerFor('application').set('settings', result);
@@ -55,6 +58,7 @@ define([], function(){
                     transition.send('templateLogs', error);
                 });
             },
+
             actions: {
                 logout: function(){
                     var applicationLayout = document.querySelector('.umi-main-view');
@@ -62,15 +66,16 @@ define([], function(){
                     maskLayout.className = 'auth-mask';
                     maskLayout = document.body.appendChild(maskLayout);
                     $(applicationLayout).addClass('off');
-                    $.post(UmiSettings.baseApiURL + '/action/logout');
-                    require(['auth/main'], function(auth){
-                        auth();
-                        $(applicationLayout).addClass('fade-out');
-                        Ember.run.later('', function(){
-                            UMI.reset();
-                            UMI.deferReadiness();
-                            maskLayout.parentNode.removeChild(maskLayout);
-                        }, 800);
+                    $.post(UmiSettings.baseApiURL + '/action/logout').then(function(){
+                        require(['auth/main'], function(auth){
+                            auth();
+                            $(applicationLayout).addClass('fade-out');
+                            Ember.run.later('', function(){
+                                UMI.reset();
+                                UMI.deferReadiness();
+                                maskLayout.parentNode.removeChild(maskLayout);
+                            }, 800);
+                        });
                     });
                 },
 
@@ -79,27 +84,32 @@ define([], function(){
 
                  @method save
                  @param {Object} params Объект аргументов
-                 params.object - сохраняемый объект
-                 params.handler - элемент (кнопка) вызвавший событие сохранение
+                 params.object - сохраняемый объект (полностью объект системы)
+                 params.handler - элемент (кнопка) вызвавший событие сохранение - JS DOM Element
                  */
                 save: function(params){
                     var isNewObject;
                     var self = this;
+
                     if(!params.object.get('isValid')){
                         if(params.handler){
                             $(params.handler).removeClass('loading');
                         }
                         return;
                     }
+
                     if(params.object.get('currentState.stateName') === 'root.loaded.created.uncommitted'){
                         isNewObject = true;
                     }
+
                     return params.object.save().then(
                         function(){
                             params.object.updateRelationhipsMap();
+
                             if(params.handler){
                                 $(params.handler).removeClass('loading');
                             }
+
                             if(isNewObject){
                                 if(params.object.store.metadataFor(params.object.constructor.typeKey).collectionType === 'hierarchic'){
                                     var parent = params.object.get('parent');
@@ -111,31 +121,34 @@ define([], function(){
                                             self.send('edit', params.object);
                                         });
                                     } else{
-                                        // Обновление связей рутовой ноды в дереве. TODO: подумать как можно избежать обращения к контроллеру дерева.
+                                        // Обновление связей рутовой ноды в дереве.
+                                        // TODO: подумать как можно избежать обращения к контроллеру дерева.
                                         self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(params.object.get('id'), 'root');
-
                                         self.send('edit', params.object);
                                     }
                                 }
                                 self.send('edit', params.object);
                             }
                         },
+
                         function(results){
                             var self = this;
                             if(params.handler){
                                 $(params.handler).removeClass('loading');
                             }
+
                             var data = {
                                 'close': false,
                                 'title': results.errors,
                                 'content': results.message,
                                 'confirm': 'Загрузить объект с сервера'
                             };
+
                             return UMI.dialog.open(data).then(
                                 function(){
                                     //https://github.com/emberjs/data/issues/1632
                                     //params.object.transitionTo('updated.uncommitted');
-                                    console.log(params.object.get('currentState.stateName'), results, self);
+//                                    console.log(params.object.get('currentState.stateName'), results, self);
                                     /* params.object.rollback();
                                      params.object.reload();*/
                                 }
@@ -150,8 +163,9 @@ define([], function(){
                     settings.title = error.status + '. ' + error.statusText;
                     UMI.dialog.open(settings).then();
                 },
+
                 /**
-                 Метод генерирует фоновую ошибку
+                 Метод генерирует фоновую ошибку (красный tooltip)
                  @method backgroundError
                  @property error Object {status: status, title: title, content: content, stack: stack}
                  */
@@ -162,6 +176,11 @@ define([], function(){
                     UMI.notification.create(settings);
                 },
 
+                /**
+                 Метод генерирует ошибку (выводится вместо шаблона)
+                 @method backgroundError
+                 @property error Object {status: status, title: title, content: content, stack: stack}
+                 */
                 templateLogs: function(error, parentRoute){
                     parentRoute = parentRoute || 'module';
                     var dataError = this.parseError(error);
@@ -171,6 +190,7 @@ define([], function(){
 
                 /// global actions
                 switchActivity: function(object){
+                    console.log('switchActivity');
                     try{
                         var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
                         var switchActivitySource = this.controllerFor('component').get('settings').actions[(object.get('active') ? 'de' : '') + 'activate'].source;
@@ -222,8 +242,9 @@ define([], function(){
                     }).append();
                 }
             },
+
             /**
-             Метод парсит ошибку и возвпращает её в виде объекта
+             Метод парсит ошибку и возвпращает её в виде объекта (ошибки с Back-end)
              @method parseError
              @return Object|null {status: status, title: title, content: content, stack: stack}
              */
@@ -265,7 +286,7 @@ define([], function(){
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName){
                     var firstChild = this.controllerFor('dock').get('content.firstObject');
-                    return this.transitionTo('module', 'news');//firstChild.get('name'));
+                    return this.transitionTo('module', 'news'); //firstChild.get('name'));
                 }
             }
         });
@@ -293,6 +314,7 @@ define([], function(){
                 }
                 return deferred.promise;
             },
+
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
                     var self = this;
@@ -314,6 +336,7 @@ define([], function(){
                     return deferred.promise;
                 }
             },
+
             serialize: function(model){
                 return {module: model.get('slug')};
             }
@@ -332,6 +355,9 @@ define([], function(){
                 var components = this.modelFor('module').get('components');
                 var model = components.findBy('name', transition.params.component.component);
                 if(model){
+                    /**
+                     * Ресурс компонента
+                     */
                     Ember.$.get(model.get('resource')).then(function(results){
                         var componentController = self.controllerFor('component');
                         var settings = results.result.settings;
@@ -350,16 +376,25 @@ define([], function(){
                 }
                 return deferred.promise;
             },
+
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
                     this.transitionTo('context', 'root');
                 }
             },
+
             serialize: function(model){
                 return {component: model.get('name')};
             },
+
+            /**
+             * Отрисовываем компонент
+             * Если есть sideBar - его тоже отрисовываем
+             * @param controller
+             */
             renderTemplate: function(controller){
                 this.render();
+
                 if(controller.get('sideBarControl')){
                     try{
                         this.render(controller.get('sideBarControl.name'), {
@@ -378,6 +413,10 @@ define([], function(){
             }
         });
 
+        /**
+         * Отрисовка выбранного объекта
+         * @type {*|void|Object}
+         */
         UMI.ContextRoute = Ember.Route.extend({
             model: function(params, transition){
                 var componentController = this.controllerFor('component');
@@ -405,6 +444,7 @@ define([], function(){
                                 }
                             }.property()
                         });
+
                         model = new Ember.RSVP.Promise(function(resolve){
                             resolve(RootModel.create({'id': 'root', type: 'base'}));
                         });
@@ -414,12 +454,14 @@ define([], function(){
                 }
                 return model;
             },
+
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
                     var firstControl = this.controllerFor('component').get('contentControls')[0];
                     return this.transitionTo('action', firstControl.name);
                 }
             },
+
             serialize: function(model){
                 if(model){
                     return {context: model.get('id')};
@@ -434,6 +476,7 @@ define([], function(){
                     replace: true
                 }
             },
+
             model: function(params, transition){
                 var self = this;
                 var actionName = params.action;
@@ -446,14 +489,17 @@ define([], function(){
                     'object': contextModel,
                     'action': action
                 };
+
                 if(action){
                     /**
                      * Мета информация для action
                      */
                     var actionParams = {};
+
                     if(contextModel.get('type')){
                         actionParams.type = contextModel.get('type');
                     }
+
                     if(actionName === 'createForm'){
                         var createdParams =  contextModel.get('id') !== 'root' ? {parent: contextModel} : null;
                         data.createObject = self.store.createRecord(collectionName, createdParams);
@@ -463,6 +509,7 @@ define([], function(){
                             throw new Error("Тип создаваемого объекта не был указан.");
                         }
                     }
+
                     // Временное решение для таблицы
                     if(actionName === 'children' || actionName === 'filter'){
                         return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
@@ -485,11 +532,13 @@ define([], function(){
                     this.transitionTo('context', contextModel.get('id'));
                 }
             },
+
             serialize: function(data){
                 if(data.action){
                     return {action: data.action.get('name')};
                 }
             },
+
             renderTemplate: function(controller, model){
                 try{
                     var templateType = model.action.get('name');
@@ -505,6 +554,7 @@ define([], function(){
                     this.send('templateLogs', errorObject, 'component');
                 }
             },
+
             setupController: function(controller, model){
                 this._super(controller, model);
                 var context = this.modelFor('context');
@@ -519,6 +569,7 @@ define([], function(){
                 }
                 controller.set('model', model);
             },
+
             actions: {
                 /**
                  Метод вызывается при уходе с роута.
@@ -559,13 +610,15 @@ define([], function(){
         });
 
 
+        /**
+         * При наличии доступа пользователя к настройкам системы, добаляем route к настройкам
+         */
         if('baseSettingsURL' in window.UmiSettings){
             UMI.Router.map(function(){
                 this.resource('settings', {path: '/configure'}, function(){
                     this.route('component', {path: '/:component'});
                 });
             });
-
 
             UMI.SettingsRoute = Ember.Route.extend({
                 model: function(){
@@ -596,21 +649,22 @@ define([], function(){
             UMI.SettingsComponentRoute = Ember.Route.extend({
                 model: function(params){
                     var settings = this.modelFor('settings');
-                    var findDepth = function findDepth(components, propertyName, propertyValue){
-                        var i;
+                    var findDepth = function(components, propertyName, slug){
                         var component;
-                        var result;
-                        for(i = 0; i < components.length; i++){
-                            if(components[i][propertyName] === propertyValue){
-                                component = components[i];
-                            }
-                            if('components' in components[i]){
-                                result = findDepth(components[i].components, propertyName, propertyValue);
-                                if(result){
-                                    component = result;
+                        slug = slug.split('.');
+
+                        for(var j = 0; j < slug.length; j++){
+                            component = components.findBy(propertyName, slug[j]);
+
+                            if(1 + j < slug.length && component){
+                                if('components' in component){
+                                    components = component.components;
+                                } else{
+                                    Ember.assert('Отсутствуют дочерние компоненты для раздела ' + component.name + '.');
                                 }
                             }
                         }
+
                         return component;
                     };
                     var component = findDepth(settings, 'name', params.component);

@@ -9,12 +9,13 @@
 
 namespace umicms\project\module\statistics\admin\metrika\controller;
 
+use umicms\project\admin\api\component\DefaultQueryAdminComponent;
 use umicms\project\admin\api\controller\DefaultRestSettingsController;
 
 /**
  * Контроллер вывода настроек компонента
  */
-class RestSettingsController extends DefaultRestSettingsController
+class SettingsController extends DefaultRestSettingsController
 {
     private $controls = [
         'counters' => [],
@@ -22,14 +23,12 @@ class RestSettingsController extends DefaultRestSettingsController
     ];
 
     private $layout = [
-        'emptyContext' => [
-            'contents' => [
-                'controls' => ['counters']
-            ]
-        ],
-        'selectedContext' => [
-            'contents' => [
-                'controls' => ['counter']
+        'contents' => [
+            'emptyContext' => [
+                'counters' => []
+            ],
+            'selectedContext' => [
+                'counter' => []
             ]
         ]
     ];
@@ -37,12 +36,38 @@ class RestSettingsController extends DefaultRestSettingsController
     /**
      * {@inheritdoc}
      */
+    protected function buildActionsInfo()
+    {
+        $actions = [];
+        $component = $this->getComponent();
+
+        foreach ($component->getQueryActions() as $actionName) {
+            $actions[$actionName] = [
+                'type' => 'query',
+                'source' => $this->getUrlManager()->getAdminComponentActionResourceUrl($component, $actionName)
+            ];
+        }
+
+        return $actions;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function getSettings()
     {
         return [
-            self::OPTION_INTERFACE_CONTROLS => $this->buildControlsInfo($this->controls),
-            self::OPTION_INTERFACE_LAYOUT => $this->buildLayoutInfo($this->layout),
-            self::OPTION_INTERFACE_ACTIONS => $this->buildActionsInfo()
+            'controls' => $this->controls,
+            'layout' => $this->layout,
+            'actions' => $this->buildActionsInfo()
         ];
+    }
+
+    /**
+     * @return DefaultQueryAdminComponent
+     */
+    protected function getComponent()
+    {
+        return $this->getContext()->getComponent();
     }
 }

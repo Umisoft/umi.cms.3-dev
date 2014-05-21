@@ -3,23 +3,22 @@
 
         <ul>
             <li>
-                <a {{action 'viewOnSite'}} class="left-off-canvas-toggle">
+                <a href="javascript:void(0)" {{action 'viewOnSite'}} class="left-off-canvas-toggle">
                     Открыть сайт в новом окне
                 </a>
             </li>
+
             {{#if controller.settingsAllowed}}
                 <li>
-                    {{#link-to 'settings' class="left-off-canvas-toggle"}}
-                        <i class="icon white icon-settings"></i>
-                    {{/link-to}}
+                    {{#link-to 'settings' class="left-off-canvas-toggle"}}Настройки системы{{/link-to}}
                 </li>
             {{/if}}
 
             <li class="right has-dropdown umi-top-bar-user-menu">
-                <a href="#">mail@yandex.ru</a>
-                <ul class="dropdown umi-top-bar-user-menu-drop-down">
-                    <li><a href="#">Сменить пароль</a></li>
-                    <li><a href="#" {{action 'logout'}}>Выход из системы</a></li>
+                <a href="javascript:void(0)">mail@yandex.ru</a>
+                <ul class="dropdown umi-top-bar-user-menu-drop-down umi-hide-on-html">
+                    <li><a href="javascript:void(0)">Сменить пароль</a></li>
+                    <li><a href="javascript:void(0)" {{action 'logout'}}>Выход из системы</a></li>
                 </ul>
             </li>
 

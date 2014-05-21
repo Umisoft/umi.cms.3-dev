@@ -69,10 +69,6 @@ class Bootstrap
     ];
 
     /**
-     * @var Environment $environment настройки окружения UMI.CMS
-     */
-    protected $environment;
-    /**
      * @var Toolkit $toolkit контейнер сервисов
      */
     protected $toolkit;
@@ -83,13 +79,10 @@ class Bootstrap
 
     /**
      * Конструктор.
-     * @param Environment $environment настройки окружения UMI.CMS
      * @throws RuntimeException если не удалось сконфигурировать сервисы
      */
-    public function __construct(Environment $environment)
+    public function __construct()
     {
-        $this->environment = $environment;
-
         try {
             $this->toolkit = $this->configureToolkit();
             $this->registerConfigurationAliases();
@@ -207,14 +200,14 @@ class Bootstrap
      */
     protected function routeProject(Request $request)
     {
-        if (!is_file($this->environment->projectConfiguration)) {
+        if (!is_file(Environment::$projectsConfiguration)) {
             throw new RuntimeException(sprintf(
                 'Projects configuration file "%s" does not exist.',
-                $this->environment->projectConfiguration
+                Environment::$projectsConfiguration
             ));
         }
 
-        $projectsConfig = $this->loadConfig($this->environment->projectConfiguration);
+        $projectsConfig = $this->loadConfig(Environment::$projectsConfiguration);
         /**
          * @var IRouteFactory $routeFactory
          */
@@ -282,7 +275,7 @@ class Bootstrap
 
         $configIO->registerAlias(
             '~/project',
-            $this->environment->directoryCmsProject,
+            Environment::$directoryCmsProject,
             $directories[1]
         );
 
@@ -336,14 +329,14 @@ class Bootstrap
     {
         $toolkit = new Toolkit();
 
-        if (!is_file($this->environment->bootConfigMaster)) {
+        if (!is_file(Environment::$bootConfigMaster)) {
             throw new RuntimeException(sprintf(
                 'Boot configuration file "%s" does not exist.',
-                $this->environment->bootConfigMaster
+                Environment::$bootConfigMaster
             ));
         }
 
-        $masterConfig = $this->loadConfig($this->environment->bootConfigMaster);
+        $masterConfig = $this->loadConfig(Environment::$bootConfigMaster);
 
         if (isset($masterConfig[self::OPTION_TOOLS])) {
             $toolkit->registerToolboxes($masterConfig[self::OPTION_TOOLS]);
@@ -353,8 +346,8 @@ class Bootstrap
             $toolkit->setSettings($masterConfig[self::OPTION_TOOLS_SETTINGS]);
         }
 
-        if (is_file($this->environment->bootConfigLocal)) {
-            $localConfig = $this->loadConfig($this->environment->bootConfigLocal);
+        if (is_file(Environment::$bootConfigLocal)) {
+            $localConfig = $this->loadConfig(Environment::$bootConfigLocal);
             if (isset($localConfig[self::OPTION_TOOLS])) {
                 $toolkit->registerToolboxes($localConfig[self::OPTION_TOOLS]);
             }
@@ -421,8 +414,8 @@ class Bootstrap
 
         $configIO->registerAlias(
             '~',
-            $this->environment->directoryCms,
-            $this->environment->directoryProjects
+            Environment::$directoryCms,
+            Environment::$directoryProjects
         );
 
     }

@@ -6,47 +6,52 @@
 @import "foundationOverridden/_global";// Для чего переопределен global?
 @import "foundationOverridden/_type";
 @import "foundationOverridden/_top-bar";
-@import "foundationOverridden/_offcanvas";
+//@import "foundationOverridden/_offcanvas";
 @import "foundationOverridden/_switch";
 @import "foundationOverridden/_visibility";
 @import "foundationOverridden/_forms";
 
 //Подключаем компоненты Foundation
-@import "foundation/components/_accordion";
-@import "foundation/components/_alert-boxes";
-@import "foundation/components/_block-grid";
-@import "foundation/components/_breadcrumbs";
-@import "foundation/components/_button-groups";
-@import "foundation/components/_buttons";
-@import "foundation/components/_clearing";
-@import "foundation/components/_dropdown";
-@import "foundation/components/_dropdown-buttons";
-@import "foundation/components/_flex-video";
-@import "foundation/components/_forms";
-@import "foundation/components/_grid";
-@import "foundation/components/_inline-lists";
-@import "foundation/components/_joyride";
-@import "foundation/components/_keystrokes";
-@import "foundation/components/_labels";
-@import "foundation/components/_magellan";
-@import "foundation/components/_orbit";
-@import "foundation/components/_pagination";
-@import "foundation/components/_panels";
-@import "foundation/components/_pricing-tables";
-@import "foundation/components/_progress-bars";
-@import "foundation/components/_reveal";
-@import "foundation/components/_side-nav";
-@import "foundation/components/_split-buttons";
-@import "foundation/components/_sub-nav";
-//@import "foundation/components/_switch";
-//@import "foundation/components/_tables";
-@import "foundation/components/_tabs";
-@import "foundation/components/_thumbs";
-@import "foundation/components/_tooltips";
-//@import "foundation/components/_offcanvas";
-//@import "foundation/components/_visibility";
+    //Обятательные
+    @import "foundation/components/_button-groups";
+    @import "foundation/components/_dropdown";
+    @import "foundation/components/_dropdown-buttons";
+    @import "foundation/components/_forms";
+    @import "foundation/components/_grid";
+    @import "foundation/components/_panels";
 
-//Добавляем стили
+
+//    @import "foundation/components/_buttons";
+//    @import "foundation/components/_accordion";
+//    @import "foundation/components/_alert-boxes";
+//    @import "foundation/components/_block-grid";
+//    @import "foundation/components/_breadcrumbs";
+//    @import "foundation/components/_clearing";
+//    @import "foundation/components/_flex-video";
+//    @import "foundation/components/_inline-lists";
+//    @import "foundation/components/_joyride";
+//    @import "foundation/components/_keystrokes";
+//    @import "foundation/components/_labels";
+//    @import "foundation/components/_magellan";
+//    @import "foundation/components/_orbit";
+//    @import "foundation/components/_pagination";
+//    @import "foundation/components/_pricing-tables";
+//    @import "foundation/components/_progress-bars";
+//    @import "foundation/components/_reveal";
+//    @import "foundation/components/_side-nav";
+//    @import "foundation/components/_split-buttons";
+//    @import "foundation/components/_sub-nav";
+//    @import "foundation/components/_tabs";
+//    @import "foundation/components/_thumbs";
+//    @import "foundation/components/_tooltips";
+
+    //С этими стилями не собирается
+    //@import "foundation/components/_switch";/
+    //@import "foundation/components/_tables";/
+    //@import "foundation/components/_offcanvas";/
+    //@import "foundation/components/_visibility";/
+
+//Добавляем собственные стили
 @import "_snippets";
 @import "_grid";
 @import "_button";
@@ -56,7 +61,8 @@
 @import "_top-bar";
 @import "_dock";
 @import "_tree";
-@import "_table-control";
+@import "_tableControl/_table-control";
+@import "_tableControl/_drop-down-action-list";
 @import "_forms";
 @import "_magellan";
 @import "_dropdown";

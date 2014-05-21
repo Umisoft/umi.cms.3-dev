@@ -66,12 +66,12 @@ class PostSendToModerationController extends BaseSecureController implements IFo
             );
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_CHANGE_POST_STATUS, IObjectType::BASE);
+        $form = $this->api->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
         $formData = $this->getAllPostVars();
 
         if ($form->setData($formData) && $form->isValid()) {
 
-            $blogDraft->needModerate();
+            $blogDraft->needModeration();
 
             $this->getObjectPersister()->commit();
 

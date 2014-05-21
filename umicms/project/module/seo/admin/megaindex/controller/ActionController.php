@@ -10,8 +10,8 @@
 namespace umicms\project\module\seo\admin\megaindex\controller;
 
 use umicms\exception\InvalidArgumentException;
+use umicms\project\admin\api\component\DefaultQueryAdminComponent;
 use umicms\project\admin\api\controller\DefaultRestActionController;
-use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\seo\model\MegaindexModel;
 
 /**
@@ -19,22 +19,6 @@ use umicms\project\module\seo\model\MegaindexModel;
  */
 class ActionController extends DefaultRestActionController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getQueryActions()
-    {
-        return ['siteAnalyze', 'getBacklinks'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModifyActions()
-    {
-        return [];
-    }
-
     /**
      * Возвращает данные отчета {@link http://api.megaindex.ru/description/siteAnalyze «Видимость сайта»}
      * @return array
@@ -60,24 +44,38 @@ class ActionController extends DefaultRestActionController
      */
     protected function getModel()
     {
-        /** @var $component AdminComponent */
         $component = $this->getComponent();
-        $options = $component->getSettings()['options'];
-        if (!isset($options['login'])) {
-            throw new InvalidArgumentException($this->translate("Option {option} is required", ['option' => 'login']));
-        }
-        if (!isset($options['password'])) {
+
+        $login = $component->getSetting(MegaindexModel::MEGAINDEX_LOGIN);
+        $password = $component->getSetting(MegaindexModel::MEGAINDEX_PASSWORD);
+        $siteUrl = $component->getSetting(MegaindexModel::MEGAINDEX_SITE_URL);
+
+        if (is_null($login)) {
             throw new InvalidArgumentException($this->translate(
                 "Option {option} is required",
-                ['option' => 'password']
+                ['option' => MegaindexModel::MEGAINDEX_LOGIN]
             ));
         }
-        if (!isset($options['siteUrl'])) {
+        if (is_null($password)) {
             throw new InvalidArgumentException($this->translate(
                 "Option {option} is required",
-                ['option' => 'siteUrl']
+                ['option' => MegaindexModel::MEGAINDEX_PASSWORD]
             ));
         }
-        return new MegaindexModel($options['login'], $options['password'], $options['siteUrl']);
+        if (is_null($siteUrl)) {
+            throw new InvalidArgumentException($this->translate(
+                "Option {option} is required",
+                ['option' => MegaindexModel::MEGAINDEX_SITE_URL]
+            ));
+        }
+        return new MegaindexModel($login, $password, $siteUrl);
+    }
+
+    /**
+     * @return DefaultQueryAdminComponent
+     */
+    protected function getComponent()
+    {
+        return $this->getContext()->getComponent();
     }
 }

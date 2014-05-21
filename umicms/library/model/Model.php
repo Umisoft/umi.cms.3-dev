@@ -10,25 +10,31 @@
 namespace umicms\model;
 
 use Doctrine\DBAL\Schema\Table;
+use umi\config\entity\IConfig;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umicms\exception\AlreadyExistentEntityException;
 use umicms\exception\NonexistentEntityException;
+use umicms\exception\UnexpectedValueException;
+use umicms\model\manager\IModelManagerAware;
+use umicms\model\manager\TModelManagerAware;
 
 /**
  * Модель данных
  */
-class Model implements ILocalizable
+class Model implements ILocalizable, IModelEntityFactoryAware, IModelManagerAware
 {
 
     use TLocalizable;
+    use TModelEntityFactoryAware;
+    use TModelManagerAware;
 
     /**
      * @var string $name имя модели
      */
     protected $name;
     /**
-     * @var array $config конфигурация модели
+     * @var IConfig $config конфигурация модели
      */
     protected $config;
     /**
@@ -39,8 +45,17 @@ class Model implements ILocalizable
      * @var Type[] $types массив всех загруженных экземпляров типов
      */
     protected $types = [];
+    /**
+     * @var Table $tableScheme схема таблицы модели в БД
+     */
+    private $tableScheme;
 
-    public function __construct($name, array $config)
+    /**
+     * Конструктор.
+     * @param string $name имя модели
+     * @param IConfig $config конфигурация
+     */
+    public function __construct($name, IConfig $config)
     {
         $this->name = $name;
         $this->config = $config;
@@ -61,7 +76,8 @@ class Model implements ILocalizable
      */
     public function setIsModified()
     {
-        //TODO
+        $this->getModelManager()->markAsModified($this);
+        return $this;
     }
 
     /**
@@ -103,7 +119,7 @@ class Model implements ILocalizable
      */
     public function addType($typeName)
     {
-        if ($this->hasType($typeName)) {
+        /*if ($this->hasType($typeName)) {
             throw new AlreadyExistentEntityException($this->translate(
                 'Object type "{name}" already exists in "{model}".',
                 ['name' => $typeName, 'model' => $this->getName()]
@@ -139,16 +155,33 @@ class Model implements ILocalizable
             }
         }
 
-        return $type;
+        return $type;*/
     }
 
     /**
      * Возвращает схему таблицы для хранения модели.
+     * @throws UnexpectedValueException если конфигурация невалидная
      * @return Table
      */
     public function getTableScheme()
     {
-        //TODO
+        if (!$this->tableScheme) {
+
+            $tableConfig = $this->config->get('tableScheme');
+
+            if(!$tableConfig instanceof IConfig) {
+                throw new UnexpectedValueException(
+                    $this->translate(
+                        'Cannot load table scheme for model "{name}". Option "tableScheme" should be an array.',
+                        ['name' => $this->name]
+                    )
+                );
+            }
+
+            $this->tableScheme = $this->getModelEntityFactory()->getTableSchemeLoader()->load($tableConfig);
+        }
+
+        return $this->tableScheme;
     }
 
 }
