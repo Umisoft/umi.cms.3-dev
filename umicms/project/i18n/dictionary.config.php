@@ -51,6 +51,7 @@ return [
         'project.admin.api.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
 
 
+        'project.admin.settings' => '{#lazy:~/project/admin/settings/i18n/dictionary.config.php}',
         'project.admin.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
         'project.admin.settings.service' => '{#lazy:~/project/module/service/settings/i18n/dictionary.config.php}',
         'project.admin.settings.service.backup' => '{#lazy:~/project/module/service/settings/backup/i18n/dictionary.config.php}',

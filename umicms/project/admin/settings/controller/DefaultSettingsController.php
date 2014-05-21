@@ -52,7 +52,11 @@ class DefaultSettingsController extends BaseController implements IConfigIOAware
         $response = $this->createViewResponse(
             'settings',
             [
-                'form' => $form
+                'form' => $form,
+                'toolbar' => [
+                    'type' => 'apply',
+                    'displayName' => $this->translate('control:settings:toolbar:apply')
+                ]
             ]
         );
 
