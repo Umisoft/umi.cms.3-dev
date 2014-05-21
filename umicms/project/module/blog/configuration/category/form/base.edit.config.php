@@ -37,6 +37,7 @@ return [
                 ],
                 BlogCategory::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
+                    'lazy' => true,
                     'label' => BlogCategory::FIELD_PAGE_LAYOUT,
                     'options' => [
                         'dataSource' => BlogCategory::FIELD_PAGE_LAYOUT

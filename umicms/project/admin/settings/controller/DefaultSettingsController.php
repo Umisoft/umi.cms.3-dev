@@ -54,7 +54,7 @@ class DefaultSettingsController extends BaseController implements IConfigIOAware
         return $this->createViewResponse(
             'settings',
             [
-                'form' => $form
+                'form' => $form->getView()
             ]
         );
     }

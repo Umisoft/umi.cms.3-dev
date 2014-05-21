@@ -15,13 +15,6 @@ use umicms\serialization\ISerializerFactory;
 return [
     SettingsApplication::OPTION_CLASS => 'umicms\project\admin\settings\SettingsApplication',
 
-    SettingsApplication::OPTION_SERIALIZERS => [
-        ISerializerFactory::TYPE_JSON => [
-            'umi\form\fieldset\FieldSet' => 'umicms\serialization\json\form\FieldSetSerializer',
-            'umi\form\element\BaseFormElement' => 'umicms\serialization\json\form\BaseFormElementSerializer',
-        ]
-    ],
-
     SettingsApplication::OPTION_COMPONENTS => [
         'site' => '{#lazy:~/project/site/settings/component.config.php}',
         'users' => '{#lazy:~/project/module/users/settings/component.config.php}',

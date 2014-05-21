@@ -24,9 +24,7 @@ return [
             'umi\orm\metadata\field\BaseField' => 'umicms\serialization\json\orm\FieldSerializer',
             'umicms\orm\object\CmsObject' => 'umicms\serialization\json\orm\CmsAdminObjectSerializer',
             'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\json\orm\CmsAdminObjectSerializer',
-            'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer',
-            'umi\form\fieldset\FieldSet' => 'umicms\serialization\json\form\FieldSetSerializer',
-            'umi\form\element\BaseFormElement' => 'umicms\serialization\json\form\BaseFormElementSerializer',
+            'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer'
         ]
     ],
 

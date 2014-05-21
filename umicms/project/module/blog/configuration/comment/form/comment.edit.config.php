@@ -42,6 +42,7 @@ return [
             'elements' => [
                 BlogComment::FIELD_AUTHOR => [
                     'type' => Select::TYPE_NAME,
+                    'lazy' => true,
                     'label' => BlogComment::FIELD_AUTHOR,
                     'options' => [
                         'dataSource' => BlogComment::FIELD_AUTHOR
@@ -56,6 +57,7 @@ return [
                 ],
                 BlogComment::FIELD_PUBLISH_STATUS => [
                     'type' => Select::TYPE_NAME,
+                    'lazy' => true,
                     'label' => BlogComment::FIELD_PUBLISH_STATUS,
                     'options' => [
                         'dataSource' => BlogComment::FIELD_PUBLISH_STATUS,

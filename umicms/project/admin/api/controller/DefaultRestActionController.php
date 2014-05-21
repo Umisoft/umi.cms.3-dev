@@ -113,7 +113,7 @@ class DefaultRestActionController extends BaseDefaultRestController
     {
         $typeName = $this->getRequiredQueryVar('type');
 
-        return $this->getCollection()->getForm(ICmsCollection::FORM_EDIT, $typeName);
+        return $this->getCollection()->getForm(ICmsCollection::FORM_EDIT, $typeName)->getView();
     }
 
     /**
@@ -125,7 +125,7 @@ class DefaultRestActionController extends BaseDefaultRestController
     {
         $typeName = $this->getRequiredQueryVar('type');
 
-        return $this->getCollection()->getForm(ICmsCollection::FORM_CREATE, $typeName);
+        return $this->getCollection()->getForm(ICmsCollection::FORM_CREATE, $typeName)->getView();
     }
 
     /**
