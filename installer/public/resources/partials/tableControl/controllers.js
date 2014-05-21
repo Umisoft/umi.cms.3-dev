@@ -8,6 +8,7 @@ define(['App'], function(UMI){
              * @property objects
              */
             objects: null,
+
             /**
              * метод получает данные учитывая query параметры
              * @method getObjects
@@ -48,6 +49,7 @@ define(['App'], function(UMI){
              * @example {'property' : propertyName, 'direction': sortAscending}
              */
             orderByProperty: null,
+
             /**
              * Вычисляемое свойство возвращающее параметры сортировки
              * @property order
@@ -60,6 +62,7 @@ define(['App'], function(UMI){
                     return order;
                 }
             }.property('orderByProperty'),
+
             /**
              * Свойства фильтрации
              * @property filters
@@ -79,6 +82,7 @@ define(['App'], function(UMI){
                 }
                 return filters;
             }.property('filterParams'),
+
             /**
              * Вычисляемое свойство параметров запроса коллекции
              * @property query
@@ -103,6 +107,7 @@ define(['App'], function(UMI){
                 }
                 return query;
             }.property('limit', 'filters', 'offset', 'order'),
+
             /**
              * Метод вызывается при смене контекста (компонента).
              * Сбрасывает значения фильтров,вызывает метод getObjects, вычисляет total
@@ -148,6 +153,10 @@ define(['App'], function(UMI){
                     this.set('orderByProperty', {'property' : propertyName, 'direction': sortAscending});
                 }
             },
+
+//            actionList: function(){
+//                return this.get('controllers.component.sideBarControl.toolbar');
+//            }.property(),
 
             needs: ['component']
         });

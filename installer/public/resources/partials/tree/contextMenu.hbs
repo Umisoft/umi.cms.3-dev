@@ -18,6 +18,9 @@
                     {{#view view.itemView action=this}}
                         <i {{bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{action 'toggleFastAction' this}}></i>
                         <span {{action 'sendAction' this controller.model}}>{{displayName}}</span>
+                        <!--sendAction: function(action, object){-->
+                            <!--this.send(action.type, object, action);-->
+                        <!--}-->
                     {{/view}}
                 {{/each}}
             </ul>
