@@ -18,7 +18,6 @@ use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\view\IView;
 use umicms\authentication\CmsAuthStorage;
 use umicms\exception\InvalidArgumentException;
-use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
@@ -36,35 +35,18 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware
      * Начальный путь компонентов сайта
      */
     const SITE_COMPONENT_PATH = 'project.site';
-
     /**
-     * Возвращает компонент по его пути.
-     * @param string $componentPath путь до компонента
-     * @throws RuntimeException если не удалось определить компонент
-     * @return IComponent
+     * Начальный путь административных компонентов
      */
-    public function getSiteComponentByPath($componentPath)
-    {
-        $componentPath = self::SITE_COMPONENT_PATH . IComponent::PATH_SEPARATOR . $componentPath;
-
-        $componentPathParts = explode(IComponent::PATH_SEPARATOR, $componentPath);
-        $component = $this->getInitialComponent();
-
-        if ($component->getName() != array_shift($componentPathParts)) {
-            throw new RuntimeException(
-                $this->translate(
-                    'Cannot resolve component path "{path}".',
-                    ['path' => $componentPath]
-                )
-            );
-        }
-
-        while ($componentName = array_shift($componentPathParts)) {
-            $component = $component->getChildComponent($componentName);
-        }
-
-        return $component;
-    }
+    const ADMIN_COMPONENT_PATH = 'project.admin';
+    /**
+     * Начальный путь административных api компонентов
+     */
+    const ADMIN_API_COMPONENT_PATH = 'project.admin.api';
+    /**
+     * Начальный путь административных настроечных компонентов
+     */
+    const ADMIN_SETTINGS_COMPONENT_PATH = 'project.admin.settings';
 
     /**
      * Обрабатывает вызов виджета.

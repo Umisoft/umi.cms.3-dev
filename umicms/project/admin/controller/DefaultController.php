@@ -9,20 +9,15 @@
 namespace umicms\project\admin\controller;
 
 use umi\http\Response;
-use umi\i18n\ILocalesAware;
-use umi\i18n\TLocalesAware;
-use umi\session\ISessionAware;
-use umi\session\TSessionAware;
 use umicms\hmvc\controller\BaseController;
+use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\users\api\UsersModule;
 
 /**
  * Контроллер интерфейса административной панели.
  */
-class DefaultController extends BaseController implements ILocalesAware, ISessionAware
+class DefaultController extends BaseController
 {
-    use TLocalesAware;
-    use TSessionAware;
 
     /**
      * @var Response $response содержимое страницы
@@ -50,29 +45,19 @@ class DefaultController extends BaseController implements ILocalesAware, ISessio
      */
     public function __invoke()
     {
-        if (!$csrfToken = $this->getSessionVar('token')) {
-            $csrfToken = uniqid('', true);
-            $this->setSessionVar('token', $csrfToken);
-        }
+        /**
+         * @var AdminComponent $apiComponent
+         */
+        $apiComponent = $this->getComponent()->getChildComponent('api');
 
-        $result = [
+        $response = $this->createViewResponse('layout', [
             'contents' => $this->response->getContent(),
             'baseUrl' => $this->getUrlManager()->getBaseAdminUrl(),
             'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
+            'baseSettingsUrl' => $this->getUrlManager()->getBaseSettingsUrl(),
             'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
-            'locale' => $this->getCurrentLocale(),
-            'authenticated' => $this->isApiAllowed(),
-            'token' => $csrfToken
-        ];
-
-
-        if ($this->isSettingsAllowed()) {
-            $result['baseSettingsUrl'] = $this->getUrlManager()->getBaseSettingsUrl();
-        }
-
-        $response = $this->createViewResponse(
-            'layout', $result
-        );
+            'authUrl' => $this->getUrlManager()->getAdminComponentActionResourceUrl($apiComponent, 'auth')
+        ]);
 
         $response->setStatusCode($this->response->getStatusCode());
         $response->headers->replace($this->response->headers->all());
@@ -80,46 +65,6 @@ class DefaultController extends BaseController implements ILocalesAware, ISessio
         return $response;
     }
 
-    /**
-     * Проверяет, имеет ли пользователь доступ к API
-     * @return bool
-     */
-    protected function isApiAllowed()
-    {
-        if ($this->api->isAuthenticated()) {
 
-            $application = $this->getComponent()->getChildComponent('api');
-            if ($this->api->getCurrentUser()->isAllowed($application, 'controller:settings')) {
-                return true;
-            }
-        }
 
-        return false;
-    }
-
-    /**
-     * Проверяет, имеет ли пользователь доступ к настройкам
-     * @return bool
-     */
-    protected function isSettingsAllowed()
-    {
-        if ($this->api->isAuthenticated()) {
-
-            $application = $this->getComponent()->getChildComponent('settings');
-            if ($this->api->getCurrentUser()->isAllowed($application, 'controller:settings')) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Возвращает имя контейнера сессии.
-     * @return string
-     */
-    protected function getSessionNamespacePath()
-    {
-        return 'umicms';
-    }
 }

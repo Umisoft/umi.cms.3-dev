@@ -77,7 +77,10 @@ class ApiApplication extends AdminComponent implements ISerializationAware, IToo
 
         $this->currentRequestFormat = $requestFormat;
 
-        $this->checkCsrfToken($request);
+
+        if (!$this->checkCsrfToken($context, $request)) {
+            throw new HttpForbidden('Cannot process request. Invalid csrf token.');
+        }
 
         return null;
     }
@@ -101,16 +104,25 @@ class ApiApplication extends AdminComponent implements ISerializationAware, IToo
 
     /**
      * Проверяет csrf-токен запроса.
+     * @param IDispatchContext $context
      * @param Request $request
-     * @throws HttpForbidden если токен не валиден
+     * @return bool
      */
-    protected function checkCsrfToken(Request $request)
+    protected function checkCsrfToken(IDispatchContext $context, Request $request)
     {
+        $params = $context->getRouteParams();
+
+        if (isset($params['ignoreCsrf']) && $params['ignoreCsrf']) {
+           return true;
+        }
+
         $validToken = $this->getSessionVar('token');
         $requestToken = $request->headers->get('X-Csrf-Token');
-        if (!$requestToken || $requestToken !== $validToken) {
-            throw new HttpForbidden('Cannot process request. Invalid token.');
+        if ($requestToken && $requestToken === $validToken) {
+            return true;
         }
+
+        return false;
     }
 
     /**
