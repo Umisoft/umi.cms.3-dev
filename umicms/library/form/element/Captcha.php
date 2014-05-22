@@ -79,14 +79,14 @@ class Captcha extends BaseFormElement implements ICaptchaAware, ISessionAware, I
     /**
      * {@inheritdoc}
      */
-    protected function validate()
+    protected function validate($value)
     {
         $sessionKey = $this->getSessionKey();
         $options = $this->getSessionVar($sessionKey, []);
 
         $result = false;
         if (isset($options['phrase'])) {
-            $result = $this->getCaptchaGenerator()->test($options['phrase'], $this->getValue());
+            $result = $this->getCaptchaGenerator()->test($options['phrase'], $value);
         }
 
         if (!$result) {

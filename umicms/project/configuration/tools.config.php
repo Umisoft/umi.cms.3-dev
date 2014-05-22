@@ -12,6 +12,7 @@ use umi\dbal\toolbox\DbalTools;
 use umi\filter\toolbox\FilterTools;
 use umi\form\toolbox\FormTools;
 use umi\i18n\toolbox\I18nTools;
+use umi\messages\toolbox\MessagesTools;
 use umi\orm\toolbox\ORMTools;
 use umi\pagination\toolbox\PaginationTools;
 use umi\rss\toolbox\RssTools;
@@ -36,6 +37,8 @@ return [
     RssTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/rss/toolbox/config.php'),
     PaginationTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/pagination/toolbox/config.php'),
     StreamTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/stream/toolbox/config.php'),
+    MessagesTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/messages/toolbox/config.php'),
+
     ModuleTools::NAME => require(CMS_LIBRARY_DIR . '/module/toolbox/config.php'),
     ModelTools::NAME => require(CMS_LIBRARY_DIR . '/model/toolbox/config.php'),
     SerializationTools::NAME => require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php'),

@@ -9,9 +9,11 @@
 
 namespace umicms\project\module\users\api\collection;
 
+use umi\config\entity\IConfig;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umicms\exception\NotAllowedOperationException;
+use umicms\exception\UnexpectedValueException;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\ILockedAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
@@ -22,6 +24,7 @@ use umicms\orm\collection\SimpleCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\selector\CmsSelector;
+use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\object\BaseUser;
 
 /**
@@ -71,6 +74,43 @@ class UserCollection extends SimpleCollection
     }
 
     /**
+     * Проверяет уникальность логина пользователя.
+     * @param AuthorizedUser $user
+     * @return bool
+     */
+    public function checkLoginUniqueness(AuthorizedUser $user)
+    {
+        $users = $this->selectInternal()
+            ->fields([AuthorizedUser::FIELD_IDENTIFY])
+            ->where(AuthorizedUser::FIELD_LOGIN)
+                ->equals($user->login)
+            ->where(AuthorizedUser::FIELD_IDENTIFY)
+                ->notEquals($user->getId())
+            ->getResult();
+
+        return !count($users->fetchAll());
+    }
+
+    /**
+     * Проверяет уникальность e-mail пользователя.
+     * @param AuthorizedUser $user
+     * @return bool
+     */
+    public function checkEmailUniqueness(AuthorizedUser $user)
+    {
+        $users = $this->selectInternal()
+            ->fields([AuthorizedUser::FIELD_IDENTIFY])
+            ->where(AuthorizedUser::FIELD_EMAIL)
+                ->equals($user->email)
+            ->where(AuthorizedUser::FIELD_IDENTIFY)
+                ->notEquals($user->getId())
+            ->getResult();
+
+        return !count($users->fetchAll());
+    }
+
+
+    /**
      * Проверяет, необходимость активации при регистрации пользователя.
      * @return bool
      */
@@ -99,11 +139,30 @@ class UserCollection extends SimpleCollection
 
     /**
      * Возвращает список GUID групп по умолчанию для зарегистрированных пользователей.
+     * @throws UnexpectedValueException если в конфигурации хранится некорректное значение
      * @return array
      */
     public function getRegisteredUsersDefaultGroupGuids()
     {
-        return (array) $this->getSetting(self::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS);
+        $groupGuids = $this->getSetting(self::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS);
+
+        if ($groupGuids instanceof IConfig) {
+            $groupGuids = $groupGuids->toArray();
+        }
+        if (is_null($groupGuids)) {
+            $groupGuids = [];
+        }
+
+        if (!is_array($groupGuids)) {
+            throw new UnexpectedValueException(
+                $this->translate(
+                    'Value for option "{option}" should be an array.',
+                    ['option' => self::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS]
+                )
+            );
+        }
+
+        return  $groupGuids;
     }
 
 }

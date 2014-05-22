@@ -90,26 +90,19 @@ class AuthorizedUser extends BaseUser
      * @var string $rawPassword устанавливаемый пароль
      */
     private $rawPassword;
-    /**
-     * @var string $passwordConfirmation подтверждение устанавливаемого пароля
-     */
-    private $passwordConfirmation;
 
      /**
      * Устанавливает пароль для пользователя.
-     * @param string|array $password
+     * @param string $password
      * @return $this
      */
     public function setPassword($password)
     {
         if (is_array($password)) {
-            if (isset($password[1])) {
-                $this->passwordConfirmation  = $password[1];
-            }
-            if (isset($password[0])) {
-                $password  = $password[0];
-            }
+            list($password) = $password;
         }
+
+        $password = trim($password);
 
         $oldPasswordSalt = $this->getProperty(self::FIELD_PASSWORD_SALT)->getValue();
         if (crypt($password, $oldPasswordSalt) === $this->getProperty(self::FIELD_PASSWORD)->getValue()) {
@@ -135,7 +128,7 @@ class AuthorizedUser extends BaseUser
      */
     public function getPassword()
     {
-        return '';
+        return $this->rawPassword;
     }
 
     /**
@@ -154,17 +147,12 @@ class AuthorizedUser extends BaseUser
     public function validateLogin()
     {
         $result = true;
+        /**
+         * @var UserCollection $collection
+         */
+        $collection = $this->getCollection();
 
-        $users = $this->getCollection()
-            ->select()
-                ->fields([self::FIELD_IDENTIFY])
-            ->where(self::FIELD_LOGIN)
-                ->equals($this->login)
-            ->where(self::FIELD_IDENTIFY)
-                ->notEquals($this->getId())
-            ->getResult();
-
-        if (count($users->fetchAll())) {
+        if (!$collection->checkLoginUniqueness($this)) {
             $result = false;
             $this->getProperty(self::FIELD_LOGIN)->addValidationErrors(
                 [$this->translate('Login is not unique')]
@@ -182,16 +170,12 @@ class AuthorizedUser extends BaseUser
     {
         $result = true;
 
-        $users = $this->getCollection()
-            ->select()
-                ->fields([self::FIELD_IDENTIFY])
-            ->where(self::FIELD_EMAIL)
-                ->equals($this->email)
-            ->where(self::FIELD_IDENTIFY)
-                ->notEquals($this->getId())
-            ->getResult();
+        /**
+         * @var UserCollection $collection
+         */
+        $collection = $this->getCollection();
 
-        if (count($users->fetchAll())) {
+        if (!$collection->checkEmailUniqueness($this)) {
             $result = false;
             $this->getProperty(self::FIELD_EMAIL)->addValidationErrors(
                 [$this->translate('Email is not unique')]
@@ -207,28 +191,29 @@ class AuthorizedUser extends BaseUser
      */
     public function validatePassword()
     {
-        if (!$this->getRawPassword()) {
+        $password = $this->getRawPassword();
+        if (is_null($password)) {
             return true;
         }
 
         $result = true;
+
+        if (!strlen(trim($password))) {
+            $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
+                [$this->translate('Value is required.')]
+            );
+
+            $result = false;
+        }
 
         /**
          * @var UserCollection $collection
          */
         $collection = $this->getCollection();
 
-        if ($this->passwordConfirmation && $this->getRawPassword() !== $this->passwordConfirmation) {
+        if ($collection->getIsPasswordAndLoginEqualityForbidden() && $password === $this->login) {
             $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
-                [$this->translate('Passwords are not equal')]
-            );
-
-            $result = false;
-        }
-
-        if ($collection->getIsPasswordAndLoginEqualityForbidden() && $this->getRawPassword() === $this->login) {
-            $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
-                [$this->translate('Password must not be equal to login')]
+                [$this->translate('Password must not be equal to login.')]
             );
 
             $result = false;
@@ -236,11 +221,11 @@ class AuthorizedUser extends BaseUser
 
         if ($minPasswordLength = $collection->getMinPasswordLength()) {
 
-            if (strlen($this->rawPassword) < $minPasswordLength) {
+            if (strlen($password) < $minPasswordLength) {
                 $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
                     [$this->translate
                         (
-                            'Password must contain at least {length} characters',
+                            'Password must contain at least {length} characters.',
                             ['length' => $minPasswordLength]
                         )
                     ]
