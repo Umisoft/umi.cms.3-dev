@@ -22,8 +22,12 @@ class File extends BaseFormInput
     const TYPE_NAME = 'file';
 
     /**
-     * @var string $inputType тип инпута
+     * {@inheritdoc}
      */
-    protected $inputType = self::TYPE_NAME;
+    protected $type = 'file';
+    /**
+     * {@inheritdoc}
+     */
+    protected $inputType = 'file';
 }
  
