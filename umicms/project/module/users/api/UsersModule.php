@@ -91,7 +91,7 @@ class UsersModule extends BaseModule implements IAuthenticationAware
 
         $defaultGroups = $this->userGroup()
             ->select()
-            ->fields(UserGroup::FIELD_GUID)
+            ->fields([UserGroup::FIELD_GUID])
             ->where(UserGroup::FIELD_GUID)
                 ->in($this->user()->getRegisteredUsersDefaultGroupGuids());
 

@@ -27,8 +27,16 @@ switch($element->type)
         echo $this->render('form/element/checkbox.phtml', ['element' => $element]);
         break;
     }
+    case 'hidden': {
+        echo $this->render('form/element/hidden.phtml', ['element' => $element]);
+        break;
+    }
     case 'captcha': {
         echo $this->render('form/element/captcha.phtml', ['element' => $element]);
+        break;
+    }
+    case 'passwordWithConfirmation': {
+        echo $this->render('form/element/passwordWithConfirmation.phtml', ['element' => $element]);
         break;
     }
     default: {

@@ -4,22 +4,18 @@
  */
 ?>
 
-<?php if ($element->type != 'hidden') : ?>
-    <div class="form-group <?= $element->valid ? '' : 'has-error' ?>">
-        <label><?= $element->label ?></label>
+<div class="form-group <?= $element->valid ? '' : 'has-error' ?>">
+    <label><?= $element->label ?></label>
 
-        <?php if (!$element->valid) : ?>
-            <div class="alert alert-danger">
-                <ul>
-                    <?php foreach ($element->errors as $message) : ?>
-                        <li><?= $message ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        <?php endif; ?>
+    <?php if (!$element->valid) : ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach ($element->errors as $message) : ?>
+                    <li><?= $message ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 
-        <input class="form-control" <?= $element->attributes ?> />
-    </div>
-<?php else : ?>
-    <input <?= $element->attributes ?> />
-<?php endif; ?>
+    <input class="form-control" <?= $element->attributes ?> />
+</div>

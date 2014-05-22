@@ -24,6 +24,10 @@ class PasswordWithConfirmation extends Password
      * {@inheritdoc}
      */
     protected $inputType = Password::TYPE_NAME;
+    /**
+     * @var array $password пароль
+     */
+    private $password;
 
     /**
      * {@inheritdoc}
@@ -33,6 +37,42 @@ class PasswordWithConfirmation extends Password
         $name = parent::getElementName();
 
         return $name . '[]';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setValue($value)
+    {
+        $value = $this->filter($value);
+        $this->password = $value;
+        $this->getDataAdapter()->setData($this, $value);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function validate($value)
+    {
+        $valid = parent::validate($value);
+
+        if (!is_array($this->password) || !isset($this->password['0']) || !isset($this->password[1])) {
+            $valid = false;
+            $this->messages = array_merge(
+                $this->messages,
+                [$this->translate('Incorrect value type.')]
+            );
+        } elseif ($this->password['0'] !== $this->password[1]) {
+            $valid = false;
+            $this->messages = array_merge(
+                $this->messages,
+                [$this->translate('Passwords are not equal.')]
+            );
+        }
+
+        return $valid;
     }
 }
  
