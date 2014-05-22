@@ -10,6 +10,7 @@
 namespace umicms\form\element;
 
 use umi\form\element\BaseFormElement;
+use umi\form\element\BaseFormInput;
 use umi\form\FormEntityView;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
@@ -21,7 +22,7 @@ use umicms\hmvc\url\TUrlManagerAware;
 /**
  * Поле типа captcha.
  */
-class Captcha extends BaseFormElement implements ICaptchaAware, ISessionAware, IUrlManagerAware
+class Captcha extends BaseFormInput implements ICaptchaAware, ISessionAware, IUrlManagerAware
 {
     use TCaptchaAware;
     use TSessionAware;
@@ -32,6 +33,10 @@ class Captcha extends BaseFormElement implements ICaptchaAware, ISessionAware, I
      */
     const TYPE_NAME = 'captcha';
 
+    /**
+     * {@inheritdoc}
+     */
+    protected $type = 'captcha';
     /**
      * @var string $value фраза каптчи, введенная пользователем
      */
