@@ -68,13 +68,16 @@ return [
                     Image::TYPE_NAME => 'umicms\form\element\Image',
                     Captcha::TYPE_NAME => 'umicms\form\element\Captcha',
                     PasswordWithConfirmation::TYPE_NAME => 'umicms\form\element\PasswordWithConfirmation'
+                ],
+                'elementDefaultOptions' => [
+                    Captcha::TYPE_NAME => '{#lazy:~/project/configuration/captcha.config.php}'
                 ]
             ]
         ]
     ],
 
     ModuleTools::NAME => [
-        'modules' => '{#partial:~/project/module/modules.config.php}'
+        'modules' => '{#lazy:~/project/module/modules.config.php}'
     ],
 
     OrmTools::NAME => [
@@ -164,9 +167,5 @@ return [
     I18nTools::NAME => [
         'localesServiceClass' => 'umicms\i18n\CmsLocalesService',
         'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
-    ],
-
-    CaptchaTools::NAME => [
-        'options' => '{#lazy:~/project/configuration/captcha.config.php}',
     ]
 ];

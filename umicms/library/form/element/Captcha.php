@@ -17,6 +17,7 @@ use umicms\captcha\ICaptchaAware;
 use umicms\captcha\TCaptchaAware;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\project\module\users\api\UsersModule;
 
 /**
  * Поле типа captcha.
@@ -36,7 +37,21 @@ class Captcha extends BaseFormElement implements ICaptchaAware, ISessionAware, I
      * @var string $value фраза каптчи, введенная пользователем
      */
     protected $value;
+    /**
+     * @var UsersModule $usersApi
+     */
+    protected $usersApi;
 
+    /**
+     * {@inheritdoc}
+     * @param UsersModule $usersApi
+     */
+    public function __construct($name, array $attributes = [], array $options = [], UsersModule $usersApi)
+    {
+        $this->usersApi = $usersApi;
+
+        parent::__construct($name, $attributes, $options);
+    }
     /**
      * {@inheritdoc}
      */
@@ -64,12 +79,10 @@ class Captcha extends BaseFormElement implements ICaptchaAware, ISessionAware, I
 
         $sessionKey = $this->getSessionKey();
 
-        if (!$this->hasSessionVar($sessionKey)) {
-            $options = $this->getOptions();
-            $this->setSessionVar($sessionKey, $options);
-        }
+        $options = $this->getOptions();
+        $this->setSessionVar($sessionKey, $options);
 
-        $view->isHuman = $this->validate($this->value);
+        $view->isHuman = $this->getIsHuman();
         $view->sessionKey = $sessionKey;
 
         $url = rtrim($this->getUrlManager()->getProjectUrl(), '/');
@@ -79,14 +92,18 @@ class Captcha extends BaseFormElement implements ICaptchaAware, ISessionAware, I
     /**
      * {@inheritdoc}
      */
-    protected function validate()
+    protected function validate($value)
     {
+        if ($this->getIsHuman()) {
+            return true;
+        }
+
         $sessionKey = $this->getSessionKey();
         $options = $this->getSessionVar($sessionKey, []);
 
         $result = false;
         if (isset($options['phrase'])) {
-            $result = $this->getCaptchaGenerator()->test($options['phrase'], $this->getValue());
+            $result = $this->getCaptchaGenerator()->test($options['phrase'], $value);
         }
 
         if (!$result) {
@@ -94,6 +111,14 @@ class Captcha extends BaseFormElement implements ICaptchaAware, ISessionAware, I
         }
 
         return $result;
+    }
+
+    /**
+     * Возвращает признак необходимости вывода каптчи, в зависимости от настроек.
+     * @return bool
+     */
+    protected function getIsHuman() {
+        return ($this->usersApi->isAuthenticated());
     }
 
     /**
