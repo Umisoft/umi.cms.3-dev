@@ -10,6 +10,8 @@
 namespace umicms\project\module\users\site\registration\controller;
 
 use umi\form\IForm;
+use umi\messages\ISwiftMailerAware;
+use umi\messages\TSwiftMailerAware;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -20,10 +22,11 @@ use umicms\project\site\controller\TFormController;
 /**
  * Контроллер сохранения профиля пользователя
  */
-class IndexController extends SitePageController implements IObjectPersisterAware
+class IndexController extends SitePageController implements IObjectPersisterAware, ISwiftMailerAware
 {
     use TFormController;
     use TObjectPersisterAware;
+    use TSwiftMailerAware;
 
     /**
      * @var UsersModule $api API модуля "Пользователи"
@@ -75,7 +78,13 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
             $this->api->login($this->user->login, $this->user->getRawPassword());
         }
 
-        //TODO отправка писем
+        $this->sendMail(
+            'Регистрация',
+            'sdfdsfdsfdsf',
+            'text',
+            [],
+            $this->user->email
+        );
 
         return $this->buildRedirectResponse();
     }

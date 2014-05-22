@@ -363,7 +363,7 @@ define([], function(){
                      */
                     Ember.$.get(model.get('resource')).then(function(results){
                         var componentController = self.controllerFor('component');
-                        var settings = results.result.settings;
+                        var settings = results.result.settings; //settings undefined для Файлового менеджера
                         componentController.set('settings', settings);
                         componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
                         deferred.resolve(model);
