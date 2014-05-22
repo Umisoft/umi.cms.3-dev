@@ -25,8 +25,7 @@ define([], function(){
                 if(this.get('filters').hasOwnProperty(propertyName)){
                     var filters = this.get('filters')[propertyName];
                     var value = this.get(propertyName);
-                    var i;
-                    for(i = 0; i < filters.length; i++){
+                    for(var i = 0; i < filters.length; i++){
                         Ember.assert('Фильтр "' + filters[i].type + '" не определен.', propertyFilters.hasOwnProperty(filters[i].type));
                         value = propertyFilters[filters[i].type](value);
                     }
@@ -37,11 +36,10 @@ define([], function(){
             validateProperty: function(propertyName){
                 if(this.get('validators').hasOwnProperty(propertyName)){
                     var validators = this.get('validators')[propertyName];
-                    var i;
                     var value = this.get(propertyName);
                     var errors = [];
                     var activeErrors;
-                    for(i = 0; i < validators.length; i++){
+                    for(var i = 0; i < validators.length; i++){
                         switch(validators[i].type){
                             case "required":
                                 if(!value){
@@ -250,9 +248,10 @@ define([], function(){
                     }
                 }
 
-                fields.filters = filters;// TODO: Зарезервировать эти свойсва со стороны back-and
+                fields.filters = filters;// TODO: Зарезервировать эти свойсва со стороны back-end
                 fields.validators = validators;
 
+//                console.log('DS', collection.name, fields);
                 UMI[collection.name.capitalize()] = DS.Model.extend(fields);
 
                 UMI.__container__.lookup('store:main').metaForType(collection.name, {'collectionType': collection.type});// TODO: Найти рекоммендации на что заменить __container__
