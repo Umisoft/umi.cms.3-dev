@@ -262,6 +262,7 @@ define(
          * Вывод всех ajax ошибок в tooltip
          */
         $.ajaxSetup({
+            headers: {"X-Csrf-Token": window.UmiSettings.token},
             error: function(error){
                 var activeTransition = UMI.__container__.lookup('router:main').router.activeTransition;
                 if(activeTransition){
