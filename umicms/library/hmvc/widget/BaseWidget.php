@@ -10,18 +10,24 @@
 namespace umicms\hmvc\widget;
 
 use umi\hmvc\component\IComponent;
+use umi\hmvc\view\IView;
 use umi\hmvc\widget\BaseWidget as FrameworkWidget;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\hmvc\view\CmsTreeView;
 use umicms\hmvc\view\CmsView;
+use umicms\orm\selector\CmsSelector;
+use umicms\project\site\callstack\IPageCallStackAware;
+use umicms\project\site\callstack\TPageCallStackAware;
 
 /**
  * Базовый виджет UMI.CMS
  */
-abstract class BaseWidget extends FrameworkWidget implements IUrlManagerAware
+abstract class BaseWidget extends FrameworkWidget implements IUrlManagerAware, IPageCallStackAware
 {
     use TUrlManagerAware;
+    use TPageCallStackAware;
 
     /**
      * Устанавливает опции сериализации результата работы виджета в XML или JSON.
@@ -63,6 +69,22 @@ abstract class BaseWidget extends FrameworkWidget implements IUrlManagerAware
         $this->setSerializationOptions($view);
 
         return $view;
+    }
+
+    /**
+     * Создает результат работы виджета, требующий шаблонизации.
+     * @param string $templateName имя шаблона
+     * @param CmsSelector $selector
+     * @return IView
+     */
+    protected function createTreeResult($templateName, CmsSelector $selector)
+    {
+        $view = new CmsTreeView($selector);
+        $view->setPageCallStack($this->getPageCallStack());
+
+        return $this->createResult($templateName, [
+            'tree' => $view
+        ]);
     }
 
     /**

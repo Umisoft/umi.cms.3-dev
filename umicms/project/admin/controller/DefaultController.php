@@ -11,15 +11,18 @@ namespace umicms\project\admin\controller;
 use umi\http\Response;
 use umi\i18n\ILocalesAware;
 use umi\i18n\TLocalesAware;
+use umi\session\ISessionAware;
+use umi\session\TSessionAware;
 use umicms\hmvc\controller\BaseController;
 use umicms\project\module\users\api\UsersModule;
 
 /**
  * Контроллер интерфейса административной панели.
  */
-class DefaultController extends BaseController implements ILocalesAware
+class DefaultController extends BaseController implements ILocalesAware, ISessionAware
 {
     use TLocalesAware;
+    use TSessionAware;
 
     /**
      * @var Response $response содержимое страницы
@@ -47,14 +50,21 @@ class DefaultController extends BaseController implements ILocalesAware
      */
     public function __invoke()
     {
+        if (!$csrfToken = $this->getSessionVar('token')) {
+            $csrfToken = uniqid('', true);
+            $this->setSessionVar('token', $csrfToken);
+        }
+
         $result = [
             'contents' => $this->response->getContent(),
             'baseUrl' => $this->getUrlManager()->getBaseAdminUrl(),
             'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
             'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
             'locale' => $this->getCurrentLocale(),
-            'authenticated' => $this->isApiAllowed()
+            'authenticated' => $this->isApiAllowed(),
+            'token' => $csrfToken
         ];
+
 
         if ($this->isSettingsAllowed()) {
             $result['baseSettingsUrl'] = $this->getUrlManager()->getBaseSettingsUrl();
@@ -104,6 +114,12 @@ class DefaultController extends BaseController implements ILocalesAware
         return false;
     }
 
+    /**
+     * Возвращает имя контейнера сессии.
+     * @return string
+     */
+    protected function getSessionNamespacePath()
+    {
+        return 'umicms';
+    }
 }
-
-

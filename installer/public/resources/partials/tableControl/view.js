@@ -102,7 +102,6 @@ define(['App'], function(UMI){
             },
 
             moveGroupCrudBottomPanel: function(){
-                console.log(this.get('showSideBar'));
                 if(this.get('showSideBar')){
                     var margin = $('.umi-left-bottom-panel').width();
                     $('.umi-table-control-group-crud').css('marginLeft', margin);

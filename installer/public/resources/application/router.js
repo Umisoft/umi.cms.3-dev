@@ -208,18 +208,15 @@ define([], function(){
                 },
 
                 create: function(parentObject, actionParam){
-                    console.log('create');
                     var typeName = actionParam.typeName;
                     this.transitionTo('action', parentObject.get('id'), 'createForm', {queryParams: {'typeName': typeName}});
                 },
 
                 edit: function(object){
-                    console.log('edit');
                     this.transitionTo('action', object.get('id'), 'editForm');
                 },
 
                 viewOnSite: function(object){
-                    console.log('viewOnSite');
                     var link;
                     if(object){
                         link = object._data.meta.pageUrl;
@@ -652,25 +649,31 @@ define([], function(){
             UMI.SettingsComponentRoute = Ember.Route.extend({
                 model: function(params){
                     var settings = this.modelFor('settings');
-                    var findDepth = function findDepth(components, propertyName, propertyValue){
+                    var findDepth = function(components, propertyName, slug){
                         var component;
-                        var result;
-                        for(var i = 0; i < components.length; i++){
-                            if(components[i][propertyName] === propertyValue){
-                                component = components[i];
-                            }
-                            if('components' in components[i]){
-                                result = findDepth(components[i].components, propertyName, propertyValue);
-                                if(result){
-                                    component = result;
+                        slug = slug.split('.');
+
+                        for(var j = 0; j < slug.length; j++){
+                            component = components.findBy(propertyName, slug[j]);
+
+                            if(1 + j < slug.length && component){
+                                if('components' in component){
+                                    components = component.components;
+                                } else{
+                                    Ember.assert('Отсутствуют дочерние компоненты для раздела ' + component.name + '.');
                                 }
                             }
                         }
+
                         return component;
                     };
                     var component = findDepth(settings, 'name', params.component);
                     return $.get(component.resource).then(function(data){
+                        if(data.result.toolbar){
+                            data.result.form.toolbar = data.result.toolbar;
+                        }
                         Ember.set(component, 'form', data.result.form);
+
                         return component;
                     });
                 },
