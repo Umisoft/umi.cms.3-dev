@@ -31,6 +31,7 @@ class SimpleHierarchicCollection extends FrameworkSimpleHierarchicCollection imp
     {
         return $this->select()
             ->where(CmsHierarchicObject::FIELD_PARENT)->equals($object)
+            ->orderBy(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL, CmsSelector::ORDER_ASC)
             ->orderBy(CmsHierarchicObject::FIELD_ORDER);
     }
 
