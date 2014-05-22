@@ -12,6 +12,7 @@ namespace umicms\project\module\users\api\collection;
 use umi\config\entity\IConfig;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
+use umicms\exception\NonexistentEntityException;
 use umicms\exception\NotAllowedOperationException;
 use umicms\exception\UnexpectedValueException;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
@@ -71,6 +72,22 @@ class UserCollection extends SimpleCollection
         }
 
         return $this->deactivateInternal($object);
+    }
+
+    public function getUserByActivationCode($activationCode)
+    {
+        $user = $this->selectInternal()
+            ->where(AuthorizedUser::FIELD_ACTIVATION_CODE)
+                ->equals($activationCode)
+            ->limit(1)
+            ->getResult()
+            ->fetch();
+
+        if (!$user instanceof AuthorizedUser) {
+            throw new NonexistentEntityException(
+                $this->translate('Cannot find user by activation code.')
+            );
+        }
     }
 
     /**

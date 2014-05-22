@@ -85,7 +85,7 @@ class UsersModule extends BaseModule implements IAuthenticationAware
     public function register(AuthorizedUser $user)
     {
         $user->active = !$this->user()->getIsRegistrationWithActivation();
-        $user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->setValue(uniqid('', true));
+        $user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->setValue(md5(uniqid('', true)));
 
         $userGroups = $user->groups;
 

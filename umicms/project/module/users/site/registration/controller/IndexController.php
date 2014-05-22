@@ -78,12 +78,20 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
             $this->api->login($this->user->login, $this->user->getRawPassword());
         }
 
+        $content = (string) $this->createView(
+            'activationMail',
+            [
+                'activationCode' => $this->user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->getValue()
+            ]
+        );
+
         $this->sendMail(
             'Регистрация',
-            'sdfdsfdsfdsf',
-            'text',
+            $content,
+            'text/html',
             [],
-            $this->user->email
+            $this->user->email,
+            'guzhova@umisoft.ru'
         );
 
         return $this->buildRedirectResponse();
