@@ -111,6 +111,7 @@ define(
             ajaxError: function(jqXHR){
                 var error = this._super(jqXHR);
                 if(error.status === 403 || error.status === 401){
+                    // TODO: вынести на уровень настройки AJAX (для того чтобы это касалось и кастомных компонентов)
                     UMI.__container__.lookup('router:main').send('logout');
                     return;
                 }
