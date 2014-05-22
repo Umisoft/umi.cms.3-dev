@@ -35,7 +35,6 @@ define([], function(){
                 var self = this;
                 var contentControls = [];
                 var settings = this.get('settings');
-                console.log('contentControlsSettings', settings);
                 try{
                     var selectedContext = this.get('selectedContext') === 'root' ? 'emptyContext' : 'selectedContext';
                     var controls = settings.layout.contents[selectedContext];
@@ -74,7 +73,6 @@ define([], function(){
                 try{
 
                     var settings = this.get('settings');
-                    console.log('settings', settings);
                     if(settings && settings.layout.hasOwnProperty('sideBar')){
                         var control;
                         for(control in settings.layout.sideBar){
