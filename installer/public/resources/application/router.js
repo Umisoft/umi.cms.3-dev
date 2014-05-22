@@ -256,6 +256,7 @@ define([], function(){
                 };
 
                 if(error.status === 403 || error.status === 401){
+                    // TODO: вынести на уровень настройки AJAX (для того чтобы это касалось и кастомных компонентов)
                     this.send('logout');
                     return;
                 }
