@@ -1,15 +1,15 @@
-{% for choiceInfo in elementInfo.choices %}
-    {% if (not elementInfo.element.isValid()) %}
+{% for choice in element.choices %}
+    {% if (not element.valid) %}
         <div class="alert alert-danger">
             <ul>
-                {% for message in elementInfo.element.getMessages() %}
+                {% for message in element.errors %}
                     <li>{{ message }}</li>
                 {% endfor %}
             </ul>
         </div>
     {% endif %}
     <label>
-        <input {{ choiceInfo.attributes |raw }}/>
-        {{ choiceInfo.label }}
+        <input {{ choice.attributes |raw }}/>
+        {{ choice.label }}
     </label>
 {% endfor %}

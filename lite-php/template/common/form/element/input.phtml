@@ -1,27 +1,21 @@
 <?php
 /**
- * @var array $elementInfo
- * @var \umi\form\element\IFormInput $element
+ * @var umi\form\FormEntityView $element
  */
 ?>
-<?php $element = $elementInfo['element']?>
 
-<?php if ($element->getInputType() != 'hidden') : ?>
-    <div class="form-group <?= $element->isValid() ? '' : 'has-error' ?>">
-        <label><?= $elementInfo['label'] ?></label>
+<div class="form-group <?= $element->valid ? '' : 'has-error' ?>">
+    <label><?= $element->label ?></label>
 
-        <?php if (!$element->isValid()) : ?>
-            <div class="alert alert-danger">
-                <ul>
-                    <?php foreach ($element->getMessages() as $message) : ?>
-                        <li><?= $message ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        <?php endif; ?>
+    <?php if (!$element->valid) : ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php foreach ($element->errors as $message) : ?>
+                    <li><?= $message ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 
-        <input class="form-control" <?= $elementInfo['attributes'] ?> />
-    </div>
-<?php else : ?>
-    <input <?= $elementInfo['attributes'] ?> />
-<?php endif; ?>
+    <input class="form-control" <?= $element->attributes ?> />
+</div>

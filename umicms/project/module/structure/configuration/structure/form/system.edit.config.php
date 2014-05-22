@@ -37,6 +37,7 @@ return [
                 ],
                 SystemPage::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
+                    'lazy' => true,
                     'label' => SystemPage::FIELD_PAGE_LAYOUT,
                     'options' => [
                         'dataSource' => SystemPage::FIELD_PAGE_LAYOUT

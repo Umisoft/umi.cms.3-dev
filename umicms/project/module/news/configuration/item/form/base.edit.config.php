@@ -38,8 +38,10 @@ return [
                 ],
                 NewsItem::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
+                    'lazy' => true,
                     'label' => NewsItem::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsItem::FIELD_PAGE_LAYOUT
                     ],
                 ]
@@ -88,8 +90,10 @@ return [
 
                 NewsItem::FIELD_RUBRIC => [
                     'type' => Select::TYPE_NAME,
+                    'lazy' => true,
                     'label' => NewsItem::FIELD_RUBRIC,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsItem::FIELD_RUBRIC
                     ]
                 ],
@@ -98,6 +102,7 @@ return [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => NewsItem::FIELD_SUBJECTS,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsItem::FIELD_SUBJECTS
                     ]
                 ],

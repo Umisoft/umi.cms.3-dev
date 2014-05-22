@@ -77,7 +77,7 @@ class PostEditController extends BaseSecureController implements IFormAware, IOb
             'editPost',
             [
                 'blogPost' => $blogPost,
-                'form' => $form
+                'form' => $form->getView()
             ]
         );
     }

@@ -19,6 +19,7 @@ return [
 
     SiteComponent::OPTION_CONTROLLERS => [
         'index' => __NAMESPACE__ . '\controller\IndexController',
+        'activate' => __NAMESPACE__ . '\controller\ActivateController',
     ],
 
     SiteComponent::OPTION_WIDGET => [
@@ -49,6 +50,13 @@ return [
     ],
 
     SiteComponent::OPTION_ROUTES      => [
+        'activate' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/activate/{activationCode:string}',
+            'defaults' => [
+                'controller' => 'activate'
+            ]
+        ],
         'index' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{type:string}',
