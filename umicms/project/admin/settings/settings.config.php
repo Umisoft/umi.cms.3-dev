@@ -10,7 +10,6 @@ namespace umicms\project\admin\settings;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\serialization\ISerializerFactory;
 
 return [
     SettingsApplication::OPTION_CLASS => 'umicms\project\admin\settings\SettingsApplication',
