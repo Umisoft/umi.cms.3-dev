@@ -11,8 +11,11 @@ namespace umicms\project\admin\api;
 
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
+use umi\hmvc\exception\http\HttpForbidden;
 use umi\http\Request;
 use umi\http\Response;
+use umi\session\ISessionAware;
+use umi\session\TSessionAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
@@ -27,10 +30,11 @@ use umicms\serialization\TSerializationAware;
 /**
  * REST-часть приложения административной панели.
  */
-class ApiApplication extends AdminComponent implements ISerializationAware, IToolkitAware
+class ApiApplication extends AdminComponent implements ISerializationAware, IToolkitAware, ISessionAware
 {
     use TSerializationAware;
     use TToolkitAware;
+    use TSessionAware;
 
     /**
      * Опция для задания сериализаторов приложения
@@ -73,6 +77,8 @@ class ApiApplication extends AdminComponent implements ISerializationAware, IToo
 
         $this->currentRequestFormat = $requestFormat;
 
+        $this->checkCsrfToken($request);
+
         return null;
     }
 
@@ -91,6 +97,20 @@ class ApiApplication extends AdminComponent implements ISerializationAware, IToo
         $response->setContent($serializer->output());
 
         return $response;
+    }
+
+    /**
+     * Проверяет csrf-токен запроса.
+     * @param Request $request
+     * @throws HttpForbidden если токен не валиден
+     */
+    protected function checkCsrfToken(Request $request)
+    {
+        $validToken = $this->getSessionVar('token');
+        $requestToken = $request->headers->get('X-Csrf-Token');
+        if (!$requestToken || $requestToken !== $validToken) {
+            throw new HttpForbidden('Cannot process request. Invalid token.');
+        }
     }
 
     /**
@@ -135,4 +155,12 @@ class ApiApplication extends AdminComponent implements ISerializationAware, IToo
         }
     }
 
+    /**
+     * Возвращает имя контейнера сессии.
+     * @return string
+     */
+    protected function getSessionNamespacePath()
+    {
+        return 'umicms';
+    }
 }
