@@ -50,7 +50,7 @@ class SimpleHierarchicCollection extends FrameworkSimpleHierarchicCollection imp
             ));
         }
 
-        if ($depth == 1) {
+        if ($object && $depth === 1) {
             return $this->selectChildren($object);
         }
 
@@ -62,10 +62,14 @@ class SimpleHierarchicCollection extends FrameworkSimpleHierarchicCollection imp
                 ->like($object->getMaterializedPath() . MaterializedPathField::MPATH_SEPARATOR . '%');
         }
 
-        if ($depth) {
+        if ($depth && $object) {
             $selector
                 ->where(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL)
                 ->equalsOrLess($object->getLevel() + $depth);
+        } elseif ($depth) {
+            $selector
+                ->where(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL)
+                ->equalsOrLess($depth);
         }
 
         $selector->orderBy(CmsHierarchicObject::FIELD_ORDER);
