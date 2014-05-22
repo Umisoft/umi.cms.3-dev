@@ -57,7 +57,7 @@ abstract class BaseFormWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'form' => $form
+                'form' => $form->getView()
             ]
         );
     }

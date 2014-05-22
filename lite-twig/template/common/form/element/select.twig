@@ -1,19 +1,19 @@
 
 <div class="form-group">
-    <label> {{ elementInfo.label }} </label>
-    {% if (not elementInfo.element.isValid()) %}
+    <label> {{ element.label }} </label>
+    {% if (not element.valid) %}
         <div class="alert alert-danger">
             <ul>
-                {% for message in elementInfo.element.getMessages() %}
+                {% for message in element.errors %}
                     <li>{{ message }}</li>
                 {% endfor %}
             </ul>
         </div>
     {% endif %}
-    <select class="form-control" {{ elementInfo.attributes | raw }} >
-        {% for choiceInfo in elementInfo.choices %}
-            <option {{ choiceInfo.attributes | raw }}>
-                {{ choiceInfo.label }}
+    <select class="form-control" {{ element.attributes | raw }} >
+        {% for choice in element.choices %}
+            <option {{ choice.attributes | raw }}>
+                {{ choice.label }}
             </option>
         {% endfor %}
     </select>

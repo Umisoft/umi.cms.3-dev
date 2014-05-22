@@ -19,15 +19,11 @@ class PasswordWithConfirmation extends Password
     /**
      * Тип элемента.
      */
-    const TYPE_NAME = 'password-with-confirmation';
-
+    const TYPE_NAME = 'passwordWithConfirmation';
     /**
      * {@inheritdoc}
      */
-    public function getInputType()
-    {
-        return Password::TYPE_NAME;
-    }
+    protected $inputType = Password::TYPE_NAME;
 
     /**
      * {@inheritdoc}

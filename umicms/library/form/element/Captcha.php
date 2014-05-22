@@ -10,6 +10,7 @@
 namespace umicms\form\element;
 
 use umi\form\element\BaseFormElement;
+use umi\form\FormEntityView;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umicms\captcha\ICaptchaAware;
@@ -55,11 +56,12 @@ class Captcha extends BaseFormElement implements ICaptchaAware, ISessionAware, I
     }
 
     /**
-     * Возвращает атрибуты для генерации captcha
-     * @return array
+     * {@inheritdoc}
      */
-    public function getCaptchaInfo()
+    protected function extendView(FormEntityView $view)
     {
+        parent::extendView($view);
+
         $sessionKey = $this->getSessionKey();
 
         if (!$this->hasSessionVar($sessionKey)) {
@@ -67,13 +69,11 @@ class Captcha extends BaseFormElement implements ICaptchaAware, ISessionAware, I
             $this->setSessionVar($sessionKey, $options);
         }
 
-        $captchaUrl = $this->getUrlManager()->getProjectUrl() . 'captcha/' . rawurlencode($this->getSessionKey());
+        $view->isHuman = $this->validate($this->value);
+        $view->sessionKey = $sessionKey;
 
-        return [
-            'isHuman' => $this->validate($this->value),
-            'key' => $this->getSessionKey(),
-            'url' => $captchaUrl
-        ];
+        $url = rtrim($this->getUrlManager()->getProjectUrl(), '/');
+        $view->url = $url . '/captcha/' . rawurlencode($sessionKey);
     }
 
     /**

@@ -117,7 +117,7 @@ trait TFormController
         }
 
         $result = (array) $this->buildResponseContent();
-        $result['form'] = $this->form;
+        $result['form'] = $this->form->getView();
 
         if (count($this->errors)) {
             $result['errors'] = $this->errors;

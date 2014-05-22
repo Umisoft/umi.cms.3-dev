@@ -37,6 +37,7 @@ return [
                 ],
                 BlogPost::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
+                    'lazy' => true,
                     'label' => BlogPost::FIELD_PAGE_LAYOUT,
                     'options' => [
                         'dataSource' => BlogPost::FIELD_PAGE_LAYOUT
@@ -85,6 +86,7 @@ return [
 
                 BlogPost::FIELD_CATEGORY => [
                     'type' => Select::TYPE_NAME,
+                    'lazy' => true,
                     'label' => BlogPost::FIELD_CATEGORY,
                     'options' => [
                         'dataSource' => BlogPost::FIELD_CATEGORY
@@ -99,6 +101,7 @@ return [
                 ],
                 BlogPost::FIELD_AUTHOR => [
                     'type' => Select::TYPE_NAME,
+                    'lazy' => true,
                     'label' => BlogPost::FIELD_AUTHOR,
                     'options' => [
                         'dataSource' => BlogPost::FIELD_AUTHOR

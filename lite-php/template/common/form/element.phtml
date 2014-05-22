@@ -1,40 +1,48 @@
 <?php
 /**
- * @var array $elementInfo
+ * @var umi\form\FormEntityView $element
  */
 
-switch($elementInfo['type'])
+switch($element->type)
 {
     case 'fieldset': {
-        echo $this->render('form/element/fieldset.phtml', ['elementInfo' => $elementInfo]);
+        echo $this->render('form/element/fieldset.phtml', ['element' => $element]);
         break;
     }
-    case 'textarea': {
-        echo $this->render('form/element/textarea.phtml', ['elementInfo' => $elementInfo]);
+    case 'textarea':
+    case 'wysiwyg': {
+        echo $this->render('form/element/textarea.phtml', ['element' => $element]);
         break;
     }
-    case 'select': {
-        echo $this->render('form/element/select.phtml', ['elementInfo' => $elementInfo]);
+    case 'select':
+    case 'multiSelect': {
+        echo $this->render('form/element/select.phtml', ['element' => $element]);
         break;
     }
     case 'checkboxGroup': {
-        echo $this->render('form/element/checkboxGroup.phtml', ['elementInfo' => $elementInfo]);
+        echo $this->render('form/element/checkboxGroup.phtml', ['element' => $element]);
         break;
     }
     case 'checkbox': {
-        echo $this->render('form/element/checkbox.phtml', ['elementInfo' => $elementInfo]);
-        break;
-    }
-    case 'button': {
-        echo $this->render('form/element/button.phtml', ['elementInfo' => $elementInfo]);
-        break;
-    }
-    case 'input': {
-        echo $this->render('form/element/input.phtml', ['elementInfo' => $elementInfo]);
+        echo $this->render('form/element/checkbox.phtml', ['element' => $element]);
         break;
     }
     case 'captcha': {
-        echo $this->render('form/element/captcha.phtml', ['elementInfo' => $elementInfo]);
+        echo $this->render('form/element/captcha.phtml', ['element' => $element]);
         break;
     }
+    default: {
+        switch($element->tag)
+        {
+            case 'button': {
+                echo $this->render('form/element/button.phtml', ['element' => $element]);
+                break;
+            }
+            case 'input': {
+                echo $this->render('form/element/input.phtml', ['element' => $element]);
+                break;
+            }
+        }
+    }
 }
+

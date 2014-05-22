@@ -39,6 +39,7 @@ return [
                 ],
                 NewsItem::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
+                    'lazy' => true,
                     'label' => NewsItem::FIELD_PAGE_LAYOUT,
                     'options' => [
                         'dataSource' => NewsItem::FIELD_PAGE_LAYOUT
@@ -103,6 +104,7 @@ return [
 
                 NewsItem::FIELD_RUBRIC => [
                     'type' => Select::TYPE_NAME,
+                    'lazy' => true,
                     'label' => NewsItem::FIELD_RUBRIC,
                     'options' => [
                         'dataSource' => NewsItem::FIELD_RUBRIC

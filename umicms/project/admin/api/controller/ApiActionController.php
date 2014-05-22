@@ -11,6 +11,7 @@ namespace umicms\project\admin\api\controller;
 
 use Symfony\Component\HttpFoundation\Cookie;
 use umi\form\element\Select;
+use umi\form\IEntityFactory;
 use umi\form\IForm;
 use umi\hmvc\exception\http\HttpForbidden;
 use umi\hmvc\exception\http\HttpNotFound;
@@ -36,6 +37,10 @@ class ApiActionController extends BaseController implements ILocalesAware
      */
     protected $api;
     /**
+     * @var IEntityFactory $formEntityFactory фабрика сущностей формы
+     */
+    protected $formEntityFactory;
+    /**
      * @var CmsLocalesService $traitLocalesService сервис для работы с локалями
      */
     private $localesService;
@@ -43,10 +48,12 @@ class ApiActionController extends BaseController implements ILocalesAware
     /**
      * Конструктор.
      * @param UsersModule $api
+     * @param IEntityFactory $formEntityFactory
      */
-    public function __construct(UsersModule $api)
+    public function __construct(UsersModule $api, IEntityFactory $formEntityFactory)
     {
         $this->api = $api;
+        $this->formEntityFactory = $formEntityFactory;
     }
 
     /**
@@ -152,7 +159,16 @@ class ApiActionController extends BaseController implements ILocalesAware
             foreach ($adminLocales as $adminLocale) {
                 $locales[$adminLocale->getId()] = $adminLocale->getId();
             }
-            $localeInput = new Select('locale', [], ['choices' => $locales]);
+            $localeInput = $this->formEntityFactory->createFormEntity(
+                'locale',
+                [
+                    'type' => Select::TYPE_NAME,
+                    'label' => 'locale',
+                    'options' => ['choices' => $locales]
+
+                ]
+            );
+
             $form->add($localeInput);
         }
 
@@ -165,7 +181,7 @@ class ApiActionController extends BaseController implements ILocalesAware
 
         return $this->createViewResponse(
             'form',
-            ['form' => $form]
+            ['form' => $form->getView()]
         );
 
     }
