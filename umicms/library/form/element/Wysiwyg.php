@@ -20,5 +20,9 @@ class Wysiwyg extends Textarea
      * Тип элемента.
      */
     const TYPE_NAME = 'wysiwyg';
+    /**
+     * {@inheritdoc}
+     */
+    protected $type = 'wysiwyg';
 }
  

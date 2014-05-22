@@ -22,8 +22,12 @@ class Image extends BaseFormInput
     const TYPE_NAME = 'image';
 
     /**
-     * @var string $inputType тип инпута
+     * {@inheritdoc}
      */
-    protected $inputType = self::TYPE_NAME;
+    protected $type = 'image';
+    /**
+     * {@inheritdoc}
+     */
+    protected $inputType = 'image';
 }
  
