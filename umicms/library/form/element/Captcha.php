@@ -123,7 +123,7 @@ class Captcha extends BaseFormInput implements ICaptchaAware, ISessionAware, IUr
      * @return bool
      */
     protected function getIsHuman() {
-        return ($this->usersApi->isAuthenticated());
+        return !($this->usersApi->isAuthenticated());
     }
 
     /**
