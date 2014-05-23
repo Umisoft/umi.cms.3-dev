@@ -1,0 +1,16 @@
+<?php
+/**
+ * @var \umicms\hmvc\view\CmsTreeView[] $tree
+ * @var \umicms\hmvc\view\CmsTreeNode $node
+ */
+?>
+<?php if (count($tree) > 0) : ?>
+    <ul>
+        <?php foreach ($tree as $node) : ?>
+            <li>
+                <?= $this->widget('news.rubric.view', ['rubric' => $node->item, 'template' => 'treeView']); ?>
+                <?= $this->render('tree.phtml', ['tree' => $node->children]); ?>
+            </li>
+        <?php endforeach;?>
+    </ul>
+<?php endif; ?>

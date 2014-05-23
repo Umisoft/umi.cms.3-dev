@@ -185,7 +185,7 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
 
         if ($paginator->getItemsCount() > 0) {
             try {
-                $paginator->setCurrentPage($this->getCurrentPage());
+                $paginator->setCurrentPage($this->getCurrentPageNumber());
             } catch (\umi\pagination\exception\OutOfBoundsException $e) {
                 throw new HttpNotFound(
                     $this->translate('Page not found.')
@@ -200,7 +200,7 @@ abstract class BaseListWidget extends BaseSecureWidget implements IPaginationAwa
      * Возвращает текущую страницу в постраничной навигации.
      * @return int
      */
-    private function getCurrentPage()
+    private function getCurrentPageNumber()
     {
         return (int) $this->getContext()
             ->getDispatcher()

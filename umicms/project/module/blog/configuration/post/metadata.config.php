@@ -184,6 +184,7 @@ return [
                 BlogPost::FIELD_PAGE_LAYOUT,
                 BlogPost::FIELD_PAGE_SLUG,
                 BlogPost::FIELD_ANNOUNCEMENT,
+                BlogPost::FIELD_SOURCE,
                 BlogPost::FIELD_PAGE_CONTENTS,
                 BlogPost::FIELD_CATEGORY,
                 BlogPost::FIELD_TAGS,

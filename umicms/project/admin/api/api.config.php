@@ -105,7 +105,8 @@ return [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/action/{action}',
             'defaults' => [
-                'controller' => 'action'
+                'controller' => 'action',
+                'ignoreCsrf' => true
             ]
         ],
 

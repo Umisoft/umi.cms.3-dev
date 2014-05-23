@@ -66,7 +66,7 @@ define(
                 },
 
                 textTemplate: function(){
-                    return '{{input value=object.' + this.get('meta').dataSource + ' meta=view.meta}}';
+                    return '{{text-element object=object meta=view.meta}}';
                 }.property(),
 
                 selectTemplate: function(){
