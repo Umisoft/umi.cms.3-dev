@@ -10,8 +10,6 @@
 namespace umicms\project\module\users\site\registration\controller;
 
 use umi\form\IForm;
-use umi\messages\ISwiftMailerAware;
-use umi\messages\TSwiftMailerAware;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -22,11 +20,10 @@ use umicms\project\site\controller\TFormController;
 /**
  * Контроллер сохранения профиля пользователя
  */
-class IndexController extends SitePageController implements IObjectPersisterAware, ISwiftMailerAware
+class IndexController extends SitePageController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;
-    use TSwiftMailerAware;
 
     /**
      * @var UsersModule $api API модуля "Пользователи"
@@ -71,28 +68,13 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     protected function processForm(IForm $form)
     {
         $this->api->register($this->user);
-
         $this->getObjectPersister()->commit();
 
         if ($this->user->active) {
-            $this->api->login($this->user->login, $this->user->getRawPassword());
+            $this->api->setCurrentUser($this->user);
         }
 
-        $content = (string) $this->createView(
-            'activationMail',
-            [
-                'activationCode' => $this->user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->getValue()
-            ]
-        );
-
-        $this->sendMail(
-            'Регистрация',
-            $content,
-            'text/html',
-            [],
-            $this->user->email,
-            'guzhova@umisoft.ru'
-        );
+        $this->sendNotifications();
 
         return $this->buildRedirectResponse();
     }
@@ -103,10 +85,86 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     protected function buildResponseContent()
     {
         return [
-            'authenticated' => $this->api->isAuthenticated(),
+            'page' => $this->getCurrentPage(),
             'user' => $this->user,
-            'page' => $this->getCurrentPage()
+            'authenticated' => $this->api->isAuthenticated(),
+            'success' => (bool) $this->user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE),
         ];
+    }
+
+    /**
+     * Отправляет уведомления о регистрации
+     */
+    protected function sendNotifications()
+    {
+        $this->sendUserNotification();
+        $this->sendAdminNotification();
+    }
+
+    /**
+     * Отпраляет уведомление о регистрации пользователю
+     */
+    protected function sendUserNotification()
+    {
+        if (!$this->user->active) {
+            $this->sendActivationNotification();
+        } else {
+            $this->sendSuccessfulRegistrationNotification();
+        }
+    }
+
+    /**
+     * Отпраляет пользователю письмо с кодом активации аккаунта
+     */
+    protected function sendActivationNotification()
+    {
+        $this->mail(
+            [$this->user->email => $this->user->displayName],
+            $this->api->user()->getMailSender(),
+            'mail/activationMailSubject',
+            'mail/activationMailBody',
+            [
+                'activationCode' => $this->user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->getValue(),
+                'user' => $this->user
+            ]
+        );
+    }
+
+    /**
+     * Отпраляет письмо пользователю об успешной регистрации без активации
+     */
+    protected function sendSuccessfulRegistrationNotification()
+    {
+        $this->mail(
+            [$this->user->email => $this->user->displayName],
+            $this->api->user()->getMailSender(),
+            'mail/successfulRegistrationMailSubject',
+            'mail/successfulRegistrationMailBody',
+            [
+                'user' => $this->user
+            ]
+        );
+    }
+
+    /**
+     * Отправляет уведомления администраторам о регистрации нового пользователя
+     */
+    protected function sendAdminNotification()
+    {
+        $admins = $this->api->user()->getRegisteredUserNotificationRecipients();
+
+        if (count($admins)) {
+
+            $this->mail(
+                [$this->user->email => $this->user->displayName],
+                $this->api->user()->getMailSender(),
+                'mail/adminNotificationMailSubject',
+                'mail/adminNotificationMailBody',
+                [
+                    'user' => $this->user
+                ]
+            );
+        }
     }
 }
  

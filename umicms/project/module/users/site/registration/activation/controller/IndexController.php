@@ -43,10 +43,10 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     public function __invoke()
     {
         try {
-            $user = $this->api->user()->getUserByActivationCode($this->getRouteVar('activationCode'));
-            $this->api->user()->activate($user);
 
+            $user = $this->api->activate($this->getRouteVar('activationCode'));
             $this->getObjectPersister()->commit();
+            $this->api->setCurrentUser($user);
 
             return $this->createViewResponse(
                 'index',

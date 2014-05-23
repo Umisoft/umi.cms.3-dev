@@ -11,7 +11,11 @@
     <?=$page->contents?>
 
     <?php if ($authenticated) : ?>
-        <?= $this->translate("You are successfully activated.") ?>.
+
+        <div class="alert alert-success">
+            <p><?= $this->translate("You have successfully activated your account") ?>.</p>
+        </div>
+
         <p>
             <?= $this->widget('users.profile.link', ['template' => 'link']); ?>
         </p>

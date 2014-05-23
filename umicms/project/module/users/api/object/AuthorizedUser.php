@@ -10,6 +10,7 @@
 namespace umicms\project\module\users\api\object;
 
 use umicms\project\module\users\api\collection\UserCollection;
+use umicms\Utils;
 
 /**
  * Пользователь.
@@ -132,12 +133,23 @@ class AuthorizedUser extends BaseUser
     }
 
     /**
-     * Возвращает устанавливаемый пароль
+     * Возвращает устанавливаемый пароль.
      * @return string
      */
     public function getRawPassword()
     {
         return $this->rawPassword;
+    }
+
+    /**
+     * Обновляет код активации пользователя.
+     * @return $this
+     */
+    public function updateActivationCode()
+    {
+        $this->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->setValue(Utils::generateGUID());
+
+        return $this;
     }
 
     /**

@@ -12,6 +12,7 @@ namespace umicms\project\module\users\api\collection;
 use umi\config\entity\IConfig;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
+use umicms\exception\InvalidArgumentException;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\NotAllowedOperationException;
 use umicms\exception\UnexpectedValueException;
@@ -27,6 +28,7 @@ use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\object\BaseUser;
+use umicms\Utils;
 
 /**
  * Коллекция для работы с пользователями.
@@ -63,6 +65,16 @@ class UserCollection extends SimpleCollection
     const SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS = 'registeredUsersDefaultGroupGuids';
 
     /**
+     * Настройка отправителя писем
+     */
+    const SETTING_MAIL_SENDER = 'mailFromEmail';
+    /**
+     * Настройка получателей уведомлений
+     */
+    const SETTING_MAIL_NOTIFICATION_RECIPIENTS = 'registeredUserNotificationEmails';
+
+
+    /**
      * {@inheritdoc}
      */
     public function deactivate(IActiveAccessibleObject $object)
@@ -74,9 +86,22 @@ class UserCollection extends SimpleCollection
         return $this->deactivateInternal($object);
     }
 
+    /**
+     * Возвращает неактивного пользователя по коду активации.
+     * @param string $activationCode
+     * @throws InvalidArgumentException если код активации невалидный
+     * @throws NonexistentEntityException если пользователя с таким ключом активации не существует
+     * @return AuthorizedUser
+     */
     public function getUserByActivationCode($activationCode)
     {
-        $user = $this->selectInternal()
+        if (!Utils::checkGUIDFormat($activationCode)) {
+            throw new InvalidArgumentException(
+                $this->translate('Wrong activation code format.')
+            );
+        }
+
+        $user = $this->selectInactive()
             ->where(AuthorizedUser::FIELD_ACTIVATION_CODE)
                 ->equals($activationCode)
             ->limit(1)
@@ -88,6 +113,8 @@ class UserCollection extends SimpleCollection
                 $this->translate('Cannot find user by activation code.')
             );
         }
+
+        return $user;
     }
 
     /**
@@ -126,6 +153,23 @@ class UserCollection extends SimpleCollection
         return !count($users->fetchAll());
     }
 
+    /**
+     * Возвращает отправителя электронных писем.
+     * @return array
+     */
+    public function getMailSender()
+    {
+        return Utils::parseEmailList($this->getSetting(self::SETTING_MAIL_SENDER));
+    }
+
+    /**
+     * Возвращает получателей уведомлений.
+     * @return array
+     */
+    public function getRegisteredUserNotificationRecipients()
+    {
+        return Utils::parseEmailList($this->getSetting(self::SETTING_MAIL_NOTIFICATION_RECIPIENTS));
+    }
 
     /**
      * Проверяет, необходимость активации при регистрации пользователя.
