@@ -27,7 +27,8 @@ switch($element->type)
         echo $this->render('form/element/checkbox.phtml', ['element' => $element]);
         break;
     }
-    case 'hidden': {
+    case 'hidden':
+    case 'csrf': {
         echo $this->render('form/element/hidden.phtml', ['element' => $element]);
         break;
     }

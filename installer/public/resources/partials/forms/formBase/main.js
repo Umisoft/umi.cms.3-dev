@@ -23,6 +23,11 @@ define(
 
             UMI.FormBaseController = Ember.ObjectController.extend({
                 /**
+                 * Toolbar кнопок для формы
+                 * @method toolbar
+                 */
+                toolbarBinding: 'toolbar',
+                /**
                  * Проверяет наличие toolbar
                  * @method hasToolbar
                  * @return bool
@@ -149,7 +154,7 @@ define(
                 },
 
                 textTemplate: function(){
-                    return '{{input value=object.value meta=view.meta}}';
+                    return '{{input value=object.value meta=view.meta name=view.meta.dataSource}}';
                 }.property(),
 
                 emailTemplate: function(){
@@ -181,7 +186,7 @@ define(
                 }.property(),
 
                 multiCheckboxTemplate: function(){
-                    return '{{multi-checkbox-element object=object meta=view.meta}}';
+                    return 'Элемент multi-checkbox не реализован{{!multi-checkbox-element object=object meta=view.meta}}';
                 }.property(),
 
                 radioTemplate: function(){
@@ -209,7 +214,7 @@ define(
                 }.property(),
 
                 colorTemplate: function(){
-                    return '{{input type="color" value=object.value meta=view.meta}}';
+                    return '{{input type="color" value=object.value meta=view.meta name=view.meta.dataSource}}';
                 }.property()
             });
         };

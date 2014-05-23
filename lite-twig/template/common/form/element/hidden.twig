@@ -1,6 +1,4 @@
-<div class="form-group {{ not element.valid ? 'has-error' }}">
-    <label> {{ element.label }} </label>
-
+<div class="form-group {{ element.valid ? 'hidden' : 'has-error' }}">
     {% if (not element.valid) %}
         <div class="alert alert-danger">
             <ul>
@@ -11,6 +9,6 @@
         </div>
     {% endif %}
 
-    <input class="form-control" {{ element.attributes | raw }}/>
+    <input {{ element.attributes | raw }}/>
 </div>
 

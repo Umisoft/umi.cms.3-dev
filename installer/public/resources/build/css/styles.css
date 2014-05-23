@@ -3286,14 +3286,17 @@ html {
   visibility: hidden; }
 
 .auth-layout.off, .umi-main-view.off {
-  z-index: 99999;
+  top: 0;
+  left: 0;
   position: absolute;
   width: 100%;
   -webkit-transition: opacity 0.4s linear;
   -o-transition: opacity 0.4s linear;
   transition: opacity 0.4s linear; }
-  .auth-layout.off ~ .auth-mask, .umi-main-view.off ~ .auth-mask {
-    visibility: visible; }
+  .auth-layout.off.is-transition, .umi-main-view.off.is-transition {
+    z-index: 99999; }
+    .auth-layout.off.is-transition ~ .auth-mask, .umi-main-view.off.is-transition ~ .auth-mask {
+      visibility: visible; }
 .auth-layout.fade-out, .umi-main-view.fade-out {
   opacity: 0; }
   .auth-layout.fade-out ~ .auth-mask, .umi-main-view.fade-out ~ .auth-mask {

@@ -9,6 +9,9 @@ define(
         //TODO: Вынести нижеследующие компоненты в отдельные файлы
         UMI.SaveButtonView = Ember.View.extend({
             tagName: 'button',
+
+            classNames: ['s-margin-clear'],
+
             classNameBindings: ['model.isDirty::disabled', 'model.isValid::disabled'],
 
             click: function(event){

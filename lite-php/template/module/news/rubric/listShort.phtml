@@ -5,11 +5,11 @@
  */
 ?>
 <?php if ($list->getTotal()) : ?>
-    <ol class="list-unstyled">
+    <ul class="list-unstyled">
         <?php foreach ($list as $rubric) : ?>
             <li>
                 <?=$this->widget('news.rubric.view', ['rubric' => $rubric, 'template' => 'listShortView'])?>
             </li>
         <?php endforeach; ?>
-    </ol>
+    </ul>
 <?php endif; ?>

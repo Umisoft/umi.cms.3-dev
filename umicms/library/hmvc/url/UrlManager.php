@@ -9,6 +9,7 @@
 
 namespace umicms\hmvc\url;
 
+use umi\hmvc\component\IComponent;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umicms\exception\RuntimeException;
@@ -179,7 +180,9 @@ class UrlManager implements IUrlManager, ILocalizable
         $collection = $page->getCollection();
         $handlerPath = $collection->getHandlerPath($handler);
 
-        $component = $this->dispatcher->getSiteComponentByPath($handlerPath);
+        $component = $this->dispatcher->getComponentByPath(
+            CmsDispatcher::SITE_COMPONENT_PATH . IComponent::PATH_SEPARATOR . $handlerPath
+        );
         if (!$component instanceof BaseDefaultSitePageComponent) {
             throw new RuntimeException(
                 $this->translate(

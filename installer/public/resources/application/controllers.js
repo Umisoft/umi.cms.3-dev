@@ -4,7 +4,7 @@ define([], function(){
         UMI.ApplicationController = Ember.ObjectController.extend({
             settings: null,
             settingsAllowed: function(){
-                return 'baseSettingsURL' in window.UmiSettings;
+                return window.UmiSettings.isSettingsAllowed;
             }.property()
         });
 

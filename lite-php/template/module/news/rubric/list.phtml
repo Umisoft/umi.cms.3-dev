@@ -6,7 +6,7 @@
 ?>
 
 <?php if ($list->getTotal()) :?>
-    <ul>
+    <ul  class="list-unstyled">
         <?php foreach ($list as $rubric) : ?>
             <li>
                 <?= $this->widget('news.rubric.view', ['rubric' => $rubric, 'template' => 'shortView']); ?>
