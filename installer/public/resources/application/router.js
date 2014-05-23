@@ -510,7 +510,11 @@ define([], function(){
                     }
 
                     if(actionName === 'createForm'){
-                        var createdParams =  contextModel.get('id') !== 'root' ? {parent: contextModel} : null;
+                        var createdParams =  contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
+
+                        if(transition.queryParams.typeName){
+                            createdParams.type = transition.queryParams.typeName;
+                        }
                         data.createObject = self.store.createRecord(collectionName, createdParams);
                         if(transition.queryParams.typeName){
                             actionParams.type = transition.queryParams.typeName;
