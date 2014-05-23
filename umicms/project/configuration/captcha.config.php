@@ -10,5 +10,7 @@ return [
     'backgroundColor' => '#EEEEEE',
     'textColor' => '#428BCA',
     'width' => 150,
-    'height' => 32
+    'height' => 32,
+    'securityMode' => 'showForQuest',
+    'humanTestsCount' => 1
 ];

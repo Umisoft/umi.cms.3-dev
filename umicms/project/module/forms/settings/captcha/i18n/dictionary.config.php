@@ -3,8 +3,8 @@
 return [
     'en-US' => [
         'component:captcha:displayName' => 'Captcha',
-        'width' => 'Width',
-        'height' => 'Height',
+        'width' => 'Width, px',
+        'height' => 'Height, px',
         'textColor' => 'Text color',
         'backgroundColor' => 'Background color',
 
@@ -12,8 +12,8 @@ return [
 
     'ru-RU' => [
         'component:captcha:displayName' => 'Captcha',
-        'width' => 'Длина',
-        'height' => 'Ширина',
+        'width' => 'Длина, px',
+        'height' => 'Ширина, px',
         'textColor' => 'Цвет текста',
         'backgroundColor' => 'Цвет фона',
     ],

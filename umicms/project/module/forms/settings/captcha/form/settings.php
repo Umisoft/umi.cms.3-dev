@@ -9,6 +9,7 @@
 
 use umi\filter\IFilterFactory;
 use umi\form\element\html5\Color;
+use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Captcha;
@@ -24,9 +25,27 @@ return [
         'security' => [
             'type' => FieldSet::TYPE_NAME,
             'elements' => [
-                'captcha' => [
-                    'type' => Captcha::TYPE_NAME,
-
+                'securityMode' => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => 'securityMode',
+                    'options' => [
+                        'choices' => [
+                            'showForQuest' => 'securityMode:showForQuest',
+                            'showForAll' => 'securityMode:showForAll',
+                            'neverShow' => 'securityMode:neverShow'
+                        ],
+                        'dataSource' => 'securityMode'
+                    ]
+                ],
+                'humanTestsCount' => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => 'humanTestsCount',
+                    'options' => [
+                        'filters' => [
+                            IFilterFactory::TYPE_INT => []
+                        ],
+                        'dataSource' => 'humanTestsCount'
+                    ]
                 ]
             ]
         ],

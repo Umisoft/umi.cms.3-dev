@@ -9,7 +9,6 @@
 
 namespace umicms\form\element;
 
-use umi\form\element\BaseFormElement;
 use umi\form\element\BaseFormInput;
 use umi\form\FormEntityView;
 use umi\session\ISessionAware;
