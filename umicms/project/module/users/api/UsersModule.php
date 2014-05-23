@@ -20,6 +20,7 @@ use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\object\Guest;
 use umicms\project\module\users\api\object\Supervisor;
 use umicms\project\module\users\api\object\UserGroup;
+use umicms\Utils;
 
 /**
  * Модуль для работы с пользователями.
@@ -84,8 +85,13 @@ class UsersModule extends BaseModule implements IAuthenticationAware
      */
     public function register(AuthorizedUser $user)
     {
-        $user->active = !$this->user()->getIsRegistrationWithActivation();
-        $user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->setValue(uniqid('', true));
+        if ($this->user()->getIsRegistrationWithActivation()) {
+            $this->user()->deactivate($user);
+        } else {
+            $this->user()->activate($user);
+        }
+
+        $user->updateActivationCode();
 
         $userGroups = $user->groups;
 
@@ -104,6 +110,20 @@ class UsersModule extends BaseModule implements IAuthenticationAware
     }
 
     /**
+     * Активирует неактивированного пользователя по ключу авторизации
+     * @param string $activationCode
+     * @return AuthorizedUser
+     */
+    public function activate($activationCode)
+    {
+        $user = $this->user()->getUserByActivationCode($activationCode);
+        $user->updateActivationCode();
+        $this->user()->activate($user);
+
+        return $user;
+    }
+
+    /**
      * Возвращает авторизованного пользователя.
      * @throws RuntimeException если пользователь не был авторизован
      * @return AuthorizedUser авторизованный пользователь.
@@ -113,6 +133,20 @@ class UsersModule extends BaseModule implements IAuthenticationAware
         return $this->getDefaultAuthManager()
             ->getStorage()
             ->getIdentity();
+    }
+
+    /**
+     * Устанавливает авторизованного пользователя.
+     * @param AuthorizedUser $user
+     * @return $this
+     */
+    public function setCurrentUser(AuthorizedUser $user)
+    {
+        $this->getDefaultAuthManager()
+            ->getStorage()
+            ->setIdentity($user->getId());
+
+        return $this;
     }
 
     /**

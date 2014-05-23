@@ -68,6 +68,7 @@ return [
 
         'project.site.users.authorization' => '{#lazy:~/project/module/users/site/authorization/i18n/dictionary.config.php}',
         'project.site.users.registration' => '{#lazy:~/project/module/users/site/registration/i18n/dictionary.config.php}',
+        'project.site.users.registration.activation' => '{#lazy:~/project/module/users/site/registration/activation/i18n/dictionary.config.php}',
         'project.site.users.profile' => '{#lazy:~/project/module/users/site/profile/i18n/dictionary.config.php}',
 
         'project.site.blog.comment' => '{#lazy:~/project/module/blog/site/comment/i18n/dictionary.config.php}',

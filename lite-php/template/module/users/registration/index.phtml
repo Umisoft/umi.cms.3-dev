@@ -2,20 +2,41 @@
 /**
  * @var umicms\project\module\structure\api\object\SystemPage $page
  * @var umi\form\IForm $form
+ * @var umicms\project\module\users\api\object\AuthorizedUser $user
  * @var bool $authenticated
+ * @var bool $success
  */
+
 ?>
 
 <div class="blog-post">
     <h2 class="blog-post-title"><?=$page->displayName?></h2>
     <?=$page->contents?>
 
-    <?php if ($authenticated) : ?>
-        <?= $this->translate("You are already registered") ?>.
-        <p>
-            <?= $this->widget('users.profile.link', ['template' => 'link']); ?>
-        </p>
-        <?= $this->widget('users.authorization.logoutForm', ['template' => 'logoutForm']); ?>
+    <?php if ($success) : ?>
+
+        <?php if ($authenticated) : ?>
+
+            <div class="alert alert-success">
+                <p><?= $this->translate("You have successfully registered and logged in") ?>.</p>
+            </div>
+            <p>
+                <?= $this->widget('users.profile.link', ['template' => 'link']); ?>
+            </p>
+            <?= $this->widget('users.authorization.logoutForm', ['template' => 'logoutForm']); ?>
+        <?php else : ?>
+
+            <div class="alert alert-warning">
+                <p>
+                    <?= $this->translate(
+                        "Registration email sent to {email}. Open this email to finish signup.",
+                        ['email' => $user->email]
+                    )?>
+                </p>
+            </div>
+
+        <?php endif; ?>
+
     <?php else : ?>
         <?php $errors = isset($errors) ? $errors : null ?>
         <?= $this->render('form/form.phtml', ['form' => $form, 'errors' => $errors]) ?>

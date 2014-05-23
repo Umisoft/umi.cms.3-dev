@@ -10,6 +10,7 @@
 namespace umicms\project\module\users\api\object;
 
 use umicms\project\module\users\api\collection\UserCollection;
+use umicms\Utils;
 
 /**
  * Пользователь.
@@ -123,8 +124,8 @@ class AuthorizedUser extends BaseUser
     }
 
     /**
-     * Возвращает пароль.
-     * @return string
+     * Возвращает устанавливаемый пароль.
+     * @return string|null
      */
     public function getPassword()
     {
@@ -132,12 +133,14 @@ class AuthorizedUser extends BaseUser
     }
 
     /**
-     * Возвращает устанавливаемый пароль
-     * @return string
+     * Обновляет код активации пользователя.
+     * @return $this
      */
-    public function getRawPassword()
+    public function updateActivationCode()
     {
-        return $this->rawPassword;
+        $this->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->setValue(Utils::generateGUID());
+
+        return $this;
     }
 
     /**
@@ -191,14 +194,13 @@ class AuthorizedUser extends BaseUser
      */
     public function validatePassword()
     {
-        $password = $this->getRawPassword();
-        if (is_null($password)) {
+        if (is_null($this->rawPassword)) {
             return true;
         }
 
         $result = true;
 
-        if (!strlen(trim($password))) {
+        if (!strlen(trim($this->rawPassword))) {
             $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
                 [$this->translate('Value is required.')]
             );
@@ -211,7 +213,7 @@ class AuthorizedUser extends BaseUser
          */
         $collection = $this->getCollection();
 
-        if ($collection->getIsPasswordAndLoginEqualityForbidden() && $password === $this->login) {
+        if ($collection->getIsPasswordAndLoginEqualityForbidden() && $this->rawPassword === $this->login) {
             $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
                 [$this->translate('Password must not be equal to login.')]
             );
@@ -221,7 +223,7 @@ class AuthorizedUser extends BaseUser
 
         if ($minPasswordLength = $collection->getMinPasswordLength()) {
 
-            if (strlen($password) < $minPasswordLength) {
+            if (strlen($this->rawPassword) < $minPasswordLength) {
                 $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
                     [$this->translate
                         (
