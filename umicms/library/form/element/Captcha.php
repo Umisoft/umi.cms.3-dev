@@ -56,23 +56,6 @@ class Captcha extends BaseFormInput implements ICaptchaAware, ISessionAware, IUr
 
         parent::__construct($name, $attributes, $options);
     }
-    /**
-     * {@inheritdoc}
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
 
     /**
      * {@inheritdoc}
