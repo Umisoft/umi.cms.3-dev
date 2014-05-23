@@ -4,9 +4,17 @@
         {{#each form.elements}}
             <div class="row">
                 <div class="small-12 columns">
-                    <i class="icon icon-{{name}} input-icon"></i>
-                    <input name="{{name}}" placeholder="{{label}}" type="{{type}}" required="required" autocomplete="off" value="">
-                    <span class="error">Поле не заполнено</span>
+                    {{#ifCond type 'select'}}
+                        <select name="{{name}}" placeholder="{{label}}" >
+                            {{#each choices}}
+                                <option value="{{attributes.value}}">{{label}}</option>
+                            {{/each}}
+                        </select>
+                    {{else}}
+                        <i class="icon icon-{{name}} input-icon"></i>
+                        <input name="{{name}}" placeholder="{{label}}" type="{{type}}" required="required" autocomplete="off" value="">
+                        <span class="error">Поле не заполнено</span>
+                    {{/ifCond}}
                 </div>
             </div>
         {{/each}}

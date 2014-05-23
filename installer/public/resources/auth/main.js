@@ -81,6 +81,13 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                 });
             },
             init: function(){
+                Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+                    if(v1 === v2) {
+                        return options.fn(this);
+                    }
+                    return options.inverse(this);
+                });
+
                 tempaltes(Auth);
                 this.getForm().then(function(){
                     // Проверяем есть ли шаблон и если нет то собираем его
