@@ -90,7 +90,7 @@ require(['jQuery'], function(jQuery){
     });
     deffer.fail(function(error){
         require(['auth/main'], function(auth){
-            auth(error);
+            auth({accessError: error});
         });
     });
 });

@@ -65,14 +65,13 @@ define([], function(){
                     var maskLayout = document.createElement('div');
                     maskLayout.className = 'auth-mask';
                     maskLayout = document.body.appendChild(maskLayout);
-                    $(applicationLayout).addClass('off');
+                    $(applicationLayout).addClass('off is-transition');
                     $.post(UmiSettings.baseApiURL + '/action/logout').then(function(){
                         require(['auth/main'], function(auth){
-                            auth();
+                            auth({appIsFreeze: true, appLayout: applicationLayout});
                             $(applicationLayout).addClass('fade-out');
                             Ember.run.later('', function(){
-                                UMI.reset();
-                                UMI.deferReadiness();
+                                $(applicationLayout).removeClass('is-transition');
                                 maskLayout.parentNode.removeChild(maskLayout);
                             }, 800);
                         });

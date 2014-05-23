@@ -1,7 +1,13 @@
 define(['auth/templates', 'Handlebars', 'jQuery'], function(templates){
     "use strict";
 
-    return function(accessError){
+    /**
+     * @param {Object} [authParams]
+     * @param {Object} [authParams.accessError] Объект ошибки доступа к ресурсу window.UmiSettings.authUrl
+     * @param {Boolean} [authParams.appIsFreeze] Приложение уже загружено
+     * @param {HTMLElement} appLayout корневой DOM элемент приложения
+     */
+    return function(authParams){
         /**
          * Сбрасываем настройки ajax установленые админ приложением (появляются после выхода из системы)
          * @method ajaxSetup
@@ -22,8 +28,8 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(templates){
              * @returns {*|error.message|string}
              */
             accessError: function(){
-                if(accessError && accessError.status !== 401){
-                    return accessError.responseJSON && accessError.responseJSON.result.error.message;
+                if(authParams && authParams.accessError && authParams.accessError.status !== 401){
+                    return authParams.accessError.responseJSON && authParams.accessError.responseJSON.result.error.message;
                 }
             },
             /**
@@ -138,21 +144,32 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(templates){
                 document.onmousemove = null;
                 var authLayout = document.querySelector('.auth-layout');
                 var maskLayout = document.querySelector('.auth-mask');
-                $(authLayout).addClass('off');
-                require(['application/main'], function(application){
-                    application();
-                    window.applicationLoading.then(function(){
-                        // Анимация осуществляется с помощью css transition.
-                        // Время анимации .7s
-                        $(authLayout).addClass('fade-out');
-                        setTimeout(function(){
-                            authLayout.parentNode.removeChild(authLayout);
-                            maskLayout.parentNode.removeChild(maskLayout);
-                            Auth.destroy();
-                            //Auth = null; TODO: Нужно удалять приложение Auth после авторизации
-                        }, 800);
+                $(authLayout).addClass('off is-transition');
+
+                var removeAuth = function(){
+                    // Анимация осуществляется с помощью css transition.
+                    // Время анимации .7s
+                    $(authLayout).addClass('fade-out');
+                    setTimeout(function(){
+                        authLayout.parentNode.removeChild(authLayout);
+                        maskLayout.parentNode.removeChild(maskLayout);
+                        Auth.destroy();
+                        //Auth = null; TODO: Нужно удалять приложение Auth после авторизации
+                    }, 800);
+                };
+
+                if(authParams.appIsFreeze){
+                    window.applicationLoading.resolve();
+                    $(authParams.appLayout).removeClass('off fade-out');
+                    removeAuth();
+                } else{
+                    require(['application/main'], function(application){
+                        application();
+                        window.applicationLoading.then(function(){
+                            removeAuth();
+                        });
                     });
-                });
+                }
             },
             /**
              * Старт приложения авторизации
