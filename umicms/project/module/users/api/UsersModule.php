@@ -135,11 +135,16 @@ class UsersModule extends BaseModule implements IAuthenticationAware
             ->getIdentity();
     }
 
+    /**
+     * Устанавливает авторизованного пользователя.
+     * @param AuthorizedUser $user
+     * @return $this
+     */
     public function setCurrentUser(AuthorizedUser $user)
     {
         $this->getDefaultAuthManager()
             ->getStorage()
-            ->setIdentity($user);
+            ->setIdentity($user->getId());
 
         return $this;
     }

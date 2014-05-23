@@ -124,19 +124,10 @@ class AuthorizedUser extends BaseUser
     }
 
     /**
-     * Возвращает пароль.
-     * @return string
+     * Возвращает устанавливаемый пароль.
+     * @return string|null
      */
     public function getPassword()
-    {
-        return $this->rawPassword;
-    }
-
-    /**
-     * Возвращает устанавливаемый пароль.
-     * @return string
-     */
-    public function getRawPassword()
     {
         return $this->rawPassword;
     }
@@ -203,14 +194,13 @@ class AuthorizedUser extends BaseUser
      */
     public function validatePassword()
     {
-        $password = $this->getRawPassword();
-        if (is_null($password)) {
+        if (is_null($this->rawPassword)) {
             return true;
         }
 
         $result = true;
 
-        if (!strlen(trim($password))) {
+        if (!strlen(trim($this->rawPassword))) {
             $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
                 [$this->translate('Value is required.')]
             );
@@ -223,7 +213,7 @@ class AuthorizedUser extends BaseUser
          */
         $collection = $this->getCollection();
 
-        if ($collection->getIsPasswordAndLoginEqualityForbidden() && $password === $this->login) {
+        if ($collection->getIsPasswordAndLoginEqualityForbidden() && $this->rawPassword === $this->login) {
             $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
                 [$this->translate('Password must not be equal to login.')]
             );
@@ -233,7 +223,7 @@ class AuthorizedUser extends BaseUser
 
         if ($minPasswordLength = $collection->getMinPasswordLength()) {
 
-            if (strlen($password) < $minPasswordLength) {
+            if (strlen($this->rawPassword) < $minPasswordLength) {
                 $this->getProperty(self::FIELD_PASSWORD)->addValidationErrors(
                     [$this->translate
                         (

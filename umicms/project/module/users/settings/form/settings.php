@@ -63,7 +63,7 @@ return [
         ],
         'Notifications' => [
             'type' => FieldSet::TYPE_NAME,
-            'label' => 'Notification',
+            'label' => 'Notifications',
             'elements' => [
                 UserCollection::SETTING_MAIL_SENDER => [
                     'type' => Text::TYPE_NAME,

@@ -12,9 +12,7 @@ namespace umicms\authentication;
 use umi\authentication\storage\SessionStorage;
 use umi\http\IHttpAware;
 use umi\http\THttpAware;
-use umicms\exception\UnexpectedValueException;
 use umicms\project\Bootstrap;
-use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\UsersModule;
 use umicms\project\module\users\api\object\Guest;
 
@@ -36,20 +34,6 @@ class CmsAuthStorage extends SessionStorage implements IHttpAware
     public function __construct(UsersModule $api)
     {
         $this->api = $api;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setIdentity($identity)
-    {
-        if (!$identity instanceof AuthorizedUser) {
-            throw new UnexpectedValueException(
-                'Identity should be instance of umicms\project\module\users\api\object\AuthorizedUser'
-            );
-        }
-
-        return parent::setIdentity($identity->getId());
     }
 
     /**
