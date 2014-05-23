@@ -15,7 +15,7 @@ return [
     DefaultSettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/configuration/captcha.config.php',
 
     DefaultSettingsComponent::OPTION_FORMS => [
-        'settings' => '{#lazy:~/project/module/security/settings/captcha/form/settings.php}'
+        'settings' => '{#lazy:~/project/module/forms/settings/captcha/form/settings.php}'
     ],
 
 ];

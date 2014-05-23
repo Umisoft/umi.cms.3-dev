@@ -91,12 +91,6 @@ return [
                 ]
             ]
         ],
-        'captcha' => [
-            'type' => Captcha::TYPE_NAME,
-            'validators' => [
-                IValidatorFactory::TYPE_REQUIRED => []
-            ]
-        ],
         'submit' => [
             'type' => Submit::TYPE_NAME,
             'label' => 'Save'

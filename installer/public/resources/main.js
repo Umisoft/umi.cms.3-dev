@@ -51,7 +51,7 @@ require.config({
         {name: 'dialog',            location: "partials/dialog"},
         {name: 'dock',              location: "partials/dock"},
         {name: 'fileManager',       location: "partials/fileManager"},
-        {name: 'form',              location: "partials/form"},
+        {name: 'forms',              location: "partials/forms"},
         {name: 'notification',      location: "partials/notification"},
         {name: 'popup',             location: "partials/popup"},
         {name: 'search',            location: "partials/search"},
