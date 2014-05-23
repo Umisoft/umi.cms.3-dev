@@ -45,15 +45,24 @@ define([], function(){
                  */
                 return $.get(UmiSettings.baseApiURL).then(function(results){
                     var result = results.result;
-                    self.controllerFor('application').set('settings', result);
-                    if(result.collections){
-                        UMI.modelsFactory(result.collections);
-                    }
-                    if(result.modules){
-                        self.controllerFor('dock').set('modules', result.modules);
+                    if(result){
+                        self.controllerFor('application').set('settings', result);
+                        if(result.collections){
+                            UMI.modelsFactory(result.collections);
+                        }
+                        if(result.modules){
+                            self.controllerFor('dock').set('modules', result.modules);
+                        }
+                    } else{
+                        try{
+                            throw new Error(results);
+                        } catch(error){
+                            transition.send('templateLogs', error);
+                        }
+
                     }
                 }, function(error){
-                    var becameError = new Error();
+                    var becameError = new Error(results);
                     error.stack = becameError.stack;
                     transition.send('templateLogs', error);
                 });
