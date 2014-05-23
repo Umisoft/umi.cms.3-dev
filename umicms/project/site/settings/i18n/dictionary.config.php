@@ -4,7 +4,12 @@ use umicms\project\site\SiteApplication;
 
 return [
     'en-US' => [
-        'component:site:displayName' => 'Site',
+        'component:site:displayName' => 'Site settings',
+
+
+        'common' => 'Common',
+        'seo' => 'SEO',
+        'templating' => 'Templating',
 
         SiteApplication::SETTING_URL_POSTFIX => 'URL postfix',
 
@@ -25,7 +30,11 @@ return [
 
     'ru-RU' => [
 
-        'component:site:displayName' => 'Сайт',
+        'component:site:displayName' => 'Настройки сайта',
+
+        'common' => 'Общие',
+        'seo' => 'SEO',
+        'templating' => 'Шаблонизация',
 
         SiteApplication::SETTING_URL_POSTFIX => 'Постфикс для URL',
 

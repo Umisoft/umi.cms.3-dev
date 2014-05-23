@@ -71,7 +71,6 @@ define([], function(){
                 var sideBarControl;
                 var self = this;
                 try{
-
                     var settings = this.get('settings');
                     if(settings && settings.layout.hasOwnProperty('sideBar')){
                         var control;
