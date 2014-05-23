@@ -101,18 +101,9 @@ define(['App'], function(UMI){
                 });
             },
 
-            moveGroupCrudBottomPanel: function(){
-                if(this.get('showSideBar')){
-                    var margin = $('.umi-left-bottom-panel').width();
-                    $('.umi-table-control-group-crud').css('marginLeft', margin);
-                } else{
-                    $('.umi-table-control-group-crud').css('marginLeft', 0);
-                }
-            },
 
             didInsertElement: function(){
                 this.checkBoxes();
-                this.moveGroupCrudBottomPanel();
 
                 var tableControl = this.$();
 
@@ -135,7 +126,7 @@ define(['App'], function(UMI){
                         }
 
                         Ember.run.scheduleOnce('afterRender', self, function(){
-                            var scrollContent = new IScroll(tableContent[0], UMI.config.iScroll);
+                            var scrollContent = new IScroll(tableContent[0], UMI.config.iScroll); //TODO Из-за этой строки не работают чекбоксы строк
                             self.set('iScroll', scrollContent);
 
                             scrollContent.on('scroll', function(){
