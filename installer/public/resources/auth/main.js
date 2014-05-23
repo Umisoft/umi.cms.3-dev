@@ -1,22 +1,46 @@
-define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
+define(['auth/templates', 'Handlebars', 'jQuery'], function(templates){
     "use strict";
 
     return function(accessError){
+        /**
+         * Сбрасываем настройки ajax установленые админ приложением (появляются после выхода из системы)
+         * @method ajaxSetup
+         */
         $.ajaxSetup({
             headers: {'X-Csrf-Token': null},
             error: function(){}
         });
 
-        window.applicationLoading = $.Deferred();
-
+        /**
+         * Компонент авторизации
+         * @module Auth
+         */
         var Auth = {
+            /**
+             * Метод возвращает ошибки доступа к ресурсу window.UmiSettings.authUrl
+             * @method accessError
+             * @returns {*|error.message|string}
+             */
             accessError: function(){
                 if(accessError && accessError.status !== 401){
                     return accessError.responseJSON && accessError.responseJSON.result.error.message;
                 }
             },
+            /**
+             * Шаблоны авторизации
+             * @property TEMPLATES
+             */
             TEMPLATES: {},
+            /**
+             * Шаблоны форм
+             * @property forms
+             */
             forms: {},
+            /**
+             * Получает форму для action
+             * @param {null|String} action
+             * @returns Object $.Deferred
+             */
             getForm: function(action){
                 var deferred = $.Deferred();
                 action =  action || 'form';
@@ -27,7 +51,15 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                 });
                 return deferred;
             },
+            /**
+             *
+             * @property validator
+             */
             validator: {
+                /**
+                 * При некорректной авторизации метод "трясёт" форму словно говоря НЕТ (не используется)
+                 * @method shake
+                 */
                 shake: function(){
                     function shake(id, a, d){
                         id.style.left = a.shift() + 'px';
@@ -44,6 +76,12 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                     i.style.position = 'relative';
                     shake(i, p, 20);
                 },
+                /**
+                 * Метод валидирует форму
+                 * @method check
+                 * @param form
+                 * @returns {boolean}
+                 */
                 check: function(form){
                     var i;
                     var element;
@@ -89,7 +127,13 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                     return valid;
                 }
             },
+            /**
+             * Метод загрузает админ приложение после успешной авторизации,
+             * и вызывает метод destroy() для приложение Auth
+             * @method transition
+             */
             transition: function(){
+                window.applicationLoading = $.Deferred();
                 // Событие при успешном переходе
                 document.onmousemove = null;
                 var authLayout = document.querySelector('.auth-layout');
@@ -97,7 +141,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                 $(authLayout).addClass('off');
                 require(['application/main'], function(application){
                     application();
-                    applicationLoading.then(function(){
+                    window.applicationLoading.then(function(){
                         // Анимация осуществляется с помощью css transition.
                         // Время анимации .7s
                         $(authLayout).addClass('fade-out');
@@ -110,9 +154,17 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                     });
                 });
             },
+            /**
+             * Старт приложения авторизации
+             * @method init
+             */
             init: function(){
                 var self = this;
 
+                /**
+                 * Регистрация хелпера ifCond, позволяющего сравнивать значения в шаблоне
+                 * method registerHelper
+                 */
                 Handlebars.registerHelper('ifCond', function(v1, v2, options) {
                     if(v1 === v2) {
                         return options.fn(this);
@@ -120,7 +172,12 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                     return options.inverse(this);
                 });
 
-                tempaltes(self);
+                /**
+                 * Загружает шаблоны определёные в templates.js
+                 * method templates
+                 */
+                templates(self);
+
                 this.getForm().then(function(){
                     // Проверяем есть ли шаблон и если нет то собираем его
                     if(!document.querySelector('.auth-layout')){
