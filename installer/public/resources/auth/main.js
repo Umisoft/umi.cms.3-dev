@@ -104,6 +104,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                         setTimeout(function(){
                             authLayout.parentNode.removeChild(authLayout);
                             maskLayout.parentNode.removeChild(maskLayout);
+                            Auth.destroy();
                             //Auth = null; TODO: Нужно удалять приложение Auth после авторизации
                         }, 800);
                     });
@@ -155,7 +156,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                     };
 
 
-                    $(document).on('click', '.close', function(){
+                    $(document).on('click.umi.auth', '.close', function(){
                         this.parentNode.parentNode.removeChild(this.parentNode);
                         return false;
                     });
@@ -210,7 +211,8 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                 });
             },
             destroy: function(){
-
+                $(document).off('click.umi.auth');
+                $(document).off('submit.umi.auth');
             }
         };
 
