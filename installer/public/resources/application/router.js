@@ -614,7 +614,7 @@ define([], function(){
         /**
          * При наличии доступа пользователя к настройкам системы, добаляем route к настройкам
          */
-        if('baseSettingsURL' in window.UmiSettings){
+        if('isSettingsAllowed' in window.UmiSettings){
             UMI.Router.map(function(){
                 this.resource('settings', {path: '/configure'}, function(){
                     this.route('component', {path: '/:component'});

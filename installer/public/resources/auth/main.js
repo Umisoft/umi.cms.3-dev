@@ -57,7 +57,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                             }
                         }
                     }
-                    return true;
+                    return valid;
                 }
             },
             transition: function(){
@@ -142,15 +142,32 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                         var data = $(this).serialize();
                         var action = this.getAttribute('action');
                         var deffer = $.post(action, data);
-                        deffer.done(function(data){
-                            Auth.transition();
-                        });
-                        deffer.fail(function(error){
+
+                        var authFail = function(error){
                             container.removeClass('loading');
                             submit.removeAttribute('disabled');
                             var errorList = {error: error.responseJSON.result.error.message};
                             errorsBlock.innerHTML = Auth.TEMPLATES.errors(errorList);
                             $(errorsBlock).children('.alert-box').addClass('visible');
+                        };
+
+                        deffer.done(function(data){
+                            var objectMerge = function(objectBase, objectProperty){
+                                for(var key in objectProperty){
+                                    if(objectProperty.hasOwnProperty(key)){
+                                        objectBase[key] = objectProperty[key];
+                                    }
+                                }
+                            };
+
+                            if(data.result){
+                                objectMerge(window.UmiSettings, data.result);
+                            }
+
+                            Auth.transition();
+                        });
+                        deffer.fail(function(error){
+                            authFail(error);
                         });
                         return false;
                     });
