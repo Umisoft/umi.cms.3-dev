@@ -11,6 +11,7 @@ namespace umicms\project\admin\settings\controller;
 
 use umi\config\io\IConfigIOAware;
 use umi\config\io\TConfigIOAware;
+use umi\http\Response;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\controller\BaseController;
 use umicms\project\admin\settings\component\DefaultSettingsComponent;
@@ -37,26 +38,33 @@ class DefaultSettingsController extends BaseController implements IConfigIOAware
         $form = $this->getForm(self::SETTINGS_FORM_NAME, $config);
         $form->setAction($this->getUrl('index'));
 
+        $valid = true;
         if ($this->isRequestMethodPost()) {
 
             $formData = $this->getAllPostVars();
+            $valid = $form->isValid();
 
-            if ($form->setData($formData) && $form->isValid()) {
+            if ($form->setData($formData) && $valid) {
                 $this->writeConfig($config);
-
-                return $this->createRedirectResponse(
-                    $this->getRequest()->getReferer()
-                );
             }
-
         }
 
-        return $this->createViewResponse(
+        $response = $this->createViewResponse(
             'settings',
             [
-                'form' => $form->getView()
+                'form' => $form->getView(),
+                'toolbar' => [
+                    'type' => 'apply',
+                    'displayName' => $this->translate('control:settings:toolbar:apply')
+                ]
             ]
         );
+
+        if (!$valid) {
+            $response->setStatusCode(Response::HTTP_BAD_REQUEST);
+        }
+
+        return $response;
     }
 
     /**

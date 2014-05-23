@@ -2,6 +2,9 @@ define(
     [
         'App',
 
+        //Вызов elements
+        'offcanvas',
+
         //Вызов partials
         'topBar',
         'dock',
@@ -10,7 +13,7 @@ define(
         'fileManager',
         'treeSimple',
         'tree',
-        'form',
+        'forms',
         'search',
         'notification',
         'dialog',

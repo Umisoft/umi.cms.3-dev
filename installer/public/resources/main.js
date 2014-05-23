@@ -44,12 +44,14 @@ require.config({
 
     packages: [
         //Подключаем Partials. замена следуют по алфавиту, как и в структуре папок
+        {name: 'offcanvas',         location: "elements/offcanvas"},
+
         {name: 'accordion',         location: "partials/accordion"},
         {name: 'chartControl',      location: "partials/chartControl"},
         {name: 'dialog',            location: "partials/dialog"},
         {name: 'dock',              location: "partials/dock"},
         {name: 'fileManager',       location: "partials/fileManager"},
-        {name: 'form',              location: "partials/form"},
+        {name: 'forms',              location: "partials/forms"},
         {name: 'notification',      location: "partials/notification"},
         {name: 'popup',             location: "partials/popup"},
         {name: 'search',            location: "partials/search"},

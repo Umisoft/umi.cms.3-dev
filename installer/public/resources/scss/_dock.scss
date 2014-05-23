@@ -185,7 +185,7 @@ $dock-components-height: 35;
             float: left;
             font-weight: bold;
             text-size: 14px;
-            cursor: default;
+            cursor: pointer;
             text-decoration: none;
             font-size: 0.9em;
             border-left: 1px solid transparent;
@@ -196,6 +196,7 @@ $dock-components-height: 35;
             &.active{
                 background: #FFFDFD;
                 color: #575e6c;
+                cursor: default;
                 &:before, &:after{
                     content: "";
                     position: absolute;
