@@ -44,16 +44,35 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                             $(this).closest('.columns').removeClass('error');
                         };
                     };
+
+                    var toggleError = function(element, valid){
+                        if(valid){
+                            $(element).closest('.columns').removeClass('error');
+                            element.onfocus = null;
+                        } else{
+                            $(element).closest('.columns').addClass('error');
+                            removeError(element);
+                            return true;
+                        }
+                    };
+
                     for(i = 0; i < form.elements.length; i++){
+
                         element = form.elements[i];
                         if((element.hasAttribute('required') || element.value) && element.hasAttribute('pattern')){
                             pattern = new RegExp(element.getAttribute('pattern'));
                             if(!pattern.test(element.value)){
                                 valid = false;
                             }
+                            if(toggleError(element, valid)){
+                                break;
+                            }
                         } else if(element.hasAttribute('required')){
                             if(!element.value){
                                 valid = false;
+                            }
+                            if(toggleError(element, valid)){
+                                break;
                             }
                         }
                     }

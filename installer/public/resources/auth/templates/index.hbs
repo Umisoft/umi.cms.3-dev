@@ -13,7 +13,13 @@
                     {{else}}
                         <i class="icon icon-{{name}} input-icon"></i>
                         <input name="{{name}}" placeholder="{{label}}" type="{{type}}" required="required" autocomplete="off" value="">
-                        <span class="error">Поле не заполнено</span>
+                        {{#if validators}}
+                            <span class="error">
+                                {{#each validators}}
+                                    {{message}}
+                                {{/each}}
+                            </span>
+                        {{/if}}
                     {{/ifCond}}
                 </div>
             </div>
