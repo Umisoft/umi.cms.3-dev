@@ -23,17 +23,16 @@ define(
 
             UMI.FormBaseController = Ember.ObjectController.extend({
                 /**
-                 * Toolbar кнопок для формы
-                 * @method toolbar
-                 */
-                toolbar: function(){}.property(),
-                /**
                  * Проверяет наличие toolbar
                  * @method hasToolbar
                  * @return bool
                  */
                 hasToolbar: function(){
                     var toolbar = this.get('toolbar');
+                    // TODO: убрать как только back будет возвращать тулбар в виде массива
+                    if(Ember.typeOf(toolbar) === 'object'){
+                        toolbar = [toolbar];
+                    }
                     return toolbar && toolbar.length;
                 }.property('toolbar'),
                 /**

@@ -669,7 +669,11 @@ define([], function(){
                     };
                     var component = findDepth(settings, 'name', params.component);
                     return $.get(component.resource).then(function(data){
+                        if(data.result.toolbar){
+                            data.result.form.toolbar = data.result.toolbar;
+                        }
                         Ember.set(component, 'form', data.result.form);
+
                         return component;
                     });
                 },
