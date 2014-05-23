@@ -22,19 +22,20 @@ return [
     ],
 
     'elements' => [
-        'security' => [
+        'checkSettings' => [
             'type' => FieldSet::TYPE_NAME,
+            'label' => 'checkSettings',
             'elements' => [
-                'securityMode' => [
+                'checkMode' => [
                     'type' => Select::TYPE_NAME,
-                    'label' => 'securityMode',
+                    'label' => 'checkMode',
                     'options' => [
                         'choices' => [
-                            'showForQuest' => 'securityMode:showForQuest',
-                            'showForAll' => 'securityMode:showForAll',
-                            'neverShow' => 'securityMode:neverShow'
+                            'guest' => 'checkMode:guest',
+                            'all' => 'checkMode:all',
+                            'never' => 'checkMode:never'
                         ],
-                        'dataSource' => 'securityMode'
+                        'dataSource' => 'checkMode'
                     ]
                 ],
                 'humanTestsCount' => [
@@ -51,6 +52,7 @@ return [
         ],
         'viewSettings' => [
             'type' => FieldSet::TYPE_NAME,
+            'label' => 'viewSettings',
             'elements' => [
                 'width' => [
                     'type' => Text::TYPE_NAME,

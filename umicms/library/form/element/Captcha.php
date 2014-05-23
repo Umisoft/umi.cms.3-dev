@@ -110,7 +110,9 @@ class Captcha extends BaseFormInput implements ICaptchaAware, ISessionAware, IUr
             $result = $this->getCaptchaGenerator()->test($options['phrase'], $value);
         }
 
-        if (!$result) {
+        if ($result) {
+            $this->setSessionVar('successTests', $this->getSessionVar('successTests', 0) + 1);
+        } else {
             $this->messages = ['Invalid captcha test.'];
         }
 
@@ -122,7 +124,21 @@ class Captcha extends BaseFormInput implements ICaptchaAware, ISessionAware, IUr
      * @return bool
      */
     protected function getIsHuman() {
-        return !($this->usersApi->isAuthenticated());
+        $checkMode = $this->getCheckMode();
+
+        if ($checkMode === 'never') {
+            return true;
+        }
+
+        if ($this->getSessionVar('successTests', 0) >= $this->getHumanTestsCount()) {
+            return true;
+        }
+
+        if ($checkMode === 'all') {
+            return false;
+        }
+
+        return $this->usersApi->isAuthenticated();
     }
 
     /**
@@ -149,6 +165,24 @@ class Captcha extends BaseFormInput implements ICaptchaAware, ISessionAware, IUr
     protected function getSessionNamespacePath()
     {
         return 'umicms\captcha';
+    }
+
+    /**
+     * Возвращат режим проверки captcha.
+     * @return string all|never|guest
+     */
+    protected function getCheckMode()
+    {
+        return isset($this->options['checkMode']) ? $this->options['checkMode'] : 'guest';
+    }
+
+    /**
+     * Возвращает количество успешных проверок, после которых captcha не проверяется.
+     * @return int
+     */
+    protected function getHumanTestsCount()
+    {
+        return isset($this->options['humanTestsCount']) ? (int) $this->options['humanTestsCount'] : 1;
     }
 
 }
