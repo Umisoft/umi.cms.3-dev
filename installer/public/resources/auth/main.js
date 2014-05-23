@@ -1,10 +1,20 @@
 define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
     "use strict";
 
-    return function(){
+    return function(accessError){
+        $.ajaxSetup({
+            headers: {"X-Csrf-Token": null},
+            error: function(){}
+        });
+
         window.applicationLoading = $.Deferred();
 
         var Auth = {
+            accessError: function(){
+                if(accessError && accessError.status !== 401){
+                    return accessError.responseJSON && accessError.responseJSON.result.error.message;
+                }
+            },
             TEMPLATES: {},
             forms: {},
             getForm: function(action){
@@ -100,6 +110,8 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                 });
             },
             init: function(){
+                var self = this;
+
                 Handlebars.registerHelper('ifCond', function(v1, v2, options) {
                     if(v1 === v2) {
                         return options.fn(this);
@@ -107,12 +119,12 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                     return options.inverse(this);
                 });
 
-                tempaltes(Auth);
+                tempaltes(self);
                 this.getForm().then(function(){
                     // Проверяем есть ли шаблон и если нет то собираем его
                     if(!document.querySelector('.auth-layout')){
                         var helper = document.createElement('div');
-                        helper.innerHTML = Auth.TEMPLATES.app({outlet: Auth.TEMPLATES.index({form: Auth.forms.form})});
+                        helper.innerHTML = self.TEMPLATES.app({outlet: self.TEMPLATES.index({accessError: self.accessError, form: self.forms.form})});
                         helper = document.body.appendChild(helper);
                         $(helper.firstElementChild).unwrap();
                     }
@@ -151,7 +163,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                     var errorsBlock = document.querySelector('.errors-list');
 
                     $(document).on('submit.umi.auth', 'form', function(){
-                        if(!Auth.validator.check(this)){
+                        if(!self.validator.check(this)){
                             return false;
                         }
                         var container = $(this.parentNode);
@@ -166,7 +178,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                             container.removeClass('loading');
                             submit.removeAttribute('disabled');
                             var errorList = {error: error.responseJSON.result.error.message};
-                            errorsBlock.innerHTML = Auth.TEMPLATES.errors(errorList);
+                            errorsBlock.innerHTML = self.TEMPLATES.errors(errorList);
                             $(errorsBlock).children('.alert-box').addClass('visible');
                         };
 
@@ -183,7 +195,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                                 objectMerge(window.UmiSettings, data.result);
                             }
 
-                            Auth.transition();
+                            self.transition();
                         });
                         deffer.fail(function(error){
                             authFail(error);
@@ -191,6 +203,9 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                         return false;
                     });
                 });
+            },
+            destroy: function(){
+
             }
         };
 

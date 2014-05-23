@@ -1,6 +1,13 @@
 <div class="panel pretty radius shake-it">
     <form name="auth" novalidate="novalidate" class="custom large umi-validator" method="post" action="{{form.attributes.action}}">
-        <div class="errors-list"></div>
+        <div class="errors-list">
+            {{#if accessError}}
+                <div class="alert-box alert visible">
+                    <a href="#" class="close">×</a>
+                    {{accessError}}
+                </div>
+            {{/if}}
+        </div>
         {{#each form.elements}}
             <div class="row">
                 <div class="small-12 columns">

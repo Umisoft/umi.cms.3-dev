@@ -65,15 +65,31 @@ require.config({
     ]
 });
 
+require(['jQuery'], function(jQuery){
+    "use strict";
 
-if(UmiSettings.authenticated){
-    require(['application/main'], function(application){
-        "use strict";
-        application();
+    var deffer = $.get(window.UmiSettings.authUrl);
+
+    deffer.done(function(data){
+        var objectMerge = function(objectBase, objectProperty){
+            for(var key in objectProperty){
+                if(objectProperty.hasOwnProperty(key)){
+                    objectBase[key] = objectProperty[key];
+                }
+            }
+        };
+
+        if(data.result){
+            objectMerge(window.UmiSettings, data.result);
+        }
+        require(['application/main'], function(application){
+            application();
+        });
     });
-} else{
-    require(['auth/main'], function(auth){
-        "use strict";
-        auth();
+    deffer.fail(function(error){
+        require(['auth/main'], function(auth){
+            auth(error);
+        });
     });
-}
+});
+
