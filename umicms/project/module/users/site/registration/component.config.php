@@ -17,9 +17,12 @@ return [
 
     SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
 
+    SiteComponent::OPTION_COMPONENTS => [
+        'activation' => '{#lazy:~/project/module/users/site/registration/activation/component.config.php}'
+    ],
+
     SiteComponent::OPTION_CONTROLLERS => [
         'index' => __NAMESPACE__ . '\controller\IndexController',
-        'activate' => __NAMESPACE__ . '\controller\ActivateController',
     ],
 
     SiteComponent::OPTION_WIDGET => [
@@ -50,13 +53,11 @@ return [
     ],
 
     SiteComponent::OPTION_ROUTES      => [
-        'activate' => [
-            'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/activate/{activationCode:string}',
-            'defaults' => [
-                'controller' => 'activate'
-            ]
+
+        'component' => [
+            'type' => 'SiteComponentRoute'
         ],
+
         'index' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{type:string}',

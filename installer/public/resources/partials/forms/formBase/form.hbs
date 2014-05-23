@@ -31,5 +31,9 @@
 </div>
 
 {{#if hasToolbar}}
-    {{render "formToolbar" toolbar}}
+    <div class="button-group umi-form-control-buttons">
+        <button class="button primary s-margin-clear wide">
+            {{toolbar.displayName}}
+        </button>
+    </div>
 {{/if}}

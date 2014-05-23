@@ -8,12 +8,12 @@
  */
 
 use umi\filter\IFilterFactory;
+use umi\form\element\CSRF;
 use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\validation\IValidatorFactory;
-use umicms\form\element\Captcha;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\api\object\BlogCategory;
 use umicms\project\module\blog\api\object\BlogPost;
@@ -91,11 +91,8 @@ return [
                 ]
             ]
         ],
-        'captcha' => [
-            'type' => Captcha::TYPE_NAME,
-            'validators' => [
-                IValidatorFactory::TYPE_REQUIRED => []
-            ]
+        'csrf' => [
+            'type' => CSRF::TYPE_NAME
         ],
         'submit' => [
             'type' => Submit::TYPE_NAME,

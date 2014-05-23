@@ -12,6 +12,8 @@ namespace umicms\hmvc\controller;
 use umi\hmvc\controller\BaseController as FrameworkController;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
+use umi\messages\ISwiftMailerAware;
+use umi\messages\TSwiftMailerAware;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\hmvc\view\CmsView;
@@ -19,9 +21,10 @@ use umicms\hmvc\view\CmsView;
 /**
  * Базовый контроллер UMI.CMS
  */
-abstract class BaseController extends FrameworkController implements IUrlManagerAware
+abstract class BaseController extends FrameworkController implements IUrlManagerAware, ISwiftMailerAware
 {
     use TUrlManagerAware;
+    use TSwiftMailerAware;
 
     /**
      * Устанавливает опции сериализации результата работы контроллера в XML или JSON.
@@ -82,6 +85,31 @@ abstract class BaseController extends FrameworkController implements IUrlManager
         $this->setSerializationOptions($view);
 
         return $view;
+    }
+
+    /**
+     * Отправляет письмо.
+     * @param string|array $to адресат
+     * @param string|array $from отправитель
+     * @param string $subjectTemplate имя шаблона темы письма
+     * @param string $bodyTemplate имя шаблона содержимого письма
+     * @param array $variables
+     */
+    protected function mail($to, $from, $subjectTemplate, $bodyTemplate, $variables = [])
+    {
+        $variables['projectUrl'] = $this->getUrlManager()->getProjectUrl(true);
+
+        $body = (string) $this->createView(
+            $bodyTemplate,
+            $variables
+        );
+
+        $subject = (string) $this->createView(
+            $subjectTemplate,
+            $variables
+        );
+
+        $this->sendMail($subject, $body, 'text/html', [], $to, $from);
     }
 
 }

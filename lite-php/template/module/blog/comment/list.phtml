@@ -1,15 +1,16 @@
 <?php
 /**
- * @var \umicms\orm\selector\CmsSelector $comments
- * @var umicms\project\module\blog\api\object\BlogComment $blogComment
+ * @var \umicms\hmvc\view\CmsTreeView[] $tree
+ * @var \umicms\hmvc\view\CmsTreeNode $node
  */
 ?>
-<?php if ($comments->getTotal()) :?>
+<?php if (count($tree) > 0) : ?>
     <ul>
-        <?php foreach ($comments as $blogComment) : ?>
+        <?php foreach ($tree as $node) : ?>
             <li>
-                <?= $this->widget('blog.comment.view', ['blogComment' => $blogComment, 'template' => 'view']); ?>
-                <?= $this->widget('blog.comment.add', ['blogPost' => $blogComment->post, 'blogComment' => $blogComment, 'template' => 'addComment']); ?>
+                <?= $this->widget('blog.comment.view', ['blogComment' => $node->item, 'template' => 'view']); ?>
+                <?= $this->widget('blog.comment.add', ['blogPost' => $node->item->post, 'blogComment' => $node->item, 'template' => 'addComment']); ?>
+                <?= $this->render('list.phtml', ['tree' => $node->children]); ?>
             </li>
         <?php endforeach;?>
     </ul>

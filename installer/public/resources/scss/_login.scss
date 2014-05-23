@@ -28,12 +28,16 @@ html{
 
 .auth-layout, .umi-main-view{
     &.off{
-        z-index: 99999;
+        top: 0;
+        left: 0;
         position: absolute;
         width: 100%;
         transition: opacity 0.4s linear;
-        ~ .auth-mask{
-            visibility: visible;
+        &.is-transition{
+            z-index: 99999;
+            ~ .auth-mask{
+                visibility: visible;
+            }
         }
     }
     &.fade-out{

@@ -2,7 +2,30 @@
     <h2 class="blog-post-title">{{ page.displayName }} </h2>
     {{ page.contents | raw }}
 
-    {% if (authenticated) %}
+    {% if (success) %}
+
+        {% if (authenticated) %}
+
+            <div class="alert alert-success">
+                <p>{{ translate("You have successfully registered and logged in") }}.</p>
+            </div>
+            <p>
+                {{ widget('users.profile.link', {'template' : 'link'}) }}
+            </p>
+            {{ widget('users.authorization.logoutForm', {'template' : 'logoutForm'}) }}
+
+        {% else %}
+
+            <div class="alert alert-warning">
+                <p>{{
+                        translate("Registration email sent to {email}. Open this email to finish signup.",
+                        {'email' : user.email]}
+                }}.</p>
+            </div>
+
+        {% endif %}
+
+
         {{ translate("You are already registered")  }}.
         <p>
             {{ widget('users.profile.link', {'template' : 'link'}) }}

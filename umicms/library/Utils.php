@@ -50,4 +50,25 @@ class Utils
     {
         return strlen($guid) && preg_match('#^\S{8}-\S{4}-\S{4}-\S{4}-\S{12}$#', $guid);
     }
+
+    /**
+     * Парсит строку адресов в массив, в котром значениями являются email, если имя для email не задано,
+     * или имя и email в качестве ключа.
+     * @param string $emailListString (пример строки: User <user@domail.com>, another.user@domail.com)
+     * @return array
+     */
+    public static function parseEmailList($emailListString)
+    {
+        $emailList = [];
+        if (preg_match_all('/([^,<>\s]+)\s*(<(.*)>)?,*\s*/', $emailListString, $matches)) {
+            foreach($matches[1] as $key => $value) {
+                if (!empty($matches[3][$key])) {
+                    $key = $matches[3][$key];
+                }
+                $emailList[$key]  = $value;
+            }
+        }
+
+        return $emailList;
+    }
 }

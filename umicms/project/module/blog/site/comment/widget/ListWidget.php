@@ -62,12 +62,7 @@ class ListWidget extends BaseSecureWidget
             );
         }
 
-        return $this->createResult(
-            $this->template,
-            [
-                'comments' => $this->api->getCommentByPost($this->blogPost)
-            ]
-        );
+        return $this->createTreeResult($this->template, $this->api->getCommentByPost($this->blogPost));
     }
 }
  

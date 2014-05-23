@@ -1,0 +1,14 @@
+<div class="form-group {{ element.valid ? 'hidden' : 'has-error' }}">
+    {% if (not element.valid) %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for message in element.errors %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <input {{ element.attributes | raw }}/>
+</div>
+

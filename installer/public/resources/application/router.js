@@ -45,15 +45,24 @@ define([], function(){
                  */
                 return $.get(UmiSettings.baseApiURL).then(function(results){
                     var result = results.result;
-                    self.controllerFor('application').set('settings', result);
-                    if(result.collections){
-                        UMI.modelsFactory(result.collections);
-                    }
-                    if(result.modules){
-                        self.controllerFor('dock').set('modules', result.modules);
+                    if(result){
+                        self.controllerFor('application').set('settings', result);
+                        if(result.collections){
+                            UMI.modelsFactory(result.collections);
+                        }
+                        if(result.modules){
+                            self.controllerFor('dock').set('modules', result.modules);
+                        }
+                    } else{
+                        try{
+                            throw new Error(results);
+                        } catch(error){
+                            transition.send('templateLogs', error);
+                        }
+
                     }
                 }, function(error){
-                    var becameError = new Error();
+                    var becameError = new Error(results);
                     error.stack = becameError.stack;
                     transition.send('templateLogs', error);
                 });
@@ -65,14 +74,13 @@ define([], function(){
                     var maskLayout = document.createElement('div');
                     maskLayout.className = 'auth-mask';
                     maskLayout = document.body.appendChild(maskLayout);
-                    $(applicationLayout).addClass('off');
+                    $(applicationLayout).addClass('off is-transition');
                     $.post(UmiSettings.baseApiURL + '/action/logout').then(function(){
                         require(['auth/main'], function(auth){
-                            auth();
+                            auth({appIsFreeze: true, appLayout: applicationLayout});
                             $(applicationLayout).addClass('fade-out');
                             Ember.run.later('', function(){
-                                UMI.reset();
-                                UMI.deferReadiness();
+                                $(applicationLayout).removeClass('is-transition');
                                 maskLayout.parentNode.removeChild(maskLayout);
                             }, 800);
                         });
@@ -256,6 +264,7 @@ define([], function(){
                 };
 
                 if(error.status === 403 || error.status === 401){
+                    // TODO: вынести на уровень настройки AJAX (для того чтобы это касалось и кастомных компонентов)
                     this.send('logout');
                     return;
                 }
@@ -501,7 +510,11 @@ define([], function(){
                     }
 
                     if(actionName === 'createForm'){
-                        var createdParams =  contextModel.get('id') !== 'root' ? {parent: contextModel} : null;
+                        var createdParams =  contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
+
+                        if(transition.queryParams.typeName){
+                            createdParams.type = transition.queryParams.typeName;
+                        }
                         data.createObject = self.store.createRecord(collectionName, createdParams);
                         if(transition.queryParams.typeName){
                             actionParams.type = transition.queryParams.typeName;
@@ -613,7 +626,7 @@ define([], function(){
         /**
          * При наличии доступа пользователя к настройкам системы, добаляем route к настройкам
          */
-        if('baseSettingsURL' in window.UmiSettings){
+        if('isSettingsAllowed' in window.UmiSettings){
             UMI.Router.map(function(){
                 this.resource('settings', {path: '/configure'}, function(){
                     this.route('component', {path: '/:component'});
@@ -669,7 +682,11 @@ define([], function(){
                     };
                     var component = findDepth(settings, 'name', params.component);
                     return $.get(component.resource).then(function(data){
+                        if(data.result.toolbar){
+                            data.result.form.toolbar = data.result.toolbar;
+                        }
                         Ember.set(component, 'form', data.result.form);
+
                         return component;
                     });
                 },

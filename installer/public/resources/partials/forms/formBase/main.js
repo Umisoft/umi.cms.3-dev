@@ -26,7 +26,7 @@ define(
                  * Toolbar кнопок для формы
                  * @method toolbar
                  */
-                toolbar: function(){}.property(),
+                toolbarBinding: 'toolbar',
                 /**
                  * Проверяет наличие toolbar
                  * @method hasToolbar
@@ -34,6 +34,10 @@ define(
                  */
                 hasToolbar: function(){
                     var toolbar = this.get('toolbar');
+                    // TODO: убрать как только back будет возвращать тулбар в виде массива
+                    if(Ember.typeOf(toolbar) === 'object'){
+                        toolbar = [toolbar];
+                    }
                     return toolbar && toolbar.length;
                 }.property('toolbar'),
                 /**
@@ -150,7 +154,7 @@ define(
                 },
 
                 textTemplate: function(){
-                    return '{{input value=object.value meta=view.meta}}';
+                    return '{{input value=object.value meta=view.meta name=view.meta.dataSource}}';
                 }.property(),
 
                 emailTemplate: function(){
@@ -182,7 +186,7 @@ define(
                 }.property(),
 
                 multiCheckboxTemplate: function(){
-                    return '{{multi-checkbox-element object=object meta=view.meta}}';
+                    return 'Элемент multi-checkbox не реализован{{!multi-checkbox-element object=object meta=view.meta}}';
                 }.property(),
 
                 radioTemplate: function(){
@@ -210,7 +214,7 @@ define(
                 }.property(),
 
                 colorTemplate: function(){
-                    return '{{input type="color" value=object.value meta=view.meta}}';
+                    return '{{input type="color" value=object.value meta=view.meta name=view.meta.dataSource}}';
                 }.property()
             });
         };

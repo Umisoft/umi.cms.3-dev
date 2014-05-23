@@ -9,7 +9,6 @@
 
 namespace umicms\form\element;
 
-use umi\form\element\BaseFormElement;
 use umi\form\element\BaseFormInput;
 use umi\form\FormEntityView;
 use umi\session\ISessionAware;
@@ -18,6 +17,7 @@ use umicms\captcha\ICaptchaAware;
 use umicms\captcha\TCaptchaAware;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
+use umicms\project\module\users\api\UsersModule;
 
 /**
  * Поле типа captcha.
@@ -41,7 +41,21 @@ class Captcha extends BaseFormInput implements ICaptchaAware, ISessionAware, IUr
      * @var string $value фраза каптчи, введенная пользователем
      */
     protected $value;
+    /**
+     * @var UsersModule $usersApi
+     */
+    protected $usersApi;
 
+    /**
+     * {@inheritdoc}
+     * @param UsersModule $usersApi
+     */
+    public function __construct($name, array $attributes = [], array $options = [], UsersModule $usersApi)
+    {
+        $this->usersApi = $usersApi;
+
+        parent::__construct($name, $attributes, $options);
+    }
     /**
      * {@inheritdoc}
      */
@@ -69,12 +83,10 @@ class Captcha extends BaseFormInput implements ICaptchaAware, ISessionAware, IUr
 
         $sessionKey = $this->getSessionKey();
 
-        if (!$this->hasSessionVar($sessionKey)) {
-            $options = $this->getOptions();
-            $this->setSessionVar($sessionKey, $options);
-        }
+        $options = $this->getOptions();
+        $this->setSessionVar($sessionKey, $options);
 
-        $view->isHuman = $this->validate($this->value);
+        $view->isHuman = $this->getIsHuman();
         $view->sessionKey = $sessionKey;
 
         $url = rtrim($this->getUrlManager()->getProjectUrl(), '/');
@@ -86,6 +98,10 @@ class Captcha extends BaseFormInput implements ICaptchaAware, ISessionAware, IUr
      */
     protected function validate($value)
     {
+        if ($this->getIsHuman()) {
+            return true;
+        }
+
         $sessionKey = $this->getSessionKey();
         $options = $this->getSessionVar($sessionKey, []);
 
@@ -94,11 +110,35 @@ class Captcha extends BaseFormInput implements ICaptchaAware, ISessionAware, IUr
             $result = $this->getCaptchaGenerator()->test($options['phrase'], $value);
         }
 
-        if (!$result) {
+        if ($result) {
+            $this->setSessionVar('successTests', $this->getSessionVar('successTests', 0) + 1);
+        } else {
             $this->messages = ['Invalid captcha test.'];
         }
 
         return $result;
+    }
+
+    /**
+     * Возвращает признак необходимости вывода каптчи, в зависимости от настроек.
+     * @return bool
+     */
+    protected function getIsHuman() {
+        $checkMode = $this->getCheckMode();
+
+        if ($checkMode === 'never') {
+            return true;
+        }
+
+        if ($this->getSessionVar('successTests', 0) >= $this->getHumanTestsCount()) {
+            return true;
+        }
+
+        if ($checkMode === 'all') {
+            return false;
+        }
+
+        return $this->usersApi->isAuthenticated();
     }
 
     /**
@@ -125,6 +165,24 @@ class Captcha extends BaseFormInput implements ICaptchaAware, ISessionAware, IUr
     protected function getSessionNamespacePath()
     {
         return 'umicms\captcha';
+    }
+
+    /**
+     * Возвращат режим проверки captcha.
+     * @return string all|never|guest
+     */
+    protected function getCheckMode()
+    {
+        return isset($this->options['checkMode']) ? $this->options['checkMode'] : 'guest';
+    }
+
+    /**
+     * Возвращает количество успешных проверок, после которых captcha не проверяется.
+     * @return int
+     */
+    protected function getHumanTestsCount()
+    {
+        return isset($this->options['humanTestsCount']) ? (int) $this->options['humanTestsCount'] : 1;
     }
 
 }

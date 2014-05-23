@@ -1,20 +1,16 @@
-{% if (element.type != 'hidden') %}
-    <div class="form-group {{ not element.valid ? 'has-error' }}">
-        <label> {{ element.label }} </label>
+<div class="form-group {{ not element.valid ? 'has-error' }}">
+    <label> {{ element.label }} </label>
 
-        {% if (not element.valid) %}
-            <div class="alert alert-danger">
-                <ul>
-                    {% for message in element.errors %}
-                        <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
+    {% if (not element.valid) %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for message in element.errors %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 
-        <input class="form-control" {{ element.attributes | raw }}/>
-    </div>
+    <input class="form-control" {{ element.attributes | raw }}/>
+</div>
 
-{% else %}
-    <input {{ element.attributes | raw }}/>
-{% endif %}

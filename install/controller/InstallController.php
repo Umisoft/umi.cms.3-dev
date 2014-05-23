@@ -150,6 +150,14 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $registrationPage->getProperty('componentName')->setValue('registration');
         $registrationPage->getProperty('componentPath')->setValue('users.registration');
 
+        $activationPage = $structureCollection->add('activate', 'system', $registrationPage)
+            ->setValue('displayName', 'Активация')
+            ->setValue('metaTitle', 'Активация')
+            ->setValue('h1', 'Активация');
+
+        $activationPage->getProperty('componentName')->setValue('activation');
+        $activationPage->getProperty('componentPath')->setValue('users.registration.activation');
+
         $profilePage = $structureCollection->add('profile', 'system', $usersPage)
             ->setValue('displayName', 'Профиль')
             ->setValue('metaTitle', 'Профиль')
@@ -174,6 +182,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             'project.site.users' => ['viewer'],
             'project.site.users.authorization' => ['viewer'],
             'project.site.users.registration' => ['viewer'],
+            'project.site.users.registration.activation' => ['viewer'],
 
             'project.site.structure' => ['viewer'],
             'project.site.structure.menu' => ['viewer'],

@@ -25,6 +25,7 @@ return [
         'view' => __NAMESPACE__ .  '\widget\RubricWidget',
         'newsList' => __NAMESPACE__ . '\widget\RubricNewsListWidget',
         'list' => __NAMESPACE__ .  '\widget\RubricListWidget',
+        'tree' => __NAMESPACE__ .  '\widget\RubricTreeWidget',
         'rss' => __NAMESPACE__ .  '\widget\RubricNewsRssUrlWidget'
     ],
 
@@ -37,6 +38,7 @@ return [
             'controller:rss',
             'widget:view',
             'widget:list',
+            'widget:tree',
             'widget:newsList',
             'widget:rss'
         ],
@@ -44,6 +46,7 @@ return [
             'viewer' => [
                 'widget:view' => [],
                 'widget:list' => [],
+                'widget:tree' => [],
                 'widget:newsList' => []
             ],
             'rssViewer' => [

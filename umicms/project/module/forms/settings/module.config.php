@@ -15,7 +15,7 @@ return [
     DefaultSettingsComponent::OPTION_CLASS => 'umicms\project\admin\settings\component\SettingsComponent',
 
     DefaultSettingsComponent::OPTION_COMPONENTS => [
-        'captcha' => '{#lazy:~/project/module/security/settings/captcha/component.config.php}'
+        'captcha' => '{#lazy:~/project/module/forms/settings/captcha/component.config.php}'
     ],
     DefaultSettingsComponent::OPTION_ACL => [
 
