@@ -12,7 +12,6 @@ use umi\form\element\html5\Color;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\form\element\Captcha;
 
 return [
     'options' => [
