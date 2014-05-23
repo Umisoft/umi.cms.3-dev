@@ -3,7 +3,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
 
     return function(accessError){
         $.ajaxSetup({
-            headers: {"X-Csrf-Token": null},
+            headers: {'X-Csrf-Token': null},
             error: function(){}
         });
 
@@ -186,6 +186,11 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(tempaltes){
                             var objectMerge = function(objectBase, objectProperty){
                                 for(var key in objectProperty){
                                     if(objectProperty.hasOwnProperty(key)){
+                                        if(key === 'token'){
+                                            $.ajaxSetup({
+                                                headers: {'X-Csrf-Token': objectProperty[key]}
+                                            });
+                                        }
                                         objectBase[key] = objectProperty[key];
                                     }
                                 }
