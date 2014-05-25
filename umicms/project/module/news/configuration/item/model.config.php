@@ -9,6 +9,8 @@
 return [
     'tableScheme' => '{#lazy:~/project/module/news/configuration/item/scheme.config.php}',
 
+    'metadata' => '{#lazy:~/project/module/news/configuration/item/metadata.config.php}',
+
     'fields' => [
 
     ]
