@@ -96,13 +96,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     public function __invoke()
     {
-        $newsModule = $this->getModule(NewsModule::className());
-        $newsModule->getModels()->migrateAll();
-
-
-        $this->getModelManager()->persist();
-        exit;
-
         try {
             $this->installDbStructure();
 
