@@ -96,6 +96,7 @@ class Captcha extends BaseFormInput implements ICaptchaAware, ISessionAware, IUr
         if ($result) {
             $this->setSessionVar('successTests', $this->getSessionVar('successTests', 0) + 1);
         } else {
+            $this->setSessionVar('successTests', 0);
             $this->messages = ['Invalid captcha test.'];
         }
 
