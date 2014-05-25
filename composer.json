@@ -29,7 +29,7 @@
     "repositories":[
         {
             "type": "git",
-            "url": "git@gl.umisoft.ru:umisoft/umi-framework-dev.git"
+            "url": "git@github.com:Umisoft/umi.framework-dev.git"
         }
     ]
 }
