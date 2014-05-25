@@ -12,6 +12,7 @@ namespace umicms\authentication;
 use umi\authentication\storage\SessionStorage;
 use umi\http\IHttpAware;
 use umi\http\THttpAware;
+use umicms\exception\NonexistentEntityException;
 use umicms\project\Bootstrap;
 use umicms\project\module\users\api\UsersModule;
 use umicms\project\module\users\api\object\Guest;
@@ -64,7 +65,18 @@ class CmsAuthStorage extends SessionStorage implements IHttpAware
             return false;
         }
 
-        return $this->hasSessionVar(self::ATTRIBUTE_NAME);
+        if ($this->hasSessionVar(self::ATTRIBUTE_NAME)) {
+            try {
+                $this->getIdentity();
+
+                return true;
+            } catch (NonexistentEntityException $e) {
+                $this->clearIdentity();
+            }
+        }
+
+        return false;
+
     }
 
 }
