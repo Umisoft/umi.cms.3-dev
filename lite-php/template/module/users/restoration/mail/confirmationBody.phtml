@@ -1,0 +1,22 @@
+<?php
+/**
+ * @var string $activationCode
+ * @var string $projectUrl
+ */
+
+?>
+
+<p><?= $this->translate('Hello')?>,</p>
+<p>
+    <?= $this->translate(
+        'There has been a request to reset the password on your {site} account. To do this please click the link below',
+        ['site' => $projectUrl])
+    ?>:
+    <br/>
+    <?= $this->widget('users.restoration.confirmation.link', ['template' => 'link', 'activationCode' => $activationCode]); ?>
+</p>
+<p>
+    <?= $this->translate('If you did nоt request to reset your password please ignore this message')?>.
+</p>
+
+
