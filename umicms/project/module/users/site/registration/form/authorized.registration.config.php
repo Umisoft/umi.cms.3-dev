@@ -1,9 +1,11 @@
 <?php
 
 use umi\filter\IFilterFactory;
+use umi\form\element\CSRF;
 use umi\form\element\Hidden;
 use umi\form\element\Submit;
 use umi\form\element\Text;
+use umicms\form\element\Captcha;
 use umicms\form\element\PasswordWithConfirmation;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -12,7 +14,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.user', 'collection', 'project.site.users.regisration', 'form'
+            'collection.user', 'collection', 'project.site.users.registration', 'form'
         ],
     ],
     'attributes' => [
@@ -98,6 +100,14 @@ return [
 
         BaseFormWidget::INPUT_REDIRECT_URL => [
             'type' => Hidden::TYPE_NAME
+        ],
+
+        'captcha' => [
+            'type' => Captcha::TYPE_NAME
+        ],
+
+        'csrf' => [
+            'type' => CSRF::TYPE_NAME
         ],
 
         'submit' => [

@@ -1,6 +1,7 @@
 <?php
 
 use umi\filter\IFilterFactory;
+use umi\form\element\CSRF;
 use umi\form\element\Hidden;
 use umi\form\element\Submit;
 use umi\form\element\Text;
@@ -75,6 +76,10 @@ return [
 
         BaseFormWidget::INPUT_REDIRECT_URL => [
             'type' => Hidden::TYPE_NAME
+        ],
+
+        'csrf' => [
+            'type' => CSRF::TYPE_NAME
         ],
 
         'submit' => [

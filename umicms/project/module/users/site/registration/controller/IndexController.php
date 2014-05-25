@@ -88,7 +88,7 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
             'page' => $this->getCurrentPage(),
             'user' => $this->user,
             'authenticated' => $this->api->isAuthenticated(),
-            'success' => (bool) $this->user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE),
+            'success' => (bool) $this->user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->getValue(),
         ];
     }
 
