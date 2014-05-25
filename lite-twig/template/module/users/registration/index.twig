@@ -35,7 +35,7 @@
 
         {% set errors = errors ?: null %}
 
-        {{ include('form/form.twig', {'form' : form})  }}
+        {{ include('form/form.twig', {'form' : form, 'errors' : errors})  }}
 
     {% endif %}
 

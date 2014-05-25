@@ -7,16 +7,17 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\users\site\registration\activation\controller;
+namespace umicms\project\module\users\site\restoration\confirmation\controller;
 
 use umi\http\Response;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
+use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\UsersModule;
 use umicms\project\site\controller\SitePageController;
 
 /**
- * Контроллер активации пользователя
+ * Контроллер сброса пароля пользователя
  */
 class IndexController extends SitePageController implements IObjectPersisterAware
 {
@@ -43,16 +44,15 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     {
         try {
 
-            $user = $this->api->activate($this->getRouteVar('activationCode'));
+            $user = $this->api->changePassword($this->getRouteVar('activationCode'));
             $this->getObjectPersister()->commit();
-            $this->api->setCurrentUser($user);
+
+            $this->sendNewPassword($user);
 
             return $this->createViewResponse(
                 'index',
                 [
-                    'page' => $this->getCurrentPage(),
-                    'authenticated' => $this->api->isAuthenticated(),
-                    'user' => $user
+                    'page' => $this->getCurrentPage()
                 ]
             );
 
@@ -61,7 +61,6 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
                 'index',
                 [
                     'page' => $this->getCurrentPage(),
-                    'authenticated' => $this->api->isAuthenticated(),
                     'errors' => [
                         $e->getMessage()
                     ]
@@ -69,5 +68,22 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
             )->setStatusCode(Response::HTTP_BAD_REQUEST);
         }
 
+    }
+
+    /**
+     * Отпраляет пользователю письмо с новым паролем
+     */
+    protected function sendNewPassword(AuthorizedUser $user)
+    {
+        $this->mail(
+            [$user->email => $user->displayName],
+            $this->api->user()->getMailSender(),
+            'mail/newPasswordSubject',
+            'mail/newPasswordBody',
+            [
+                'password' => $user->getPassword(),
+                'user' => $user
+            ]
+        );
     }
 }

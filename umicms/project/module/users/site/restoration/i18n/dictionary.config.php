@@ -1,0 +1,42 @@
+<?php
+/**
+ * UMI.Framework (http://umi-framework.ru/)
+ *
+ * @link http://github.com/Umisoft/framework for the canonical source repository
+ * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
+ * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
+ */
+
+return [
+
+    'en-US' => [
+        'User with given login or email does not exist.' => 'User with given login or email does not exist.',
+        'User with given login or email has been block or has not activated.' => 'User with given login or email has been block or has not activated.',
+        'Hello' => 'Hello',
+        'Login or email' => 'Login or email',
+        'Forgot your password?' => 'Forgot your password?',
+        'An email with instructions on how to reset your password was sent to your email' =>
+        'An email with instructions on how to reset your password was sent to your email',
+        'Confirm password reset request' => 'Confirm password reset request',
+        'There has been a request to reset the password on your {site} account. To do this please click the link below' =>
+            'There has been a request to reset the password on your {site} account. To do this please click the link below',
+        'If you did nоt request to reset your password please ignore this message' =>
+            'If you did nоt request to reset your password please ignore this message'
+    ],
+
+    'ru-RU' => [
+        'User with given login or email does not exist.' => 'Пользователя с заданным логином или email не существует.',
+        'User with given login or email has been block or has not activated.' => 'Пользователь с заданным логином или email не активирован или заблокирован.',
+        'Hello' => 'Здравствуйте',
+        'Login or email' => 'Логин или email',
+        'Forgot your password?' => 'Забыли пароль?',
+        'An email with instructions on how to reset your password was sent to your email' =>
+        'Письмо с инструкциями по сбросу пароля было выслано на Ваш электронный адрес',
+        'Confirm password reset request' => 'Подтверждение запроса смены пароля',
+        'There has been a request to reset the password on your {site} account. To do this please click the link below' =>
+            'Для Вашего аккаунта на {site} был сделан запрос на смену пароля. Чтобы сменить пароль перейдите по ссылке ниже',
+        'If you did nоt request to reset your password please ignore this message' =>
+            'Если Вы не запрашивали смену пароля, просто проигнорируете данное письмо '
+    ]
+
+];

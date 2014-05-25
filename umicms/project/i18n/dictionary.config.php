@@ -69,6 +69,8 @@ return [
         'project.site.users.authorization' => '{#lazy:~/project/module/users/site/authorization/i18n/dictionary.config.php}',
         'project.site.users.registration' => '{#lazy:~/project/module/users/site/registration/i18n/dictionary.config.php}',
         'project.site.users.registration.activation' => '{#lazy:~/project/module/users/site/registration/activation/i18n/dictionary.config.php}',
+        'project.site.users.restoration' => '{#lazy:~/project/module/users/site/restoration/i18n/dictionary.config.php}',
+        'project.site.users.restoration.confirmation' => '{#lazy:~/project/module/users/site/restoration/confirmation/i18n/dictionary.config.php}',
         'project.site.users.profile' => '{#lazy:~/project/module/users/site/profile/i18n/dictionary.config.php}',
 
         'project.site.blog.comment' => '{#lazy:~/project/module/blog/site/comment/i18n/dictionary.config.php}',
@@ -147,6 +149,7 @@ return [
 
                 'Save' => 'Save',
                 'Add' => 'Add',
+                'Send request' => 'Send request'
             ],
             'ru-RU' => [
                 'common' => 'Общее',
@@ -156,6 +159,7 @@ return [
 
                 'Save' => 'Сохранить',
                 'Add' => 'Добавить',
+                'Send request' => 'Отправить запрос'
             ]
         ],
 
