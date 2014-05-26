@@ -10,7 +10,7 @@ define(['App'], function(UMI){
                 return this.get('object.' + this.get("property"));
             }.property('object', 'property'),
             classNames: ['ckeditor-row'],
-            layout: Ember.Handlebars.compile('{{textarea value=valueObject placeholder=meta.placeholder}}'),
+            layout: Ember.Handlebars.compile('{{textarea value=valueObject placeholder=meta.placeholder name=meta.attributes.name}}'),
 
             didInsertElement: function(){
                 var self = this;

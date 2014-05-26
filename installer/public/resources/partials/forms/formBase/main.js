@@ -75,7 +75,7 @@ define(
 
                 action: function(){
                     return this.get('context.model.attributes.action');
-                }.property(''),
+                }.property('context.model'),
 
                 loading: false,
 
@@ -154,7 +154,7 @@ define(
                 },
 
                 textTemplate: function(){
-                    return '{{input value=object.value meta=view.meta name=view.meta.dataSource}}';
+                    return '{{input value=object.value meta=view.meta name=view.meta.attributes.name}}';
                 }.property(),
 
                 emailTemplate: function(){
@@ -174,11 +174,11 @@ define(
                 }.property(),
 
                 selectTemplate: function(){
-                    return '{{view "select" object=object meta=view.meta}}';
+                    return '{{view "select" object=object meta=view.meta name=view.meta.attributes.name}}';
                 }.property(),
 
                 multiSelectTemplate: function(){
-                    return '{{view "multiSelect" object=object meta=view.meta}}';
+                    return '{{view "multiSelect" object=object meta=view.meta name=view.meta.attributes.name}}';
                 }.property(),
 
                 checkboxTemplate: function(){
@@ -214,7 +214,7 @@ define(
                 }.property(),
 
                 colorTemplate: function(){
-                    return '{{input type="color" value=object.value meta=view.meta name=view.meta.dataSource}}';
+                    return '{{input type="color" value=object.value meta=view.meta name=meta.attributes.name}}';
                 }.property()
             });
         };

@@ -1,0 +1,14 @@
+
+<p>{{ translate('Hello')?}},</p>
+<p>
+    {{ translate(
+        'There has been a request to reset the password on your {site} account. To do this please click the link below',
+    {'site' : projectUrl})
+    }}:
+    <br/>
+    {{ widget('users.restoration.confirmation.link', {'template' : 'link', 'activationCode' : activationCode}) }}
+</p>
+<p>
+    {{ translate('If you did nоt request to reset your password please ignore this message') }}.
+</p>
+

@@ -12,6 +12,7 @@ namespace umicms\project\module\users\api\collection;
 use umi\config\entity\IConfig;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
+use umi\orm\selector\condition\IFieldConditionGroup;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\NotAllowedOperationException;
@@ -87,13 +88,14 @@ class UserCollection extends SimpleCollection
     }
 
     /**
-     * Возвращает неактивного пользователя по коду активации.
+     * Возвращает пользователя по коду активации.
      * @param string $activationCode
+     * @param bool $active активность пользователя
      * @throws InvalidArgumentException если код активации невалидный
      * @throws NonexistentEntityException если пользователя с таким ключом активации не существует
      * @return AuthorizedUser
      */
-    public function getUserByActivationCode($activationCode)
+    public function getUserByActivationCode($activationCode, $active = false)
     {
         if (!Utils::checkGUIDFormat($activationCode)) {
             throw new InvalidArgumentException(
@@ -101,9 +103,13 @@ class UserCollection extends SimpleCollection
             );
         }
 
-        $user = $this->selectInactive()
+        $user = $this->selectInternal()
             ->where(AuthorizedUser::FIELD_ACTIVATION_CODE)
                 ->equals($activationCode)
+            ->where(AuthorizedUser::FIELD_ACTIVE)
+                ->equals($active)
+            ->where(AuthorizedUser::FIELD_TRASHED)
+                ->equals(false)
             ->limit(1)
             ->getResult()
             ->fetch();
@@ -111,6 +117,34 @@ class UserCollection extends SimpleCollection
         if (!$user instanceof AuthorizedUser) {
             throw new NonexistentEntityException(
                 $this->translate('Cannot find user by activation code.')
+            );
+        }
+
+        return $user;
+    }
+
+    /**
+     * Возвращает пользователя по логину или email
+     * @param string $emailOrLogin логин или email
+     * @throws NonexistentEntityException если не существует пользователя ни с таким логином ни email
+     * @return AuthorizedUser
+     */
+    public function getUserByLoginOrEmail($emailOrLogin)
+    {
+        $user = $this->selectInternal()
+            ->begin(IFieldConditionGroup::MODE_OR)
+            ->where(AuthorizedUser::FIELD_LOGIN)
+                ->equals($emailOrLogin)
+            ->where(AuthorizedUser::FIELD_EMAIL)
+                ->equals($emailOrLogin)
+            ->end()
+            ->limit(1)
+            ->getResult()
+            ->fetch();
+
+        if (!$user instanceof AuthorizedUser) {
+            throw new NonexistentEntityException(
+                $this->translate('Cannot find user by login or email.')
             );
         }
 

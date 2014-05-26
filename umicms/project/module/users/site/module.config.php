@@ -17,6 +17,7 @@ return [
     SiteComponent::OPTION_COMPONENTS => [
         'authorization' => '{#lazy:~/project/module/users/site/authorization/component.config.php}',
         'registration' => '{#lazy:~/project/module/users/site/registration/component.config.php}',
+        'restoration' => '{#lazy:~/project/module/users/site/restoration/component.config.php}',
         'profile' => '{#lazy:~/project/module/users/site/profile/component.config.php}',
     ],
 

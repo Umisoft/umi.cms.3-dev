@@ -11,7 +11,6 @@ return [
 
     'en-US' => [
         'Register' => 'Register',
-        'Password confirmation' => 'Password confirmation',
         'Confirm user registration' => 'Confirm user registration',
         'User registration' => 'User registration',
         'In order to complete your registration, visit the following URL' => 'In order to complete your registration, visit the following URL',
@@ -25,7 +24,6 @@ return [
     'ru-RU' => [
         'Register' => 'Регистрация',
         'You are already registered' => 'Вы уже зарегистрированы',
-        'Password confirmation' => 'Подтверждение пароля',
         'Confirm user registration' => 'Подтверждение регистрации пользователя',
         'User registration' => 'Регистрации пользователя',
         'In order to complete your registration, visit the following URL' => 'Для того чтобы завершить регистрацию, перейдите по следующей ссылке',

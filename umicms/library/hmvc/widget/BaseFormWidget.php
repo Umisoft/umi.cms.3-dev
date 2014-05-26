@@ -21,6 +21,20 @@ abstract class BaseFormWidget extends BaseSecureWidget
      * Имя инпута для хранения URL для редиректа после успешной обработки формы
      */
     const INPUT_REDIRECT_URL = 'redirectUrl';
+
+    /**
+     * Не выполнять редирект в случае успешного сохранения формы
+     */
+    const NO_REDIRECT = 'noRedirect';
+    /**
+     * Выполнять редирект на URL источника запроса
+     */
+    const REFERER_REDIRECT = 'refererRedirect';
+    /**
+     * Выполнять редирект на URL, определенный по умолчанию в контроллере-обработчике
+     */
+    const DEFAULT_REDIRECT = 'defaultRedirect';
+
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
@@ -28,7 +42,7 @@ abstract class BaseFormWidget extends BaseSecureWidget
     /**
      * @var string $redirectUrl URL для редиректа после успешной обработки формы
      */
-    public $redirectUrl;
+    public $redirectUrl = self::NO_REDIRECT;
 
     /**
      * Возвращает форму для отображения
@@ -49,7 +63,8 @@ abstract class BaseFormWidget extends BaseSecureWidget
              * @var IFormElement $redirectUrlInput
              */
             $redirectUrlInput = $form->get(self::INPUT_REDIRECT_URL);
-            $redirectUrl = $this->redirectUrl ?: $this->getUrlManager()->getCurrentUrl(true);
+            $redirectUrl = ($this->redirectUrl === self::REFERER_REDIRECT) ?
+                $this->getUrlManager()->getCurrentUrl(true) : $this->redirectUrl;
 
             $redirectUrlInput->setValue($redirectUrl);
         }

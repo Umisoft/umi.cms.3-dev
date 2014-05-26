@@ -158,6 +158,22 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $activationPage->getProperty('componentName')->setValue('activation');
         $activationPage->getProperty('componentPath')->setValue('users.registration.activation');
 
+        $resetPasswordRequestPage = $structureCollection->add('restore', 'system', $usersPage)
+            ->setValue('displayName', 'Запрос смены пароля')
+            ->setValue('metaTitle', 'Запрос смены пароля')
+            ->setValue('h1', 'Запрос смены пароля');
+
+        $resetPasswordRequestPage->getProperty('componentName')->setValue('restoration');
+        $resetPasswordRequestPage->getProperty('componentPath')->setValue('users.restoration');
+
+        $restPasswordConfirmationPage = $structureCollection->add('confirm', 'system', $resetPasswordRequestPage)
+            ->setValue('displayName', 'Подтверждение смены пароля')
+            ->setValue('metaTitle', 'Подтверждение смены пароля')
+            ->setValue('h1', 'Подтверждение смены пароля');
+
+        $restPasswordConfirmationPage->getProperty('componentName')->setValue('confirmation');
+        $restPasswordConfirmationPage->getProperty('componentPath')->setValue('users.restoration.confirmation');
+
         $profilePage = $structureCollection->add('profile', 'system', $usersPage)
             ->setValue('displayName', 'Профиль')
             ->setValue('metaTitle', 'Профиль')
@@ -165,6 +181,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $profilePage->getProperty('componentName')->setValue('profile');
         $profilePage->getProperty('componentPath')->setValue('users.profile');
+
+        $passwordChangePage = $structureCollection->add('pass', 'system', $profilePage)
+            ->setValue('displayName', 'Смена пароля')
+            ->setValue('metaTitle', 'Смена пароля')
+            ->setValue('h1', 'Смена пароля');
+
+        $passwordChangePage->getProperty('componentName')->setValue('password');
+        $passwordChangePage->getProperty('componentPath')->setValue('users.profile.password');
+
 
         /**
          * @var UserGroup $visitors
@@ -183,6 +208,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             'project.site.users.authorization' => ['viewer'],
             'project.site.users.registration' => ['viewer'],
             'project.site.users.registration.activation' => ['viewer'],
+            'project.site.users.restoration' => ['viewer'],
+            'project.site.users.restoration.confirmation' => ['viewer'],
 
             'project.site.structure' => ['viewer'],
             'project.site.structure.menu' => ['viewer'],
@@ -210,7 +237,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $registeredUsers->getProperty('locked')->setValue(true);
 
         $registeredUsers->roles = [
-            'project.site.users.profile' => ['viewer']
+            'project.site.users.profile' => ['viewer'],
+            'project.site.users.profile.password' => ['viewer'],
         ];
 
         /**

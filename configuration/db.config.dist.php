@@ -9,12 +9,11 @@ return [
         'connection' => [
             'type' => DbalTools::CONNECTION_TYPE_PDOMYSQL,
             'options' => [
-                'dbname' => 'umi',
-                'user' => 'root',
-                'password' => 'root',
-                'host' => 'localhost',
-                'charset' => 'utf8',
-                'port' => 8889
+                'dbname' => 'srv09realloc',
+                'user' => 'srv09realloc',
+                'password' => 'srv09realloc',
+                'host' => 'srv01.megaserver.umisoft.ru',
+                'charset' => 'utf8'
             ]
         ]
     ]

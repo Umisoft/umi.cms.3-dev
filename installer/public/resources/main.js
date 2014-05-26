@@ -13,12 +13,12 @@ require.config({
         Ember:      'libs/ember/ember',
         DS:         'libs/ember-data/ember-data',
 
-        iscroll:    'libs/iscroll-probe-5.1.1',
+        iscroll:    'libsStatic/iscroll-probe-5.1.1',
         ckEditor:   'libs/ckeditor/ckeditor',
-        datepicker: 'libs/datepicker',
+        datepicker: 'libsStatic/datepicker',
         timepicker: 'libs/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
         moment:     'libs/momentjs/min/moment-with-langs.min',
-        elFinder:   'libs/elFinder',
+        elFinder:   'libsStatic/elFinder',
         chartJs:    'libs/chartjs/Chart'
     },
 
