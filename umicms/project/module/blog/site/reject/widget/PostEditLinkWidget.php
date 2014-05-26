@@ -10,17 +10,17 @@
 namespace umicms\project\module\blog\site\reject\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
  * Виджет для вывода ссылки на редактирование отклонённого поста.
  */
-class PostEditLinkWidget extends BaseSecureWidget
+class PostEditLinkWidget extends BaseLinkWidget
 {
     /**
-     * @var string $template имя шаблона, по которому выводится виджет
+     * {@inheritdoc}
      */
     public $template = 'editPostLink';
     /**
@@ -44,7 +44,7 @@ class PostEditLinkWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getLinkUrl()
     {
         if (is_string($this->blogPost)) {
             $this->blogPost = $this->api->post()->getRejectedPost($this->blogPost);
@@ -62,13 +62,7 @@ class PostEditLinkWidget extends BaseSecureWidget
             );
         }
 
-        $url = $this->blogPost->getId();
-        return $this->createResult(
-            $this->template,
-            [
-                'url' => $this->getUrl('edit', ['id' => $url])
-            ]
-        );
+        return $this->getUrl('edit', ['id' => $this->blogPost->getId()], $this->absolute);
     }
 }
  

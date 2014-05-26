@@ -24,7 +24,7 @@ return [
         'postList' => __NAMESPACE__ . '\widget\TagPostListWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'cloud' => __NAMESPACE__ . '\widget\TagCloudWidget',
-        'rss' => __NAMESPACE__ . '\widget\TagListRssUrlWidget'
+        'rss' => __NAMESPACE__ . '\widget\TagListRssLinkWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [

@@ -9,19 +9,15 @@
 
 namespace umicms\project\module\users\site\restoration\confirmation\widget;
 
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет вывода ссылки на подтверждение смены пароля.
  */
-class LinkWidget extends BaseSecureWidget
+class LinkWidget extends BaseLinkWidget
 {
     /**
-     * @var string $template имя шаблона, по которому выводится виджет
-     */
-    public $template = 'link';
-    /**
-     * @var bool $absolute генерировать ли абсолютный URL для ссылки
+     * {@inheritdoc}
      */
     public $absolute = true;
     /**
@@ -32,14 +28,10 @@ class LinkWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getLinkUrl()
     {
-        return $this->createResult(
-            $this->template,
-            [
-                'url' => $this->getUrl('index', ['activationCode' => $this->activationCode], $this->absolute)
-            ]
-        );
+        return $this->getUrl('index', ['activationCode' => $this->activationCode], $this->absolute);
     }
+
 }
  
