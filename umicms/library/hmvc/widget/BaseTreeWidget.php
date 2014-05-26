@@ -9,6 +9,8 @@
 
 namespace umicms\hmvc\widget;
 
+use umi\orm\collection\ICollection;
+use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
 use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\orm\object\CmsHierarchicObject;
@@ -25,13 +27,13 @@ abstract class BaseTreeWidget extends BaseSecureWidget
      */
     public $template = 'tree';
     /**
-     * @var CmsHierarchicObject $parentNode родительская нода.
-     * Если не указано, строится полное дерево.
+     * Если не указано, строится полное дерево
+     * @var CmsHierarchicObject $parentNode родительская нода или GUID родительской ноды
      */
     public $parentNode;
     /**
-     * @var int $depth глубина вложения.
-     * Если не указано, строится на всю глубину вложенности.
+     * Если не указано, строится на всю глубину вложенности
+     * @var int $depth глубина вложения
      */
     public $depth;
 
@@ -55,6 +57,8 @@ abstract class BaseTreeWidget extends BaseSecureWidget
                 'Cannot create tree. Collection is not hierarchical'
             ));
         }
+
+        $this->checkParentNode($collection);
 
         $result = $selector;
 
@@ -80,6 +84,30 @@ abstract class BaseTreeWidget extends BaseSecureWidget
     {
         //TODO применение фильтров
         return $selector;
+    }
+
+    /**
+     * Проверяет родительскую ноду. Если был указан GUID получает объект.
+     * @param ICollection $collection коллекция для получения родительской ноды
+     * @throws InvalidArgumentException в случае если родительская нода не иерархический объект
+     */
+    private function checkParentNode($collection)
+    {
+        if (is_string($this->parentNode)) {
+            $this->parentNode = $collection->get($this->parentNode);
+        }
+
+        if (isset($this->parentNode) && !$this->parentNode instanceof CmsHierarchicObject) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Widget parameter "{param}" should be instance of "{class}".',
+                    [
+                        'param' => 'parentNode',
+                        'class' => 'CmsHierarchicObject'
+                    ]
+                )
+            );
+        }
     }
 }
  

@@ -9,10 +9,8 @@
 
 namespace umicms\project\module\news\site\rubric\widget;
 
-use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseTreeWidget;
 use umicms\project\module\news\api\NewsModule;
-use umicms\project\module\news\api\object\NewsRubric;
 
 /**
  * Виджет для вывода дерева новостных рубрик.
@@ -43,22 +41,6 @@ class RubricTreeWidget extends BaseTreeWidget
      */
     protected function getSelector()
     {
-        if (is_string($this->parentNode)) {
-            $this->parentNode = $this->api->rubric()->get($this->parentNode);
-        }
-
-        if (isset($this->parentNode) && !$this->parentNode instanceof NewsRubric) {
-            throw new InvalidArgumentException(
-                $this->translate(
-                    'Widget parameter "{param}" should be instance of "{class}".',
-                    [
-                        'param' => 'parentRubric',
-                        'class' => 'NewsRubric'
-                    ]
-                )
-            );
-        }
-
         return $this->api->rubric()->select();
     }
 }
