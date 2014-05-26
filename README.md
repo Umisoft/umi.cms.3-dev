@@ -14,9 +14,9 @@ Official UMI.CMS 3 development repository
 cd installer/public/resources
 ```
 
-3) Install Node.JS packages:
+3) Install "Bower" package manager:
 ```sh
-npm install
+$ npm install -g bower
 ```
 
 4) Install front-end vendors:
