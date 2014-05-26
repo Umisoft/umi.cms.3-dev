@@ -24,7 +24,7 @@ define(['App', 'text!./fileElement.hbs'], function(UMI, fileElement){
             inputView: Ember.View.extend({
                 template: function(){
                     var dataSource = this.get('parentView.meta.dataSource');
-                    return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection"}}');
+                    return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection" name=meta.attributes.name}}');
                 }.property()
             })
         });
