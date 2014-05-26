@@ -41,7 +41,7 @@ $loader = require $autoLoaderPath;
 $directoryCms = dirname(dirname(__DIR__)) . '/umicms';
 $directoryProjects = dirname(dirname(__DIR__));
 
-$toolkitPath = $directoryProjects . '/vendor/umi/framework-dev/library';
+$toolkitPath = $directoryProjects . '/vendor/umisoft/umi.framework-dev/library';
 
 defined('CMS_LIBRARY_DIR') or define('CMS_LIBRARY_DIR', $directoryCms . '/library');
 defined('FRAMEWORK_LIBRARY_DIR') or define('FRAMEWORK_LIBRARY_DIR', $toolkitPath);
