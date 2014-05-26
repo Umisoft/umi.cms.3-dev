@@ -1843,6 +1843,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `order` int(10) unsigned DEFAULT NULL,
                     `level` int(10) unsigned DEFAULT NULL,
                     `child_count` int(10) unsigned DEFAULT '0',
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `name` varchar(255) DEFAULT NULL,
                     `display_name` varchar(255) DEFAULT NULL,
                     `display_name_en` varchar(255) DEFAULT NULL,
                     `created` datetime DEFAULT NULL,
@@ -1856,6 +1858,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `menu_guid` (`guid`),
+                    UNIQUE KEY `menu_name` (`name`),
                     UNIQUE KEY `menu_mpath` (`mpath`),
                     UNIQUE KEY `menu_pid_slug` (`pid`, `slug`),
                     KEY `menu_parent` (`pid`),

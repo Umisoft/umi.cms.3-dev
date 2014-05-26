@@ -50,7 +50,7 @@ return [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'pid',
             'accessor' => 'getParent',
-            'target' => 'structure',
+            'target' => Menu::TYPE,
             'readOnly' => true
         ],
         BaseMenu::FIELD_MPATH => [
@@ -89,6 +89,18 @@ return [
             'accessor' => 'getLevel',
             'readOnly' => true
         ],
+        BaseMenu::FIELD_ACTIVE => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'active',
+            'defaultValue' => 1
+        ],
+        Menu::FIELD_NAME => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'name',
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ],
+        ],
         BaseMenu::FIELD_DISPLAY_NAME => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name',
@@ -113,7 +125,7 @@ return [
         ],
         BaseMenu::FIELD_CHILDREN => [
             'type' => IField::TYPE_HAS_MANY,
-            'target' => 'structure',
+            'target' => Menu::TYPE,
             'targetField' => BaseMenu::FIELD_PARENT,
             'readOnly' => true
         ],
@@ -127,8 +139,7 @@ return [
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
-
-        MenuInternalItem::FIELD_COLLECTION_NAME => [
+        MenuInternalItem::FIELD_COLLECTION_NAME_ITEM => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'collection_name'
         ],
@@ -149,6 +160,7 @@ return [
                 BaseMenu::FIELD_GUID,
                 BaseMenu::FIELD_TYPE,
                 BaseMenu::FIELD_VERSION,
+                BaseMenu::FIELD_ACTIVE,
                 BaseMenu::FIELD_DISPLAY_NAME,
                 BaseMenu::FIELD_PARENT,
                 BaseMenu::FIELD_MPATH,
@@ -171,6 +183,9 @@ return [
                 Menu::FIELD_GUID,
                 Menu::FIELD_TYPE,
                 Menu::FIELD_VERSION,
+                Menu::FIELD_ACTIVE,
+                Menu::FIELD_PARENT,
+                Menu::FIELD_NAME,
                 Menu::FIELD_DISPLAY_NAME,
                 Menu::FIELD_PARENT,
                 Menu::FIELD_MPATH,
@@ -193,6 +208,8 @@ return [
                 MenuInternalItem::FIELD_GUID,
                 MenuInternalItem::FIELD_TYPE,
                 MenuInternalItem::FIELD_VERSION,
+                MenuInternalItem::FIELD_ACTIVE,
+                MenuInternalItem::FIELD_PARENT,
                 MenuInternalItem::FIELD_DISPLAY_NAME,
                 MenuInternalItem::FIELD_PARENT,
                 MenuInternalItem::FIELD_MPATH,
@@ -206,7 +223,7 @@ return [
                 MenuInternalItem::FIELD_CHILDREN,
                 MenuInternalItem::FIELD_OWNER,
                 MenuInternalItem::FIELD_EDITOR,
-                MenuInternalItem::FIELD_COLLECTION_NAME,
+                MenuInternalItem::FIELD_COLLECTION_NAME_ITEM,
                 MenuInternalItem::FIELD_ITEM_ID
             ]
         ],
@@ -217,6 +234,8 @@ return [
                 MenuExternalItem::FIELD_GUID,
                 MenuExternalItem::FIELD_TYPE,
                 MenuExternalItem::FIELD_VERSION,
+                MenuExternalItem::FIELD_ACTIVE,
+                MenuExternalItem::FIELD_PARENT,
                 MenuExternalItem::FIELD_DISPLAY_NAME,
                 MenuExternalItem::FIELD_PARENT,
                 MenuExternalItem::FIELD_MPATH,

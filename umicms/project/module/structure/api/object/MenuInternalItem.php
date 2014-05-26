@@ -13,6 +13,9 @@ use umicms\orm\object\TCmsObject;
 
 /**
  * Класс описывающий пункт меню на внутренний ресурс.
+ *
+ * @property string $collectionNameItem имя коллекции
+ * @property int $itemId идентификатор элемента коллекции
  */
 class MenuInternalItem extends BaseMenu
 {
@@ -23,7 +26,7 @@ class MenuInternalItem extends BaseMenu
     /**
      *  Имя поля для хранения пути компонента-обработчика
      */
-    const FIELD_COLLECTION_NAME = 'collectionName';
+    const FIELD_COLLECTION_NAME_ITEM = 'collectionNameItem';
     /**
      *  Имя поля для хранения идентификатора элемента коллекции
      */

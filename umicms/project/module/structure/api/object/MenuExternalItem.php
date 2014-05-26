@@ -13,6 +13,8 @@ use umicms\orm\object\TCmsObject;
 
 /**
  * Класс описывающий пункт меню на сторонний ресурс.
+ *
+ * @property string $urlResource ссылка на сторонний ресурс
  */
 class MenuExternalItem extends BaseMenu
 {

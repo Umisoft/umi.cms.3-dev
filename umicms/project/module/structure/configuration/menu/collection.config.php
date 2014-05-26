@@ -9,6 +9,8 @@
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
 use umicms\project\module\structure\api\object\Menu;
+use umicms\project\module\structure\api\object\MenuExternalItem;
+use umicms\project\module\structure\api\object\MenuInternalItem;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
@@ -23,6 +25,14 @@ return [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/menu/form/menu.edit.config.php}',
             ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/menu/form/menu.create.config.php}'
         ],
+        MenuInternalItem::TYPE => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/menu/form/menuInternal.edit.config.php}',
+            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/menu/form/menuInternal.create.config.php}'
+        ],
+        MenuExternalItem::TYPE => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/menu/form/menuExternal.edit.config.php}',
+            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/menu/form/menuExternal.create.config.php}'
+        ]
     ],
     'dictionaries' => [
         'collection.menu', 'collection'

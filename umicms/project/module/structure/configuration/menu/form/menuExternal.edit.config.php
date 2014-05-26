@@ -9,7 +9,7 @@
 
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\structure\api\object\Menu;
+use umicms\project\module\structure\api\object\MenuExternalItem;
 
 return [
 
@@ -25,20 +25,27 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'common',
             'elements' => [
-                Menu::FIELD_DISPLAY_NAME => [
+                MenuExternalItem::FIELD_DISPLAY_NAME => [
                     'type' => Text::TYPE_NAME,
-                    'label' => Menu::FIELD_DISPLAY_NAME,
+                    'label' => MenuExternalItem::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => Menu::FIELD_DISPLAY_NAME
+                        'dataSource' => MenuExternalItem::FIELD_DISPLAY_NAME
                     ],
-                ],
-                Menu::FIELD_NAME => [
+                ]
+            ]
+        ],
+
+        'settings' => [
+            'type' => FieldSet::TYPE_NAME,
+            'label' => 'settings',
+            'elements' => [
+                MenuExternalItem::FIELD_URL_RESOURCE => [
                     'type' => Text::TYPE_NAME,
-                    'label' => Menu::FIELD_NAME,
+                    'label' => MenuExternalItem::FIELD_URL_RESOURCE,
                     'options' => [
-                        'dataSource' => Menu::FIELD_NAME
+                        'dataSource' => MenuExternalItem::FIELD_URL_RESOURCE
                     ],
-                ],
+                ]
             ]
         ]
     ]

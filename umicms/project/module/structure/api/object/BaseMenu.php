@@ -9,12 +9,13 @@
 
 namespace umicms\project\module\structure\api\object;
 
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 
 /**
  * Базовый класс меню.
  */
-abstract class BaseMenu extends CmsHierarchicObject
+abstract class BaseMenu extends CmsHierarchicObject implements IActiveAccessibleObject
 {
 }
  

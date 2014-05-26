@@ -20,5 +20,9 @@ class Menu extends BaseMenu
      * Тип объекта
      */
     const TYPE = 'menu';
+    /**
+     * Имя поля для хранения имени меню
+     */
+    const FIELD_NAME = 'name';
 }
  

@@ -72,7 +72,7 @@ class AutoMenuWidget extends BaseSecureWidget
         return $this->createResult(
             $this->template,
             [
-                'menu' => $this->api->menu()->buildMenu($this->branch, $this->depth)
+                'menu' => $this->api->autoMenu()->buildMenu($this->branch, $this->depth)
             ]
         );
     }

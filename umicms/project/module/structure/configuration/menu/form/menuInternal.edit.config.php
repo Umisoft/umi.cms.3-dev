@@ -9,7 +9,7 @@
 
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\structure\api\object\Menu;
+use umicms\project\module\structure\api\object\MenuInternalItem;
 
 return [
 
@@ -25,25 +25,32 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'common',
             'elements' => [
-                Menu::FIELD_DISPLAY_NAME => [
+                MenuInternalItem::FIELD_DISPLAY_NAME => [
                     'type' => Text::TYPE_NAME,
-                    'label' => Menu::FIELD_DISPLAY_NAME,
+                    'label' => MenuInternalItem::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => Menu::FIELD_DISPLAY_NAME
+                        'dataSource' => MenuInternalItem::FIELD_DISPLAY_NAME
+                    ],
+                ]
+            ]
+        ],
+
+        'settings' => [
+            'type' => FieldSet::TYPE_NAME,
+            'label' => 'settings',
+            'elements' => [
+                MenuInternalItem::FIELD_COLLECTION_NAME_ITEM => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => MenuInternalItem::FIELD_COLLECTION_NAME_ITEM,
+                    'options' => [
+                        'dataSource' => MenuInternalItem::FIELD_COLLECTION_NAME_ITEM
                     ],
                 ],
-                Menu::FIELD_NAME => [
+                MenuInternalItem::FIELD_ITEM_ID => [
                     'type' => Text::TYPE_NAME,
-                    'label' => Menu::FIELD_NAME,
+                    'label' => MenuInternalItem::FIELD_ITEM_ID,
                     'options' => [
-                        'dataSource' => Menu::FIELD_NAME
-                    ],
-                ],
-                Menu::FIELD_SLUG => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => Menu::FIELD_SLUG,
-                    'options' => [
-                        'dataSource' => Menu::FIELD_SLUG
+                        'dataSource' => MenuInternalItem::FIELD_ITEM_ID
                     ],
                 ]
             ]
