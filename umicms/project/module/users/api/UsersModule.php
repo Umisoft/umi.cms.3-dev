@@ -110,7 +110,7 @@ class UsersModule extends BaseModule implements IAuthenticationAware
     }
 
     /**
-     * Активирует неактивированного пользователя по ключу авторизации
+     * Активирует неактивированного пользователя по ключу авторизации.
      * @param string $activationCode
      * @return AuthorizedUser
      */
@@ -121,6 +121,46 @@ class UsersModule extends BaseModule implements IAuthenticationAware
         $this->user()->activate($user);
 
         return $user;
+    }
+
+    /**
+     * Выставляет пользователю новый пароль по ключу активации.
+     * @param string $activationCode
+     * @return AuthorizedUser
+     */
+    public function changePassword($activationCode)
+    {
+        return
+            $this->user()->getUserByActivationCode($activationCode, true)
+                ->setPassword($this->getRandomPassword())
+                ->updateActivationCode();
+    }
+
+    /**
+     * Генерирует псевдо случайный пароль.
+     * @param int $length длина
+     * @return string
+     */
+    public function getRandomPassword($length = 12)
+    {
+        if (function_exists('openssl_random_pseudo_bytes')) {
+            $password = base64_encode(openssl_random_pseudo_bytes($length, $strong));
+            if ($strong) {
+
+                return substr($password, 0, $length);
+            }
+        }
+
+        $letters = "$#@^&!1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+        $size = strlen($letters);
+
+        $password = "";
+        for ($i = 0; $i < $length; $i++) {
+            $c = rand(0, $size - 1);
+            $password .= $letters[$c];
+        }
+
+        return $password;
     }
 
     /**

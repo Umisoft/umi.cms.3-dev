@@ -9,7 +9,6 @@
 
 namespace umicms\project\module\users\site\registration\activation\controller;
 
-use Mockery\CountValidator\Exception;
 use umi\http\Response;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;

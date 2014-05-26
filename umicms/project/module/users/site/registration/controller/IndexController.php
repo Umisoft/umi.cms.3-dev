@@ -18,7 +18,7 @@ use umicms\project\site\controller\SitePageController;
 use umicms\project\site\controller\TFormController;
 
 /**
- * Контроллер сохранения профиля пользователя
+ * Контроллер регистрации пользователя
  */
 class IndexController extends SitePageController implements IObjectPersisterAware
 {
