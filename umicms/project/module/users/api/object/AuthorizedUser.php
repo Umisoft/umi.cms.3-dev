@@ -82,6 +82,10 @@ class AuthorizedUser extends BaseUser
      */
     const FORM_RESTORE_PASSWORD = 'restorePassword';
     /**
+     * Форма смены пароля
+     */
+    const FORM_CHANGE_PASSWORD = 'changePassword';
+    /**
      * Форма авторизации пользователя в административной панели
      */
     const FORM_LOGIN_ADMIN = 'login.admin';

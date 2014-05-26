@@ -183,6 +183,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $profilePage->getProperty('componentName')->setValue('profile');
         $profilePage->getProperty('componentPath')->setValue('users.profile');
 
+        $passwordChangePage = $structureCollection->add('pass', 'system', $profilePage)
+            ->setValue('displayName', 'Смена пароля')
+            ->setValue('metaTitle', 'Смена пароля')
+            ->setValue('h1', 'Смена пароля');
+
+        $passwordChangePage->getProperty('componentName')->setValue('password');
+        $passwordChangePage->getProperty('componentPath')->setValue('users.profile.password');
+
+
         /**
          * @var UserGroup $visitors
          */
@@ -229,7 +238,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $registeredUsers->getProperty('locked')->setValue(true);
 
         $registeredUsers->roles = [
-            'project.site.users.profile' => ['viewer']
+            'project.site.users.profile' => ['viewer'],
+            'project.site.users.profile.password' => ['viewer'],
         ];
 
         /**

@@ -6,4 +6,7 @@
 
     {{ include('form/form.twig', {'form' : form}) }}
 
+    <h2>{{ translate('Change password') }}</h2>
+    {{ widget('users.profile.password.form', {'template' : 'form'}) }}
+
 </div>

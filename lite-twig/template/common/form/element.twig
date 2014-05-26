@@ -18,6 +18,9 @@
 {% elseif (element.type == 'captcha') %}
     {{ include('form/element/captcha.twig', {'element' : element}) }}
 
+{% elseif (element.type == 'passwordWithConfirmation') %}
+    {{ include('form/element/passwordWithConfirmation.twig', {'element' : element}) }}
+
 {% else %}
 
     {% if (element.tag == 'input') %}
