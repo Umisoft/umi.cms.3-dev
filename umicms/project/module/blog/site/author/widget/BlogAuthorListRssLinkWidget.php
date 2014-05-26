@@ -7,28 +7,26 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\tag\widget;
+namespace umicms\project\module\blog\site\author\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\blog\api\object\BlogAuthor;
 
 /**
- * Виджет для вывода URL на RSS-ленту по тэгу.
+ * Виджет для вывода URL на RSS-ленту по автору.
  */
-class TagListRssUrlWidget extends BaseSecureWidget
+class BlogAuthorListRssLinkWidget extends BaseLinkWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'rssLink';
-
     /**
-     * @var string|BlogTag $blogTag тэг блога или GUID, по которому формируется RSS-лента
+     * @var string|BlogAuthor $blogAuthor автор, для постов которого формировать RSS-ленту.
      */
-    public $blogTag;
-
+    public $blogAuthor;
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -46,30 +44,26 @@ class TagListRssUrlWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getLinkUrl()
     {
-        if (is_string($this->blogTag)) {
-            $this->blogTag = $this->api->tag()->get($this->blogTag);
+        if (is_string($this->blogAuthor)) {
+            $this->blogAuthor = $this->api->author()->get($this->blogAuthor);
         }
 
-        if (!$this->blogTag instanceof BlogTag) {
+        if (!$this->blogAuthor instanceof BlogAuthor) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'tag',
-                        'class' => 'BlogTag'
+                        'param' => 'blogAuthor',
+                        'class' => 'BlogAuthor'
                     ]
                 )
             );
         }
 
-        return $this->createResult(
-            $this->template,
-            [
-                'url' => $this->getUrl('rss', ['slug' => $this->blogTag->slug])
-            ]
-        );
+        return $this->getUrl('rss', ['slug' => $this->blogAuthor->slug], $this->absolute);
     }
+
 }
  

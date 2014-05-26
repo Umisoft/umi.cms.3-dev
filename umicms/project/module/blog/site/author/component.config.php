@@ -23,7 +23,7 @@ return [
         'view' => __NAMESPACE__ . '\widget\BlogAuthorWidget',
         'list' => __NAMESPACE__ . '\widget\BlogAuthorListWidget',
         'postList' => __NAMESPACE__ . '\widget\BlogAuthorPostListWidget',
-        'rss' => __NAMESPACE__ . '\widget\BlogAuthorListRssUrlWidget'
+        'rss' => __NAMESPACE__ . '\widget\BlogAuthorListRssLinkWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [

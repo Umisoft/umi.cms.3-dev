@@ -9,33 +9,24 @@
 
 namespace umicms\project\module\users\site\authorization\widget;
 
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет вывода ссылки на страницу авторизации.
  */
-class LoginLinkWidget extends BaseSecureWidget
+class LoginLinkWidget extends BaseLinkWidget
 {
     /**
-     * @var string $template имя шаблона, по которому выводится виджет
+     * {@inheritdoc}
      */
     public $template = 'loginLink';
-    /**
-     * @var bool $absolute генерировать ли абсолютный URL для ссылки
-     */
-    public $absolute = false;
 
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getLinkUrl()
     {
-        return $this->createResult(
-            $this->template,
-            [
-                'url' => $this->getUrl('login', [], $this->absolute)
-            ]
-        );
+        return $this->getUrl('login', [], $this->absolute);
     }
 }
  

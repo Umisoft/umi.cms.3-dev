@@ -7,26 +7,29 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\post\widget;
+namespace umicms\project\module\blog\site\category\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\api\object\BlogCategory;
 
 /**
- * Виджет для вывода URL на редактирование поста.
+ * Виджет для вывода URL на RSS-ленту по категории.
  */
-class EditUrlWidget extends BaseSecureWidget
+class CategoryPostRssLinkWidget extends BaseLinkWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'editPostLink';
+    public $template = 'rssLink';
+
     /**
-     * @var BlogPost $blogPost пост или GUID редактируемого поста
+     * @var BlogCategory|string|null $categories категория или GUID, URL на RSS которой генерировать.
+     * Если не указана, генерируется URL на все посты.
      */
-    public $blogPost;
+    public $category;
+
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -44,31 +47,25 @@ class EditUrlWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getLinkUrl()
     {
-        if (is_string($this->blogPost)) {
-            $this->blogPost = $this->api->post()->get($this->blogPost);
+        if (is_string($this->category)) {
+            $this->category = $this->api->category()->get($this->category);
         }
 
-        if (!$this->blogPost instanceof BlogPost) {
+        if (isset($this->category) && !$this->category instanceof BlogCategory) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogPost',
-                        'class' => 'BlogPost'
+                        'param' => 'category',
+                        'class' => 'BlogModule'
                     ]
                 )
             );
         }
 
-        $url = $this->blogPost->getId();
-        return $this->createResult(
-            $this->template,
-            [
-                'url' => $this->getUrl('edit', ['id' => $url])
-            ]
-        );
+        return $this->getUrl('rss', ['url' => $this->category->getURL()], $this->absolute);
     }
 }
  
