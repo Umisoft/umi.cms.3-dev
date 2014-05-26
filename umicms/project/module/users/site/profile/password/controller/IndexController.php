@@ -87,6 +87,8 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     {
         $this->success = true;
         $this->getObjectPersister()->commit();
+
+        return $this->buildRedirectResponse();
     }
 
     /**

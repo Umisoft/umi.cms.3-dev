@@ -76,12 +76,14 @@ class IndexController extends SitePageController
             } else {
                 $this->success = true;
                 $this->sendRestorePasswordConfirmation($user);
+                return $this->buildRedirectResponse();
             }
 
         } catch (NonexistentEntityException $e) {
             $this->errors[] = $this->translate('User with given login or email does not exist.');
         }
 
+        return null;
     }
 
     /**

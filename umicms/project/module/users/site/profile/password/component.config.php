@@ -36,11 +36,13 @@ return [
         IAclFactory::OPTION_RESOURCES => [
             'index' => 'controller:index',
             'link'  => 'widget:link',
+            'form'  => 'widget:form',
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'controller:index' => [],
-                'widget:link' => []
+                'widget:link' => [],
+                'widget:form' => [],
             ]
         ]
     ],
