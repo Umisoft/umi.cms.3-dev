@@ -167,9 +167,11 @@ define([], function(){
 
                 dialogError: function(error){
                     var settings = this.parseError(error);
-                    settings.close = true;
-                    settings.title = error.status + '. ' + error.statusText;
-                    UMI.dialog.open(settings).then();
+                    if(settings !== 'silence'){
+                        settings.close = true;
+                        settings.title = error.status + '. ' + error.statusText;
+                        UMI.dialog.open(settings).then();
+                    }
                 },
 
                 /**
@@ -179,9 +181,11 @@ define([], function(){
                  */
                 backgroundError: function(error){
                     var settings = this.parseError(error);
-                    settings.type = 'error';
-                    settings.duration = false;
-                    UMI.notification.create(settings);
+                    if(settings !== 'silence'){
+                        settings.type = 'error';
+                        settings.duration = false;
+                        UMI.notification.create(settings);
+                    }
                 },
 
                 /**
@@ -192,8 +196,10 @@ define([], function(){
                 templateLogs: function(error, parentRoute){
                     parentRoute = parentRoute || 'module';
                     var dataError = this.parseError(error);
-                    var model = Ember.Object.create(dataError);
-                    this.intermediateTransitionTo(parentRoute + '.errors', model);
+                    if(dataError !== 'silence'){
+                        var model = Ember.Object.create(dataError);
+                        this.intermediateTransitionTo(parentRoute + '.errors', model);
+                    }
                 },
 
                 /// global actions
@@ -254,7 +260,7 @@ define([], function(){
             /**
              Метод парсит ошибку и возвпращает её в виде объекта (ошибки с Back-end)
              @method parseError
-             @return Object|null {status: status, title: title, content: content, stack: stack}
+             @return Object|null|String {status: status, title: title, content: content, stack: stack}
              */
             parseError: function(error){
                 var parsedError = {
@@ -266,7 +272,7 @@ define([], function(){
                 if(error.status === 403 || error.status === 401){
                     // TODO: вынести на уровень настройки AJAX (для того чтобы это касалось и кастомных компонентов)
                     this.send('logout');
-                    return;
+                    return 'silence';
                 }
 
                 var content;
@@ -660,7 +666,7 @@ define([], function(){
             });
 
             UMI.SettingsComponentRoute = Ember.Route.extend({
-                model: function(params){
+                model: function(params, transition){
                     var settings = this.modelFor('settings');
                     var findDepth = function(components, propertyName, slug){
                         var component;
@@ -688,6 +694,8 @@ define([], function(){
                         Ember.set(component, 'form', data.result.form);
 
                         return component;
+                    }, function(){
+                        return transition.abort();
                     });
                 },
                 serialize: function(){
