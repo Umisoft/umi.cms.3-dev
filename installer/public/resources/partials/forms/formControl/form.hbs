@@ -1,0 +1,35 @@
+{{#if hasFieldset}}
+    {{#view "magellan" elements=model.viewSettings.elements}}
+        {{#each formElement in model.viewSettings.elements itemViewClass="view.elementView"}}
+            {{#if view.isFieldset}}
+                {{#view view.parentView.buttonView model=formElement}}{{formElement.label}}{{/view}}
+            {{/if}}
+        {{/each}}
+    {{/view}}
+{{/if}}
+
+<div class="row s-full-height collapse">
+    <div class="columns small-12 magellan-content">
+        {{#each formElements in model.viewSettings.elements itemViewClass="view.elementView"}}
+            {{#if view.isFieldset}}
+                <fieldset id="fieldset-{{unbound formElements.id}}">
+                    <legend {{action 'expand' target="view"}} class="s-unselectable">
+                        <i {{bind-attr class=":icon view.isExpanded:icon-bottom:icon-right"}}></i>
+                        {{formElements.label}}
+                    </legend>
+                    {{#if view.isExpanded}}
+                        {{#each meta in formElements.elements itemViewClass="view.parentView.elementView"}}
+                            {{view "fieldFormControl" objectBinding="model.object" metaBinding="meta"}}
+                        {{/each}}
+                    {{/if}}
+                </fieldset>
+            {{else}}
+                {{view "fieldFormControl" objectBinding="model.object" metaBinding="this"}}
+            {{/if}}
+        {{/each}}
+    </div>
+</div>
+
+{{#if hasToolbar}}
+    {{render "formToolbar" toolbar}}
+{{/if}}

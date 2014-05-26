@@ -1,11 +1,8 @@
 <?php
 /**
- * @var umi\form\IForm $form
- * @var array $submit
+ * @var umi\form\FormEntityView $form
  */
 ?>
-
-<?php $formInfo = $this->form($form); ?>
 
 <?php if (isset($errors)) : ?>
     <div class="alert alert-danger">
@@ -17,10 +14,10 @@
     </div>
 <?php endif; ?>
 
-<form <?= $formInfo['attributes'] ?> >
+<form <?= $form->attributes ?> >
 
-    <?php foreach ($formInfo['elements'] as $elementInfo) : ?>
-        <?= $this->render('form/element.phtml', ['elementInfo' => $elementInfo]); ?>
+    <?php foreach ($form->elements as $element) : ?>
+        <?= $this->render('form/element.phtml', ['element' => $element]); ?>
     <?php endforeach; ?>
 
 </form>

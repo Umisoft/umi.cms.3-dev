@@ -10,17 +10,9 @@ namespace umicms\project\admin\settings;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\serialization\ISerializerFactory;
 
 return [
     SettingsApplication::OPTION_CLASS => 'umicms\project\admin\settings\SettingsApplication',
-
-    SettingsApplication::OPTION_SERIALIZERS => [
-        ISerializerFactory::TYPE_JSON => [
-            'umi\form\fieldset\FieldSet' => 'umicms\serialization\json\form\FieldSetSerializer',
-            'umi\form\element\BaseFormElement' => 'umicms\serialization\json\form\BaseFormElementSerializer',
-        ]
-    ],
 
     SettingsApplication::OPTION_COMPONENTS => [
         'site' => '{#lazy:~/project/site/settings/component.config.php}',
@@ -28,7 +20,7 @@ return [
         'service' => '{#lazy:~/project/module/service/settings/module.config.php}',
         'seo' => '{#lazy:~/project/module/seo/settings/module.config.php}',
         'statistics' => '{#lazy:~/project/module/statistics/settings/module.config.php}',
-        'security' => '{#lazy:~/project/module/security/settings/module.config.php}',
+        'forms' => '{#lazy:~/project/module/forms/settings/module.config.php}',
     ],
 
     SettingsApplication::OPTION_CONTROLLERS => [

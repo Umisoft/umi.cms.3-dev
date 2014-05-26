@@ -1,0 +1,13 @@
+<?php
+/**
+ * @var string $projectUrl
+ * @var \umicms\project\module\users\api\object\AuthorizedUser $user
+ */
+
+?>
+
+<p><?= $this->translate(
+        'New user {user} has registered registered on the website {site}',
+        ['user' => $user->displayName, 'site' => $projectUrl]
+    )?>
+</p>

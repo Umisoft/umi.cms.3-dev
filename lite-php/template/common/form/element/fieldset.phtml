@@ -1,13 +1,13 @@
 <?php
 /**
- * @var array $elementInfo
+ * @var umi\form\FormEntityView $element
  */
 ?>
 
-<fieldset <?= $elementInfo['attributes'] ?> >
+<fieldset <?= $element->attributes ?> >
 
-<?php foreach ($elementInfo['elements'] as $childElementInfo) : ?>
-    <?= $this->render('form/element.phtml', ['elementInfo' => $childElementInfo]); ?>
+<?php foreach ($element->elements as $childElement) : ?>
+    <?= $this->render('form/element.phtml', ['element' => $childElement]); ?>
 <?php endforeach; ?>
 
 </fieldset>

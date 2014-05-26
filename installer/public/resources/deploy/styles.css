@@ -3286,18 +3286,24 @@ html {
   visibility: hidden; }
 
 .auth-layout.off, .umi-main-view.off {
-  z-index: 99999;
+  top: 0;
+  left: 0;
   position: absolute;
   width: 100%;
   -webkit-transition: opacity 0.4s linear;
   -o-transition: opacity 0.4s linear;
   transition: opacity 0.4s linear; }
-  .auth-layout.off ~ .auth-mask, .umi-main-view.off ~ .auth-mask {
-    visibility: visible; }
+  .auth-layout.off.is-transition, .umi-main-view.off.is-transition {
+    z-index: 99999; }
+    .auth-layout.off.is-transition ~ .auth-mask, .umi-main-view.off.is-transition ~ .auth-mask {
+      visibility: visible; }
 .auth-layout.fade-out, .umi-main-view.fade-out {
   opacity: 0; }
   .auth-layout.fade-out ~ .auth-mask, .umi-main-view.fade-out ~ .auth-mask {
     opacity: 0; }
+
+.umi-main-view {
+  background: #D6E0E9; }
 
 .auth-layout {
   overflow: hidden;
@@ -3561,62 +3567,6 @@ body {
     bottom: 0;
     background: url(img/shadows/toRightShadow.png); }
 
-.umi-divider-wripper {
-  position: relative; }
-
-.umi-divider-left {
-  float: left;
-  position: relative;
-  width: 250px;
-  height: 100%;
-  background: #D6E0E9;
-  border-right: 1px solid #98A2AB; }
-
-.umi-left-bottom-panel a {
-  float: left;
-  display: block;
-  padding: 6px;
-  border-right: 1px solid #c0c2ca; }
-
-.umi-divider-left-content {
-  overflow: hidden;
-  height: 100%;
-  margin-right: 5px; }
-
-.umi-divider-left-float {
-  border: none;
-  z-index: 5000;
-  position: absolute;
-  width: 245px !important; }
-  .umi-divider-left-float:after {
-    content: "";
-    position: absolute;
-    float: left;
-    display: block;
-    height: 100%;
-    width: 3px;
-    right: -3px;
-    bottom: 0;
-    background: url(img/shadows/toRightShadow.png); }
-  .umi-divider-left-float .umi-divider-left-content {
-    margin-right: 0; }
-
-.umi-divider {
-  position: absolute;
-  width: 4px;
-  height: -webkit-calc(100% + 1px);
-  height: calc(100% + 1px);
-  top: -1px;
-  right: 0;
-  background: #E0E4E7;
-  border-left: 1px solid #ADB9C5; }
-  .umi-divider:hover {
-    cursor: e-resize; }
-
-.umi-divider-right {
-  float: left;
-  width: 100%; }
-
 .umi-mode {
   height: 32px;
   background: -webkit-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
@@ -3879,7 +3829,7 @@ ul.umi-search-result {
       float: left;
       font-weight: bold;
       text-size: 14px;
-      cursor: default;
+      cursor: pointer;
       text-decoration: none;
       font-size: 0.9em;
       border-left: 1px solid transparent;
@@ -3888,7 +3838,8 @@ ul.umi-search-result {
         color: #575e6c; }
       .dock-components .components-nav a.active {
         background: #FFFDFD;
-        color: #575e6c; }
+        color: #575e6c;
+        cursor: default; }
         .dock-components .components-nav a.active:before, .dock-components .components-nav a.active:after {
           content: "";
           position: absolute;
@@ -5814,6 +5765,59 @@ table td {
 
 .magellan-content {
   overflow-y: scroll; }
+
+.umi-divider-left {
+  float: left;
+  position: relative;
+  width: 250px;
+  height: 100%;
+  background: #D6E0E9;
+  border-right: 1px solid #98A2AB; }
+
+.umi-left-bottom-panel a {
+  float: left;
+  display: block;
+  padding: 6px;
+  border-right: 1px solid #c0c2ca; }
+
+.umi-divider-left-content {
+  overflow: hidden;
+  height: 100%;
+  margin-right: 5px; }
+
+.umi-divider-left-float {
+  border: none;
+  z-index: 5000;
+  position: absolute;
+  width: 245px !important; }
+  .umi-divider-left-float:after {
+    content: "";
+    position: absolute;
+    float: left;
+    display: block;
+    height: 100%;
+    width: 3px;
+    right: -3px;
+    bottom: 0;
+    background: url(img/shadows/toRightShadow.png); }
+  .umi-divider-left-float .umi-divider-left-content {
+    margin-right: 0; }
+
+.umi-divider {
+  position: absolute;
+  width: 4px;
+  height: -webkit-calc(100% + 1px);
+  height: calc(100% + 1px);
+  top: -1px;
+  right: 0;
+  background: #E0E4E7;
+  border-left: 1px solid #ADB9C5; }
+  .umi-divider:hover {
+    cursor: col-resize; }
+
+.umi-divider-right {
+  float: left;
+  width: 100%; }
 
 .umi-file-manager {
   height: 100%; }

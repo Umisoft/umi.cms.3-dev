@@ -1,0 +1,32 @@
+<div class="blog-post">
+    <h2 class="blog-post-title">{{ page.displayName }} </h2>
+    {{ page.contents | raw }}
+
+
+    {% if (authenticated) %}
+
+        <div class="alert alert-success">
+            <p>{{ translate("You have successfully activated your account") }}.</p>
+        </div>
+        <p>
+            {{ widget('users.profile.link', {'template' : 'link'}) }}
+        </p>
+        {{ widget('users.authorization.logoutForm', {'template' : 'logoutForm'}) }}
+
+    {% else %}
+
+        <div class="alert alert-danger">
+            <ul>
+                {% for message in errors %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    {% endif %}
+
+
+</div>
+
+
+

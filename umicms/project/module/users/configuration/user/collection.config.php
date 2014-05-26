@@ -30,6 +30,8 @@ return [
             AuthorizedUser::FORM_LOGOUT_SITE => '{#lazy:~/project/module/users/site/authorization/form/authorized.logout.config.php}',
             AuthorizedUser::FORM_EDIT_PROFILE => '{#lazy:~/project/module/users/site/profile/form/authorized.profile.edit.config.php}',
             AuthorizedUser::FORM_REGISTRATION => '{#lazy:~/project/module/users/site/registration/form/authorized.registration.config.php}',
+            AuthorizedUser::FORM_RESTORE_PASSWORD => '{#lazy:~/project/module/users/site/restoration/form/authorized.restore.password.config.php}',
+            AuthorizedUser::FORM_CHANGE_PASSWORD => '{#lazy:~/project/module/users/site/profile/password/form/authorized.change.password.config.php}',
         ]
     ],
     'settings' => '{#lazy:~/project/module/users/configuration/user/collection.settings.config.php}'

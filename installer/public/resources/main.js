@@ -13,12 +13,12 @@ require.config({
         Ember:      'libs/ember/ember',
         DS:         'libs/ember-data/ember-data',
 
-        iscroll:    'libs/iscroll-probe-5.1.1',
+        iscroll:    'libsStatic/iscroll-probe-5.1.1',
         ckEditor:   'libs/ckeditor/ckeditor',
-        datepicker: 'libs/datepicker',
+        datepicker: 'libsStatic/datepicker',
         timepicker: 'libs/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
         moment:     'libs/momentjs/min/moment-with-langs.min',
-        elFinder:   'libs/elFinder',
+        elFinder:   'libsStatic/elFinder',
         chartJs:    'libs/chartjs/Chart'
     },
 
@@ -44,12 +44,14 @@ require.config({
 
     packages: [
         //Подключаем Partials. замена следуют по алфавиту, как и в структуре папок
+        {name: 'offcanvas',         location: "elements/offcanvas"},
+
         {name: 'accordion',         location: "partials/accordion"},
         {name: 'chartControl',      location: "partials/chartControl"},
         {name: 'dialog',            location: "partials/dialog"},
         {name: 'dock',              location: "partials/dock"},
         {name: 'fileManager',       location: "partials/fileManager"},
-        {name: 'form',              location: "partials/form"},
+        {name: 'forms',              location: "partials/forms"},
         {name: 'notification',      location: "partials/notification"},
         {name: 'popup',             location: "partials/popup"},
         {name: 'search',            location: "partials/search"},
@@ -65,15 +67,31 @@ require.config({
     ]
 });
 
+require(['jQuery'], function(jQuery){
+    "use strict";
 
-if(UmiSettings.authenticated){
-    require(['application/main'], function(application){
-        "use strict";
-        application();
+    var deffer = $.get(window.UmiSettings.authUrl);
+
+    deffer.done(function(data){
+        var objectMerge = function(objectBase, objectProperty){
+            for(var key in objectProperty){
+                if(objectProperty.hasOwnProperty(key)){
+                    objectBase[key] = objectProperty[key];
+                }
+            }
+        };
+
+        if(data.result){
+            objectMerge(window.UmiSettings, data.result);
+        }
+        require(['application/main'], function(application){
+            application();
+        });
     });
-} else{
-    require(['auth/main'], function(auth){
-        "use strict";
-        auth();
+    deffer.fail(function(error){
+        require(['auth/main'], function(auth){
+            auth({accessError: error});
+        });
     });
-}
+});
+

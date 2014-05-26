@@ -50,6 +50,7 @@ return [
                 ],
                 NewsRssImportScenario::FIELD_RUBRIC => [
                     'type' => Select::TYPE_NAME,
+                    'lazy' => true,
                     'label' => NewsRssImportScenario::FIELD_RUBRIC,
                     'options' => [
                         'dataSource' => NewsRssImportScenario::FIELD_RUBRIC

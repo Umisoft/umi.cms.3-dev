@@ -1,7 +1,7 @@
-<fieldset {{ elementInfo.attributes | raw }} >
+<fieldset {{ element.attributes | raw }} >
 
-    {% for childElementInfo in elementInfo.elements %}
-        {{ include('form/element.twig', {'elementInfo' : childElementInfo}) }}
+    {% for childElement in element.elements %}
+        {{ include('form/element.twig', {'element' : childElement}) }}
     {% endfor %}
 
 </fieldset>

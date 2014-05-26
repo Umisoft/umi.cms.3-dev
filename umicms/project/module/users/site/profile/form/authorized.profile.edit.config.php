@@ -1,10 +1,9 @@
 <?php
 
 use umi\filter\IFilterFactory;
-use umi\form\element\Hidden;
+use umi\form\element\CSRF;
 use umi\form\element\Submit;
 use umi\form\element\Text;
-use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\users\api\object\AuthorizedUser;
 
 return [
@@ -73,8 +72,8 @@ return [
             ]
         ],
 
-        BaseFormWidget::INPUT_REDIRECT_URL => [
-            'type' => Hidden::TYPE_NAME
+        'csrf' => [
+            'type' => CSRF::TYPE_NAME
         ],
 
         'submit' => [

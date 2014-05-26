@@ -116,8 +116,22 @@ trait TFormController
             }
         }
 
+        $response = $this->buildResponse();
+        if (!$formValid) {
+            $response->getStatusCode(Response::HTTP_BAD_REQUEST);
+        }
+
+        return $response;
+    }
+
+    /**
+     * Формирует ответ
+     * @return Response
+     */
+    protected function buildResponse()
+    {
         $result = (array) $this->buildResponseContent();
-        $result['form'] = $this->form;
+        $result['form'] = $this->form->getView();
 
         if (count($this->errors)) {
             $result['errors'] = $this->errors;
@@ -128,10 +142,6 @@ trait TFormController
             $result
         );
 
-        if (!$formValid) {
-            $response->getStatusCode(Response::HTTP_BAD_REQUEST);
-        }
-
         return $response;
     }
 
@@ -141,27 +151,30 @@ trait TFormController
      */
     protected function buildRedirectResponse()
     {
-        $projectUrl = $this->getUrlManager()->getProjectUrl(true);
-
+        $redirectUrl = null;
         if ($this->form->has(BaseFormWidget::INPUT_REDIRECT_URL)) {
             /**
              * @var IFormElement $redirectUrlInput
              */
             $redirectUrlInput = $this->form->get(BaseFormWidget::INPUT_REDIRECT_URL);
             $redirectUrl = $redirectUrlInput->getValue();
-
-            if (strpos($redirectUrl, '/') === 0 || strpos($redirectUrl, $projectUrl) === 0) {
-                return $this->createRedirectResponse($redirectUrl);
-            }
         }
 
-        if ($redirectUrl = $this->getRequest()->getReferer()) {
-            if (strpos($redirectUrl, $projectUrl) === 0) {
+        switch (true) {
+            case !$redirectUrl:
+            case ($redirectUrl === BaseFormWidget::NO_REDIRECT): {
+                return $this->buildResponse();
+            }
+            case (
+                strpos($redirectUrl, '/') === 0 ||
+                strpos($redirectUrl, $this->getUrlManager()->getProjectUrl(true)
+                ) === 0): {
                 return $this->createRedirectResponse($redirectUrl);
             }
+            default: {
+                return $this->createRedirectResponse($this->getDefaultRedirectUrl());
+            }
         }
-
-        return $this->createRedirectResponse($this->getDefaultRedirectUrl());
     }
 
     /**

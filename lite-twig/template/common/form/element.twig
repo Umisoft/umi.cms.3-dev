@@ -1,15 +1,35 @@
-{% if (elementInfo.type == 'fieldset') %}
-    {{ include('form/element/fieldset.twig', {'elementInfo' : elementInfo}) }}
-{% elseif (elementInfo.type == 'textarea') %}
-    {{ include('form/element/textarea.twig', {'elementInfo' : elementInfo}) }}
-{% elseif (elementInfo.type == 'select') %}
-    {{ include('form/element/select.twig', {'elementInfo' : elementInfo}) }}
-{% elseif (elementInfo.type == 'checkboxGroup') %}
-    {{ include('form/element/checkboxGroup.twig', {'elementInfo' : elementInfo}) }}
-{% elseif (elementInfo.type == 'checkbox') %}
-    {{ include('form/element/checkbox.twig', {'elementInfo' : elementInfo}) }}
-{% elseif (elementInfo.type == 'button') %}
-    {{ include('form/element/button.twig', {'elementInfo' : elementInfo}) }}
-{% elseif (elementInfo.type == 'input') %}
-    {{ include('form/element/input.twig', {'elementInfo' : elementInfo}) }}
+{% if (element.type == 'fieldset') %}
+    {{ include('form/element/fieldset.twig', {'element' : element}) }}
+
+{% elseif (element.type == 'textarea' or element.type == 'wysiwyg') %}
+    {{ include('form/element/textarea.twig', {'element' : element}) }}
+
+{% elseif (element.type == 'select' or element.type == 'multiSelect') %}
+    {{ include('form/element/select.twig', {'element' : element}) }}
+
+{% elseif (element.type == 'checkboxGroup') %}
+    {{ include('form/element/checkboxGroup.twig', {'element' : element}) }}
+
+{% elseif (element.type == 'checkbox') %}
+    {{ include('form/element/checkbox.twig', {'element' : element}) }}
+{% elseif (element.type == 'hidden' or element.type == 'csrf') %}
+    {{ include('form/element/hidden.twig', {'element' : element}) }}
+
+{% elseif (element.type == 'captcha') %}
+    {{ include('form/element/captcha.twig', {'element' : element}) }}
+
+{% elseif (element.type == 'passwordWithConfirmation') %}
+    {{ include('form/element/passwordWithConfirmation.twig', {'element' : element}) }}
+
+{% else %}
+
+    {% if (element.tag == 'input') %}
+        {{ include('form/element/input.twig', {'element' : element}) }}
+
+    {% elseif (element.tag == 'button') %}
+        {{ include('form/element/button.twig', {'element' : element}) }}
+
+    {% endif %}
+
+
 {% endif %}

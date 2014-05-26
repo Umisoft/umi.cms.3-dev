@@ -1,0 +1,17 @@
+<div class="blog-post">
+    <h2 class="blog-post-title">{{ page.displayName }} </h2>
+    {{ page.contents | raw }}
+
+    {% if (success) %}
+        <div class="alert alert-success">
+            <p>{{ translate("You have successfully changed your password") }}.</p>
+        </div>
+    {% else %}
+
+        {% set errors = errors ?: null %}
+
+        {{ include('form/form.twig', {'form' : form, 'errors' : errors})  }}
+
+    {% endif %}
+
+</div>

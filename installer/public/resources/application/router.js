@@ -45,15 +45,24 @@ define([], function(){
                  */
                 return $.get(UmiSettings.baseApiURL).then(function(results){
                     var result = results.result;
-                    self.controllerFor('application').set('settings', result);
-                    if(result.collections){
-                        UMI.modelsFactory(result.collections);
-                    }
-                    if(result.modules){
-                        self.controllerFor('dock').set('modules', result.modules);
+                    if(result){
+                        self.controllerFor('application').set('settings', result);
+                        if(result.collections){
+                            UMI.modelsFactory(result.collections);
+                        }
+                        if(result.modules){
+                            self.controllerFor('dock').set('modules', result.modules);
+                        }
+                    } else{
+                        try{
+                            throw new Error(results);
+                        } catch(error){
+                            transition.send('templateLogs', error);
+                        }
+
                     }
                 }, function(error){
-                    var becameError = new Error();
+                    var becameError = new Error(results);
                     error.stack = becameError.stack;
                     transition.send('templateLogs', error);
                 });
@@ -65,14 +74,13 @@ define([], function(){
                     var maskLayout = document.createElement('div');
                     maskLayout.className = 'auth-mask';
                     maskLayout = document.body.appendChild(maskLayout);
-                    $(applicationLayout).addClass('off');
+                    $(applicationLayout).addClass('off is-transition');
                     $.post(UmiSettings.baseApiURL + '/action/logout').then(function(){
                         require(['auth/main'], function(auth){
-                            auth();
+                            auth({appIsFreeze: true, appLayout: applicationLayout});
                             $(applicationLayout).addClass('fade-out');
                             Ember.run.later('', function(){
-                                UMI.reset();
-                                UMI.deferReadiness();
+                                $(applicationLayout).removeClass('is-transition');
                                 maskLayout.parentNode.removeChild(maskLayout);
                             }, 800);
                         });
@@ -159,9 +167,11 @@ define([], function(){
 
                 dialogError: function(error){
                     var settings = this.parseError(error);
-                    settings.close = true;
-                    settings.title = error.status + '. ' + error.statusText;
-                    UMI.dialog.open(settings).then();
+                    if(settings !== 'silence'){
+                        settings.close = true;
+                        settings.title = error.status + '. ' + error.statusText;
+                        UMI.dialog.open(settings).then();
+                    }
                 },
 
                 /**
@@ -171,9 +181,11 @@ define([], function(){
                  */
                 backgroundError: function(error){
                     var settings = this.parseError(error);
-                    settings.type = 'error';
-                    settings.duration = false;
-                    UMI.notification.create(settings);
+                    if(settings !== 'silence'){
+                        settings.type = 'error';
+                        settings.duration = false;
+                        UMI.notification.create(settings);
+                    }
                 },
 
                 /**
@@ -184,8 +196,10 @@ define([], function(){
                 templateLogs: function(error, parentRoute){
                     parentRoute = parentRoute || 'module';
                     var dataError = this.parseError(error);
-                    var model = Ember.Object.create(dataError);
-                    this.intermediateTransitionTo(parentRoute + '.errors', model);
+                    if(dataError !== 'silence'){
+                        var model = Ember.Object.create(dataError);
+                        this.intermediateTransitionTo(parentRoute + '.errors', model);
+                    }
                 },
 
                 /// global actions
@@ -208,18 +222,15 @@ define([], function(){
                 },
 
                 create: function(parentObject, actionParam){
-                    console.log('create');
                     var typeName = actionParam.typeName;
                     this.transitionTo('action', parentObject.get('id'), 'createForm', {queryParams: {'typeName': typeName}});
                 },
 
                 edit: function(object){
-                    console.log('edit');
                     this.transitionTo('action', object.get('id'), 'editForm');
                 },
 
                 viewOnSite: function(object){
-                    console.log('viewOnSite');
                     var link;
                     if(object){
                         link = object._data.meta.pageUrl;
@@ -249,7 +260,7 @@ define([], function(){
             /**
              Метод парсит ошибку и возвпращает её в виде объекта (ошибки с Back-end)
              @method parseError
-             @return Object|null {status: status, title: title, content: content, stack: stack}
+             @return Object|null|String {status: status, title: title, content: content, stack: stack}
              */
             parseError: function(error){
                 var parsedError = {
@@ -259,8 +270,9 @@ define([], function(){
                 };
 
                 if(error.status === 403 || error.status === 401){
+                    // TODO: вынести на уровень настройки AJAX (для того чтобы это касалось и кастомных компонентов)
                     this.send('logout');
-                    return;
+                    return 'silence';
                 }
 
                 var content;
@@ -363,7 +375,7 @@ define([], function(){
                      */
                     Ember.$.get(model.get('resource')).then(function(results){
                         var componentController = self.controllerFor('component');
-                        var settings = results.result.settings;
+                        var settings = results.result.settings; //settings undefined для Файлового менеджера
                         componentController.set('settings', settings);
                         componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
                         deferred.resolve(model);
@@ -504,7 +516,11 @@ define([], function(){
                     }
 
                     if(actionName === 'createForm'){
-                        var createdParams =  contextModel.get('id') !== 'root' ? {parent: contextModel} : null;
+                        var createdParams =  contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
+
+                        if(transition.queryParams.typeName){
+                            createdParams.type = transition.queryParams.typeName;
+                        }
                         data.createObject = self.store.createRecord(collectionName, createdParams);
                         if(transition.queryParams.typeName){
                             actionParams.type = transition.queryParams.typeName;
@@ -616,7 +632,7 @@ define([], function(){
         /**
          * При наличии доступа пользователя к настройкам системы, добаляем route к настройкам
          */
-        if('baseSettingsURL' in window.UmiSettings){
+        if('isSettingsAllowed' in window.UmiSettings){
             UMI.Router.map(function(){
                 this.resource('settings', {path: '/configure'}, function(){
                     this.route('component', {path: '/:component'});
@@ -650,28 +666,36 @@ define([], function(){
             });
 
             UMI.SettingsComponentRoute = Ember.Route.extend({
-                model: function(params){
+                model: function(params, transition){
                     var settings = this.modelFor('settings');
-                    var findDepth = function findDepth(components, propertyName, propertyValue){
+                    var findDepth = function(components, propertyName, slug){
                         var component;
-                        var result;
-                        for(var i = 0; i < components.length; i++){
-                            if(components[i][propertyName] === propertyValue){
-                                component = components[i];
-                            }
-                            if('components' in components[i]){
-                                result = findDepth(components[i].components, propertyName, propertyValue);
-                                if(result){
-                                    component = result;
+                        slug = slug.split('.');
+
+                        for(var j = 0; j < slug.length; j++){
+                            component = components.findBy(propertyName, slug[j]);
+
+                            if(1 + j < slug.length && component){
+                                if('components' in component){
+                                    components = component.components;
+                                } else{
+                                    Ember.assert('Отсутствуют дочерние компоненты для раздела ' + component.name + '.');
                                 }
                             }
                         }
+
                         return component;
                     };
                     var component = findDepth(settings, 'name', params.component);
                     return $.get(component.resource).then(function(data){
+                        if(data.result.toolbar){
+                            data.result.form.toolbar = data.result.toolbar;
+                        }
                         Ember.set(component, 'form', data.result.form);
+
                         return component;
+                    }, function(){
+                        return transition.abort();
                     });
                 },
                 serialize: function(){

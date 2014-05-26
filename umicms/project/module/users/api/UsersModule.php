@@ -20,6 +20,7 @@ use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\object\Guest;
 use umicms\project\module\users\api\object\Supervisor;
 use umicms\project\module\users\api\object\UserGroup;
+use umicms\Utils;
 
 /**
  * Модуль для работы с пользователями.
@@ -84,14 +85,19 @@ class UsersModule extends BaseModule implements IAuthenticationAware
      */
     public function register(AuthorizedUser $user)
     {
-        $user->active = !$this->user()->getIsRegistrationWithActivation();
-        $user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->setValue(uniqid('', true));
+        if ($this->user()->getIsRegistrationWithActivation()) {
+            $this->user()->deactivate($user);
+        } else {
+            $this->user()->activate($user);
+        }
+
+        $user->updateActivationCode();
 
         $userGroups = $user->groups;
 
         $defaultGroups = $this->userGroup()
             ->select()
-            ->fields(UserGroup::FIELD_GUID)
+            ->fields([UserGroup::FIELD_GUID])
             ->where(UserGroup::FIELD_GUID)
                 ->in($this->user()->getRegisteredUsersDefaultGroupGuids());
 
@@ -104,6 +110,60 @@ class UsersModule extends BaseModule implements IAuthenticationAware
     }
 
     /**
+     * Активирует неактивированного пользователя по ключу авторизации.
+     * @param string $activationCode
+     * @return AuthorizedUser
+     */
+    public function activate($activationCode)
+    {
+        $user = $this->user()->getUserByActivationCode($activationCode);
+        $user->updateActivationCode();
+        $this->user()->activate($user);
+
+        return $user;
+    }
+
+    /**
+     * Выставляет пользователю новый пароль по ключу активации.
+     * @param string $activationCode
+     * @return AuthorizedUser
+     */
+    public function changePassword($activationCode)
+    {
+        return
+            $this->user()->getUserByActivationCode($activationCode, true)
+                ->setPassword($this->getRandomPassword())
+                ->updateActivationCode();
+    }
+
+    /**
+     * Генерирует псевдо случайный пароль.
+     * @param int $length длина
+     * @return string
+     */
+    public function getRandomPassword($length = 12)
+    {
+        if (function_exists('openssl_random_pseudo_bytes')) {
+            $password = base64_encode(openssl_random_pseudo_bytes($length, $strong));
+            if ($strong) {
+
+                return substr($password, 0, $length);
+            }
+        }
+
+        $letters = "$#@^&!1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+        $size = strlen($letters);
+
+        $password = "";
+        for ($i = 0; $i < $length; $i++) {
+            $c = rand(0, $size - 1);
+            $password .= $letters[$c];
+        }
+
+        return $password;
+    }
+
+    /**
      * Возвращает авторизованного пользователя.
      * @throws RuntimeException если пользователь не был авторизован
      * @return AuthorizedUser авторизованный пользователь.
@@ -113,6 +173,20 @@ class UsersModule extends BaseModule implements IAuthenticationAware
         return $this->getDefaultAuthManager()
             ->getStorage()
             ->getIdentity();
+    }
+
+    /**
+     * Устанавливает авторизованного пользователя.
+     * @param AuthorizedUser $user
+     * @return $this
+     */
+    public function setCurrentUser(AuthorizedUser $user)
+    {
+        $this->getDefaultAuthManager()
+            ->getStorage()
+            ->setIdentity($user->getId());
+
+        return $this;
     }
 
     /**

@@ -51,6 +51,8 @@ return [
 
         'project.admin.api.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
 
+
+        'project.admin.settings' => '{#lazy:~/project/admin/settings/i18n/dictionary.config.php}',
         'project.admin.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
         'project.admin.settings.service' => '{#lazy:~/project/module/service/settings/i18n/dictionary.config.php}',
         'project.admin.settings.service.backup' => '{#lazy:~/project/module/service/settings/backup/i18n/dictionary.config.php}',
@@ -61,12 +63,17 @@ return [
         'project.admin.settings.statistics.metrika' => '{#lazy:~/project/module/statistics/settings/metrika/i18n/dictionary.config.php}',
         'project.admin.settings.users' => '{#lazy:~/project/module/users/settings/i18n/dictionary.config.php}',
 
-        'project.admin.settings.security' => '{#lazy:~/project/module/security/settings/i18n/dictionary.config.php}',
-        'project.admin.settings.security.captcha' => '{#lazy:~/project/module/security/settings/captcha/i18n/dictionary.config.php}',
+        'project.admin.settings.forms' => '{#lazy:~/project/module/forms/settings/i18n/dictionary.config.php}',
+        'project.admin.settings.forms.captcha' => '{#lazy:~/project/module/forms/settings/captcha/i18n/dictionary.config.php}',
 
+        'project.site.users' => '{#lazy:~/project/module/users/site/i18n/dictionary.config.php}',
         'project.site.users.authorization' => '{#lazy:~/project/module/users/site/authorization/i18n/dictionary.config.php}',
         'project.site.users.registration' => '{#lazy:~/project/module/users/site/registration/i18n/dictionary.config.php}',
+        'project.site.users.registration.activation' => '{#lazy:~/project/module/users/site/registration/activation/i18n/dictionary.config.php}',
+        'project.site.users.restoration' => '{#lazy:~/project/module/users/site/restoration/i18n/dictionary.config.php}',
+        'project.site.users.restoration.confirmation' => '{#lazy:~/project/module/users/site/restoration/confirmation/i18n/dictionary.config.php}',
         'project.site.users.profile' => '{#lazy:~/project/module/users/site/profile/i18n/dictionary.config.php}',
+        'project.site.users.profile.password' => '{#lazy:~/project/module/users/site/profile/password/i18n/dictionary.config.php}',
 
         'project.site.blog.comment' => '{#lazy:~/project/module/blog/site/comment/i18n/dictionary.config.php}',
         'project.site.blog.post' => '{#lazy:~/project/module/blog/site/post/i18n/dictionary.config.php}',
@@ -144,6 +151,7 @@ return [
 
                 'Save' => 'Save',
                 'Add' => 'Add',
+                'Send request' => 'Send request',
             ],
             'ru-RU' => [
                 'common' => 'Общее',
@@ -153,6 +161,7 @@ return [
 
                 'Save' => 'Сохранить',
                 'Add' => 'Добавить',
+                'Send request' => 'Отправить запрос',
             ]
         ],
 

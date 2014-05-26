@@ -41,6 +41,7 @@ return [
             'elements' => [
                 BlogAuthor::FIELD_PROFILE => [
                     'type' => Select::TYPE_NAME,
+                    'lazy' => true,
                     'label' => BlogAuthor::FIELD_PROFILE,
                     'options' => [
                         'dataSource' => BlogAuthor::FIELD_PROFILE

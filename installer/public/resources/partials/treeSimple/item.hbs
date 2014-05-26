@@ -1,7 +1,7 @@
-{{#link-to "settings.component" name tagName="div" class="umi-item" disabled=true bubbles=false}}
+{{#link-to "settings.component" view.nestedSlug tagName="div" class="umi-item" disabled=true bubbles=false}}
     {{#if components}}
-        <span {{action "expanded" on="mouseDown" target="view.parentView"}} {{bind-attr class=":umi-expand"}}>
-            <i {{bind-attr class=":icon view.parentView.isExpanded:icon-bottom:icon-right"}}></i>
+        <span {{action "expanded" target="view"}} {{bind-attr class=":umi-expand"}}>
+            <i {{bind-attr class=":icon view.isExpanded:icon-bottom:icon-right"}}></i>
         </span>
         <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document"}}></i>
     {{else}}
@@ -9,7 +9,7 @@
     {{/if}}
 
     {{#if resource}}
-        {{#link-to "settings.component" name class="tree-item-link"}}
+        {{#link-to "settings.component" view.nestedSlug class="tree-item-link"}}
             {{displayName}}
         {{/link-to}}
     {{else}}

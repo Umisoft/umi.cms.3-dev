@@ -20,6 +20,10 @@ return [
         'index' => __NAMESPACE__ . '\controller\IndexController',
     ],
 
+    SiteComponent::OPTION_COMPONENTS => [
+        'password' => '{#lazy:~/project/module/users/site/profile/password/component.config.php}'
+    ],
+
     SiteComponent::OPTION_WIDGET => [
         'link' => __NAMESPACE__ . '\widget\LinkWidget',
         'view' => __NAMESPACE__ . '\widget\ViewWidget',
@@ -48,6 +52,11 @@ return [
     ],
 
     SiteComponent::OPTION_ROUTES      => [
+
+        'component' => [
+            'type' => 'SiteComponentRoute'
+        ],
+
         'index' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [

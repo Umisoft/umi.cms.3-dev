@@ -1,0 +1,32 @@
+{% if not(element.isHuman) %}
+
+    <div class="form-group {{ not element.valid ? 'has-error' }}">
+        <label> {{ element.label }} </label>
+
+        {% if (not element.valid) %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for message in element.errors %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <script type="text/javascript">
+            function reloadCaptcha_{{ element.sessionKey }}() {
+                var img = document.getElementById('{{ element.sessionKey }}');
+                img.src = '{{ element.url }}?t=' + (new Date()).getTime();
+            }
+        </script>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <img id="{{ element.sessionKey }}" src="{{ element.url }}" alt="{{ element.label }}" title="{{ element.label }}">
+                <button class="btn btn-default glyphicon glyphicon-refresh" onclick="reloadCaptcha_{{ element.sessionKey }}();return false;"></button>
+            </span>
+            <input type="text" class="form-control input-lg" {{ element.attributes | raw }}>
+        </div>
+
+    </div>
+
+{% endif %}

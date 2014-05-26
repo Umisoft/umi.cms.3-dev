@@ -28,12 +28,16 @@ html{
 
 .auth-layout, .umi-main-view{
     &.off{
-        z-index: 99999;
+        top: 0;
+        left: 0;
         position: absolute;
         width: 100%;
         transition: opacity 0.4s linear;
-        ~ .auth-mask{
-            visibility: visible;
+        &.is-transition{
+            z-index: 99999;
+            ~ .auth-mask{
+                visibility: visible;
+            }
         }
     }
     &.fade-out{
@@ -42,6 +46,12 @@ html{
             opacity: 0;
         }
     }
+}
+
+//У body в layout.phtml добавлен background со спиннером - появляется моментально после перезагрузки страницы
+//Этот стиль добавлен для перекрытия спиннера body сразу после загрузки application
+.umi-main-view{
+    background: #D6E0E9;
 }
 
 .auth-layout{

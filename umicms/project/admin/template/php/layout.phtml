@@ -11,14 +11,11 @@
                 ENABLE_ALL_FEATURES: true
             };
             window.UmiSettings = {
-                "authenticated": <?= $authenticated ? 'true' : 'false' ?>,
                 "baseURL": '<?= $baseUrl ?>',
                 "baseApiURL": '<?= $baseApiUrl ?>',
-                <?php if (isset($baseSettingsUrl)) :?>
-                    "baseSettingsURL": '<?= $baseSettingsUrl ?>',
-                <?php endif; ?>
+                "baseSettingsURL": '<?= $baseSettingsUrl ?>',
                 "baseSiteURL": '<?= $baseSiteUrl ?>',
-                "locale": '<?= $locale ?>'
+                "authUrl": '<?= $authUrl ?>'
             }
         </script>
     </head>
