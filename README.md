@@ -11,7 +11,7 @@ Official UMI.CMS 3 development repository
 
 2) Select root directory for front-end application:
 ```sh
-cd installer/public/resources
+$ cd installer/public/resources
 ```
 
 3) Install "Bower" package manager:
@@ -21,5 +21,5 @@ $ npm install -g bower
 
 4) Install front-end vendors:
 ```sh
-bower install
+$ bower install
 ```
