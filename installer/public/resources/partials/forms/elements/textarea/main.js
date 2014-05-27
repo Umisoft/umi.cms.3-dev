@@ -44,7 +44,7 @@ define(['App', 'text!./textareaElement.hbs'], function(UMI, textareaElement){
             textareaView: Ember.View.extend({
                 template: function(){
                     var dataSource = this.get('parentView.meta.dataSource');
-                    return Ember.Handlebars.compile('{{textarea value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection"}}');
+                    return Ember.Handlebars.compile('{{textarea value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection" name=meta.attributes.name}}');
                 }.property()
             })
         });

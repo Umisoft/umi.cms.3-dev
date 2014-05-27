@@ -22,6 +22,10 @@ class LoginFormWidget extends BaseFormWidget
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'loginForm';
+    /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
 
     /**
      * @var UsersModule $api API модуля "Пользователи"

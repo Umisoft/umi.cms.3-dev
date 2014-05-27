@@ -9,33 +9,20 @@
 
 namespace umicms\project\module\users\site\profile\widget;
 
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет вывода ссылки на страницу редактирования профиля.
  */
-class LinkWidget extends BaseSecureWidget
+class LinkWidget extends BaseLinkWidget
 {
-    /**
-     * @var string $template имя шаблона, по которому выводится виджет
-     */
-    public $template = 'link';
-    /**
-     * @var bool $absolute генерировать ли абсолютный URL для ссылки
-     */
-    public $absolute = false;
-
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getLinkUrl()
     {
-        return $this->createResult(
-            $this->template,
-            [
-                'url' => $this->getUrl('index', [], $this->absolute)
-            ]
-        );
+        return $this->getUrl('index', [], $this->absolute);
     }
+
 }
  

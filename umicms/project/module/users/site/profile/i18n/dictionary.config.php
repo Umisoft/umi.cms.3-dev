@@ -11,12 +11,14 @@ return [
 
     'en-US' => [
         'Welcome' => 'Welcome',
-        'Edit profile' => 'Edit profile'
+        'Edit profile' => 'Edit profile',
+        'Change password' => 'Change password',
     ],
 
     'ru-RU' => [
         'Welcome' => 'Добро пожаловать',
-        'Edit profile' => 'Редактировать профиль'
+        'Edit profile' => 'Редактировать профиль',
+        'Change password' => 'Смена пароля',
     ]
 
 ];

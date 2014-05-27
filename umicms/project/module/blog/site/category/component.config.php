@@ -23,7 +23,7 @@ return [
         'view' => __NAMESPACE__ . '\widget\CategoryWidget',
         'postList' => __NAMESPACE__ . '\widget\CategoryPostListWidget',
         'list' => __NAMESPACE__ . '\widget\CategoryListWidget',
-        'rss' => __NAMESPACE__ . '\widget\CategoryPostRssUrlWidget'
+        'rss' => __NAMESPACE__ . '\widget\CategoryPostRssLinkWidget'
     ],
     DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/category'],

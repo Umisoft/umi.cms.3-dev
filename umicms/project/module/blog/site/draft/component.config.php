@@ -26,9 +26,8 @@ return [
     DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\DraftWidget',
         'ownList' => __NAMESPACE__ . '\widget\DraftOwnListWidget',
-        'ownListUrl' => __NAMESPACE__ . '\widget\DraftOwnListUrlWidget',
+        'ownListLink' => __NAMESPACE__ . '\widget\DraftOwnListLinkWidget',
         'publishDraft' => __NAMESPACE__ . '\widget\PublishWidget',
-        'editDraftLink' => __NAMESPACE__ . '\widget\DraftEditUrlWidget',
         'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
@@ -42,9 +41,8 @@ return [
             'controller:sendToModeration',
             'widget:view',
             'widget:ownList',
-            'widget:ownListUrl',
+            'widget:ownListLink',
             'widget:publishDraft',
-            'widget:editDraftLink',
             'widget:sendToModeration',
             'model:blogPost'
         ],
@@ -56,8 +54,7 @@ return [
                 'controller:sendToModeration' => [],
                 'widget:view' => [],
                 'widget:ownList' => [],
-                'widget:ownListUrl' => [],
-                'widget:editDraftLink' => [],
+                'widget:ownListLink' => [],
                 'widget:sendToModeration' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']

@@ -4,7 +4,7 @@ define(['App'], function(UMI){
     return function(){
         UMI.MagellanView = Ember.View.extend({
             classNames: ['magellan-menu', 's-full-height-before', 's-unselectable'],
-            focusName: null,
+            focusId: null,
             elementView: Ember.View.extend({
                 isFieldset: function(){
                     return this.get('content.type') === 'fieldset';
@@ -14,10 +14,10 @@ define(['App'], function(UMI){
                 tagName: 'a',
                 classNameBindings: ['isFocus:focus'],
                 isFocus: function(){
-                    return this.get('model.name') === this.get('parentView.parentView.focusName');
-                }.property('parentView.parentView.focusName'),
+                    return this.get('model.id') === this.get('parentView.parentView.focusId');
+                }.property('parentView.parentView.focusId'),
                 click: function(){
-                    var fieldset = document.getElementById('fieldset-' + this.get('model.name'));
+                    var fieldset = document.getElementById('fieldset-' + this.get('model.id'));
                     $(fieldset).closest('.magellan-content').animate({'scrollTop': fieldset.parentNode.offsetTop - parseFloat(getComputedStyle(fieldset).marginTop)}, 0);
                 }
             }),
@@ -26,7 +26,7 @@ define(['App'], function(UMI){
                 elements = elements.filter(function(item){
                     return item.type === 'fieldset';
                 });
-                this.set('focusName', elements.get('firstObject.name'));
+                this.set('focusId', elements.get('firstObject.id'));
             },
             didInsertElement: function(){
                 var self = this;
@@ -46,7 +46,7 @@ define(['App'], function(UMI){
                         }
                     }
                     if(focusField){
-                        self.set('focusName', focusField.id.replace(/^fieldset-/g, ''));
+                        self.set('focusId', focusField.id.replace(/^fieldset-/g, ''));
                     }
                 });
             }
