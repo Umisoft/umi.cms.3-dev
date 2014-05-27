@@ -57,8 +57,8 @@ class TagListRssLinkWidget extends BaseLinkWidget
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'tag',
-                        'class' => 'BlogTag'
+                        'param' => 'blogTag',
+                        'class' => 'umicms\project\module\blog\api\object\BlogTag'
                     ]
                 )
             );

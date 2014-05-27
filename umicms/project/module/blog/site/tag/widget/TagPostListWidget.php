@@ -61,7 +61,7 @@ class TagPostListWidget extends BaseSecureWidget
                         'Widget parameter "{param}" should be instance of "{class}".',
                         [
                             'param' => 'tags',
-                            'class' => 'BlogTag'
+                            'class' => 'umicms\project\module\blog\api\object\BlogTag'
                         ]
                     )
                 );

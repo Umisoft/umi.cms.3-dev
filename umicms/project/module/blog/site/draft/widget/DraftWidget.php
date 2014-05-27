@@ -57,7 +57,7 @@ class DraftWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogDraft',
-                        'class' => 'BlogPost'
+                        'class' => 'umicms\project\module\blog\api\object\BlogPost'
                     ]
                 )
             );

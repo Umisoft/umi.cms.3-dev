@@ -56,7 +56,7 @@ class EditLinkWidget extends BaseLinkWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => 'BlogPost'
+                        'class' => 'umicms\project\module\blog\api\object\BlogPost'
                     ]
                 )
             );

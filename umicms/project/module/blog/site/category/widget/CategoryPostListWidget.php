@@ -61,7 +61,7 @@ class CategoryPostListWidget extends BaseListWidget
                         'Widget parameter "{param}" should be instance of "{class}".',
                         [
                             'param' => 'categories',
-                            'class' => 'BlogCategory'
+                            'class' => 'umicms\project\module\blog\api\object\BlogCategory'
                         ]
                     )
                 );

@@ -61,7 +61,7 @@ class RubricNewsListWidget extends BaseListWidget
                         'Widget parameter "{param}" should be instance of "{class}".',
                         [
                             'param' => 'rubrics',
-                            'class' => 'NewsRubric'
+                            'class' => 'umicms\project\module\news\api\object\NewsRubric'
                         ]
                     )
                 );
