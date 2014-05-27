@@ -9,6 +9,8 @@
 
 namespace umicms\hmvc\view;
 
+use umi\i18n\ILocalizable;
+use umi\i18n\TLocalizable;
 use umi\orm\collection\IHierarchicCollection;
 use umicms\exception\RuntimeException;
 use umicms\orm\object\CmsHierarchicObject;
@@ -20,9 +22,10 @@ use umicms\project\site\callstack\TPageCallStackAware;
 /**
  * Содержимое результата работы виджета или контроллера, требующее шаблонизации.
  */
-class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware
+class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware, ILocalizable
 {
     use TPageCallStackAware;
+    use TLocalizable;
 
     /**
      * @var CmsSelector $selector селектор на элементы.
@@ -39,7 +42,9 @@ class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware
         $this->selector = $selector;
 
         if (!$selector->getCollection() instanceof IHierarchicCollection) {
-            throw new RuntimeException('Cannot create tree view. Collection is not hierarchical.');
+            throw new RuntimeException($this->translate(
+                'Cannot create tree view. Collection is not hierarchical.'
+            ));
         }
     }
 
