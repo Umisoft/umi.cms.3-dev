@@ -1,13 +1,10 @@
-define([
-    'text!./templates/toolBar.hbs',
-    './view',
-    'App'
-], function(
-    toolBarTpl,
-    view
-){
+define(['App', 'text!./templates/toolBar.hbs'], function(UMI, toolBarTpl){
     'use strict';
 
-    Ember.TEMPLATES['UMI/toolBar'] = Ember.Handlebars.compile(toolBarTpl);
-    view();
+    UMI.ToolBarView = Ember.View.extend({
+        /**
+         * @property layout
+         */
+        layout: Ember.Handlebars.compile(toolBarTpl)
+    });
 });

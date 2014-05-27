@@ -1,9 +1,15 @@
-<a class="umi-button umi-toolbar-create-button">
-    <span class="umi-toolbar-create-text" {{action 'objectCreate' target='view'}}>Создать</span>
-    <span class="umi-toolbar-create-icon">
-        <i class="icon icon-bottom"></i>
-    </span>
-    <span class="umi-toolbar-create-list umi-hide-on-html">
-        <span>Создать объект</span>
-    </span>
-</a>
+<div class="left">
+    <a class="umi-button umi-toolbar-create-button">
+        <span class="umi-toolbar-create-text" {{action 'objectCreate' target='view'}}>Создать</span>
+        <span class="umi-toolbar-create-icon">
+            <i class="icon icon-bottom"></i>
+        </span>
+        <span class="umi-toolbar-create-list umi-hide-on-html">
+            <span>Создать объект</span>
+        </span>
+    </a>
+</div>
+
+<div class="right">
+    {{yield}}
+</div>
