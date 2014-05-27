@@ -5,21 +5,29 @@ Official UMI.CMS 3 development repository
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Umisoft/umi.cms.3-dev/badges/quality-score.png?b=dev&s=f8e7d72d796fb24475b431ffd024d92e60f7a16a)](https://scrutinizer-ci.com/g/Umisoft/umi.cms.3-dev/?branch=dev)
 
-## Installing front-end packages and dependencies.
-
-1) <a href="http://nodejs.org/download/">Download</a> and install Node.JS.
-
-2) Select root directory for front-end application:
+## Клонируем репозиторий.
 ```sh
-$ cd installer/public/resources
+$ git clone git@github.com:Umisoft/umi.cms.3-dev.git
 ```
+## Установка инструментов для front-end.
 
-3) Install "Bower" package manager:
+1) <a href="http://nodejs.org/download/">Скачать</a> и установить Node.JS.
+
+2) Установка менеджера пактов "Bower":
 ```sh
 $ npm install -g bower
 ```
-
-4) Install front-end vendors:
+## Установка менеджера пакетов Composer.
 ```sh
-$ bower install
+curl -sS https://getcomposer.org/installer | php
+```
+
+Если у вас не установлен curl:
+```sh
+php -r "readfile('https://getcomposer.org/installer');" | php
+```
+
+## Установка внешних зависимостей:
+```sh
+php composer.phar install
 ```
