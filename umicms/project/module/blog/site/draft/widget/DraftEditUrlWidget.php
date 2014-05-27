@@ -56,7 +56,7 @@ class DraftEditUrlWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogDraft',
-                        'class' => 'BlogPost'
+                        'class' => BlogPost::className()
                     ]
                 )
             );

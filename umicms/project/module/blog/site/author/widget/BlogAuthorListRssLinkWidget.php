@@ -56,7 +56,7 @@ class BlogAuthorListRssLinkWidget extends BaseLinkWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogAuthor',
-                        'class' => 'BlogAuthor'
+                        'class' => BlogAuthor::className()
                     ]
                 )
             );
