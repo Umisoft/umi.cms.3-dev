@@ -60,7 +60,6 @@ $table-control-row-bg-hover: #C8DEEE;
 }
 
 // В firefox position: relative, для td не работает, поэутому нужна обёртка
-// TODO И хорошо что не работает - какого хрена оно дожно работать? Для этого есть блочные элементы.
 .umi-table-control-cell-firefox-fix{
     position: relative;
 }
