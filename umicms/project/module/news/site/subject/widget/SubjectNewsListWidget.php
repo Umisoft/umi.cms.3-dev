@@ -61,7 +61,7 @@ class SubjectNewsListWidget extends BaseListWidget
                         'Widget parameter "{param}" should be instance of "{class}".',
                         [
                             'param' => 'subjects',
-                            'class' => 'NewsSubject'
+                            'class' => NewsSubject::className()
                         ]
                     )
                 );

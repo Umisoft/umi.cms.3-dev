@@ -57,7 +57,7 @@ class NewsItemWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'newsItem',
-                        'class' => 'NewsItem'
+                        'class' => NewsItem::className()
                     ]
                 )
             );

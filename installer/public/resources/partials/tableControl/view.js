@@ -1,12 +1,74 @@
 define(['App'], function(UMI){
     'use strict';
     return function(){
-        UMI.TableControlView = Ember.View.extend({
+        /**
+         * Mixin реализующий интерфейс для контрола имеющего контекстное меню.
+         * TODO: Инкапсулировать методы контекстного меню
+         */
+        UMI.ControlWithContextMenu = Ember.Mixin.create({
+            selectAction: function(){
+                var componentName = this.get('componentName');
+                return UMI.Utils.LS.get(componentName + '.contextAction');
+            }.property('componentName'),
+
+            selectActionIcon: function(){
+                var iconType;
+                if(this.get('selectAction')){
+                    switch(this.get('selectAction.type')){
+                        case 'create':
+                            iconType = 'add';
+                            break;
+                        case 'edit':
+                            iconType = 'edit';
+                            break;
+                        case 'switchActivity':
+                            iconType = 'pause';
+                            break;
+                        case 'viewOnSite':
+                            iconType = 'eye';
+                            break;
+                        default:
+                            iconType = this.get('selectAction.type');
+                    }
+                    return 'icon-' + iconType;
+                }
+            }.property('selectAction'),
+
+            actions: {
+                toggleFastAction: function(action){
+                    var selectAction;
+                    var componentName = this.get('componentName');
+                    if(!this.get('selectAction') || this.get('selectAction').type !== action.type){
+                        selectAction = action;
+                    } else{
+                        selectAction = null;
+                    }
+                    this.set('selectAction', selectAction);
+                    UMI.Utils.LS.set(componentName + '.contextAction', selectAction);
+                }
+            }
+        });
+
+        UMI.TableControlView = Ember.View.extend(UMI.ControlWithContextMenu, {
+            componentNameBinding: 'controller.controllers.component.name',
+            /**
+             * Имя шаблона
+             * @property templateName
+             */
             templateName: 'tableControl',
+            /**
+             * Классы для view
+             * @classNames
+             */
             classNames: ['umi-table-control'],
+            /**
+             * @property iScroll
+             */
             iScroll: null,
             /**
              * При изменении данных вызывает ресайз скрола.
+             * @method scrollUpdate
+             * @observer
              */
             scrollUpdate: function(){
                 var self = this;
@@ -33,78 +95,11 @@ define(['App'], function(UMI){
                     });
                 }
             }.observes('controller.objects').on('didInsertElement'),
-
-//            actions: {
-//                delete: function(object){
-//                    console.log('deleteObject');
-//                    $('.umi-table-control-content-fixed-left .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').remove();
-//                    $('.umi-table-control-content-row[data-objectId=' + object.id + ']').remove();
-////                    .animate({'-webkit-transform': 'rotateX(-90deg)'}, 500, function(){
-////                        $(this).remove();
-////                    });
-//                    $('.umi-table-control-content-fixed-right .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').remove();
-//
-//                    this.get('controller').send('trash', object);
-//                },
-//
-//                edit: function(object){
-//                    this.get('controller').send('edit', object);
-//                },
-//
-//                viewOnSite: function(object){
-//                    this.get('controller').send('viewOnSite', object);
-//                },
-//
-//                switchActivity: function(object){
-//                    if($('.umi-table-control-content-row[data-objectId=' + object.id + ']').hasClass('umi-inactive')){
-//                        $('.umi-table-control-content-fixed-left .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').removeClass('umi-inactive');
-//                        $('.umi-table-control-content-row[data-objectId=' + object.id + ']').removeClass('umi-inactive');
-//                        $('.umi-table-control-content-fixed-right .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').removeClass('umi-inactive');
-//                    } else{
-//                        $('.umi-table-control-content-fixed-left .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').addClass('umi-inactive');
-//                        $('.umi-table-control-content-row[data-objectId=' + object.id + ']').addClass('umi-inactive');
-//                        $('.umi-table-control-content-fixed-right .umi-table-control-column-fixed-cell[data-objectId=' + object.id + ']').addClass('umi-inactive');
-//                    }
-//
-//                    this.get('controller').send('switchActivity', object);
-//                },
-//
-//                save: function(object){
-//                    var params = {};
-//                    params.object = object;
-//                    params.handler = null;
-//                    this.send('save', params);
-//                },
-//
-//                create: function(object){
-//                    console.log('create');
-//                    var parentObject = object.get('container.parent');
-//                    var actionParam = {
-//                        typeName: 'static'
-//                    };
-//                    this.get('controller').send('create', parentObject, actionParam);
-//                }
-//            },
-
-            checkBoxes: function(){
-                $('.umi-table-control-header-cell').on('click', 'input', function(){
-                    var state = $(this).prop('checked');
-                    $('.umi-table-control-column-fixed-cell input').prop({checked: state});
-                });
-
-                $('.umi-table-control-header-cell, .umi-table-control-content-fixed-left').on('change', 'input', function(){
-                    if($('.umi-table-control-content-fixed-left input[checked="checked"]').length){
-                        $('.umi-table-control-group-crud a').removeClass('umi-disabled');
-                    }else{
-                        $('.umi-table-control-group-crud a').addClass('umi-disabled');
-                    }
-                });
-            },
-
-
+            /**
+             * Событие вызываемое после вставки шаблона в DOM
+             * @method didInsertElement
+             */
             didInsertElement: function(){
-                this.checkBoxes();
-
                 var tableControl = this.$();
 
                 var self = this;
@@ -203,16 +198,15 @@ define(['App'], function(UMI){
                     });
                 }
             },
-
+            /**
+             * Событие вызываемое после удаления шаблона из DOM
+             * @method willDestroyElement
+             */
             willDestroyElement: function(){
                 $(window).off('.umi.tableControl');
                 // Удаляем Observes для контоллера
                 this.get('controller').removeObserver('content.object.id');
             },
-
-            showSideBar: function(){
-                return this.get('controller.showSideBar');
-            }.property('controller.showSideBar'),
 
             paginationView: Ember.View.extend({
                 classNames: ['right', 'umi-table-control-pagination'],
@@ -324,6 +318,18 @@ define(['App'], function(UMI){
                 }
                 return Ember.Handlebars.compile(template);
             }.property('object','column')
+        });
+
+
+        UMI.TableControlContextMenuView = Ember.View.extend({
+            itemView: Ember.View.extend({
+                tagName: 'li',
+                action: null, //Получаем из шаблона
+                isFastAction: function(){
+                    var selectAction = this.get('parentView.parentView.selectAction');
+                    return selectAction ? this.get('action').type === selectAction.type : false;
+                }.property('parentView.parentView.selectAction')
+            })
         });
     };
 });

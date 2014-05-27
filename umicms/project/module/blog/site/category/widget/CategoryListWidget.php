@@ -53,8 +53,8 @@ class CategoryListWidget extends BaseListWidget
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'parentRubric',
-                        'class' => 'BlogCategory'
+                        'param' => 'parentCategory',
+                        'class' => BlogCategory::className()
                     ]
                 )
             );
