@@ -242,7 +242,13 @@ define([], function(){
                 },
 
                 trash: function(object, type){
-                    console.log('trash');
+                    return object.destroyRecord().then(function(){
+                        var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" удалено в корзину.'};
+                        UMI.notification.create(settings);
+                    }, function(){
+                        var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" не удалось поместить в корзину.'};
+                        UMI.notification.create(settings);
+                    });
                 },
 
                 showPopup: function(popupType, object, meta){

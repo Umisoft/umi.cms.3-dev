@@ -8,6 +8,18 @@ define(['App'], function(UMI){
              * @property objects
              */
             objects: null,
+            objectChange: function(){
+                Ember.run.once(this, 'updateObjectDeleted');
+            }.observes('objects.@each.isDeleted'),
+
+            updateObjectDeleted: function(){//TODO: Реализация плохая: множественное всплытие события
+                var objects = this.get('objects');
+                objects.forEach(function(item){
+                    if(item && item.get('isDeleted')){
+                        objects.get('content.content.content').removeObject(item);
+                    }
+                });
+            },
 
             /**
              * метод получает данные учитывая query параметры
@@ -157,7 +169,7 @@ define(['App'], function(UMI){
                 var contextMenu = this.get('controllers.component.contentControls') || [];
                 contextMenu = contextMenu.findBy('name', 'filter') || {};
                 contextMenu = contextMenu.toolbar || [];
-                return [{"type":"create","displayName":"Создать Рубрика новостей","typeName":"base"},{"type":"switchActivity","displayName":"Сменить активность"},{"type":"viewOnSite","displayName":"Посмотреть на сайте"}];//contextMenu;
+                return [{"type":"create","displayName":"Создать Рубрика новостей","typeName":"base"},{"type":"switchActivity","displayName":"Сменить активность"},{"type":"viewOnSite","displayName":"Посмотреть на сайте"}, {"type":"trash","displayName":"Удалить в корзину"},  {"type":"delete","displayName":"Удалить безвозвратно"}];//contextMenu;
             }.property('controllers.component.contentControls'),
 
             /**
