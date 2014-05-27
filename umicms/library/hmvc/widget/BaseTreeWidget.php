@@ -58,15 +58,15 @@ abstract class BaseTreeWidget extends BaseSecureWidget
             ));
         }
 
-        $this->checkParentNode($collection);
+        $parentNode = $this->getParentNode($collection);
 
         $result = $selector;
 
-        if ($this->parentNode instanceof CmsHierarchicObject) {
-            $result = $collection->selectDescendants($this->parentNode);
+        if ($parentNode instanceof CmsHierarchicObject) {
+            $result = $collection->selectDescendants($parentNode);
 
             if ($this->depth) {
-                $result = $collection->selectDescendants($this->parentNode, $this->depth);
+                $result = $collection->selectDescendants($parentNode, $this->depth);
             }
         } else if ($this->depth) {
             $result = $collection->selectDescendants(null, $this->depth);
@@ -87,17 +87,20 @@ abstract class BaseTreeWidget extends BaseSecureWidget
     }
 
     /**
-     * Проверяет родительскую ноду. Если был указан GUID получает объект.
+     * Возвращает родительскую ноду. Если был указан GUID получает объект.
      * @param ICollection $collection коллекция для получения родительской ноды
      * @throws InvalidArgumentException в случае если родительская нода не иерархический объект
+     * @return CmsHierarchicObject
      */
-    private function checkParentNode($collection)
+    private function getParentNode($collection)
     {
-        if (is_string($this->parentNode)) {
-            $this->parentNode = $collection->get($this->parentNode);
+        $parentNode = $this->parentNode;
+
+        if (is_string($parentNode)) {
+            $parentNode = $collection->get($parentNode);
         }
 
-        if (isset($this->parentNode) && !$this->parentNode instanceof CmsHierarchicObject) {
+        if (!is_null($parentNode) && !$parentNode instanceof CmsHierarchicObject) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
@@ -108,6 +111,8 @@ abstract class BaseTreeWidget extends BaseSecureWidget
                 )
             );
         }
+
+        return $parentNode;
     }
 }
  

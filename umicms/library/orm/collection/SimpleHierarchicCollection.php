@@ -62,14 +62,16 @@ class SimpleHierarchicCollection extends FrameworkSimpleHierarchicCollection imp
                 ->like($object->getMaterializedPath() . MaterializedPathField::MPATH_SEPARATOR . '%');
         }
 
-        if ($depth && !is_null($object)) {
-            $selector
-                ->where(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL)
-                ->equalsOrLess($object->getLevel() + $depth);
-        } elseif (!is_null($depth)) {
-            $selector
-                ->where(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL)
-                ->equalsOrLess($depth);
+        if ($depth) {
+            if ($object) {
+                $selector
+                    ->where(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL)
+                    ->equalsOrLess($object->getLevel() + $depth);
+            } else {
+                $selector
+                    ->where(CmsHierarchicObject::FIELD_HIERARCHY_LEVEL)
+                    ->equalsOrLess($depth);
+            }
         }
 
         $selector->orderBy(CmsHierarchicObject::FIELD_ORDER);
