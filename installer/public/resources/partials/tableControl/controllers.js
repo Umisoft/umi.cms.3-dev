@@ -169,7 +169,7 @@ define(['App'], function(UMI){
                 var contextMenu = this.get('controllers.component.contentControls') || [];
                 contextMenu = contextMenu.findBy('name', 'filter') || {};
                 contextMenu = contextMenu.toolbar || [];
-                return [{"type":"create","displayName":"Создать Рубрика новостей","typeName":"base"},{"type":"switchActivity","displayName":"Сменить активность"},{"type":"viewOnSite","displayName":"Посмотреть на сайте"}, {"type":"trash","displayName":"Удалить в корзину"},  {"type":"delete","displayName":"Удалить безвозвратно"}];//contextMenu;
+                return [{"type":"create","displayName":"Создать Рубрика новостей","typeName":"base"},{"type":"switchActivity","displayName":"Сменить активность"},{"type":"viewOnSite","displayName":"Посмотреть на сайте"}, {"type":"trash","displayName":"Удалить в корзину"},  {"type":"delete","displayName":"Удалить навсегда"}];//contextMenu;
             }.property('controllers.component.contentControls'),
 
             /**
