@@ -108,13 +108,13 @@ define(['App'], function(UMI){
                     $('.umi-divider-right').css({width: '100%'});
                 }
 
-                $('.umi-component').height(function(){
-                    return $(window).height() - 141;
+                $('.umi-component').height(function(){// TODO: А для чего здесь вообще JS?
+                    return $(window).height() - 108;
                 });
 
                 $(window).on('resize', function(){
                     $('.umi-component').height(function(){
-                        return $(window).height() - 141;
+                        return $(window).height() - 108;
                     });
                 });
             }
