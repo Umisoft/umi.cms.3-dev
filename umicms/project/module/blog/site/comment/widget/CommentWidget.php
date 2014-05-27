@@ -57,7 +57,7 @@ class CommentWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogComment',
-                        'class' => 'umicms\project\module\blog\api\object\BlogComment'
+                        'class' => BlogComment::className()
                     ]
                 )
             );

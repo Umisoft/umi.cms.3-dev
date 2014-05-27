@@ -63,7 +63,7 @@ class AutoMenuWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'branch',
-                        'class' => 'umicms\project\module\structure\api\object\StructureElement'
+                        'class' => StructureElement::className()
                     ]
                 )
             );

@@ -59,7 +59,7 @@ class RubricNewsRssUrlWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'rubric',
-                        'class' => 'umicms\project\module\news\api\object\NewsRubric'
+                        'class' => NewsRubric::className()
                     ]
                 )
             );

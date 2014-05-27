@@ -58,7 +58,7 @@ class SubjectNewsRssUrlWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'subject',
-                        'class' => 'umicms\project\module\news\api\object\NewsSubject'
+                        'class' => NewsSubject::className()
                     ]
                 )
             );

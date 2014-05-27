@@ -58,7 +58,7 @@ class AddWidget extends BaseFormWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogCategory',
-                        'class' => 'umicms\project\module\blog\api\object\BlogCategory'
+                        'class' => BlogCategory::className()
                     ]
                 )
             );

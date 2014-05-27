@@ -57,7 +57,7 @@ class TagWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogTag',
-                        'class' => 'umicms\project\module\blog\api\object\BlogTag'
+                        'class' => BlogTag::className()
                     ]
                 )
             );

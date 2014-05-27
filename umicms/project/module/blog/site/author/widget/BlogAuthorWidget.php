@@ -57,7 +57,7 @@ class BlogAuthorWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogAuthor',
-                        'class' => 'umicms\project\module\blog\api\object\BlogAuthor'
+                        'class' => BlogAuthor::className()
                     ]
                 )
             );

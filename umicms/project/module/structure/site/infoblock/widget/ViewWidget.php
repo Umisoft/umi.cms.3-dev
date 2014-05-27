@@ -56,7 +56,7 @@ class ViewWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'infoBlock',
-                        'class' => 'umicms\project\module\structure\api\object\InfoBlock'
+                        'class' => InfoBlock::className()
                     ]
                 )
             );

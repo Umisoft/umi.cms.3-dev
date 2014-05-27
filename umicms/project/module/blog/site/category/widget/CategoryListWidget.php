@@ -54,7 +54,7 @@ class CategoryListWidget extends BaseListWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'parentCategory',
-                        'class' => 'umicms\project\module\blog\api\object\BlogCategory'
+                        'class' => BlogCategory::className()
                     ]
                 )
             );

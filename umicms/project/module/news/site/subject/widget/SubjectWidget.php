@@ -57,7 +57,7 @@ class SubjectWidget extends BaseWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'subject',
-                        'class' => 'umicms\project\module\news\api\object\NewsSubject'
+                        'class' => NewsSubject::className()
                     ]
                 )
             );
