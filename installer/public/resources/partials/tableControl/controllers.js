@@ -148,20 +148,44 @@ define(['App'], function(UMI){
                 Ember.run.once(this, 'getObjects');
             }.observes('query'),
 
+            /**
+             * Возвращает список кнопок контекстного меню
+             * @property contextMenu
+             * return Array
+             */
+            contextMenu: function(){
+                var contextMenu = this.get('controllers.component.contentControls') || [];
+                contextMenu = contextMenu.findBy('name', 'filter') || {};
+                contextMenu = contextMenu.toolbar || [];
+                return [{"type":"create","displayName":"Создать Рубрика новостей","typeName":"base"},{"type":"switchActivity","displayName":"Сменить активность"},{"type":"viewOnSite","displayName":"Посмотреть на сайте"}];//contextMenu;
+            }.property('controllers.component.contentControls'),
+
+            /**
+             * Возвращает toolbar
+             * @property toolbar
+             * return Array
+             */
+            toolbar: function(){
+                var toolbar = this.get('controllers.component.contentControls') || [];
+                toolbar = toolbar.findBy('name', 'filter') || {};
+                toolbar = toolbar.toolbar || [];
+                return toolbar;
+            }.property('controllers.component.contentControls'),
+
             actions: {
                 orderByProperty: function(propertyName, sortAscending){
                     this.set('orderByProperty', {'property' : propertyName, 'direction': sortAscending});
+                },
+
+                sendAction: function(action, object){
+                    this.send(action.type, object, action);
                 }
             },
-
-//            actionList: function(){
-//                return this.get('controllers.component.sideBarControl.toolbar');
-//            }.property(),
 
             needs: ['component']
         });
 
-        UMI.TableControlColumnSelectorPopupController = Ember.ObjectController.extend({});
+        UMI.TableControlColumnSelectorPopupController = Ember.ObjectController.extend({});// Для чего нужна такая запись? она избыточна
 
         UMI.tableControlColumnSelectorPopup = UMI.TableControlColumnSelectorPopupController.create();
     };

@@ -59,7 +59,6 @@ define([], function(){
                         } catch(error){
                             transition.send('templateLogs', error);
                         }
-
                     }
                 }, function(error){
                     var becameError = new Error(results);
@@ -204,7 +203,6 @@ define([], function(){
 
                 /// global actions
                 switchActivity: function(object){
-                    console.log('switchActivity');
                     try{
                         var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
                         var switchActivitySource = this.controllerFor('component').get('settings').actions[(object.get('active') ? 'de' : '') + 'activate'].source;

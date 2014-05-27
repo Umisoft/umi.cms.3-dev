@@ -4542,10 +4542,10 @@ ul.umi-search-result {
   padding: 4px 0; }
 
 .umi-list li {
-  width: 100%;
   height: 28px;
   line-height: 28px;
-  white-space: nowrap; }
+  white-space: nowrap;
+  padding: 0 5px; }
 
 .umi-list li:nth-of-type(even) {
   background: #E8EDEF; }
@@ -4554,11 +4554,11 @@ ul.umi-search-result {
   background: #C8DEEE; }
 
 .umi-list a {
-  display: block;
-  height: 100%;
-  font-size: 13px;
   color: #535E6D;
-  padding: 0 10px; }
+  font-size: 80%; }
+
+.umi-list .icon {
+  margin-top: 5px; }
 
 .ckeditor-row {
   margin-right: -2px; }
