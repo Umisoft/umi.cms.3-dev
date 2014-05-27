@@ -17,6 +17,7 @@ return [
             AuthorizedUser::FIELD_FIRST_NAME => 'First name',
             AuthorizedUser::FIELD_MIDDLE_NAME => 'Middle name',
             AuthorizedUser::FIELD_LAST_NAME => 'Last name',
+            AuthorizedUser::FIELD_GROUPS => 'Groups',
 
             'type:base:displayName' => 'User',
             'type:guest:displayName' => 'Guest',
@@ -33,6 +34,7 @@ return [
             AuthorizedUser::FIELD_FIRST_NAME => 'Имя',
             AuthorizedUser::FIELD_MIDDLE_NAME => 'Отчество',
             AuthorizedUser::FIELD_LAST_NAME => 'Фамилия',
+            AuthorizedUser::FIELD_GROUPS => 'Группы',
 
             'type:base:displayName' => 'Пользователь',
             'type:guest:displayName' => 'Гость',

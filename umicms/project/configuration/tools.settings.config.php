@@ -14,12 +14,12 @@ use umi\i18n\toolbox\I18nTools;
 use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
 use umi\templating\toolbox\TemplatingTools;
-use umicms\captcha\toolbox\CaptchaTools;
 use umicms\form\element\Captcha;
 use umicms\form\element\File;
 use umicms\form\element\Image;
 use umicms\form\element\PasswordWithConfirmation;
 use umicms\form\element\Wysiwyg;
+use umicms\form\fieldset\PermissionsFieldSet;
 use umicms\module\toolbox\ModuleTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 
@@ -62,6 +62,9 @@ return [
     FormTools::NAME => [
         'factories' => [
             'entity' => [
+                'fieldSetTypes' => [
+                    PermissionsFieldSet::TYPE_NAME => 'umicms\form\fieldset\PermissionsFieldSet'
+                ],
                 'elementTypes' => [
                     Wysiwyg::TYPE_NAME => 'umicms\form\element\Wysiwyg',
                     File::TYPE_NAME => 'umicms\form\element\File',

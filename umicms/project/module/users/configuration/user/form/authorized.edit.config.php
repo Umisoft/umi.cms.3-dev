@@ -7,6 +7,7 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\form\element\MultiSelect;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -45,7 +46,15 @@ return [
                     'options' => [
                         'dataSource' => AuthorizedUser::FIELD_EMAIL
                     ],
-                ]
+                ],
+                AuthorizedUser::FIELD_GROUPS => [
+                    'type' => MultiSelect::TYPE_NAME,
+                    'label' => AuthorizedUser::FIELD_GROUPS,
+                    'options' => [
+                        'lazy' => true,
+                        'dataSource' => AuthorizedUser::FIELD_GROUPS
+                    ]
+                ],
             ]
         ]
     ]
