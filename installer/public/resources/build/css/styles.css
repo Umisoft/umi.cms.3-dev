@@ -4155,6 +4155,10 @@ ul.umi-search-result {
   background: #D6E0E9;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
+  .umi-table-control .umi-inactive {
+    color: #9C9C9C; }
+    .umi-table-control .umi-inactive .edit-link {
+      color: #9C9C9C; }
 
 .umi-table-control-header {
   background: #F5F6F7; }
@@ -4370,8 +4374,6 @@ ul.umi-search-result {
   background: #F5F6F7; }
   .umi-table-control-content-row:nth-of-type(odd) {
     background: #E9F1F7; }
-  .umi-table-control-content-row.umi-inactive {
-    background: #D6E0E9; }
   .umi-table-control-content-row.hover {
     background: #C8DEEE !important; }
   .umi-table-control-content-row .edit-link {
