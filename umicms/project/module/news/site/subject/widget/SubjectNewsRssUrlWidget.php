@@ -58,7 +58,7 @@ class SubjectNewsRssUrlWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'subject',
-                        'class' => 'NewsSubject'
+                        'class' => NewsSubject::className()
                     ]
                 )
             );

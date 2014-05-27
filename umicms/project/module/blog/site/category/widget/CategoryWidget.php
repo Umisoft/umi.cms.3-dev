@@ -57,7 +57,7 @@ class CategoryWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'category',
-                        'class' => 'BlogCategory'
+                        'class' => BlogCategory::className()
                     ]
                 )
             );

@@ -56,7 +56,7 @@ class PublishWidget extends BaseFormWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogComment',
-                        'class' => 'umicms\project\module\blog\api\object\BlogComment'
+                        'class' => BlogComment::className()
                     ]
                 )
             );

@@ -66,7 +66,7 @@ class BlogAuthorPostListWidget extends BaseSecureWidget
                         'Widget parameter "{param}" should be instance of "{class}".',
                         [
                             'param' => 'blogAuthors',
-                            'class' => 'BlogAuthor'
+                            'class' => BlogAuthor::className()
                         ]
                     )
                 );

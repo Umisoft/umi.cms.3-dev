@@ -9,26 +9,18 @@
 
 namespace umicms\project\module\news\site\rubric\widget;
 
-use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseWidget;
+use umicms\hmvc\widget\BaseTreeWidget;
 use umicms\project\module\news\api\NewsModule;
-use umicms\project\module\news\api\object\NewsRubric;
 
 /**
  * Виджет для вывода дерева новостных рубрик.
  */
-class RubricTreeWidget extends BaseWidget
+class RubricTreeWidget extends BaseTreeWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'tree';
-
-    /**
-     * @var string|null|NewsRubric $parentRubric новостная рубрика или GUID, из которой выводятся дочерние рубрики.
-     * Если не указан, выводятся все корневые рубрики.
-     */
-    public $parentRubric;
 
     /**
      * @var NewsModule $api API модуля "Новости"
@@ -47,25 +39,9 @@ class RubricTreeWidget extends BaseWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
-        if (is_string($this->parentRubric)) {
-            $this->parentRubric = $this->api->rubric()->get($this->parentRubric);
-        }
-
-        if (isset($this->parentRubric) && !$this->parentRubric instanceof NewsRubric) {
-            throw new InvalidArgumentException(
-                $this->translate(
-                    'Widget parameter "{param}" should be instance of "{class}".',
-                    [
-                        'param' => 'parentRubric',
-                        'class' => 'NewsRubric'
-                    ]
-                )
-            );
-        }
-
-        return $this->createTreeResult($this->template, $this->api->rubric()->select());
+        return $this->api->rubric()->select();
     }
 }
  
