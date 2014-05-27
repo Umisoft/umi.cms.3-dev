@@ -54,13 +54,13 @@ abstract class SitePageController extends BaseSecureController implements IPageC
             if ($page instanceof SystemPage && $page->skipInBreadcrumbs) {
                 continue;
             }
-            $breadcrumbs[] = $this->getBreabcrumb($page);
+            $breadcrumbs[] = $this->getBreadcrumb($page);
             if ($page === $callStack->top()) {
                 $ancestry = $this->getNavigationAncestry($page);
 
                 $navigationAncestry = [];
                 foreach ($ancestry as $ancestryPage) {
-                    $navigationAncestry[] = $this->getBreabcrumb($ancestryPage);
+                    $navigationAncestry[] = $this->getBreadcrumb($ancestryPage);
                 }
 
                 $navigationAncestry = array_reverse($navigationAncestry);
@@ -73,7 +73,7 @@ abstract class SitePageController extends BaseSecureController implements IPageC
 
         $defaultPage = $structureModule->getDefaultPage();
         if ($defaultPage !== $callStack->bottom()) {
-            $breadcrumbs[] = $this->getBreabcrumb($defaultPage);
+            $breadcrumbs[] = $this->getBreadcrumb($defaultPage);
         }
 
         $breadcrumbs = array_reverse($breadcrumbs);
@@ -96,7 +96,7 @@ abstract class SitePageController extends BaseSecureController implements IPageC
      * @param ICmsPage $page
      * @return array
      */
-    private function getBreabcrumb(ICmsPage $page)
+    private function getBreadcrumb(ICmsPage $page)
     {
         return [
             'url' => $page->getPageUrl(),
