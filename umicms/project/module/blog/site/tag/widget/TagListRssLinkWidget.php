@@ -7,17 +7,17 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\category\widget;
+namespace umicms\project\module\blog\site\tag\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogCategory;
+use umicms\project\module\blog\api\object\BlogTag;
 
 /**
- * Виджет для вывода URL на RSS-ленту по категории.
+ * Виджет для вывода URL на RSS-ленту по тэгу.
  */
-class CategoryPostRssUrlWidget extends BaseSecureWidget
+class TagListRssLinkWidget extends BaseLinkWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -25,10 +25,9 @@ class CategoryPostRssUrlWidget extends BaseSecureWidget
     public $template = 'rssLink';
 
     /**
-     * @var BlogCategory|string|null $categories категория или GUID, URL на RSS которой генерировать.
-     * Если не указана, генерируется URL на все посты.
+     * @var string|BlogTag $blogTag тэг блога или GUID, по которому формируется RSS-лента
      */
-    public $category;
+    public $blogTag;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
@@ -47,31 +46,25 @@ class CategoryPostRssUrlWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getLinkUrl()
     {
-        if (is_string($this->category)) {
-            $this->category = $this->api->category()->get($this->category);
+        if (is_string($this->blogTag)) {
+            $this->blogTag = $this->api->tag()->get($this->blogTag);
         }
 
-        if (isset($this->category) && !$this->category instanceof BlogCategory) {
+        if (!$this->blogTag instanceof BlogTag) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'category',
-                        'class' => 'BlogModule'
+                        'param' => 'tag',
+                        'class' => 'BlogTag'
                     ]
                 )
             );
         }
 
-        $url = $this->category->getURL();
-        return $this->createResult(
-            $this->template,
-            [
-                'url' => $this->getUrl('rss', ['url' => $url])
-            ]
-        );
+        return $this->getUrl('rss', ['slug' => $this->blogTag->slug]);
     }
 }
  

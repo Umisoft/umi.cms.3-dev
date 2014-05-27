@@ -29,7 +29,7 @@ return [
         'rss' => __NAMESPACE__ . '\widget\ListRssUrlWidget',
         'add' => __NAMESPACE__ . '\widget\AddWidget',
         'unPublished' => __NAMESPACE__ . '\widget\PostToDraftWidget',
-        'editPostLink' => __NAMESPACE__ . '\widget\EditUrlWidget'
+        'editPostLink' => __NAMESPACE__ . '\widget\EditLinkWidget'
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/post'],

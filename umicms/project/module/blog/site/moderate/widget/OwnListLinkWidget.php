@@ -9,44 +9,24 @@
 
 namespace umicms\project\module\blog\site\moderate\widget;
 
-use umicms\hmvc\widget\BaseSecureWidget;
-use umicms\project\module\blog\api\BlogModule;
+use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет для вывода ссылки на спискок постов текущего автора, требующих модерации.
  */
-class OwnListLinkWidget extends BaseSecureWidget
+class OwnListLinkWidget extends BaseLinkWidget
 {
     /**
-     * @var string $template имя шаблона, по которому выводится виджет
+     * {@inheritdoc}
      */
     public $template = 'moderateLink';
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
-     */
-    protected $api;
-
-    /**
-     * Конструктор.
-     * @param BlogModule $blogApi API модуля "Блоги"
-     */
-    public function __construct(BlogModule $blogApi)
-    {
-        $this->api = $blogApi;
-    }
-
-    /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getLinkUrl()
     {
-        return $this->createResult(
-            $this->template,
-            [
-                'url' => $this->getUrl('index')
-            ]
-        );
+        return $this->getUrl('index', [], $this->absolute);
     }
 }
  

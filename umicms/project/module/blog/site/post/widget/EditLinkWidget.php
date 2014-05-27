@@ -7,7 +7,7 @@
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-namespace umicms\project\module\blog\site\moderate\widget;
+namespace umicms\project\module\blog\site\post\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
@@ -15,16 +15,16 @@ use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет для вывода ссылки на редактирование поста, требующего модерации.
+ * Виджет для вывода URL на редактирование поста.
  */
-class PostEditLinkWidget extends BaseLinkWidget
+class EditLinkWidget extends BaseLinkWidget
 {
     /**
-     * @var string $template имя шаблона, по которому выводится виджет
+     * {@inheritdoc}
      */
     public $template = 'editPostLink';
     /**
-     * @var string|BlogPost $blogPost пост или GUID редактируемого поста, требующего модерации
+     * @var BlogPost $blogPost пост или GUID редактируемого поста
      */
     public $blogPost;
     /**
@@ -47,7 +47,7 @@ class PostEditLinkWidget extends BaseLinkWidget
     protected function getLinkUrl()
     {
         if (is_string($this->blogPost)) {
-            $this->blogPost = $this->api->post()->getNeedModeratePost($this->blogPost);
+            $this->blogPost = $this->api->post()->get($this->blogPost);
         }
 
         if (!$this->blogPost instanceof BlogPost) {
@@ -62,7 +62,7 @@ class PostEditLinkWidget extends BaseLinkWidget
             );
         }
 
-        return $this->getUrl('edit', ['id' => $this->blogPost->getId()], $this->absolute);
+        return $this->getUrl('edit', ['id' => $this->blogPost->getId(), $this->absolute]);
     }
 }
  
