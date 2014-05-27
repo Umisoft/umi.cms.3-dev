@@ -10,7 +10,7 @@
 use umi\form\element\MultiSelect;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\form\fieldset\PermissionsFieldSet;
+use umicms\form\element\Permissions;
 use umicms\project\module\users\api\object\UserGroup;
 
 return [
@@ -46,8 +46,17 @@ return [
 
         ],
         'permissions' => [
-            'type' => PermissionsFieldSet::TYPE_NAME,
-            'label'=> 'permissions'
+            'type' => FieldSet::TYPE_NAME,
+            'label'=> 'permissions',
+            'elements' => [
+                UserGroup::FIELD_ROLES => [
+                    'type' => Permissions::TYPE_NAME,
+                    'label' => UserGroup::FIELD_ROLES,
+                    'options' => [
+                        'dataSource' => UserGroup::FIELD_ROLES
+                    ]
+                ]
+            ]
         ]
     ]
 ];

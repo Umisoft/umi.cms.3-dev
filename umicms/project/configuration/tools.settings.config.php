@@ -19,7 +19,7 @@ use umicms\form\element\File;
 use umicms\form\element\Image;
 use umicms\form\element\PasswordWithConfirmation;
 use umicms\form\element\Wysiwyg;
-use umicms\form\fieldset\PermissionsFieldSet;
+use umicms\form\element\Permissions;
 use umicms\module\toolbox\ModuleTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 
@@ -62,15 +62,13 @@ return [
     FormTools::NAME => [
         'factories' => [
             'entity' => [
-                'fieldSetTypes' => [
-                    PermissionsFieldSet::TYPE_NAME => 'umicms\form\fieldset\PermissionsFieldSet'
-                ],
                 'elementTypes' => [
                     Wysiwyg::TYPE_NAME => 'umicms\form\element\Wysiwyg',
                     File::TYPE_NAME => 'umicms\form\element\File',
                     Image::TYPE_NAME => 'umicms\form\element\Image',
                     Captcha::TYPE_NAME => 'umicms\form\element\Captcha',
-                    PasswordWithConfirmation::TYPE_NAME => 'umicms\form\element\PasswordWithConfirmation'
+                    PasswordWithConfirmation::TYPE_NAME => 'umicms\form\element\PasswordWithConfirmation',
+                    Permissions::TYPE_NAME => 'umicms\form\element\Permissions'
                 ],
                 'elementDefaultOptions' => [
                     Captcha::TYPE_NAME => '{#lazy:~/project/configuration/captcha.config.php}'
