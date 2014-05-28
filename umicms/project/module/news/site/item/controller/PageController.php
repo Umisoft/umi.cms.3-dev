@@ -15,7 +15,7 @@ use umicms\project\module\news\api\object\NewsItem;
 use umicms\project\site\controller\DefaultPageController;
 
 /**
- * Контроллер для отображения поста
+ * Контроллер для отображения новости.
  */
 class PageController extends DefaultPageController
 {
