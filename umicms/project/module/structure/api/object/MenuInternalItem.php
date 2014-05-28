@@ -44,21 +44,23 @@ class MenuInternalItem extends MenuItem implements ICollectionManagerAware
 
     /**
      * Возвращает ссылку на внутренний ресурс.
-     * @return string
+     * @return string|null
      */
     public function getItemUrl()
     {
-        $url = null;
-
-        $menuItem = $this->getCollectionManager()
-            ->getCollection($this->collectionNameItem)
-            ->getById($this->itemId);
-
-        if ($menuItem instanceof ICmsPage) {
-            $url = $menuItem->getPageUrl();
+        try {
+            $menuItem = $this->getCollectionManager()
+                ->getCollection($this->collectionNameItem)
+                ->getById($this->itemId);
+        } catch (\Exception $e) {
+            return null;
         }
 
-        return $url;
+        if ($menuItem instanceof ICmsPage) {
+            return $menuItem->getPageUrl();
+        } else {
+            return null;
+        }
     }
 }
  

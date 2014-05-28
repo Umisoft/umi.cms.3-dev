@@ -8,7 +8,10 @@
     <ul class="bottomMenu">
         <?php foreach ($tree as $node) : ?>
             <li>
-                <a href="<?=$node->item->getItemUrl()?>" <?php echo $node->item->getItemType() == 'externalItem' ? 'target="blank"' : ''; ?> ><?=$node->item->displayName?></a>
+                <a href="<?php $itemUrl = $node->item->getItemUrl(); echo !is_null($itemUrl) ? $itemUrl : '#'; ?>"
+                    <?php echo $node->item->getItemType() == 'externalItem' ? 'target="blank"' : ''; ?> >
+                    <?=$node->item->displayName?>
+                </a>
                 <?= $this->render('customMenu.phtml', ['tree' => $node->children]); ?>
             </li>
         <?php endforeach;?>
