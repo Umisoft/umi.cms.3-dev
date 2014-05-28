@@ -2970,7 +2970,7 @@ label.error {
     background-position: -180px 0; }
   .icon.icon-upload {
     background-position: -200px 0; }
-  .icon.icon-list {
+  .icon.icon-list, .icon.icon-backToList {
     background-position: -220px 0; }
   .icon.icon-delete {
     background-position: -240px 0; }
@@ -2986,7 +2986,7 @@ label.error {
     background-position: -340px 0; }
   .icon.icon-settings {
     background-position: -360px 0; }
-  .icon.icon-eye, .icon.icon-read {
+  .icon.icon-eye, .icon.icon-read, .icon.icon-switchActivity {
     background-position: -380px 0; }
   .icon.icon-window {
     background-position: -400px 0; }
@@ -3014,7 +3014,7 @@ label.error {
     background-position: -620px 0; }
   .icon.icon-5 {
     background-position: -640px 0; }
-  .icon.icon-6 {
+  .icon.icon-backupList {
     background-position: -680px 0; }
   .icon.icon-renew {
     background-position: -700px 0; }
@@ -3070,7 +3070,7 @@ label.error {
     background-position: -180px -20px; }
   .icon.white.icon-upload {
     background-position: -200px -20px; }
-  .icon.white.icon-list {
+  .icon.white.icon-list, .icon.white.icon-backToList {
     background-position: -220px -20px; }
   .icon.white.icon-delete {
     background-position: -240px -20px; }
@@ -3086,7 +3086,7 @@ label.error {
     background-position: -340px -20px; }
   .icon.white.icon-settings {
     background-position: -360px -20px; }
-  .icon.white.icon-eye, .icon.white.icon-read {
+  .icon.white.icon-eye, .icon.white.icon-read, .icon.white.icon-switchActivity {
     background-position: -380px -20px; }
   .icon.white.icon-window {
     background-position: -400px -20px; }
@@ -3114,7 +3114,7 @@ label.error {
     background-position: -620px -20px; }
   .icon.white.icon-5 {
     background-position: -640px -20px; }
-  .icon.white.icon-6 {
+  .icon.white.icon-backupList {
     background-position: -680px -20px; }
   .icon.white.icon-renew {
     background-position: -700px -20px; }
@@ -3170,7 +3170,7 @@ label.error {
     background-position: -180px -40px; }
   .icon.black.icon-upload {
     background-position: -200px -40px; }
-  .icon.black.icon-list {
+  .icon.black.icon-list, .icon.black.icon-backToList {
     background-position: -220px -40px; }
   .icon.black.icon-delete {
     background-position: -240px -40px; }
@@ -3186,7 +3186,7 @@ label.error {
     background-position: -340px -40px; }
   .icon.black.icon-settings {
     background-position: -360px -40px; }
-  .icon.black.icon-eye, .icon.black.icon-read {
+  .icon.black.icon-eye, .icon.black.icon-read, .icon.black.icon-switchActivity {
     background-position: -380px -40px; }
   .icon.black.icon-window {
     background-position: -400px -40px; }
@@ -3214,7 +3214,7 @@ label.error {
     background-position: -620px -40px; }
   .icon.black.icon-5 {
     background-position: -640px -40px; }
-  .icon.black.icon-6 {
+  .icon.black.icon-backupList {
     background-position: -680px -40px; }
   .icon.black.icon-renew {
     background-position: -700px -40px; }
