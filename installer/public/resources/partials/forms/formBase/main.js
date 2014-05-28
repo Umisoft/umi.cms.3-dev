@@ -4,9 +4,9 @@ define(
         'text!./form.hbs',
         'partials/forms/elements/main',
         'partials/forms/partials/magellan/main',
-        'partials/forms/partials/toolbar/main'
+        'partials/forms/partials/contextMenu/main'
     ],
-    function(UMI, formTpl, elements, magellan, toolbar){
+    function(UMI, formTpl, elements, magellan, contextMenu){
         'use strict';
 
         /**
@@ -19,27 +19,23 @@ define(
 
             elements();
             magellan();
-            toolbar();
+            contextMenu();
 
             UMI.FormBaseController = Ember.ObjectController.extend({
                 /**
-                 * Toolbar кнопок для формы
-                 * @method toolbar
+                 * contextMenu кнопок для формы
+                 * @method contextMenuBinding
                  */
-                toolbarBinding: 'toolbar',
+                contextMenuBinding: 'contextMenu',
                 /**
-                 * Проверяет наличие toolbar
-                 * @method hasToolbar
+                 * Проверяет наличие contextMenu
+                 * @method hasContextMenu
                  * @return bool
                  */
-                hasToolbar: function(){
-                    var toolbar = this.get('toolbar');
-                    // TODO: убрать как только back будет возвращать тулбар в виде массива
-                    if(Ember.typeOf(toolbar) === 'object'){
-                        toolbar = [toolbar];
-                    }
-                    return toolbar && toolbar.length;
-                }.property('toolbar'),
+                hasContextMenu: function(){
+                    var contextMenu = this.get('contextMenu');
+                    return contextMenu && contextMenu.length;
+                }.property('contextMenu'),
                 /**
                  * Проверяет наличие fieldset
                  * @method hasFieldset
@@ -47,7 +43,13 @@ define(
                  */
                 hasFieldset: function(){
                     return this.get('model.elements').isAny('type', 'fieldset');
-                }.property('model')
+                }.property('model'),
+
+                actions: {
+                    sendAction: function(action, object){
+                        this.send(action.type, object, action);
+                    }
+                }
             });
 
             UMI.FormBaseView = Ember.View.extend({
