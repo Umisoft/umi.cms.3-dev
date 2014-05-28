@@ -181,7 +181,15 @@ define(['App'], function(UMI){
                 var toolbar = this.get('controllers.component.contentControls') || [];
                 toolbar = toolbar.findBy('name', 'filter') || {};
                 toolbar = toolbar.toolbar || [];
-                return toolbar;
+                return [
+                    {"elementType": "dropdownButton", "displayName": "Создать", "elements": [
+                        {"type":"create", "displayName":"Создать Рубрика новостей","typeName":"base"}
+                    ]},
+                    {"elementType": "button", "type":"switchActivity", "displayName":"Сменить активность"},
+                    {"elementType": "button", "type":"viewOnSite", "displayName":"Посмотреть на сайте"},
+                    {"elementType": "button", "type":"trash", "displayName":"Удалить в корзину"},
+                    {"elementType": "button", "type":"delete","displayName":"Удалить навсегда"}
+                ];//toolbar;
             }.property('controllers.component.contentControls'),
 
             actions: {

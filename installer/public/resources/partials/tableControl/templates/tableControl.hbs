@@ -1,5 +1,5 @@
 <div class="s-unselectable umi-mode">
-    {{#view 'toolBar'}}
+    {{#view 'toolBar' toolbar=toolbar rootContext=content.object contextAction=controller.contextAction}}
         {{#view view.parentView.paginationView}}
             <div class="right pagination-controls">
                 <span class="pagination-counter">
