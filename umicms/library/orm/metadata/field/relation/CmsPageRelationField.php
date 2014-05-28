@@ -19,6 +19,11 @@ use umicms\orm\object\ICmsPage;
 class CmsPageRelationField extends ObjectRelationField
 {
     /**
+     * Тип поля
+     */
+    const TYPE = 'cmsPageRelation';
+
+    /**
      * {@inheritdoc}
      */
     public function validateInputPropertyValue($propertyValue)
