@@ -17,7 +17,23 @@ define(
                 toolbar: function(){
                     var actionName = this.get('container').lookup('route:action').get('context.action.name');
                     var editForm = this.get('controllers.component.contentControls').findBy('name', actionName);
-                    return editForm && editForm.toolbar;
+                    return [
+                        {"elementType": "dropdownButton", "displayName": "Создать", "elements": [
+                            {"type":"create", "displayName":"Создать Рубрика новостей","typeName":"base"}
+                        ]},
+                        {"elementType": "button", "type":"list", "displayName": "Вернуться к списку"},
+                        {"elementType": "button", "type":"switchActivity", "displayName": "Сменить активность"},
+                        {"elementType": "button", "type":"viewOnSite", "displayName": "Открыть страницу в новом окне"},
+                        {"elementType": "button", "type":"backupList","displayName": "Предыдущие версии"},
+                        {"elementType": "button", "type":"trash", "displayName": "Удалить в корзину"},
+                        {"elementType": "button", "type":"delete","displayName": "Удалить навсегда"}
+                    ];//editForm && editForm.toolbar;
+                }.property('controllers.component.contentControls'),
+
+                contextMenu: function(){
+                    var actionName = this.get('container').lookup('route:action').get('context.action.name');
+                    var editForm = this.get('controllers.component.contentControls').findBy('name', actionName);
+                    return [{"displayName": "Сохранить", "type": "apply"}];//editForm
                 }.property('controllers.component.contentControls'),
 
                 hasFieldset: function(){
