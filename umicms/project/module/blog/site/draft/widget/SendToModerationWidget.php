@@ -23,7 +23,7 @@ class SendToModerationWidget extends BaseFormWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'publishForm';
+    public $template = 'sendToModerationForm';
     /**
      * {@inheritdoc}
      */

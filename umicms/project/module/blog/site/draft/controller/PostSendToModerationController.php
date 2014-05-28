@@ -47,7 +47,7 @@ class PostSendToModerationController extends BaseSecureController implements IOb
      */
     protected function getTemplateName()
     {
-        return 'publishForm';
+        return 'sendToModerationForm';
     }
 
     /**
