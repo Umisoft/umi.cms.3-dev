@@ -25,6 +25,10 @@ class SendToModerationWidget extends BaseFormWidget
      */
     public $template = 'publishForm';
     /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
+    /**
      * @var string|BlogPost $blogDraft черновик или GUID черновика отправляемого на модерацию
      */
     public $blogDraft;
