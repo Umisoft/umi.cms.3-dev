@@ -28,6 +28,7 @@ return [
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'rss' => __NAMESPACE__ . '\widget\ListRssUrlWidget',
         'unPublished' => __NAMESPACE__ . '\widget\PostToDraftWidget',
+        'addPostLink' => __NAMESPACE__ . '\widget\AddLinkWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\EditLinkWidget'
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
@@ -50,6 +51,7 @@ return [
             'widget:list',
             'widget:rss',
             'widget:unPublished',
+            'widget:addPostLink',
             'widget:editPostLink',
             'model:blogPost'
         ],
@@ -76,6 +78,7 @@ return [
                 'controller:edit' => [],
                 'controller:unPublished' => [],
                 'widget:unPublished' => [],
+                'widget:addPostLink' => [],
                 'widget:editPostLink' => [],
                 'model:blogPost' => [
                     'edit' => []
