@@ -728,8 +728,10 @@ define([], function(){
                     };
                     var component = findDepth(settings, 'name', params.component);
                     return $.get(component.resource).then(function(data){
+                        // Временное решение
                         if(data.result.toolbar){
-                            data.result.form.toolbar = data.result.toolbar;
+                            data.result.form.contextMenu = [{type: "apply", displayName: "Применить"} ];
+                            data.result.form.toolbar = null;
                         }
                         Ember.set(component, 'form', data.result.form);
 
