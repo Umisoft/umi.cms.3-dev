@@ -31,7 +31,6 @@ use umicms\module\TModuleAware;
 use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\news\api\collection\NewsRssImportScenarioCollection;
-use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchModule;
 use umicms\project\module\service\api\collection\BackupCollection;

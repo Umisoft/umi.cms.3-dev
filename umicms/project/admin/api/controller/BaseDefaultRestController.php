@@ -165,6 +165,13 @@ abstract class BaseDefaultRestController extends BaseSecureController implements
         return $object;
     }
 
+    /**
+     * Сохраняет значение объекта для DateTimeField.
+     * @param ICmsObject $object изменяемый объект
+     * @param string $propertyName имя свойства изменяемого объекта
+     * @param array|null $value
+     * @throws UnexpectedValueException если значение некорректно
+     */
     protected function setDateTimeValue(ICmsObject $object, $propertyName, $value)
     {
         if (!is_null($value)) {
@@ -185,8 +192,8 @@ abstract class BaseDefaultRestController extends BaseSecureController implements
     /**
      * Сохраняет значение объекта для HasManyRelationField.
      * @param ICmsObject $object изменяемый объект
-     * @param string $propertyName имя изменяемого объекта
-     * @param HasManyRelationField $field поле свойств
+     * @param string $propertyName имя свойства изменяемого объекта
+     * @param HasManyRelationField $field поле свойства
      * @param array $value значение (список идентификаторов связанных объектов)
      * @throws UnexpectedValueException если значение некорректно
      */
@@ -222,8 +229,8 @@ abstract class BaseDefaultRestController extends BaseSecureController implements
     /**
      * Сохраняет значение объекта для BelongsToRelationField.
      * @param ICmsObject $object изменяемый объект
-     * @param string $propertyName имя изменяемого объекта
-     * @param BelongsToRelationField $field поле свойств
+     * @param string $propertyName имя свойства изменяемого объекта
+     * @param BelongsToRelationField $field поле свойства
      * @param int|null $value значение (идентификатор связанного объекта)
      * @throws UnexpectedValueException если значение некорректно
      */
@@ -246,8 +253,8 @@ abstract class BaseDefaultRestController extends BaseSecureController implements
     /**
      * Сохраняет значение объекта для ManyToManyRelationField.
      * @param ICmsObject $object изменяемый объект
-     * @param string $propertyName имя изменяемого объекта
-     * @param ManyToManyRelationField $field поле свойств
+     * @param string $propertyName имя свойства изменяемого объекта
+     * @param ManyToManyRelationField $field поле свойства
      * @param array $value значение (список идентификаторов связанных объектов)
      * @throws UnexpectedValueException если значение некорректно
      */
