@@ -57,7 +57,7 @@ class RubricWidget extends BaseSecureWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'rubric',
-                        'class' => 'NewsRubric'
+                        'class' => NewsRubric::className()
                     ]
                 )
             );

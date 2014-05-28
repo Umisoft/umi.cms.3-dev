@@ -13,6 +13,14 @@ define([], function(){
          * @extends Ember.ObjectController
          */
         UMI.ComponentController = Ember.ObjectController.extend({
+            /**
+             * Уникальное имя компонента
+             * @property name
+             */
+            name: function(){
+                return this.get('container').lookup('route:module').get('context.name') + Ember.String.capitalize(this.get('model.name'));
+            }.property('model.name'),
+
             collectionName: function(){
                 var settings = this.get('settings');
                 return settings.collectionName;

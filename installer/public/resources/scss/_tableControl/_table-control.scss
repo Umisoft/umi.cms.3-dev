@@ -4,6 +4,7 @@ $table-control-cell-border-color: #E3E4E5;
 $table-control-header-height: 66px;
 //$table-control-row-bg-hover: #b5dbf6;
 $table-control-row-bg-hover: #C8DEEE;
+
 .umi-table-control{
     font-size: rem-calc(13);
     height: 100%;
@@ -11,6 +12,12 @@ $table-control-row-bg-hover: #C8DEEE;
     overflow: hidden;
     background: #D6E0E9;
     box-sizing: border-box;
+    .umi-inactive{
+        color: #9C9C9C;
+        .edit-link{
+            color: #9C9C9C;
+        }
+    }
 }
 
 // -------- Шапка таблицы
@@ -61,7 +68,6 @@ $table-control-row-bg-hover: #C8DEEE;
 }
 
 // В firefox position: relative, для td не работает, поэутому нужна обёртка
-// TODO И хорошо что не работает - какого хрена оно дожно работать? Для этого есть блочные элементы.
 .umi-table-control-cell-firefox-fix{
     position: relative;
 }
@@ -277,9 +283,6 @@ $table-control-row-bg-hover: #C8DEEE;
     background: #F5F6F7;
     &:nth-of-type(odd){
         background: #E9F1F7;
-    }
-    &.umi-inactive{
-        background: #D6E0E9;
     }
     &.hover{
         background: $table-control-row-bg-hover!important;
