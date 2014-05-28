@@ -1,0 +1,7 @@
+{{#each view.elements}}
+    {{#view view.buttonView}}
+        <a href="javascript:void(0)" {{bind-attr class=":button :primary :s-margin-clear :wide"}} {{action 'sendAction' this view.parentView.contextAction}}>
+            {{displayName}}
+        </a>
+    {{/view}}
+{{/each}}

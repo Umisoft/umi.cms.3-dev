@@ -1,9 +1,21 @@
-define(['App', 'text!./toolbar.hbs'], function(UMI, toolbarTpl){
+define(['App', 'text!./contextMenu.hbs'], function(UMI, contextMenuTpl){
     "use strict";
 
     return function(){
 
-        UMI.FormToolbarController = Ember.ArrayController.extend({
+        UMI.FormContextMenuView = Ember.View.extend({
+            layout: Ember.Handlebars.compile(contextMenuTpl),
+            tagName: 'ul',
+            classNames: ['button-group', 'umi-form-control-buttons'],
+            /**
+             * View кнопки
+             */
+            buttonView: Ember.View.extend({
+                tagName: 'li'
+            })
+        });
+
+        /*UMI.FormContextMenuController = Ember.ArrayController.extend({
             getBackupList: function(){
                 var backupList;
                 var object = this.get('parentController.object');
@@ -74,9 +86,9 @@ define(['App', 'text!./toolbar.hbs'], function(UMI, toolbarTpl){
                     }
                 }
             }
-        });
+        });*/
 
-        UMI.FormToolbarItemController = Ember.ObjectController.extend({
+        /*UMI.FormContextMenuItemController = Ember.ObjectController.extend({
             isApply: function(){
                 return this.get('content.type') === 'apply' || this.get('content.type') === 'create';
             }.property(),
@@ -92,15 +104,6 @@ define(['App', 'text!./toolbar.hbs'], function(UMI, toolbarTpl){
             isTrash: function(){
                 return this.get('content.type') === 'trash';
             }.property()
-        });
-
-        UMI.FormToolbarView = Ember.View.extend({
-            layout: Ember.Handlebars.compile(toolbarTpl),
-            tagName: 'ul',
-            classNames: ['button-group', 'umi-form-control-buttons'],
-            willDestroyElement: function(){
-                this.get('controller').removeObserver('parentController.object');
-            }
-        });
+        });*/
     };
 });
