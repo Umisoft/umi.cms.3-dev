@@ -7,10 +7,12 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
+use umi\filter\IFilterFactory;
 use umi\form\element\Hidden;
 use umi\form\element\MultiSelect;
 use umi\form\element\Submit;
 use umi\form\element\Text;
+use umi\validation\IValidatorFactory;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\blog\api\object\BlogTag;
@@ -20,6 +22,9 @@ return [
         'dictionaries' => [
             'collection.blogPost', 'collection', 'form'
         ]
+    ],
+    'attributes' => [
+        'method' => 'post'
     ],
     'elements' => [
         BlogPost::FIELD_CATEGORY => [
@@ -40,7 +45,13 @@ return [
             'type' => Text::TYPE_NAME,
             'label' => BlogPost::FIELD_PAGE_H1,
             'options' => [
-                'dataSource' => BlogPost::FIELD_PAGE_H1
+                'dataSource' => BlogPost::FIELD_PAGE_H1,
+                'filters' => [
+                    IFilterFactory::TYPE_STRING_TRIM => []
+                ],
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ]
             ],
         ],
         BlogPost::FIELD_PAGE_SLUG => [
