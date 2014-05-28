@@ -21,7 +21,7 @@ define(
                         {"elementType": "dropdownButton", "displayName": "Создать", "elements": [
                             {"type":"create", "displayName":"Создать Рубрика новостей","typeName":"base"}
                         ]},
-                        {"elementType": "button", "type":"list", "displayName": "Вернуться к списку"},
+                        {"elementType": "button", "type":"backToList", "displayName": "Вернуться к списку"},
                         {"elementType": "button", "type":"switchActivity", "displayName": "Сменить активность"},
                         {"elementType": "button", "type":"viewOnSite", "displayName": "Открыть страницу в новом окне"},
                         {"elementType": "button", "type":"backupList","displayName": "Предыдущие версии"},

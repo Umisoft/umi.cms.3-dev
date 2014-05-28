@@ -286,6 +286,14 @@ define([], function(){
                         function(){}
                     );
                 },
+                /**
+                 * Возвращает к списку
+                 * @param object
+                 * @param type
+                 */
+                backToList: function(object, type){
+                    this.transitionTo('context', 'root');
+                },
 
                 showPopup: function(popupType, object, meta){
                     UMI.PopupView.create({
