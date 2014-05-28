@@ -25,6 +25,10 @@ class PostToDraftWidget extends BaseFormWidget
      */
     public $template = 'unPublishPostForm';
     /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
+    /**
      * @var string|BlogPost $blogPost пост или GUID поста
      */
     public $blogPost;

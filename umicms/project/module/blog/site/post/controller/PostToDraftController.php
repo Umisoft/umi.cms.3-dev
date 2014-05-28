@@ -9,24 +9,24 @@
 
 namespace umicms\project\module\blog\site\post\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
+use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
+use umicms\exception\RuntimeException;
 use umicms\hmvc\controller\BaseSecureController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер помещения поста блога в черновики.
  */
-class PostToDraftController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PostToDraftController extends BaseSecureController implements IObjectPersisterAware
 {
-    use TFormAware;
+    use TFormController;
     use TObjectPersisterAware;
 
     /**
@@ -44,18 +44,28 @@ class PostToDraftController extends BaseSecureController implements IFormAware, 
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
-     * @throws HttpNotFound
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getTemplateName()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
-        }
+        return 'unPublishPostForm';
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
+    {
+        return $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
         $blogPost = $this->api->post()->getById($this->getRouteVar('id'));
+        $blogPost->draft();
 
         if (!$this->isAllowed($blogPost)) {
             throw new ResourceAccessForbiddenException(
@@ -64,20 +74,34 @@ class PostToDraftController extends BaseSecureController implements IFormAware, 
             );
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE);
-        $formData = $this->getAllPostVars();
+        $this->getObjectPersister()->commit();
+    }
 
-        if ($form->setData($formData) && $form->isValid()) {
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildResponseContent()
+    {
+        return [];
+    }
 
-            $blogPost->draft();
+    /**
+     * Формирует ответ.
+     * @throws RuntimeException
+     * @return Response
+     */
+    protected function buildResponse()
+    {
+        $result = (array) $this->buildResponseContent();
+        $result['form'] = $this->form->getView();
 
-            $this->getObjectPersister()->commit();
-
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages()); exit();
+        if (count($this->errors)) {
+            throw new RuntimeException($this->translate(
+                'Form invalid.'
+            ));
         }
+
+        return $this->buildRedirectResponse();
     }
 }
  
