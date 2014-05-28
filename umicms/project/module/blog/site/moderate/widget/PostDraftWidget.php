@@ -25,6 +25,10 @@ class PostDraftWidget extends BaseFormWidget
      */
     public $template = 'draftForm';
     /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
+    /**
      * @var string|BlogPost $blogPost пост или GUID поста на модерации, необходимого перенесте в черновики
      */
     public $blogPost;
