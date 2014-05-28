@@ -57,7 +57,7 @@ class SendToModerationWidget extends BaseFormWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogDraft',
-                        'class' => 'umicms\project\module\blog\api\object\BlogPost'
+                        'class' => BlogPost::className()
                     ]
                 )
             );

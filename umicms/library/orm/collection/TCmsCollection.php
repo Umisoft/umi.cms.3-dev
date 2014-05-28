@@ -49,6 +49,14 @@ trait TCmsCollection
     abstract public function getMetadata();
 
     /**
+     * Возаращает имя класса коллекции.
+     * @return string
+     */
+    public static function className() {
+        return get_called_class();
+    }
+
+    /**
      * Устанавливает инициализатор для селектора
      * @param callable $initializer
      */

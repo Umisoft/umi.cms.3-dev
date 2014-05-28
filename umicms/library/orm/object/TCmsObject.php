@@ -24,6 +24,14 @@ trait TCmsObject
     private $traitEditLink;
 
     /**
+     * Возаращает имя класса объекта.
+     * @return string
+     */
+    public static function className() {
+        return get_called_class();
+    }
+
+    /**
      * @see ICmsObject::getEditLink()
      */
     public function getEditLink($isAbsolute = false)

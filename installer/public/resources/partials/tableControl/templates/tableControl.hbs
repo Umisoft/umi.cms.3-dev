@@ -71,7 +71,7 @@
                 </tr>
             {{#if objects.content.isFulfilled}}
                 {{#each object in objects}}
-                    <tr class="umi-table-control-content-row" data-objectId="{{unbound object.id}}">
+                    <tr {{bind-attr class=":umi-table-control-content-row object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
                         {{#each column in content.viewSettings.columns}}
                             <td class="umi-table-control-content-cell">
                                 {{view "tableCellContent" objectBinding="object" column=column}}
@@ -95,7 +95,7 @@
         <!-- Колонка слева от контента -->
         <div class="umi-table-control-content-fixed-left">
             {{#each object in objects}}
-                <div class="umi-table-control-column-fixed-cell" data-objectId="{{unbound object.id}}">
+                <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
                     <input type="checkbox" id="checkbox-{{unbound object.id}}" class="s-margin-clear"/>
                     <label for="checkbox-{{unbound object.id}}"><span></span></label>
                 </div>
@@ -106,33 +106,32 @@
 
         <div class="umi-table-control-content-fixed-right">
             {{#each object in objects}}
-                <div class="umi-table-control-column-fixed-cell" data-objectId="{{unbound object.id}}">
+                <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
 
-                    <div class="umi-table-control-content-fixed-right-first">
-                        <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg s-hide" {{action 'view' object}}>
-                            <i class="icon icon-view"></i>
-                        </a>
+                    {{#view "tableControlContextMenu"}}
+                        <div class="umi-table-control-content-fixed-right-first">
+                            {{#if view.parentView.selectAction}}
+                                <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg" {{action 'sendAction' view.parentView.selectAction object}}>
+                                    <i {{bind-attr class=":icon view.parentView.selectActionIcon"}}></i>
+                                </a>
+                            {{/if}}
+                        </div>
 
-                        <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg s-hide" {{action 'switchActivity' object}}>
-                            <i class="icon icon-pause"></i>
-                        </a>
+                        <div class="umi-table-control-content-fixed-right-second">
+                            <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg umi-table-action-list-show">
+                                <i class="icon icon-bottom"></i>
+                            </a>
 
-                        <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg" {{action 'trash' object}}>
-                            <i class="icon icon-delete"></i>
-                        </a>
-                    </div>
-
-                    <div class="umi-table-control-content-fixed-right-second">
-                        <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg umi-table-action-list-show">
-                            <i class="icon icon-bottom"></i>
-                        </a>
-
-                        <ul class="umi-table-action-list umi-hide-on-html umi-list">
-                            <li><a href="javascript:void(0)" {{action 'viewOnSite' object}}>Показать на сайте</a></li>
-                            <li><a href="javascript:void(0)" {{action 'switchActivity' object}}>Не отображать на сайте</a></li>
-                            <li><a href="javascript:void(0)" {{action 'trash' object}}>Удалить</a></li>
-                        </ul>
-                    </div>
+                            <ul class="umi-table-action-list umi-hide-on-html umi-list">
+                                {{#each controller.contextMenu}}
+                                    {{#view view.itemView action=this}}
+                                        <i {{bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{action 'toggleFastAction' this target="view.parentView.parentView"}}></i>
+                                        <a href="javascript:void(0)" {{action 'sendAction' this object}}>{{displayName}}</a>
+                                    {{/view}}
+                                {{/each}}
+                            </ul>
+                        </div>
+                    {{/view}}
 
                 </div>
             {{/each}}
