@@ -16,15 +16,29 @@ use umicms\orm\object\TCmsObject;
  *
  * @property string $urlResource ссылка на сторонний ресурс
  */
-class MenuExternalItem extends BaseMenu
+class MenuExternalItem extends MenuItem
 {
     /**
      * Тип объекта
      */
     const TYPE = 'externalItem';
     /**
+     * Тип объекта
+     * @var string $itemType
+     */
+    protected $itemType = 'externalItem';
+    /**
      * Имя поля для хранения ссылки на сторонний ресурс
      */
     const FIELD_URL_RESOURCE = 'urlResource';
+
+    /**
+     * Возвращает ссылку на сторонний ресурс.
+     * @return string
+     */
+    public function getItemUrl()
+    {
+        return $this->urlResource;
+    }
 }
  

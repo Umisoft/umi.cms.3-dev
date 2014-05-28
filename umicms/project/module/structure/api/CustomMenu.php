@@ -73,24 +73,9 @@ class CustomMenu implements ICollectionManagerAware
         $url = null;
 
         foreach ($items as $item) {
-
-            if ($item instanceof MenuInternalItem) {
-                $menuItem = $this->getCollectionManager()
-                    ->getCollection($item->collectionNameItem)
-                    ->getById($item->itemId);
-
-                if ($menuItem instanceof ICmsPage) {
-                    $url = $menuItem->getPageUrl();
-                }
-            }
-
-            if ($item instanceof MenuExternalItem) {
-                $url = $item->urlResource;
-            }
-
             $menuItems[$item->parent->getId()][$item->getId()] = [
                 'displayName' => $item->displayName,
-                'url' => $url
+                'url' => $item->getUrl()
             ];
         }
 

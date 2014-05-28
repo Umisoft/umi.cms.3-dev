@@ -16,7 +16,8 @@ return [
     SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
 
     SiteComponent::OPTION_WIDGET => [
-        'auto' => __NAMESPACE__ . '\widget\AutoMenuWidget'
+        'auto' => __NAMESPACE__ . '\widget\AutoMenuWidget',
+        'custom' => __NAMESPACE__ . '\widget\CustomMenuWidget'
     ],
 
     SiteComponent::OPTION_ACL => [

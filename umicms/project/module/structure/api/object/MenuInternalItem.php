@@ -9,6 +9,9 @@
 
 namespace umicms\project\module\structure\api\object;
 
+use umi\orm\collection\ICollectionManagerAware;
+use umi\orm\collection\TCollectionManagerAware;
+use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsObject;
 
 /**
@@ -17,12 +20,19 @@ use umicms\orm\object\TCmsObject;
  * @property string $collectionNameItem имя коллекции
  * @property int $itemId идентификатор элемента коллекции
  */
-class MenuInternalItem extends BaseMenu
+class MenuInternalItem extends MenuItem implements ICollectionManagerAware
 {
+    use TCollectionManagerAware;
+
     /**
      * Тип объекта
      */
     const TYPE = 'internalItem';
+    /**
+     * Тип объекта
+     * @var string $itemType
+     */
+    protected $itemType = 'internalItem';
     /**
      *  Имя поля для хранения пути компонента-обработчика
      */
@@ -31,5 +41,24 @@ class MenuInternalItem extends BaseMenu
      *  Имя поля для хранения идентификатора элемента коллекции
      */
     const FIELD_ITEM_ID = 'itemId';
+
+    /**
+     * Возвращает ссылку на внутренний ресурс.
+     * @return string
+     */
+    public function getItemUrl()
+    {
+        $url = null;
+
+        $menuItem = $this->getCollectionManager()
+            ->getCollection($this->collectionNameItem)
+            ->getById($this->itemId);
+
+        if ($menuItem instanceof ICmsPage) {
+            $url = $menuItem->getPageUrl();
+        }
+
+        return $url;
+    }
 }
  

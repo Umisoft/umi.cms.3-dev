@@ -35,6 +35,9 @@ use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchModule;
 use umicms\project\module\service\api\collection\BackupCollection;
 use umicms\project\module\structure\api\object\InfoBlock;
+use umicms\project\module\structure\api\object\Menu;
+use umicms\project\module\structure\api\object\MenuExternalItem;
+use umicms\project\module\structure\api\object\MenuInternalItem;
 use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -883,6 +886,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var SimpleCollection $infoBlockCollection
          */
         $infoBlockCollection = $this->getCollectionManager()->getCollection('infoblock');
+        /**
+         * @var SimpleHierarchicCollection $menuCollection
+         */
+        $menuCollection = $this->getCollectionManager()->getCollection('menu');
 
 
         $parent = null;
@@ -1051,6 +1058,30 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
         $menuItem1221->getProperty('componentName')->setValue('structure');
         $menuItem1221->getProperty('componentPath')->setValue('structure');
+
+
+        $bottomMenu = $menuCollection->add('bottomMenu', Menu::TYPE)
+            ->setValue(Menu::FIELD_DISPLAY_NAME, 'Нижнее меню')
+            ->setValue(Menu::FIELD_NAME, 'bottomMenu');
+
+        $menuCollection->add('bottomMenu', MenuInternalItem::TYPE, $bottomMenu)
+            ->setValue(MenuInternalItem::FIELD_DISPLAY_NAME, 'Главная')
+            ->setValue(MenuInternalItem::FIELD_COLLECTION_NAME_ITEM, $structureCollection->getName())
+            ->setValue(MenuInternalItem::FIELD_ITEM_ID, 32);
+
+        $menuCollection->add('bottomMenu-1', MenuInternalItem::TYPE, $bottomMenu)
+            ->setValue(MenuInternalItem::FIELD_DISPLAY_NAME, 'Работа, за которую мы никогда не возьмемся')
+            ->setValue(MenuInternalItem::FIELD_COLLECTION_NAME_ITEM, $structureCollection->getName())
+            ->setValue(MenuInternalItem::FIELD_ITEM_ID, 33);
+
+        $menuCollection->add('bottomMenu-2', MenuInternalItem::TYPE, $bottomMenu)
+            ->setValue(MenuInternalItem::FIELD_DISPLAY_NAME, 'Рубрики')
+            ->setValue(MenuInternalItem::FIELD_COLLECTION_NAME_ITEM, $structureCollection->getName())
+            ->setValue(MenuInternalItem::FIELD_ITEM_ID, 42);
+
+        $menuCollection->add('bottomMenu-3', MenuExternalItem::TYPE, $bottomMenu)
+            ->setValue(MenuExternalItem::FIELD_DISPLAY_NAME, 'Внешняя ссылка')
+            ->setValue(MenuExternalItem::FIELD_URL_RESOURCE, 'http://ya.ru/');
 
     }
 
