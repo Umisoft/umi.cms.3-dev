@@ -196,9 +196,5 @@ define(['App'], function(UMI){
 
             needs: ['component']
         });
-
-        UMI.TableControlColumnSelectorPopupController = Ember.ObjectController.extend({});// Для чего нужна такая запись? она избыточна
-
-        UMI.tableControlColumnSelectorPopup = UMI.TableControlColumnSelectorPopupController.create();
     };
 });
