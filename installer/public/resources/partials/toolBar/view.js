@@ -50,6 +50,10 @@ define(['App'], function(UMI){
 
             buttonTemplate: function(){
                 return '{{view "button" button=this object=view.parentView.contextAction}}';
+            }.property(),
+
+            buttonWithActiveTemplate: function(){
+                return '{{view "buttonWithActive" button=this object=view.parentView.contextAction}}';
             }.property()
         });
     };
