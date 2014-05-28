@@ -10,29 +10,24 @@
 namespace umicms\project\module\structure\site\menu\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
-use umicms\project\module\structure\api\object\StructureElement;
+use umicms\hmvc\widget\BaseTreeWidget;
+use umicms\project\module\structure\api\object\Menu;
 use umicms\project\module\structure\api\StructureModule;
 
 /**
- * Виджет для вывода автогенерируемого меню
+ * Виджет для вывода настраиваемого меню.
  */
-class AutoMenuWidget extends BaseSecureWidget
+class CustomMenuWidget extends BaseTreeWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет.
      */
-    public $template = 'auto';
+    public $template = 'customMenu';
 
     /**
-     * @var string|StructureElement $branch ветка или GUID, от которой строится меню. Если не задано, меню строится от корня сайта.
+     * @var string $menuName имя выводимого меню.
      */
-    public $branch;
-
-    /**
-     * @var int $depth уровень вложенности меню.
-     */
-    public $depth = 1;
+    public $menuName;
 
     /**
      * @var StructureModule $api
@@ -51,29 +46,27 @@ class AutoMenuWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
-        if (is_string($this->branch)) {
-            $this->branch = $this->api->element()->get($this->branch);
-        }
+        $menu = $this->api->menu()->select()
+            ->where(Menu::FIELD_NAME)->equals($this->menuName)
+            ->result()
+            ->fetch();
 
-        if (isset($this->branch) && !$this->branch instanceof StructureElement) {
+        if (!$menu instanceof Menu) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'branch',
-                        'class' => StructureElement::className()
+                        'param' => 'menuName',
+                        'class' => Menu::className()
                     ]
                 )
             );
         }
 
-        return $this->createResult(
-            $this->template,
-            [
-                'menu' => $this->api->autoMenu()->buildMenu($this->branch, $this->depth)
-            ]
-        );
+        $this->parentNode = $menu;
+
+        return $this->api->menu()->select();
     }
 }
