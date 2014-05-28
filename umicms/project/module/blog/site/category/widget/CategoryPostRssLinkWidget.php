@@ -59,7 +59,7 @@ class CategoryPostRssLinkWidget extends BaseLinkWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'category',
-                        'class' => 'BlogModule'
+                        'class' => BlogCategory::className()
                     ]
                 )
             );

@@ -54,7 +54,7 @@ class RubricListWidget extends BaseListWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'parentRubric',
-                        'class' => 'NewsRubric'
+                        'class' => NewsRubric::className()
                     ]
                 )
             );

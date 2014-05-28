@@ -56,7 +56,7 @@ class ListWidget extends BaseTreeWidget
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'blogPost',
-                        'class' => 'blogPost'
+                        'class' => BlogPost::className()
                     ]
                 )
             );

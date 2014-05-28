@@ -59,7 +59,6 @@ define([], function(){
                         } catch(error){
                             transition.send('templateLogs', error);
                         }
-
                     }
                 }, function(error){
                     var becameError = new Error(results);
@@ -204,7 +203,6 @@ define([], function(){
 
                 /// global actions
                 switchActivity: function(object){
-                    console.log('switchActivity');
                     try{
                         var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
                         var switchActivitySource = this.controllerFor('component').get('settings').actions[(object.get('active') ? 'de' : '') + 'activate'].source;
@@ -243,8 +241,50 @@ define([], function(){
                     tab.focus();
                 },
 
+                /**
+                 * Удаляет объект (перемещает в корзину)
+                 * @method trash
+                 * @param object
+                 * @param type
+                 * @returns {*|Promise}
+                 */
                 trash: function(object, type){
-                    console.log('trash');
+                    return object.destroyRecord().then(function(){
+                        var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" удалено в корзину.'};
+                        UMI.notification.create(settings);
+                    }, function(){
+                        var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" не удалось поместить в корзину.'};
+                        UMI.notification.create(settings);
+                    });
+                },
+
+                /**
+                 * Спрашивает пользователя и в случае положительного ответа безвозвратно удаляет объект
+                 * @method delete
+                 * @param object
+                 * @param type
+                 * @returns {*|Promise}
+                 */
+                "delete": function(object, type){
+                    var data = {
+                        'close': false,
+                        'title': 'Удаление "' + object.get('displayName') + '".',
+                        'content': 'Объект будет удалён без возможности востановления, всё равно продолжить?',
+                        'confirm': 'Удалить',
+                        'reject': 'Отмена'
+                    };
+                    return UMI.dialog.open(data).then(
+                        function(){
+                            return object.destroyRecord().then(function(){
+                                var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" успешно удалено.'};
+                                UMI.notification.create(settings);
+                            }, function(){
+                                var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" не удалось удалить.'};
+                                UMI.notification.create(settings);
+                            });
+                        },
+                        function(){}
+                    );
                 },
 
                 showPopup: function(popupType, object, meta){

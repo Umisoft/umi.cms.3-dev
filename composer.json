@@ -31,5 +31,16 @@
             "type": "git",
             "url": "git@github.com:Umisoft/umi.framework-dev.git"
         }
-    ]
+    ],
+    "scripts": {
+        "post-install-cmd": [
+            "cd ./installer/public/resources",
+            "bower install"
+        ],
+        "post-update-cmd": [
+            "cd ./installer/public/resources",
+            "bower update"
+        ]
+    }
+
 }
