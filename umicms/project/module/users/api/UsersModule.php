@@ -20,7 +20,6 @@ use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\object\Guest;
 use umicms\project\module\users\api\object\Supervisor;
 use umicms\project\module\users\api\object\UserGroup;
-use umicms\Utils;
 
 /**
  * Модуль для работы с пользователями.
@@ -105,6 +104,8 @@ class UsersModule extends BaseModule implements IAuthenticationAware
         {
             $userGroups->link($group);
         }
+
+        $user->registrationDate = new \DateTime();
 
         return $user;
     }

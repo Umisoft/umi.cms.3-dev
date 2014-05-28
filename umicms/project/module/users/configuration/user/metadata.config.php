@@ -170,6 +170,17 @@ return [
                 IFilterFactory::TYPE_STRING_TRIM => []
             ]
         ],
+        AuthorizedUser::FIELD_LAST_NAME     => [
+            'type'       => IField::TYPE_STRING,
+            'columnName' => 'last_name',
+            'filters'    => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ]
+        ],
+        AuthorizedUser::FIELD_REGISTRATION_DATE => [
+            'type' => IField::TYPE_DATE_TIME,
+            'columnName' => 'registration_date'
+        ],
 
     ],
     'types'      => [
@@ -233,6 +244,7 @@ return [
                 AuthorizedUser::FIELD_GROUPS,
                 AuthorizedUser::FIELD_OWNER,
                 AuthorizedUser::FIELD_EDITOR,
+                AuthorizedUser::FIELD_REGISTRATION_DATE
             ]
         ],
         'authorized.supervisor'   => [
@@ -259,6 +271,7 @@ return [
                 Supervisor::FIELD_GROUPS,
                 Supervisor::FIELD_OWNER,
                 Supervisor::FIELD_EDITOR,
+                Supervisor::FIELD_REGISTRATION_DATE
             ]
         ]
     ]
