@@ -3510,7 +3510,7 @@ body {
     bottom: 0;
     background: url(img/shadows/toRightShadow.png); }
 
-.umi-mode {
+.umi-toolbar {
   height: 32px;
   background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);
   background: linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);

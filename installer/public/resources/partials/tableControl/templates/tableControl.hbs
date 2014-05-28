@@ -1,25 +1,23 @@
-<div class="s-unselectable umi-mode">
-    {{#view 'toolBar' toolbar=toolbar rootContext=content.object contextAction=controller.contextAction}}
-        {{#view view.parentView.paginationView}}
-            <div class="right pagination-controls">
-                <span class="pagination-counter">
-                    {{view.counter}}
-                </span>
-                {{#view view.prevButtonView}}
-                    <i class="icon black icon-left-thin"></i>
-                {{/view}}
-                {{#view view.nextButtonView}}
-                    <i class="icon black icon-right-thin"></i>
-                {{/view}}
-            </div>
+{{#view 'toolBar' toolbar=toolbar rootContext=content.object contextAction=controller.contextAction}}
+    {{#view view.parentView.paginationView}}
+        <div class="right pagination-controls">
+            <span class="pagination-counter">
+                {{view.counter}}
+            </span>
+            {{#view view.prevButtonView}}
+                <i class="icon black icon-left-thin"></i>
+            {{/view}}
+            {{#view view.nextButtonView}}
+                <i class="icon black icon-right-thin"></i>
+            {{/view}}
+        </div>
 
-            <div class="right pagination-limit">
-                <span class="pagination-label">Строк на странице:</span>
-                {{view view.limitView}}
-            </div>
-        {{/view}}
+        <div class="right pagination-limit">
+            <span class="pagination-label">Строк на странице:</span>
+            {{view view.limitView}}
+        </div>
     {{/view}}
-</div>
+{{/view}}
 
 <div class="umi-table-control-header s-unselectable">
 

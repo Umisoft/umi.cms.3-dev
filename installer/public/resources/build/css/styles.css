@@ -3620,7 +3620,7 @@ body {
     bottom: 0;
     background: url(img/shadows/toRightShadow.png); }
 
-.umi-mode {
+.umi-toolbar {
   height: 32px;
   background: -webkit-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
   background: -o-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);

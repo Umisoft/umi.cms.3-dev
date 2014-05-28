@@ -8,6 +8,10 @@ define(['App'], function(UMI){
              */
             layoutName: 'toolBar',
             /**
+             * @property classNames
+             */
+            classNames: ['s-unselectable', 'umi-toolbar'],
+            /**
              * Henjdsq контекст
              * @property rootContext
              */
