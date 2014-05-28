@@ -1,26 +1,6 @@
 <ul class="button-group left">
     {{#each view.toolbar}}
-        {{#view view.buttonView}}
-            {{#if view.isDropdownButton}}
-                <a class="umi-button umi-toolbar-create-button">
-                    <span class="umi-toolbar-create-text">{{displayName}}</span>
-                    <span class="umi-toolbar-create-icon">
-                        <i class="icon icon-bottom"></i>
-                    </span>
-                    <span class="umi-toolbar-create-list umi-hide-on-html">
-                        {{#each elements}}
-                            <span {{action 'sendAction' this view.parentView.rootContext}}>{{displayName}}</span>
-                        {{/each}}
-                    </span>
-                </a>
-            {{else}}
-                {{#if view.parentView.contextAction}}
-                    <a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg" {{action 'sendAction' this view.parentView.contextAction}} alt="{{unbound type}}" title="{{unbound type}}">
-                        <i class="icon icon-{{unbound type}}"></i>
-                    </a>
-                {{/if}}
-            {{/if}}
-        {{/view}}
+        {{view "toolBarButton"}}
     {{/each}}
 </ul>
 

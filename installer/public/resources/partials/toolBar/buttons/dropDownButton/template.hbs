@@ -1,0 +1,15 @@
+<span class="umi-toolbar-create-text">
+    {{view.button.displayName}}
+</span>
+
+<span class="umi-toolbar-create-icon">
+    <i class="icon icon-bottom"></i>
+</span>
+
+<span class="umi-toolbar-create-list umi-hide-on-html">
+    {{#each view.button.list}}
+        <span {{action 'sendAction' this view.object}}>
+            {{displayName}}
+        </span>
+    {{/each}}
+</span>

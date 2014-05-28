@@ -18,7 +18,7 @@ define(
                     var actionName = this.get('container').lookup('route:action').get('context.action.name');
                     var editForm = this.get('controllers.component.contentControls').findBy('name', actionName);
                     return [
-                        {"elementType": "dropdownButton", "displayName": "Создать", "elements": [
+                        {"elementType": "dropDownButton", "displayName": "Создать", "list": [
                             {"type":"create", "displayName":"Создать Рубрика новостей","typeName":"base"}
                         ]},
                         {"elementType": "button", "type":"backToList", "displayName": "Вернуться к списку"},

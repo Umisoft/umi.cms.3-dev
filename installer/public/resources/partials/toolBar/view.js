@@ -21,25 +21,36 @@ define(['App'], function(UMI){
              * В форме значение свойства равно rootContext
              * @property contextAction
              */
-            contextAction: null,
-            /**
-             * View кнопки
-             */
-            buttonView: Ember.View.extend({
-                tagName: 'li',
-                isDropdownButton: function(){
-                    var elementType = this.get('context.elementType');
-                    return elementType === 'dropdownButton';
-                }.property(),
-                didInsertElement: function(){
-                    var self = this;
-                    if(self.get('isDropdownButton')){
-                        self.$().click(function(){
-                            $(this).find('.umi-toolbar-create-list').toggle();
-                        });
+            contextAction: null
+        });
+
+        /**
+         * View кнопки
+         */
+        UMI.ToolBarButtonView = Ember.View.extend({
+            tagName: 'li',
+            template: function(){
+                var template;
+                var elementType = this.get('context.elementType');
+                try{
+                    template = this.get(Ember.String.camelize(elementType) + 'Template') || '';
+                    if(!template){
+                        throw new Error('Для кнопки с типом ' + elementType + ' не реализован шаблонный метод.');
                     }
+                } catch(error){
+                    this.get('controller').send('backgroundError', error);// TODO: при первой загрузке сообщения не всплывают.
+                } finally{
+                    return Ember.Handlebars.compile(template);
                 }
-            })
+            }.property(),
+
+            dropDownButtonTemplate: function(){
+                return '{{view "dropDownButton" button=this object=view.parentView.rootContext}}';
+            }.property(),
+
+            buttonTemplate: function(){
+                return '{{view "button" button=this object=view.parentView.contextAction}}';
+            }.property()
         });
     };
 });
