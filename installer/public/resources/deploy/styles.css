@@ -3037,7 +3037,7 @@ label.error {
     background-position: -200px 0; }
   .icon.icon-list, .icon.icon-backToList {
     background-position: -220px 0; }
-  .icon.icon-delete {
+  .icon.icon-delete, .icon.icon-trash {
     background-position: -240px 0; }
   .icon.icon-pause {
     background-position: -260px 0; }
@@ -3137,7 +3137,7 @@ label.error {
     background-position: -200px -20px; }
   .icon.white.icon-list, .icon.white.icon-backToList {
     background-position: -220px -20px; }
-  .icon.white.icon-delete {
+  .icon.white.icon-delete, .icon.white.icon-trash {
     background-position: -240px -20px; }
   .icon.white.icon-pause {
     background-position: -260px -20px; }
@@ -3237,7 +3237,7 @@ label.error {
     background-position: -200px -40px; }
   .icon.black.icon-list, .icon.black.icon-backToList {
     background-position: -220px -40px; }
-  .icon.black.icon-delete {
+  .icon.black.icon-delete, .icon.black.icon-trash {
     background-position: -240px -40px; }
   .icon.black.icon-pause {
     background-position: -260px -40px; }

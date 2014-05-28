@@ -75,7 +75,7 @@
     &.icon-list, &.icon-backToList{
         background-position: -220px 0;
     }
-    &.icon-delete{
+    &.icon-delete, &.icon-trash{
         background-position: -240px 0;
     }
     &.icon-pause{
@@ -242,7 +242,7 @@
         &.icon-list, &.icon-backToList{
             background-position: -220px -20px;
         }
-        &.icon-delete{
+        &.icon-delete, &.icon-trash{
             background-position: -240px -20px;
         }
         &.icon-pause{
@@ -410,7 +410,7 @@
         &.icon-list, &.icon-backToList{
             background-position: -220px -40px;
         }
-        &.icon-delete{
+        &.icon-delete, &.icon-trash{
             background-position: -240px -40px;
         }
         &.icon-pause{
