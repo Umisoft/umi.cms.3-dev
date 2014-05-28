@@ -219,25 +219,8 @@ define(['App'], function(UMI){
             }.property('controlName'),
 
             selectActionIcon: function(){
-                var iconType;
                 if(this.get('selectAction')){
-                    switch(this.get('selectAction.type')){
-                        case 'create':
-                            iconType = 'add';
-                            break;
-                        case 'edit':
-                            iconType = 'edit';
-                            break;
-                        case 'switchActivity':
-                            iconType = 'pause';
-                            break;
-                        case 'viewOnSite':
-                            iconType = 'eye';
-                            break;
-                        default:
-                            iconType = this.get('selectAction.type');
-                    }
-                    return 'icon-' + iconType;
+                    return 'icon-' + this.get('selectAction.type');
                 }
             }.property('selectAction'),
 
