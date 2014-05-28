@@ -25,6 +25,10 @@ class PublishWidget extends BaseFormWidget
      */
     public $template = 'publishDraftForm';
     /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
+    /**
      * @var string|BlogPost $blogDraft черновик или GUID черновика
      */
     public $blogDraft;
