@@ -10,6 +10,7 @@
 namespace umicms\project\module\blog\site\draft\controller;
 
 use umi\form\IForm;
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
@@ -64,6 +65,14 @@ class PostSendToModerationController extends BaseSecureController implements IOb
     protected function processForm(IForm $form)
     {
         $blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
+
+        if (!$this->isAllowed($blogDraft)) {
+            throw new ResourceAccessForbiddenException(
+                $blogDraft,
+                $this->translate('Access denied')
+            );
+        }
+
         $blogDraft->needModeration();
 
         $this->getObjectPersister()->commit();
