@@ -66,7 +66,7 @@ define(['App', 'text!./template.hbs'],
                     }
                 },
 
-                didInsertElement: function(){
+                didInsertElement: function(){// TODO: При уходе с формы это событие снова всплывает
                     var self = this;
                     self.set('backupList', self.getBackupList());
                     self.get('object').off('didUpdate');
