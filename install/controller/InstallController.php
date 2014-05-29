@@ -31,7 +31,6 @@ use umicms\module\TModuleAware;
 use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\news\api\collection\NewsRssImportScenarioCollection;
-use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchModule;
 use umicms\project\module\service\api\collection\BackupCollection;
@@ -1114,6 +1113,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `middle_name` varchar(255) DEFAULT NULL,
                     `last_name` varchar(255) DEFAULT NULL,
                     `activation_code` varchar(255) DEFAULT NULL,
+                    `registration_date` datetime DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `user_guid` (`guid`),
                     KEY `user_type` (`type`),

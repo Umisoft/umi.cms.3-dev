@@ -7,7 +7,17 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
+use umicms\orm\collection\ICmsCollection;
 
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE
+    'type' => ICollectionFactory::TYPE_SIMPLE,
+    'class' => 'umicms\project\module\users\api\collection\UserGroupCollection',
+    'handlers' => [
+        'admin' => 'users.group'
+    ],
+    'forms' => [
+        'base' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/group/form/base.edit.config.php}'
+        ]
+    ]
 ];

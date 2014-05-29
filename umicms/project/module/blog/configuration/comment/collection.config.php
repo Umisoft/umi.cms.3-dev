@@ -8,6 +8,7 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\blog\api\object\BlogBranchComment;
 use umicms\project\module\blog\api\object\BlogComment;
 
 return [
@@ -24,6 +25,9 @@ return [
             BlogComment::FORM_ADD_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/comment.addComment.config.php}',
             BlogComment::FORM_PUBLISH_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.publish.config.php}',
             BlogComment::FORM_REJECT_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.reject.config.php}',
+        ],
+        BlogBranchComment::TYPE => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/comment/form/branchComment.edit.config.php}'
         ]
     ],
     'dictionaries' => [

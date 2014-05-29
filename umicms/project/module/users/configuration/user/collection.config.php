@@ -7,6 +7,7 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
+use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\ICmsCollection;
 use umicms\project\module\users\api\object\AuthorizedUser;
 
@@ -17,11 +18,14 @@ return [
         'admin' => 'users.user'
     ],
     'forms' => [
-        'base' => [
+        IObjectType::BASE => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/base.edit.config.php}'
         ],
         'guest' => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/guest.edit.config.php}'
+        ],
+        'authorized.supervisor' => [
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/authorized.edit.config.php}',
         ],
         AuthorizedUser::TYPE_NAME => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/authorized.edit.config.php}',

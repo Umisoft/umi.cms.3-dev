@@ -10,11 +10,11 @@
 return [
 
     'en-US' => [
-        'component:user:displayName' => 'Users'
+        'component:group:displayName' => 'Groups'
     ],
 
     'ru-RU' => [
-        'component:user:displayName' => 'Пользователи'
+        'component:group:displayName' => 'Группы'
     ]
 
 ];
