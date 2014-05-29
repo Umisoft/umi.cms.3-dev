@@ -1,10 +1,12 @@
 define(
-    ['App', 'text!./form.hbs'],
+    ['App', 'text!./form.hbs', 'partials/forms/partials/siblingsNavigation/main'],
 
-    function(UMI, formTpl){
+    function(UMI, formTpl, siblingsNavigation){
         "use strict";
 
         return function(){
+            siblingsNavigation();
+
             UMI.FormControlController = UMI.FormBaseController.extend({
                 needs: ['component'],
 
