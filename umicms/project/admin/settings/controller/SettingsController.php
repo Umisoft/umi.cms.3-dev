@@ -28,16 +28,16 @@ class SettingsController extends BaseSecureController
         return $this->createViewResponse(
             'settings',
             [
-                'components'     => $this->getModulesInfo(),
+                'components'     => $this->getComponentsInfo(),
             ]
         );
     }
 
     /**
-     * Возвращает информацию о модулях.
+     * Возвращает информацию о компонентах.
      * @return array
      */
-    protected function getModulesInfo()
+    protected function getComponentsInfo()
     {
         /**
          * @var SettingsApplication $application

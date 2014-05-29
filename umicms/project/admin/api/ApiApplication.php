@@ -77,7 +77,6 @@ class ApiApplication extends AdminComponent implements ISerializationAware, IToo
 
         $this->currentRequestFormat = $requestFormat;
 
-
         if (!$this->checkCsrfToken($context, $request)) {
             throw new HttpForbidden('Cannot process request. Invalid csrf token.');
         }
@@ -110,6 +109,10 @@ class ApiApplication extends AdminComponent implements ISerializationAware, IToo
      */
     protected function checkCsrfToken(IDispatchContext $context, Request $request)
     {
+        if ($request->getMethod() === 'GET') {
+            return true;
+        }
+
         $params = $context->getRouteParams();
 
         if (isset($params['ignoreCsrf']) && $params['ignoreCsrf']) {

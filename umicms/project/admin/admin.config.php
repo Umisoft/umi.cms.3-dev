@@ -10,23 +10,22 @@ namespace umicms\project\admin;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\AdminApplication',
+    AdminApplication::OPTION_CLASS => 'umicms\project\admin\AdminApplication',
 
-    AdminComponent::OPTION_CONTROLLERS => [
-        AdminComponent::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
+    AdminApplication::OPTION_CONTROLLERS => [
+        AdminApplication::ERROR_CONTROLLER   => __NAMESPACE__ . '\controller\ErrorController',
         'default' => __NAMESPACE__ . '\controller\DefaultController'
     ],
 
-    AdminComponent::OPTION_COMPONENTS => [
+    AdminApplication::OPTION_COMPONENTS => [
         'api' => '{#lazy:~/project/admin/api/api.config.php}',
         'settings' => '{#lazy:~/project/admin/settings/settings.config.php}',
     ],
 
-    AdminComponent::OPTION_ACL => [
+    AdminApplication::OPTION_ACL => [
 
         IAclFactory::OPTION_ROLES => [
             'visitor' => [],
@@ -42,13 +41,13 @@ return [
         ]
     ],
 
-    AdminComponent::OPTION_VIEW        => [
+    AdminApplication::OPTION_VIEW        => [
         'type'      => 'php',
         'extension' => 'phtml',
         'directories' => __DIR__ . '/template/php'
     ],
 
-    AdminComponent::OPTION_ROUTES => [
+    AdminApplication::OPTION_ROUTES => [
 
         'api' => [
             'type'     => IRouteFactory::ROUTE_FIXED,
