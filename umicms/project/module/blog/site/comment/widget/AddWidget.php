@@ -25,6 +25,10 @@ class AddWidget extends BaseFormWidget
      */
     public $template = 'addComment';
     /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
+    /**
      * @var string|BlogPost $blogPost пост или GUID поста
      */
     public $blogPost;
