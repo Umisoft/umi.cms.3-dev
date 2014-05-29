@@ -9,21 +9,24 @@
 
 namespace umicms\project\module\blog\site\reject\controller;
 
+use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
+use umicms\exception\RuntimeException;
 use umicms\hmvc\controller\BaseSecureController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер отправки поста на модерацию.
  */
 class PostSendToModerationController extends BaseSecureController implements IObjectPersisterAware
 {
+    use TFormController;
     use TObjectPersisterAware;
 
     /**
@@ -41,21 +44,28 @@ class PostSendToModerationController extends BaseSecureController implements IOb
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
-     * @throws HttpNotFound
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getTemplateName()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
-        }
+        return 'sendToModerationForm';
+    }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
-        $formData = $this->getAllPostVars();
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
+    {
+        return $this->api->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
         $blogPost = $this->api->post()->getRejectedPostById($this->getRouteVar('id'));
+
         if (!$this->isAllowed($blogPost)) {
             throw new ResourceAccessForbiddenException(
                 $blogPost,
@@ -63,17 +73,33 @@ class PostSendToModerationController extends BaseSecureController implements IOb
             );
         }
 
-        if ($form->setData($formData) && $form->isValid()) {
-            $blogPost->needModeration();
+        $blogPost->needModeration();
 
-            $this->getObjectPersister()->commit();
+        $this->getObjectPersister()->commit();
+    }
 
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages());
-            exit();
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildResponseContent()
+    {
+        return [];
+    }
+
+    /**
+     * Формирует ответ.
+     * @throws RuntimeException
+     * @return Response
+     */
+    protected function buildResponse()
+    {
+        if (count($this->errors)) {
+            throw new RuntimeException($this->translate(
+                'Form invalid.'
+            ));
         }
+
+        return $this->buildRedirectResponse();
     }
 }
  
