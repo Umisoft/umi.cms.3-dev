@@ -78,7 +78,7 @@ class PostToDraftController extends BaseSecureController implements IObjectPersi
     {
         if (count($this->errors)) {
             throw new RuntimeException($this->translate(
-                'Form invalid.'
+                'Invalid form.'
             ));
         }
 
