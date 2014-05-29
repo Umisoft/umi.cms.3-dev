@@ -46,14 +46,6 @@ class BlogPublishDraftController extends BaseSecureController implements IObject
     /**
      * {@inheritdoc}
      */
-    protected function getTemplateName()
-    {
-        return 'publishDraftForm';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function buildForm()
     {
         return $this->api->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE);
@@ -78,14 +70,6 @@ class BlogPublishDraftController extends BaseSecureController implements IObject
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function buildResponseContent()
-    {
-        return [];
-    }
-
-    /**
      * Формирует ответ.
      * @throws RuntimeException
      * @return Response
@@ -94,7 +78,7 @@ class BlogPublishDraftController extends BaseSecureController implements IObject
     {
         if (count($this->errors)) {
             throw new RuntimeException($this->translate(
-                'Form invalid.'
+                'Invalid form.'
             ));
         }
 

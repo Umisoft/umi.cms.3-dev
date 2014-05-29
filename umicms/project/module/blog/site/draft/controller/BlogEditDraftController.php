@@ -78,15 +78,5 @@ class BlogEditDraftController extends BaseSecureController implements IObjectPer
     {
         $this->getObjectPersister()->commit();
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function buildResponseContent()
-    {
-        return [
-            'form' => $this->form->getView()
-        ];
-    }
 }
  

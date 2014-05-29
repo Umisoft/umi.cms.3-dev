@@ -46,14 +46,6 @@ class PostSendToModerationController extends BaseSecureController implements IOb
     /**
      * {@inheritdoc}
      */
-    protected function getTemplateName()
-    {
-        return 'sendToModerationForm';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function buildForm()
     {
         return $this->api->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
@@ -79,14 +71,6 @@ class PostSendToModerationController extends BaseSecureController implements IOb
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function buildResponseContent()
-    {
-        return [];
-    }
-
-    /**
      * Формирует ответ.
      * @throws RuntimeException
      * @return Response
@@ -95,7 +79,7 @@ class PostSendToModerationController extends BaseSecureController implements IOb
     {
         if (count($this->errors)) {
             throw new RuntimeException($this->translate(
-                'Form invalid.'
+                'Invalid form.'
             ));
         }
 
