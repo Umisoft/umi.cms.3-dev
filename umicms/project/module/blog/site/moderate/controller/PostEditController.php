@@ -70,15 +70,5 @@ class PostEditController extends BaseSecureController implements IObjectPersiste
     {
         $this->getObjectPersister()->commit();
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function buildResponseContent()
-    {
-        return [
-            'form' => $this->form->getView()
-        ];
-    }
 }
  

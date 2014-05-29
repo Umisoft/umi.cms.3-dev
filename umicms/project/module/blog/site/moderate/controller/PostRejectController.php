@@ -45,14 +45,6 @@ class PostRejectController extends BaseSecureController implements IObjectPersis
     /**
      * {@inheritdoc}
      */
-    protected function getTemplateName()
-    {
-        return 'rejectForm';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function buildForm()
     {
         return $this->api->post()->getForm(BlogPost::FORM_REJECT_POST, IObjectType::BASE);
@@ -70,14 +62,6 @@ class PostRejectController extends BaseSecureController implements IObjectPersis
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function buildResponseContent()
-    {
-        return [];
-    }
-
-    /**
      * Формирует ответ.
      * @throws RuntimeException
      * @return Response
@@ -86,7 +70,7 @@ class PostRejectController extends BaseSecureController implements IObjectPersis
     {
         if (count($this->errors)) {
             throw new RuntimeException($this->translate(
-                'Form invalid.'
+                'Invalid form.'
             ));
         }
 

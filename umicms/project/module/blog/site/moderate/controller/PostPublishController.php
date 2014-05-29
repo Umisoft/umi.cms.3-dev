@@ -45,14 +45,6 @@ class PostPublishController extends BaseSecureController implements IObjectPersi
     /**
      * {@inheritdoc}
      */
-    protected function getTemplateName()
-    {
-        return 'publishForm';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function buildForm()
     {
         return $this->api->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE);
@@ -70,14 +62,6 @@ class PostPublishController extends BaseSecureController implements IObjectPersi
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function buildResponseContent()
-    {
-        return [];
-    }
-
-    /**
      * Формирует ответ.
      * @throws RuntimeException
      * @return Response
@@ -86,7 +70,7 @@ class PostPublishController extends BaseSecureController implements IObjectPersi
     {
         if (count($this->errors)) {
             throw new RuntimeException($this->translate(
-                'Form invalid.'
+                'Invalid form.'
             ));
         }
 

@@ -46,14 +46,6 @@ class PostDraftController extends BaseSecureController implements IObjectPersist
     /**
      * {@inheritdoc}
      */
-    protected function getTemplateName()
-    {
-        return 'draftForm';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function buildForm()
     {
         return $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE);
@@ -77,13 +69,6 @@ class PostDraftController extends BaseSecureController implements IObjectPersist
 
         $this->getObjectPersister()->commit();
     }
-    /**
-     * {@inheritdoc}
-     */
-    protected function buildResponseContent()
-    {
-        return [];
-    }
 
     /**
      * Формирует ответ.
@@ -94,7 +79,7 @@ class PostDraftController extends BaseSecureController implements IObjectPersist
     {
         if (count($this->errors)) {
             throw new RuntimeException($this->translate(
-                'Form invalid.'
+                'Invalid form.'
             ));
         }
 
