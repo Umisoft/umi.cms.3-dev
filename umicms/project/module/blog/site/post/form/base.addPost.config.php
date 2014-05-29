@@ -58,7 +58,10 @@ return [
             'type' => Text::TYPE_NAME,
             'label' => BlogPost::FIELD_PAGE_SLUG,
             'options' => [
-                'dataSource' => BlogPost::FIELD_PAGE_SLUG
+                'dataSource' => BlogPost::FIELD_PAGE_SLUG,
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ]
             ],
         ],
         BlogPost::FIELD_ANNOUNCEMENT => [
