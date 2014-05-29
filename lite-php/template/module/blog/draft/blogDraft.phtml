@@ -1,6 +1,14 @@
 <?php
 /**
  * @var umi\form\IForm $form
+ * @var bool $success
  */
 ?>
+
+<?php if($success) : ?>
+    <div class="alert alert-success">
+        <p class="bg-success text-success"><?=$this->translate('Пост успешно сохранён!')?></p>
+    </div>
+<?php endif;?>
+
 <?= $this->render('form/form.phtml', ['form' => $form]) ?>
