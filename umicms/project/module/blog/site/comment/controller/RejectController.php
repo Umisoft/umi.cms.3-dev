@@ -9,23 +9,22 @@
 
 namespace umicms\project\module\blog\site\comment\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
-use umi\hmvc\exception\http\HttpNotFound;
+use umi\form\IForm;
 use umi\http\Response;
-use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
+use umicms\exception\RuntimeException;
 use umicms\hmvc\controller\BaseSecureController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogComment;
+use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер отклонения комментария.
  */
-class RejectController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class RejectController extends BaseSecureController implements IObjectPersisterAware
 {
-    use TFormAware;
+    use TFormController;
     use TObjectPersisterAware;
 
     /**
@@ -43,31 +42,54 @@ class RejectController extends BaseSecureController implements IFormAware, IObje
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws HttpNotFound
+     * {@inheritdoc}
+     */
+    protected function getTemplateName()
+    {
+        return 'rejectForm';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
+    {
+        return $this->api->comment()->getForm(BlogComment::FORM_REJECT_COMMENT, BlogComment::TYPE);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $blogComment = $this->api->comment()->getById($this->getRouteVar('id'));
+        $blogComment->rejected();
+
+        $this->getObjectPersister()->commit();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildResponseContent()
+    {
+        return [];
+    }
+
+    /**
+     * Формирует ответ.
+     * @throws RuntimeException
      * @return Response
      */
-    public function __invoke()
+    protected function buildResponse()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
+        if (count($this->errors)) {
+            throw new RuntimeException($this->translate(
+                'Form invalid.'
+            ));
         }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_REJECT_COMMENT, BlogComment::TYPE);
-        $formData = $this->getAllPostVars();
-
-        if ($form->setData($formData) && $form->isValid()) {
-
-            $blogComment = $this->api->comment()->getById($this->getRouteVar('id'));
-            $blogComment->rejected();
-
-            $this->getObjectPersister()->commit();
-
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages()); exit();
-        }
+        return $this->buildRedirectResponse();
     }
 }
  

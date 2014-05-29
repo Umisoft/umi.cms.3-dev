@@ -24,6 +24,10 @@ class RejectWidget extends BaseFormWidget
      */
     public $template = 'rejectForm';
     /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
+    /**
      * @var string|BlogComment $blogComment комментарий или GUID комментария
      */
     public $blogComment;
@@ -62,7 +66,11 @@ class RejectWidget extends BaseFormWidget
             );
         }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_REJECT_COMMENT, BlogComment::TYPE, $this->blogComment);
+        $form = $this->api->comment()->getForm(
+            BlogComment::FORM_REJECT_COMMENT,
+            BlogComment::TYPE,
+            $this->blogComment
+        );
 
         $form->setAction($this->getUrl('reject', ['id' => $this->blogComment->getId()]));
 
