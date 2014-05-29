@@ -190,8 +190,11 @@ define(['App'], function(UMI){
                 },
 
                 sendAction: function(action, object){
-                    debugger;
                     this.send(action.behaviour, object, action);
+                },
+
+                create: function(object, action){
+                    this.get('container').lookup('route:application').send('create', this.get('model.object'), action);
                 }
             },
 
