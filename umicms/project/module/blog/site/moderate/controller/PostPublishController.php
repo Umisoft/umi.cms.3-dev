@@ -9,23 +9,23 @@
 
 namespace umicms\project\module\blog\site\moderate\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
-use umi\hmvc\exception\http\HttpNotFound;
+use umi\form\IForm;
 use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
+use umicms\exception\RuntimeException;
 use umicms\hmvc\controller\BaseSecureController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер публикации поста, требующего модерации.
  */
-class PostPublishController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PostPublishController extends BaseSecureController implements IObjectPersisterAware
 {
-    use TFormAware;
+    use TFormController;
     use TObjectPersisterAware;
 
     /**
@@ -43,31 +43,54 @@ class PostPublishController extends BaseSecureController implements IFormAware, 
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws HttpNotFound
+     * {@inheritdoc}
+     */
+    protected function getTemplateName()
+    {
+        return 'publishForm';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
+    {
+        return $this->api->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
+        $blogPost->published();
+
+        $this->getObjectPersister()->commit();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildResponseContent()
+    {
+        return [];
+    }
+
+    /**
+     * Формирует ответ.
+     * @throws RuntimeException
      * @return Response
      */
-    public function __invoke()
+    protected function buildResponse()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
+        if (count($this->errors)) {
+            throw new RuntimeException($this->translate(
+                'Form invalid.'
+            ));
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE);
-        $formData = $this->getAllPostVars();
-
-        if ($form->setData($formData) && $form->isValid()) {
-            $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
-            $blogPost->published();
-
-            $this->getObjectPersister()->commit();
-
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages());
-            exit();
-        }
+        return $this->buildRedirectResponse();
     }
 }
  

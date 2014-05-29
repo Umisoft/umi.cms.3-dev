@@ -25,6 +25,10 @@ class PostPublishWidget extends BaseFormWidget
      */
     public $template = 'publishForm';
     /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
+    /**
      * @var string|BlogPost $blogPost пост или GUID поста, тербующего модерации
      */
     public $blogPost;
