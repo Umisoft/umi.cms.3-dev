@@ -19,7 +19,7 @@ use umicms\project\admin\AdminApplication;
 use umicms\project\site\SiteApplication;
 
 /**
- * Класс группы сужностей для редактирования прав.
+ * Класс группы сущностей для редактирования прав.
  */
 class Permissions extends BaseFormElement
 {
