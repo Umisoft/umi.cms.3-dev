@@ -39,18 +39,11 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'settings',
             'elements' => [
-                MenuInternalItem::FIELD_COLLECTION_NAME_ITEM => [
+                MenuInternalItem::FIELD_PAGE_RELATION => [
                     'type' => Text::TYPE_NAME,
-                    'label' => MenuInternalItem::FIELD_COLLECTION_NAME_ITEM,
+                    'label' => MenuInternalItem::FIELD_PAGE_RELATION,
                     'options' => [
-                        'dataSource' => MenuInternalItem::FIELD_COLLECTION_NAME_ITEM
-                    ],
-                ],
-                MenuInternalItem::FIELD_ITEM_ID => [
-                    'type' => Text::TYPE_NAME,
-                    'label' => MenuInternalItem::FIELD_ITEM_ID,
-                    'options' => [
-                        'dataSource' => MenuInternalItem::FIELD_ITEM_ID
+                        'dataSource' => MenuInternalItem::FIELD_PAGE_RELATION
                     ],
                 ]
             ]

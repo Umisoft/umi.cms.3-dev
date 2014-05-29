@@ -139,13 +139,9 @@ return [
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
-        MenuInternalItem::FIELD_COLLECTION_NAME_ITEM => [
-            'type' => IField::TYPE_STRING,
-            'columnName' => 'collection_name'
-        ],
-        MenuInternalItem::FIELD_ITEM_ID => [
-            'type' => IField::TYPE_INTEGER,
-            'columnName' => 'item_id'
+        MenuInternalItem::FIELD_PAGE_RELATION => [
+            'type' => IField::TYPE_OBJECT_RELATION,
+            'columnName' => 'page_relation'
         ],
         MenuExternalItem::FIELD_URL_RESOURCE => [
             'type' => IField::TYPE_STRING,
@@ -223,8 +219,7 @@ return [
                 MenuInternalItem::FIELD_CHILDREN,
                 MenuInternalItem::FIELD_OWNER,
                 MenuInternalItem::FIELD_EDITOR,
-                MenuInternalItem::FIELD_COLLECTION_NAME_ITEM,
-                MenuInternalItem::FIELD_ITEM_ID
+                MenuInternalItem::FIELD_PAGE_RELATION
             ]
         ],
         MenuExternalItem::TYPE => [

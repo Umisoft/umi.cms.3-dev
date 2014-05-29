@@ -12,8 +12,7 @@ use umicms\project\module\structure\api\object\MenuInternalItem;
 return [
     'en-US' => [
 
-        MenuInternalItem::FIELD_COLLECTION_NAME_ITEM => 'Collection name',
-        MenuInternalItem::FIELD_ITEM_ID => 'Item ID',
+        MenuInternalItem::FIELD_PAGE_RELATION => 'Page link',
 
         'type:menu:displayName' => 'Menu',
         'type:internalItem:displayName' => 'Internal link',
@@ -22,8 +21,7 @@ return [
 
     'ru-RU' => [
 
-        MenuInternalItem::FIELD_COLLECTION_NAME_ITEM => 'Имя коллекции',
-        MenuInternalItem::FIELD_ITEM_ID => 'Идентификатор элемента коллекции',
+        MenuInternalItem::FIELD_PAGE_RELATION => 'Ссылка на страницу',
 
         'type:menu:displayName' => 'Меню',
         'type:internalItem:displayName' => 'Внутренняя ссылка',

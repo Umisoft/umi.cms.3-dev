@@ -1066,18 +1066,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $menuCollection->add('bottomMenu', MenuInternalItem::TYPE, $bottomMenu)
             ->setValue(MenuInternalItem::FIELD_DISPLAY_NAME, 'Главная')
-            ->setValue(MenuInternalItem::FIELD_COLLECTION_NAME_ITEM, $structureCollection->getName())
-            ->setValue(MenuInternalItem::FIELD_ITEM_ID, 32);
+            ->setValue(MenuInternalItem::FIELD_PAGE_RELATION, $about);
 
         $menuCollection->add('bottomMenu-1', MenuInternalItem::TYPE, $bottomMenu)
             ->setValue(MenuInternalItem::FIELD_DISPLAY_NAME, 'Работа, за которую мы никогда не возьмемся')
-            ->setValue(MenuInternalItem::FIELD_COLLECTION_NAME_ITEM, $structureCollection->getName())
-            ->setValue(MenuInternalItem::FIELD_ITEM_ID, 33);
+            ->setValue(MenuInternalItem::FIELD_PAGE_RELATION, $no);
 
         $menuCollection->add('bottomMenu-2', MenuInternalItem::TYPE, $bottomMenu)
-            ->setValue(MenuInternalItem::FIELD_DISPLAY_NAME, 'Рубрики')
-            ->setValue(MenuInternalItem::FIELD_COLLECTION_NAME_ITEM, $structureCollection->getName())
-            ->setValue(MenuInternalItem::FIELD_ITEM_ID, 42);
+            ->setValue(MenuInternalItem::FIELD_DISPLAY_NAME, 'Услуги и цены')
+            ->setValue(MenuInternalItem::FIELD_PAGE_RELATION, $service);
 
         $menuCollection->add('bottomMenu-3', MenuExternalItem::TYPE, $bottomMenu)
             ->setValue(MenuExternalItem::FIELD_DISPLAY_NAME, 'Внешняя ссылка')
@@ -1911,8 +1908,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
 
-                    `collection_name` varchar(255) DEFAULT NULL,
-                    `item_id` int(10) DEFAULT NULL,
+                    `page_relation` varchar(255) DEFAULT NULL,
                     `url_resource` varchar(255) DEFAULT NULL,
 
                     PRIMARY KEY (`id`),
@@ -1923,7 +1919,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     KEY `menu_parent` (`pid`),
                     KEY `menu_parent_order` (`pid`,`order`),
                     KEY `menu_type` (`type`),
-                    KEY `collection_name` (`collection_name`),
+                    KEY `page_relation` (`page_relation`),
                     CONSTRAINT `FK_menu_parent` FOREIGN KEY (`pid`) REFERENCES `demohunt_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT `FK_menu_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_menu_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE

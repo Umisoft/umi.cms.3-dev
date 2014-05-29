@@ -17,8 +17,7 @@ use umicms\orm\object\TCmsObject;
 /**
  * Класс описывающий пункт меню на внутренний ресурс.
  *
- * @property string $collectionNameItem имя коллекции
- * @property int $itemId идентификатор элемента коллекции
+ * @property string $pageRelation ссылка на страницу
  */
 class MenuInternalItem extends MenuItem implements ICollectionManagerAware
 {
@@ -34,13 +33,9 @@ class MenuInternalItem extends MenuItem implements ICollectionManagerAware
      */
     protected $itemType = 'internalItem';
     /**
-     *  Имя поля для хранения пути компонента-обработчика
+     *  Имя поля для хранения ссылки на страницу сайта
      */
-    const FIELD_COLLECTION_NAME_ITEM = 'collectionNameItem';
-    /**
-     *  Имя поля для хранения идентификатора элемента коллекции
-     */
-    const FIELD_ITEM_ID = 'itemId';
+    const FIELD_PAGE_RELATION = 'pageRelation';
 
     /**
      * Возвращает ссылку на внутренний ресурс.
@@ -49,9 +44,7 @@ class MenuInternalItem extends MenuItem implements ICollectionManagerAware
     public function getItemUrl()
     {
         try {
-            $menuItem = $this->getCollectionManager()
-                ->getCollection($this->collectionNameItem)
-                ->getById($this->itemId);
+            $menuItem = $this->pageRelation;
         } catch (\Exception $e) {
             return null;
         }
