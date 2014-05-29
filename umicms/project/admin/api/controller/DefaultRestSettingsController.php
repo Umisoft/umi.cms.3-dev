@@ -189,12 +189,8 @@ class DefaultRestSettingsController extends BaseDefaultRestController
     {
         $result = [
             'displayName' => $this->translate('control:filter:displayName'),
-            'toolbar'     => []
+            'toolbar'     => $this->buildFilterControlCreateButtons($collection)
         ];
-
-        if ($createButtons = $this->buildCreateToolbarButtonInfo($collection)) {
-            $result['toolbar'][] = $createButtons;
-        }
 
 
         /*
@@ -210,66 +206,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         return $result;
     }
 
-    /**
-     * Возвращает информацию о кнопке создания объектов коллекции в зависимости от количества
-     * возможных для добавления типов.
-     * @param ICmsCollection $collection
-     * @return array
-     */
-    protected function buildCreateToolbarButtonInfo(ICmsCollection $collection) {
-        $createList = $this->buildCreateTypeList($collection);
-        if (!count($createList)) {
-            return [];
-        } elseif (count($createList) == 1) {
-            $button = $createList[0];
-            $button['type'] = 'button';
-
-            return $button;
-        } else {
-            return [
-                'type' => 'dropDownButton',
-                'displayName' => $this->translate('control:filter:toolbar:create'),
-                'list' => $createList
-            ];
-        }
-    }
-
-    /**
-     * Возвращает информацию о кнопках создания объектов коллекции
-     * @param ICmsCollection $collection
-     * @return array
-     */
-    protected function buildCreateTypeList(ICmsCollection $collection)
-    {
-        $typeNames = [IObjectType::BASE];
-
-        $typeNames = array_merge(
-            $typeNames,
-            $collection->getMetadata()
-                ->getDescendantTypesList()
-        );
-
-        $result = [];
-
-        $createLabel = $this->translate('control:tree:toolbar:create');
-        foreach ($typeNames as $typeName) {
-            if ($collection->hasForm(ICmsCollection::FORM_CREATE, $typeName)) {
-                $result[] = [
-                    'behaviour'   => 'create',
-                    'displayName' => $this->translate(
-                            '{createLabel} "{typeDisplayName}"',
-                            [
-                                'createLabel'     => $createLabel,
-                                'typeDisplayName' => $this->translate('type:' . $typeName . ':displayName')
-                            ]
-                        ),
-                    'typeName'    => $typeName
-                ];
-            }
-        }
-
-        return $result;
-    }
 
     /**
      * Возвращает информацию о кнопке в тулбаре формы создания
@@ -309,7 +245,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      */
     protected function buildTreeControlInfo(SimpleHierarchicCollection $collection)
     {
-        $toolbar = $this->buildCreateTypeList($collection);
+        $toolbar = $this->buildTreeControlCreateButtons($collection);
 
         if ($collection instanceof IActiveAccessibleCollection) {
             $toolbar[] = $this->buildTreeToolButtonInfo('switchActivity');
@@ -323,6 +259,85 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             'displayName' => $this->translate('control:tree:displayName'),
             'toolbar'     => $toolbar
         ];
+    }
+
+    /**
+     * Возвращает информацию о кнопке создания объектов в фильтре компонента.
+     * @param ICmsCollection $collection
+     * @return array
+     */
+    protected function buildFilterControlCreateButtons(ICmsCollection $collection) {
+        $typeList = $this->getCreateTypeList($collection);
+        $typesCount = count($typeList);
+
+        if (!$typesCount) {
+            return [];
+        }
+
+        $createLabel = $this->translate('control:filter:toolbar:create');
+
+        if ($typesCount == 1) {
+            return [
+                [
+                    'type' => 'button',
+                    'behaviour' => 'create',
+                    'displayName' => $this->translate(
+                        '{createLabel} {typeCreateLabel}',
+                        [
+                            'createLabel'     => $createLabel,
+                            'typeCreateLabel' => $this->translate('type:' . $typeList[0] . ':createLabel')
+                        ]
+                    ),
+                    'typeName'    => $typeList[0]
+                ]
+            ];
+        }
+
+        if ($typesCount > 0) {
+            $list = [];
+            foreach ($typeList as $typeName) {
+                $list[] = [
+                    'behaviour'   => 'create',
+                    'displayName' => $this->translate('type:' . $typeName . ':createLabel'),
+                    'typeName'    => $typeName
+                ];
+            }
+            return [
+                [
+                'type' => 'dropDownButton',
+                'displayName' => $this->translate('control:filter:toolbar:create') . '...',
+                'list' => $list
+                ]
+            ];
+        }
+
+        return [];
+    }
+
+    /**
+     * Возвращает информацию о кнопках создания в дереве компонента.
+     * @param SimpleHierarchicCollection $collection
+     * @return array
+     */
+    protected function buildTreeControlCreateButtons(SimpleHierarchicCollection $collection) {
+        $createLabel = $this->translate('control:tree:toolbar:create');
+
+        $result = [];
+        foreach ($this->getCreateTypeList($collection) as $typeName) {
+            $result[] = [
+                'behaviour'   => 'create',
+                'displayName' => $this->translate(
+                    '{createLabel} {typeCreateLabel}',
+                    [
+                        'createLabel'     => $createLabel,
+                        'typeCreateLabel' => $this->translate('type:' . $typeName . ':createLabel')
+                    ]
+                ),
+                'typeName'    => $typeName
+            ];
+        }
+
+        return $result;
     }
 
     /**
@@ -423,6 +438,27 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             'displayName' => $this->translate('filter:' . $fieldName),
             'allow'       => $values
         ];
+    }
+
+    /**
+     * Возвращает список имен типов, доступных для создания
+     * @param ICmsCollection $collection
+     * @return array
+     */
+    protected function getCreateTypeList(ICmsCollection $collection) {
+        $typeNames = array_merge(
+            [IObjectType::BASE],
+            $collection->getMetadata()
+                ->getDescendantTypesList()
+        );
+
+        $result = [];
+        foreach ($typeNames as $typeName) {
+            if ($collection->hasForm(ICmsCollection::FORM_CREATE, $typeName)) {
+                $result[] = $typeName;
+            }
+        }
+        return $result;
     }
 
     /**

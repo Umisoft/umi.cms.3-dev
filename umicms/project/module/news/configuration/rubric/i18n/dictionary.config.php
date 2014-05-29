@@ -17,6 +17,7 @@ return [
 
         'ru-RU' => [
             NewsRubric::FIELD_NEWS => 'Новости',
-            'type:base:displayName' => 'Рубрика новостей'
+            'type:base:displayName' => 'Рубрика новостей',
+            'type:base:createLabel' => 'рубрику'
         ]
     ];

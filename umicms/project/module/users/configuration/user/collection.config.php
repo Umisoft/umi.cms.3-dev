@@ -40,5 +40,9 @@ return [
             AuthorizedUser::FORM_CHANGE_PASSWORD => '{#lazy:~/project/module/users/site/profile/password/form/authorized.change.password.config.php}',
         ]
     ],
-    'settings' => '{#lazy:~/project/module/users/configuration/user/collection.settings.config.php}'
+    'settings' => '{#lazy:~/project/module/users/configuration/user/collection.settings.config.php}',
+
+    'dictionaries' => [
+        'collection.user', 'collection'
+    ]
 ];

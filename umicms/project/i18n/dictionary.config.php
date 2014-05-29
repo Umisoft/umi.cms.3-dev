@@ -108,7 +108,7 @@ return [
 
                 IRecyclableObject::FIELD_TRASHED => 'Trashed',
                 ILockedAccessibleObject::FIELD_LOCKED => 'Locked',
-                IActiveAccessibleObject::FIELD_ACTIVE => 'Active',
+                IActiveAccessibleObject::FIELD_ACTIVE => 'Active'
 
             ],
 
