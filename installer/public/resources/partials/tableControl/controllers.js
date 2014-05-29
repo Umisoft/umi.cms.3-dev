@@ -188,8 +188,8 @@ define(['App'], function(UMI){
                 toolbar = toolbar.findBy('name', 'filter') || {};
                 toolbar = toolbar.toolbar || [];
                 return [
-                    {"elementType": "dropDownButton", "displayName": "Создать", "list": [
-                        {"type":"create", "displayName":"Создать Рубрика новостей","typeName":"base"}
+                    {"type": "dropDownButton", "displayName": "Создать", "list": [
+                        {"behavior":"create", "displayName":"Создать Рубрика новостей","typeName":"base"}
                     ]}
                 ];//toolbar;
             }.property('controllers.component.contentControls'),
