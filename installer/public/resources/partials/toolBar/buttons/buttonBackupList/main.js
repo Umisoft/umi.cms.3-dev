@@ -7,8 +7,6 @@ define(['App', 'text!./template.hbs'],
                 tagName: 'div',
                 template: Ember.Handlebars.compile(template),
                 getBackupList: function(){
-                    console.log('getBackupList');
-                    return;
                     var backupList;
                     var object = this.get('object');
                     var settings = this.get('controller.settings');
@@ -39,19 +37,6 @@ define(['App', 'text!./template.hbs'],
 
                 backupList: null,
 
-                updateBackupList: function(){
-                    var self = this;
-                    Ember.run.once(this, 'getBackupList');
-
-
-                    //self.set('backupList', self.getBackupList());
-                    /*self.get('parentController.object').off('didUpdate');
-                    self.get('parentController.object').on('didUpdate', function(){
-                        self.set('backupList', self.getBackupList());
-                    });*/
-
-                }.observes('object').on('didInsertElement'),
-
                 actions: {
                     applyBackup: function(backup){
                         if(backup.isActive){
@@ -79,6 +64,15 @@ define(['App', 'text!./template.hbs'],
                             });
                         }
                     }
+                },
+
+                didInsertElement: function(){
+                    var self = this;
+                    self.set('backupList', self.getBackupList());
+                    self.get('object').off('didUpdate');
+                    self.get('object').on('didUpdate', function(){
+                        self.set('backupList', self.getBackupList());
+                    });
                 }
             });
         };
