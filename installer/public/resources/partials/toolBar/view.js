@@ -44,11 +44,11 @@ define(['App'], function(UMI){
 
             template: function(){
                 var template;
-                var elementType = this.get('context.elementType') || '';
+                var type = this.get('context.type') || '';
                 try{
-                    template = this.get(Ember.String.camelize(elementType) + 'Template') || '';
+                    template = this.get(Ember.String.camelize(type) + 'Template') || '';
                     if(!template){
-                        throw new Error('Для кнопки с типом ' + elementType + ' не реализован шаблонный метод.');
+                        throw new Error('Для кнопки с типом ' + type + ' не реализован шаблонный метод.');
                     }
                 } catch(error){
                     this.get('controller').send('backgroundError', error);// TODO: при первой загрузке сообщения не всплывают.
