@@ -44,11 +44,11 @@ define(['App'], function(UMI){
 
             template: function(){
                 var template;
-                var elementType = this.get('context.elementType') || '';
+                var type = this.get('context.type') || '';
                 try{
-                    template = this.get(Ember.String.camelize(elementType) + 'Template') || '';
+                    template = this.get(Ember.String.camelize(type) + 'Template') || '';
                     if(!template){
-                        throw new Error('Для кнопки с типом ' + elementType + ' не реализован шаблонный метод.');
+                        throw new Error('Для кнопки с типом ' + type + ' не реализован шаблонный метод.');
                     }
                 } catch(error){
                     this.get('controller').send('backgroundError', error);// TODO: при первой загрузке сообщения не всплывают.
@@ -65,8 +65,8 @@ define(['App'], function(UMI){
                 return '{{view "button" button=this object=view.contextAction}}';
             }.property(),
 
-            buttonWithActiveTemplate: function(){
-                return '{{view "buttonWithActive" button=this object=view.contextAction}}';
+            buttonSwitchActivityTemplate: function(){
+                return '{{view "buttonSwitchActivity" button=this object=view.contextAction}}';
             }.property(),
 
             buttonBackupListTemplate: function(){

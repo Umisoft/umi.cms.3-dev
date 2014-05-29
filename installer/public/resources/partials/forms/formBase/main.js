@@ -23,20 +23,6 @@ define(
 
             UMI.FormBaseController = Ember.ObjectController.extend({
                 /**
-                 * contextMenu кнопок для формы
-                 * @method contextMenuBinding
-                 */
-                contextMenuBinding: 'model.contextMenu',
-                /**
-                 * Проверяет наличие contextMenu
-                 * @method hasContextMenu
-                 * @return bool
-                 */
-                hasContextMenu: function(){
-                    var contextMenu = this.get('contextMenu');
-                    return contextMenu && contextMenu.length;
-                }.property('contextMenu'),
-                /**
                  * Проверяет наличие fieldset
                  * @method hasFieldset
                  * @return bool
@@ -47,7 +33,7 @@ define(
 
                 actions: {
                     sendAction: function(action, object){
-                        this.send(action.type, object, action);
+                        this.send(action.behavior, object, action);
                     }
                 }
             });

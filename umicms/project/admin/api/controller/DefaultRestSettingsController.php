@@ -138,7 +138,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         $result = [];
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $result['toolbar'][] = $this->buildEditFormButtonInfo('switchActivity', 'buttonWithActive');
+            $result['toolbar'][] = $this->buildEditFormButtonInfo('switchActivity', 'buttonSwitchActivity');
         }
 
         if ($collection instanceof IRecyclableCollection) {

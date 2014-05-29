@@ -3,7 +3,7 @@ define(['App'],
         "use strict";
 
         return function(){
-            UMI.ButtonWithActiveView = UMI.ButtonView.extend({
+            UMI.ButtonSwitchActivityView = UMI.ButtonView.extend({
                 classNames: ['umi-button-icon-32', 'umi-light-bg'],
                 classNameBindings: ['object.active::umi-disabled']
             });
