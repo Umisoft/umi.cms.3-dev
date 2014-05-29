@@ -31,12 +31,6 @@ trait TFormController
     private $form;
 
     /**
-     * Возвращает имя шаблона отбражения
-     * @return string
-     */
-    abstract protected function getTemplateName();
-
-    /**
      * Возвращает форму для обработки
      * @return IForm
      */
@@ -48,12 +42,6 @@ trait TFormController
      * @return null|Response
      */
     abstract protected function processForm(IForm $form);
-
-    /**
-     * Возвращает переменные для шаблонизации
-     * @return array
-     */
-    abstract protected function buildResponseContent();
 
     /**
      * @see BaseController::isRequestMethodPost()
@@ -122,6 +110,24 @@ trait TFormController
         }
 
         return $response;
+    }
+
+    /**
+     * Возвращает имя шаблона отбражения
+     * @return string
+     */
+    protected function getTemplateName()
+    {
+        return 'form';
+    }
+
+    /**
+     * Возвращает переменные для шаблонизации
+     * @return array
+     */
+    protected function buildResponseContent()
+    {
+        return [];
     }
 
     /**
