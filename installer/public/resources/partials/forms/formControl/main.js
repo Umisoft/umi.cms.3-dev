@@ -8,6 +8,8 @@ define(
             UMI.FormControlController = UMI.FormBaseController.extend({
                 needs: ['component'],
 
+                contextMenuBinding: null,
+
                 settings: function(){
                     var settings = {};
                     settings = this.get('controllers.component.settings');
