@@ -1,7 +1,6 @@
 <?php
 /**
  * UMI.Framework (http://umi-framework.ru/)
- *
  * @link      http://github.com/Umisoft/framework for the canonical source repository
  * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
  * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
@@ -18,7 +17,6 @@ use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\ICmsObject;
-use umicms\project\admin\api\component\DefaultAdminComponent;
 use umicms\project\module\structure\api\collection\StructureElementCollection;
 use umicms\project\module\structure\api\object\SystemPage;
 
@@ -47,11 +45,12 @@ class DefaultRestSettingsController extends BaseDefaultRestController
     protected function getSettings()
     {
         $collection = $this->getCollection();
+
         return [
             'collectionName' => $collection->getName(),
-            'layout' => $this->buildLayoutInfo($collection),
-            'actions' => $this->buildActionsInfo(),
-            'filters' => $this->buildCollectionFiltersInfo($collection)
+            'layout'         => $this->buildLayoutInfo($collection),
+            'actions'        => $this->buildActionsInfo(),
+            'filters'        => $this->buildCollectionFiltersInfo($collection)
         ];
     }
 
@@ -64,7 +63,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
     {
         $controlsInfo = [];
 
-        foreach($controls as $controlName => $options) {
+        foreach ($controls as $controlName => $options) {
             $options['displayName'] = $this->translate('control:' . $controlName . ':displayName');
             $controlsInfo[$controlName] = $options;
         }
@@ -92,10 +91,11 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildContentsInfo(ICmsCollection $collection) {
+    protected function buildContentsInfo(ICmsCollection $collection)
+    {
 
         return [
-            'emptyContext' => $this->buildEmptyContextInfo($collection),
+            'emptyContext'    => $this->buildEmptyContextInfo($collection),
             'selectedContext' => $this->buildSelectedContextInfo($collection)
         ];
     }
@@ -105,9 +105,10 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildEmptyContextInfo(ICmsCollection $collection) {
-        $result =  [
-            'filter' => $this->buildFilterControlInfo($collection),
+    protected function buildEmptyContextInfo(ICmsCollection $collection)
+    {
+        $result = [
+            'filter'     => $this->buildFilterControlInfo($collection),
             'createForm' => $this->buildCreateFormControlInfo($collection)
         ];
 
@@ -119,36 +120,37 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildSelectedContextInfo(ICmsCollection $collection) {
-        $result =  [
-            'editForm' => $this->buildEditFormControlInfo($collection),
+    protected function buildSelectedContextInfo(ICmsCollection $collection)
+    {
+        $result = [
+            'editForm'   => $this->buildEditFormControlInfo($collection),
             'createForm' => $this->buildCreateFormControlInfo($collection)
         ];
 
         return $result;
     }
 
-
     /**
      * Возвращает информацию о контроле "Форма редактирования"
      * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildEditFormControlInfo(ICmsCollection $collection) {
+    protected function buildEditFormControlInfo(ICmsCollection $collection)
+    {
         $result = [];
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $result['toolbar'][] = $this->buildEditFormButtonInfo('switchActivity', 'buttonSwitchActivity');
+            $result['toolbar'][] = $this->buildToolbarButtonInfo('switchActivity', 'buttonSwitchActivity');
         }
 
         if ($collection instanceof IRecyclableCollection) {
-            $result['toolbar'][] = $this->buildEditFormButtonInfo('trash');
+            $result['toolbar'][] = $this->buildToolbarButtonInfo('trash');
         } else {
-            $result['toolbar'][] = $this->buildEditFormButtonInfo('delete');
+            $result['toolbar'][] = $this->buildToolbarButtonInfo('delete');
         }
 
         if ($collection instanceof IRecoverableCollection && $collection->isBackupEnabled()) {
-            $result['toolbar'][] = $this->buildEditFormButtonInfo('backupList', 'buttonBackupList');
+            $result['toolbar'][] = $this->buildToolbarButtonInfo('backupList', 'buttonBackupList');
         }
 
         return $result;
@@ -158,7 +160,8 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * Возвращает информацию о контроле "Форма создания"
      * @return array
      */
-    protected function buildCreateFormControlInfo() {
+    protected function buildCreateFormControlInfo()
+    {
         return [];
     }
 
@@ -168,37 +171,67 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param string $type тип кнопки
      * @return array
      */
-    protected function buildEditFormButtonInfo($behaviour, $type = 'button') {
+    protected function buildToolbarButtonInfo($behaviour, $type = 'button')
+    {
         return [
-            'type' => $type,
-            'behaviour' => $behaviour,
+            'type'        => $type,
+            'behaviour'   => $behaviour,
             'displayName' => $this->translate('control:editForm:toolbar:' . $behaviour)
         ];
     }
-
 
     /**
      * Возвращает информацию о контроле "Фильтр"
      * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildFilterControlInfo(ICmsCollection $collection) {
+    protected function buildFilterControlInfo(ICmsCollection $collection)
+    {
         $result = [
             'displayName' => $this->translate('control:filter:displayName'),
-            'toolbar' => [
-                $this->buildTreeToolButtonInfo('create')
-            ]
+            'toolbar'     => []
         ];
 
+        if ($createButtons = $this->buildCreateToolbarButtonInfo($collection)) {
+            $result['toolbar'][] = $createButtons;
+        }
+
+
+        /*
         if ($collection instanceof IActiveAccessibleCollection) {
-            $result['toolbar'][] = $this->buildTreeToolButtonInfo('switchActivity');
+            $result['toolbar'][] = $this->buildToolbarButtonInfo('switchActivity');
         }
 
         if ($collection instanceof ICmsPageCollection) {
-            $result['toolbar'][] = $this->buildTreeToolButtonInfo('viewOnSite');
+            $result['toolbar'][] = $this->buildToolbarButtonInfo('viewOnSite');
         }
+        */
 
         return $result;
+    }
+
+    /**
+     * Возвращает информацию о кнопке создания объектов коллекции в зависимости от количества
+     * возможных для добавления типов.
+     * @param ICmsCollection $collection
+     * @return array
+     */
+    protected function buildCreateToolbarButtonInfo(ICmsCollection $collection) {
+        $createList = $this->buildCreateTypeList($collection);
+        if (!count($createList)) {
+            return [];
+        } elseif (count($createList) == 1) {
+            $button = $createList[0];
+            $button['type'] = 'button';
+
+            return $button;
+        } else {
+            return [
+                'type' => 'dropDownButton',
+                'displayName' => $this->translate('control:filter:toolbar:create'),
+                'list' => $createList
+            ];
+        }
     }
 
     /**
@@ -206,10 +239,15 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildCreateButtonsInfo(ICmsCollection $collection) {
+    protected function buildCreateTypeList(ICmsCollection $collection)
+    {
         $typeNames = [IObjectType::BASE];
 
-        $typeNames = array_merge($typeNames, $collection->getMetadata()->getDescendantTypesList());
+        $typeNames = array_merge(
+            $typeNames,
+            $collection->getMetadata()
+                ->getDescendantTypesList()
+        );
 
         $result = [];
 
@@ -217,12 +255,15 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         foreach ($typeNames as $typeName) {
             if ($collection->hasForm(ICmsCollection::FORM_CREATE, $typeName)) {
                 $result[] = [
-                    'type' => 'create',
-                    'displayName' =>  $this->translate('{createLabel} "{typeDisplayName}"', [
-                                'createLabel' => $createLabel,
+                    'behaviour'   => 'create',
+                    'displayName' => $this->translate(
+                            '{createLabel} "{typeDisplayName}"',
+                            [
+                                'createLabel'     => $createLabel,
                                 'typeDisplayName' => $this->translate('type:' . $typeName . ':displayName')
-                            ]),
-                    'typeName' => $typeName
+                            ]
+                        ),
+                    'typeName'    => $typeName
                 ];
             }
         }
@@ -235,9 +276,10 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param string $buttonType тип кнопки
      * @return array
      */
-    protected function buildFilterToolButtonInfo($buttonType) {
+    protected function buildFilterToolButtonInfo($buttonType)
+    {
         return [
-            'type' => $buttonType,
+            'type'        => $buttonType,
             'displayName' => $this->translate('control:filter:toolbar:' . $buttonType)
         ];
     }
@@ -247,7 +289,8 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildSideBarInfo(ICmsCollection $collection) {
+    protected function buildSideBarInfo(ICmsCollection $collection)
+    {
 
         if ($collection instanceof SimpleHierarchicCollection) {
             return [
@@ -264,8 +307,9 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param SimpleHierarchicCollection $collection
      * @return array
      */
-    protected function buildTreeControlInfo(SimpleHierarchicCollection $collection) {
-        $toolbar = $this->buildCreateButtonsInfo($collection);
+    protected function buildTreeControlInfo(SimpleHierarchicCollection $collection)
+    {
+        $toolbar = $this->buildCreateTypeList($collection);
 
         if ($collection instanceof IActiveAccessibleCollection) {
             $toolbar[] = $this->buildTreeToolButtonInfo('switchActivity');
@@ -277,7 +321,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
 
         return [
             'displayName' => $this->translate('control:tree:displayName'),
-            'toolbar' => $toolbar
+            'toolbar'     => $toolbar
         ];
     }
 
@@ -286,9 +330,10 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param string $behaviour обработчик
      * @return array
      */
-    protected function buildTreeToolButtonInfo($behaviour) {
+    protected function buildTreeToolButtonInfo($behaviour)
+    {
         return [
-            'behaviour' => $behaviour,
+            'behaviour'   => $behaviour,
             'displayName' => $this->translate('control:tree:toolbar:' . $behaviour)
         ];
     }
@@ -300,13 +345,14 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param bool $isActive активен ли фильтр
      * @return array
      */
-    protected function buildTreeFilterInfo($fieldName, array $values, $isActive = false) {
+    protected function buildTreeFilterInfo($fieldName, array $values, $isActive = false)
+    {
 
         return [
-            'fieldName' => $fieldName,
-            'isActive' => $isActive,
+            'fieldName'   => $fieldName,
+            'isActive'    => $isActive,
             'displayName' => $this->translate('control:tree:filter:' . $fieldName),
-            'allow' => $values
+            'allow'       => $values
         ];
     }
 
@@ -321,15 +367,17 @@ class DefaultRestSettingsController extends BaseDefaultRestController
 
         foreach ($component->getQueryActions() as $actionName) {
             $actions[$actionName] = [
-                'type' => 'query',
-                'source' => $this->getUrlManager()->getAdminComponentActionResourceUrl($component, $actionName)
+                'type'   => 'query',
+                'source' => $this->getUrlManager()
+                        ->getAdminComponentActionResourceUrl($component, $actionName)
             ];
         }
 
         foreach ($component->getModifyActions() as $actionName) {
             $actions[$actionName] = [
-                'type' => 'modify',
-                'source' => $this->getUrlManager()->getAdminComponentActionResourceUrl($component, $actionName)
+                'type'   => 'modify',
+                'source' => $this->getUrlManager()
+                        ->getAdminComponentActionResourceUrl($component, $actionName)
             ];
         }
 
@@ -341,7 +389,8 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildCollectionFiltersInfo(ICmsCollection $collection) {
+    protected function buildCollectionFiltersInfo(ICmsCollection $collection)
+    {
         $result = [];
 
         if ($collection instanceof IActiveAccessibleCollection) {
@@ -349,7 +398,8 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         }
 
         if ($collection instanceof StructureElementCollection) {
-            $types = $collection->getMetadata()->getTypesList();
+            $types = $collection->getMetadata()
+                ->getTypesList();
             $types = array_values(array_diff($types, [SystemPage::TYPE]));
             $result[] = $this->buildCollectionFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
         }
@@ -364,13 +414,14 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param bool $isActive активен ли фильтр
      * @return array
      */
-    protected function buildCollectionFilterInfo($fieldName, array $values, $isActive = false) {
+    protected function buildCollectionFilterInfo($fieldName, array $values, $isActive = false)
+    {
 
         return [
-            'fieldName' => $fieldName,
-            'isActive' => $isActive,
+            'fieldName'   => $fieldName,
+            'isActive'    => $isActive,
             'displayName' => $this->translate('filter:' . $fieldName),
-            'allow' => $values
+            'allow'       => $values
         ];
     }
 
@@ -380,7 +431,12 @@ class DefaultRestSettingsController extends BaseDefaultRestController
     protected function getI18nDictionaryNames()
     {
         $dictionaries = parent::getI18nDictionaryNames();
-        $dictionaries = array_merge($dictionaries, $this->getComponent()->getCollection()->getDictionaryNames());
+        $dictionaries = array_merge(
+            $dictionaries,
+            $this->getComponent()
+                ->getCollection()
+                ->getDictionaryNames()
+        );
 
         return $dictionaries;
     }
