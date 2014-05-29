@@ -168,14 +168,8 @@ define(['App'], function(UMI){
             contextMenu: function(){
                 var contextMenu = this.get('controllers.component.contentControls') || [];
                 contextMenu = contextMenu.findBy('name', 'filter') || {};
-                contextMenu = contextMenu.toolbar || [];
-                return [
-                    {"behavior":"create","displayName":"Создать Рубрика новостей","typeName":"base"},
-                    {"behavior":"switchActivity","displayName":"Сменить активность"},
-                    {"behavior":"viewOnSite","displayName":"Посмотреть на сайте"},
-                    {"behavior":"trash","displayName":"Удалить в корзину"},
-                    {"behavior":"delete","displayName":"Удалить навсегда"}
-                ];//contextMenu;
+                contextMenu = contextMenu.contextMenu || [];
+                return contextMenu;
             }.property('controllers.component.contentControls'),
 
             /**
@@ -187,11 +181,7 @@ define(['App'], function(UMI){
                 var toolbar = this.get('controllers.component.contentControls') || [];
                 toolbar = toolbar.findBy('name', 'filter') || {};
                 toolbar = toolbar.toolbar || [];
-                return [
-                    {"type": "dropDownButton", "displayName": "Создать", "list": [
-                        {"behavior":"create", "displayName":"Создать Рубрика новостей","typeName":"base"}
-                    ]}
-                ];//toolbar;
+                return toolbar;
             }.property('controllers.component.contentControls'),
 
             actions: {
