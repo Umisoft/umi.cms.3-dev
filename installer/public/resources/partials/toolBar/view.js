@@ -65,8 +65,8 @@ define(['App'], function(UMI){
                 return '{{view "button" button=this object=view.contextAction}}';
             }.property(),
 
-            buttonWithActiveTemplate: function(){
-                return '{{view "buttonWithActive" button=this object=view.contextAction}}';
+            buttonSwitchActivityTemplate: function(){
+                return '{{view "buttonSwitchActivity" button=this object=view.contextAction}}';
             }.property(),
 
             buttonBackupListTemplate: function(){

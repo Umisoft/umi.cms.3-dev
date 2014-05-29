@@ -24,7 +24,7 @@ define(
                             {"behavior":"create", "displayName":"Создать Рубрика новостей","typeName":"base"}
                         ]},
                         {"type": "button", "behavior":"backToList", "displayName": "Вернуться к списку"},
-                        {"type": "buttonWithActive", "behavior":"switchActivity", "displayName": "Сменить активность"},
+                        {"type": "buttonSwitchActivity", "behavior":"switchActivity", "displayName": "Сменить активность"},
                         {"type": "button", "behavior":"viewOnSite", "displayName": "Открыть страницу в новом окне"},
                         {"type": "buttonBackupList", "behavior":"backupList","displayName": "Предыдущие версии"},
                         {"type": "button", "behavior":"trash", "displayName": "Удалить в корзину"},
