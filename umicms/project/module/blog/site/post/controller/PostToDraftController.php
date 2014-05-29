@@ -46,14 +46,6 @@ class PostToDraftController extends BaseSecureController implements IObjectPersi
     /**
      * {@inheritdoc}
      */
-    protected function getTemplateName()
-    {
-        return 'unPublishPostForm';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function buildForm()
     {
         return $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE);
@@ -75,14 +67,6 @@ class PostToDraftController extends BaseSecureController implements IObjectPersi
         }
 
         $this->getObjectPersister()->commit();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function buildResponseContent()
-    {
-        return [];
     }
 
     /**

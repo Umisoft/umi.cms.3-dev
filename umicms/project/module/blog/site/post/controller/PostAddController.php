@@ -99,15 +99,5 @@ class PostAddController extends BaseSecureController implements IObjectPersister
     {
         $this->getObjectPersister()->commit();
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function buildResponseContent()
-    {
-        return [
-            'form' => $this->form->getView()
-        ];
-    }
 }
  
