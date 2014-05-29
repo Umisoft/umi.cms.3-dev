@@ -135,25 +135,20 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @return array
      */
     protected function buildEditFormControlInfo(ICmsCollection $collection) {
-        $result = [
-            'displayName' => $this->translate('control:editForm:displayName'),
-            'toolbar' => [
-                $this->buildEditFormButtonInfo('apply')
-            ]
-        ];
+        $result = [];
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $result['toolbar'][] = $this->buildEditFormButtonInfo('switchActivity');
+            $result['toolbar'][] = $this->buildToolbarButtonInfo('switchActivity', 'buttonWithActive');
         }
 
         if ($collection instanceof IRecyclableCollection) {
-            $result['toolbar'][] = $this->buildEditFormButtonInfo(DefaultAdminComponent::ACTION_TRASH);
+            $result['toolbar'][] = $this->buildToolbarButtonInfo(DefaultAdminComponent::ACTION_TRASH);
         } else {
-            $result['toolbar'][] = $this->buildEditFormButtonInfo('delete');
+            $result['toolbar'][] = $this->buildToolbarButtonInfo('delete');
         }
 
         if ($collection instanceof IRecoverableCollection && $collection->isBackupEnabled()) {
-            $result['toolbar'][] = $this->buildEditFormButtonInfo('backupList');
+            $result['toolbar'][] = $this->buildToolbarButtonInfo('backupList', 'buttonBackupList');
         }
 
         return $result;
@@ -164,37 +159,23 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @return array
      */
     protected function buildCreateFormControlInfo() {
-        return [
-            'displayName' => $this->translate('control:createForm:displayName'),
-            'toolbar' => [
-                $this->buildEditFormButtonInfo('create')
-            ]
-        ];
+        return [];
     }
 
     /**
      * Возвращает информацию о кнопке в тулбаре формы редактирования
-     * @param string $buttonType тип кнопки
+     * @param string $behaviour обработчик
+     * @param string $type тип кнопки
      * @return array
      */
-    protected function buildEditFormButtonInfo($buttonType) {
+    protected function buildToolbarButtonInfo($behaviour, $type = 'button') {
         return [
-            'type' => $buttonType,
-            'displayName' => $this->translate('control:editForm:toolbar:' . $buttonType)
+            'type' => $type,
+            'behaviour' => $behaviour,
+            'displayName' => $this->translate('control:editForm:toolbar:' . $behaviour)
         ];
     }
 
-    /**
-     * Возвращает информацию о кнопке в тулбаре формы создания
-     * @param string $buttonType тип кнопки
-     * @return array
-     */
-    protected function buildCreateFormButtonInfo($buttonType) {
-        return [
-            'type' => $buttonType,
-            'displayName' => $this->translate('control:createForm:toolbar:' . $buttonType)
-        ];
-    }
 
     /**
      * Возвращает информацию о контроле "Фильтр"
