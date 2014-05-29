@@ -138,17 +138,17 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         $result = [];
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $result['toolbar'][] = $this->buildToolbarButtonInfo('switchActivity', 'buttonWithActive');
+            $result['toolbar'][] = $this->buildEditFormButtonInfo('switchActivity', 'buttonWithActive');
         }
 
         if ($collection instanceof IRecyclableCollection) {
-            $result['toolbar'][] = $this->buildToolbarButtonInfo(DefaultAdminComponent::ACTION_TRASH);
+            $result['toolbar'][] = $this->buildEditFormButtonInfo('trash');
         } else {
-            $result['toolbar'][] = $this->buildToolbarButtonInfo('delete');
+            $result['toolbar'][] = $this->buildEditFormButtonInfo('delete');
         }
 
         if ($collection instanceof IRecoverableCollection && $collection->isBackupEnabled()) {
-            $result['toolbar'][] = $this->buildToolbarButtonInfo('backupList', 'buttonBackupList');
+            $result['toolbar'][] = $this->buildEditFormButtonInfo('backupList', 'buttonBackupList');
         }
 
         return $result;
@@ -168,7 +168,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param string $type тип кнопки
      * @return array
      */
-    protected function buildToolbarButtonInfo($behaviour, $type = 'button') {
+    protected function buildEditFormButtonInfo($behaviour, $type = 'button') {
         return [
             'type' => $type,
             'behaviour' => $behaviour,
@@ -283,13 +283,13 @@ class DefaultRestSettingsController extends BaseDefaultRestController
 
     /**
      * Возвращает информацию о кнопке в тулбаре дерева
-     * @param string $buttonType тип кнопки
+     * @param string $behaviour обработчик
      * @return array
      */
-    protected function buildTreeToolButtonInfo($buttonType) {
+    protected function buildTreeToolButtonInfo($behaviour) {
         return [
-            'type' => $buttonType,
-            'displayName' => $this->translate('control:tree:toolbar:' . $buttonType)
+            'behaviour' => $behaviour,
+            'displayName' => $this->translate('control:tree:toolbar:' . $behaviour)
         ];
     }
 
