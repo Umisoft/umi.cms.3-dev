@@ -4,7 +4,7 @@ define(['App'],
 
         return function(){
             UMI.SaveButtonView = Ember.View.extend({
-                tagName: 'div',
+                tagName: 'a',
                 template: Ember.Handlebars.compile('{{view.button.displayName}}'),
                 classNames: ['s-margin-clear', 'umi-button', 'wide'],
 

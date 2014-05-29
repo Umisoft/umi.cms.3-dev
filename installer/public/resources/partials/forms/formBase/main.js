@@ -26,7 +26,7 @@ define(
                  * contextMenu кнопок для формы
                  * @method contextMenuBinding
                  */
-                contextMenuBinding: 'contextMenu',
+                contextMenuBinding: 'model.contextMenu',
                 /**
                  * Проверяет наличие contextMenu
                  * @method hasContextMenu

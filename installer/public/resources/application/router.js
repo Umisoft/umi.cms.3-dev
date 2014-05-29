@@ -738,7 +738,7 @@ define([], function(){
                     return $.get(component.resource).then(function(data){
                         // Временное решение
                         if(data.result.toolbar){
-                            data.result.form.contextMenu = [{type: "apply", displayName: "Применить"} ];
+                            data.result.form.contextMenu = [{"elementType": "submitButton", type: "apply", displayName: "Сохранить"}];
                             data.result.form.toolbar = null;
                         }
                         Ember.set(component, 'form', data.result.form);

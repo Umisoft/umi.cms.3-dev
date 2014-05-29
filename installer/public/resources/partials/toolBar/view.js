@@ -44,7 +44,7 @@ define(['App'], function(UMI){
 
             template: function(){
                 var template;
-                var elementType = this.get('context.elementType');
+                var elementType = this.get('context.elementType') || '';
                 try{
                     template = this.get(Ember.String.camelize(elementType) + 'Template') || '';
                     if(!template){
@@ -75,6 +75,10 @@ define(['App'], function(UMI){
 
             saveButtonTemplate: function(){
                 return '{{view "saveButton" button=this object=view.contextAction}}';
+            }.property(),
+
+            submitButtonTemplate: function(){
+                return '{{view "submitButton" button=this object=view.contextAction}}';
             }.property()
         });
     };
