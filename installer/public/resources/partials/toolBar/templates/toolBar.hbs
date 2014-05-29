@@ -1,6 +1,6 @@
 <ul class="button-group left">
     {{#each view.toolbar}}
-        {{view "toolBarButton"}}
+        {{view "toolBarButton" rootContext=view.rootContext contextAction=view.contextAction}}
     {{/each}}
 </ul>
 

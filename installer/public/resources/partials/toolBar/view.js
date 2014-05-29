@@ -12,7 +12,7 @@ define(['App'], function(UMI){
              */
             classNames: ['s-unselectable', 'umi-toolbar'],
             /**
-             * Henjdsq контекст
+             * Root контекст
              * @property rootContext
              */
             rootContext: null,
@@ -29,6 +29,19 @@ define(['App'], function(UMI){
          */
         UMI.ToolBarButtonView = Ember.View.extend({
             tagName: 'li',
+
+            /**
+             * Root контекст
+             * @property rootContext
+             */
+            rootContext: null,
+            /**
+             * Контекст для которого применяется действие. В случае отсутствия контекста кнопки скрываются
+             * В форме значение свойства равно rootContext
+             * @property contextAction
+             */
+            contextAction: null,
+
             template: function(){
                 var template;
                 var elementType = this.get('context.elementType');
@@ -45,15 +58,23 @@ define(['App'], function(UMI){
             }.property(),
 
             dropDownButtonTemplate: function(){
-                return '{{view "dropDownButton" button=this object=view.parentView.rootContext}}';
+                return '{{view "dropDownButton" button=this object=view.rootContext}}';
             }.property(),
 
             buttonTemplate: function(){
-                return '{{view "button" button=this object=view.parentView.contextAction}}';
+                return '{{view "button" button=this object=view.contextAction}}';
             }.property(),
 
             buttonWithActiveTemplate: function(){
-                return '{{view "buttonWithActive" button=this object=view.parentView.contextAction}}';
+                return '{{view "buttonWithActive" button=this object=view.contextAction}}';
+            }.property(),
+
+            buttonBackupListTemplate: function(){
+                return '{{view "buttonBackupList" button=this object=view.contextAction}}';
+            }.property(),
+
+            saveButtonTemplate: function(){
+                return '{{view "saveButton" button=this object=view.contextAction}}';
             }.property()
         });
     };

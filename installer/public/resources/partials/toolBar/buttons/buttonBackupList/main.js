@@ -1,0 +1,86 @@
+define(['App', 'text!./template.hbs'],
+    function(UMI, template){
+        "use strict";
+
+        return function(){
+            UMI.ButtonBackupListView = UMI.FormControlDropUpView.extend({
+                tagName: 'div',
+                template: Ember.Handlebars.compile(template),
+                getBackupList: function(){
+                    console.log('getBackupList');
+                    return;
+                    var backupList;
+                    var object = this.get('object');
+                    var settings = this.get('controller.settings');
+
+                    var currentVersion = {
+                        objectId: object.get('id'),
+                        date: object.get('updated'),
+                        user: null,
+                        id: 'current',
+                        current: true,
+                        isActive: true
+                    };
+
+                    var results = [currentVersion];
+                    var params = '?id=' + object.get('id');
+
+                    var promiseArray = DS.PromiseArray.create({
+                        promise: $.get(settings.actions.getBackupList.source + params).then(function(data){
+                            return results.concat(data.result.getBackupList.serviceBackup);
+                        })
+                    });
+
+                    backupList = Ember.ArrayProxy.create({
+                        content: promiseArray
+                    });
+                    return backupList;
+                },
+
+                backupList: null,
+
+                updateBackupList: function(){
+                    var self = this;
+                    Ember.run.once(this, 'getBackupList');
+
+
+                    //self.set('backupList', self.getBackupList());
+                    /*self.get('parentController.object').off('didUpdate');
+                    self.get('parentController.object').on('didUpdate', function(){
+                        self.set('backupList', self.getBackupList());
+                    });*/
+
+                }.observes('object').on('didInsertElement'),
+
+                actions: {
+                    applyBackup: function(backup){
+                        if(backup.isActive){
+                            return;
+                        }
+                        var self = this;
+                        var object = this.get('parentController.model.object');
+                        var list = self.get('backupList');
+                        var setCurrent = function(){
+                            list.setEach('isActive', false);
+                            var current = list.findBy('id', backup.id);
+                            Ember.set(current, 'isActive', true);
+                        };
+                        if(backup.current){
+                            object.rollback();
+                            setCurrent();
+                        } else{
+                            var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
+                            $.get(self.get('parentController.settings').actions.getBackup.source + params).then(function(data){
+                                object.rollback();
+                                delete data.result.getBackup.version;
+                                delete data.result.getBackup.id;
+                                object.setProperties(data.result.getBackup);
+                                setCurrent();
+                            });
+                        }
+                    }
+                }
+            });
+        };
+    }
+);
