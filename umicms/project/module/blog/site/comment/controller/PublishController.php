@@ -44,14 +44,6 @@ class PublishController extends BaseSecureController implements IObjectPersister
     /**
      * {@inheritdoc}
      */
-    protected function getTemplateName()
-    {
-        return 'publishForm';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function buildForm()
     {
         return $this->api->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE);
@@ -69,14 +61,6 @@ class PublishController extends BaseSecureController implements IObjectPersister
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function buildResponseContent()
-    {
-        return [];
-    }
-
-    /**
      * Формирует ответ.
      * @throws RuntimeException
      * @return Response
@@ -85,7 +69,7 @@ class PublishController extends BaseSecureController implements IObjectPersister
     {
         if (count($this->errors)) {
             throw new RuntimeException($this->translate(
-                'Form invalid.'
+                'Invalid form.'
             ));
         }
 

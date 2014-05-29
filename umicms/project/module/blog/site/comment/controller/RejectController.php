@@ -44,14 +44,6 @@ class RejectController extends BaseSecureController implements IObjectPersisterA
     /**
      * {@inheritdoc}
      */
-    protected function getTemplateName()
-    {
-        return 'rejectForm';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function buildForm()
     {
         return $this->api->comment()->getForm(BlogComment::FORM_REJECT_COMMENT, BlogComment::TYPE);
@@ -69,14 +61,6 @@ class RejectController extends BaseSecureController implements IObjectPersisterA
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function buildResponseContent()
-    {
-        return [];
-    }
-
-    /**
      * Формирует ответ.
      * @throws RuntimeException
      * @return Response
@@ -85,7 +69,7 @@ class RejectController extends BaseSecureController implements IObjectPersisterA
     {
         if (count($this->errors)) {
             throw new RuntimeException($this->translate(
-                'Form invalid.'
+                'Invalid form.'
             ));
         }
 
