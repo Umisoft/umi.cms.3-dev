@@ -19,19 +19,23 @@ return [
     AdminComponent::OPTION_SETTINGS => [],
 
     AdminComponent::OPTION_COMPONENTS => [
-        'user' => '{#lazy:~/project/module/users/admin/user/component.config.php}'
+        'user' => '{#lazy:~/project/module/users/admin/user/component.config.php}',
+        'group' => '{#lazy:~/project/module/users/admin/group/component.config.php}',
     ],
 
     AdminComponent::OPTION_ACL => [
 
         IAclFactory::OPTION_ROLES => [
-            'userEditor' => []
+            'userEditor' => [],
+            'groupEditor' => [],
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'component:user'
+            'component:user',
+            'component:group',
         ],
         IAclFactory::OPTION_RULES => [
-            'userEditor' => ['component:user' => []]
+            'userEditor' => ['component:user' => []],
+            'groupEditor' => ['component:group' => []],
         ]
     ],
 

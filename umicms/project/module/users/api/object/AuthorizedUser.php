@@ -20,6 +20,7 @@ use umicms\Utils;
  * @property string $firstName имя
  * @property string $middleName отчество
  * @property string $lastName фамилия
+ * @property \DateTime $registrationDate дата регистрации
  */
 class AuthorizedUser extends BaseUser
 {
@@ -60,6 +61,10 @@ class AuthorizedUser extends BaseUser
      * Имя поля для хранения отчества пользователя
      */
     const FIELD_MIDDLE_NAME = 'middleName';
+    /**
+     * Имя поля для хранения даты регистрации пользователя
+     */
+    const FIELD_REGISTRATION_DATE = 'registrationDate';
 
     /**
      * Форма авторизации пользователя на сайте

@@ -26,7 +26,9 @@ class UserGroup extends CmsObject implements IActiveAccessibleObject, ILockedAcc
      * Имя поля для хранения пользователей, входящих в группу
      */
     const FIELD_USERS = 'users';
-
+    /**
+     * Имя поля для хранения ролей группы
+     */
     const FIELD_ROLES = 'roles';
 
     /**
