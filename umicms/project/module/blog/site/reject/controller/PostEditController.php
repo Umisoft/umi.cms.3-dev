@@ -9,22 +9,22 @@
 
 namespace umicms\project\module\blog\site\reject\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
+use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseSecureController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер редактирования отклонённого поста блога.
  */
 class PostEditController extends BaseSecureController implements IObjectPersisterAware
 {
+    use TFormController;
     use TObjectPersisterAware;
 
     /**
@@ -42,11 +42,17 @@ class PostEditController extends BaseSecureController implements IObjectPersiste
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getTemplateName()
+    {
+        return 'editPost';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
     {
         $id = $this->getRouteVar('id');
         $blogPost = $this->api->post()->getRejectedPostById($id);
@@ -57,27 +63,30 @@ class PostEditController extends BaseSecureController implements IObjectPersiste
                 $this->translate('Access denied')
             );
         }
-        $form = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $blogPost);
 
-        if ($this->isRequestMethodPost()) {
-
-            $formData = $this->getAllPostVars();
-
-            if ($form->setData($formData) && $form->isValid()) {
-
-                $this->getObjectPersister()->commit();
-
-                return $this->createRedirectResponse($this->getRequest()->getReferer());
-            }
-        }
-
-        return $this->createViewResponse(
-            'editPost',
-            [
-                'blogPost' => $blogPost,
-                'form' => $form
-            ]
+        return $this->api->post()->getForm(
+            BlogPost::FORM_EDIT_POST,
+            IObjectType::BASE,
+            $blogPost
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $this->getObjectPersister()->commit();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildResponseContent()
+    {
+        return [
+            'form' => $this->form->getView()
+        ];
     }
 }
  
