@@ -199,7 +199,7 @@ define(['App'], function(UMI){
                 toggleFastAction: function(action){
                     var selectAction;
                     var controlName = this.get('controlName');
-                    if(!this.get('selectAction') || this.get('selectAction').type !== action.type){
+                    if(!this.get('selectAction') || this.get('selectAction').behavior !== action.behavior){
                         selectAction = action;
                     } else{
                         selectAction = null;
@@ -209,7 +209,7 @@ define(['App'], function(UMI){
                 },
 
                 sendAction: function(action, object){
-                    this.send(action.type, object, action);
+                    this.send(action.behavior, object, action);
                 }
             },
 
@@ -220,7 +220,7 @@ define(['App'], function(UMI){
 
             selectActionIcon: function(){
                 if(this.get('selectAction')){
-                    return 'icon-' + this.get('selectAction.type');
+                    return 'icon-' + this.get('selectAction.behavior');
                 }
             }.property('selectAction'),
 
