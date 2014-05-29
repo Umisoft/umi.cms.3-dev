@@ -31,6 +31,10 @@ class PostEditController extends BaseSecureController implements IObjectPersiste
      * @var BlogModule $api API модуля "Блоги"
      */
     protected $api;
+    /**
+     * @var bool $success флаг указывающий на успешное сохранение изменений
+     */
+    private $success = false;
 
     /**
      * Конструктор.
@@ -77,6 +81,14 @@ class PostEditController extends BaseSecureController implements IObjectPersiste
     protected function processForm(IForm $form)
     {
         $this->getObjectPersister()->commit();
+        $this->success = true;
+    }
+
+    protected function buildResponseContent()
+    {
+        return [
+            'success' => $this->success
+        ];
     }
 }
  
