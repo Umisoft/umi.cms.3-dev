@@ -22,13 +22,6 @@ return [
         'method' => 'post'
     ],
     'elements' => [
-        BlogPost::FIELD_IDENTIFY => [
-            'type' => Hidden::TYPE_NAME,
-            'label' => BlogPost::FIELD_IDENTIFY,
-            'options' => [
-                'dataSource' => BlogPost::FIELD_IDENTIFY
-            ],
-        ],
         BaseFormWidget::INPUT_REDIRECT_URL => [
             'type' => Hidden::TYPE_NAME
         ],

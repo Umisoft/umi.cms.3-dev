@@ -25,6 +25,10 @@ class PostRejectWidget extends BaseFormWidget
      */
     public $template = 'rejectForm';
     /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
+    /**
      * @var string|BlogPost $blogPost пост или GUID поста, тербующего модерации
      */
     public $blogPost;
