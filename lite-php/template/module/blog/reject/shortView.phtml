@@ -18,5 +18,7 @@
     <?= $blogPost->announcement ?>
 
     <a href="<?= $blogPost->getPageUrl() ?>"><?=$this->translate('Читать далее')?></a>
-    <?=$this->widget('blog.reject.sendToModeration', ['blogPost' => $blogPost, 'template' => 'sendToModerationForm'])?>
+    <div class="btn-toolbar">
+        <?=$this->widget('blog.reject.sendToModeration', ['blogPost' => $blogPost, 'template' => 'sendToModerationForm'])?>
+    </div>
 </div>
