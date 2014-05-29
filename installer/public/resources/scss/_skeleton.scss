@@ -87,11 +87,78 @@ body{
 
 
 .umi-toolbar{
-//    overflow: hidden;
+    position: relative;
     height: 32px;
-
     @include s-gradient-grey();
     border-bottom: 1px solid #98A2AB;
+    .f-dropdown{
+        width: 340px;
+        left: 0;
+        top: 100%;
+    }
+    .dropdown.open{
+        + li{
+            .button:before{
+                display: block;
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 3px;
+                height: 32px;
+                background: url(img/shadows/toRightShadow.png);
+            }
+        }
+    }
+    .dropdown-rows{
+        .row{
+            padding: rem-calc(8) rem-calc(8);
+            .button.tiny{
+                margin-top: -2px;
+                margin-bottom: -2px;
+            }
+        }
+    }
+    .columns.place-button{// Вот это не круто
+        padding-left: rem-calc(28);
+        position: relative;
+        .button{
+            position: absolute;
+            left: 0;
+        }
+    }
+    .s-scroll-wrap{
+        max-height: 200px;
+        height: auto;
+        border: 1px solid #D1D1D1;
+        margin:0 8px 8px;
+        .row{
+            &:nth-child(even){
+                background: #EEF7FC;
+            }
+            &:hover{
+                cursor: pointer;
+                background: #C5E2F7;
+            }
+        }
+    }
+    .icons-group{
+        margin-right: rem-calc(10);
+        .icon{
+            margin-left: rem-calc(5);
+            &:first-child{
+                margin-left: 0;
+            }
+        }
+    }
+    .checkbox-group{
+        .umi-checkbox-custom{
+            margin-left: rem-calc(5);
+            &:first-child{
+                margin-left: 0;
+            }
+        }
+    }
 }
 
 
