@@ -33,6 +33,14 @@ class PostAddController extends BaseSecureController implements IObjectPersister
      * @var BlogModule $api API модуля "Блоги"
      */
     protected $api;
+    /**
+     * @var bool $added флаг указывающий на статус добавление поста
+     */
+    private $added = false;
+    /**
+     * @var BlogPost $blogPost добавляемый пост
+     */
+    private $blogPost;
 
     /**
      * Конструктор.
@@ -75,12 +83,12 @@ class PostAddController extends BaseSecureController implements IObjectPersister
             );
         }
 
-        $blogPost = $this->api->post()->add();
-        $blogPost->category = $blogCategory;
+        $this->blogPost = $this->api->post()->add();
+        $this->blogPost->category = $blogCategory;
 
-        if (!$this->isAllowed($blogPost)) {
+        if (!$this->isAllowed($this->blogPost)) {
             throw new ResourceAccessForbiddenException(
-                $blogPost,
+                $this->blogPost,
                 $this->translate('Access denied')
             );
         }
@@ -88,7 +96,7 @@ class PostAddController extends BaseSecureController implements IObjectPersister
         return $this->api->post()->getForm(
             BlogPost::FORM_ADD_POST,
             IObjectType::BASE,
-            $blogPost
+            $this->blogPost
         );
     }
 
@@ -98,6 +106,15 @@ class PostAddController extends BaseSecureController implements IObjectPersister
     protected function processForm(IForm $form)
     {
         $this->getObjectPersister()->commit();
+        $this->added = true;
+    }
+
+    protected function buildResponseContent()
+    {
+        return [
+            'added' => $this->added,
+            'blogPost' => $this->blogPost
+        ];
     }
 }
  

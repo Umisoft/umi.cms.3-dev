@@ -1,6 +1,15 @@
 <?php
 /**
  * @var umi\form\IForm $form
+ * @var bool $added
+ * @var \umicms\project\module\blog\api\object\BlogPost $blogPost
  */
 ?>
-<?=$this->render('form/form.phtml', ['form' => $form])?>
+<?php if ($added) : ?>
+    <div class="alert alert-success">
+        <p class="bg-success text-success"><?=$this->translate('Add post successful!')?></p>
+        <p class="bg-success text-success"><a href="<?=$blogPost->getPageUrl()?>" class="alert-link">Go to view</a></p>
+    </div>
+<?php else : ?>
+    <?=$this->render('form/form.phtml', ['form' => $form])?>
+<?php endif; ?>
