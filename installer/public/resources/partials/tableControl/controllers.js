@@ -190,7 +190,8 @@ define(['App'], function(UMI){
                 },
 
                 sendAction: function(action, object){
-                    this.send(action.behavior, object, action);
+                    debugger;
+                    this.send(action.behaviour, object, action);
                 }
             },
 

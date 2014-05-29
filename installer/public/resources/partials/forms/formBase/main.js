@@ -33,7 +33,7 @@ define(
 
                 actions: {
                     sendAction: function(action, object){
-                        this.send(action.behavior, object, action);
+                        this.send(action.behaviour, object, action);
                     }
                 }
             });

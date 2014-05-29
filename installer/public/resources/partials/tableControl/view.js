@@ -13,7 +13,7 @@ define(['App'], function(UMI){
 
             selectActionIcon: function(){
                 if(this.get('selectAction')){
-                    return 'icon-' + this.get('selectAction.behavior');
+                    return 'icon-' + this.get('selectAction.behaviour');
                 }
             }.property('selectAction'),
 
@@ -21,7 +21,7 @@ define(['App'], function(UMI){
                 toggleFastAction: function(action){
                     var selectAction;
                     var componentName = this.get('componentName');
-                    if(!this.get('selectAction') || this.get('selectAction').behavior !== action.behavior){
+                    if(!this.get('selectAction') || this.get('selectAction').behaviour !== action.behaviour){
                         selectAction = action;
                     } else{
                         selectAction = null;
@@ -310,7 +310,7 @@ define(['App'], function(UMI){
                 action: null, //Получаем из шаблона
                 isFastAction: function(){
                     var selectAction = this.get('parentView.parentView.selectAction');
-                    return selectAction ? this.get('action').behavior === selectAction.behavior : false;
+                    return selectAction ? this.get('action').behaviour === selectAction.behaviour : false;
                 }.property('parentView.parentView.selectAction')
             })
         });

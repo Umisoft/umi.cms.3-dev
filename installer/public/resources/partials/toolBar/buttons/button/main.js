@@ -4,7 +4,7 @@ define(['App'],
 
         return function(){
             UMI.ButtonView = Ember.View.extend({
-                template: Ember.Handlebars.compile('<i class="icon icon-{{unbound behavior}}"></i>'),
+                template: Ember.Handlebars.compile('<i class="icon icon-{{unbound behaviour}}"></i>'),
                 tagName: 'a',
                 classNames: ['umi-button-icon-32', 'umi-light-bg'],
                 attributeBindings: ['title'],
