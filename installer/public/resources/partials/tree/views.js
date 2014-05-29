@@ -329,7 +329,7 @@ define(['App'], function(UMI){
                 action: null, //Получаем из шаблона
                 isFastAction: function(){
                     var selectAction = this.get('controller.controllers.treeControl.selectAction');
-                    return selectAction ? this.get('action').type === selectAction.type : false;
+                    return selectAction ? this.get('action').behavior === selectAction.behavior : false;
                 }.property('controller.controllers.treeControl.selectAction')
             })
         });
