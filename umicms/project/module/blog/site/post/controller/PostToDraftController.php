@@ -92,9 +92,6 @@ class PostToDraftController extends BaseSecureController implements IObjectPersi
      */
     protected function buildResponse()
     {
-        $result = (array) $this->buildResponseContent();
-        $result['form'] = $this->form->getView();
-
         if (count($this->errors)) {
             throw new RuntimeException($this->translate(
                 'Form invalid.'
