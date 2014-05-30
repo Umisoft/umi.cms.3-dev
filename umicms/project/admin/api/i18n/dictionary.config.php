@@ -10,9 +10,7 @@
 return [
 
     'en-US' => [
-        'control:tree:displayName' => 'Tree',
-        'control:children:displayName' => 'Children',
-        'control:filter:displayName' => 'Filter',
+        'control:filter:toolbar:create' => 'Create',
         'control:editForm:displayName' => 'Edit',
         'control:editForm:toolbar:apply' => 'Save',
         'control:editForm:toolbar:create' => 'Create',
@@ -26,14 +24,12 @@ return [
     ],
 
     'ru-RU' => [
-        'control:tree:displayName' => 'Дерево',
-        'control:children:displayName' => 'Дочерние элементы',
-        'control:filter:displayName' => 'Фильтр',
+        'control:filter:toolbar:create' => 'Добавить',
         'control:editForm:displayName' => 'Редактирование',
         'control:editForm:toolbar:apply' => 'Сохранить',
-        'control:editForm:toolbar:create' => 'Создать',
+        'control:editForm:toolbar:create' => 'Добавить',
         'control:createForm:displayName' => 'Создание',
-        'control:tree:toolbar:create' => 'Создать',
+        'control:tree:toolbar:create' => 'Добавить',
         'control:tree:toolbar:edit' => 'Редактировать',
         'control:tree:toolbar:switchActivity' => 'Сменить активность',
         'control:tree:toolbar:viewOnSite' => 'Посмотреть на сайте',

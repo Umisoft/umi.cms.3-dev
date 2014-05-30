@@ -11,8 +11,11 @@ namespace umicms\project\admin\settings;
 
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
+use umi\hmvc\exception\http\HttpForbidden;
 use umi\http\Request;
 use umi\http\Response;
+use umi\session\ISessionAware;
+use umi\session\TSessionAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
 use umicms\project\admin\settings\component\DefaultSettingsComponent;
@@ -23,10 +26,11 @@ use umicms\serialization\TSerializationAware;
 /**
  * Приложение управления настройками.
  */
-class SettingsApplication extends DefaultSettingsComponent implements ISerializationAware, IToolkitAware
+class SettingsApplication extends DefaultSettingsComponent implements ISerializationAware, IToolkitAware, ISessionAware
 {
     use TSerializationAware;
     use TToolkitAware;
+    use TSessionAware;
 
     /**
      * Опция для задания сериализаторов приложения
@@ -68,6 +72,10 @@ class SettingsApplication extends DefaultSettingsComponent implements ISerializa
 
         $this->currentRequestFormat = $requestFormat;
 
+        if (!$this->checkCsrfToken($context, $request)) {
+            throw new HttpForbidden('Cannot process request. Invalid csrf token.');
+        }
+
         return null;
     }
 
@@ -86,6 +94,33 @@ class SettingsApplication extends DefaultSettingsComponent implements ISerializa
         $response->setContent($serializer->output());
 
         return $response;
+    }
+
+    /**
+     * Проверяет csrf-токен запроса.
+     * @param IDispatchContext $context
+     * @param Request $request
+     * @return bool
+     */
+    protected function checkCsrfToken(IDispatchContext $context, Request $request)
+    {
+        if ($request->getMethod() === 'GET') {
+            return true;
+        }
+
+        $params = $context->getRouteParams();
+
+        if (isset($params['ignoreCsrf']) && $params['ignoreCsrf']) {
+            return true;
+        }
+
+        $validToken = $this->getSessionVar('token');
+        $requestToken = $request->headers->get('X-Csrf-Token');
+        if ($requestToken && $requestToken === $validToken) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

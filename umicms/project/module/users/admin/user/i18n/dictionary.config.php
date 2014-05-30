@@ -10,7 +10,7 @@
 return [
 
     'en-US' => [
-        'component:user:displayName' => 'User'
+        'component:user:displayName' => 'Users'
     ],
 
     'ru-RU' => [

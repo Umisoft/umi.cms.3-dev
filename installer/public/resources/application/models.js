@@ -203,6 +203,7 @@ define([], function(){
                             fieldValue = DS.attr('string', params);
                             break;
                         case 'number':
+                        case 'integer':
                         case 'counter':
                             fieldValue = DS.attr('number', params);
                             break;

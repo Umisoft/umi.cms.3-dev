@@ -36,7 +36,6 @@ use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\Bootstrap;
-use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\component\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;

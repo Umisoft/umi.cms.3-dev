@@ -8,14 +8,13 @@
  */
 
 return [
+
     'en-US' => [
-        'type:base:displayName' => 'Layout',
-        'type:base:createLabel' => 'layout'
+        'component:group:displayName' => 'Groups'
     ],
 
     'ru-RU' => [
-        'type:base:displayName' => 'Шаблон',
-        'type:base:createLabel' => 'шаблон'
+        'component:group:displayName' => 'Группы'
     ]
+
 ];
- 

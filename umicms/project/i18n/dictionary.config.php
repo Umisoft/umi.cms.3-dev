@@ -29,6 +29,7 @@ return [
 
         'project.admin.api.users' => '{#lazy:~/project/module/users/admin/i18n/dictionary.config.php}',
         'project.admin.api.users.user' => '{#lazy:~/project/module/users/admin/user/i18n/dictionary.config.php}',
+        'project.admin.api.users.group' => '{#lazy:~/project/module/users/admin/group/i18n/dictionary.config.php}',
 
         'project.admin.api.structure' => '{#lazy:~/project/module/structure/admin/i18n/dictionary.config.php}',
         'project.admin.api.structure.page' => '{#lazy:~/project/module/structure/admin/page/i18n/dictionary.config.php}',
@@ -107,7 +108,7 @@ return [
 
                 IRecyclableObject::FIELD_TRASHED => 'Trashed',
                 ILockedAccessibleObject::FIELD_LOCKED => 'Locked',
-                IActiveAccessibleObject::FIELD_ACTIVE => 'Active',
+                IActiveAccessibleObject::FIELD_ACTIVE => 'Active'
 
             ],
 
@@ -166,6 +167,7 @@ return [
         ],
 
         'collection.user' => '{#lazy:~/project/module/users/configuration/user/i18n/dictionary.config.php}',
+        'collection.userGroup' => '{#lazy:~/project/module/users/configuration/group/i18n/dictionary.config.php}',
 
         'collection.newsItem' => '{#lazy:~/project/module/news/configuration/item/i18n/dictionary.config.php}',
         'collection.newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/i18n/dictionary.config.php}',
