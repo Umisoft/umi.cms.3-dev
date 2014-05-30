@@ -15,10 +15,6 @@ use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
-use umicms\orm\object\behaviour\IActiveAccessibleObject;
-use umicms\orm\object\ICmsObject;
-use umicms\project\module\structure\api\collection\StructureElementCollection;
-use umicms\project\module\structure\api\object\SystemPage;
 
 /**
  * Контроллер вывода настроек компонента
@@ -49,8 +45,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         return [
             'collectionName' => $collection->getName(),
             'layout'         => $this->buildLayoutInfo($collection),
-            'actions'        => $this->buildActionsInfo(),
-            'filters'        => $this->buildCollectionFiltersInfo($collection)
+            'actions'        => $this->buildActionsInfo()
         ];
     }
 
@@ -214,7 +209,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController
     protected function buildFilterControlInfo(ICmsCollection $collection)
     {
         $result = [
-            'displayName' => $this->translate('control:filter:displayName'),
             'toolbar'     => []
         ];
 
@@ -395,24 +389,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController
     }
 
     /**
-     * Возвращает информацию о фильтре по полю для дерева
-     * @param string $fieldName имя поля
-     * @param array $values список разрешенных значений
-     * @param bool $isActive активен ли фильтр
-     * @return array
-     */
-    protected function buildTreeFilterInfo($fieldName, array $values, $isActive = false)
-    {
-
-        return [
-            'fieldName'   => $fieldName,
-            'isActive'    => $isActive,
-            'displayName' => $this->translate('control:tree:filter:' . $fieldName),
-            'allow'       => $values
-        ];
-    }
-
-    /**
      * Возвращает информацию о доступных действиях компонентов.
      * @return array
      */
@@ -438,47 +414,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         }
 
         return $actions;
-    }
-
-    /**
-     * Возвращает информацию о возможных фильтрах коллекции.
-     * @param ICmsCollection $collection
-     * @return array
-     */
-    protected function buildCollectionFiltersInfo(ICmsCollection $collection)
-    {
-        $result = [];
-
-        if ($collection instanceof IActiveAccessibleCollection) {
-            $result[] = $this->buildCollectionFilterInfo(IActiveAccessibleObject::FIELD_ACTIVE, [true]);
-        }
-
-        if ($collection instanceof StructureElementCollection) {
-            $types = $collection->getMetadata()
-                ->getTypesList();
-            $types = array_values(array_diff($types, [SystemPage::TYPE]));
-            $result[] = $this->buildCollectionFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
-        }
-
-        return $result;
-    }
-
-    /**
-     * Возвращает информацию о фильтре по полю для дерева
-     * @param string $fieldName имя поля
-     * @param array $values список разрешенных значений
-     * @param bool $isActive активен ли фильтр
-     * @return array
-     */
-    protected function buildCollectionFilterInfo($fieldName, array $values, $isActive = false)
-    {
-
-        return [
-            'fieldName'   => $fieldName,
-            'isActive'    => $isActive,
-            'displayName' => $this->translate('filter:' . $fieldName),
-            'allow'       => $values
-        ];
     }
 
     /**
