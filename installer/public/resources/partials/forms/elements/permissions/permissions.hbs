@@ -1,0 +1,20 @@
+<table style="width: 100%;">
+    <thead>
+        <tr>
+            <td>Модули</td>
+            <td>{{view.meta.label}}</td>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each view.meta.resources}}
+            <tr>
+                <td>{{label}}</td>
+                <td>
+                    {{#each roles}}
+                        <div>{{label}}</div>
+                    {{/each}}
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

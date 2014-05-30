@@ -104,7 +104,17 @@ define(
                      * @method gridType
                      */
                     gridType: function(){
-                        return 'umi-columns ' + (this.get('content.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12');
+                        var className = 'umi-columns ';
+                        switch(this.get('content.type')){
+                            case 'wysiwyg':
+                            case 'permissions':
+                                className += 'small-12';
+                                break;
+                            default:
+                                className += 'large-4 small-12';
+                                break;
+                        }
+                        return className;
                     },
 
                     actions: {
@@ -215,6 +225,10 @@ define(
 
                 colorTemplate: function(){
                     return '{{input type="color" value=object.value meta=view.meta name=meta.attributes.name}}';
+                }.property(),
+
+                permissionsTemplate: function(){
+                    return '{{view "permissions" object=object meta=view.meta}}';
                 }.property()
             });
         };
