@@ -5,6 +5,23 @@ return [
         'en-US' => [
             'ru-RU' => 'RU',
             'en-US' => 'EN',
+            'Previous' => 'Previous',
+            'Next' => 'Next',
+            'Post on moderation' => 'Post on moderation',
+            'List of rejected posts' => 'List of rejected posts',
+            'RSS feed' => 'RSS feed',
+            'Blogs' => 'Blogs',
+            'Categories' => 'Categories',
+            'Tags cloud' => 'Tags cloud',
+            'Authors' => 'Authors',
+            'Authors\'s posts' => 'Authors\'s posts',
+            'Drafts' => 'Drafts',
+            'Rejected posts' => 'Rejected posts',
+            'Moderate' => 'Moderate',
+            'News' => 'News',
+            'Rubrics' => 'Rubrics',
+            'Subjects' => 'Subjects',
+            'Back to top' => 'Back to top',
         ],
         'ru-RU' => [
             'ru-RU' => 'RU',
@@ -30,6 +47,17 @@ return [
     ],
 
     'project.site.blog' => [
+        'en-US' => [
+            'RSS' => 'RSS feed',
+            'Create post' => 'Create post',
+            'Go' => 'Go',
+            'Edit' => 'Edit',
+            'Drafts author' => 'Drafts author',
+            'Author' => 'Author',
+            'Comments' => 'Comments',
+            'Read more' => 'Read more',
+            'Moderation queue' => 'Moderation queue',
+        ],
         'ru-RU' => [
             'RSS' => 'RSS ленты',
             'Create post' => 'Создать пост',
@@ -44,6 +72,11 @@ return [
     ],
 
     'project.site.news' => [
+        'en-US' => [
+            'RSS' => 'RSS feed',
+            'Read more' => 'Read more',
+            'All news' => 'All news',
+        ],
         'ru-RU' => [
             'RSS' => 'RSS ленты',
             'Read more' => 'Читать далее',
@@ -52,6 +85,11 @@ return [
     ],
 
     'project.site.search' => [
+        'en-US' => [
+            'Search' => 'Search',
+            'No query' => 'No query',
+            'No result' => 'No result',
+        ],
         'ru-RU' => [
             'Search' => 'Искать',
             'No query' => 'Запрос пустой',
