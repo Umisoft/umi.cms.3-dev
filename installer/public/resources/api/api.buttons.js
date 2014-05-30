@@ -1,17 +1,21 @@
 /**
  * Простая кнопка
- * @type {{type: string, behaviour: string, displayName: string, attributes: {title: string, alt: string, class: string[]}, hasIcon: boolean}}
+ * @type {{type: string, behaviour: string, attributes: {title: string, alt: string, class: string, displayName: string, icon: {class: string}}}}
  */
 var button = {
     "type": "button",
-    "behaviour": "delete",
-    "displayName": "Удалить",
+    "behaviour": {
+        "name": "delete"
+    },
     "attributes": {
         "title": "Удаление новости",
         "alt": "alt для кнопки",
-        "class": ["large", "primary"]
-    },
-    "hasIcon": true
+        "class": "large primary",
+        "label": "Удалить",
+        "icon": {
+            class: 'icon icon-delete'
+        }
+    }
 };
 
 /**
@@ -20,14 +24,24 @@ var button = {
  */
 var dropDownButton = {
     "type": "dropDownButton",
-    "displayName": "Создать",
     "attributes": {
         "title": "Создать",
         "alt": "alt для кнопки",
-        "class": ["large", "secondary"]
+        "class": "large secondary",
+        "label": "Создать",
+        "icon": {
+            "class": 'icon icon-delete'
+        }
     },
-    "list": [
-        {"displayName": "Создать новость", "behaviour": "create"},
-        {"displayName": "Создать рубрику", "behaviour": "create"}
+    "choices": [
+        {
+            "behaviour": {
+                "name": "create",
+                "typeName": "base"
+            },
+            "attributes": {
+                "label": "Создать новость"
+            }
+        }
     ]
 };
