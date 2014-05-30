@@ -8,7 +8,7 @@
 
 <span class="umi-toolbar-create-list umi-hide-on-html">
     {{#each view.button.list}}
-        <span {{action 'sendAction' this view.object}}>
+        <span {{action 'sendAction' behaviour view.object}}>
             {{displayName}}
         </span>
     {{/each}}

@@ -189,8 +189,8 @@ define(['App'], function(UMI){
                     this.set('orderByProperty', {'property' : propertyName, 'direction': sortAscending});
                 },
 
-                sendAction: function(action, object){
-                    this.send(action.behaviour, object, action);
+                sendAction: function(behaviour, object){
+                    this.send(behaviour.name, object, behaviour);
                 },
 
                 create: function(object, action){

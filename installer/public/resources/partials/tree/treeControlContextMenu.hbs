@@ -1,6 +1,6 @@
 {{#if controllers.treeControl.selectAction}}
     <li class="tree-control-select-action">
-        <span class="tiny button flat square" {{action 'sendAction' controllers.treeControl.selectAction controller.model}}>
+        <span class="tiny button flat square" {{action 'sendAction' controllers.treeControl.selectAction.behaviour controller.model}}>
             <i {{bind-attr class=":icon controllers.treeControl.selectActionIcon"}}></i>
         </span>
     </li>
@@ -17,7 +17,7 @@
                 {{#each controllers.treeControl.actionList}}
                     {{#view view.itemView action=this}}
                         <i {{bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{action 'toggleFastAction' this}}></i>
-                        <span {{action 'sendAction' this controller.model}}>{{displayName}}</span>
+                        <span {{action 'sendAction' behaviour controller.model}}>{{displayName}}</span>
                         <!--sendAction: function(action, object){-->
                             <!--this.send(action.type, object, action);-->
                         <!--}-->

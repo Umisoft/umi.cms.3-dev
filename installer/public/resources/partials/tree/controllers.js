@@ -208,8 +208,8 @@ define(['App'], function(UMI){
                     UMI.Utils.LS.set('treeControls.' + controlName + '.contextAction', selectAction);
                 },
 
-                sendAction: function(action, object){
-                    this.send(action.behaviour, object, action);
+                sendAction: function(behaviour, object){
+                    this.send(behaviour.name, object, behaviour);
                 }
             },
 
