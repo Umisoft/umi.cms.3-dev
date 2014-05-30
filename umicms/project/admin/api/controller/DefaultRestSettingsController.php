@@ -140,17 +140,17 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         $result = [];
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $result['toolbar'][] = $this->buildButtonInfo('switchActivity');
+            $result['toolbar'][] = $this->buildSimpleButtonInfo('switchActivity');
         }
 
         if ($collection instanceof IRecyclableCollection) {
-            $result['toolbar'][] = $this->buildButtonInfo('trash');
+            $result['toolbar'][] = $this->buildSimpleButtonInfo('trash');
         } else {
-            $result['toolbar'][] = $this->buildButtonInfo('delete');
+            $result['toolbar'][] = $this->buildSimpleButtonInfo('delete');
         }
 
         if ($collection instanceof IRecoverableCollection && $collection->isBackupEnabled()) {
-            $result['toolbar'][] = $this->buildButtonInfo('backupList');
+            $result['toolbar'][] = $this->buildSimpleButtonInfo('backupList');
         }
 
         return $result;
@@ -174,13 +174,13 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param array $params параметры обработчика
      * @return array
      */
-    protected function buildButtonInfo($name, $useIcon = true, $useLabel = true, $class = null, array $params = [])
+    protected function buildSimpleButtonInfo($name, $useIcon = true, $useLabel = true, $class = null, array $params = [])
     {
         $label =  $this->translate('button:' . $name);
 
         $attributes = [
             'title' => $label,
-            'class' => $class ?: 'secondary'
+            'class' => $class ?: 'button secondary'
         ];
 
         if ($useLabel) {
@@ -277,16 +277,18 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         $toolbar = $this->buildTreeControlCreateButtons($collection);
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $toolbar[] = $this->buildTreeToolButtonInfo('switchActivity');
+            $toolbar[] = $this->buildSimpleChoiceAction('switchActivity');
         }
 
         if ($collection instanceof ICmsPageCollection) {
-            $toolbar[] = $this->buildTreeToolButtonInfo('viewOnSite');
+            $toolbar[] = $this->buildSimpleChoiceAction('viewOnSite');
         }
 
         return [
             'displayName' => $this->translate('control:tree:displayName'),
-            'toolbar'     => $toolbar
+            'toolbar'     => [
+
+            ]
         ];
     }
 
@@ -320,7 +322,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
                     'typeName' => $typeList[0]
                 ],
                 'attributes' => [
-                    'class' => 'primary',
+                    'class' => 'button primary',
                     'title' => $label,
                     'label'     => $label
                 ]
@@ -339,7 +341,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             return [
                 'type' => 'dropDownButton',
                 'attributes' => [
-                    'class' => 'primary',
+                    'class' => 'button primary',
                     'title' => $createLabel . '...'
                 ],
                 'choices' => $this->buildCreateChoiceList($typeList)
@@ -373,6 +375,25 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         }
 
         return $list;
+    }
+
+    /**
+     * Возвращает информацию для простого списочного действия
+     * @param $name
+     * @return array
+     */
+    protected function buildSimpleChoiceAction($name) {
+        $label = $this->translate('action:' . $name);
+        return [
+            'behaviour' => [
+                'name' => $name
+            ],
+            'attributes' => [
+                'title' => $label,
+                'label' => $label
+            ]
+
+        ];
     }
 
     /**
