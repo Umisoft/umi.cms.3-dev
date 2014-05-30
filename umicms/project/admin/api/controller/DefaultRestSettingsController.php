@@ -264,7 +264,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
 
         return [
             'displayName' => $this->translate('control:tree:displayName'),
-            'toolbar'     => [
+            'contextToolbar'     => [
                 [
                     'type' => 'dropDownButton',
                     'attributes' => [
