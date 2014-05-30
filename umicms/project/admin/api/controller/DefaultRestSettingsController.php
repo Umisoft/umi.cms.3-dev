@@ -180,7 +180,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
 
         $attributes = [
             'title' => $label,
-            'class' => $class ?: 'button secondary'
+            'class' => $class ?: 'umi-button-icon-32 umi-light-bg'
         ];
 
         if ($useLabel) {
@@ -222,31 +222,15 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             $result['toolbar'][] = $createButton;
         }
 
-        /*
         if ($collection instanceof IActiveAccessibleCollection) {
-            $result['toolbar'][] = $this->buildToolbarButtonInfo('switchActivity');
+            $result['toolbar'][] = $this->buildSimpleButtonInfo('switchActivity');
         }
 
         if ($collection instanceof ICmsPageCollection) {
-            $result['toolbar'][] = $this->buildToolbarButtonInfo('viewOnSite');
+            $result['toolbar'][] = $this->buildSimpleButtonInfo('viewOnSite');
         }
-        */
 
         return $result;
-    }
-
-
-    /**
-     * Возвращает информацию о кнопке в тулбаре формы создания
-     * @param string $buttonType тип кнопки
-     * @return array
-     */
-    protected function buildFilterToolButtonInfo($buttonType)
-    {
-        return [
-            'type'        => $buttonType,
-            'displayName' => $this->translate('control:filter:toolbar:' . $buttonType)
-        ];
     }
 
     /**
@@ -274,7 +258,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      */
     protected function buildTreeControlInfo(SimpleHierarchicCollection $collection)
     {
-        $actionList = [] ;$this->buildTreeControlCreateButtons($collection);
+        $actionList = $this->buildCreateChoiceList($this->getCreateTypeList($collection));
 
         if ($collection instanceof IActiveAccessibleCollection) {
             $actionList[] = $this->buildSimpleChoiceAction('switchActivity');
@@ -314,13 +298,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         $createLabel = $this->translate('action:create');
 
         if ($typesCount == 1) {
-            $label = $this->translate(
-                '{createLabel} {typeCreateLabel}',
-                [
-                    'createLabel'     => $createLabel,
-                    'typeCreateLabel' => $this->translate('type:' . $typeList[0] . ':createLabel')
-                ]
-            );
+            $label = $this->translate('type:' . $typeList[0] . ':createLabel');
             return [
                 'type' => 'button',
                 'behaviour' => [
@@ -347,7 +325,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             return [
                 'type' => 'dropDownButton',
                 'attributes' => [
-                    'class' => 'button dropdown primary',
+                    'class' => 'umi-button umi-toolbar-create-button',
                     'title' => $createLabel,
                     'label' => $createLabel . '...'
                 ],
@@ -401,32 +379,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             ]
 
         ];
-    }
-
-    /**
-     * Возвращает информацию о кнопках создания в дереве компонента.
-     * @param SimpleHierarchicCollection $collection
-     * @return array
-     */
-    protected function buildTreeControlCreateButtons(SimpleHierarchicCollection $collection) {
-        $createLabel = $this->translate('control:tree:toolbar:create');
-
-        $result = [];
-        foreach ($this->getCreateTypeList($collection) as $typeName) {
-            $result[] = [
-                'behaviour'   => 'create',
-                'displayName' => $this->translate(
-                    '{createLabel} {typeCreateLabel}',
-                    [
-                        'createLabel'     => $createLabel,
-                        'typeCreateLabel' => $this->translate('type:' . $typeName . ':createLabel')
-                    ]
-                ),
-                'typeName'    => $typeName
-            ];
-        }
-
-        return $result;
     }
 
     /**
