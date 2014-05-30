@@ -11,12 +11,12 @@
             <?= $blogPost->publishTime->format('d.m.Y | H:i')?>
         </time>
         <?php endif; ?>
-        <?php if ($blogPost->author) : ?><?=$this->translate('Автор')?>: <a href="<?=$blogPost->author->getPageUrl()?>"><?=$blogPost->author->displayName?></a><?php endif; ?>
+        <?php if ($blogPost->author) : ?><?=$this->translate('Author')?>: <a href="<?=$blogPost->author->getPageUrl()?>"><?=$blogPost->author->displayName?></a><?php endif; ?>
         <?=$this->widget('blog.reject.editPostLink', ['blogPost' => $blogPost, 'template' => 'editPostLink'])?>
     </p>
 
     <?= $blogPost->announcement ?>
 
-    <a href="<?= $blogPost->getPageUrl() ?>"><?=$this->translate('Читать далее')?></a>
+    <a href="<?= $blogPost->getPageUrl() ?>"><?=$this->translate('Read more')?></a>
     <?=$this->widget('blog.reject.sendToModeration', ['blogPost' => $blogPost, 'template' => 'sendToModerationForm'])?>
 </div>

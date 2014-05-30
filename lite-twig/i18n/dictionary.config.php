@@ -3,64 +3,59 @@
 return [
     'project.site' => [
         'en-US' => [
-            'RSS ленты' => 'RSS feed',
-            'Блоги' => 'Blogs',
-            'Категории' => 'Categories',
-            'Облако тэгов' => 'Tags cloud',
-            'Авторы' => 'Authors',
-            'Модерирование' => 'Moderate',
-            'Посты автора' => 'Authors\'s posts',
-            'Все черновики' => 'All drafts',
-            'Новости' => 'News',
-            'Рубрики' => 'Rubrics',
-            'Сюжеты' => 'Subjects',
-            'Demo lite twig' => 'Demo lite twig',
-            'Blank-шаблон созданный на Umicms 3' => 'Blank-template create on Umicms 3',
-            'Demo lite twig build for {bootstrap} by {umicms}' => 'Demo lite twig build for {bootstrap} by {umicms}',
-            'Наверх' => 'Back to top',
-            'Назад' => 'Previous',
-            'Дальше' => 'Next',
-            'Черновики' => 'Drafts',
-            'Посты на модерации' => 'Post on moderation',
-            'Отклонённые посты' => 'Rejected posts',
             'ru-RU' => 'RU',
             'en-US' => 'EN',
         ],
         'ru-RU' => [
             'ru-RU' => 'RU',
             'en-US' => 'EN',
+            'Previous' => 'Назад',
+            'Next' => 'Дальше',
+            'Post on moderation' => 'Посты на модерации',
+            'List of rejected posts' => 'Список отклонённых постов',
+            'RSS feed' => 'RSS ленты',
+            'Blogs' => 'Блоги',
+            'Categories' => 'Категории',
+            'Tags cloud' => 'Облако тэгов',
+            'Authors' => 'Авторы',
+            'Authors\'s posts' => 'Посты автора',
+            'Drafts' => 'Черновики',
+            'Rejected posts' => 'Отклонённые посты',
+            'Moderate' => 'Модерирование',
+            'News' => 'Новости',
+            'Rubrics' => 'Рубрики',
+            'Subjects' => 'Сюжеты',
+            'Back to top' => 'Наверх',
         ]
     ],
 
     'project.site.blog' => [
-        'en-US' => [
-            'RSS' => 'RSS Feed',
-            'Создать пост' => 'Create post',
-            'Все черновики' => 'All drafts',
-            'Модерировать' => 'Moderate',
-            'Перейти' => 'Go to',
-            'Редактировать' => 'Edit',
-            'Черновики автора' => 'Drafts author',
-            'Комментарии' => 'Comments',
-            'Автор' => 'Author',
-            'В черновики' => 'To drafts',
-            'Читать далее' => 'Read more',
+        'ru-RU' => [
+            'RSS' => 'RSS ленты',
+            'Create post' => 'Создать пост',
+            'Go' => 'Перейти',
+            'Edit' => 'Редактировать',
+            'Drafts author' => 'Черновики автора',
+            'Author' => 'Автор',
+            'Comments' => 'Комментарии',
+            'Read more' => 'Читать далее',
+            'Moderation queue' => 'Очередь модерации',
         ]
     ],
 
     'project.site.news' => [
-        'en-US' => [
-            'RSS' => 'RSS Feed',
-            'Читать далее' => 'Read more',
-            'Все новости' => 'All news',
+        'ru-RU' => [
+            'RSS' => 'RSS ленты',
+            'Read more' => 'Читать далее',
+            'All news' => 'Все новости',
         ]
     ],
 
     'project.site.search' => [
-        'en-US' => [
-            'Искать' => 'Search',
-            'Запрос пустой ' => 'No query',
-            'Ничего не найдено' => 'No result',
+        'ru-RU' => [
+            'Search' => 'Искать',
+            'No query' => 'Запрос пустой',
+            'No result' => 'Ничего не найдено',
         ]
     ]
 
