@@ -274,20 +274,26 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      */
     protected function buildTreeControlInfo(SimpleHierarchicCollection $collection)
     {
-        $toolbar = $this->buildTreeControlCreateButtons($collection);
+        $actionList = [] ;$this->buildTreeControlCreateButtons($collection);
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $toolbar[] = $this->buildSimpleChoiceAction('switchActivity');
+            $actionList[] = $this->buildSimpleChoiceAction('switchActivity');
         }
 
         if ($collection instanceof ICmsPageCollection) {
-            $toolbar[] = $this->buildSimpleChoiceAction('viewOnSite');
+            $actionList[] = $this->buildSimpleChoiceAction('viewOnSite');
         }
 
         return [
             'displayName' => $this->translate('control:tree:displayName'),
             'toolbar'     => [
-
+                [
+                    'type' => 'dropDownButton',
+                    'attributes' => [
+                        'class' => 'umi-button umi-toolbar-create-button'
+                    ],
+                    'choices' => $actionList
+                ]
             ]
         ];
     }
@@ -305,7 +311,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             return [];
         }
 
-        $createLabel = $this->translate('button:create');
+        $createLabel = $this->translate('action:create');
 
         if ($typesCount == 1) {
             $label = $this->translate(
@@ -341,8 +347,9 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             return [
                 'type' => 'dropDownButton',
                 'attributes' => [
-                    'class' => 'button primary',
-                    'title' => $createLabel . '...'
+                    'class' => 'button dropdown primary',
+                    'title' => $createLabel,
+                    'label' => $createLabel . '...'
                 ],
                 'choices' => $this->buildCreateChoiceList($typeList)
             ];
