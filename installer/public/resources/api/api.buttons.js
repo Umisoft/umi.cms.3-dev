@@ -13,7 +13,7 @@ var button = {
         "class": "large primary",
         "label": "Удалить",
         "icon": {
-            class: 'icon icon-delete'
+            "class": "icon icon-delete"
         }
     }
 };
@@ -30,7 +30,7 @@ var dropDownButton = {
         "class": "large secondary",
         "label": "Создать",
         "icon": {
-            "class": 'icon icon-delete'
+            "class": "icon icon-delete"
         }
     },
     "choices": [
