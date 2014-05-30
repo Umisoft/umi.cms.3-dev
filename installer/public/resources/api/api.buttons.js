@@ -1,6 +1,6 @@
 /**
  * Простая кнопка
- * @type {{type: string, behaviour: string, attributes: {title: string, alt: string, class: string, displayName: string, icon: {class: string}}}}
+ * @type {{type: string, behaviour: {name: string}, attributes: {title: string, alt: string, class: string, label: string, icon: {class: string}}}}
  */
 var button = {
     "type": "button",
@@ -20,7 +20,7 @@ var button = {
 
 /**
  * Кнопка с выпадающим списком
- * @type {{type: string, displayName: string, attributes: {title: string, alt: string, class: string[]}, list: *[]}}
+ * @type {{type: string, attributes: {title: string, alt: string, class: string, label: string, icon: {class: string}}, choices: *[]}}
  */
 var dropDownButton = {
     "type": "dropDownButton",
