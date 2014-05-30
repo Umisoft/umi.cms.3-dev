@@ -94,7 +94,8 @@ class Permissions extends BaseFormElement
         $componentRoles = $component->getAclManager()->getRoleList();
         if ($componentRoles) {
 
-            $resources[$component->getPath()] = [
+            $resourceInfo = [
+                'path' => $component->getPath(),
                 'label' =>
                     $this->translator->translate(
                         $component->getDictionariesNames(), 'component:' . $component->getName() . ':displayName'
@@ -102,7 +103,7 @@ class Permissions extends BaseFormElement
                 'roles' => [],
             ];
             foreach ($componentRoles as $name => $parentRoles) {
-                $resources[$component->getPath()]['roles'][] = [
+                $resourceInfo['roles'][] = [
                     'label' =>
                         $this->translator->translate(
                             $component->getDictionariesNames(), 'role:' . $name . ':displayName'
@@ -110,6 +111,7 @@ class Permissions extends BaseFormElement
                     'value' => $name
                 ];
             }
+            $resources[] = $resourceInfo;
         }
 
         foreach($component->getChildComponentNames() as $name) {
