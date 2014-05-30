@@ -9,7 +9,7 @@ define(['App', 'text!./button.hbs'],
                 classNames: ['s-margin-clear'],//TODO: избавиться от класса после возвращения Foundation
                 classNameBindings: 'button.attributes.class',
                 attributeBindings: ['title'],
-                title: 'button.attributes.title',
+                title: Ember.computed.alias('button.attributes.title'),
                 click: function(){
                     this.get('controller').send('sendAction', this.get('button').behaviour, this.get('object'));
                 }

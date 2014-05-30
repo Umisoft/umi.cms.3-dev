@@ -8,7 +8,7 @@ define(['App', 'text!./template.hbs'],
                 tagName: 'a',
                 classNameBindings: 'button.attributes.class',
                 attributeBindings: ['title'],
-                title: 'button.attributes.title',
+                title: Ember.computed.alias('button.attributes.title'),
                 didInsertElement: function(){
                     this.$().click(function(){
                         $(this).find('.umi-toolbar-create-list').toggle();
