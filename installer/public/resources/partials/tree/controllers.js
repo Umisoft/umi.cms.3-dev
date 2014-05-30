@@ -220,12 +220,15 @@ define(['App'], function(UMI){
 
             selectActionIcon: function(){
                 if(this.get('selectAction')){
-                    return 'icon-' + this.get('selectAction.behaviour');
+                    return 'icon-' + this.get('selectAction.behaviour.name');
                 }
             }.property('selectAction'),
 
             actionList: function(){
-                return this.get('controllers.component.sideBarControl.toolbar');
+                var dropDown = this.get('controllers.component.sideBarControl.toolbar').findBy('type', 'dropDownButton');
+                if(dropDown){
+                    return dropDown.choices;
+                }
             }.property()
         });
 
