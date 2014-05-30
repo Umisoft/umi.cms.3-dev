@@ -6,6 +6,7 @@ define(['App', 'text!./button.hbs'],
             UMI.ButtonView = Ember.View.extend({
                 template: Ember.Handlebars.compile(buttonTemplate),
                 tagName: 'a',
+                classNames: ['s-margin-clear'],//TODO: избавиться от класса после возвращения Foundation
                 classNameBindings: 'button.attributes.class',
                 attributeBindings: ['title'],
                 title: 'button.attributes.title',

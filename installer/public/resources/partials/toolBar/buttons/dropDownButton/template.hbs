@@ -1,15 +1,21 @@
-<span class="umi-toolbar-create-text">
-    {{view.button.displayName}}
-</span>
+{{#if view.button.attributes.icon}}
+    <i class="{{unbound view.button.attributes.icon.class}}"></i>
+{{/if}}
+
+{{#if view.button.attributes.label}}
+    <span class="umi-toolbar-create-text">
+        {{unbound view.button.attributes.label}}
+    </span>
+{{/if}}
 
 <span class="umi-toolbar-create-icon">
     <i class="icon icon-bottom"></i>
 </span>
 
 <span class="umi-toolbar-create-list umi-hide-on-html">
-    {{#each view.button.list}}
+    {{#each view.button.choices}}
         <span {{action 'sendAction' behaviour view.object}}>
-            {{displayName}}
+            {{attributes.label}}
         </span>
     {{/each}}
 </span>
