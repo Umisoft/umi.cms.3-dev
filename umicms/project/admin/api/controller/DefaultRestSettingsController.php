@@ -140,17 +140,17 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         $result = [];
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $result['toolbar'][] = $this->buildToolbarButtonInfo('switchActivity', 'buttonSwitchActivity');
+            $result['toolbar'][] = $this->buildButtonInfo('switchActivity');
         }
 
         if ($collection instanceof IRecyclableCollection) {
-            $result['toolbar'][] = $this->buildToolbarButtonInfo('trash');
+            $result['toolbar'][] = $this->buildButtonInfo('trash');
         } else {
-            $result['toolbar'][] = $this->buildToolbarButtonInfo('delete');
+            $result['toolbar'][] = $this->buildButtonInfo('delete');
         }
 
         if ($collection instanceof IRecoverableCollection && $collection->isBackupEnabled()) {
-            $result['toolbar'][] = $this->buildToolbarButtonInfo('backupList', 'buttonBackupList');
+            $result['toolbar'][] = $this->buildButtonInfo('backupList');
         }
 
         return $result;
@@ -167,16 +167,42 @@ class DefaultRestSettingsController extends BaseDefaultRestController
 
     /**
      * Возвращает информацию о кнопке в тулбаре формы редактирования
-     * @param string $behaviour обработчик
-     * @param string $type тип кнопки
+     * @param string $name имя кнопки
+     * @param bool $useIcon использовать ли иконку
+     * @param bool $useLabel выводить ли label
+     * @param null|string $class уникальный класс кнопки
+     * @param array $params параметры обработчика
      * @return array
      */
-    protected function buildToolbarButtonInfo($behaviour, $type = 'button')
+    protected function buildButtonInfo($name, $useIcon = true, $useLabel = true, $class = null, array $params = [])
     {
+        $label =  $this->translate('button:' . $name);
+
+        $attributes = [
+            'title' => $label,
+            'class' => $class ?: 'secondary'
+        ];
+
+        if ($useLabel) {
+            $attributes['label'] = $label;
+        }
+
+        if ($useIcon) {
+            $attributes['icon'] = [
+                'class' => 'icon icon-' . $name
+            ];
+        }
+
+        $behaviour = ['name' => $name];
+
+        if ($params) {
+            $behaviour = $behaviour + $params;
+        }
+
         return [
-            'type'        => $type,
+            'type'        => 'button',
             'behaviour'   => $behaviour,
-            'displayName' => $this->translate('control:editForm:toolbar:' . $behaviour)
+            'attributes' => $attributes
         ];
     }
 
@@ -189,9 +215,12 @@ class DefaultRestSettingsController extends BaseDefaultRestController
     {
         $result = [
             'displayName' => $this->translate('control:filter:displayName'),
-            'toolbar'     => $this->buildFilterControlCreateButtons($collection)
+            'toolbar'     => []
         ];
 
+        if ($createButton = $this->buildCreateButtonInfo($collection)) {
+            $result['toolbar'][] = $createButton;
+        }
 
         /*
         if ($collection instanceof IActiveAccessibleCollection) {
@@ -266,7 +295,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      * @param ICmsCollection $collection
      * @return array
      */
-    protected function buildFilterControlCreateButtons(ICmsCollection $collection) {
+    protected function buildCreateButtonInfo(ICmsCollection $collection) {
         $typeList = $this->getCreateTypeList($collection);
         $typesCount = count($typeList);
 
@@ -274,21 +303,26 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             return [];
         }
 
-        $createLabel = $this->translate('control:filter:toolbar:create');
+        $createLabel = $this->translate('button:create');
 
         if ($typesCount == 1) {
-            return [
+            $label = $this->translate(
+                '{createLabel} {typeCreateLabel}',
                 [
-                    'type' => 'button',
-                    'behaviour' => 'create',
-                    'displayName' => $this->translate(
-                        '{createLabel} {typeCreateLabel}',
-                        [
-                            'createLabel'     => $createLabel,
-                            'typeCreateLabel' => $this->translate('type:' . $typeList[0] . ':createLabel')
-                        ]
-                    ),
-                    'typeName'    => $typeList[0]
+                    'createLabel'     => $createLabel,
+                    'typeCreateLabel' => $this->translate('type:' . $typeList[0] . ':createLabel')
+                ]
+            );
+            return [
+                'type' => 'button',
+                'behaviour' => [
+                    'name' => 'create',
+                    'typeName' => $typeList[0]
+                ],
+                'attributes' => [
+                    'class' => 'primary',
+                    'title' => $label,
+                    'label'     => $label
                 ]
             ];
         }
@@ -303,15 +337,42 @@ class DefaultRestSettingsController extends BaseDefaultRestController
                 ];
             }
             return [
-                [
                 'type' => 'dropDownButton',
-                'displayName' => $this->translate('control:filter:toolbar:create') . '...',
-                'list' => $list
-                ]
+                'attributes' => [
+                    'class' => 'primary',
+                    'title' => $createLabel . '...'
+                ],
+                'choices' => $this->buildCreateChoiceList($typeList)
             ];
         }
 
         return [];
+    }
+
+    /**
+     * Возвращает информацию о списке создания
+     * @param array $typeList
+     * @return array
+     */
+    protected function buildCreateChoiceList(array $typeList)
+    {
+        $list = [];
+
+        foreach ($typeList as $typeName) {
+            $label = $this->translate('type:' . $typeName . ':createLabel');
+            $list[] = [
+                'behaviour'   => [
+                    'name' => 'create',
+                    'typeName' => $typeName
+                 ],
+                'attributes' => [
+                    'title' => $label,
+                    'label' => $label
+                ]
+            ];
+        }
+
+        return $list;
     }
 
     /**
