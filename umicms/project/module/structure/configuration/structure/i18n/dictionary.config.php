@@ -32,7 +32,7 @@ return [
         'type:base:displayName' => 'Страница',
         'type:system:displayName' => 'Системная страница',
         'type:static:displayName' => 'Статичная страница',
-        'type:static:createLabel' => 'страницу',
+        'type:static:createLabel' => 'Добавить страницу',
     ]
 ];
  

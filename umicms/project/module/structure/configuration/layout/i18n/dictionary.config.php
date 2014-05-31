@@ -15,7 +15,7 @@ return [
 
     'ru-RU' => [
         'type:base:displayName' => 'Шаблон',
-        'type:base:createLabel' => 'шаблон'
+        'type:base:createLabel' => 'Добавить шаблон'
     ]
 ];
  

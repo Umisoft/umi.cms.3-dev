@@ -15,10 +15,6 @@ use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
-use umicms\orm\object\behaviour\IActiveAccessibleObject;
-use umicms\orm\object\ICmsObject;
-use umicms\project\module\structure\api\collection\StructureElementCollection;
-use umicms\project\module\structure\api\object\SystemPage;
 
 /**
  * Контроллер вывода настроек компонента
@@ -49,8 +45,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         return [
             'collectionName' => $collection->getName(),
             'layout'         => $this->buildLayoutInfo($collection),
-            'actions'        => $this->buildActionsInfo(),
-            'filters'        => $this->buildCollectionFiltersInfo($collection)
+            'actions'        => $this->buildActionsInfo()
         ];
     }
 
@@ -180,7 +175,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
 
         $attributes = [
             'title' => $label,
-            'class' => $class ?: 'button secondary'
+            'class' => $class ?: 'umi-button-icon-32 umi-light-bg'
         ];
 
         if ($useLabel) {
@@ -214,7 +209,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController
     protected function buildFilterControlInfo(ICmsCollection $collection)
     {
         $result = [
-            'displayName' => $this->translate('control:filter:displayName'),
             'toolbar'     => []
         ];
 
@@ -222,31 +216,15 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             $result['toolbar'][] = $createButton;
         }
 
-        /*
         if ($collection instanceof IActiveAccessibleCollection) {
-            $result['toolbar'][] = $this->buildToolbarButtonInfo('switchActivity');
+            $result['toolbar'][] = $this->buildSimpleButtonInfo('switchActivity');
         }
 
         if ($collection instanceof ICmsPageCollection) {
-            $result['toolbar'][] = $this->buildToolbarButtonInfo('viewOnSite');
+            $result['toolbar'][] = $this->buildSimpleButtonInfo('viewOnSite');
         }
-        */
 
         return $result;
-    }
-
-
-    /**
-     * Возвращает информацию о кнопке в тулбаре формы создания
-     * @param string $buttonType тип кнопки
-     * @return array
-     */
-    protected function buildFilterToolButtonInfo($buttonType)
-    {
-        return [
-            'type'        => $buttonType,
-            'displayName' => $this->translate('control:filter:toolbar:' . $buttonType)
-        ];
     }
 
     /**
@@ -274,7 +252,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      */
     protected function buildTreeControlInfo(SimpleHierarchicCollection $collection)
     {
-        $actionList = [] ;$this->buildTreeControlCreateButtons($collection);
+        $actionList = $this->buildCreateChoiceList($this->getCreateTypeList($collection));
 
         if ($collection instanceof IActiveAccessibleCollection) {
             $actionList[] = $this->buildSimpleChoiceAction('switchActivity');
@@ -314,13 +292,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         $createLabel = $this->translate('action:create');
 
         if ($typesCount == 1) {
-            $label = $this->translate(
-                '{createLabel} {typeCreateLabel}',
-                [
-                    'createLabel'     => $createLabel,
-                    'typeCreateLabel' => $this->translate('type:' . $typeList[0] . ':createLabel')
-                ]
-            );
+            $label = $this->translate('type:' . $typeList[0] . ':createLabel');
             return [
                 'type' => 'button',
                 'behaviour' => [
@@ -347,7 +319,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             return [
                 'type' => 'dropDownButton',
                 'attributes' => [
-                    'class' => 'button dropdown primary',
+                    'class' => 'umi-button umi-toolbar-create-button',
                     'title' => $createLabel,
                     'label' => $createLabel . '...'
                 ],
@@ -404,32 +376,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController
     }
 
     /**
-     * Возвращает информацию о кнопках создания в дереве компонента.
-     * @param SimpleHierarchicCollection $collection
-     * @return array
-     */
-    protected function buildTreeControlCreateButtons(SimpleHierarchicCollection $collection) {
-        $createLabel = $this->translate('control:tree:toolbar:create');
-
-        $result = [];
-        foreach ($this->getCreateTypeList($collection) as $typeName) {
-            $result[] = [
-                'behaviour'   => 'create',
-                'displayName' => $this->translate(
-                    '{createLabel} {typeCreateLabel}',
-                    [
-                        'createLabel'     => $createLabel,
-                        'typeCreateLabel' => $this->translate('type:' . $typeName . ':createLabel')
-                    ]
-                ),
-                'typeName'    => $typeName
-            ];
-        }
-
-        return $result;
-    }
-
-    /**
      * Возвращает информацию о кнопке в тулбаре дерева
      * @param string $behaviour обработчик
      * @return array
@@ -439,24 +385,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         return [
             'behaviour'   => $behaviour,
             'displayName' => $this->translate('control:tree:toolbar:' . $behaviour)
-        ];
-    }
-
-    /**
-     * Возвращает информацию о фильтре по полю для дерева
-     * @param string $fieldName имя поля
-     * @param array $values список разрешенных значений
-     * @param bool $isActive активен ли фильтр
-     * @return array
-     */
-    protected function buildTreeFilterInfo($fieldName, array $values, $isActive = false)
-    {
-
-        return [
-            'fieldName'   => $fieldName,
-            'isActive'    => $isActive,
-            'displayName' => $this->translate('control:tree:filter:' . $fieldName),
-            'allow'       => $values
         ];
     }
 
@@ -486,47 +414,6 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         }
 
         return $actions;
-    }
-
-    /**
-     * Возвращает информацию о возможных фильтрах коллекции.
-     * @param ICmsCollection $collection
-     * @return array
-     */
-    protected function buildCollectionFiltersInfo(ICmsCollection $collection)
-    {
-        $result = [];
-
-        if ($collection instanceof IActiveAccessibleCollection) {
-            $result[] = $this->buildCollectionFilterInfo(IActiveAccessibleObject::FIELD_ACTIVE, [true]);
-        }
-
-        if ($collection instanceof StructureElementCollection) {
-            $types = $collection->getMetadata()
-                ->getTypesList();
-            $types = array_values(array_diff($types, [SystemPage::TYPE]));
-            $result[] = $this->buildCollectionFilterInfo(ICmsObject::FIELD_TYPE, $types, true);
-        }
-
-        return $result;
-    }
-
-    /**
-     * Возвращает информацию о фильтре по полю для дерева
-     * @param string $fieldName имя поля
-     * @param array $values список разрешенных значений
-     * @param bool $isActive активен ли фильтр
-     * @return array
-     */
-    protected function buildCollectionFilterInfo($fieldName, array $values, $isActive = false)
-    {
-
-        return [
-            'fieldName'   => $fieldName,
-            'isActive'    => $isActive,
-            'displayName' => $this->translate('filter:' . $fieldName),
-            'allow'       => $values
-        ];
     }
 
     /**

@@ -46,9 +46,9 @@ return [
             'type:base:displayName' => 'Пользователь',
             'type:guest:displayName' => 'Гость',
             'type:authorized:displayName' => 'Зарегистрированный пользователь',
-            'type:authorized:createLabel' => 'пользователя',
+            'type:authorized:createLabel' => 'Добавить пользователя',
             'type:authorized.supervisor:displayName' => 'Супервайзер',
-            'type:authorized.supervisor:createLabel' => 'супервайзера',
+            'type:authorized.supervisor:createLabel' => 'Добавить супервайзера',
 
             'locale' => 'Язык'
         ]
