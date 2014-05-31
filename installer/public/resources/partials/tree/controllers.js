@@ -88,7 +88,7 @@ define(['App'], function(UMI){
                 });
                 var root = Root.create({});
                 return [root];// Намеренно возвращается значение в виде массива, так как шаблон ожидает именно такой формат
-            }.property('root.childCount', 'controllers.component.sideBarControl'),
+            }.property('root.childCount', 'model'),
 
             rootChildren: null,
             /**
@@ -97,9 +97,12 @@ define(['App'], function(UMI){
             activeContextBinding: 'controllers.context.model',
 
             contextMenu: function(){
-                var dropDown = this.get('controllers.component.sideBarControl.toolbar').findBy('type', 'dropDownButton');
-                if(dropDown){
-                    return dropDown.choices;
+                var sideBarControl = this.get('controllers.component.sideBarControl');
+                if(sideBarControl){
+                    var dropDown = sideBarControl.get('toolbar').findBy('type', 'dropDownButton');
+                    if(dropDown){
+                        return dropDown.choices;
+                    }
                 }
             }.property('controllers.component.sideBarControl.toolbar'),
 
