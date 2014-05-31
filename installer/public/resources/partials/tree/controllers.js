@@ -101,7 +101,7 @@ define(['App'], function(UMI){
                 if(dropDown){
                     return dropDown.choices;
                 }
-            }.property('model'),
+            }.property('controllers.component.sideBarControl.toolbar'),
 
             actions: {
                 /**
