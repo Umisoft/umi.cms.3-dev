@@ -2,9 +2,7 @@
     <div class="row s-full-height umi-tree-wrapper">
         <ul class="umi-tree-list umi-tree">
             {{#each root itemController="treeItem"}}
-                {{#if visible}}
-                    {{view "treeItem"}}
-                {{/if}}
+                {{view "treeItem" treeControlView=view}}
             {{/each}}
         </ul>
     </div>

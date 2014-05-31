@@ -5,9 +5,10 @@ define(
         'partials/toolbar/buttons/buttonSwitchActivity/main',
         'partials/toolbar/buttons/buttonBackupList/main',
         'partials/toolbar/buttons/saveButton/main',
-        'partials/toolbar/buttons/submitButton/main'
+        'partials/toolbar/buttons/submitButton/main',
+        'partials/toolbar/buttons/contextMenu/main'
     ],
-    function(button, dropDownButton, buttonSwitchActivity, buttonBackupList, saveButton, submitButton){
+    function(button, dropDownButton, buttonSwitchActivity, buttonBackupList, saveButton, submitButton, contextMenu){
         "use strict";
 
         return function(){
@@ -17,6 +18,7 @@ define(
             buttonBackupList();
             saveButton();
             submitButton();
+            contextMenu();
         };
     }
 );

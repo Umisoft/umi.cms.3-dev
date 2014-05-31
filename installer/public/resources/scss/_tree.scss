@@ -63,11 +63,6 @@ $umi-dark-border-color: #CCD9E2;
                 opacity: 0.65;
             }
         }
-        &.context-menu-is-open{
-            .umi-tree-context-menu{
-                display: block;
-            }
-        }
     }
 
     .umi-tree-type-icon{
@@ -135,6 +130,9 @@ $umi-dark-border-color: #CCD9E2;
         a{
             text-decoration: none !important;
             border-bottom: none !important;
+        }
+        &.context-menu-is-open{
+            display: block;
         }
     }
 

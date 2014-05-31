@@ -1,9 +1,13 @@
-define(['App'], function(UMI){
+define(['App', 'partials/toolbar/buttons/contextMenu/main'], function(UMI, contextMenu){
     'use strict';
     return function(){
 
-        UMI.TreeControlView = Ember.View.extend({
+        contextMenu();
+
+        UMI.TreeControlView = Ember.View.extend(UMI.ControlWithContextMenu, {
             classNames: ['row', 's-full-height'],
+
+            componentNameBinding: 'controller.controllers.component.name',
 
             expandedBranchesChange: function(){
                 var expandedBranches = this.get('controller.expandedBranches');
@@ -211,31 +215,10 @@ define(['App'], function(UMI){
                 this.get('controller').removeObserver('objects.@each.isDeleted');
                 this.removeObserver('controller.expandedBranches');
             }
-
-//
-//            filtersView: Ember.View.extend({
-//                classNames: ['umi-tree-control-filters'],
-//                isOpen: false,
-//                actions: {
-//                    toggleOpen: function(){
-//                        var self = this;
-//                        var el = this.$();
-//                        this.toggleProperty('isOpen');
-//                        if(this.get('isOpen')){
-//                            $('body').on('click.umi.tree.filterMenu', function(event){
-//                                var targetElement = $(event.target).closest('.umi-tree-control-filters');
-//                                if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
-//                                    $('body').off('click.umi.tree.filterMenu');
-//                                    self.set('isOpen', false);
-//                                }
-//                            });
-//                        }
-//                    }
-//                }
-//            })
         });
 
         UMI.TreeItemView = Ember.View.extend({
+            treeControlView: null,
             templateName: 'treeItem',
             tagName: 'li',
             classNameBindings: ['controller.model.isDragged:hide'],
@@ -300,27 +283,29 @@ define(['App'], function(UMI){
         UMI.TreeControlContextMenuView = Ember.View.extend({
             tagName: 'ul',
             classNames: ['button-group', 'umi-tree-context-menu', 'right'],
+            classNameBindings: ['isOpen:context-menu-is-open'],
             layoutName: 'treeControlContextMenu',
             isOpen: false,
-
-            setParentIsOpen: function(){
-                this.get('parentView').set('contextMenuIsOpen', this.get('isOpen'));
-            }.observes('isOpen'),
+            contextMenu: null,
 
             actions: {
                 open: function(){
                     var self = this;
-                    var el = this.$();
-                    this.toggleProperty('isOpen');
-                    if(this.get('isOpen')){
-                        $('body').on('click.umi.tree.contextMenu', function(event){
-                            var targetElement = $(event.target).closest('.umi-tree-context-menu');
-                            if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
-                                $('body').off('click.umi.tree.contextMenu');
-                                self.set('isOpen', false);
-                            }
-                        });
-                    }
+                    var el = self.$();
+                    setTimeout(function(){
+                        self.toggleProperty('isOpen');
+                        if(self.get('isOpen')){
+                            $('html').on('click.umi.tree.contextMenu', function(event){
+                                var targetElement = $(event.target).closest('.umi-tree-context-menu');
+                                if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
+                                    console.log('REmove');
+                                    $('html').off('click.umi.tree.contextMenu');
+                                    self.set('isOpen', false);
+                                }
+                            });
+                        }
+                    }, 0);
+
                 }
             },
 
@@ -328,9 +313,9 @@ define(['App'], function(UMI){
                 tagName: 'li',
                 action: null, //Получаем из шаблона
                 isFastAction: function(){
-                    var selectAction = this.get('controller.controllers.treeControl.selectAction');
-                    return selectAction ? this.get('action').behaviour === selectAction.behaviour : false;
-                }.property('controller.controllers.treeControl.selectAction')
+                    var selectAction = this.get('parentView.parentView.treeControlView.selectAction');
+                    return selectAction ? this.get('action').behaviour.name === selectAction.behaviour.name : false;
+                }.property('parentView.parentView.treeControlView.selectAction')
             })
         });
     };
