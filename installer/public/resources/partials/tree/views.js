@@ -298,7 +298,6 @@ define(['App', 'partials/toolbar/buttons/contextMenu/main'], function(UMI, conte
                             $('html').on('click.umi.tree.contextMenu', function(event){
                                 var targetElement = $(event.target).closest('.umi-tree-context-menu');
                                 if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
-                                    console.log('REmove');
                                     $('html').off('click.umi.tree.contextMenu');
                                     self.set('isOpen', false);
                                 }
