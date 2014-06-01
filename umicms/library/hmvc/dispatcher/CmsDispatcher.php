@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\hmvc\dispatcher;
@@ -21,7 +22,7 @@ use umicms\exception\InvalidArgumentException;
 use umicms\exception\UnexpectedValueException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseAccessRestrictedWidget;
 use umicms\project\module\users\api\object\Supervisor;
 
 /**
@@ -94,7 +95,7 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware
             } catch (ResourceAccessForbiddenException $e) {
 
                 $resource = $e->getResource();
-                if ($resource instanceof BaseSecureWidget) {
+                if ($resource instanceof BaseAccessRestrictedWidget) {
                     return $this->invokeWidgetForbidden($resource, $e);
                 }
 
@@ -144,12 +145,12 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware
 
     /**
      * Вызывает обработку результата в случае отсутствия доступа к виджету.
-     * @param BaseSecureWidget $widget
+     * @param BaseAccessRestrictedWidget $widget
      * @param ResourceAccessForbiddenException $e
      * @throws UnexpectedValueException если виджет вернул неверный результат
      * @return IView|string
      */
-    protected function invokeWidgetForbidden(BaseSecureWidget $widget, ResourceAccessForbiddenException $e)
+    protected function invokeWidgetForbidden(BaseAccessRestrictedWidget $widget, ResourceAccessForbiddenException $e)
     {
         $widgetResult = $widget->invokeForbidden($e);
 

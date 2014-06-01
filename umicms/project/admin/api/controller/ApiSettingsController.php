@@ -1,9 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\admin\api\controller;
@@ -11,7 +13,7 @@ namespace umicms\project\admin\api\controller;
 use umi\acl\IAclResource;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\orm\collection\ICmsCollection;
 use umicms\project\admin\api\ApiApplication;
 use umicms\project\admin\component\AdminComponent;
@@ -19,7 +21,7 @@ use umicms\project\admin\component\AdminComponent;
 /**
  * Контроллер настроек административной панели.
  */
-class ApiSettingsController extends BaseSecureController implements ICollectionManagerAware
+class ApiSettingsController extends BaseAccessRestrictedController implements ICollectionManagerAware
 {
     use TCollectionManagerAware;
 
