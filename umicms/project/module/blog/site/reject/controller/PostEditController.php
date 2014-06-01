@@ -10,8 +10,6 @@
 
 namespace umicms\project\module\blog\site\reject\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\http\Response;
 use umi\orm\metadata\IObjectType;
