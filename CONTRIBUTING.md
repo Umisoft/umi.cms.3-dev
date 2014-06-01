@@ -2,6 +2,6 @@
 =============
 
 ##Код
-- [Стандарты написания кода (Coding Standards)](doc/code/standards.md)
+- [Стандарты написания кода (Coding Standards)](doc/code/core-team.md)
 - [Правила разработки для Core Team](doc/code/management.md)
 
