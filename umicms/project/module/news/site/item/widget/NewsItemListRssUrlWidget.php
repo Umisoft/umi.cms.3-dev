@@ -9,13 +9,13 @@
 
 namespace umicms\project\module\news\site\item\widget;
 
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseAccessRestrictedWidget;
 use umicms\project\module\news\api\NewsModule;
 
 /**
  * Виджет для вывода URL на RSS-ленту по рубрике.
  */
-class NewsItemListRssUrlWidget extends BaseSecureWidget
+class NewsItemListRssUrlWidget extends BaseAccessRestrictedWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

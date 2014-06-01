@@ -9,13 +9,13 @@
 
 namespace umicms\project\module\blog\site\tag\widget;
 
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseAccessRestrictedWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
  * Виджет для вывода облака тэгов.
  */
-class TagCloudWidget extends BaseSecureWidget
+class TagCloudWidget extends BaseAccessRestrictedWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

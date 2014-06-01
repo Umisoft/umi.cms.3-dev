@@ -16,7 +16,7 @@ use umicms\hmvc\view\CmsView;
 /**
  * Базовый класс виджета UMI.CMS, доступ к которому контролируется через ACL.
  */
-abstract class BaseSecureWidget extends BaseWidget implements IAclResource
+abstract class BaseAccessRestrictedWidget extends BaseWidget implements IAclResource
 {
     const ACL_RESOURCE_PREFIX = 'widget:';
 

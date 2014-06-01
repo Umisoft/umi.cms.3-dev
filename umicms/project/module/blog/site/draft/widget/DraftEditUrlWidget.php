@@ -10,14 +10,14 @@
 namespace umicms\project\module\blog\site\draft\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseAccessRestrictedWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
  * Виджет для вывода URL на редактирование черновика.
  */
-class DraftEditUrlWidget extends BaseSecureWidget
+class DraftEditUrlWidget extends BaseAccessRestrictedWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

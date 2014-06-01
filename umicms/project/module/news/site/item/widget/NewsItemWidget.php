@@ -10,14 +10,14 @@
 namespace umicms\project\module\news\site\item\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseAccessRestrictedWidget;
 use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsItem;
 
 /**
  * Виджет вывода новости.
  */
-class NewsItemWidget extends BaseSecureWidget
+class NewsItemWidget extends BaseAccessRestrictedWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

@@ -16,14 +16,14 @@ use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
  * Контроллер публикации поста, требующего модерации.
  */
-class PostPublishController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PostPublishController extends BaseAccessRestrictedController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;

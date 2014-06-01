@@ -20,7 +20,7 @@ use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\ICmsObject;
@@ -29,7 +29,7 @@ use umicms\project\admin\api\component\DefaultAdminComponent;
 /**
  * Базовый REST-контроллер.
  */
-abstract class BaseDefaultRestController extends BaseSecureController implements IObjectPersisterAware
+abstract class BaseDefaultRestController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
     use TObjectPersisterAware;
 

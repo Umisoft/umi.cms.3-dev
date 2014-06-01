@@ -21,7 +21,7 @@ use umicms\exception\InvalidArgumentException;
 use umicms\exception\UnexpectedValueException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseAccessRestrictedWidget;
 use umicms\project\module\users\api\object\Supervisor;
 
 /**
@@ -94,7 +94,7 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware
             } catch (ResourceAccessForbiddenException $e) {
 
                 $resource = $e->getResource();
-                if ($resource instanceof BaseSecureWidget) {
+                if ($resource instanceof BaseAccessRestrictedWidget) {
                     return $this->invokeWidgetForbidden($resource, $e);
                 }
 
@@ -144,12 +144,12 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware
 
     /**
      * Вызывает обработку результата в случае отсутствия доступа к виджету.
-     * @param BaseSecureWidget $widget
+     * @param BaseAccessRestrictedWidget $widget
      * @param ResourceAccessForbiddenException $e
      * @throws UnexpectedValueException если виджет вернул неверный результат
      * @return IView|string
      */
-    protected function invokeWidgetForbidden(BaseSecureWidget $widget, ResourceAccessForbiddenException $e)
+    protected function invokeWidgetForbidden(BaseAccessRestrictedWidget $widget, ResourceAccessForbiddenException $e)
     {
         $widgetResult = $widget->invokeForbidden($e);
 

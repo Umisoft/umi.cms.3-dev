@@ -10,14 +10,14 @@
 namespace umicms\project\module\structure\site\menu\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseAccessRestrictedWidget;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\structure\api\StructureModule;
 
 /**
  * Виджет для вывода автогенерируемого меню
  */
-class AutoMenuWidget extends BaseSecureWidget
+class AutoMenuWidget extends BaseAccessRestrictedWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет.

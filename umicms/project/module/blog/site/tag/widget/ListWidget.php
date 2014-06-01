@@ -9,13 +9,13 @@
 
 namespace umicms\project\module\blog\site\tag\widget;
 
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseAccessRestrictedWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
  * Виджет для вывода списка тэгов.
  */
-class ListWidget extends BaseSecureWidget
+class ListWidget extends BaseAccessRestrictedWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

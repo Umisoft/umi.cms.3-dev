@@ -10,14 +10,14 @@
 namespace umicms\project\module\blog\site\author\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseAccessRestrictedWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogAuthor;
 
 /**
  * Виджет вывода авторов.
  */
-class BlogAuthorWidget extends BaseSecureWidget
+class BlogAuthorWidget extends BaseAccessRestrictedWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

@@ -10,14 +10,14 @@
 namespace umicms\project\module\blog\site\reject\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseAccessRestrictedWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
  * Виджет вывода отклонённого поста.
  */
-class PostWidget extends BaseSecureWidget
+class PostWidget extends BaseAccessRestrictedWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

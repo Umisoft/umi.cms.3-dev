@@ -10,14 +10,14 @@
 namespace umicms\project\module\news\site\subject\widget;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseAccessRestrictedWidget;
 use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsSubject;
 
 /**
  * Виджет для вывода ссылки на RSS-ленту по сюжету.
  */
-class SubjectNewsRssUrlWidget extends BaseSecureWidget
+class SubjectNewsRssUrlWidget extends BaseAccessRestrictedWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
