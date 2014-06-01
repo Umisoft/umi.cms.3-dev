@@ -27,7 +27,7 @@ return [
         'view' => __NAMESPACE__ . '\widget\SubjectWidget',
         'newsList' => __NAMESPACE__ . '\widget\SubjectNewsListWidget',
         'list' => __NAMESPACE__ . '\widget\SubjectListWidget',
-        'rss' => __NAMESPACE__ . '\widget\SubjectNewsRssUrlWidget'
+        'rssLink' => __NAMESPACE__ . '\widget\SubjectNewsRssLinkWidget'
     ],
 
     DefaultSitePageComponent::OPTION_ACL => [
@@ -40,7 +40,7 @@ return [
             'widget:view',
             'widget:list',
             'widget:newsList',
-            'widget:rss'
+            'widget:rssLink'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -50,7 +50,7 @@ return [
             ],
             'rssViewer' => [
                 'controller:rss' => [],
-                'widget:rss' => []
+                'widget:rssLink' => []
             ]
         ]
     ],

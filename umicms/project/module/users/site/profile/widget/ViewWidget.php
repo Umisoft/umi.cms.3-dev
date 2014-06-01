@@ -10,16 +10,17 @@
 
 namespace umicms\project\module\users\site\profile\widget;
 
+use umi\acl\IAclResource;
 use umi\authentication\exception\RuntimeException;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\view\IView;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseWidget;
 use umicms\project\module\users\api\UsersModule;
 
 /**
  * Виджет вывода профиля текущего пользователя.
  */
-class ViewWidget extends BaseSecureWidget
+class ViewWidget extends BaseWidget implements IAclResource
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\news\site\subject\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\news\api\NewsModule;
@@ -18,7 +19,7 @@ use umicms\project\module\news\api\object\NewsSubject;
 /**
  * Виджет для вывода списка новостей по сюжетам.
  */
-class SubjectNewsListWidget extends BaseListWidget
+class SubjectNewsListWidget extends BaseListWidget implements IAclResource
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

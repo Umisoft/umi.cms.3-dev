@@ -10,18 +10,19 @@
 
 namespace umicms\project\module\news\site\subject\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsSubject;
 
 /**
  * Виджет для вывода ссылки на RSS-ленту по сюжету.
  */
-class SubjectNewsRssUrlWidget extends BaseSecureWidget
+class SubjectNewsRssLinkWidget extends BaseLinkWidget implements IAclResource
 {
     /**
-     * @var string $template имя шаблона, по которому выводится виджет
+     * {@inheritdoc}
      */
     public $template = 'rssLink';
 
@@ -47,7 +48,7 @@ class SubjectNewsRssUrlWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getLinkUrl()
     {
         if (is_string($this->subject)) {
             $this->subject = $this->api->subject()->get($this->subject);
@@ -65,12 +66,7 @@ class SubjectNewsRssUrlWidget extends BaseSecureWidget
             );
         }
 
-        return $this->createResult(
-            $this->template,
-            [
-                'url' => $this->getUrl('rss', ['slug' => $this->subject->slug])
-            ]
-        );
+        return $this->getUrl('rss', ['slug' => $this->subject->slug]);
     }
 }
  

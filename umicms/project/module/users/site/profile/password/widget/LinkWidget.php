@@ -10,12 +10,13 @@
 
 namespace umicms\project\module\users\site\profile\password\widget;
 
+use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет вывода ссылки на страницу изменения пароля.
  */
-class LinkWidget extends BaseLinkWidget
+class LinkWidget extends BaseLinkWidget implements IAclResource
 {
     /**
      * {@inheritdoc}

@@ -10,18 +10,15 @@
 
 namespace umicms\project\module\blog\site\tag\widget;
 
-use umicms\hmvc\widget\BaseSecureWidget;
+use umi\acl\IAclResource;
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
  * Виджет для вывода списка тэгов.
  */
-class ListWidget extends BaseSecureWidget
+class ListWidget extends BaseListWidget implements IAclResource
 {
-    /**
-     * @var string $template имя шаблона, по которому выводится виджет
-     */
-    public $template = 'list';
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -39,14 +36,9 @@ class ListWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
-        return $this->createResult(
-            $this->template,
-            [
-                'tags' => $this->api->getTags()
-            ]
-        );
+        return $this->api->getTags();
     }
 }
  

@@ -13,7 +13,7 @@ namespace umicms\project\admin\api\controller;
 use umi\acl\IAclResource;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\orm\collection\ICmsCollection;
 use umicms\project\admin\api\ApiApplication;
 use umicms\project\admin\component\AdminComponent;
@@ -21,7 +21,7 @@ use umicms\project\admin\component\AdminComponent;
 /**
  * Контроллер настроек административной панели.
  */
-class ApiSettingsController extends BaseSecureController implements ICollectionManagerAware
+class ApiSettingsController extends BaseAccessRestrictedController implements ICollectionManagerAware
 {
     use TCollectionManagerAware;
 

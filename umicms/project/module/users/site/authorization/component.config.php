@@ -40,15 +40,13 @@ return [
         IAclFactory::OPTION_RESOURCES => [
             'index' => 'controller:login',
             'loginForm'  => 'widget:loginForm',
-            'loginLink'  => 'widget:loginLink',
-            'logoutForm'  => 'widget:logoutForm'
+            'loginLink'  => 'widget:loginLink'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'controller:login' => [],
                 'widget:loginForm' => [],
-                'widget:loginLink' => [],
-                'widget:logoutForm' => []
+                'widget:loginLink' => []
             ]
         ]
     ],

@@ -21,7 +21,7 @@ use umicms\orm\selector\CmsSelector;
  * Базовый класс виджета вывода деревьев.
  * Применяет условия выборки для дерева.
  */
-abstract class BaseTreeWidget extends BaseSecureWidget
+abstract class BaseTreeWidget extends BaseWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

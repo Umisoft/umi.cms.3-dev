@@ -10,18 +10,19 @@
 
 namespace umicms\project\module\blog\site\tag\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogTag;
 
 /**
  * Виджет для вывода списка постов по тэгам.
  */
-class TagPostListWidget extends BaseSecureWidget
+class TagPostListWidget extends BaseListWidget implements IAclResource
 {
     /**
-     * @var string $template имя шаблона, по которому выводится виджет
+     * {@inheritdoc}
      */
     public $template = 'postList';
     /**
@@ -47,7 +48,7 @@ class TagPostListWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
         $tags = (array) $this->tags;
 
@@ -69,12 +70,8 @@ class TagPostListWidget extends BaseSecureWidget
             }
         }
 
-        return $this->createResult(
-            $this->template,
-            [
-                'posts' => $this->api->getPostByTag($tags)
-            ]
-        );
+        return $this->api->getPostByTag($tags);
     }
+
 }
  

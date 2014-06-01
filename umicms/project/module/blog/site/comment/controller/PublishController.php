@@ -14,17 +14,16 @@ use umi\form\IFormAware;
 use umi\form\TFormAware;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
-use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogComment;
 
 /**
  * Контроллер публикации комментария.
  */
-class PublishController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PublishController extends BaseAccessRestrictedController implements IFormAware, IObjectPersisterAware
 {
     use TFormAware;
     use TObjectPersisterAware;

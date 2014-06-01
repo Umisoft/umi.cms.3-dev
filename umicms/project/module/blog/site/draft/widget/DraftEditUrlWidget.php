@@ -10,18 +10,19 @@
 
 namespace umicms\project\module\blog\site\draft\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
  * Виджет для вывода URL на редактирование черновика.
  */
-class DraftEditUrlWidget extends BaseSecureWidget
+class DraftEditUrlWidget extends BaseLinkWidget implements IAclResource
 {
     /**
-     * @var string $template имя шаблона, по которому выводится виджет
+     * {@inheritdoc}
      */
     public $template = 'editDraftLink';
     /**
@@ -45,7 +46,7 @@ class DraftEditUrlWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getLinkUrl()
     {
         if (is_string($this->blogDraft)) {
             $this->blogDraft = $this->api->post()->getDraft($this->blogDraft);
@@ -63,13 +64,8 @@ class DraftEditUrlWidget extends BaseSecureWidget
             );
         }
 
-        $url = $this->blogDraft->getId();
-        return $this->createResult(
-            $this->template,
-            [
-                'url' => $this->getUrl('edit', ['id' => $url])
-            ]
-        );
+        return $this->getUrl('edit', ['id' => $this->blogDraft->getId()]);
     }
+
 }
  

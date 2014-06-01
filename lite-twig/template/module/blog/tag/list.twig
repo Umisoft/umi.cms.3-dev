@@ -1,6 +1,6 @@
-{% if (tags.getTotal()) %}
+{% if (list.getTotal()) %}
     <ol class="list-unstyled">
-        {% for blogTag in tags %}
+        {% for blogTag in list %}
             <li>
                 {{ widget('blog.tag.view', {'blogTag' : blogTag, 'template' : 'shortView'}) }}
             </li>

@@ -10,21 +10,19 @@
 
 namespace umicms\project\module\blog\site\reject\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
  * Контроллер редактирования отклонённого поста блога.
  */
-class PostEditController extends BaseSecureController implements IObjectPersisterAware
+class PostEditController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
     use TObjectPersisterAware;
 

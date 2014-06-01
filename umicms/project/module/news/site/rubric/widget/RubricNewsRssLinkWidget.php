@@ -10,18 +10,19 @@
 
 namespace umicms\project\module\news\site\rubric\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsRubric;
 
 /**
  * Виджет для вывода URL на RSS-ленту по рубрике.
  */
-class RubricNewsRssUrlWidget extends BaseSecureWidget
+class RubricNewsRssLinkWidget extends BaseLinkWidget implements IAclResource
 {
     /**
-     * @var string $template имя шаблона, по которому выводится виджет
+     * {@inheritdoc}
      */
     public $template = 'rssLink';
 
@@ -48,7 +49,7 @@ class RubricNewsRssUrlWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getLinkUrl()
     {
         if (is_string($this->rubric)) {
             $this->rubric = $this->api->rubric()->get($this->rubric);
@@ -66,13 +67,7 @@ class RubricNewsRssUrlWidget extends BaseSecureWidget
             );
         }
 
-        $url = $this->rubric->getURL();
-        return $this->createResult(
-            $this->template,
-            [
-                'url' => $this->getUrl('rss', ['url' => $url])
-            ]
-        );
+        return $this->getUrl('rss', ['url' => $this->rubric->getURL()]);
     }
 }
  

@@ -15,7 +15,7 @@ use umi\acl\IAclResource;
 /**
  * Базовый контроллер UMI.CMS, доступ к которому контролируется через ACL.
  */
-abstract class BaseSecureController extends BaseController implements IAclResource
+abstract class BaseAccessRestrictedController extends BaseController implements IAclResource
 {
     const ACL_RESOURCE_PREFIX = 'controller:';
 

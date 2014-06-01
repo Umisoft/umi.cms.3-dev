@@ -11,14 +11,14 @@
 namespace umicms\project\admin\settings\controller;
 
 use umi\acl\IAclResource;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\project\admin\settings\component\SettingsComponent;
 use umicms\project\admin\settings\SettingsApplication;
 
 /**
  * Контроллер списка настроек.
  */
-class SettingsController extends BaseSecureController
+class SettingsController extends BaseAccessRestrictedController
 {
 
     /**

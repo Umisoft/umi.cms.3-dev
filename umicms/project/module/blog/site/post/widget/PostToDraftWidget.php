@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\blog\site\post\widget;
 
+use umi\acl\IAclResource;
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
@@ -19,7 +20,7 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет перемещения поста в черновики.
  */
-class PostToDraftWidget extends BaseFormWidget
+class PostToDraftWidget extends BaseFormWidget implements IAclResource
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

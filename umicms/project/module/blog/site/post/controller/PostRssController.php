@@ -11,7 +11,7 @@
 namespace umicms\project\module\blog\site\post\controller;
 
 use umi\http\Response;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\site\config\ISiteSettingsAware;
@@ -20,7 +20,7 @@ use umicms\project\site\config\TSiteSettingsAware;
 /**
  * Контроллер вывода общей RSS-ленты.
  */
-class PostRssController extends BaseSecureController implements ISiteSettingsAware
+class PostRssController extends BaseAccessRestrictedController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 
