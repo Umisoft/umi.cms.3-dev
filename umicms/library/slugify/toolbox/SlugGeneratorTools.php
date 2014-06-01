@@ -8,12 +8,12 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\slugGenerator\toolbox;
+namespace umicms\slugify\toolbox;
 
 use umi\toolkit\toolbox\IToolbox;
 use umi\toolkit\toolbox\TToolbox;
-use umicms\slugGenerator\ISlugGenerator;
-use umicms\slugGenerator\ISlugGeneratorAware;
+use umicms\slugify\ISlugGenerator;
+use umicms\slugify\ISlugGeneratorAware;
 
 /**
  * Инструмент для генерации slug'ов.
@@ -30,7 +30,7 @@ class SlugGeneratorTools implements IToolbox
     /**
      * @var string $generatorClassName имя класса генерации slug'ов
      */
-    public $generatorClassName = 'umicms\slugGenerator\TransliterationGenerator';
+    public $generatorClassName = 'umicms\slugify\filtration\FiltrationGenerator';
     /**
      * @var array $options опции для генерации slug'ов по умолчанию
      */
@@ -54,7 +54,7 @@ class SlugGeneratorTools implements IToolbox
     {
         return $this->getPrototype(
             $this->generatorClassName,
-            ['umicms\slugGenerator\ISlugGenerator']
+            ['umicms\slugify\ISlugGenerator']
         )
             ->createSingleInstance([$this->options]);
     }

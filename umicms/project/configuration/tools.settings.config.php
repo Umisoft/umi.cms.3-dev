@@ -23,6 +23,7 @@ use umicms\form\element\PasswordWithConfirmation;
 use umicms\form\element\Wysiwyg;
 use umicms\form\element\Permissions;
 use umicms\module\toolbox\ModuleTools;
+use umicms\slugify\toolbox\SlugGeneratorTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 
 return [
@@ -170,5 +171,10 @@ return [
     I18nTools::NAME => [
         'localesServiceClass' => 'umicms\i18n\CmsLocalesService',
         'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
+    ],
+
+    SlugGeneratorTools::NAME => [
+        'generatorClassName'=> 'umicms\slugify\filtration\FiltrationGenerator',
+        'options' => '{#lazy:~/project/configuration/slugGenerator.config.php}'
     ]
 ];

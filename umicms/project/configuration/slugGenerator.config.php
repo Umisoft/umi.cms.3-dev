@@ -9,5 +9,5 @@
 return [
     'lang' => 'en',
     'key' => 'trnsl.1.1.20140527T111613Z.f086c7849549dd9f.d8f03fc754a81326eef697fdf63fbcf458d8504d',
-    'urlApi' => 'https://translate.yandex.net/api/v1.5/tr.json/translate'
+    'slugLength' => 60
 ];

@@ -8,19 +8,22 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\slugGenerator\transliteration;
+namespace umicms\slugify\transliteration;
 
-use GuzzleHttp\Client;
+use umi\i18n\ILocalizable;
+use umi\i18n\TLocalizable;
 use umi\spl\config\TConfigSupport;
-use umicms\slugGenerator\ISlugGenerator;
+use umicms\exception\InvalidArgumentException;
+use umicms\slugify\ISlugGenerator;
 use URLify;
 
 /**
- * Генерация slug путём перевода.
+ * Генератор slug методом транслитерации.
  */
-class TranslationGenerator implements ISlugGenerator
+class TransliterationGenerator implements ISlugGenerator, ILocalizable
 {
     use TConfigSupport;
+    use TLocalizable;
 
     /**
      * @var array $defaultOptions
@@ -28,7 +31,7 @@ class TranslationGenerator implements ISlugGenerator
     protected $defaultOptions;
 
     /**
-     * Конструктор.
+     * Конструктор
      * @param array $defaultOptions опции для генерации по умолчанию
      */
     public function __construct(array $defaultOptions = [])
@@ -43,26 +46,14 @@ class TranslationGenerator implements ISlugGenerator
     {
         $options = $this->mergeConfigOptions($options, $this->defaultOptions);
 
-        $client = new Client();
-        $translate = $client->get($options['url'], [
-                'query' => [
-                    'key' => $options['key'],
-                    'text' => $text,
-                    'lang' => $options['lang']
-                ]
-            ]);
-
-        $result = $translate->json();
-
-        $translatedText = reset($result['text']);
-
-        if ($translatedText) {
-            $translatedText = URLify::filter($translatedText);
-        } else {
-            $translatedText = URLify::filter($text);
+        if (!isset($options['slugLength'])) {
+            throw new InvalidArgumentException($this->translate(
+                'Cannot generate slug. Parameter "{param}" is required.',
+                ['param' => 'slugLength']
+            ));
         }
 
-        return $translatedText;
+        return URLify::filter($text, $options['slugLength']);
     }
 }
  

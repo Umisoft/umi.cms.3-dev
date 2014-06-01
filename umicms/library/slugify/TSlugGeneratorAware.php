@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\slugGenerator;
+namespace umicms\slugify;
 
 use umicms\exception\RequiredDependencyException;
 

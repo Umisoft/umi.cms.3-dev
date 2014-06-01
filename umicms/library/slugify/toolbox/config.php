@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\slugGenerator\toolbox;
+namespace umicms\slugify\toolbox;
 
 /**
  * Конфигурация для регистрации набора инструментов.
@@ -17,6 +17,6 @@ return [
     'name'     => SlugGeneratorTools::NAME,
     'class'    => __NAMESPACE__ . '\SlugGeneratorTools',
     'awareInterfaces' => [
-        'umicms\slugGenerator\ISlugGeneratorAware'
+        'umicms\slugify\ISlugGeneratorAware'
     ]
 ];
