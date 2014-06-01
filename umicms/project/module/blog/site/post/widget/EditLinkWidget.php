@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\blog\site\post\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -18,7 +19,7 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет для вывода URL на редактирование поста.
  */
-class EditLinkWidget extends BaseLinkWidget
+class EditLinkWidget extends BaseLinkWidget implements IAclResource
 {
     /**
      * {@inheritdoc}

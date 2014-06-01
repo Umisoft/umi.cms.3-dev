@@ -10,12 +10,13 @@
 
 namespace umicms\project\module\users\site\profile\widget;
 
+use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет вывода ссылки на страницу редактирования профиля.
  */
-class LinkWidget extends BaseLinkWidget
+class LinkWidget extends BaseLinkWidget implements IAclResource
 {
     /**
      * {@inheritdoc}

@@ -10,15 +10,16 @@
 
 namespace umicms\project\module\blog\site\category\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseAccessRestrictedWidget;
+use umicms\hmvc\widget\BaseWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogCategory;
 
 /**
- * Виджет вывода категории.
+ * Виджет вывода категории постов блога.
  */
-class CategoryWidget extends BaseAccessRestrictedWidget
+class CategoryWidget extends BaseWidget implements IAclResource
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

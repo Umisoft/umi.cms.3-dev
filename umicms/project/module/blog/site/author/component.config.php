@@ -25,7 +25,7 @@ return [
         'view' => __NAMESPACE__ . '\widget\BlogAuthorWidget',
         'list' => __NAMESPACE__ . '\widget\BlogAuthorListWidget',
         'postList' => __NAMESPACE__ . '\widget\BlogAuthorPostListWidget',
-        'rss' => __NAMESPACE__ . '\widget\BlogAuthorListRssLinkWidget'
+        'rssLink' => __NAMESPACE__ . '\widget\BlogAuthorListRssLinkWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -37,7 +37,7 @@ return [
             'widget:view',
             'widget:list',
             'widget:postList',
-            'widget:rss',
+            'widget:rssLink',
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -47,7 +47,7 @@ return [
             ],
             'rssViewer' => [
                 'controller:rss' => [],
-                'widget:rss' => []
+                'widget:rssLink' => []
             ]
         ]
     ],

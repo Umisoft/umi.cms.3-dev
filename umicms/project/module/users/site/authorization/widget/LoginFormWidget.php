@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\users\site\authorization\widget;
 
+use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\UsersModule;
@@ -17,7 +18,7 @@ use umicms\project\module\users\api\UsersModule;
 /**
  * Виджет вывода формы авторизации.
  */
-class LoginFormWidget extends BaseFormWidget
+class LoginFormWidget extends BaseFormWidget implements IAclResource
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

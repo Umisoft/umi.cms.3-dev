@@ -10,15 +10,16 @@
 
 namespace umicms\project\module\blog\site\comment\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseAccessRestrictedWidget;
+use umicms\hmvc\widget\BaseWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogComment;
 
 /**
  * Виджет вывода комментариев.
  */
-class CommentWidget extends BaseAccessRestrictedWidget
+class CommentWidget extends BaseWidget implements IAclResource
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

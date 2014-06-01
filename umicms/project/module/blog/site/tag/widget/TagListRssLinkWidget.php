@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\blog\site\tag\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -18,7 +19,7 @@ use umicms\project\module\blog\api\object\BlogTag;
 /**
  * Виджет для вывода URL на RSS-ленту по тэгу.
  */
-class TagListRssLinkWidget extends BaseLinkWidget
+class TagListRssLinkWidget extends BaseLinkWidget implements IAclResource
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

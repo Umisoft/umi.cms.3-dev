@@ -10,13 +10,14 @@
 
 namespace umicms\project\module\blog\site\reject\widget;
 
+use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
  * Виджет для вывода списка отклонённых постов текущего автора.
  */
-class ListWidget extends BaseListWidget
+class ListWidget extends BaseListWidget implements IAclResource
 {
     /**
      * @var BlogModule $api API модуля "Блоги"

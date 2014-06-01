@@ -10,15 +10,16 @@
 
 namespace umicms\project\module\news\site\item\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseAccessRestrictedWidget;
+use umicms\hmvc\widget\BaseWidget;
 use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsItem;
 
 /**
  * Виджет вывода новости.
  */
-class NewsItemWidget extends BaseAccessRestrictedWidget
+class NewsItemWidget extends BaseWidget implements IAclResource
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

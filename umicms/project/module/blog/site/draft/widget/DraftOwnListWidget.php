@@ -10,13 +10,14 @@
 
 namespace umicms\project\module\blog\site\draft\widget;
 
+use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
  * Виджет для вывода списка черновиков текущего автора.
  */
-class DraftOwnListWidget extends BaseListWidget
+class DraftOwnListWidget extends BaseListWidget implements IAclResource
 {
     /**
      * @var BlogModule $api API модуля "Блоги"

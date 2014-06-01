@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\blog\site\comment\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -18,7 +19,7 @@ use umicms\project\module\blog\api\object\BlogComment;
 /**
  * Виджет публикации комментария.
  */
-class PublishWidget extends BaseFormWidget
+class PublishWidget extends BaseFormWidget implements IAclResource
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

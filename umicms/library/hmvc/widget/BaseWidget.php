@@ -11,6 +11,7 @@
 namespace umicms\hmvc\widget;
 
 use umi\hmvc\component\IComponent;
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\view\IView;
 use umi\hmvc\widget\BaseWidget as FrameworkWidget;
 use umicms\hmvc\dispatcher\CmsDispatcher;
@@ -29,6 +30,31 @@ abstract class BaseWidget extends FrameworkWidget implements IUrlManagerAware, I
 {
     use TUrlManagerAware;
     use TPageCallStackAware;
+
+    const ACL_RESOURCE_PREFIX = 'widget:';
+
+    /**
+     * @var string $forbiddenTemplate имя шаблона, по которому выводится виджет в случае отсутствия доступа к нему.
+     */
+    public $forbiddenTemplate = 'widget.forbidden';
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAclResourceName()
+    {
+        return self::ACL_RESOURCE_PREFIX . $this->name;
+    }
+
+    /**
+     * Формирует результат в случае отсутствия доступа к виджету.
+     * @param ResourceAccessForbiddenException $e
+     * @return CmsView
+     */
+    public function invokeForbidden(ResourceAccessForbiddenException $e)
+    {
+        return $this->createResult($this->forbiddenTemplate, ['error' => $e]);
+    }
 
     /**
      * Устанавливает опции сериализации результата работы виджета в XML или JSON.

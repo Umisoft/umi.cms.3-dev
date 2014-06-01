@@ -23,7 +23,7 @@ use umicms\templating\helper\PaginationHelper;
  * Базовый класс виджета вывода списков с постраничной навигацией.
  * Применяет условия выборки для списка и формирует постраничную навигацию, если требуется.
  */
-abstract class BaseListWidget extends BaseAccessRestrictedWidget implements IPaginationAware
+abstract class BaseListWidget extends BaseWidget implements IPaginationAware
 {
     use TPaginationAware;
 
