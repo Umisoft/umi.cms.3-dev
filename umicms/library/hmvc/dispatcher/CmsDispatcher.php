@@ -11,7 +11,6 @@
 namespace umicms\hmvc\dispatcher;
 
 use umi\acl\IAclManager;
-use umi\acl\IAclResource;
 use umi\hmvc\acl\ComponentRoleProvider;
 use umi\hmvc\acl\IComponentRoleResolver;
 use umi\hmvc\component\IComponent;
