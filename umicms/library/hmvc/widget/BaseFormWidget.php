@@ -70,12 +70,22 @@ abstract class BaseFormWidget extends BaseWidget
             $redirectUrlInput->setValue($redirectUrl);
         }
 
+        $result = (array) $this->buildResponseContent();
+        $result['form'] = $form->getView();
+
         return $this->createResult(
             $this->template,
-            [
-                'form' => $form->getView()
-            ]
+            $result
         );
+    }
+
+    /**
+     * Возвращает дополнительные (помимо самой формы) переменные для шаблонизации
+     * @return array
+     */
+    protected function buildResponseContent()
+    {
+        return [];
     }
 
 }
