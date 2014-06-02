@@ -44,8 +44,10 @@ var dropDownButton = {
     ]
 };
 
-
-
+/**
+ * Пример контролов для Table Control
+ * @type {{toolbar: *[], contextToolbar: *[]}}
+ */
 var TableControl = {
     "toolbar": [
         {
@@ -77,6 +79,10 @@ var TableControl = {
     ]
 };
 
+/**
+ * Пример контролов для Tree Control
+ * @type {{contextToolbar: *[]}}
+ */
 var TreeControl = {
     "contextToolbar": [
         {
@@ -92,23 +98,12 @@ var TreeControl = {
     ]
 };
 
-
+/**
+ * Пример контролов для Form Control
+ * @type {{toolbar: *[]}}
+ */
 var FormControl = {
     "toolbar": [
-        {
-            "type": "button",
-            "behaviour": {
-                "name": "switchActivity"
-            },
-            "attributes": {
-                "title": "button:switchActivity",
-               "class": "umi-button-icon-32 umi-light-bg",
-                "label": "button:switchActivity",
-                "icon": {
-                    "class": "icon icon-switchActivity"
-                }
-            }
-        },
         {
             "type": "button",
             "behaviour": {
@@ -118,7 +113,33 @@ var FormControl = {
                 "title": "Вернуться к списку",
                 "class": "umi-button-icon-32 umi-light-bg",
                 "icon": {
-                    "class": "icon icon-backToList"
+                    "class": "icon icon-backToFilter"
+                }
+            }
+        },
+        {
+            "type": "button",
+            "behaviour": {
+                "name": "viewOnSite"
+            },
+            "attributes": {
+                "title": "Посмотреть на сайте",
+                "class": "umi-button-icon-32 umi-light-bg",
+                "icon": {
+                    "class": "icon icon-viewOnSite"
+                }
+            }
+        },
+        {
+            "type": "button",
+            "behaviour": {
+                "name": "switchActivity"
+            },
+            "attributes": {
+                "title": "Изменить активность",
+               "class": "umi-button-icon-32 umi-light-bg",
+                "icon": {
+                    "class": "icon icon-switchActivity"
                 }
             }
         },
@@ -128,7 +149,7 @@ var FormControl = {
                 "name": "trash"
             },
             "attributes": {
-                "title": "button:trash",
+                "title": "Удалить в корзину",
                 "class": "umi-button-icon-32 umi-light-bg",
                 "icon": {
                     "class": "icon icon-trash"
@@ -136,17 +157,20 @@ var FormControl = {
             }
         },
         {
-            "type": "button",
+            "type": "dropDownButton",// Новый тип
             "behaviour": {
                 "name": "backupList"
             },
             "attributes": {
-                "title": "button:backupList",
+                "title": "Список бэкапов",
                 "class": "umi-button-icon-32 umi-light-bg",
                 "icon": {
                     "class": "icon icon-backupList"
                 }
-            }
+            },
+            "choices": [
+                {"behaviour": {"name": "getBackup"}, "attributes": {"label": "2014-05-29 02:30:54 Имя пользователя"}}
+            ]
         }
     ]
 };
