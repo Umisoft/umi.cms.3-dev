@@ -270,7 +270,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             'displayName' => $this->translate('control:tree:displayName'),
             'contextToolbar'     => [
                 [
-                    'type' => 'dropDownButton',
+                    'type' => 'dropdownButton',
                     'attributes' => [
                         'class' => 'umi-button umi-toolbar-create-button'
                     ],
@@ -321,7 +321,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
                 ];
             }
             return [
-                'type' => 'dropDownButton',
+                'type' => 'dropdownButton',
                 'attributes' => [
                     'class' => 'umi-button umi-toolbar-create-button',
                     'title' => $createLabel,
