@@ -30,8 +30,7 @@
 <div class="container">
 
     <header class="blog-header">
-        <h1 class="blog-title">{{ translate('Demo lite twig') }}</h1>
-        <p class="lead blog-description">{{ translate('Blank-шаблон созданный на Umicms 3') }}</p>
+        {{ widget('structure.infoblock.view') }}
     </header>
 
     <main class="row">
@@ -51,16 +50,12 @@
 </div>
 
 <footer class="blog-footer">
+    {{ widget('structure.infoblock.view', {'template' : 'share'}) }}
+    {{ widget('structure.infoblock.view', {'template' : 'copyright'}) }}
+    {{ widget('structure.infoblock.view', {'template' : 'address'}) }}
+    {{ widget('structure.infoblock.view', {'template' : 'phone'}) }}
     <p>
-        {{ translate('Demo lite twig build for {bootstrap} by {umicms}',
-            {
-                'bootstrap' : '<a href="http://getbootstrap.com">Bootstrap</a>',
-                'umicms' : '<a href="http://umi-cms.ru">umi-cms</a>',
-            }
-        ) | raw }}.
-    </p>
-    <p>
-        <a href="#">{{ translate('Наверх') }}</a>
+        <a href="#">{{ translate('Back to top') }}</a>
     </p>
 </footer>
 
