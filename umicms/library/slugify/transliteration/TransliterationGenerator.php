@@ -13,7 +13,6 @@ namespace umicms\slugify\transliteration;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umi\spl\config\TConfigSupport;
-use umicms\exception\InvalidArgumentException;
 use umicms\slugify\ISlugGenerator;
 use URLify;
 
@@ -46,14 +45,12 @@ class TransliterationGenerator implements ISlugGenerator, ILocalizable
     {
         $options = $this->mergeConfigOptions($options, $this->defaultOptions);
 
-        if (!isset($options['slugLength'])) {
-            throw new InvalidArgumentException($this->translate(
-                'Cannot generate slug. Parameter "{param}" is required.',
-                ['param' => 'slugLength']
-            ));
+        $slugLength = 60;
+        if (isset($options['slugLength'])) {
+            $slugLength = $options['slugLength'];
         }
 
-        return URLify::filter($text, $options['slugLength']);
+        return URLify::filter($text, $slugLength);
     }
 }
  

@@ -13,7 +13,6 @@ namespace umicms\slugify\filtration;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umi\spl\config\TConfigSupport;
-use umicms\exception\InvalidArgumentException;
 use umicms\slugify\ISlugGenerator;
 use URLify;
 
@@ -46,23 +45,21 @@ class FiltrationGenerator implements ISlugGenerator, ILocalizable
     {
         $options = $this->mergeConfigOptions($options, $this->defaultOptions);
 
-        if (!isset($options['slugLength'])) {
-            throw new InvalidArgumentException($this->translate(
-                'Cannot generate slug. Parameter "{param}" is required.',
-                ['param' => 'slugLength']
-            ));
+        $slugLength = 60;
+        if (isset($options['slugLength'])) {
+            $slugLength = $options['slugLength'];
         }
 
-        $text = preg_replace ('/\b(' . join ('|', URLify::$remove_list) . ')\b/i', '', $text);
+        $text = preg_replace('/\b(' . join ('|', URLify::$remove_list) . ')\b/i', '', $text);
 
         $remove_pattern = '/[^\s_\-a-zA-Zа-яА-Я0-9]/u';
-        $text = preg_replace ($remove_pattern, '', $text);
-        $text = str_replace ('_', ' ', $text);
-        $text = preg_replace ('/^\s+|\s+$/', '', $text);
-        $text = preg_replace ('/[-\s]+/', '-', $text);
-        $text = strtolower ($text);
+        $text = preg_replace($remove_pattern, '', $text);
+        $text = str_replace('_', ' ', $text);
+        $text = preg_replace('/^\s+|\s+$/', '', $text);
+        $text = preg_replace('/[-\s]+/', '-', $text);
+        $text = mb_strtolower($text);
 
-        return trim (substr ($text, 0, $options['slugLength']), '-');
+        return trim(mb_substr($text, 0, $slugLength), '-');
     }
 }
  

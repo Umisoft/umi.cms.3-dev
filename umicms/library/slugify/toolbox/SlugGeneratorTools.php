@@ -34,6 +34,11 @@ class SlugGeneratorTools implements IToolbox
     public $options = [];
 
     /**
+     * @var string $generatorClassName стратегия генерация slug'ов
+     */
+    public $generatorClassName = 'umicms\slugify\filtration\FiltrationGenerator';
+
+    /**
      * {@inheritdoc}
      */
     public function injectDependencies($object)
@@ -50,15 +55,8 @@ class SlugGeneratorTools implements IToolbox
      */
     public function getSlugGenerator()
     {
-        if (!isset($options['generatorClassName'])) {
-            throw new InvalidArgumentException($this->translate(
-                'Cannot create slug generator. Parameter "{param}" is required.',
-                ['param' => 'generatorClassName']
-            ));
-        }
-
         return $this->getPrototype(
-            $this->options['generatorClassName'],
+            $this->generatorClassName,
             ['umicms\slugify\ISlugGenerator']
         )
             ->createSingleInstance([$this->options]);

@@ -9,7 +9,4 @@
  */
 
 return [
-    'slugGeneratorActive' => 'true',
-    'generatorClassName' => 'umicms\slugify\filtration\FiltrationGenerator',
-    'slugLength' => 60
 ];

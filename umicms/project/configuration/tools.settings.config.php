@@ -173,7 +173,5 @@ return [
         'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
     ],
 
-    SlugGeneratorTools::NAME => [
-        'options' => '{#lazy:~/project/configuration/slugGenerator.config.php}'
-    ]
+    SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}'
 ];
