@@ -13,7 +13,7 @@ use umicms\project\admin\settings\component\DefaultSettingsComponent;
 
 return [
 
-    DefaultSettingsComponent::OPTION_CLASS => 'umicms\project\admin\settings\component\SettingsComponent',
+    DefaultSettingsComponent::OPTION_CLASS => 'umicms\project\admin\settings\component\DefaultSettingsComponent',
 
     DefaultSettingsComponent::OPTION_COMPONENTS => [
         'slugify' => '{#lazy:~/project/site/settings/slugify/component.config.php}'
