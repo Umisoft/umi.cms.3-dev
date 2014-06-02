@@ -9,7 +9,6 @@ var button = {
     },
     "attributes": {
         "title": "Удаление новости",
-        "alt": "alt для кнопки",
         "class": "large primary",
         "label": "Удалить",
         "icon": {
@@ -26,7 +25,6 @@ var dropDownButton = {
     "type": "dropDownButton",
     "attributes": {
         "title": "Создать",
-        "alt": "alt для кнопки",
         "class": "large secondary",
         "label": "Создать",
         "icon": {
@@ -41,6 +39,113 @@ var dropDownButton = {
             },
             "attributes": {
                 "label": "Создать новость"
+            }
+        }
+    ]
+};
+
+
+
+var TableControl = {
+    "toolbar": [
+        {
+            "type": "button",
+            "behaviour": {
+                "name": "create"
+            },
+            "attributes": {
+                "title": "Добавить рубрику",
+                "class": "large primary",
+                "label": "Добавить рубрику",
+                "icon": {
+                    "class": "icon icon-create"
+                }
+            }
+        }
+    ],
+    "contextToolbar": [
+        {
+            "type": "dropDownButton",
+            "attributes": {
+                "class": "umi-button umi-toolbar-create-button"},
+            "choices": [
+                {"behaviour": {"name": "create", "typeName": "base"}, "attributes": {"title": "Добавить рубрику", "label": "Добавить рубрику"}},
+                {"behaviour": {"name": "switchActivity"}, "attributes": {"title": "Сменить активность", "label": "Сменить активность"}},
+                {"behaviour": {"name": "viewOnSite"}, "attributes": {"title": "Посмотреть на сайте", "label": "Посмотреть на сайте"}}
+            ]
+        }
+    ]
+};
+
+var TreeControl = {
+    "contextToolbar": [
+        {
+            "type": "dropDownButton",
+            "attributes": {
+                "class": "umi-button umi-toolbar-create-button"},
+            "choices": [
+                {"behaviour": {"name": "create", "typeName": "base"}, "attributes": {"title": "Добавить рубрику", "label": "Добавить рубрику"}},
+                {"behaviour": {"name": "switchActivity"}, "attributes": {"title": "Сменить активность", "label": "Сменить активность"}},
+                {"behaviour": {"name": "viewOnSite"}, "attributes": {"title": "Посмотреть на сайте", "label": "Посмотреть на сайте"}}
+            ]
+        }
+    ]
+};
+
+
+var FormControl = {
+    "toolbar": [
+        {
+            "type": "button",
+            "behaviour": {
+                "name": "switchActivity"
+            },
+            "attributes": {
+                "title": "button:switchActivity",
+               "class": "umi-button-icon-32 umi-light-bg",
+                "label": "button:switchActivity",
+                "icon": {
+                    "class": "icon icon-switchActivity"
+                }
+            }
+        },
+        {
+            "type": "button",
+            "behaviour": {
+                "name": "backToList"
+            },
+            "attributes": {
+                "title": "Вернуться к списку",
+                "class": "umi-button-icon-32 umi-light-bg",
+                "icon": {
+                    "class": "icon icon-backToList"
+                }
+            }
+        },
+        {
+            "type": "button",
+            "behaviour": {
+                "name": "trash"
+            },
+            "attributes": {
+                "title": "button:trash",
+                "class": "umi-button-icon-32 umi-light-bg",
+                "icon": {
+                    "class": "icon icon-trash"
+                }
+            }
+        },
+        {
+            "type": "button",
+            "behaviour": {
+                "name": "backupList"
+            },
+            "attributes": {
+                "title": "button:backupList",
+                "class": "umi-button-icon-32 umi-light-bg",
+                "icon": {
+                    "class": "icon icon-backupList"
+                }
             }
         }
     ]
