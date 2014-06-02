@@ -174,7 +174,6 @@ return [
     ],
 
     SlugGeneratorTools::NAME => [
-        'generatorClassName'=> 'umicms\slugify\filtration\FiltrationGenerator',
         'options' => '{#lazy:~/project/configuration/slugGenerator.config.php}'
     ]
 ];

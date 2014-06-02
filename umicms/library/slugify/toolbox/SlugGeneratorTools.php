@@ -12,6 +12,7 @@ namespace umicms\slugify\toolbox;
 
 use umi\toolkit\toolbox\IToolbox;
 use umi\toolkit\toolbox\TToolbox;
+use umicms\exception\InvalidArgumentException;
 use umicms\slugify\ISlugGenerator;
 use umicms\slugify\ISlugGeneratorAware;
 
@@ -27,10 +28,6 @@ class SlugGeneratorTools implements IToolbox
      */
     const NAME = 'slugGenerator';
 
-    /**
-     * @var string $generatorClassName имя класса генерации slug'ов
-     */
-    public $generatorClassName = 'umicms\slugify\filtration\FiltrationGenerator';
     /**
      * @var array $options опции для генерации slug'ов по умолчанию
      */
@@ -48,12 +45,20 @@ class SlugGeneratorTools implements IToolbox
 
     /**
      * Возвращает генератор slug'ов.
+     * @throws InvalidArgumentException в случае, если неудалось создать генератор slug'ов
      * @return ISlugGenerator
      */
     public function getSlugGenerator()
     {
+        if (!isset($options['generatorClassName'])) {
+            throw new InvalidArgumentException($this->translate(
+                'Cannot create slug generator. Parameter "{param}" is required.',
+                ['param' => 'generatorClassName']
+            ));
+        }
+
         return $this->getPrototype(
-            $this->generatorClassName,
+            $this->options['generatorClassName'],
             ['umicms\slugify\ISlugGenerator']
         )
             ->createSingleInstance([$this->options]);
