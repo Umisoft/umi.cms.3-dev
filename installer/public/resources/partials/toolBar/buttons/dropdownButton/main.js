@@ -1,5 +1,5 @@
-define(['App', 'text!./template.hbs'],
-    function(UMI, template){
+define(['App', 'text!./template.hbs', 'text!./backupList.hbs'],
+    function(UMI, template, backupListTemplate){
         "use strict";
 
         return function(){
@@ -17,7 +17,10 @@ define(['App', 'text!./template.hbs'],
             });
 
             UMI.dropdownButtonBehaviour = Ember.Object.create({
-                backupList: {
+                backupList: UMI.FormControlDropUpView.extend({
+                    tagName: 'div',
+                    template: Ember.Handlebars.compile(backupListTemplate),
+
                     getBackupList: function(){
                         var backupList;
                         var object = this.get('object');
@@ -86,7 +89,7 @@ define(['App', 'text!./template.hbs'],
                             self.set('backupList', self.getBackupList());
                         });
                     }
-                }
+                })
             });
         };
     }
