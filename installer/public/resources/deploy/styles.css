@@ -3034,7 +3034,7 @@ label.error {
     background-position: -180px 0; }
   .icon.icon-upload {
     background-position: -200px 0; }
-  .icon.icon-list, .icon.icon-backToList {
+  .icon.icon-list, .icon.icon-backToFilter {
     background-position: -220px 0; }
   .icon.icon-delete, .icon.icon-trash {
     background-position: -240px 0; }
@@ -3134,7 +3134,7 @@ label.error {
     background-position: -180px -20px; }
   .icon.white.icon-upload {
     background-position: -200px -20px; }
-  .icon.white.icon-list, .icon.white.icon-backToList {
+  .icon.white.icon-list, .icon.white.icon-backToFilter {
     background-position: -220px -20px; }
   .icon.white.icon-delete, .icon.white.icon-trash {
     background-position: -240px -20px; }
@@ -3234,7 +3234,7 @@ label.error {
     background-position: -180px -40px; }
   .icon.black.icon-upload {
     background-position: -200px -40px; }
-  .icon.black.icon-list, .icon.black.icon-backToList {
+  .icon.black.icon-list, .icon.black.icon-backToFilter {
     background-position: -220px -40px; }
   .icon.black.icon-delete, .icon.black.icon-trash {
     background-position: -240px -40px; }
