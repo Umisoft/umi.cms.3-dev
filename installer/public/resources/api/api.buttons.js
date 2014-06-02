@@ -107,13 +107,13 @@ var FormControl = {
         {
             "type": "button",
             "behaviour": {
-                "name": "backToList"
+                "name": "backToFilter"
             },
             "attributes": {
                 "title": "Вернуться к списку",
                 "class": "umi-button-icon-32 umi-light-bg",
                 "icon": {
-                    "class": "icon icon-backToList"
+                    "class": "icon icon-backToFilter"
                 }
             }
         },
@@ -157,7 +157,7 @@ var FormControl = {
             }
         },
         {
-            "type": "buttonBackupList",// Новый тип
+            "type": "dropDownButton",// Новый тип
             "behaviour": {
                 "name": "backupList"
             },
@@ -167,7 +167,10 @@ var FormControl = {
                 "icon": {
                     "class": "icon icon-backupList"
                 }
-            }
+            },
+            "choices": [
+                {"behaviour": {"name": "getBackup"}, "attributes": {"label": "2014-05-29 02:30:54 Имя пользователя"}}
+            ]
         }
     ]
 };
