@@ -3983,8 +3983,6 @@ ul.umi-search-result {
         border-bottom: none !important; }
     .umi-tree .umi-item.in-active .umi-tree-type-icon, .umi-tree .umi-item.in-active .tree-item-link {
       opacity: 0.65; }
-    .umi-tree .umi-item.context-menu-is-open .umi-tree-context-menu {
-      display: block; }
   .umi-tree .umi-tree-type-icon {
     margin: 0.125rem 0 0 -0.125rem; }
     .umi-tree .umi-tree-type-icon.move {
@@ -4029,6 +4027,8 @@ ul.umi-search-result {
     .umi-tree .umi-tree-context-menu a {
       text-decoration: none !important;
       border-bottom: none !important; }
+    .umi-tree .umi-tree-context-menu.context-menu-is-open {
+      display: block; }
   .umi-tree .umi-tree-drop-down-toggler {
     position: relative;
     height: 24px; }

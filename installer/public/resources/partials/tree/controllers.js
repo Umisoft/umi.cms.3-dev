@@ -3,9 +3,7 @@ define(['App'], function(UMI){
     return function(){
 
         UMI.TreeControlController = Ember.ObjectController.extend({
-            controlName: function(){
-                return 'treeControl' + Ember.String.capitalize(this.get('controllers.component.collectionName'));
-            }.property('controllers.component.collectionName'),
+            needs: ['component', 'context'],
 
             expandedBranches: [],
 
@@ -90,27 +88,23 @@ define(['App'], function(UMI){
                 });
                 var root = Root.create({});
                 return [root];// Намеренно возвращается значение в виде массива, так как шаблон ожидает именно такой формат
-            }.property('root.childCount', 'controllers.component.sideBarControl'),
+            }.property('root.childCount', 'model'),
 
             rootChildren: null,
-
-            filters: function(){
-                var filters = this.get('controllers.component.sideBarControl.filters');
-                return filters;
-            }.property('controllers.component.sideBarControl'),
-
-            activeFilters: function(){
-                if(this.get('filters')){
-                    return this.get('filters').filterBy('isActive', true);
-                }
-            }.property('filters.@each.isActive'),
-
             /**
              Активный контекст
              */
             activeContextBinding: 'controllers.context.model',
 
-            needs: ['component', 'context'],
+            contextMenu: function(){
+                var sideBarControl = this.get('controllers.component.sideBarControl');
+                if(sideBarControl){
+                    var dropDown = sideBarControl.get('toolbar').findBy('type', 'dropDownButton');
+                    if(dropDown){
+                        return dropDown.choices;
+                    }
+                }
+            }.property('controllers.component.sideBarControl.toolbar'),
 
             actions: {
                 /**
@@ -196,37 +190,10 @@ define(['App'], function(UMI){
                     );
                 },
 
-                toggleFastAction: function(action){
-                    var selectAction;
-                    var controlName = this.get('controlName');
-                    if(!this.get('selectAction') || this.get('selectAction').behaviour !== action.behaviour){
-                        selectAction = action;
-                    } else{
-                        selectAction = null;
-                    }
-                    this.set('selectAction', selectAction);
-                    UMI.Utils.LS.set('treeControls.' + controlName + '.contextAction', selectAction);
-                },
-
-                sendAction: function(action, object){
-                    this.send(action.behaviour, object, action);
+                sendAction: function(behaviour, object){
+                    this.send(behaviour.name, object, behaviour);
                 }
-            },
-
-            selectAction: function(){
-                var controlName = this.get('controlName');
-                return UMI.Utils.LS.get('treeControls.' + controlName + '.contextAction');
-            }.property('controlName'),
-
-            selectActionIcon: function(){
-                if(this.get('selectAction')){
-                    return 'icon-' + this.get('selectAction.behaviour');
-                }
-            }.property('selectAction'),
-
-            actionList: function(){
-                return this.get('controllers.component.sideBarControl.toolbar');
-            }.property()
+            }
         });
 
         UMI.TreeItemController = Ember.ObjectController.extend({
@@ -241,21 +208,6 @@ define(['App'], function(UMI){
             sortedChildren: function(){
                 return this.getChildren();
             }.property('didUpdate'),
-
-            visible: function(){
-                var visible = true;
-                var filters = this.get('filters') || [];
-                var model = this.get('model');
-                var i;
-                for(i = 0; i < filters.length; i++){
-                    if(!filters[i].allow.contains(model.get(filters[i].fieldName))){
-                        visible = false;
-                    }
-                }
-                return visible;
-            }.property('model', 'filters'),
-
-            filters: Ember.computed.alias("controllers.treeControl.activeFilters"),
 
             needs: 'treeControl',
 

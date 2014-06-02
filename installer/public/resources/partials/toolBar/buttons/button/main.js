@@ -1,18 +1,17 @@
-define(['App'],
-    function(UMI){
+define(['App', 'text!./button.hbs'],
+    function(UMI, buttonTemplate){
         "use strict";
 
         return function(){
             UMI.ButtonView = Ember.View.extend({
-                template: Ember.Handlebars.compile('<i class="icon icon-{{unbound behaviour}}"></i>'),
+                template: Ember.Handlebars.compile(buttonTemplate),
                 tagName: 'a',
-                classNames: ['umi-button-icon-32', 'umi-light-bg'],
+                classNames: ['s-margin-clear'],//TODO: избавиться от класса после возвращения Foundation
+                classNameBindings: 'button.attributes.class',
                 attributeBindings: ['title'],
-                title: function(){
-                    return this.get('button.displayName');
-                }.property(),
+                title: Ember.computed.alias('button.attributes.title'),
                 click: function(){
-                    this.get('controller').send('sendAction', this.get('button'), this.get('object'));
+                    this.get('controller').send('sendAction', this.get('button').behaviour, this.get('object'));
                 }
             });
 
