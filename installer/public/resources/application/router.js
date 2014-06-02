@@ -291,7 +291,7 @@ define([], function(){
                  * @param object
                  * @param type
                  */
-                backToList: function(object, type){
+                backToFilter: function(object, type){
                     this.transitionTo('context', 'root');
                 },
 

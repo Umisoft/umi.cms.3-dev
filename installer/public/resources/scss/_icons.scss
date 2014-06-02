@@ -72,7 +72,7 @@
     &.icon-upload{
         background-position: -200px 0;
     }
-    &.icon-list, &.icon-backToList{
+    &.icon-list, &.icon-backToFilter{
         background-position: -220px 0;
     }
     &.icon-delete, &.icon-trash{
@@ -239,7 +239,7 @@
         &.icon-upload{
             background-position: -200px -20px;
         }
-        &.icon-list, &.icon-backToList{
+        &.icon-list, &.icon-backToFilter{
             background-position: -220px -20px;
         }
         &.icon-delete, &.icon-trash{
@@ -407,7 +407,7 @@
         &.icon-upload{
             background-position: -200px -40px;
         }
-        &.icon-list, &.icon-backToList{
+        &.icon-list, &.icon-backToFilter{
             background-position: -220px -40px;
         }
         &.icon-delete, &.icon-trash{
