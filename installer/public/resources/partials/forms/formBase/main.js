@@ -33,6 +33,7 @@ define(
 
                 actions: {
                     sendAction: function(behaviour, object){
+                        object = object || this.get('object');
                         this.send(behaviour.name, object, behaviour);
                     }
                 }

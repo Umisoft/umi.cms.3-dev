@@ -7,11 +7,17 @@ define(['App', 'text!./button.hbs'],
                 template: Ember.Handlebars.compile(buttonTemplate),
                 tagName: 'a',
                 classNames: ['s-margin-clear'],//TODO: избавиться от класса после возвращения Foundation
-                classNameBindings: 'button.attributes.class',
+                classNameBindings: 'meta.attributes.class',
                 attributeBindings: ['title'],
-                title: Ember.computed.alias('button.attributes.title'),
+                title: Ember.computed.alias('meta.attributes.title'),
                 click: function(){
-                    this.get('controller').send('sendAction', this.get('button').behaviour, this.get('object'));
+                    this.get('controller').send('sendAction', this.get('meta').behaviour);
+                }
+            });
+
+            UMI.buttonBehaviour = Ember.Object.create({
+                switchActivity: {
+                    classNameBindings: ['controller.object.active::umi-disabled']
                 }
             });
 
