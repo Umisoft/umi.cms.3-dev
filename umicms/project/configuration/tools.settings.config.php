@@ -11,11 +11,13 @@
 use umi\authentication\adapter\ORMAdapter;
 use umi\authentication\toolbox\AuthenticationTools;
 use umi\extension\twig\TwigTemplateEngine;
+use umi\filter\toolbox\FilterTools;
 use umi\form\toolbox\FormTools;
 use umi\i18n\toolbox\I18nTools;
 use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
 use umi\templating\toolbox\TemplatingTools;
+use umicms\filter\Slug;
 use umicms\form\element\Captcha;
 use umicms\form\element\File;
 use umicms\form\element\Image;
@@ -173,5 +175,15 @@ return [
         'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
     ],
 
-    SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}'
+    SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}',
+
+    FilterTools::NAME => [
+        'factories' => [
+            'filter' => [
+                'types' => [
+                    Slug::TYPE => 'umicms\filter\Slug'
+                ]
+            ]
+        ]
+    ]
 ];
