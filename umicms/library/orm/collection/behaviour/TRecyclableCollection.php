@@ -1,17 +1,20 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\orm\collection\behaviour;
 
 use umicms\exception\NotAllowedOperationException;
+use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
+use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\selector\CmsSelector;
 
 /**
@@ -52,6 +55,13 @@ trait TRecyclableCollection
             );
         }
 
+        if ($object instanceof CmsHierarchicObject && $this instanceof SimpleHierarchicCollection) {
+            $descendants = $this->selectDescendants($object);
+            foreach($descendants as $descendant) {
+                $descendant->getProperty(IRecyclableObject::FIELD_TRASHED)->setValue(true);
+            }
+        }
+
         $object->getProperty(IRecyclableObject::FIELD_TRASHED)->setValue(true);
 
         return $this;
@@ -62,6 +72,16 @@ trait TRecyclableCollection
      */
     public function untrash(IRecyclableObject $object)
     {
+        if ($object instanceof CmsHierarchicObject && $this instanceof SimpleHierarchicCollection) {
+            $ancestry = $this->selectAncestry($object);
+            /**
+             * @var CmsHierarchicObject $parent
+             */
+            foreach($ancestry as $parent) {
+                $parent->getProperty(IRecyclableObject::FIELD_TRASHED)->setValue(false);
+            }
+        }
+
         $object->getProperty(IRecyclableObject::FIELD_TRASHED)->setValue(false);
 
         return $this;

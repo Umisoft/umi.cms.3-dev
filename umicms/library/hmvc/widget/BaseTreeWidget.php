@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\hmvc\widget;
@@ -20,7 +21,7 @@ use umicms\orm\selector\CmsSelector;
  * Базовый класс виджета вывода деревьев.
  * Применяет условия выборки для дерева.
  */
-abstract class BaseTreeWidget extends BaseSecureWidget
+abstract class BaseTreeWidget extends BaseWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

@@ -1,18 +1,22 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\admin\settings;
 
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
+use umi\hmvc\exception\http\HttpForbidden;
 use umi\http\Request;
 use umi\http\Response;
+use umi\session\ISessionAware;
+use umi\session\TSessionAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
 use umicms\project\admin\settings\component\DefaultSettingsComponent;
@@ -23,10 +27,11 @@ use umicms\serialization\TSerializationAware;
 /**
  * Приложение управления настройками.
  */
-class SettingsApplication extends DefaultSettingsComponent implements ISerializationAware, IToolkitAware
+class SettingsApplication extends DefaultSettingsComponent implements ISerializationAware, IToolkitAware, ISessionAware
 {
     use TSerializationAware;
     use TToolkitAware;
+    use TSessionAware;
 
     /**
      * Опция для задания сериализаторов приложения
@@ -68,6 +73,10 @@ class SettingsApplication extends DefaultSettingsComponent implements ISerializa
 
         $this->currentRequestFormat = $requestFormat;
 
+        if (!$this->checkCsrfToken($context, $request)) {
+            throw new HttpForbidden('Cannot process request. Invalid csrf token.');
+        }
+
         return null;
     }
 
@@ -86,6 +95,33 @@ class SettingsApplication extends DefaultSettingsComponent implements ISerializa
         $response->setContent($serializer->output());
 
         return $response;
+    }
+
+    /**
+     * Проверяет csrf-токен запроса.
+     * @param IDispatchContext $context
+     * @param Request $request
+     * @return bool
+     */
+    protected function checkCsrfToken(IDispatchContext $context, Request $request)
+    {
+        if ($request->getMethod() === 'GET') {
+            return true;
+        }
+
+        $params = $context->getRouteParams();
+
+        if (isset($params['ignoreCsrf']) && $params['ignoreCsrf']) {
+            return true;
+        }
+
+        $validToken = $this->getSessionVar('token');
+        $requestToken = $request->headers->get('X-Csrf-Token');
+        if ($requestToken && $requestToken === $validToken) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

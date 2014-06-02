@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\admin\api;
@@ -77,7 +78,6 @@ class ApiApplication extends AdminComponent implements ISerializationAware, IToo
 
         $this->currentRequestFormat = $requestFormat;
 
-
         if (!$this->checkCsrfToken($context, $request)) {
             throw new HttpForbidden('Cannot process request. Invalid csrf token.');
         }
@@ -110,6 +110,10 @@ class ApiApplication extends AdminComponent implements ISerializationAware, IToo
      */
     protected function checkCsrfToken(IDispatchContext $context, Request $request)
     {
+        if ($request->getMethod() === 'GET') {
+            return true;
+        }
+
         $params = $context->getRouteParams();
 
         if (isset($params['ignoreCsrf']) && $params['ignoreCsrf']) {

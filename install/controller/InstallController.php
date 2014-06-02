@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace project\install\controller;
@@ -31,7 +32,6 @@ use umicms\module\TModuleAware;
 use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\news\api\collection\NewsRssImportScenarioCollection;
-use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchModule;
 use umicms\project\module\service\api\collection\BackupCollection;
@@ -1114,6 +1114,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `middle_name` varchar(255) DEFAULT NULL,
                     `last_name` varchar(255) DEFAULT NULL,
                     `activation_code` varchar(255) DEFAULT NULL,
+                    `registration_date` datetime DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `user_guid` (`guid`),
                     KEY `user_type` (`type`),

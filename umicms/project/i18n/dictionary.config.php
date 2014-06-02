@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
@@ -29,6 +30,7 @@ return [
 
         'project.admin.api.users' => '{#lazy:~/project/module/users/admin/i18n/dictionary.config.php}',
         'project.admin.api.users.user' => '{#lazy:~/project/module/users/admin/user/i18n/dictionary.config.php}',
+        'project.admin.api.users.group' => '{#lazy:~/project/module/users/admin/group/i18n/dictionary.config.php}',
 
         'project.admin.api.structure' => '{#lazy:~/project/module/structure/admin/i18n/dictionary.config.php}',
         'project.admin.api.structure.page' => '{#lazy:~/project/module/structure/admin/page/i18n/dictionary.config.php}',
@@ -166,6 +168,7 @@ return [
         ],
 
         'collection.user' => '{#lazy:~/project/module/users/configuration/user/i18n/dictionary.config.php}',
+        'collection.userGroup' => '{#lazy:~/project/module/users/configuration/group/i18n/dictionary.config.php}',
 
         'collection.newsItem' => '{#lazy:~/project/module/news/configuration/item/i18n/dictionary.config.php}',
         'collection.newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/i18n/dictionary.config.php}',

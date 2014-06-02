@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\admin\api\controller;
@@ -20,7 +21,7 @@ use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\ICmsObject;
@@ -29,7 +30,7 @@ use umicms\project\admin\api\component\DefaultAdminComponent;
 /**
  * Базовый REST-контроллер.
  */
-abstract class BaseDefaultRestController extends BaseSecureController implements IObjectPersisterAware
+abstract class BaseDefaultRestController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
     use TObjectPersisterAware;
 
@@ -165,6 +166,13 @@ abstract class BaseDefaultRestController extends BaseSecureController implements
         return $object;
     }
 
+    /**
+     * Сохраняет значение объекта для DateTimeField.
+     * @param ICmsObject $object изменяемый объект
+     * @param string $propertyName имя свойства изменяемого объекта
+     * @param array|null $value
+     * @throws UnexpectedValueException если значение некорректно
+     */
     protected function setDateTimeValue(ICmsObject $object, $propertyName, $value)
     {
         if (!is_null($value)) {
@@ -185,8 +193,8 @@ abstract class BaseDefaultRestController extends BaseSecureController implements
     /**
      * Сохраняет значение объекта для HasManyRelationField.
      * @param ICmsObject $object изменяемый объект
-     * @param string $propertyName имя изменяемого объекта
-     * @param HasManyRelationField $field поле свойств
+     * @param string $propertyName имя свойства изменяемого объекта
+     * @param HasManyRelationField $field поле свойства
      * @param array $value значение (список идентификаторов связанных объектов)
      * @throws UnexpectedValueException если значение некорректно
      */
@@ -222,8 +230,8 @@ abstract class BaseDefaultRestController extends BaseSecureController implements
     /**
      * Сохраняет значение объекта для BelongsToRelationField.
      * @param ICmsObject $object изменяемый объект
-     * @param string $propertyName имя изменяемого объекта
-     * @param BelongsToRelationField $field поле свойств
+     * @param string $propertyName имя свойства изменяемого объекта
+     * @param BelongsToRelationField $field поле свойства
      * @param int|null $value значение (идентификатор связанного объекта)
      * @throws UnexpectedValueException если значение некорректно
      */
@@ -246,8 +254,8 @@ abstract class BaseDefaultRestController extends BaseSecureController implements
     /**
      * Сохраняет значение объекта для ManyToManyRelationField.
      * @param ICmsObject $object изменяемый объект
-     * @param string $propertyName имя изменяемого объекта
-     * @param ManyToManyRelationField $field поле свойств
+     * @param string $propertyName имя свойства изменяемого объекта
+     * @param ManyToManyRelationField $field поле свойства
      * @param array $value значение (список идентификаторов связанных объектов)
      * @throws UnexpectedValueException если значение некорректно
      */

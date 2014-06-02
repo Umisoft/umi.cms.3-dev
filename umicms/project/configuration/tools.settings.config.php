@@ -1,9 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 use umi\authentication\adapter\ORMAdapter;
@@ -14,12 +16,12 @@ use umi\i18n\toolbox\I18nTools;
 use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
 use umi\templating\toolbox\TemplatingTools;
-use umicms\captcha\toolbox\CaptchaTools;
 use umicms\form\element\Captcha;
 use umicms\form\element\File;
 use umicms\form\element\Image;
 use umicms\form\element\PasswordWithConfirmation;
 use umicms\form\element\Wysiwyg;
+use umicms\form\element\Permissions;
 use umicms\module\toolbox\ModuleTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 
@@ -67,7 +69,8 @@ return [
                     File::TYPE_NAME => 'umicms\form\element\File',
                     Image::TYPE_NAME => 'umicms\form\element\Image',
                     Captcha::TYPE_NAME => 'umicms\form\element\Captcha',
-                    PasswordWithConfirmation::TYPE_NAME => 'umicms\form\element\PasswordWithConfirmation'
+                    PasswordWithConfirmation::TYPE_NAME => 'umicms\form\element\PasswordWithConfirmation',
+                    Permissions::TYPE_NAME => 'umicms\form\element\Permissions'
                 ],
                 'elementDefaultOptions' => [
                     Captcha::TYPE_NAME => '{#lazy:~/project/configuration/captcha.config.php}'

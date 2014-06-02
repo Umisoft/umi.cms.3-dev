@@ -13,8 +13,8 @@ use umi\form\IForm;
 use umi\http\Response;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\exception\RuntimeException;
-use umicms\hmvc\controller\BaseSecureController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\site\controller\TFormController;
@@ -22,7 +22,7 @@ use umicms\project\site\controller\TFormController;
 /**
  * Контроллер публикации комментария.
  */
-class PublishController extends BaseSecureController implements IObjectPersisterAware
+class PublishController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;
