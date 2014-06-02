@@ -2590,7 +2590,9 @@ label.error {
   float: left;
   height: 20px;
   padding: 6px;
-  cursor: pointer; }
+  cursor: pointer;
+  color: #4C4C53;
+  font-size: 13px; }
   .umi-button-icon-32.umi-disabled {
     opacity: 0.4;
     cursor: default; }
