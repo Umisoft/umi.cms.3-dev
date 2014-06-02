@@ -53,9 +53,9 @@ $ bower install
 Для запуска инсталлятора необходиом запустить в браузере http://localhost/install
 
 Сейчас есть три демо-проекта с одними и теми же данными, но с разными шаблонизаторами:
--lite-php php-шаблонизатор (http://localhost/twig)
--lite-twig twig-шаблонизатор (http://localhost/, http://localhost/php)
--lite-xslt xslt-шаблонизатор (временно не рабочий)
+- lite-php php-шаблонизатор (http://localhost/twig)
+- lite-twig twig-шаблонизатор (http://localhost/, http://localhost/php)
+- lite-xslt xslt-шаблонизатор (временно не рабочий)
 
 За конфигурацию проектов и роутинг отвечает конфиг configuration/projects.config.php.
 Проекты доступны в двух локалях ru-RU и en-US. (http://localhost/twig/en, http://localhost/php/ru)
