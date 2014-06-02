@@ -112,7 +112,7 @@ var FormControl = {
         {
             "type": "button",
             "behaviour": {
-                "name": "backToList"
+                "name": "backToFilter"
             },
             "attributes": {
                 "title": "Вернуться к списку",

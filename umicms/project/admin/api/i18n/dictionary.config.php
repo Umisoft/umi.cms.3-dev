@@ -13,13 +13,25 @@ return [
     'en-US' => [
         'action:create' => 'Create',
         'action:switchActivity' => 'Switch activity',
-        'action:viewOnSite' => 'View on site'
+        'action:viewOnSite' => 'View on site',
+
+        'button:trash' => 'To trash',
+        'button:backupList' => 'Backup list',
+        'button:backToFilter' => 'Back to filter',
+        'button:switchActivity' => 'Switch activity',
+        'button:viewOnSite' => 'View on site'
     ],
 
     'ru-RU' => [
         'action:create' => 'Добавить',
         'action:switchActivity' => 'Сменить активность',
-        'action:viewOnSite' => 'Посмотреть на сайте'
+        'action:viewOnSite' => 'Посмотреть на сайте',
+
+        'button:trash' => 'Удалить в корзину',
+        'button:backupList' => 'Резервные копии',
+        'button:backToFilter' => 'Вернуться в фильтр',
+        'button:switchActivity' => 'Сменить активность',
+        'button:viewOnSite' => 'Посмотреть на сайте'
     ]
 
 ];
