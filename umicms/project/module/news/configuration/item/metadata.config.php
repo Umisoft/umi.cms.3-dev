@@ -11,6 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
+use umicms\filter\Slug;
 use umicms\project\module\news\api\object\NewsItem;
 
 return [
@@ -104,7 +105,13 @@ return [
         ],
         NewsItem::FIELD_PAGE_SLUG             => [
             'type'       => IField::TYPE_SLUG,
-            'columnName' => 'slug'
+            'columnName' => 'slug',
+            'filters' => [
+                Slug::TYPE => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         NewsItem::FIELD_ANNOUNCEMENT          => [
             'type' => IField::TYPE_TEXT,

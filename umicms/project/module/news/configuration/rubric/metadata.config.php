@@ -11,6 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
+use umicms\filter\Slug;
 use umicms\project\module\news\api\object\NewsItem;
 use umicms\project\module\news\api\object\NewsRubric;
 
@@ -62,6 +63,12 @@ return [
             'type'       => IField::TYPE_SLUG,
             'columnName' => 'slug',
             'accessor'   => 'getSlug',
+            'filters' => [
+                Slug::TYPE => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ],
             'readOnly'   => true
         ],
         NewsRubric::FIELD_URI                   => [

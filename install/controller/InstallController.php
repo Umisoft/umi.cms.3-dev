@@ -512,7 +512,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('category', $category)
             ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_DRAFT)
             ->setValue('author', $bives)
-            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj')
+            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty')
             ->setGUID('2ff677ee-765c-42ee-bb97-778f03f00c50')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
 
@@ -527,7 +527,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('category', $category)
             ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_REJECTED)
             ->setValue('author', $bives)
-            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj-2')
+            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty-2')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
 
         $postCollection->add()
@@ -541,7 +541,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('category', $category)
             ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_NEED_MODERATE)
             ->setValue('author', $buthead)
-            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj-3')
+            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty-3')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
 
         $postCollection->add()
@@ -555,7 +555,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('category', $category)
             ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_REJECTED)
             ->setValue('author', $buthead)
-            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj-4')
+            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty-4')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
 
         $postCollection->add()
@@ -569,7 +569,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('category', $category)
             ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_PUBLISHED)
             ->setValue('author', $buthead)
-            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty_litvinovoj-5')
+            ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty-5')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
 
 
