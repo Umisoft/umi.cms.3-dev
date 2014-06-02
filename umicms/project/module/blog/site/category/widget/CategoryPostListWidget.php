@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\blog\site\category\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -18,7 +19,7 @@ use umicms\project\module\blog\api\object\BlogCategory;
 /**
  * Виджет для вывода списка постов по категориям.
  */
-class CategoryPostListWidget extends BaseListWidget
+class CategoryPostListWidget extends BaseListWidget implements IAclResource
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

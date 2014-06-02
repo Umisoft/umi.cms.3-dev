@@ -16,7 +16,7 @@ use umi\form\IForm;
 /**
  * Базовый класс виджета вывода формы.
  */
-abstract class BaseFormWidget extends BaseAccessRestrictedWidget
+abstract class BaseFormWidget extends BaseWidget
 {
     /**
      * Имя инпута для хранения URL для редиректа после успешной обработки формы
@@ -70,12 +70,22 @@ abstract class BaseFormWidget extends BaseAccessRestrictedWidget
             $redirectUrlInput->setValue($redirectUrl);
         }
 
+        $result = (array) $this->buildResponseContent();
+        $result['form'] = $form->getView();
+
         return $this->createResult(
             $this->template,
-            [
-                'form' => $form->getView()
-            ]
+            $result
         );
+    }
+
+    /**
+     * Возвращает дополнительные (помимо самой формы) переменные для шаблонизации
+     * @return array
+     */
+    protected function buildResponseContent()
+    {
+        return [];
     }
 
 }

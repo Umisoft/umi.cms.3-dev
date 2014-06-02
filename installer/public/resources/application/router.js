@@ -504,7 +504,12 @@ define([], function(){
                             resolve(RootModel.create({'id': 'root', type: 'base'}));
                         });
                     } else{
-                        model = this.store.find(collectionName, params.context);
+                        if(this.store.hasRecordForId(collectionName, params.context)){
+                            model = this.store.getById(collectionName, params.context);
+                            model = model.reload();
+                        } else{
+                            model = this.store.find(collectionName, params.context);
+                        }
                     }
                 }
                 return model;

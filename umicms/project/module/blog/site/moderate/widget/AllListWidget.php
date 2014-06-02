@@ -10,10 +10,11 @@
 
 namespace umicms\project\module\blog\site\moderate\widget;
 
+use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
 
-class AllListWidget extends BaseListWidget
+class AllListWidget extends BaseListWidget implements IAclResource
 {
     /**
      * @var BlogModule $api API модуля "Блоги"

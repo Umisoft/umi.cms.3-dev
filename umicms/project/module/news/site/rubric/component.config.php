@@ -28,7 +28,7 @@ return [
         'newsList' => __NAMESPACE__ . '\widget\RubricNewsListWidget',
         'list' => __NAMESPACE__ .  '\widget\RubricListWidget',
         'tree' => __NAMESPACE__ .  '\widget\RubricTreeWidget',
-        'rss' => __NAMESPACE__ .  '\widget\RubricNewsRssUrlWidget'
+        'rssLink' => __NAMESPACE__ .  '\widget\RubricNewsRssLinkWidget'
     ],
 
     DefaultSiteHierarchicPageComponent::OPTION_ACL => [
@@ -42,7 +42,7 @@ return [
             'widget:list',
             'widget:tree',
             'widget:newsList',
-            'widget:rss'
+            'widget:rssLink'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -53,7 +53,7 @@ return [
             ],
             'rssViewer' => [
                 'controller:rss' => [],
-                'widget:rss' => []
+                'widget:rssLink' => []
             ]
         ]
     ],

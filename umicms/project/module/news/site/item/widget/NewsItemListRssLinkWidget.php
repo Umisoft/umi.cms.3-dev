@@ -8,27 +8,27 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\widget;
+namespace umicms\project\module\news\site\item\widget;
 
 use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
- * Виджет для вывода ссылки на спискок всех черновиков.
+ * Виджет для вывода URL на RSS-ленту по рубрике.
  */
-class AllListLinkWidget extends BaseLinkWidget implements IAclResource
+class NewsItemListRssLinkWidget extends BaseLinkWidget implements IAclResource
 {
     /**
      * {@inheritdoc}
      */
-    public $template = 'moderateLink';
+    public $template = 'rssLink';
 
     /**
      * {@inheritdoc}
      */
     protected function getLinkUrl()
     {
-        return $this->getUrl('all', [], $this->absolute);
+        return $this->getUrl('rss');
     }
-
 }
+ 

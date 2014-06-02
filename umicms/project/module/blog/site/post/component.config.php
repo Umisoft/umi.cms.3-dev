@@ -28,7 +28,7 @@ return [
     DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\PostWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
-        'rss' => __NAMESPACE__ . '\widget\ListRssUrlWidget',
+        'rssLink' => __NAMESPACE__ . '\widget\ListRssLinkWidget',
         'add' => __NAMESPACE__ . '\widget\AddWidget',
         'unPublished' => __NAMESPACE__ . '\widget\PostToDraftWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\EditLinkWidget'
@@ -51,7 +51,7 @@ return [
             'controller:unPublished',
             'widget:view',
             'widget:list',
-            'widget:rss',
+            'widget:rssLink',
             'widget:add',
             'widget:unPublished',
             'widget:editPostLink',
@@ -64,7 +64,7 @@ return [
             ],
             'rssViewer' => [
                 'controller:rss' => [],
-                'widget:rss' => []
+                'widget:rssLink' => []
             ],
             'author' => [
                 'controller:unPublished' => [],

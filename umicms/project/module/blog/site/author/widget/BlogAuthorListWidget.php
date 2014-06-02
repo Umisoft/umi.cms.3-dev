@@ -10,24 +10,15 @@
 
 namespace umicms\project\module\blog\site\author\widget;
 
-use umicms\hmvc\widget\BaseAccessRestrictedWidget;
+use umi\acl\IAclResource;
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
  * Виджет для вывода списка авторов.
  */
-class BlogAuthorListWidget extends BaseAccessRestrictedWidget
+class BlogAuthorListWidget extends BaseListWidget implements IAclResource
 {
-    /**
-     * @var string $template имя шаблона, по которому выводится виджет
-     */
-    public $template = 'list';
-    /**
-     * @var int $limit максимальное количество выводимых авторов.
-     * Если не указано, выводятся все авторы.
-     */
-    public $limit;
-
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
@@ -45,14 +36,9 @@ class BlogAuthorListWidget extends BaseAccessRestrictedWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
-        return $this->createResult(
-            $this->template,
-            [
-                'authors' => $this->api->getAuthors()
-            ]
-        );
+        return $this->api->getAuthors();
     }
 }
  

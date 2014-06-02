@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\users\site\restoration\widget;
 
+use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\UsersModule;
@@ -17,7 +18,7 @@ use umicms\project\module\users\api\UsersModule;
 /**
  * Виджет вывода формы запроса смены пароля.
  */
-class FormWidget extends BaseFormWidget
+class FormWidget extends BaseFormWidget implements IAclResource
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

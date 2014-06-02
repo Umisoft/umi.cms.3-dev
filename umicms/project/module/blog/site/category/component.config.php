@@ -25,7 +25,7 @@ return [
         'view' => __NAMESPACE__ . '\widget\CategoryWidget',
         'postList' => __NAMESPACE__ . '\widget\CategoryPostListWidget',
         'list' => __NAMESPACE__ . '\widget\CategoryListWidget',
-        'rss' => __NAMESPACE__ . '\widget\CategoryPostRssLinkWidget'
+        'rssLink' => __NAMESPACE__ . '\widget\CategoryPostRssLinkWidget'
     ],
     DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/category'],
@@ -40,7 +40,7 @@ return [
             'widget:view',
             'widget:postList',
             'widget:list',
-            'widget:rss'
+            'widget:rssLink'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -50,7 +50,7 @@ return [
             ],
             'rssViewer' => [
                 'controller:rss' => [],
-                'widget:rss' => []
+                'widget:rssLink' => []
             ]
         ]
     ],

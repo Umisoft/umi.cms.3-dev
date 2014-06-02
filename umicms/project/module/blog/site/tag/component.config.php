@@ -26,7 +26,7 @@ return [
         'postList' => __NAMESPACE__ . '\widget\TagPostListWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'cloud' => __NAMESPACE__ . '\widget\TagCloudWidget',
-        'rss' => __NAMESPACE__ . '\widget\TagListRssLinkWidget'
+        'rssLink' => __NAMESPACE__ . '\widget\TagListRssLinkWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -39,7 +39,7 @@ return [
             'widget:postList',
             'widget:list',
             'widget:cloud',
-            'widget:rss'
+            'widget:rssLink'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -50,7 +50,7 @@ return [
             ],
             'rssViewer' => [
                 'controller:rss' => [],
-                'widget:rss' => []
+                'widget:rssLink' => []
             ]
         ]
     ],

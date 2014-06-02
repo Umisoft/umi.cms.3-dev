@@ -14,7 +14,6 @@ use umi\form\IFormAware;
 use umi\form\TFormAware;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
-use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseAccessRestrictedController;
