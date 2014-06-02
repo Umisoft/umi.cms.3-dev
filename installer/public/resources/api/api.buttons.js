@@ -157,7 +157,7 @@ var FormControl = {
             }
         },
         {
-            "type": "dropDownButton",// Новый тип
+            "type": "dropDownButton",
             "behaviour": {
                 "name": "backupList"
             },
