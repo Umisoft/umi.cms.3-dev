@@ -1,9 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\site\post;
@@ -26,7 +28,7 @@ return [
     DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\PostWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
-        'rss' => __NAMESPACE__ . '\widget\ListRssUrlWidget',
+        'rssLink' => __NAMESPACE__ . '\widget\ListRssLinkWidget',
         'add' => __NAMESPACE__ . '\widget\AddWidget',
         'unPublished' => __NAMESPACE__ . '\widget\PostToDraftWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\EditLinkWidget'
@@ -49,7 +51,7 @@ return [
             'controller:unPublished',
             'widget:view',
             'widget:list',
-            'widget:rss',
+            'widget:rssLink',
             'widget:add',
             'widget:unPublished',
             'widget:editPostLink',
@@ -62,7 +64,7 @@ return [
             ],
             'rssViewer' => [
                 'controller:rss' => [],
-                'widget:rss' => []
+                'widget:rssLink' => []
             ],
             'author' => [
                 'controller:unPublished' => [],

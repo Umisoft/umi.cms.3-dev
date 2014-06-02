@@ -1,33 +1,30 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\site\author\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseSecureWidget;
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogAuthor;
 
 /**
  * Виджет для вывода списка постов по автору.
  */
-class BlogAuthorPostListWidget extends BaseSecureWidget
+class BlogAuthorPostListWidget extends BaseListWidget implements IAclResource
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'postList';
-    /**
-     * @var int $limit максимальное количество выводимых постов.
-     * Если не указано, выводятся все посты.
-     */
-    public $limit;
     /**
      * @var array|BlogAuthor[]|BlogAuthor|null $blogAuthor авторы, список авторов блога или GUID, посты которых выводятся.
      * Если не указаны, то посты выводятся всех авторов
@@ -51,7 +48,7 @@ class BlogAuthorPostListWidget extends BaseSecureWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
         $blogAuthors = (array) $this->blogAuthors;
 
@@ -73,12 +70,8 @@ class BlogAuthorPostListWidget extends BaseSecureWidget
             }
         }
 
-        return $this->createResult(
-            $this->template,
-            [
-                'posts' => $this->api->getPostsByAuthor($blogAuthors)
-            ]
-        );
+        return  $this->api->getPostsByAuthor($blogAuthors);
     }
+
 }
  

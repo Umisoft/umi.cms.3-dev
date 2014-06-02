@@ -1,9 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\site\tag;
@@ -24,7 +26,7 @@ return [
         'postList' => __NAMESPACE__ . '\widget\TagPostListWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'cloud' => __NAMESPACE__ . '\widget\TagCloudWidget',
-        'rss' => __NAMESPACE__ . '\widget\TagListRssLinkWidget'
+        'rssLink' => __NAMESPACE__ . '\widget\TagListRssLinkWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -37,7 +39,7 @@ return [
             'widget:postList',
             'widget:list',
             'widget:cloud',
-            'widget:rss'
+            'widget:rssLink'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -48,7 +50,7 @@ return [
             ],
             'rssViewer' => [
                 'controller:rss' => [],
-                'widget:rss' => []
+                'widget:rssLink' => []
             ]
         ]
     ],

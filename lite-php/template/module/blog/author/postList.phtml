@@ -1,11 +1,11 @@
 <?php
 /**
- * @var \umicms\orm\selector\CmsSelector $posts
+ * @var \umicms\orm\selector\CmsSelector $list
  * @var umicms\project\module\blog\api\object\BlogPost $blogPost
  */
 ?>
-<?php if ($posts->getTotal()) : ?>
-    <?php foreach ($posts as $blogPost) : ?>
+<?php if ($list->getTotal()) : ?>
+    <?php foreach ($list as $blogPost) : ?>
         <?= $this->widget('blog.post.view', ['blogPost' => $blogPost, 'template' => 'shortView']); ?>
     <?php endforeach; ?>
 <?php endif; ?>

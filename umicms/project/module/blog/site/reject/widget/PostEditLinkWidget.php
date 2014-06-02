@@ -1,14 +1,16 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\site\reject\widget;
 
+use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -17,7 +19,7 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет для вывода ссылки на редактирование отклонённого поста.
  */
-class PostEditLinkWidget extends BaseLinkWidget
+class PostEditLinkWidget extends BaseLinkWidget implements IAclResource
 {
     /**
      * {@inheritdoc}
