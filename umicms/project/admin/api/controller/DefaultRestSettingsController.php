@@ -134,23 +134,25 @@ class DefaultRestSettingsController extends BaseDefaultRestController
      */
     protected function buildEditFormControlInfo(ICmsCollection $collection)
     {
-        $result = [];
+        $toolbar = [$this->buildSimpleButtonInfo('backToFilter')];
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $result['toolbar'][] = $this->buildSimpleButtonInfo('switchActivity');
+            $toolbar[] = $this->buildSimpleButtonInfo('switchActivity');
         }
 
         if ($collection instanceof IRecyclableCollection) {
-            $result['toolbar'][] = $this->buildSimpleButtonInfo('trash');
+            $toolbar[] = $this->buildSimpleButtonInfo('trash');
         } else {
-            $result['toolbar'][] = $this->buildSimpleButtonInfo('delete');
+            $toolbar[] = $this->buildSimpleButtonInfo('delete');
         }
 
         if ($collection instanceof IRecoverableCollection && $collection->isBackupEnabled()) {
-            $result['toolbar'][] = $this->buildSimpleButtonInfo('backupList');
+            $toolbar[] = $this->buildSimpleButtonInfo('backupList');
         }
 
-        return $result;
+        return [
+            'toolbar' => $toolbar
+        ];
     }
 
     /**
@@ -268,7 +270,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
             'displayName' => $this->translate('control:tree:displayName'),
             'contextToolbar'     => [
                 [
-                    'type' => 'dropDownButton',
+                    'type' => 'dropdownButton',
                     'attributes' => [
                         'class' => 'umi-button umi-toolbar-create-button'
                     ],
@@ -319,7 +321,7 @@ class DefaultRestSettingsController extends BaseDefaultRestController
                 ];
             }
             return [
-                'type' => 'dropDownButton',
+                'type' => 'dropdownButton',
                 'attributes' => [
                     'class' => 'umi-button umi-toolbar-create-button',
                     'title' => $createLabel,

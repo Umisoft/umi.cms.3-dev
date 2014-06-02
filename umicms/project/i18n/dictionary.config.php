@@ -109,7 +109,9 @@ return [
 
                 IRecyclableObject::FIELD_TRASHED => 'Trashed',
                 ILockedAccessibleObject::FIELD_LOCKED => 'Locked',
-                IActiveAccessibleObject::FIELD_ACTIVE => 'Active'
+                IActiveAccessibleObject::FIELD_ACTIVE => 'Active',
+
+                'type:base:createLabel' => 'Create'
 
             ],
 
@@ -141,6 +143,8 @@ return [
                 IRecyclableObject::FIELD_TRASHED => 'В корзине',
                 ILockedAccessibleObject::FIELD_LOCKED => 'Заблокировано',
                 IActiveAccessibleObject::FIELD_ACTIVE => 'Активность',
+
+                'type:base:createLabel' => 'Добавить'
             ]
         ],
 
