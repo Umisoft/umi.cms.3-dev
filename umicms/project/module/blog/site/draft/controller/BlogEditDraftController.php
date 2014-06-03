@@ -59,8 +59,7 @@ class BlogEditDraftController extends BaseAccessRestrictedController implements 
      */
     protected function buildForm()
     {
-        $id = $this->getRouteVar('id');
-        $blogDraft = $this->api->post()->getDraftById($id);
+        $blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
 
         if (!$this->isAllowed($blogDraft)) {
             throw new ResourceAccessForbiddenException(

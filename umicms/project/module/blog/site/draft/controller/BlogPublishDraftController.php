@@ -34,6 +34,10 @@ class BlogPublishDraftController extends BaseAccessRestrictedController implemen
      * @var BlogModule $api API модуля "Блоги"
      */
     protected $api;
+    /**
+     * @var BlogPost $blogDraft черновик поста
+     */
+    protected $blogDraft;
 
     /**
      * Конструктор.
@@ -49,6 +53,15 @@ class BlogPublishDraftController extends BaseAccessRestrictedController implemen
      */
     protected function buildForm()
     {
+        $this->blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
+
+        if (!$this->isAllowed($this->blogDraft)) {
+            throw new ResourceAccessForbiddenException(
+                $this->blogDraft,
+                $this->translate('Access denied')
+            );
+        }
+
         return $this->api->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE);
     }
 
@@ -57,16 +70,7 @@ class BlogPublishDraftController extends BaseAccessRestrictedController implemen
      */
     protected function processForm(IForm $form)
     {
-        $blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
-        $blogDraft->published();
-
-        if (!$this->isAllowed($blogDraft)) {
-            throw new ResourceAccessForbiddenException(
-                $blogDraft,
-                $this->translate('Access denied')
-            );
-        }
-
+        $this->blogDraft->published();
         $this->getObjectPersister()->commit();
     }
 

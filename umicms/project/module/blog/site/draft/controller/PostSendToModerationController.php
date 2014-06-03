@@ -34,6 +34,10 @@ class PostSendToModerationController extends BaseAccessRestrictedController impl
      * @var BlogModule $api API модуля "Блоги"
      */
     protected $api;
+    /**
+     * @var BlogPost $blogDraft черновик поста
+     */
+    protected $blogDraft;
 
     /**
      * Конструктор.
@@ -49,6 +53,15 @@ class PostSendToModerationController extends BaseAccessRestrictedController impl
      */
     protected function buildForm()
     {
+        $this->blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
+
+        if (!$this->isAllowed($this->blogDraft)) {
+            throw new ResourceAccessForbiddenException(
+                $this->blogDraft,
+                $this->translate('Access denied')
+            );
+        }
+
         return $this->api->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
     }
 
@@ -57,17 +70,7 @@ class PostSendToModerationController extends BaseAccessRestrictedController impl
      */
     protected function processForm(IForm $form)
     {
-        $blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
-
-        if (!$this->isAllowed($blogDraft)) {
-            throw new ResourceAccessForbiddenException(
-                $blogDraft,
-                $this->translate('Access denied')
-            );
-        }
-
-        $blogDraft->needModeration();
-
+        $this->blogDraft->needModeration();
         $this->getObjectPersister()->commit();
     }
 
