@@ -11,22 +11,20 @@
 namespace umicms\project\module\blog\site\moderate\controller;
 
 use umi\form\IForm;
-use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\exception\RuntimeException;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\site\controller\TFormController;
+use umicms\project\site\controller\TFormSimpleController;
 
 /**
  * Контроллер отправки отклонённого поста на модерацию.
  */
 class PostRejectController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
-    use TFormController;
+    use TFormSimpleController;
     use TObjectPersisterAware;
 
     /**
@@ -60,22 +58,6 @@ class PostRejectController extends BaseAccessRestrictedController implements IOb
         $blogPost->rejected();
 
         $this->getObjectPersister()->commit();
-    }
-
-    /**
-     * Формирует ответ.
-     * @throws RuntimeException
-     * @return Response
-     */
-    protected function buildResponse()
-    {
-        if (count($this->errors)) {
-            throw new RuntimeException($this->translate(
-                'Invalid form.'
-            ));
-        }
-
-        return $this->buildRedirectResponse();
     }
 }
  

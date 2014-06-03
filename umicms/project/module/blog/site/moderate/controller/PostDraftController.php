@@ -12,22 +12,20 @@ namespace umicms\project\module\blog\site\moderate\controller;
 
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\exception\RuntimeException;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\site\controller\TFormController;
+use umicms\project\site\controller\TFormSimpleController;
 
 /**
  * Контроллер снятия поста с модерации и переноса в черновики.
  */
 class PostDraftController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
-    use TFormController;
+    use TFormSimpleController;
     use TObjectPersisterAware;
 
     /**
@@ -72,22 +70,6 @@ class PostDraftController extends BaseAccessRestrictedController implements IObj
     {
         $this->blogPost->draft();
         $this->getObjectPersister()->commit();
-    }
-
-    /**
-     * Формирует ответ.
-     * @throws RuntimeException
-     * @return Response
-     */
-    protected function buildResponse()
-    {
-        if (count($this->errors)) {
-            throw new RuntimeException($this->translate(
-                'Invalid form.'
-            ));
-        }
-
-        return $this->buildRedirectResponse();
     }
 }
  
