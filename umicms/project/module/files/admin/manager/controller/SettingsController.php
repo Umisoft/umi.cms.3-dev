@@ -18,16 +18,10 @@ use umicms\project\admin\api\component\DefaultQueryAdminComponent;
  */
 class SettingsController extends BaseSecureController
 {
-    private $controls = [
-        'fileManager' => [
-            'action' => '/connector'
-        ]
-    ];
-
     private $layout = [
         'contents' => [
             'emptyContext' => [
-                'controls' => ['fileManager']
+                'fileManager' => []
             ]
         ]
     ];
@@ -38,7 +32,6 @@ class SettingsController extends BaseSecureController
     protected function getSettings()
     {
         return [
-            'controls' => $this->controls,
             'layout' => $this->layout
         ];
     }
