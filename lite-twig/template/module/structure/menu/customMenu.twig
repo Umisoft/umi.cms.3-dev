@@ -2,7 +2,7 @@
     <ul class="bottomMenu">
         {% for node in tree %}
             <li>
-                <a href="{{ node.item.getItemUrl() ? node.item.getItemUrl() : '#' }}"
+                <a href="{{ node.item.getItemUrl() ?: '#' }}"
                     {{ node.item.getItemType() == 'externalItem' ? 'target="blank"' }}>
                     {{ node.item.displayName }}
                 </a>
