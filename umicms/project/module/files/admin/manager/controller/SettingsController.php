@@ -10,13 +10,13 @@
 
 namespace umicms\project\module\files\admin\manager\controller;
 
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\admin\api\controller\DefaultRestSettingsController;
+use umi\hmvc\controller\BaseSecureController;
+use umicms\project\admin\api\component\DefaultQueryAdminComponent;
 
 /**
  * Контроллер вывода настроек компонента
  */
-class SettingsController extends BaseAccessRestrictedController
+class SettingsController extends BaseSecureController
 {
     private $controls = [
         'fileManager' => [
@@ -25,12 +25,23 @@ class SettingsController extends BaseAccessRestrictedController
     ];
 
     private $layout = [
-        'emptyContext' => [
-            'contents' => [
+        'contents' => [
+            'emptyContext' => [
                 'controls' => ['fileManager']
             ]
         ]
     ];
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getSettings()
+    {
+        return [
+            'controls' => $this->controls,
+            'layout' => $this->layout
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -46,29 +57,10 @@ class SettingsController extends BaseAccessRestrictedController
     }
 
     /**
-     * {@inheritdoc}
+     * @return DefaultQueryAdminComponent
      */
-    protected function getSettings()
+    protected function getComponent()
     {
-        return [
-            DefaultRestSettingsController::OPTION_INTERFACE_CONTROLS => $this->buildControlsInfo(),
-            DefaultRestSettingsController::OPTION_INTERFACE_LAYOUT => $this->layout
-        ];
-    }
-
-    /**
-     * Возвращает информацию о контролах компонента.
-     * @return array
-     */
-    protected function buildControlsInfo()
-    {
-        $controlsInfo = [];
-
-        foreach($this->controls as $controlName => $options) {
-            $options['displayName'] = $this->translate('control:' . $controlName . ':displayName');
-            $controlsInfo[$controlName] = $options;
-        }
-
-        return $controlsInfo;
+        return $this->getContext()->getComponent();
     }
 }
