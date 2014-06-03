@@ -147,12 +147,17 @@ class DefaultRestSettingsController extends BaseDefaultRestController
         }
 
         if ($collection instanceof IRecoverableCollection && $collection->isBackupEnabled()) {
-            $toolbar[] = $this->buildSimpleButtonInfo('backupList');
+            $toolbar[] = $this->buildSimpleButtonInfo('dropdownButton');
         }
 
         return [
             'toolbar' => $toolbar
         ];
+    }
+
+    protected function buildDynamicDropdownButton($behaviour, array $params = [])
+    {
+
     }
 
     /**
