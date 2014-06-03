@@ -39,7 +39,6 @@ trait TFormSimpleController
     /**
      * Обрабатывает валидную форму
      * @param IForm $form
-     * @return null|Response
      */
     abstract protected function processForm(IForm $form);
 
@@ -88,9 +87,7 @@ trait TFormSimpleController
             );
         }
 
-        if ($response = $this->processForm($this->form)) {
-            return $response;
-        }
+        $this->processForm($this->form);
 
         $response = $this->buildResponse();
         return $response;
