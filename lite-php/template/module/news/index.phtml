@@ -9,5 +9,5 @@
 <h1><?= $page->displayName ?></h1>
 <?= $page->contents ?>
 
-<h2><?=$this->translate('Все новости')?></h2>
+<h2><?=$this->translate('All news')?></h2>
 <?= $this->widget('news.item.list', ['limit' => '3', 'pagination' => ['pageParam' => 'p', 'type' => 'sliding', 'pagesCount' => 5]]) ?>

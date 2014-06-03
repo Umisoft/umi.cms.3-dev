@@ -2,33 +2,33 @@
 <?=$this->render('partial/authorization.phtml') ?>
 
 <div class="sidebar-module sidebar-module-inset">
-    <h4><?=$this->translate('RSS ленты')?></h4>
-    <p><?=$this->translate('Блоги')?>: <?=$this->widget('blog.post.rssLink', ['template' => 'rssLink'])?></p>
+    <h4><?=$this->translate('RSS feed')?></h4>
+    <p><?=$this->translate('Blogs')?>: <?=$this->widget('blog.post.rssLink', ['template' => 'rssLink'])?></p>
 </div>
 <div class="sidebar-module">
-    <h4><?=$this->translate('Категории')?></h4>
+    <h4><?=$this->translate('Categories')?></h4>
     <?=$this->widget('blog.category.list', ['template' => 'listShort'])?>
 </div>
 <div class="sidebar-module">
-    <h4><?=$this->translate('Облако тэгов')?></h4>
+    <h4><?=$this->translate('Tags cloud')?></h4>
     <?=$this->widget('blog.tag.cloud', ['template' => 'cloud'])?>
 </div>
 <div class="sidebar-module">
-    <h4><?=$this->translate('Авторы')?></h4>
+    <h4><?=$this->translate('Authors')?></h4>
     <?=$this->widget('blog.author.list', ['template' => 'listShort'])?>
 </div>
 <div class="sidebar-module">
-    <h4><?=$this->translate('Посты автора')?></h4>
+    <h4><?=$this->translate('Authors\'s posts')?></h4>
     <ol class="list-unstyled">
-        <li><?=$this->translate('Черновики')?>: <?=$this->widget('blog.draft.ownListLink', ['template' => 'draftLinkAuthor'])?></li>
-        <li><?=$this->translate('Посты на модерации')?>: <?=$this->widget('blog.moderate.ownListLink', ['template' => 'moderateLink'])?></li>
-        <li><?=$this->translate('Отклонённые посты')?>: <?=$this->widget('blog.reject.listLink', ['template' => 'listLink'])?></li>
+        <li><?=$this->translate('Drafts')?>: <?=$this->widget('blog.draft.ownListLink', ['template' => 'draftLinkAuthor'])?></li>
+        <li><?=$this->translate('Post on moderation')?>: <?=$this->widget('blog.moderate.ownListLink', ['template' => 'moderateLink'])?></li>
+        <li><?=$this->translate('Rejected posts')?>: <?=$this->widget('blog.reject.listLink', ['template' => 'listLink'])?></li>
     </ol>
 </div>
 <div class="sidebar-module">
-    <h4><?=$this->translate('Модерирование')?></h4>
+    <h4><?=$this->translate('Moderate')?></h4>
     <ol class="list-unstyled">
-        <li><?=$this->translate('Посты на модерации')?>: <?=$this->widget('blog.moderate.allListLink', ['template' => 'moderateLink'])?></li>
+        <li><?=$this->translate('Post on moderation')?>: <?=$this->widget('blog.moderate.allListLink', ['template' => 'moderateLink'])?></li>
     </ol>
 </div>
 

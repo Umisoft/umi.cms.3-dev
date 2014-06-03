@@ -1,15 +1,15 @@
 <?=$this->render('partial/authorization.phtml') ?>
 
 <div class="sidebar-module sidebar-module-inset">
-    <h4><?=$this->translate('RSS ленты')?></h4>
-    <p><?=$this->translate('Новости')?>: <?=$this->widget('news.item.rssLink', ['template' => 'rssLink'])?></p>
+    <h4><?=$this->translate('RSS feed')?></h4>
+    <p><?=$this->translate('News')?>: <?=$this->widget('news.item.rssLink', ['template' => 'rssLink'])?></p>
 </div>
 <div class="sidebar-module">
-    <h4><?=$this->translate('Рубрики')?></h4>
+    <h4><?=$this->translate('Rubrics')?></h4>
     <?=$this->widget('news.rubric.tree')?>
 </div>
 <div class="sidebar-module">
-    <h4><?=$this->translate('Сюжеты')?></h4>
+    <h4><?=$this->translate('Subjects')?></h4>
     <?=$this->widget('news.subject.list', ['template' => 'listShort'])?>
 </div>
 
