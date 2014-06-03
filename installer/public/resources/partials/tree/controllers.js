@@ -99,7 +99,7 @@ define(['App'], function(UMI){
             contextMenu: function(){
                 var sideBarControl = this.get('controllers.component.sideBarControl');
                 if(sideBarControl && sideBarControl.get('contextToolbar')){
-                    var dropDown = sideBarControl.get('contextToolbar').findBy('type', 'dropDownButton');
+                    var dropDown = sideBarControl.get('contextToolbar').findBy('type', 'dropdownButton');
                     if(dropDown){
                         return dropDown.choices;
                     }
