@@ -182,7 +182,7 @@ define(['App'], function(UMI){
                 toolbar = toolbar.findBy('name', 'filter') || {};
                 toolbar = toolbar.toolbar || [];
                 return toolbar;
-            }.property('controllers.component.contentControls'),
+            }.property('model'),
 
             actions: {
                 orderByProperty: function(propertyName, sortAscending){
