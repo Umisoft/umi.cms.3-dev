@@ -7,8 +7,8 @@
 ?>
 <?php if ($added) : ?>
     <div class="alert alert-success">
-        <p class="bg-success text-success"><?=$this->translate('Add post successful!')?></p>
-        <p class="bg-success text-success"><a href="<?=$blogPost->getPageUrl()?>" class="alert-link">Go to view</a></p>
+        <p class="bg-success text-success"><?=$this->translate('Post has been added.')?></p>
+        <p class="bg-success text-success"><a href="<?=$blogPost->getPageUrl()?>" class="alert-link"><?=$this->translate('Read more')?></a></p>
     </div>
 <?php else : ?>
     <?=$this->render('form/form.phtml', ['form' => $form])?>

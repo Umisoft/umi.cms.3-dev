@@ -59,8 +59,7 @@ class PostEditController extends BaseAccessRestrictedController implements IObje
      */
     protected function buildForm()
     {
-        $id = $this->getRouteVar('id');
-        $blogPost = $this->api->post()->getRejectedPostById($id);
+        $blogPost = $this->api->post()->getRejectedPostById($this->getRouteVar('id'));
 
         if (!$this->isAllowed($blogPost)) {
             throw new ResourceAccessForbiddenException(

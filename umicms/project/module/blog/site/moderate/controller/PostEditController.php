@@ -58,8 +58,7 @@ class PostEditController extends BaseAccessRestrictedController implements IObje
      */
     protected function buildForm()
     {
-        $id = $this->getRouteVar('id');
-        $blogPost = $this->api->post()->getNeedModeratePostById($id);
+        $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
 
         return $this->api->post()->getForm(
             BlogPost::FORM_EDIT_POST,

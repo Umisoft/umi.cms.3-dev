@@ -22,6 +22,7 @@ return [
             'Rubrics' => 'Rubrics',
             'Subjects' => 'Subjects',
             'Back to top' => 'Back to top',
+            'Add post' => 'Add post',
         ],
         'ru-RU' => [
             'ru-RU' => 'RU',
@@ -43,6 +44,7 @@ return [
             'Rubrics' => 'Рубрики',
             'Subjects' => 'Сюжеты',
             'Back to top' => 'Наверх',
+            'Add post' => 'Добавить пост',
         ]
     ],
 
