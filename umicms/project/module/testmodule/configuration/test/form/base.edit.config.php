@@ -18,6 +18,7 @@ use umi\form\element\html5\Time;
 use umi\form\element\Password;
 use umi\form\element\Radio;
 use umi\form\element\Select;
+use umi\form\element\MultiSelect;
 use umi\form\element\Text;
 use umi\form\element\Textarea;
 use umi\form\fieldset\FieldSet;
@@ -79,14 +80,14 @@ return [
                     ],
                 ],
                 TestObject::MULTISELECT => [
-                    'type' => Select::TYPE_NAME,
+                    'type' => MultiSelect::TYPE_NAME,
                     'label' => TestObject::MULTISELECT,
                     'options' => [
                         'dataSource' => TestObject::MULTISELECT,
                         'choices' => [
-                            'msk' => 'Москва',
-                            'spt' => 'СПб',
-                            'vlg' => 'Волгоград',
+                            'msk' => 'Геленджик',
+                            'spt' => 'Ашхабад',
+                            'vlg' => 'Куйрам-Байрам',
                             'rostov' => 'Ростов',
                             'krasnodar' => 'Краснодар'
                         ]
