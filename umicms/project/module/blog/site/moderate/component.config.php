@@ -11,6 +11,7 @@
 namespace umicms\project\module\blog\site\moderate;
 
 use umi\acl\IAclFactory;
+use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\DefaultSitePageComponent;
 
@@ -66,7 +67,10 @@ return [
                 'widget:view' => [],
                 'controller:page' => [],
                 'widget:ownList' => [],
-                'widget:ownListLink' => []
+                'widget:ownListLink' => [],
+                'model:blogPost' => [
+                    IAclManager::OPERATION_ALL => ['own']
+                ]
             ],
             'moderator' => [
                 'controller:index' => [],
