@@ -12,19 +12,19 @@ namespace umicms\project\site\controller;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;
+use umi\hmvc\exception\http\HttpException;
+use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
+use umi\i18n\TLocalizable;
 use umicms\hmvc\url\IUrlManager;
 use umicms\hmvc\widget\BaseFormWidget;
 
 /**
- * Базовый контроллер для обработки форм
+ * Базовый контроллер для обработки форм не имеющих страницы.
  */
-trait TFormController
+trait TFormSimpleController
 {
-    /**
-     * @var array $errors ошибки исполнения
-     */
-    protected $errors = [];
+    use TLocalizable;
     /**
      * @var IForm $form форма для обработки
      */
@@ -60,14 +60,6 @@ trait TFormController
     abstract protected function getUrlManager();
 
     /**
-     * @see BaseController::createViewResponse()
-     * @param string $templateName
-     * @param array $variables
-     * @return Response
-     */
-    abstract protected function createViewResponse($templateName, array $variables = []);
-
-    /**
      * @see BaseController::createRedirectResponse()
      * @param string $url
      * @param int $code
@@ -80,48 +72,28 @@ trait TFormController
      */
     public function __invoke()
     {
+        if (!$this->isRequestMethodPost()) {
+            throw new HttpNotFound($this->translate(
+                'Page not found.'
+            ));
+        }
 
         $this->form = $this->buildForm();
-        $formValid = true;
+        $this->form->setData($this->getAllPostVars());
 
-        if ($this->isRequestMethodPost()) {
+        if (!$this->form->isValid()) {
+            throw new HttpException(
+                Response::HTTP_BAD_REQUEST,
+                $this->translate('Form is invalid.')
+            );
+        }
 
-            $this->form->setData($this->getAllPostVars());
-            $formValid = $this->form->isValid();
-
-            if ($formValid) {
-
-                if ($response = $this->processForm($this->form)) {
-                    return $response;
-                }
-
-            }
+        if ($response = $this->processForm($this->form)) {
+            return $response;
         }
 
         $response = $this->buildResponse();
-        if (!$formValid) {
-            $response->getStatusCode(Response::HTTP_BAD_REQUEST);
-        }
-
         return $response;
-    }
-
-    /**
-     * Возвращает имя шаблона отбражения
-     * @return string
-     */
-    protected function getTemplateName()
-    {
-        return 'form';
-    }
-
-    /**
-     * Возвращает переменные для шаблонизации
-     * @return array
-     */
-    protected function buildResponseContent()
-    {
-        return [];
     }
 
     /**
@@ -130,38 +102,24 @@ trait TFormController
      */
     protected function buildResponse()
     {
-        $result = (array) $this->buildResponseContent();
-        $result['form'] = $this->form->getView();
-
-        if (count($this->errors)) {
-            $result['errors'] = $this->errors;
-        }
-
-        $response = $this->createViewResponse(
-            $this->getTemplateName(),
-            $result
-        );
-
-        return $response;
+        return $this->buildRedirectResponse();
     }
 
     /**
      * Формирует ответ с переадресацией.
+     * @throws HttpException
      * @return Response
      */
     protected function buildRedirectResponse()
     {
         $redirectUrl = null;
         if ($this->form->has(BaseFormWidget::INPUT_REDIRECT_URL)) {
-            /**
-             * @var IFormElement $redirectUrlInput
-             */
+            /** @var IFormElement $redirectUrlInput */
             $redirectUrlInput = $this->form->get(BaseFormWidget::INPUT_REDIRECT_URL);
             $redirectUrl = $redirectUrlInput->getValue();
         }
 
         switch (true) {
-            case !$redirectUrl:
             case ($redirectUrl === BaseFormWidget::NO_REDIRECT): {
                 return $this->buildResponse();
             }
@@ -172,18 +130,12 @@ trait TFormController
                 return $this->createRedirectResponse($redirectUrl);
             }
             default: {
-                return $this->createRedirectResponse($this->getDefaultRedirectUrl());
+                throw new HttpException(
+                    Response::HTTP_SEE_OTHER,
+                    $this->translate('Cannot detect redirect url.')
+                );
             }
         }
-    }
-
-    /**
-     * Возвращает URL для переадресации по умолчанию.
-     * @return string
-     */
-    protected function getDefaultRedirectUrl()
-    {
-        return $this->getUrlManager()->getCurrentUrl(true);
     }
 }
  
