@@ -166,10 +166,15 @@ define(['App'], function(UMI){
              * return Array
              */
             contextMenu: function(){
-                var contextMenu = this.get('controllers.component.contentControls') || [];
-                contextMenu = contextMenu.findBy('name', 'filter') || {};
-                contextMenu = contextMenu.contextMenu || [];
-                return contextMenu;
+                var contentControls = this.get('controllers.component.contentControls') || [];
+                var filter = contentControls.findBy('name', 'filter') || {};
+                var contextToolbar = filter.contextToolbar;
+                if(contextToolbar){
+                    var dropDown = contextToolbar.findBy('type', 'dropdownButton');
+                    if(dropDown){
+                        return dropDown.choices;
+                    }
+                }
             }.property('controllers.component.contentControls'),
 
             /**
