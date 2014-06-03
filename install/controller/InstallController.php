@@ -246,18 +246,58 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         ];
 
         /**
-         * @var UserGroup $authors
+         * @var UserGroup $authorsWithPremoderation
          */
-        $authors = $groupCollection->add()
-            ->setValue('displayName', 'Авторы')
-            ->setValue('displayName', 'Authors', 'en-US');
+        $authorsWithPremoderation = $groupCollection->add()
+            ->setValue('displayName', 'Авторы с премодерацией постов')
+            ->setValue('displayName', 'Authors with premoderation', 'en-US');
 
-        $authors->roles = [
-            'project.site.blog.comment' => ['poster'],
+        $authorsWithPremoderation->roles = [
+            'project.site.blog.draft' => ['author'],
             'project.site.blog.moderate' => ['author'],
             'project.site.blog.post' => ['author'],
-            'project.site.blog.reject' => ['author'],
-            'project.site.blog.draft' => ['author']
+            'project.site.blog.reject' => ['author']
+        ];
+
+        /**
+         * @var UserGroup $authorsWithoutPremoderation
+         */
+        $authorsWithoutPremoderation = $groupCollection->add()
+            ->setValue('displayName', 'Авторы без премодерации постов')
+            ->setValue('displayName', 'Authors without premoderation', 'en-US');
+
+        $authorsWithoutPremoderation->roles = [
+            'project.site.blog.draft' => ['publisher'],
+            'project.site.blog.moderate' => ['author'],
+            'project.site.blog.post' => ['publisher'],
+            'project.site.blog.reject' => ['author']
+        ];
+
+        /**
+         * @var UserGroup $authorsWithPremoderation
+         */
+        $authorsWithPremoderation = $groupCollection->add()
+            ->setValue('displayName', 'Комментарии с премодерацией постов')
+            ->setValue('displayName', 'Authors with premoderation', 'en-US');
+
+        $authorsWithPremoderation->roles = [
+            'project.site.blog.draft' => ['author'],
+            'project.site.blog.moderate' => ['author'],
+            'project.site.blog.post' => ['author'],
+            'project.site.blog.reject' => ['author']
+        ];
+
+        /**
+         * @var UserGroup $moderator
+         */
+        $moderator = $groupCollection->add()
+            ->setValue('displayName', 'Модератор')
+            ->setValue('displayName', 'Moderator', 'en-US');
+
+        $moderator->roles = [
+            'project.site.blog.comment' => ['moderator'],
+            'project.site.blog.moderate' => ['moderator'],
+            'project.site.blog.post' => ['moderator']
         ];
 
         /**
