@@ -17,6 +17,7 @@ module.exports = function(grunt){
                 options: {
                     includePaths: ['libs/foundation/scss/']
                 },
+
                 files: {
                     'build/css/app.css': 'scss/app.scss'
                 }
@@ -39,6 +40,7 @@ module.exports = function(grunt){
                     src: ['*.svg'],
                     dest: "build/css"
                 }],
+
                 options: {
                     datasvgcss: 'icons.data.svg.css',
                     cssprefix: ".icon-",
@@ -54,6 +56,7 @@ module.exports = function(grunt){
                     src: ['*.svg'],
                     dest: "build/css"
                 }],
+
                 options: {
                     datasvgcss: 'icons.dock.svg.css',
                     cssprefix: ".dock-icon-"
@@ -89,12 +92,14 @@ module.exports = function(grunt){
             options: {
                 separator: '\n'
             },
+
             elFinder: {
                 options: {
                     separator: ';'
                 },
+
                 src: [
-//                    'partials/fileManager/elFinder/jquery/jquery-ui-1.10.4.custom.min.js',
+                    //'partials/fileManager/elFinder/jquery/jquery-ui-1.10.4.custom.min.js',
                     // Файлы перечислены в необходимом порядке соединения
                     'partials/fileManager/elFinder/js/elFinder.js',
                     'partials/fileManager/elFinder/js/jquery.elfinder.js',
@@ -126,6 +131,7 @@ module.exports = function(grunt){
                 ],
                 dest: 'libs/elFinder.js'
             },
+
             //Объединяем стили с иконками
             css: {
                 src: [
@@ -141,6 +147,7 @@ module.exports = function(grunt){
             options: {
                 browsers: ['last 2 version', 'ie 9', 'opera 12']
             },
+
             dist: {
                 src: 'build/css/styles.css'
             }
@@ -150,6 +157,36 @@ module.exports = function(grunt){
             compress: {
                 files: {
                     'deploy/styles.css': ['build/css/styles.css']
+                }
+            }
+        },
+
+        requirejs: {
+            compile: {
+                options: {
+                    baseUrl: './', //Устанавливаем пути относительно папки resources
+                    stubModules: ['text'], //Говорит сборщику, что мы используем модуль requirejs!text
+                    mainConfigFile: "main.js", //Основной конфиг (тот же что указан в layout.phtml)
+                    name: 'main',
+                    out: 'build/js/app.js', //Файл-результат
+                    inlineText: true,
+                    optimize: 'uglify2',
+                    exclude: [
+                        'Modernizr',
+                        'jQuery',
+                        'jQueryUI',
+                        'Handlebars',
+                        'Ember',
+                        'DS',
+                        'iscroll',
+                        'ckEditor',
+                        'timepicker',
+                        'moment',
+                        'elFinder',
+                        'chartJs'
+                    ], //Исключаем файлы с их зависимостями
+
+                    findNestedDependencies: true //Ищет вызовы require внутри других require и define
                 }
             }
         },
@@ -165,6 +202,16 @@ module.exports = function(grunt){
                     outdir: 'docs/frontend'
                 }
             }
+        },
+
+        /*
+        * Задача для первоначальной развёртки
+        *
+        * Устновка зависимостей bower
+        * Вся сборка до рабочего состояния
+        */
+        install: {
+
         }
     });
 
@@ -174,7 +221,7 @@ module.exports = function(grunt){
     * grunt-contrib-clean
     * grunt-contrib-copy
     *
-    * */
+    */
 
     //подгружаем необходимые плагины
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -186,10 +233,13 @@ module.exports = function(grunt){
     grunt.loadNpmTasks("grunt-contrib-yuidoc");
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
 
 
     //регистрируем задачу
     grunt.registerTask('default', ['watch']); //задача по умолчанию, просто grunt
     grunt.registerTask('deploy', ['clean', 'copy:png', 'copy:svg', 'grunticon', 'sass', 'concat', 'autoprefixer', 'csso']);
-    grunt.registerTask("docs", ["yuidoc"]);
+    grunt.registerTask('require', ['requirejs']);
+    grunt.registerTask('docs', ['yuidoc']);
+    grunt.registerTask('install', ['install']);
 };

@@ -1,14 +1,16 @@
 define(['App', 'text!./radioElement.hbs'], function(UMI, radioElement){
     "use strict";
-    Ember.TEMPLATES['UMI/components/radio-element'] = Ember.Handlebars.compile(radioElement);
+    Ember.TEMPLATES['UMI/radio-element'] = Ember.Handlebars.compile(radioElement);
 
     return function(){
-        UMI.RadioElementComponent = Ember.Component.extend({
+        UMI.RadioElementView = Ember.View.extend({
+            templateName: 'radio-element',
             classNames: ['umi-element-radio'],
 
-            inputId: function(){
-                return 'input-' + this.get('elementId');
-            }.property()
+            didInsertElement: function(){
+                var object = this.get('object');
+                var property = this.get('meta.dataSource');
+            }
         });
     };
 });

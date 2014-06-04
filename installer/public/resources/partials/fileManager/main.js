@@ -16,7 +16,6 @@ define(['App'], function(UMI){
 
         didInsertElement: function(){
             var that = this;
-            console.log('elfinder');
             $('#elfinder').elfinder({
                 url : '/admin/api/files/manager/action/connector',
                 lang: 'ru',

@@ -7,15 +7,6 @@ define(['App', 'text!./textElement.hbs'], function(UMI, textElement){
         UMI.TextElementComponent = Ember.Component.extend(UMI.InputValidate, {
             classNames: ['umi-element', 'umi-element-text'],
 
-            didInsertElement: function(){
-                var that = this;
-                var el = this.$();
-                el.find('.icon-delete').click(function(){
-                    el.find('input').val('');
-                    that.focusIn();
-                });
-            },
-
             inputView: Ember.View.extend({
                 template: function(){
                     var dataSource = this.get('parentView.meta.dataSource');
