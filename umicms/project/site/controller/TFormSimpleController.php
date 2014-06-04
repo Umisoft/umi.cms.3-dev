@@ -14,6 +14,7 @@ use umi\form\element\IFormElement;
 use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpNotFound;
+use umi\http\Request;
 use umi\http\Response;
 use umicms\hmvc\url\IUrlManager;
 use umicms\hmvc\widget\BaseFormWidget;
@@ -74,6 +75,20 @@ trait TFormSimpleController
     abstract protected function createRedirectResponse($url, $code = Response::HTTP_SEE_OTHER);
 
     /**
+     * @see BaseController::getRequest()
+     * @return Request
+     */
+    abstract protected function getRequest();
+
+    /**
+     * @see BaseController::createResponse()
+     * @param $content
+     * @param int $code
+     * @return Request
+     */
+    abstract protected function createResponse($content, $code = Response::HTTP_OK);
+
+    /**
      * {@inheritdoc}
      */
     public function __invoke()
@@ -113,20 +128,17 @@ trait TFormSimpleController
             $redirectUrl = $redirectUrlInput->getValue();
         }
 
-        switch (true) {
-            case (
-                strpos($redirectUrl, '/') === 0 ||
-                strpos($redirectUrl, $this->getUrlManager()->getProjectUrl(true)
-                ) === 0): {
-                return $this->createRedirectResponse($redirectUrl);
-            }
-            default: {
-                throw new HttpException(
-                    Response::HTTP_SEE_OTHER,
-                    $this->translate('Cannot detect redirect url.')
-                );
-            }
+        if (empty($redirectUrl)) {
+            $redirectUrl = $this->getRequest()->getReferer();
         }
+
+        if (strpos($redirectUrl, '/') === 0 ||
+            strpos($redirectUrl, $this->getUrlManager()->getProjectUrl(true)) === 0)
+        {
+            return $this->createRedirectResponse($redirectUrl);
+        }
+
+        return $this->createResponse('The request was processed successfully.');
     }
 }
  

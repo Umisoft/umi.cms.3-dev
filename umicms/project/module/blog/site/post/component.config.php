@@ -75,6 +75,7 @@ return [
             ],
             'publisher' => [
                 'controller:add' => [],
+                'widget:addPostLink' => [],
             ],
             'moderator' => [
                 'controller:edit' => [],
