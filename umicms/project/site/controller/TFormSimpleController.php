@@ -126,21 +126,44 @@ trait TFormSimpleController
             /** @var IFormElement $redirectUrlInput */
             $redirectUrlInput = $this->form->get(BaseFormWidget::INPUT_REDIRECT_URL);
             $redirectUrl = $redirectUrlInput->getValue();
+
+            if ($this->validateRedirectUri($redirectUrl)) {
+                return $this->createRedirectResponse($redirectUrl);
+            }
         }
 
-        if (empty($redirectUrl)) {
-            $redirectUrl = $this->getRequest()->getReferer();
-        }
-
-        if (strpos($redirectUrl, '/') === 0 ||
-            strpos($redirectUrl, $this->getUrlManager()->getProjectUrl(true)) === 0)
-        {
+        $redirectUrl = $this->getDefaultRedirectUrl();
+        if ($this->validateRedirectUri($redirectUrl)) {
             return $this->createRedirectResponse($redirectUrl);
         }
 
         return $this->createResponse($this->translate(
                 'The request was processed successfully.'
             ));
+    }
+
+    /**
+     * Возвращает URL для переадресации по умолчанию.
+     * @return string
+     */
+    protected function getDefaultRedirectUrl()
+    {
+        return $this->getRequest()->getReferer();
+    }
+
+    /**
+     * Валидация URL для переадресации.
+     * @param string $redirectUrl URL для переадресации
+     * @return bool
+     */
+    protected function validateRedirectUri($redirectUrl)
+    {
+        if (strpos($redirectUrl, '/') === 0 ||
+            strpos($redirectUrl, $this->getUrlManager()->getProjectUrl(true)) === 0)
+        {
+            return true;
+        }
+        return false;
     }
 }
  
