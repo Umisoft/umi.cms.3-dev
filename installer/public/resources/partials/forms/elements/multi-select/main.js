@@ -29,10 +29,10 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
              */
             placeholder: '',
             /**
-             * определяет использование статичного списка
-             * @property hasStaticChoices
+             * определяет использование lazy списка
+             * @property isLazy
              */
-            hasStaticChoices: true,
+            isLazy: false,
             /**
              * Коллекция объектов (choices)
              * @property collection
@@ -60,7 +60,7 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
              * @property selectedObjects
              */
             selectedObjects: function(){
-                var key = this.get('hasStaticChoices') ? 'value' : 'id';
+                var key = this.get('isLazy') ? 'id' : 'value';
                 var collection = this.get('collection') || [];
                 var selectedObjects = [];
                 var selectedIds = this.get('selectedIds') || [];
@@ -77,7 +77,7 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
              * @property notSelectedObjects
              */
             notSelectedObjects: function(){
-                var key = this.get('hasStaticChoices') ? 'value' : 'id';
+                var key = this.get('isLazy') ? 'id' : 'value';
                 var collection = this.get('collection');
                 var notSelectedObjects = [];
                 var ids;
@@ -158,7 +158,7 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
                     collection.objectAt(index).set('hover', true);
                 },
                 selectHover: function(){
-                    var key = this.get('hasStaticChoices') ? 'value' : 'id';
+                    var key = this.get('isLazy') ? 'id' : 'value';
                     var collection = this.get('notSelectedObjects');
                     var hoverObject = collection.findBy('hover', true);
                     this.send('select', hoverObject.get(key));
@@ -196,7 +196,7 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
                     var key = 'value';
                     var label = 'label';
                     var parentView = this.get('parentView');
-                    if(!parentView.get('hasStaticChoices')){
+                    if(parentView.get('isLazy')){
                         key = 'id';
                         label = 'displayName';
                     }
@@ -265,16 +265,8 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
                 var store = self.get('controller.store');
                 var promises = [];
                 var selectedObjects;
-                this.set('hasStaticChoices', !!this.get('meta.choices'));
-                if(this.get('hasStaticChoices')){
-                    self.set('collection', this.get('meta.choices'));
-                    self.set('selectedIds', this.get('meta.choices').findBy('value', object.get(property)) || []);
-                    /*this.addObserver('object.' + property, function(){
-                        Ember.run.once(function(){
-                            self.set('selection', self.get('meta.choices').findBy('value', object.get(property)));
-                        });
-                    });*/
-                } else{
+                this.set('isLazy', this.get('meta.lazy'));
+                if(this.get('isLazy')){
                     this.reopen(UMI.MultiSelectCollectionBehaviour);
                     selectedObjects = object.get(property);
                     promises.push(selectedObjects);
@@ -293,6 +285,14 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
                         self.set('selectedIds', results[0].mapBy('id') || []);
                         Ember.set(object.get('loadedRelationshipsByName'), property, results[0].mapBy('id'));
                     });
+                } else{
+                    self.set('collection', this.get('meta.choices'));
+                    self.set('selectedIds', this.get('meta.choices').findBy('value', object.get(property)) || []);
+                    /*this.addObserver('object.' + property, function(){
+                     Ember.run.once(function(){
+                     self.set('selection', self.get('meta.choices').findBy('value', object.get(property)));
+                     });
+                     });*/
                 }
             },
 
