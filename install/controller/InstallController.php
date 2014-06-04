@@ -274,17 +274,14 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         ];
 
         /**
-         * @var UserGroup $authorsWithPremoderation
+         * @var UserGroup $commentWithPremoderation
          */
-        $authorsWithPremoderation = $groupCollection->add()
-            ->setValue('displayName', 'Комментарии с премодерацией постов')
-            ->setValue('displayName', 'Authors with premoderation', 'en-US');
+        $commentWithPremoderation = $groupCollection->add()
+            ->setValue('displayName', 'Комментарии с премодерацией')
+            ->setValue('displayName', 'Comment with premoderation', 'en-US');
 
-        $authorsWithPremoderation->roles = [
-            'project.site.blog.draft' => ['author'],
-            'project.site.blog.moderate' => ['author'],
-            'project.site.blog.post' => ['author'],
-            'project.site.blog.reject' => ['author']
+        $commentWithPremoderation->roles = [
+            'project.site.blog.comment' => ['poster']
         ];
 
         /**
@@ -363,7 +360,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('email', 'demo@umisoft.ru');
 
         $user->groups->attach($visitors);
-        $user->groups->attach($authors);
+        $user->groups->attach($authorsWithPremoderation);
         $user->groups->attach($registeredUsers);
         $user->setPassword('demo');
 
