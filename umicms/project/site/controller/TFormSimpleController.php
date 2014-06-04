@@ -138,7 +138,9 @@ trait TFormSimpleController
             return $this->createRedirectResponse($redirectUrl);
         }
 
-        return $this->createResponse('The request was processed successfully.');
+        return $this->createResponse($this->translate(
+                'The request was processed successfully.'
+            ));
     }
 }
  
