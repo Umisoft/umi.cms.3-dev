@@ -16,7 +16,6 @@ use umi\rss\IRssFeed;
 use umi\rss\IRssFeedAware;
 use umi\rss\RssItem;
 use umi\rss\TRssFeedAware;
-use umicms\exception\InvalidArgumentException;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManagerAware;
@@ -428,7 +427,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     {
         try {
             $this->getCurrentAuthor();
-        } catch (InvalidArgumentException $e) {
+        } catch (RuntimeException $e) {
             return false;
         }
         return true;
