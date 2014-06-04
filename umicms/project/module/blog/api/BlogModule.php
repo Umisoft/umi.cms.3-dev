@@ -299,6 +299,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function getComments()
     {
         $comments = $this->comment()->select()
+            ->orderBy(BlogComment::FIELD_HIERARCHY_LEVEL, CmsSelector::ORDER_ASC)
             ->orderBy(BlogComment::FIELD_PUBLISH_TIME, CmsSelector::ORDER_DESC);
 
         return $comments;
