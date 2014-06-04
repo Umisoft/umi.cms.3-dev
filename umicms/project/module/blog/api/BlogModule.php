@@ -406,7 +406,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             ->getResult()
             ->fetch();
 
-        if (isset($this->currentAuthor) && !$this->currentAuthor instanceof BlogAuthor) {
+        if ($this->currentAuthor && !$this->currentAuthor instanceof BlogAuthor) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Method parameter "{param} should be instance of "{class}".',
@@ -427,7 +427,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     public function hasCurrentAuthor()
     {
-        return $this->getCurrentAuthor() ? true : false;
+        try {
+            $this->getCurrentAuthor();
+        } catch (InvalidArgumentException $e) {
+            return false;
+        }
+        return true;
     }
 
     /**
