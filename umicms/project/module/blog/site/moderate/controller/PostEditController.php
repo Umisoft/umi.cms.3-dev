@@ -10,26 +10,31 @@
 
 namespace umicms\project\module\blog\site\moderate\controller;
 
-use umi\hmvc\exception\http\HttpNotFound;
-use umi\http\Response;
+use umi\form\IForm;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер редактирования поста блога, требующего модерации.
  */
 class PostEditController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
+    use TFormController;
     use TObjectPersisterAware;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
     protected $api;
+    /**
+     * @var bool $success флаг указывающий на успешное сохранение изменений
+     */
+    private $success = false;
 
     /**
      * Конструктор.
@@ -41,35 +46,44 @@ class PostEditController extends BaseAccessRestrictedController implements IObje
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws HttpNotFound
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getTemplateName()
     {
-        $id = $this->getRouteVar('id');
-        $blogPost = $this->api->post()->getNeedModeratePostById($id);
-        $form = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $blogPost);
+        return 'editPost';
+    }
 
-        if ($this->isRequestMethodPost()) {
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
+    {
+        $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
 
-            $formData = $this->getAllPostVars();
-
-            if ($form->setData($formData) && $form->isValid()) {
-
-                $this->getObjectPersister()->commit();
-
-                return $this->createRedirectResponse($this->getRequest()->getReferer());
-            }
-        }
-
-        return $this->createViewResponse(
-            'editPost',
-            [
-                'blogPost' => $blogPost,
-                'form' => $form
-            ]
+        return $this->api->post()->getForm(
+            BlogPost::FORM_EDIT_POST,
+            IObjectType::BASE,
+            $blogPost
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $this->getObjectPersister()->commit();
+        $this->success = true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildResponseContent()
+    {
+        return [
+            'success' => $this->success
+        ];
     }
 }
  

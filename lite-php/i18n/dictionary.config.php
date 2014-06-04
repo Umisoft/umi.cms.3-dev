@@ -22,6 +22,7 @@ return [
             'Rubrics' => 'Rubrics',
             'Subjects' => 'Subjects',
             'Back to top' => 'Back to top',
+            'Add post' => 'Add post',
         ],
         'ru-RU' => [
             'ru-RU' => 'RU',
@@ -43,6 +44,7 @@ return [
             'Rubrics' => 'Рубрики',
             'Subjects' => 'Сюжеты',
             'Back to top' => 'Наверх',
+            'Add post' => 'Добавить пост',
         ]
     ],
 
@@ -57,6 +59,7 @@ return [
             'Comments' => 'Comments',
             'Read more' => 'Read more',
             'Moderation queue' => 'Moderation queue',
+            'Post has been saved.' => 'Post has been saved.',
         ],
         'ru-RU' => [
             'RSS' => 'RSS ленты',
@@ -68,6 +71,7 @@ return [
             'Comments' => 'Комментарии',
             'Read more' => 'Читать далее',
             'Moderation queue' => 'Очередь модерации',
+            'Post has been saved.' => 'Пост сохранён.',
         ]
     ],
 

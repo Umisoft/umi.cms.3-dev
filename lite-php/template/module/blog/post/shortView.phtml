@@ -18,5 +18,8 @@
     <?= $blogPost->announcement ?>
 
     <a href="<?=$blogPost->getPageUrl()?>"><?=$this->translate('Read more')?></a>
-    <?=$this->widget('blog.post.unPublished', ['blogPost' => $blogPost, 'template' => 'unPublishPostForm'])?>
+
+    <div class="btn-toolbar">
+        <?=$this->widget('blog.post.unPublished', ['blogPost' => $blogPost, 'template' => 'unPublishPostForm'])?>
+    </div>
 </div>

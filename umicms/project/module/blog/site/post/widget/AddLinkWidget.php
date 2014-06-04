@@ -11,24 +11,22 @@
 namespace umicms\project\module\blog\site\post\widget;
 
 use umi\acl\IAclResource;
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseFormWidget;
+use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogCategory;
-use umicms\project\module\blog\api\object\BlogPost;
 
 /**
- * Виджет добавления поста.
+ * Виджет для вывода URL на добавление поста.
  */
-class AddWidget extends BaseFormWidget implements IAclResource
+class AddLinkWidget extends BaseLinkWidget implements IAclResource
 {
     /**
-     * @var string $template имя шаблона, по которому выводится виджет
+     * {@inheritdoc}
      */
-    public $template = 'addPostForm';
+    public $template = 'addPostLink';
     /**
-     * @var string|BlogCategory $blogCategory рубрика или GUID родительской рубрики
+     * @var string|BlogCategory $blogCategory категория или GUID в которую добавляется пост
      */
     public $blogCategory;
     /**
@@ -48,7 +46,7 @@ class AddWidget extends BaseFormWidget implements IAclResource
     /**
      * {@inheritdoc}
      */
-    protected function getForm()
+    protected function getLinkUrl()
     {
         if (is_string($this->blogCategory)) {
             $this->blogCategory = $this->api->category()->get($this->blogCategory);
@@ -66,14 +64,7 @@ class AddWidget extends BaseFormWidget implements IAclResource
             );
         }
 
-        $post = $this->api->post()->add();
-        $post->category = $this->blogCategory;
-
-        $form = $this->api->post()->getForm(BlogPost::FORM_ADD_POST, IObjectType::BASE, $post);
-
-        $form->setAction($this->getUrl('add'));
-
-        return $form;
+        return $this->getUrl('add', ['id' => $this->blogCategory->getId(), $this->absolute]);
     }
 }
  

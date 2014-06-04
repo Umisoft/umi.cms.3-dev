@@ -27,6 +27,10 @@ class PostDraftWidget extends BaseFormWidget implements IAclResource
      */
     public $template = 'draftForm';
     /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
+    /**
      * @var string|BlogPost $blogPost пост или GUID поста на модерации, необходимого перенесте в черновики
      */
     public $blogPost;

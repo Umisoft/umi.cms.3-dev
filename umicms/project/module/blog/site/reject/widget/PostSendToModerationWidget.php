@@ -25,7 +25,11 @@ class PostSendToModerationWidget extends BaseFormWidget implements IAclResource
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'publishForm';
+    public $template = 'sendToModerationForm';
+    /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
     /**
      * @var string|BlogPost $blogPost пост или GUID поста отправляемого на модерацию
      */

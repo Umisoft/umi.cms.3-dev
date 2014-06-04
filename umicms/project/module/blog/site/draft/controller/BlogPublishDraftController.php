@@ -10,30 +10,32 @@
 
 namespace umicms\project\module\blog\site\draft\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
+use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\hmvc\exception\http\HttpNotFound;
-use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\site\controller\TFormSimpleController;
 
 /**
  * Контроллер публикации черновика.
  */
-class BlogPublishDraftController extends BaseAccessRestrictedController implements IFormAware, IObjectPersisterAware
+class BlogPublishDraftController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
-    use TFormAware;
+    use TFormSimpleController;
     use TObjectPersisterAware;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
     protected $api;
+    /**
+     * @var BlogPost $blogDraft черновик поста
+     */
+    protected $blogDraft;
 
     /**
      * Конструктор.
@@ -45,42 +47,29 @@ class BlogPublishDraftController extends BaseAccessRestrictedController implemen
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
-     * @throws HttpNotFound
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function buildForm()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound(
-                $this->translate('Page not found')
-            );
-        }
+        $this->blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
 
-        $blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
-
-        if (!$this->isAllowed($blogDraft)) {
+        if (!$this->isAllowed($this->blogDraft)) {
             throw new ResourceAccessForbiddenException(
-                $blogDraft,
+                $this->blogDraft,
                 $this->translate('Access denied')
             );
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE);
-        $formData = $this->getAllPostVars();
+        return $this->api->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE);
+    }
 
-        if ($form->setData($formData) && $form->isValid()) {
-
-            $blogDraft->published();
-
-            $this->getObjectPersister()->commit();
-
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages()); exit();
-        }
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $this->blogDraft->published();
+        $this->getObjectPersister()->commit();
     }
 }
  

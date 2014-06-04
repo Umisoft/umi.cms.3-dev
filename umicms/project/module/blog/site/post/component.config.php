@@ -29,8 +29,8 @@ return [
         'view' => __NAMESPACE__ . '\widget\PostWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'rssLink' => __NAMESPACE__ . '\widget\ListRssLinkWidget',
-        'add' => __NAMESPACE__ . '\widget\AddWidget',
         'unPublished' => __NAMESPACE__ . '\widget\PostToDraftWidget',
+        'addPostLink' => __NAMESPACE__ . '\widget\AddLinkWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\EditLinkWidget'
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
@@ -52,8 +52,8 @@ return [
             'widget:view',
             'widget:list',
             'widget:rssLink',
-            'widget:add',
             'widget:unPublished',
+            'widget:addPostLink',
             'widget:editPostLink',
             'model:blogPost'
         ],
@@ -75,12 +75,13 @@ return [
             ],
             'publisher' => [
                 'controller:add' => [],
-                'widget:add' => []
+                'widget:addPostLink' => [],
             ],
             'moderator' => [
                 'controller:edit' => [],
                 'controller:unPublished' => [],
                 'widget:unPublished' => [],
+                'widget:addPostLink' => [],
                 'widget:editPostLink' => [],
                 'model:blogPost' => [
                     'edit' => []
@@ -97,8 +98,8 @@ return [
             ]
         ],
         'add' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route' => '/add',
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/add/{id:integer}',
             'defaults' => [
                 'controller' => 'add'
             ]

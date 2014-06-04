@@ -452,8 +452,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $author->getProperty('componentPath')->setValue('blog.author');
 
         $category = $categoryCollection->add('hunters')
-            ->setValue('displayName', 'Блог')
-            ->setValue('displayName', 'Blog', 'en-US')
+            ->setValue('displayName', 'Охотницы')
+            ->setValue('displayName', 'Hunters', 'en-US')
             ->setValue('metaTitle', 'Блог Охотниц за приведениями')
             ->setValue('h1', 'Блог Охотниц за приведениями')
             ->setValue('contents', '<p>Это блого обо всем на свете...</p>')

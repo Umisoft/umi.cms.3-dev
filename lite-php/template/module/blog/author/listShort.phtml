@@ -9,7 +9,7 @@
         <?php foreach ($list as $blogAuthor) : ?>
             <li>
                 <?=$this->widget('blog.author.view', ['blogAuthor' => $blogAuthor, 'template' => 'listShortView'])?>
-                <?=$this->widget('blog.author.rssList', ['blogAuthor' => $blogAuthor, 'template' => 'rssLink'])?>
+                <?=$this->widget('blog.author.rssLink', ['blogAuthor' => $blogAuthor, 'template' => 'rssLink'])?>
             </li>
         <?php endforeach; ?>
     </ol>

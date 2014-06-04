@@ -10,29 +10,32 @@
 
 namespace umicms\project\module\blog\site\draft\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
+use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер редактирования черновика блога.
  */
-class BlogEditDraftController extends BaseAccessRestrictedController implements IFormAware, IObjectPersisterAware
+class BlogEditDraftController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
-    use TFormAware;
+    use TFormController;
     use TObjectPersisterAware;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
     protected $api;
+    /**
+     * @var bool $success флаг указывающий на успешное сохранение изменений
+     */
+    private $success = false;
 
     /**
      * Конструктор.
@@ -44,14 +47,19 @@ class BlogEditDraftController extends BaseAccessRestrictedController implements 
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getTemplateName()
     {
-        $id = $this->getRouteVar('id');
-        $blogDraft = $this->api->post()->getDraftById($id);
+        return 'blogDraft';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
+    {
+        $blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
 
         if (!$this->isAllowed($blogDraft)) {
             throw new ResourceAccessForbiddenException(
@@ -60,27 +68,27 @@ class BlogEditDraftController extends BaseAccessRestrictedController implements 
             );
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $blogDraft);
-
-        if ($this->isRequestMethodPost()) {
-
-            $formData = $this->getAllPostVars();
-
-            if ($form->setData($formData) && $form->isValid()) {
-
-                $this->getObjectPersister()->commit();
-
-                return $this->createRedirectResponse($this->getRequest()->getReferer());
-            }
-        }
-
-        return $this->createViewResponse(
-            'blogDraft',
-            [
-                'blogDraft' => $blogDraft,
-                'form' => $form
-            ]
+        return $this->api->post()->getForm(
+            BlogPost::FORM_EDIT_POST,
+            IObjectType::BASE,
+            $blogDraft
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $this->getObjectPersister()->commit();
+        $this->success = true;
+    }
+
+    protected function buildResponseContent()
+    {
+        return [
+            'success' => $this->success
+        ];
     }
 }
  
