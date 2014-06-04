@@ -392,8 +392,8 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает текущего автора блога.
-     * @throws InvalidArgumentException
-     * @return mixed
+     * @throws RuntimeException в случае, если текущий автор не установлен
+     * @return BlogAuthor
      */
     public function getCurrentAuthor()
     {
@@ -406,13 +406,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             ->getResult()
             ->fetch();
 
-        if ($this->currentAuthor && !$this->currentAuthor instanceof BlogAuthor) {
-            throw new InvalidArgumentException(
+        if (!$this->currentAuthor instanceof BlogAuthor) {
+            throw new RuntimeException(
                 $this->translate(
-                    'Method parameter "{param} should be instance of "{class}".',
+                    'Current author should be instance of "{class}".',
                     [
-                        'param' => 'currentAuthor',
-                        'class' => 'BlogAuthor'
+                        'class' => BlogAuthor::className()
                     ]
                 )
             );
