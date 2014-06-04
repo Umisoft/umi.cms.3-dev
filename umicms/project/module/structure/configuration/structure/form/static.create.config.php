@@ -38,9 +38,9 @@ return [
                 ],
                 StaticPage::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => StaticPage::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => StaticPage::FIELD_PAGE_LAYOUT
                     ],
                 ],

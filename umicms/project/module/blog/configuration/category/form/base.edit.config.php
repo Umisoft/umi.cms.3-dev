@@ -38,9 +38,9 @@ return [
                 ],
                 BlogCategory::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogCategory::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogCategory::FIELD_PAGE_LAYOUT
                     ],
                 ]

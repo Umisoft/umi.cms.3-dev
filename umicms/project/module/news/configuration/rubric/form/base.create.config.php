@@ -39,9 +39,9 @@ return [
                 ],
                 NewsRubric::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => NewsRubric::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsRubric::FIELD_PAGE_LAYOUT
                     ],
                 ],
