@@ -21,8 +21,8 @@ var button = {
  * Кнопка с выпадающим списком
  * @type {{type: string, attributes: {title: string, alt: string, class: string, label: string, icon: {class: string}}, choices: *[]}}
  */
-var dropDownButton = {
-    "type": "dropDownButton",
+var dropdownButton = {
+    "type": "dropdownButton",
     "attributes": {
         "title": "Создать",
         "class": "large secondary",
@@ -67,7 +67,7 @@ var TableControl = {
     ],
     "contextToolbar": [
         {
-            "type": "dropDownButton",
+            "type": "dropdownButton",
             "attributes": {
                 "class": "umi-button umi-toolbar-create-button"},
             "choices": [
@@ -86,7 +86,7 @@ var TableControl = {
 var TreeControl = {
     "contextToolbar": [
         {
-            "type": "dropDownButton",
+            "type": "dropdownButton",
             "attributes": {
                 "class": "umi-button umi-toolbar-create-button"},
             "choices": [
@@ -157,7 +157,7 @@ var FormControl = {
             }
         },
         {
-            "type": "dropDownButton",// Новый тип
+            "type": "dropdownButton",
             "behaviour": {
                 "name": "backupList"
             },
@@ -167,10 +167,7 @@ var FormControl = {
                 "icon": {
                     "class": "icon icon-backupList"
                 }
-            },
-            "choices": [
-                {"behaviour": {"name": "getBackup"}, "attributes": {"label": "2014-05-29 02:30:54 Имя пользователя"}}
-            ]
+            }
         }
     ]
 };
