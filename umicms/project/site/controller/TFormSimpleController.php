@@ -15,7 +15,6 @@ use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
-use umi\i18n\TLocalizable;
 use umicms\hmvc\url\IUrlManager;
 use umicms\hmvc\widget\BaseFormWidget;
 
@@ -24,7 +23,6 @@ use umicms\hmvc\widget\BaseFormWidget;
  */
 trait TFormSimpleController
 {
-    use TLocalizable;
     /**
      * @var IForm $form форма для обработки
      */
@@ -59,6 +57,15 @@ trait TFormSimpleController
     abstract protected function getUrlManager();
 
     /**
+     * @see TLocalizable::translate()
+     * @param $message
+     * @param array $placeholders
+     * @param null $localeId
+     * @return string
+     */
+    abstract protected function translate($message, array $placeholders = [], $localeId = null);
+
+    /**
      * @see BaseController::createRedirectResponse()
      * @param string $url
      * @param int $code
@@ -89,16 +96,6 @@ trait TFormSimpleController
 
         $this->processForm($this->form);
 
-        $response = $this->buildResponse();
-        return $response;
-    }
-
-    /**
-     * Формирует ответ
-     * @return Response
-     */
-    protected function buildResponse()
-    {
         return $this->buildRedirectResponse();
     }
 
@@ -117,9 +114,6 @@ trait TFormSimpleController
         }
 
         switch (true) {
-            case ($redirectUrl === BaseFormWidget::NO_REDIRECT): {
-                return $this->buildResponse();
-            }
             case (
                 strpos($redirectUrl, '/') === 0 ||
                 strpos($redirectUrl, $this->getUrlManager()->getProjectUrl(true)
