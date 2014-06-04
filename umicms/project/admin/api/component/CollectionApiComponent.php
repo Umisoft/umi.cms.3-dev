@@ -1,7 +1,6 @@
 <?php
 /**
  * This file is part of UMI.CMS.
- *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
@@ -22,11 +21,12 @@ use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\layout\action\Action;
 
 /**
  * Компонент административной панели.
  */
-class DefaultAdminComponent extends AdminComponent implements ICollectionComponent, ICollectionManagerAware
+class CollectionApiComponent extends AdminComponent implements ICollectionComponent, ICollectionManagerAware
 {
     use TCollectionManagerAware;
 
@@ -86,15 +86,14 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionCompone
     public $defaultOptions = [
 
         self::OPTION_CONTROLLERS => [
-            self::LIST_CONTROLLER =>  'umicms\project\admin\api\controller\DefaultRestListController',
-            self::ITEM_CONTROLLER => 'umicms\project\admin\api\controller\DefaultRestItemController',
-            self::ACTION_CONTROLLER => 'umicms\project\admin\api\controller\DefaultRestActionController',
+            self::LIST_CONTROLLER     => 'umicms\project\admin\api\controller\DefaultRestListController',
+            self::ITEM_CONTROLLER     => 'umicms\project\admin\api\controller\DefaultRestItemController',
+            self::ACTION_CONTROLLER   => 'umicms\project\admin\api\controller\DefaultRestActionController',
             self::SETTINGS_CONTROLLER => 'umicms\project\admin\api\controller\DefaultRestSettingsController',
         ],
+        self::OPTION_ACL         => [
 
-        self::OPTION_ACL => [
-
-            IAclFactory::OPTION_ROLES => [
+            IAclFactory::OPTION_ROLES     => [
                 'editor' => []
             ],
             IAclFactory::OPTION_RESOURCES => [
@@ -103,30 +102,28 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionCompone
                 'controller:item',
                 'controller:list'
             ],
-            IAclFactory::OPTION_RULES => [
+            IAclFactory::OPTION_RULES     => [
                 'editor' => [
                     'controller:settings' => [],
-                    'controller:action' => [],
-                    'controller:item' => [],
-                    'controller:list' => []
+                    'controller:action'   => [],
+                    'controller:item'     => [],
+                    'controller:list'     => []
                 ],
             ]
         ],
-
         self::OPTION_ROUTES      => [
 
-            'action' => [
+            'action'     => [
                 'type'     => IRouteFactory::ROUTE_SIMPLE,
                 'route'    => '/action/{action}',
                 'defaults' => [
                     'controller' => self::ACTION_CONTROLLER
                 ]
             ],
-
             'collection' => [
-                'type'     => IRouteFactory::ROUTE_FIXED,
-                'route'    => '/collection',
-                'defaults' => [
+                'type'      => IRouteFactory::ROUTE_FIXED,
+                'route'     => '/collection',
+                'defaults'  => [
                     'controller' => self::LIST_CONTROLLER
                 ],
                 'subroutes' => [
@@ -139,9 +136,8 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionCompone
                     ]
                 ]
             ],
-
-            'settings' => [
-                'type' => IRouteFactory::ROUTE_FIXED,
+            'settings'   => [
+                'type'     => IRouteFactory::ROUTE_FIXED,
                 'defaults' => [
                     'controller' => self::SETTINGS_CONTROLLER
                 ]
@@ -169,72 +165,103 @@ class DefaultAdminComponent extends AdminComponent implements ICollectionCompone
                     'Option "{option}" is required for component "{path}".',
                     [
                         'option' => self::OPTION_COLLECTION_NAME,
-                        'path' => $this->getPath()
+                        'path'   => $this->getPath()
                     ]
                 )
             );
         }
 
-        return $this->getCollectionManager()->getCollection($this->options[self::OPTION_COLLECTION_NAME]);
+        return $this->getCollectionManager()
+            ->getCollection($this->options[self::OPTION_COLLECTION_NAME]);
     }
 
     /**
      * Возвращает список доступных действий на запрос данных.
-     * @return array
+     * @return Action[] массив вида [actionName => Action, ...]
      */
     public function getQueryActions()
     {
-        $defaultActions = [
-            self::ACTION_GET_EDIT_FORM,
-            self::ACTION_GET_CREATE_FORM
+        $actions = [
+            self::ACTION_GET_EDIT_FORM   => $this->createQueryAction(self::ACTION_GET_EDIT_FORM),
+            self::ACTION_GET_CREATE_FORM => $this->createQueryAction(self::ACTION_GET_CREATE_FORM)
         ];
 
         $collection = $this->getCollection();
         if ($collection instanceof IRecoverableCollection) {
-            $defaultActions[] = self::ACTION_GET_BACKUP_LIST;
-            $defaultActions[] = self::ACTION_GET_BACKUP;
+            $actions[self::ACTION_GET_BACKUP_LIST] = $this->createQueryAction(self::ACTION_GET_BACKUP_LIST);
+            $actions[self::ACTION_GET_BACKUP_LIST] = $this->createQueryAction(self::ACTION_GET_BACKUP);
         }
 
-        $actions = [];
         if (isset($this->options[self::OPTION_QUERY_ACTIONS])) {
-            $actions = $this->configToArray($this->options[self::OPTION_QUERY_ACTIONS]);
+            foreach ($this->options[self::OPTION_QUERY_ACTIONS] as $actionName) {
+                $actions[$actionName] = $this->createQueryAction($actionName);
+            }
         }
 
-        return array_merge($defaultActions, $actions);
+        return $actions;
     }
 
     /**
      * Возвращает список доступных действий на изменение данных.
-     * @return array
+     * @return Action[] массив вида [actionName => Action, ...]
      */
     public function getModifyActions()
     {
-        $defaultActions = [];
+        $actions = [];
         $collection = $this->getCollection();
 
         if ($collection instanceof IActiveAccessibleCollection) {
-            $defaultActions[] = self::ACTION_ACTIVATE;
-            $defaultActions[] = self::ACTION_DEACTIVATE;
+            $actions[self::ACTION_ACTIVATE] = $this->createModifyAction(self::ACTION_ACTIVATE);
+            $actions[self::ACTION_DEACTIVATE] = $this->createModifyAction(self::ACTION_DEACTIVATE);
         }
         if ($collection instanceof SimpleHierarchicCollection) {
-            $defaultActions[] = self::ACTION_MOVE;
+            $actions[self::ACTION_MOVE] = $this->createModifyAction(self::ACTION_MOVE);
         }
         if ($collection instanceof ICmsPageCollection) {
-            $defaultActions[] = self::ACTION_CHANGE_SLUG;
+            $actions[self::ACTION_CHANGE_SLUG] = $this->createModifyAction(self::ACTION_CHANGE_SLUG);
         }
         if ($collection instanceof IRecyclableCollection) {
-            $defaultActions[] = self::ACTION_TRASH;
-            $defaultActions[] = self::ACTION_UNTRASH;
+            $actions[self::ACTION_TRASH] = $this->createModifyAction(self::ACTION_TRASH);
+            $actions[self::ACTION_UNTRASH] = $this->createModifyAction(self::ACTION_UNTRASH);
         }
 
-        $actions = [];
+        if (isset($this->options[self::OPTION_MODIFY_ACTIONS])) {
+            foreach ($this->options[self::OPTION_MODIFY_ACTIONS] as $actionName) {
+                $actions[$actionName] = $this->createModifyAction($actionName);
+            }
+        }
+
         if (isset($this->options[self::OPTION_MODIFY_ACTIONS])) {
             $actions = $this->configToArray($this->options[self::OPTION_MODIFY_ACTIONS]);
         }
 
-        return array_merge($defaultActions, $actions);
+        return $actions;
     }
 
+    /**
+     * Создает новое REST-действие компонента для выборки данных
+     * @param string $actionName имя действия
+     * @return Action
+     */
+    protected function createQueryAction($actionName)
+    {
+        return new Action(
+            $this->getUrlManager()->getAdminComponentActionResourceUrl($this, $actionName),
+            Action::TYPE_QUERY
+        );
+    }
 
+    /**
+     * Создает новое REST-действие компонента для модификации данных
+     * @param string $actionName имя действия
+     * @return Action
+     */
+    protected function createModifyAction($actionName)
+    {
+        return new Action(
+            $this->getUrlManager()->getAdminComponentActionResourceUrl($this, $actionName),
+            Action::TYPE_MODIFY
+        );
+    }
 }
  

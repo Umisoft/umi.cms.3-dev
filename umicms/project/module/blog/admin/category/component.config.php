@@ -10,9 +10,9 @@
 
 namespace umicms\project\module\blog\admin\category;
 
-use umicms\project\admin\api\component\DefaultAdminComponent;
+use umicms\project\admin\api\component\CollectionApiComponent;
 
 return [
-    DefaultAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultAdminComponent',
-    DefaultAdminComponent::OPTION_COLLECTION_NAME => 'blogCategory'
+    CollectionApiComponent::OPTION_CLASS => 'umicms\project\admin\api\component\CollectionApiComponent',
+    CollectionApiComponent::OPTION_COLLECTION_NAME => 'blogCategory'
 ];

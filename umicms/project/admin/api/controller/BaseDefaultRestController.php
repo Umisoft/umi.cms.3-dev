@@ -25,7 +25,7 @@ use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\ICmsObject;
-use umicms\project\admin\api\component\DefaultAdminComponent;
+use umicms\project\admin\api\component\CollectionApiComponent;
 
 /**
  * Базовый REST-контроллер.
@@ -37,19 +37,19 @@ abstract class BaseDefaultRestController extends BaseAccessRestrictedController 
     /**
      * Возвращает компонент, у которого вызван контроллер.
      * @throws RuntimeException при неверном классе компонента
-     * @return DefaultAdminComponent
+     * @return CollectionApiComponent
      */
     protected function getComponent()
     {
         $component = parent::getComponent();
 
-        if (!$component instanceof DefaultAdminComponent) {
+        if (!$component instanceof CollectionApiComponent) {
             throw new RuntimeException(
                 $this->translate(
                     'Component for controller "{controllerClass}" should be instance of "{componentClass}".',
                     [
                         'controllerClass' => get_class($this),
-                        'componentClass' => 'umicms\project\admin\api\component\DefaultAdminComponent'
+                        'componentClass' => 'umicms\project\admin\api\component\CollectionApiComponent'
                     ]
                 )
             );
