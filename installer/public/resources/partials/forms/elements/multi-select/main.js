@@ -2,6 +2,35 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
     'use strict';
 
     return function(){
+        var lazyChoicesBehaviour = {
+            /**
+             * Шаблон View
+             * @property template
+             */
+            template: Ember.Handlebars.compile(lazyShoicesTpl),
+            /**
+             * Изменяет связь hasMany для объекта
+             * @param type
+             * @param id
+             * @returns {Promise}
+             */
+            changeRelations: function(type, id){
+                var object = this.get('object');
+                var selectedObject = this.get('collection').findBy('id', id);
+                var property = this.get('meta.dataSource');
+                var relation = object.get(property);
+                return relation.then(function(relation){
+                    if(type === 'select'){
+                        relation.pushObject(selectedObject);
+                    } else{
+                        relation.removeObject(selectedObject);
+                    }
+                    var Ids = relation.get('content').mapBy('id');
+                    object.changeRelationshipsValue(property, Ids);
+                });
+            }
+        };
+
         UMI.MultiSelectView = Ember.View.extend({
             /**
              * Класс для view
@@ -267,7 +296,7 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
                 var selectedObjects;
                 this.set('isLazy', this.get('meta.lazy'));
                 if(this.get('isLazy')){
-                    this.reopen(UMI.MultiSelectCollectionBehaviour);
+                    this.reopen(lazyChoicesBehaviour);
                     selectedObjects = object.get(property);
                     promises.push(selectedObjects);
 
@@ -298,35 +327,6 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
 
             willDestroyElement: function(){
                 this.removeObserver('isOpen');
-            }
-        });
-
-        UMI.MultiSelectCollectionBehaviour = Ember.Object.create({
-            /**
-             * Шаблон View
-             * @property template
-             */
-            template: Ember.Handlebars.compile(lazyShoicesTpl),
-            /**
-             * Изменяет связь hasMany для объекта
-             * @param type
-             * @param id
-             * @returns {Promise}
-             */
-            changeRelations: function(type, id){
-                var object = this.get('object');
-                var selectedObject = this.get('collection').findBy('id', id);
-                var property = this.get('meta.dataSource');
-                var relation = object.get(property);
-                return relation.then(function(relation){
-                    if(type === 'select'){
-                        relation.pushObject(selectedObject);
-                    } else{
-                        relation.removeObject(selectedObject);
-                    }
-                    var Ids = relation.get('content').mapBy('id');
-                    object.changeRelationshipsValue(property, Ids);
-                });
             }
         });
     };
