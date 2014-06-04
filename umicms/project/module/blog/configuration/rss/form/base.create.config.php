@@ -51,9 +51,9 @@ return [
                 ],
                 BlogRssImportScenario::FIELD_CATEGORY => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogRssImportScenario::FIELD_CATEGORY,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogRssImportScenario::FIELD_CATEGORY
                     ],
                 ],
