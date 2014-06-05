@@ -39,7 +39,6 @@ define(['App'], function(UMI){
                 var property = this.get('meta.dataSource');
                 var selectedObject = this.get('selection');
                 var value;
-                this.set('isLazy', this.get('meta.lazy'));
                 if(this.get('isLazy')){
                     value = selectedObject ? selectedObject : undefined;
                     object.set(property, value);
@@ -55,7 +54,7 @@ define(['App'], function(UMI){
                 var promises = [];
                 var object = this.get('object');
                 var property = this.get('meta.dataSource');
-
+                this.set('isLazy', this.get('meta.lazy'));
                 if(this.get('isLazy')){
                     var store = self.get('controller.store');
                     promises.push(object.get(property));
