@@ -217,6 +217,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
             'project.site.structure' => ['viewer'],
             'project.site.structure.menu' => ['viewer'],
+            'project.site.structure.infoblock' => ['viewer'],
 
             'project.site.news' => ['viewer'],
             'project.site.news.item' => ['viewer', 'rssViewer'],
