@@ -158,9 +158,12 @@ class AdminControl
             $submitToolbar[] = $info;
         }
 
-        $result = [
-            'params' => $this->params
-        ];
+        $result = [];
+
+        if ($this->params) {
+            $result['params'] = $this->params;
+        }
+
         if ($toolbar) {
             $result['toolbar'] = $toolbar;
         }

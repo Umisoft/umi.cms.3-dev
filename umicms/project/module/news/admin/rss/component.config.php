@@ -17,7 +17,8 @@ return [
     CollectionApiComponent::OPTION_COLLECTION_NAME => 'newsRssImportScenario',
 
     CollectionApiComponent::OPTION_CONTROLLERS => [
-        CollectionApiComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
+        CollectionApiComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
+        CollectionApiComponent::COMPONENT_LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController'
     ],
 
     CollectionApiComponent::OPTION_MODIFY_ACTIONS => [

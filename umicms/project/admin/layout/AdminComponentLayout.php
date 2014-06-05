@@ -10,6 +10,7 @@
 namespace umicms\project\admin\layout;
 
 use umi\hmvc\component\IComponent;
+use umicms\exception\OutOfBoundsException;
 use umicms\project\admin\component\AdminComponent;
 use umicms\project\admin\layout\action\Action;
 use umicms\project\admin\layout\control\AdminControl;
@@ -72,6 +73,21 @@ class AdminComponentLayout
     }
 
     /**
+     * Возвращает контрол из sidebar
+     * @param string $name
+     * @throws OutOfBoundsException если кнотрол не найден
+     * @return AdminControl
+     */
+    public function getSideBarControl($name)
+    {
+        if (!isset($this->sideBarControls[$name])) {
+            throw new OutOfBoundsException(sprintf('Sidebar control "%s" does not exist.', $name));
+        }
+
+        return $this->sideBarControls[$name];
+    }
+
+    /**
      * Удаляет контрол из Sidebar
      * @param string $name имя контрола
      * @return $this
@@ -97,6 +113,21 @@ class AdminComponentLayout
     }
 
     /**
+     * Возвращает контрол из контентной области пустого контекста
+     * @param string $name
+     * @throws OutOfBoundsException если кнотрол не найден
+     * @return AdminControl
+     */
+    public function getEmptyContextControl($name)
+    {
+        if (!isset($this->emptyContextControls[$name])) {
+            throw new OutOfBoundsException(sprintf('Empty context control "%s" does not exist.', $name));
+        }
+
+        return $this->emptyContextControls[$name];
+    }
+
+    /**
      * Удаляет контрол из контентной области для пустого контекста
      * @param string $name
      * @return $this
@@ -119,6 +150,22 @@ class AdminComponentLayout
         $this->selectedContextControls[$name] = $control;
 
         return $this;
+    }
+
+
+    /**
+     * Возвращает контрол из контентной области выбранного контекста
+     * @param string $name
+     * @throws OutOfBoundsException если кнотрол не найден
+     * @return AdminControl
+     */
+    public function getSelectedContextControl($name)
+    {
+        if (!isset($this->selectedContextControls[$name])) {
+            throw new OutOfBoundsException(sprintf('Selected context control "%s" does not exist.', $name));
+        }
+
+        return $this->selectedContextControls[$name];
     }
 
     /**
