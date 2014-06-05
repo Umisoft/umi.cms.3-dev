@@ -145,17 +145,23 @@ abstract class CollectionControl
     {
         $contextToolbar = [];
         foreach ($this->contextToolbar as $name => $button) {
-            $contextToolbar[$name] = $button->build();
+            $info = $button->build();
+            $info['name'] = $name;
+            $contextToolbar[] = $info;
         }
 
         $toolbar = [];
         foreach ($this->toolbar as $name => $button) {
-            $toolbar[$name] = $button->build();
+            $info = $button->build();
+            $info['name'] = $name;
+            $toolbar[] = $info;
         }
 
         $submitToolbar = [];
         foreach ($this->submitToolbar as $name => $button) {
-            $submitToolbar[$name] = $button->build();
+            $info = $button->build();
+            $info['name'] = $name;
+            $submitToolbar[] = $info;
         }
 
         $result = [];

@@ -14,7 +14,7 @@ use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\project\admin\layout\button\behaviour\ChoicesBehaviour;
-use umicms\project\admin\layout\button\DropdownButton;
+use umicms\project\admin\layout\button\SplitButton;
 
 /**
  * Административный контрол "Форма редактирования объекта коллекции"
@@ -67,9 +67,9 @@ class EditObjectControl extends CollectionControl
         $behaviour = new ChoicesBehaviour('save');
         $behaviour->addChoice('save', $this->createActionChoice('save'));
         $behaviour->addChoice('saveAndGoBack', $this->createActionChoice('saveAndGoBack'));
-        $behaviour->addChoice('saveAsCopy', $this->createActionChoice('saveAsCopy'));
+        //$behaviour->addChoice('saveAsCopy', $this->createActionChoice('saveAsCopy'));
 
-        $saveButton = new DropdownButton($this->component->translate('button:apply'), $behaviour);
+        $saveButton = new SplitButton($this->component->translate('button:apply'), $behaviour);
         $this->addSubmitButton('save', $saveButton);
 
         return $this;

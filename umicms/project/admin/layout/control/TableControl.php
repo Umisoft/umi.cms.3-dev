@@ -15,7 +15,7 @@ use umicms\orm\collection\ICmsPageCollection;
 use umicms\project\admin\layout\button\behaviour\Behaviour;
 use umicms\project\admin\layout\button\behaviour\ChoicesBehaviour;
 use umicms\project\admin\layout\button\Button;
-use umicms\project\admin\layout\button\DropdownButton;
+use umicms\project\admin\layout\button\SplitButton;
 
 /**
  * Административный контрол "Таблица для упарвления коллекцией"
@@ -64,7 +64,7 @@ class TableControl extends CollectionControl
             $choices = new ChoicesBehaviour('create');
             $this->configureCreateChoiceList($choices);
 
-            return new DropdownButton(
+            return new SplitButton(
                 $this->component->translate('button:create'),
                 $choices
             );
@@ -90,7 +90,7 @@ class TableControl extends CollectionControl
             $choices->addChoice('viewOnSite', $this->createActionChoice('viewOnSite'));
         }
 
-        $dropdownButton = new DropdownButton($this->component->translate(''), $choices);
+        $dropdownButton = new SplitButton($this->component->translate(''), $choices);
 
         $this->addContextButton('contextMenu', $dropdownButton);
 
