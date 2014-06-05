@@ -274,6 +274,17 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         ];
 
         /**
+         * @var UserGroup $commentWithoutPremoderation
+         */
+        $commentWithoutPremoderation = $groupCollection->add()
+            ->setValue('displayName', 'Комментарии без премодерацией')
+            ->setValue('displayName', 'Comment without premoderation', 'en-US');
+
+        $commentWithoutPremoderation->roles = [
+            'project.site.blog.comment' => ['poster']
+        ];
+
+        /**
          * @var UserGroup $commentWithPremoderation
          */
         $commentWithPremoderation = $groupCollection->add()
@@ -281,7 +292,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Comment with premoderation', 'en-US');
 
         $commentWithPremoderation->roles = [
-            'project.site.blog.comment' => ['poster']
+            'project.site.blog.comment' => ['posterPremoderation']
         ];
 
         /**
