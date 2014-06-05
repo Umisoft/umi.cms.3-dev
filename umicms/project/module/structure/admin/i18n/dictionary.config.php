@@ -11,13 +11,13 @@
 return [
 
     'en-US' => [
-        'displayName' => 'Site structure',
+        'component:structure:displayName' => 'Site structure',
 
 
     ],
 
     'ru-RU' => [
-        'displayName' => 'Структура сайта',
+        'component:structure:displayName' => 'Структура сайта',
     ]
 
 ];

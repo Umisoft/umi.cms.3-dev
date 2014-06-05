@@ -22,14 +22,6 @@ use umicms\project\admin\layout\button\SplitButton;
  */
 class TableControl extends CollectionControl
 {
-    /**
-     * {@inheritdoc}
-     */
-    protected function configure()
-    {
-        $this->configureContextMenu();
-        $this->configureToolbar();
-    }
 
     /**
      * Конфигурирует toolbar.

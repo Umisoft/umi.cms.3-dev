@@ -9,13 +9,15 @@
 
 namespace umicms\project\admin\layout;
 
+use umi\hmvc\component\IComponent;
+use umicms\project\admin\component\AdminComponent;
 use umicms\project\admin\layout\action\Action;
-use umicms\project\admin\layout\control\CollectionControl;
+use umicms\project\admin\layout\control\AdminControl;
 
 /**
- * Билдер сетки для произвольного компонента.
+ * Билдер сетки для произвольного административного компонента.
  */
-class ComponentLayout
+class AdminComponentLayout
 {
     /**
      * @var array $params список дополнительных параметров для layout
@@ -23,15 +25,19 @@ class ComponentLayout
     public $params = [];
 
     /**
-     * @var CollectionControl[] $sideBarControls список контролов для Sidebar
+     * @var IComponent $component
+     */
+    protected $component;
+    /**
+     * @var AdminControl[] $sideBarControls список контролов для Sidebar
      */
     private $sideBarControls = [];
     /**
-     * @var CollectionControl[] $emptyContextControls список контролов для контентной области, когда контекст не выбран
+     * @var AdminControl[] $emptyContextControls список контролов для контентной области, когда контекст не выбран
      */
     private $emptyContextControls = [];
     /**
-     * @var CollectionControl[] $selectedContextControls список контролов для контентной области, когда контекст выбран
+     * @var AdminControl[] $selectedContextControls список контролов для контентной области, когда контекст выбран
      */
     private $selectedContextControls = [];
     /**
@@ -40,12 +46,25 @@ class ComponentLayout
     private $actions = [];
 
     /**
+     * Конструктор.
+     * @param AdminComponent $component.
+     */
+    public function __construct(AdminComponent $component) {
+        $this->component = $component;
+
+        $this->configureActions();
+        $this->configureSideBar();
+        $this->configureEmptyContextControls();
+        $this->configureSelectedContextControls();
+    }
+
+    /**
      * Добавляет контрол в Sidebar
      * @param string $name имя контрола
-     * @param CollectionControl $control
+     * @param AdminControl $control
      * @return $this
      */
-    public function addSideBarControl($name, CollectionControl $control)
+    public function addSideBarControl($name, AdminControl $control)
     {
         $this->sideBarControls[$name] = $control;
 
@@ -67,10 +86,10 @@ class ComponentLayout
     /**
      * Добавляет контрол в контентную область для  пустого контекста
      * @param string $name имя контрола
-     * @param CollectionControl $control
+     * @param AdminControl $control
      * @return $this
      */
-    public function addEmptyContextControl($name, CollectionControl $control)
+    public function addEmptyContextControl($name, AdminControl $control)
     {
         $this->emptyContextControls[$name] = $control;
 
@@ -92,10 +111,10 @@ class ComponentLayout
     /**
      * Добавляет контрол в контентную область для выбранного контекста
      * @param string $name имя контрола
-     * @param CollectionControl $control
+     * @param AdminControl $control
      * @return $this
      */
-    public function addSelectedContextControl($name, CollectionControl $control)
+    public function addSelectedContextControl($name, AdminControl $control)
     {
         $this->selectedContextControls[$name] = $control;
 
@@ -139,8 +158,6 @@ class ComponentLayout
         return $this;
     }
 
-
-
     /**
      * Возвращает информацию о сетке.
      * @return array
@@ -167,15 +184,73 @@ class ComponentLayout
             $actions[$name] = $action->build();
         }
 
-        return [
-            'params' => $this->params,
-            'sideBar' => $sideBar,
-            'contents' => [
-                'emptyContext' => $emptyContext,
-                'selectedContext' => $selectedContext
-            ],
-            'actions' => $actions
-        ];
+        $result = [];
+        if ($this->params) {
+            $result['params'] = $this->params;
+        }
+
+        if ($sideBar) {
+            $result['sideBar'] = $sideBar;
+        }
+        $result['contents'] = [];
+
+        if ($emptyContext) {
+            $result['contents']['emptyContext'] = $emptyContext;
+        }
+
+        if ($selectedContext) {
+            $result['contents']['selectedContext'] = $selectedContext;
+        }
+
+        if ($actions) {
+            $result['actions'] = $actions;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Конфигурирует REST-экшены для компонента.
+     * @return $this
+     */
+    protected function configureActions()
+    {
+        foreach ($this->component->getQueryActions() as $name => $action) {
+            $this->addAction($name, $action);
+        }
+
+        foreach ($this->component->getModifyActions() as $name => $action) {
+            $this->addAction($name, $action);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Конфигурирует контролы контентной области для пустого контекста.
+     * @return $this
+     */
+    protected function configureEmptyContextControls()
+    {
+
+    }
+
+    /**
+     * Конфигурирует контролы контентной области для выбранного контекста.
+     * @return $this
+     */
+    protected function configureSelectedContextControls()
+    {
+
+    }
+
+    /**
+     * Конфигурирует Sidebar компонента в зависимости от коллекции компонента.
+     * @return $this
+     */
+    protected function configureSideBar()
+    {
+
     }
 }
  

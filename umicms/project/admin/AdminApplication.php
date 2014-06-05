@@ -26,6 +26,9 @@ class AdminApplication extends AdminComponent implements ILocalesAware
 {
     use TLocalesAware;
 
+    /**
+     * Имя куки, для выбранной пользователем локали.
+     */
     const CURRENT_LOCALE_COOKIE_NAME = 'locale';
 
     /**
