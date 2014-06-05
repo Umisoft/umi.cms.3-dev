@@ -2493,6 +2493,92 @@ label.error {
   .panel.radius {
     border-radius: 3px; }
 
+.split.button {
+  position: relative;
+  padding-right: 4.5rem; }
+  .split.button span {
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-left: solid 1px; }
+    .split.button span:before {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      display: block;
+      border-style: inset;
+      top: 50%;
+      left: 50%; }
+    .split.button span:active {
+      background-color: rgba(0, 0, 0, 0.1); }
+  .split.button span {
+    border-left-color: rgba(255, 255, 255, 0.5); }
+  .split.button span {
+    width: 2.75rem; }
+    .split.button span:before {
+      border-top-style: solid;
+      border-width: 0.3125rem;
+      top: 48%;
+      margin-left: -0.375rem; }
+  .split.button span:before {
+    border-color: #fff transparent transparent transparent; }
+  .split.button.secondary span {
+    border-left-color: rgba(255, 255, 255, 0.5); }
+  .split.button.secondary span:before {
+    border-color: #fff transparent transparent transparent; }
+  .split.button.alert span {
+    border-left-color: rgba(255, 255, 255, 0.5); }
+  .split.button.success span {
+    border-left-color: rgba(255, 255, 255, 0.5); }
+  .split.button.tiny {
+    padding-right: 3.75rem; }
+    .split.button.tiny span {
+      width: 2.25rem; }
+      .split.button.tiny span:before {
+        border-top-style: solid;
+        border-width: 0.375rem;
+        top: 48%;
+        margin-left: -0.375rem; }
+  .split.button.small {
+    padding-right: 4.375rem; }
+    .split.button.small span {
+      width: 2.625rem; }
+      .split.button.small span:before {
+        border-top-style: solid;
+        border-width: 0.4375rem;
+        top: 48%;
+        margin-left: -0.375rem; }
+  .split.button.large {
+    padding-right: 5.5rem; }
+    .split.button.large span {
+      width: 3.4375rem; }
+      .split.button.large span:before {
+        border-top-style: solid;
+        border-width: 0.3125rem;
+        top: 48%;
+        margin-left: -0.375rem; }
+  .split.button.expand {
+    padding-left: 2rem; }
+  .split.button.secondary span:before {
+    border-color: #333 transparent transparent transparent; }
+  .split.button.radius span {
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px; }
+  .split.button.round span {
+    -moz-border-radius-topright: 1000px;
+    -moz-border-radius-bottomright: 1000px;
+    -webkit-border-top-right-radius: 1000px;
+    -webkit-border-bottom-right-radius: 1000px;
+    border-top-right-radius: 1000px;
+    border-bottom-right-radius: 1000px; }
+
 
 
 

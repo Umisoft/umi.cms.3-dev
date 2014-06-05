@@ -190,7 +190,7 @@ define(['App'], function(UMI){
                     );
                 },
 
-                sendAction: function(behaviour, object){
+                sendActionForBehaviour: function(behaviour, object){
                     this.send(behaviour.name, object, behaviour);
                 }
             }

@@ -1,6 +1,6 @@
 {{#if view.parentView.treeControlView.selectAction}}
     <li class="tree-control-select-action">
-        <span class="tiny button flat square" {{action 'sendAction' view.parentView.treeControlView.selectAction.behaviour controller.model}}>
+        <span class="tiny button flat square" {{action 'sendActionForBehaviour' view.parentView.treeControlView.selectAction.behaviour controller.model}}>
             <i {{bind-attr class=":icon view.parentView.treeControlView.selectActionIcon"}}></i>
         </span>
     </li>
@@ -18,7 +18,7 @@
                 {{#each view.contextMenu}}
                     {{#view view.itemView action=this}}
                         <i {{bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{action 'toggleFastAction' this target="view.parentView.parentView.treeControlView"}}></i>
-                        <span {{action 'sendAction' behaviour controller.model}}>{{attributes.label}}</span>
+                        <span {{action 'sendActionForBehaviour' behaviour controller.model}}>{{attributes.label}}</span>
                     {{/view}}
                 {{/each}}
             </ul>

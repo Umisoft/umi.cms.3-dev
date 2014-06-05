@@ -127,7 +127,7 @@ define(['App', 'text!./template.hbs', 'text!./backupList.hbs'],
                             self.set('backupList', self.getBackupList());
                         });
                     }
-                })
+                }).create({})
             });
         };
     }

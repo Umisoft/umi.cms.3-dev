@@ -32,7 +32,7 @@ define(
                 }.property('model'),
 
                 actions: {
-                    sendAction: function(behaviour, object){
+                    sendActionForBehaviour: function(behaviour, object){
                         object = object || this.get('object');
                         this.send(behaviour.name, object, behaviour);
                     }

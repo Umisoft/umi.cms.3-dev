@@ -11,7 +11,7 @@ define(['App', 'text!./button.hbs'],
                 attributeBindings: ['title'],
                 title: Ember.computed.alias('meta.attributes.title'),
                 click: function(){
-                    this.get('controller').send('sendAction', this.get('meta').behaviour);
+                    this.get('controller').send('sendActionForBehaviour', this.get('meta').behaviour);
                 }
             });
 

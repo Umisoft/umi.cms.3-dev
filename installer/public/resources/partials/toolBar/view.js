@@ -7,12 +7,18 @@ define(['App'], function(UMI){
             tagName: 'li',
 
             template: function(){
+                var self = this;
                 var type = this.get('context.type');
                 if(this.get(type + 'View')){
                     return Ember.Handlebars.compile('{{view view.' + type + 'View meta=this}}');
                 } else{
-                    Ember.assert('View c типом ' + type + ' не зарегестрирован для toolbar контроллера');
-                    return Ember.Handlebars.compile('');
+                    try{
+                        throw new Error('View c типом ' + type + ' не зарегестрирован для toolbar контроллера');
+                    } catch(error){
+                        Ember.run.next(function(){
+                            self.get('controller').send('backgroundError', error);
+                        });
+                    }
                 }
             }.property(),
 
@@ -35,6 +41,17 @@ define(['App'], function(UMI){
                     behaviour = {};
                 }
                 var instance = UMI.DropdownButtonView.extend(behaviour);
+                return instance;
+            }.property(),
+
+            splitButtonView: function(){
+                var behaviour = this.get('context.behaviour.name');
+                if(behaviour){
+                    behaviour = UMI.splitButtonBehaviour.get(behaviour) || {};
+                } else{
+                    behaviour = {};
+                }
+                var instance = UMI.SplitButtonView.extend(behaviour);
                 return instance;
             }.property()
         });

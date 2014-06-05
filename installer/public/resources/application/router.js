@@ -189,7 +189,7 @@ define([], function(){
 
                 /**
                  Метод генерирует ошибку (выводится вместо шаблона)
-                 @method backgroundError
+                 @method templateLogs
                  @property error Object {status: status, title: title, content: content, stack: stack}
                  */
                 templateLogs: function(error, parentRoute){

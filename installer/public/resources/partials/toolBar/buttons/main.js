@@ -11,7 +11,7 @@ define(
         return function(){
             button();
             dropdownButton();
-            //splitButton();
+            splitButton();
             contextMenu();
         };
     }
