@@ -12,14 +12,14 @@
             <div class="row">
                 <div class="small-12 columns">
                     {{#ifCond type 'select'}}
-                        <select name="{{name}}" placeholder="{{label}}" >
+                        <select name="{{attributes.name}}" placeholder="{{label}}" >
                             {{#each choices}}
                                 <option value="{{attributes.value}}">{{label}}</option>
                             {{/each}}
                         </select>
                     {{else}}
                         <i class="icon icon-{{name}} input-icon"></i>
-                        <input name="{{name}}" placeholder="{{label}}" type="{{type}}" required="required" autocomplete="off" value="">
+                        <input name="{{attributes.name}}" placeholder="{{label}}" type="{{attributes.type}}" required="required" autocomplete="off" value="">
                         {{#if validators}}
                             <span class="error">
                                 {{#each validators}}
