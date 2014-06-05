@@ -33,4 +33,29 @@ class TestObject extends CmsObject
     const TIME = 'time';
     const FILE = 'file';
     const IMAGE = 'image';
+
+    /**
+     * Возвращает значение в виде массива
+     * @return array
+     */
+    public function getMultiSelectValue()
+    {
+        if ($value = $this->getProperty(self::MULTISELECT)->getValue()) {
+            return unserialize($value);
+        }
+
+        return [];
+    }
+
+    /**
+     * Устанавливает значение в виде строки
+     * @param array $list
+     * @return $this
+     */
+    public function setMultiSelectValue(array $list)
+    {
+        $this->getProperty(self::MULTISELECT)->setValue(serialize($list));
+
+        return $this;
+    }
 }

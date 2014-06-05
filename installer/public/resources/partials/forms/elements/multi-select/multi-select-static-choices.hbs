@@ -6,8 +6,8 @@
     {{#if view.isOpen}}
         <ul class="umi-multi-select-list">
             {{#each view.notSelectedObjects}}
-                <li {{action "select" id target="view"}} {{bind-attr class="hover"}}>
-                    {{displayName}}
+                <li {{action "select" value target="view"}} {{bind-attr class="hover"}}>
+                    {{label}}
                 </li>
             {{else}}
                 <li class="placeholder">
@@ -21,7 +21,7 @@
 {{#if view.selectedObjects.length}}
     <div class="selected-list">
         {{#each view.selectedObjects}}
-            <div class="item" {{action "unSelect" id target="view"}}>{{displayName}} <i class="close">&times;</i></div>
+            <div class="item" {{action "unSelect" value target="view"}}>{{label}} <i class="close">&times;</i></div>
         {{/each}}
     </div>
 {{/if}}
