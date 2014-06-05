@@ -8,7 +8,7 @@
     <?php if (isset($pagination['pagesCount'])) : ?>
         <ul class="pagination">
             <?php if ($pagination['previousPageUrl']) : ?>
-                <li><a href="<?= $pagination['previousPageUrl'] ?>"><?=$this->translate('Назад')?></a></li>
+                <li><a href="<?= $pagination['previousPageUrl'] ?>"><?=$this->translate('Previous')?></a></li>
             <?php endif; ?>
             <?php foreach ($pagination['pagesRange'] as $page => $link) : ?>
 
@@ -20,7 +20,7 @@
 
             <?php endforeach; ?>
             <?php if ($pagination['nextPageUrl']) : ?>
-                <li><a href="<?= $pagination['nextPageUrl'] ?>"><?=$this->translate('Дальше')?></a></li>
+                <li><a href="<?= $pagination['nextPageUrl'] ?>"><?=$this->translate('Next')?></a></li>
             <?php endif; ?>
         </ul>
     <?php endif; ?>

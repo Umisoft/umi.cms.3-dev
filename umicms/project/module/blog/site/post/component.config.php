@@ -1,9 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\site\post;
@@ -26,9 +28,9 @@ return [
     DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\PostWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
-        'rss' => __NAMESPACE__ . '\widget\ListRssUrlWidget',
-        'add' => __NAMESPACE__ . '\widget\AddWidget',
+        'rssLink' => __NAMESPACE__ . '\widget\ListRssLinkWidget',
         'unPublished' => __NAMESPACE__ . '\widget\PostToDraftWidget',
+        'addPostLink' => __NAMESPACE__ . '\widget\AddLinkWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\EditLinkWidget'
     ],
     DefaultSitePageComponent::OPTION_VIEW => [
@@ -49,9 +51,9 @@ return [
             'controller:unPublished',
             'widget:view',
             'widget:list',
-            'widget:rss',
-            'widget:add',
+            'widget:rssLink',
             'widget:unPublished',
+            'widget:addPostLink',
             'widget:editPostLink',
             'model:blogPost'
         ],
@@ -62,7 +64,7 @@ return [
             ],
             'rssViewer' => [
                 'controller:rss' => [],
-                'widget:rss' => []
+                'widget:rssLink' => []
             ],
             'author' => [
                 'controller:unPublished' => [],
@@ -73,12 +75,13 @@ return [
             ],
             'publisher' => [
                 'controller:add' => [],
-                'widget:add' => []
+                'widget:addPostLink' => [],
             ],
             'moderator' => [
                 'controller:edit' => [],
                 'controller:unPublished' => [],
                 'widget:unPublished' => [],
+                'widget:addPostLink' => [],
                 'widget:editPostLink' => [],
                 'model:blogPost' => [
                     'edit' => []
@@ -95,8 +98,8 @@ return [
             ]
         ],
         'add' => [
-            'type'     => IRouteFactory::ROUTE_FIXED,
-            'route' => '/add',
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/add/{id:integer}',
             'defaults' => [
                 'controller' => 'add'
             ]

@@ -1,12 +1,12 @@
 <?php
 /**
- * @var \umicms\orm\selector\CmsSelector $tags
+ * @var \umicms\orm\selector\CmsSelector $list
  * @var umicms\project\module\blog\api\object\BlogTag $blogTag
  */
 ?>
-<?php if ($tags->getTotal()) :?>
+<?php if ($list->getTotal()) :?>
     <ol class="list-unstyled">
-        <?php foreach ($tags as $blogTag) : ?>
+        <?php foreach ($list as $blogTag) : ?>
             <li>
                 <?= $this->widget('blog.tag.view', ['blogTag' => $blogTag, 'template' => 'shortView']); ?>
             </li>

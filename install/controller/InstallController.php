@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace project\install\controller;
@@ -35,6 +36,9 @@ use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchModule;
 use umicms\project\module\service\api\collection\BackupCollection;
 use umicms\project\module\structure\api\object\InfoBlock;
+use umicms\project\module\structure\api\object\Menu;
+use umicms\project\module\structure\api\object\MenuExternalItem;
+use umicms\project\module\structure\api\object\MenuInternalItem;
 use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -448,8 +452,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $author->getProperty('componentPath')->setValue('blog.author');
 
         $category = $categoryCollection->add('hunters')
-            ->setValue('displayName', 'Блог')
-            ->setValue('displayName', 'Blog', 'en-US')
+            ->setValue('displayName', 'Охотницы')
+            ->setValue('displayName', 'Hunters', 'en-US')
             ->setValue('metaTitle', 'Блог Охотниц за приведениями')
             ->setValue('h1', 'Блог Охотниц за приведениями')
             ->setValue('contents', '<p>Это блого обо всем на свете...</p>')
@@ -883,6 +887,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var SimpleCollection $infoBlockCollection
          */
         $infoBlockCollection = $this->getCollectionManager()->getCollection('infoblock');
+        /**
+         * @var SimpleHierarchicCollection $menuCollection
+         */
+        $menuCollection = $this->getCollectionManager()->getCollection('menu');
 
 
         $parent = null;
@@ -1051,6 +1059,27 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
         $menuItem1221->getProperty('componentName')->setValue('structure');
         $menuItem1221->getProperty('componentPath')->setValue('structure');
+
+
+        $bottomMenu = $menuCollection->add('bottomMenu', Menu::TYPE)
+            ->setValue(Menu::FIELD_DISPLAY_NAME, 'Нижнее меню')
+            ->setValue(Menu::FIELD_NAME, 'bottomMenu');
+
+        $menuCollection->add('bottomMenu', MenuInternalItem::TYPE, $bottomMenu)
+            ->setValue(MenuInternalItem::FIELD_DISPLAY_NAME, 'Главная')
+            ->setValue(MenuInternalItem::FIELD_PAGE_RELATION, $about);
+
+        $menuCollection->add('bottomMenu-1', MenuInternalItem::TYPE, $bottomMenu)
+            ->setValue(MenuInternalItem::FIELD_DISPLAY_NAME, 'Работа, за которую мы никогда не возьмемся')
+            ->setValue(MenuInternalItem::FIELD_PAGE_RELATION, $no);
+
+        $menuCollection->add('bottomMenu-2', MenuInternalItem::TYPE, $bottomMenu)
+            ->setValue(MenuInternalItem::FIELD_DISPLAY_NAME, 'Услуги и цены')
+            ->setValue(MenuInternalItem::FIELD_PAGE_RELATION, $service);
+
+        $menuCollection->add('bottomMenu-3', MenuExternalItem::TYPE, $bottomMenu)
+            ->setValue(MenuExternalItem::FIELD_DISPLAY_NAME, 'Внешняя ссылка')
+            ->setValue(MenuExternalItem::FIELD_URL_RESOURCE, 'http://ya.ru/');
 
     }
 
@@ -1854,6 +1883,48 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     KEY `infoblock_type` (`type`),
                     CONSTRAINT `FK_infoblock_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_infoblock_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_menu` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255),
+                    `version` int(10) unsigned DEFAULT '1',
+                    `type` varchar(255),
+                    `pid` bigint(20) unsigned DEFAULT NULL,
+                    `mpath` varchar(255) DEFAULT NULL,
+                    `uri` text,
+                    `slug` varchar(255),
+                    `order` int(10) unsigned DEFAULT NULL,
+                    `level` int(10) unsigned DEFAULT NULL,
+                    `child_count` int(10) unsigned DEFAULT '0',
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `name` varchar(255) DEFAULT NULL,
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
+                    `page_relation` varchar(255) DEFAULT NULL,
+                    `url_resource` varchar(255) DEFAULT NULL,
+
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `menu_guid` (`guid`),
+                    UNIQUE KEY `menu_name` (`name`),
+                    UNIQUE KEY `menu_mpath` (`mpath`),
+                    UNIQUE KEY `menu_pid_slug` (`pid`, `slug`),
+                    KEY `menu_parent` (`pid`),
+                    KEY `menu_parent_order` (`pid`,`order`),
+                    KEY `menu_type` (`type`),
+                    KEY `page_relation` (`page_relation`),
+                    CONSTRAINT `FK_menu_parent` FOREIGN KEY (`pid`) REFERENCES `demohunt_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_menu_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_menu_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );

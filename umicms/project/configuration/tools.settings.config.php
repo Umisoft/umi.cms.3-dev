@@ -1,9 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 use umi\authentication\adapter\ORMAdapter;
@@ -21,6 +23,8 @@ use umicms\form\element\PasswordWithConfirmation;
 use umicms\form\element\Wysiwyg;
 use umicms\form\element\Permissions;
 use umicms\module\toolbox\ModuleTools;
+use umicms\orm\metadata\field\relation\CmsObjectRelationField;
+use umicms\orm\metadata\field\relation\CmsPageRelationField;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 
 return [
@@ -96,7 +100,9 @@ return [
             ],
             'metadata' => [
                 'fieldTypes' => [
-                    IField::TYPE_BELONGS_TO => 'umicms\orm\metadata\field\relation\BelongsToRelationField'
+                    IField::TYPE_BELONGS_TO => 'umicms\orm\metadata\field\relation\BelongsToRelationField',
+                    CmsObjectRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsObjectRelationField',
+                    CmsPageRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsPageRelationField'
                 ]
             ]
         ],
@@ -104,6 +110,7 @@ return [
             'structure' => '{#lazy:~/project/module/structure/configuration/structure/metadata.config.php}',
             'layout' => '{#lazy:~/project/module/structure/configuration/layout/metadata.config.php}',
             'infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/metadata.config.php}',
+            'menu' => '{#lazy:~/project/module/structure/configuration/menu/metadata.config.php}',
 
             'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/metadata.config.php}',
             'newsItem' => '{#lazy:~/project/module/news/configuration/item/metadata.config.php}',
@@ -136,6 +143,7 @@ return [
             'structure'     => '{#lazy:~/project/module/structure/configuration/structure/collection.config.php}',
             'layout'     => '{#lazy:~/project/module/structure/configuration/layout/collection.config.php}',
             'infoblock'     => '{#lazy:~/project/module/structure/configuration/infoblock/collection.config.php}',
+            'menu'     => '{#lazy:~/project/module/structure/configuration/menu/collection.config.php}',
 
             'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/collection.config.php}',
             'newsItem' => '{#lazy:~/project/module/news/configuration/item/collection.config.php}',

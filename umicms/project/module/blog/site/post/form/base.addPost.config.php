@@ -1,16 +1,19 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
+use umi\filter\IFilterFactory;
 use umi\form\element\Hidden;
 use umi\form\element\MultiSelect;
 use umi\form\element\Submit;
 use umi\form\element\Text;
+use umi\validation\IValidatorFactory;
 use umicms\form\element\Wysiwyg;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\blog\api\object\BlogTag;
@@ -20,6 +23,9 @@ return [
         'dictionaries' => [
             'collection.blogPost', 'collection', 'form'
         ]
+    ],
+    'attributes' => [
+        'method' => 'post'
     ],
     'elements' => [
         BlogPost::FIELD_CATEGORY => [
@@ -40,14 +46,23 @@ return [
             'type' => Text::TYPE_NAME,
             'label' => BlogPost::FIELD_PAGE_H1,
             'options' => [
-                'dataSource' => BlogPost::FIELD_PAGE_H1
+                'dataSource' => BlogPost::FIELD_PAGE_H1,
+                'filters' => [
+                    IFilterFactory::TYPE_STRING_TRIM => []
+                ],
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ]
             ],
         ],
         BlogPost::FIELD_PAGE_SLUG => [
             'type' => Text::TYPE_NAME,
             'label' => BlogPost::FIELD_PAGE_SLUG,
             'options' => [
-                'dataSource' => BlogPost::FIELD_PAGE_SLUG
+                'dataSource' => BlogPost::FIELD_PAGE_SLUG,
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ]
             ],
         ],
         BlogPost::FIELD_ANNOUNCEMENT => [

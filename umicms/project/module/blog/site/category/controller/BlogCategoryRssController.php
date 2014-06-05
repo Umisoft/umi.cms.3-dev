@@ -1,16 +1,17 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\site\category\controller;
 
 use umi\http\Response;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\site\config\ISiteSettingsAware;
@@ -19,7 +20,7 @@ use umicms\project\site\config\TSiteSettingsAware;
 /**
  * Контроллер вывода RSS-ленты категории.
  */
-class BlogCategoryRssController extends BaseSecureController implements ISiteSettingsAware
+class BlogCategoryRssController extends BaseAccessRestrictedController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 

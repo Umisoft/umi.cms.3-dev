@@ -1,35 +1,41 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\site\reject\controller;
 
+use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\hmvc\exception\http\HttpNotFound;
-use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\site\controller\TFormSimpleController;
 
 /**
  * Контроллер отправки поста на модерацию.
  */
-class PostSendToModerationController extends BaseSecureController implements IObjectPersisterAware
+class PostSendToModerationController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
+    use TFormSimpleController;
     use TObjectPersisterAware;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
     protected $api;
+    /**
+     * @var BlogPost $blogPost пост блога
+     */
+    protected $blogPost;
 
     /**
      * Конструктор.
@@ -41,39 +47,29 @@ class PostSendToModerationController extends BaseSecureController implements IOb
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
-     * @throws HttpNotFound
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function buildForm()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
-        }
+        $this->blogPost = $this->api->post()->getRejectedPostById($this->getRouteVar('id'));
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
-        $formData = $this->getAllPostVars();
-
-        $blogPost = $this->api->post()->getRejectedPostById($this->getRouteVar('id'));
-        if (!$this->isAllowed($blogPost)) {
+        if (!$this->isAllowed($this->blogPost)) {
             throw new ResourceAccessForbiddenException(
-                $blogPost,
+                $this->blogPost,
                 $this->translate('Access denied')
             );
         }
 
-        if ($form->setData($formData) && $form->isValid()) {
-            $blogPost->needModeration();
+        return $this->api->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
+    }
 
-            $this->getObjectPersister()->commit();
-
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages());
-            exit();
-        }
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $this->blogPost->needModeration();
+        $this->getObjectPersister()->commit();
     }
 }
  

@@ -6,6 +6,6 @@
 <h2>
     <a href="<?= $category->getPageUrl() ?>">
         <?= $category->displayName ?>
-    </a> <?=$this->widget('blog.category.rss', ['category' => $category, 'template' => 'rssLink'])?>
+    </a> <?=$this->widget('blog.category.rssLink', ['category' => $category, 'template' => 'rssLink'])?>
 </h2>
 <?= $this->widget('blog.category.list', ['parentCategory' => $category, 'template' => 'list']); ?>

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1f0c232d0324afeeda18460b7efbd3a6",
+    "hash": "b60a474b36b79c984af01617d0775d30",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -548,12 +548,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "9267eba3effe89a2bdfd6190b0f473aca026d458"
+                "reference": "26bf686c2f3b6e0f7d27b3b93a5916bdd0afd779"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/9267eba3effe89a2bdfd6190b0f473aca026d458",
-                "reference": "9267eba3effe89a2bdfd6190b0f473aca026d458",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/26bf686c2f3b6e0f7d27b3b93a5916bdd0afd779",
+                "reference": "26bf686c2f3b6e0f7d27b3b93a5916bdd0afd779",
                 "shasum": ""
             },
             "require": {
@@ -572,7 +572,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0.x-dev"
+                    "dev-master": "4.1.x-dev"
                 }
             },
             "autoload": {
@@ -605,7 +605,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-05-22 03:57:06"
+            "time": "2014-05-28 18:18:30"
         },
         {
             "name": "guzzlehttp/streams",
@@ -1343,12 +1343,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "c2ae310203e65987a26d57b87a173b15747a3412"
+                "reference": "1c0bec2814a078a81fb86dbc38798bf73418f839"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/c2ae310203e65987a26d57b87a173b15747a3412",
-                "reference": "c2ae310203e65987a26d57b87a173b15747a3412",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/1c0bec2814a078a81fb86dbc38798bf73418f839",
+                "reference": "1c0bec2814a078a81fb86dbc38798bf73418f839",
                 "shasum": ""
             },
             "require": {
@@ -1357,7 +1357,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.15-dev"
+                    "dev-master": "1.16-dev"
                 }
             },
             "autoload": {
@@ -1392,7 +1392,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-05-21 01:15:25"
+            "time": "2014-05-26 15:15:28"
         },
         {
             "name": "umisoft/umi.framework-dev",
@@ -1400,7 +1400,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:Umisoft/umi.framework-dev.git",
-                "reference": "58fc0732532516abe23aacb47e79d75190c1a337"
+                "reference": "f478149bbc6908465deccd0c5f053cc30c8ebd33"
             },
             "require": {
                 "doctrine/dbal": "2.4.*",
@@ -1430,7 +1430,7 @@
                 "framework",
                 "umi"
             ],
-            "time": "2014-05-25 15:32:40"
+            "time": "2014-05-29 09:43:01"
         }
     ],
     "packages-dev": [

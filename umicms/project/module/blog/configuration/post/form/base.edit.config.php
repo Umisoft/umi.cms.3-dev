@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 use umi\form\element\html5\DateTime;
@@ -37,9 +38,9 @@ return [
                 ],
                 BlogPost::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogPost::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogPost::FIELD_PAGE_LAYOUT
                     ],
                 ]
@@ -86,9 +87,9 @@ return [
 
                 BlogPost::FIELD_CATEGORY => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogPost::FIELD_CATEGORY,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogPost::FIELD_CATEGORY
                     ]
                 ],
@@ -101,9 +102,9 @@ return [
                 ],
                 BlogPost::FIELD_AUTHOR => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogPost::FIELD_AUTHOR,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogPost::FIELD_AUTHOR
                     ],
                 ],

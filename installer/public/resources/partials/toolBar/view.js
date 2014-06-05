@@ -25,7 +25,7 @@ define(['App'], function(UMI){
 //                    console.log('selectedContext', this.get('controller.selectedContext')); //root
 //
 //                    console.log('settings', this.get('controller.settings'));
-                    console.log('contentControls', this.get('controller.contentControls')[1].toolbar);
+//                    console.log('contentControls', this.get('controller.contentControls')[1].toolbar);
 //                    console.log('sideBarControl', this.get('controller.sideBarControl'));
 
                     //                        this controllers.treeControl.model

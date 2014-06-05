@@ -7,7 +7,7 @@
 
 /* dialogs */
 .std42-dialog, .std42-dialog .ui-widget-content {
-    background-color: #ededed;
+    background-color: #FFFFFF;
     background-image: none;
     background-clip: content-box;
 }
@@ -93,4 +93,21 @@
 
 .elfinder-contextmenu .ui-state-hover .elfinder-contextmenu-arrow {
     background-image: url('img/elfinder/img/arrows-active.png');
+}
+
+.std42-dialog{
+    .elfinder-help{
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: 300px;
+        padding: 10px;
+        line-height: 21px;
+        font-size: 13px;
+        margin-bottom: 0;
+        ul{
+            list-style-type: none;
+            font-size: 13px;
+            margin-left: 0;
+        }
+    }
 }

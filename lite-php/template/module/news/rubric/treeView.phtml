@@ -5,4 +5,4 @@
 ?>
 <a href="<?= $rubric->getPageUrl() ?>">
     <?= $rubric->displayName ?>
-</a> <?=$this->widget('news.rubric.rss', ['rubric' => $rubric, 'template' => 'rssLink'])?>
+</a> <?=$this->widget('news.rubric.rssLink', ['rubric' => $rubric, 'template' => 'rssLink'])?>

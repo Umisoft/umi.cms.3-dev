@@ -1,48 +1,127 @@
-define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
+define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-lazy-choices.hbs'], function(UMI, staticShoicesTpl, lazyShoicesTpl){
     'use strict';
 
     return function(){
-        UMI.MultiSelectView = Ember.View.extend({
-            classNames: ['row', 'collapse', 'umi-multi-select'],
-            classNameBindings: ['isOpen:opened'],
-            template: Ember.Handlebars.compile(layoutTpl),
-            isOpen: false,
-            placeholder: '',
-            collection: null,
-            selectedIds: [],
-            filterIds: [],
-            filterOn: false,
-            inputInFocus: false,
+        var lazyChoicesBehaviour = {
+            /**
+             * Шаблон View
+             * @property template
+             */
+            template: Ember.Handlebars.compile(lazyShoicesTpl),
+            /**
+             * Изменяет связь hasMany для объекта
+             * @param type
+             * @param id
+             * @returns {Promise}
+             */
+            changeRelations: function(type, id){
+                var object = this.get('object');
+                var selectedObject = this.get('collection').findBy('id', id);
+                var property = this.get('meta.dataSource');
+                var relation = object.get(property);
+                return relation.then(function(relation){
+                    if(type === 'select'){
+                        relation.pushObject(selectedObject);
+                    } else{
+                        relation.removeObject(selectedObject);
+                    }
+                    var Ids = relation.get('content').mapBy('id');
+                    object.changeRelationshipsValue(property, Ids);
+                });
+            }
+        };
 
+        UMI.MultiSelectView = Ember.View.extend({
+            /**
+             * Класс для view
+             * property classNames
+             */
+            classNames: ['row', 'collapse', 'umi-multi-select'],
+            /**
+             * Вычесляемые классы
+             * @classNameBindings
+             */
+            classNameBindings: ['isOpen:opened'],
+            /**
+             * Шаблон View
+             * @property template
+             */
+            template: Ember.Handlebars.compile(staticShoicesTpl),
+            /**
+             * Тригер списка значений
+             * @property isOpen
+             */
+            isOpen: false,
+            /**
+             * Значение placeholder
+             * @property placeholder
+             */
+            placeholder: '',
+            /**
+             * определяет использование lazy списка
+             * @property isLazy
+             */
+            isLazy: false,
+            /**
+             * Коллекция объектов (choices)
+             * @property collection
+             */
+            collection: null,
+            /**
+             * Выбранные ID объектов
+             * @property selectedIds
+             */
+            selectedIds: [],
+            /**
+             * @property filterIds
+             */
+            filterIds: [],
+            /**
+             * @property filterOn
+             */
+            filterOn: false,
+            /**
+             * @property inputInFocus
+             */
+            inputInFocus: false,
+            /**
+             * Связанные объекты
+             * @property selectedObjects
+             */
             selectedObjects: function(){
+                var key = this.get('isLazy') ? 'id' : 'value';
                 var collection = this.get('collection') || [];
                 var selectedObjects = [];
-                var selectedIds = this.get('selectedIds');
+                var selectedIds = this.get('selectedIds') || [];
                 collection.forEach(function(item){
-                    var id = item.get('id');
+                    var id = Ember.get(item, key);
                     if(selectedIds.contains(id)){
                         selectedObjects.push(item);
                     }
                 });
                 return selectedObjects;
             }.property('selectedIds.@each'),
-
+            /**
+             * Несвязанные объекты. Появляются в выпадающем списке
+             * @property notSelectedObjects
+             */
             notSelectedObjects: function(){
+                var key = this.get('isLazy') ? 'id' : 'value';
                 var collection = this.get('collection');
                 var notSelectedObjects = [];
                 var ids;
                 if(this.get('filterOn')){
-                    ids = this.get('filterIds');
+                    ids = this.get('filterIds') || [];
                     collection.forEach(function(item){
-                        var id = item.get('id');
+                        var id = Ember.get(item, key);
                         if(ids.contains(id)){
                             notSelectedObjects.push(item);
                         }
                     });
                 } else{
-                    ids = this.get('selectedIds');
+                    ids = this.get('selectedIds') || [];
                     collection.forEach(function(item){
-                        var id = item.get('id');
+                        var id = Ember.get(item, key);
                         if(!ids.contains(id)){
                             notSelectedObjects.push(item);
                         }
@@ -50,7 +129,10 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                 }
                 return notSelectedObjects;
             }.property('selectedIds.@each', 'filterIds'),
-
+            /**
+             * Изменяет состояние выпадающего списка (отрывет/закрывает)
+             * @method opened
+             */
             opened: function(){
                 var isOpen = this.get('isOpen');
                 var self = this;
@@ -68,20 +150,10 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                 }
             }.observes('isOpen'),
 
-            changeRelations: function(type, id){
+            changeRelations: function(){
                 var object = this.get('object');
-                var selectedObject = this.get('collection').findBy('id', id);
                 var property = this.get('meta.dataSource');
-                var relation = object.get(property);
-                return relation.then(function(relation){
-                    if(type === 'select'){
-                        relation.pushObject(selectedObject);
-                    } else{
-                        relation.removeObject(selectedObject);
-                    }
-                    var Ids = relation.get('content').mapBy('id');
-                    object.changeRelationshipsValue(property, Ids);
-                });
+                object.set(property, this.get('selectedIds'));
             },
 
             actions: {
@@ -115,9 +187,10 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                     collection.objectAt(index).set('hover', true);
                 },
                 selectHover: function(){
+                    var key = this.get('isLazy') ? 'id' : 'value';
                     var collection = this.get('notSelectedObjects');
                     var hoverObject = collection.findBy('hover', true);
-                    this.send('select', hoverObject.get('id'));
+                    this.send('select', hoverObject.get(key));
                     hoverObject.set('hover', false);
                     this.send('toggleList');
                 }
@@ -149,19 +222,25 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                     this.get('parentView').set('isOpen', true);
                 },
                 keyUp: function(){
+                    var key = 'value';
+                    var label = 'label';
+                    var parentView = this.get('parentView');
+                    if(parentView.get('isLazy')){
+                        key = 'id';
+                        label = 'displayName';
+                    }
                     var val = this.$().val();
                     if(!val){
                         return;
                     }
-                    var parentView = this.get('parentView');
                     parentView.set('filterOn', true);
                     var pattern = new RegExp("^" + val, "i");
                     var collection = parentView.get('collection');
                     var filterIds = [];
                     var selectedIds = parentView.get('selectedIds');
                     collection.forEach(function(item){
-                        if(pattern.test(item.get('displayName')) && !selectedIds.contains(item.get('id'))){
-                            filterIds.push(item.get('id'));
+                        if(pattern.test(Ember.get(item, label)) && !selectedIds.contains(Ember.get(item, key))){
+                            filterIds.push(Ember.get(item, key));
                         }
                     });
                     parentView.set('filterIds', filterIds);
@@ -201,6 +280,9 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                 },
                 blur: function(){
                     this.$()[0].value = '';
+                },
+                willDestroyElement: function(){
+                    this.removeObserver('parentView.inputInFocus');
                 }
             }),
 
@@ -212,28 +294,38 @@ define(['App', 'text!./layout.hbs'], function(UMI, layoutTpl){
                 var store = self.get('controller.store');
                 var promises = [];
                 var selectedObjects;
+                this.set('isLazy', this.get('meta.lazy'));
+                if(this.get('isLazy')){
+                    this.reopen(lazyChoicesBehaviour);
+                    selectedObjects = object.get(property);
+                    promises.push(selectedObjects);
 
-                selectedObjects = object.get(property);
-                promises.push(selectedObjects);
+                    var getCollection = function(relation){
+                        promises.push(store.findAll(relation.type));
+                    };
+                    object.eachRelationship(function(name, relation){
+                        if(name === property){
+                            getCollection(relation);
+                        }
+                    });
 
-                var getCollection = function(relation){
-                    promises.push(store.findAll(relation.type));
-                };
-                object.eachRelationship(function(name, relation){
-                    if(name === property){
-                        getCollection(relation);
-                    }
-                });
-
-                return Ember.RSVP.all(promises).then(function(results){
-                    self.set('collection', results[1]);
-                    self.set('selectedIds', results[0].mapBy('id'));
-                    Ember.set(object.get('loadedRelationshipsByName'), property, results[0].mapBy('id'));
-                });
+                    return Ember.RSVP.all(promises).then(function(results){
+                        self.set('collection', results[1]);
+                        self.set('selectedIds', results[0].mapBy('id') || []);
+                        Ember.set(object.get('loadedRelationshipsByName'), property, results[0].mapBy('id'));
+                    });
+                } else{
+                    self.set('collection', this.get('meta.choices'));
+                    self.set('selectedIds', this.get('meta.choices').findBy('value', object.get(property)) || []);
+                    /*this.addObserver('object.' + property, function(){
+                     Ember.run.once(function(){
+                     self.set('selection', self.get('meta.choices').findBy('value', object.get(property)));
+                     });
+                     });*/
+                }
             },
 
             willDestroyElement: function(){
-                this.removeObserver('parentView.inputInFocus');
                 this.removeObserver('isOpen');
             }
         });

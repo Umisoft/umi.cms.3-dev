@@ -1,32 +1,34 @@
 {{ include('partial/authorization.twig') }}
 
 <div class="sidebar-module sidebar-module-inset">
-    <h4>{{ translate('RSS ленты') }}</h4>
-    <p>{{ translate('Блоги') }}: {{ widget('blog.post.rss', {'template' : 'rssLink'}) }}</p>
+    <h4>{{ translate('RSS feed') }}</h4>
+    <p>{{ translate('Blogs') }}: {{ widget('blog.post.rssLink', {'template' : 'rssLink'}) }}</p>
 </div>
 <div class="sidebar-module">
-    <h4>{{ translate('Категории') }}</h4>
+    <h4>{{ translate('Categories') }}</h4>
     {{ widget('blog.category.list', {'template' : 'listShort'}) }}
 </div>
 <div class="sidebar-module">
-    <h4>{{ translate('Облако тэгов') }}</h4>
+    <h4>{{ translate('Tags cloud') }}</h4>
     {{ widget('blog.tag.cloud', {'template' : 'cloud'}) }}
 </div>
 <div class="sidebar-module">
-    <h4>{{ translate('Авторы') }}</h4>
+    <h4>{{ translate('Authors') }}</h4>
     {{ widget('blog.author.list', {'template' : 'listShort'}) }}
 </div>
 <div class="sidebar-module">
-    <h4>{{ translate('Посты автора') }}</h4>
+    <h4>{{ translate('Authors\'s posts') }}</h4>
     <ol class="list-unstyled">
-        <li>{{ translate('Черновики') }}: {{ widget('blog.draft.ownListLink', {'template' : 'draftLinkAuthor'}) }}</li>
-        <li>{{ translate('Посты на модерации') }}: {{ widget('blog.moderate.ownListLink', {'template' : 'moderateLink'}) }}</li>
-        <li>{{ translate('Отклонённые посты') }}: {{ widget('blog.reject.listLink', {'template' : 'listLink'}) }}</li>
+        <li>{{ translate('Drafts') }}: {{ widget('blog.draft.ownListLink', {'template' : 'draftLinkAuthor'}) }}</li>
+        <li>{{ translate('Post on moderation') }}: {{ widget('blog.moderate.ownListLink', {'template' : 'moderateLink'}) }}</li>
+        <li>{{ translate('Rejected posts') }}: {{ widget('blog.reject.listLink', {'template' : 'listLink'}) }}</li>
     </ol>
 </div>
 <div class="sidebar-module">
-    <h4>{{ translate('Модерирование') }}</h4>
+    <h4>{{ translate('Moderate') }}</h4>
     <ol class="list-unstyled">
-        <li>{{ translate('Посты на модерации') }}: {{ widget('blog.moderate.allListLink', {'template' : 'moderateLink'}) }}</li>
+        <li>{{ translate('Post on moderation') }}: {{ widget('blog.moderate.allListLink', {'template' : 'moderateLink'}) }}</li>
     </ol>
 </div>
+{{ widget('structure.infoblock.view', {'template' : 'facebook'}) }}
+{{ widget('structure.infoblock.view', {'template' : 'vk'}) }}

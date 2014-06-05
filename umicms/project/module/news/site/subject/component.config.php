@@ -1,9 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\news\site\subject;
@@ -25,7 +27,7 @@ return [
         'view' => __NAMESPACE__ . '\widget\SubjectWidget',
         'newsList' => __NAMESPACE__ . '\widget\SubjectNewsListWidget',
         'list' => __NAMESPACE__ . '\widget\SubjectListWidget',
-        'rss' => __NAMESPACE__ . '\widget\SubjectNewsRssUrlWidget'
+        'rssLink' => __NAMESPACE__ . '\widget\SubjectNewsRssLinkWidget'
     ],
 
     DefaultSitePageComponent::OPTION_ACL => [
@@ -38,7 +40,7 @@ return [
             'widget:view',
             'widget:list',
             'widget:newsList',
-            'widget:rss'
+            'widget:rssLink'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -48,7 +50,7 @@ return [
             ],
             'rssViewer' => [
                 'controller:rss' => [],
-                'widget:rss' => []
+                'widget:rssLink' => []
             ]
         ]
     ],

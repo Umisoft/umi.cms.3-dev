@@ -7,7 +7,7 @@ define(
         'jQueryUI',
         'elFinder',
         'timepicker',
-        'datepicker',
+//        'datepicker',
         'moment',
         'application/config',
         'application/utils',
@@ -17,7 +17,7 @@ define(
         'application/controllers',
         'application/views'
     ],
-    function(DS, Modernizr, iscroll, ckEditor, jQueryUI, elFinder, timepicker, datepicker, moment, config, utils, templates, models, router, controller, views){
+    function(DS, Modernizr, iscroll, ckEditor, jQueryUI, elFinder, timepicker, /* datepicker,*/ moment, config, utils, templates, models, router, controller, views){
         'use strict';
 
         var UMI = window.UMI = window.UMI || {};
@@ -203,6 +203,110 @@ define(
                 var meta = owner.constructor.metaForProperty(name);
                 var link = owner._data.links[meta.key];
                 store.findHasMany(owner, link, meta, resolver);
+            }
+        });
+
+        UMI.Store = DS.Store.extend({
+            /**
+             * Обновление объектов коллекции без очищения загруженных полей
+             * @method updateCollection
+             * @param type
+             * @param id
+             * @returns {*}
+             */
+            updateCollection: function(type, id){
+                var promise;
+                var self = this;
+
+                function promiseArray(promise, label){
+                    var PromiseArray = Ember.ArrayProxy.extend(Ember.PromiseProxyMixin);
+                    return PromiseArray.create({
+                        promise: Ember.RSVP.Promise.cast(promise, label)
+                    });
+                }
+
+                function serializerFor(container, type, defaultSerializer) {
+                    return container.lookup('serializer:'+type) ||
+                        container.lookup('serializer:application') ||
+                        container.lookup('serializer:' + defaultSerializer) ||
+                        container.lookup('serializer:-default');
+                }
+
+                function serializerForAdapter(adapter, type){
+                    var serializer = adapter.serializer,
+                        defaultSerializer = adapter.defaultSerializer,
+                        container = adapter.container;
+
+                    if (container && serializer === undefined) {
+                        serializer = serializerFor(container, type.typeKey, defaultSerializer);
+                    }
+
+                    if (serializer === null || serializer === undefined) {
+                        serializer = {
+                            extract: function(store, type, payload) { return payload; }
+                        };
+                    }
+
+                    return serializer;
+                }
+
+                function findQuery(type, query){
+                    type = self.modelFor(type);
+
+                    var array = self.recordArrayManager.createAdapterPopulatedRecordArray(type, query);
+
+                    var adapter = self.adapterFor(type);
+
+                    Ember.assert("You tried to load a query but you have no adapter (for " + type + ")", adapter);
+                    Ember.assert("You tried to load a query but your adapter does not implement `findQuery`", adapter.findQuery);
+
+                    return promiseArray(_findQuery(adapter, self, type, query, array));
+                }
+
+                function _findQuery(adapter, store, type, query, recordArray){
+                    var promise = adapter.findQuery(store, type, query, recordArray),
+                        serializer = serializerForAdapter(adapter, type),
+                        label = "DS: Handle Adapter#findQuery of " + type;
+
+                    return Ember.RSVP.Promise.cast(promise, label).then(function(adapterPayload) {
+                        var payload = serializer.extract(store, type, adapterPayload, null, 'findQuery');
+
+                        Ember.assert("The response from a findQuery must be an Array, not " + Ember.inspect(payload), Ember.typeOf(payload) === 'array');
+
+                        //recordArray.load(payload);
+                        return payload;
+                    }, null, "DS: Extract payload of findQuery " + type);
+                }
+
+                function coerceId(id){
+                    return id == null ? null : id+'';
+                }
+
+                Ember.assert("You need to pass a type to the store's find method", arguments.length >= 1);
+                Ember.assert("You may not pass `" + id + "` as id to the store's find method", arguments.length === 1 || !Ember.isNone(id));
+
+                if (arguments.length === 1){
+                    promise = self.findAll(type);
+                } else if (Ember.typeOf(id) === 'object'){
+                    promise = findQuery(type, id);
+                } else{
+                    promise = self.findById(type, coerceId(id));
+                }
+
+                return promiseArray(promise.then(function(result){
+                    var i;
+                    var objects = [];
+                    for(i = 0; i < result.length; i++){
+                        for(var key in result[i]){
+                            if(result[i].hasOwnProperty(key) && Ember.isEmpty(result[i][key])){
+                               delete result[i][key];
+                            }
+                        }
+                        objects.push(self.update(type, result[i]));
+                    }
+
+                    return objects;
+                }));
             }
         });
 

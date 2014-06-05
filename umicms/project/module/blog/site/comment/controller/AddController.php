@@ -1,31 +1,30 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\site\comment\controller;
 
-use umi\form\IFormAware;
 use umi\form\TFormAware;
-use umi\hmvc\exception\http\HttpNotFound;
-use umi\http\Response;
-use umi\orm\metadata\IObjectType;
+use umi\form\IForm;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogComment;
+use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер добавления комментария.
  */
-class AddController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class AddController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
-    use TFormAware;
+    use TFormController;
     use TObjectPersisterAware;
 
     /**
@@ -43,34 +42,44 @@ class AddController extends BaseSecureController implements IFormAware, IObjectP
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws HttpNotFound
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getTemplateName()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
-        }
+        return 'addComment';
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
+    {
         $parentCommentId = $this->getRouteVar('parent');
         $parentComment = $parentCommentId ? $this->api->comment()->getById($parentCommentId) : null;
 
         $post = $this->api->post()->getById($this->getPostVar('post'));
 
-        $comment = $this->api->addComment(BlogComment::TYPE, $post, $parentComment);
+        $comment = $this->api->addComment(
+            BlogComment::TYPE,
+            $post,
+            $parentComment
+        );
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, BlogComment::TYPE, $comment);
-        $formData = $this->getAllPostVars();
+        return $this->api->comment()->getForm(
+            BlogComment::FORM_ADD_COMMENT,
+            BlogComment::TYPE,
+            $comment
+        );
+    }
 
-        if ($form->setData($formData) && $form->isValid()) {
-            $this->getObjectPersister()->commit();
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $this->getObjectPersister()->commit();
 
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages()); exit();
-        }
+        return $this->buildRedirectResponse();
     }
 }
  
