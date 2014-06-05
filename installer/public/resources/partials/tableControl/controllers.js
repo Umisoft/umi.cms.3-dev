@@ -169,10 +169,10 @@ define(['App'], function(UMI){
                 var contentControls = this.get('controllers.component.contentControls') || [];
                 var filter = contentControls.findBy('name', 'filter') || {};
                 var contextToolbar = filter.contextToolbar;
-                if(contextToolbar){
-                    var dropDown = contextToolbar.findBy('type', 'dropdownButton');
-                    if(dropDown){
-                        return dropDown.choices;
+                if(Ember.typeOf(contextToolbar) === 'array'){
+                    var splitButton = contextToolbar.findBy('type', 'splitButton');
+                    if(splitButton && Ember.typeOf(splitButton.behaviour) === 'object'){
+                        return splitButton.behaviour.choices;
                     }
                 }
             }.property('controllers.component.contentControls'),
