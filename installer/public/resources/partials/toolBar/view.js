@@ -8,7 +8,12 @@ define(['App'], function(UMI){
 
             template: function(){
                 var type = this.get('context.type');
-                return Ember.Handlebars.compile('{{view view.' + type + 'View meta=this}}');
+                if(this.get(type + 'View')){
+                    return Ember.Handlebars.compile('{{view view.' + type + 'View meta=this}}');
+                } else{
+                    Ember.assert('View c типом ' + type + ' не зарегестрирован для toolbar контроллера');
+                    return Ember.Handlebars.compile('');
+                }
             }.property(),
 
             buttonView: function(){

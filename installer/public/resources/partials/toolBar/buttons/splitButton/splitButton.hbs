@@ -1,0 +1,21 @@
+{{#if view.meta.attributes.icon}}
+    <i class="{{unbound view.meta.attributes.icon.class}}"></i>
+{{/if}}
+
+{{#if view.meta.attributes.label}}
+    <span class="umi-toolbar-create-text">
+        {{unbound view.meta.attributes.label}}
+    </span>
+{{/if}}
+
+<span class="umi-toolbar-create-icon">
+    <i class="icon icon-bottom"></i>
+</span>
+
+<span class="umi-toolbar-create-list umi-hide-on-html">
+    {{#each view.meta.choices}}
+        <span {{action 'sendAction' behaviour}}>
+            {{attributes.label}}
+        </span>
+    {{/each}}
+</span>
