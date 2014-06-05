@@ -18,6 +18,9 @@
     <?= $blogDraft->announcement ?>
 
     <a href="<?= $blogDraft->getPageUrl() ?>"><?=$this->translate('Read more')?></a>
-    <?=$this->widget('blog.draft.publishDraft', ['blogDraft' => $blogDraft, 'template' => 'publishDraftForm'])?>
-    <?=$this->widget('blog.draft.sendToModeration', ['blogDraft' => $blogDraft, 'template' => 'sendToModerationForm'])?>
+
+    <div class="btn-toolbar">
+        <?=$this->widget('blog.draft.publishDraft', ['blogDraft' => $blogDraft, 'template' => 'publishDraftForm'])?>
+        <?=$this->widget('blog.draft.sendToModeration', ['blogDraft' => $blogDraft, 'template' => 'sendToModerationForm'])?>
+    </div>
 </div>

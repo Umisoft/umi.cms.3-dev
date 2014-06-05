@@ -152,6 +152,10 @@ h6, .h6 {
     margin-bottom: 20px;
     color: #999;
 }
+.btn-toolbar form {
+    float: left;
+    margin: 10px 10px 0 0;
+}
 
 /*
  * Footer

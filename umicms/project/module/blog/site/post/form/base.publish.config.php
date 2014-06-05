@@ -11,7 +11,6 @@
 use umi\form\element\Hidden;
 use umi\form\element\Submit;
 use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\blog\api\object\BlogPost;
 
 return [
     'options' => [
@@ -23,13 +22,6 @@ return [
         'method' => 'post'
     ],
     'elements' => [
-        BlogPost::FIELD_IDENTIFY => [
-            'type' => Hidden::TYPE_NAME,
-            'label' => BlogPost::FIELD_IDENTIFY,
-            'options' => [
-                'dataSource' => BlogPost::FIELD_IDENTIFY
-            ],
-        ],
         BaseFormWidget::INPUT_REDIRECT_URL => [
             'type' => Hidden::TYPE_NAME
         ],

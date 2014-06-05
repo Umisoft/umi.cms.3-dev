@@ -30,6 +30,7 @@ return [
         'ownList' => __NAMESPACE__ . '\widget\DraftOwnListWidget',
         'ownListLink' => __NAMESPACE__ . '\widget\DraftOwnListLinkWidget',
         'publishDraft' => __NAMESPACE__ . '\widget\PublishWidget',
+        'editDraftLink' => __NAMESPACE__ . '\widget\DraftEditUrlWidget',
         'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
@@ -44,6 +45,7 @@ return [
             'widget:view',
             'widget:ownList',
             'widget:ownListLink',
+            'widget:editDraftLink',
             'widget:publishDraft',
             'widget:sendToModeration',
             'model:blogPost'
@@ -57,6 +59,7 @@ return [
                 'widget:view' => [],
                 'widget:ownList' => [],
                 'widget:ownListLink' => [],
+                'widget:editDraftLink',
                 'widget:sendToModeration' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']

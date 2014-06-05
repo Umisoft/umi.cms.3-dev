@@ -16,7 +16,6 @@ use umi\rss\IRssFeed;
 use umi\rss\IRssFeedAware;
 use umi\rss\RssItem;
 use umi\rss\TRssFeedAware;
-use umicms\exception\InvalidArgumentException;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManagerAware;
@@ -393,8 +392,8 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает текущего автора блога.
-     * @throws InvalidArgumentException
-     * @return mixed
+     * @throws RuntimeException в случае, если текущий автор не установлен
+     * @return BlogAuthor
      */
     public function getCurrentAuthor()
     {
@@ -407,13 +406,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             ->getResult()
             ->fetch();
 
-        if (isset($this->currentAuthor) && !$this->currentAuthor instanceof BlogAuthor) {
-            throw new InvalidArgumentException(
+        if (!$this->currentAuthor instanceof BlogAuthor) {
+            throw new RuntimeException(
                 $this->translate(
-                    'Method parameter "{param} should be instance of "{class}".',
+                    'Current author should be instance of "{class}".',
                     [
-                        'param' => 'currentAuthor',
-                        'class' => 'BlogAuthor'
+                        'class' => BlogAuthor::className()
                     ]
                 )
             );
@@ -428,7 +426,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     public function hasCurrentAuthor()
     {
-        return $this->getCurrentAuthor() ? true : false;
+        try {
+            $this->getCurrentAuthor();
+        } catch (RuntimeException $e) {
+            return false;
+        }
+        return true;
     }
 
     /**

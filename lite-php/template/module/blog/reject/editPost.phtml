@@ -3,4 +3,10 @@
  * @var umi\form\IForm $form
  */
 ?>
+<?php if($success) : ?>
+    <div class="alert alert-success">
+        <p class="bg-success text-success"><?=$this->translate('Post has been saved.')?></p>
+    </div>
+<?php endif;?>
+
 <?= $this->render('form/form.phtml', ['form' => $form]) ?>

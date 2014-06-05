@@ -18,7 +18,10 @@
     <?= $blogPost->announcement ?>
 
     <a href="<?= $blogPost->getPageUrl() ?>"><?=$this->translate('Read more')?></a>
-    <?=$this->widget('blog.moderate.publishModerate', ['blogPost' => $blogPost, 'template' => 'publishForm'])?>
-    <?=$this->widget('blog.moderate.rejectModerate', ['blogPost' => $blogPost, 'template' => 'rejectForm'])?>
-    <?=$this->widget('blog.moderate.draftModerate', ['blogPost' => $blogPost, 'template' => 'draftForm'])?>
+
+    <div class="btn-toolbar">
+        <?=$this->widget('blog.moderate.publishModerate', ['blogPost' => $blogPost, 'template' => 'publishForm'])?>
+        <?=$this->widget('blog.moderate.rejectModerate', ['blogPost' => $blogPost, 'template' => 'rejectForm'])?>
+        <?=$this->widget('blog.moderate.draftModerate', ['blogPost' => $blogPost, 'template' => 'draftForm'])?>
+    </div>
 </div>

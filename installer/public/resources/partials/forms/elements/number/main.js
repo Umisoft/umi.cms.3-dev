@@ -7,13 +7,6 @@ define(['App', 'text!./numberElement.hbs'], function(UMI, numberElement){
         UMI.NumberElementComponent = Ember.Component.extend(UMI.InputValidate, {
             classNames: ['umi-element', 'umi-element-number'],
 
-            didInsertElement: function(){
-                var el = this.$();
-                el.find('.icon-delete').click(function(){
-                    el.find('input').val('');
-                });
-            },
-
             inputView: Ember.View.extend({
                 template: function(){
                     var dataSource = this.get('parentView.meta.dataSource');

@@ -27,6 +27,10 @@ class PostToDraftWidget extends BaseFormWidget implements IAclResource
      */
     public $template = 'unPublishPostForm';
     /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
+    /**
      * @var string|BlogPost $blogPost пост или GUID поста
      */
     public $blogPost;

@@ -10,23 +10,21 @@
 
 namespace umicms\project\module\blog\site\moderate\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
-use umi\hmvc\exception\http\HttpNotFound;
-use umi\http\Response;
+use umi\form\IForm;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\site\controller\TFormSimpleController;
 
 /**
  * Контроллер отправки отклонённого поста на модерацию.
  */
-class PostRejectController extends BaseAccessRestrictedController implements IFormAware, IObjectPersisterAware
+class PostRejectController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
-    use TFormAware;
+    use TFormSimpleController;
     use TObjectPersisterAware;
 
     /**
@@ -44,31 +42,22 @@ class PostRejectController extends BaseAccessRestrictedController implements IFo
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws HttpNotFound
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function buildForm()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
-        }
+        return $this->api->post()->getForm(BlogPost::FORM_REJECT_POST, IObjectType::BASE);
+    }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_REJECT_POST, IObjectType::BASE);
-        $formData = $this->getAllPostVars();
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
+        $blogPost->rejected();
 
-        if ($form->setData($formData) && $form->isValid()) {
-            $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
-            $blogPost->rejected();
-
-            $this->getObjectPersister()->commit();
-
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages());
-            exit();
-        }
+        $this->getObjectPersister()->commit();
     }
 }
  
