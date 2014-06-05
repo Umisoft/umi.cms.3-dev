@@ -18,7 +18,8 @@ define(
         'partials/forms/elements/datetime/main',
         'partials/forms/elements/file/main',
         'partials/forms/elements/image/main',
-        'partials/forms/elements/textarea/main'
+        'partials/forms/elements/textarea/main',
+        'partials/forms/elements/checkbox-group/main'
     ],
     function(
         UMI,
@@ -39,7 +40,8 @@ define(
         datetimeElement,
         fileElement,
         imageElement,
-        textareaElement
+        textareaElement,
+        checkboxGroupElement
     ){
         "use strict";
 
@@ -62,6 +64,7 @@ define(
             fileElement();
             imageElement();
             textareaElement();
+            checkboxGroupElement();
         };
     }
 );

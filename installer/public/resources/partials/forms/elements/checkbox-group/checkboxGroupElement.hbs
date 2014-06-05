@@ -1,0 +1,14 @@
+<!-- Если у checkbox значение false - он не оправляется на сервер -->
+<!-- Ставим перед ним поле hidden с тем же имененем и значением false -->
+<!-- На сервер всегда отправляется fasle, но если checkbox установлен в true -->
+<!-- он затирает hidden -->
+<input type="hidden" name="{{unbound meta.choices.attributes.name}}" value="false" />
+{{#each element in meta.choices}}
+    <div style="height: 24px; line-height: 24px;">
+        <input type="checkbox" value="{{unbound element.attributes.value}}" name="{{unbound element.attributes.name}}" id="input-multicheckbox-{{unbound element.attributes.value}}" />
+        <label for="input-multicheckbox-{{unbound element.attributes.value}}" unselectable="on" onselectstart="return false;">
+            <span></span>
+            {{unbound element.label}}
+        </label>
+    </div>
+{{/each}}

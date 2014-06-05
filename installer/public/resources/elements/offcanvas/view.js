@@ -92,6 +92,7 @@ define(['App'], function(UMI){
                     var checkWindowWidth = function(){
                         if($(window).width() < (320 + 250)){
                             floatDivider();
+                            $('.umi-divider-right').css({width: '100%'});
                         }else{
                             moveDivider();
                         }

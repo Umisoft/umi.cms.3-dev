@@ -144,15 +144,17 @@ input::-ms-clear { //Убираем крестик браузера из пол�
 }
 
 
-/* Вычитаем ширину левой и правой частей из центральной части*/
-.umi-element-left-text      {width: 0px;}    .umi-element-center-text       {width: calc(100% - 0px - 32px)}     .umi-element-right-text    {width: 32px;}
-.umi-element-left-number    {width: 0px;}    .umi-element-center-number     {width: calc(100% - 0px - 32px)}     .umi-element-right-number  {width: 32px;}
-.umi-element-left-email     {width: 0px;}    .umi-element-center-email      {width: calc(100% - 0px - 32px)}     .umi-element-right-email   {width: 32px;}
-.umi-element-left-password  {width: 0px;}    .umi-element-center-password   {width: calc(100% - 0px - 32px)}     .umi-element-right-password{width: 32px;}
-.umi-element-left-file      {width: 0px;}    .umi-element-center-file       {width: calc(100% - 0px - 64px)}     .umi-element-right-file    {width: 64px;}
-.umi-element-left-image     {width: 32px;}   .umi-element-center-image      {width: calc(100% - 32px - 64px)}    .umi-element-right-image   {width: 64px;}
-.umi-element-left-time      {width: 0px;}    .umi-element-center-time       {width: calc(100% - 0px - 64px)}     .umi-element-right-time    {width: 64px;}
-.umi-element-left-date      {width: 0px;}    .umi-element-center-date       {width: calc(100% - 0px - 64px)}     .umi-element-right-date    {width: 64px;}
+/* Ширина левой части                        || Вычитаем ширину левой и правой частей из центральной части       || Ширина правой части*/
+.umi-element-left-text      {width: 0px;}    .umi-element-center-text       {width: calc(100% - 0px - 32px)}     .umi-element-right-text     {width: 32px;}
+.umi-element-left-number    {width: 0px;}    .umi-element-center-number     {width: calc(100% - 0px - 32px)}     .umi-element-right-number   {width: 32px;}
+.umi-element-left-email     {width: 0px;}    .umi-element-center-email      {width: calc(100% - 0px - 32px)}     .umi-element-right-email    {width: 32px;}
+.umi-element-left-password  {width: 0px;}    .umi-element-center-password   {width: calc(100% - 0px - 32px)}     .umi-element-right-password {width: 32px;}
+.umi-element-left-file      {width: 0px;}    .umi-element-center-file       {width: calc(100% - 0px - 64px)}     .umi-element-right-file     {width: 64px;}
+.umi-element-left-image     {width: 32px;}   .umi-element-center-image      {width: calc(100% - 32px - 64px)}    .umi-element-right-image    {width: 64px;}
+.umi-element-left-time      {width: 0px;}    .umi-element-center-time       {width: calc(100% - 0px - 64px)}     .umi-element-right-time     {width: 64px;}
+.umi-element-left-date      {width: 0px;}    .umi-element-center-date       {width: calc(100% - 0px - 64px)}     .umi-element-right-date     {width: 64px;}
+.umi-element-left-datetime  {width: 0px;}    .umi-element-center-datetime   {width: calc(100% - 0px - 32px)}     .umi-element-right-datetime {width: 32px;}
+
 
 .umi-element-right{
     float: right;
@@ -187,3 +189,74 @@ input::-ms-clear { //Убираем крестик браузера из пол�
 //    line-height: 14px;
     padding-left: 5px;
 }
+
+.umi-element-radio{
+    margin-bottom: 13px;
+}
+
+.umi-element-checkbox-group{
+    margin-bottom: 13px;
+}
+
+//.umi-element-date-time{
+//    height: 30px;
+//    background: #FFFFFF;
+//    border-radius: 3px;
+//    border: 1px solid #d3d7da;
+//    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+//
+//    input{
+//        border: none;
+//        transition: none;
+//        box-shadow: none;
+//        background: none;
+//        height: 30px;
+//        //        line-height: 30px;
+//        padding-left: 10px;
+//    }
+//
+//    .umi-element-date-time-date{
+//        float: left;
+//        width: 50%;
+//        .umi-element-date-time-date-input{
+//            float: left;
+//            width: calc(100% - 32px - 1px);
+//         }
+//        .umi-element-date-time-date-icon{
+//            float: left;
+//            border-right: 1px solid #d3d7da;
+//            width: 32px;
+//            height: 30px;
+//            .icon{
+//                float: right;
+//                margin: 6px 7px 0 0;
+//                &:last-of-type{
+//                    margin-left: 4px;
+//                }
+//                cursor: pointer;
+//            }
+//        }
+//    }
+//
+//    .umi-element-date-time-time{
+//        float: left;
+//        width: 50%;
+//        .umi-element-date-time-time-input{
+//            float: left;
+//            width: calc(100% - 32px); //минус border
+//        }
+//        .umi-element-date-time-time-icon{
+//            float: left;
+//            width: 32px;
+//            height: 30px;
+//            .icon{
+//                float: right;
+//                margin: 6px 7px 0 0;
+//                &:last-of-type{
+//                    margin-left: 4px;
+//                }
+//                cursor: pointer;
+//            }
+//        }
+//    }
+//}
