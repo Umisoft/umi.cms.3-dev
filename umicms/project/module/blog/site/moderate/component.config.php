@@ -75,17 +75,18 @@ return [
             ],
             'moderator' => [
                 'controller:index' => [],
+                'controller:page' => [],
                 'controller:edit' => [],
                 'controller:publish' => [],
                 'controller:reject' => [],
                 'controller:all' => [],
                 'widget:view' => [],
-                'controller:page' => [],
                 'widget:allList' => [],
                 'widget:allListLink' => [],
                 'widget:editPostLink' => [],
                 'widget:publishModerate' => [],
-                'widget:rejectModerate' => []
+                'widget:rejectModerate' => [],
+                'model:blogPost' => []
             ]
         ]
     ],

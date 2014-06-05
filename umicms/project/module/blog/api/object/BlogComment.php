@@ -10,6 +10,9 @@
 
 namespace umicms\project\module\blog\api\object;
 
+use umi\acl\IAclAssertionResolver;
+use umi\acl\IAclResource;
+use umi\hmvc\acl\ComponentRoleProvider;
 use umicms\project\module\users\api\UsersModule;
 
 /**
@@ -19,7 +22,7 @@ use umicms\project\module\users\api\UsersModule;
  * @property string $contents комментарий
  * @property string $publishStatus статус публикации комментария
  */
-class BlogComment extends BlogBaseComment
+class BlogComment extends BlogBaseComment implements IAclResource, IAclAssertionResolver
 {
     /**
      * Тип объекта
@@ -90,6 +93,32 @@ class BlogComment extends BlogBaseComment
     {
         $this->publishStatus = self::COMMENT_STATUS_REJECTED;
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAclResourceName()
+    {
+        return 'model:blogComment';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAllowed($role, $operationName, array $assertions)
+    {
+        if (!$role instanceof ComponentRoleProvider) {
+            return false;
+        }
+
+        foreach ($assertions as $assertion) {
+            if ($assertion === 'premoderation') {
+                return false;
+            }
+        }
+
+        return false;
     }
 }
  

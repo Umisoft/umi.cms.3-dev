@@ -65,6 +65,13 @@ class AddController extends BaseAccessRestrictedController implements IObjectPer
             $parentComment
         );
 
+
+        if ($this->isAllowed($comment, 'publish')) {
+            $comment->published();
+        } else {
+            $comment->needModerate();
+        }
+
         return $this->api->comment()->getForm(
             BlogComment::FORM_ADD_COMMENT,
             BlogComment::TYPE,

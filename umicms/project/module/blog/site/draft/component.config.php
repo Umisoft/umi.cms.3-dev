@@ -36,7 +36,8 @@ return [
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
-            'publisher' => ['author']
+            'publisher' => [],
+            'moderator' => ['publisher']
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:edit',
@@ -66,11 +67,21 @@ return [
                 ]
             ],
             'publisher' => [
+                'controller:index' => [],
+                'controller:page' => [],
+                'controller:edit' => [],
                 'controller:publish' => [],
+                'widget:view' => [],
+                'widget:ownList' => [],
+                'widget:ownListLink' => [],
+                'widget:editDraftLink' => [],
                 'widget:publishDraft' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
+            ],
+            'moderator' => [
+                'model:blogPost' => []
             ],
         ]
     ],

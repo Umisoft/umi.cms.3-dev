@@ -41,8 +41,7 @@ return [
             'rssViewer' => [],
             'viewer' => [],
             'author' => ['viewer'],
-            'publisher' => ['author'],
-            'moderator' => ['publisher']
+            'moderator' => ['author']
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:rss',
@@ -67,25 +66,21 @@ return [
                 'widget:rssLink' => []
             ],
             'author' => [
-                'controller:unPublished' => [],
+                'widget:addPostLink' => [],
                 'widget:unPublished' => [],
+                'controller:add' => [],
+                'controller:unPublished' => [],
                 'model:blogPost' => [
                     'unPublished' => ['own']
                 ]
             ],
-            'publisher' => [
-                'controller:add' => [],
-                'widget:addPostLink' => [],
-            ],
             'moderator' => [
+                'controller:index' => [],
+                'controller:page' => [],
                 'controller:edit' => [],
                 'controller:unPublished' => [],
-                'widget:unPublished' => [],
-                'widget:addPostLink' => [],
                 'widget:editPostLink' => [],
-                'model:blogPost' => [
-                    'edit' => []
-                ]
+                'model:blogPost' => []
             ]
         ]
     ],
