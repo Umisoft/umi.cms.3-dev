@@ -38,7 +38,7 @@ define(['App'], function(UMI){
                 }
                 var self = this;
                 var Root = Ember.Object.extend({
-                    displayName: sideBarControl.displayName,
+                    displayName: Ember.typeOf(sideBarControl.params) === 'object' ? sideBarControl.params.rootNodeName : '',
                     root: true,
                     hasChildren: true,
                     id: 'root',
@@ -98,10 +98,10 @@ define(['App'], function(UMI){
 
             contextMenu: function(){
                 var sideBarControl = this.get('controllers.component.sideBarControl');
-                if(sideBarControl && sideBarControl.get('contextToolbar')){
-                    var dropDown = sideBarControl.get('contextToolbar').findBy('type', 'dropdownButton');
-                    if(dropDown){
-                        return dropDown.choices;
+                if(sideBarControl && Ember.typeOf(sideBarControl.contextToolbar) === 'array'){
+                    var splitButton = sideBarControl.contextToolbar.findBy('type', 'splitButton');
+                    if(splitButton && Ember.typeOf(splitButton.behaviour) === 'object'){
+                        return splitButton.behaviour.choices;
                     }
                 }
             }.property('controllers.component.sideBarControl.contextToolbar'),

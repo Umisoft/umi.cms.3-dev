@@ -20,7 +20,9 @@
         {{view.savedDisplayName}}
     {{/link-to}}
 
-    {{view "treeControlContextMenu" contextMenu=controllers.treeControl.contextMenu}}
+    {{#if controllers.treeControl.contextMenu}}
+        {{view "treeControlContextMenu" contextMenu=controllers.treeControl.contextMenu}}
+    {{/if}}
 </div>
 
 {{#if childCount}}
