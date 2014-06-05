@@ -69,7 +69,7 @@ class EditObjectControl extends CollectionControl
         $behaviour->addChoice('saveAndGoBack', $this->createActionChoice('saveAndGoBack'));
         //$behaviour->addChoice('saveAsCopy', $this->createActionChoice('saveAsCopy'));
 
-        $saveButton = new SplitButton($this->component->translate('button:apply'), $behaviour);
+        $saveButton = new SplitButton($this->component->translate('button:save'), $behaviour);
         $this->addSubmitButton('save', $saveButton);
 
         return $this;

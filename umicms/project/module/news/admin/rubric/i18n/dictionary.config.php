@@ -11,13 +11,11 @@
 return [
 
     'en-US' => [
-        'component:rubric:displayName' => 'Rubrics',
-        'control:tree:displayName' => 'Rubrics'
+        'displayName' => 'Rubrics'
     ],
 
     'ru-RU' => [
-        'component:rubric:displayName' => 'Новостные рубрики',
-        'control:tree:displayName' => 'Новостные рубрики'
+        'displayName' => 'Новостные рубрики'
     ]
 
 ];

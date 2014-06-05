@@ -21,6 +21,7 @@ class TreeControl extends CollectionControl
      */
     protected function configure()
     {
+        $this->params['rootNodeName'] = $this->component->translate('displayName');
         $this->configureContextMenu();
     }
 
