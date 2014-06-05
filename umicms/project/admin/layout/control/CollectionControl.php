@@ -27,6 +27,11 @@ use umicms\project\admin\layout\button\DropdownButton;
 abstract class CollectionControl
 {
     /**
+     * @var array $params список параметров контрола
+     */
+    public $params = [];
+
+    /**
      * @var Button[] $contextToolbar кнопки контекстного меню
      */
     protected $contextToolbar = [];
@@ -164,7 +169,9 @@ abstract class CollectionControl
             $submitToolbar[] = $info;
         }
 
-        $result = [];
+        $result = [
+            'params' => $this->params
+        ];
         if ($toolbar) {
             $result['toolbar'] = $toolbar;
         }

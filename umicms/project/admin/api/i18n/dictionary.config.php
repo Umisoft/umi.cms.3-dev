@@ -52,7 +52,8 @@ return [
         'action:saveAsCopy' => 'Сохранить как копию',
 
         'button:add' => 'Добавить',
-        'button:create' => 'Добавить'
+        'button:save' => 'Сохранить',
+        'button:create' => 'Добавить',
     ]
 
 ];
