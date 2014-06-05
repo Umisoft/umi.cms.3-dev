@@ -185,7 +185,7 @@ class AdminControl
      * @param array $params параметры обработчика
      * @return Button
      */
-    protected function createActionButton($actionName, array $params = [])
+    public function createActionButton($actionName, array $params = [])
     {
         $label = $this->component->translate('action:' . $actionName);
         return new Button($label, new Behaviour($actionName, $params));
@@ -197,7 +197,7 @@ class AdminControl
      * @param array $params параметры обработчика
      * @return DropdownButton
      */
-    protected function createActionDropdownButton($actionName, array $params = [])
+    public function createActionDropdownButton($actionName, array $params = [])
     {
         $label = $this->component->translate('action:' . $actionName);
         return new DropdownButton($label, new Behaviour($actionName, $params));
@@ -209,7 +209,7 @@ class AdminControl
      * @param array $params параметры обработчика
      * @return Choice
      */
-    protected function createActionChoice($actionName, array $params = [])
+    public function createActionChoice($actionName, array $params = [])
     {
         $label = $this->component->translate('action:' . $actionName);
         return new Choice($label, new Behaviour($actionName, $params));

@@ -12,8 +12,6 @@ namespace umicms\project\module\news\admin\rss\controller;
 
 use umicms\project\admin\api\controller\BaseAdminComponentLayoutController;
 use umicms\project\admin\layout\AdminComponentLayout;
-use umicms\project\admin\layout\button\behaviour\Behaviour;
-use umicms\project\admin\layout\button\Button;
 use umicms\project\admin\layout\CollectionComponentLayout;
 
 /**
@@ -31,8 +29,10 @@ class LayoutController extends BaseAdminComponentLayoutController
         $layout = new CollectionComponentLayout($this->getComponent());
 
         $editForm = $layout->getSelectedContextControl('editForm');
-        $button = new Button($this->translate('button:execute'), new Behaviour('execute'));
-        $editForm->addToolbarButton('execute', $button);
+        $editForm->addToolbarButton(
+            'execute',
+            $editForm->createActionButton('execute', ['action' => 'importFromRss'])
+        );
 
         return $layout;
     }
