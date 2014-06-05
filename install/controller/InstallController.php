@@ -269,7 +269,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $authorsWithoutPremoderation->roles = [
             'project.site.blog.draft' => ['publisher'],
             'project.site.blog.moderate' => ['author'],
-            'project.site.blog.post' => ['publisher'],
+            'project.site.blog.post' => ['author'],
             'project.site.blog.reject' => ['author']
         ];
 
@@ -305,7 +305,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $moderator->roles = [
             'project.site.blog.comment' => ['moderator'],
             'project.site.blog.moderate' => ['moderator'],
-            'project.site.blog.post' => ['moderator']
+            'project.site.blog.post' => ['moderator'],
+            'project.site.blog.reject' => ['moderator'],
+            'project.site.blog.draft' => ['moderator'],
         ];
 
         /**
