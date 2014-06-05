@@ -20,6 +20,7 @@ use umicms\project\admin\layout\button\behaviour\ChoicesBehaviour;
 use umicms\project\admin\layout\button\Button;
 use umicms\project\admin\layout\button\Choice;
 use umicms\project\admin\layout\button\DropdownButton;
+use umicms\project\admin\layout\button\SplitButton;
 
 /**
  * Административный контрол для управления коллекцией.
@@ -204,7 +205,7 @@ abstract class CollectionControl
             $choices->addChoice('viewOnSite', $this->createActionChoice('viewOnSite'));
         }
 
-        $dropdownButton = new DropdownButton('', $choices);
+        $dropdownButton = new SplitButton('', $choices);
 
         $this->addContextButton('contextMenu', $dropdownButton);
 
