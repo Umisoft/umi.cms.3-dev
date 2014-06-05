@@ -59,7 +59,7 @@ return [
                 'widget:view' => [],
                 'widget:ownList' => [],
                 'widget:ownListLink' => [],
-                'widget:editDraftLink',
+                'widget:editDraftLink' => [],
                 'widget:sendToModeration' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']

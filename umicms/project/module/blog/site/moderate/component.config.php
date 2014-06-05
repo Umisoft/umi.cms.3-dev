@@ -57,7 +57,8 @@ return [
             'widget:editPostLink',
             'widget:publishModerate',
             'widget:rejectModerate',
-            'widget:draftModerate'
+            'widget:draftModerate',
+            'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
