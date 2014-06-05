@@ -3,6 +3,7 @@ define(['App'], function(UMI){
 
     return function(){
         UMI.TableControlController = Ember.ObjectController.extend({
+            componentNameBinding: 'controllers.component.name',
             /**
              * Данные
              * @property objects

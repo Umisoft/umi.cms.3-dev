@@ -45,6 +45,14 @@ define(['App', 'text!./splitButton.hbs'],
                 }
             });
 
+            UMI.SplitButtonDefaultBehaviourForComponent = Ember.Mixin.create({
+                pathInLocalStorage: function(){
+                    var componentName = this.get('controller.componentName');
+                    var meta = this.get('meta') || {behaviour : {}};
+                    return 'layout.defaultBehaviour.' + meta.type + '.' + meta.behaviour.name + '.' + componentName;
+                }.property('controller.componentName')
+            });
+
             UMI.SplitButtonView = Ember.View.extend(UMI.SplitButtonDefaultBehaviour, {
                 template: Ember.Handlebars.compile(splitButtonTemplate),
                 tagName: 'button',
