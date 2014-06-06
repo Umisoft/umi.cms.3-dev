@@ -281,7 +281,7 @@ define(['App', 'partials/toolbar/buttons/contextMenu/main'], function(UMI, conte
                 action: null, //Получаем из шаблона
                 isFastAction: function(){
                     var selectAction = this.get('parentView.parentView.selectAction');
-                    if(Ember.typeOf(this.get('action').behaviour) === 'object' && Ember.typeOf(selectAction.behaviour) === 'object'){
+                    if(Ember.typeOf(this.get('action')) === 'object' && Ember.typeOf(selectAction) === 'object' && Ember.typeOf(this.get('action').behaviour) === 'object' && Ember.typeOf(selectAction.behaviour) === 'object'){
                         return selectAction ? this.get('action').behaviour.name === selectAction.behaviour.name : false;
                     }
                 }.property('parentView.parentView.selectAction')

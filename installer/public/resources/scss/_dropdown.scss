@@ -28,6 +28,18 @@
         #{$default-float}: $f-dropdown-triangle-side-offset;
         z-index: auto;
     }
+    li{
+        padding: 5px 8px;
+        text-align: left;
+        cursor: default;
+        a{
+            display: inline-block;
+            font-size: 13px;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
 }
 
 .dropdown-hover{
@@ -149,5 +161,11 @@ $dropup-button-pip-top-med: -$button-pip-med;
         &:before, &:after{
             display: none;
         }
+    }
+}
+
+.dropdown.dropup{
+    .f-dropdown{
+        bottom: 100%;
     }
 }

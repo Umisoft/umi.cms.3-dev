@@ -4848,6 +4848,15 @@ select {
     top: -16px;
     left: 10px;
     z-index: auto; }
+  .f-dropdown li {
+    padding: 5px 8px;
+    text-align: left;
+    cursor: default; }
+    .f-dropdown li a {
+      display: inline-block;
+      font-size: 13px; }
+      .f-dropdown li a:hover {
+        text-decoration: underline; }
 
 .dropdown-hover:hover > .f-dropdown {
   opacity: 1;
@@ -4944,6 +4953,9 @@ select {
   box-shadow: 0 0 5px 1px #AFB4BB; }
   .dropdown.coupled .f-dropdown:before, .dropdown.coupled .f-dropdown:after {
     display: none; }
+
+.dropdown.dropup .f-dropdown {
+  bottom: 100%; }
 
 ::-webkit-input-placeholder {
   /* WebKit browsers */

@@ -94,7 +94,11 @@ define(['App', 'text!./splitButton.hbs'],
                 })
             });
 
-            UMI.splitButtonBehaviour = Ember.Object.create({});
+            UMI.splitButtonBehaviour = Ember.Object.create({
+                dropUp: {
+                    classNames: ['dropup']
+                }
+            });
         };
     }
 );

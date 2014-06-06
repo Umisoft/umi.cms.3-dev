@@ -22,6 +22,12 @@ define(
                     return editForm && editForm.toolbar;
                 }.property('controllers.component.contentControls'),
 
+                submitToolbar: function(){
+                    var actionName = this.get('container').lookup('route:action').get('context.action.name');
+                    var editForm = this.get('controllers.component.contentControls').findBy('name', actionName);
+                    return editForm && editForm.submitToolbar;
+                }.property('controllers.component.contentControls'),
+
                 hasFieldset: function(){
                     var hasFieldset;
                     try{

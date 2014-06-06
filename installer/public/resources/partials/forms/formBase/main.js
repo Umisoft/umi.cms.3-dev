@@ -4,9 +4,9 @@ define(
         'text!./form.hbs',
         'partials/forms/elements/main',
         'partials/forms/partials/magellan/main',
-        'partials/forms/partials/contextMenu/main'
+        'partials/forms/partials/submitToolbar/main'
     ],
-    function(UMI, formTpl, elements, magellan, contextMenu){
+    function(UMI, formTpl, elements, magellan, submitToolbar){
         'use strict';
 
         /**
@@ -19,7 +19,7 @@ define(
 
             elements();
             magellan();
-            contextMenu();
+            submitToolbar();
 
             UMI.FormBaseController = Ember.ObjectController.extend({
                 /**
