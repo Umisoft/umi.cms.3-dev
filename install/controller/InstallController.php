@@ -944,7 +944,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue(InfoBlock::FIELD_INFOBLOCK_NAME, 'commonInfoBlock')
             ->setValue('displayName', 'Общие')
             ->setValue('displayName', 'Common', 'en-US');
-        $structureInfoBlock->getProperty('locked')->setValue(true);
 
         $structureInfoBlock
             ->setValue(InfoBlock::FIELD_PHONE_NUMBER, '<p>Телефон в Санкт-Петербурге: +7 (812) 309-03-15</p>')
@@ -1850,7 +1849,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `name` varchar(255) DEFAULT NULL,
                     `display_name` varchar(255) DEFAULT NULL,
                     `display_name_en` varchar(255) DEFAULT NULL,
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
@@ -1881,6 +1879,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `infoblock_guid` (`guid`),
+                    UNIQUE KEY `infoblock_name` (`name`),
                     KEY `infoblock_type` (`type`),
                     CONSTRAINT `FK_infoblock_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_infoblock_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
