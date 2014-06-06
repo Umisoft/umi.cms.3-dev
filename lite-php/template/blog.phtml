@@ -52,10 +52,7 @@
 <footer class="blog-footer">
     <?=$this->widget('structure.menu.custom', ['menuName' => 'bottomMenu'])?>
 
-    <?=$this->widget('structure.infoblock.view', ['template' => 'share', 'infoBlock' => 'commonInfoBlock'])?>
-    <?=$this->widget('structure.infoblock.view', ['template' => 'copyright', 'infoBlock' => 'commonInfoBlock'])?>
-    <?=$this->widget('structure.infoblock.view', ['template' => 'address', 'infoBlock' => 'commonInfoBlock'])?>
-    <?=$this->widget('structure.infoblock.view', ['template' => 'phone', 'infoBlock' => 'commonInfoBlock'])?>
+    <?=$this->widget('structure.infoblock.view', ['template' => 'footer', 'infoBlock' => 'commonInfoBlock'])?>
     <p>
         <a href="#"><?=$this->translate('Back to top')?></a>
     </p>
