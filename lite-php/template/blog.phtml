@@ -30,7 +30,7 @@
 <div class="container">
 
     <header class="blog-header">
-        <?=$this->widget('structure.infoblock.view')?>
+        <?=$this->widget('structure.infoblock.view', ['template' => 'logo', 'infoBlock' => 'commonInfoBlock'])?>
     </header>
 
     <main class="row">
@@ -52,10 +52,10 @@
 <footer class="blog-footer">
     <?=$this->widget('structure.menu.custom', ['menuName' => 'bottomMenu'])?>
 
-    <?=$this->widget('structure.infoblock.view', ['template' => 'share'])?>
-    <?=$this->widget('structure.infoblock.view', ['template' => 'copyright'])?>
-    <?=$this->widget('structure.infoblock.view', ['template' => 'address'])?>
-    <?=$this->widget('structure.infoblock.view', ['template' => 'phone'])?>
+    <?=$this->widget('structure.infoblock.view', ['template' => 'share', 'infoBlock' => 'commonInfoBlock'])?>
+    <?=$this->widget('structure.infoblock.view', ['template' => 'copyright', 'infoBlock' => 'commonInfoBlock'])?>
+    <?=$this->widget('structure.infoblock.view', ['template' => 'address', 'infoBlock' => 'commonInfoBlock'])?>
+    <?=$this->widget('structure.infoblock.view', ['template' => 'phone', 'infoBlock' => 'commonInfoBlock'])?>
     <p>
         <a href="#"><?=$this->translate('Back to top')?></a>
     </p>
