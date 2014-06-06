@@ -34,7 +34,8 @@ return [
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'author' => []
+            'author' => [],
+            'moderator' => ['author']
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:edit',
@@ -59,6 +60,11 @@ return [
                 'widget:sendToModeration' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
+                ]
+            ],
+            'moderator' => [
+                'model:blogPost' => [
+                    IAclManager::OPERATION_ALL => []
                 ]
             ]
         ]

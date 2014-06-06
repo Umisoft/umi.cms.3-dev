@@ -217,6 +217,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
             'project.site.structure' => ['viewer'],
             'project.site.structure.menu' => ['viewer'],
+            'project.site.structure.infoblock' => ['viewer'],
 
             'project.site.news' => ['viewer'],
             'project.site.news.item' => ['viewer', 'rssViewer'],
@@ -246,18 +247,68 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         ];
 
         /**
-         * @var UserGroup $authors
+         * @var UserGroup $authorsWithPremoderation
          */
-        $authors = $groupCollection->add()
-            ->setValue('displayName', 'Авторы')
-            ->setValue('displayName', 'Authors', 'en-US');
+        $authorsWithPremoderation = $groupCollection->add()
+            ->setValue('displayName', 'Авторы с премодерацией постов')
+            ->setValue('displayName', 'Authors with premoderation', 'en-US');
 
-        $authors->roles = [
-            'project.site.blog.comment' => ['poster'],
+        $authorsWithPremoderation->roles = [
+            'project.site.blog.draft' => ['author'],
             'project.site.blog.moderate' => ['author'],
             'project.site.blog.post' => ['author'],
-            'project.site.blog.reject' => ['author'],
-            'project.site.blog.draft' => ['author']
+            'project.site.blog.reject' => ['author']
+        ];
+
+        /**
+         * @var UserGroup $authorsWithoutPremoderation
+         */
+        $authorsWithoutPremoderation = $groupCollection->add()
+            ->setValue('displayName', 'Авторы без премодерации постов')
+            ->setValue('displayName', 'Authors without premoderation', 'en-US');
+
+        $authorsWithoutPremoderation->roles = [
+            'project.site.blog.draft' => ['publisher'],
+            'project.site.blog.moderate' => ['author'],
+            'project.site.blog.post' => ['author'],
+            'project.site.blog.reject' => ['author']
+        ];
+
+        /**
+         * @var UserGroup $commentWithoutPremoderation
+         */
+        $commentWithoutPremoderation = $groupCollection->add()
+            ->setValue('displayName', 'Комментарии без премодерацией')
+            ->setValue('displayName', 'Comment without premoderation', 'en-US');
+
+        $commentWithoutPremoderation->roles = [
+            'project.site.blog.comment' => ['poster']
+        ];
+
+        /**
+         * @var UserGroup $commentWithPremoderation
+         */
+        $commentWithPremoderation = $groupCollection->add()
+            ->setValue('displayName', 'Комментарии с премодерацией')
+            ->setValue('displayName', 'Comment with premoderation', 'en-US');
+
+        $commentWithPremoderation->roles = [
+            'project.site.blog.comment' => ['posterPremoderation']
+        ];
+
+        /**
+         * @var UserGroup $moderator
+         */
+        $moderator = $groupCollection->add()
+            ->setValue('displayName', 'Модератор')
+            ->setValue('displayName', 'Moderator', 'en-US');
+
+        $moderator->roles = [
+            'project.site.blog.comment' => ['moderator'],
+            'project.site.blog.moderate' => ['moderator'],
+            'project.site.blog.post' => ['moderator'],
+            'project.site.blog.reject' => ['moderator'],
+            'project.site.blog.draft' => ['moderator'],
         ];
 
         /**
@@ -323,7 +374,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('email', 'demo@umisoft.ru');
 
         $user->groups->attach($visitors);
-        $user->groups->attach($authors);
+        $user->groups->attach($authorsWithPremoderation);
         $user->groups->attach($registeredUsers);
         $user->setPassword('demo');
 

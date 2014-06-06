@@ -10,6 +10,9 @@
 
 namespace umicms\project\module\blog\api\collection;
 
+use umi\acl\IAclAssertionResolver;
+use umi\acl\IAclResource;
+use umi\hmvc\acl\ComponentRoleProvider;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
@@ -27,8 +30,34 @@ use umicms\project\module\blog\api\object\BlogComment;
  * @method BlogComment getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает комментарий блога по его id
  * @method BlogComment add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Создает и возвращает комментарий блога
  */
-class BlogCommentCollection extends SimpleHierarchicCollection implements IActiveAccessibleCollection
+class BlogCommentCollection extends SimpleHierarchicCollection implements IActiveAccessibleCollection, IAclResource, IAclAssertionResolver
 {
     use TActiveAccessibleCollection;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAclResourceName()
+    {
+        return 'collection:blogComment';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAllowed($role, $operationName, array $assertions)
+    {
+        if (!$role instanceof ComponentRoleProvider) {
+            return false;
+        }
+
+        foreach ($assertions as $assertion) {
+            if ($assertion === 'withNeedModeration') {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
  
