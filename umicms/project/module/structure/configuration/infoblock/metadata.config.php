@@ -70,6 +70,16 @@ return [
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
+        BaseInfoBlock::FIELD_INFOBLOCK_NAME => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'name',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
+        ],
         BaseInfoBlock::FIELD_DISPLAY_NAME => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name',
@@ -245,6 +255,7 @@ return [
                 InfoBlock::FIELD_TYPE,
                 InfoBlock::FIELD_VERSION,
                 InfoBlock::FIELD_LOCKED,
+                InfoBlock::FIELD_INFOBLOCK_NAME,
                 InfoBlock::FIELD_DISPLAY_NAME,
                 InfoBlock::FIELD_CREATED,
                 InfoBlock::FIELD_UPDATED,

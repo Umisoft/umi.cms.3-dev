@@ -33,6 +33,13 @@ return [
                     'options' => [
                         'dataSource' => InfoBlock::FIELD_DISPLAY_NAME
                     ],
+                ],
+                InfoBlock::FIELD_INFOBLOCK_NAME => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => InfoBlock::FIELD_INFOBLOCK_NAME,
+                    'options' => [
+                        'dataSource' => InfoBlock::FIELD_INFOBLOCK_NAME
+                    ],
                 ]
             ]
         ],

@@ -24,11 +24,11 @@ class ViewWidget extends BaseWidget implements IAclResource
     /**
      * @var string $template имя шаблона, по которому выводится виджет.
      */
-    public $template = 'logo';
+    public $template = 'infoblock';
     /**
-     * @var InfoBlock $infoBlock информационный блок или GUID
+     * @var InfoBlock $infoBlock информационный блок или его название
      */
-    public $infoBlock = '87f20300-197a-4309-b86b-cbe8ebcc358d';
+    public $infoBlock;
     /**
      * @var StructureModule $api
      */
@@ -49,7 +49,7 @@ class ViewWidget extends BaseWidget implements IAclResource
     public function __invoke()
     {
         if (is_string($this->infoBlock)) {
-            $this->infoBlock = $this->api->infoBlock()->get($this->infoBlock);
+            $this->infoBlock = $this->api->infoBlock()->getByName($this->infoBlock);
         }
 
         if (!$this->infoBlock instanceof InfoBlock) {

@@ -26,5 +26,16 @@ use umicms\project\module\structure\api\object\InfoBlock;
  */
 class InfoBlockCollection extends SimpleCollection
 {
-
+    /**
+     * Возвращает инфоблок по его названию.
+     * @param string $infoBlockName название инфоблока
+     * @return null|InfoBlock
+     */
+    public function getByName($infoBlockName)
+    {
+        return $this->select()
+            ->where(InfoBlock::FIELD_INFOBLOCK_NAME)->equals($infoBlockName)
+            ->result()
+            ->fetch();
+    }
 }

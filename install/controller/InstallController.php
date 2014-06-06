@@ -941,7 +941,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $menuPage->getProperty('componentPath')->setValue('structure.infoblock');
 
         $structureInfoBlock = $infoBlockCollection->add('infoblock')
-            ->setGUID('87f20300-197a-4309-b86b-cbe8ebcc358d')
+            ->setValue(InfoBlock::FIELD_INFOBLOCK_NAME, 'commonInfoBlock')
             ->setValue('displayName', 'Общие')
             ->setValue('displayName', 'Common', 'en-US');
         $structureInfoBlock->getProperty('locked')->setValue(true);
@@ -1847,6 +1847,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `guid` varchar(255),
                     `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
+                    `name` varchar(255) DEFAULT NULL,
                     `display_name` varchar(255) DEFAULT NULL,
                     `display_name_en` varchar(255) DEFAULT NULL,
                     `locked` tinyint(1) unsigned DEFAULT '0',

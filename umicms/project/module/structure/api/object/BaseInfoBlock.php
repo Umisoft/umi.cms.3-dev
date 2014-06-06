@@ -18,6 +18,9 @@ use umicms\orm\object\CmsObject;
  */
 abstract class BaseInfoBlock extends CmsObject implements ILockedAccessibleObject
 {
-
+    /**
+     * Имя поля для хранения названия информационного блока
+     */
+    const FIELD_INFOBLOCK_NAME = 'infoblockName';
 }
  
