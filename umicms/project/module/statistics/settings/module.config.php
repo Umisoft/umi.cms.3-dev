@@ -19,20 +19,7 @@ return [
     DefaultSettingsComponent::OPTION_COMPONENTS => [
         'metrika' => '{#lazy:~/project/module/statistics/settings/metrika/component.config.php}',
     ],
-    DefaultSettingsComponent::OPTION_ACL => [
 
-        IAclFactory::OPTION_ROLES => [
-            'configurator' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'component:metrika'
-        ],
-        IAclFactory::OPTION_RULES => [
-            'configurator' => [
-                'component:metrika' => []
-            ]
-        ]
-    ],
     DefaultSettingsComponent::OPTION_ROUTES => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,

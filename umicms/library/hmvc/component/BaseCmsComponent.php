@@ -139,31 +139,34 @@ abstract class BaseCmsComponent extends Component implements IAclResource
      */
     protected function getChildComponentsAcl()
     {
-        $roleNames = $this->getChildComponentNames();
-        array_walk($roleNames, function($name) {
+        $childComponentNames = $this->getChildComponentNames();
+        if (!count($childComponentNames)) {
+            return [];
+        }
+
+        $roleNames = $childComponentNames;
+        array_walk($roleNames, function(&$name) {
             $name = $name . self::EXECUTOR_ROLE_SUFFIX;
         });
 
-        $resources = $this->getChildComponentNames();
-        array_walk($roleNames, function($name) {
+        $resources = $childComponentNames;
+        array_walk($resources, function(&$name) {
             $name = self::ACL_RESOURCE_PREFIX . $name;
         });
 
         $rules = [];
-        foreach ($resources as $key => $resourceName) {
-            $rules[$resourceName] = [
-                $roleNames[$key] => []
+        foreach ($roleNames as $key => $roleName) {
+            $rules[$roleName] = [
+                $resources[$key] => []
             ];
         }
 
-        $config = [
+        return [
             IAclFactory::OPTION_ROLES => array_fill_keys($roleNames, []),
-            IAclFactory::OPTION_RESOURCES => $resources,
+            IAclFactory::OPTION_RESOURCES => array_combine($childComponentNames, $resources),
             IAclFactory::OPTION_RULES => $rules
         ];
 
-
-        return $config;
     }
 
 }
