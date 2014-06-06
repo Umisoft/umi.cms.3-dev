@@ -46,12 +46,6 @@ return [
             'readOnly' => true,
             'defaultValue' => 1
         ],
-        BaseInfoBlock::FIELD_LOCKED => [
-            'type' => IField::TYPE_BOOL,
-            'columnName' => 'locked',
-            'readOnly' => true,
-            'defaultValue' => 0
-        ],
         BaseInfoBlock::FIELD_CREATED => [
             'type' => IField::TYPE_DATE_TIME,
             'columnName' => 'created'
@@ -69,6 +63,16 @@ return [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
             'target' => 'user'
+        ],
+        BaseInfoBlock::FIELD_INFOBLOCK_NAME => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'name',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         BaseInfoBlock::FIELD_DISPLAY_NAME => [
             'type' => IField::TYPE_STRING,
@@ -230,7 +234,7 @@ return [
                 BaseInfoBlock::FIELD_TYPE,
                 BaseInfoBlock::FIELD_VERSION,
                 BaseInfoBlock::FIELD_DISPLAY_NAME,
-                BaseInfoBlock::FIELD_LOCKED,
+                BaseInfoBlock::FIELD_INFOBLOCK_NAME,
                 BaseInfoBlock::FIELD_CREATED,
                 BaseInfoBlock::FIELD_UPDATED,
                 BaseInfoBlock::FIELD_OWNER,
@@ -244,7 +248,7 @@ return [
                 InfoBlock::FIELD_GUID,
                 InfoBlock::FIELD_TYPE,
                 InfoBlock::FIELD_VERSION,
-                InfoBlock::FIELD_LOCKED,
+                InfoBlock::FIELD_INFOBLOCK_NAME,
                 InfoBlock::FIELD_DISPLAY_NAME,
                 InfoBlock::FIELD_CREATED,
                 InfoBlock::FIELD_UPDATED,
