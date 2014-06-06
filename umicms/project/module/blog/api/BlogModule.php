@@ -298,21 +298,44 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function getComments()
     {
         $comments = $this->comment()->select()
+            ->orderBy(BlogComment::FIELD_HIERARCHY_LEVEL, CmsSelector::ORDER_ASC)
             ->orderBy(BlogComment::FIELD_PUBLISH_TIME, CmsSelector::ORDER_DESC);
 
         return $comments;
     }
 
     /**
-     * Возвращает селектор для выборки комментариев к посту.
+     * Возвращает селектор для выборки опубликованных комментариев к посту.
      * @param BlogPost $blogPost
      * @return CmsSelector|BlogComment[]
      */
-    public function getCommentByPost(BlogPost $blogPost)
+    public function getCommentsByPost(BlogPost $blogPost)
     {
         $comments = $this->getComments()
             ->types([BlogComment::TYPE . '*'])
-            ->where(BlogComment::FIELD_POST)->equals($blogPost);
+            ->where(BlogComment::FIELD_POST)->equals($blogPost)
+            ->where(BlogComment::FIELD_PUBLISH_STATUS)->equals(
+                BlogComment::COMMENT_STATUS_PUBLISHED
+            );
+
+        return $comments;
+    }
+
+    /**
+     * Возвращает селектор для выборки опубликованных и требующих модерации комментариев к посту.
+     * @param BlogPost $blogPost
+     * @return CmsSelector|BlogComment[]
+     */
+
+    public function getCommentByPostWithNeedModeration(BlogPost $blogPost)
+    {
+        $comments = $this->getComments()
+            ->types([BlogComment::TYPE . '*'])
+            ->where(BlogComment::FIELD_POST)->equals($blogPost)
+            ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
+                BlogComment::COMMENT_STATUS_PUBLISHED,
+                BlogComment::COMMENT_STATUS_NEED_MODERATE
+            ]);
 
         return $comments;
     }

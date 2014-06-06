@@ -11,7 +11,6 @@
 use umi\form\element\Hidden;
 use umi\form\element\Submit;
 use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\blog\api\object\BlogComment;
 
 return [
     'options' => [
@@ -23,20 +22,13 @@ return [
         'method' => 'post'
     ],
     'elements' => [
-        BlogComment::FIELD_IDENTIFY => [
-            'type' => Hidden::TYPE_NAME,
-            'label' => BlogComment::FIELD_IDENTIFY,
-            'options' => [
-                'dataSource' => BlogComment::FIELD_IDENTIFY
-            ],
+        BaseFormWidget::INPUT_REDIRECT_URL => [
+            'type' => Hidden::TYPE_NAME
+        ],
+        'submit' => [
+            'type' => Submit::TYPE_NAME,
+            'label' => 'Publish'
         ]
     ],
-    BaseFormWidget::INPUT_REDIRECT_URL => [
-        'type' => Hidden::TYPE_NAME
-    ],
-    'submit' => [
-        'type' => Submit::TYPE_NAME,
-        'label' => 'Publish'
-    ]
 
 ];
