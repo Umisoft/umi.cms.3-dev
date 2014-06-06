@@ -22,7 +22,7 @@ class Action
     /**
      * Действие на чтение данных
      */
-    const TYPE_QUERY = 'type';
+    const TYPE_QUERY = 'query';
 
     /**
      * @var string $type тип действия

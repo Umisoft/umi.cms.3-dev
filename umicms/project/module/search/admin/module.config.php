@@ -19,7 +19,7 @@ return [
 
     AdminComponent::OPTION_CONTROLLERS => [
         AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
-        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
+        AdminComponent::COMPONENT_LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
     ],
 
     AdminComponent::OPTION_ROUTES => [
@@ -34,7 +34,7 @@ return [
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => AdminComponent::SETTINGS_CONTROLLER
+                'controller' => AdminComponent::COMPONENT_LAYOUT_CONTROLLER
             ]
         ]
     ]

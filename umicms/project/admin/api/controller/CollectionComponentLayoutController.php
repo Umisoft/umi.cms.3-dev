@@ -15,7 +15,7 @@ use umicms\project\admin\layout\CollectionComponentLayout;
 /**
  * Контроллер вывода настроек компонента
  */
-class DefaultRestSettingsController extends BaseDefaultRestController
+class CollectionComponentLayoutController extends BaseDefaultRestController
 {
     /**
      * {@inheritdoc}
@@ -24,11 +24,10 @@ class DefaultRestSettingsController extends BaseDefaultRestController
     {
         $layout = new CollectionComponentLayout($this->getComponent());
 
-
         return $this->createViewResponse(
-            'settings',
+            'layout',
             [
-                'settings' => $layout->build()
+                'layout' => $layout->build()
             ]
         );
     }

@@ -25,25 +25,8 @@ use umicms\project\admin\layout\button\SplitButton;
 /**
  * Административный контрол для управления коллекцией.
  */
-abstract class CollectionControl
+class CollectionControl extends AdminControl
 {
-    /**
-     * @var array $params список параметров контрола
-     */
-    public $params = [];
-
-    /**
-     * @var Button[] $contextToolbar кнопки контекстного меню
-     */
-    protected $contextToolbar = [];
-    /**
-     * @var Button[] $submitToolbar кнопки для применения изменений
-     */
-    protected $submitToolbar = [];
-    /**
-     * @var Button[] $toolbar основной тулбар
-     */
-    protected $toolbar = [];
     /**
      * @var CollectionApiComponent $component
      */
@@ -53,10 +36,6 @@ abstract class CollectionControl
      */
     protected $collection;
 
-    /**
-     * Конфигурирует контрол.
-     */
-    abstract protected function configure();
 
     /**
      * Конструктор.
@@ -64,128 +43,8 @@ abstract class CollectionControl
      */
     public function __construct(CollectionApiComponent $component)
     {
-        $this->component = $component;
         $this->collection = $component->getCollection();
-        $this->configure();
-    }
-
-    /**
-     * Добавляет кнопку в контекстное меню.
-     * @param string $name
-     * @param Button $button
-     * @return $this
-     */
-    public function addContextButton($name, Button $button)
-    {
-        $this->contextToolbar[$name] = $button;
-
-        return $this;
-    }
-
-    /**
-     * Удаляет кнопку из контекстного меню.
-     * @param string $name
-     * @return $this
-     */
-    public function removeContextButton($name)
-    {
-        unset($this->contextToolbar[$name]);
-
-        return $this;
-    }
-
-    /**
-     * Добавляет кнопку в toolbar.
-     * @param string $name
-     * @param Button $button
-     * @return $this
-     */
-    public function addToolbarButton($name, Button $button)
-    {
-        $this->toolbar[$name] = $button;
-
-        return $this;
-    }
-
-    /**
-     * Удаляет кнопку из toolbar.
-     * @param string $name
-     * @return $this
-     */
-    public function removeToolbarButton($name)
-    {
-        unset($this->toolbar[$name]);
-
-        return $this;
-    }
-
-    /**
-     * Добавляет submit-кнопку.
-     * @param string $name
-     * @param Button $button
-     * @return $this
-     */
-    public function addSubmitButton($name, Button $button)
-    {
-        $this->submitToolbar[$name] = $button;
-
-        return $this;
-    }
-
-    /**
-     * Удаляет submit-кнопку.
-     * @param string $name
-     * @return $this
-     */
-    public function removeSubmitButton($name)
-    {
-        unset($this->submitToolbar[$name]);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function build()
-    {
-        $contextToolbar = [];
-        foreach ($this->contextToolbar as $name => $button) {
-            $info = $button->build();
-            $info['name'] = $name;
-            $contextToolbar[] = $info;
-        }
-
-        $toolbar = [];
-        foreach ($this->toolbar as $name => $button) {
-            $info = $button->build();
-            $info['name'] = $name;
-            $toolbar[] = $info;
-        }
-
-        $submitToolbar = [];
-        foreach ($this->submitToolbar as $name => $button) {
-            $info = $button->build();
-            $info['name'] = $name;
-            $submitToolbar[] = $info;
-        }
-
-        $result = [
-            'params' => $this->params
-        ];
-        if ($toolbar) {
-            $result['toolbar'] = $toolbar;
-        }
-
-        if ($contextToolbar) {
-            $result['contextToolbar'] = $contextToolbar;
-        }
-
-        if ($submitToolbar) {
-            $result['submitToolbar'] = $submitToolbar;
-        }
-
-        return $result;
+        parent::__construct($component);
     }
 
     /**
@@ -243,42 +102,6 @@ abstract class CollectionControl
         foreach ($this->getCreateTypeList() as $typeName) {
             $choices->addChoice($typeName, $this->createTypeChoice($typeName));
         }
-    }
-
-    /**
-     * Создает простую кнопку для вызова действия.
-     * @param string $actionName
-     * @param array $params параметры обработчика
-     * @return Button
-     */
-    protected function createActionButton($actionName, array $params = [])
-    {
-        $label = $this->component->translate('action:' . $actionName);
-        return new Button($label, new Behaviour($actionName, $params));
-    }
-
-    /**
-     * Создает выпадающую кнопку для вызова действия.
-     * @param string $actionName
-     * @param array $params параметры обработчика
-     * @return DropdownButton
-     */
-    protected function createActionDropdownButton($actionName, array $params = [])
-    {
-        $label = $this->component->translate('action:' . $actionName);
-        return new DropdownButton($label, new Behaviour($actionName, $params));
-    }
-
-    /**
-     * Создает вариант выбора для вызова простого действия.
-     * @param string $actionName
-     * @param array $params параметры обработчика
-     * @return Choice
-     */
-    protected function createActionChoice($actionName, array $params = [])
-    {
-        $label = $this->component->translate('action:' . $actionName);
-        return new Choice($label, new Behaviour($actionName, $params));
     }
 
     /**

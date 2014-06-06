@@ -10,9 +10,11 @@
 
 namespace umicms\project\admin\layout;
 
+use umicms\exception\RuntimeException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\project\admin\api\component\CollectionApiComponent;
+use umicms\project\admin\component\AdminComponent;
 use umicms\project\admin\layout\control\CreateObjectControl;
 use umicms\project\admin\layout\control\EditObjectControl;
 use umicms\project\admin\layout\control\TableControl;
@@ -21,7 +23,7 @@ use umicms\project\admin\layout\control\TreeControl;
 /**
  * Билдер сетки для стандартного компонента по управлению ORM-коллекцией.
  */
-class CollectionComponentLayout extends ComponentLayout
+class CollectionComponentLayout extends AdminComponentLayout
 {
     /**
      * @var CollectionApiComponent $component
@@ -34,23 +36,23 @@ class CollectionComponentLayout extends ComponentLayout
 
     /**
      * Конструктор.
-     * @param CollectionApiComponent $component.
+     * @param AdminComponent $component .
+     * @throws RuntimeException если компонент не CollectionApiComponent
      */
-    public function __construct(CollectionApiComponent $component) {
-        $this->component = $component;
+    public function __construct(AdminComponent $component) {
+        if (!$component instanceof CollectionApiComponent) {
+            throw new RuntimeException('Wrong component for collection component layout.');
+        }
+
         $this->collection = $component->getCollection();
 
         $this->params['collectionName'] = $component->getCollection()->getName();
 
-        $this->configureActions();
-        $this->configureSideBar();
-        $this->configureEmptyContextControls();
-        $this->configureSelectedContextControls();
+        parent::__construct($component);
     }
 
     /**
-     * Конфигурирует Sidebar компонента в зависимости от коллекции компонента.
-     * @return $this
+     * {@inheritdoc}
      */
     protected function configureSideBar()
     {
@@ -63,25 +65,7 @@ class CollectionComponentLayout extends ComponentLayout
     }
 
     /**
-     * Конфигурирует REST-экшены для компонента.
-     * @return $this
-     */
-    protected function configureActions()
-    {
-        foreach ($this->component->getQueryActions() as $name => $action) {
-            $this->addAction($name, $action);
-        }
-
-        foreach ($this->component->getModifyActions() as $name => $action) {
-            $this->addAction($name, $action);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Конфигурирует контролы контентной области для пустого контекста.
-     * @return $this
+     * {@inheritdoc}
      */
     protected function configureEmptyContextControls()
     {
@@ -90,8 +74,7 @@ class CollectionComponentLayout extends ComponentLayout
     }
 
     /**
-     * Конфигурирует контролы контентной области для выбранного контекста.
-     * @return $this
+     * {@inheritdoc}
      */
     protected function configureSelectedContextControls()
     {

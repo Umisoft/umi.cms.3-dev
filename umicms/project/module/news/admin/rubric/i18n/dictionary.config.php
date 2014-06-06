@@ -11,11 +11,11 @@
 return [
 
     'en-US' => [
-        'displayName' => 'Rubrics'
+        'component:rubric:displayName' => 'Rubrics'
     ],
 
     'ru-RU' => [
-        'displayName' => 'Новостные рубрики'
+        'component:rubric:displayName' => 'Новостные рубрики'
     ]
 
 ];

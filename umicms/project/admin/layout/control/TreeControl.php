@@ -10,7 +10,6 @@
 
 namespace umicms\project\admin\layout\control;
 
-
 /**
  * Административный контрол "Дерево для упарвления иерархической коллекцией"
  */
@@ -19,10 +18,11 @@ class TreeControl extends CollectionControl
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function configureParams()
     {
-        $this->params['rootNodeName'] = $this->component->translate('displayName');
-        $this->configureContextMenu();
+        $this->params['rootNodeName'] = $this->component->translate(
+            'component:' . $this->component->getName() . ':displayName'
+        );
     }
 
 }
