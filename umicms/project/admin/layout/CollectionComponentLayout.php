@@ -10,9 +10,11 @@
 
 namespace umicms\project\admin\layout;
 
+use umicms\exception\RuntimeException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\project\admin\api\component\CollectionApiComponent;
+use umicms\project\admin\component\AdminComponent;
 use umicms\project\admin\layout\control\CreateObjectControl;
 use umicms\project\admin\layout\control\EditObjectControl;
 use umicms\project\admin\layout\control\TableControl;
@@ -34,9 +36,14 @@ class CollectionComponentLayout extends AdminComponentLayout
 
     /**
      * Конструктор.
-     * @param CollectionApiComponent $component.
+     * @param AdminComponent $component .
+     * @throws RuntimeException если компонент не CollectionApiComponent
      */
-    public function __construct(CollectionApiComponent $component) {
+    public function __construct(AdminComponent $component) {
+        if (!$component instanceof CollectionApiComponent) {
+            throw new RuntimeException('Wrong component for collection component layout.');
+        }
+
         $this->collection = $component->getCollection();
 
         $this->params['collectionName'] = $component->getCollection()->getName();
