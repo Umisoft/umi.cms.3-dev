@@ -51,7 +51,8 @@ return [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name',
             'filters' => [
-                IFilterFactory::TYPE_STRING_TRIM => []
+                IFilterFactory::TYPE_STRING_TRIM => [],
+                IFilterFactory::TYPE_STRIP_TAGS => []
             ],
             'validators' => [
                 IValidatorFactory::TYPE_REQUIRED => []
@@ -115,7 +116,11 @@ return [
         ],
         BlogPost::FIELD_PAGE_H1 => [
             'type' => IField::TYPE_STRING,
-            'columnName' => 'h1'
+            'columnName' => 'h1',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => [],
+                IFilterFactory::TYPE_STRIP_TAGS => []
+            ]
         ],
         BlogPost::FIELD_ANNOUNCEMENT => [
             'type' => IField::TYPE_TEXT,
