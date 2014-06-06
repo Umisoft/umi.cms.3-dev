@@ -163,19 +163,13 @@ define(['App'], function(UMI){
 
             /**
              * Возвращает список кнопок контекстного меню
-             * @property contextMenu
+             * @property contextToolbar
              * return Array
              */
-            contextMenu: function(){
+            contextToolbar: function(){
                 var contentControls = this.get('controllers.component.contentControls') || [];
                 var filter = contentControls.findBy('name', 'filter') || {};
-                var contextToolbar = filter.contextToolbar;
-                if(Ember.typeOf(contextToolbar) === 'array'){
-                    var splitButton = contextToolbar.findBy('type', 'splitButton');
-                    if(splitButton && Ember.typeOf(splitButton.behaviour) === 'object'){
-                        return splitButton.behaviour.choices;
-                    }
-                }
+                return filter.contextToolbar;
             }.property('controllers.component.contentControls'),
 
             /**

@@ -128,31 +128,11 @@
         <div class="umi-table-control-content-fixed-right">
             {{#each object in objects}}
                 <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
-
-                    {{#if contextMenu}}
-                        {{#view "tableControlContextMenu"}}
-                            <div class="umi-table-control-content-fixed-right-first">
-                                {{#if view.parentView.selectAction}}
-                                    <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg" {{action 'sendActionForBehaviour' view.parentView.selectAction.behaviour object target="view"}} {{bind-attr title=view.parentView.selectAction.attributes.label}}>
-                                        <i {{bind-attr class=":icon view.parentView.selectActionIcon"}}></i>
-                                    </a>
-                                {{/if}}
-                            </div>
-
-                            <div class="umi-table-control-content-fixed-right-second">
-                                <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg umi-table-action-list-show">
-                                    <i class="icon icon-bottom"></i>
-                                </a>
-
-                                <ul class="umi-table-action-list umi-hide-on-html umi-list">
-                                    {{#each controller.contextMenu}}
-                                        {{#view view.itemView action=this}}
-                                            <i {{bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{action 'toggleFastAction' this target="view.parentView.parentView"}}></i>
-                                            <a href="javascript:void(0)" {{action 'sendActionForBehaviour' behaviour object target="view.parentView"}} {{bind-attr title=view.parentView.selectAction.attributes.title}}>{{attributes.label}}</a>
-                                        {{/view}}
-                                    {{/each}}
-                                </ul>
-                            </div>
+                    {{#if contextToolbar}}
+                        {{#view "tableControlContextToolbar" elements=contextToolbar}}
+                            {{#each view.elements}}
+                                {{view view.elementView}}
+                            {{/each}}
                         {{/view}}
                     {{/if}}
                 </div>

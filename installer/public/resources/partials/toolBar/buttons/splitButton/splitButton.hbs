@@ -1,9 +1,9 @@
 {{#if view.meta.attributes.hasIcon}}
-    <i class="icon icon-{{unbound view.meta.name}}"></i>
+    <i {{bind-attr class=":icon view.defaultBehaviourIcon"}}></i>
 {{/if}}
 
 {{#if view.defaultBehaviour.attributes.label}}
-    {{view.defaultBehaviour.attributes.label}}
+    <b class="button-label">{{view.defaultBehaviour.attributes.label}}</b>
 {{/if}}
 
 <span {{action 'open' target="view"}}></span>

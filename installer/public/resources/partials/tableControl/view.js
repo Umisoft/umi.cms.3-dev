@@ -1,7 +1,6 @@
-define(['App', 'partials/toolbar/buttons/contextMenu/main'], function(UMI, contextMenu){
+define(['App', 'partials/toolbar/main'], function(UMI){
     'use strict';
     return function(){
-        contextMenu();
 
         UMI.TableControlView = Ember.View.extend(UMI.ControlWithContextMenu, {
             componentNameBinding: 'controller.controllers.component.name',
@@ -275,16 +274,31 @@ define(['App', 'partials/toolbar/buttons/contextMenu/main'], function(UMI, conte
         });
 
 
-        UMI.TableControlContextMenuView = Ember.View.extend({
-            itemView: Ember.View.extend({
-                tagName: 'li',
-                action: null, //Получаем из шаблона
-                isFastAction: function(){
-                    var selectAction = this.get('parentView.parentView.selectAction');
-                    if(Ember.typeOf(this.get('action')) === 'object' && Ember.typeOf(selectAction) === 'object' && Ember.typeOf(this.get('action').behaviour) === 'object' && Ember.typeOf(selectAction.behaviour) === 'object'){
-                        return selectAction ? this.get('action').behaviour.name === selectAction.behaviour.name : false;
+        UMI.TableControlContextToolbarView = Ember.View.extend({
+            tagName: 'ul',
+            classNames: ['button-group', 'table-context-toolbar'],
+            elementView: UMI.ToolBarElementView.extend({
+                splitButtonView: function(){
+                    var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent, UMI.SplitButtonSharedSettingsBehaviour);
+                    var behaviourName = this.get('context.behaviour.name');
+                    var behaviour;
+                    var i;
+                    var action;
+                    if(behaviourName){
+                        behaviour = UMI.splitButtonBehaviour.get(behaviourName) || {};
+                    } else{
+                        behaviour = {};
                     }
-                }.property('parentView.parentView.selectAction')
+                    var choices = this.get('context.behaviour.choices');
+                    if(behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array'){
+                        for(i = 0; i < choices.length; i++){
+                            //action = UMI.splitButtonBehaviour.get(choices[i].behaviour.name).actions[choices[i].behaviour.name];
+                            console.log(UMI.splitButtonBehaviour.get(choices[i].behaviour.name + '.actions'));
+                        }
+                    }
+                    instance = instance.extend(behaviour);
+                    return instance;
+                }.property()
             })
         });
     };

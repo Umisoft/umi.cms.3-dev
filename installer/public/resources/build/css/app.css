@@ -4521,8 +4521,31 @@ ul.umi-search-result {
   padding: 20px 32px;
   line-height: normal; }
 
-.umi-table-control-content-fixed-right-second {
+.table-context-toolbar {
   position: relative; }
+  .table-context-toolbar .dropdown.button {
+    background: transparent;
+    padding: 0;
+    padding-right: 48px; }
+    .table-context-toolbar .dropdown.button .button-label {
+      display: none; }
+    .table-context-toolbar .dropdown.button > .icon {
+      margin: 5px; }
+    .table-context-toolbar .dropdown.button:hover {
+      background: #fff; }
+    .table-context-toolbar .dropdown.button span:before {
+      border-top-color: #7B899C; }
+    .table-context-toolbar .dropdown.button .f-dropdown {
+      margin-top: 4px;
+      right: 0;
+      left: auto;
+      width: auto; }
+      .table-context-toolbar .dropdown.button .f-dropdown:before {
+        left: auto;
+        right: 7px; }
+      .table-context-toolbar .dropdown.button .f-dropdown:after {
+        left: auto;
+        right: 8px; }
 
 .umi-table-action-list {
   display: none;
