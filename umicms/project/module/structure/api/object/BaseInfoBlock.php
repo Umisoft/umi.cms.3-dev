@@ -26,7 +26,7 @@ abstract class BaseInfoBlock extends CmsObject
     const FIELD_INFOBLOCK_NAME = 'infoblockName';
 
     /**
-     * Проверяет валидность логина.
+     * Проверяет валидность названия информационного блока.
      * @return bool
      */
     public function validateInfoblockName()
