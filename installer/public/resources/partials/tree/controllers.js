@@ -16,7 +16,7 @@ define(['App'], function(UMI){
                 var activeContext = this.get('activeContext');
                 if(activeContext){
                     var mpath = [];
-                    if(activeContext.get('id') !== 'root'){
+                    if(activeContext.get('id') !== 'root' && activeContext.get('mpath')){
                         mpath = activeContext.get('mpath').without(parseFloat(activeContext.get('id'))) || [];
                     }
                     mpath.push('root');
