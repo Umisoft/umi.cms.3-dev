@@ -13,20 +13,24 @@ define(['App', 'text!./template.hbs', 'text!./backupList.hbs'],
                     this.$().click(function(){
                         $(this).find('.umi-toolbar-create-list').toggle();
                     });
+                },
+                actions: {
+                    sendActionForBehaviour: function(behaviour){
+                        this.send(behaviour.name, behaviour);
+                    }
                 }
             });
 
-            UMI.dropdownButtonBehaviour = Ember.Object.create({
+            UMI.dropdownButtonBehaviour = UMI.GlobalBehaviour.extend({
                 backupList: {
                     classNames: ['dropdown', 'coupled'],
                     classNameBindings: ['isOpen:open'],
                     isOpen: false,
                     iScroll: null,
-
                     tagName: 'div',
                     template: Ember.Handlebars.compile(backupListTemplate),
 
-                    getBackupList: function(){
+                    getBackupList: function(){return;
                         var backupList;
                         var object = this.get('controller.object');
                         var settings = this.get('controller.settings');
@@ -64,10 +68,10 @@ define(['App', 'text!./template.hbs', 'text!./backupList.hbs'],
                             this.toggleProperty('isOpen');
                             if(this.get('isOpen')){
                                 setTimeout(function(){
-                                    $('body').on('click.umi.form.controlDropUp', function(event){
+                                    $('body').on('click.umi.controlDropUp', function(event){
                                         var targetElement = $(event.target).closest('.umi-dropup');
                                         if(!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== el[0].getAttribute('id')){
-                                            $('body').off('.umi.form.controlDropUp');
+                                            $('body').off('click.umi.controlDropUp');
                                             self.set('isOpen', false);
                                         }
                                     });
@@ -123,7 +127,7 @@ define(['App', 'text!./template.hbs', 'text!./backupList.hbs'],
 
                     }
                 }
-            });
+            }).create({});
         };
     }
 );
