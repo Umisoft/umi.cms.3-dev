@@ -12,7 +12,7 @@
     {{#each view.meta.behaviour.choices}}
         {{#view view.itemView}}
             <i {{bind-attr class=":icon :icon-accept view.isDefaultBehaviour::white"}} {{action 'toggleDefaultBehaviour' view._parentView.contentIndex target="view.parentView"}}></i>
-            <a {{action 'sendActionForBehaviour' behaviour}}>
+            <a {{action 'sendActionForBehaviour' behaviour target="view.parentView"}}>
                 {{attributes.label}}
             </a>
         {{/view}}

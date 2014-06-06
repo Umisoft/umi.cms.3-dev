@@ -195,10 +195,6 @@ define(['App'], function(UMI){
                     this.set('orderByProperty', {'property' : propertyName, 'direction': sortAscending});
                 },
 
-                sendActionForBehaviour: function(behaviour, object){
-                    this.send(behaviour.name, object, behaviour);
-                },
-
                 create: function(object, action){
                     this.get('container').lookup('route:application').send('create', this.get('model.object'), action);
                 }

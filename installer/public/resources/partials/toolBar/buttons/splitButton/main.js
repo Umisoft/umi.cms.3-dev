@@ -57,14 +57,14 @@ define(['App', 'text!./splitButton.hbs'],
                 template: Ember.Handlebars.compile(splitButtonTemplate),
                 tagName: 'button',
                 isOpen: false,
-                classNames: ['s-margin-clear', 'dropdown'],//TODO: избавиться от класса после возвращения Foundation
+                classNames: ['s-margin-clear', 'dropdown'],//TODO: избавиться от классов после возвращения Foundation
                 classNameBindings: ['meta.attributes.class', 'isOpen:open'],
                 attributeBindings: ['title'],
                 title: Ember.computed.alias('meta.attributes.title'),
                 click: function(event){
                     var el = this.$();
                     if(event.target.getAttribute('id') === el[0].getAttribute('id') || ($(event.target).hasClass('icon') && event.target.getAttribute('id') === el[0].getAttribute('id'))){
-                        this.get('controller').send('sendActionForBehaviour', this.get('defaultBehaviour').behaviour);
+                        this.send(this.get('defaultBehaviour').behaviour.name, this.get('defaultBehaviour').behaviour);
                     }
                 },
                 actions: {
@@ -83,8 +83,13 @@ define(['App', 'text!./splitButton.hbs'],
                                 });
                             }
                         }, 0);
+                    },
+
+                    sendActionForBehaviour: function(behaviour){
+                        this.send(behaviour.name, behaviour);
                     }
                 },
+
                 itemView: Ember.View.extend({
                     tagName: 'li',
                     isDefaultBehaviour: function(){
@@ -94,11 +99,11 @@ define(['App', 'text!./splitButton.hbs'],
                 })
             });
 
-            UMI.splitButtonBehaviour = Ember.Object.create({
+            UMI.splitButtonBehaviour = UMI.GlobalBehaviour.extend({
                 dropUp: {
                     classNames: ['dropup']
                 }
-            });
+            }).create({});
         };
     }
 );

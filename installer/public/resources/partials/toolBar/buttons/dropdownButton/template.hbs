@@ -14,7 +14,7 @@
 
 <span class="umi-toolbar-create-list umi-hide-on-html">
     {{#each view.meta.choices}}
-        <span {{action 'sendActionForBehaviour' behaviour}}>
+        <span {{action 'sendActionForBehaviour' behaviour target="view"}}>
             {{attributes.label}}
         </span>
     {{/each}}

@@ -48,7 +48,7 @@ define(['App'], function(UMI){
                 var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent);
                 var behaviour = this.get('context.behaviour.name');
                 if(behaviour){
-                    behaviour = UMI.dropdownButtonBehaviour.get(behaviour) || {};
+                    behaviour = UMI.splitButtonBehaviour.get(behaviour) || {};
                 } else{
                     behaviour = {};
                 }

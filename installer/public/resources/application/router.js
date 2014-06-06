@@ -66,6 +66,87 @@ define([], function(){
                     transition.send('templateLogs', error);
                 });
             },
+            /**
+             * Сохраняет обьект
+             * @method saveObject
+             * @param {Object} params Объект аргументов
+             * params.object - сохраняемый объект (полностью объект системы)
+             * params.handler - элемент (кнопка) вызвавший событие сохранение - JS DOM Element
+             * @returns {promise} возвращает promise результатом которого является true в случае успешного сохранения
+             */
+            saveObject: function(params){
+                var isNewObject;
+                var self = this;
+                var deferred;
+
+                if(!params.object.get('isValid')){
+                    if(params.handler){
+                        $(params.handler).removeClass('loading');
+                    }
+                    deferred = Ember.RSVP.defer();
+                    return deferred.resolve(false);
+                }
+
+                if(params.object.get('currentState.stateName') === 'root.loaded.created.uncommitted'){
+                    isNewObject = true;
+                }
+
+                return params.object.save().then(
+                    function(){
+                        params.object.updateRelationhipsMap();
+
+                        if(params.handler){
+                            $(params.handler).removeClass('loading');
+                        }
+
+                        if(isNewObject){
+                            if(params.object.store.metadataFor(params.object.constructor.typeKey).collectionType === 'hierarchic'){
+                                var parent = params.object.get('parent');
+                                if(parent && 'isFulfilled' in parent){
+                                    return parent.then(function(parent){
+                                        parent.reload().then(function(parent){
+                                            parent.trigger('needReloadHasMany');
+                                        });
+                                        self.send('edit', params.object);
+                                    });
+                                } else{
+                                    // Обновление связей рутовой ноды в дереве.
+                                    // TODO: подумать как можно избежать обращения к контроллеру дерева.
+                                    self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(params.object.get('id'), 'root');
+                                    self.send('edit', params.object);
+                                }
+                            }
+                            self.send('edit', params.object);
+                        }
+                        return true;
+                    },
+
+                    function(results){
+                        var self = this;
+                        if(params.handler){
+                            $(params.handler).removeClass('loading');
+                        }
+
+                        var data = {
+                            'close': false,
+                            'title': results.errors,
+                            'content': results.message,
+                            'confirm': 'Загрузить объект с сервера'
+                        };
+
+                        return UMI.dialog.open(data).then(
+                            function(){
+                                //https://github.com/emberjs/data/issues/1632
+                                //params.object.transitionTo('updated.uncommitted');
+                                //                                    console.log(params.object.get('currentState.stateName'), results, self);
+                                /* params.object.rollback();
+                                 params.object.reload();*/
+                                return false;
+                            }
+                        );
+                    }
+                );
+            },
 
             actions: {
                 logout: function(){
@@ -84,84 +165,6 @@ define([], function(){
                             }, 800);
                         });
                     });
-                },
-
-                /**
-                 Сохраняет обьект
-
-                 @method save
-                 @param {Object} params Объект аргументов
-                 params.object - сохраняемый объект (полностью объект системы)
-                 params.handler - элемент (кнопка) вызвавший событие сохранение - JS DOM Element
-                 */
-                save: function(params){
-                    var isNewObject;
-                    var self = this;
-
-                    if(!params.object.get('isValid')){
-                        if(params.handler){
-                            $(params.handler).removeClass('loading');
-                        }
-                        return;
-                    }
-
-                    if(params.object.get('currentState.stateName') === 'root.loaded.created.uncommitted'){
-                        isNewObject = true;
-                    }
-
-                    return params.object.save().then(
-                        function(){
-                            params.object.updateRelationhipsMap();
-
-                            if(params.handler){
-                                $(params.handler).removeClass('loading');
-                            }
-
-                            if(isNewObject){
-                                if(params.object.store.metadataFor(params.object.constructor.typeKey).collectionType === 'hierarchic'){
-                                    var parent = params.object.get('parent');
-                                    if(parent && 'isFulfilled' in parent){
-                                        return parent.then(function(parent){
-                                            parent.reload().then(function(parent){
-                                                parent.trigger('needReloadHasMany');
-                                            });
-                                            self.send('edit', params.object);
-                                        });
-                                    } else{
-                                        // Обновление связей рутовой ноды в дереве.
-                                        // TODO: подумать как можно избежать обращения к контроллеру дерева.
-                                        self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(params.object.get('id'), 'root');
-                                        self.send('edit', params.object);
-                                    }
-                                }
-                                self.send('edit', params.object);
-                            }
-                        },
-
-                        function(results){
-                            var self = this;
-                            if(params.handler){
-                                $(params.handler).removeClass('loading');
-                            }
-
-                            var data = {
-                                'close': false,
-                                'title': results.errors,
-                                'content': results.message,
-                                'confirm': 'Загрузить объект с сервера'
-                            };
-
-                            return UMI.dialog.open(data).then(
-                                function(){
-                                    //https://github.com/emberjs/data/issues/1632
-                                    //params.object.transitionTo('updated.uncommitted');
-//                                    console.log(params.object.get('currentState.stateName'), results, self);
-                                    /* params.object.rollback();
-                                     params.object.reload();*/
-                                }
-                            );
-                        }
-                    );
                 },
 
                 dialogError: function(error){
@@ -201,7 +204,33 @@ define([], function(){
                     }
                 },
 
+                showPopup: function(popupType, object, meta){
+                    UMI.PopupView.create({
+                        container: this.container,
+                        popupType: popupType,
+                        object: object,
+                        meta: meta
+                    }).append();
+                },
+
                 /// global actions
+                /**
+                 * Сохраняет обьект вызывая метод saveObject
+                 * @method save
+                 */
+                save: function(params){
+                    this.saveObject(params);
+                },
+
+                saveAndGoBack: function(params){
+                    var self = this;
+                    self.saveObject(params).then(function(isSaved){
+                        if(isSaved){
+                            self.send('backToFilter');
+                        }
+                    });
+                },
+
                 switchActivity: function(object){
                     try{
                         var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
@@ -219,8 +248,8 @@ define([], function(){
                     }
                 },
 
-                create: function(parentObject, actionParam){
-                    var typeName = actionParam.typeName;
+                create: function(parentObject, behaviour){
+                    var typeName = behaviour.typeName;
                     this.transitionTo('action', parentObject.get('id'), 'createForm', {queryParams: {'typeName': typeName}});
                 },
 
@@ -245,10 +274,9 @@ define([], function(){
                  * Удаляет объект (перемещает в корзину)
                  * @method trash
                  * @param object
-                 * @param type
                  * @returns {*|Promise}
                  */
-                trash: function(object, type){
+                trash: function(object){
                     return object.destroyRecord().then(function(){
                         var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" удалено в корзину.'};
                         UMI.notification.create(settings);
@@ -262,10 +290,9 @@ define([], function(){
                  * Спрашивает пользователя и в случае положительного ответа безвозвратно удаляет объект
                  * @method delete
                  * @param object
-                 * @param type
                  * @returns {*|Promise}
                  */
-                "delete": function(object, type){
+                "delete": function(object){
                     var data = {
                         'close': false,
                         'title': 'Удаление "' + object.get('displayName') + '".',
@@ -288,20 +315,9 @@ define([], function(){
                 },
                 /**
                  * Возвращает к списку
-                 * @param object
-                 * @param type
                  */
-                backToFilter: function(object, type){
+                backToFilter: function(){
                     this.transitionTo('context', 'root');
-                },
-
-                showPopup: function(popupType, object, meta){
-                    UMI.PopupView.create({
-                        container: this.container,
-                        popupType: popupType,
-                        object: object,
-                        meta: meta
-                    }).append();
                 }
             },
 

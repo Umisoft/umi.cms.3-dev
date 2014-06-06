@@ -1,0 +1,110 @@
+define(
+    ['App'],
+    function(UMI){
+        "use strict";
+
+        return function(){
+            /**
+             * Абстрактный класс поведения
+             * @class
+             * @abstract
+             */
+            UMI.GlobalBehaviour = Ember.Object.extend({
+                save: {
+                    classNameBindings: ['controller.object.isDirty::disabled', 'controller.object.isValid::disabled'],
+                    beforeSave: function(){
+                        var model = this.get('controller.object');
+                        if(!model.get('isDirty') || !model.get('isValid')){
+                            return false;
+                        }
+                        var button = this.$();
+                        button.addClass('loading');
+                        var params = {
+                            object: model,
+                            handler: button[0]
+                        };
+                        return params;
+                    },
+                    actions: {
+                        save: function(){
+                            var params = this.beforeSave();
+                            if(params){
+                                this.get('controller').send('save', params);
+                            }
+                        },
+
+                        saveAndGoBack: function(){
+                            var params = this.beforeSave();
+                            if(params){
+                                this.get('controller').send('saveAndGoBack', params);
+                            }
+                        }
+                    }
+                },
+
+                create: {
+                    actions: {
+                        create: function(behaviour){
+                            var model = this.get('controller.object');
+                            this.get('controller').send('create', model, behaviour);
+                        }
+                    }
+                },
+
+                switchActivity: {
+                    classNameBindings: ['controller.object.active::umi-disabled'],
+                    actions: {
+                        switchActivity: function(){
+                            var model = this.get('controller.object');
+                            this.get('controller').send('switchActivity', model);
+                        }
+                    }
+                },
+
+                backToFilter: {
+                    actions: {
+                        backToFilter: function(){
+                            this.get('controller').send('backToFilter');
+                        }
+                    }
+                },
+
+                trash: {
+                    actions: {
+                        trash: function(){
+                            var model = this.get('controller.object');
+                            this.get('controller').send('trash', model);
+                        }
+                    }
+                },
+
+                "delete": {
+                    actions: {
+                        "delete": function(){
+                            var model = this.get('controller.object');
+                            this.get('controller').send('delete', model);
+                        }
+                    }
+                },
+
+                viewOnSite: {
+                    actions: {
+                        viewOnSite: function(){
+                            var model = this.get('controller.object');
+                            this.get('controller').send('viewOnSite', model);
+                        }
+                    }
+                },
+
+                edit: {
+                    actions: {
+                        edit: function(){
+                            var model = this.get('controller.object');
+                            this.get('controller').send('edit', model);
+                        }
+                    }
+                }
+            });
+        };
+    }
+);

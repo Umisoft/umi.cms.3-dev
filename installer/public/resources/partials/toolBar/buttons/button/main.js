@@ -11,15 +11,11 @@ define(['App', 'text!./button.hbs'],
                 attributeBindings: ['title'],
                 title: Ember.computed.alias('meta.attributes.title'),
                 click: function(){
-                    this.get('controller').send('sendActionForBehaviour', this.get('meta').behaviour);
+                    this.send(this.get('meta').behaviour.name, this.get('meta').behaviour);
                 }
             });
 
-            UMI.buttonBehaviour = Ember.Object.create({
-                switchActivity: {
-                    classNameBindings: ['controller.object.active::umi-disabled']
-                }
-            });
+            UMI.buttonBehaviour = UMI.GlobalBehaviour.extend({}).create({});
         };
     }
 );

@@ -133,7 +133,7 @@
                         {{#view "tableControlContextMenu"}}
                             <div class="umi-table-control-content-fixed-right-first">
                                 {{#if view.parentView.selectAction}}
-                                    <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg" {{action 'sendActionForBehaviour' view.parentView.selectAction.behaviour object}} {{bind-attr title=view.parentView.selectAction.attributes.label}}>
+                                    <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg" {{action 'sendActionForBehaviour' view.parentView.selectAction.behaviour object target="view"}} {{bind-attr title=view.parentView.selectAction.attributes.label}}>
                                         <i {{bind-attr class=":icon view.parentView.selectActionIcon"}}></i>
                                     </a>
                                 {{/if}}
@@ -148,7 +148,7 @@
                                     {{#each controller.contextMenu}}
                                         {{#view view.itemView action=this}}
                                             <i {{bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{action 'toggleFastAction' this target="view.parentView.parentView"}}></i>
-                                            <a href="javascript:void(0)" {{action 'sendActionForBehaviour' behaviour object}} {{bind-attr title=view.parentView.selectAction.attributes.title}}>{{attributes.label}}</a>
+                                            <a href="javascript:void(0)" {{action 'sendActionForBehaviour' behaviour object target="view.parentView"}} {{bind-attr title=view.parentView.selectAction.attributes.title}}>{{attributes.label}}</a>
                                         {{/view}}
                                     {{/each}}
                                 </ul>

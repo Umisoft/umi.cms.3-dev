@@ -11,7 +11,7 @@ define(['App', 'text!./submitToolbar.hbs'], function(UMI, submitToolbarTpl){
                     var instance = UMI.SplitButtonView.extend(UMI.splitButtonBehaviour.dropUp);
                     var behaviour = this.get('context.behaviour.name');
                     if(behaviour){
-                        behaviour = UMI.dropdownButtonBehaviour.get(behaviour) || {};
+                        behaviour = UMI.splitButtonBehaviour.get(behaviour) || {};
                     } else{
                         behaviour = {};
                     }
