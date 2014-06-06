@@ -14,7 +14,7 @@ use umi\form\element\BaseFormElement;
 use umi\form\FormEntityView;
 use umi\hmvc\dispatcher\IDispatcher;
 use umi\i18n\translator\ITranslator;
-use umicms\hmvc\component\BaseComponent;
+use umicms\hmvc\component\BaseCmsComponent;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\project\admin\AdminApplication;
 use umicms\project\site\SiteApplication;
@@ -87,10 +87,10 @@ class Permissions extends BaseFormElement
 
     /**
      * Формирует список ресурсов и ролей для них у компонента
-     * @param BaseComponent $component
+     * @param BaseCmsComponent $component
      * @param array $resources
      */
-    private function buildResourcesForComponent(BaseComponent $component, array &$resources)
+    private function buildResourcesForComponent(BaseCmsComponent $component, array &$resources)
     {
         $componentRoles = $component->getAclManager()->getRoleList();
         if ($componentRoles) {

@@ -10,19 +10,59 @@
 
 namespace umicms\hmvc\component;
 
+use umi\acl\IAclFactory;
+use umi\acl\IAclManager;
+use umi\acl\IAclResource;
 use umi\config\entity\IConfig;
-use umi\hmvc\component\Component as FrameworkComponent;
+use umi\hmvc\component\Component;
 use umicms\exception\UnexpectedValueException;
 
 /**
  * {@inheritdoc}
  */
-abstract class BaseComponent extends FrameworkComponent
+abstract class BaseCmsComponent extends Component implements IAclResource
 {
     /**
      * Имя опции для задания настроек.
      */
     const OPTION_SETTINGS = 'settings';
+    /**
+     * Префикс имени ACL-ресурса
+     */
+    const ACL_RESOURCE_PREFIX = 'component:';
+    /**
+     * Константа для формирования имен ролей для дочерних компонентов
+     */
+    const EXECUTOR_ROLE_SUFFIX = 'Executor';
+    /**
+     * @var IAclManager $aclManager менеджер ACL
+     */
+    private $aclManager;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAclResourceName()
+    {
+        return self::ACL_RESOURCE_PREFIX . $this->name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAclManager()
+    {
+        if (!$this->aclManager) {
+
+            $config = isset($this->options[self::OPTION_ACL]) ? $this->options[self::OPTION_ACL] : [];
+            $config = $this->configToArray($config, true);
+            $config = $this->mergeConfigOptions($config, $this->getChildComponentsAcl());
+
+            $this->aclManager = $this->getAclFactory()->createAclManager($config);
+        }
+
+        return $this->aclManager;
+    }
 
     /**
      * Возвращает настройки компонента.
@@ -91,6 +131,39 @@ abstract class BaseComponent extends FrameworkComponent
     public function getDictionariesNames()
     {
         return $this->getI18nDictionaryNames();
+    }
+
+    /**
+     * Возвращает конфигурацию ACL для дочерних компонентов
+     * @return array
+     */
+    protected function getChildComponentsAcl()
+    {
+        $roleNames = $this->getChildComponentNames();
+        array_walk($roleNames, function($name) {
+            $name = $name . self::EXECUTOR_ROLE_SUFFIX;
+        });
+
+        $resources = $this->getChildComponentNames();
+        array_walk($roleNames, function($name) {
+            $name = self::ACL_RESOURCE_PREFIX . $name;
+        });
+
+        $rules = [];
+        foreach ($resources as $key => $resourceName) {
+            $rules[$resourceName] = [
+                $roleNames[$key] => []
+            ];
+        }
+
+        $config = [
+            IAclFactory::OPTION_ROLES => array_fill_keys($roleNames, []),
+            IAclFactory::OPTION_RESOURCES => $resources,
+            IAclFactory::OPTION_RULES => $rules
+        ];
+
+
+        return $config;
     }
 
 }
