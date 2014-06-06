@@ -46,6 +46,13 @@ define(['App'], function(UMI){
 
             splitButtonView: function(){
                 var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent);
+                var behaviour = this.get('context.behaviour.name');
+                if(behaviour){
+                    behaviour = UMI.dropdownButtonBehaviour.get(behaviour) || {};
+                } else{
+                    behaviour = {};
+                }
+                instance = instance.extend(behaviour);
                 return instance;
             }.property()
         });

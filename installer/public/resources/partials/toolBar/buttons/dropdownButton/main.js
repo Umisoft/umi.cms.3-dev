@@ -16,52 +16,19 @@ define(['App', 'text!./template.hbs', 'text!./backupList.hbs'],
                 }
             });
 
-            //TODO: Сделать один класс dorpdown
-            UMI.FormControlDropUpView = Ember.View.extend({
-                classNames: ['dropdown', 'coupled'],
-                classNameBindings: ['isOpen:open'],
-                isOpen: false,
-                iScroll: null,
-                actions: {
-                    open: function(){
-                        var self = this;
-                        var el = this.$();
-                        this.toggleProperty('isOpen');
-                        if(this.get('isOpen')){
-                            setTimeout(function(){
-                                $('body').on('click.umi.form.controlDropUp', function(event){
-                                    var targetElement = $(event.target).closest('.umi-dropup');
-                                    if(!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== el[0].getAttribute('id')){
-                                        $('body').off('.umi.form.controlDropUp');
-                                        self.set('isOpen', false);
-                                    }
-                                });
-                                if(self.get('iScroll')){
-                                    self.get('iScroll').refresh();
-                                }
-                            }, 0);
-                        }
-                    }
-                },
-                didInsertElement: function(){
-                    var el = this.$();
-                    var scroll;
-                    var scrollElement = el.find('.s-scroll-wrap');
-                    if(scrollElement.length){
-                        scroll = new IScroll(scrollElement[0], UMI.config.iScroll);
-                    }
-                    this.set('iScroll', scroll);
-                }
-            });
-
             UMI.dropdownButtonBehaviour = Ember.Object.create({
-                backupList: UMI.FormControlDropUpView.extend({
+                backupList: {
+                    classNames: ['dropdown', 'coupled'],
+                    classNameBindings: ['isOpen:open'],
+                    isOpen: false,
+                    iScroll: null,
+
                     tagName: 'div',
                     template: Ember.Handlebars.compile(backupListTemplate),
 
                     getBackupList: function(){
                         var backupList;
-                        var object = this.get('object');
+                        var object = this.get('controller.object');
                         var settings = this.get('controller.settings');
 
                         var currentVersion = {
@@ -91,12 +58,31 @@ define(['App', 'text!./template.hbs', 'text!./backupList.hbs'],
                     backupList: null,
 
                     actions: {
+                        open: function(){
+                            var self = this;
+                            var el = this.$();
+                            this.toggleProperty('isOpen');
+                            if(this.get('isOpen')){
+                                setTimeout(function(){
+                                    $('body').on('click.umi.form.controlDropUp', function(event){
+                                        var targetElement = $(event.target).closest('.umi-dropup');
+                                        if(!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== el[0].getAttribute('id')){
+                                            $('body').off('.umi.form.controlDropUp');
+                                            self.set('isOpen', false);
+                                        }
+                                    });
+                                    if(self.get('iScroll')){
+                                        self.get('iScroll').refresh();
+                                    }
+                                }, 0);
+                            }
+                        },
                         applyBackup: function(backup){
                             if(backup.isActive){
                                 return;
                             }
                             var self = this;
-                            var object = this.get('parentController.model.object');
+                            var object = this.get('controller.object');
                             var list = self.get('backupList');
                             var setCurrent = function(){
                                 list.setEach('isActive', false);
@@ -108,7 +94,7 @@ define(['App', 'text!./template.hbs', 'text!./backupList.hbs'],
                                 setCurrent();
                             } else{
                                 var params = '?id=' + backup.objectId + '&backupId=' + backup.id;
-                                $.get(self.get('parentController.settings').actions.getBackup.source + params).then(function(data){
+                                $.get(self.get('controller.settings').actions.getBackup.source + params).then(function(data){
                                     object.rollback();
                                     delete data.result.getBackup.version;
                                     delete data.result.getBackup.id;
@@ -118,16 +104,25 @@ define(['App', 'text!./template.hbs', 'text!./backupList.hbs'],
                             }
                         }
                     },
-
-                    didInsertElement: function(){// TODO: При уходе с формы это событие снова всплывает
+                    didInsertElement: function(){
+                        var el = this.$();
+                        var scroll;
+                        var scrollElement = el.find('.s-scroll-wrap');
+                        if(scrollElement.length){
+                            scroll = new IScroll(scrollElement[0], UMI.config.iScroll);
+                        }
+                        this.set('iScroll', scroll);
                         var self = this;
                         self.set('backupList', self.getBackupList());
-                        self.get('object').off('didUpdate');
-                        self.get('object').on('didUpdate', function(){
+                        self.get('controller.object').off('didUpdate');
+                        self.get('controller.object').on('didUpdate', function(){
                             self.set('backupList', self.getBackupList());
                         });
+                    },
+                    willDestroyElement: function(){
+
                     }
-                }).create({})
+                }
             });
         };
     }
