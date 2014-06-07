@@ -16,7 +16,7 @@ define(['App'], function(UMI){
             }.observes('model'),
 
             fakeDidInsertElement: function(){
-                $(window).off('resize.offcanvas'); //Идеологически неверное нахождение строки, но посколько willDestroyElement для Offcanvas не срабатывает - приходится ставить сюда
+                $(window).off('resize.offcanvas'); //Идеологически неверное нахождение строки, но поскольку willDestroyElement для Offcanvas не срабатывает - приходится ставить сюда
 
                 if($('.umi-divider-left').length){
                     $('.umi-divider-left-toggle').removeClass('umi-disabled'); //Включаем кнопку
