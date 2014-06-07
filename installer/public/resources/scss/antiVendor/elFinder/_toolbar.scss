@@ -3,20 +3,34 @@
 /*********************************************/
 /* toolbar container */
 .elfinder-toolbar {
-	/*padding:4px 0 3px 0; */
-	border-left:0 solid transparent;
-	border-top:0 solid transparent;
-	border-right:0 solid transparent;
+    position: relative;
+    /*padding:4px 0 3px 0; */
+    border-left:0 solid transparent;
+    border-top:0 solid transparent;
+    border-right:0 solid transparent;
     background: #F5F6F7;
     display: inline-block;
     width: 100%;
 }
 
+.elfinder .elfinder-toolbar:after {
+    content: "";
+    position: absolute;
+    float: left;
+    display: block;
+    z-index: 100;
+    height: 3px;
+    width: 100%;
+    bottom: -3px;
+    left: 0;
+    background: url(img/shadows/toBottomShadow.png);
+}
+
 /* container for button's group */
 .elfinder-buttonset {
-	/*margin: 1px 4px;*/
-	float:left;
-	padding:0;
+    /*margin: 1px 4px;*/
+    float:left;
+    padding:0;
     border-right: 1px solid #DDE3E6;
     background: #F5F6F7;
 }
@@ -33,46 +47,46 @@ div.elfinder-buttonset {
 
 /* button */
 .elfinder .elfinder-button {
-	width:16px;
-	height:16px;
-	margin:0;
-	padding:9px;
-	float:left;
-	overflow:hidden;
-	position:relative;
-	border:0 solid;
-	box-sizing: content-box;
+    width:16px;
+    height:16px;
+    margin:0;
+    padding:9px;
+    float:left;
+    overflow:hidden;
+    position:relative;
+    border:0 solid;
+    box-sizing: content-box;
 }
 
 .elfinder .ui-icon-search { cursor:pointer;}
 
 .elfinder-button:first-child {
-	/*-moz-border-radius-topleft: 4px; */
-	/*-webkit-border-top-left-radius: 4px; */
-	/*border-top-left-radius: 4px;*/
-	/*-moz-border-radius-bottomleft: 4px; */
-	/*-webkit-border-bottom-left-radius: 4px; */
-	/*border-bottom-left-radius: 4px;*/
+    /*-moz-border-radius-topleft: 4px; */
+    /*-webkit-border-top-left-radius: 4px; */
+    /*border-top-left-radius: 4px;*/
+    /*-moz-border-radius-bottomleft: 4px; */
+    /*-webkit-border-bottom-left-radius: 4px; */
+    /*border-bottom-left-radius: 4px;*/
 }
 
 .elfinder-button:last-child {
-	/*-moz-border-radius-topright: 4px; */
-	/*-webkit-border-top-right-radius: 4px; */
-	/*border-top-right-radius: 4px;*/
-	/*-moz-border-radius-bottomright: 4px; */
-	/*-webkit-border-bottom-right-radius: 4px; */
-	/*border-bottom-right-radius: 4px;*/
+    /*-moz-border-radius-topright: 4px; */
+    /*-webkit-border-top-right-radius: 4px; */
+    /*border-top-right-radius: 4px;*/
+    /*-moz-border-radius-bottomright: 4px; */
+    /*-webkit-border-bottom-right-radius: 4px; */
+    /*border-bottom-right-radius: 4px;*/
 }
 
 /* separator between buttons, required for berder between button with ui color */
 .elfinder-toolbar-button-separator {
-	float:left;
-	padding:0;
-	height:24px;
-	border-top:0 solid;
-	border-right:0 solid;
-	border-bottom:0 solid;
-	width:0;
+    float:left;
+    padding:0;
+    height:24px;
+    border-top:0 solid;
+    border-right:0 solid;
+    border-bottom:0 solid;
+    width:0;
 }
 
 /* change icon opacity^ not button */
@@ -84,10 +98,10 @@ div.elfinder-buttonset {
 
 /* icon inside button */
 .elfinder-button-icon {
-	width:16px;
-	height:16px;
-	display:block;
-	background:url('img/elfinder/img/toolbar.png') no-repeat;
+    width:16px;
+    height:16px;
+    display:block;
+    background:url('img/elfinder/img/toolbar.png') no-repeat;
 }
 
 /* buttons icons */
@@ -129,18 +143,18 @@ div.elfinder-buttonset {
 
 /* menu */
 .elfinder-button-menu {
-	position:absolute;
-	left:0;
-	top:25px;
-	padding:3px 0;
+    position:absolute;
+    left:0;
+    top:25px;
+    padding:3px 0;
 }
 
 /* menu item */
 .elfinder-button-menu-item {
-	white-space:nowrap;
-	cursor:default;
-	padding:5px 19px;
-	position:relative;
+    white-space:nowrap;
+    cursor:default;
+    padding:5px 19px;
+    position:relative;
 }
 
 /* fix hover ui class */
@@ -149,13 +163,13 @@ div.elfinder-buttonset {
 .elfinder-button-menu-item-separated { border-top:1px solid #ccc; }
 
 .elfinder-button-menu-item .ui-icon {
-	width:16px;
-	height:16px;
-	position:absolute;
-	left:2px;
-	top:50%;
-	margin-top:-8px;
-	display:none;
+    width:16px;
+    height:16px;
+    position:absolute;
+    left:2px;
+    top:50%;
+    margin-top:-8px;
+    display:none;
 }
 
 .elfinder-button-menu-item-selected .ui-icon { display:block; }
@@ -164,25 +178,25 @@ div.elfinder-buttonset {
 
 /* hack for upload button */
 .elfinder-button form {
-	position:absolute;
-	top:0;
-	right:0;
-	opacity: 0; filter:Alpha(Opacity=0);
-	cursor: pointer;
+    position:absolute;
+    top:0;
+    right:0;
+    opacity: 0; filter:Alpha(Opacity=0);
+    cursor: pointer;
 }
 
 .elfinder .elfinder-button form input { background:transparent; cursor: default; margin: 0;}
 
 /* search "button" */
 .elfinder .elfinder-button-search {
-	border:0 solid;
-	background:transparent;
-	padding:0;
-	margin: 4px 0;
-	height: auto;
-	min-height: 26px;
-	float:right;
-	width:202px;
+    border:0 solid;
+    background:transparent;
+    padding:0;
+    margin: 4px 0;
+    height: auto;
+    min-height: 26px;
+    float:right;
+    width:202px;
 }
 
 /* ltr/rte enviroment */
@@ -191,12 +205,12 @@ div.elfinder-buttonset {
 
 /* search text field */
 .elfinder-button-search input {
-	width:160px;
-	height:22px;
-	padding:0 20px;
-	line-height: 22px;
-	border:1px solid #DDE3E6;
-	outline:0 solid;
+    width:160px;
+    height:22px;
+    padding:0 20px;
+    line-height: 22px;
+    border:1px solid #DDE3E6;
+    outline:0 solid;
     margin: 2px 0 0;
 }
 
@@ -204,12 +218,12 @@ div.elfinder-buttonset {
 
 /* icons */
 .elfinder-button-search .ui-icon {
-	position:absolute;
-	height:18px;
-	top: 50%;
-	margin:-9px 4px 0 4px;
-	opacity: .6;
-	filter:Alpha(Opacity=60);
+    position:absolute;
+    height:18px;
+    top: 50%;
+    margin:-9px 4px 0 4px;
+    opacity: .6;
+    filter:Alpha(Opacity=60);
 }
 
 /* search/close icons */

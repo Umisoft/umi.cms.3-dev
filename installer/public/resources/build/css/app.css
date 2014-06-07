@@ -6205,37 +6205,38 @@ table td {
   padding: 0;
   background: #D6E0E9; }
 
-.elfinder-cwd-wrapper:before {
-  content: "";
-  position: absolute;
-  float: left;
-  z-index: 1;
-  display: block;
-  height: 3px;
-  width: calc(100% + 1px);
-  top: 0;
-  left: 0;
-  background: url(img/shadows/toBottomShadow.png); }
-
-.elfinder-cwd-wrapper:after {
-  content: "";
-  position: absolute;
-  float: left;
-  display: block;
-  height: 3px;
-  width: calc(100% + 1px);
-  bottom: 0;
-  left: 0;
-  background: url(img/shadows/toTopShadow.png); }
-
 /* container */
 .elfinder-cwd {
   height: 100% !important;
   position: relative;
+  z-index: 3;
   cursor: default;
   padding: 0;
   margin: 0;
-  user-select: none; }
+  user-select: none;
+  overflow: scroll; }
+
+.elfinder-cwd-wrapper:before {
+  content: "";
+  position: absolute;
+  float: left;
+  z-index: 1000;
+  display: block;
+  width: 1px;
+  height: calc(100% - 14px);
+  left: 0px;
+  background: #ADB9C5; }
+
+.elfinder-workzone:before {
+  content: "";
+  position: absolute;
+  float: left;
+  z-index: 10;
+  display: block;
+  width: 1px;
+  height: calc(100% - 14px);
+  right: 14px;
+  background: #ADB9C5; }
 
 /* container active on dropenter */
 .elfinder .elfinder-cwd-wrapper.elfinder-droppable-active {
@@ -6807,40 +6808,17 @@ table td {
 /*********************************************/
 /* container */
 .elfinder .elfinder-navbar {
-  overflow: hidden;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 1;
   width: 230px;
-  height: calc(100% - 16px) !important;
-  padding: 8px 0;
+  height: 100% !important;
+  padding: 0 0 30px 0;
   background-image: none;
-  border-top: 0 solid;
-  border-bottom: 0 solid;
-  /*overflow: auto;*/
   display: none;
   position: relative;
   user-select: none; }
-
-.elfinder .elfinder-navbar:before {
-  content: "";
-  position: absolute;
-  float: left;
-  z-index: 1;
-  display: block;
-  height: 3px;
-  width: calc(100% + 1px);
-  top: 0;
-  left: 0;
-  background: url(img/shadows/toBottomShadow.png); }
-
-.elfinder .elfinder-navbar:after {
-  content: "";
-  position: absolute;
-  float: left;
-  display: block;
-  height: 3px;
-  width: calc(100% + 1px);
-  bottom: 0;
-  left: 0;
-  background: url(img/shadows/toTopShadow.png); }
 
 /* ltr/rtl enviroment */
 .elfinder-ltr .elfinder-navbar {
@@ -6973,7 +6951,7 @@ table td {
   display: block;
   top: 50%;
   margin-top: -7px;
-  background: url("img/animate/loader-20.gif") center center no-repeat; }
+  background: url("svg/animation/spinner.svg") center center no-repeat; }
 
 /* spinner ltr/rtl enviroment */
 .elfinder-ltr .elfinder-navbar-spinner {
@@ -7009,7 +6987,6 @@ table td {
   width: 4px;
   height: 100%;
   background: #F5F6F7;
-  left: 0;
   right: 0 !important;
   border-left: 1px solid #ADB9C5;
   border-right: 1px solid #ADB9C5;
@@ -7244,15 +7221,41 @@ embed.elfinder-quicklook-preview-audio {
 /******************************************************************/
 /* statusbar container */
 .elfinder-statusbar {
+  position: relative;
   text-align: center;
   font-weight: normal;
   padding: 6px 20px;
   height: 14px;
   line-height: 14px;
+  border-top: 1px solid transparent;
   border-right: 0 solid transparent;
   border-bottom: 0 solid transparent;
   border-left: 0 solid transparent;
   background: #F5F6F7; }
+
+.elfinder .elfinder-statusbar:before {
+  content: "";
+  position: absolute;
+  float: left;
+  z-index: 2;
+  display: block;
+  height: 14px;
+  width: 100%;
+  top: -15px;
+  left: 0;
+  background: #F5F6F7; }
+
+.elfinder .elfinder-statusbar:after {
+  content: "";
+  position: absolute;
+  float: left;
+  z-index: 100;
+  display: block;
+  height: 3px;
+  width: 100%;
+  top: -18px;
+  left: 0;
+  background: url(img/shadows/toTopShadow.png); }
 
 .elfinder-statusbar a {
   text-decoration: none; }
@@ -7373,6 +7376,7 @@ embed.elfinder-quicklook-preview-audio {
 /*********************************************/
 /* toolbar container */
 .elfinder-toolbar {
+  position: relative;
   /*padding:4px 0 3px 0; */
   border-left: 0 solid transparent;
   border-top: 0 solid transparent;
@@ -7380,6 +7384,18 @@ embed.elfinder-quicklook-preview-audio {
   background: #F5F6F7;
   display: inline-block;
   width: 100%; }
+
+.elfinder .elfinder-toolbar:after {
+  content: "";
+  position: absolute;
+  float: left;
+  display: block;
+  z-index: 100;
+  height: 3px;
+  width: 100%;
+  bottom: -3px;
+  left: 0;
+  background: url(img/shadows/toBottomShadow.png); }
 
 /* container for button's group */
 .elfinder-buttonset {
