@@ -16,11 +16,13 @@ define(['App'], function(UMI){
             }.observes('model'),
 
             fakeDidInsertElement: function(){
+                $(window).off('resize.offcanvas'); //Идеологически неверное нахождение строки, но посколько willDestroyElement для Offcanvas не срабатывает - приходится ставить сюда
+
                 if($('.umi-divider-left').length){
                     $('.umi-divider-left-toggle').removeClass('umi-disabled'); //Включаем кнопку
                     var showSideBarState = true;
                     var floatSideBarState = false;
-                    var sideBarWidth = 251; //Отступ контентной области слева при окрытом sideBar
+                    var sideBarWidth = $('.umi-divider-left').width() + 1; //Отступ контентной области слева при открытом sideBar
 
                     var showSideBar = function(){
                         if(!showSideBarState){
@@ -99,7 +101,7 @@ define(['App'], function(UMI){
                     };
 
                     checkWindowWidth();
-                    $(window).on('resize', function(){
+                    $(window).on('resize.offcanvas', function(){
                         checkWindowWidth();
                     });
 
@@ -113,7 +115,7 @@ define(['App'], function(UMI){
                     return $(window).height() - 141;
                 });
 
-                $(window).on('resize', function(){
+                $(window).on('resize.offcanvas', function(){
                     $('.umi-component').height(function(){
                         return $(window).height() - 141;
                     });
