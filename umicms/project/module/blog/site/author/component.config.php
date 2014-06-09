@@ -25,26 +25,34 @@ return [
     DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogAuthorWidget',
         'list' => __NAMESPACE__ . '\widget\BlogAuthorListWidget',
+        'editProfileLink' => __NAMESPACE__ . '\widget\EditLinkWidget',
         'postList' => __NAMESPACE__ . '\widget\BlogAuthorPostListWidget',
         'rssLink' => __NAMESPACE__ . '\widget\BlogAuthorListRssLinkWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
+            'author' => [],
             'viewer' => [],
             'rssViewer' => [],
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:rss',
+            'controller:edit',
             'widget:view',
             'widget:list',
             'widget:postList',
             'widget:rssLink',
+            'widget:editProfileLink',
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'widget:view' => [],
                 'widget:list' => [],
                 'widget:postList' => [],
+            ],
+            'author' => [
+                'controller:edit' => [],
+                'widget:editProfileLink' => []
             ],
             'rssViewer' => [
                 'controller:rss' => [],
