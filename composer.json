@@ -21,7 +21,8 @@
         "umisoft/umi.framework-dev": "*",
         "guzzlehttp/guzzle": "4.*",
         "twig/twig": "1.*",
-        "gregwar/captcha": "dev-master"
+        "gregwar/captcha": "dev-master",
+        "ezyang/htmlpurifier": "dev-master"
     },
     "require-dev":{
         "mockery/mockery": "0.9.*"
