@@ -29,14 +29,7 @@ define(
                  */
                 hasFieldset: function(){
                     return this.get('model.elements').isAny('type', 'fieldset');
-                }.property('model'),
-
-                actions: {
-                    sendActionForBehaviour: function(behaviour, object){
-                        object = object || this.get('object');
-                        this.send(behaviour.name, object, behaviour);
-                    }
-                }
+                }.property('model')
             });
 
             UMI.FormBaseView = Ember.View.extend({
