@@ -12,5 +12,4 @@
     <h4>{{ translate('Subjects') }}</h4>
     {{ widget('news.subject.list', {'template' : 'listShort'}) }}
 </div>
-{{ widget('structure.infoblock.view', {'template' : 'facebook'}) }}
-{{ widget('structure.infoblock.view', {'template' : 'vk'}) }}
+{{ widget('structure.infoblock.view', {'template' : 'socialGroup', 'infoBlock' : 'commonInfoBlock'}) }}

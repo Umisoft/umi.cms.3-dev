@@ -167,7 +167,7 @@ class UserCollection extends SimpleCollection
                 ->notEquals($user->getId())
             ->getResult();
 
-        return !count($users->fetchAll());
+        return !count($users);
     }
 
     /**
@@ -185,7 +185,7 @@ class UserCollection extends SimpleCollection
                 ->notEquals($user->getId())
             ->getResult();
 
-        return !count($users->fetchAll());
+        return !count($users);
     }
 
     /**

@@ -13,7 +13,7 @@ namespace umicms\project\module\structure\site\infoblock\widget;
 use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseWidget;
-use umicms\project\module\structure\api\object\InfoBlock;
+use umicms\project\module\structure\api\object\BaseInfoBlock;
 use umicms\project\module\structure\api\StructureModule;
 
 /**
@@ -24,11 +24,11 @@ class ViewWidget extends BaseWidget implements IAclResource
     /**
      * @var string $template имя шаблона, по которому выводится виджет.
      */
-    public $template = 'logo';
+    public $template = 'infoblock';
     /**
-     * @var InfoBlock $infoBlock информационный блок или GUID
+     * @var BaseInfoBlock $infoBlock информационный блок или его название
      */
-    public $infoBlock = '87f20300-197a-4309-b86b-cbe8ebcc358d';
+    public $infoBlock;
     /**
      * @var StructureModule $api
      */
@@ -49,16 +49,16 @@ class ViewWidget extends BaseWidget implements IAclResource
     public function __invoke()
     {
         if (is_string($this->infoBlock)) {
-            $this->infoBlock = $this->api->infoBlock()->get($this->infoBlock);
+            $this->infoBlock = $this->api->infoBlock()->getByName($this->infoBlock);
         }
 
-        if (!$this->infoBlock instanceof InfoBlock) {
+        if (!$this->infoBlock instanceof BaseInfoBlock) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
                         'param' => 'infoBlock',
-                        'class' => InfoBlock::className()
+                        'class' => BaseInfoBlock::className()
                     ]
                 )
             );

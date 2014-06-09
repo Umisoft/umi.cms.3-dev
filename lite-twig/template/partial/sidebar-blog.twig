@@ -30,5 +30,4 @@
         <li>{{ translate('Post on moderation') }}: {{ widget('blog.moderate.allListLink', {'template' : 'moderateLink'}) }}</li>
     </ol>
 </div>
-{{ widget('structure.infoblock.view', {'template' : 'facebook'}) }}
-{{ widget('structure.infoblock.view', {'template' : 'vk'}) }}
+{{ widget('structure.infoblock.view', {'template' : 'socialGroup', 'infoBlock' : 'commonInfoBlock'}) }}
