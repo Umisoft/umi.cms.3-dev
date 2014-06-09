@@ -96,13 +96,10 @@ define(['App'], function(UMI){
              */
             activeContextBinding: 'controllers.context.model',
 
-            contextMenu: function(){
+            contextToolbar: function(){
                 var sideBarControl = this.get('controllers.component.sideBarControl');
-                if(sideBarControl && Ember.typeOf(sideBarControl.contextToolbar) === 'array'){
-                    var splitButton = sideBarControl.contextToolbar.findBy('type', 'splitButton');
-                    if(splitButton && Ember.typeOf(splitButton.behaviour) === 'object'){
-                        return splitButton.behaviour.choices;
-                    }
+                if(sideBarControl && sideBarControl.get('contextToolbar')){
+                    return sideBarControl.get('contextToolbar');
                 }
             }.property('controllers.component.sideBarControl.contextToolbar'),
 
@@ -197,6 +194,8 @@ define(['App'], function(UMI){
         });
 
         UMI.TreeItemController = Ember.ObjectController.extend({
+            objectBinding: 'content',
+
             getChildren: function(){
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: this.get('children'),

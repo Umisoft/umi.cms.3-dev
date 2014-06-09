@@ -20,9 +20,14 @@
         {{view.savedDisplayName}}
     {{/link-to}}
 
-    {{#if controllers.treeControl.contextMenu}}
-        {{view "treeControlContextMenu" contextMenu=controllers.treeControl.contextMenu}}
+    {{#if controllers.treeControl.contextToolbar}}
+        {{#view "treeControlContextToolbar" elements=controllers.treeControl.contextToolbar}}
+            {{#each view.elements}}
+                {{view view.elementView}}
+            {{/each}}
+        {{/view}}
     {{/if}}
+
 </div>
 
 {{#if childCount}}

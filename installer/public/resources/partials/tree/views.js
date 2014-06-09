@@ -1,10 +1,8 @@
-define(['App'], function(UMI){
+define(['App', 'toolbar'], function(UMI){
     'use strict';
     return function(){
         UMI.TreeControlView = Ember.View.extend({
             classNames: ['row', 's-full-height'],
-
-            componentNameBinding: 'controller.controllers.component.name',
 
             expandedBranchesChange: function(){
                 var expandedBranches = this.get('controller.expandedBranches');
@@ -277,6 +275,45 @@ define(['App'], function(UMI){
             }
         });
 
+        UMI.TreeControlContextToolbarView = Ember.View.extend({
+            tagName: 'ul',
+            classNames: ['button-group', 'umi-tree-context-menu', 'right'],
+            elementView: UMI.ToolbarElementView.extend({
+                splitButtonView: function(){
+                    var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent, UMI.SplitButtonSharedSettingsBehaviour);
+                    var behaviourName = this.get('context.behaviour.name');
+                    var behaviour;
+                    var i;
+                    var action;
+                    if(behaviourName){
+                        behaviour = UMI.splitButtonBehaviour.get(behaviourName) || {};
+                    } else{
+                        behaviour = {};
+                    }
+                    var choices = this.get('context.behaviour.choices');
+                    if(behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array'){
+                        for(i = 0; i < choices.length; i++){
+                            var prefix = '';
+                            var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
+                            if(behaviourAction.hasOwnProperty('_actions')){
+                                prefix = '_';
+                            }
+                            action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
+                            if(action){
+                                if(Ember.typeOf(behaviour.actions) !== 'object'){
+                                    behaviour.actions = {};
+                                }
+                                behaviour.actions[choices[i].behaviour.name] = action;
+                            }
+                        }
+                    }
+                    instance = instance.extend(behaviour);
+                    return instance;
+                }.property()
+            })
+        });
+
+        /*
         UMI.TreeControlContextMenuView = Ember.View.extend({
             tagName: 'ul',
             classNames: ['button-group', 'umi-tree-context-menu', 'right'],
@@ -313,6 +350,6 @@ define(['App'], function(UMI){
                     return selectAction ? this.get('action').behaviour.name === selectAction.behaviour.name : false;
                 }.property('parentView.parentView.treeControlView.selectAction')
             })
-        });
+        });*/
     };
 });
