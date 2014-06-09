@@ -1,0 +1,27 @@
+{{#if view.parentView.treeControlView.selectAction}}
+    <li class="tree-control-select-action">
+        <span class="tiny button flat square" {{action 'sendActionForBehaviour' view.parentView.treeControlView.selectAction.behaviour controller.model}}>
+            <i {{bind-attr class=":icon view.parentView.treeControlView.selectActionIcon"}}></i>
+        </span>
+    </li>
+{{/if}}
+
+<li class="umi-tree-drop-down-wrapper">
+    <div {{bind-attr class=":umi-tree-drop-down-toggler view.isOpen"}}>
+        <span class="tiny button flat square" {{action "open" target="view" on="click"}}>
+            <i {{bind-attr class=":icon :black view.isOpen:icon-top:icon-bottom"}}></i>
+        </span>
+    </div>
+    {{#if view.isOpen}}
+        <div class="umi-tree-drop-down s-unselectable">
+            <ul class="list-action">
+                {{#each view.contextMenu}}
+                    {{#view view.itemView action=this}}
+                        <i {{bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{action 'toggleFastAction' this target="view.parentView.parentView.treeControlView"}}></i>
+                        <span {{action 'sendActionForBehaviour' behaviour controller.model}}>{{attributes.label}}</span>
+                    {{/view}}
+                {{/each}}
+            </ul>
+        </div>
+    {{/if}}
+</li>

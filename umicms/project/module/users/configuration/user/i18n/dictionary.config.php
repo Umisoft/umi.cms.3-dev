@@ -25,8 +25,9 @@ return [
 
             'type:base:displayName' => 'User',
             'type:guest:displayName' => 'Guest',
-            'type:authorized:displayName' => 'Authorized user',
+            'type:authorized:displayName' => 'Registered user',
             'type:authorized.supervisor:displayName' => 'Supervisor',
+            'type:authorized.supervisor:createLabel' => 'supervisor',
 
             'locale' => 'Language'
         ],
@@ -45,8 +46,10 @@ return [
 
             'type:base:displayName' => 'Пользователь',
             'type:guest:displayName' => 'Гость',
-            'type:authorized:displayName' => 'Авторизованный пользователь',
+            'type:authorized:displayName' => 'Зарегистрированный пользователь',
+            'type:authorized:createLabel' => 'Добавить пользователя',
             'type:authorized.supervisor:displayName' => 'Супервайзер',
+            'type:authorized.supervisor:createLabel' => 'Добавить супервайзера',
 
             'locale' => 'Язык'
         ]

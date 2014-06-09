@@ -10,9 +10,9 @@
 
 namespace umicms\project\module\structure\admin\page;
 
-use umicms\project\admin\api\component\DefaultAdminComponent;
+use umicms\project\admin\api\component\CollectionApiComponent;
 
 return [
-    DefaultAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultAdminComponent',
-    DefaultAdminComponent::OPTION_COLLECTION_NAME => 'structure'
+    CollectionApiComponent::OPTION_CLASS => 'umicms\project\admin\api\component\CollectionApiComponent',
+    CollectionApiComponent::OPTION_COLLECTION_NAME => 'structure'
 ];

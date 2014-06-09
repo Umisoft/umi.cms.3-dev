@@ -10,12 +10,12 @@
 
 namespace umicms\project\module\search\admin\controller;
 
-use umicms\project\admin\api\controller\DefaultRestSettingsController;
+use umicms\project\admin\api\controller\CollectionComponentLayoutController;
 
 /**
  * Контроллер вывода настроек компонента
  */
-class SettingsController extends DefaultRestSettingsController
+class SettingsController extends CollectionComponentLayoutController
 {
     /**
      * {@inheritdoc}

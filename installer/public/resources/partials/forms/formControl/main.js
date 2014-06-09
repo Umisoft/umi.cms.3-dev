@@ -1,10 +1,12 @@
 define(
-    ['App', 'text!./form.hbs'],
+    ['App', 'text!./form.hbs', 'partials/forms/partials/siblingsNavigation/main'],
 
-    function(UMI, formTpl){
+    function(UMI, formTpl, siblingsNavigation){
         "use strict";
 
         return function(){
+            siblingsNavigation();
+
             UMI.FormControlController = UMI.FormBaseController.extend({
                 needs: ['component'],
 
@@ -18,6 +20,12 @@ define(
                     var actionName = this.get('container').lookup('route:action').get('context.action.name');
                     var editForm = this.get('controllers.component.contentControls').findBy('name', actionName);
                     return editForm && editForm.toolbar;
+                }.property('controllers.component.contentControls'),
+
+                submitToolbar: function(){
+                    var actionName = this.get('container').lookup('route:action').get('context.action.name');
+                    var editForm = this.get('controllers.component.contentControls').findBy('name', actionName);
+                    return editForm && editForm.submitToolbar;
                 }.property('controllers.component.contentControls'),
 
                 hasFieldset: function(){

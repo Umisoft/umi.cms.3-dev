@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "b60a474b36b79c984af01617d0775d30",
+    "hash": "724e8616a8e2868f93be95026873e5ab",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1400,7 +1400,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:Umisoft/umi.framework-dev.git",
-                "reference": "f4fa211eaa0238683f470e1d975bc1b0356a9d8d"
+                "reference": "12de4f3ec64478d5715fdaa7cb6a83878d649bc6"
             },
             "require": {
                 "doctrine/dbal": "2.4.*",
@@ -1430,7 +1430,7 @@
                 "framework",
                 "umi"
             ],
-            "time": "2014-06-05 13:02:32"
+            "time": "2014-06-04 15:43:33"
         }
     ],
     "packages-dev": [

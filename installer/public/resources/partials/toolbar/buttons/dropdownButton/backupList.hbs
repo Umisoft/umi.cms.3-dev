@@ -1,0 +1,37 @@
+<a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg" {{action "open" target="view"}}>
+    <i class="icon icon-backupList"></i>
+</a>
+<div class="f-dropdown umi-dropdown dropdown-rows">
+    <div class="row collapse">
+        <div class="columns small-12">
+            <strong>{{view.button.displayName}}</strong>
+        </div>
+    </div>
+    <div class="s-scroll-wrap">
+        <div>
+            {{#each view.backupList}}
+                <div class="row collapse" {{action 'applyBackup' this target="view"}}>
+                    <div class="columns small-6 place-button">
+                        {{#if isActive}}
+                            <button class="button flat tiny square">
+                                <i class="icon icon-accept"></i>
+                            </button>
+                        {{else}}
+                            <button class="button flat tiny square">
+                                <i class="icon icon-renew"></i>
+                            </button>
+                        {{/if}}
+                        {{date.date}}
+                    </div>
+                    <div class="columns small-6">
+                        {{#if user}}
+                            {{user}}
+                        {{else}}
+                            Имя пользователя
+                        {{/if}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
