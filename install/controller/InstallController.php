@@ -1461,6 +1461,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `author_id` bigint(20) unsigned,
                     `contents` text,
                     `contents_en` text,
+                    `contentsRaw` text,
+                    `contentsRaw_en` text,
                     `publish_time` datetime DEFAULT NULL,
                     `publish_status` enum('published','rejected','moderate') DEFAULT NULL,
 
