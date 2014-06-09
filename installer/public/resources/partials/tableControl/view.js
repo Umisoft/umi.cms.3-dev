@@ -1,4 +1,4 @@
-define(['App', 'partials/toolbar/main'], function(UMI){
+define(['App', 'toolbar'], function(UMI){
     'use strict';
     return function(){
 
@@ -277,7 +277,7 @@ define(['App', 'partials/toolbar/main'], function(UMI){
         UMI.TableControlContextToolbarView = Ember.View.extend({
             tagName: 'ul',
             classNames: ['button-group', 'table-context-toolbar'],
-            elementView: UMI.ToolBarElementView.extend({
+            elementView: UMI.ToolbarElementView.extend({
                 splitButtonView: function(){
                     var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent, UMI.SplitButtonSharedSettingsBehaviour);
                     var behaviourName = this.get('context.behaviour.name');

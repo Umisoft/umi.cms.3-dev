@@ -60,7 +60,7 @@ require.config({
         //skeleton                  partials/skeleton
         {name: 'table',             location: "partials/table"},
         {name: 'tableControl',      location: "partials/tableControl"},
-        {name: 'toolBar',           location: "partials/toolBar"},
+        {name: 'toolbar',           location: "partials/toolbar"},
         {name: 'topBar',            location: "partials/topBar"},
         {name: 'tree',              location: "partials/tree"},
         {name: 'treeSimple',        location: "partials/treeSimple"}

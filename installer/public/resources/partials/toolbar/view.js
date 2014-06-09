@@ -3,7 +3,7 @@ define(['App'], function(UMI){
 
     return function(){
 
-        UMI.ToolBarElementView = Ember.View.extend({
+        UMI.ToolbarElementView = Ember.View.extend({
             tagName: 'li',
 
             template: function(){
@@ -57,17 +57,18 @@ define(['App'], function(UMI){
             }.property()
         });
 
-        UMI.ToolBarView = Ember.View.extend({
+
+        UMI.ToolbarView = Ember.View.extend({
             /**
              * @property layoutName
              */
-            layoutName: 'toolBar',
+            layoutName: 'toolbar',
             /**
              * @property classNames
              */
             classNames: ['s-unselectable', 'umi-toolbar'],
 
-            elementView: UMI.ToolBarElementView
+            elementView: UMI.ToolbarElementView
         });
     };
 });

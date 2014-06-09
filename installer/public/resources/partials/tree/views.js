@@ -1,9 +1,6 @@
-define(['App', 'partials/toolbar/buttons/contextMenu/main'], function(UMI, contextMenu){
+define(['App'], function(UMI){
     'use strict';
     return function(){
-
-        contextMenu();
-
         UMI.TreeControlView = Ember.View.extend({
             classNames: ['row', 's-full-height'],
 
