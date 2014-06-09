@@ -15,12 +15,15 @@ use umi\config\io\TConfigIOAware;
 use umi\http\Response;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\controller\BaseController;
+use umicms\project\admin\layout\button\behaviour\Behaviour;
+use umicms\project\admin\layout\button\Button;
 use umicms\project\admin\settings\component\DefaultSettingsComponent;
 
 /**
  * Контроллер чтения и сохранения настроек
+ * @todo: требуется рефакторинг, используя Layout
  */
-class DefaultSettingsController extends BaseController implements IConfigIOAware
+class DefaultSettingsLayoutController extends BaseController implements IConfigIOAware
 {
     use TConfigIOAware;
 
@@ -50,13 +53,15 @@ class DefaultSettingsController extends BaseController implements IConfigIOAware
             }
         }
 
+        $saveBehaviour = new Behaviour('save');
+        $saveButton = new Button($this->getComponent()->translate('button:save'), $saveBehaviour);
+
         $response = $this->createViewResponse(
             'settings',
             [
                 'form' => $form->getView(),
                 'toolbar' => [
-                    'type' => 'apply',
-                    'displayName' => $this->translate('control:settings:toolbar:apply')
+                    $saveButton->build()
                 ]
             ]
         );

@@ -4,9 +4,9 @@ define(
         'text!./form.hbs',
         'partials/forms/elements/main',
         'partials/forms/partials/magellan/main',
-        'partials/forms/partials/toolbar/main'
+        'partials/forms/partials/submitToolbar/main'
     ],
-    function(UMI, formTpl, elements, magellan, toolbar){
+    function(UMI, formTpl, elements, magellan, submitToolbar){
         'use strict';
 
         /**
@@ -19,27 +19,9 @@ define(
 
             elements();
             magellan();
-            toolbar();
+            submitToolbar();
 
             UMI.FormBaseController = Ember.ObjectController.extend({
-                /**
-                 * Toolbar кнопок для формы
-                 * @method toolbar
-                 */
-                toolbarBinding: 'toolbar',
-                /**
-                 * Проверяет наличие toolbar
-                 * @method hasToolbar
-                 * @return bool
-                 */
-                hasToolbar: function(){
-                    var toolbar = this.get('toolbar');
-                    // TODO: убрать как только back будет возвращать тулбар в виде массива
-                    if(Ember.typeOf(toolbar) === 'object'){
-                        toolbar = [toolbar];
-                    }
-                    return toolbar && toolbar.length;
-                }.property('toolbar'),
                 /**
                  * Проверяет наличие fieldset
                  * @method hasFieldset

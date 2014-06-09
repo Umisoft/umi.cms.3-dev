@@ -1,4 +1,4 @@
-<div {{bind-attr class=":umi-item view.active view.inActive view.contextMenuIsOpen"}}>
+<div {{bind-attr class=":umi-item view.active view.inActive"}}>
     {{#if childCount}}
         <span {{action "expanded" on="mouseDown" target="view"}} {{bind-attr class=":umi-expand"}}>
             {{#if view.isExpanded}}
@@ -20,16 +20,21 @@
         {{view.savedDisplayName}}
     {{/link-to}}
 
-    {{view "treeControlContextMenu"}}
+    {{#if controllers.treeControl.contextToolbar}}
+        {{#view "treeControlContextToolbar" elements=controllers.treeControl.contextToolbar}}
+            {{#each view.elements}}
+                {{view view.elementView}}
+            {{/each}}
+        {{/view}}
+    {{/if}}
+
 </div>
 
 {{#if childCount}}
     {{#if view.isExpanded}}
         <ul class="umi-tree-list" data-parent-id="{{unbound id}}">
             {{#each sortedChildren itemController="treeItem"}}
-                {{#if visible}}
-                    {{view "treeItem"}}
-                {{/if}}
+                {{view "treeItem" treeControlView=view.treeControlView}}
             {{/each}}
         </ul>
     {{/if}}

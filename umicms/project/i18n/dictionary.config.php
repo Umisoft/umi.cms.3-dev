@@ -111,7 +111,6 @@ return [
                 IRecyclableObject::FIELD_TRASHED => 'Trashed',
                 ILockedAccessibleObject::FIELD_LOCKED => 'Locked',
                 IActiveAccessibleObject::FIELD_ACTIVE => 'Active',
-
             ],
 
             'ru-RU' => [

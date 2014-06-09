@@ -43,19 +43,19 @@ class DefaultRestActionController extends BaseDefaultRestController
      */
     public function __invoke()
     {
-        $action = $this->getRouteVar('action');
+        $actionName = $this->getRouteVar('action');
 
         switch($this->getRequest()->getMethod()) {
             case 'GET': {
-                $this->checkSupportedAction($action, $this->getComponent()->getQueryActions());
-                return $this->callAction($action);
+                $this->checkSupportedAction($actionName, $this->getComponent()->getQueryActions());
+                return $this->callAction($actionName);
             }
             case 'PUT': {
 
             }
             case 'POST': {
-                $this->checkSupportedAction($action, $this->getComponent()->getModifyActions());
-                return $this->callAction($action);
+                $this->checkSupportedAction($actionName, $this->getComponent()->getModifyActions());
+                return $this->callAction($actionName);
             }
             case 'DELETE': {
                 throw new HttpMethodNotAllowed(
@@ -74,33 +74,33 @@ class DefaultRestActionController extends BaseDefaultRestController
 
     /**
      * Вызывает действие.
-     * @param string $action имя действия
+     * @param string $actionName имя действия
      * @throws HttpForbidden если у текущего пользователя нет доступа к экшену.
      * @return Response
      */
-    protected function callAction($action)
+    protected function callAction($actionName)
     {
-        if (!$this->isAllowed($this, $action)) {
+        if (!$this->isAllowed($this, $actionName)) {
             throw new HttpForbidden(
                 $this->translate(
                     'Cannot execute action "{action}" for component "{path}". Access denied.',
                     [
-                        'action' => $action,
+                        'action' => $actionName,
                         'path' => $this->getComponent()->getPath()
                     ]
                 )
             );
         }
 
-        $methodName = 'action' . ucfirst($action);
+        $methodName = 'action' . ucfirst($actionName);
         $actionResult = $this->{$methodName}();
 
         if (!$actionResult) {
             return $this->createResponse('', Response::HTTP_NO_CONTENT);
         } else {
             return $this->createViewResponse(
-                $action,
-                [$action => $actionResult]
+                $actionName,
+                [$actionName => $actionResult]
             );
         }
     }
@@ -421,13 +421,13 @@ class DefaultRestActionController extends BaseDefaultRestController
 
     /**
      * Проверяет, поддерживается ли действие над объектом.
-     * @param string $action имя действия
+     * @param string $actionName имя действия
      * @param array $supportedActions список поддерживаемых действий
      * @throws HttpNotFound если действие не поддерживается
      */
-    private function checkSupportedAction($action, array $supportedActions)
+    private function checkSupportedAction($actionName, array $supportedActions)
     {
-        if (!in_array($action, $supportedActions)) {
+        if (!isset($supportedActions[$actionName])) {
             throw new HttpNotFound('Action is not supported.');
         }
     }

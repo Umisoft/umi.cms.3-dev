@@ -10,17 +10,18 @@
 
 namespace umicms\project\module\news\admin\rss;
 
-use umicms\project\admin\api\component\DefaultAdminComponent;
+use umicms\project\admin\api\component\CollectionApiComponent;
 
 return [
-    DefaultAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultAdminComponent',
-    DefaultAdminComponent::OPTION_COLLECTION_NAME => 'newsRssImportScenario',
+    CollectionApiComponent::OPTION_CLASS => 'umicms\project\admin\api\component\CollectionApiComponent',
+    CollectionApiComponent::OPTION_COLLECTION_NAME => 'newsRssImportScenario',
 
-    DefaultAdminComponent::OPTION_CONTROLLERS => [
-        DefaultAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
+    CollectionApiComponent::OPTION_CONTROLLERS => [
+        CollectionApiComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController',
+        CollectionApiComponent::INTERFACE_LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController'
     ],
 
-    DefaultAdminComponent::OPTION_MODIFY_ACTIONS => [
+    CollectionApiComponent::OPTION_MODIFY_ACTIONS => [
         'importFromRss'
     ]
 ];

@@ -72,10 +72,10 @@
     &.icon-upload{
         background-position: -200px 0;
     }
-    &.icon-list{
+    &.icon-list, &.icon-backToFilter{
         background-position: -220px 0;
     }
-    &.icon-delete{
+    &.icon-delete, &.icon-trash{
         background-position: -240px 0;
     }
     &.icon-pause{
@@ -96,7 +96,7 @@
     &.icon-settings{
         background-position: -360px 0;
     }
-    &.icon-eye, &.icon-read{
+    &.icon-eye, &.icon-read, &.icon-switchActivity{
         background-position: -380px 0;
     }
     &.icon-window{
@@ -141,7 +141,7 @@
 //    &.icon-mail{
 //        background-position: -660px 0;
 //    }
-    &.icon-6{
+    &.icon-backupList{
         background-position: -680px 0;
     }
     &.icon-renew{
@@ -239,10 +239,10 @@
         &.icon-upload{
             background-position: -200px -20px;
         }
-        &.icon-list{
+        &.icon-list, &.icon-backToFilter{
             background-position: -220px -20px;
         }
-        &.icon-delete{
+        &.icon-delete, &.icon-trash{
             background-position: -240px -20px;
         }
         &.icon-pause{
@@ -263,7 +263,7 @@
         &.icon-settings{
             background-position: -360px -20px;
         }
-        &.icon-eye, &.icon-read{
+        &.icon-eye, &.icon-read, &.icon-switchActivity{
             background-position: -380px -20px;
         }
         &.icon-window{
@@ -308,7 +308,7 @@
 //        &.icon-mail{
 //            background-position: -660px -20px;
 //        }
-        &.icon-6{
+        &.icon-backupList{
             background-position: -680px -20px;
         }
         &.icon-renew{
@@ -407,10 +407,10 @@
         &.icon-upload{
             background-position: -200px -40px;
         }
-        &.icon-list{
+        &.icon-list, &.icon-backToFilter{
             background-position: -220px -40px;
         }
-        &.icon-delete{
+        &.icon-delete, &.icon-trash{
             background-position: -240px -40px;
         }
         &.icon-pause{
@@ -431,7 +431,7 @@
         &.icon-settings{
             background-position: -360px -40px;
         }
-        &.icon-eye, &.icon-read{
+        &.icon-eye, &.icon-read, &.icon-switchActivity{
             background-position: -380px -40px;
         }
         &.icon-window{
@@ -476,7 +476,7 @@
 //        &.icon-mail{
 //            background-position: -660px -40px;
 //        }
-        &.icon-6{
+        &.icon-backupList{
             background-position: -680px -40px;
         }
         &.icon-renew{

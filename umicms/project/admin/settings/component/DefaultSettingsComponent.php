@@ -30,7 +30,7 @@ class DefaultSettingsComponent extends SettingsComponent
     public $defaultOptions = [
 
         self::OPTION_CONTROLLERS => [
-            'index' => 'umicms\project\admin\settings\controller\DefaultSettingsController'
+            'index' => 'umicms\project\admin\settings\controller\DefaultSettingsLayoutController'
         ],
 
         self::OPTION_ROUTES => [
