@@ -277,7 +277,7 @@ define(['App', 'toolbar'], function(UMI){
 
         UMI.TreeControlContextToolbarView = Ember.View.extend({
             tagName: 'ul',
-            classNames: ['button-group', 'umi-tree-context-menu', 'right'],
+            classNames: ['button-group', 'umi-tree-context-toolbar', 'right'],
             elementView: UMI.ToolbarElementView.extend({
                 splitButtonView: function(){
                     var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent, UMI.SplitButtonSharedSettingsBehaviour);

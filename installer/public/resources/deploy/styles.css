@@ -4056,7 +4056,7 @@ ul.umi-search-result {
       padding-right: 10px; }
     .umi-tree .umi-item:hover {
       background: #AFD3EC; }
-      .umi-tree .umi-item:hover .umi-tree-context-menu {
+      .umi-tree .umi-item:hover .umi-tree-context-toolbar .button.split {
         display: block; }
       .umi-tree .umi-item:hover a {
         text-decoration: none; }
@@ -4068,6 +4068,8 @@ ul.umi-search-result {
       .umi-tree .umi-item.active a {
         color: #FFFFFF;
         border-bottom: none !important; }
+      .umi-tree .umi-item.active .f-dropdown a {
+        color: #535E6D; }
     .umi-tree .umi-item.in-active .umi-tree-type-icon, .umi-tree .umi-item.in-active .tree-item-link {
       opacity: 0.65; }
   .umi-tree .umi-tree-type-icon {
@@ -4104,18 +4106,40 @@ ul.umi-search-result {
     cursor: default; }
   .umi-tree.drag-inside .umi-item:hover {
     background: transparent; }
-  .umi-tree .umi-tree-context-menu {
-    display: none;
+  .umi-tree .umi-tree-context-toolbar {
     position: absolute;
     right: 0.25rem;
     margin: 0;
     padding: 0;
     margin-top: -24px; }
-    .umi-tree .umi-tree-context-menu a {
-      text-decoration: none !important;
-      border-bottom: none !important; }
-    .umi-tree .umi-tree-context-menu.context-menu-is-open {
-      display: block; }
+    .umi-tree .umi-tree-context-toolbar .dropdown.button {
+      background: transparent;
+      padding: 0;
+      padding-right: 26px;
+      display: none; }
+      .umi-tree .umi-tree-context-toolbar .dropdown.button.open {
+        display: block; }
+      .umi-tree .umi-tree-context-toolbar .dropdown.button .button-label {
+        display: none; }
+      .umi-tree .umi-tree-context-toolbar .dropdown.button > .icon {
+        margin: 1px; }
+      .umi-tree .umi-tree-context-toolbar .dropdown.button:hover {
+        background: #fff; }
+      .umi-tree .umi-tree-context-toolbar .dropdown.button span {
+        width: 1.5rem; }
+        .umi-tree .umi-tree-context-toolbar .dropdown.button span:before {
+          border-top-color: #7B899C; }
+      .umi-tree .umi-tree-context-toolbar .dropdown.button .f-dropdown {
+        margin-top: 4px;
+        right: 0;
+        left: auto;
+        width: auto; }
+        .umi-tree .umi-tree-context-toolbar .dropdown.button .f-dropdown:before {
+          left: auto;
+          right: 7px; }
+        .umi-tree .umi-tree-context-toolbar .dropdown.button .f-dropdown:after {
+          left: auto;
+          right: 8px; }
   .umi-tree .umi-tree-drop-down-toggler {
     position: relative;
     height: 24px; }
