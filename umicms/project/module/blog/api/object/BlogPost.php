@@ -25,6 +25,7 @@ use umicms\project\module\users\api\object\AuthorizedUser;
 /**
  * Пост блога.
  *
+ * @property string $contentsRaw необработанный контент поста
  * @property BlogAuthor $author автор поста
  * @property string $announcement анонс
  * @property BlogCategory|null $category категория поста
@@ -39,6 +40,10 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
 {
     use TCmsPage;
 
+    /**
+     * Имя поля для хранения необработанного контента поста
+     */
+    const FIELD_PAGE_CONTENTS_RAW = 'contentsRaw';
     /**
      * Имя поля для хранения автора поста
      */
@@ -111,6 +116,23 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
      * Статус поста: требует модерации
      */
     const POST_STATUS_NEED_MODERATE = 'moderate';
+
+    /**
+     * Мутатор для контентного поля.
+     * @param string $contents контент поста
+     * @param string $locale локаль
+     * @return $this
+     */
+    public function setContents($contents, $locale)
+    {
+        $this->getProperty(self::FIELD_PAGE_CONTENTS, $locale)
+            ->setValue($contents);
+
+        $this->getProperty(self::FIELD_PAGE_CONTENTS_RAW, $locale)
+            ->setValue($contents);
+
+        return $this;
+    }
 
     /**
      * Возвращает URL поста.

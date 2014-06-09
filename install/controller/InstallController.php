@@ -1340,6 +1340,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `source` varchar(255) DEFAULT NULL,
                     `contents` text,
                     `contents_en` text,
+                    `contentsRaw` text,
+                    `contentsRaw_en` text,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
                     `comments_count` bigint(20) unsigned DEFAULT NULL,
