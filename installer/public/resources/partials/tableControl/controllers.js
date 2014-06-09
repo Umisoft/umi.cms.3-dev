@@ -187,14 +187,18 @@ define(['App'], function(UMI){
             actions: {
                 orderByProperty: function(propertyName, sortAscending){
                     this.set('orderByProperty', {'property' : propertyName, 'direction': sortAscending});
-                },
-
-                create: function(object, action){
-                    this.get('container').lookup('route:application').send('create', this.get('model.object'), action);
                 }
             },
 
-            needs: ['component']
+            needs: ['component'],
+
+            itemController: 'tableControlContextToolbarItem'
         });
+
+        UMI.TableControlContextToolbarItemController = Ember.ObjectController.extend({
+            objectBinding: 'content',
+            componentNameBinding: 'parentController.componentName'
+        });
+
     };
 });

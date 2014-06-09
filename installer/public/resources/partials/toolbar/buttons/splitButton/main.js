@@ -72,7 +72,7 @@ define(['App', 'text!./splitButton.hbs'],
                 title: Ember.computed.alias('meta.attributes.title'),
                 click: function(event){
                     var el = this.$();
-                    if(event.target.getAttribute('id') === el[0].getAttribute('id') || ($(event.target).hasClass('icon') && event.target.getAttribute('id') === el[0].getAttribute('id'))){
+                    if(event.target.getAttribute('id') === el[0].getAttribute('id') || ($(event.target).hasClass('icon') && event.target.parentElement.getAttribute('id') === el[0].getAttribute('id'))){
                         this.send(this.get('defaultBehaviour').behaviour.name, this.get('defaultBehaviour').behaviour);
                     }
                 },

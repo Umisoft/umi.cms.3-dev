@@ -292,8 +292,18 @@ define(['App', 'toolbar'], function(UMI){
                     var choices = this.get('context.behaviour.choices');
                     if(behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array'){
                         for(i = 0; i < choices.length; i++){
-                            //action = UMI.splitButtonBehaviour.get(choices[i].behaviour.name).actions[choices[i].behaviour.name];
-                            console.log(UMI.splitButtonBehaviour.get(choices[i].behaviour.name + '.actions'));
+                            var prefix = '';
+                            var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
+                            if(behaviourAction.hasOwnProperty('_actions')){
+                                prefix = '_';
+                            }
+                            action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
+                            if(action){
+                                if(Ember.typeOf(behaviour.actions) !== 'object'){
+                                    behaviour.actions = {};
+                                }
+                                behaviour.actions[choices[i].behaviour.name] = action;
+                            }
                         }
                     }
                     instance = instance.extend(behaviour);
