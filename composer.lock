@@ -593,12 +593,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "d79c9820cf8f8e4adff35f4f6719503e04674ba4"
+                "reference": "577a69ff7d0a24e9576a2885c3a7afbaadd51ec1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/d79c9820cf8f8e4adff35f4f6719503e04674ba4",
-                "reference": "d79c9820cf8f8e4adff35f4f6719503e04674ba4",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/577a69ff7d0a24e9576a2885c3a7afbaadd51ec1",
+                "reference": "577a69ff7d0a24e9576a2885c3a7afbaadd51ec1",
                 "shasum": ""
             },
             "require": {
@@ -650,7 +650,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-06-04 21:57:31"
+            "time": "2014-06-08 20:00:20"
         },
         {
             "name": "guzzlehttp/streams",
@@ -1285,12 +1285,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "d11199a98cc8f1338410fe2340581310f19829e2"
+                "reference": "1b6f7c6ad081176650f1ac89be848d12e4849a18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/d11199a98cc8f1338410fe2340581310f19829e2",
-                "reference": "d11199a98cc8f1338410fe2340581310f19829e2",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/1b6f7c6ad081176650f1ac89be848d12e4849a18",
+                "reference": "1b6f7c6ad081176650f1ac89be848d12e4849a18",
                 "shasum": ""
             },
             "require": {
@@ -1331,7 +1331,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2014-06-06 03:56:41"
+            "time": "2014-06-07 15:45:34"
         },
         {
             "name": "symfony/yaml",
