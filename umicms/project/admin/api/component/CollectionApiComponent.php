@@ -21,7 +21,6 @@ use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\project\admin\component\AdminComponent;
-use umicms\project\admin\layout\action\Action;
 
 /**
  * Компонент административной панели.
@@ -80,7 +79,7 @@ class CollectionApiComponent extends AdminComponent implements ICollectionCompon
             self::LIST_CONTROLLER     => 'umicms\project\admin\api\controller\DefaultRestListController',
             self::ITEM_CONTROLLER     => 'umicms\project\admin\api\controller\DefaultRestItemController',
             self::ACTION_CONTROLLER   => 'umicms\project\admin\api\controller\DefaultRestActionController',
-            self::COMPONENT_LAYOUT_CONTROLLER => 'umicms\project\admin\api\controller\CollectionComponentLayoutController',
+            self::INTERFACE_LAYOUT_CONTROLLER => 'umicms\project\admin\api\controller\CollectionComponentLayoutController',
         ],
         self::OPTION_ACL         => [
 
@@ -127,10 +126,10 @@ class CollectionApiComponent extends AdminComponent implements ICollectionCompon
                     ]
                 ]
             ],
-            'settings'   => [
+            'layout'   => [
                 'type'     => IRouteFactory::ROUTE_FIXED,
                 'defaults' => [
-                    'controller' => self::COMPONENT_LAYOUT_CONTROLLER
+                    'controller' => self::INTERFACE_LAYOUT_CONTROLLER
                 ]
             ]
         ]

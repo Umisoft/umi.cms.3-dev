@@ -36,9 +36,9 @@ class AdminComponent extends BaseComponent implements IAclResource, IUrlManagerA
      */
     const ACTION_CONTROLLER = 'action';
     /**
-     * Контроллер для отображеня сетки компонента
+     * Контроллер для получения настроек интерфейса компонента
      */
-    const COMPONENT_LAYOUT_CONTROLLER = 'layout';
+    const INTERFACE_LAYOUT_CONTROLLER = 'interfaceLayout';
     /**
      * Контроллер для выполнения RUD-операций над объектом
      */

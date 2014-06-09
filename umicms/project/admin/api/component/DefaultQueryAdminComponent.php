@@ -33,7 +33,7 @@ class DefaultQueryAdminComponent extends AdminComponent
             self::LIST_CONTROLLER =>  'umicms\project\admin\api\controller\DefaultRestListController',
             self::ITEM_CONTROLLER => 'umicms\project\admin\api\controller\DefaultRestItemController',
             self::ACTION_CONTROLLER => 'umicms\project\admin\api\controller\DefaultRestActionController',
-            self::COMPONENT_LAYOUT_CONTROLLER => 'umicms\project\admin\api\controller\CollectionComponentLayoutController',
+            self::INTERFACE_LAYOUT_CONTROLLER => 'umicms\project\admin\api\controller\CollectionComponentLayoutController',
         ],
 
         self::OPTION_ACL => [
@@ -69,7 +69,7 @@ class DefaultQueryAdminComponent extends AdminComponent
             'settings' => [
                 'type' => IRouteFactory::ROUTE_FIXED,
                 'defaults' => [
-                    'controller' => self::COMPONENT_LAYOUT_CONTROLLER
+                    'controller' => self::INTERFACE_LAYOUT_CONTROLLER
                 ]
             ]
         ]

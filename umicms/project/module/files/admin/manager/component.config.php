@@ -19,7 +19,7 @@ return [
 
     AdminComponent::OPTION_CONTROLLERS => [
         'connector' => __NAMESPACE__ . '\controller\ConnectorController',
-        AdminComponent::COMPONENT_LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
+        AdminComponent::INTERFACE_LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
     ],
 
     AdminComponent::OPTION_MODIFY_ACTIONS => [
@@ -39,7 +39,7 @@ return [
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => AdminComponent::COMPONENT_LAYOUT_CONTROLLER
+                'controller' => AdminComponent::INTERFACE_LAYOUT_CONTROLLER
             ]
         ]
     ]
