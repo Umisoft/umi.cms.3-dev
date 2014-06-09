@@ -99,9 +99,7 @@ return [
                     'route' => '/{component}'
                 ]
             ]
-        ],
-
-
+        ]
     ]
 
 ];
