@@ -4,7 +4,7 @@ define(['App', 'partials/toolbar/buttons/contextMenu/main'], function(UMI, conte
 
         contextMenu();
 
-        UMI.TreeControlView = Ember.View.extend(UMI.ControlWithContextMenu, {
+        UMI.TreeControlView = Ember.View.extend({
             classNames: ['row', 's-full-height'],
 
             componentNameBinding: 'controller.controllers.component.name',

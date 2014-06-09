@@ -3,10 +3,9 @@ define(
         'partials/toolbar/buttons/globalBehaviour',
         'partials/toolbar/buttons/button/main',
         'partials/toolbar/buttons/dropdownButton/main',
-        'partials/toolbar/buttons/splitButton/main',
-        'partials/toolbar/buttons/contextMenu/main'
+        'partials/toolbar/buttons/splitButton/main'
     ],
-    function(globalBehaviour, button, dropdownButton, splitButton, contextMenu){
+    function(globalBehaviour, button, dropdownButton, splitButton){
         "use strict";
 
         return function(){
@@ -14,7 +13,6 @@ define(
             button();
             dropdownButton();
             splitButton();
-            contextMenu();
         };
     }
 );

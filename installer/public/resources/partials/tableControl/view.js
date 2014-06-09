@@ -2,7 +2,7 @@ define(['App', 'partials/toolbar/main'], function(UMI){
     'use strict';
     return function(){
 
-        UMI.TableControlView = Ember.View.extend(UMI.ControlWithContextMenu, {
+        UMI.TableControlView = Ember.View.extend({
             componentNameBinding: 'controller.controllers.component.name',
             /**
              * Имя шаблона
