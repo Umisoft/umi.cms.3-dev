@@ -17,8 +17,8 @@ interface IPurifierAware
 {
     /**
      * Устанавливает очиститель поля.
-     * @param IPurifier $purifierGenerator
+     * @param IPurifier $purifier
      */
-    public function setPurifier(IPurifier $purifierGenerator);
+    public function setPurifier(IPurifier $purifier);
 }
  
