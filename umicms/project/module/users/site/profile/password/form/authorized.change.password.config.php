@@ -27,9 +27,6 @@ return [
             'type' => Password::TYPE_NAME,
             'label' => AuthorizedUser::FIELD_PASSWORD,
             'options' => [
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => []
-                ],
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []
                 ]

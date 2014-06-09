@@ -39,10 +39,7 @@ return [
             'type' => PasswordWithConfirmation::TYPE_NAME,
             'label' => AuthorizedUser::FIELD_PASSWORD,
             'options' => [
-                'dataSource' => AuthorizedUser::FIELD_PASSWORD,
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => []
-                ]
+                'dataSource' => AuthorizedUser::FIELD_PASSWORD
             ]
         ],
 
