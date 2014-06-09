@@ -439,10 +439,14 @@ define([], function(){
                      */
                     Ember.$.get(model.get('resource')).then(function(results){
                         var componentController = self.controllerFor('component');
-                        var settings = results.result.settings; //settings undefined для Файлового менеджера
-                        componentController.set('settings', settings);
-                        componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
-                        deferred.resolve(model);
+                        if(Ember.typeOf(results.result) === 'object' && results.result.hasOwnProperty('layout')){
+                            var settings = results.result.layout; //settings undefined для Файлового менеджера
+                            componentController.set('settings', settings);
+                            componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
+                            deferred.resolve(model);
+                        } else{
+                            deferred.reject('Свойство layout не определено для компонента');
+                        }
                     }, function(error){
                         transition.send('templateLogs', error);
                         deferred.reject();
