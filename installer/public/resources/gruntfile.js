@@ -135,6 +135,7 @@ module.exports = function(grunt){
             //Объединяем стили с иконками
             css: {
                 src: [
+                    'libs/jquery.ui/themes/base/*.css', //Подтягиваются все стили с jQueryUI.
                     'build/css/app.css',
                     'build/css/icons.data.svg.css',
                     'build/css/icons.dock.svg.css'

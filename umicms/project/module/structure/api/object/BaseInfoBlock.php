@@ -10,14 +10,41 @@
 
 namespace umicms\project\module\structure\api\object;
 
-use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\CmsObject;
+use umicms\project\module\structure\api\collection\InfoBlockCollection;
 
 /**
  * Информационный блок сайта.
+ *
+ * @property string $infoblockName название информационного блока
  */
-abstract class BaseInfoBlock extends CmsObject implements ILockedAccessibleObject
+abstract class BaseInfoBlock extends CmsObject
 {
+    /**
+     * Имя поля для хранения названия информационного блока
+     */
+    const FIELD_INFOBLOCK_NAME = 'infoblockName';
 
+    /**
+     * Проверяет валидность названия информационного блока.
+     * @return bool
+     */
+    public function validateInfoblockName()
+    {
+        $result = true;
+        /**
+         * @var InfoBlockCollection $collection
+         */
+        $collection = $this->getCollection();
+
+        if (!$collection->checkInfoblockNameUniqueness($this)) {
+            $result = false;
+            $this->getProperty(self::FIELD_INFOBLOCK_NAME)->addValidationErrors(
+                [$this->translate('Infoblock name is not unique')]
+            );
+        }
+
+        return $result;
+    }
 }
  

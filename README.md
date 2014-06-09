@@ -3,6 +3,9 @@ Official UMI.CMS 3 development repository
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Umisoft/umi.cms.3-dev/badges/quality-score.png?b=dev&s=f8e7d72d796fb24475b431ffd024d92e60f7a16a)](https://scrutinizer-ci.com/g/Umisoft/umi.cms.3-dev/?branch=dev)
 
+## Contributing
+Для участия в разработке необходимо ознакомиться с [правилами](CONTRIBUTING.md). 
+
 ## Клонирование репозитория
 ```sh
 $ git clone git@github.com:Umisoft/umi.cms.3-dev.git
@@ -53,8 +56,8 @@ $ bower install
 Для запуска инсталлятора необходиом запустить в браузере http://localhost/install
 
 Сейчас есть три демо-проекта с одними и теми же данными, но с разными шаблонизаторами:
-- lite-php php-шаблонизатор (http://localhost/twig)
-- lite-twig twig-шаблонизатор (http://localhost/, http://localhost/php)
+- lite-twig twig-шаблонизатор (http://localhost/twig)
+- lite-php php-шаблонизатор (http://localhost/, http://localhost/php)
 - lite-xslt xslt-шаблонизатор (временно не рабочий)
 
 За конфигурацию проектов и роутинг отвечает конфиг configuration/projects.config.php.
@@ -62,4 +65,4 @@ $ bower install
 
 На данный момент инсталлятор простой (install/controller/InstallController.php), он создает структуры таблиц
 и заполняет демо-проекты данными через ORM. В ближайшем будущем все это будет работать через API моделей данных.
-Все метаданные коллекций и формы для админки тоже создаются конфигами вручную, но будет все через модели данных.
+Все метаданные коллекций и формы для админки тоже задаются конфигами вручную, это не удобно, но временно. Модели данных будут делать все рутинные операции с конфигами, в том числе и генерить код.
