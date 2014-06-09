@@ -15,6 +15,7 @@ use Twig_SimpleFunction;
 use umi\hmvc\view\helper\IsAllowedHelper;
 use umi\toolkit\IToolkit;
 use umicms\hmvc\dispatcher\CmsDispatcher;
+use umicms\purifier\IPurifier;
 
 /**
  * Расширение Twig для подключения помощников вида.
@@ -29,6 +30,10 @@ class ViewTwigExtension extends Twig_Extension
      * @var string $isAllowedFunctionName имя функции для проверки прав
      */
     public $isAllowedFunctionName = 'isAllowed';
+    /**
+     * @var string $purifyHtml имя функции для очистки контента от XSS
+     */
+    public $purifyHtmlFunctionName = 'purifyHtml';
 
     /**
      * @var IToolkit $toolkit набор инструментов
@@ -71,6 +76,10 @@ class ViewTwigExtension extends Twig_Extension
             new Twig_SimpleFunction(
                 $this->isAllowedFunctionName,
                 $this->getIsAllowedHelper()
+            ),
+            new Twig_SimpleFunction(
+                $this->purifyHtmlFunctionName,
+                $this->getPurifyHtml()
             )
         ];
     }
@@ -99,6 +108,19 @@ class ViewTwigExtension extends Twig_Extension
             /** @var CmsDispatcher $dispatcher */
             $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
             return $dispatcher->executeWidgetByPath($widgetPath, $args);
+        };
+    }
+
+    /**
+     * Хелпер очищающий контент от XSS.
+     * @return callable
+     */
+    public function getPurifyHtml()
+    {
+        return function($string, array $options = []) {
+            /** @var IPurifier $purifierHtml */
+            $purifierHtml = $this->toolkit->getService('umicms\purifier\IPurifier');
+            return $purifierHtml->purify($string, $options);
         };
     }
 }
