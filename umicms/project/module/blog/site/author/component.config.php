@@ -20,6 +20,7 @@ return [
     DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogAuthor',
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\BlogAuthorRssController',
+        'edit' => __NAMESPACE__ . '\controller\ProfileEditController',
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogAuthorWidget',
@@ -60,6 +61,13 @@ return [
             'route' => '/rss/{slug}',
             'defaults' => [
                 'controller' => 'rss'
+            ]
+        ],
+        'edit' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'route' => '/edit',
+            'defaults' => [
+                'controller' => 'edit'
             ]
         ]
     ]
