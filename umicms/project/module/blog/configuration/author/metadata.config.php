@@ -11,6 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
+use umicms\filter\HtmlPurifier;
 use umicms\project\module\blog\api\object\BlogAuthor;
 use umicms\project\module\blog\api\object\BlogPost;
 
@@ -123,6 +124,9 @@ return [
             'type' => IField::TYPE_TEXT,
             'columnName' => 'contents',
             'mutator' => 'setContents',
+            'filters' => [
+                HtmlPurifier::TYPE => []
+            ],
             'localizations' => [
                 'ru-RU' => ['columnName' => 'contents'],
                 'en-US' => ['columnName' => 'contents_en']
