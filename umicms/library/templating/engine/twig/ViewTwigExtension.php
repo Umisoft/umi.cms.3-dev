@@ -13,6 +13,7 @@ namespace umicms\templating\engine\twig;
 use Twig_Extension;
 use Twig_SimpleFunction;
 use umi\hmvc\view\helper\IsAllowedHelper;
+use umi\toolkit\IToolkit;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 
 /**
@@ -30,9 +31,9 @@ class ViewTwigExtension extends Twig_Extension
     public $isAllowedFunctionName = 'isAllowed';
 
     /**
-     * @var CmsDispatcher $dispatcher диспетчер
+     * @var IToolkit $toolkit набор инструментов
      */
-    protected $dispatcher;
+    protected $toolkit;
 
     /**
      * @var IsAllowedHelper $isAllowedHelper
@@ -41,10 +42,11 @@ class ViewTwigExtension extends Twig_Extension
 
     /**
      * Конструктор.
-     * @param CmsDispatcher $dispatcher диспетчер
+     * @param IToolkit $toolkit
      */
-    public function __construct(CmsDispatcher $dispatcher) {
-        $this->dispatcher = $dispatcher;
+    public function __construct(IToolkit $toolkit)
+    {
+        $this->toolkit = $toolkit;
     }
 
     /**
@@ -60,7 +62,6 @@ class ViewTwigExtension extends Twig_Extension
      */
     public function getFunctions()
     {
-
         return [
             new Twig_SimpleFunction(
                 $this->widgetFunctionName,
@@ -81,7 +82,9 @@ class ViewTwigExtension extends Twig_Extension
     protected function getIsAllowedHelper()
     {
         if (!$this->isAllowedHelper) {
-            $this->isAllowedHelper = new IsAllowedHelper($this->dispatcher);
+            /** @var CmsDispatcher $dispatcher */
+            $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+            $this->isAllowedHelper = new IsAllowedHelper($dispatcher);
         }
         return $this->isAllowedHelper;
     }
@@ -93,7 +96,9 @@ class ViewTwigExtension extends Twig_Extension
     protected function getWidgetHelper()
     {
         return function($widgetPath, array $args = []) {
-            return $this->dispatcher->executeWidgetByPath($widgetPath, $args);
+            /** @var CmsDispatcher $dispatcher */
+            $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+            return $dispatcher->executeWidgetByPath($widgetPath, $args);
         };
     }
 }

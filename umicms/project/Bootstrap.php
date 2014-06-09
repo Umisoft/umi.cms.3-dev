@@ -17,7 +17,6 @@ use umi\hmvc\component\IComponent;
 use umi\hmvc\IMvcEntityFactory;
 use umi\http\Request;
 use umi\http\Response;
-use umi\i18n\translator\ITranslator;
 use umi\route\IRouteFactory;
 use umi\route\IRouter;
 use umi\route\result\IRouteResult;
@@ -137,7 +136,7 @@ class Bootstrap
          * @var CmsDispatcher $dispatcher
          */
         $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
-        $this->initTemplateEngines($dispatcher);
+        $this->initTemplateEngines();
         $dispatcher->setCurrentRequest($request);
         $dispatcher->setInitialComponent($project);
         $response = $dispatcher->dispatch($routePath, $projectPrefix);
@@ -363,26 +362,21 @@ class Bootstrap
     }
 
     /**
-     * Задает инициализаторы для добавления расширений в шаблонизаторы
-     * @param CmsDispatcher $dispatcher
+     * Задает инициализаторы для добавления расширений в шаблонизаторы.
      */
-    protected function initTemplateEngines(CmsDispatcher $dispatcher)
+    protected function initTemplateEngines()
     {
         /**
          * @var ITemplateEngineFactory $templateEngineFactory
          */
         $templateEngineFactory = $this->toolkit->getService('umi\templating\engine\ITemplateEngineFactory');
-        /**
-         * @var ITranslator $translator
-         */
-        $translator = $this->toolkit->getService('umi\i18n\translator\ITranslator');
 
         $templateEngineFactory->setInitializer(
             ITemplateEngineFactory::PHP_ENGINE,
-            function (PhpTemplateEngine $templateEngine) use ($dispatcher, $translator) {
+            function (PhpTemplateEngine $templateEngine) {
 
-                $viewExtension = new ViewPhpExtension($dispatcher);
-                $templateExtension = new TemplatingPhpExtension($dispatcher, $translator);
+                $viewExtension = new ViewPhpExtension($this->toolkit);
+                $templateExtension = new TemplatingPhpExtension($this->toolkit);
 
                 $templateEngine
                     ->addExtension($viewExtension)
@@ -392,10 +386,10 @@ class Bootstrap
 
         $templateEngineFactory->setInitializer(
             TwigTemplateEngine::NAME,
-            function (TwigTemplateEngine $templateEngine) use ($dispatcher, $translator) {
+            function (TwigTemplateEngine $templateEngine) {
 
-                $viewExtension = new ViewTwigExtension($dispatcher);
-                $templateExtension = new TemplatingTwigExtension($dispatcher, $translator);
+                $viewExtension = new ViewTwigExtension($this->toolkit);
+                $templateExtension = new TemplatingTwigExtension($this->toolkit);
 
                 $templateEngine
                     ->addExtension($viewExtension)

@@ -48,7 +48,7 @@ trait TPurifierAware
     }
 
     /**
-     * Очищает HTML от возможных XSS.
+     * Очищает контент от возможных XSS.
      * @param string $string входная строка
      * @param array $options опции для конфигурирования
      * @return string

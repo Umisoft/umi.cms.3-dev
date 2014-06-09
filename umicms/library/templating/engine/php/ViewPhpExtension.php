@@ -12,7 +12,9 @@ namespace umicms\templating\engine\php;
 
 use umi\hmvc\view\helper\IsAllowedHelper;
 use umi\templating\engine\php\IPhpExtension;
+use umi\toolkit\IToolkit;
 use umicms\hmvc\dispatcher\CmsDispatcher;
+use umicms\purifier\IPurifier;
 
 /**
  * Расширение для подключения помощников вида в PHP-шаблонах.
@@ -43,11 +45,15 @@ class ViewPhpExtension implements IPhpExtension
      * @var string $escapeUrlFunctionName имя функции для экранирования url
      */
     public $escapeUrlFunctionName = 'escapeUrl';
+    /**
+     * @var string $purifyHtml имя функции для очистки контента от XSS
+     */
+    public $purifyHtmlFunctionName = 'purifyHtml';
 
     /**
-     * @var CmsDispatcher $dispatcher диспетчер
+     * @var IToolkit $toolkit набор инструментов
      */
-    protected $dispatcher;
+    protected $toolkit;
 
     /**
      * @var IsAllowedHelper $isAllowedHelper
@@ -56,10 +62,11 @@ class ViewPhpExtension implements IPhpExtension
 
     /**
      * Конструктор.
-     * @param CmsDispatcher $dispatcher диспетчер
+     * @param IToolkit $toolkit
      */
-    public function __construct(CmsDispatcher $dispatcher) {
-        $this->dispatcher = $dispatcher;
+    public function __construct(IToolkit $toolkit)
+    {
+        $this->toolkit = $toolkit;
     }
 
     /**
@@ -81,7 +88,8 @@ class ViewPhpExtension implements IPhpExtension
             $this->escapeHtmlFunctionName => $this->getEscapeHtmlHelper(),
             $this->escapeJsFunctionName => $this->getEscapeJsHelper(),
             $this->escapeCssFunctionName => $this->getEscapeCssHelper(),
-            $this->escapeUrlFunctionName => $this->getEscapeUrlHelper()
+            $this->escapeUrlFunctionName => $this->getEscapeUrlHelper(),
+            $this->purifyHtmlFunctionName => $this->getPurifyHtml()
         ];
     }
 
@@ -92,7 +100,9 @@ class ViewPhpExtension implements IPhpExtension
     protected function getIsAllowedHelper()
     {
         if (!$this->isAllowedHelper) {
-            $this->isAllowedHelper = new IsAllowedHelper($this->dispatcher);
+            /** @var CmsDispatcher $dispatcher */
+            $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+            $this->isAllowedHelper = new IsAllowedHelper($dispatcher);
         }
         return $this->isAllowedHelper;
     }
@@ -104,7 +114,9 @@ class ViewPhpExtension implements IPhpExtension
     protected function getWidgetHelper()
     {
         return function($widgetPath, array $args = []) {
-            return $this->dispatcher->executeWidgetByPath($widgetPath, $args);
+            /** @var CmsDispatcher $dispatcher */
+            $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+            return $dispatcher->executeWidgetByPath($widgetPath, $args);
         };
     }
 
@@ -184,6 +196,19 @@ class ViewPhpExtension implements IPhpExtension
 
                     return '\\'.ltrim(strtoupper(bin2hex($char)), '0').' ';
                 }, $string);
+        };
+    }
+
+    /**
+     * Хелпер очищающий контент от XSS.
+     * @return callable
+     */
+    public function getPurifyHtml()
+    {
+        return function($string, array $options = []) {
+            /** @var IPurifier $purifierHtml */
+            $purifierHtml = $this->toolkit->getService('umicms\purifier\IPurifier');
+            return $purifierHtml->purify($string, $options);
         };
     }
 
