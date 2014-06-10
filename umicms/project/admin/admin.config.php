@@ -24,7 +24,6 @@ return [
 
     AdminApplication::OPTION_COMPONENTS => [
         'rest' => '{#lazy:~/project/admin/rest/rest.config.php}',
-        'settings' => '{#lazy:~/project/admin/settings/settings.config.php}',
     ],
 
     AdminApplication::OPTION_VIEW        => [
@@ -49,14 +48,6 @@ return [
             'route' => '/rest',
             'defaults' => [
                 'component' => 'rest'
-            ]
-        ],
-
-        'settings' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'route' => '/settings',
-            'defaults' => [
-                'component' => 'settings'
             ]
         ],
 

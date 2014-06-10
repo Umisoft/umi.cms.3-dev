@@ -35,7 +35,6 @@ class CollectionControl extends AdminControl
      */
     protected $collection;
 
-
     /**
      * Конструктор.
      * @param CollectionApiComponent $component.

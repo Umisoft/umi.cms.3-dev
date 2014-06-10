@@ -8,21 +8,16 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\rest\controller;
+namespace umicms\project\module\settings\admin\controller;
 
-use umi\orm\collection\ICollectionManagerAware;
-use umi\orm\collection\TCollectionManagerAware;
 use umicms\hmvc\controller\BaseCmsController;
-use umicms\orm\collection\ICmsCollection;
-use umicms\project\admin\rest\RestApplication;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\module\settings\admin\component\SettingsComponent;
 
 /**
- * Контроллер настроек административной панели.
+ * Контроллер списка настроек.
  */
-class ApiSettingsController extends BaseCmsController implements ICollectionManagerAware
+class SettingsController extends BaseCmsController
 {
-    use TCollectionManagerAware;
 
     /**
      * {@inheritdoc}
@@ -32,21 +27,17 @@ class ApiSettingsController extends BaseCmsController implements ICollectionMana
         return $this->createViewResponse(
             'settings',
             [
-                'modules'     => $this->getModulesInfo(),
-                'collections' => $this->getCollectionsInfo()
+                'components'     => $this->getComponentsInfo(),
             ]
         );
     }
 
     /**
-     * Возвращает информацию о модулях.
+     * Возвращает информацию о компонентах.
      * @return array
      */
-    protected function getModulesInfo()
+    protected function getComponentsInfo()
     {
-        /**
-         * @var RestApplication $application
-         */
         $application = $this->getComponent();
         $applicationInfo = $this->getComponentInfo($application);
 
@@ -55,11 +46,11 @@ class ApiSettingsController extends BaseCmsController implements ICollectionMana
 
     /**
      * Возвращает информацию о компонентах на всю глубину с учетом проверки прав.
-     * @param AdminComponent $component компонент
-     * @param AdminComponent $context контескт, в котором проверяются права
+     * @param SettingsComponent $component компонент
+     * @param SettingsComponent $context контескт, в котором проверяются права
      * @return array
      */
-    protected function getComponentInfo(AdminComponent $component, AdminComponent $context = null)
+    protected function getComponentInfo(SettingsComponent $component, SettingsComponent $context = null)
     {
         $componentInfo = [];
 
@@ -85,29 +76,5 @@ class ApiSettingsController extends BaseCmsController implements ICollectionMana
         return $componentInfo;
     }
 
-    /**
-     * Возвращает информацию о коллекциях.
-     * @return array
-     */
-    protected function getCollectionsInfo()
-    {
-        $collectionNames = $this->getCollectionManager()
-            ->getList();
-
-        $collections = [];
-
-        foreach ($collectionNames as $collectionName) {
-            /**
-             * @var ICmsCollection $collection
-             */
-            $collection = $this->getCollectionManager()
-                ->getCollection($collectionName);
-            $collections[] = $collection;
-        }
-
-        return $collections;
-    }
-
 }
-
-
+ 

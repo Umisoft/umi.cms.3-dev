@@ -17,7 +17,7 @@ use umi\form\fieldset\FieldSet;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.settings.forms.captcha'
+            'project.admin.rest.settings.forms.captcha'
         ]
     ],
 

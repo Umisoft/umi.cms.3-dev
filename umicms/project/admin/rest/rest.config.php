@@ -33,8 +33,8 @@ return [
     RestApplication::OPTION_CONTROLLERS => [
         RestApplication::ERROR_CONTROLLER   => 'umicms\project\admin\controller\ErrorController',
 
-        'settings' => __NAMESPACE__ . '\controller\ApiSettingsController',
-        'action' => __NAMESPACE__ . '\controller\ApiActionController'
+        'settings' => __NAMESPACE__ . '\controller\SettingsController',
+        'action' => __NAMESPACE__ . '\controller\ActionController'
     ],
 
     RestApplication::OPTION_COMPONENTS => [
@@ -49,6 +49,7 @@ return [
         'statistics' => '{#lazy:~/project/module/statistics/admin/module.config.php}',
         'structure' => '{#lazy:~/project/module/structure/admin/module.config.php}',
         'users' => '{#lazy:~/project/module/users/admin/module.config.php}',
+        'settings' => '{#lazy:~/project/module/settings/admin/module.config.php}',
         'testmodule' => '{#lazy:~/project/module/testmodule/admin/module.config.php}'
     ],
 

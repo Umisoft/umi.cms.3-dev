@@ -15,7 +15,7 @@ use umicms\project\module\statistics\admin\metrika\model\MetrikaModel;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.settings.statistics.metrika'
+            'project.admin.rest.settings.statistics.metrika'
         ]
     ],
 

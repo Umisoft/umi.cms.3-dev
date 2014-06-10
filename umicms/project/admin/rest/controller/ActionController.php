@@ -25,7 +25,6 @@ use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\controller\BaseCmsController;
-use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\i18n\CmsLocalesService;
 use umicms\project\admin\AdminApplication;
 use umicms\project\admin\rest\RestApplication;
@@ -36,7 +35,7 @@ use umicms\Utils;
 /**
  * Контроллер действий авторизации пользователя в административной панели.
  */
-class ApiActionController extends BaseCmsController implements ILocalesAware, ISessionAware
+class ActionController extends BaseCmsController implements ILocalesAware, ISessionAware
 {
     use TSessionAware;
     use TLocalesAware;
@@ -267,7 +266,7 @@ class ApiActionController extends BaseCmsController implements ILocalesAware, IS
     private function isSettingsAllowed()
     {
         if ($this->api->isAuthenticated()) {
-            $settings = $this->getContext()->getDispatcher()->getComponentByPath(CmsDispatcher::ADMIN_SETTINGS_COMPONENT_PATH);
+            $settings = $this->getComponent()->getChildComponent('settings');
             if ($this->api->getCurrentUser()->isAllowed($settings, 'controller:settings')) {
                 return true;
             }

@@ -17,7 +17,7 @@ use umicms\project\site\SiteApplication;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.settings.site'
+            'project.admin.rest.settings.site'
         ]
     ],
 

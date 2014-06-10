@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\admin\settings\component\DefaultSettingsComponent;
+use umicms\project\module\settings\admin\component\DefaultSettingsComponent;
 
 return [
 
-    DefaultSettingsComponent::OPTION_CLASS => 'umicms\project\admin\settings\component\DefaultSettingsComponent',
+    DefaultSettingsComponent::OPTION_CLASS => 'umicms\project\module\settings\admin\component\DefaultSettingsComponent',
 
     DefaultSettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/module/service/configuration/backup/collection.settings.config.php',
 

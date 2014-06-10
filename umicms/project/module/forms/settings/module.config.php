@@ -9,11 +9,11 @@
  */
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\settings\component\DefaultSettingsComponent;
+use umicms\project\module\settings\admin\component\DefaultSettingsComponent;
 
 return [
 
-    DefaultSettingsComponent::OPTION_CLASS => 'umicms\project\admin\settings\component\SettingsComponent',
+    DefaultSettingsComponent::OPTION_CLASS => 'umicms\project\module\settings\admin\component\SettingsComponent',
 
     DefaultSettingsComponent::OPTION_COMPONENTS => [
         'captcha' => '{#lazy:~/project/module/forms/settings/captcha/component.config.php}'

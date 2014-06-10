@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\settings\controller;
+namespace umicms\project\module\settings\admin\controller;
 
 use umi\config\io\IConfigIOAware;
 use umi\config\io\TConfigIOAware;
@@ -17,7 +17,7 @@ use umicms\exception\RuntimeException;
 use umicms\hmvc\controller\BaseCmsController;
 use umicms\project\admin\layout\button\behaviour\Behaviour;
 use umicms\project\admin\layout\button\Button;
-use umicms\project\admin\settings\component\DefaultSettingsComponent;
+use umicms\project\module\settings\admin\component\DefaultSettingsComponent;
 
 /**
  * Контроллер чтения и сохранения настроек
@@ -88,7 +88,7 @@ class DefaultSettingsLayoutController extends BaseCmsController implements IConf
                     'Component for controller "{controllerClass}" should be instance of "{componentClass}".',
                     [
                         'controllerClass' => get_class($this),
-                        'componentClass' => 'umicms\project\admin\settings\component\DefaultSettingsComponent'
+                        'componentClass' => 'umicms\project\module\settings\admin\component\DefaultSettingsComponent'
                     ]
                 )
             );

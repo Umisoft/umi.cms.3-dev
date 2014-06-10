@@ -15,7 +15,7 @@ use umicms\project\module\seo\model\YandexModel;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.settings.seo.yandex'
+            'project.admin.rest.settings.seo.yandex'
         ]
     ],
 

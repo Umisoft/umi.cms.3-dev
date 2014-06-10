@@ -15,7 +15,7 @@ use umicms\project\module\seo\model\MegaindexModel;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.settings.seo.megaindex'
+            'project.admin.rest.settings.seo.megaindex'
         ]
     ],
 

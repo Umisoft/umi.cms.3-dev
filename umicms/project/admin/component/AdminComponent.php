@@ -31,6 +31,10 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
      */
     const OPTION_MODIFY_ACTIONS = 'modifyActions';
     /**
+     * Опция для указания игнорирования компонента в доке
+     */
+    const OPTION_SKIP_IN_DOCK = 'skipInDock';
+    /**
      * Контроллер для выполнения действий
      */
     const ACTION_CONTROLLER = 'action';
@@ -45,11 +49,10 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
      */
     public function getComponentInfo()
     {
-        return [
-            'name'        => $this->getName(),
-            'displayName' => $this->translate('component:' . $this->getName() . ':displayName'),
-            'resource' => $this->getUrlManager()->getAdminComponentResourceUrl($this)
-        ];
+        $info = parent::getComponentInfo();
+        $info['resource'] = $this->getUrlManager()->getAdminComponentResourceUrl($this);
+
+        return $info;
     }
 
     /**
@@ -83,6 +86,19 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
         }
 
         return $actions;
+    }
+
+    /**
+     * Указывает на необходимость игнорировать компонент в доке
+     * @return bool
+     */
+    public function isSkippedInDock()
+    {
+        if (isset($this->options[self::OPTION_SKIP_IN_DOCK])) {
+            return (bool) $this->options[self::OPTION_SKIP_IN_DOCK];
+        }
+
+        return false;
     }
 
     /**

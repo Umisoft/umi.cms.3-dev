@@ -16,7 +16,6 @@ use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\admin\component\AdminComponent;
-use umicms\project\admin\settings\component\SettingsComponent;
 
 /**
  * Интерфейс URL-менеджера.
@@ -44,13 +43,6 @@ interface IUrlManager
      * @return self
      */
     public function setRestUrlPrefix($restUrlPrefix);
-
-    /**
-     * Устанавливает префикс URL для запросов связанных с настройками.
-     * @param string $settingsUrlPrefix
-     * @return self
-     */
-    public function setSettingsUrlPrefix($settingsUrlPrefix);
 
     /**
      * Устанавливает префикс URL для административной панели.
@@ -163,13 +155,6 @@ interface IUrlManager
      * @return string
      */
     public function getAdminComponentActionResourceUrl(AdminComponent $component, $actionName, array $params = []);
-
-    /**
-     * Возвращает URL ресурса компонента настроек.
-     * @param SettingsComponent $component
-     * @return string
-     */
-    public function getSettingsComponentResourceUrl(SettingsComponent $component);
 
     /**
      * Возвращает текущий URL запроса.

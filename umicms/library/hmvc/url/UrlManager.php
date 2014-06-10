@@ -19,7 +19,6 @@ use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\admin\component\AdminComponent;
-use umicms\project\admin\settings\component\SettingsComponent;
 use umicms\project\module\structure\api\StructureModule;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\site\component\BaseDefaultSitePageComponent;
@@ -55,10 +54,6 @@ class UrlManager implements IUrlManager, ILocalizable
      * @var string $restUrlPrefix префикс URL для REST-запросов
      */
     protected $restUrlPrefix;
-    /**
-     * @var string $settingsUrlPrefix префикс URL для запросов связанных с настройками
-     */
-    protected $settingsUrlPrefix;
     /**
      * @var array $systemPageUrls url системных страниц, по пути компонентов
      */
@@ -108,16 +103,6 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function setSettingsUrlPrefix($settingsUrlPrefix)
-    {
-        $this->settingsUrlPrefix = $settingsUrlPrefix;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setAdminUrlPrefix($adminUrlPrefix)
     {
         $this->adminUrlPrefix = $adminUrlPrefix;
@@ -158,7 +143,8 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function getBaseSettingsUrl()
     {
-        return $this->getBaseAdminUrl() . $this->settingsUrlPrefix;
+        //TODO вынести куда-нибудь в настройки, название настроечного модуля
+        return $this->getBaseRestUrl() . '/settings';
     }
 
     /**
@@ -304,17 +290,6 @@ class UrlManager implements IUrlManager, ILocalizable
         }
 
         return $actionUrl;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSettingsComponentResourceUrl(SettingsComponent $component)
-    {
-        $url = $this->getBaseSettingsUrl();
-        $url .= str_replace(SettingsComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 22));
-
-        return $url;
     }
 
     /**

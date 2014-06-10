@@ -8,15 +8,18 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\settings;
+namespace umicms\project\module\settings\admin;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
+use umicms\project\module\settings\admin\component\SettingsComponent;
 
 return [
-    SettingsApplication::OPTION_CLASS => 'umicms\project\admin\settings\SettingsApplication',
+    SettingsComponent::OPTION_CLASS => 'umicms\project\module\settings\admin\component\SettingsComponent',
 
-    SettingsApplication::OPTION_COMPONENTS => [
+    SettingsComponent::OPTION_SKIP_IN_DOCK => true,
+
+    SettingsComponent::OPTION_COMPONENTS => [
         'site' => '{#lazy:~/project/site/settings/component.config.php}',
         'users' => '{#lazy:~/project/module/users/settings/component.config.php}',
         'service' => '{#lazy:~/project/module/service/settings/module.config.php}',
@@ -25,12 +28,11 @@ return [
         'forms' => '{#lazy:~/project/module/forms/settings/module.config.php}',
     ],
 
-    SettingsApplication::OPTION_CONTROLLERS => [
-        SettingsApplication::ERROR_CONTROLLER   => 'umicms\project\admin\controller\ErrorController',
+    SettingsComponent::OPTION_CONTROLLERS => [
         'settings' => __NAMESPACE__ . '\controller\SettingsController'
     ],
 
-    SettingsApplication::OPTION_ACL => [
+    SettingsComponent::OPTION_ACL => [
 
         IAclFactory::OPTION_ROLES => [
             'configurator' => [],
@@ -46,7 +48,7 @@ return [
         ]
     ],
 
-    SettingsApplication::OPTION_ROUTES => [
+    SettingsComponent::OPTION_ROUTES => [
         'index' => [
             'type'     => IRouteFactory::ROUTE_FIXED,
             'defaults' => [

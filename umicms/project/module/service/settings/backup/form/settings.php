@@ -15,7 +15,7 @@ use umicms\project\module\service\api\collection\BackupCollection;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.settings.service.backup'
+            'project.admin.rest.settings.service.backup'
         ]
     ],
 

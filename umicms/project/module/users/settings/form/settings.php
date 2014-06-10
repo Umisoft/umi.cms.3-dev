@@ -18,7 +18,7 @@ use umicms\project\module\users\api\collection\UserCollection;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.settings.users'
+            'project.admin.rest.settings.users'
         ]
     ],
 

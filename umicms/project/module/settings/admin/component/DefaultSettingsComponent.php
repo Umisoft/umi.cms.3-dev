@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\settings\component;
+namespace umicms\project\module\settings\admin\component;
 
 use umi\route\IRouteFactory;
 use umicms\exception\RuntimeException;
@@ -30,7 +30,7 @@ class DefaultSettingsComponent extends SettingsComponent
     public $defaultOptions = [
 
         self::OPTION_CONTROLLERS => [
-            'index' => 'umicms\project\admin\settings\controller\DefaultSettingsLayoutController'
+            'index' => 'umicms\project\module\settings\admin\controller\DefaultSettingsLayoutController'
         ],
 
         self::OPTION_ROUTES => [
