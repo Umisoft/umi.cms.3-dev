@@ -11,7 +11,7 @@
 namespace umicms\project\admin\layout\control;
 
 use umicms\project\admin\layout\button\behaviour\ChoicesBehaviour;
-use umicms\project\admin\layout\button\DropdownButton;
+use umicms\project\admin\layout\button\SplitButton;
 
 /**
  * Административный контрол "Форма создания объекта коллекции"
@@ -29,7 +29,7 @@ class CreateObjectControl extends CollectionControl
         $behaviour->addChoice('addAndGoBack', $this->createActionChoice('addAndGoBack'));
         $behaviour->addChoice('addAndCreate', $this->createActionChoice('addAndCreate'));
 
-        $saveButton = new DropdownButton($this->component->translate('button:add'), $behaviour);
+        $saveButton = new SplitButton($this->component->translate('button:add'), $behaviour);
         $this->addSubmitButton('add', $saveButton);
 
         return $this;
