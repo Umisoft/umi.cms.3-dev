@@ -31,6 +31,9 @@ define(
                  * @default "form"
                  */
                 tagName: 'form',
+                submit: function(){
+                    return false;
+                },
                 elementView: Ember.View.extend({
                     classNameBindings: ['isField'],
                     isFieldset: function(){
@@ -170,7 +173,7 @@ define(
 
                 action: function(){
                     return this.get('context.model.attributes.action');
-                }.property('context.model'),
+                }.property('context.model')
             });
 
             UMI.FormBaseView = Ember.View.extend(UMI.FormViewMixin, {
@@ -188,17 +191,36 @@ define(
                  */
                 classNames: ['s-margin-clear', 's-full-height', 'umi-form-control'],
 
-                loading: false,
+                actions: {
+                    submit: function(handler){
+                        var self = this;
+                        if(handler){
+                            handler.addClass('loading');
+                        }
+                        var data = this.$().serialize();
+                        $.post(self.get('action'), data).then(function(){
+                            handler.removeClass('loading');
+                        });
+                    }
+                },
 
-                submit: function(event){
-                    event.preventDefault();
-                    var self = this;
-                    self.toggleProperty('loading');
-                    var data = this.$().serialize();
-                    $.post(self.get('action'), data).then(function(result){
-                        self.toggleProperty('loading');
-                    });
-                }
+                submitToolbarView: UMI.SubmitToolbarView.extend({
+                    elementView: UMI.ToolbarElementView.extend({
+                        buttonView: function(){
+                            var button = this._super();
+                            if(this.get('context.behaviour.name') === 'save'){
+                                button.reopen({
+                                    actions: {
+                                        save: function(){
+                                            this.get('parentView.parentView.parentView').send('submit', this.$());
+                                        }
+                                    }
+                                });
+                            }
+                            return button;
+                        }.property()
+                    })
+                })
             });
 
             UMI.FieldBaseView = Ember.View.extend(UMI.FieldMixin, {});

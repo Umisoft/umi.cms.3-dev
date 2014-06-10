@@ -53,11 +53,7 @@ define(
                  */
                 layout: Ember.Handlebars.compile(formTpl),
 
-                classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control'],
-
-                submit: function(){
-                    return false;
-                }
+                classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control']
             });
 
             UMI.FieldFormControlView = Ember.View.extend(UMI.FieldMixin, {
