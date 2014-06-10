@@ -13,13 +13,13 @@ namespace umicms\project\module\search\site\widget;
 use umi\form\Form;
 use umi\http\Request;
 use umi\http\THttpAware;
-use umicms\hmvc\widget\BaseWidget;
+use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\search\api\SearchApi;
 
 /**
  * Виджет, выводящий форму поиска.
  */
-class SearchWidget extends BaseWidget
+class SearchWidget extends BaseCmsWidget
 {
     /**
      * Имя формы

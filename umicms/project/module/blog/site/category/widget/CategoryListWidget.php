@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\blog\site\category\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -19,7 +18,8 @@ use umicms\project\module\blog\api\object\BlogCategory;
 /**
  * Виджет для вывода списка категорий блога.
  */
-class CategoryListWidget extends BaseListWidget implements IAclResource
+class CategoryListWidget extends BaseListWidget
+
 {
     /**
      * @var string|null|BlogCategory $parentCategory категория блога или GUID, из которой выводятся дочерние категории.

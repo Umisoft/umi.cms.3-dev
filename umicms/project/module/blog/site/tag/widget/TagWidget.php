@@ -10,16 +10,15 @@
 
 namespace umicms\project\module\blog\site\tag\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseWidget;
+use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogTag;
 
 /**
  * Виджет вывода тэга.
  */
-class TagWidget extends BaseWidget implements IAclResource
+class TagWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

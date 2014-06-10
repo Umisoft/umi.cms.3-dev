@@ -31,9 +31,6 @@ return [
         IAclFactory::OPTION_ROLES => [
             'viewer' => []
         ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:index'
-        ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'controller:index' => []

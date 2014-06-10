@@ -39,11 +39,6 @@ return [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
         ],
-        IAclFactory::OPTION_RESOURCES => [
-            'index' => 'controller:index',
-            'link'  => 'widget:link',
-            'view'  => 'widget:view',
-        ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'controller:index' => [],

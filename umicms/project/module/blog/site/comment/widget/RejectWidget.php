@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\blog\site\comment\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -19,7 +18,7 @@ use umicms\project\module\blog\api\object\BlogComment;
 /**
  * Виджет отклонения комментария.
  */
-class RejectWidget extends BaseFormWidget implements IAclResource
+class RejectWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

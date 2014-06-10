@@ -10,10 +10,9 @@
 
 namespace umicms\project\admin\api\controller;
 
-use umi\acl\IAclResource;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\orm\collection\ICmsCollection;
 use umicms\project\admin\api\ApiApplication;
 use umicms\project\admin\component\AdminComponent;
@@ -21,7 +20,7 @@ use umicms\project\admin\component\AdminComponent;
 /**
  * Контроллер настроек административной панели.
  */
-class ApiSettingsController extends BaseAccessRestrictedController implements ICollectionManagerAware
+class ApiSettingsController extends BaseCmsController implements ICollectionManagerAware
 {
     use TCollectionManagerAware;
 
@@ -64,10 +63,8 @@ class ApiSettingsController extends BaseAccessRestrictedController implements IC
     {
         $componentInfo = [];
 
-        if (
-            !$component instanceof IAclResource || is_null($context) ||
-            $this->getContext()->getDispatcher()->checkPermissions($context, $component)
-        ) {
+        if (is_null($context) || $this->getContext()->getDispatcher()->checkPermissions($context, $component)) {
+
             $componentInfo = $component->getComponentInfo();
 
             $childComponentsInfo = [];

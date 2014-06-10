@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\blog\site\comment\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseTreeWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -19,7 +18,7 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет для вывода списка коментов.
  */
-class ListWidget extends BaseTreeWidget implements IAclResource
+class ListWidget extends BaseTreeWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

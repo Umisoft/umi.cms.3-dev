@@ -13,7 +13,7 @@ namespace umicms\project\module\blog\site\comment\controller;
 use umi\form\IForm;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\site\controller\TFormSimpleController;
@@ -21,7 +21,7 @@ use umicms\project\site\controller\TFormSimpleController;
 /**
  * Контроллер отклонения комментария.
  */
-class RejectController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class RejectController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormSimpleController;
     use TObjectPersisterAware;

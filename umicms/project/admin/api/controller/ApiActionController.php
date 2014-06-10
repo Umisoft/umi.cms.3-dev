@@ -24,7 +24,7 @@ use umi\i18n\TLocalesAware;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umicms\exception\RequiredDependencyException;
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\i18n\CmsLocalesService;
 use umicms\project\admin\AdminApplication;
@@ -36,7 +36,7 @@ use umicms\Utils;
 /**
  * Контроллер действий авторизации пользователя в административной панели.
  */
-class ApiActionController extends BaseController implements ILocalesAware, ISessionAware
+class ApiActionController extends BaseCmsController implements ILocalesAware, ISessionAware
 {
     use TSessionAware;
     use TLocalesAware;

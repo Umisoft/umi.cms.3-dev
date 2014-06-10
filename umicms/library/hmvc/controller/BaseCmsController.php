@@ -10,7 +10,8 @@
 
 namespace umicms\hmvc\controller;
 
-use umi\hmvc\controller\BaseController as FrameworkController;
+use umi\acl\IAclResource;
+use umi\hmvc\controller\BaseController;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umi\messages\ISwiftMailerAware;
@@ -22,10 +23,20 @@ use umicms\hmvc\view\CmsView;
 /**
  * Базовый контроллер UMI.CMS
  */
-abstract class BaseController extends FrameworkController implements IUrlManagerAware, ISwiftMailerAware
+abstract class BaseCmsController extends BaseController implements IAclResource, IUrlManagerAware, ISwiftMailerAware
 {
     use TUrlManagerAware;
     use TSwiftMailerAware;
+
+    const ACL_RESOURCE_PREFIX = 'controller:';
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAclResourceName()
+    {
+        return self::ACL_RESOURCE_PREFIX . $this->name;
+    }
 
     /**
      * Устанавливает опции сериализации результата работы контроллера в XML или JSON.

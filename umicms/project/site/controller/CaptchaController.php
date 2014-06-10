@@ -15,12 +15,12 @@ use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umicms\captcha\ICaptchaAware;
 use umicms\captcha\TCaptchaAware;
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\controller\BaseCmsController;
 
 /**
  * Контроллер вывода каптчи.
  */
-class CaptchaController extends BaseController implements ICaptchaAware, ISessionAware
+class CaptchaController extends BaseCmsController implements ICaptchaAware, ISessionAware
 {
     use TCaptchaAware;
     use TSessionAware;

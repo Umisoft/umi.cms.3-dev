@@ -33,14 +33,6 @@ return [
             'viewer' => [],
             'rssViewer' => []
         ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:rss',
-            'widget:view',
-            'widget:postList',
-            'widget:list',
-            'widget:cloud',
-            'widget:rssLink'
-        ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'widget:view' => [],

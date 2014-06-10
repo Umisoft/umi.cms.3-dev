@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\blog\site\author\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -19,7 +18,7 @@ use umicms\project\module\blog\api\object\BlogAuthor;
 /**
  * Виджет для вывода URL на RSS-ленту по автору.
  */
-class BlogAuthorListRssLinkWidget extends BaseLinkWidget implements IAclResource
+class BlogAuthorListRssLinkWidget extends BaseLinkWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

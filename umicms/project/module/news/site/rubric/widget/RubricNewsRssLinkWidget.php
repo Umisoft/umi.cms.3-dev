@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\news\site\rubric\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\news\api\NewsModule;
@@ -19,7 +18,7 @@ use umicms\project\module\news\api\object\NewsRubric;
 /**
  * Виджет для вывода URL на RSS-ленту по рубрике.
  */
-class RubricNewsRssLinkWidget extends BaseLinkWidget implements IAclResource
+class RubricNewsRssLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}

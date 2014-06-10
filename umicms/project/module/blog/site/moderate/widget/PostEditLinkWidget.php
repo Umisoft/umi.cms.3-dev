@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\blog\site\moderate\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -19,7 +18,7 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет для вывода ссылки на редактирование поста, требующего модерации.
  */
-class PostEditLinkWidget extends BaseLinkWidget implements IAclResource
+class PostEditLinkWidget extends BaseLinkWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

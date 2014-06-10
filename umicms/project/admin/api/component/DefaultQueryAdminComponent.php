@@ -41,12 +41,6 @@ class DefaultQueryAdminComponent extends AdminComponent
             IAclFactory::OPTION_ROLES => [
                 'editor' => []
             ],
-            IAclFactory::OPTION_RESOURCES => [
-                'controller:settings',
-                'controller:action',
-                'controller:item',
-                'controller:list'
-            ],
             IAclFactory::OPTION_RULES => [
                 'editor' => [
                     'controller:settings' => [],

@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\blog\site\moderate\widget;
 
-use umi\acl\IAclResource;
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
@@ -20,7 +19,7 @@ use umicms\project\module\blog\api\object\BlogPost;
 /**
  * Виджет публикации поста, требующего модерации.
  */
-class PostPublishWidget extends BaseFormWidget implements IAclResource
+class PostPublishWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

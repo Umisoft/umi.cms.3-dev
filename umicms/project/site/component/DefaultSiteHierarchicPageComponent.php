@@ -33,10 +33,6 @@ class DefaultSiteHierarchicPageComponent extends BaseDefaultSitePageComponent
             IAclFactory::OPTION_ROLES => [
                 'viewer' => [],
             ],
-            IAclFactory::OPTION_RESOURCES => [
-                'index' => 'controller:index',
-                'page' => 'controller:page'
-            ],
             IAclFactory::OPTION_RULES => [
                 'viewer' => [
                     'controller:index' => [],

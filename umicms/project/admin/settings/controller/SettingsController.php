@@ -10,15 +10,14 @@
 
 namespace umicms\project\admin\settings\controller;
 
-use umi\acl\IAclResource;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\project\admin\settings\component\SettingsComponent;
 use umicms\project\admin\settings\SettingsApplication;
 
 /**
  * Контроллер списка настроек.
  */
-class SettingsController extends BaseAccessRestrictedController
+class SettingsController extends BaseCmsController
 {
 
     /**
@@ -59,10 +58,8 @@ class SettingsController extends BaseAccessRestrictedController
     {
         $componentInfo = [];
 
-        if (
-            !$component instanceof IAclResource || is_null($context) ||
-            $this->getContext()->getDispatcher()->checkPermissions($context, $component)
-        ) {
+        if (is_null($context) || $this->getContext()->getDispatcher()->checkPermissions($context, $component)) {
+
             $componentInfo = $component->getComponentInfo();
 
             $childComponentsInfo = [];

@@ -10,14 +10,13 @@
 
 namespace umicms\project\module\news\site\item\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\news\api\NewsModule;
 
 /**
  * Виджет для вывода списка новостей
  */
-class NewsItemListWidget extends BaseListWidget implements IAclResource
+class NewsItemListWidget extends BaseListWidget
 {
     /**
      * @var NewsModule $api API модуля "Новости"

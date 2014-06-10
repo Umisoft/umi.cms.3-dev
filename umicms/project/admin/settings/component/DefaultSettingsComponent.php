@@ -33,6 +33,8 @@ class DefaultSettingsComponent extends SettingsComponent
             'index' => 'umicms\project\admin\settings\controller\DefaultSettingsLayoutController'
         ],
 
+
+
         self::OPTION_ROUTES => [
             'index' => [
                 'type' => IRouteFactory::ROUTE_FIXED,

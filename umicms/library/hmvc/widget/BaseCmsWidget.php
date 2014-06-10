@@ -10,10 +10,11 @@
 
 namespace umicms\hmvc\widget;
 
+use umi\acl\IAclResource;
 use umi\hmvc\component\IComponent;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\view\IView;
-use umi\hmvc\widget\BaseWidget as FrameworkWidget;
+use umi\hmvc\widget\BaseWidget;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
@@ -26,7 +27,7 @@ use umicms\project\site\callstack\TPageCallStackAware;
 /**
  * Базовый виджет UMI.CMS
  */
-abstract class BaseWidget extends FrameworkWidget implements IUrlManagerAware, IPageCallStackAware
+abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlManagerAware, IPageCallStackAware
 {
     use TUrlManagerAware;
     use TPageCallStackAware;

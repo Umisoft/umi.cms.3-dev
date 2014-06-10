@@ -38,13 +38,6 @@ return [
             'moderator' => ['author']
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:edit',
-            'controller:sendToModeration',
-            'widget:view',
-            'widget:list',
-            'widget:listLink',
-            'widget:editPostLink',
-            'widget:sendToModeration',
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [

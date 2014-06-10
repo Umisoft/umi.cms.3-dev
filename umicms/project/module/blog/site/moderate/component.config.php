@@ -44,20 +44,6 @@ return [
             'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:edit',
-            'controller:publish',
-            'controller:reject',
-            'controller:draft',
-            'controller:all',
-            'widget:view',
-            'widget:ownList',
-            'widget:ownListLink',
-            'widget:allList',
-            'widget:allListLink',
-            'widget:editPostLink',
-            'widget:publishModerate',
-            'widget:rejectModerate',
-            'widget:draftModerate',
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [

@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\blog\site\tag\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
@@ -19,7 +18,7 @@ use umicms\project\module\blog\api\object\BlogTag;
 /**
  * Виджет для вывода списка постов по тэгам.
  */
-class TagPostListWidget extends BaseListWidget implements IAclResource
+class TagPostListWidget extends BaseListWidget
 {
     /**
      * {@inheritdoc}

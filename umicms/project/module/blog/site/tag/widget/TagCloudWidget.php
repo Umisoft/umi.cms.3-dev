@@ -10,14 +10,13 @@
 
 namespace umicms\project\module\blog\site\tag\widget;
 
-use umi\acl\IAclResource;
-use umicms\hmvc\widget\BaseWidget;
+use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
  * Виджет для вывода облака тэгов.
  */
-class TagCloudWidget extends BaseWidget implements IAclResource
+class TagCloudWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

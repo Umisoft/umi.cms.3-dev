@@ -86,12 +86,6 @@ class CollectionApiComponent extends AdminComponent implements ICollectionCompon
             IAclFactory::OPTION_ROLES     => [
                 'editor' => []
             ],
-            IAclFactory::OPTION_RESOURCES => [
-                'controller:settings',
-                'controller:action',
-                'controller:item',
-                'controller:list'
-            ],
             IAclFactory::OPTION_RULES     => [
                 'editor' => [
                     'controller:settings' => [],

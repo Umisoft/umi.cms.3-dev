@@ -38,12 +38,6 @@ return [
         IAclFactory::OPTION_ROLES => [
             'rssViewer' => []
         ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:rss',
-            'widget:view',
-            'widget:list',
-            'widget:rssLink'
-        ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'widget:view' => [],

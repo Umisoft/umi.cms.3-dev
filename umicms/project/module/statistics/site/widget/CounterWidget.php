@@ -10,14 +10,14 @@
 
 namespace umicms\project\module\statistics\site\widget;
 
-use umicms\hmvc\widget\BaseWidget;
+use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\statistics\admin\metrika\model\MetrikaModel;
 
 /**
  * Получает от Яндекс.Метрики и выводит HTML-код счетчика,
  * в точном соответствии с его настройками на сайте Метрики.
  */
-class CounterWidget extends BaseWidget
+class CounterWidget extends BaseCmsWidget
 {
     /**
      * @var int $counterId идентификатор счетчика Метрики

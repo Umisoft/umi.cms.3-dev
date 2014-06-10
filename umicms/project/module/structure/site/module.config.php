@@ -35,9 +35,6 @@ return [
         IAclFactory::OPTION_ROLES => [
             'viewer' => []
         ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:static',
-        ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'controller:static' => []

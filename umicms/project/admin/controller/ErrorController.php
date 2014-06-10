@@ -13,13 +13,13 @@ namespace umicms\project\admin\controller;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\exception\NonexistentEntityException;
 
 /**
  * Контроллер ошибок для административной панели.
  */
-class ErrorController extends BaseController
+class ErrorController extends BaseCmsController
 {
 
     /**

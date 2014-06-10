@@ -41,9 +41,6 @@ return [
             'statisticsExecutor' => ['configurator'],
             'formsExecutor' => ['configurator'],
         ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:settings'
-        ],
         IAclFactory::OPTION_RULES => [
             'configurator' => ['controller:settings' => []]
         ]

@@ -14,7 +14,7 @@ use umi\config\io\IConfigIOAware;
 use umi\config\io\TConfigIOAware;
 use umi\http\Response;
 use umicms\exception\RuntimeException;
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\project\admin\layout\button\behaviour\Behaviour;
 use umicms\project\admin\layout\button\Button;
 use umicms\project\admin\settings\component\DefaultSettingsComponent;
@@ -23,7 +23,7 @@ use umicms\project\admin\settings\component\DefaultSettingsComponent;
  * Контроллер чтения и сохранения настроек
  * @todo: требуется рефакторинг, используя Layout
  */
-class DefaultSettingsLayoutController extends BaseController implements IConfigIOAware
+class DefaultSettingsLayoutController extends BaseCmsController implements IConfigIOAware
 {
     use TConfigIOAware;
 

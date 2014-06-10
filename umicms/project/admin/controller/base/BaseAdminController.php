@@ -11,13 +11,13 @@
 namespace umicms\project\admin\controller\base;
 
 use umicms\exception\RuntimeException;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\project\admin\component\AdminComponent;
 
 /**
  * Базовый административный контроллер.
  */
-abstract class BaseAdminController extends BaseAccessRestrictedController
+abstract class BaseAdminController extends BaseCmsController
 {
     /**
      * Возвращает компонент, у которого вызван контроллер.

@@ -10,16 +10,15 @@
 
 namespace umicms\project\module\structure\site\menu\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseWidget;
+use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\structure\api\StructureModule;
 
 /**
  * Виджет для вывода автогенерируемого меню
  */
-class AutoMenuWidget extends BaseWidget implements IAclResource
+class AutoMenuWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет.

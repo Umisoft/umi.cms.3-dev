@@ -39,11 +39,6 @@ return [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
         ],
-        IAclFactory::OPTION_RESOURCES => [
-            'index' => 'controller:index',
-            'link'  => 'widget:link',
-            'form'  => 'widget:form',
-        ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'controller:index' => [],
@@ -54,7 +49,6 @@ return [
     ],
 
     SiteComponent::OPTION_ROUTES      => [
-
         'component' => [
             'type' => 'SiteComponentRoute'
         ],

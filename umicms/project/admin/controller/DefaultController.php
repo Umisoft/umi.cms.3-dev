@@ -11,14 +11,14 @@
 namespace umicms\project\admin\controller;
 
 use umi\http\Response;
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\users\api\UsersModule;
 
 /**
  * Контроллер интерфейса административной панели.
  */
-class DefaultController extends BaseController
+class DefaultController extends BaseCmsController
 {
 
     /**

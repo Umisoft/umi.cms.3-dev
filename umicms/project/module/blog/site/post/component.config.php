@@ -44,16 +44,6 @@ return [
             'moderator' => ['author']
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:rss',
-            'controller:add',
-            'controller:edit',
-            'controller:unPublished',
-            'widget:view',
-            'widget:list',
-            'widget:rssLink',
-            'widget:unPublished',
-            'widget:addPostLink',
-            'widget:editPostLink',
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [

@@ -14,7 +14,7 @@ use umi\form\TFormAware;
 use umi\form\IForm;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\site\controller\TFormController;
@@ -22,7 +22,7 @@ use umicms\project\site\controller\TFormController;
 /**
  * Контроллер добавления комментария.
  */
-class AddController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class AddController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;

@@ -15,7 +15,7 @@ use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\exception\InvalidArgumentException;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogCategory;
@@ -25,7 +25,7 @@ use umicms\project\site\controller\TFormController;
 /**
  * Контроллер добавления поста
  */
-class PostAddController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class PostAddController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;

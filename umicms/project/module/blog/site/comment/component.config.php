@@ -41,14 +41,6 @@ return [
             'moderator' => ['poster']
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:add',
-            'controller:publish',
-            'controller:reject',
-            'widget:view',
-            'widget:list',
-            'widget:add',
-            'widget:publish',
-            'widget:reject',
             'model:blogComment',
             'collection:blogComment'
         ],

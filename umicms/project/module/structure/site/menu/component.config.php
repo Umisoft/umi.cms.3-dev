@@ -26,9 +26,6 @@ return [
         IAclFactory::OPTION_ROLES => [
             'viewer' => []
         ],
-        IAclFactory::OPTION_RESOURCES => [
-            'widget:auto',
-        ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'widget:auto' => []

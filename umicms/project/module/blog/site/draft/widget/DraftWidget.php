@@ -10,16 +10,15 @@
 
 namespace umicms\project\module\blog\site\draft\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseWidget;
+use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 
 /**
  * Виджет вывода черновика поста блога.
  */
-class DraftWidget extends BaseWidget implements IAclResource
+class DraftWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

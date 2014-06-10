@@ -11,7 +11,7 @@
 namespace umicms\project\module\news\site\rubric\controller;
 
 use umi\http\Response;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\news\api\NewsModule;
 use umicms\project\site\config\ISiteSettingsAware;
@@ -20,7 +20,7 @@ use umicms\project\site\config\TSiteSettingsAware;
 /**
  * Контроллер вывода RSS-ленты рубрики.
  */
-class NewsRubricRssController extends BaseAccessRestrictedController implements ISiteSettingsAware
+class NewsRubricRssController extends BaseCmsController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 

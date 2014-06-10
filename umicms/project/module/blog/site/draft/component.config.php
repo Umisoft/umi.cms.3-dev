@@ -40,15 +40,6 @@ return [
             'moderator' => ['publisher']
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:edit',
-            'controller:publish',
-            'controller:sendToModeration',
-            'widget:view',
-            'widget:ownList',
-            'widget:ownListLink',
-            'widget:editDraftLink',
-            'widget:publishDraft',
-            'widget:sendToModeration',
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [

@@ -69,9 +69,6 @@ return [
             'structureExecutor' => ['administrator'],
             'usersExecutor' => ['administrator'],
         ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:settings',
-        ],
         IAclFactory::OPTION_RULES => [
             'administrator' => ['controller:settings' => []]
         ]

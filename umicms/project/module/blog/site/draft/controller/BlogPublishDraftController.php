@@ -15,7 +15,7 @@ use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\site\controller\TFormSimpleController;
@@ -23,7 +23,7 @@ use umicms\project\site\controller\TFormSimpleController;
 /**
  * Контроллер публикации черновика.
  */
-class BlogPublishDraftController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class BlogPublishDraftController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormSimpleController;
     use TObjectPersisterAware;

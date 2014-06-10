@@ -10,14 +10,14 @@
 
 namespace umicms\project\module\users\site\authorization\controller;
 
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\UsersModule;
 
 /**
  * Крнтроллер "разавторизации" пользователя.
  */
-class LogoutController extends BaseController
+class LogoutController extends BaseCmsController
 {
     /**
      * @var UsersModule $api API модуля "Пользователи"

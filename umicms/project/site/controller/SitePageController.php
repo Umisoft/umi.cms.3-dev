@@ -11,7 +11,7 @@
 namespace umicms\project\site\controller;
 
 use umi\hmvc\component\IComponent;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\module\IModuleAware;
 use umicms\module\TModuleAware;
@@ -24,7 +24,7 @@ use umicms\project\site\callstack\TPageCallStackAware;
 /**
  * Базовый контроллер для сайта
  */
-abstract class SitePageController extends BaseAccessRestrictedController implements IPageCallStackAware, IModuleAware
+abstract class SitePageController extends BaseCmsController implements IPageCallStackAware, IModuleAware
 {
     use TPageCallStackAware;
     use TModuleAware;

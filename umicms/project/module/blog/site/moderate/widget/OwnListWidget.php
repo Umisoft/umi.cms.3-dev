@@ -10,14 +10,13 @@
 
 namespace umicms\project\module\blog\site\moderate\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
  * Виджет для вывода списка постов текущего автора, требующих модерации.
  */
-class OwnListWidget extends BaseListWidget implements IAclResource
+class OwnListWidget extends BaseListWidget
 {
     /**
      * @var BlogModule $api API модуля "Блоги"

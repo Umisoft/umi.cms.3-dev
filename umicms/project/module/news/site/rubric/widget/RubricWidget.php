@@ -10,16 +10,15 @@
 
 namespace umicms\project\module\news\site\rubric\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseWidget;
+use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsRubric;
 
 /**
  * Виджет вывода рубрики.
  */
-class RubricWidget extends BaseWidget implements IAclResource
+class RubricWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

@@ -10,16 +10,15 @@
 
 namespace umicms\project\module\structure\site\infoblock\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseWidget;
+use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\structure\api\object\BaseInfoBlock;
 use umicms\project\module\structure\api\StructureModule;
 
 /**
  * Виджет для вывода информационного блока.
  */
-class ViewWidget extends BaseWidget implements IAclResource
+class ViewWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет.

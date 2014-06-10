@@ -10,14 +10,13 @@
 
 namespace umicms\project\module\blog\site\author\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\api\BlogModule;
 
 /**
  * Виджет для вывода списка авторов.
  */
-class BlogAuthorListWidget extends BaseListWidget implements IAclResource
+class BlogAuthorListWidget extends BaseListWidget
 {
     /**
      * @var BlogModule $api API модуля "Блоги"

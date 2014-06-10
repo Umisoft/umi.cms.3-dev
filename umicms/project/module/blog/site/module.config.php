@@ -39,9 +39,6 @@ return [
             'author' => ['viewer'],
             'moderator' => ['author']
         ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:index'
-        ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'controller:index' => []

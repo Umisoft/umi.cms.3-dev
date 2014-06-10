@@ -10,14 +10,13 @@
 
 namespace umicms\project\module\news\site\rubric\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseTreeWidget;
 use umicms\project\module\news\api\NewsModule;
 
 /**
  * Виджет для вывода дерева новостных рубрик.
  */
-class RubricTreeWidget extends BaseTreeWidget implements IAclResource
+class RubricTreeWidget extends BaseTreeWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
