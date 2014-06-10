@@ -19,14 +19,6 @@ use umicms\project\admin\layout\button\DropdownButton;
 class CreateObjectControl extends CollectionControl
 {
     /**
-     * {@inheritdoc}
-     */
-    protected function configure()
-    {
-        $this->configureSubmitToolbar();
-    }
-
-    /**
      * Конфигурирует Submit-кнопки.
      * @return $this
      */

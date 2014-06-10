@@ -13,6 +13,7 @@ namespace umicms\project\admin\layout\control;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\project\admin\layout\button\behaviour\ChoicesBehaviour;
 use umicms\project\admin\layout\button\SplitButton;
 
@@ -22,15 +23,6 @@ use umicms\project\admin\layout\button\SplitButton;
 class EditObjectControl extends CollectionControl
 {
     /**
-     * {@inheritdoc}
-     */
-    protected function configure()
-    {
-        $this->configureToolbar();
-        $this->configureSubmitToolbar();
-    }
-
-    /**
      * Конфигурирует toolbar.
      * @return $this
      */
@@ -39,6 +31,11 @@ class EditObjectControl extends CollectionControl
 
         $this->addToolbarButton('backToFilter', $this->createActionButton('backToFilter'));
 
+        if ($this->collection instanceof SimpleHierarchicCollection) {
+            if ($createButton = $this->buildCreateButton()) {
+                $this->addToolbarButton('create', $createButton);
+            }
+        }
 
         if ($this->collection instanceof IActiveAccessibleCollection) {
             $this->addToolbarButton('switchActivity', $this->createActionButton('switchActivity'));
