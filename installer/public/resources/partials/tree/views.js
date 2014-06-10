@@ -216,7 +216,7 @@ define(['App', 'toolbar'], function(UMI){
             treeControlView: null,
             templateName: 'treeItem',
             tagName: 'li',
-            classNameBindings: ['controller.model.isDragged:hide'],
+            classNameBindings: ['controller.model.isDragged:hide', 'controller.model.isDeleted:hide'],
             attributeBindings: ['dataId:data-id'],
 
             dataId: function(){
@@ -312,44 +312,5 @@ define(['App', 'toolbar'], function(UMI){
                 }.property()
             })
         });
-
-        /*
-        UMI.TreeControlContextMenuView = Ember.View.extend({
-            tagName: 'ul',
-            classNames: ['button-group', 'umi-tree-context-menu', 'right'],
-            classNameBindings: ['isOpen:context-menu-is-open'],
-            layoutName: 'treeControlContextMenu',
-            isOpen: false,
-            contextMenu: null,
-
-            actions: {
-                open: function(){
-                    var self = this;
-                    var el = self.$();
-                    setTimeout(function(){
-                        self.toggleProperty('isOpen');
-                        if(self.get('isOpen')){
-                            $('html').on('click.umi.tree.contextMenu', function(event){
-                                var targetElement = $(event.target).closest('.umi-tree-context-menu');
-                                if(!targetElement.length || targetElement[0].getAttribute('id') !== el[0].getAttribute('id')){
-                                    $('html').off('click.umi.tree.contextMenu');
-                                    self.set('isOpen', false);
-                                }
-                            });
-                        }
-                    }, 0);
-
-                }
-            },
-
-            itemView: Ember.View.extend({
-                tagName: 'li',
-                action: null, //Получаем из шаблона
-                isFastAction: function(){
-                    var selectAction = this.get('parentView.parentView.treeControlView.selectAction');
-                    return selectAction ? this.get('action').behaviour.name === selectAction.behaviour.name : false;
-                }.property('parentView.parentView.treeControlView.selectAction')
-            })
-        });*/
     };
 });
