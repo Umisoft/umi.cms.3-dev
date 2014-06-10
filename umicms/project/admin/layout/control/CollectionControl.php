@@ -19,7 +19,6 @@ use umicms\project\admin\layout\button\behaviour\Behaviour;
 use umicms\project\admin\layout\button\behaviour\ChoicesBehaviour;
 use umicms\project\admin\layout\button\Button;
 use umicms\project\admin\layout\button\Choice;
-use umicms\project\admin\layout\button\DropdownButton;
 use umicms\project\admin\layout\button\SplitButton;
 
 /**
@@ -113,6 +112,35 @@ class CollectionControl extends AdminControl
     {
         $label = $this->component->translate('action:create:' . $typeName);
         return new Choice($label, new Behaviour('create', ['typeName' => $typeName]));
+    }
+
+    /**
+     * Создает кнопку создания объекта, в зависимости от количества возможных для создания типов.
+     * @return Button|null
+     */
+    protected function buildCreateButton()
+    {
+        $typeList = $this->getCreateTypeList();
+        $typesCount = count($typeList);
+
+        if ($typesCount == 1) {
+            $label = $this->component->translate('action:create:' . $typeList[0]);
+            $behaviour = new Behaviour('create', ['typeName' => $typeList[0]]);
+
+            return new Button($label, $behaviour);
+        }
+
+        if ($typesCount > 0) {
+            $choices = new ChoicesBehaviour('create');
+            $this->configureCreateChoiceList($choices);
+
+            return new SplitButton(
+                $this->component->translate('button:create'),
+                $choices
+            );
+        }
+
+        return null;
     }
 }
  
