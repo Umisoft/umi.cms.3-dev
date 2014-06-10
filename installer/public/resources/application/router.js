@@ -250,7 +250,14 @@ define([], function(){
 
                 create: function(parentObject, behaviour){
                     var typeName = behaviour.typeName;
-                    this.transitionTo('action', parentObject.get('id'), 'createForm', {queryParams: {'typeName': typeName}});
+                    var contextId = 'root';
+                    if(parentObject.constructor.typeKey){
+                        var meta = this.store.metadataFor(parentObject.constructor.typeKey) || {};
+                        if(meta.hasOwnProperty('collectionType') && meta.collectionType === 'hierarchic'){
+                            contextId = parentObject.get('id');
+                        }
+                    }
+                    this.transitionTo('action', contextId, 'createForm', {queryParams: {'typeName': typeName}});
                 },
 
                 edit: function(object){
@@ -277,9 +284,14 @@ define([], function(){
                  * @returns {*|Promise}
                  */
                 trash: function(object){
+                    var self = this;
+                    var isActiveContext = this.modelFor('context') === object;
                     return object.destroyRecord().then(function(){
                         var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" удалено в корзину.'};
                         UMI.notification.create(settings);
+                       if(isActiveContext){
+                           self.send('backToFilter');
+                       }
                     }, function(){
                         var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" не удалось поместить в корзину.'};
                         UMI.notification.create(settings);

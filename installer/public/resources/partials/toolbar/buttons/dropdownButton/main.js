@@ -30,7 +30,7 @@ define(['App', 'text!./template.hbs', 'text!./backupList.hbs'],
                     tagName: 'div',
                     template: Ember.Handlebars.compile(backupListTemplate),
 
-                    getBackupList: function(){return;
+                    getBackupList: function(){
                         var backupList;
                         var object = this.get('controller.object');
                         var settings = this.get('controller.settings');
@@ -122,9 +122,13 @@ define(['App', 'text!./template.hbs', 'text!./backupList.hbs'],
                         self.get('controller.object').on('didUpdate', function(){
                             self.set('backupList', self.getBackupList());
                         });
+
+                        self.get('controller').addObserver('object', function() {
+                            self.set('backupList', self.getBackupList());
+                        });
                     },
                     willDestroyElement: function(){
-
+                        this.get('controller').removeObserver('content.object');
                     }
                 }
             }).create({});

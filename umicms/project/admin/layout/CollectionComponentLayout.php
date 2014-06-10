@@ -79,6 +79,10 @@ class CollectionComponentLayout extends AdminComponentLayout
     protected function configureSelectedContextControls()
     {
         $this->addSelectedContextControl('editForm', new EditObjectControl($this->component));
+
+        if ($this->collection instanceof SimpleHierarchicCollection) {
+            $this->addSelectedContextControl('createForm', new CreateObjectControl($this->component));
+        }
     }
 }
  

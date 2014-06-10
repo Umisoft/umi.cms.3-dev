@@ -180,7 +180,7 @@ class CollectionApiComponent extends AdminComponent implements ICollectionCompon
         $collection = $this->getCollection();
         if ($collection instanceof IRecoverableCollection) {
             $actions[self::ACTION_GET_BACKUP_LIST] = $this->createQueryAction(self::ACTION_GET_BACKUP_LIST);
-            $actions[self::ACTION_GET_BACKUP_LIST] = $this->createQueryAction(self::ACTION_GET_BACKUP);
+            $actions[self::ACTION_GET_BACKUP] = $this->createQueryAction(self::ACTION_GET_BACKUP);
         }
 
         return $actions;

@@ -7,7 +7,7 @@ define(
         return function(){
             siblingsNavigation();
 
-            UMI.FormControlController = UMI.FormBaseController.extend({
+            UMI.FormControlController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
                 needs: ['component'],
 
                 settings: function(){
@@ -45,7 +45,7 @@ define(
                 }.property('model.@each')
             });
 
-            UMI.FormControlView = UMI.FormBaseView.extend({
+            UMI.FormControlView = Ember.View.extend(UMI.FormViewMixin, {
                 /**
                  * Шаблон формы
                  * @property layout
@@ -53,14 +53,10 @@ define(
                  */
                 layout: Ember.Handlebars.compile(formTpl),
 
-                classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control'],
-
-                submit: function(){
-                    return false;
-                }
+                classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control']
             });
 
-            UMI.FieldFormControlView = UMI.FieldBaseView.extend({
+            UMI.FieldFormControlView = Ember.View.extend(UMI.FieldMixin, {
                 classNameBindings: ['isError:error'],
 
                 isError: function(){
