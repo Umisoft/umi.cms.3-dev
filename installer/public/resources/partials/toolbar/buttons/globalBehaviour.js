@@ -104,6 +104,45 @@ define(
                             this.get('controller').send('edit', model);
                         }
                     }
+                },
+
+                add: {
+                    classNameBindings: ['controller.object.isValid::disabled'],
+                    beforeAdd: function(){
+                        var model = this.get('controller.object');
+                        if(!model.get('isValid')){
+                            return false;
+                        }
+                        var button = this.$();
+                        button.addClass('loading');
+                        var params = {
+                            object: model,
+                            handler: button[0]
+                        };
+                        return params;
+                    },
+                    actions: {
+                        add: function(){
+                            var params = this.beforeAdd();
+                            if(params){
+                                this.get('controller').send('add', params);
+                            }
+                        },
+
+                        addAndGoBack: function(){
+                            var params = this.beforeAdd();
+                            if(params){
+                                this.get('controller').send('addAndGoBack', params);
+                            }
+                        },
+
+                        addAndCreate: function(){
+                            var params = this.beforeAdd();
+                            if(params){
+                                this.get('controller').send('addAndCreate', params);
+                            }
+                        }
+                    }
                 }
             });
         };

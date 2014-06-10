@@ -99,26 +99,7 @@ define([], function(){
                             $(params.handler).removeClass('loading');
                         }
 
-                        if(isNewObject){
-                            if(params.object.store.metadataFor(params.object.constructor.typeKey).collectionType === 'hierarchic'){
-                                var parent = params.object.get('parent');
-                                if(parent && 'isFulfilled' in parent){
-                                    return parent.then(function(parent){
-                                        parent.reload().then(function(parent){
-                                            parent.trigger('needReloadHasMany');
-                                        });
-                                        self.send('edit', params.object);
-                                    });
-                                } else{
-                                    // Обновление связей рутовой ноды в дереве.
-                                    // TODO: подумать как можно избежать обращения к контроллеру дерева.
-                                    self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(params.object.get('id'), 'root');
-                                    self.send('edit', params.object);
-                                }
-                            }
-                            self.send('edit', params.object);
-                        }
-                        return true;
+                        return params.object;
                     },
 
                     function(results){
@@ -146,6 +127,30 @@ define([], function(){
                         );
                     }
                 );
+            },
+
+            beforeAdd: function(params){
+                var self = this;
+                return self.saveObject(params).then(function(addObject){
+                    if(addObject.store.metadataFor(addObject.constructor.typeKey).collectionType === 'hierarchic'){
+                        var parent = addObject.get('parent');
+                        if(parent && 'isFulfilled' in parent){
+                            return parent.then(function(parent){
+                                parent.reload().then(function(parent){
+                                    parent.trigger('needReloadHasMany');
+                                });
+                                return addObject;
+                            });
+                        } else{
+                            // Обновление связей рутовой ноды в дереве.
+                            // TODO: подумать как можно избежать обращения к контроллеру дерева.
+                            self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(addObject.get('id'), 'root');
+                            return addObject;
+                        }
+                    } else{
+                        return addObject;
+                    }
+                });
             },
 
             actions: {
@@ -227,6 +232,34 @@ define([], function(){
                     self.saveObject(params).then(function(isSaved){
                         if(isSaved){
                             self.send('backToFilter');
+                        }
+                    });
+                },
+
+                add: function(params){
+                    var self = this;
+                    return self.beforeAdd(params).then(function(addObject){
+                        self.send('edit', addObject);
+                    });
+                },
+
+                addAndGoBack: function(params){
+                    var self = this;
+                    return self.beforeAdd(params).then(function(){
+                        self.send('backToFilter');
+                    });
+                },
+
+                addAndCreate: function(params){
+                    var self = this;
+                    return self.beforeAdd(params).then(function(addObject){
+                        var behaviour = {typeName: addObject.get('type')};
+                        if(addObject.store.metadataFor(addObject.constructor.typeKey).collectionType === 'hierarchic'){
+                            return addObject.get('parent').then(function(parent){
+                                self.send('create', parent, behaviour);
+                            });
+                        } else{
+                            self.send('create', addObject, behaviour);
                         }
                     });
                 },
