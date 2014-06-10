@@ -43,9 +43,9 @@ return [
             'elements' => [
                 BlogComment::FIELD_AUTHOR => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogComment::FIELD_AUTHOR,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogComment::FIELD_AUTHOR
                     ],
                 ],
