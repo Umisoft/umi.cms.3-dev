@@ -40,22 +40,11 @@ return [
             'moderator' => ['author']
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:index',
-            'component:post',
-            'component:draft',
-            'component:category',
-            'component:author',
-            'component:tag',
-            'component:comment'
+            'controller:index'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
-                'controller:index' => [],
-                'component:post' => [],
-                'component:category' => [],
-                'component:author' => [],
-                'component:tag' => [],
-                'component:comment' => []
+                'controller:index' => []
             ],
             'author' => [
                 'component:post' => [

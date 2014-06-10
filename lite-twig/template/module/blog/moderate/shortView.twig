@@ -7,14 +7,14 @@
         </time>
         {% endif %}
         {% if (blogPost.author) %}
-            {{ translate('Автор') }}: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
+            {{ translate('Author') }}: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
         {% endif %}
         {{ widget('blog.moderate.editPostLink', {'blogPost' : blogPost, 'template' : 'editPostLink'}) }}
     </p>
 
     {{ blogPost.announcement | raw }}
 
-    <a href="{{ blogPost.getPageUrl() }}">{{ translate('Читать далее') }}</a>
+    <a href="{{ blogPost.getPageUrl() }}">{{ translate('Read more') }}</a>
 
     {{ widget('blog.moderate.publishModerate', {'blogPost' : blogPost, 'template' : 'publishForm'}) }}
     {{ widget('blog.moderate.rejectModerate', {'blogPost' : blogPost, 'template' : 'rejectForm'}) }}

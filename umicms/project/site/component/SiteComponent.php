@@ -17,7 +17,7 @@ use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\model\IModelAware;
 use umi\hmvc\view\IViewRenderer;
 use umi\http\Request;
-use umicms\hmvc\component\BaseComponent;
+use umicms\hmvc\component\BaseCmsComponent;
 use umicms\orm\object\ICmsPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
@@ -27,7 +27,7 @@ use umicms\project\site\config\TSiteSettingsAware;
 /**
  * Компонент сайта.
  */
-class SiteComponent extends BaseComponent implements IPageCallStackAware, ISiteSettingsAware, IConfigAliasResolverAware
+class SiteComponent extends BaseCmsComponent implements IPageCallStackAware, ISiteSettingsAware, IConfigAliasResolverAware
 {
     use TPageCallStackAware;
     use TSiteSettingsAware;

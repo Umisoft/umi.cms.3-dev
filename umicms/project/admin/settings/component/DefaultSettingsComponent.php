@@ -36,6 +36,7 @@ class DefaultSettingsComponent extends SettingsComponent
         self::OPTION_ROUTES => [
             'index' => [
                 'type' => IRouteFactory::ROUTE_FIXED,
+                'priority'  => 200,
                 'defaults' => [
                     'controller' => 'index'
                 ]

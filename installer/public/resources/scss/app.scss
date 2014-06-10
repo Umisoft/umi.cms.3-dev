@@ -77,15 +77,16 @@
 @import "_pagination";
 @import "_form-control";
 @import "_offcanvas";
-
 @import "_file-manager";
+@import "_datetime";
 
 //Содержимое попапов
 @import "popups/_table-control-column-selector-popup";
 
 //Перебиваем стили сторонних модулей
-@import "antiVendor/_datepicker";
-@import "antiVendor/_timepicker";
+//@import "antiVendor/_datepicker";
+//@import "antiVendor/_timepicker";
+@import "antiVendor/_jQueryUI";
 @import "antiVendor/_iScroll";
 @import "antiVendor/_ckEditor";
 

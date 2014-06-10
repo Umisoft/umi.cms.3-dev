@@ -11,6 +11,7 @@
 namespace umicms\project\module\blog\site\moderate;
 
 use umi\acl\IAclFactory;
+use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\DefaultSitePageComponent;
 
@@ -56,7 +57,8 @@ return [
             'widget:editPostLink',
             'widget:publishModerate',
             'widget:rejectModerate',
-            'widget:draftModerate'
+            'widget:draftModerate',
+            'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
@@ -66,21 +68,25 @@ return [
                 'widget:view' => [],
                 'controller:page' => [],
                 'widget:ownList' => [],
-                'widget:ownListLink' => []
+                'widget:ownListLink' => [],
+                'model:blogPost' => [
+                    IAclManager::OPERATION_ALL => ['own']
+                ]
             ],
             'moderator' => [
                 'controller:index' => [],
+                'controller:page' => [],
                 'controller:edit' => [],
                 'controller:publish' => [],
                 'controller:reject' => [],
                 'controller:all' => [],
                 'widget:view' => [],
-                'controller:page' => [],
                 'widget:allList' => [],
                 'widget:allListLink' => [],
                 'widget:editPostLink' => [],
                 'widget:publishModerate' => [],
-                'widget:rejectModerate' => []
+                'widget:rejectModerate' => [],
+                'model:blogPost' => []
             ]
         ]
     ],

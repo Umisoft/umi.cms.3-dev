@@ -54,12 +54,12 @@
 }
 
 
-.umi-button{
+.umi-button, button.umi-button{
     @include button-bg-gradient(nth($primary-gradient, 1), nth($primary-gradient, 2));
 
     position: relative;
     float: left;
-    height: 31px;
+    height: 32px;
     border-top: 1px solid #6BC2FF;
     @include button-bg-gradient(#3aadff, #0087d4);
     color: #FFFFFF;
@@ -123,12 +123,14 @@
     }
 }
 
+
 .button, button{
-    border: 1px solid;
-    border-color: #4D9ED8;
-    @include button-bg-gradient(nth($primary-gradient, 1), nth($primary-gradient, 2));
+//    border: 1px solid;
+//    border-color: #4D9ED8;
+    @include button-bg-gradient(#3aadff, #0087d4);
     vertical-align: top;
     &.secondary{
+        border: 1px solid #A8ADB1;
         @include button-bg-gradient(#FDFDFD, #F5F5F5);
     }
     &.success{

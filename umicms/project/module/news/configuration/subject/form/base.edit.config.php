@@ -38,9 +38,9 @@ return [
                 ],
                 NewsSubject::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => NewsSubject::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsSubject::FIELD_PAGE_LAYOUT
                     ],
                 ]

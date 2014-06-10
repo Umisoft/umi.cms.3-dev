@@ -19,18 +19,6 @@ return [
     DefaultSettingsComponent::OPTION_COMPONENTS => [
         'captcha' => '{#lazy:~/project/module/forms/settings/captcha/component.config.php}'
     ],
-    DefaultSettingsComponent::OPTION_ACL => [
-
-        IAclFactory::OPTION_ROLES => [
-            'configurator' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'component:captcha'
-        ],
-        IAclFactory::OPTION_RULES => [
-            'configurator' => ['component:captcha' => []]
-        ]
-    ],
 
     DefaultSettingsComponent::OPTION_ROUTES      => [
         'component' => [

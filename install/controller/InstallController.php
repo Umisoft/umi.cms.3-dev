@@ -36,6 +36,9 @@ use umicms\project\module\search\api\SearchApi;
 use umicms\project\module\search\api\SearchModule;
 use umicms\project\module\service\api\collection\BackupCollection;
 use umicms\project\module\structure\api\object\InfoBlock;
+use umicms\project\module\structure\api\object\Menu;
+use umicms\project\module\structure\api\object\MenuExternalItem;
+use umicms\project\module\structure\api\object\MenuInternalItem;
 use umicms\project\module\structure\api\object\StaticPage;
 use umicms\project\module\structure\api\object\StructureElement;
 use umicms\project\module\users\api\object\AuthorizedUser;
@@ -202,25 +205,56 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $visitors->getProperty('locked')->setValue(true);
 
         $visitors->roles = [
-            'project' => ['visitor'],
-            'project.admin' => ['visitor'],
+            'project' => ['siteExecutor', 'adminExecutor'],
 
-            'project.site.users' => ['viewer'],
+            'project.admin' => ['apiExecutor'],
+
+            'project.site' => [
+                'usersExecutor',
+                'newsExecutor',
+                'structureExecutor',
+                'blogExecutor',
+                'searchExecutor'
+            ],
+
+            'project.site.users' => [
+                'authorizationExecutor',
+                'registrationExecutor',
+                'restorationExecutor',
+                'viewer'
+            ],
             'project.site.users.authorization' => ['viewer'],
-            'project.site.users.registration' => ['viewer'],
+            'project.site.users.registration' => ['activationExecutor', 'viewer'],
             'project.site.users.registration.activation' => ['viewer'],
-            'project.site.users.restoration' => ['viewer'],
+            'project.site.users.restoration' => ['confirmationExecutor', 'viewer'],
             'project.site.users.restoration.confirmation' => ['viewer'],
 
-            'project.site.structure' => ['viewer'],
+            'project.site.structure' => [
+                'menuExecutor',
+                'infoblockExecutor',
+                'viewer'
+            ],
             'project.site.structure.menu' => ['viewer'],
+            'project.site.structure.infoblock' => ['viewer'],
 
-            'project.site.news' => ['viewer'],
+            'project.site.news' => [
+                'itemExecutor',
+                'rubricExecutor',
+                'subjectExecutor',
+                'viewer'
+            ],
             'project.site.news.item' => ['viewer', 'rssViewer'],
             'project.site.news.rubric' => ['viewer', 'rssViewer'],
             'project.site.news.subject' => ['viewer', 'rssViewer'],
 
-            'project.site.blog' => ['viewer'],
+            'project.site.blog' => [
+                'categoryExecutor',
+                'postExecutor',
+                'tagExecutor',
+                'authorExecutor',
+                'commentExecutor',
+                'viewer'
+            ],
             'project.site.blog.category' => ['viewer', 'rssViewer'],
             'project.site.blog.post' => ['viewer', 'rssViewer'],
             'project.site.blog.tag' => ['viewer', 'rssViewer'],
@@ -238,23 +272,89 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $registeredUsers->getProperty('locked')->setValue(true);
 
         $registeredUsers->roles = [
-            'project.site.users.profile' => ['viewer'],
+            'project.site.users' => ['profileExecutor', 'viewer'],
+            'project.site.users.profile' => ['passwordExecutor', 'viewer'],
             'project.site.users.profile.password' => ['viewer'],
         ];
 
         /**
-         * @var UserGroup $authors
+         * @var UserGroup $authorsWithPremoderation
          */
-        $authors = $groupCollection->add()
-            ->setValue('displayName', 'Авторы')
-            ->setValue('displayName', 'Authors', 'en-US');
+        $authorsWithPremoderation = $groupCollection->add()
+            ->setValue('displayName', 'Авторы с премодерацией постов')
+            ->setValue('displayName', 'Authors with premoderation', 'en-US');
 
-        $authors->roles = [
-            'project.site.blog.comment' => ['poster'],
+        $authorsWithPremoderation->roles = [
+            'project.site.blog' => [
+                'draftExecutor',
+                'moderateExecutor',
+                'rejectExecutor'
+            ],
+            'project.site.blog.draft' => ['author'],
             'project.site.blog.moderate' => ['author'],
             'project.site.blog.post' => ['author'],
-            'project.site.blog.reject' => ['author'],
-            'project.site.blog.draft' => ['author']
+            'project.site.blog.reject' => ['author']
+        ];
+
+        /**
+         * @var UserGroup $authorsWithoutPremoderation
+         */
+        $authorsWithoutPremoderation = $groupCollection->add()
+            ->setValue('displayName', 'Авторы без премодерации постов')
+            ->setValue('displayName', 'Authors without premoderation', 'en-US');
+
+        $authorsWithoutPremoderation->roles = [
+            'project.site.blog' => [
+                'draftExecutor',
+                'moderateExecutor',
+                'rejectExecutor'
+            ],
+            'project.site.blog.draft' => ['publisher'],
+            'project.site.blog.moderate' => ['author'],
+            'project.site.blog.post' => ['author'],
+            'project.site.blog.reject' => ['author']
+        ];
+
+        /**
+         * @var UserGroup $commentWithoutPremoderation
+         */
+        $commentWithoutPremoderation = $groupCollection->add()
+            ->setValue('displayName', 'Комментарии без премодерацией')
+            ->setValue('displayName', 'Comment without premoderation', 'en-US');
+
+        $commentWithoutPremoderation->roles = [
+            'project.site.blog.comment' => ['poster']
+        ];
+
+        /**
+         * @var UserGroup $commentWithPremoderation
+         */
+        $commentWithPremoderation = $groupCollection->add()
+            ->setValue('displayName', 'Комментарии с премодерацией')
+            ->setValue('displayName', 'Comment with premoderation', 'en-US');
+
+        $commentWithPremoderation->roles = [
+            'project.site.blog.comment' => ['posterPremoderation']
+        ];
+
+        /**
+         * @var UserGroup $moderator
+         */
+        $moderator = $groupCollection->add()
+            ->setValue('displayName', 'Модератор')
+            ->setValue('displayName', 'Moderator', 'en-US');
+
+        $moderator->roles = [
+            'project.site.blog' => [
+                'draftExecutor',
+                'moderateExecutor',
+                'rejectExecutor'
+            ],
+            'project.site.blog.comment' => ['moderator'],
+            'project.site.blog.moderate' => ['moderator'],
+            'project.site.blog.post' => ['moderator'],
+            'project.site.blog.reject' => ['moderator'],
+            'project.site.blog.draft' => ['moderator'],
         ];
 
         /**
@@ -264,18 +364,18 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Администраторы')
             ->setValue('displayName', 'Administrator', 'en-US');
         $administrators->roles = [
-            'project.admin.api' => ['newsEditor', 'structureEditor', 'usersEditor'],
+            'project.admin.api' => ['newsExecutor', 'structureExecutor', 'usersExecutor'],
 
-            'project.admin.api.news' => ['rubricEditor', 'itemEditor', 'subjectEditor'],
+            'project.admin.api.news' => ['rubricExecutor', 'itemExecutor', 'subjectExecutor'],
             'project.admin.api.news.item' => ['editor'],
             'project.admin.api.news.rubric' => ['editor'],
             'project.admin.api.news.subject' => ['editor'],
 
-            'project.admin.api.structure' => ['pageEditor', 'layoutEditor'],
+            'project.admin.api.structure' => ['pageExecutor', 'layoutExecutor'],
             'project.admin.api.structure.page' => ['editor'],
             'project.admin.api.structure.layout' => ['editor'],
 
-            'project.admin.api.users' => ['userEditor'],
+            'project.admin.api.users' => ['userExecutor'],
             'project.admin.api.users.user' => ['editor'],
         ];
 
@@ -320,7 +420,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('email', 'demo@umisoft.ru');
 
         $user->groups->attach($visitors);
-        $user->groups->attach($authors);
+        $user->groups->attach($authorsWithPremoderation);
         $user->groups->attach($registeredUsers);
         $user->setPassword('demo');
 
@@ -449,8 +549,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $author->getProperty('componentPath')->setValue('blog.author');
 
         $category = $categoryCollection->add('hunters')
-            ->setValue('displayName', 'Блог')
-            ->setValue('displayName', 'Blog', 'en-US')
+            ->setValue('displayName', 'Охотницы')
+            ->setValue('displayName', 'Hunters', 'en-US')
             ->setValue('metaTitle', 'Блог Охотниц за приведениями')
             ->setValue('h1', 'Блог Охотниц за приведениями')
             ->setValue('contents', '<p>Это блого обо всем на свете...</p>')
@@ -884,6 +984,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var SimpleCollection $infoBlockCollection
          */
         $infoBlockCollection = $this->getCollectionManager()->getCollection('infoblock');
+        /**
+         * @var SimpleHierarchicCollection $menuCollection
+         */
+        $menuCollection = $this->getCollectionManager()->getCollection('menu');
 
 
         $parent = null;
@@ -934,10 +1038,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $menuPage->getProperty('componentPath')->setValue('structure.infoblock');
 
         $structureInfoBlock = $infoBlockCollection->add('infoblock')
-            ->setGUID('87f20300-197a-4309-b86b-cbe8ebcc358d')
+            ->setValue(InfoBlock::FIELD_INFOBLOCK_NAME, 'commonInfoBlock')
             ->setValue('displayName', 'Общие')
             ->setValue('displayName', 'Common', 'en-US');
-        $structureInfoBlock->getProperty('locked')->setValue(true);
 
         $structureInfoBlock
             ->setValue(InfoBlock::FIELD_PHONE_NUMBER, '<p>Телефон в Санкт-Петербурге: +7 (812) 309-03-15</p>')
@@ -1052,6 +1155,27 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN);
         $menuItem1221->getProperty('componentName')->setValue('structure');
         $menuItem1221->getProperty('componentPath')->setValue('structure');
+
+
+        $bottomMenu = $menuCollection->add('bottomMenu', Menu::TYPE)
+            ->setValue(Menu::FIELD_DISPLAY_NAME, 'Нижнее меню')
+            ->setValue(Menu::FIELD_NAME, 'bottomMenu');
+
+        $menuCollection->add('bottomMenu', MenuInternalItem::TYPE, $bottomMenu)
+            ->setValue(MenuInternalItem::FIELD_DISPLAY_NAME, 'Главная')
+            ->setValue(MenuInternalItem::FIELD_PAGE_RELATION, $about);
+
+        $menuCollection->add('bottomMenu-1', MenuInternalItem::TYPE, $bottomMenu)
+            ->setValue(MenuInternalItem::FIELD_DISPLAY_NAME, 'Работа, за которую мы никогда не возьмемся')
+            ->setValue(MenuInternalItem::FIELD_PAGE_RELATION, $no);
+
+        $menuCollection->add('bottomMenu-2', MenuInternalItem::TYPE, $bottomMenu)
+            ->setValue(MenuInternalItem::FIELD_DISPLAY_NAME, 'Услуги и цены')
+            ->setValue(MenuInternalItem::FIELD_PAGE_RELATION, $service);
+
+        $menuCollection->add('bottomMenu-3', MenuExternalItem::TYPE, $bottomMenu)
+            ->setValue(MenuExternalItem::FIELD_DISPLAY_NAME, 'Внешняя ссылка')
+            ->setValue(MenuExternalItem::FIELD_URL_RESOURCE, 'http://ya.ru/');
 
     }
 
@@ -1819,9 +1943,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `guid` varchar(255),
                     `type` varchar(255),
                     `version` int(10) unsigned DEFAULT '1',
+                    `name` varchar(255) DEFAULT NULL,
                     `display_name` varchar(255) DEFAULT NULL,
                     `display_name_en` varchar(255) DEFAULT NULL,
-                    `locked` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
@@ -1852,9 +1976,52 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `infoblock_guid` (`guid`),
+                    UNIQUE KEY `infoblock_name` (`name`),
                     KEY `infoblock_type` (`type`),
                     CONSTRAINT `FK_infoblock_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                     CONSTRAINT `FK_infoblock_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+
+        $connection->exec(
+            "
+                CREATE TABLE `demohunt_menu` (
+                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                    `guid` varchar(255),
+                    `version` int(10) unsigned DEFAULT '1',
+                    `type` varchar(255),
+                    `pid` bigint(20) unsigned DEFAULT NULL,
+                    `mpath` varchar(255) DEFAULT NULL,
+                    `uri` text,
+                    `slug` varchar(255),
+                    `order` int(10) unsigned DEFAULT NULL,
+                    `level` int(10) unsigned DEFAULT NULL,
+                    `child_count` int(10) unsigned DEFAULT '0',
+                    `active` tinyint(1) unsigned DEFAULT '1',
+                    `name` varchar(255) DEFAULT NULL,
+                    `display_name` varchar(255) DEFAULT NULL,
+                    `display_name_en` varchar(255) DEFAULT NULL,
+                    `created` datetime DEFAULT NULL,
+                    `updated` datetime DEFAULT NULL,
+                    `owner_id` bigint(20) unsigned DEFAULT NULL,
+                    `editor_id` bigint(20) unsigned DEFAULT NULL,
+
+                    `page_relation` varchar(255) DEFAULT NULL,
+                    `url_resource` varchar(255) DEFAULT NULL,
+
+                    PRIMARY KEY (`id`),
+                    UNIQUE KEY `menu_guid` (`guid`),
+                    UNIQUE KEY `menu_name` (`name`),
+                    UNIQUE KEY `menu_mpath` (`mpath`),
+                    UNIQUE KEY `menu_pid_slug` (`pid`, `slug`),
+                    KEY `menu_parent` (`pid`),
+                    KEY `menu_parent_order` (`pid`,`order`),
+                    KEY `menu_type` (`type`),
+                    KEY `page_relation` (`page_relation`),
+                    CONSTRAINT `FK_menu_parent` FOREIGN KEY (`pid`) REFERENCES `demohunt_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT `FK_menu_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                    CONSTRAINT `FK_menu_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );

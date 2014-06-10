@@ -37,6 +37,7 @@ return [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
             'poster' => ['viewer'],
+            'posterPremoderation' => ['viewer'],
             'moderator' => ['poster']
         ],
         IAclFactory::OPTION_RESOURCES => [
@@ -47,7 +48,9 @@ return [
             'widget:list',
             'widget:add',
             'widget:publish',
-            'widget:reject'
+            'widget:reject',
+            'model:blogComment',
+            'collection:blogComment'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -56,12 +59,25 @@ return [
             ],
             'poster' => [
                 'widget:add' => [],
-                'widget:publish' => [],
-                'controller:publish' => []
+                'controller:add' => [],
+                'model:blogComment' => []
+            ],
+            'posterPremoderation' => [
+                'widget:add' => [],
+                'controller:add' => [],
+                'model:blogComment' => [
+                    'publish' => ['premoderation']
+                ]
             ],
             'moderator' => [
                 'widget:reject' => [],
-                'controller:reject' => []
+                'widget:publish' => [],
+                'controller:reject' => [],
+                'controller:publish' => [],
+                'collection:blogComment' => [
+                    'getComments' => ['withNeedModeration']
+                ],
+                'model:blogComment' => []
             ]
         ]
     ],

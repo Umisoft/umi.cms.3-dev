@@ -64,7 +64,12 @@ class ListWidget extends BaseTreeWidget implements IAclResource
             );
         }
 
-        return $this->api->getCommentByPost($this->blogPost);
+        if ($this->isAllowed($this->api->comment(), 'getComments')) {
+            return $this->api->getCommentByPostWithNeedModeration($this->blogPost);
+        } else {
+            return $this->api->getCommentsByPost($this->blogPost);
+        }
+
     }
 }
  

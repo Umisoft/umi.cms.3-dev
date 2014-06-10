@@ -44,6 +44,7 @@ define(['App'], function(UMI){
                     id: 'root',
                     active: true,
                     type: 'base',
+                    typeKey: collectionName,
                     childCount: function(){
                         return this.get('children.length');
                     }.property('children.length'),
@@ -53,7 +54,7 @@ define(['App'], function(UMI){
                             if(!collectionName){
                                 throw new Error('Collection name is not defined.');
                             }
-                            var nodes = self.store.find(collectionName, {'filters[parent]': 'null()'/*, 'fields': 'displayName,order,active,childCount,children,parent'*/});
+                            var nodes = self.store.updateCollection(collectionName, {'filters[parent]': 'null()', 'fields': 'displayName,order,active,childCount,children,parent'});
                             children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                                 content: nodes,
                                 sortProperties: ['order', 'id'],
@@ -197,8 +198,16 @@ define(['App'], function(UMI){
             objectBinding: 'content',
 
             getChildren: function(){
+                var model = this.get('model');
+                var collectionName = model.get('typeKey') || model.constructor.typeKey;
+                var promise;
+                if(model.get('id') === 'root'){
+                    promise = this.get('children');
+                } else{
+                    promise = this.store.updateCollection(collectionName, {'filters[parent]': this.get('model.id'), 'fields': 'displayName,order,active,childCount,children,parent'});
+                }
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-                    content: this.get('children'),
+                    content: promise,
                     sortProperties: ['order', 'id'],
                     sortAscending: true
                 });

@@ -5,29 +5,57 @@
 
 /* statusbar container */
 .elfinder-statusbar {
-	text-align:center;
-	font-weight:normal;
-	padding: 6px 20px;
+    position: relative;
+    text-align:center;
+    font-weight:normal;
+    padding: 6px 20px;
 
     height: 14px;
     line-height: 14px;
 
-	border-right:0 solid transparent;
-	border-bottom:0 solid transparent;
-	border-left:0 solid transparent;
+    border-top: 1px solid transparent;
+    border-right:0 solid transparent;
+    border-bottom:0 solid transparent;
+    border-left:0 solid transparent;
     background: #F5F6F7;
+}
+
+.elfinder .elfinder-statusbar:before {
+    content: "";
+    position: absolute;
+    float: left;
+    z-index: 2;
+    display: block;
+    height: 14px;
+    width: 100%;
+    top: -15px;
+    left: 0;
+    background: #F5F6F7;
+}
+
+
+.elfinder .elfinder-statusbar:after {
+    content: "";
+    position: absolute;
+    float: left;
+    z-index: 100;
+    display: block;
+    height: 3px;
+    width: 100%;
+    top: -18px;
+    left: 0;
+    background: url(img/shadows/toTopShadow.png);
 }
 
 .elfinder-statusbar a { text-decoration:none; }
 
 
-
 /* path in statusbar */
 .elfinder-path {
-	max-width:30%;
-	white-space:nowrap;
-	overflow:hidden;
-	text-overflow:ellipsis;
+    max-width:30%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 .elfinder-ltr .elfinder-path { float:left;  }
 .elfinder-rtl .elfinder-path { float:right; }

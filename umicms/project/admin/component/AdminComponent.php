@@ -10,8 +10,7 @@
 
 namespace umicms\project\admin\component;
 
-use umi\acl\IAclResource;
-use umicms\hmvc\component\BaseComponent;
+use umicms\hmvc\component\BaseCmsComponent;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\admin\layout\action\Action;
@@ -19,7 +18,7 @@ use umicms\project\admin\layout\action\Action;
 /**
  * Простой компонент административной панели.
  */
-class AdminComponent extends BaseComponent implements IAclResource, IUrlManagerAware
+class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
 {
     use TUrlManagerAware;
 
@@ -47,19 +46,6 @@ class AdminComponent extends BaseComponent implements IAclResource, IUrlManagerA
      * Контроллер для выполнения CRUD-операций над списком объектов
      */
     const LIST_CONTROLLER = 'list';
-
-    /**
-     * Префикс имени ACL-ресурса
-     */
-    const ACL_RESOURCE_PREFIX = 'component:';
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAclResourceName()
-    {
-        return self::ACL_RESOURCE_PREFIX . $this->name;
-    }
 
     /**
      * Возвращает информацию о компоненте.

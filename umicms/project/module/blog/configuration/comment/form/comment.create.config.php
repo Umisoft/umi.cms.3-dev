@@ -58,9 +58,9 @@ return [
             'elements' => [
                 BlogComment::FIELD_AUTHOR => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogComment::FIELD_AUTHOR,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogComment::FIELD_AUTHOR
                     ],
                 ],
@@ -73,9 +73,9 @@ return [
                 ],
                 BlogComment::FIELD_PUBLISH_STATUS => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogComment::FIELD_PUBLISH_STATUS,
                     'options' => [
+                        'lazy' => false,
                         'dataSource' => BlogComment::FIELD_PUBLISH_STATUS,
                         'choices' => [
                             BlogComment::COMMENT_STATUS_NEED_MODERATE => BlogComment::COMMENT_STATUS_NEED_MODERATE,

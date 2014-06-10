@@ -27,6 +27,10 @@ class PublishWidget extends BaseFormWidget implements IAclResource
      */
     public $template = 'publishDraftForm';
     /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
+    /**
      * @var string|BlogPost $blogDraft черновик или GUID черновика
      */
     public $blogDraft;

@@ -34,22 +34,18 @@ return [
 
         IAclFactory::OPTION_ROLES => [
             'configurator' => [],
-            'serviceConfigurator' => ['configurator'],
-            'siteConfigurator' => ['configurator'],
-            'usersConfigurator' => ['configurator']
+            'serviceExecutor' => ['configurator'],
+            'siteExecutor' => ['configurator'],
+            'usersExecutor' => ['configurator'],
+            'seoExecutor' => ['configurator'],
+            'statisticsExecutor' => ['configurator'],
+            'formsExecutor' => ['configurator'],
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:settings',
-            'component:service',
-            'component:site',
-            'component:users',
+            'controller:settings'
         ],
         IAclFactory::OPTION_RULES => [
-
-            'configurator' => ['controller:settings' => []],
-            'serviceConfigurator' => ['component:service' => []],
-            'usersConfigurator' => ['component:users' => []],
-            'siteConfigurator' => ['component:site' => []]
+            'configurator' => ['controller:settings' => []]
         ]
     ],
 

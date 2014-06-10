@@ -42,9 +42,9 @@ return [
             'elements' => [
                 BlogAuthor::FIELD_PROFILE => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogAuthor::FIELD_PROFILE,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogAuthor::FIELD_PROFILE
                     ],
                 ],

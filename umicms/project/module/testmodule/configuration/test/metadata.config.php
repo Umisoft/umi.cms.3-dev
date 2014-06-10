@@ -61,6 +61,7 @@ return [
         TestObject::TEXT => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::TEXT],
         TestObject::TEXTAREA => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::TEXTAREA],
         TestObject::SELECT => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::SELECT],
+        TestObject::MULTISELECT => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::MULTISELECT, 'accessor' => 'getMultiSelectValue', 'mutator' => 'setMultiSelectValue'],
         TestObject::PASSWORD => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::PASSWORD],
         TestObject::CHECKBOX => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::CHECKBOX],
 
