@@ -290,6 +290,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'moderateExecutor',
                 'rejectExecutor'
             ],
+            'project.site.blog.author' => ['author'],
             'project.site.blog.draft' => ['author'],
             'project.site.blog.moderate' => ['author'],
             'project.site.blog.post' => ['author'],
@@ -309,6 +310,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'moderateExecutor',
                 'rejectExecutor'
             ],
+            'project.site.blog.author' => ['author'],
             'project.site.blog.draft' => ['publisher'],
             'project.site.blog.moderate' => ['author'],
             'project.site.blog.post' => ['author'],
