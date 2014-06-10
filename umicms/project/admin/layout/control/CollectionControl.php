@@ -14,6 +14,7 @@ use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\ICmsPageCollection;
+use umicms\project\admin\layout\button\Button;
 use umicms\project\admin\rest\component\CollectionApiComponent;
 use umicms\project\admin\layout\button\behaviour\Behaviour;
 use umicms\project\admin\layout\button\behaviour\ChoicesBehaviour;
