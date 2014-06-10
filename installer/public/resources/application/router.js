@@ -685,8 +685,8 @@ define([], function(){
                         this.get('controller').set('typeName', null);
                     }
                     var model = this.modelFor('action').object;
-                    if(this.modelFor('action').object.get('isNew')){// TODO: не удаляется мусор
-                        this.modelFor('action').createObject.deleteRecord();
+                    if(this.modelFor('action').object.get('isNew')){
+                        this.modelFor('action').object.deleteRecord();
                     }
                     if(model.get('isDirty')){
                         transition.abort();
