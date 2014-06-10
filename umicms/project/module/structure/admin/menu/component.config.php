@@ -8,9 +8,9 @@
 
 namespace umicms\project\module\structure\admin\menu;
 
-use umicms\project\admin\api\component\CollectionApiComponent;
+use umicms\project\admin\rest\component\CollectionApiComponent;
 
 return [
-    CollectionApiComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultAdminComponent',
+    CollectionApiComponent::OPTION_CLASS => 'umicms\project\admin\rest\component\CollectionApiComponent',
     CollectionApiComponent::OPTION_COLLECTION_NAME => 'menu'
 ];

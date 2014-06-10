@@ -10,7 +10,7 @@
 
 namespace umicms\project\module\files\admin\manager\controller;
 
-use umicms\project\admin\api\controller\BaseAdminComponentLayoutController;
+use umicms\project\admin\rest\controller\BaseAdminComponentLayoutController;
 use umicms\project\admin\layout\AdminComponentLayout;
 use umicms\project\admin\layout\control\AdminControl;
 

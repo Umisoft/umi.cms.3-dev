@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\admin\settings\component\DefaultSettingsComponent;
 

@@ -378,13 +378,13 @@ class UrlManager implements IUrlManager, ILocalizable
     }
 
     /**
-     * Возвращает URL админ-компонента относительно API-компонента.
+     * Возвращает URL админ-компонента относительно REST-компонента.
      * @param AdminComponent $component
      * @return string
      */
     protected function getAdminRelativeComponentUrl(AdminComponent $component)
     {
-        return str_replace(AdminComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 17));
+        return str_replace(AdminComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 18));
     }
 
 }

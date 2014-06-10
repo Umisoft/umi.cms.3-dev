@@ -11,10 +11,10 @@
 namespace umicms\project\module\statistics\admin\metrika;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\api\component\DefaultQueryAdminComponent;
+use umicms\project\admin\rest\component\DefaultQueryAdminComponent;
 
 return [
-    DefaultQueryAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultQueryAdminComponent',
+    DefaultQueryAdminComponent::OPTION_CLASS => 'umicms\project\admin\rest\component\DefaultQueryAdminComponent',
     DefaultQueryAdminComponent::OPTION_SETTINGS => '{#lazy:~/project/module/statistics/configuration/metrika/model.settings.config.php}',
     DefaultQueryAdminComponent::OPTION_CONTROLLERS => [
         DefaultQueryAdminComponent::INTERFACE_LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',

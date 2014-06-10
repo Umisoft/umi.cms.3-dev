@@ -11,11 +11,11 @@
 namespace umicms\project\module\seo\admin\megaindex;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\api\component\DefaultQueryAdminComponent;
+use umicms\project\admin\rest\component\DefaultQueryAdminComponent;
 
 return [
 
-    DefaultQueryAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultQueryAdminComponent',
+    DefaultQueryAdminComponent::OPTION_CLASS => 'umicms\project\admin\rest\component\DefaultQueryAdminComponent',
     DefaultQueryAdminComponent::OPTION_MODELS => [
         'umicms\project\module\seo\model\MegaindexModel'
     ],

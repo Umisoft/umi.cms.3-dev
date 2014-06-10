@@ -13,7 +13,7 @@ namespace umicms\project\admin\layout;
 use umicms\exception\RuntimeException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
-use umicms\project\admin\api\component\CollectionApiComponent;
+use umicms\project\admin\rest\component\CollectionApiComponent;
 use umicms\project\admin\component\AdminComponent;
 use umicms\project\admin\layout\control\CreateObjectControl;
 use umicms\project\admin\layout\control\EditObjectControl;

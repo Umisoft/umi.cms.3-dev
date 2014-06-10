@@ -43,7 +43,7 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware
     /**
      * Начальный путь административных api компонентов
      */
-    const ADMIN_API_COMPONENT_PATH = 'project.admin.api';
+    const ADMIN_API_COMPONENT_PATH = 'project.admin.rest';
     /**
      * Начальный путь административных настроечных компонентов
      */

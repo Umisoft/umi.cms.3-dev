@@ -10,8 +10,8 @@
 
 namespace umicms\project\module\seo\admin\megaindex\controller;
 
-use umicms\project\admin\api\component\DefaultQueryAdminComponent;
-use umicms\project\admin\api\controller\CollectionComponentLayoutController;
+use umicms\project\admin\rest\component\DefaultQueryAdminComponent;
+use umicms\project\admin\rest\controller\CollectionComponentLayoutController;
 
 /**
  * Контроллер вывода настроек компонента

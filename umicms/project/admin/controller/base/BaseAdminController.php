@@ -34,7 +34,7 @@ abstract class BaseAdminController extends BaseCmsController
                     'Component for controller "{controllerClass}" should be instance of "{componentClass}".',
                     [
                         'controllerClass' => get_class($this),
-                        'componentClass' => 'umicms\project\admin\api\component\CollectionApiComponent'
+                        'componentClass' => 'umicms\project\admin\rest\component\CollectionApiComponent'
                     ]
                 )
             );

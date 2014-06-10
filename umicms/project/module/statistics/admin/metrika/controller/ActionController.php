@@ -14,8 +14,8 @@ use umi\http\Response;
 use umi\orm\persister\TObjectPersisterAware;
 use umi\spl\config\TConfigSupport;
 use umicms\exception\InvalidArgumentException;
-use umicms\project\admin\api\component\DefaultQueryAdminComponent;
-use umicms\project\admin\api\controller\DefaultRestActionController;
+use umicms\project\admin\rest\component\DefaultQueryAdminComponent;
+use umicms\project\admin\rest\controller\DefaultRestActionController;
 use umicms\project\module\statistics\admin\metrika\model\MetrikaModel;
 
 /**

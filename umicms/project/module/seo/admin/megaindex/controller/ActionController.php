@@ -11,8 +11,8 @@
 namespace umicms\project\module\seo\admin\megaindex\controller;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\project\admin\api\component\DefaultQueryAdminComponent;
-use umicms\project\admin\api\controller\DefaultRestActionController;
+use umicms\project\admin\rest\component\DefaultQueryAdminComponent;
+use umicms\project\admin\rest\controller\DefaultRestActionController;
 use umicms\project\module\seo\model\MegaindexModel;
 
 /**

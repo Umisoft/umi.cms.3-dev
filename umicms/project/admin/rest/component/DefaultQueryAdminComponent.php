@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\api\component;
+namespace umicms\project\admin\rest\component;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
@@ -30,10 +30,8 @@ class DefaultQueryAdminComponent extends AdminComponent
     public $defaultOptions = [
 
         self::OPTION_CONTROLLERS => [
-            self::LIST_CONTROLLER =>  'umicms\project\admin\api\controller\DefaultRestListController',
-            self::ITEM_CONTROLLER => 'umicms\project\admin\api\controller\DefaultRestItemController',
-            self::ACTION_CONTROLLER => 'umicms\project\admin\api\controller\DefaultRestActionController',
-            self::INTERFACE_LAYOUT_CONTROLLER => 'umicms\project\admin\api\controller\CollectionComponentLayoutController',
+            self::ACTION_CONTROLLER => 'umicms\project\admin\rest\controller\DefaultRestActionController',
+            self::INTERFACE_LAYOUT_CONTROLLER => 'umicms\project\admin\rest\controller\CollectionComponentLayoutController',
         ],
 
         self::OPTION_ACL => [
@@ -60,7 +58,7 @@ class DefaultQueryAdminComponent extends AdminComponent
                 ]
             ],
 
-            'settings' => [
+            'layout' => [
                 'type' => IRouteFactory::ROUTE_FIXED,
                 'defaults' => [
                     'controller' => self::INTERFACE_LAYOUT_CONTROLLER

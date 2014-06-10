@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\api;
+namespace umicms\project\admin\rest;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
@@ -16,9 +16,9 @@ use umicms\serialization\ISerializerFactory;
 
 return [
 
-    ApiApplication::OPTION_CLASS => 'umicms\project\admin\api\ApiApplication',
+    RestApplication::OPTION_CLASS => 'umicms\project\admin\rest\RestApplication',
 
-    ApiApplication::OPTION_SERIALIZERS => [
+    RestApplication::OPTION_SERIALIZERS => [
         ISerializerFactory::TYPE_JSON => [
             'umi\orm\collection\BaseCollection' => 'umicms\serialization\json\orm\CollectionSerializer',
             'umi\orm\metadata\Metadata' => 'umicms\serialization\json\orm\MetadataSerializer',
@@ -30,14 +30,14 @@ return [
         ]
     ],
 
-    ApiApplication::OPTION_CONTROLLERS => [
-        ApiApplication::ERROR_CONTROLLER   => 'umicms\project\admin\controller\ErrorController',
+    RestApplication::OPTION_CONTROLLERS => [
+        RestApplication::ERROR_CONTROLLER   => 'umicms\project\admin\controller\ErrorController',
 
         'settings' => __NAMESPACE__ . '\controller\ApiSettingsController',
         'action' => __NAMESPACE__ . '\controller\ApiActionController'
     ],
 
-    ApiApplication::OPTION_COMPONENTS => [
+    RestApplication::OPTION_COMPONENTS => [
 
         'blog' => '{#lazy:~/project/module/blog/admin/module.config.php}',
         'service' => '{#lazy:~/project/module/service/admin/module.config.php}',
@@ -52,11 +52,12 @@ return [
         'testmodule' => '{#lazy:~/project/module/testmodule/admin/module.config.php}'
     ],
 
-    ApiApplication::OPTION_ACL => [
+    RestApplication::OPTION_ACL => [
 
         IAclFactory::OPTION_ROLES => [
 
-            'administrator' => [],
+            'viewer' => [],
+            'administrator' => ['viewer'],
 
             'blogExecutor' => ['administrator'],
             'serviceExecutor' => ['administrator'],
@@ -70,11 +71,16 @@ return [
             'usersExecutor' => ['administrator'],
         ],
         IAclFactory::OPTION_RULES => [
-            'administrator' => ['controller:settings' => []]
+            'viewer' => [
+                'controller:action' => []
+            ],
+            'administrator' => [
+                'controller:settings' => []
+            ]
         ]
     ],
 
-    ApiApplication::OPTION_ROUTES => [
+    RestApplication::OPTION_ROUTES => [
 
         'action' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,

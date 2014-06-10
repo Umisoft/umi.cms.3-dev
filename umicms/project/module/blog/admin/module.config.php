@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\blog\admin;
 
-use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\admin\component\AdminComponent;
 

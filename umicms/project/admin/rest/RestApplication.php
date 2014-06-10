@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\api;
+namespace umicms\project\admin\rest;
 
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
@@ -31,7 +31,7 @@ use umicms\serialization\TSerializationAware;
 /**
  * REST-часть приложения административной панели.
  */
-class ApiApplication extends AdminComponent implements ISerializationAware, IToolkitAware, ISessionAware
+class RestApplication extends AdminComponent implements ISerializationAware, IToolkitAware, ISessionAware
 {
     use TSerializationAware;
     use TToolkitAware;

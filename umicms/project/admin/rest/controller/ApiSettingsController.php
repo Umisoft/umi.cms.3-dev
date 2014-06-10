@@ -8,13 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\api\controller;
+namespace umicms\project\admin\rest\controller;
 
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
 use umicms\hmvc\controller\BaseCmsController;
 use umicms\orm\collection\ICmsCollection;
-use umicms\project\admin\api\ApiApplication;
+use umicms\project\admin\rest\RestApplication;
 use umicms\project\admin\component\AdminComponent;
 
 /**
@@ -45,7 +45,7 @@ class ApiSettingsController extends BaseCmsController implements ICollectionMana
     protected function getModulesInfo()
     {
         /**
-         * @var ApiApplication $application
+         * @var RestApplication $application
          */
         $application = $this->getComponent();
         $applicationInfo = $this->getComponentInfo($application);

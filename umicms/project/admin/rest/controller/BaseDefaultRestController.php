@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\api\controller;
+namespace umicms\project\admin\rest\controller;
 
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
@@ -24,7 +24,7 @@ use umicms\exception\UnexpectedValueException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\ICmsObject;
-use umicms\project\admin\api\component\CollectionApiComponent;
+use umicms\project\admin\rest\component\CollectionApiComponent;
 use umicms\project\admin\controller\base\BaseAdminController;
 
 /**
@@ -49,7 +49,7 @@ abstract class BaseDefaultRestController extends BaseAdminController implements 
                     'Component for controller "{controllerClass}" should be instance of "{componentClass}".',
                     [
                         'controllerClass' => get_class($this),
-                        'componentClass' => 'umicms\project\admin\api\component\CollectionApiComponent'
+                        'componentClass' => 'umicms\project\admin\rest\component\CollectionApiComponent'
                     ]
                 )
             );

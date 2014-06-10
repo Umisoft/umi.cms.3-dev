@@ -13,8 +13,8 @@ use umicms\orm\object\TCmsObject;
 
 /**
  * Класс описывающий пункт меню на сторонний ресурс.
- *
- * @property string $urlResource ссылка на сторонний ресурс
+
+ * @property string $resourceUrl ссылка на сторонний ресурс
  */
 class MenuExternalItem extends MenuItem
 {
@@ -23,14 +23,14 @@ class MenuExternalItem extends MenuItem
      */
     const TYPE = 'externalItem';
     /**
+     * Имя поля для хранения ссылки на сторонний ресурс
+     */
+    const FIELD_RESOURCE_URL = 'resourceUrl';
+    /**
      * Тип объекта
      * @var string $itemType
      */
     protected $itemType = 'externalItem';
-    /**
-     * Имя поля для хранения ссылки на сторонний ресурс
-     */
-    const FIELD_URL_RESOURCE = 'urlResource';
 
     /**
      * Возвращает ссылку на сторонний ресурс.
@@ -38,7 +38,7 @@ class MenuExternalItem extends MenuItem
      */
     public function getItemUrl()
     {
-        return $this->urlResource;
+        return $this->resourceUrl;
     }
 }
  

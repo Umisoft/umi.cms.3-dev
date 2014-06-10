@@ -10,7 +10,7 @@
 
 namespace umicms\project\module\news\admin\rss\controller;
 
-use umicms\project\admin\api\controller\BaseAdminComponentLayoutController;
+use umicms\project\admin\rest\controller\BaseAdminComponentLayoutController;
 use umicms\project\admin\layout\AdminComponentLayout;
 use umicms\project\admin\layout\CollectionComponentLayout;
 

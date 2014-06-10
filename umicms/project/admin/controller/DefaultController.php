@@ -12,7 +12,7 @@ namespace umicms\project\admin\controller;
 
 use umi\http\Response;
 use umicms\hmvc\controller\BaseCmsController;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\rest\RestApplication;
 use umicms\project\module\users\api\UsersModule;
 
 /**
@@ -48,9 +48,9 @@ class DefaultController extends BaseCmsController
     public function __invoke()
     {
         /**
-         * @var AdminComponent $apiComponent
+         * @var RestApplication $restApplication
          */
-        $apiComponent = $this->getComponent()->getChildComponent('api');
+        $restApplication = $this->getComponent()->getChildComponent('rest');
 
         $response = $this->createViewResponse('layout', [
             'contents' => $this->response->getContent(),
@@ -58,7 +58,7 @@ class DefaultController extends BaseCmsController
             'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
             'baseSettingsUrl' => $this->getUrlManager()->getBaseSettingsUrl(),
             'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
-            'authUrl' => $this->getUrlManager()->getAdminComponentActionResourceUrl($apiComponent, 'auth')
+            'authUrl' => $this->getUrlManager()->getAdminComponentActionResourceUrl($restApplication, 'auth')
         ]);
 
         $response->setStatusCode($this->response->getStatusCode());

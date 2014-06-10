@@ -143,7 +143,7 @@ return [
             'type' => IField::TYPE_OBJECT_RELATION,
             'columnName' => 'page_relation'
         ],
-        MenuExternalItem::FIELD_URL_RESOURCE => [
+        MenuExternalItem::FIELD_RESOURCE_URL => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'url_resource'
         ]
@@ -183,7 +183,6 @@ return [
                 Menu::FIELD_PARENT,
                 Menu::FIELD_NAME,
                 Menu::FIELD_DISPLAY_NAME,
-                Menu::FIELD_PARENT,
                 Menu::FIELD_MPATH,
                 Menu::FIELD_SLUG,
                 Menu::FIELD_URI,
@@ -207,7 +206,6 @@ return [
                 MenuInternalItem::FIELD_ACTIVE,
                 MenuInternalItem::FIELD_PARENT,
                 MenuInternalItem::FIELD_DISPLAY_NAME,
-                MenuInternalItem::FIELD_PARENT,
                 MenuInternalItem::FIELD_MPATH,
                 MenuInternalItem::FIELD_SLUG,
                 MenuInternalItem::FIELD_URI,
@@ -232,7 +230,6 @@ return [
                 MenuExternalItem::FIELD_ACTIVE,
                 MenuExternalItem::FIELD_PARENT,
                 MenuExternalItem::FIELD_DISPLAY_NAME,
-                MenuExternalItem::FIELD_PARENT,
                 MenuExternalItem::FIELD_MPATH,
                 MenuExternalItem::FIELD_SLUG,
                 MenuExternalItem::FIELD_URI,
@@ -244,7 +241,7 @@ return [
                 MenuExternalItem::FIELD_CHILDREN,
                 MenuExternalItem::FIELD_OWNER,
                 MenuExternalItem::FIELD_EDITOR,
-                MenuExternalItem::FIELD_URL_RESOURCE
+                MenuExternalItem::FIELD_RESOURCE_URL
             ]
         ],
 

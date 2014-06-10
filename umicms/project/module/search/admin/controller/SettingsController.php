@@ -10,7 +10,7 @@
 
 namespace umicms\project\module\search\admin\controller;
 
-use umicms\project\admin\api\controller\CollectionComponentLayoutController;
+use umicms\project\admin\rest\controller\CollectionComponentLayoutController;
 
 /**
  * Контроллер вывода настроек компонента

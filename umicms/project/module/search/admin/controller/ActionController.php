@@ -11,7 +11,7 @@
 namespace umicms\project\module\search\admin\controller;
 
 use umi\http\Response;
-use umicms\project\admin\api\controller\DefaultRestActionController;
+use umicms\project\admin\rest\controller\DefaultRestActionController;
 use umicms\project\module\search\api\SearchApi;
 
 /**

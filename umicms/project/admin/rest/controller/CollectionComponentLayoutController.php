@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\api\controller;
+namespace umicms\project\admin\rest\controller;
 
 use umicms\project\admin\layout\CollectionComponentLayout;
 

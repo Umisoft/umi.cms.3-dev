@@ -38,14 +38,6 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
      * Контроллер для получения настроек интерфейса компонента
      */
     const INTERFACE_LAYOUT_CONTROLLER = 'interfaceLayout';
-    /**
-     * Контроллер для выполнения RUD-операций над объектом
-     */
-    const ITEM_CONTROLLER = 'item';
-    /**
-     * Контроллер для выполнения CRUD-операций над списком объектов
-     */
-    const LIST_CONTROLLER = 'list';
 
     /**
      * Возвращает информацию о компоненте.

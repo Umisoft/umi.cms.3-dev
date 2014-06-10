@@ -206,8 +206,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $visitors->roles = [
             'project' => ['siteExecutor', 'adminExecutor'],
-
-            'project.admin' => ['apiExecutor'],
+            'project.admin' => ['viewer', 'restExecutor'],
+            'project.admin.rest' => ['viewer'],
 
             'project.site' => [
                 'usersExecutor',
@@ -364,19 +364,19 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Администраторы')
             ->setValue('displayName', 'Administrator', 'en-US');
         $administrators->roles = [
-            'project.admin.api' => ['newsExecutor', 'structureExecutor', 'usersExecutor'],
+            'project.admin.rest' => ['newsExecutor', 'structureExecutor', 'usersExecutor'],
 
-            'project.admin.api.news' => ['rubricExecutor', 'itemExecutor', 'subjectExecutor'],
-            'project.admin.api.news.item' => ['editor'],
-            'project.admin.api.news.rubric' => ['editor'],
-            'project.admin.api.news.subject' => ['editor'],
+            'project.admin.rest.news' => ['rubricExecutor', 'itemExecutor', 'subjectExecutor'],
+            'project.admin.rest.news.item' => ['editor'],
+            'project.admin.rest.news.rubric' => ['editor'],
+            'project.admin.rest.news.subject' => ['editor'],
 
-            'project.admin.api.structure' => ['pageExecutor', 'layoutExecutor'],
-            'project.admin.api.structure.page' => ['editor'],
-            'project.admin.api.structure.layout' => ['editor'],
+            'project.admin.rest.structure' => ['pageExecutor', 'layoutExecutor'],
+            'project.admin.rest.structure.page' => ['editor'],
+            'project.admin.rest.structure.layout' => ['editor'],
 
-            'project.admin.api.users' => ['userExecutor'],
-            'project.admin.api.users.user' => ['editor'],
+            'project.admin.rest.users' => ['userExecutor'],
+            'project.admin.rest.users.user' => ['editor'],
         ];
 
         /**
@@ -1175,7 +1175,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $menuCollection->add('bottomMenu-3', MenuExternalItem::TYPE, $bottomMenu)
             ->setValue(MenuExternalItem::FIELD_DISPLAY_NAME, 'Внешняя ссылка')
-            ->setValue(MenuExternalItem::FIELD_URL_RESOURCE, 'http://ya.ru/');
+            ->setValue(MenuExternalItem::FIELD_RESOURCE_URL, 'http://ya.ru/');
 
     }
 

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\api\controller;
+namespace umicms\project\admin\rest\controller;
 
 use Symfony\Component\HttpFoundation\Cookie;
 use umi\form\element\Select;
@@ -28,7 +28,7 @@ use umicms\hmvc\controller\BaseCmsController;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\i18n\CmsLocalesService;
 use umicms\project\admin\AdminApplication;
-use umicms\project\admin\api\ApiApplication;
+use umicms\project\admin\rest\RestApplication;
 use umicms\project\module\users\api\UsersModule;
 use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\Utils;
@@ -221,7 +221,7 @@ class ApiActionController extends BaseCmsController implements ILocalesAware, IS
         }
 
         /**
-         * @var ApiApplication $component
+         * @var RestApplication $component
          */
         $component = $this->getComponent();
 

@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\api\component;
+namespace umicms\project\admin\rest\component;
 
 use umi\acl\IAclFactory;
 use umi\orm\collection\ICollectionManagerAware;
@@ -29,6 +29,14 @@ class CollectionApiComponent extends AdminComponent implements ICollectionCompon
 {
     use TCollectionManagerAware;
 
+    /**
+     * Контроллер для выполнения RUD-операций над объектом
+     */
+    const ITEM_CONTROLLER = 'item';
+    /**
+     * Контроллер для выполнения CRUD-операций над списком объектов
+     */
+    const LIST_CONTROLLER = 'list';
     /**
      * Действие для получения формы редактирования
      */
@@ -76,10 +84,10 @@ class CollectionApiComponent extends AdminComponent implements ICollectionCompon
     public $defaultOptions = [
 
         self::OPTION_CONTROLLERS => [
-            self::LIST_CONTROLLER     => 'umicms\project\admin\api\controller\DefaultRestListController',
-            self::ITEM_CONTROLLER     => 'umicms\project\admin\api\controller\DefaultRestItemController',
-            self::ACTION_CONTROLLER   => 'umicms\project\admin\api\controller\DefaultRestActionController',
-            self::INTERFACE_LAYOUT_CONTROLLER => 'umicms\project\admin\api\controller\CollectionComponentLayoutController',
+            self::LIST_CONTROLLER     => 'umicms\project\admin\rest\controller\DefaultRestListController',
+            self::ITEM_CONTROLLER     => 'umicms\project\admin\rest\controller\DefaultRestItemController',
+            self::ACTION_CONTROLLER   => 'umicms\project\admin\rest\controller\DefaultRestActionController',
+            self::INTERFACE_LAYOUT_CONTROLLER => 'umicms\project\admin\rest\controller\CollectionComponentLayoutController',
         ],
         self::OPTION_ACL         => [
 

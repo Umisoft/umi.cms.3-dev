@@ -10,7 +10,7 @@
 
 namespace umicms\project\module\blog\admin\rss\controller;
 
-use umicms\project\admin\api\controller\DefaultRestActionController;
+use umicms\project\admin\rest\controller\DefaultRestActionController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogRssImportScenario;
 

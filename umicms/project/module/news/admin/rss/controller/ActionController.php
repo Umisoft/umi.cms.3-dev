@@ -11,7 +11,7 @@
 namespace umicms\project\module\news\admin\rss\controller;
 
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\project\admin\api\controller\DefaultRestActionController;
+use umicms\project\admin\rest\controller\DefaultRestActionController;
 use umicms\project\module\news\api\NewsModule;
 use umicms\project\module\news\api\object\NewsRssImportScenario;
 
