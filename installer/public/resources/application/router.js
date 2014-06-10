@@ -338,6 +338,8 @@ define([], function(){
                  * @returns {*|Promise}
                  */
                 "delete": function(object){
+                    var self = this;
+                    var isActiveContext = this.modelFor('context') === object;
                     var data = {
                         'close': false,
                         'title': 'Удаление "' + object.get('displayName') + '".',
@@ -350,6 +352,9 @@ define([], function(){
                             return object.destroyRecord().then(function(){
                                 var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" успешно удалено.'};
                                 UMI.notification.create(settings);
+                                if(isActiveContext){
+                                    self.send('backToFilter');
+                                }
                             }, function(){
                                 var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" не удалось удалить.'};
                                 UMI.notification.create(settings);
