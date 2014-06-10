@@ -10,6 +10,7 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\blog\api\object\BlogAuthor;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -21,7 +22,8 @@ return [
     'forms' => [
         'base' => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/author/form/base.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/author/form/base.create.config.php}'
+            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/author/form/base.create.config.php}',
+            BlogAuthor::FORM_EDIT_PROFILE => '{#lazy:~/project/module/blog/site/author/form/base.editAuthor.config.php}'
         ]
     ],
     'dictionaries' => [

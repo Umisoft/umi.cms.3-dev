@@ -31,6 +31,10 @@ class BlogAuthor extends CmsObject implements ICmsPage
     use TCmsPage;
 
     /**
+     * Имя поля для хранения необработанного контента
+     */
+    const FIELD_PAGE_CONTENTS_RAW = 'contentsRaw';
+    /**
      * Имя поля для хранения профиля автора
      */
     const FIELD_PROFILE = 'profile';
@@ -50,5 +54,26 @@ class BlogAuthor extends CmsObject implements ICmsPage
      * Имя поля для хранения постов автора
      */
     const FIELD_POSTS = 'posts';
+    /**
+     * Форма редактирования профиля автора
+     */
+    const FORM_EDIT_PROFILE = 'editProfile';
+
+    /**
+     * Метод мутатор для контентного поля.
+     * @param string $contents контент профиля автора
+     * @param string $locale локаль
+     * @return $this
+     */
+    public function setContents($contents, $locale)
+    {
+        $this->getProperty(self::FIELD_PAGE_CONTENTS, $locale)
+            ->setValue($contents);
+
+        $this->getProperty(self::FIELD_PAGE_CONTENTS_RAW, $locale)
+            ->setValue($contents);
+
+        return $this;
+    }
 }
  

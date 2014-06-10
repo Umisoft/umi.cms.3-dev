@@ -20,30 +20,39 @@ return [
     DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogAuthor',
     DefaultSitePageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\BlogAuthorRssController',
+        'edit' => __NAMESPACE__ . '\controller\ProfileEditController',
     ],
     DefaultSitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogAuthorWidget',
         'list' => __NAMESPACE__ . '\widget\BlogAuthorListWidget',
+        'editProfileLink' => __NAMESPACE__ . '\widget\EditLinkWidget',
         'postList' => __NAMESPACE__ . '\widget\BlogAuthorPostListWidget',
         'rssLink' => __NAMESPACE__ . '\widget\BlogAuthorListRssLinkWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
+            'author' => [],
             'viewer' => [],
             'rssViewer' => [],
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:rss',
+            'controller:edit',
             'widget:view',
             'widget:list',
             'widget:postList',
             'widget:rssLink',
+            'widget:editProfileLink',
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'widget:view' => [],
                 'widget:list' => [],
                 'widget:postList' => [],
+            ],
+            'author' => [
+                'controller:edit' => [],
+                'widget:editProfileLink' => []
             ],
             'rssViewer' => [
                 'controller:rss' => [],
@@ -60,6 +69,13 @@ return [
             'route' => '/rss/{slug}',
             'defaults' => [
                 'controller' => 'rss'
+            ]
+        ],
+        'edit' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'route' => '/edit',
+            'defaults' => [
+                'controller' => 'edit'
             ]
         ]
     ]
