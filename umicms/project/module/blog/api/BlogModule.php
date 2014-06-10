@@ -35,6 +35,7 @@ use umicms\project\module\blog\api\object\BlogComment;
 use umicms\project\module\blog\api\object\BlogPost;
 use umicms\project\module\blog\api\object\BlogRssImportScenario;
 use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\users\api\object\BaseUser;
 use umicms\project\module\users\api\UsersModule;
 
 /**
@@ -288,7 +289,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             $parentComment = $this->getBranchComment($post);
         }
 
-        return $this->comment()->add(null, $typeName, $parentComment);
+        $comment = $this->comment()->add(null, $typeName, $parentComment);
+        if ($this->hasCurrentAuthor()) {
+            $comment->author = $post->author = $this->getCurrentAuthor();
+        }
+
+        return $comment;
     }
 
     /**
@@ -413,29 +419,18 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает текущего автора блога.
-     * @throws RuntimeException в случае, если текущий автор не установлен
+     * Возвращает текущего автора блога, если автора не существует - создаёт нового.
      * @return BlogAuthor
      */
     public function getCurrentAuthor()
     {
-        if ($this->currentAuthor) {
+        if ($this->currentAuthor instanceof BlogAuthor) {
             return $this->currentAuthor;
         }
 
-        $this->currentAuthor = $this->author()->select()
-            ->where(BlogAuthor::FIELD_PROFILE)->equals($this->usersModule->getCurrentUser())
-            ->getResult()
-            ->fetch();
-
-        if (!$this->currentAuthor instanceof BlogAuthor) {
-            throw new RuntimeException(
-                $this->translate(
-                    'Current author should be instance of "{class}".',
-                    [
-                        'class' => BlogAuthor::className()
-                    ]
-                )
+        if (!$this->hasCurrentAuthor()) {
+            $this->currentAuthor = $this->createAuthor(
+                $this->usersModule->getCurrentUser()
             );
         }
 
@@ -448,12 +443,34 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     public function hasCurrentAuthor()
     {
-        try {
-            $this->getCurrentAuthor();
-        } catch (RuntimeException $e) {
-            return false;
+        if ($this->currentAuthor instanceof BlogAuthor) {
+            return true;
         }
-        return true;
+
+        $this->currentAuthor = $this->author()->select()
+            ->where(BlogAuthor::FIELD_PROFILE)->equals($this->usersModule->getCurrentUser())
+            ->getResult()
+            ->fetch();
+
+        if ($this->currentAuthor instanceof BlogAuthor) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Создаёт автора на основе юзера.
+     * @param BaseUser $user
+     * @return BlogAuthor
+     */
+    public function createAuthor(BaseUser $user)
+    {
+        return $this->author()->add(IObjectType::BASE)
+            // todo: заменить генерацию слага.
+            ->setValue(BlogAuthor::FIELD_PAGE_SLUG, $user->displayName)
+            ->setValue(BlogAuthor::FIELD_DISPLAY_NAME, $user->displayName)
+            ->setValue(BlogAuthor::FIELD_PROFILE, $user);
     }
 
     /**

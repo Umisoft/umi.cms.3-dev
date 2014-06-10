@@ -11,7 +11,6 @@
 namespace umicms\project\module\blog\site\post\controller;
 
 use umi\form\IForm;
-use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
@@ -84,15 +83,8 @@ class PostAddController extends BaseAccessRestrictedController implements IObjec
             );
         }
 
-        $this->blogPost = $this->api->post()->add();
+        $this->blogPost = $this->api->addPost();
         $this->blogPost->category = $blogCategory;
-
-        if (!$this->isAllowed($this->blogPost)) {
-            throw new ResourceAccessForbiddenException(
-                $this->blogPost,
-                $this->translate('Access denied')
-            );
-        }
 
         return $this->api->post()->getForm(
             BlogPost::FORM_ADD_POST,
