@@ -56,7 +56,7 @@ class CollectionControl extends AdminControl
         $this->configureCreateChoiceList($choices);
 
         if ($this->collection instanceof IActiveAccessibleCollection) {
-            $choices->addChoice('switchActivity', $this->createActionChoice('switchActivity'));
+            $choices->addChoice('switchActivity', $this->createSwitchActivityButton(true));
         }
 
         if ($this->collection instanceof ICmsPageCollection) {

@@ -29,8 +29,10 @@ class CreateObjectControl extends CollectionControl
         $behaviour->addChoice('addAndGoBack', $this->createActionChoice('addAndGoBack'));
         $behaviour->addChoice('addAndCreate', $this->createActionChoice('addAndCreate'));
 
-        $saveButton = new SplitButton($this->component->translate('button:add'), $behaviour);
-        $this->addSubmitButton('add', $saveButton);
+        $addButton = new SplitButton($this->component->translate('button:add'), $behaviour);
+        $addButton->attributes['hasIcon'] = false;
+
+        $this->addSubmitButton('add', $addButton);
 
         return $this;
     }

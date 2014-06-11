@@ -192,6 +192,25 @@ class AdminControl
     }
 
     /**
+     * Создает кнопку для смены активности.
+     * @param bool $isChoice если true, создает вариант выбора Choice
+     * @return Button|Choice
+     */
+    public function createSwitchActivityButton($isChoice = false) {
+        $button = $isChoice ? $this->createActionChoice('switchActivity') : $this->createActionButton('switchActivity');
+
+        $button
+            ->addState('activate', [
+                'label' => $this->component->translate('action:switchActivity:activate')
+              ])
+            ->addState('deactivate', [
+                'label' => $this->component->translate('action:switchActivity:deactivate')
+        ]);
+
+        return $button;
+    }
+
+    /**
      * Создает выпадающую кнопку для вызова действия.
      * @param string $actionName
      * @param array $params параметры обработчика
