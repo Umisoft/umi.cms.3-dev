@@ -78,7 +78,7 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     {
         $this->mail(
             [$user->email => $user->displayName],
-            $this->api->user()->getMailSender(),
+            $this->api->getMailSender(),
             'mail/newPasswordSubject',
             'mail/newPasswordBody',
             [

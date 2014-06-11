@@ -11,10 +11,12 @@
 return [
 
     'en-US' => [
+        'component:settings:displayName' => 'Settings',
         'control:settings:toolbar:apply' => 'Apply'
     ],
 
     'ru-RU' => [
+        'component:settings:displayName' => 'Настройки',
         'control:settings:toolbar:apply' => 'Применить'
     ]
 

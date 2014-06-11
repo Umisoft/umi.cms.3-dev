@@ -141,15 +141,6 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function getBaseSettingsUrl()
-    {
-        //TODO вынести куда-нибудь в настройки, название настроечного модуля
-        return $this->getBaseRestUrl() . '/settings';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getBaseAdminUrl()
     {
         return $this->urlPrefix . $this->adminUrlPrefix;

@@ -275,7 +275,6 @@ class AdminComponentLayout
 
     /**
      * Конфигурирует контролы контентной области для пустого контекста.
-     * @return $this
      */
     protected function configureEmptyContextControls()
     {
@@ -284,7 +283,6 @@ class AdminComponentLayout
 
     /**
      * Конфигурирует контролы контентной области для выбранного контекста.
-     * @return $this
      */
     protected function configureSelectedContextControls()
     {
@@ -292,8 +290,7 @@ class AdminComponentLayout
     }
 
     /**
-     * Конфигурирует Sidebar компонента в зависимости от коллекции компонента.
-     * @return $this
+     * Конфигурирует Sidebar компонента.
      */
     protected function configureSideBar()
     {

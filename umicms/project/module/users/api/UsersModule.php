@@ -21,6 +21,7 @@ use umicms\project\module\users\api\object\AuthorizedUser;
 use umicms\project\module\users\api\object\Guest;
 use umicms\project\module\users\api\object\Supervisor;
 use umicms\project\module\users\api\object\UserGroup;
+use umicms\Utils;
 
 /**
  * Модуль для работы с пользователями.
@@ -28,6 +29,15 @@ use umicms\project\module\users\api\object\UserGroup;
 class UsersModule extends BaseModule implements IAuthenticationAware
 {
     use TAuthenticationAware;
+
+    /**
+     * Настройка отправителя писем
+     */
+    const SETTING_MAIL_SENDER = 'mailFromEmail';
+    /**
+     * Настройка получателей уведомлений
+     */
+    const SETTING_MAIL_NOTIFICATION_RECIPIENTS = 'registeredUserNotificationEmails';
 
     /**
      * @var string $guestGuid GUID гостя
@@ -227,4 +237,23 @@ class UsersModule extends BaseModule implements IAuthenticationAware
     {
         return $this->user()->get($this->supervisorGuid);
     }
+
+    /**
+     * Возвращает отправителя электронных писем.
+     * @return array
+     */
+    public function getMailSender()
+    {
+        return Utils::parseEmailList($this->getSetting(self::SETTING_MAIL_SENDER));
+    }
+
+    /**
+     * Возвращает получателей уведомлений.
+     * @return array
+     */
+    public function getNotificationRecipients()
+    {
+        return Utils::parseEmailList($this->getSetting(self::SETTING_MAIL_NOTIFICATION_RECIPIENTS));
+    }
+
 }

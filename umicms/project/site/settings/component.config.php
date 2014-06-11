@@ -8,16 +8,16 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\settings\admin\component\DefaultSettingsComponent;
+use umicms\project\admin\rest\component\SettingsGroupComponent;
 
 return [
 
-    DefaultSettingsComponent::OPTION_CLASS => 'umicms\project\module\settings\admin\component\DefaultSettingsComponent',
+    SettingsGroupComponent::OPTION_CLASS => 'umicms\project\admin\rest\component\SettingsGroupComponent',
 
-    DefaultSettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/site/site.settings.config.php',
-
-    DefaultSettingsComponent::OPTION_FORMS => [
-        'settings' => '{#lazy:~/project/site/settings/form/settings.php}'
-    ],
+    SettingsGroupComponent::OPTION_COMPONENTS => [
+        'common' => '{#lazy:~/project/site/settings/common/component.config.php}',
+        'seo' => '{#lazy:~/project/site/settings/seo/component.config.php}',
+        'templating' => '{#lazy:~/project/site/settings/templating/component.config.php}'
+    ]
 
 ];

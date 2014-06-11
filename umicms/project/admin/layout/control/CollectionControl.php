@@ -46,8 +46,7 @@ class CollectionControl extends AdminControl
     }
 
     /**
-     * Конфигурирует контекстное меню.
-     * @return $this
+     * {@inheritdoc}
      */
     protected function configureContextMenu()
     {
@@ -65,8 +64,6 @@ class CollectionControl extends AdminControl
         $dropdownButton = new SplitButton('', $choices);
 
         $this->addContextButton('contextMenu', $dropdownButton);
-
-        return $this;
     }
 
     /**

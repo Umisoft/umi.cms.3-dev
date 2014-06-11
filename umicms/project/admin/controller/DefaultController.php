@@ -56,7 +56,6 @@ class DefaultController extends BaseCmsController
             'contents' => $this->response->getContent(),
             'baseUrl' => $this->getUrlManager()->getBaseAdminUrl(),
             'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
-            'baseSettingsUrl' => $this->getUrlManager()->getBaseSettingsUrl(),
             'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
             'authUrl' => $this->getUrlManager()->getAdminComponentActionResourceUrl($restApplication, 'auth')
         ]);

@@ -121,7 +121,7 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     {
         $this->mail(
             [$this->user->email => $this->user->displayName],
-            $this->api->user()->getMailSender(),
+            $this->api->getMailSender(),
             'mail/activationMailSubject',
             'mail/activationMailBody',
             [
@@ -138,7 +138,7 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     {
         $this->mail(
             [$this->user->email => $this->user->displayName],
-            $this->api->user()->getMailSender(),
+            $this->api->getMailSender(),
             'mail/successfulRegistrationMailSubject',
             'mail/successfulRegistrationMailBody',
             [
@@ -152,13 +152,13 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
      */
     protected function sendAdminNotification()
     {
-        $admins = $this->api->user()->getRegisteredUserNotificationRecipients();
+        $admins = $this->api->getNotificationRecipients();
 
         if (count($admins)) {
 
             $this->mail(
                 [$this->user->email => $this->user->displayName],
-                $this->api->user()->getMailSender(),
+                $this->api->getMailSender(),
                 'mail/adminNotificationMailSubject',
                 'mail/adminNotificationMailBody',
                 [

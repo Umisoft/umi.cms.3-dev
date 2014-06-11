@@ -20,7 +20,6 @@ class CreateObjectControl extends CollectionControl
 {
     /**
      * Конфигурирует Submit-кнопки.
-     * @return $this
      */
     protected function configureSubmitToolbar()
     {
@@ -32,7 +31,6 @@ class CreateObjectControl extends CollectionControl
         $saveButton = new SplitButton($this->component->translate('button:add'), $behaviour);
         $this->addSubmitButton('add', $saveButton);
 
-        return $this;
     }
 }
  

@@ -56,27 +56,12 @@ return [
     RestApplication::OPTION_ACL => [
 
         IAclFactory::OPTION_ROLES => [
-
             'viewer' => [],
-            'administrator' => ['viewer'],
-
-            'blogExecutor' => ['administrator'],
-            'serviceExecutor' => ['administrator'],
-            'filesExecutor' => ['administrator'],
-            'modelsExecutor' => ['administrator'],
-            'newsExecutor' => ['administrator'],
-            'seoExecutor' => ['administrator'],
-            'searchExecutor' => ['administrator'],
-            'statisticsExecutor' => ['administrator'],
-            'structureExecutor' => ['administrator'],
-            'usersExecutor' => ['administrator'],
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
-                'controller:action' => []
-            ],
-            'administrator' => [
-                'controller:settings' => []
+                'controller:action' => [],
+                'controller:error' => []
             ]
         ]
     ],

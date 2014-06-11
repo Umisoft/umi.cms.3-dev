@@ -11,7 +11,7 @@
 namespace umicms\project\admin\layout\control;
 
 /**
- * Административный контрол "Дерево для упарвления иерархической коллекцией"
+ * Административный контрол "Дерево для управления иерархической коллекцией"
  */
 class TreeControl extends CollectionControl
 {

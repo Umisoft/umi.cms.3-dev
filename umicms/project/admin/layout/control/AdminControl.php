@@ -217,7 +217,6 @@ class AdminControl
 
     /**
      * Конфигурирует параметры контрола.
-     * @return $this
      */
     protected function configureParams()
     {
@@ -226,7 +225,6 @@ class AdminControl
 
     /**
      * Конфигурирует контекстное меню.
-     * @return $this
      */
     protected function configureContextMenu()
     {
@@ -235,7 +233,6 @@ class AdminControl
 
     /**
      * Конфигурирует toolbar.
-     * @return $this
      */
     protected function configureToolbar()
     {
@@ -244,7 +241,6 @@ class AdminControl
 
     /**
      * Конфигурирует Submit-кнопки.
-     * @return $this
      */
     protected function configureSubmitToolbar()
     {

@@ -98,8 +98,6 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
             }
         }
 
-
-
         throw new HttpNotFound('Action not found.');
     }
 
@@ -175,7 +173,7 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
             'user' => $user,
             'token' => $this->getCsrfToken(),
             'locale' => $this->getCurrentLocale(),
-            'isSettingsAllowed' => $this->isSettingsAllowed()
+            'isSettingsAllowed' => false //TODO убрать это вообще
         ];
     }
 
@@ -257,22 +255,6 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
     protected function getSessionNamespacePath()
     {
         return 'umicms';
-    }
-
-    /**
-     * Проверяет, имеет ли пользователь доступ к настройкам
-     * @return bool
-     */
-    private function isSettingsAllowed()
-    {
-        if ($this->api->isAuthenticated()) {
-            $settings = $this->getComponent()->getChildComponent('settings');
-            if ($this->api->getCurrentUser()->isAllowed($settings, 'controller:settings')) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     /**

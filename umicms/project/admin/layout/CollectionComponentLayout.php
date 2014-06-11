@@ -60,8 +60,6 @@ class CollectionComponentLayout extends AdminComponentLayout
             $tree = new TreeControl($this->component);
             $this->addSideBarControl('tree', $tree);
         }
-
-        return $this;
     }
 
     /**

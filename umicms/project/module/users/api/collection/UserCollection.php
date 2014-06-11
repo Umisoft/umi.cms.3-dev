@@ -67,16 +67,6 @@ class UserCollection extends SimpleCollection
     const SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS = 'registeredUsersDefaultGroupGuids';
 
     /**
-     * Настройка отправителя писем
-     */
-    const SETTING_MAIL_SENDER = 'mailFromEmail';
-    /**
-     * Настройка получателей уведомлений
-     */
-    const SETTING_MAIL_NOTIFICATION_RECIPIENTS = 'registeredUserNotificationEmails';
-
-
-    /**
      * {@inheritdoc}
      */
     public function deactivate(IActiveAccessibleObject $object)
@@ -186,24 +176,6 @@ class UserCollection extends SimpleCollection
             ->getResult();
 
         return !count($users);
-    }
-
-    /**
-     * Возвращает отправителя электронных писем.
-     * @return array
-     */
-    public function getMailSender()
-    {
-        return Utils::parseEmailList($this->getSetting(self::SETTING_MAIL_SENDER));
-    }
-
-    /**
-     * Возвращает получателей уведомлений.
-     * @return array
-     */
-    public function getRegisteredUserNotificationRecipients()
-    {
-        return Utils::parseEmailList($this->getSetting(self::SETTING_MAIL_NOTIFICATION_RECIPIENTS));
     }
 
     /**

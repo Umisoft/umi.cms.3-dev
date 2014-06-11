@@ -10,6 +10,7 @@
 
 namespace umicms\project\admin\rest;
 
+use umi\acl\IAclFactory;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpForbidden;
@@ -19,6 +20,7 @@ use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
+use umicms\hmvc\controller\BaseCmsController;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\TCmsCollection;
 use umicms\orm\object\behaviour\IRecyclableObject;
@@ -178,5 +180,19 @@ class RestApplication extends AdminComponent implements ISerializationAware, ITo
     protected function getSessionNamespacePath()
     {
         return 'umicms';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getChildComponentsAclConfig()
+    {
+        $config = parent::getChildComponentsAclConfig();
+        foreach ($config[IAclFactory::OPTION_RULES] as $resources) {
+            foreach ($this->options[self::OPTION_CONTROLLERS] as $name => $class) {
+                $resources[$name . BaseCmsController::ACL_RESOURCE_PREFIX] = [];
+            }
+        }
+        return $config;
     }
 }

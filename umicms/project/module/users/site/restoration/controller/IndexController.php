@@ -105,7 +105,7 @@ class IndexController extends SitePageController
     {
         $this->mail(
             [$user->email => $user->displayName],
-            $this->api->user()->getMailSender(),
+            $this->api->getMailSender(),
             'mail/confirmationSubject',
             'mail/confirmationBody',
             [

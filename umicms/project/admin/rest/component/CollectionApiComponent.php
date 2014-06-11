@@ -99,7 +99,8 @@ class CollectionApiComponent extends AdminComponent implements ICollectionCompon
                     'controller:settings' => [],
                     'controller:action'   => [],
                     'controller:item'     => [],
-                    'controller:list'     => []
+                    'controller:list'     => [],
+                    'controller:layout'     => []
                 ],
             ]
         ],

@@ -71,12 +71,6 @@ interface IUrlManager
     public function getBaseRestUrl();
 
     /**
-     * Возвращает базовый URL для запросов связанных с настройками.
-     * @return string
-     */
-    public function getBaseSettingsUrl();
-
-    /**
      * Возвращает базовый URL для административной панели.
      * @return string
      */

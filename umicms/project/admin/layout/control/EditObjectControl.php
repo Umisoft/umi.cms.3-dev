@@ -23,8 +23,7 @@ use umicms\project\admin\layout\button\SplitButton;
 class EditObjectControl extends CollectionControl
 {
     /**
-     * Конфигурирует toolbar.
-     * @return $this
+     * {@inheritdoc}
      */
     protected function configureToolbar()
     {
@@ -50,13 +49,10 @@ class EditObjectControl extends CollectionControl
         if ($this->collection instanceof IRecoverableCollection && $this->collection->isBackupEnabled()) {
             $this->addToolbarButton('backupList', $this->createActionDropdownButton('backupList'));
         }
-
-        return $this;
     }
 
     /**
-     * Конфигурирует Submit-кнопки.
-     * @return $this
+     * {@inheritdoc}
      */
     protected function configureSubmitToolbar()
     {
@@ -68,8 +64,6 @@ class EditObjectControl extends CollectionControl
 
         $saveButton = new SplitButton($this->component->translate('button:save'), $behaviour);
         $this->addSubmitButton('save', $saveButton);
-
-        return $this;
     }
 
 }
