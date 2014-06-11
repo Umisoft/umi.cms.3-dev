@@ -11,11 +11,15 @@
 return [
 
     'en-US' => [
-        'component:rubric:displayName' => 'Rubrics'
+        'component:rubric:displayName' => 'Rubrics',
+
+        'action:create:base' => 'Create subrubric'
     ],
 
     'ru-RU' => [
-        'component:rubric:displayName' => 'Новостные рубрики'
+        'component:rubric:displayName' => 'Новостные рубрики',
+
+        'action:create:base' => 'Добавить подрубрику'
     ]
 
 ];

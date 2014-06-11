@@ -2,17 +2,17 @@
     <i {{bind-attr class=":icon view.defaultBehaviourIcon"}}></i>
 {{/if}}
 
-{{#if view.defaultBehaviour.attributes.label}}
-    <b class="button-label">{{view.defaultBehaviour.attributes.label}}</b>
+{{#if view.label}}
+    <b class="button-label">{{view.label}}</b>
 {{/if}}
 
-<span {{action 'open' target="view"}}></span>
+<span class="dropdown-toggler" {{action 'open' target="view"}}></span>
 
 <ul class="f-dropdown">
     {{#each view.meta.behaviour.choices}}
         {{#view view.itemView}}
-            <i {{bind-attr class=":icon :icon-accept view.isDefaultBehaviour::white"}} {{action 'toggleDefaultBehaviour' view._parentView.contentIndex target="view.parentView"}}></i>
-            <a {{action 'sendActionForBehaviour' behaviour target="view.parentView"}}>
+            <i {{bind-attr class=":icon :icon-accept view.isDefaultBehaviour::white"}} {{action 'toggleDefaultBehaviour' view._parentView.contentIndex target="view.parentView" on="mouseUp"}}></i>
+            <a {{action 'sendActionForBehaviour' behaviour target="view.parentView" on="mouseUp"}}>
                 {{attributes.label}}
             </a>
         {{/view}}

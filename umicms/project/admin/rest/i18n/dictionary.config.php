@@ -13,8 +13,11 @@ return [
     'en-US' => [
         'action:create:base' => 'Create',
         'action:switchActivity' => 'Switch activity',
+        'action:switchActivity:activate' => 'Activate',
+        'action:switchActivity:deactivate' => 'Deactivate',
         'action:viewOnSite' => 'View on site',
         'action:trash' => 'To trash',
+        'action:delete' => 'Delete',
         'action:backupList' => 'Backup list',
         'action:backToFilter' => 'Back to filter',
 
@@ -34,12 +37,15 @@ return [
     ],
 
     'ru-RU' => [
-        'action:create:base' => 'Добавить',
+        //'action:create:base' => 'Добавить',
         'action:switchActivity' => 'Сменить активность',
+        'action:switchActivity:activate' => 'Активировать',
+        'action:switchActivity:deactivate' => 'Снять активность',
         'action:viewOnSite' => 'Посмотреть на сайте',
         'action:trash' => 'Удалить в корзину',
+        'action:delete' => 'Удалить',
         'action:backupList' => 'Резервные копии',
-        'action:backToFilter' => 'Вернуться в фильтр',
+        'action:backToFilter' => 'Вернуться к списку',
 
         // default add actions
         'action:add' => 'Добавить',
@@ -51,8 +57,9 @@ return [
         'action:saveAndGoBack' => 'Сохранить и выйти',
         'action:saveAsCopy' => 'Сохранить как копию',
 
-        'button:add' => 'Добавить',
+        //'button:add' => 'Добавить',
         'button:save' => 'Сохранить',
+        'button:save:notModified' => 'Сохранено',
         'button:create' => 'Добавить',
     ]
 

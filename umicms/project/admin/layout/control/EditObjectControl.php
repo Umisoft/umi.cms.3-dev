@@ -13,6 +13,7 @@ namespace umicms\project\admin\layout\control;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\project\admin\layout\button\behaviour\ChoicesBehaviour;
 use umicms\project\admin\layout\button\SplitButton;
@@ -27,17 +28,18 @@ class EditObjectControl extends CollectionControl
      */
     protected function configureToolbar()
     {
+        if ($createButton = $this->buildCreateButton()) {
+            $this->addToolbarButton('create', $createButton);
+        }
 
         $this->addToolbarButton('backToFilter', $this->createActionButton('backToFilter'));
 
-        if ($this->collection instanceof SimpleHierarchicCollection) {
-            if ($createButton = $this->buildCreateButton()) {
-                $this->addToolbarButton('create', $createButton);
-            }
+        if ($this->collection instanceof IActiveAccessibleCollection) {
+            $this->addToolbarButton('switchActivity', $this->createSwitchActivityButton());
         }
 
-        if ($this->collection instanceof IActiveAccessibleCollection) {
-            $this->addToolbarButton('switchActivity', $this->createActionButton('switchActivity'));
+        if ($this->collection instanceof ICmsPageCollection) {
+            $this->addToolbarButton('viewOnSite', $this->createActionButton('viewOnSite'));
         }
 
         if ($this->collection instanceof IRecyclableCollection) {
@@ -60,9 +62,18 @@ class EditObjectControl extends CollectionControl
         $behaviour = new ChoicesBehaviour('save');
         $behaviour->addChoice('save', $this->createActionChoice('save'));
         $behaviour->addChoice('saveAndGoBack', $this->createActionChoice('saveAndGoBack'));
-        //$behaviour->addChoice('saveAsCopy', $this->createActionChoice('saveAsCopy'));
 
         $saveButton = new SplitButton($this->component->translate('button:save'), $behaviour);
+        $saveButton->attributes['hasIcon'] = false;
+
+        $saveButton
+            ->addState('modified', [
+                'label' => $this->component->translate('button:save')
+            ])
+            ->addState('notModified', [
+                'label' => $this->component->translate('button:save:notModified')
+            ]);
+
         $this->addSubmitButton('save', $saveButton);
     }
 

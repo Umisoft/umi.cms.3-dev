@@ -10,6 +10,7 @@
 
 namespace umicms\project\admin\layout\control;
 
+use umicms\exception\OutOfBoundsException;
 use umicms\project\admin\component\AdminComponent;
 use umicms\project\admin\layout\button\behaviour\Behaviour;
 use umicms\project\admin\layout\button\Button;
@@ -58,6 +59,21 @@ class AdminControl
     }
 
     /**
+     * Возвращает кнопку из контекстного меню
+     * @param string $name
+     * @throws OutOfBoundsException если кнопка не найдена
+     * @return Button
+     */
+    public function getContextButton($name)
+    {
+        if (!isset($this->contextToolbar[$name])) {
+            throw new OutOfBoundsException(sprintf('Context menu button "%s" does not exist.', $name));
+        }
+
+        return $this->contextToolbar[$name];
+    }
+
+    /**
      * Добавляет кнопку в контекстное меню.
      * @param string $name
      * @param Button $button
@@ -83,6 +99,21 @@ class AdminControl
     }
 
     /**
+     * Возвращает кнопку из toolbar
+     * @param string $name
+     * @throws OutOfBoundsException если кнопка не найдена
+     * @return Button
+     */
+    public function getToolbarButton($name)
+    {
+        if (!isset($this->toolbar[$name])) {
+            throw new OutOfBoundsException(sprintf('Toolbar button "%s" does not exist.', $name));
+        }
+
+        return $this->toolbar[$name];
+    }
+
+    /**
      * Добавляет кнопку в toolbar.
      * @param string $name
      * @param Button $button
@@ -105,6 +136,21 @@ class AdminControl
         unset($this->toolbar[$name]);
 
         return $this;
+    }
+
+    /**
+     * Возвращает submit-кнопку
+     * @param string $name
+     * @throws OutOfBoundsException если кнопка не найдена
+     * @return Button
+     */
+    public function getSubmitButton($name)
+    {
+        if (!isset($this->submitToolbar[$name])) {
+            throw new OutOfBoundsException(sprintf('Submit button "%s" does not exist.', $name));
+        }
+
+        return $this->submitToolbar[$name];
     }
 
     /**
@@ -189,6 +235,25 @@ class AdminControl
     {
         $label = $this->component->translate('action:' . $actionName);
         return new Button($label, new Behaviour($actionName, $params));
+    }
+
+    /**
+     * Создает кнопку для смены активности.
+     * @param bool $isChoice если true, создает вариант выбора Choice
+     * @return Button|Choice
+     */
+    public function createSwitchActivityButton($isChoice = false) {
+        $button = $isChoice ? $this->createActionChoice('switchActivity') : $this->createActionButton('switchActivity');
+
+        $button
+            ->addState('activate', [
+                'label' => $this->component->translate('action:switchActivity:activate')
+              ])
+            ->addState('deactivate', [
+                'label' => $this->component->translate('action:switchActivity:deactivate')
+        ]);
+
+        return $button;
     }
 
     /**

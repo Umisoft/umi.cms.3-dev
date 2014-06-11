@@ -64,11 +64,14 @@ define(['App', 'text!./splitButton.hbs'],
 
             UMI.SplitButtonView = Ember.View.extend(UMI.SplitButtonDefaultBehaviour, {
                 template: Ember.Handlebars.compile(splitButtonTemplate),
-                tagName: 'button',
+                tagName: 'span',
                 isOpen: false,
                 classNames: ['s-margin-clear', 'dropdown'],//TODO: избавиться от классов после возвращения Foundation
                 classNameBindings: ['meta.attributes.class', 'isOpen:open'],
                 attributeBindings: ['title'],
+                label: function(){
+                    return this.get('meta.attributes.label');
+                }.property('meta.attributes.label'),
                 title: Ember.computed.alias('meta.attributes.title'),
                 click: function(event){
                     var el = this.$();
@@ -77,15 +80,20 @@ define(['App', 'text!./splitButton.hbs'],
                     }
                 },
                 actions: {
-                    open: function(){
+                    open: function(event){
                         var self = this;
-                        var el = self.$();
+                        var $el = self.$();
                         setTimeout(function(){
                             self.toggleProperty('isOpen');
+
                             if(self.get('isOpen')){
+                                // закрывает список в случае клика мимо списка
                                 $('html').on('click.splitButton', function(event){
+                                    if($el.children('.dropdown-toggler')[0] === event.target){
+                                        return;
+                                    }
                                     var targetElement = $(event.target).closest('.f-dropdown');
-                                    if(!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== el[0].getAttribute('id')){
+                                    if(!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== $el[0].getAttribute('id')){
                                         $('html').off('click.splitButton');
                                         self.set('isOpen', false);
                                     }

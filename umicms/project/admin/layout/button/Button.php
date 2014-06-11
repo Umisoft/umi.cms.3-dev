@@ -31,11 +31,15 @@ class Button
     /**
      * @var Behaviour $behaviour обработчик кнопки
      */
-    protected $behaviour;
+    public $behaviour;
     /**
      * @var string $label лэйбл кнопки
      */
     protected $label;
+    /**
+     * @var array $states состояния кнопки
+     */
+    protected $states = [];
 
     /**
      * Конструктор.
@@ -50,16 +54,34 @@ class Button
     }
 
     /**
+     * Добавить состояние кнопке.
+     * @param string $stateName имя состояния
+     * @param array $params параметры состояния
+     * @return $this
+     */
+    public function addState($stateName, array $params)
+    {
+        $this->states[$stateName] = $params;
+        return $this;
+    }
+
+    /**
      * Возвращает информацию о кнопке.
      * @return array
      */
     public function build()
     {
-        return [
+        $result = [
             'type'       => $this->type,
             'behaviour'  => $this->behaviour->build(),
             'attributes' => $this->attributes
         ];
+
+        if ($this->states) {
+            $result['attributes']['states'] = $this->states;
+        }
+
+        return $result;
     }
 }
  

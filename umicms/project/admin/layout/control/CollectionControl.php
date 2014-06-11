@@ -12,6 +12,7 @@ namespace umicms\project\admin\layout\control;
 
 use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
+use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\ICmsPageCollection;
 use umicms\project\admin\layout\button\Button;
@@ -54,11 +55,17 @@ class CollectionControl extends AdminControl
         $this->configureCreateChoiceList($choices);
 
         if ($this->collection instanceof IActiveAccessibleCollection) {
-            $choices->addChoice('switchActivity', $this->createActionChoice('switchActivity'));
+            $choices->addChoice('switchActivity', $this->createSwitchActivityButton(true));
         }
 
         if ($this->collection instanceof ICmsPageCollection) {
             $choices->addChoice('viewOnSite', $this->createActionChoice('viewOnSite'));
+        }
+
+        if ($this->collection instanceof IRecyclableCollection) {
+            $choices->addChoice('trash', $this->createActionChoice('trash'));
+        } else {
+            $choices->addChoice('delete', $this->createActionChoice('delete'));
         }
 
         $dropdownButton = new SplitButton('', $choices);
