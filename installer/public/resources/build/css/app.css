@@ -2698,7 +2698,7 @@ label.error {
   transition: background-position 0.1s linear;
   position: relative;
   float: left;
-  height: 32px;
+  height: 31px;
   border-top: 1px solid #6BC2FF;
   background-image: linear-gradient(to bottom, #3aadff, #0087d4);
   background-repeat: repeat-x;
