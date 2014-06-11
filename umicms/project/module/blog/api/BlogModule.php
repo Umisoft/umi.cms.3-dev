@@ -677,4 +677,19 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
         return $post;
     }
+
+    /**
+     * Переносит пост в черновики.
+     * @param BlogPost $post переносимый пост
+     * @return BlogPost
+     */
+    public function draftPost(BlogPost $post)
+    {
+        $post->draft();
+        /** @var ICounterProperty $authorPostCount */
+        $authorPostCount = $post->author->getProperty(BlogAuthor::FIELD_POSTS_COUNT);
+        $authorPostCount->decrement();
+
+        return $post;
+    }
 }

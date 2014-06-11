@@ -68,7 +68,9 @@ class PostToDraftController extends BaseAccessRestrictedController implements IO
      */
     protected function processForm(IForm $form)
     {
-        $this->blogPost->draft();
+        $this->api->draftPost(
+            $this->blogPost
+        );
         $this->getObjectPersister()->commit();
     }
 }
