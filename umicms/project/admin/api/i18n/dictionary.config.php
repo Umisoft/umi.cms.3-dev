@@ -17,6 +17,7 @@ return [
         'action:switchActivity:deactivate' => 'Deactivate',
         'action:viewOnSite' => 'View on site',
         'action:trash' => 'To trash',
+        'action:delete' => 'Delete',
         'action:backupList' => 'Backup list',
         'action:backToFilter' => 'Back to filter',
 
@@ -42,6 +43,7 @@ return [
         'action:switchActivity:deactivate' => 'Снять активность',
         'action:viewOnSite' => 'Посмотреть на сайте',
         'action:trash' => 'Удалить в корзину',
+        'action:delete' => 'Удалить',
         'action:backupList' => 'Резервные копии',
         'action:backToFilter' => 'Вернуться к списку',
 

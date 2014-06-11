@@ -55,8 +55,10 @@ class ChoicesBehaviour extends Behaviour
         $params = $this->params;
 
         $params['choices'] = [];
-        foreach ($this->choices as $choice) {
-            $params['choices'][] = $choice->build();
+        foreach ($this->choices as $choiceName => $choice) {
+            $choiceInfo = $choice->build();
+            $choiceInfo['name'] = $choiceName;
+            $params['choices'][] = $choiceInfo;
         }
 
         return $params;

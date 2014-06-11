@@ -31,7 +31,7 @@ class Button
     /**
      * @var Behaviour $behaviour обработчик кнопки
      */
-    protected $behaviour;
+    public $behaviour;
     /**
      * @var string $label лэйбл кнопки
      */

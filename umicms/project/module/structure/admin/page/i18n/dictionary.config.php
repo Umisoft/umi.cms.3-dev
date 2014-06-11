@@ -11,11 +11,15 @@
 return [
 
     'en-US' => [
-        'component:page:displayName' => 'Pages'
+        'component:page:displayName' => 'Pages',
+
+        'action:create:static' => 'Create subpage'
     ],
 
     'ru-RU' => [
-        'component:page:displayName' => 'Страницы'
+        'component:page:displayName' => 'Страницы',
+
+        'action:create:static' => 'Добавить подстраницу'
     ]
 
 ];
