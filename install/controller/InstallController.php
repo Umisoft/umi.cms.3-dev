@@ -1551,8 +1551,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `contents_en` text,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
-                    `comments_count` bigint(20) unsigned DEFAULT NULL,
-                    `posts_count` bigint(20) unsigned DEFAULT NULL,
+                    `comments_count` bigint(20) unsigned DEFAULT '0',
+                    `posts_count` bigint(20) unsigned DEFAULT '0',
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_author_guid` (`guid`),
