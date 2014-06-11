@@ -1388,7 +1388,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `contents_en` text,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
-                    `comments_count` bigint(20) unsigned DEFAULT NULL,
+                    `comments_count` bigint(20) unsigned DEFAULT '0',
                     `publish_status` enum('draft','published','rejected','moderate') DEFAULT 'draft',
 
                     PRIMARY KEY (`id`),
