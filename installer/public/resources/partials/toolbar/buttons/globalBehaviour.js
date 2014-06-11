@@ -54,9 +54,9 @@ define(
                 switchActivity: {
                     label: function(){
                         if(this.get('controller.object.active')){
-                            return this.get('meta.attributes.label');
+                            return this.get('meta.attributes.states.deactivate.label');
                         } else{
-                            return this.get('meta.attributes.alternativeLabel');
+                            return this.get('meta.attributes.states.activate.label');
                         }
                     }.property('meta.attributes.label', 'controller.object.active'),
                     classNameBindings: ['controller.object.active::umi-disabled'],
