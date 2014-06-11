@@ -64,20 +64,20 @@ define(['App', 'text!./splitButton.hbs'],
 
             UMI.SplitButtonView = Ember.View.extend(UMI.SplitButtonDefaultBehaviour, {
                 template: Ember.Handlebars.compile(splitButtonTemplate),
-                tagName: 'button',
+                tagName: 'span',
                 isOpen: false,
                 classNames: ['s-margin-clear', 'dropdown'],//TODO: избавиться от классов после возвращения Foundation
                 classNameBindings: ['meta.attributes.class', 'isOpen:open'],
                 attributeBindings: ['title'],
                 title: Ember.computed.alias('meta.attributes.title'),
-                mouseDown: function(event){
+                click: function(event){
                     var el = this.$();
                     if(event.target.getAttribute('id') === el[0].getAttribute('id') || ( ($(event.target).hasClass('icon') || $(event.target).hasClass('button-label')) && event.target.parentElement.getAttribute('id') === el[0].getAttribute('id'))){
                         this.send(this.get('defaultBehaviour').behaviour.name, this.get('defaultBehaviour').behaviour);
                     }
                 },
                 actions: {
-                    open: function(){
+                    open: function(event){
                         var self = this;
                         var $el = self.$();
                         setTimeout(function(){
@@ -85,44 +85,15 @@ define(['App', 'text!./splitButton.hbs'],
 
                             if(self.get('isOpen')){
                                 // закрывает список в случае клика мимо списка
-                                $('html').on('mousedown.splitButton', function(event){
-                                    if($el.children('.dropdown-toggler')[0] === this){
+                                $('html').on('click.splitButton', function(event){
+                                    if($el.children('.dropdown-toggler')[0] === event.target){
                                         return;
                                     }
                                     var targetElement = $(event.target).closest('.f-dropdown');
                                     if(!targetElement.length || targetElement[0].parentNode.getAttribute('id') !== $el[0].getAttribute('id')){
-                                        $('html').off('mousedown.splitButton');
-                                        $('html').off('mousemove.splitButton');
-                                        $('html').off('mouseout.splitButton');
+                                        $('html').off('click.splitButton');
                                         self.set('isOpen', false);
                                     }
-                                });
-
-                                $('html').on('mousemove.splitButton', '.f-dropdown', function(event){
-                                    var $ul = $(this);
-                                    var $li = $(event.target).closest('li');
-
-                                    if($li.length){
-                                        if(!$li.hasClass('hover')){
-                                            $ul.find('li.hover').removeClass('hover');
-                                            $li.addClass('hover');
-                                        }
-                                    } else{
-                                        $ul.find('li.hover').removeClass('hover');
-                                    }
-                                    if(event.target.tagName === 'A'){
-                                        if(!$(event.target).hasClass('hover')){
-                                            $ul.find('a.hover').removeClass('hover');
-                                            $(event.target).addClass('hover');
-                                        }
-                                    } else{
-                                        $ul.find('a.hover').removeClass('hover');
-                                    }
-                                });
-
-                                $('html').on('mouseout.splitButton', '.f-dropdown', function(){
-                                    var $ul = $(this);
-                                    $ul.find('.hover').removeClass('hover');
                                 });
                             }
                         }, 0);
