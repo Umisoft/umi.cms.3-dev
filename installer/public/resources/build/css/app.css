@@ -4867,7 +4867,9 @@ select {
   margin-top: 10px;
   left: 0;
   color: #44474d;
-  font-size: 0.8125rem; }
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  width: auto; }
   .f-dropdown.right {
     right: 0; }
   .f-dropdown:before {
@@ -4898,10 +4900,12 @@ select {
     padding: 5px 8px;
     text-align: left;
     cursor: default; }
+    .f-dropdown li.hover {
+      background: #eeeeee; }
     .f-dropdown li a {
       display: inline-block;
       font-size: 13px; }
-      .f-dropdown li a:hover {
+      .f-dropdown li a:hover, .f-dropdown li a.hover {
         text-decoration: underline; }
 
 .dropdown-hover:hover > .f-dropdown {
