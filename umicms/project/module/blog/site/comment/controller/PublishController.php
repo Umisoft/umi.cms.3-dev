@@ -52,8 +52,9 @@ class PublishController extends BaseAccessRestrictedController implements IObjec
      */
     protected function processForm(IForm $form)
     {
-        $blogComment = $this->api->comment()->getById($this->getRouteVar('id'));
-        $blogComment->publish();
+        $this->api->publishComment(
+            $this->api->comment()->getById($this->getRouteVar('id'))
+        );
 
         $this->getObjectPersister()->commit();
     }

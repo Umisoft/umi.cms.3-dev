@@ -11,6 +11,7 @@
 namespace umicms\project\module\blog\api;
 
 use umi\orm\metadata\IObjectType;
+use umi\orm\object\property\calculable\ICounterProperty;
 use umi\orm\selector\condition\IFieldConditionGroup;
 use umi\rss\IRssFeed;
 use umi\rss\IRssFeedAware;
@@ -288,7 +289,14 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             $parentComment = $this->getBranchComment($post);
         }
 
-        return $this->comment()->add(null, $typeName, $parentComment);
+        $comment = $this->comment()->add(null, $typeName, $parentComment);
+        $comment->post = $post;
+
+        if ($this->hasCurrentAuthor()) {
+            $comment->author = $this->getCurrentAuthor();
+        }
+
+        return $comment;
     }
 
     /**
@@ -633,6 +641,24 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         $comment = $this->comment()->add(null, BlogBranchComment::TYPE);
         $comment->displayName = $post->displayName;
         $comment->post = $post;
+
+        return $comment;
+    }
+
+    /**
+     * Публикует комментарий.
+     * @param BlogComment $comment публикуемый комментарий
+     * @return BlogComment
+     */
+    public function publishComment(BlogComment $comment)
+    {
+        $comment->publish();
+        /** @var ICounterProperty $authorCommentsCount */
+        $authorCommentsCount = $comment->author->getProperty(BlogAuthor::FIELD_COMMENTS_COUNT);
+        $authorCommentsCount->increment();
+        /** @var ICounterProperty $postCommentsCount */
+        $postCommentsCount = $comment->post->getProperty(BlogPost::FIELD_COMMENTS_COUNT);
+        $postCommentsCount->increment();
 
         return $comment;
     }
