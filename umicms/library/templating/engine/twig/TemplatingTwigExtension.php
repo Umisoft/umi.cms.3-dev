@@ -27,7 +27,7 @@ class TemplatingTwigExtension extends Twig_Extension
      */
     public $translateFunctionName = 'translate';
     /**
-     * @var string string $isAllowedResourceFunctionName имя функции для проверки прав на виджет
+     * @var string string $isAllowedResourceFunctionName имя функции для проверки прав на ресурс
      */
     public $isAllowedResourceFunctionName = 'isAllowedResource';
 
