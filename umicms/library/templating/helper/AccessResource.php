@@ -35,18 +35,18 @@ class AccessResource
     /**
      * Проверяет доступ к ресурсу.
      * @param string $componentPath путь до компонента
-     * @param array $resources список ресурсов для проверки
+     * @param array|string $resources ресурс или список ресурсов для проверки
      * @return bool
      */
     public function isAllowedResource($componentPath, $resources)
     {
-        $resourcesList = (array) $resources;
+        $resources = (array) $resources;
 
         $component = $this->dispatcher->getComponentByPath(
             CmsDispatcher::SITE_COMPONENT_PATH . IComponent::PATH_SEPARATOR . $componentPath
         );
 
-        foreach ($resourcesList as $resource) {
+        foreach ($resources as $resource) {
             if (!$this->dispatcher->checkPermissions($component, $resource)) {
                 return false;
             }
