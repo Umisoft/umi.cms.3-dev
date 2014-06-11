@@ -10,15 +10,20 @@
 
 namespace umicms\templating\engine\php;
 
+use umi\hmvc\component\IComponent;
 use umi\hmvc\view\helper\IsAllowedHelper;
+use umi\i18n\ILocalizable;
+use umi\i18n\TLocalizable;
 use umi\templating\engine\php\IPhpExtension;
+use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 
 /**
  * Расширение для подключения помощников вида в PHP-шаблонах.
  */
-class ViewPhpExtension implements IPhpExtension
+class ViewPhpExtension implements IPhpExtension, ILocalizable
 {
+    use TLocalizable;
     /**
      * @var string $widgetFunctionName имя функции для вызова виджета
      */
@@ -27,6 +32,10 @@ class ViewPhpExtension implements IPhpExtension
      * @var string $isAllowedFunctionName имя функции для проверки прав
      */
     public $isAllowedFunctionName = 'isAllowed';
+    /**
+     * @var string string $isAllowedWidgetFunctionName имя функции для проверки прав на виджет
+     */
+    public $isAllowedWidgetFunctionName = 'isAllowedWidget';
     /**
      * @var string $escapeHtmlFunctionName имя функции для экранирования html
      */
@@ -78,6 +87,7 @@ class ViewPhpExtension implements IPhpExtension
         return [
             $this->widgetFunctionName => $this->getWidgetHelper(),
             $this->isAllowedFunctionName => $this->getIsAllowedHelper(),
+            $this->isAllowedWidgetFunctionName => $this->getIsAllowedWidget(),
             $this->escapeHtmlFunctionName => $this->getEscapeHtmlHelper(),
             $this->escapeJsFunctionName => $this->getEscapeJsHelper(),
             $this->escapeCssFunctionName => $this->getEscapeCssHelper(),
@@ -95,6 +105,30 @@ class ViewPhpExtension implements IPhpExtension
             $this->isAllowedHelper = new IsAllowedHelper($this->dispatcher);
         }
         return $this->isAllowedHelper;
+    }
+
+    protected function getIsAllowedWidget()
+    {
+        return function(array $widgetPathList) {
+            foreach ($widgetPathList as $widgetPath => $resources) {
+                if (!is_array($resources)) {
+                    throw new InvalidArgumentException($this->translate(
+                        'Widget path should by array.'
+                    ));
+                }
+
+                $component = $this->dispatcher->getComponentByPath(
+                    CmsDispatcher::SITE_COMPONENT_PATH . IComponent::PATH_SEPARATOR . $widgetPath
+                );
+
+                foreach ($resources as $resource) {
+                    if (!$this->dispatcher->checkPermissions($component, $resource)) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        };
     }
 
     /**

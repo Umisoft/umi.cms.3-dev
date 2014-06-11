@@ -17,6 +17,14 @@
     <h4><?=$this->translate('Authors')?></h4>
     <?=$this->widget('blog.author.list', ['template' => 'listShort'])?>
 </div>
+
+<?php if ($this->isAllowedWidget(
+    [
+        'blog.draft' => ['widget:ownListLink'],
+        'blog.moderate' => ['widget:ownListLink'],
+        'blog.reject' => ['widget:listLink']
+    ]
+)) : ?>
 <div class="sidebar-module">
     <h4><?=$this->translate('Authors\'s posts')?></h4>
     <ol class="list-unstyled">
@@ -25,11 +33,17 @@
         <li><?=$this->translate('Rejected posts')?>: <?=$this->widget('blog.reject.listLink', ['template' => 'listLink'])?></li>
     </ol>
 </div>
+<?php endif; ?>
+
+<?php if ($this->isAllowedWidget(
+    ['blog.moderate' => ['widget:allListLink']]
+)) : ?>
 <div class="sidebar-module">
     <h4><?=$this->translate('Moderate')?></h4>
     <ol class="list-unstyled">
         <li><?=$this->translate('Post on moderation')?>: <?=$this->widget('blog.moderate.allListLink', ['template' => 'moderateLink'])?></li>
     </ol>
 </div>
+<?php endif; ?>
 
 <?=$this->widget('structure.infoblock.view', ['template' => 'socialGroup', 'infoBlock' => 'commonInfoBlock'])?>
