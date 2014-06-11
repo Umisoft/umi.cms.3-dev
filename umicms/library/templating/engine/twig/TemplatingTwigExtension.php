@@ -14,6 +14,7 @@ use Twig_Extension;
 use Twig_SimpleFunction;
 use umi\i18n\translator\ITranslator;
 use umicms\hmvc\dispatcher\CmsDispatcher;
+use umicms\templating\helper\AccessResource;
 use umicms\templating\helper\TranslationHelper;
 
 /**
@@ -25,6 +26,10 @@ class TemplatingTwigExtension extends Twig_Extension
      * @var string $translateFunctionName имя функции для перевода
      */
     public $translateFunctionName = 'translate';
+    /**
+     * @var string string $isAllowedResourceFunctionName имя функции для проверки прав на виджет
+     */
+    public $isAllowedResourceFunctionName = 'isAllowedResource';
 
     /**
      * @var CmsDispatcher $dispatcher диспетчер
@@ -62,6 +67,10 @@ class TemplatingTwigExtension extends Twig_Extension
             new Twig_SimpleFunction(
                 $this->translateFunctionName,
                 [$this->getTranslationHelper(), 'translate']
+            ),
+            new Twig_SimpleFunction(
+                $this->isAllowedResourceFunctionName,
+                [$this->getIsAllowedResourceHelper(), 'isAllowedResource']
             )
         ];
     }
@@ -80,6 +89,17 @@ class TemplatingTwigExtension extends Twig_Extension
         }
 
         return $helper;
+    }
+
+    protected function getIsAllowedResourceHelper()
+    {
+        static $isAllowedResourceHelper;
+
+        if (!$isAllowedResourceHelper) {
+            $isAllowedResourceHelper = new AccessResource($this->dispatcher);
+        }
+
+        return $isAllowedResourceHelper;
     }
 }
  
