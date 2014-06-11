@@ -662,4 +662,19 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
         return $comment;
     }
+
+    /**
+     * Публикует пост.
+     * @param BlogPost $post публикуемый пост
+     * @return BlogPost
+     */
+    public function publishPost(BlogPost $post)
+    {
+        $post->publish();
+        /** @var ICounterProperty $authorPostCount */
+        $authorPostCount = $post->author->getProperty(BlogAuthor::FIELD_POSTS_COUNT);
+        $authorPostCount->increment();
+
+        return $post;
+    }
 }
