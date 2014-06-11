@@ -18,13 +18,11 @@
     <?=$this->widget('blog.author.list', ['template' => 'listShort'])?>
 </div>
 
-<?php if ($this->isAllowedWidget(
-    [
-        'blog.draft' => ['widget:ownListLink'],
-        'blog.moderate' => ['widget:ownListLink'],
-        'blog.reject' => ['widget:listLink']
-    ]
-)) : ?>
+<?php if (
+    $this->isAllowedResource('blog.draft', 'widget:ownListLink') &&
+    $this->isAllowedResource('blog.moderate', 'widget:ownListLink') &&
+    $this->isAllowedResource('blog.reject', 'widget:listLink')
+) : ?>
 <div class="sidebar-module">
     <h4><?=$this->translate('Authors\'s posts')?></h4>
     <ol class="list-unstyled">
@@ -35,9 +33,7 @@
 </div>
 <?php endif; ?>
 
-<?php if ($this->isAllowedWidget(
-    ['blog.moderate' => ['widget:allListLink']]
-)) : ?>
+<?php if ($this->isAllowedResource('blog.moderate', 'widget:allListLink')) : ?>
 <div class="sidebar-module">
     <h4><?=$this->translate('Moderate')?></h4>
     <ol class="list-unstyled">
