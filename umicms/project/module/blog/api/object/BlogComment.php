@@ -13,12 +13,11 @@ namespace umicms\project\module\blog\api\object;
 use umi\acl\IAclAssertionResolver;
 use umi\acl\IAclResource;
 use umi\hmvc\acl\ComponentRoleProvider;
-use umicms\project\module\users\api\UsersModule;
 
 /**
  * Комментарий к посту.
  *
- * @property UsersModule $author автор поста
+ * @property BlogAuthor $author автор поста
  * @property string $contents комментарий
  * @property string $publishStatus статус публикации комментария
  */
@@ -69,7 +68,7 @@ class BlogComment extends BlogBaseComment implements IAclResource, IAclAssertion
      * Выставляет статус комментария опубликован.
      * @return $this
      */
-    public function published()
+    public function publish()
     {
         $this->publishStatus = self::COMMENT_STATUS_PUBLISHED;
         return $this;
@@ -89,7 +88,7 @@ class BlogComment extends BlogBaseComment implements IAclResource, IAclAssertion
      * Выставляет статус комментария отклонён.
      * @return $this
      */
-    public function rejected()
+    public function reject()
     {
         $this->publishStatus = self::COMMENT_STATUS_REJECTED;
         return $this;

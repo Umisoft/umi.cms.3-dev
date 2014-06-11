@@ -154,7 +154,7 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
      * Выставляет статус поста опубликован.
      * @return $this
      */
-    public function published()
+    public function publish()
     {
         $this->publishStatus = self::POST_STATUS_PUBLISHED;
         return $this;
@@ -174,7 +174,7 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
      * Выставляет статус поста отклонён.
      * @return $this
      */
-    public function rejected()
+    public function reject()
     {
         $this->publishStatus = self::POST_STATUS_REJECTED;
         return $this;

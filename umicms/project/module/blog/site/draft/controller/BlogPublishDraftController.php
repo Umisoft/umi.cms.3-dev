@@ -68,7 +68,7 @@ class BlogPublishDraftController extends BaseAccessRestrictedController implemen
      */
     protected function processForm(IForm $form)
     {
-        $this->blogDraft->published();
+        $this->blogDraft->publish();
         $this->getObjectPersister()->commit();
     }
 }

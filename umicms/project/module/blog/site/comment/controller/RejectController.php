@@ -54,7 +54,7 @@ class RejectController extends BaseAccessRestrictedController implements IObject
     protected function processForm(IForm $form)
     {
         $blogComment = $this->api->comment()->getById($this->getRouteVar('id'));
-        $blogComment->rejected();
+        $blogComment->reject();
 
         $this->getObjectPersister()->commit();
     }

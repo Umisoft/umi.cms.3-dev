@@ -55,7 +55,7 @@ class PostRejectController extends BaseAccessRestrictedController implements IOb
     protected function processForm(IForm $form)
     {
         $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
-        $blogPost->rejected();
+        $blogPost->reject();
 
         $this->getObjectPersister()->commit();
     }
