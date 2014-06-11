@@ -11,6 +11,13 @@ define(
              */
             UMI.GlobalBehaviour = Ember.Object.extend({
                 save: {
+                    label: function(){
+                        if(this.get('controller.object.isDirty')){
+                            return this.get('defaultBehaviour.attributes.label');
+                        } else{
+                            return this.get('meta.attributes.states.notModified.label');
+                        }
+                    }.property('meta.attributes.label', 'controller.object.isDirty'),
                     classNameBindings: ['controller.object.isDirty::disabled', 'controller.object.isValid::disabled'],
                     beforeSave: function(){
                         var model = this.get('controller.object');

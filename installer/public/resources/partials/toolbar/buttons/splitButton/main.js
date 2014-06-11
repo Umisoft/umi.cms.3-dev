@@ -69,6 +69,9 @@ define(['App', 'text!./splitButton.hbs'],
                 classNames: ['s-margin-clear', 'dropdown'],//TODO: избавиться от классов после возвращения Foundation
                 classNameBindings: ['meta.attributes.class', 'isOpen:open'],
                 attributeBindings: ['title'],
+                label: function(){
+                    return this.get('meta.attributes.label');
+                }.property('meta.attributes.label'),
                 title: Ember.computed.alias('meta.attributes.title'),
                 click: function(event){
                     var el = this.$();
