@@ -11,17 +11,13 @@
 namespace umicms\templating\helper;
 
 use umi\hmvc\component\IComponent;
-use umi\i18n\ILocalizable;
-use umi\i18n\TLocalizable;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 
 /**
  * Помощник шаблонов для проверки доступа к ресурсам.
  */
-class AccessResource implements ILocalizable
+class AccessResource
 {
-    use TLocalizable;
-
     /**
      * @var CmsDispatcher $dispatcher диспетчер
      */
