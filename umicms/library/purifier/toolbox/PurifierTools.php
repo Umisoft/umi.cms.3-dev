@@ -77,4 +77,3 @@ class PurifierTools implements IToolbox
             ->createSingleInstance([$this->options]);
     }
 }
- 

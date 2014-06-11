@@ -21,4 +21,3 @@ interface IPurifierAware
      */
     public function setPurifier(IPurifier $purifier);
 }
- 
