@@ -17,7 +17,7 @@ define(
                         } else{
                             return this.get('meta.attributes.states.notModified.label');
                         }
-                    }.property('meta.attributes.label', 'controller.object.isDirty'),
+                    }.property('meta.attributes.label', 'controller.object.isDirty', 'defaultBehaviour'),
                     classNameBindings: ['controller.object.isDirty::disabled', 'controller.object.isValid::disabled'],
                     beforeSave: function(){
                         var model = this.get('controller.object');
