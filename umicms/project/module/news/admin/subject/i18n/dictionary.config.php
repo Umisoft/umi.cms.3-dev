@@ -11,11 +11,15 @@
 return [
 
     'en-US' => [
-        'component:subject:displayName' => 'Subjects'
+        'component:subject:displayName' => 'Subjects',
+
+        'action:create:base' => 'Create subject'
     ],
 
     'ru-RU' => [
-        'component:subject:displayName' => 'Новостные сюжеты'
+        'component:subject:displayName' => 'Новостные сюжеты',
+
+        'action:create:base' => 'Добавить сюжет'
     ]
 
 ];
