@@ -52,6 +52,13 @@ define(
                 },
 
                 switchActivity: {
+                    label: function(){
+                        if(this.get('controller.object.active')){
+                            return this.get('meta.attributes.label');
+                        } else{
+                            return this.get('meta.attributes.alternativeLabel');
+                        }
+                    }.property('meta.attributes.label', 'controller.object.active'),
                     classNameBindings: ['controller.object.active::umi-disabled'],
                     actions: {
                         switchActivity: function(){
