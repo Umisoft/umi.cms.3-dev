@@ -1,5 +1,10 @@
 <a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg" {{action "open" target="view"}}>
     <i class="icon icon-backupList"></i>
+    {{#if view.meta.attributes.label}}
+        <span style="color: #fff; line-height: normal; vertical-align: top;">
+            {{unbound view.meta.attributes.label}}
+        </span>
+    {{/if}}
 </a>
 <div class="f-dropdown umi-dropdown dropdown-rows">
     <div class="row collapse">
