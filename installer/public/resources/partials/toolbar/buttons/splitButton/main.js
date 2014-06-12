@@ -109,6 +109,9 @@ define(['App', 'text!./splitButton.hbs'],
 
                 itemView: Ember.View.extend({
                     tagName: 'li',
+                    label: function(){
+                        return this.get('context.attributes.label');
+                    }.property('context.attributes.label'),
                     isDefaultBehaviour: function(){
                         var defaultBehaviourIndex = this.get('parentView.defaultBehaviourIndex');
                         return defaultBehaviourIndex === this.get('_parentView.contentIndex');
@@ -119,6 +122,37 @@ define(['App', 'text!./splitButton.hbs'],
             UMI.splitButtonBehaviour = UMI.GlobalBehaviour.extend({
                 dropUp: {
                     classNames: ['dropup']
+                },
+
+                contextMenu: {
+                    itemView: function(){
+                        var baseItem = Ember.View.extend({
+                            tagName: 'li',
+                            label: function(){
+                                return this.get('context.attributes.label');
+                            }.property('context.attributes.label'),
+                            isDefaultBehaviour: function(){
+                                var defaultBehaviourIndex = this.get('parentView.defaultBehaviourIndex');
+                                return defaultBehaviourIndex === this.get('_parentView.contentIndex');
+                            }.property('parentView.defaultBehaviourIndex'),
+                            init: function(){
+                                this._super();
+                                var context = this.get('context');
+                                if(Ember.get(context, 'behaviour.name') === 'switchActivity'){
+                                    this.reopen({
+                                        label: function(){
+                                            if(this.get('controller.object.active')){
+                                                return this.get('context.attributes.states.deactivate.label');
+                                            } else{
+                                                return this.get('context.attributes.states.activate.label');
+                                            }
+                                        }.property('context.attributes.label', 'controller.object.active')
+                                    });
+                                }
+                            }
+                        });
+                        return baseItem;
+                    }.property()
                 }
             }).create({});
         };

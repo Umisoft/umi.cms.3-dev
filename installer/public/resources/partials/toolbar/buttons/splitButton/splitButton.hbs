@@ -13,7 +13,7 @@
         {{#view view.itemView}}
             <i {{bind-attr class=":icon :icon-accept view.isDefaultBehaviour::white"}} {{action 'toggleDefaultBehaviour' view._parentView.contentIndex target="view.parentView" on="mouseUp"}}></i>
             <a {{action 'sendActionForBehaviour' behaviour target="view.parentView" on="mouseUp"}}>
-                {{attributes.label}}
+                {{view.label}}
             </a>
         {{/view}}
     {{/each}}
