@@ -2,11 +2,10 @@ define(
     [
         'App',
         'text!./form.hbs',
-        'partials/forms/elements/main',
         'partials/forms/partials/magellan/main',
         'partials/forms/partials/submitToolbar/main'
     ],
-    function(UMI, formTpl, elements, magellan, submitToolbar){
+    function(UMI, formTpl, magellan, submitToolbar){
         'use strict';
 
         /**
@@ -17,7 +16,6 @@ define(
          */
         return function(){
 
-            elements();
             magellan();
             submitToolbar();
 
@@ -125,7 +123,7 @@ define(
                 }.property(),
 
                 checkboxTemplate: function(){
-                    return '{{checkbox-element object=object meta=view.meta}}';
+                    return '{{view "checkboxElement" object=object meta=view.meta}}';
                 }.property(),
 
                 checkboxGroupTemplate: function(){
