@@ -84,7 +84,6 @@ define(
                 },
 
                 trash: {
-                    classNameBindings: ['controller.object.locked:hide'],
                     actions: {
                         trash: function(){
                             var model = this.get('controller.object');
