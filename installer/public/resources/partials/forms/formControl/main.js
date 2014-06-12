@@ -75,6 +75,10 @@ define(
 
                 selectTemplate: function(){
                     return '{{view "selectCollection" object=object meta=view.meta}}';
+                }.property(),
+
+                checkboxGroupTemplate: function(){
+                    return '{{view "checkboxGroupCollectionElement" object=object meta=view.meta}}';
                 }.property()
             });
         };

@@ -14,28 +14,28 @@ define(['App'], function(UMI){
                 var name = self.get('meta.attributes.name');
                 var inputId = self.get('inputId');
                 var hiddenInput = '<input type="hidden" name="' + name + '" value="0" />';
-                var checkbox = '<input type="checkbox" ' + (isChecked ? "checked" : "") + ' id="' + inputId + '" name="' + name + '" value="1"/>';
-                var label = '<label for="{{unbound view.inputId}}" unselectable="on" onselectstart="return false;"><span></span>{{view.meta.label}}</label>';
+                var checkbox = '<input type="checkbox" ' + (isChecked ? "checked" : "") + ' name="' + name + '" value="1"/>';
+                var label = '<label unselectable="on" onselectstart="return false;" {{action "change" target="view"}}><span></span>{{view.meta.label}}</label>';
                 return Ember.Handlebars.compile(hiddenInput + checkbox + label);
             }.property(),
 
             classNames: ['umi-element-checkbox'],
 
-            inputId: function(){
-                return 'input-' + this.get('elementId');
-            }.property(),
+            setCheckboxValue: function(){
+                var self = this;
+                var $el = this.$();
+                if($el){
+                    $el.find('input[type="checkbox"]')[0].checked = self.get('object.' + self.get('meta.dataSource'));
+                }
+            },
 
             didInsertElement: function(){
                 this._super();
                 var self = this;
                 if(Ember.typeOf(this.get('object')) === 'instance'){
-                    var $el = this.$();
-                    $el.on('change', 'input[type="checkbox"]', function(){
-                        var isChecked = this.checked;
-                        self.get('object').set(self.get('meta.dataSource'), isChecked);
-                    });
                     self.addObserver('object.' + self.get('meta.dataSource'), function(){
-                        $el.find('input[type="checkbox"]')[0].checked = self.get('object.' + self.get('meta.dataSource'));
+                        console.log('bibndd');
+                        Ember.run.once(self, 'setCheckboxValue');
                     });
                 }
             },
@@ -44,6 +44,20 @@ define(['App'], function(UMI){
                 var self = this;
                 self.$().off('change');
                 self.removeObserver('object.' + self.get('meta.dataSource'));
+            },
+
+            actions: {
+                change: function(){
+                    var self = this;
+                    var $el = this.$();
+                    var checkbox;
+                    if(Ember.typeOf(this.get('object')) === 'instance'){
+                        self.get('object').toggleProperty(self.get('meta.dataSource'));
+                    } else{
+                        checkbox = $el.find('input[type="checkbox"]')[0];
+                        checkbox.checked = !checkbox.checked;
+                    }
+                }
             }
         });
     };
