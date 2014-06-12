@@ -6,6 +6,11 @@
         {{{model.content}}}
     {{/if}}
 </div>
+{{#if model.proposeRemember}}
+    <div class="umi-dialog-content">
+        {{checkbox-element}} запомнить мой выбор
+    </div>
+{{/if}}
 {{#if model.confirm}}
     <button class="button small secondary left" {{action 'confirm' target="view"}}>{{model.confirm}}</button>
 {{/if}}
