@@ -29,12 +29,11 @@ define(['App'], function(UMI){
                 }
             },
 
-            didInsertElement: function(){
+            init: function(){
                 this._super();
                 var self = this;
                 if(Ember.typeOf(this.get('object')) === 'instance'){
                     self.addObserver('object.' + self.get('meta.dataSource'), function(){
-                        console.log('bibndd');
                         Ember.run.once(self, 'setCheckboxValue');
                     });
                 }
@@ -42,7 +41,6 @@ define(['App'], function(UMI){
 
             willDestroyElement: function(){
                 var self = this;
-                self.$().off('change');
                 self.removeObserver('object.' + self.get('meta.dataSource'));
             },
 

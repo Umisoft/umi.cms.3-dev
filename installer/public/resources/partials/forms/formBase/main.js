@@ -171,12 +171,7 @@ define(
                  */
                 hasFieldset: function(){
                     return this.get('model.elements').isAny('type', 'fieldset');
-                }.property('model'),
-                attributeBindings: ['action'],
-
-                action: function(){
-                    return this.get('context.model.attributes.action');
-                }.property('context.model')
+                }.property('model')
             });
 
             UMI.FormBaseView = Ember.View.extend(UMI.FormViewMixin, {
@@ -193,6 +188,12 @@ define(
                  * @type Array
                  */
                 classNames: ['s-margin-clear', 's-full-height', 'umi-form-control'],
+
+                attributeBindings: ['action'],
+
+                action: function(){
+                    return this.get('context.model.attributes.action');
+                }.property('context.model'),
 
                 actions: {
                     submit: function(handler){
