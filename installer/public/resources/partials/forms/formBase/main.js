@@ -154,7 +154,7 @@ define(
                 }.property(),
 
                 textareaTemplate: function(){
-                    return '{{textarea-element object=object meta=view.meta}}';
+                    return '{{view "textareaElement" object=object meta=view.meta}}';
                 }.property(),
 
                 colorTemplate: function(){
