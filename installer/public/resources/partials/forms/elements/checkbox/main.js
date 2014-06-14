@@ -6,15 +6,19 @@ define(['App'], function(UMI){
             template: function(){
                 var self = this;
                 var isChecked;
-                if(Ember.typeOf(self.get('object')) === 'instance'){
-                    isChecked = self.get('object.' + self.get('meta.dataSource'));
+                var object = self.get('object');
+                var meta = self.get('meta');
+                var name = Ember.get(meta, 'attributes.name');
+                var value = Ember.get(meta, 'attributes.value');
+
+                if(Ember.typeOf(object) === 'instance'){
+                    isChecked = Ember.get(object, Ember.get(meta, 'dataSource'));
                 } else{
-                    isChecked = self.get('meta.value');
+                    isChecked = value;
                 }
-                var name = self.get('meta.attributes.name');
-                var inputId = self.get('inputId');
+
                 var hiddenInput = '<input type="hidden" name="' + name + '" value="0" />';
-                var checkbox = '<input type="checkbox" ' + (isChecked ? "checked" : "") + ' name="' + name + '" value="1"/>';
+                var checkbox = '<input type="checkbox" ' + (isChecked ? "checked" : "") + ' name="' + name + '" value="' + value + '"/>';
                 var label = '<label unselectable="on" onselectstart="return false;" {{action "change" target="view"}}><span></span>{{view.meta.label}}</label>';
                 return Ember.Handlebars.compile(hiddenInput + checkbox + label);
             }.property(),
@@ -29,14 +33,18 @@ define(['App'], function(UMI){
                 }
             },
 
-            init: function(){
-                this._super();
+            addObserverProperty: function(){
                 var self = this;
                 if(Ember.typeOf(this.get('object')) === 'instance'){
                     self.addObserver('object.' + self.get('meta.dataSource'), function(){
                         Ember.run.once(self, 'setCheckboxValue');
                     });
                 }
+            },
+
+            init: function(){
+                this._super();
+                this.addObserverProperty();
             },
 
             willDestroyElement: function(){
