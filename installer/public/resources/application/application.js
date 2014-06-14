@@ -269,10 +269,21 @@ define(
                         label = "DS: Handle Adapter#findQuery of " + type;
 
                     return Ember.RSVP.Promise.cast(promise, label).then(function(adapterPayload) {
+                        var queryParams = Ember.get(query, 'fields') || '';
                         var payload = serializer.extract(store, type, adapterPayload, null, 'findQuery');
 
                         Ember.assert("The response from a findQuery must be an Array, not " + Ember.inspect(payload), Ember.typeOf(payload) === 'array');
 
+                        queryParams = queryParams.split(',');
+                        queryParams.push('id');
+                        queryParams.push('version');
+                        for(var i = 0; i < payload.length; i++){
+                            for(var key in payload[i]){
+                                if(payload[i].hasOwnProperty(key) && !queryParams.contains(key)){
+                                    delete payload[i][key];
+                                }
+                            }
+                        }
                         //recordArray.load(payload);
                         return payload;
                     }, null, "DS: Extract payload of findQuery " + type);
@@ -297,11 +308,6 @@ define(
                     var i;
                     var objects = [];
                     for(i = 0; i < result.length; i++){
-                        for(var key in result[i]){
-                            if(result[i].hasOwnProperty(key) && Ember.isEmpty(result[i][key])){
-                               delete result[i][key];
-                            }
-                        }
                         objects.push(self.update(type, result[i]));
                     }
 
