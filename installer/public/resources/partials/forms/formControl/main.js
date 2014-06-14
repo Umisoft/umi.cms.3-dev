@@ -68,6 +68,10 @@ define(
                     return '{{view "textCollectionElement" object=object meta=view.meta}}';
                 }.property(),
 
+                wysiwygTemplate: function(){
+                    return '{{view "htmlEditorCollection" object=object meta=view.meta}}';
+                }.property(),
+
                 selectTemplate: function(){
                     return '{{view "selectCollection" object=object meta=view.meta}}';
                 }.property(),

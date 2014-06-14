@@ -110,7 +110,7 @@ define(
                 }.property(),
 
                 wysiwygTemplate: function(){
-                    return '{{html-editor object=object property="' + this.get('meta').dataSource + '" validator="collection" dataSource=view.meta.dataSource}}';
+                    return '{{view "htmlEditor" object=object meta=view.meta}}';
                 }.property(),
 
                 selectTemplate: function(){
