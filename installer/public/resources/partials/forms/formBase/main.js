@@ -93,9 +93,8 @@ define(
                     return template;
                 },
 
-                //TODO Привести все элементы к виду: {{view "nameElement"}}
                 textTemplate: function(){
-                    return '{{input value=object.value meta=view.meta name=view.meta.attributes.name}}';
+                    return '{{view "textElement" object=object meta=view.meta}}';
                 }.property(),
 
                 emailTemplate: function(){

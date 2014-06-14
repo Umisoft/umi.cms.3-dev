@@ -1,18 +1,21 @@
-define(['App', 'text!./textElement.hbs'], function(UMI, textElement){
+define(['App'], function(UMI){
     "use strict";
 
-    Ember.TEMPLATES['UMI/components/text-element'] = Ember.Handlebars.compile(textElement);
-
     return function(){
-        UMI.TextElementComponent = Ember.Component.extend(UMI.InputValidate, {
-            classNames: ['umi-element', 'umi-element-text'],
+        UMI.TextElementView = Ember.View.extend({
+            classNames: ['umi-element-text'],
+            template: function(){
+                return Ember.Handlebars.compile('{{input type="text" value=view.meta.attributes.value name=view.meta.attributes.name}}');
+            }.property()
+        });
 
-            inputView: Ember.View.extend({
-                template: function(){
-                    var dataSource = this.get('parentView.meta.dataSource');
-                    return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection" name=meta.attributes.name}}');
-                }.property()
-            })
+        UMI.TextCollectionElementView = UMI.TextElementView.extend(UMI.InputValidate, {
+            template: function(){
+                var dataSource = this.get('meta.dataSource');
+                var input = '{{input type="text" value=view.object.' + dataSource + ' placeholder=view.meta.placeholder name=view.meta.attributes.name}}';
+                var validate = this.validateErrorsTemplate();
+                return Ember.Handlebars.compile(input + validate);
+            }.property()
         });
     };
 });

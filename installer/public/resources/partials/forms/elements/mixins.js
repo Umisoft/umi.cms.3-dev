@@ -3,30 +3,32 @@ define(['App'], function(UMI){
 
     return function(){
         UMI.InputValidate = Ember.Mixin.create({
-            validator: null,
+            validator: 'collection',
 
             focusOut: function(){
                 if(this.get('validator') === 'collection'){
-                    var object = this.get('templateData.view.object');
-                    object.filterProperty(this.get('dataSource'));
-                    object.validateProperty(this.get('dataSource'));
+                    var object = this.get('object');
+                    object.filterProperty(this.get('meta.dataSource'));
+                    object.validateProperty(this.get('meta.dataSource'));
                 }
             },
 
             focusIn: function(){
                 if(this.get('validator') === 'collection'){
-                    var object = this.get('templateData.view.object');
-                    object.clearValidateForProperty(this.get('dataSource'));
+                    var object = this.get('object');
+                    object.clearValidateForProperty(this.get('meta.dataSource'));
                 }
             },
 
-            valueObject: function(){
-                return this.get('object.' + this.get("meta.dataSource"));
-            }.property('object', 'meta.dataSource'),
-
-            changeValueObject: function(){
-                this.get('object').set(this.get('meta.dataSource'), this.get('valueObject'));
-            }.observes('valueObject')
+            validateErrorsTemplate: function(){
+                var propertyName = this.get('meta.dataSource');
+                var template = '{{#if view.object.validErrors.' + propertyName + '}}' +
+                    '<small class="error">{{#each object.validErrors.' + propertyName + '}}' +
+                    '{{message}} ' +
+                    '{{/each}}</small>' +
+                    '{{/if}}';
+                return template;
+            }
         });
     };
 });
