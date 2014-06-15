@@ -1,18 +1,10 @@
-define(['App', 'text!./passwordElement.hbs'], function(UMI, passwordElement){
+define(['App'], function(UMI){
     "use strict";
 
-    Ember.TEMPLATES['UMI/components/password-element'] = Ember.Handlebars.compile(passwordElement);
-
     return function(){
-        UMI.PasswordElementComponent = Ember.Component.extend(UMI.InputValidate, {
+        UMI.PasswordElementView = UMI.TextElementView.extend({
             classNames: ['umi-element', 'umi-element-password'],
-
-            inputView: Ember.View.extend({
-                template: function(){
-                    var dataSource = this.get('parentView.meta.dataSource');
-                    return Ember.Handlebars.compile('{{input type="password" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection" name=meta.attributes.name}}');
-                }.property()
-            })
+            type: 'password'
         });
     };
 });

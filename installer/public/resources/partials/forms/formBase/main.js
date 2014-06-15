@@ -102,35 +102,15 @@ define(
                 }.property(),
 
                 passwordTemplate: function(){
-                    return '{{password-element object=object meta=view.meta}}';
+                    return '{{view "passwordElement" object=object meta=view.meta}}';
                 }.property(),
 
                 numberTemplate: function(){
-                    return '{{number-element object=object meta=view.meta}}';
+                    return '{{view "numberElement" object=object meta=view.meta}}';
                 }.property(),
 
-                wysiwygTemplate: function(){
-                    return '{{view "htmlEditor" object=object meta=view.meta}}';
-                }.property(),
-
-                selectTemplate: function(){
-                    return '{{view "select" object=object meta=view.meta name=view.meta.attributes.name}}';
-                }.property(),
-
-                multiSelectTemplate: function(){
-                    return '{{view "multiSelect" object=object meta=view.meta name=view.meta.attributes.name}}';
-                }.property(),
-
-                checkboxTemplate: function(){
-                    return '{{view "checkboxElement" object=object meta=view.meta}}';
-                }.property(),
-
-                checkboxGroupTemplate: function(){
-                    return '{{view "checkboxGroupElement" object=object meta=view.meta}}';
-                }.property(),
-
-                radioTemplate: function(){
-                    return '{{view "radioElement" object=object meta=view.meta}}';
+                colorTemplate: function(){
+                    return '{{input type="color" value=object.value meta=view.meta name=meta.attributes.name}}';
                 }.property(),
 
                 timeTemplate: function(){
@@ -157,8 +137,28 @@ define(
                     return '{{view "textareaElement" object=object meta=view.meta}}';
                 }.property(),
 
-                colorTemplate: function(){
-                    return '{{input type="color" value=object.value meta=view.meta name=meta.attributes.name}}';
+                wysiwygTemplate: function(){
+                    return '{{view "htmlEditor" object=object meta=view.meta}}';
+                }.property(),
+
+                selectTemplate: function(){
+                    return '{{view "select" object=object meta=view.meta name=view.meta.attributes.name}}';
+                }.property(),
+
+                multiSelectTemplate: function(){
+                    return '{{view "multiSelect" object=object meta=view.meta name=view.meta.attributes.name}}';
+                }.property(),
+
+                checkboxTemplate: function(){
+                    return '{{view "checkboxElement" object=object meta=view.meta}}';
+                }.property(),
+
+                checkboxGroupTemplate: function(){
+                    return '{{view "checkboxGroupElement" object=object meta=view.meta}}';
+                }.property(),
+
+                radioTemplate: function(){
+                    return '{{view "radioElement" object=object meta=view.meta}}';
                 }.property()
             });
 
