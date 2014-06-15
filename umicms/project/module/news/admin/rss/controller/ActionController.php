@@ -11,14 +11,14 @@
 namespace umicms\project\module\news\admin\rss\controller;
 
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\project\admin\rest\controller\DefaultRestActionController;
+use umicms\project\admin\rest\controller\AdminCollectionComponentActionController;
 use umicms\project\module\news\model\NewsModule;
 use umicms\project\module\news\model\object\NewsRssImportScenario;
 
 /**
  * Контроллер операций.
  */
-class ActionController extends DefaultRestActionController
+class ActionController extends AdminCollectionComponentActionController
 {
     /**
      * @var NewsModule $module

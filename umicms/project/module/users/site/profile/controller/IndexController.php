@@ -15,8 +15,8 @@ use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\UsersModule;
-use umicms\hmvc\controller\site\BaseSitePageController;
-use umicms\hmvc\controller\site\TFormController;
+use umicms\hmvc\component\site\BaseSitePageController;
+use umicms\hmvc\component\site\TFormController;
 
 /**
  * Контроллер сохранения профиля пользователя

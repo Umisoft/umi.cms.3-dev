@@ -13,7 +13,7 @@ namespace umicms\project\module\blog\site\post\controller;
 use umicms\exception\InvalidArgumentException;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\blog\model\object\BlogPost;
-use umicms\hmvc\controller\site\SitePageController;
+use umicms\hmvc\component\site\SitePageController;
 
 /**
  * Контроллер для отображения поста

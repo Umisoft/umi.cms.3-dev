@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\component;
+namespace umicms\hmvc\component\admin;
 
 use umicms\hmvc\component\BaseCmsComponent;
 use umicms\hmvc\url\IUrlManagerAware;

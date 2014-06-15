@@ -24,7 +24,7 @@ return [
     ],
 
     SiteComponent::OPTION_CONTROLLERS => [
-        'index' => 'umicms\hmvc\controller\site\SiteStructurePageController'
+        'index' => 'umicms\hmvc\component\site\SiteStructurePageController'
     ],
 
     SiteComponent::OPTION_ACL => [

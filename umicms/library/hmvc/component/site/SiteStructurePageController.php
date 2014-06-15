@@ -1,34 +1,31 @@
 <?php
 /**
  * This file is part of UMI.CMS.
+ *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\rest\controller;
-
-use umicms\project\admin\layout\CollectionComponentLayout;
-
+namespace umicms\hmvc\component\site;
 
 /**
- * Контроллер вывода настроек компонента
+ * Контроллер вывода системных страниц компонентов.
  */
-class CollectionComponentLayoutController extends BaseDefaultRestController
+class SiteStructurePageController extends BaseSitePageController
 {
     /**
      * {@inheritdoc}
      */
     public function __invoke()
     {
-        $layout = new CollectionComponentLayout($this->getComponent());
-
         return $this->createViewResponse(
-            'layout',
+            'index',
             [
-                'layout' => $layout->build()
+                'page' => $this->getCurrentPage()
             ]
         );
     }
 }
+ 

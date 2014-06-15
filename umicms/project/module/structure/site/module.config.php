@@ -24,7 +24,7 @@ return [
     ],
 
     SiteComponent::OPTION_CONTROLLERS => [
-        'static' => 'umicms\hmvc\controller\site\SiteStructurePageController',
+        'static' => 'umicms\hmvc\component\site\SiteStructurePageController',
     ],
 
     SiteComponent::OPTION_VIEW        => [

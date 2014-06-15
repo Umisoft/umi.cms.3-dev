@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\rest\controller;
+namespace umicms\hmvc\component\admin\settings;
 
 use umicms\project\admin\layout\button\behaviour\Behaviour;
 use umicms\project\admin\layout\button\Button;
@@ -16,7 +16,7 @@ use umicms\project\admin\layout\button\Button;
 /**
  * Контроллер вывода настроек компонента, управляющего настройками
  */
-class SettingsComponentLayoutController extends BaseSettingsComponentController
+class LayoutController extends BaseController
 {
     /**
      * {@inheritdoc}

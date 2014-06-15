@@ -12,13 +12,13 @@ namespace umicms\project\module\seo\admin\megaindex\controller;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\project\admin\rest\component\DefaultQueryAdminComponent;
-use umicms\project\admin\rest\controller\DefaultRestActionController;
+use umicms\project\admin\rest\controller\AdminCollectionComponentActionController;
 use umicms\project\module\seo\model\MegaindexModel;
 
 /**
  * Контроллер операций с API Мегаиндекса
  */
-class ActionController extends DefaultRestActionController
+class ActionController extends AdminCollectionComponentActionController
 {
     /**
      * Возвращает данные отчета {@link http://api.megaindex.ru/description/siteAnalyze «Видимость сайта»}

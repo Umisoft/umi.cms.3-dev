@@ -10,7 +10,7 @@
 
 namespace umicms\project\module\blog\site\moderate\controller;
 
-use umicms\hmvc\controller\site\BaseSitePageController;
+use umicms\hmvc\component\site\BaseSitePageController;
 
 /**
  * Контроллер вывода списка всех постов, требующих модерирование.

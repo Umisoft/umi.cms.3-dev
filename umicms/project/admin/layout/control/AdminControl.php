@@ -11,7 +11,7 @@
 namespace umicms\project\admin\layout\control;
 
 use umicms\exception\OutOfBoundsException;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 use umicms\project\admin\layout\button\behaviour\Behaviour;
 use umicms\project\admin\layout\button\Button;
 use umicms\project\admin\layout\button\Choice;

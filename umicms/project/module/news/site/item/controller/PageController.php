@@ -13,7 +13,7 @@ namespace umicms\project\module\news\site\item\controller;
 use umicms\exception\InvalidArgumentException;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\news\model\object\NewsItem;
-use umicms\hmvc\controller\site\SitePageController;
+use umicms\hmvc\component\site\SitePageController;
 
 /**
  * Контроллер для отображения новости.

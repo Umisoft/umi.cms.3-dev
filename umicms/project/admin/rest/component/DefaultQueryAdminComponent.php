@@ -12,17 +12,13 @@ namespace umicms\project\admin\rest\component;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 /**
- * Компонент административной панели компанента работающего без коллекции.
+ * Компонент административной панели компонента работающего без коллекции.
  */
 class DefaultQueryAdminComponent extends AdminComponent
 {
-    /**
-     * Опция для задания дополнительного списка доступных действий на запрос данных
-     */
-    const OPTION_QUERY_ACTIONS = 'queryActions';
 
     /**
      * @var array $defaultOptions настройки компонента по умолчанию

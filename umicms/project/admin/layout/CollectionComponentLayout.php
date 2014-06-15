@@ -13,8 +13,8 @@ namespace umicms\project\admin\layout;
 use umicms\exception\RuntimeException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\CmsHierarchicCollection;
-use umicms\project\admin\rest\component\CollectionApiComponent;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\collection\CollectionComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 use umicms\project\admin\layout\control\CreateObjectControl;
 use umicms\project\admin\layout\control\EditObjectControl;
 use umicms\project\admin\layout\control\TableControl;
@@ -26,7 +26,7 @@ use umicms\project\admin\layout\control\TreeControl;
 class CollectionComponentLayout extends AdminComponentLayout
 {
     /**
-     * @var CollectionApiComponent $component
+     * @var CollectionComponent $component
      */
     protected $component;
     /**
@@ -37,10 +37,10 @@ class CollectionComponentLayout extends AdminComponentLayout
     /**
      * Конструктор.
      * @param AdminComponent $component .
-     * @throws RuntimeException если компонент не CollectionApiComponent
+     * @throws RuntimeException если компонент не CollectionComponent
      */
     public function __construct(AdminComponent $component) {
-        if (!$component instanceof CollectionApiComponent) {
+        if (!$component instanceof CollectionComponent) {
             throw new RuntimeException('Wrong component for collection component layout.');
         }
 

@@ -8,12 +8,12 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\rest\component;
+namespace umicms\hmvc\component\admin\settings;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\hmvc\controller\BaseCmsController;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\hmvc\component\admin\AdminComponent;
 
 /**
  * Компонент для группировки компонентов настроек
@@ -26,7 +26,7 @@ class SettingsGroupComponent extends AdminComponent
     public $defaultOptions = [
 
         self::OPTION_CONTROLLERS => [
-            self::INTERFACE_LAYOUT_CONTROLLER => 'umicms\project\admin\rest\controller\SettingsGroupComponentLayoutController',
+            self::INTERFACE_LAYOUT_CONTROLLER => 'umicms\hmvc\component\admin\settings\GroupLayoutController',
         ],
 
         self::OPTION_ROUTES      => [

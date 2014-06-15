@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\admin\rest\component\SettingsGroupComponent;
+use umicms\hmvc\component\admin\settings\SettingsGroupComponent;
 
 return [
 
-    SettingsGroupComponent::OPTION_CLASS => 'umicms\project\admin\rest\component\SettingsGroupComponent',
+    SettingsGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\settings\SettingsGroupComponent',
 
     SettingsGroupComponent::OPTION_COMPONENTS => [
         'metrika' => '{#lazy:~/project/module/statistics/admin/settings/metrika/component.config.php}',

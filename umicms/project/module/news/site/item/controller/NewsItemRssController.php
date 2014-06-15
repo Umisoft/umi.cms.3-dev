@@ -11,7 +11,7 @@
 namespace umicms\project\module\news\site\item\controller;
 
 use umi\http\Response;
-use umicms\hmvc\controller\BaseCmsController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\news\model\NewsModule;
 use umicms\project\site\config\ISiteSettingsAware;

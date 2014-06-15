@@ -11,14 +11,14 @@ namespace umicms\project\module\seo\admin\yandex\controller;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\project\admin\rest\component\DefaultQueryAdminComponent;
-use umicms\project\admin\rest\controller\DefaultRestActionController;
-use umicms\project\admin\component\AdminComponent;
+use umicms\project\admin\rest\controller\AdminCollectionComponentActionController;
+use umicms\hmvc\component\admin\AdminComponent;
 use umicms\project\module\seo\model\YandexModel;
 
 /**
  * Контроллер операций с API Яндекс.Вебмастер.
  */
-class ActionController extends DefaultRestActionController
+class ActionController extends AdminCollectionComponentActionController
 {
     /**
      * @var array $options настройки Яндекс.Вебмастер.

@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\admin\rest\component\SettingsGroupComponent;
+use umicms\hmvc\component\admin\settings\SettingsGroupComponent;
 
 return [
 
-    SettingsGroupComponent::OPTION_CLASS => 'umicms\project\admin\rest\component\SettingsGroupComponent',
+    SettingsGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\settings\SettingsGroupComponent',
 
     SettingsGroupComponent::OPTION_COMPONENTS => [
         'megaindex' => '{#lazy:~/project/module/seo/admin/settings/megaindex/component.config.php}',

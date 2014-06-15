@@ -8,12 +8,12 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\rest\component;
+namespace umicms\hmvc\component\admin\settings;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\exception\RuntimeException;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 /**
  * Компонент настроек
@@ -31,8 +31,8 @@ class SettingsComponent extends AdminComponent
     public $defaultOptions = [
 
         self::OPTION_CONTROLLERS => [
-            self::INTERFACE_LAYOUT_CONTROLLER => 'umicms\project\admin\rest\controller\SettingsComponentLayoutController',
-            self::ACTION_CONTROLLER => 'umicms\project\admin\rest\controller\SettingsComponentActionController'
+            self::INTERFACE_LAYOUT_CONTROLLER => 'umicms\hmvc\component\admin\settings\LayoutController',
+            self::ACTION_CONTROLLER => 'umicms\hmvc\component\admin\settings\ActionController'
         ],
 
         self::OPTION_ACL => [

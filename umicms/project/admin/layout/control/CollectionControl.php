@@ -16,7 +16,7 @@ use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\ICmsPageCollection;
 use umicms\project\admin\layout\button\Button;
-use umicms\project\admin\rest\component\CollectionApiComponent;
+use umicms\hmvc\component\admin\collection\CollectionComponent;
 use umicms\project\admin\layout\button\behaviour\Behaviour;
 use umicms\project\admin\layout\button\behaviour\ChoicesBehaviour;
 use umicms\project\admin\layout\button\Choice;
@@ -28,7 +28,7 @@ use umicms\project\admin\layout\button\SplitButton;
 class CollectionControl extends AdminControl
 {
     /**
-     * @var CollectionApiComponent $component
+     * @var CollectionComponent $component
      */
     protected $component;
     /**
@@ -38,9 +38,9 @@ class CollectionControl extends AdminControl
 
     /**
      * Конструктор.
-     * @param CollectionApiComponent $component.
+     * @param CollectionComponent $component.
      */
-    public function __construct(CollectionApiComponent $component)
+    public function __construct(CollectionComponent $component)
     {
         $this->collection = $component->getCollection();
         parent::__construct($component);

@@ -11,7 +11,7 @@
 namespace umicms\project\admin\layout\control;
 
 use umicms\hmvc\url\IUrlManager;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 /**
  * Административный контрол для вывода меню из дочерних компонентов

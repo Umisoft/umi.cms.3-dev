@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\rest\controller;
+namespace umicms\hmvc\component\admin\settings;
 
 use umi\config\io\IConfigIOAware;
 use umi\config\io\TConfigIOAware;
@@ -18,7 +18,7 @@ use umi\http\Response;
 /**
  * Контроллер действий над настройками
  */
-class SettingsComponentActionController extends BaseSettingsComponentController implements IConfigIOAware
+class ActionController extends BaseController implements IConfigIOAware
 {
     /**
      * {@inheritdoc}

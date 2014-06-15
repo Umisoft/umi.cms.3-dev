@@ -15,8 +15,8 @@ use umi\form\IForm;
 use umicms\exception\NonexistentEntityException;
 use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\UsersModule;
-use umicms\hmvc\controller\site\BaseSitePageController;
-use umicms\hmvc\controller\site\TFormController;
+use umicms\hmvc\component\site\BaseSitePageController;
+use umicms\hmvc\component\site\TFormController;
 
 /**
  * Контроллер запроса смены пароля пользователя

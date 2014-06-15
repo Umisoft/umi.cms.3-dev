@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\hmvc\controller\site;
+namespace umicms\hmvc\component\site;
 
 use umicms\exception\RuntimeException;
 use umicms\orm\object\CmsHierarchicObject;

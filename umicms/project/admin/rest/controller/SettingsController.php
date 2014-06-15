@@ -12,10 +12,9 @@ namespace umicms\project\admin\rest\controller;
 
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
-use umicms\hmvc\controller\BaseCmsController;
-use umicms\orm\collection\ICmsCollection;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\project\admin\rest\RestApplication;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 /**
  * Контроллер настроек административной панели.
@@ -94,18 +93,11 @@ class SettingsController extends BaseCmsController implements ICollectionManager
      */
     protected function getCollectionsInfo()
     {
-        $collectionNames = $this->getCollectionManager()
-            ->getList();
-
+        $collectionNames = $this->getCollectionManager()->getList();
         $collections = [];
 
         foreach ($collectionNames as $collectionName) {
-            /**
-             * @var ICmsCollection $collection
-             */
-            $collection = $this->getCollectionManager()
-                ->getCollection($collectionName);
-            $collections[] = $collection;
+            $collections[] = $this->getCollectionManager()->getCollection($collectionName);
         }
 
         return $collections;

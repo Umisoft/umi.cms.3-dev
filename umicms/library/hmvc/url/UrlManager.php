@@ -18,7 +18,7 @@ use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 use umicms\project\module\structure\model\StructureModule;
 use umicms\project\module\structure\model\object\StructureElement;
 use umicms\hmvc\component\site\BaseSitePageComponent;

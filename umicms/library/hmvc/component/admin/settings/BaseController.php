@@ -8,19 +8,18 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\rest\controller;
+namespace umicms\hmvc\component\admin\settings;
 
 use umi\config\io\IConfigIOAware;
 use umi\config\io\TConfigIOAware;
 use umi\form\IForm;
 use umicms\exception\RuntimeException;
-use umicms\project\admin\controller\base\BaseAdminController;
-use umicms\project\admin\rest\component\SettingsComponent;
+use umicms\hmvc\component\admin\BaseController as BaseAdminController;
 
 /**
  * Базовый класс контроллера компонента, управляющего настройками.
  */
-abstract class BaseSettingsComponentController extends BaseAdminController implements IConfigIOAware
+abstract class BaseController extends BaseAdminController implements IConfigIOAware
 {
     use TConfigIOAware;
 
@@ -28,20 +27,6 @@ abstract class BaseSettingsComponentController extends BaseAdminController imple
      * Имя формы редактирования конфигурации
      */
     const SETTINGS_FORM_NAME = 'settings';
-
-    /**
-     * Возвращает форму, связанную с конфигурацией
-     * @return IForm
-     */
-    protected function getConfigForm()
-    {
-        $config = $this->readConfig($this->getComponent()->getSettingsConfigAlias());
-
-        $form = $this->getForm(self::SETTINGS_FORM_NAME, $config);
-        $form->setAction($this->getUrl('action', ['action' => 'save']));
-
-        return $form;
-    }
 
     /**
      * Возвращает компонент, у которого вызван контроллер.
@@ -58,13 +43,27 @@ abstract class BaseSettingsComponentController extends BaseAdminController imple
                     'Component for controller "{controllerClass}" should be instance of "{componentClass}".',
                     [
                         'controllerClass' => get_class($this),
-                        'componentClass' => 'umicms\project\admin\rest\component\SettingsComponent'
+                        'componentClass' => 'umicms\hmvc\component\admin\settings\SettingsComponent'
                     ]
                 )
             );
         }
 
         return $component;
+    }
+
+    /**
+     * Возвращает форму, связанную с конфигурацией
+     * @return IForm
+     */
+    protected function getConfigForm()
+    {
+        $config = $this->readConfig($this->getComponent()->getSettingsConfigAlias());
+
+        $form = $this->getForm(self::SETTINGS_FORM_NAME, $config);
+        $form->setAction($this->getUrl('action', ['action' => 'save']));
+
+        return $form;
     }
 }
  

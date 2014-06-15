@@ -25,8 +25,8 @@ class SiteHierarchicPageComponent extends BaseSitePageComponent
     public $defaultOptions = [
 
         self::OPTION_CONTROLLERS => [
-            'index' => 'umicms\hmvc\controller\site\SiteStructurePageController',
-            'page' => 'umicms\hmvc\controller\site\SitePageController'
+            'index' => 'umicms\hmvc\component\site\SiteStructurePageController',
+            'page' => 'umicms\hmvc\component\site\SitePageController'
         ],
 
         self::OPTION_ACL => [

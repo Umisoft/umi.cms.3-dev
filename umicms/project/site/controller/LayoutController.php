@@ -15,7 +15,7 @@ use umi\i18n\ILocalesAware;
 use umi\i18n\ILocalesService;
 use umi\i18n\TLocalesAware;
 use umicms\exception\RequiredDependencyException;
-use umicms\hmvc\controller\BaseCmsController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\view\CmsLayoutView;
 use umicms\i18n\CmsLocalesService;
 use umicms\project\module\structure\model\StructureModule;

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\rest\controller;
+namespace umicms\hmvc\component\admin\collection;
 
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
@@ -20,7 +20,7 @@ use umicms\orm\object\behaviour\IRecoverableObject;
 /**
  * Контроллер Read-Update-Delete операций над объектом.
  */
-class DefaultRestItemController extends BaseDefaultRestController
+class ItemController extends BaseController
 {
     /**
      * {@inheritdoc}

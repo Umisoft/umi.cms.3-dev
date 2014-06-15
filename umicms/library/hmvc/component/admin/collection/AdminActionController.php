@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\rest\controller;
+namespace umicms\hmvc\component\admin\collection;
 
 use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
@@ -35,9 +35,8 @@ use umicms\project\module\service\model\object\Backup;
 /**
  * Контроллер действий над объектом.
  */
-class DefaultRestActionController extends BaseDefaultRestController
+class ActionController extends BaseController
 {
-
     /**
      * {@inheritdoc}
      */

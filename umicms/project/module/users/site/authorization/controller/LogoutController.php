@@ -10,7 +10,7 @@
 
 namespace umicms\project\module\users\site\authorization\controller;
 
-use umicms\hmvc\controller\BaseCmsController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\UsersModule;
 

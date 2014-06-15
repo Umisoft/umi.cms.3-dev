@@ -16,7 +16,6 @@ use umi\acl\IAclResource;
 use umi\config\entity\IConfig;
 use umi\hmvc\component\Component;
 use umicms\exception\UnexpectedValueException;
-use umicms\hmvc\controller\BaseCmsController;
 use umicms\hmvc\widget\BaseCmsWidget;
 
 /**
@@ -172,7 +171,6 @@ abstract class BaseCmsComponent extends Component implements IAclResource
             $this->getControllersAclConfig(),
             $this->getWidgetsAclConfig()
         );
-
     }
 
     /**

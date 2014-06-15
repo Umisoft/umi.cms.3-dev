@@ -8,29 +8,22 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\rest\controller;
+namespace umicms\hmvc\component\admin\settings;
 
-use umicms\project\admin\controller\base\BaseAdminController;
+use umicms\hmvc\component\admin\BaseLayoutController;
 use umicms\project\admin\layout\SettingsGroupComponentLayout;
 
 /**
  * Контроллер вывода настроек компонента, группирующего компоненты настроек
  */
-class SettingsGroupComponentLayoutController extends BaseAdminController
+class GroupLayoutController extends BaseLayoutController
 {
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getLayout()
     {
-        $layout = new SettingsGroupComponentLayout($this->getComponent(), $this->getUrlManager());
-
-        return $this->createViewResponse(
-            'layout',
-            [
-                'layout' => $layout->build()
-            ]
-        );
+        return new SettingsGroupComponentLayout($this->getComponent(), $this->getUrlManager());
     }
 }
  

@@ -10,7 +10,7 @@
 
 namespace umicms\project\site\controller;
 
-use umicms\hmvc\controller\BaseCmsController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 
 /**

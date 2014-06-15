@@ -15,12 +15,12 @@ use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseCmsController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\exception\InvalidArgumentException;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogCategory;
 use umicms\project\module\blog\model\object\BlogPost;
-use umicms\hmvc\controller\site\TFormController;
+use umicms\hmvc\component\site\TFormController;
 
 /**
  * Контроллер добавления поста

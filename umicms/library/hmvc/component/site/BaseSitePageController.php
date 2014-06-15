@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\hmvc\controller\site;
+namespace umicms\hmvc\component\site;
 
 use umi\hmvc\component\IComponent;
-use umicms\hmvc\controller\BaseCmsController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\module\IModuleAware;
 use umicms\module\TModuleAware;

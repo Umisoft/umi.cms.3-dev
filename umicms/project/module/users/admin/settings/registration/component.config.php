@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\admin\rest\component\SettingsComponent;
+use umicms\hmvc\component\admin\settings\SettingsComponent;
 
 return [
 
-    SettingsComponent::OPTION_CLASS => 'umicms\project\admin\rest\component\SettingsComponent',
+    SettingsComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\settings\SettingsComponent',
 
     SettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/module/users/configuration/user/collection.settings.config.php',
 

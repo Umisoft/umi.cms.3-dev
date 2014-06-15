@@ -8,15 +8,15 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\rest\controller;
+namespace umicms\hmvc\component\admin;
 
-use umicms\project\admin\controller\base\BaseAdminController;
+use umicms\hmvc\component\admin\BaseController;
 use umicms\project\admin\layout\AdminComponentLayout;
 
 /**
  * Базовый контроллер сетки интерфейса административного компонента.
  */
-abstract class BaseAdminComponentLayoutController extends BaseAdminController
+abstract class BaseLayoutController extends BaseController
 {
     /**
      * Возвращет сетку интерфейса компонента.

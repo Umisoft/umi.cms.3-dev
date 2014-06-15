@@ -24,7 +24,7 @@ use umi\i18n\TLocalesAware;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umicms\exception\RequiredDependencyException;
-use umicms\hmvc\controller\BaseCmsController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\i18n\CmsLocalesService;
 use umicms\project\admin\AdminApplication;
 use umicms\project\admin\rest\RestApplication;

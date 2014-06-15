@@ -11,7 +11,7 @@
 namespace umicms\project\admin\controller;
 
 use umi\http\Response;
-use umicms\hmvc\controller\BaseCmsController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\project\admin\rest\RestApplication;
 use umicms\project\module\users\model\UsersModule;
 
@@ -55,7 +55,7 @@ class DefaultController extends BaseCmsController
         $response = $this->createViewResponse('layout', [
             'contents' => $this->response->getContent(),
             'baseUrl' => $this->getUrlManager()->getBaseAdminUrl(),
-            'basemoduleUrl' => $this->getUrlManager()->getBaseRestUrl(),
+            'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
             'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
             'authUrl' => $this->getUrlManager()->getAdminComponentActionResourceUrl($restApplication, 'auth')
         ]);

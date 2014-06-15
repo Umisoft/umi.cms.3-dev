@@ -13,7 +13,7 @@ namespace umicms\project\admin\controller;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
-use umicms\hmvc\controller\BaseCmsController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\exception\NonexistentEntityException;
 
 /**

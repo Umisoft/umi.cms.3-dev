@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\rest\controller;
+namespace umicms\hmvc\component\admin\collection;
 
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
@@ -29,7 +29,7 @@ use umicms\orm\selector\CmsSelector;
 /**
  * Контроллер действий над списком.
  */
-class DefaultRestListController extends BaseDefaultRestController implements IObjectPersisterAware
+class ListController extends BaseController implements IObjectPersisterAware
 {
     use TObjectPersisterAware;
 

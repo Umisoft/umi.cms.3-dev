@@ -10,14 +10,14 @@
 
 namespace umicms\project\module\news\admin\rss\controller;
 
-use umicms\project\admin\rest\controller\BaseAdminComponentLayoutController;
+use umicms\project\admin\rest\controller\BaseLayoutController;
 use umicms\project\admin\layout\AdminComponentLayout;
 use umicms\project\admin\layout\CollectionComponentLayout;
 
 /**
  * Контроллер сетки интерфейса административного компонента.
  */
-class LayoutController extends BaseAdminComponentLayoutController
+class LayoutController extends BaseLayoutController
 {
 
     /**

@@ -10,7 +10,7 @@
 
 namespace umicms\project\module\search\site\controller;
 
-use umicms\hmvc\controller\site\BaseSitePageController;
+use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\project\module\search\model\SearchApi;
 
 /**

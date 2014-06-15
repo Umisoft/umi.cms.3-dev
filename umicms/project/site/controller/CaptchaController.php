@@ -15,7 +15,7 @@ use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umicms\captcha\ICaptchaAware;
 use umicms\captcha\TCaptchaAware;
-use umicms\hmvc\controller\BaseCmsController;
+use umicms\hmvc\component\BaseCmsController;
 
 /**
  * Контроллер вывода каптчи.

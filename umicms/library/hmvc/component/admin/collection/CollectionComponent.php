@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\rest\component;
+namespace umicms\hmvc\component\admin\collection;
 
 use umi\acl\IAclFactory;
 use umi\orm\collection\ICollectionManagerAware;
@@ -20,12 +20,12 @@ use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsPageCollection;
 use umicms\orm\collection\CmsHierarchicCollection;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 /**
- * Компонент административной панели.
+ * Компонент административной панели для управления коллекцией.
  */
-class CollectionApiComponent extends AdminComponent implements ICollectionComponent, ICollectionManagerAware
+class CollectionComponent extends AdminComponent implements ICollectionComponent, ICollectionManagerAware
 {
     use TCollectionManagerAware;
 
@@ -84,10 +84,10 @@ class CollectionApiComponent extends AdminComponent implements ICollectionCompon
     public $defaultOptions = [
 
         self::OPTION_CONTROLLERS => [
-            self::LIST_CONTROLLER     => 'umicms\project\admin\rest\controller\DefaultRestListController',
-            self::ITEM_CONTROLLER     => 'umicms\project\admin\rest\controller\DefaultRestItemController',
-            self::ACTION_CONTROLLER   => 'umicms\project\admin\rest\controller\DefaultRestActionController',
-            self::INTERFACE_LAYOUT_CONTROLLER => 'umicms\project\admin\rest\controller\CollectionComponentLayoutController',
+            self::LIST_CONTROLLER     => 'umicms\hmvc\component\admin\collection\ListController',
+            self::ITEM_CONTROLLER     => 'umicms\hmvc\component\admin\collection\ItemController',
+            self::ACTION_CONTROLLER   => 'umicms\hmvc\component\admin\collection\ActionController',
+            self::INTERFACE_LAYOUT_CONTROLLER => 'umicms\hmvc\component\admin\collection\LayoutController',
         ],
         self::OPTION_ACL         => [
 
@@ -96,11 +96,10 @@ class CollectionApiComponent extends AdminComponent implements ICollectionCompon
             ],
             IAclFactory::OPTION_RULES     => [
                 'editor' => [
-                    'controller:settings' => [],
                     'controller:action'   => [],
                     'controller:item'     => [],
                     'controller:list'     => [],
-                    'controller:layout'     => []
+                    'controller:interfaceLayout'     => []
                 ],
             ]
         ],
@@ -210,7 +209,6 @@ class CollectionApiComponent extends AdminComponent implements ICollectionCompon
             $actions[self::ACTION_TRASH] = $this->createModifyAction(self::ACTION_TRASH);
             $actions[self::ACTION_UNTRASH] = $this->createModifyAction(self::ACTION_UNTRASH);
         }
-
 
         return $actions;
     }

@@ -11,7 +11,7 @@ namespace umicms\project\admin\layout;
 
 use umi\hmvc\component\IComponent;
 use umicms\exception\OutOfBoundsException;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 use umicms\project\admin\layout\action\Action;
 use umicms\project\admin\layout\control\AdminControl;
 

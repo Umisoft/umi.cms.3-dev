@@ -11,12 +11,12 @@
 namespace umicms\project\module\seo\admin\megaindex\controller;
 
 use umicms\project\admin\rest\component\DefaultQueryAdminComponent;
-use umicms\project\admin\rest\controller\CollectionComponentLayoutController;
+use umicms\project\admin\rest\controller\LayoutController;
 
 /**
  * Контроллер вывода настроек компонента
  */
-class SettingsController extends CollectionComponentLayoutController
+class SettingsController extends LayoutController
 {
     private $controls = [
         'megaindexReport' => []

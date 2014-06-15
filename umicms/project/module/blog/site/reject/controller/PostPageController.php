@@ -12,7 +12,7 @@ namespace umicms\project\module\blog\site\reject\controller;
 
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
-use umicms\hmvc\controller\site\SitePageController;
+use umicms\hmvc\component\site\SitePageController;
 
 /**
  * Контроллер вывода отклонённого поста блога.

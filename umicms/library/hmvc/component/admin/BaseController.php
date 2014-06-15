@@ -8,16 +8,15 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\controller\base;
+namespace umicms\hmvc\component\admin;
 
 use umicms\exception\RuntimeException;
-use umicms\hmvc\controller\BaseCmsController;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\BaseCmsController;
 
 /**
  * Базовый административный контроллер.
  */
-abstract class BaseAdminController extends BaseCmsController
+abstract class BaseController extends BaseCmsController
 {
     /**
      * Возвращает компонент, у которого вызван контроллер.
@@ -34,7 +33,7 @@ abstract class BaseAdminController extends BaseCmsController
                     'Component for controller "{controllerClass}" should be instance of "{componentClass}".',
                     [
                         'controllerClass' => get_class($this),
-                        'componentClass' => 'umicms\project\admin\rest\component\CollectionApiComponent'
+                        'componentClass' => 'umicms\hmvc\component\admin\AdminComponent'
                     ]
                 )
             );

@@ -11,12 +11,12 @@
 namespace umicms\project\module\statistics\admin\metrika\controller;
 
 use umicms\project\admin\rest\component\DefaultQueryAdminComponent;
-use umicms\project\admin\rest\controller\CollectionComponentLayoutController;
+use umicms\project\admin\rest\controller\LayoutController;
 
 /**
  * Контроллер вывода настроек компонента
  */
-class SettingsController extends CollectionComponentLayoutController
+class SettingsController extends LayoutController
 {
     private $controls = [
         'counters' => [],
