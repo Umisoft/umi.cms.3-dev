@@ -12,11 +12,11 @@ namespace umicms\project\module\blog\site\category;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteHierarchicPageComponent;
+use umicms\hmvc\component\site\SiteHierarchicPageComponent;
 
 return [
 
-    SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\SiteHierarchicPageComponent',
+    SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteHierarchicPageComponent',
     SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogCategory',
     SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\BlogCategoryRssController'

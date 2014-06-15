@@ -12,11 +12,11 @@ namespace umicms\project\module\blog\site\post;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SitePageComponent;
+use umicms\hmvc\component\site\SitePageComponent;
 
 return [
 
-    SitePageComponent::OPTION_CLASS => 'umicms\project\site\component\SitePageComponent',
+    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
     SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     SitePageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\PageController',

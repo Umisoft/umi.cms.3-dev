@@ -13,12 +13,12 @@ namespace umicms\project\module\news\site\item\controller;
 use umicms\exception\InvalidArgumentException;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\news\model\object\NewsItem;
-use umicms\project\site\controller\DefaultPageController;
+use umicms\hmvc\controller\site\SitePageController;
 
 /**
  * Контроллер для отображения новости.
  */
-class PageController extends DefaultPageController
+class PageController extends SitePageController
 {
     /**
      * Возвращает хлебные крошки для текущего элемента.

@@ -21,8 +21,8 @@ use umicms\hmvc\url\TUrlManagerAware;
 use umicms\hmvc\view\CmsTreeView;
 use umicms\hmvc\view\CmsView;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\site\callstack\IPageCallStackAware;
-use umicms\project\site\callstack\TPageCallStackAware;
+use umicms\hmvc\callstack\IPageCallStackAware;
+use umicms\hmvc\callstack\TPageCallStackAware;
 
 /**
  * Базовый виджет UMI.CMS

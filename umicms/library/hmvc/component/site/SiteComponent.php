@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\site\component;
+namespace umicms\hmvc\component\site;
 
 use umi\config\exception\RuntimeException;
 use umi\config\io\IConfigAliasResolverAware;
@@ -19,8 +19,8 @@ use umi\hmvc\view\IViewRenderer;
 use umi\http\Request;
 use umicms\hmvc\component\BaseCmsComponent;
 use umicms\orm\object\ICmsPage;
-use umicms\project\site\callstack\IPageCallStackAware;
-use umicms\project\site\callstack\TPageCallStackAware;
+use umicms\hmvc\callstack\IPageCallStackAware;
+use umicms\hmvc\callstack\TPageCallStackAware;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 

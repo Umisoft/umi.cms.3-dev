@@ -14,7 +14,7 @@ use umi\http\Response;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\module\users\model\UsersModule;
-use umicms\project\site\controller\BaseSitePageController;
+use umicms\hmvc\controller\site\BaseSitePageController;
 
 /**
  * Контроллер активации пользователя

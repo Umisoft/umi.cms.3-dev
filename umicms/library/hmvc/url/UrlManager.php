@@ -21,7 +21,7 @@ use umicms\orm\object\ICmsPage;
 use umicms\project\admin\component\AdminComponent;
 use umicms\project\module\structure\model\StructureModule;
 use umicms\project\module\structure\model\object\StructureElement;
-use umicms\project\site\component\BaseSitePageComponent;
+use umicms\hmvc\component\site\BaseSitePageComponent;
 
 /**
  * URL-менеджер.
@@ -168,7 +168,7 @@ class UrlManager implements IUrlManager, ILocalizable
                     [
                         'guid' => $page->getGUID(),
                         'path' => $component->getPath(),
-                        'class' => 'umicms\project\site\component\BaseDefaultSitePageComponent'
+                        'class' => 'umicms\hmvc\component\site\BaseDefaultSitePageComponent'
                     ]
                 )
             );

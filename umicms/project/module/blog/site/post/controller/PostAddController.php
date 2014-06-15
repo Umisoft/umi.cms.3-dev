@@ -20,7 +20,7 @@ use umicms\exception\InvalidArgumentException;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogCategory;
 use umicms\project\module\blog\model\object\BlogPost;
-use umicms\project\site\controller\TFormController;
+use umicms\hmvc\controller\site\TFormController;
 
 /**
  * Контроллер добавления поста

@@ -12,11 +12,11 @@ namespace umicms\project\module\news\site\item;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SitePageComponent;
+use umicms\hmvc\component\site\SitePageComponent;
 
 return [
 
-    SitePageComponent::OPTION_CLASS => 'umicms\project\site\component\SitePageComponent',
+    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
     SitePageComponent::OPTION_COLLECTION_NAME => 'newsItem',
 
     SitePageComponent::OPTION_CONTROLLERS => [

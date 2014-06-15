@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\site\callstack;
+namespace umicms\hmvc\callstack;
 
 use SplStack;
 

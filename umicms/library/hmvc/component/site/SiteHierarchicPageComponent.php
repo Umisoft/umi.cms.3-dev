@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\site\component;
+namespace umicms\hmvc\component\site;
 
 use umi\acl\IAclFactory;
 use umi\orm\collection\TCollectionManagerAware;
@@ -25,8 +25,8 @@ class SiteHierarchicPageComponent extends BaseSitePageComponent
     public $defaultOptions = [
 
         self::OPTION_CONTROLLERS => [
-            'index' => 'umicms\project\site\controller\DefaultStructurePageController',
-            'page' => 'umicms\project\site\controller\DefaultPageController'
+            'index' => 'umicms\hmvc\controller\site\SiteStructurePageController',
+            'page' => 'umicms\hmvc\controller\site\SitePageController'
         ],
 
         self::OPTION_ACL => [

@@ -14,8 +14,8 @@ use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umicms\exception\InvalidArgumentException;
 use umicms\project\module\structure\model\object\StructureElement;
-use umicms\project\site\callstack\IPageCallStackAware;
-use umicms\project\site\callstack\TPageCallStackAware;
+use umicms\hmvc\callstack\IPageCallStackAware;
+use umicms\hmvc\callstack\TPageCallStackAware;
 
 /**
  * API для работы с автогенерируемым меню структуры

@@ -17,7 +17,7 @@ use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogComment;
-use umicms\project\site\controller\TFormController;
+use umicms\hmvc\controller\site\TFormController;
 
 /**
  * Контроллер добавления комментария.

@@ -19,8 +19,8 @@ use umicms\hmvc\controller\BaseCmsController;
 use umicms\hmvc\view\CmsLayoutView;
 use umicms\i18n\CmsLocalesService;
 use umicms\project\module\structure\model\StructureModule;
-use umicms\project\site\callstack\IPageCallStackAware;
-use umicms\project\site\callstack\TPageCallStackAware;
+use umicms\hmvc\callstack\IPageCallStackAware;
+use umicms\hmvc\callstack\TPageCallStackAware;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 
@@ -29,7 +29,6 @@ use umicms\project\site\config\TSiteSettingsAware;
  */
 class LayoutController extends BaseCmsController implements ISiteSettingsAware, IPageCallStackAware, ILocalesAware
 {
-
     use TSiteSettingsAware;
     use TPageCallStackAware;
 

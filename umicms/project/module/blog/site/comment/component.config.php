@@ -12,11 +12,11 @@ namespace umicms\project\module\blog\site\comment;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteHierarchicPageComponent;
+use umicms\hmvc\component\site\SiteHierarchicPageComponent;
 
 return [
 
-    SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\SiteHierarchicPageComponent',
+    SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteHierarchicPageComponent',
     SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
     SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
         'add' => __NAMESPACE__ . '\controller\AddController',

@@ -12,12 +12,12 @@ namespace umicms\project\module\blog\site\draft\controller;
 
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
-use umicms\project\site\controller\DefaultPageController;
+use umicms\hmvc\controller\site\SitePageController;
 
 /**
  * Контроллер вывода черновика блога.
  */
-class BlogDraftPageController extends DefaultPageController
+class BlogDraftPageController extends SitePageController
 {
     /**
      * @var BlogModule $module модуль "Блоги"

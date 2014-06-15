@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\site\controller;
+namespace umicms\hmvc\controller\site;
 
 use umi\hmvc\component\IComponent;
 use umicms\hmvc\controller\BaseCmsController;
@@ -18,8 +18,8 @@ use umicms\module\TModuleAware;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\model\object\SystemPage;
 use umicms\project\module\structure\model\StructureModule;
-use umicms\project\site\callstack\IPageCallStackAware;
-use umicms\project\site\callstack\TPageCallStackAware;
+use umicms\hmvc\callstack\IPageCallStackAware;
+use umicms\hmvc\callstack\TPageCallStackAware;
 
 /**
  * Базовый контроллер для сайта

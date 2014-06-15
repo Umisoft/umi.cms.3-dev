@@ -8,12 +8,12 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\site\controller;
+namespace umicms\hmvc\controller\site;
 
 /**
  * Контроллер вывода системных страниц компонентов.
  */
-class DefaultStructurePageController extends BaseSitePageController
+class SiteStructurePageController extends BaseSitePageController
 {
     /**
      * {@inheritdoc}

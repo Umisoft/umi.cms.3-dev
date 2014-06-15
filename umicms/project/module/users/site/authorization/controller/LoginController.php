@@ -14,8 +14,8 @@ use umi\form\element\IFormElement;
 use umi\form\IForm;
 use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\UsersModule;
-use umicms\project\site\controller\BaseSitePageController;
-use umicms\project\site\controller\TFormController;
+use umicms\hmvc\controller\site\BaseSitePageController;
+use umicms\hmvc\controller\site\TFormController;
 
 /**
  * Контроллер авторизации пользователя

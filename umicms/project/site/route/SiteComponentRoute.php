@@ -16,7 +16,7 @@ use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\structure\model\object\StructureElement;
-use umicms\project\site\component\SiteComponent;
+use umicms\hmvc\component\site\SiteComponent;
 use umicms\project\module\structure\model\StructureModule;
 use umicms\project\module\structure\model\object\SystemPage;
 

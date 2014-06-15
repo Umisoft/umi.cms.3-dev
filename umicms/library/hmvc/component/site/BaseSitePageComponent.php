@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\site\component;
+namespace umicms\hmvc\component\site;
 
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\site\controller;
+namespace umicms\hmvc\controller\site;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;

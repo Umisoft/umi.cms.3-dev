@@ -15,7 +15,7 @@ use umi\orm\metadata\field\special\UriField;
 use umi\route\type\BaseRoute;
 use umicms\exception\RuntimeException;
 use umicms\project\module\structure\model\object\StaticPage;
-use umicms\project\site\component\SiteComponent;
+use umicms\hmvc\component\site\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 use umicms\project\module\structure\model\StructureModule;

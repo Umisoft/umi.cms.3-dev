@@ -12,11 +12,11 @@ namespace umicms\project\module\structure\site;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\hmvc\component\site\SiteComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
+    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
 
     SiteComponent::OPTION_COMPONENTS => [
         'menu' => '{#lazy:~/project/module/structure/site/menu/component.config.php}',
@@ -24,7 +24,7 @@ return [
     ],
 
     SiteComponent::OPTION_CONTROLLERS => [
-        'static' => 'umicms\project\site\controller\DefaultStructurePageController',
+        'static' => 'umicms\hmvc\controller\site\SiteStructurePageController',
     ],
 
     SiteComponent::OPTION_VIEW        => [

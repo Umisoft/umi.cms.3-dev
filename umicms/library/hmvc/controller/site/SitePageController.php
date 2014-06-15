@@ -8,17 +8,17 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\site\controller;
+namespace umicms\hmvc\controller\site;
 
 use umicms\exception\RuntimeException;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
-use umicms\project\site\component\BaseSitePageComponent;
+use umicms\hmvc\component\site\BaseSitePageComponent;
 
 /**
  * Контроллер вывода страниц компонента.
  */
-class DefaultPageController extends BaseSitePageController
+class SitePageController extends BaseSitePageController
 {
     /**
      * Возвращает страницу для отображения.

@@ -12,12 +12,12 @@ namespace umicms\project\module\blog\site\reject\controller;
 
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
-use umicms\project\site\controller\DefaultPageController;
+use umicms\hmvc\controller\site\SitePageController;
 
 /**
  * Контроллер вывода отклонённого поста блога.
  */
-class PostPageController extends DefaultPageController
+class PostPageController extends SitePageController
 {
     /**
      * @var BlogModule $module модуль "Блоги"
