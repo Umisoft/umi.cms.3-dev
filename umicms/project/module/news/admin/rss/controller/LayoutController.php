@@ -10,8 +10,7 @@
 
 namespace umicms\project\module\news\admin\rss\controller;
 
-use umicms\project\admin\rest\controller\BaseLayoutController;
-use umicms\project\admin\layout\AdminComponentLayout;
+use umicms\hmvc\component\admin\BaseLayoutController;
 use umicms\project\admin\layout\CollectionComponentLayout;
 
 /**
@@ -21,8 +20,7 @@ class LayoutController extends BaseLayoutController
 {
 
     /**
-     * Возвращет сетку интерфейса компонента.
-     * @return AdminComponentLayout
+     * {@inheritdoc}
      */
     protected function getLayout()
     {

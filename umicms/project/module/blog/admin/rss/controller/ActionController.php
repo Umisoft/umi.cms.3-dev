@@ -10,14 +10,14 @@
 
 namespace umicms\project\module\blog\admin\rss\controller;
 
-use umicms\project\admin\rest\controller\AdminCollectionComponentActionController;
+use umicms\hmvc\component\admin\collection\ActionController as CollectionActionController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogRssImportScenario;
 
 /**
  * Контроллер операций.
  */
-class ActionController extends AdminCollectionComponentActionController
+class ActionController extends CollectionActionController
 {
     /**
      * @var BlogModule $module

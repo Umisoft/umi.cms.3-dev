@@ -10,7 +10,6 @@
 
 namespace umicms\hmvc\component\admin;
 
-use umicms\hmvc\component\admin\BaseController;
 use umicms\project\admin\layout\AdminComponentLayout;
 
 /**

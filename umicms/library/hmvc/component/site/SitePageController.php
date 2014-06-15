@@ -13,7 +13,6 @@ namespace umicms\hmvc\component\site;
 use umicms\exception\RuntimeException;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
-use umicms\hmvc\component\site\BaseSitePageComponent;
 
 /**
  * Контроллер вывода страниц компонента.
