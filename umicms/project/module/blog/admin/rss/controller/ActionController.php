@@ -11,8 +11,8 @@
 namespace umicms\project\module\blog\admin\rss\controller;
 
 use umicms\project\admin\rest\controller\DefaultRestActionController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogRssImportScenario;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogRssImportScenario;
 
 /**
  * Контроллер операций.
@@ -20,17 +20,17 @@ use umicms\project\module\blog\api\object\BlogRssImportScenario;
 class ActionController extends DefaultRestActionController
 {
     /**
-     * @var BlogModule $api
+     * @var BlogModule $module
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $api
+     * @param BlogModule $module
      */
-    public function __construct(BlogModule $api)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -43,7 +43,7 @@ class ActionController extends DefaultRestActionController
          */
         $scenario = $this->getEditedObject($this->getIncomingData());
 
-        $this->api->importRss($scenario);
+        $this->module->importRss($scenario);
         $this->getObjectPersister()->commit();
 
         return '';

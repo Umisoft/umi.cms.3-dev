@@ -13,18 +13,18 @@ namespace umicms\project\module\blog\site\reject;
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSitePageComponent;
+use umicms\project\site\component\CmsPageComponent;
 
 return [
 
-    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
-    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    DefaultSitePageComponent::OPTION_CONTROLLERS => [
+    CmsPageComponent::OPTION_CLASS => 'umicms\project\site\component\CmsPageComponent',
+    CmsPageComponent::OPTION_COLLECTION_NAME => 'blogPost',
+    CmsPageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\PostPageController',
         'edit' => __NAMESPACE__ . '\controller\PostEditController',
         'sendToModeration' => __NAMESPACE__ . '\controller\PostSendToModerationController',
     ],
-    DefaultSitePageComponent::OPTION_WIDGET => [
+    CmsPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\PostWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'listLink' => __NAMESPACE__ . '\widget\ListLinkWidget',
@@ -32,7 +32,7 @@ return [
         'sendToModeration' => __NAMESPACE__ . '\widget\PostSendToModerationWidget'
 
     ],
-    DefaultSitePageComponent::OPTION_ACL => [
+    CmsPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
             'moderator' => ['author']
@@ -62,10 +62,10 @@ return [
             ]
         ]
     ],
-    DefaultSitePageComponent::OPTION_VIEW => [
+    CmsPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/reject'],
     ],
-    DefaultSitePageComponent::OPTION_ROUTES => [
+    CmsPageComponent::OPTION_ROUTES => [
         'edit' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/edit/{id:integer}',

@@ -12,8 +12,8 @@ namespace umicms\project\module\news\site\item\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseCmsWidget;
-use umicms\project\module\news\api\NewsModule;
-use umicms\project\module\news\api\object\NewsItem;
+use umicms\project\module\news\model\NewsModule;
+use umicms\project\module\news\model\object\NewsItem;
 
 /**
  * Виджет вывода новости.
@@ -30,17 +30,17 @@ class NewsItemWidget extends BaseCmsWidget
     public $newsItem;
 
     /**
-     * @var NewsModule $api API модуля "Новости"
+     * @var NewsModule $module модуль "Новости"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param NewsModule $newsApi API модуля "Новости"
+     * @param NewsModule $newsApi модуль "Новости"
      */
     public function __construct(NewsModule $newsApi)
     {
-        $this->api = $newsApi;
+        $this->module = $newsApi;
     }
 
     /**
@@ -49,7 +49,7 @@ class NewsItemWidget extends BaseCmsWidget
     public function __invoke()
     {
         if (is_string($this->newsItem)) {
-            $this->newsItem = $this->api->news()->get($this->newsItem);
+            $this->newsItem = $this->module->news()->get($this->newsItem);
         }
 
         if (!$this->newsItem instanceof NewsItem) {

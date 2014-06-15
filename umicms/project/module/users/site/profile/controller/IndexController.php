@@ -13,8 +13,8 @@ namespace umicms\project\module\users\site\profile\controller;
 use umi\form\IForm;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\project\module\users\api\object\AuthorizedUser;
-use umicms\project\module\users\api\UsersModule;
+use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\UsersModule;
 use umicms\project\site\controller\SitePageController;
 use umicms\project\site\controller\TFormController;
 
@@ -27,17 +27,17 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     use TObjectPersisterAware;
 
     /**
-     * @var UsersModule $api API модуля "Пользователи"
+     * @var UsersModule $module модуль "Пользователи"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param UsersModule $usersModule API модуля "Пользователи"
+     * @param UsersModule $module модуль "Пользователи"
      */
-    public function __construct(UsersModule $usersModule)
+    public function __construct(UsersModule $module)
     {
-        $this->api = $usersModule;
+        $this->module = $module;
     }
 
     /**
@@ -53,10 +53,10 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
      */
     protected function buildForm()
     {
-        return $this->api->user()->getForm(
+        return $this->module->user()->getForm(
             AuthorizedUser::FORM_EDIT_PROFILE,
             AuthorizedUser::TYPE_NAME,
-            $this->api->getCurrentUser()
+            $this->module->getCurrentUser()
         );
     }
 
@@ -74,7 +74,7 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     protected function buildResponseContent()
     {
         return [
-            'user' => $this->api->getCurrentUser(),
+            'user' => $this->module->getCurrentUser(),
             'page' => $this->getCurrentPage()
         ];
     }

@@ -17,9 +17,9 @@ use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseCmsController;
 use umicms\exception\InvalidArgumentException;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogCategory;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogCategory;
+use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\site\controller\TFormController;
 
 /**
@@ -31,9 +31,9 @@ class PostAddController extends BaseCmsController implements IObjectPersisterAwa
     use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
     /**
      * @var bool $added флаг указывающий на статус добавление поста
      */
@@ -45,11 +45,11 @@ class PostAddController extends BaseCmsController implements IObjectPersisterAwa
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -69,7 +69,7 @@ class PostAddController extends BaseCmsController implements IObjectPersisterAwa
         $blogCategoryId = $this->getRouteVar('id');
 
         if (!is_null($blogCategoryId)) {
-            $blogCategory = $this->api->category()->getById($blogCategoryId);
+            $blogCategory = $this->module->category()->getById($blogCategoryId);
         }
 
         if (!$blogCategory instanceof BlogCategory) {
@@ -84,7 +84,7 @@ class PostAddController extends BaseCmsController implements IObjectPersisterAwa
             );
         }
 
-        $this->blogPost = $this->api->post()->add();
+        $this->blogPost = $this->module->post()->add();
         $this->blogPost->category = $blogCategory;
 
         if (!$this->isAllowed($this->blogPost)) {
@@ -94,7 +94,7 @@ class PostAddController extends BaseCmsController implements IObjectPersisterAwa
             );
         }
 
-        return $this->api->post()->getForm(
+        return $this->module->post()->getForm(
             BlogPost::FORM_ADD_POST,
             IObjectType::BASE,
             $this->blogPost

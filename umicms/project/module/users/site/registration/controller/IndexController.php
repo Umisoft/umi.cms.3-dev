@@ -13,8 +13,8 @@ namespace umicms\project\module\users\site\registration\controller;
 use umi\form\IForm;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\project\module\users\api\object\AuthorizedUser;
-use umicms\project\module\users\api\UsersModule;
+use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\UsersModule;
 use umicms\project\site\controller\SitePageController;
 use umicms\project\site\controller\TFormController;
 
@@ -27,9 +27,9 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     use TObjectPersisterAware;
 
     /**
-     * @var UsersModule $api API модуля "Пользователи"
+     * @var UsersModule $module модуль "Пользователи"
      */
-    protected $api;
+    protected $module;
     /**
      * @var AuthorizedUser $user регистрируемый пользователь
      */
@@ -37,11 +37,11 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
 
     /**
      * Конструктор.
-     * @param UsersModule $usersModule API модуля "Пользователи"
+     * @param UsersModule $module модуль "Пользователи"
      */
-    public function __construct(UsersModule $usersModule)
+    public function __construct(UsersModule $module)
     {
-        $this->api = $usersModule;
+        $this->module = $module;
     }
 
     /**
@@ -58,9 +58,9 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     protected function buildForm()
     {
         $type = $this->getRouteVar('type', AuthorizedUser::TYPE_NAME);
-        $this->user = $this->api->user()->add($type);
+        $this->user = $this->module->user()->add($type);
 
-        return $this->api->user()->getForm(AuthorizedUser::FORM_REGISTRATION, $type, $this->user);
+        return $this->module->user()->getForm(AuthorizedUser::FORM_REGISTRATION, $type, $this->user);
     }
 
     /**
@@ -68,11 +68,11 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
      */
     protected function processForm(IForm $form)
     {
-        $this->api->register($this->user);
+        $this->module->register($this->user);
         $this->getObjectPersister()->commit();
 
         if ($this->user->active) {
-            $this->api->setCurrentUser($this->user);
+            $this->module->setCurrentUser($this->user);
         }
 
         $this->sendNotifications();
@@ -88,7 +88,7 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
         return [
             'page' => $this->getCurrentPage(),
             'user' => $this->user,
-            'authenticated' => $this->api->isAuthenticated(),
+            'authenticated' => $this->module->isAuthenticated(),
             'success' => (bool) $this->user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->getValue(),
         ];
     }
@@ -121,7 +121,7 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     {
         $this->mail(
             [$this->user->email => $this->user->displayName],
-            $this->api->getMailSender(),
+            $this->module->getMailSender(),
             'mail/activationMailSubject',
             'mail/activationMailBody',
             [
@@ -138,7 +138,7 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     {
         $this->mail(
             [$this->user->email => $this->user->displayName],
-            $this->api->getMailSender(),
+            $this->module->getMailSender(),
             'mail/successfulRegistrationMailSubject',
             'mail/successfulRegistrationMailBody',
             [
@@ -152,13 +152,13 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
      */
     protected function sendAdminNotification()
     {
-        $admins = $this->api->getNotificationRecipients();
+        $admins = $this->module->getNotificationRecipients();
 
         if (count($admins)) {
 
             $this->mail(
                 [$this->user->email => $this->user->displayName],
-                $this->api->getMailSender(),
+                $this->module->getMailSender(),
                 'mail/adminNotificationMailSubject',
                 'mail/adminNotificationMailBody',
                 [

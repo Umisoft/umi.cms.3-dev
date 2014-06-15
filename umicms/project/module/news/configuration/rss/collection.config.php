@@ -13,7 +13,7 @@ use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\news\api\collection\NewsRssImportScenarioCollection',
+    'class' => 'umicms\project\module\news\model\collection\NewsRssImportScenarioCollection',
     'handlers' => [
         'admin' => 'news.rss',
         'site' => 'news.rss'

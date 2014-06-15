@@ -13,8 +13,8 @@ namespace umicms\project\module\users\site\restoration\controller;
 use umi\form\element\IFormElement;
 use umi\form\IForm;
 use umicms\exception\NonexistentEntityException;
-use umicms\project\module\users\api\object\AuthorizedUser;
-use umicms\project\module\users\api\UsersModule;
+use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\UsersModule;
 use umicms\project\site\controller\SitePageController;
 use umicms\project\site\controller\TFormController;
 
@@ -26,9 +26,9 @@ class IndexController extends SitePageController
     use TFormController;
 
     /**
-     * @var UsersModule $api API модуля "Пользователи"
+     * @var UsersModule $module модуль "Пользователи"
      */
-    protected $api;
+    protected $module;
     /**
      * @var bool $success успех операции запроса смены пароля
      */
@@ -36,11 +36,11 @@ class IndexController extends SitePageController
 
     /**
      * Конструктор.
-     * @param UsersModule $usersModule API модуля "Пользователи"
+     * @param UsersModule $module модуль "Пользователи"
      */
-    public function __construct(UsersModule $usersModule)
+    public function __construct(UsersModule $module)
     {
-        $this->api = $usersModule;
+        $this->module = $module;
     }
 
     /**
@@ -56,7 +56,7 @@ class IndexController extends SitePageController
      */
     protected function buildForm()
     {
-        return $this->api->user()->getForm(AuthorizedUser::FORM_RESTORE_PASSWORD, AuthorizedUser::TYPE_NAME);
+        return $this->module->user()->getForm(AuthorizedUser::FORM_RESTORE_PASSWORD, AuthorizedUser::TYPE_NAME);
     }
 
     /**
@@ -70,7 +70,7 @@ class IndexController extends SitePageController
         $loginOrEmailInput = $form->get('loginOrEmail');
 
         try {
-            $user = $this->api->user()->getUserByLoginOrEmail($loginOrEmailInput->getValue());
+            $user = $this->module->user()->getUserByLoginOrEmail($loginOrEmailInput->getValue());
 
             if (!$user->active || $user->trashed) {
                 $this->errors[] = $this->translate('User with given login or email has been block or has not activated.');
@@ -105,7 +105,7 @@ class IndexController extends SitePageController
     {
         $this->mail(
             [$user->email => $user->displayName],
-            $this->api->getMailSender(),
+            $this->module->getMailSender(),
             'mail/confirmationSubject',
             'mail/confirmationBody',
             [

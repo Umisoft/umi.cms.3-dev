@@ -20,8 +20,8 @@ use umi\orm\selector\condition\IFieldCondition;
 use umicms\exception\OutOfBoundsException;
 use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
-use umicms\orm\collection\SimpleCollection;
-use umicms\orm\collection\SimpleHierarchicCollection;
+use umicms\orm\collection\CmsCollection;
+use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\selector\CmsSelector;
@@ -98,16 +98,16 @@ class DefaultRestListController extends BaseDefaultRestController implements IOb
     protected function create(array $data)
     {
         /**
-         * @var SimpleHierarchicCollection|SimpleCollection $collection
+         * @var CmsHierarchicCollection|CmsCollection $collection
          */
         $collection = $this->getCollection();
 
         switch(true) {
-            case $collection instanceof SimpleHierarchicCollection: {
+            case $collection instanceof CmsHierarchicCollection: {
                 $object = $this->createHierarchicObject($collection, $data);
                 break;
             }
-            case $collection instanceof SimpleCollection: {
+            case $collection instanceof CmsCollection: {
                 $object = $this->createObject($collection, $data);
                 break;
             }
@@ -353,12 +353,12 @@ class DefaultRestListController extends BaseDefaultRestController implements IOb
 
     /**
      * Создает объект в коллекции.
-     * @param SimpleHierarchicCollection $collection коллекция
+     * @param CmsHierarchicCollection $collection коллекция
      * @param array $data данные объекта
      * @throws RuntimeException в случае недостаточности данных для создания объекта
      * @return CmsHierarchicObject
      */
-    private function createHierarchicObject(SimpleHierarchicCollection $collection, array $data)
+    private function createHierarchicObject(CmsHierarchicCollection $collection, array $data)
     {
         if (!isset($data['slug'])) {
             throw new RuntimeException(
@@ -383,11 +383,11 @@ class DefaultRestListController extends BaseDefaultRestController implements IOb
 
     /**
      * Создает объект в коллекции.
-     * @param SimpleCollection $collection коллекция
+     * @param CmsCollection $collection коллекция
      * @param array $data данные объекта
      * @return ICmsObject
      */
-    private function createObject(SimpleCollection $collection, array $data)
+    private function createObject(CmsCollection $collection, array $data)
     {
         $typeName = isset($data['type']) ? $data['type'] : IObjectType::BASE;
 

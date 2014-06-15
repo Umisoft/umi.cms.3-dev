@@ -19,9 +19,9 @@ use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\admin\component\AdminComponent;
-use umicms\project\module\structure\api\StructureModule;
-use umicms\project\module\structure\api\object\StructureElement;
-use umicms\project\site\component\BaseDefaultSitePageComponent;
+use umicms\project\module\structure\model\StructureModule;
+use umicms\project\module\structure\model\object\StructureElement;
+use umicms\project\site\component\BaseCmsPageComponent;
 
 /**
  * URL-менеджер.
@@ -161,7 +161,7 @@ class UrlManager implements IUrlManager, ILocalizable
         $component = $this->dispatcher->getComponentByPath(
             CmsDispatcher::SITE_COMPONENT_PATH . IComponent::PATH_SEPARATOR . $handlerPath
         );
-        if (!$component instanceof BaseDefaultSitePageComponent) {
+        if (!$component instanceof BaseCmsPageComponent) {
             throw new RuntimeException(
                 $this->translate(
                     'Cannot get url for page with GUID "{guid}". Component "{path}" should be instance of "{class}".',

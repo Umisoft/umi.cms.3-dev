@@ -12,7 +12,7 @@ namespace umicms\project\module\search\admin\controller;
 
 use umi\http\Response;
 use umicms\project\admin\rest\controller\DefaultRestActionController;
-use umicms\project\module\search\api\SearchApi;
+use umicms\project\module\search\model\SearchApi;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
@@ -20,17 +20,17 @@ use umicms\project\module\search\api\SearchApi;
 class ActionController extends DefaultRestActionController
 {
     /**
-     * @var SearchApi $api
+     * @var SearchApi $module
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param SearchApi $api
+     * @param SearchApi $module
      */
-    public function __construct(SearchApi $api)
+    public function __construct(SearchApi $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -58,7 +58,7 @@ class ActionController extends DefaultRestActionController
 
         $resultSet = [];
         if (!is_null($query)) {
-            $resultSet = $this->api->search($query);
+            $resultSet = $this->module->search($query);
         }
         return $resultSet;
     }

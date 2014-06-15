@@ -9,7 +9,7 @@
  */
 
 use umi\form\element\Text;
-use umicms\project\module\users\api\UsersModule;
+use umicms\project\module\users\model\UsersModule;
 
 return [
     'options' => [

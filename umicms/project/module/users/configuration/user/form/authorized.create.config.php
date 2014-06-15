@@ -13,7 +13,7 @@ use umi\form\element\MultiSelect;
 use umi\form\element\Password;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\users\api\object\AuthorizedUser;
+use umicms\project\module\users\model\object\AuthorizedUser;
 
 return [
 

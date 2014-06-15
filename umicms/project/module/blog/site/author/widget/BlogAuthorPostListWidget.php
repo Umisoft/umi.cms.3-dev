@@ -12,8 +12,8 @@ namespace umicms\project\module\blog\site\author\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseListWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogAuthor;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogAuthor;
 
 /**
  * Виджет для вывода списка постов по автору.
@@ -31,17 +31,17 @@ class BlogAuthorPostListWidget extends BaseListWidget
     public $blogAuthors;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -53,7 +53,7 @@ class BlogAuthorPostListWidget extends BaseListWidget
 
         foreach ($blogAuthors as &$blogAuthor) {
             if (is_string($blogAuthor)) {
-                $blogAuthor = $this->api->author()->get($blogAuthor);
+                $blogAuthor = $this->module->author()->get($blogAuthor);
             }
 
             if (isset($blogAuthor) && !$blogAuthor instanceof BlogAuthor) {
@@ -69,7 +69,7 @@ class BlogAuthorPostListWidget extends BaseListWidget
             }
         }
 
-        return  $this->api->getPostsByAuthor($blogAuthors);
+        return  $this->module->getPostsByAuthor($blogAuthors);
     }
 
 }

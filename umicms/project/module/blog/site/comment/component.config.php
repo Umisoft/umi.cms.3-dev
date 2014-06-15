@@ -12,28 +12,28 @@ namespace umicms\project\module\blog\site\comment;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSiteHierarchicPageComponent;
+use umicms\project\site\component\CmsHierarchicPageComponent;
 
 return [
 
-    DefaultSiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSiteHierarchicPageComponent',
-    DefaultSiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
-    DefaultSiteHierarchicPageComponent::OPTION_CONTROLLERS => [
+    CmsHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\CmsHierarchicPageComponent',
+    CmsHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
+    CmsHierarchicPageComponent::OPTION_CONTROLLERS => [
         'add' => __NAMESPACE__ . '\controller\AddController',
         'publish' => __NAMESPACE__ . '\controller\PublishController',
         'reject' => __NAMESPACE__ . '\controller\RejectController',
     ],
-    DefaultSiteHierarchicPageComponent::OPTION_WIDGET => [
+    CmsHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\CommentWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'add' => __NAMESPACE__ . '\widget\AddWidget',
         'publish' => __NAMESPACE__ . '\widget\PublishWidget',
         'reject' => __NAMESPACE__ . '\widget\RejectWidget'
     ],
-    DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
+    CmsHierarchicPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/comment'],
     ],
-    DefaultSiteHierarchicPageComponent::OPTION_ACL => [
+    CmsHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
             'poster' => ['viewer'],
@@ -73,7 +73,7 @@ return [
             ]
         ]
     ],
-    DefaultSiteHierarchicPageComponent::OPTION_ROUTES => [
+    CmsHierarchicPageComponent::OPTION_ROUTES => [
         'add' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/add/{parent:integer}',

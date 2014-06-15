@@ -13,7 +13,7 @@ namespace umicms\project\module\news\site\item\controller;
 use umi\http\Response;
 use umicms\hmvc\controller\BaseCmsController;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\project\module\news\api\NewsModule;
+use umicms\project\module\news\model\NewsModule;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 
@@ -25,17 +25,17 @@ class NewsItemRssController extends BaseCmsController implements ISiteSettingsAw
     use TSiteSettingsAware;
 
     /**
-     * @var NewsModule $api
+     * @var NewsModule $module
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param NewsModule $api
+     * @param NewsModule $module
      */
-    public function __construct(NewsModule $api)
+    public function __construct(NewsModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -44,9 +44,9 @@ class NewsItemRssController extends BaseCmsController implements ISiteSettingsAw
      */
     public function __invoke()
     {
-        $newsItems = $this->api->getNews();
+        $newsItems = $this->module->getNews();
 
-        $rssFeed = $this->api->getNewsRssFeed(
+        $rssFeed = $this->module->getNewsRssFeed(
             $this->getSiteDefaultTitle(),
             $this->getSiteDefaultDescription(),
             $newsItems

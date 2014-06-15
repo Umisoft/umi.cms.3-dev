@@ -12,23 +12,23 @@ namespace umicms\project\module\blog\site\tag;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSitePageComponent;
+use umicms\project\site\component\CmsPageComponent;
 
 return [
 
-    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
-    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogTag',
-    DefaultSitePageComponent::OPTION_CONTROLLERS => [
+    CmsPageComponent::OPTION_CLASS => 'umicms\project\site\component\CmsPageComponent',
+    CmsPageComponent::OPTION_COLLECTION_NAME => 'blogTag',
+    CmsPageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\BlogTagRssController'
     ],
-    DefaultSitePageComponent::OPTION_WIDGET => [
+    CmsPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\TagWidget',
         'postList' => __NAMESPACE__ . '\widget\TagPostListWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'cloud' => __NAMESPACE__ . '\widget\TagCloudWidget',
         'rssLink' => __NAMESPACE__ . '\widget\TagListRssLinkWidget'
     ],
-    DefaultSitePageComponent::OPTION_ACL => [
+    CmsPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
             'rssViewer' => []
@@ -46,10 +46,10 @@ return [
             ]
         ]
     ],
-    DefaultSitePageComponent::OPTION_VIEW => [
+    CmsPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/tag'],
     ],
-    DefaultSitePageComponent::OPTION_ROUTES => [
+    CmsPageComponent::OPTION_ROUTES => [
         'rss' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/rss/{slug}',

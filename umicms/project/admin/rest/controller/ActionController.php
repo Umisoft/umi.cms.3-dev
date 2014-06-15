@@ -28,8 +28,8 @@ use umicms\hmvc\controller\BaseCmsController;
 use umicms\i18n\CmsLocalesService;
 use umicms\project\admin\AdminApplication;
 use umicms\project\admin\rest\RestApplication;
-use umicms\project\module\users\api\UsersModule;
-use umicms\project\module\users\api\object\AuthorizedUser;
+use umicms\project\module\users\model\UsersModule;
+use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\Utils;
 
 /**
@@ -41,9 +41,9 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
     use TLocalesAware;
 
     /**
-     * @var UsersModule $api
+     * @var UsersModule $module
      */
-    protected $api;
+    protected $module;
     /**
      * @var IEntityFactory $formEntityFactory фабрика сущностей формы
      */
@@ -55,12 +55,12 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
 
     /**
      * Конструктор.
-     * @param UsersModule $api
+     * @param UsersModule $module
      * @param IEntityFactory $formEntityFactory
      */
-    public function __construct(UsersModule $api, IEntityFactory $formEntityFactory)
+    public function __construct(UsersModule $module, IEntityFactory $formEntityFactory)
     {
-        $this->api = $api;
+        $this->module = $module;
         $this->formEntityFactory = $formEntityFactory;
     }
 
@@ -109,7 +109,7 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
      */
     protected function actionAuthInfo()
     {
-        if (!$this->api->isAuthenticated()) {
+        if (!$this->module->isAuthenticated()) {
             throw new HttpUnauthorized(
                 $this->translate('Authentication required.')
             );
@@ -128,11 +128,11 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
      */
     protected function actionAuth()
     {
-        if ($this->api->isAuthenticated()) {
-            $this->api->logout();
+        if ($this->module->isAuthenticated()) {
+            $this->module->logout();
         }
 
-        if (!$this->api->login($this->getPostVar('login'), $this->getPostVar('password'))) {
+        if (!$this->module->login($this->getPostVar('login'), $this->getPostVar('password'))) {
             throw new HttpUnauthorized(
                 $this->translate('Incorrect login or password.')
             );
@@ -161,7 +161,7 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
      */
     protected function getAuthUserInfo()
     {
-        $user = $this->api->getCurrentUser();
+        $user = $this->module->getCurrentUser();
 
         if (!$user->isAllowed($this->getComponent(), 'controller:settings')) {
             throw new HttpForbidden(
@@ -184,7 +184,7 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
      */
     protected function actionLogout()
     {
-        $this->api->logout();
+        $this->module->logout();
 
         return $this->createResponse('', Response::HTTP_NO_CONTENT);
     }
@@ -195,7 +195,7 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
      */
     protected function actionForm()
     {
-        $form = $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_ADMIN, 'authorized');
+        $form = $this->module->user()->getForm(AuthorizedUser::FORM_LOGIN_ADMIN, 'authorized');
 
         $adminLocales = $this->getLocalesService()->getAdminLocales();
         if (count($adminLocales) > 1) {

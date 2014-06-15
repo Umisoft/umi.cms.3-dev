@@ -12,7 +12,7 @@ use umi\filter\IFilterFactory;
 use umi\form\element\Checkbox;
 use umi\form\element\CheckboxGroup;
 use umi\form\element\Text;
-use umicms\project\module\users\api\collection\UserCollection;
+use umicms\project\module\users\model\collection\UserCollection;
 
 return [
     'options' => [

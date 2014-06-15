@@ -12,8 +12,8 @@ namespace umicms\project\module\blog\site\draft\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
  * Виджет для вывода URL на редактирование черновика.
@@ -29,17 +29,17 @@ class DraftEditUrlWidget extends BaseLinkWidget
      */
     public $blogDraft;
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -48,7 +48,7 @@ class DraftEditUrlWidget extends BaseLinkWidget
     protected function getLinkUrl()
     {
         if (is_string($this->blogDraft)) {
-            $this->blogDraft = $this->api->post()->getDraft($this->blogDraft);
+            $this->blogDraft = $this->module->post()->getDraft($this->blogDraft);
         }
 
         if (!$this->blogDraft instanceof BlogPost) {

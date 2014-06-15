@@ -11,8 +11,8 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\news\api\object\NewsItem;
-use umicms\project\module\news\api\object\NewsRubric;
+use umicms\project\module\news\model\object\NewsItem;
+use umicms\project\module\news\model\object\NewsRubric;
 
 return [
     'dataSource' => [
@@ -171,7 +171,7 @@ return [
     ],
     'types'      => [
         'base' => [
-            'objectClass' => 'umicms\project\module\news\api\object\NewsRubric',
+            'objectClass' => 'umicms\project\module\news\model\object\NewsRubric',
             'fields'      => [
                 NewsRubric::FIELD_IDENTIFY,
                 NewsRubric::FIELD_GUID,

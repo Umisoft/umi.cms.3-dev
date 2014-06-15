@@ -12,8 +12,8 @@ namespace umicms\project\module\news\site\rubric\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseListWidget;
-use umicms\project\module\news\api\NewsModule;
-use umicms\project\module\news\api\object\NewsRubric;
+use umicms\project\module\news\model\NewsModule;
+use umicms\project\module\news\model\object\NewsRubric;
 
 /**
  * Виджет для вывода списка новостных рубрик.
@@ -27,17 +27,17 @@ class RubricListWidget extends BaseListWidget
     public $parentRubric;
 
     /**
-     * @var NewsModule $api API модуля "Новости"
+     * @var NewsModule $module модуль "Новости"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param NewsModule $newsApi API модуля "Новости"
+     * @param NewsModule $newsApi модуль "Новости"
      */
     public function __construct(NewsModule $newsApi)
     {
-        $this->api = $newsApi;
+        $this->module = $newsApi;
     }
 
     /**
@@ -46,7 +46,7 @@ class RubricListWidget extends BaseListWidget
     protected function getSelector()
     {
         if (is_string($this->parentRubric)) {
-            $this->parentRubric = $this->api->rubric()->get($this->parentRubric);
+            $this->parentRubric = $this->module->rubric()->get($this->parentRubric);
         }
 
         if (isset($this->parentRubric) && !$this->parentRubric instanceof NewsRubric) {
@@ -61,7 +61,7 @@ class RubricListWidget extends BaseListWidget
             );
         }
 
-        return $this->api->getRubrics($this->parentRubric);
+        return $this->module->getRubrics($this->parentRubric);
     }
 }
  

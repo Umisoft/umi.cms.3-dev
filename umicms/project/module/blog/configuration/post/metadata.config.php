@@ -11,7 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\object\BlogPost;
 
 return [
     'dataSource' => [
@@ -166,7 +166,7 @@ return [
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\blog\api\object\BlogPost',
+            'objectClass' => 'umicms\project\module\blog\model\object\BlogPost',
             'fields' => [
                 BlogPost::FIELD_IDENTIFY,
                 BlogPost::FIELD_GUID,

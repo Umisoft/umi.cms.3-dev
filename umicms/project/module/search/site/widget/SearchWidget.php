@@ -14,7 +14,7 @@ use umi\form\Form;
 use umi\http\Request;
 use umi\http\THttpAware;
 use umicms\hmvc\widget\BaseCmsWidget;
-use umicms\project\module\search\api\SearchApi;
+use umicms\project\module\search\model\SearchApi;
 
 /**
  * Виджет, выводящий форму поиска.
@@ -37,7 +37,7 @@ class SearchWidget extends BaseCmsWidget
     public $query;
 
     /**
-     * @var SearchApi $api API модуля "Поиск"
+     * @var SearchApi $api модуль "Поиск"
      */
     protected $api;
 
@@ -49,7 +49,7 @@ class SearchWidget extends BaseCmsWidget
 
     /**
      * Конструктор.
-     * @param SearchApi $searchApi API модуля "Поиск"
+     * @param SearchApi $searchApi модуль "Поиск"
      * @param Request $request
      */
     public function __construct(SearchApi $searchApi, Request $request)

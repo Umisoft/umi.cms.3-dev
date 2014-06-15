@@ -12,7 +12,7 @@ namespace umicms\project\module\search\site\widget;
 
 use umi\http\THttpAware;
 use umicms\hmvc\widget\BaseCmsWidget;
-use umicms\project\module\search\api\SearchApi;
+use umicms\project\module\search\model\SearchApi;
 
 /**
  * Виджет, выделяющий подстроку с учетом морфологии в тексте
@@ -47,7 +47,7 @@ class HighlightWidget extends BaseCmsWidget
     public $highlightEnd = '</mark>';
 
     /**
-     * @var SearchApi $api API модуля "Поиск"
+     * @var SearchApi $api модуль "Поиск"
      */
     protected $api;
 

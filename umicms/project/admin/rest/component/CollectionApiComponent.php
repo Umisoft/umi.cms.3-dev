@@ -19,7 +19,7 @@ use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsPageCollection;
-use umicms\orm\collection\SimpleHierarchicCollection;
+use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\project\admin\component\AdminComponent;
 
 /**
@@ -200,7 +200,7 @@ class CollectionApiComponent extends AdminComponent implements ICollectionCompon
             $actions[self::ACTION_ACTIVATE] = $this->createModifyAction(self::ACTION_ACTIVATE);
             $actions[self::ACTION_DEACTIVATE] = $this->createModifyAction(self::ACTION_DEACTIVATE);
         }
-        if ($collection instanceof SimpleHierarchicCollection) {
+        if ($collection instanceof CmsHierarchicCollection) {
             $actions[self::ACTION_MOVE] = $this->createModifyAction(self::ACTION_MOVE);
         }
         if ($collection instanceof ICmsPageCollection) {

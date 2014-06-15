@@ -13,8 +13,8 @@ namespace umicms\project\module\users\site\restoration\confirmation\controller;
 use umi\http\Response;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\project\module\users\api\object\AuthorizedUser;
-use umicms\project\module\users\api\UsersModule;
+use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\UsersModule;
 use umicms\project\site\controller\SitePageController;
 
 /**
@@ -25,17 +25,17 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     use TObjectPersisterAware;
 
     /**
-     * @var UsersModule $api API модуля "Пользователи"
+     * @var UsersModule $module модуль "Пользователи"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param UsersModule $usersModule API модуля "Пользователи"
+     * @param UsersModule $module модуль "Пользователи"
      */
-    public function __construct(UsersModule $usersModule)
+    public function __construct(UsersModule $module)
     {
-        $this->api = $usersModule;
+        $this->module = $module;
     }
 
     /**
@@ -45,7 +45,7 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     {
         try {
 
-            $user = $this->api->changePassword($this->getRouteVar('activationCode'));
+            $user = $this->module->changePassword($this->getRouteVar('activationCode'));
             $this->getObjectPersister()->commit();
 
             $this->sendNewPassword($user);
@@ -78,7 +78,7 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     {
         $this->mail(
             [$user->email => $user->displayName],
-            $this->api->getMailSender(),
+            $this->module->getMailSender(),
             'mail/newPasswordSubject',
             'mail/newPasswordBody',
             [

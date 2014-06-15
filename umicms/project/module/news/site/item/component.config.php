@@ -12,29 +12,29 @@ namespace umicms\project\module\news\site\item;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSitePageComponent;
+use umicms\project\site\component\CmsPageComponent;
 
 return [
 
-    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
-    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'newsItem',
+    CmsPageComponent::OPTION_CLASS => 'umicms\project\site\component\CmsPageComponent',
+    CmsPageComponent::OPTION_COLLECTION_NAME => 'newsItem',
 
-    DefaultSitePageComponent::OPTION_CONTROLLERS => [
+    CmsPageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\PageController',
         'rss' => __NAMESPACE__ . '\controller\NewsItemRssController'
     ],
 
-    DefaultSitePageComponent::OPTION_WIDGET => [
+    CmsPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\NewsItemWidget',
         'list' => __NAMESPACE__ . '\widget\NewsItemListWidget',
         'rssLink' => __NAMESPACE__ . '\widget\NewsItemListRssLinkWidget'
     ],
 
-    DefaultSitePageComponent::OPTION_VIEW => [
+    CmsPageComponent::OPTION_VIEW => [
         'directories' => ['module/news/item']
     ],
 
-    DefaultSitePageComponent::OPTION_ACL => [
+    CmsPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'rssViewer' => []
         ],
@@ -50,7 +50,7 @@ return [
         ]
     ],
 
-    DefaultSitePageComponent::OPTION_ROUTES      => [
+    CmsPageComponent::OPTION_ROUTES      => [
         'rss' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'route' => '/rss',

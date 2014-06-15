@@ -12,8 +12,8 @@ namespace umicms\project\module\blog\site\comment\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseTreeWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
  * Виджет для вывода списка коментов.
@@ -29,17 +29,17 @@ class ListWidget extends BaseTreeWidget
      */
     public $blogPost;
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -48,7 +48,7 @@ class ListWidget extends BaseTreeWidget
     protected function getSelector()
     {
         if (is_string($this->blogPost)) {
-            $this->blogPost = $this->api->post()->get($this->blogPost);
+            $this->blogPost = $this->module->post()->get($this->blogPost);
         }
 
         if (!$this->blogPost instanceof BlogPost) {
@@ -63,10 +63,10 @@ class ListWidget extends BaseTreeWidget
             );
         }
 
-        if ($this->isAllowed($this->api->comment(), 'getComments')) {
-            return $this->api->getCommentByPostWithNeedModeration($this->blogPost);
+        if ($this->isAllowed($this->module->comment(), 'getComments')) {
+            return $this->module->getCommentByPostWithNeedModeration($this->blogPost);
         } else {
-            return $this->api->getCommentsByPost($this->blogPost);
+            return $this->module->getCommentsByPost($this->blogPost);
         }
 
     }

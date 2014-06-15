@@ -16,8 +16,8 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseCmsController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\site\controller\TFormSimpleController;
 
 /**
@@ -29,9 +29,9 @@ class PostSendToModerationController extends BaseCmsController implements IObjec
     use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
     /**
      * @var BlogPost $blogPost пост блога
      */
@@ -39,11 +39,11 @@ class PostSendToModerationController extends BaseCmsController implements IObjec
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -51,7 +51,7 @@ class PostSendToModerationController extends BaseCmsController implements IObjec
      */
     protected function buildForm()
     {
-        $this->blogPost = $this->api->post()->getRejectedPostById($this->getRouteVar('id'));
+        $this->blogPost = $this->module->post()->getRejectedPostById($this->getRouteVar('id'));
 
         if (!$this->isAllowed($this->blogPost)) {
             throw new ResourceAccessForbiddenException(
@@ -60,7 +60,7 @@ class PostSendToModerationController extends BaseCmsController implements IObjec
             );
         }
 
-        return $this->api->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
+        return $this->module->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
     }
 
     /**

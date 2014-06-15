@@ -14,8 +14,8 @@ use umi\form\element\IFormElement;
 use umi\form\IForm;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\project\module\users\api\object\AuthorizedUser;
-use umicms\project\module\users\api\UsersModule;
+use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\UsersModule;
 use umicms\project\module\users\site\profile\password\model\PasswordValidator;
 use umicms\project\site\controller\SitePageController;
 use umicms\project\site\controller\TFormController;
@@ -29,9 +29,9 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     use TObjectPersisterAware;
 
     /**
-     * @var UsersModule $api API модуля "Пользователи"
+     * @var UsersModule $module модуль "Пользователи"
      */
-    protected $api;
+    protected $module;
     /**
      * @var bool $success успех операции запроса смены пароля
      */
@@ -39,11 +39,11 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
 
     /**
      * Конструктор.
-     * @param UsersModule $usersModule API модуля "Пользователи"
+     * @param UsersModule $module модуль "Пользователи"
      */
-    public function __construct(UsersModule $usersModule)
+    public function __construct(UsersModule $module)
     {
-        $this->api = $usersModule;
+        $this->module = $module;
     }
 
     /**
@@ -59,8 +59,8 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
      */
     protected function buildForm()
     {
-        $user = $this->api->getCurrentUser();
-        $form = $this->api->user()->getForm(AuthorizedUser::FORM_CHANGE_PASSWORD, AuthorizedUser::TYPE_NAME, $user);
+        $user = $this->module->getCurrentUser();
+        $form = $this->module->user()->getForm(AuthorizedUser::FORM_CHANGE_PASSWORD, AuthorizedUser::TYPE_NAME, $user);
 
         /**
          * @var IFormElement $passwordInput

@@ -10,10 +10,10 @@ use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\structure\api\object\BaseMenu;
-use umicms\project\module\structure\api\object\Menu;
-use umicms\project\module\structure\api\object\MenuExternalItem;
-use umicms\project\module\structure\api\object\MenuInternalItem;
+use umicms\project\module\structure\model\object\BaseMenu;
+use umicms\project\module\structure\model\object\Menu;
+use umicms\project\module\structure\model\object\MenuExternalItem;
+use umicms\project\module\structure\model\object\MenuInternalItem;
 
 return [
     'dataSource' => [
@@ -150,7 +150,7 @@ return [
     ],
     'types' => [
         IObjectType::BASE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\BaseMenu',
+            'objectClass' => 'umicms\project\module\structure\model\object\BaseMenu',
             'fields' => [
                 BaseMenu::FIELD_IDENTIFY,
                 BaseMenu::FIELD_GUID,
@@ -173,7 +173,7 @@ return [
             ]
         ],
         Menu::TYPE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\Menu',
+            'objectClass' => 'umicms\project\module\structure\model\object\Menu',
             'fields' => [
                 Menu::FIELD_IDENTIFY,
                 Menu::FIELD_GUID,
@@ -197,7 +197,7 @@ return [
             ]
         ],
         MenuInternalItem::TYPE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\MenuInternalItem',
+            'objectClass' => 'umicms\project\module\structure\model\object\MenuInternalItem',
             'fields' => [
                 MenuInternalItem::FIELD_IDENTIFY,
                 MenuInternalItem::FIELD_GUID,
@@ -221,7 +221,7 @@ return [
             ]
         ],
         MenuExternalItem::TYPE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\MenuExternalItem',
+            'objectClass' => 'umicms\project\module\structure\model\object\MenuExternalItem',
             'fields' => [
                 MenuExternalItem::FIELD_IDENTIFY,
                 MenuExternalItem::FIELD_GUID,

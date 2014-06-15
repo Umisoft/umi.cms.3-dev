@@ -12,7 +12,7 @@ namespace umicms\project\module\users\site\registration;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\module\users\api\object\AuthorizedUser;
+use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\site\component\SiteComponent;
 
 return [

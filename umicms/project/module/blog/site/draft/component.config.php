@@ -13,19 +13,19 @@ namespace umicms\project\module\blog\site\draft;
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSitePageComponent;
+use umicms\project\site\component\CmsPageComponent;
 
 return [
 
-    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
-    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    DefaultSitePageComponent::OPTION_CONTROLLERS => [
+    CmsPageComponent::OPTION_CLASS => 'umicms\project\site\component\CmsPageComponent',
+    CmsPageComponent::OPTION_COLLECTION_NAME => 'blogPost',
+    CmsPageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\BlogDraftPageController',
         'edit' => __NAMESPACE__ . '\controller\BlogEditDraftController',
         'publish' => __NAMESPACE__ . '\controller\BlogPublishDraftController',
         'sendToModeration' => __NAMESPACE__ . '\controller\PostSendToModerationController',
     ],
-    DefaultSitePageComponent::OPTION_WIDGET => [
+    CmsPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\DraftWidget',
         'ownList' => __NAMESPACE__ . '\widget\DraftOwnListWidget',
         'ownListLink' => __NAMESPACE__ . '\widget\DraftOwnListLinkWidget',
@@ -33,7 +33,7 @@ return [
         'editDraftLink' => __NAMESPACE__ . '\widget\DraftEditUrlWidget',
         'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
     ],
-    DefaultSitePageComponent::OPTION_ACL => [
+    CmsPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
             'publisher' => [],
@@ -76,10 +76,10 @@ return [
             ],
         ]
     ],
-    DefaultSitePageComponent::OPTION_VIEW => [
+    CmsPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/draft'],
     ],
-    DefaultSitePageComponent::OPTION_ROUTES => [
+    CmsPageComponent::OPTION_ROUTES => [
         'edit' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/edit/{id:integer}',

@@ -11,8 +11,8 @@
 namespace umicms\project\module\users\site\authorization\controller;
 
 use umicms\hmvc\controller\BaseCmsController;
-use umicms\project\module\users\api\object\AuthorizedUser;
-use umicms\project\module\users\api\UsersModule;
+use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\UsersModule;
 
 /**
  * Крнтроллер "разавторизации" пользователя.
@@ -20,17 +20,17 @@ use umicms\project\module\users\api\UsersModule;
 class LogoutController extends BaseCmsController
 {
     /**
-     * @var UsersModule $api API модуля "Пользователи"
+     * @var UsersModule $module модуль "Пользователи"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param UsersModule $usersModule API модуля "Пользователи"
+     * @param UsersModule $module модуль "Пользователи"
      */
-    public function __construct(UsersModule $usersModule)
+    public function __construct(UsersModule $module)
     {
-        $this->api = $usersModule;
+        $this->module = $module;
     }
 
     /**
@@ -39,12 +39,12 @@ class LogoutController extends BaseCmsController
     public function __invoke()
     {
 
-        $form = $this->api->user()->getForm(AuthorizedUser::FORM_LOGOUT_SITE, AuthorizedUser::TYPE_NAME);
+        $form = $this->module->user()->getForm(AuthorizedUser::FORM_LOGOUT_SITE, AuthorizedUser::TYPE_NAME);
 
         if ($this->isRequestMethodPost()) {
             $form->setData($this->getAllPostVars());
             if ($form->isValid()) {
-                $this->api->logout();
+                $this->module->logout();
             }
         }
 

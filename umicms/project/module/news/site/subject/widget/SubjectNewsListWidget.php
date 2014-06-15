@@ -12,8 +12,8 @@ namespace umicms\project\module\news\site\subject\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseListWidget;
-use umicms\project\module\news\api\NewsModule;
-use umicms\project\module\news\api\object\NewsSubject;
+use umicms\project\module\news\model\NewsModule;
+use umicms\project\module\news\model\object\NewsSubject;
 
 /**
  * Виджет для вывода списка новостей по сюжетам.
@@ -31,17 +31,17 @@ class SubjectNewsListWidget extends BaseListWidget
     public $subjects = [];
 
     /**
-     * @var NewsModule $api API модуля "Новости"
+     * @var NewsModule $module модуль "Новости"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param NewsModule $newsApi API модуля "Новости"
+     * @param NewsModule $newsApi модуль "Новости"
      */
     public function __construct(NewsModule $newsApi)
     {
-        $this->api = $newsApi;
+        $this->module = $newsApi;
     }
 
     /**
@@ -53,7 +53,7 @@ class SubjectNewsListWidget extends BaseListWidget
 
         foreach ($subjects as &$subject) {
             if (is_string($subject)) {
-                $subject = $this->api->rubric()->get($subject);
+                $subject = $this->module->rubric()->get($subject);
             }
 
             if (!$subject instanceof NewsSubject) {
@@ -69,7 +69,7 @@ class SubjectNewsListWidget extends BaseListWidget
             }
         }
 
-        return $this->api->getNewsBySubjects($subjects);
+        return $this->module->getNewsBySubjects($subjects);
     }
 }
  

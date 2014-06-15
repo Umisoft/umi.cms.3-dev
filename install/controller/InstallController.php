@@ -29,22 +29,22 @@ use umicms\model\manager\IModelManagerAware;
 use umicms\model\manager\TModelManagerAware;
 use umicms\module\IModuleAware;
 use umicms\module\TModuleAware;
-use umicms\project\module\blog\api\object\BlogComment;
-use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\module\news\api\collection\NewsRssImportScenarioCollection;
-use umicms\project\module\search\api\SearchApi;
-use umicms\project\module\search\api\SearchModule;
-use umicms\project\module\service\api\collection\BackupCollection;
-use umicms\project\module\structure\api\object\InfoBlock;
-use umicms\project\module\structure\api\object\Menu;
-use umicms\project\module\structure\api\object\MenuExternalItem;
-use umicms\project\module\structure\api\object\MenuInternalItem;
-use umicms\project\module\structure\api\object\StaticPage;
-use umicms\project\module\structure\api\object\StructureElement;
-use umicms\project\module\users\api\object\AuthorizedUser;
-use umicms\project\module\users\api\object\Guest;
-use umicms\project\module\users\api\object\Supervisor;
-use umicms\project\module\users\api\object\UserGroup;
+use umicms\project\module\blog\model\object\BlogComment;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\news\model\collection\NewsRssImportScenarioCollection;
+use umicms\project\module\search\model\SearchApi;
+use umicms\project\module\search\model\SearchModule;
+use umicms\project\module\service\model\collection\BackupCollection;
+use umicms\project\module\structure\model\object\InfoBlock;
+use umicms\project\module\structure\model\object\Menu;
+use umicms\project\module\structure\model\object\MenuExternalItem;
+use umicms\project\module\structure\model\object\MenuInternalItem;
+use umicms\project\module\structure\model\object\StaticPage;
+use umicms\project\module\structure\model\object\StructureElement;
+use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\Guest;
+use umicms\project\module\users\model\object\Supervisor;
+use umicms\project\module\users\model\object\UserGroup;
 
 /**
  * Class InstallController

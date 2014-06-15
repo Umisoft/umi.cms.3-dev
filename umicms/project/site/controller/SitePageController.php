@@ -16,8 +16,8 @@ use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\module\IModuleAware;
 use umicms\module\TModuleAware;
 use umicms\orm\object\ICmsPage;
-use umicms\project\module\structure\api\object\SystemPage;
-use umicms\project\module\structure\api\StructureModule;
+use umicms\project\module\structure\model\object\SystemPage;
+use umicms\project\module\structure\model\StructureModule;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
 

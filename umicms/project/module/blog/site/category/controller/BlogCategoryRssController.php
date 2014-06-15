@@ -13,7 +13,7 @@ namespace umicms\project\module\blog\site\category\controller;
 use umi\http\Response;
 use umicms\hmvc\controller\BaseCmsController;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\project\module\blog\api\BlogModule;
+use umicms\project\module\blog\model\BlogModule;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 
@@ -25,17 +25,17 @@ class BlogCategoryRssController extends BaseCmsController implements ISiteSettin
     use TSiteSettingsAware;
 
     /**
-     * @var BlogModule $api
+     * @var BlogModule $module
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $api
+     * @param BlogModule $module
      */
-    public function __construct(BlogModule $api)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -46,11 +46,11 @@ class BlogCategoryRssController extends BaseCmsController implements ISiteSettin
     {
         $urlCategory = $this->getRouteVar('url');
 
-        $blogCategory = $this->api->category()->getByUri($urlCategory);
+        $blogCategory = $this->module->category()->getByUri($urlCategory);
 
-        $blogCategoryPosts = $this->api->getPostByCategory([$blogCategory]);
+        $blogCategoryPosts = $this->module->getPostByCategory([$blogCategory]);
 
-        $rssFeed = $this->api->getPostRssFeed(
+        $rssFeed = $this->module->getPostRssFeed(
             $blogCategory->displayName,
             $blogCategory->contents,
             $blogCategoryPosts

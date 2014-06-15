@@ -12,8 +12,8 @@ namespace umicms\project\module\structure\site\infoblock\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseCmsWidget;
-use umicms\project\module\structure\api\object\BaseInfoBlock;
-use umicms\project\module\structure\api\StructureModule;
+use umicms\project\module\structure\model\object\BaseInfoBlock;
+use umicms\project\module\structure\model\StructureModule;
 
 /**
  * Виджет для вывода информационного блока.
@@ -29,17 +29,17 @@ class ViewWidget extends BaseCmsWidget
      */
     public $infoBlock;
     /**
-     * @var StructureModule $api
+     * @var StructureModule $module
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param StructureModule $api
+     * @param StructureModule $module
      */
-    public function __construct(StructureModule $api)
+    public function __construct(StructureModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -48,7 +48,7 @@ class ViewWidget extends BaseCmsWidget
     public function __invoke()
     {
         if (is_string($this->infoBlock)) {
-            $this->infoBlock = $this->api->infoBlock()->getByName($this->infoBlock);
+            $this->infoBlock = $this->module->infoBlock()->getByName($this->infoBlock);
         }
 
         if (!$this->infoBlock instanceof BaseInfoBlock) {

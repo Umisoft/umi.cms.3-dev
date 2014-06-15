@@ -12,22 +12,22 @@ namespace umicms\project\module\blog\site\author;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSitePageComponent;
+use umicms\project\site\component\CmsPageComponent;
 
 return [
 
-    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
-    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogAuthor',
-    DefaultSitePageComponent::OPTION_CONTROLLERS => [
+    CmsPageComponent::OPTION_CLASS => 'umicms\project\site\component\CmsPageComponent',
+    CmsPageComponent::OPTION_COLLECTION_NAME => 'blogAuthor',
+    CmsPageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\BlogAuthorRssController',
     ],
-    DefaultSitePageComponent::OPTION_WIDGET => [
+    CmsPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\BlogAuthorWidget',
         'list' => __NAMESPACE__ . '\widget\BlogAuthorListWidget',
         'postList' => __NAMESPACE__ . '\widget\BlogAuthorPostListWidget',
         'rssLink' => __NAMESPACE__ . '\widget\BlogAuthorListRssLinkWidget'
     ],
-    DefaultSitePageComponent::OPTION_ACL => [
+    CmsPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
             'rssViewer' => [],
@@ -44,10 +44,10 @@ return [
             ]
         ]
     ],
-    DefaultSitePageComponent::OPTION_VIEW => [
+    CmsPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/author'],
     ],
-    DefaultSitePageComponent::OPTION_ROUTES => [
+    CmsPageComponent::OPTION_ROUTES => [
         'rss' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/rss/{slug}',

@@ -13,7 +13,7 @@ namespace umicms\hmvc\widget;
 use umi\orm\collection\ICollection;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
-use umicms\orm\collection\SimpleHierarchicCollection;
+use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\selector\CmsSelector;
 
@@ -53,7 +53,7 @@ abstract class BaseTreeWidget extends BaseCmsWidget
 
         $collection = $selector->getCollection();
 
-        if (!$collection instanceof SimpleHierarchicCollection) {
+        if (!$collection instanceof CmsHierarchicCollection) {
             throw new RuntimeException($this->translate(
                 'Cannot create tree. Collection is not hierarchical'
             ));

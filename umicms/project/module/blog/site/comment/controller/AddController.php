@@ -15,8 +15,8 @@ use umi\form\IForm;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseCmsController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogComment;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\site\controller\TFormController;
 
 /**
@@ -28,17 +28,17 @@ class AddController extends BaseCmsController implements IObjectPersisterAware
     use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -55,11 +55,11 @@ class AddController extends BaseCmsController implements IObjectPersisterAware
     protected function buildForm()
     {
         $parentCommentId = $this->getRouteVar('parent');
-        $parentComment = $parentCommentId ? $this->api->comment()->getById($parentCommentId) : null;
+        $parentComment = $parentCommentId ? $this->module->comment()->getById($parentCommentId) : null;
 
-        $post = $this->api->post()->getById($this->getPostVar('post'));
+        $post = $this->module->post()->getById($this->getPostVar('post'));
 
-        $comment = $this->api->addComment(
+        $comment = $this->module->addComment(
             BlogComment::TYPE,
             $post,
             $parentComment
@@ -72,7 +72,7 @@ class AddController extends BaseCmsController implements IObjectPersisterAware
             $comment->needModerate();
         }
 
-        return $this->api->comment()->getForm(
+        return $this->module->comment()->getForm(
             BlogComment::FORM_ADD_COMMENT,
             BlogComment::TYPE,
             $comment

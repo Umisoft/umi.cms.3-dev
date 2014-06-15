@@ -10,7 +10,7 @@
 
 use umi\filter\IFilterFactory;
 use umi\form\element\Text;
-use umicms\project\module\service\api\collection\BackupCollection;
+use umicms\project\module\service\model\collection\BackupCollection;
 
 return [
     'options' => [

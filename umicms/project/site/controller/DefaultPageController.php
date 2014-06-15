@@ -13,7 +13,7 @@ namespace umicms\project\site\controller;
 use umicms\exception\RuntimeException;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
-use umicms\project\site\component\BaseDefaultSitePageComponent;
+use umicms\project\site\component\BaseCmsPageComponent;
 
 /**
  * Контроллер вывода страниц компонента.
@@ -57,13 +57,13 @@ class DefaultPageController extends SitePageController
     /**
      * Возвращает компонент, у которого вызван контроллер.
      * @throws RuntimeException при неверном классе компонента
-     * @return BaseDefaultSitePageComponent
+     * @return BaseCmsPageComponent
      */
     protected function getComponent()
     {
         $component = parent::getComponent();
 
-        if (!$component instanceof BaseDefaultSitePageComponent) {
+        if (!$component instanceof BaseCmsPageComponent) {
             throw new RuntimeException(
                 $this->translate(
                     'Component for controller "{controllerClass}" should be instance of "{componentClass}".',

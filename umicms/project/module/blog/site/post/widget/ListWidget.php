@@ -11,7 +11,7 @@
 namespace umicms\project\module\blog\site\post\widget;
 
 use umicms\hmvc\widget\BaseListWidget;
-use umicms\project\module\blog\api\BlogModule;
+use umicms\project\module\blog\model\BlogModule;
 
 /**
  * Виджет для вывода списка постов.
@@ -19,17 +19,17 @@ use umicms\project\module\blog\api\BlogModule;
 class ListWidget extends BaseListWidget
 {
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -37,7 +37,7 @@ class ListWidget extends BaseListWidget
      */
     protected function getSelector()
     {
-        return $this->api->getPosts();
+        return $this->module->getPosts();
     }
 }
  

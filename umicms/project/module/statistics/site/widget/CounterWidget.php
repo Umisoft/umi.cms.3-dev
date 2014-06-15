@@ -24,17 +24,17 @@ class CounterWidget extends BaseCmsWidget
      */
     public $counterId;
     /**
-     * @var MetrikaModel $api API Яндекс.Метрики
+     * @var MetrikaModel $model API Яндекс.Метрики
      */
-    private $api;
+    private $model;
 
     /**
      * Конструктор.
-     * @param MetrikaModel $api API Яндекс.Метрики
+     * @param MetrikaModel $model API Яндекс.Метрики
      */
-    public function __construct(MetrikaModel $api)
+    public function __construct(MetrikaModel $model)
     {
-        $this->api = $api;
+        $this->model = $model;
     }
 
     /**
@@ -44,13 +44,13 @@ class CounterWidget extends BaseCmsWidget
     public function __invoke()
     {
         if (!is_int($this->counterId)) {
-            if (is_int($this->api->defaultCounterId)) {
-                $this->counterId = $this->api->defaultCounterId;
+            if (is_int($this->model->defaultCounterId)) {
+                $this->counterId = $this->model->defaultCounterId;
             } else {
                 return '';
             }
         }
 
-        return $this->api->counterData($this->counterId)['code'];
+        return $this->model->counterData($this->counterId)['code'];
     }
 }

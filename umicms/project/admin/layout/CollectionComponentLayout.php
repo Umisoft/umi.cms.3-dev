@@ -12,7 +12,7 @@ namespace umicms\project\admin\layout;
 
 use umicms\exception\RuntimeException;
 use umicms\orm\collection\ICmsCollection;
-use umicms\orm\collection\SimpleHierarchicCollection;
+use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\project\admin\rest\component\CollectionApiComponent;
 use umicms\project\admin\component\AdminComponent;
 use umicms\project\admin\layout\control\CreateObjectControl;
@@ -56,7 +56,7 @@ class CollectionComponentLayout extends AdminComponentLayout
      */
     protected function configureSideBar()
     {
-        if ($this->collection instanceof SimpleHierarchicCollection) {
+        if ($this->collection instanceof CmsHierarchicCollection) {
             $tree = new TreeControl($this->component);
             $this->addSideBarControl('tree', $tree);
         }
@@ -78,7 +78,7 @@ class CollectionComponentLayout extends AdminComponentLayout
     {
         $this->addSelectedContextControl('editForm', new EditObjectControl($this->component));
 
-        if ($this->collection instanceof SimpleHierarchicCollection) {
+        if ($this->collection instanceof CmsHierarchicCollection) {
             $this->addSelectedContextControl('createForm', new CreateObjectControl($this->component));
         }
     }

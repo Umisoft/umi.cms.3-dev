@@ -12,8 +12,8 @@ namespace umicms\project\module\blog\site\comment\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseCmsWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogComment;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogComment;
 
 /**
  * Виджет вывода комментариев.
@@ -30,17 +30,17 @@ class CommentWidget extends BaseCmsWidget
     public $blogComment;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -49,7 +49,7 @@ class CommentWidget extends BaseCmsWidget
     public function __invoke()
     {
         if (is_string($this->blogComment)) {
-            $this->blogComment = $this->api->comment()->get($this->blogComment);
+            $this->blogComment = $this->module->comment()->get($this->blogComment);
         }
 
         if (!$this->blogComment instanceof BlogComment) {

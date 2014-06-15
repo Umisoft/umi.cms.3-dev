@@ -12,8 +12,8 @@ namespace umicms\project\module\users\site\authorization\controller;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;
-use umicms\project\module\users\api\object\AuthorizedUser;
-use umicms\project\module\users\api\UsersModule;
+use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\UsersModule;
 use umicms\project\site\controller\SitePageController;
 use umicms\project\site\controller\TFormController;
 
@@ -25,17 +25,17 @@ class LoginController extends SitePageController
     use TFormController;
 
     /**
-     * @var UsersModule $api API модуля "Пользователи"
+     * @var UsersModule $module модуль "Пользователи"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param UsersModule $usersModule API модуля "Пользователи"
+     * @param UsersModule $module модуль "Пользователи"
      */
-    public function __construct(UsersModule $usersModule)
+    public function __construct(UsersModule $module)
     {
-        $this->api = $usersModule;
+        $this->module = $module;
     }
 
     /**
@@ -51,7 +51,7 @@ class LoginController extends SitePageController
      */
     protected function buildForm()
     {
-        return $this->api->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, AuthorizedUser::TYPE_NAME);
+        return $this->module->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, AuthorizedUser::TYPE_NAME);
     }
 
     /**
@@ -59,8 +59,8 @@ class LoginController extends SitePageController
      */
     protected function processForm(IForm $form)
     {
-        if ($this->api->isAuthenticated()) {
-            $this->api->logout();
+        if ($this->module->isAuthenticated()) {
+            $this->module->logout();
         }
 
         /**
@@ -72,7 +72,7 @@ class LoginController extends SitePageController
          */
         $passwordInput = $form->get(AuthorizedUser::FIELD_PASSWORD);
 
-        if ($this->api->login($loginInput->getValue(), $passwordInput->getValue())) {
+        if ($this->module->login($loginInput->getValue(), $passwordInput->getValue())) {
 
             return $this->buildRedirectResponse();
 
@@ -90,7 +90,7 @@ class LoginController extends SitePageController
     {
         return [
             'page' => $this->getCurrentPage(),
-            'authenticated' => $this->api->isAuthenticated()
+            'authenticated' => $this->module->isAuthenticated()
         ];
     }
 

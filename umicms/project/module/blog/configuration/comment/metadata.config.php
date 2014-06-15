@@ -12,9 +12,9 @@ use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\blog\api\object\BlogBaseComment;
-use umicms\project\module\blog\api\object\BlogBranchComment;
-use umicms\project\module\blog\api\object\BlogComment;
+use umicms\project\module\blog\model\object\BlogBaseComment;
+use umicms\project\module\blog\model\object\BlogBranchComment;
+use umicms\project\module\blog\model\object\BlogComment;
 
 return [
     'dataSource' => [
@@ -170,7 +170,7 @@ return [
     ],
     'types' => [
         IObjectType::BASE => [
-            'objectClass' => 'umicms\project\module\blog\api\object\BlogBaseComment',
+            'objectClass' => 'umicms\project\module\blog\model\object\BlogBaseComment',
             'fields' => [
                 BlogBaseComment::FIELD_IDENTIFY,
                 BlogBaseComment::FIELD_GUID,
@@ -194,7 +194,7 @@ return [
             ]
         ],
         BlogBranchComment::TYPE => [
-            'objectClass' => 'umicms\project\module\blog\api\object\BlogBranchComment',
+            'objectClass' => 'umicms\project\module\blog\model\object\BlogBranchComment',
             'fields' => [
                 BlogBranchComment::FIELD_IDENTIFY,
                 BlogBranchComment::FIELD_GUID,
@@ -219,7 +219,7 @@ return [
             ]
         ],
         BlogComment::TYPE => [
-            'objectClass' => 'umicms\project\module\blog\api\object\BlogComment',
+            'objectClass' => 'umicms\project\module\blog\model\object\BlogComment',
             'fields' => [
                 BlogComment::FIELD_IDENTIFY,
                 BlogComment::FIELD_GUID,

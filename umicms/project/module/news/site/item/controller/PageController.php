@@ -12,7 +12,7 @@ namespace umicms\project\module\news\site\item\controller;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\orm\object\ICmsPage;
-use umicms\project\module\news\api\object\NewsItem;
+use umicms\project\module\news\model\object\NewsItem;
 use umicms\project\site\controller\DefaultPageController;
 
 /**

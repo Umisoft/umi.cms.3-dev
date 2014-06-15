@@ -12,8 +12,8 @@ namespace umicms\project\module\blog\site\reject\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseCmsWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
  * Виджет вывода отклонённого поста.
@@ -30,17 +30,17 @@ class PostWidget extends BaseCmsWidget
     public $blogPost;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -49,7 +49,7 @@ class PostWidget extends BaseCmsWidget
     public function __invoke()
     {
         if (is_string($this->blogPost)) {
-            $this->blogPost = $this->api->post()->getRejectedPost($this->blogPost);
+            $this->blogPost = $this->module->post()->getRejectedPost($this->blogPost);
         }
 
         if (!$this->blogPost instanceof BlogPost) {

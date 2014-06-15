@@ -12,20 +12,20 @@ namespace umicms\project\module\blog\site\post;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSitePageComponent;
+use umicms\project\site\component\CmsPageComponent;
 
 return [
 
-    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
-    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    DefaultSitePageComponent::OPTION_CONTROLLERS => [
+    CmsPageComponent::OPTION_CLASS => 'umicms\project\site\component\CmsPageComponent',
+    CmsPageComponent::OPTION_COLLECTION_NAME => 'blogPost',
+    CmsPageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\PageController',
         'add' => __NAMESPACE__ . '\controller\PostAddController',
         'edit' => __NAMESPACE__ . '\controller\PostEditController',
         'unPublished' => __NAMESPACE__ . '\controller\PostToDraftController',
         'rss' => __NAMESPACE__ . '\controller\PostRssController'
     ],
-    DefaultSitePageComponent::OPTION_WIDGET => [
+    CmsPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\PostWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'rssLink' => __NAMESPACE__ . '\widget\ListRssLinkWidget',
@@ -33,10 +33,10 @@ return [
         'addPostLink' => __NAMESPACE__ . '\widget\AddLinkWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\EditLinkWidget'
     ],
-    DefaultSitePageComponent::OPTION_VIEW => [
+    CmsPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/post'],
     ],
-    DefaultSitePageComponent::OPTION_ACL => [
+    CmsPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'rssViewer' => [],
             'viewer' => [],
@@ -74,7 +74,7 @@ return [
             ]
         ]
     ],
-    DefaultSitePageComponent::OPTION_ROUTES => [
+    CmsPageComponent::OPTION_ROUTES => [
         'rss' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'route' => '/rss',

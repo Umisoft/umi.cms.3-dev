@@ -22,15 +22,15 @@ use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsCollection;
-use umicms\orm\collection\PageCollection;
-use umicms\orm\collection\PageHierarchicCollection;
+use umicms\orm\collection\CmsPageCollection;
+use umicms\orm\collection\CmsHierarchicPageCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
-use umicms\project\module\service\api\object\Backup;
+use umicms\project\module\service\model\object\Backup;
 
 /**
  * Контроллер действий над объектом.
@@ -161,9 +161,9 @@ class DefaultRestActionController extends BaseDefaultRestController
         /**
          * @var CmsHierarchicObject|ICmsPage $object
          */
-        if ($collection instanceof PageHierarchicCollection) {
+        if ($collection instanceof CmsHierarchicPageCollection) {
             $collection->changeSlug($object, $data[ICmsPage::FIELD_PAGE_SLUG]);
-        } elseif ($collection instanceof PageCollection) {
+        } elseif ($collection instanceof CmsPageCollection) {
             $collection->changeSlug($object, $data[ICmsPage::FIELD_PAGE_SLUG]);
         } else {
             throw new RuntimeException(

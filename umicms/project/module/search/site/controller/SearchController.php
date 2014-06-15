@@ -11,7 +11,7 @@
 namespace umicms\project\module\search\site\controller;
 
 use umicms\project\site\controller\SitePageController;
-use umicms\project\module\search\api\SearchApi;
+use umicms\project\module\search\model\SearchApi;
 
 /**
  * Контроллер запроса и вывода результатов поиска
@@ -20,7 +20,7 @@ class SearchController extends SitePageController
 {
 
     /**
-     * API модуля "Поиск"
+     * модуль "Поиск"
      * @var SearchApi $api
      */
     protected $api;

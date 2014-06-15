@@ -12,8 +12,8 @@ namespace umicms\project\module\blog\site\tag\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseListWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogTag;
 
 /**
  * Виджет для вывода списка постов по тэгам.
@@ -31,17 +31,17 @@ class TagPostListWidget extends BaseListWidget
     public $tags;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -53,7 +53,7 @@ class TagPostListWidget extends BaseListWidget
 
         foreach ($tags as &$tag) {
             if (is_string($tag)) {
-                $tag = $this->api->tag()->get($tag);
+                $tag = $this->module->tag()->get($tag);
             }
 
             if (!$tag instanceof BlogTag) {
@@ -69,7 +69,7 @@ class TagPostListWidget extends BaseListWidget
             }
         }
 
-        return $this->api->getPostByTag($tags);
+        return $this->module->getPostByTag($tags);
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-use umicms\project\module\service\api\collection\BackupCollection;
+use umicms\project\module\service\model\collection\BackupCollection;
 
 return [
     'en-US' => [

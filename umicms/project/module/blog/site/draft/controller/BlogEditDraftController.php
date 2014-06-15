@@ -16,8 +16,8 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseCmsController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\site\controller\TFormController;
 
 /**
@@ -29,9 +29,9 @@ class BlogEditDraftController extends BaseCmsController implements IObjectPersis
     use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
     /**
      * @var bool $success флаг указывающий на успешное сохранение изменений
      */
@@ -39,11 +39,11 @@ class BlogEditDraftController extends BaseCmsController implements IObjectPersis
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -59,7 +59,7 @@ class BlogEditDraftController extends BaseCmsController implements IObjectPersis
      */
     protected function buildForm()
     {
-        $blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
+        $blogDraft = $this->module->post()->getDraftById($this->getRouteVar('id'));
 
         if (!$this->isAllowed($blogDraft)) {
             throw new ResourceAccessForbiddenException(
@@ -68,7 +68,7 @@ class BlogEditDraftController extends BaseCmsController implements IObjectPersis
             );
         }
 
-        return $this->api->post()->getForm(
+        return $this->module->post()->getForm(
             BlogPost::FORM_EDIT_POST,
             IObjectType::BASE,
             $blogDraft

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\news\api\object\NewsRubric;
+use umicms\project\module\news\model\object\NewsRubric;
 
 return [
         'en-US' => [

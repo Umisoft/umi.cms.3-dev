@@ -1,7 +1,7 @@
 <?php
 
-use umicms\project\module\users\api\collection\UserCollection;
-use umicms\project\module\users\api\UsersModule;
+use umicms\project\module\users\model\collection\UserCollection;
+use umicms\project\module\users\model\UsersModule;
 
 return [
     'en-US' => [

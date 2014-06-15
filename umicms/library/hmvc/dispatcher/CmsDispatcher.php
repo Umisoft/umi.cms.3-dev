@@ -23,7 +23,7 @@ use umicms\exception\UnexpectedValueException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\hmvc\widget\BaseCmsWidget;
-use umicms\project\module\users\api\object\Supervisor;
+use umicms\project\module\users\model\object\Supervisor;
 
 /**
  * {@inheritdoc}

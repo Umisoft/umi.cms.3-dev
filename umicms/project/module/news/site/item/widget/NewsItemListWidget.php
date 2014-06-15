@@ -11,7 +11,7 @@
 namespace umicms\project\module\news\site\item\widget;
 
 use umicms\hmvc\widget\BaseListWidget;
-use umicms\project\module\news\api\NewsModule;
+use umicms\project\module\news\model\NewsModule;
 
 /**
  * Виджет для вывода списка новостей
@@ -19,17 +19,17 @@ use umicms\project\module\news\api\NewsModule;
 class NewsItemListWidget extends BaseListWidget
 {
     /**
-     * @var NewsModule $api API модуля "Новости"
+     * @var NewsModule $module модуль "Новости"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param NewsModule $newsApi API модуля "Новости"
+     * @param NewsModule $newsApi модуль "Новости"
      */
     public function __construct(NewsModule $newsApi)
     {
-        $this->api = $newsApi;
+        $this->module = $newsApi;
     }
 
     /**
@@ -37,7 +37,7 @@ class NewsItemListWidget extends BaseListWidget
      */
     protected function getSelector()
     {
-        return $this->api->getNews();
+        return $this->module->getNews();
     }
 }
  

@@ -11,7 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\news\api\object\NewsRssImportScenario;
+use umicms\project\module\news\model\object\NewsRssImportScenario;
 
 return [
     'dataSource' => [
@@ -98,7 +98,7 @@ return [
     ],
     'types'      => [
         'base' => [
-            'objectClass' => 'umicms\project\module\news\api\object\newsRssImportScenario',
+            'objectClass' => 'umicms\project\module\news\model\object\newsRssImportScenario',
             'fields'      => [
                 NewsRssImportScenario::FIELD_IDENTIFY,
                 NewsRssImportScenario::FIELD_GUID,

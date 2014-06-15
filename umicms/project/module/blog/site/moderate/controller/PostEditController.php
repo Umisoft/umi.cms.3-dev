@@ -15,8 +15,8 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\controller\BaseCmsController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\site\controller\TFormController;
 
 /**
@@ -28,9 +28,9 @@ class PostEditController extends BaseCmsController implements IObjectPersisterAw
     use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
     /**
      * @var bool $success флаг указывающий на успешное сохранение изменений
      */
@@ -38,11 +38,11 @@ class PostEditController extends BaseCmsController implements IObjectPersisterAw
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -58,9 +58,9 @@ class PostEditController extends BaseCmsController implements IObjectPersisterAw
      */
     protected function buildForm()
     {
-        $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
+        $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
 
-        return $this->api->post()->getForm(
+        return $this->module->post()->getForm(
             BlogPost::FORM_EDIT_POST,
             IObjectType::BASE,
             $blogPost

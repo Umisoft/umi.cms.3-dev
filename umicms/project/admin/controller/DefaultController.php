@@ -13,7 +13,7 @@ namespace umicms\project\admin\controller;
 use umi\http\Response;
 use umicms\hmvc\controller\BaseCmsController;
 use umicms\project\admin\rest\RestApplication;
-use umicms\project\module\users\api\UsersModule;
+use umicms\project\module\users\model\UsersModule;
 
 /**
  * Контроллер интерфейса административной панели.
@@ -27,19 +27,19 @@ class DefaultController extends BaseCmsController
     protected $response;
 
     /**
-     * @var UsersModule $api
+     * @var UsersModule $module
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
      * @param Response $response
-     * @param UsersModule $api
+     * @param UsersModule $module
      */
-    public function __construct(Response $response, UsersModule $api)
+    public function __construct(Response $response, UsersModule $module)
     {
         $this->response = $response;
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -55,7 +55,7 @@ class DefaultController extends BaseCmsController
         $response = $this->createViewResponse('layout', [
             'contents' => $this->response->getContent(),
             'baseUrl' => $this->getUrlManager()->getBaseAdminUrl(),
-            'baseApiUrl' => $this->getUrlManager()->getBaseRestUrl(),
+            'basemoduleUrl' => $this->getUrlManager()->getBaseRestUrl(),
             'baseSiteUrl' => $this->getUrlManager()->getProjectUrl(),
             'authUrl' => $this->getUrlManager()->getAdminComponentActionResourceUrl($restApplication, 'auth')
         ]);

@@ -12,8 +12,8 @@ namespace umicms\project\module\blog\site\category\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogCategory;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogCategory;
 
 /**
  * Виджет для вывода URL на RSS-ленту по категории.
@@ -32,17 +32,17 @@ class CategoryPostRssLinkWidget extends BaseLinkWidget
     public $category;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -51,7 +51,7 @@ class CategoryPostRssLinkWidget extends BaseLinkWidget
     protected function getLinkUrl()
     {
         if (is_string($this->category)) {
-            $this->category = $this->api->category()->get($this->category);
+            $this->category = $this->module->category()->get($this->category);
         }
 
         if (isset($this->category) && !$this->category instanceof BlogCategory) {

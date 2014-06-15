@@ -12,8 +12,8 @@ namespace umicms\project\module\news\site\subject\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
-use umicms\project\module\news\api\NewsModule;
-use umicms\project\module\news\api\object\NewsSubject;
+use umicms\project\module\news\model\NewsModule;
+use umicms\project\module\news\model\object\NewsSubject;
 
 /**
  * Виджет для вывода ссылки на RSS-ленту по сюжету.
@@ -31,17 +31,17 @@ class SubjectNewsRssLinkWidget extends BaseLinkWidget
     public $subject;
 
     /**
-     * @var NewsModule $api API модуля "Новости"
+     * @var NewsModule $module модуль "Новости"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param NewsModule $newsApi API модуля "Новости"
+     * @param NewsModule $newsApi модуль "Новости"
      */
     public function __construct(NewsModule $newsApi)
     {
-        $this->api = $newsApi;
+        $this->module = $newsApi;
     }
 
     /**
@@ -50,7 +50,7 @@ class SubjectNewsRssLinkWidget extends BaseLinkWidget
     protected function getLinkUrl()
     {
         if (is_string($this->subject)) {
-            $this->subject = $this->api->subject()->get($this->subject);
+            $this->subject = $this->module->subject()->get($this->subject);
         }
 
         if (!$this->subject instanceof NewsSubject) {

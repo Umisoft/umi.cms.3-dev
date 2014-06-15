@@ -11,22 +11,22 @@
 namespace umicms\project\module\blog\site\moderate\widget;
 
 use umicms\hmvc\widget\BaseListWidget;
-use umicms\project\module\blog\api\BlogModule;
+use umicms\project\module\blog\model\BlogModule;
 
 class AllListWidget extends BaseListWidget
 {
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -34,7 +34,7 @@ class AllListWidget extends BaseListWidget
      */
     protected function getSelector()
     {
-        return $this->api->post()->getNeedModeratePosts();
+        return $this->module->post()->getNeedModeratePosts();
     }
 }
  

@@ -10,7 +10,7 @@
 
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\users\api\object\Guest;
+use umicms\project\module\users\model\object\Guest;
 
 return [
 

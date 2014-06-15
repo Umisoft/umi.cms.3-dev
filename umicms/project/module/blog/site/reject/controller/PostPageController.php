@@ -10,8 +10,8 @@
 
 namespace umicms\project\module\blog\site\reject\controller;
 
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\site\controller\DefaultPageController;
 
 /**
@@ -20,17 +20,17 @@ use umicms\project\site\controller\DefaultPageController;
 class PostPageController extends DefaultPageController
 {
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule
+     * @param BlogModule $module
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -40,7 +40,7 @@ class PostPageController extends DefaultPageController
      */
     public function getPage($uri)
     {
-        return $this->api->post()->getRejectedPostByUri($uri);
+        return $this->module->post()->getRejectedPostByUri($uri);
     }
 }
  

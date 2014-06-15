@@ -13,8 +13,8 @@ namespace umicms\project\module\blog\site\draft\widget;
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
  * Виджет отправки поста на модерацию.
@@ -34,17 +34,17 @@ class SendToModerationWidget extends BaseFormWidget
      */
     public $blogDraft;
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -53,7 +53,7 @@ class SendToModerationWidget extends BaseFormWidget
     protected function getForm()
     {
         if (is_string($this->blogDraft)) {
-            $this->blogDraft = $this->api->post()->getDraft($this->blogDraft);
+            $this->blogDraft = $this->module->post()->getDraft($this->blogDraft);
         }
 
         if (!$this->blogDraft instanceof BlogPost) {
@@ -68,7 +68,7 @@ class SendToModerationWidget extends BaseFormWidget
             );
         }
 
-        $form = $this->api->post()->getForm(
+        $form = $this->module->post()->getForm(
             BlogPost::FORM_MODERATE_POST,
             IObjectType::BASE,
             $this->blogDraft
