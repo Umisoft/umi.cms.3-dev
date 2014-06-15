@@ -98,7 +98,7 @@ define(
                 }.property(),
 
                 emailTemplate: function(){
-                    return '{{email-element object=object meta=view.meta}}';
+                    return '{{view "emailElement" object=object meta=view.meta}}';
                 }.property(),
 
                 passwordTemplate: function(){
