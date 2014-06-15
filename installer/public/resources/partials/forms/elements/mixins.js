@@ -3,7 +3,8 @@ define(['App'], function(UMI){
 
     return function(){
         UMI.InputValidate = Ember.Mixin.create({
-            validator: 'collection',
+            validator: null,
+            validateElement: null,
 
             focusOut: function(){
                 if(this.get('validator') === 'collection'){

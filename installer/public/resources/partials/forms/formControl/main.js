@@ -64,10 +64,6 @@ define(
                     return !!this.get('object.validErrors.' + meta.dataSource);
                 }.property('object.validErrors'),
 
-                textTemplate: function(){
-                    return '{{view "textCollectionElement" object=object meta=view.meta}}';
-                }.property(),
-
                 wysiwygTemplate: function(){
                     return '{{view "htmlEditorCollection" object=object meta=view.meta}}';
                 }.property(),
