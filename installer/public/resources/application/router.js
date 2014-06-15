@@ -343,9 +343,10 @@ define([], function(){
                     var data = {
                         'close': false,
                         'title': 'Удаление "' + object.get('displayName') + '".',
-                        'content': 'Объект будет удалён без возможности востановления, всё равно продолжить?',
+                        'content': '<div>Объект будет удалён без возможности востановления, всё равно продолжить?</div>',
                         'confirm': 'Удалить',
-                        'reject': 'Отмена'
+                        'reject': 'Отмена',
+                        'proposeRemember': 'delete'
                     };
                     return UMI.dialog.open(data).then(
                         function(){
