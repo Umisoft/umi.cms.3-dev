@@ -24,7 +24,7 @@ use umicms\project\site\callstack\TPageCallStackAware;
 /**
  * Базовый контроллер для сайта
  */
-abstract class SitePageController extends BaseCmsController implements IPageCallStackAware, IModuleAware
+abstract class BaseSitePageController extends BaseCmsController implements IPageCallStackAware, IModuleAware
 {
     use TPageCallStackAware;
     use TModuleAware;
@@ -40,6 +40,16 @@ abstract class SitePageController extends BaseCmsController implements IPageCall
         $view->setXmlAttributes(['controller']);
 
         return $view;
+    }
+
+    /**
+     * Возвращает массив элементов навигации до текущего элемента.
+     * @param ICmsPage $page
+     * @return ICmsPage[]
+     */
+    protected function getNavigationAncestry(ICmsPage $page)
+    {
+        return [];
     }
 
     /**
@@ -80,16 +90,6 @@ abstract class SitePageController extends BaseCmsController implements IPageCall
         $breadcrumbs = array_reverse($breadcrumbs);
 
         return $breadcrumbs;
-    }
-
-    /**
-     * Возвращает массив элементов навигации до текущего элемента.
-     * @param ICmsPage $page
-     * @return ICmsPage[]
-     */
-    protected function getNavigationAncestry(ICmsPage $page)
-    {
-        return [];
     }
 
     /**

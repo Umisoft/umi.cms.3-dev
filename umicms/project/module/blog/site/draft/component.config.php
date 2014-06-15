@@ -13,19 +13,19 @@ namespace umicms\project\module\blog\site\draft;
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\CmsPageComponent;
+use umicms\project\site\component\SitePageComponent;
 
 return [
 
-    CmsPageComponent::OPTION_CLASS => 'umicms\project\site\component\CmsPageComponent',
-    CmsPageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    CmsPageComponent::OPTION_CONTROLLERS => [
+    SitePageComponent::OPTION_CLASS => 'umicms\project\site\component\SitePageComponent',
+    SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
+    SitePageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\BlogDraftPageController',
         'edit' => __NAMESPACE__ . '\controller\BlogEditDraftController',
         'publish' => __NAMESPACE__ . '\controller\BlogPublishDraftController',
         'sendToModeration' => __NAMESPACE__ . '\controller\PostSendToModerationController',
     ],
-    CmsPageComponent::OPTION_WIDGET => [
+    SitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\DraftWidget',
         'ownList' => __NAMESPACE__ . '\widget\DraftOwnListWidget',
         'ownListLink' => __NAMESPACE__ . '\widget\DraftOwnListLinkWidget',
@@ -33,7 +33,7 @@ return [
         'editDraftLink' => __NAMESPACE__ . '\widget\DraftEditUrlWidget',
         'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
     ],
-    CmsPageComponent::OPTION_ACL => [
+    SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
             'publisher' => [],
@@ -76,10 +76,10 @@ return [
             ],
         ]
     ],
-    CmsPageComponent::OPTION_VIEW => [
+    SitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/draft'],
     ],
-    CmsPageComponent::OPTION_ROUTES => [
+    SitePageComponent::OPTION_ROUTES => [
         'edit' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/edit/{id:integer}',

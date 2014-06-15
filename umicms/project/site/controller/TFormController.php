@@ -17,7 +17,7 @@ use umicms\hmvc\url\IUrlManager;
 use umicms\hmvc\widget\BaseFormWidget;
 
 /**
- * Базовый контроллер для обработки форм
+ * Трейт для контроллера, формирующего и обрабатывающего формы
  */
 trait TFormController
 {

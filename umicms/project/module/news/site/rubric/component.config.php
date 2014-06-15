@@ -12,18 +12,18 @@ namespace umicms\project\module\news\site\rubric;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\CmsHierarchicPageComponent;
+use umicms\project\site\component\SiteHierarchicPageComponent;
 
 return [
 
-    CmsHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\CmsHierarchicPageComponent',
-    CmsHierarchicPageComponent::OPTION_COLLECTION_NAME => 'newsRubric',
+    SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\SiteHierarchicPageComponent',
+    SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'newsRubric',
 
-    CmsHierarchicPageComponent::OPTION_CONTROLLERS => [
+    SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\NewsRubricRssController'
     ],
 
-    CmsHierarchicPageComponent::OPTION_WIDGET => [
+    SiteHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ .  '\widget\RubricWidget',
         'newsList' => __NAMESPACE__ . '\widget\RubricNewsListWidget',
         'list' => __NAMESPACE__ .  '\widget\RubricListWidget',
@@ -31,7 +31,7 @@ return [
         'rssLink' => __NAMESPACE__ .  '\widget\RubricNewsRssLinkWidget'
     ],
 
-    CmsHierarchicPageComponent::OPTION_ACL => [
+    SiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
             'rssViewer' => []
@@ -50,11 +50,11 @@ return [
         ]
     ],
 
-    CmsHierarchicPageComponent::OPTION_VIEW => [
+    SiteHierarchicPageComponent::OPTION_VIEW => [
         'directories' => ['module/news/rubric']
     ],
 
-    CmsHierarchicPageComponent::OPTION_ROUTES      => [
+    SiteHierarchicPageComponent::OPTION_ROUTES      => [
         'rss' => [
             'type'     => IRouteFactory::ROUTE_REGEXP,
             'route' => '/rss/(?P<url>.+)',

@@ -11,12 +11,13 @@
 namespace umicms\project\site\component;
 
 use umi\acl\IAclFactory;
+use umi\orm\collection\TCollectionManagerAware;
 use umi\route\IRouteFactory;
 
 /**
- * Компонент для вывода простых страниц на сайте.
+ * Компонент для вывода иерархических страниц на сайте.
  */
-class CmsPageComponent extends BaseCmsPageComponent
+class SiteHierarchicPageComponent extends BaseSitePageComponent
 {
     /**
      * @var array $defaultOptions настройки компонента по умолчанию
@@ -40,11 +41,11 @@ class CmsPageComponent extends BaseCmsPageComponent
             ]
         ],
 
-        self::OPTION_ROUTES      => [
+        self::OPTION_ROUTES => [
             'page' => [
-                'type'     => IRouteFactory::ROUTE_SIMPLE,
+                'type'     => IRouteFactory::ROUTE_REGEXP,
                 'priority'  => 100,
-                'route'    => '/{uri}',
+                'route'    => '/(?P<uri>.+)',
                 'defaults' => [
                     'controller' => 'page'
                 ]
@@ -58,6 +59,5 @@ class CmsPageComponent extends BaseCmsPageComponent
             ]
         ]
     ];
-
 }
  

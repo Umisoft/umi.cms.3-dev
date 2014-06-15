@@ -14,13 +14,13 @@ use umi\form\element\IFormElement;
 use umi\form\IForm;
 use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\UsersModule;
-use umicms\project\site\controller\SitePageController;
+use umicms\project\site\controller\BaseSitePageController;
 use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер авторизации пользователя
  */
-class LoginController extends SitePageController
+class LoginController extends BaseSitePageController
 {
     use TFormController;
 

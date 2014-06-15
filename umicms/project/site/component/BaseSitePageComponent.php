@@ -21,7 +21,7 @@ use umicms\orm\object\ICmsPage;
 /**
  * Базовый компонент для вывода страниц на сайте.
  */
-abstract class BaseCmsPageComponent extends SiteComponent implements ICollectionComponent, ICollectionManagerAware
+abstract class BaseSitePageComponent extends SiteComponent implements ICollectionComponent, ICollectionManagerAware
 {
     use TCollectionManagerAware;
 

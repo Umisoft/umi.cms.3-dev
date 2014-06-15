@@ -13,7 +13,7 @@ namespace umicms\project\site\controller;
 /**
  * Контроллер вывода системных страниц компонентов.
  */
-class DefaultStructurePageController extends SitePageController
+class DefaultStructurePageController extends BaseSitePageController
 {
     /**
      * {@inheritdoc}

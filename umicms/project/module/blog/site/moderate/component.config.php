@@ -13,13 +13,13 @@ namespace umicms\project\module\blog\site\moderate;
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\CmsPageComponent;
+use umicms\project\site\component\SitePageComponent;
 
 return [
 
-    CmsPageComponent::OPTION_CLASS => 'umicms\project\site\component\CmsPageComponent',
-    CmsPageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    CmsPageComponent::OPTION_CONTROLLERS => [
+    SitePageComponent::OPTION_CLASS => 'umicms\project\site\component\SitePageComponent',
+    SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
+    SitePageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\PostPageController',
         'edit' => __NAMESPACE__ . '\controller\PostEditController',
         'publish' => __NAMESPACE__ . '\controller\PostPublishController',
@@ -27,7 +27,7 @@ return [
         'draft' => __NAMESPACE__ . '\controller\PostDraftController',
         'all' => __NAMESPACE__ . '\controller\PostListController'
     ],
-    CmsPageComponent::OPTION_WIDGET => [
+    SitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\PostWidget',
         'ownList' => __NAMESPACE__ . '\widget\OwnListWidget',
         'ownListLink' => __NAMESPACE__ . '\widget\OwnListLinkWidget',
@@ -38,7 +38,7 @@ return [
         'rejectModerate' => __NAMESPACE__ . '\widget\PostRejectWidget',
         'draftModerate' => __NAMESPACE__ . '\widget\PostDraftWidget'
     ],
-    CmsPageComponent::OPTION_ACL => [
+    SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
             'moderator' => []
@@ -76,10 +76,10 @@ return [
             ]
         ]
     ],
-    CmsPageComponent::OPTION_VIEW => [
+    SitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/moderate'],
     ],
-    CmsPageComponent::OPTION_ROUTES => [
+    SitePageComponent::OPTION_ROUTES => [
         'all' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'route' => '/all',

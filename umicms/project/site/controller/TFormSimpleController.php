@@ -20,7 +20,7 @@ use umicms\hmvc\url\IUrlManager;
 use umicms\hmvc\widget\BaseFormWidget;
 
 /**
- * Базовый контроллер для обработки форм не имеющих страницы.
+ * Трейт для контроллера, обрабатывающего формы (без вывода)
  */
 trait TFormSimpleController
 {

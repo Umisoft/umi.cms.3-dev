@@ -10,13 +10,13 @@
 
 namespace umicms\project\module\search\site\controller;
 
-use umicms\project\site\controller\SitePageController;
+use umicms\project\site\controller\BaseSitePageController;
 use umicms\project\module\search\model\SearchApi;
 
 /**
  * Контроллер запроса и вывода результатов поиска
  */
-class SearchController extends SitePageController
+class SearchController extends BaseSitePageController
 {
 
     /**

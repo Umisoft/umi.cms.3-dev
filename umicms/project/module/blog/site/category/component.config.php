@@ -12,25 +12,25 @@ namespace umicms\project\module\blog\site\category;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\CmsHierarchicPageComponent;
+use umicms\project\site\component\SiteHierarchicPageComponent;
 
 return [
 
-    CmsHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\CmsHierarchicPageComponent',
-    CmsHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogCategory',
-    CmsHierarchicPageComponent::OPTION_CONTROLLERS => [
+    SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\SiteHierarchicPageComponent',
+    SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogCategory',
+    SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\BlogCategoryRssController'
     ],
-    CmsHierarchicPageComponent::OPTION_WIDGET => [
+    SiteHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\CategoryWidget',
         'postList' => __NAMESPACE__ . '\widget\CategoryPostListWidget',
         'list' => __NAMESPACE__ . '\widget\CategoryListWidget',
         'rssLink' => __NAMESPACE__ . '\widget\CategoryPostRssLinkWidget'
     ],
-    CmsHierarchicPageComponent::OPTION_VIEW => [
+    SiteHierarchicPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/category'],
     ],
-    CmsHierarchicPageComponent::OPTION_ACL => [
+    SiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
             'rssViewer' => []
@@ -47,7 +47,7 @@ return [
             ]
         ]
     ],
-    CmsHierarchicPageComponent::OPTION_ROUTES => [
+    SiteHierarchicPageComponent::OPTION_ROUTES => [
         'rss' => [
             'type'     => IRouteFactory::ROUTE_REGEXP,
             'route' => '/rss/(?P<url>.+)',

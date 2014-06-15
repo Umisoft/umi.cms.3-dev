@@ -10,12 +10,12 @@
 
 namespace umicms\project\module\blog\site\moderate\controller;
 
-use umicms\project\site\controller\SitePageController;
+use umicms\project\site\controller\BaseSitePageController;
 
 /**
  * Контроллер вывода списка всех постов, требующих модерирование.
  */
-class PostListController extends SitePageController
+class PostListController extends BaseSitePageController
 {
     /**
      * {@inheritdoc}

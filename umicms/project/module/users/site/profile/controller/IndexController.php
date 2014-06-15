@@ -15,13 +15,13 @@ use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\UsersModule;
-use umicms\project\site\controller\SitePageController;
+use umicms\project\site\controller\BaseSitePageController;
 use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер сохранения профиля пользователя
  */
-class IndexController extends SitePageController implements IObjectPersisterAware
+class IndexController extends BaseSitePageController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;

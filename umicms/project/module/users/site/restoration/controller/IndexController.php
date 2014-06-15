@@ -15,13 +15,13 @@ use umi\form\IForm;
 use umicms\exception\NonexistentEntityException;
 use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\UsersModule;
-use umicms\project\site\controller\SitePageController;
+use umicms\project\site\controller\BaseSitePageController;
 use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер запроса смены пароля пользователя
  */
-class IndexController extends SitePageController
+class IndexController extends BaseSitePageController
 {
     use TFormController;
 
