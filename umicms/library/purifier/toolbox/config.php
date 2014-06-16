@@ -19,5 +19,8 @@ return [
     'class'    => __NAMESPACE__ . '\PurifierTools',
     'awareInterfaces' => [
         'umicms\purifier\IPurifierAware'
+    ],
+    'services' => [
+        'umicms\purifier\IPurifier'
     ]
 ];

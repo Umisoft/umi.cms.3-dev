@@ -10,30 +10,16 @@
 
 namespace umicms\project\admin\settings\component;
 
-use umi\acl\IAclResource;
-use umicms\hmvc\component\BaseComponent;
+use umicms\hmvc\component\BaseCmsComponent;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 
 /**
  * Компонент настроек.
  */
-class SettingsComponent extends BaseComponent implements IAclResource, IUrlManagerAware
+class SettingsComponent extends BaseCmsComponent implements IUrlManagerAware
 {
     use TUrlManagerAware;
-
-    /**
-     * Префикс имени ACL-ресурса
-     */
-    const ACL_RESOURCE_PREFIX = 'component:';
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAclResourceName()
-    {
-        return self::ACL_RESOURCE_PREFIX . $this->name;
-    }
 
     /**
      * Возвращает информацию о компоненте.

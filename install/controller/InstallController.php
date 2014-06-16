@@ -205,26 +205,56 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $visitors->getProperty('locked')->setValue(true);
 
         $visitors->roles = [
-            'project' => ['visitor'],
-            'project.admin' => ['visitor'],
+            'project' => ['siteExecutor', 'adminExecutor'],
 
-            'project.site.users' => ['viewer'],
+            'project.admin' => ['apiExecutor'],
+
+            'project.site' => [
+                'usersExecutor',
+                'newsExecutor',
+                'structureExecutor',
+                'blogExecutor',
+                'searchExecutor'
+            ],
+
+            'project.site.users' => [
+                'authorizationExecutor',
+                'registrationExecutor',
+                'restorationExecutor',
+                'viewer'
+            ],
             'project.site.users.authorization' => ['viewer'],
-            'project.site.users.registration' => ['viewer'],
+            'project.site.users.registration' => ['activationExecutor', 'viewer'],
             'project.site.users.registration.activation' => ['viewer'],
-            'project.site.users.restoration' => ['viewer'],
+            'project.site.users.restoration' => ['confirmationExecutor', 'viewer'],
             'project.site.users.restoration.confirmation' => ['viewer'],
 
-            'project.site.structure' => ['viewer'],
+            'project.site.structure' => [
+                'menuExecutor',
+                'infoblockExecutor',
+                'viewer'
+            ],
             'project.site.structure.menu' => ['viewer'],
             'project.site.structure.infoblock' => ['viewer'],
 
-            'project.site.news' => ['viewer'],
+            'project.site.news' => [
+                'itemExecutor',
+                'rubricExecutor',
+                'subjectExecutor',
+                'viewer'
+            ],
             'project.site.news.item' => ['viewer', 'rssViewer'],
             'project.site.news.rubric' => ['viewer', 'rssViewer'],
             'project.site.news.subject' => ['viewer', 'rssViewer'],
 
-            'project.site.blog' => ['viewer'],
+            'project.site.blog' => [
+                'categoryExecutor',
+                'postExecutor',
+                'tagExecutor',
+                'authorExecutor',
+                'commentExecutor',
+                'viewer'
+            ],
             'project.site.blog.category' => ['viewer', 'rssViewer'],
             'project.site.blog.post' => ['viewer', 'rssViewer'],
             'project.site.blog.tag' => ['viewer', 'rssViewer'],
@@ -242,7 +272,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $registeredUsers->getProperty('locked')->setValue(true);
 
         $registeredUsers->roles = [
-            'project.site.users.profile' => ['viewer'],
+            'project.site.users' => ['profileExecutor', 'viewer'],
+            'project.site.users.profile' => ['passwordExecutor', 'viewer'],
             'project.site.users.profile.password' => ['viewer'],
         ];
 
@@ -254,6 +285,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Authors with premoderation', 'en-US');
 
         $authorsWithPremoderation->roles = [
+            'project.site.blog' => [
+                'draftExecutor',
+                'moderateExecutor',
+                'rejectExecutor'
+            ],
             'project.site.blog.draft' => ['author'],
             'project.site.blog.moderate' => ['author'],
             'project.site.blog.post' => ['author'],
@@ -268,6 +304,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Authors without premoderation', 'en-US');
 
         $authorsWithoutPremoderation->roles = [
+            'project.site.blog' => [
+                'draftExecutor',
+                'moderateExecutor',
+                'rejectExecutor'
+            ],
             'project.site.blog.draft' => ['publisher'],
             'project.site.blog.moderate' => ['author'],
             'project.site.blog.post' => ['author'],
@@ -304,6 +345,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Moderator', 'en-US');
 
         $moderator->roles = [
+            'project.site.blog' => [
+                'draftExecutor',
+                'moderateExecutor',
+                'rejectExecutor'
+            ],
             'project.site.blog.comment' => ['moderator'],
             'project.site.blog.moderate' => ['moderator'],
             'project.site.blog.post' => ['moderator'],
@@ -318,18 +364,18 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Администраторы')
             ->setValue('displayName', 'Administrator', 'en-US');
         $administrators->roles = [
-            'project.admin.api' => ['newsEditor', 'structureEditor', 'usersEditor'],
+            'project.admin.api' => ['newsExecutor', 'structureExecutor', 'usersExecutor'],
 
-            'project.admin.api.news' => ['rubricEditor', 'itemEditor', 'subjectEditor'],
+            'project.admin.api.news' => ['rubricExecutor', 'itemExecutor', 'subjectExecutor'],
             'project.admin.api.news.item' => ['editor'],
             'project.admin.api.news.rubric' => ['editor'],
             'project.admin.api.news.subject' => ['editor'],
 
-            'project.admin.api.structure' => ['pageEditor', 'layoutEditor'],
+            'project.admin.api.structure' => ['pageExecutor', 'layoutExecutor'],
             'project.admin.api.structure.page' => ['editor'],
             'project.admin.api.structure.layout' => ['editor'],
 
-            'project.admin.api.users' => ['userEditor'],
+            'project.admin.api.users' => ['userExecutor'],
             'project.admin.api.users.user' => ['editor'],
         ];
 

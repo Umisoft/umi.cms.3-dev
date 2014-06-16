@@ -10,6 +10,7 @@
 
 namespace umicms\purifier\toolbox;
 
+use umi\toolkit\exception\UnsupportedServiceException;
 use umi\toolkit\toolbox\IToolbox;
 use umi\toolkit\toolbox\TToolbox;
 use umicms\purifier\IPurifier;
@@ -47,6 +48,23 @@ class PurifierTools implements IToolbox
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getService($serviceInterfaceName, $concreteClassName)
+    {
+        switch ($serviceInterfaceName) {
+            case 'umicms\purifier\IPurifier':
+            {
+                return $this->getPurifier();
+            }
+        }
+        throw new UnsupportedServiceException($this->translate(
+            'Toolbox "{name}" does not support service "{interface}".',
+            ['name' => self::NAME, 'interface' => $serviceInterfaceName]
+        ));
+    }
+
+    /**
      * Возвращает очиститель контента.
      * @return IPurifier
      */
@@ -59,4 +77,3 @@ class PurifierTools implements IToolbox
             ->createSingleInstance([$this->options]);
     }
 }
- 

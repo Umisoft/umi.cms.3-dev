@@ -27,36 +27,6 @@ return [
         'rss' => '{#lazy:~/project/module/blog/admin/rss/component.config.php}'
     ],
 
-    AdminComponent::OPTION_ACL => [
-        AdminComponent::OPTION_ACL => [
-
-            IAclFactory::OPTION_ROLES => [
-                'categoryEditor' => [],
-                'postEditor' => [],
-                'commentEditor' => [],
-                'authorEditor' => [],
-                'tagEditor' => [],
-                'rssEditor' => []
-            ],
-            IAclFactory::OPTION_RESOURCES => [
-                'component:category',
-                'component:post',
-                'component:comment',
-                'component:author',
-                'component:tag',
-                'component:rss'
-            ],
-            IAclFactory::OPTION_RULES => [
-                'categoryEditor' => ['component:category' => []],
-                'postEditor' => ['component:post' => []],
-                'commentEditor' => ['component:comment' => []],
-                'authorEditor' => ['component:author' => []],
-                'tagEditor' => ['component:tag' => []],
-                'rssEditor' => ['component:rss' => []]
-            ]
-        ],
-    ],
-
     AdminComponent::OPTION_ROUTES      => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
