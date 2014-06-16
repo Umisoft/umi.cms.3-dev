@@ -11,8 +11,8 @@
 namespace umicms\project\module\seo\admin\megaindex\controller;
 
 use umicms\hmvc\component\admin\BaseLayoutController;
-use umicms\project\admin\layout\AdminComponentLayout;
-use umicms\project\admin\layout\control\AdminControl;
+use umicms\hmvc\component\admin\layout\AdminComponentLayout;
+use umicms\hmvc\component\admin\layout\control\AdminControl;
 
 /**
  * Контроллер вывода настроек компонента

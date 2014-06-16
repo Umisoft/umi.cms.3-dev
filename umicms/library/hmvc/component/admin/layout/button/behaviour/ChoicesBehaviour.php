@@ -7,9 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\layout\button\behaviour;
+namespace umicms\hmvc\component\admin\layout\button\behaviour;
 
-use umicms\project\admin\layout\button\Choice;
+use umicms\hmvc\component\admin\layout\button\Choice;
 
 /**
  * Обработчик элементов выбора.

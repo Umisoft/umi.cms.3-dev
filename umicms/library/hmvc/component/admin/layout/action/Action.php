@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\layout\action;
+namespace umicms\hmvc\component\admin\layout\action;
 
 /**
  * REST-действие

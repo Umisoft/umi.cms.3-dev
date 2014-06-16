@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\layout\button;
+namespace umicms\hmvc\component\admin\layout\button;
 
 /**
  * Split-кнопка для тулбара.

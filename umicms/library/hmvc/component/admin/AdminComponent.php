@@ -13,7 +13,7 @@ namespace umicms\hmvc\component\admin;
 use umicms\hmvc\component\BaseCmsComponent;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\project\admin\layout\action\Action;
+use umicms\hmvc\component\admin\layout\action\Action;
 
 /**
  * Простой компонент административной панели.

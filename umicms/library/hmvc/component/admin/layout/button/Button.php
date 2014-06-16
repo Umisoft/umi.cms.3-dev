@@ -7,9 +7,9 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\layout\button;
+namespace umicms\hmvc\component\admin\layout\button;
 
-use umicms\project\admin\layout\button\behaviour\Behaviour;
+use umicms\hmvc\component\admin\layout\button\behaviour\Behaviour;
 
 /**
  * Простая кнопка для тулбара.

@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\layout\button\behaviour;
+namespace umicms\hmvc\component\admin\layout\button\behaviour;
 
 /**
  * Класс обработчика кнопки

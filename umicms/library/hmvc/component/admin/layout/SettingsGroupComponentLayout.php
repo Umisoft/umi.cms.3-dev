@@ -8,11 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\layout;
+namespace umicms\hmvc\component\admin\layout;
 
 use umicms\hmvc\url\IUrlManager;
 use umicms\hmvc\component\admin\AdminComponent;
-use umicms\project\admin\layout\control\ComponentsMenuControl;
+use umicms\hmvc\component\admin\layout\control\ComponentsMenuControl;
 
 /**
  * Билдер сетки для компонента, группирующего компоненты настроек.

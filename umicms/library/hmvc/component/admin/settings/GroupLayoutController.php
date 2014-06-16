@@ -11,7 +11,7 @@
 namespace umicms\hmvc\component\admin\settings;
 
 use umicms\hmvc\component\admin\BaseLayoutController;
-use umicms\project\admin\layout\SettingsGroupComponentLayout;
+use umicms\hmvc\component\admin\layout\SettingsGroupComponentLayout;
 
 /**
  * Контроллер вывода настроек компонента, группирующего компоненты настроек

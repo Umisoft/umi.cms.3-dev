@@ -8,19 +8,19 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\layout\control;
+namespace umicms\hmvc\component\admin\layout\control;
 
 use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\ICmsPageCollection;
-use umicms\project\admin\layout\button\Button;
+use umicms\hmvc\component\admin\layout\button\Button;
 use umicms\hmvc\component\admin\collection\CollectionComponent;
-use umicms\project\admin\layout\button\behaviour\Behaviour;
-use umicms\project\admin\layout\button\behaviour\ChoicesBehaviour;
-use umicms\project\admin\layout\button\Choice;
-use umicms\project\admin\layout\button\SplitButton;
+use umicms\hmvc\component\admin\layout\button\behaviour\Behaviour;
+use umicms\hmvc\component\admin\layout\button\behaviour\ChoicesBehaviour;
+use umicms\hmvc\component\admin\layout\button\Choice;
+use umicms\hmvc\component\admin\layout\button\SplitButton;
 
 /**
  * Административный контрол для управления коллекцией.

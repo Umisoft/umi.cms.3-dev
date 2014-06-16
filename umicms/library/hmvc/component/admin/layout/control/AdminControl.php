@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\layout\control;
+namespace umicms\hmvc\component\admin\layout\control;
 
 use umicms\exception\OutOfBoundsException;
 use umicms\hmvc\component\admin\AdminComponent;
-use umicms\project\admin\layout\button\behaviour\Behaviour;
-use umicms\project\admin\layout\button\Button;
-use umicms\project\admin\layout\button\Choice;
-use umicms\project\admin\layout\button\DropdownButton;
+use umicms\hmvc\component\admin\layout\button\behaviour\Behaviour;
+use umicms\hmvc\component\admin\layout\button\Button;
+use umicms\hmvc\component\admin\layout\button\Choice;
+use umicms\hmvc\component\admin\layout\button\DropdownButton;
 
 /**
  * Простой административный контрол.

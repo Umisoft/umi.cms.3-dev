@@ -11,7 +11,7 @@
 namespace umicms\project\module\news\admin\rss\controller;
 
 use umicms\hmvc\component\admin\BaseLayoutController;
-use umicms\project\admin\layout\CollectionComponentLayout;
+use umicms\hmvc\component\admin\layout\CollectionComponentLayout;
 
 /**
  * Контроллер сетки интерфейса административного компонента.

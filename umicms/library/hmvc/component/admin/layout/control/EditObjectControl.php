@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\layout\control;
+namespace umicms\hmvc\component\admin\layout\control;
 
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsPageCollection;
-use umicms\project\admin\layout\button\behaviour\ChoicesBehaviour;
-use umicms\project\admin\layout\button\SplitButton;
+use umicms\hmvc\component\admin\layout\button\behaviour\ChoicesBehaviour;
+use umicms\hmvc\component\admin\layout\button\SplitButton;
 
 /**
  * Административный контрол "Форма редактирования объекта коллекции"

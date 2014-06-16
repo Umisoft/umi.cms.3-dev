@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\layout\control;
+namespace umicms\hmvc\component\admin\layout\control;
 
-use umicms\project\admin\layout\button\behaviour\ChoicesBehaviour;
-use umicms\project\admin\layout\button\SplitButton;
+use umicms\hmvc\component\admin\layout\button\behaviour\ChoicesBehaviour;
+use umicms\hmvc\component\admin\layout\button\SplitButton;
 
 /**
  * Административный контрол "Форма создания объекта коллекции"

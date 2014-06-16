@@ -8,17 +8,17 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\layout;
+namespace umicms\hmvc\component\admin\layout;
 
 use umicms\exception\RuntimeException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\hmvc\component\admin\collection\CollectionComponent;
 use umicms\hmvc\component\admin\AdminComponent;
-use umicms\project\admin\layout\control\CreateObjectControl;
-use umicms\project\admin\layout\control\EditObjectControl;
-use umicms\project\admin\layout\control\TableControl;
-use umicms\project\admin\layout\control\TreeControl;
+use umicms\hmvc\component\admin\layout\control\CreateObjectControl;
+use umicms\hmvc\component\admin\layout\control\EditObjectControl;
+use umicms\hmvc\component\admin\layout\control\TableControl;
+use umicms\hmvc\component\admin\layout\control\TreeControl;
 
 /**
  * Билдер сетки для стандартного компонента по управлению ORM-коллекцией.

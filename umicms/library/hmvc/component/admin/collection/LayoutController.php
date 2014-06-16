@@ -10,7 +10,7 @@
 namespace umicms\hmvc\component\admin\collection;
 
 use umicms\hmvc\component\admin\BaseLayoutController;
-use umicms\project\admin\layout\CollectionComponentLayout;
+use umicms\hmvc\component\admin\layout\CollectionComponentLayout;
 
 
 /**

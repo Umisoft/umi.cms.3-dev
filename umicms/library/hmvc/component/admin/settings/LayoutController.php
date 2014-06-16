@@ -10,8 +10,8 @@
 
 namespace umicms\hmvc\component\admin\settings;
 
-use umicms\project\admin\layout\button\behaviour\Behaviour;
-use umicms\project\admin\layout\button\Button;
+use umicms\hmvc\component\admin\layout\button\behaviour\Behaviour;
+use umicms\hmvc\component\admin\layout\button\Button;
 
 /**
  * Контроллер вывода настроек компонента, управляющего настройками

@@ -10,7 +10,7 @@
 
 namespace umicms\hmvc\component\admin;
 
-use umicms\project\admin\layout\AdminComponentLayout;
+use umicms\hmvc\component\admin\layout\AdminComponentLayout;
 
 /**
  * Базовый контроллер сетки интерфейса административного компонента.

@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\admin\layout;
+namespace umicms\hmvc\component\admin\layout;
 
 use umi\hmvc\component\IComponent;
 use umicms\exception\OutOfBoundsException;
 use umicms\hmvc\component\admin\AdminComponent;
-use umicms\project\admin\layout\action\Action;
-use umicms\project\admin\layout\control\AdminControl;
+use umicms\hmvc\component\admin\layout\action\Action;
+use umicms\hmvc\component\admin\layout\control\AdminControl;
 
 /**
  * Билдер сетки для произвольного административного компонента.
