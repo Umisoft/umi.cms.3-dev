@@ -1,37 +1,77 @@
 define(['App', 'text!./dateElement.hbs'], function(UMI, dateElement){
     'use strict';
 
-    Ember.TEMPLATES['UMI/components/date-element'] = Ember.Handlebars.compile(dateElement);
-
     return function(){
-        UMI.DateElementComponent = Ember.Component.extend(UMI.InputValidate, {
+        UMI.DateElementView = Ember.View.extend({
+            template: Ember.Handlebars.compile(dateElement),
+
             classNames: ['umi-element', 'umi-element-date'],
 
-            didInsertElement: function(){
-                var el = this.$();
-                el.find('.icon-delete').click(function(){
-                    el.find('input').val('');
-                });
-//                this.$().find('input').jdPicker({
-//                    month_names: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-//                    short_month_names: ["Янв", "Февр", "Март", "Апр", "Май", "Июнь", "Июль", "Авг", "Сент", "Окт", "Нояб", "Дек"],
-//                    short_day_names: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-//                    date_format: "dd mm YYYY"
-//                });
+            value: null,
 
+            changeValue: function(){
+                var self = this;
+
+                if(Ember.typeOf(self.get('object')) === 'instance'){
+                    var value = self.get('value');
+                    var valueInObject = self.get('object.' + self.get("meta.dataSource")) || '';
+                    if(!valueInObject.date){
+                        valueInObject.date = "";
+                    }
+                    if(valueInObject.date !== value){
+                        var result = "";
+                        if(value){
+                            result = {
+                                date: value,
+                                timezone_type: 3,
+                                timezone: "Europe/Moscow"
+                            };
+                            result = JSON.stringify(result);
+                        }
+                        self.get('object').set(self.get("meta.dataSource"), result);
+                    }
+                }
+            }.observes('value'),
+
+            setInputValue: function(){
+                var self = this;
+                var valueInObject = self.get('object.' + self.get("meta.dataSource")) || '{}';
+                valueInObject = JSON.parse(valueInObject);
+                if(!valueInObject.date){
+                    valueInObject.date = "";
+                }
+                if(valueInObject.date !== self.get('value')){
+                    self.set('value', valueInObject);
+                }
+            },
+
+            layout: Ember.Handlebars.compile('{{input type="text" class="umi-date" value=view.value}}'),
+
+            init: function(){
+                this._super();
+                var value;
+                var self = this;
+
+                if(Ember.typeOf(self.get('object')) === 'instance'){
+                    value = self.get('object.' + self.get("meta.dataSource"))  || '{}';
+                    value = JSON.parse(value);
+                    self.set("value", value.date || "");
+
+                    self.addObserver('object.' + self.get('meta.dataSource'), function(){
+                        Ember.run.once(self, 'setInputValue');
+                    });
+                } else{
+                    self.set("value", self.get('meta.value'));
+                }
+            },
+
+            didInsertElement: function(){
                 this.$().find('input').datepicker({
                     changeMonth: true,
                     changeYear: true,
                     dateFormat: 'dd.mm.yy'
                 });
-            },
-
-            inputView: Ember.View.extend({
-                template: function(){
-                    var dataSource = this.get('parentView.meta.dataSource');
-                    return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection" name=meta.attributes.name}}');
-                }.property()
-            })
+            }
         });
     };
 });

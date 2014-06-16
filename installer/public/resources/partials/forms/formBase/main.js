@@ -118,7 +118,7 @@ define(
                 }.property(),
 
                 dateTemplate: function(){
-                    return '{{date-element object=object meta=view.meta}}';
+                    return '{{view "dateElement" object=object meta=view.meta}}';
                 }.property(),
 
                 datetimeTemplate: function(){

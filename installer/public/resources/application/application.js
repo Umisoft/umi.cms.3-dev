@@ -338,7 +338,7 @@ define(
         UMI.CustomDateTransform = DS.Transform.extend({
             deserialize: function(deserialized){
                 if(deserialized && deserialized.date){
-                    Ember.set(deserialized, 'date', moment(deserialized.date).format('DD/MM/YYYY'));
+                    Ember.set(deserialized, 'date', moment(deserialized.date).format('DD.MM.YYYY'));
                     deserialized = JSON.stringify(deserialized);
                 }
                 return deserialized;
@@ -347,7 +347,33 @@ define(
                 if(serialized){
                     serialized = JSON.parse(serialized);
                     if(serialized.date){
-                        Ember.set(serialized, 'date', moment(serialized.date, 'DD/MM/YYYY').format('YYYY-MM-DD h:mm:ss'));
+                        Ember.set(serialized, 'date', moment(serialized.date, 'DD.MM.YYYY').format('YYYY-MM-DD'));
+                    }
+                }
+                return serialized;
+            }
+        });
+
+        /**
+         * Приводит приходящий объект date:{} к нужному формату даты
+         * TODO Смена формата в зависимости от языка системы
+         * TODO Почему не прилылать в простом timeStamp
+         * DS.attr('date')
+         * @type {*|void|Object}
+         */
+        UMI.CustomDateTimeTransform = DS.Transform.extend({
+            deserialize: function(deserialized){
+                if(deserialized && deserialized.date){
+                    Ember.set(deserialized, 'date', moment(deserialized.date).format('DD.MM.YYYY h:mm:ss'));
+                    deserialized = JSON.stringify(deserialized);
+                }
+                return deserialized;
+            },
+            serialize: function(serialized){
+                if(serialized){
+                    serialized = JSON.parse(serialized);
+                    if(serialized.date){
+                        Ember.set(serialized, 'date', moment(serialized.date, 'DD.MM.YYYY h:mm:ss').format('YYYY-MM-DD h:mm:ss'));
                     }
                 }
                 return serialized;

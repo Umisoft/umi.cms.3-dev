@@ -212,12 +212,14 @@ define([], function(){
                         case 'bool':
                             fieldValue = DS.attr('boolean', params);
                             break;
-                        case 'dateTime':
+                        case 'date':
                             fieldValue = DS.attr('CustomDate', params);
+                            break;
+                        case 'dateTime':
+                            fieldValue = DS.attr('CustomDateTime', params);
                             break;
                         case 'belongsToRelation':
                             params.async = true;
-                            // Что значит инверсия избыточна?
                             //TODO: инверсия избыточна, но DS почему то без неё не может
                             if(collection.fields[i].targetCollection === collection.name){
                                 params.inverse = 'children';
