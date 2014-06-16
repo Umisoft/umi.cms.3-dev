@@ -321,9 +321,10 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         $comments = $this->getComments()
             ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
-            ->where(BlogComment::FIELD_PUBLISH_STATUS)->equals(
-                BlogComment::COMMENT_STATUS_PUBLISHED
-            );
+            ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
+                BlogComment::COMMENT_STATUS_PUBLISHED,
+                BlogComment::COMMENT_STATUS_UNPUBLISHED
+            ]);
 
         return $comments;
     }
@@ -341,7 +342,8 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
             ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
                 BlogComment::COMMENT_STATUS_PUBLISHED,
-                BlogComment::COMMENT_STATUS_NEED_MODERATE
+                BlogComment::COMMENT_STATUS_NEED_MODERATE,
+                BlogComment::COMMENT_STATUS_UNPUBLISHED
             ]);
 
         return $comments;

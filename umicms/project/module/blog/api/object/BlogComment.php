@@ -52,6 +52,10 @@ class BlogComment extends BlogBaseComment implements IAclResource, IAclAssertion
      */
     const FORM_REJECT_COMMENT = 'reject';
     /**
+     * Форма снятия с публикации
+     */
+    const FORM_UNPUBLISH_COMMENT = 'unpublish';
+    /**
      * Статус комментария: опубликован
      */
     const COMMENT_STATUS_PUBLISHED = 'published';
@@ -60,12 +64,16 @@ class BlogComment extends BlogBaseComment implements IAclResource, IAclAssertion
      */
     const COMMENT_STATUS_REJECTED = 'rejected';
     /**
+     * Статус комментария: снят с публикации
+     */
+    const COMMENT_STATUS_UNPUBLISHED = 'unpublished';
+    /**
      * Статус комментария: требует модерации
      */
     const COMMENT_STATUS_NEED_MODERATE = 'moderate';
 
     /**
-     * Выставляет статус комментария опубликован.
+     * Выставляет статус комментария: опубликован.
      * @return $this
      */
     public function publish()
@@ -75,7 +83,7 @@ class BlogComment extends BlogBaseComment implements IAclResource, IAclAssertion
     }
 
     /**
-     * Выставляет статус поста требует модерации.
+     * Выставляет статус комментария: требует модерации.
      * @return $this
      */
     public function needModerate()
@@ -85,12 +93,22 @@ class BlogComment extends BlogBaseComment implements IAclResource, IAclAssertion
     }
 
     /**
-     * Выставляет статус комментария отклонён.
+     * Выставляет статус комментария: отклонён.
      * @return $this
      */
     public function reject()
     {
         $this->publishStatus = self::COMMENT_STATUS_REJECTED;
+        return $this;
+    }
+
+    /**
+     * Выставляет статус комментария: снят с публикации.
+     * @return $this
+     */
+    public function unPublish()
+    {
+        $this->publishStatus = self::COMMENT_STATUS_UNPUBLISHED;
         return $this;
     }
 

@@ -12,11 +12,13 @@ return [
 
     'en-US' => [
         'Publish' => 'Publish',
+        'Unpublish' => 'Unpublish',
         'Reject' => 'Reject'
     ],
 
     'ru-RU' => [
         'Publish' => 'Опубликовать',
+        'Unpublish' => 'Снять с публикации',
         'Reject' => 'Отклонить'
     ]
 

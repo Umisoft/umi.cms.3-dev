@@ -22,13 +22,15 @@ return [
         'add' => __NAMESPACE__ . '\controller\AddController',
         'publish' => __NAMESPACE__ . '\controller\PublishController',
         'reject' => __NAMESPACE__ . '\controller\RejectController',
+        'unpublish' => __NAMESPACE__ . '\controller\UnpublishController',
     ],
     DefaultSiteHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\CommentWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'add' => __NAMESPACE__ . '\widget\AddWidget',
         'publish' => __NAMESPACE__ . '\widget\PublishWidget',
-        'reject' => __NAMESPACE__ . '\widget\RejectWidget'
+        'reject' => __NAMESPACE__ . '\widget\RejectWidget',
+        'unpublish' => __NAMESPACE__ . '\widget\UnpublishWidget'
     ],
     DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/comment'],
@@ -44,10 +46,12 @@ return [
             'controller:add',
             'controller:publish',
             'controller:reject',
+            'controller:unpublish',
             'widget:view',
             'widget:list',
             'widget:add',
             'widget:publish',
+            'widget:unpublish',
             'widget:reject',
             'model:blogComment',
             'collection:blogComment'
@@ -72,8 +76,10 @@ return [
             'moderator' => [
                 'widget:reject' => [],
                 'widget:publish' => [],
+                'widget:unpublish' => [],
                 'controller:reject' => [],
                 'controller:publish' => [],
+                'controller:unpublish' => [],
                 'collection:blogComment' => [
                     'getComments' => ['withNeedModeration']
                 ],
@@ -95,6 +101,13 @@ return [
             'route' => '/publish/{id:integer}',
             'defaults' => [
                 'controller' => 'publish'
+            ]
+        ],
+        'unpublish' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/unpublish/{id:integer}',
+            'defaults' => [
+                'controller' => 'unpublish'
             ]
         ],
         'reject' => [
