@@ -39,7 +39,7 @@ class BlogComment extends BlogBaseComment implements IAclResource, IAclAssertion
     /**
      * Имя поля для хранения необработанного контента комментария
      */
-    const FIELD_CONTENTS_RAW = 'contentsRaw';
+    const FIELD_CONTENTS_RAW = 'contents_raw';
     /**
      * Имя поля для хранения статуса публикации комментария
      */

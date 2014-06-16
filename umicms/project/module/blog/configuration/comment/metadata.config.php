@@ -164,8 +164,8 @@ return [
             'columnName' => 'contents',
             'mutator' => 'setContents',
             'localizations' => [
-                'ru-RU' => ['columnName' => 'contentsRaw'],
-                'en-US' => ['columnName' => 'contentsRaw_en']
+                'ru-RU' => ['columnName' => 'contents_raw'],
+                'en-US' => ['columnName' => 'contents_raw_en']
             ]
         ],
         BlogComment::FIELD_PUBLISH_TIME => [
