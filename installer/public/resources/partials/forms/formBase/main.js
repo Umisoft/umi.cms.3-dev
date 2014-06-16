@@ -126,7 +126,7 @@ define(
                 }.property(),
 
                 fileTemplate: function(){
-                    return '{{file-element object=object meta=view.meta}}';
+                    return '{{view "fileElement" object=object meta=view.meta}}';
                 }.property(),
 
                 imageTemplate: function(){
