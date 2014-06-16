@@ -9,7 +9,7 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\module\search\api\object\SearchIndex;
+use umicms\project\module\search\model\object\SearchIndex;
 
 return [
     'dataSource' => [
@@ -73,7 +73,7 @@ return [
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\search\api\object\SearchIndex',
+            'objectClass' => 'umicms\project\module\search\model\object\SearchIndex',
             'fields' => [
                 SearchIndex::FIELD_IDENTIFY,
                 SearchIndex::FIELD_GUID,

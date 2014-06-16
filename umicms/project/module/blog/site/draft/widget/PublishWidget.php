@@ -10,17 +10,16 @@
 
 namespace umicms\project\module\blog\site\draft\widget;
 
-use umi\acl\IAclResource;
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
  * Виджет публикации черновика.
  */
-class PublishWidget extends BaseFormWidget implements IAclResource
+class PublishWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -35,17 +34,17 @@ class PublishWidget extends BaseFormWidget implements IAclResource
      */
     public $blogDraft;
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -54,7 +53,7 @@ class PublishWidget extends BaseFormWidget implements IAclResource
     protected function getForm()
     {
         if (is_string($this->blogDraft)) {
-            $this->blogDraft = $this->api->post()->getDraft($this->blogDraft);
+            $this->blogDraft = $this->module->post()->getDraft($this->blogDraft);
         }
 
         if (!$this->blogDraft instanceof BlogPost) {
@@ -69,7 +68,7 @@ class PublishWidget extends BaseFormWidget implements IAclResource
             );
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE, $this->blogDraft);
+        $form = $this->module->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE, $this->blogDraft);
 
         $form->setAction($this->getUrl('publish', ['id' => $this->blogDraft->getId()]));
 

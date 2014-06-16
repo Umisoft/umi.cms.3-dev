@@ -7,7 +7,7 @@ use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\validation\IValidatorFactory;
 use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\users\api\object\AuthorizedUser;
+use umicms\project\module\users\model\object\AuthorizedUser;
 
 return [
 

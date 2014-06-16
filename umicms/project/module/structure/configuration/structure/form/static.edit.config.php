@@ -12,7 +12,7 @@ use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\structure\api\object\StaticPage;
+use umicms\project\module\structure\model\object\StaticPage;
 
 return [
 

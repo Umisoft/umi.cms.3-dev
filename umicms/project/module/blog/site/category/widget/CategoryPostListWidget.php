@@ -10,16 +10,15 @@
 
 namespace umicms\project\module\blog\site\category\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseListWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogCategory;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogCategory;
 
 /**
  * Виджет для вывода списка постов по категориям.
  */
-class CategoryPostListWidget extends BaseListWidget implements IAclResource
+class CategoryPostListWidget extends BaseListWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -32,17 +31,17 @@ class CategoryPostListWidget extends BaseListWidget implements IAclResource
     public $categories;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -54,7 +53,7 @@ class CategoryPostListWidget extends BaseListWidget implements IAclResource
 
         foreach ($categories as &$category) {
             if (is_string($category)) {
-                $category = $this->api->category()->get($category);
+                $category = $this->module->category()->get($category);
             }
 
             if (!$category instanceof BlogCategory) {
@@ -70,7 +69,7 @@ class CategoryPostListWidget extends BaseListWidget implements IAclResource
             }
         }
 
-        return $this->api->getPostByCategory($categories);
+        return $this->module->getPostByCategory($categories);
     }
 }
  

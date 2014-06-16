@@ -11,7 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\testmodule\api\object\TestObject;
+use umicms\project\module\testmodule\model\object\TestObject;
 
 return [
     'dataSource' => [
@@ -75,7 +75,7 @@ return [
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\testmodule\api\object\TestObject',
+            'objectClass' => 'umicms\project\module\testmodule\model\object\TestObject',
             'fields' => [
                 TestObject::FIELD_IDENTIFY,
                 TestObject::FIELD_GUID,

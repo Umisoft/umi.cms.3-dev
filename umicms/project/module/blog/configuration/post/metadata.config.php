@@ -12,7 +12,7 @@ use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
 use umicms\filter\HtmlPurifier;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\object\BlogPost;
 
 return [
     'dataSource' => [
@@ -149,11 +149,11 @@ return [
         ],
         BlogPost::FIELD_PAGE_CONTENTS_RAW => [
             'type' => IField::TYPE_TEXT,
-            'columnName' => 'contentsRaw',
+            'columnName' => 'contents_raw',
             'mutator' => 'setContents',
             'localizations' => [
-                'ru-RU' => ['columnName' => 'contentsRaw'],
-                'en-US' => ['columnName' => 'contentsRaw_en']
+                'ru-RU' => ['columnName' => 'contents_raw'],
+                'en-US' => ['columnName' => 'contents_raw_en']
             ]
         ],
         BlogPost::FIELD_PAGE_LAYOUT => [
@@ -185,7 +185,7 @@ return [
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\blog\api\object\BlogPost',
+            'objectClass' => 'umicms\project\module\blog\model\object\BlogPost',
             'fields' => [
                 BlogPost::FIELD_IDENTIFY,
                 BlogPost::FIELD_GUID,

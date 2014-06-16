@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\service\api\object\Backup;
+use umicms\project\module\service\model\object\Backup;
 
 return [
         'en-US' => [

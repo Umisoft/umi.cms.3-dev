@@ -12,11 +12,11 @@ namespace umicms\project\module\news\site;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\hmvc\component\site\SiteComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
+    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
 
     SiteComponent::OPTION_COMPONENTS => [
         'rubric' => '{#lazy:~/project/module/news/site/rubric/component.config.php}',
@@ -25,15 +25,12 @@ return [
     ],
 
     SiteComponent::OPTION_CONTROLLERS => [
-        'index' => 'umicms\project\site\controller\DefaultStructurePageController'
+        'index' => 'umicms\hmvc\component\site\SiteStructurePageController'
     ],
 
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:index'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [

@@ -11,8 +11,8 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\blog\api\object\BlogAuthor;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\object\BlogAuthor;
+use umicms\project\module\blog\model\object\BlogPost;
 
 return [
     'dataSource' => [
@@ -153,7 +153,7 @@ return [
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\blog\api\object\BlogAuthor',
+            'objectClass' => 'umicms\project\module\blog\model\object\BlogAuthor',
             'fields' => [
                 BlogAuthor::FIELD_IDENTIFY,
                 BlogAuthor::FIELD_GUID,

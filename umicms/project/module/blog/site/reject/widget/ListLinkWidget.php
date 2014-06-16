@@ -10,13 +10,12 @@
 
 namespace umicms\project\module\blog\site\reject\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет для вывода ссылки на спискок отклонённых постов текущего автора.
  */
-class ListLinkWidget extends BaseLinkWidget implements IAclResource
+class ListLinkWidget extends BaseLinkWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

@@ -91,12 +91,17 @@ class TemplatingTwigExtension extends Twig_Extension
         return $helper;
     }
 
+    /**
+     * Возвращает помощник шаблонов для проверки прав.
+     * @return AccessResource
+     */
     protected function getIsAllowedResourceHelper()
     {
         static $isAllowedResourceHelper;
-
+        /** @var CmsDispatcher $dispatcher */
+        $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
         if (!$isAllowedResourceHelper) {
-            $isAllowedResourceHelper = new AccessResource($this->dispatcher);
+            $isAllowedResourceHelper = new AccessResource($dispatcher);
         }
 
         return $isAllowedResourceHelper;

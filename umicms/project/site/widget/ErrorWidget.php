@@ -12,12 +12,12 @@ namespace umicms\project\site\widget;
 
 use Exception;
 use umicms\exception\UnexpectedValueException;
-use umicms\hmvc\widget\BaseWidget;
+use umicms\hmvc\widget\BaseCmsWidget;
 
 /**
  * Виджет для вывода ошибки виджетов.
  */
-class ErrorWidget extends BaseWidget
+class ErrorWidget extends BaseCmsWidget
 {
 
     /**

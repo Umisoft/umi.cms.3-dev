@@ -10,16 +10,15 @@
 
 namespace umicms\project\module\blog\site\draft\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\hmvc\widget\BaseCmsWidget;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
  * Виджет вывода черновика поста блога.
  */
-class DraftWidget extends BaseWidget implements IAclResource
+class DraftWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -31,17 +30,17 @@ class DraftWidget extends BaseWidget implements IAclResource
     public $blogDraft;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -50,7 +49,7 @@ class DraftWidget extends BaseWidget implements IAclResource
     public function __invoke()
     {
         if (is_string($this->blogDraft)) {
-            $this->blogDraft = $this->api->post()->getDraft($this->blogDraft);
+            $this->blogDraft = $this->module->post()->getDraft($this->blogDraft);
         }
 
         if (!$this->blogDraft instanceof BlogPost) {

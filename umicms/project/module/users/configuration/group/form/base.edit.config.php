@@ -12,7 +12,7 @@ use umi\form\element\MultiSelect;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Permissions;
-use umicms\project\module\users\api\object\UserGroup;
+use umicms\project\module\users\model\object\UserGroup;
 
 return [
 
