@@ -2,7 +2,7 @@ define(['App', 'text!./fileElement.hbs'], function(UMI, fileElement){
     "use strict";
 
     return function(){
-        UMI.FileElementView = Ember.View.extend(UMI.InputValidate, {
+        UMI.FileElementView = Ember.View.extend({
             template: Ember.Handlebars.compile(fileElement),
 
             classNames: ['umi-element', 'umi-element-file'],

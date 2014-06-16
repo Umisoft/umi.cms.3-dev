@@ -130,7 +130,7 @@ define(
                 }.property(),
 
                 imageTemplate: function(){
-                    return '{{image-element object=object meta=view.meta}}';
+                    return '{{view "imageElement" object=object meta=view.meta}}';
                 }.property(),
 
                 textareaTemplate: function(){
