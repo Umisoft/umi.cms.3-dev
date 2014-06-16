@@ -23,4 +23,3 @@ interface IPurifier
      */
     public function purify($string, array $options = []);
 }
- 

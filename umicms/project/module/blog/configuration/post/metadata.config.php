@@ -11,6 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
+use umicms\filter\HtmlPurifier;
 use umicms\project\module\blog\api\object\BlogPost;
 
 return [
@@ -51,7 +52,8 @@ return [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name',
             'filters' => [
-                IFilterFactory::TYPE_STRING_TRIM => []
+                IFilterFactory::TYPE_STRING_TRIM => [],
+                IFilterFactory::TYPE_STRIP_TAGS => []
             ],
             'validators' => [
                 IValidatorFactory::TYPE_REQUIRED => []
@@ -115,7 +117,11 @@ return [
         ],
         BlogPost::FIELD_PAGE_H1 => [
             'type' => IField::TYPE_STRING,
-            'columnName' => 'h1'
+            'columnName' => 'h1',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => [],
+                IFilterFactory::TYPE_STRIP_TAGS => []
+            ]
         ],
         BlogPost::FIELD_ANNOUNCEMENT => [
             'type' => IField::TYPE_TEXT,
@@ -132,9 +138,22 @@ return [
         BlogPost::FIELD_PAGE_CONTENTS => [
             'type' => IField::TYPE_TEXT,
             'columnName' => 'contents',
+            'mutator' => 'setContents',
+            'filters' => [
+                HtmlPurifier::TYPE => [],
+            ],
             'localizations' => [
                 'ru-RU' => ['columnName' => 'contents'],
                 'en-US' => ['columnName' => 'contents_en']
+            ]
+        ],
+        BlogPost::FIELD_PAGE_CONTENTS_RAW => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'contentsRaw',
+            'mutator' => 'setContents',
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'contentsRaw'],
+                'en-US' => ['columnName' => 'contentsRaw_en']
             ]
         ],
         BlogPost::FIELD_PAGE_LAYOUT => [
@@ -188,6 +207,7 @@ return [
                 BlogPost::FIELD_ANNOUNCEMENT,
                 BlogPost::FIELD_SOURCE,
                 BlogPost::FIELD_PAGE_CONTENTS,
+                BlogPost::FIELD_PAGE_CONTENTS_RAW,
                 BlogPost::FIELD_CATEGORY,
                 BlogPost::FIELD_TAGS,
                 BlogPost::FIELD_PUBLISH_TIME,

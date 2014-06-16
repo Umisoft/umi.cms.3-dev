@@ -114,7 +114,11 @@ return [
         ],
         BlogAuthor::FIELD_PAGE_H1 => [
             'type' => IField::TYPE_STRING,
-            'columnName' => 'h1'
+            'columnName' => 'h1',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => [],
+                IFilterFactory::TYPE_STRIP_TAGS => []
+            ]
         ],
         BlogAuthor::FIELD_LAST_ACTIVITY => [
             'type' => IField::TYPE_DATE_TIME,

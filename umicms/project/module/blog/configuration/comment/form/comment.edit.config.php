@@ -73,7 +73,7 @@ return [
                     'type' => Wysiwyg::TYPE_NAME,
                     'label' => BlogComment::FIELD_CONTENTS,
                     'options' => [
-                        'dataSource' => BlogComment::FIELD_CONTENTS
+                        'dataSource' => BlogComment::FIELD_CONTENTS_RAW
                     ]
                 ]
             ],
