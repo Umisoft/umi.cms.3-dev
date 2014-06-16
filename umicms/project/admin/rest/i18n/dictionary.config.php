@@ -57,7 +57,7 @@ return [
         'action:saveAndGoBack' => 'Сохранить и выйти',
         'action:saveAsCopy' => 'Сохранить как копию',
 
-        //'button:add' => 'Добавить',
+        'button:add' => 'Добавить',
         'button:save' => 'Сохранить',
         'button:save:notModified' => 'Сохранено',
         'button:create' => 'Добавить',

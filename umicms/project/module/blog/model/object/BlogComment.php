@@ -37,6 +37,10 @@ class BlogComment extends BlogBaseComment implements IAclResource, IAclAssertion
      */
     const FIELD_CONTENTS = 'contents';
     /**
+     * Имя поля для хранения необработанного контента комментария
+     */
+    const FIELD_CONTENTS_RAW = 'contentsRaw';
+    /**
      * Имя поля для хранения статуса публикации комментария
      */
     const FIELD_PUBLISH_STATUS = 'publishStatus';
@@ -64,6 +68,23 @@ class BlogComment extends BlogBaseComment implements IAclResource, IAclAssertion
      * Статус комментария: требует модерации
      */
     const COMMENT_STATUS_NEED_MODERATE = 'moderate';
+
+    /**
+     * Мутатор для контентного поля.
+     * @param string $contents контент комментария
+     * @param string $locale локаль
+     * @return $this
+     */
+    public function setContents($contents, $locale)
+    {
+        $this->getProperty(self::FIELD_CONTENTS, $locale)
+            ->setValue($contents);
+
+        $this->getProperty(self::FIELD_CONTENTS_RAW, $locale)
+            ->setValue($contents);
+
+        return $this;
+    }
 
     /**
      * Выставляет статус комментария опубликован.

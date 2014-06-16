@@ -12,6 +12,7 @@ use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
 use umi\validation\IValidatorFactory;
+use umicms\filter\HtmlPurifier;
 use umicms\project\module\blog\model\object\BlogBaseComment;
 use umicms\project\module\blog\model\object\BlogBranchComment;
 use umicms\project\module\blog\model\object\BlogComment;
@@ -120,7 +121,8 @@ return [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name',
             'filters' => [
-                IFilterFactory::TYPE_STRING_TRIM => []
+                IFilterFactory::TYPE_STRING_TRIM => [],
+                IFilterFactory::TYPE_STRIP_TAGS => []
             ],
             'validators' => [
                 IValidatorFactory::TYPE_REQUIRED => []
@@ -148,9 +150,22 @@ return [
         BlogComment::FIELD_CONTENTS => [
             'type' => IField::TYPE_TEXT,
             'columnName' => 'contents',
+            'mutator' => 'setContents',
+            'filters' => [
+                HtmlPurifier::TYPE => [],
+            ],
             'localizations' => [
                 'ru-RU' => ['columnName' => 'contents'],
                 'en-US' => ['columnName' => 'contents_en']
+            ]
+        ],
+        BlogComment::FIELD_CONTENTS_RAW => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'contents',
+            'mutator' => 'setContents',
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'contentsRaw'],
+                'en-US' => ['columnName' => 'contentsRaw_en']
             ]
         ],
         BlogComment::FIELD_PUBLISH_TIME => [
@@ -242,6 +257,7 @@ return [
                 BlogComment::FIELD_AUTHOR,
                 BlogComment::FIELD_POST,
                 BlogComment::FIELD_CONTENTS,
+                BlogComment::FIELD_CONTENTS_RAW,
                 BlogComment::FIELD_PUBLISH_TIME,
                 BlogComment::FIELD_PUBLISH_STATUS,
                 BlogComment::FIELD_CHILDREN

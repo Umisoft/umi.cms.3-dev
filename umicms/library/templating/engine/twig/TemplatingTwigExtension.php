@@ -13,7 +13,9 @@ namespace umicms\templating\engine\twig;
 use Twig_Extension;
 use Twig_SimpleFunction;
 use umi\i18n\translator\ITranslator;
+use umi\toolkit\IToolkit;
 use umicms\hmvc\dispatcher\CmsDispatcher;
+use umicms\templating\helper\AccessResource;
 use umicms\templating\helper\TranslationHelper;
 
 /**
@@ -25,24 +27,23 @@ class TemplatingTwigExtension extends Twig_Extension
      * @var string $translateFunctionName имя функции для перевода
      */
     public $translateFunctionName = 'translate';
+    /**
+     * @var string string $isAllowedResourceFunctionName имя функции для проверки прав на ресурс
+     */
+    public $isAllowedResourceFunctionName = 'isAllowedResource';
 
     /**
-     * @var CmsDispatcher $dispatcher диспетчер
+     * @var IToolkit $toolkit набор инструментов
      */
-    protected $dispatcher;
-    /**
-     * @var ITranslator $translator
-     */
-    protected $translator;
+    protected $toolkit;
 
     /**
      * Конструктор.
-     * @param CmsDispatcher $dispatcher диспетчер
-     * @param ITranslator $translator
+     * @param IToolkit $toolkit
      */
-    public function __construct(CmsDispatcher $dispatcher, ITranslator $translator) {
-        $this->dispatcher = $dispatcher;
-        $this->translator = $translator;
+    public function __construct(IToolkit $toolkit)
+    {
+        $this->toolkit = $toolkit;
     }
 
     /**
@@ -62,6 +63,10 @@ class TemplatingTwigExtension extends Twig_Extension
             new Twig_SimpleFunction(
                 $this->translateFunctionName,
                 [$this->getTranslationHelper(), 'translate']
+            ),
+            new Twig_SimpleFunction(
+                $this->isAllowedResourceFunctionName,
+                [$this->getIsAllowedResourceHelper(), 'isAllowedResource']
             )
         ];
     }
@@ -75,11 +80,26 @@ class TemplatingTwigExtension extends Twig_Extension
         static $helper;
 
         if (!$helper) {
-            $helper = new TranslationHelper($this->dispatcher);
-            $helper->setTranslator($this->translator);
+            /** @var CmsDispatcher $dispatcher */
+            $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+            $helper = new TranslationHelper($dispatcher);
+            /** @var ITranslator $translator */
+            $translator = $this->toolkit->getService('umi\i18n\translator\ITranslator');
+            $helper->setTranslator($translator);
         }
 
         return $helper;
+    }
+
+    protected function getIsAllowedResourceHelper()
+    {
+        static $isAllowedResourceHelper;
+
+        if (!$isAllowedResourceHelper) {
+            $isAllowedResourceHelper = new AccessResource($this->dispatcher);
+        }
+
+        return $isAllowedResourceHelper;
     }
 }
  
