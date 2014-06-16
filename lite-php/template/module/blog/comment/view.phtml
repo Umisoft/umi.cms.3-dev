@@ -4,18 +4,30 @@
  */
 ?>
 <div class="media-body">
-    <h1><?= $blogComment->displayName ?></h1>
-    <?php if ($blogComment->publishTime) : ?>
-    <time datetime="<?= $blogComment->publishTime->format('c') ?>">
-        <?= $blogComment->publishTime->format('d.m.Y | H:i') ?>
-    </time>
-    <?php endif; ?>
-    <?= $blogComment->contents ?>
+    <?php if ($blogComment->publishStatus == $blogComment::COMMENT_STATUS_PUBLISHED) : ?>
 
-    <?php if ($blogComment->publishStatus == $blogComment::COMMENT_STATUS_NEED_MODERATE) : ?>
-    <div class="btn-toolbar">
-        <?= $this->widget('blog.comment.publish', ['blogComment' => $blogComment, 'template' => 'publishForm']); ?>
-        <?= $this->widget('blog.comment.reject', ['blogComment' => $blogComment, 'template' => 'rejectForm']); ?>
-    </div>
+        <h1><?= $blogComment->displayName ?></h1>
+        <?php if ($blogComment->publishTime) : ?>
+            <time datetime="<?= $blogComment->publishTime->format('c') ?>">
+                <?= $blogComment->publishTime->format('d.m.Y | H:i') ?>
+            </time>
+        <?php endif; ?>
+        <?= $blogComment->contents ?>
+
+        <?php if ($blogComment->publishStatus == $blogComment::COMMENT_STATUS_NEED_MODERATE) : ?>
+        <div class="btn-toolbar">
+            <?= $this->widget('blog.comment.publish', ['blogComment' => $blogComment, 'template' => 'publishForm']); ?>
+            <?= $this->widget('blog.comment.reject', ['blogComment' => $blogComment, 'template' => 'rejectForm']); ?>
+        </div>
+        <?php endif; ?>
+
+        <?php if ($blogComment->publishStatus == $blogComment::COMMENT_STATUS_PUBLISHED) : ?>
+        <div class="btn-toolbar">
+            <?= $this->widget('blog.comment.unpublish', ['blogComment' => $blogComment, 'template' => 'unpublishForm']); ?>
+        </div>
+        <?php endif; ?>
+
+    <?php else : ?>
+        <?= $this->translate('Post has been unpublish.') ?>
     <?php endif; ?>
 </div>

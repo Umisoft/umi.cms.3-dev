@@ -60,6 +60,7 @@ return [
             'Read more' => 'Read more',
             'Moderation queue' => 'Moderation queue',
             'Post has been saved.' => 'Post has been saved.',
+            'Post has been unpublish.' => 'Post has been unpublish.',
         ],
         'ru-RU' => [
             'RSS' => 'RSS ленты',
@@ -72,6 +73,7 @@ return [
             'Read more' => 'Читать далее',
             'Moderation queue' => 'Очередь модерации',
             'Post has been saved.' => 'Пост сохранён.',
+            'Post has been unpublish.' => 'Пост был снят с публикации',
         ]
     ],
 
