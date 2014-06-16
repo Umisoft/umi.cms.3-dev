@@ -11,7 +11,6 @@
 namespace umicms\project\module\blog\api;
 
 use umi\orm\metadata\IObjectType;
-use umi\orm\object\property\calculable\ICounterProperty;
 use umi\orm\selector\condition\IFieldConditionGroup;
 use umi\rss\IRssFeed;
 use umi\rss\IRssFeedAware;
@@ -643,53 +642,5 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         $comment->post = $post;
 
         return $comment;
-    }
-
-    /**
-     * Публикует комментарий.
-     * @param BlogComment $comment публикуемый комментарий
-     * @return BlogComment
-     */
-    public function publishComment(BlogComment $comment)
-    {
-        $comment->publish();
-        /** @var ICounterProperty $authorCommentsCount */
-        $authorCommentsCount = $comment->author->getProperty(BlogAuthor::FIELD_COMMENTS_COUNT);
-        $authorCommentsCount->increment();
-        /** @var ICounterProperty $postCommentsCount */
-        $postCommentsCount = $comment->post->getProperty(BlogPost::FIELD_COMMENTS_COUNT);
-        $postCommentsCount->increment();
-
-        return $comment;
-    }
-
-    /**
-     * Публикует пост.
-     * @param BlogPost $post публикуемый пост
-     * @return BlogPost
-     */
-    public function publishPost(BlogPost $post)
-    {
-        $post->publish();
-        /** @var ICounterProperty $authorPostCount */
-        $authorPostCount = $post->author->getProperty(BlogAuthor::FIELD_POSTS_COUNT);
-        $authorPostCount->increment();
-
-        return $post;
-    }
-
-    /**
-     * Переносит пост в черновики.
-     * @param BlogPost $post переносимый пост
-     * @return BlogPost
-     */
-    public function draftPost(BlogPost $post)
-    {
-        $post->draft();
-        /** @var ICounterProperty $authorPostCount */
-        $authorPostCount = $post->author->getProperty(BlogAuthor::FIELD_POSTS_COUNT);
-        $authorPostCount->decrement();
-
-        return $post;
     }
 }

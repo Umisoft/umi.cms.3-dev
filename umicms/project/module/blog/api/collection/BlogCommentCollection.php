@@ -20,6 +20,7 @@ use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\TActiveAccessibleCollection;
 use umicms\orm\collection\SimpleHierarchicCollection;
 use umicms\orm\selector\CmsSelector;
+use umicms\project\module\blog\api\object\BlogAuthor;
 use umicms\project\module\blog\api\object\BlogComment;
 
 /**
@@ -40,6 +41,22 @@ class BlogCommentCollection extends SimpleHierarchicCollection implements IActiv
     public function getAclResourceName()
     {
         return 'collection:blogComment';
+    }
+
+    /**
+     * Публикует комментарий.
+     * @param BlogComment $comment публикуемый комментарий
+     * @return BlogComment
+     */
+    public function publish(BlogComment $comment)
+    {
+        $comment->publish();
+        if ($comment->author instanceof BlogAuthor) {
+            $comment->author->incrementCommentCount();
+        }
+        $comment->post->incrementCommentCount();
+
+        return $comment;
     }
 
     /**

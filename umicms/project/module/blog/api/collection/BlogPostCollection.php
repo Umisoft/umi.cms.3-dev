@@ -12,8 +12,10 @@ namespace umicms\project\module\blog\api\collection;
 
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
+use umi\orm\object\IObject;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\PageCollection;
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\blog\api\object\BlogPost;
 
@@ -342,5 +344,71 @@ class BlogPostCollection extends PageCollection
         }
 
         return $rejectedPost;
+    }
+
+    /**
+     * Публикует пост.
+     * @param BlogPost $post публикуемый пост
+     * @return BlogPost
+     */
+    public function publish(BlogPost $post)
+    {
+        $post->publish();
+        $post->author->incrementPostCount();
+
+        return $post;
+    }
+
+    /**
+     * Снимает пост с публикации и помещает его в черновики.
+     * @param BlogPost $post переносимый пост
+     * @return BlogPost
+     */
+    public function unPublish(BlogPost $post)
+    {
+        $post->draft();
+        $post->author->decrementPostCount();
+
+        return $post;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function activate(IActiveAccessibleObject $object)
+    {
+        parent::activate($object);
+
+        if ($object instanceof BlogPost) {
+            $object->author->incrementPostCount();
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function deactivate(IActiveAccessibleObject $object)
+    {
+        parent::deactivate($object);
+
+        if ($object instanceof BlogPost) {
+            $object->author->decrementPostCount();
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete(IObject $object)
+    {
+        if ($object instanceof BlogPost) {
+            $object->author->decrementPostCount();
+        }
+
+        return parent::delete($object);
     }
 }

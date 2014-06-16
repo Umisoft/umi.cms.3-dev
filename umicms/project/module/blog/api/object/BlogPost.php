@@ -14,6 +14,7 @@ use DateTime;
 use umi\acl\IAclAssertionResolver;
 use umi\acl\IAclResource;
 use umi\hmvc\acl\ComponentRoleProvider;
+use umi\orm\object\property\calculable\ICounterProperty;
 use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\CmsObject;
@@ -177,6 +178,19 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
     public function reject()
     {
         $this->publishStatus = self::POST_STATUS_REJECTED;
+        return $this;
+    }
+
+    /**
+     * Увеличивает количество комментариев, опубликованных к посту.
+     * @return $this
+     */
+    public function incrementCommentCount()
+    {
+        /** @var ICounterProperty $postCommentsCount */
+        $postCommentsCount = $this->getProperty(self::FIELD_COMMENTS_COUNT);
+        $postCommentsCount->increment();
+
         return $this;
     }
 
