@@ -19,7 +19,7 @@ use umi\http\Request;
 use umi\http\Response;
 
 /**
- * Трейт контроллера, поддерживающего некоторые деййствия
+ * Трейт для поддержки REST-действий в контроллерах
  */
 trait TActionController
 {
