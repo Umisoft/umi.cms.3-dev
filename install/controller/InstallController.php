@@ -1509,7 +1509,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `contents` text,
                     `contents_en` text,
                     `publish_time` datetime DEFAULT NULL,
-                    `publish_status` enum('published','rejected','moderate') DEFAULT NULL,
+                    `publish_status` enum('published','rejected','unpublished','moderate') DEFAULT NULL,
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_comment_guid` (`guid`),
