@@ -9,7 +9,7 @@
         <?php foreach ($tree as $node) : ?>
             <li>
                 <?= $this->widget('blog.comment.view', ['blogComment' => $node->item, 'template' => 'view']); ?>
-                <?= $this->widget('blog.comment.add', ['blogPost' => $node->item->post, 'blogComment' => $node->item, 'template' => 'addComment']); ?>
+                <?= $this->widget('blog.comment.add', ['blogPost' => $node->item->post, 'blogComment' => $node->item, 'template' => 'addSubComment']); ?>
                 <?= $this->render('list.phtml', ['tree' => $node->children]); ?>
             </li>
         <?php endforeach;?>

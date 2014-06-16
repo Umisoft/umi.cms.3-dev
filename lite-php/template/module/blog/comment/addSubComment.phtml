@@ -1,0 +1,14 @@
+<?php
+/**
+ * @var umi\form\IForm $form
+ * @var umicms\project\module\blog\api\object\BlogComment $blogComment
+ */
+use umicms\project\module\blog\api\object\BlogComment;
+
+?>
+<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#comment-<?= $blogComment->getId() ?>">
+    <?= $this->translate('Оставить комментарий')  ?>
+</button>
+<div id="comment-<?= $blogComment->getId() ?>" class="collapse">
+    <?=$this->render('form/form.phtml', ['form' => $form])?>
+</div>
