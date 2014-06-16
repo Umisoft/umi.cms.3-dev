@@ -12,7 +12,6 @@ namespace umicms\purifier\htmlpurifier;
 
 use HTMLPurifier;
 use HTMLPurifier_Config;
-use umi\spl\config\TConfigSupport;
 use umicms\purifier\IPurifier;
 
 /**
@@ -20,8 +19,6 @@ use umicms\purifier\IPurifier;
  */
 class Purifier implements IPurifier
 {
-    use TConfigSupport;
-
     /**
      * @var array $defaultOptions
      */
