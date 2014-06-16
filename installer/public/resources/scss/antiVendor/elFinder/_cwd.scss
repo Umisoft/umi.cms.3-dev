@@ -30,40 +30,44 @@
     background: #D6E0E9;
 }
 
-.elfinder-cwd-wrapper:before {
-    content: "";
-    position: absolute;
-    float: left;
-    z-index: 1;
-    display: block;
-    height: 3px;
-    width: calc(100% + 1px);
-    top: 0;
-    left: 0;
-    background: url(img/shadows/toBottomShadow.png);
-}
-
-.elfinder-cwd-wrapper:after {
-    content: "";
-    position: absolute;
-    float: left;
-    display: block;
-    height: 3px;
-    width: calc(100% + 1px);
-    bottom: 0;
-    left: 0;
-    background: url(img/shadows/toTopShadow.png);
-}
 
 /* container */
 .elfinder-cwd {
     height: 100%!important;
     position: relative;
+    z-index: 3;
     cursor: default;
     padding: 0;
     margin: 0;
+    //    border-left: 1px solid #ADB9C5;
     user-select: none;
+    overflow: scroll;
 }
+
+.elfinder-cwd-wrapper:before{
+    content: "";
+    position: absolute;
+    float: left;
+    z-index: 1000;
+    display: block;
+    width: 1px;
+    height: calc(100% - 14px);
+    left: 0px;
+    background: #ADB9C5;
+}
+
+.elfinder-workzone:before{
+    content: "";
+    position: absolute;
+    float: left;
+    z-index: 10;
+    display: block;
+    width: 1px;
+    height: calc(100% - 14px);
+    right: 14px;
+    background: #ADB9C5;
+}
+
 
 /* container active on dropenter */
 .elfinder .elfinder-cwd-wrapper.elfinder-droppable-active {

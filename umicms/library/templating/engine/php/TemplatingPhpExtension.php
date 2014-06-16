@@ -14,6 +14,7 @@ use umi\i18n\translator\ITranslator;
 use umi\templating\engine\php\IPhpExtension;
 use umi\toolkit\IToolkit;
 use umicms\hmvc\dispatcher\CmsDispatcher;
+use umicms\templating\helper\AccessResource;
 use umicms\templating\helper\TranslationHelper;
 
 /**
@@ -25,6 +26,10 @@ class TemplatingPhpExtension implements IPhpExtension
      * @var string $translateFunctionName имя функции для перевода
      */
     public $translateFunctionName = 'translate';
+    /**
+     * @var string string $isAllowedResourceFunctionName имя функции для проверки прав на ресурс
+     */
+    public $isAllowedResourceFunctionName = 'isAllowedResource';
 
     /**
      * @var IToolkit $toolkit набор инструментов
@@ -54,7 +59,8 @@ class TemplatingPhpExtension implements IPhpExtension
     public function getFunctions()
     {
         return [
-            $this->translateFunctionName => [$this->getTranslationHelper(), 'translate']
+            $this->translateFunctionName => [$this->getTranslationHelper(), 'translate'],
+            $this->isAllowedResourceFunctionName => [$this->getIsAllowedResourceHelper(), 'isAllowedResource']
         ];
     }
 
@@ -77,6 +83,17 @@ class TemplatingPhpExtension implements IPhpExtension
 
         return $helper;
 
+    }
+
+    protected function getIsAllowedResourceHelper()
+    {
+        static $isAllowedResourceHelper;
+
+        if (!$isAllowedResourceHelper) {
+            $isAllowedResourceHelper = new AccessResource($this->dispatcher);
+        }
+
+        return $isAllowedResourceHelper;
     }
 }
  

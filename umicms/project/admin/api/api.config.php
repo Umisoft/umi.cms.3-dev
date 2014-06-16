@@ -58,46 +58,22 @@ return [
 
             'administrator' => [],
 
-            'blogEditor' => ['administrator'],
-            'serviceEditor' => ['administrator'],
-            'filesEditor' => ['administrator'],
-            'modelsEditor' => ['administrator'],
-            'newsEditor' => ['administrator'],
-            'seoEditor' => ['administrator'],
-            'searchEditor' => ['administrator'],
-            'statisticsEditor' => ['administrator'],
-            'structureEditor' => ['administrator'],
-            'usersEditor' => ['administrator'],
+            'blogExecutor' => ['administrator'],
+            'serviceExecutor' => ['administrator'],
+            'filesExecutor' => ['administrator'],
+            'modelsExecutor' => ['administrator'],
+            'newsExecutor' => ['administrator'],
+            'seoExecutor' => ['administrator'],
+            'searchExecutor' => ['administrator'],
+            'statisticsExecutor' => ['administrator'],
+            'structureExecutor' => ['administrator'],
+            'usersExecutor' => ['administrator'],
         ],
         IAclFactory::OPTION_RESOURCES => [
-
             'controller:settings',
-
-            'component:blog',
-            'component:service',
-            'component:files',
-            'component:models',
-            'component:news',
-            'component:seo',
-            'component:search',
-            'component:statistics',
-            'component:structure',
-            'component:users'
         ],
         IAclFactory::OPTION_RULES => [
-
-            'administrator' => ['controller:settings' => []],
-
-            'blogEditor' => ['component:blog' => []],
-            'serviceEditor' => ['component:service' => []],
-            'filesEditor' => ['component:files' => []],
-            'modelsEditor' => ['component:models' => []],
-            'newsEditor' => ['component:news' => []],
-            'seoEditor' => ['component:seo' => []],
-            'searchEditor' => ['component:search' => []],
-            'statisticsEditor' => ['component:statistics' => []],
-            'structureEditor' => ['component:structure' => []],
-            'usersEditor' => ['component:users' => []],
+            'administrator' => ['controller:settings' => []]
         ]
     ],
 
@@ -123,9 +99,7 @@ return [
                     'route' => '/{component}'
                 ]
             ]
-        ],
-
-
+        ]
     ]
 
 ];

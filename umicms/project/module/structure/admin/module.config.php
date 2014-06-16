@@ -25,22 +25,6 @@ return [
         'menu' => '{#lazy:~/project/module/structure/admin/menu/component.config.php}',
     ],
 
-    AdminComponent::OPTION_ACL => [
-
-        IAclFactory::OPTION_ROLES => [
-            'pageEditor' => [],
-            'layoutEditor' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'component:page',
-            'component:layout'
-        ],
-        IAclFactory::OPTION_RULES => [
-            'pageEditor' => ['component:page' => []],
-            'layoutEditor' => ['component:layout' => []],
-        ]
-    ],
-
     AdminComponent::OPTION_ROUTES      => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,

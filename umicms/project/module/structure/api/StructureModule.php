@@ -70,15 +70,6 @@ class StructureModule extends BaseModule
     }
 
     /**
-     * Возвращает API для работы с настраиваемым меню
-     * @return CustomMenu
-     */
-    public function customMenu()
-    {
-        return $this->getApi('umicms\project\module\structure\api\CustomMenu');
-    }
-
-    /**
      * Возвращает шаблон сетки для элемента.
      * @param StructureElement $element
      * @return Layout

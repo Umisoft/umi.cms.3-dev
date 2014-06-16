@@ -4,42 +4,19 @@
 
 /* container */
 .elfinder .elfinder-navbar {
-    overflow: hidden;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 1;
     width: 230px;
-    height: calc(100% - 16px)!important;
-    padding: 8px 0;
+    height: 100%!important;
+    padding: 0 0 30px 0;
     background-image: none;
-    border-top: 0 solid;
-    border-bottom: 0 solid;
-    /*overflow: auto;*/
+    //    border-top: 1px solid #ADB9C5;
+    //    border-bottom: 1px solid #ADB9C5;
     display: none;
     position: relative;
     user-select: none;
-}
-
-.elfinder .elfinder-navbar:before {
-    content: "";
-    position: absolute;
-    float: left;
-    z-index: 1;
-    display: block;
-    height: 3px;
-    width: calc(100% + 1px);
-    top: 0;
-    left: 0;
-    background: url(img/shadows/toBottomShadow.png);
-}
-
-.elfinder .elfinder-navbar:after {
-    content: "";
-    position: absolute;
-    float: left;
-    display: block;
-    height: 3px;
-    width: calc(100% + 1px);
-    bottom: 0;
-    left: 0;
-    background: url(img/shadows/toTopShadow.png);
 }
 
 /* ltr/rtl enviroment */
@@ -200,7 +177,7 @@
     display: block;
     top: 50%;
     margin-top: -7px;
-    background: url("img/animate/loader-20.gif") center center no-repeat;
+    background: url("svg/animation/spinner.svg") center center no-repeat;
 }
 
 /* spinner ltr/rtl enviroment */
@@ -244,7 +221,6 @@
     width: 4px;
     height: 100%;
     background: #F5F6F7;
-    left: 0;
     right: 0!important;
     border-left: 1px solid #ADB9C5;
     border-right: 1px solid #ADB9C5;

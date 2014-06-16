@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\admin\settings\component\DefaultSettingsComponent;
 
@@ -18,18 +17,6 @@ return [
 
     DefaultSettingsComponent::OPTION_COMPONENTS => [
         'backup' => '{#lazy:~/project/module/service/settings/backup/component.config.php}'
-    ],
-    DefaultSettingsComponent::OPTION_ACL => [
-
-        IAclFactory::OPTION_ROLES => [
-            'configurator' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'component:backup'
-        ],
-        IAclFactory::OPTION_RULES => [
-            'configurator' => ['component:backup' => []]
-        ]
     ],
 
     DefaultSettingsComponent::OPTION_ROUTES      => [
