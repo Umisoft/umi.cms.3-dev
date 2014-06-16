@@ -11,12 +11,12 @@
 namespace umicms\project\module\seo\admin\yandex\controller;
 
 use umicms\project\admin\api\component\DefaultQueryAdminComponent;
-use umicms\project\admin\api\controller\DefaultRestSettingsController;
+use umicms\project\admin\api\controller\CollectionComponentLayoutController;
 
 /**
  * Контроллер вывода настроек компонента
  */
-class SettingsController extends DefaultRestSettingsController
+class SettingsController extends CollectionComponentLayoutController
 {
     private $controls = [
         'yandexWebmasterReport' => [],

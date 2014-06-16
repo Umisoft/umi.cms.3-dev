@@ -21,6 +21,7 @@ return [
         'type:base:displayName' => 'Page',
         'type:system:displayName' => 'System page',
         'type:static:displayName' => 'Static page',
+        'type:static:createLabel' => 'Create page',
     ],
 
     'ru-RU' => [
@@ -32,6 +33,7 @@ return [
         'type:base:displayName' => 'Страница',
         'type:system:displayName' => 'Системная страница',
         'type:static:displayName' => 'Статичная страница',
+        'type:static:createLabel' => 'Добавить страницу',
     ]
 ];
  

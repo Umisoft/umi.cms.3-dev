@@ -66,6 +66,92 @@ define([], function(){
                     transition.send('templateLogs', error);
                 });
             },
+            /**
+             * Сохраняет обьект
+             * @method saveObject
+             * @param {Object} params Объект аргументов
+             * params.object - сохраняемый объект (полностью объект системы)
+             * params.handler - элемент (кнопка) вызвавший событие сохранение - JS DOM Element
+             * @returns {promise} возвращает promise результатом которого является true в случае успешного сохранения
+             */
+            saveObject: function(params){
+                var isNewObject;
+                var self = this;
+                var deferred;
+
+                if(!params.object.get('isValid')){
+                    if(params.handler){
+                        $(params.handler).removeClass('loading');
+                    }
+                    deferred = Ember.RSVP.defer();
+                    return deferred.resolve(false);
+                }
+
+                if(params.object.get('currentState.stateName') === 'root.loaded.created.uncommitted'){
+                    isNewObject = true;
+                }
+
+                return params.object.save().then(
+                    function(){
+                        params.object.updateRelationhipsMap();
+
+                        if(params.handler){
+                            $(params.handler).removeClass('loading');
+                        }
+
+                        return params.object;
+                    },
+
+                    function(results){
+                        var self = this;
+                        if(params.handler){
+                            $(params.handler).removeClass('loading');
+                        }
+
+                        var data = {
+                            'close': false,
+                            'title': results.errors,
+                            'content': results.message,
+                            'confirm': 'Загрузить объект с сервера'
+                        };
+
+                        return UMI.dialog.open(data).then(
+                            function(){
+                                //https://github.com/emberjs/data/issues/1632
+                                //params.object.transitionTo('updated.uncommitted');
+                                //                                    console.log(params.object.get('currentState.stateName'), results, self);
+                                /* params.object.rollback();
+                                 params.object.reload();*/
+                                return false;
+                            }
+                        );
+                    }
+                );
+            },
+
+            beforeAdd: function(params){
+                var self = this;
+                return self.saveObject(params).then(function(addObject){
+                    if(addObject.store.metadataFor(addObject.constructor.typeKey).collectionType === 'hierarchic'){
+                        var parent = addObject.get('parent');
+                        if(parent && 'isFulfilled' in parent){
+                            return parent.then(function(parent){
+                                parent.reload().then(function(parent){
+                                    parent.trigger('needReloadHasMany');
+                                });
+                                return addObject;
+                            });
+                        } else{
+                            // Обновление связей рутовой ноды в дереве.
+                            // TODO: подумать как можно избежать обращения к контроллеру дерева.
+                            self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(addObject.get('id'), 'root');
+                            return addObject;
+                        }
+                    } else{
+                        return addObject;
+                    }
+                });
+            },
 
             actions: {
                 logout: function(){
@@ -84,84 +170,6 @@ define([], function(){
                             }, 800);
                         });
                     });
-                },
-
-                /**
-                 Сохраняет обьект
-
-                 @method save
-                 @param {Object} params Объект аргументов
-                 params.object - сохраняемый объект (полностью объект системы)
-                 params.handler - элемент (кнопка) вызвавший событие сохранение - JS DOM Element
-                 */
-                save: function(params){
-                    var isNewObject;
-                    var self = this;
-
-                    if(!params.object.get('isValid')){
-                        if(params.handler){
-                            $(params.handler).removeClass('loading');
-                        }
-                        return;
-                    }
-
-                    if(params.object.get('currentState.stateName') === 'root.loaded.created.uncommitted'){
-                        isNewObject = true;
-                    }
-
-                    return params.object.save().then(
-                        function(){
-                            params.object.updateRelationhipsMap();
-
-                            if(params.handler){
-                                $(params.handler).removeClass('loading');
-                            }
-
-                            if(isNewObject){
-                                if(params.object.store.metadataFor(params.object.constructor.typeKey).collectionType === 'hierarchic'){
-                                    var parent = params.object.get('parent');
-                                    if(parent && 'isFulfilled' in parent){
-                                        return parent.then(function(parent){
-                                            parent.reload().then(function(parent){
-                                                parent.trigger('needReloadHasMany');
-                                            });
-                                            self.send('edit', params.object);
-                                        });
-                                    } else{
-                                        // Обновление связей рутовой ноды в дереве.
-                                        // TODO: подумать как можно избежать обращения к контроллеру дерева.
-                                        self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(params.object.get('id'), 'root');
-                                        self.send('edit', params.object);
-                                    }
-                                }
-                                self.send('edit', params.object);
-                            }
-                        },
-
-                        function(results){
-                            var self = this;
-                            if(params.handler){
-                                $(params.handler).removeClass('loading');
-                            }
-
-                            var data = {
-                                'close': false,
-                                'title': results.errors,
-                                'content': results.message,
-                                'confirm': 'Загрузить объект с сервера'
-                            };
-
-                            return UMI.dialog.open(data).then(
-                                function(){
-                                    //https://github.com/emberjs/data/issues/1632
-                                    //params.object.transitionTo('updated.uncommitted');
-//                                    console.log(params.object.get('currentState.stateName'), results, self);
-                                    /* params.object.rollback();
-                                     params.object.reload();*/
-                                }
-                            );
-                        }
-                    );
                 },
 
                 dialogError: function(error){
@@ -189,7 +197,7 @@ define([], function(){
 
                 /**
                  Метод генерирует ошибку (выводится вместо шаблона)
-                 @method backgroundError
+                 @method templateLogs
                  @property error Object {status: status, title: title, content: content, stack: stack}
                  */
                 templateLogs: function(error, parentRoute){
@@ -201,7 +209,61 @@ define([], function(){
                     }
                 },
 
+                showPopup: function(popupType, object, meta){
+                    UMI.PopupView.create({
+                        container: this.container,
+                        popupType: popupType,
+                        object: object,
+                        meta: meta
+                    }).append();
+                },
+
                 /// global actions
+                /**
+                 * Сохраняет обьект вызывая метод saveObject
+                 * @method save
+                 */
+                save: function(params){
+                    this.saveObject(params);
+                },
+
+                saveAndGoBack: function(params){
+                    var self = this;
+                    self.saveObject(params).then(function(isSaved){
+                        if(isSaved){
+                            self.send('backToFilter');
+                        }
+                    });
+                },
+
+                add: function(params){
+                    var self = this;
+                    return self.beforeAdd(params).then(function(addObject){
+                        self.send('edit', addObject);
+                    });
+                },
+
+                addAndGoBack: function(params){
+                    var self = this;
+                    return self.beforeAdd(params).then(function(){
+                        self.send('backToFilter');
+                    });
+                },
+
+                addAndCreate: function(params){
+                    var self = this;
+                    return self.beforeAdd(params).then(function(addObject){
+                        var behaviour = {typeName: addObject.get('type')};
+                        if(addObject.store.metadataFor(addObject.constructor.typeKey).collectionType === 'hierarchic'){
+                            return addObject.get('parent').then(function(parent){
+                                self.send('create', parent, behaviour);
+                            });
+                        } else{
+                            self.send('create', addObject, behaviour);
+                        }
+                    });
+                },
+
                 switchActivity: function(object){
                     try{
                         var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
@@ -219,9 +281,16 @@ define([], function(){
                     }
                 },
 
-                create: function(parentObject, actionParam){
-                    var typeName = actionParam.typeName;
-                    this.transitionTo('action', parentObject.get('id'), 'createForm', {queryParams: {'typeName': typeName}});
+                create: function(parentObject, behaviour){
+                    var typeName = behaviour.typeName;
+                    var contextId = 'root';
+                    if(parentObject.constructor.typeKey){
+                        var meta = this.store.metadataFor(parentObject.constructor.typeKey) || {};
+                        if(meta.hasOwnProperty('collectionType') && meta.collectionType === 'hierarchic'){
+                            contextId = parentObject.get('id');
+                        }
+                    }
+                    this.transitionTo('action', contextId, 'createForm', {queryParams: {'typeName': typeName}});
                 },
 
                 edit: function(object){
@@ -245,13 +314,17 @@ define([], function(){
                  * Удаляет объект (перемещает в корзину)
                  * @method trash
                  * @param object
-                 * @param type
                  * @returns {*|Promise}
                  */
-                trash: function(object, type){
+                trash: function(object){
+                    var self = this;
+                    var isActiveContext = this.modelFor('context') === object;
                     return object.destroyRecord().then(function(){
                         var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" удалено в корзину.'};
                         UMI.notification.create(settings);
+                       if(isActiveContext){
+                           self.send('backToFilter');
+                       }
                     }, function(){
                         var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" не удалось поместить в корзину.'};
                         UMI.notification.create(settings);
@@ -262,22 +335,27 @@ define([], function(){
                  * Спрашивает пользователя и в случае положительного ответа безвозвратно удаляет объект
                  * @method delete
                  * @param object
-                 * @param type
                  * @returns {*|Promise}
                  */
-                "delete": function(object, type){
+                "delete": function(object){
+                    var self = this;
+                    var isActiveContext = this.modelFor('context') === object;
                     var data = {
                         'close': false,
                         'title': 'Удаление "' + object.get('displayName') + '".',
-                        'content': 'Объект будет удалён без возможности востановления, всё равно продолжить?',
+                        'content': '<div>Объект будет удалён без возможности востановления, всё равно продолжить?</div>',
                         'confirm': 'Удалить',
-                        'reject': 'Отмена'
+                        'reject': 'Отмена',
+                        'proposeRemember': 'delete'
                     };
                     return UMI.dialog.open(data).then(
                         function(){
                             return object.destroyRecord().then(function(){
                                 var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" успешно удалено.'};
                                 UMI.notification.create(settings);
+                                if(isActiveContext){
+                                    self.send('backToFilter');
+                                }
                             }, function(){
                                 var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" не удалось удалить.'};
                                 UMI.notification.create(settings);
@@ -286,14 +364,11 @@ define([], function(){
                         function(){}
                     );
                 },
-
-                showPopup: function(popupType, object, meta){
-                    UMI.PopupView.create({
-                        container: this.container,
-                        popupType: popupType,
-                        object: object,
-                        meta: meta
-                    }).append();
+                /**
+                 * Возвращает к списку
+                 */
+                backToFilter: function(){
+                    this.transitionTo('context', 'root');
                 }
             },
 
@@ -415,10 +490,14 @@ define([], function(){
                      */
                     Ember.$.get(model.get('resource')).then(function(results){
                         var componentController = self.controllerFor('component');
-                        var settings = results.result.settings; //settings undefined для Файлового менеджера
-                        componentController.set('settings', settings);
-                        componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
-                        deferred.resolve(model);
+                        if(Ember.typeOf(results.result) === 'object' && results.result.hasOwnProperty('layout')){
+                            var settings = results.result.layout; //settings undefined для Файлового менеджера
+                            componentController.set('settings', settings);
+                            componentController.set('selectedContext', transition.params.context ? transition.params.context.context : 'root');
+                            deferred.resolve(model);
+                        } else{
+                            deferred.reject('Свойство layout не определено для компонента');
+                        }
                     }, function(error){
                         transition.send('templateLogs', error);
                         deferred.reject();
@@ -645,8 +724,8 @@ define([], function(){
                         this.get('controller').set('typeName', null);
                     }
                     var model = this.modelFor('action').object;
-                    if(this.modelFor('action').object.get('isNew')){// TODO: не удаляется мусор
-                        this.modelFor('action').createObject.deleteRecord();
+                    if(this.modelFor('action').object.get('isNew')){
+                        this.modelFor('action').object.deleteRecord();
                     }
                     if(model.get('isDirty')){
                         transition.abort();
@@ -733,11 +812,10 @@ define([], function(){
                     };
                     var component = findDepth(settings, 'name', params.component);
                     return $.get(component.resource).then(function(data){
-                        if(data.result.toolbar){
-                            data.result.form.toolbar = data.result.toolbar;
+                        if(data.result && data.result.toolbar){
+                            data.result.form.submitToolbar = data.result.toolbar;
                         }
                         Ember.set(component, 'form', data.result.form);
-
                         return component;
                     }, function(){
                         return transition.abort();

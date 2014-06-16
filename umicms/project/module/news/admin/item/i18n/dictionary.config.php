@@ -11,11 +11,15 @@
 return [
 
     'en-US' => [
-        'component:item:displayName' => 'News items'
+        'component:item:displayName' => 'News items',
+
+        'action:create:base' => 'Create news item'
     ],
 
     'ru-RU' => [
-        'component:item:displayName' => 'Новости'
+        'component:item:displayName' => 'Новости',
+
+        'action:create:base' => 'Добавить новость'
     ]
 
 ];

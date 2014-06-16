@@ -11,11 +11,15 @@
 return [
 
     'en-US' => [
-        'component:layout:displayName' => 'Layouts'
+        'component:layout:displayName' => 'Layout templates',
+
+        'action:create:base' => 'Create template'
     ],
 
     'ru-RU' => [
-        'component:layout:displayName' => 'Шаблоны'
+        'component:layout:displayName' => 'Шаблоны',
+
+        'action:create:base' => 'Добавить шаблон'
     ]
 
 ];

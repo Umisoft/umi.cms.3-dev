@@ -12,11 +12,6 @@
         {{/if}}
 
         <div class="umi-divider-right">
-            <div class="s-unselectable umi-mode">
-                {{view 'toolBar'}}
-                <h5 style="float: left; margin-top: 2px;">{{displayName}}</h5>
-            </div>
-
             <div class="umi-component columns small-12 s-padding-clear">
                 {{outlet}}
             </div>
@@ -26,11 +21,11 @@
 
     <div class="umi-left-bottom-panel s-unselectable">
         <a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg umi-divider-left-toggle umi-disabled">
-            <i class="icon icon-list"></i>
+            <i class="icon icon-left"></i>
         </a>
 
-        <a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg" style="position: relative;">
-            <i class="icon icon-eye"></i>
+        <a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg" style="position: relative;" title="Фильтр который сейчас не работает">
+            <i class="icon icon-filter"></i>
             <span style="position:absolute; float:left; background: #FFFFFF; left: 0; bottom: 32px;">
                 {{#view view.filtersView}}
                     {{#each filters}}

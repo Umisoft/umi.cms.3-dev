@@ -11,35 +11,56 @@
 return [
 
     'en-US' => [
-        'control:tree:displayName' => 'Tree',
-        'control:children:displayName' => 'Children',
-        'control:filter:displayName' => 'Filter',
-        'control:editForm:displayName' => 'Edit',
-        'control:editForm:toolbar:apply' => 'Save',
-        'control:editForm:toolbar:create' => 'Create',
-        'control:createForm:displayName' => 'Create',
-        'control:tree:toolbar:getCreateForm' => 'Create',
-        'control:tree:toolbar:getEditForm' => 'Edit',
-        'control:tree:toolbar:switchActivity' => 'Switch activity',
-        'control:tree:toolbar:viewOnSite' => 'View on site',
-        'control:tree:filter:active' => 'Display only active',
-        'control:tree:filter:type' => 'Hide system page',
+        'action:create:base' => 'Create',
+        'action:switchActivity' => 'Switch activity',
+        'action:switchActivity:activate' => 'Activate',
+        'action:switchActivity:deactivate' => 'Deactivate',
+        'action:viewOnSite' => 'View on site',
+        'action:trash' => 'To trash',
+        'action:delete' => 'Delete',
+        'action:backupList' => 'Backup list',
+        'action:backToFilter' => 'Back to filter',
+
+        // default add actions
+        'action:add' => 'Add',
+        'action:addAndGoBack' => 'Add and go back',
+        'action:addAndCreate' => 'Add and create',
+
+        // default save actions
+        'action:save' => 'Save',
+        'action:saveAndGoBack' => 'Save and go back',
+
+        'button:add' => 'Create',
+        'button:save' => 'Save',
+        'button:create' => 'Create',
+
     ],
 
     'ru-RU' => [
-        'control:tree:displayName' => 'Дерево',
-        'control:children:displayName' => 'Дочерние элементы',
-        'control:filter:displayName' => 'Фильтр',
-        'control:editForm:displayName' => 'Редактирование',
-        'control:editForm:toolbar:apply' => 'Сохранить',
-        'control:editForm:toolbar:create' => 'Создать',
-        'control:createForm:displayName' => 'Создание',
-        'control:tree:toolbar:create' => 'Создать',
-        'control:tree:toolbar:edit' => 'Редактировать',
-        'control:tree:toolbar:switchActivity' => 'Сменить активность',
-        'control:tree:toolbar:viewOnSite' => 'Посмотреть на сайте',
-        'control:tree:filter:active' => 'Отображать только активные',
-        'control:tree:filter:type' => 'Скрыть системные страницы',
+        //'action:create:base' => 'Добавить',
+        'action:switchActivity' => 'Сменить активность',
+        'action:switchActivity:activate' => 'Активировать',
+        'action:switchActivity:deactivate' => 'Снять активность',
+        'action:viewOnSite' => 'Посмотреть на сайте',
+        'action:trash' => 'Удалить в корзину',
+        'action:delete' => 'Удалить',
+        'action:backupList' => 'Резервные копии',
+        'action:backToFilter' => 'Вернуться к списку',
+
+        // default add actions
+        'action:add' => 'Добавить',
+        'action:addAndGoBack' => 'Добавить и выйти',
+        'action:addAndCreate' => 'Добавить и создать новый',
+
+        // default save actions
+        'action:save' => 'Сохранить',
+        'action:saveAndGoBack' => 'Сохранить и выйти',
+        'action:saveAsCopy' => 'Сохранить как копию',
+
+        'button:add' => 'Добавить',
+        'button:save' => 'Сохранить',
+        'button:save:notModified' => 'Сохранено',
+        'button:create' => 'Добавить',
     ]
 
 ];
