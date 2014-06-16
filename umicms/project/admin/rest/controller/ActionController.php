@@ -15,7 +15,6 @@ use umi\form\element\Select;
 use umi\form\IEntityFactory;
 use umi\form\IForm;
 use umi\hmvc\exception\http\HttpForbidden;
-use umi\hmvc\exception\http\HttpNotFound;
 use umi\hmvc\exception\http\HttpUnauthorized;
 use umi\http\Response;
 use umi\i18n\ILocalesAware;
@@ -24,10 +23,10 @@ use umi\i18n\TLocalesAware;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umicms\exception\RequiredDependencyException;
-use umicms\hmvc\component\BaseCmsController;
+use umicms\hmvc\component\admin\BaseController;
+use umicms\hmvc\component\admin\TActionController;
 use umicms\i18n\CmsLocalesService;
 use umicms\project\admin\AdminApplication;
-use umicms\project\admin\rest\RestApplication;
 use umicms\project\module\users\model\UsersModule;
 use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\Utils;
@@ -35,10 +34,11 @@ use umicms\Utils;
 /**
  * Контроллер действий авторизации пользователя в административной панели.
  */
-class ActionController extends BaseCmsController implements ILocalesAware, ISessionAware
+class ActionController extends BaseController implements ILocalesAware, ISessionAware
 {
     use TSessionAware;
     use TLocalesAware;
+    use TActionController;
 
     /**
      * @var UsersModule $module
@@ -73,41 +73,12 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function __invoke()
-    {
-        $action = $this->getRouteVar('action');
-        $requestMethod = $this->getRequest()->getMethod();
-
-        if ($requestMethod == 'GET') {
-            if ($action == 'form') {
-                return $this->actionForm();
-            }
-            if ($action =='auth') {
-                return $this->actionAuthInfo();
-            }
-        }
-
-        if ($requestMethod == 'PUT' || $requestMethod == 'POST') {
-            if ($action == 'login') {
-                return $this->actionAuth();
-            }
-            if ($action == 'logout') {
-                return $this->actionLogout();
-            }
-        }
-
-        throw new HttpNotFound('Action not found.');
-    }
-
-    /**
      * Возвращает информацию об авторизованном пользователе и его правах.
      * @throws HttpForbidden
      * @throws HttpUnauthorized
      * @return Response
      */
-    protected function actionAuthInfo()
+    protected function actionAuth()
     {
         if (!$this->module->isAuthenticated()) {
             throw new HttpUnauthorized(
@@ -115,9 +86,7 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
             );
         }
 
-        return $this->createViewResponse(
-            'auth', $this->getAuthUserInfo()
-        );
+        return $this->getAuthUserInfo();
     }
 
     /**
@@ -126,7 +95,7 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
      * @throws HttpUnauthorized если логин или пароль неверны
      * @return Response
      */
-    protected function actionAuth()
+    protected function actionLogin()
     {
         if ($this->module->isAuthenticated()) {
             $this->module->logout();
@@ -137,7 +106,6 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
                 $this->translate('Incorrect login or password.')
             );
         }
-
 
         $response = $this->createViewResponse('auth', $this->getAuthUserInfo());
 
@@ -186,7 +154,7 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
     {
         $this->module->logout();
 
-        return $this->createResponse('', Response::HTTP_NO_CONTENT);
+        return '';
     }
 
     /**
@@ -217,17 +185,9 @@ class ActionController extends BaseCmsController implements ILocalesAware, ISess
             $form->add($localeInput);
         }
 
-        /**
-         * @var RestApplication $component
-         */
-        $component = $this->getComponent();
+        $form->setAction($this->getUrlManager()->getAdminComponentActionResourceUrl($this->getComponent(), 'login'));
 
-        $form->setAction($this->getUrlManager()->getAdminComponentActionResourceUrl($component, 'login'));
-
-        return $this->createViewResponse(
-            'form',
-            ['form' => $form->getView()]
-        );
+        return $form->getView();
 
     }
 

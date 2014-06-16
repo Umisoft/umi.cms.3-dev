@@ -36,7 +36,7 @@ return [
             ]
         ],
 
-        'settings' => [
+        'layout' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
                 'controller' => AdminComponent::INTERFACE_LAYOUT_CONTROLLER

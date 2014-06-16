@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\files\admin\manager\controller;
+namespace umicms\project\module\seo\admin\yandex\controller;
 
 use umicms\hmvc\component\admin\BaseLayoutController;
 use umicms\project\admin\layout\AdminComponentLayout;
@@ -19,17 +19,15 @@ use umicms\project\admin\layout\control\AdminControl;
  */
 class LayoutController extends BaseLayoutController
 {
-
     /**
-     * Возвращет сетку интерфейса компонента.
-     * @return AdminComponentLayout
+     * {@inheritdoc}
      */
     protected function getLayout()
     {
         $layout = new AdminComponentLayout($this->getComponent());
 
-        $fileManager = new AdminControl($this->getComponent());
-        $layout->addEmptyContextControl('fileManager', $fileManager);
+        $control = new AdminControl($this->getComponent());
+        $layout->addEmptyContextControl('yandexWebmasterReport', $control);
 
         return $layout;
     }

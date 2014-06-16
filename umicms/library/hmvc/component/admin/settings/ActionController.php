@@ -12,27 +12,15 @@ namespace umicms\hmvc\component\admin\settings;
 
 use umi\config\io\IConfigIOAware;
 use umi\config\io\TConfigIOAware;
-use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
+use umicms\hmvc\component\admin\TActionController;
 
 /**
  * Контроллер действий над настройками
  */
 class ActionController extends BaseController implements IConfigIOAware
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function __invoke()
-    {
-        $requestMethod = $this->getRequest()->getMethod();
-
-        if (($requestMethod == 'PUT' || $requestMethod == 'POST') && $this->getRouteVar('action') == 'save') {
-            return $this->actionSave();
-        }
-
-        throw new HttpNotFound('Action not found.');
-    }
+    use TActionController;
 
     /**
      * Сохраняет форму редактирования конфигурации.
@@ -40,7 +28,11 @@ class ActionController extends BaseController implements IConfigIOAware
      */
     protected function actionSave()
     {
-        $config = $this->readConfig($this->getComponent()->getSettingsConfigAlias());
+        /**
+         * @var SettingsComponent $component
+         */
+        $component = $this->getComponent();
+        $config = $this->readConfig($component->getSettingsConfigAlias());
         $form = $this->getConfigForm();
 
         $valid = $form->isValid();
@@ -49,18 +41,11 @@ class ActionController extends BaseController implements IConfigIOAware
             $this->writeConfig($config);
         }
 
-        $response = $this->createViewResponse(
-            'save',
-            [
-                'save' => $form->getView()
-            ]
-        );
-
         if (!$valid) {
-            $response->setStatusCode(Response::HTTP_BAD_REQUEST);
+            $this->setResponseStatusCode(Response::HTTP_BAD_REQUEST);
         }
 
-        return $response;
+        return $form->getView();
     }
 
 }

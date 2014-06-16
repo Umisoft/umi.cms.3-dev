@@ -10,32 +10,32 @@
 
 namespace umicms\project\module\statistics\admin\metrika\controller;
 
-use umi\http\Response;
 use umi\orm\persister\TObjectPersisterAware;
 use umi\spl\config\TConfigSupport;
 use umicms\exception\InvalidArgumentException;
-use umicms\project\admin\rest\component\DefaultQueryAdminComponent;
-use umicms\project\admin\rest\controller\AdminCollectionComponentActionController;
+use umicms\hmvc\component\admin\BaseController;
+use umicms\hmvc\component\admin\TActionController;
 use umicms\project\module\statistics\admin\metrika\model\MetrikaModel;
 
 /**
  * Контроллер операций компонента Метрики.
  */
-class ActionController extends AdminCollectionComponentActionController
+class ActionController extends BaseController
 {
     use TConfigSupport;
+    use TActionController;
+
     /**
-     * API для запросов к Яндекс.Метрике
-     * @var MetrikaModel $model
+     * @var MetrikaModel $model API для запросов к Яндекс.Метрике
      */
     protected $model;
 
     /**
      * Возвращает данные статистики для ресурса, собранные по указанному счетчику.
-     * @return Response
      * @throws InvalidArgumentException
+     * @return array
      */
-    public function actionCounter()
+    protected function actionCounter()
     {
         $this->createModel();
 
@@ -62,7 +62,7 @@ class ActionController extends AdminCollectionComponentActionController
             $this->getQueryVar('sort', 'id')
         );
 
-        $response = [
+        $result = [
             'labels' => $this->model->extractFieldsLabel($resource, $apiData),
             'report' => $this->model->extractReportData($resource, $apiData),
             'date1' => $apiData['date1'],
@@ -74,21 +74,21 @@ class ActionController extends AdminCollectionComponentActionController
         ];
         if (isset($apiData['errors'])) {
             foreach($apiData['errors'] as $error) {
-                $response['errors'] = [
+                $result['errors'] = [
                     'text' => $this->translate($error['code']),
                     'code' => $error['code']
                 ];
             }
         }
 
-        return $response;
+        return $result;
     }
 
     /**
      * Возвращает список доступных счетчиков Метрики.
      * @return array
      */
-    public function actionCounters()
+    protected function actionCounters()
     {
         $this->createModel();
 
@@ -108,7 +108,7 @@ class ActionController extends AdminCollectionComponentActionController
      * Возвращает список доступных отчетов.
      * @return array
      */
-    public function actionNavigation()
+    protected function actionNavigation()
     {
         $this->createModel();
 
@@ -153,11 +153,4 @@ class ActionController extends AdminCollectionComponentActionController
         $this->model = new MetrikaModel($oauthToken, $apiResources);
     }
 
-    /**
-     * @return DefaultQueryAdminComponent
-     */
-    protected function getComponent()
-    {
-        return $this->getContext()->getComponent();
-    }
 }

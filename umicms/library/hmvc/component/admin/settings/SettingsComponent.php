@@ -35,6 +35,10 @@ class SettingsComponent extends AdminComponent
             self::ACTION_CONTROLLER => 'umicms\hmvc\component\admin\settings\ActionController'
         ],
 
+        self::OPTION_MODIFY_ACTIONS => [
+            'save'
+        ],
+
         self::OPTION_ACL => [
             IAclFactory::OPTION_ROLES => [
                 'configurator' => []

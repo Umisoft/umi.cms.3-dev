@@ -34,7 +34,15 @@ return [
         RestApplication::ERROR_CONTROLLER   => 'umicms\project\admin\controller\ErrorController',
 
         'settings' => __NAMESPACE__ . '\controller\SettingsController',
-        'action' => __NAMESPACE__ . '\controller\ActionController'
+        RestApplication::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
+    ],
+
+    RestApplication::OPTION_MODIFY_ACTIONS => [
+        'login', 'logout'
+    ],
+
+    RestApplication::OPTION_QUERY_ACTIONS => [
+        'form', 'auth'
     ],
 
     RestApplication::OPTION_COMPONENTS => [
@@ -72,7 +80,7 @@ return [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route'    => '/action/{action}',
             'defaults' => [
-                'controller' => 'action',
+                'controller' => RestApplication::ACTION_CONTROLLER,
                 'ignoreCsrf' => true
             ]
         ],

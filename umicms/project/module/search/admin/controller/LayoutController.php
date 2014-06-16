@@ -10,18 +10,19 @@
 
 namespace umicms\project\module\search\admin\controller;
 
-use umicms\project\admin\rest\controller\LayoutController;
+use umicms\hmvc\component\admin\BaseLayoutController;
 
 /**
  * Контроллер вывода настроек компонента
  */
-class SettingsController extends LayoutController
+class LayoutController extends BaseLayoutController
 {
+
     /**
      * {@inheritdoc}
      */
-    protected function getSettings()
+    protected function getLayout()
     {
-        return [ ];
+        // TODO: Implement getLayout() method.
     }
 }

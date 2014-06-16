@@ -12,12 +12,10 @@ namespace umicms\hmvc\component\admin\collection;
 
 use umi\form\IForm;
 use umi\hmvc\exception\http\HttpException;
-use umi\hmvc\exception\http\HttpForbidden;
-use umi\hmvc\exception\http\HttpMethodNotAllowed;
-use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\Response;
 use umi\orm\collection\ISimpleHierarchicCollection;
 use umicms\exception\RuntimeException;
+use umicms\hmvc\component\admin\TActionController;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
@@ -37,72 +35,7 @@ use umicms\project\module\service\model\object\Backup;
  */
 class ActionController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function __invoke()
-    {
-        $actionName = $this->getRouteVar('action');
-
-        switch($this->getRequest()->getMethod()) {
-            case 'GET': {
-                $this->checkSupportedAction($actionName, $this->getComponent()->getQueryActions());
-                return $this->callAction($actionName);
-            }
-            case 'PUT': {
-
-            }
-            case 'POST': {
-                $this->checkSupportedAction($actionName, $this->getComponent()->getModifyActions());
-                return $this->callAction($actionName);
-            }
-            case 'DELETE': {
-                throw new HttpMethodNotAllowed(
-                    'HTTP method is not allowed.',
-                    ['GET', 'PUT', 'POST']
-                );
-            }
-            default: {
-                throw new HttpException(
-                    Response::HTTP_NOT_IMPLEMENTED,
-                    'HTTP method is not implemented.'
-                );
-            }
-        }
-    }
-
-    /**
-     * Вызывает действие.
-     * @param string $actionName имя действия
-     * @throws HttpForbidden если у текущего пользователя нет доступа к экшену.
-     * @return Response
-     */
-    protected function callAction($actionName)
-    {
-        if (!$this->isAllowed($this, $actionName)) {
-            throw new HttpForbidden(
-                $this->translate(
-                    'Cannot execute action "{action}" for component "{path}". Access denied.',
-                    [
-                        'action' => $actionName,
-                        'path' => $this->getComponent()->getPath()
-                    ]
-                )
-            );
-        }
-
-        $methodName = 'action' . ucfirst($actionName);
-        $actionResult = $this->{$methodName}();
-
-        if (!$actionResult) {
-            return $this->createResponse('', Response::HTTP_NO_CONTENT);
-        } else {
-            return $this->createViewResponse(
-                $actionName,
-                [$actionName => $actionResult]
-            );
-        }
-    }
+    use TActionController;
 
     /**
      * Возвращает форму для редактирования объекта коллекции.
@@ -415,20 +348,6 @@ class ActionController extends BaseController
         $object->setVersion($data[ICmsObject::FIELD_VERSION]);
 
         return $object;
-    }
-
-
-    /**
-     * Проверяет, поддерживается ли действие над объектом.
-     * @param string $actionName имя действия
-     * @param array $supportedActions список поддерживаемых действий
-     * @throws HttpNotFound если действие не поддерживается
-     */
-    private function checkSupportedAction($actionName, array $supportedActions)
-    {
-        if (!isset($supportedActions[$actionName])) {
-            throw new HttpNotFound('Action is not supported.');
-        }
     }
 
 }
