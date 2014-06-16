@@ -406,6 +406,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     {
         $tagsCloud = [];
 
+        /** @var BlogTag[] $tags */
         $tags = $this->getTags()->getResult()->fetchAll();
         shuffle($tags);
 
