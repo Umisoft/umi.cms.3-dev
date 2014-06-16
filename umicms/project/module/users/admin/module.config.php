@@ -25,22 +25,6 @@ return [
         'group' => '{#lazy:~/project/module/users/admin/group/component.config.php}',
     ],
 
-    AdminComponent::OPTION_ACL => [
-
-        IAclFactory::OPTION_ROLES => [
-            'userEditor' => [],
-            'groupEditor' => [],
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'component:user',
-            'component:group',
-        ],
-        IAclFactory::OPTION_RULES => [
-            'userEditor' => ['component:user' => []],
-            'groupEditor' => ['component:group' => []],
-        ]
-    ],
-
     AdminComponent::OPTION_ROUTES      => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,

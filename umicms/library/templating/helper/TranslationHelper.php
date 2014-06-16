@@ -12,7 +12,7 @@ namespace umicms\templating\helper;
 
 use umi\i18n\ILocalizable;
 use umi\i18n\translator\ITranslator;
-use umicms\hmvc\component\BaseComponent;
+use umicms\hmvc\component\BaseCmsComponent;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 
 /**
@@ -57,7 +57,7 @@ class TranslationHelper implements ILocalizable
     {
         if (!$dictionaries) {
             $component = $this->dispatcher->getCurrentContext()->getComponent();
-            if ($component instanceof BaseComponent) {
+            if ($component instanceof BaseCmsComponent) {
                 $dictionaries = $component->getDictionariesNames();
             }
         }

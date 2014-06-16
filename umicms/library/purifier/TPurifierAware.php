@@ -31,6 +31,17 @@ trait TPurifierAware
     }
 
     /**
+     * Очищает контент от возможных XSS.
+     * @param string $string входная строка
+     * @param array $options опции для конфигурирования
+     * @return string
+     */
+    public function purifyHtml($string, array $options = [])
+    {
+        return $this->getPurifier()->purify($string, $options);
+    }
+
+    /**
      * Возвращает очиститель контента.
      * @throws RequiredDependencyException если очиститель не был внедрен
      * @return IPurifier
@@ -46,16 +57,4 @@ trait TPurifierAware
 
         return $this->traitPurifier;
     }
-
-    /**
-     * Очищает HTML от возможных XSS.
-     * @param string $string входная строка
-     * @param array $options опции для конфигурирования
-     * @return string
-     */
-    public function purifyHtml($string, array $options = [])
-    {
-        return $this->getPurifier()->purify($string, $options);
-    }
 }
- 

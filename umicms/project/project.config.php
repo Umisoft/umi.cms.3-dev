@@ -20,22 +20,25 @@ return [
 
     Bootstrap::OPTION_TOOLS_SETTINGS => '{#partial:~/project/configuration/tools.settings.config.php}',
 
-    IComponent::OPTION_ACL => [
-
-        IAclFactory::OPTION_ROLES => [
-            'visitor' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'component:admin'
-        ],
-        IAclFactory::OPTION_RULES => [
-            'visitor' => ['component:admin' => []]
-        ]
-    ],
-
     IComponent::OPTION_COMPONENTS  => [
         'site'       => '{#lazy:~/project/site/site.config.php}',
         'admin'      => '{#lazy:~/project/admin/admin.config.php}'
+    ],
+
+    IComponent::OPTION_ACL => [
+
+        IAclFactory::OPTION_ROLES => [
+            'adminExecutor' => [],
+            'siteExecutor' => [],
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'component:admin',
+            'component:site',
+        ],
+        IAclFactory::OPTION_RULES => [
+            'adminExecutor' => ['component:admin' => []],
+            'siteExecutor' => ['component:site' => []]
+        ]
     ],
 
     IComponent::OPTION_ROUTES => [

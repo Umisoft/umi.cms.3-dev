@@ -150,7 +150,10 @@ return [
         ],
         BlogCategory::FIELD_PAGE_H1 => [
             'type' => IField::TYPE_STRING,
-            'columnName' => 'h1'
+            'columnName' => 'h1',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ]
         ],
         BlogCategory::FIELD_PAGE_CONTENTS => [
             'type' => IField::TYPE_TEXT,

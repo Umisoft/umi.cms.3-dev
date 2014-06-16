@@ -139,7 +139,7 @@ return [
                     'type' => Wysiwyg::TYPE_NAME,
                     'label' => BlogPost::FIELD_PAGE_CONTENTS,
                     'options' => [
-                        'dataSource' => BlogPost::FIELD_PAGE_CONTENTS
+                        'dataSource' => BlogPost::FIELD_PAGE_CONTENTS_RAW
                     ]
                 ],
                 BlogPost::FIELD_SOURCE => [
