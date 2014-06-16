@@ -130,7 +130,6 @@ class ViewPhpExtension implements IPhpExtension
         };
     }
 
-
     /**
      * Хелпер js-экранирования строки.
      * This function is adapted from code coming from Twig.
@@ -186,7 +185,5 @@ class ViewPhpExtension implements IPhpExtension
                 }, $string);
         };
     }
-
-
 }
  
