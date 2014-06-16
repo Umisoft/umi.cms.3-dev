@@ -12,6 +12,7 @@ namespace umicms\templating\engine\php;
 
 use umi\i18n\translator\ITranslator;
 use umi\templating\engine\php\IPhpExtension;
+use umi\toolkit\IToolkit;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\templating\helper\AccessResource;
 use umicms\templating\helper\TranslationHelper;
@@ -31,22 +32,17 @@ class TemplatingPhpExtension implements IPhpExtension
     public $isAllowedResourceFunctionName = 'isAllowedResource';
 
     /**
-     * @var CmsDispatcher $dispatcher диспетчер
+     * @var IToolkit $toolkit набор инструментов
      */
-    protected $dispatcher;
-    /**
-     * @var ITranslator $translator
-     */
-    protected $translator;
+    protected $toolkit;
 
     /**
      * Конструктор.
-     * @param CmsDispatcher $dispatcher диспетчер
-     * @param ITranslator $translator
+     * @param IToolkit $toolkit
      */
-    public function __construct(CmsDispatcher $dispatcher, ITranslator $translator) {
-        $this->dispatcher = $dispatcher;
-        $this->translator = $translator;
+    public function __construct(IToolkit $toolkit)
+    {
+        $this->toolkit = $toolkit;
     }
 
     /**
@@ -77,8 +73,12 @@ class TemplatingPhpExtension implements IPhpExtension
         static $helper;
 
         if (!$helper) {
-            $helper = new TranslationHelper($this->dispatcher);
-            $helper->setTranslator($this->translator);
+            /** @var CmsDispatcher $dispatcher */
+            $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
+            $helper = new TranslationHelper($dispatcher);
+            /** @var ITranslator $translator */
+            $translator = $this->toolkit->getService('umi\i18n\translator\ITranslator');
+            $helper->setTranslator($translator);
         }
 
         return $helper;
