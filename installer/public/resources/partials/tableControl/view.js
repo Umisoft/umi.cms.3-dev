@@ -1,55 +1,8 @@
-define(['App'], function(UMI){
+define(['App', 'toolbar'], function(UMI){
     'use strict';
     return function(){
-        /**
-         * Mixin реализующий интерфейс для контрола имеющего контекстное меню.
-         * TODO: Инкапсулировать методы контекстного меню
-         */
-        UMI.ControlWithContextMenu = Ember.Mixin.create({
-            selectAction: function(){
-                var componentName = this.get('componentName');
-                return UMI.Utils.LS.get(componentName + '.contextAction');
-            }.property('componentName'),
 
-            selectActionIcon: function(){
-                var iconType;
-                if(this.get('selectAction')){
-                    switch(this.get('selectAction.type')){
-                        case 'create':
-                            iconType = 'add';
-                            break;
-                        case 'edit':
-                            iconType = 'edit';
-                            break;
-                        case 'switchActivity':
-                            iconType = 'pause';
-                            break;
-                        case 'viewOnSite':
-                            iconType = 'eye';
-                            break;
-                        default:
-                            iconType = this.get('selectAction.type');
-                    }
-                    return 'icon-' + iconType;
-                }
-            }.property('selectAction'),
-
-            actions: {
-                toggleFastAction: function(action){
-                    var selectAction;
-                    var componentName = this.get('componentName');
-                    if(!this.get('selectAction') || this.get('selectAction').type !== action.type){
-                        selectAction = action;
-                    } else{
-                        selectAction = null;
-                    }
-                    this.set('selectAction', selectAction);
-                    UMI.Utils.LS.set(componentName + '.contextAction', selectAction);
-                }
-            }
-        });
-
-        UMI.TableControlView = Ember.View.extend(UMI.ControlWithContextMenu, {
+        UMI.TableControlView = Ember.View.extend({
             componentNameBinding: 'controller.controllers.component.name',
             /**
              * Имя шаблона
@@ -321,14 +274,41 @@ define(['App'], function(UMI){
         });
 
 
-        UMI.TableControlContextMenuView = Ember.View.extend({
-            itemView: Ember.View.extend({
-                tagName: 'li',
-                action: null, //Получаем из шаблона
-                isFastAction: function(){
-                    var selectAction = this.get('parentView.parentView.selectAction');
-                    return selectAction ? this.get('action').type === selectAction.type : false;
-                }.property('parentView.parentView.selectAction')
+        UMI.TableControlContextToolbarView = Ember.View.extend({
+            tagName: 'ul',
+            classNames: ['button-group', 'table-context-toolbar'],
+            elementView: UMI.ToolbarElementView.extend({
+                splitButtonView: function(){
+                    var instance = UMI.SplitButtonView.extend(UMI.SplitButtonDefaultBehaviourForComponent, UMI.SplitButtonSharedSettingsBehaviour);
+                    var behaviourName = this.get('context.behaviour.name');
+                    var behaviour;
+                    var i;
+                    var action;
+                    if(behaviourName){
+                        behaviour = UMI.splitButtonBehaviour.get(behaviourName) || {};
+                    } else{
+                        behaviour = {};
+                    }
+                    var choices = this.get('context.behaviour.choices');
+                    if(behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array'){
+                        for(i = 0; i < choices.length; i++){
+                            var prefix = '';
+                            var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
+                            if(behaviourAction.hasOwnProperty('_actions')){
+                                prefix = '_';
+                            }
+                            action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
+                            if(action){
+                                if(Ember.typeOf(behaviour.actions) !== 'object'){
+                                    behaviour.actions = {};
+                                }
+                                behaviour.actions[choices[i].behaviour.name] = action;
+                            }
+                        }
+                    }
+                    instance = instance.extend(behaviour);
+                    return instance;
+                }.property()
             })
         });
     };

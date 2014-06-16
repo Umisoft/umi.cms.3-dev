@@ -8,9 +8,9 @@
 
 namespace umicms\project\module\structure\admin\menu;
 
-use umicms\project\admin\api\component\DefaultAdminComponent;
+use umicms\hmvc\component\admin\collection\CollectionComponent;
 
 return [
-    DefaultAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultAdminComponent',
-    DefaultAdminComponent::OPTION_COLLECTION_NAME => 'menu'
+    CollectionComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\collection\CollectionComponent',
+    CollectionComponent::OPTION_COLLECTION_NAME => 'menu'
 ];

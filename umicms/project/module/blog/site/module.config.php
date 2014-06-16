@@ -12,11 +12,11 @@ namespace umicms\project\module\blog\site;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\hmvc\component\site\SiteComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
+    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
 
     SiteComponent::OPTION_COMPONENTS => [
         'post' => '{#lazy:~/project/module/blog/site/post/component.config.php}',
@@ -30,7 +30,7 @@ return [
     ],
 
     SiteComponent::OPTION_CONTROLLERS => [
-        'index' => 'umicms\project\site\controller\DefaultStructurePageController'
+        'index' => 'umicms\hmvc\component\site\SiteStructurePageController'
     ],
 
     SiteComponent::OPTION_ACL => [
@@ -38,9 +38,6 @@ return [
             'viewer' => [],
             'author' => ['viewer'],
             'moderator' => ['author']
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:index'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [

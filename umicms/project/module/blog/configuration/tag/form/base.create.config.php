@@ -13,7 +13,7 @@ use umi\form\element\MultiSelect;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\blog\model\object\BlogTag;
 
 return [
 

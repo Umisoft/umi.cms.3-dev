@@ -10,15 +10,14 @@
 
 namespace umicms\project\module\users\site\profile\password\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\users\api\object\AuthorizedUser;
-use umicms\project\module\users\api\UsersModule;
+use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\UsersModule;
 
 /**
  * Виджет вывода формы смены пароля пароля.
  */
-class FormWidget extends BaseFormWidget implements IAclResource
+class FormWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -26,17 +25,17 @@ class FormWidget extends BaseFormWidget implements IAclResource
     public $template = 'form';
 
     /**
-     * @var UsersModule $api API модуля "Пользователи"
+     * @var UsersModule $module модуль "Пользователи"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param UsersModule $usersModule API модуля "Пользователи"
+     * @param UsersModule $module модуль "Пользователи"
      */
-    public function __construct(UsersModule $usersModule)
+    public function __construct(UsersModule $module)
     {
-        $this->api = $usersModule;
+        $this->module = $module;
     }
 
     /**
@@ -44,7 +43,7 @@ class FormWidget extends BaseFormWidget implements IAclResource
      */
     protected function getForm()
     {
-        return $this->api->user()->getForm(AuthorizedUser::FORM_CHANGE_PASSWORD, AuthorizedUser::TYPE_NAME)
+        return $this->module->user()->getForm(AuthorizedUser::FORM_CHANGE_PASSWORD, AuthorizedUser::TYPE_NAME)
             ->setAction($this->getUrl('index'));
     }
 }

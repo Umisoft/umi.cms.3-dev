@@ -12,34 +12,26 @@ namespace umicms\project\module\blog\site\tag;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSitePageComponent;
+use umicms\hmvc\component\site\SitePageComponent;
 
 return [
 
-    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
-    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogTag',
-    DefaultSitePageComponent::OPTION_CONTROLLERS => [
+    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
+    SitePageComponent::OPTION_COLLECTION_NAME => 'blogTag',
+    SitePageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\BlogTagRssController'
     ],
-    DefaultSitePageComponent::OPTION_WIDGET => [
+    SitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\TagWidget',
         'postList' => __NAMESPACE__ . '\widget\TagPostListWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'cloud' => __NAMESPACE__ . '\widget\TagCloudWidget',
         'rssLink' => __NAMESPACE__ . '\widget\TagListRssLinkWidget'
     ],
-    DefaultSitePageComponent::OPTION_ACL => [
+    SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
             'rssViewer' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:rss',
-            'widget:view',
-            'widget:postList',
-            'widget:list',
-            'widget:cloud',
-            'widget:rssLink'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -54,10 +46,10 @@ return [
             ]
         ]
     ],
-    DefaultSitePageComponent::OPTION_VIEW => [
+    SitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/tag'],
     ],
-    DefaultSitePageComponent::OPTION_ROUTES => [
+    SitePageComponent::OPTION_ROUTES => [
         'rss' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/rss/{slug}',

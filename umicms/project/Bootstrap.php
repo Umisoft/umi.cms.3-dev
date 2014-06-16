@@ -445,9 +445,7 @@ class Bootstrap
 
         $adminComponent = $project->getChildComponent('admin');
 
-        $urlManager->setRestUrlPrefix($adminComponent->getRouter()->assemble('api'));
-
-        $urlManager->setSettingsUrlPrefix($adminComponent->getRouter()->assemble('settings'));
+        $urlManager->setRestUrlPrefix($adminComponent->getRouter()->assemble('rest'));
     }
 
     /**

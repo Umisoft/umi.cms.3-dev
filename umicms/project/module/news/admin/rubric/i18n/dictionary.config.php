@@ -12,12 +12,14 @@ return [
 
     'en-US' => [
         'component:rubric:displayName' => 'Rubrics',
-        'control:tree:displayName' => 'Rubrics'
+
+        'action:create:base' => 'Create subrubric'
     ],
 
     'ru-RU' => [
         'component:rubric:displayName' => 'Новостные рубрики',
-        'control:tree:displayName' => 'Новостные рубрики'
+
+        'action:create:base' => 'Добавить подрубрику'
     ]
 
 ];

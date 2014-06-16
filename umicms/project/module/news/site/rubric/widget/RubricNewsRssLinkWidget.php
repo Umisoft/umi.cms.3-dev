@@ -10,16 +10,15 @@
 
 namespace umicms\project\module\news\site\rubric\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
-use umicms\project\module\news\api\NewsModule;
-use umicms\project\module\news\api\object\NewsRubric;
+use umicms\project\module\news\model\NewsModule;
+use umicms\project\module\news\model\object\NewsRubric;
 
 /**
  * Виджет для вывода URL на RSS-ленту по рубрике.
  */
-class RubricNewsRssLinkWidget extends BaseLinkWidget implements IAclResource
+class RubricNewsRssLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}
@@ -33,17 +32,17 @@ class RubricNewsRssLinkWidget extends BaseLinkWidget implements IAclResource
     public $rubric;
 
     /**
-     * @var NewsModule $api API модуля "Новости"
+     * @var NewsModule $module модуль "Новости"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param NewsModule $newsApi API модуля "Новости"
+     * @param NewsModule $newsApi модуль "Новости"
      */
     public function __construct(NewsModule $newsApi)
     {
-        $this->api = $newsApi;
+        $this->module = $newsApi;
     }
 
     /**
@@ -52,7 +51,7 @@ class RubricNewsRssLinkWidget extends BaseLinkWidget implements IAclResource
     protected function getLinkUrl()
     {
         if (is_string($this->rubric)) {
-            $this->rubric = $this->api->rubric()->get($this->rubric);
+            $this->rubric = $this->module->rubric()->get($this->rubric);
         }
 
         if (isset($this->rubric) && !$this->rubric instanceof NewsRubric) {

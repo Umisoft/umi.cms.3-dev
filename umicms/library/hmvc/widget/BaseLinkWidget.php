@@ -13,7 +13,7 @@ namespace umicms\hmvc\widget;
 /**
  * Базовый класс виджета вывода ссылки
  */
-abstract class BaseLinkWidget extends BaseWidget
+abstract class BaseLinkWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

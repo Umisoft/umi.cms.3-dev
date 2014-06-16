@@ -14,7 +14,7 @@ use umicms\project\module\blog\api\object\BlogAuthor;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\blog\api\collection\BlogAuthorCollection',
+    'class' => 'umicms\project\module\blog\model\collection\BlogAuthorCollection',
     'handlers' => [
         'admin' => 'blog.author',
         'site' => 'blog.author'

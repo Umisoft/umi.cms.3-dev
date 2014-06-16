@@ -16,9 +16,9 @@ use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\validation\IValidatorFactory;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\blog\api\object\BlogCategory;
-use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\blog\model\object\BlogCategory;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\BlogTag;
 
 return [
     'options' => [

@@ -10,16 +10,15 @@
 
 namespace umicms\project\module\blog\site\post\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogCategory;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogCategory;
 
 /**
  * Виджет для вывода URL на добавление поста.
  */
-class AddLinkWidget extends BaseLinkWidget implements IAclResource
+class AddLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}
@@ -30,17 +29,17 @@ class AddLinkWidget extends BaseLinkWidget implements IAclResource
      */
     public $blogCategory;
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -49,7 +48,7 @@ class AddLinkWidget extends BaseLinkWidget implements IAclResource
     protected function getLinkUrl()
     {
         if (is_string($this->blogCategory)) {
-            $this->blogCategory = $this->api->category()->get($this->blogCategory);
+            $this->blogCategory = $this->module->category()->get($this->blogCategory);
         }
 
         if (!$this->blogCategory instanceof BlogCategory) {

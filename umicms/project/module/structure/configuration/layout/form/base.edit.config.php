@@ -10,7 +10,7 @@
 
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\structure\api\object\Layout;
+use umicms\project\module\structure\model\object\Layout;
 
 return [
 

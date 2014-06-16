@@ -13,7 +13,7 @@ use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\news\api\collection\NewsSubjectCollection',
+    'class' => 'umicms\project\module\news\model\collection\NewsSubjectCollection',
     'handlers' => [
         'admin' => 'news.subject',
         'site' => 'news.subject'

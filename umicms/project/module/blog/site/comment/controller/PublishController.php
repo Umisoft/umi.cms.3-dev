@@ -12,31 +12,31 @@ namespace umicms\project\module\blog\site\comment\controller;
 use umi\form\IForm;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogComment;
-use umicms\project\site\controller\TFormSimpleController;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogComment;
+use umicms\hmvc\component\site\TFormSimpleController;
 
 /**
  * Контроллер публикации комментария.
  */
-class PublishController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class PublishController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormSimpleController;
     use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -44,7 +44,7 @@ class PublishController extends BaseAccessRestrictedController implements IObjec
      */
     protected function buildForm()
     {
-        return $this->api->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE);
+        return $this->module->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE);
     }
 
     /**
@@ -52,7 +52,7 @@ class PublishController extends BaseAccessRestrictedController implements IObjec
      */
     protected function processForm(IForm $form)
     {
-        $blogComment = $this->api->comment()->getById($this->getRouteVar('id'));
+        $blogComment = $this->module->comment()->getById($this->getRouteVar('id'));
         $blogComment->published();
 
         $this->getObjectPersister()->commit();

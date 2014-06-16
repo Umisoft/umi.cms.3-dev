@@ -11,31 +11,31 @@
 namespace umicms\project\module\blog\site\author\controller;
 
 use umi\http\Response;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\project\module\blog\api\BlogModule;
+use umicms\project\module\blog\model\BlogModule;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 
 /**
  * Контроллер вывода RSS-ленты автора.
  */
-class BlogAuthorRssController extends BaseAccessRestrictedController implements ISiteSettingsAware
+class BlogAuthorRssController extends BaseCmsController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 
     /**
-     * @var BlogModule $api
+     * @var BlogModule $module
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $api
+     * @param BlogModule $module
      */
-    public function __construct(BlogModule $api)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -46,10 +46,10 @@ class BlogAuthorRssController extends BaseAccessRestrictedController implements 
     {
         $urlAuthor = $this->getRouteVar('slug');
 
-        $blogAuthor = $this->api->author()->getByUri($urlAuthor);
-        $blogAuthorPosts = $this->api->getPostsByAuthor([$blogAuthor]);
+        $blogAuthor = $this->module->author()->getByUri($urlAuthor);
+        $blogAuthorPosts = $this->module->getPostsByAuthor([$blogAuthor]);
 
-        $rssFeed = $this->api->getPostRssFeed(
+        $rssFeed = $this->module->getPostRssFeed(
             $blogAuthor->displayName,
             $blogAuthor->contents,
             $blogAuthorPosts

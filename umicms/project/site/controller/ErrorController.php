@@ -14,12 +14,12 @@ use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umicms\exception\NonexistentEntityException;
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\component\BaseCmsController;
 
 /**
  * Контроллер ошибок для сайта.
  */
-class ErrorController extends BaseController
+class ErrorController extends BaseCmsController
 {
 
     /**

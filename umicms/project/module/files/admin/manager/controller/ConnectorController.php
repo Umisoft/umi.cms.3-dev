@@ -12,12 +12,12 @@ namespace umicms\project\module\files\admin\manager\controller;
 
 use elFinder;
 use elFinderConnector;
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\component\BaseCmsController;
 
 /**
  * Контроллер файлового менеджера.
  */
-class ConnectorController extends BaseController
+class ConnectorController extends BaseCmsController
 {
     /**
      * {@inheritdoc}

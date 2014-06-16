@@ -10,16 +10,15 @@
 
 namespace umicms\project\module\blog\site\tag\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogTag;
 
 /**
  * Виджет для вывода URL на RSS-ленту по тэгу.
  */
-class TagListRssLinkWidget extends BaseLinkWidget implements IAclResource
+class TagListRssLinkWidget extends BaseLinkWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -32,17 +31,17 @@ class TagListRssLinkWidget extends BaseLinkWidget implements IAclResource
     public $blogTag;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -51,7 +50,7 @@ class TagListRssLinkWidget extends BaseLinkWidget implements IAclResource
     protected function getLinkUrl()
     {
         if (is_string($this->blogTag)) {
-            $this->blogTag = $this->api->tag()->get($this->blogTag);
+            $this->blogTag = $this->module->tag()->get($this->blogTag);
         }
 
         if (!$this->blogTag instanceof BlogTag) {

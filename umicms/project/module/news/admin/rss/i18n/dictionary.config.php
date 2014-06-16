@@ -12,10 +12,14 @@ return [
 
     'en-US' => [
         'component:rss:displayName' => 'Import RSS-feed',
+
+        'action:create:base' => 'Create RSS-feed'
     ],
 
     'ru-RU' => [
         'component:rss:displayName' => 'Импорт RSS-лент',
+
+        'action:create:base' => 'Добавить RSS-ленту'
     ]
 
 ];
