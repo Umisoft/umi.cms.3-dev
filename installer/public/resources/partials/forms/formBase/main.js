@@ -110,7 +110,7 @@ define(
                 }.property(),
 
                 colorTemplate: function(){
-                    return '{{input type="color" value=object.value meta=view.meta name=meta.attributes.name}}';
+                    return '{{view "colorElement" object=object meta=view.meta}}';
                 }.property(),
 
                 timeTemplate: function(){
