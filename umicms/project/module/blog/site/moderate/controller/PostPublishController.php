@@ -54,7 +54,7 @@ class PostPublishController extends BaseAccessRestrictedController implements IO
      */
     protected function processForm(IForm $form)
     {
-        $this->api->publishPost(
+        $this->api->post()->publish(
             $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'))
         );
 

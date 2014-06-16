@@ -67,7 +67,7 @@ class AddController extends BaseAccessRestrictedController implements IObjectPer
 
 
         if ($this->isAllowed($comment, 'publish')) {
-            $this->api->publishComment($comment);
+            $this->api->comment()->publish($comment);
         } else {
             $comment->needModerate();
         }
