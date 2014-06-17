@@ -21,24 +21,9 @@ define(
             magellan();
             submitToolbar();
 
-            UMI.FormBaseController = Ember.ObjectController.extend({
-                /**
-                 * Проверяет наличие fieldset
-                 * @method hasFieldset
-                 * @return bool
-                 */
-                hasFieldset: function(){
-                    return this.get('model.elements').isAny('type', 'fieldset');
-                }.property('model')
-            });
+            UMI.FormControllerMixin = Ember.Mixin.create({});
 
-            UMI.FormBaseView = Ember.View.extend({
-                /**
-                 * Шаблон формы
-                 * @property layout
-                 * @type String
-                 */
-                layout: Ember.Handlebars.compile(formTpl),
+            UMI.FormViewMixin = Ember.Mixin.create({
                 /**
                  * Тип DOM элемента
                  * @property tagName
@@ -46,31 +31,9 @@ define(
                  * @default "form"
                  */
                 tagName: 'form',
-                /**
-                 * Классы view
-                 * @property classNames
-                 * @type Array
-                 */
-                classNames: ['s-margin-clear', 's-full-height', 'umi-form-control'],
-
-                attributeBindings: ['action'],
-
-                action: function(){
-                    return this.get('context.model.attributes.action');
-                }.property('context.model'),
-
-                loading: false,
-
-                submit: function(event){
-                    event.preventDefault();
-                    var self = this;
-                    self.toggleProperty('loading');
-                    var data = this.$().serialize();
-                    $.post(self.get('action'), data).then(function(result){
-                        self.toggleProperty('loading');
-                    });
+                submit: function(){
+                    return false;
                 },
-
                 elementView: Ember.View.extend({
                     classNameBindings: ['isField'],
                     isFieldset: function(){
@@ -97,8 +60,7 @@ define(
                 })
             });
 
-
-            UMI.FieldBaseView = Ember.View.extend({
+            UMI.FieldMixin = Ember.Mixin.create({
                 /**
                  * Метаданные свойства. В базовой реализации
                  * соответствует самому объекту
@@ -106,9 +68,7 @@ define(
                  * @type String
                  */
                 metaBinding: 'object',
-
                 layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{view.meta.label}}</span></div>{{yield}}'),
-
                 template: function(){
                     var meta;
                     var template;
@@ -204,6 +164,71 @@ define(
                     return '{{input type="color" value=object.value meta=view.meta name=meta.attributes.name}}';
                 }.property()
             });
+
+            UMI.FormBaseController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
+                /**
+                 * Проверяет наличие fieldset
+                 * @method hasFieldset
+                 * @return bool
+                 */
+                hasFieldset: function(){
+                    return this.get('model.elements').isAny('type', 'fieldset');
+                }.property('model'),
+                attributeBindings: ['action'],
+
+                action: function(){
+                    return this.get('context.model.attributes.action');
+                }.property('context.model')
+            });
+
+            UMI.FormBaseView = Ember.View.extend(UMI.FormViewMixin, {
+                /**
+                 * Шаблон формы
+                 * @property layout
+                 * @type String
+                 */
+                layout: Ember.Handlebars.compile(formTpl),
+
+                /**
+                 * Классы view
+                 * @property classNames
+                 * @type Array
+                 */
+                classNames: ['s-margin-clear', 's-full-height', 'umi-form-control'],
+
+                actions: {
+                    submit: function(handler){
+                        var self = this;
+                        if(handler){
+                            handler.addClass('loading');
+                        }
+                        var data = this.$().serialize();
+                        $.post(self.get('action'), data).then(function(){
+                            handler.removeClass('loading');
+                        });
+                    }
+                },
+
+                submitToolbarView: UMI.SubmitToolbarView.extend({
+                    elementView: UMI.ToolbarElementView.extend({
+                        buttonView: function(){
+                            var button = this._super();
+                            if(this.get('context.behaviour.name') === 'save'){
+                                button.reopen({
+                                    actions: {
+                                        save: function(){
+                                            this.get('parentView.parentView.parentView').send('submit', this.$());
+                                        }
+                                    }
+                                });
+                            }
+                            return button;
+                        }.property()
+                    })
+                })
+            });
+
+            UMI.FieldBaseView = Ember.View.extend(UMI.FieldMixin, {});
         };
     }
 );

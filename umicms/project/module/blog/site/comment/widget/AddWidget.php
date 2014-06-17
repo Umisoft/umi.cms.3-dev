@@ -10,17 +10,16 @@
 
 namespace umicms\project\module\blog\site\comment\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogComment;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogComment;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
  * Виджет добавления вывода формы добавления комментария.
  */
-class AddWidget extends BaseFormWidget implements IAclResource
+class AddWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -39,17 +38,17 @@ class AddWidget extends BaseFormWidget implements IAclResource
      */
     public $blogComment = null;
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -58,7 +57,7 @@ class AddWidget extends BaseFormWidget implements IAclResource
     protected function getForm()
     {
         if (is_string($this->blogPost)) {
-            $this->blogPost = $this->api->post()->get($this->blogPost);
+            $this->blogPost = $this->module->post()->get($this->blogPost);
         }
 
         if (!$this->blogPost instanceof BlogPost) {
@@ -74,7 +73,7 @@ class AddWidget extends BaseFormWidget implements IAclResource
         }
 
         if (is_string($this->blogComment)) {
-            $this->blogComment = $this->api->comment()->get($this->blogComment);
+            $this->blogComment = $this->module->comment()->get($this->blogComment);
         }
 
         if (isset($this->blogComment) && !$this->blogComment instanceof BlogComment) {
@@ -89,11 +88,11 @@ class AddWidget extends BaseFormWidget implements IAclResource
             );
         }
 
-        $comment = $this->api->comment()->add(null, BlogComment::TYPE, $this->blogComment);
+        $comment = $this->module->comment()->add(null, BlogComment::TYPE, $this->blogComment);
 
         $comment->post = $this->blogPost;
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, BlogComment::TYPE, $comment);
+        $form = $this->module->comment()->getForm(BlogComment::FORM_ADD_COMMENT, BlogComment::TYPE, $comment);
 
         $routeParams = isset($this->blogComment) ? ['parent' => $this->blogComment->getId()] : [];
 

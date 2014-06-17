@@ -11,31 +11,31 @@
 namespace umicms\project\module\blog\site\post\controller;
 
 use umi\http\Response;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\project\module\blog\api\BlogModule;
+use umicms\project\module\blog\model\BlogModule;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 
 /**
  * Контроллер вывода общей RSS-ленты.
  */
-class PostRssController extends BaseAccessRestrictedController implements ISiteSettingsAware
+class PostRssController extends BaseCmsController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 
     /**
-     * @var BlogModule $api
+     * @var BlogModule $module
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $api
+     * @param BlogModule $module
      */
-    public function __construct(BlogModule $api)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -44,9 +44,9 @@ class PostRssController extends BaseAccessRestrictedController implements ISiteS
      */
     public function __invoke()
     {
-        $blogPosts = $this->api->getPosts();
+        $blogPosts = $this->module->getPosts();
 
-        $rssFeed = $this->api->getPostRssFeed(
+        $rssFeed = $this->module->getPostRssFeed(
             $this->getSiteDefaultTitle(),
             $this->getSiteDefaultDescription(),
             $blogPosts

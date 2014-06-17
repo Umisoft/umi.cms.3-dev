@@ -11,11 +11,11 @@
 use umi\orm\collection\ICollectionFactory;
 use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\ICmsCollection;
-use umicms\project\module\users\api\object\AuthorizedUser;
+use umicms\project\module\users\model\object\AuthorizedUser;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\users\api\collection\UserCollection',
+    'class' => 'umicms\project\module\users\model\collection\UserCollection',
     'handlers' => [
         'admin' => 'users.user'
     ],

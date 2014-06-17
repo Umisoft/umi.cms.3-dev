@@ -12,11 +12,11 @@ namespace umicms\project\module\users\site\authorization;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\hmvc\component\site\SiteComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
+    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
 
     SiteComponent::OPTION_CONTROLLERS => [
         'login' => __NAMESPACE__ . '\controller\LoginController',
@@ -37,15 +37,12 @@ return [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
         ],
-        IAclFactory::OPTION_RESOURCES => [
-            'index' => 'controller:login',
-            'loginForm'  => 'widget:loginForm',
-            'loginLink'  => 'widget:loginLink'
-        ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'controller:login' => [],
+                'controller:logout' => [],
                 'widget:loginForm' => [],
+                'widget:logoutForm' => [],
                 'widget:loginLink' => []
             ]
         ]

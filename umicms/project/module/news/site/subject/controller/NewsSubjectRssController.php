@@ -11,31 +11,31 @@
 namespace umicms\project\module\news\site\subject\controller;
 
 use umi\http\Response;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\project\module\news\api\NewsModule;
+use umicms\project\module\news\model\NewsModule;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 
 /**
  * Контроллер вывода RSS-ленты сюжета.
  */
-class NewsSubjectRssController extends BaseAccessRestrictedController implements ISiteSettingsAware
+class NewsSubjectRssController extends BaseCmsController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 
     /**
-     * @var NewsModule $api
+     * @var NewsModule $module
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param NewsModule $api
+     * @param NewsModule $module
      */
-    public function __construct(NewsModule $api)
+    public function __construct(NewsModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -46,11 +46,11 @@ class NewsSubjectRssController extends BaseAccessRestrictedController implements
     {
         $slugSubject = $this->getRouteVar('slug');
 
-        $newsSubject = $this->api->subject()->getByUri($slugSubject);
+        $newsSubject = $this->module->subject()->getByUri($slugSubject);
 
-        $newsSubjectItems = $this->api->getNewsBySubjects([$newsSubject]);
+        $newsSubjectItems = $this->module->getNewsBySubjects([$newsSubject]);
 
-        $rssFeed = $this->api->getNewsRssFeed(
+        $rssFeed = $this->module->getNewsRssFeed(
             $newsSubject->displayName,
             $newsSubject->contents,
             $newsSubjectItems

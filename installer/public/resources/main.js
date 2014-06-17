@@ -82,7 +82,7 @@ require(['jQuery'], function(jQuery){
         };
 
         if(data.result){
-            objectMerge(window.UmiSettings, data.result);
+            objectMerge(window.UmiSettings, data.result.auth);
         }
         require(['application/main'], function(application){
             application();

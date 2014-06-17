@@ -11,33 +11,35 @@
 namespace umicms\project\module\statistics\admin\metrika;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\api\component\DefaultQueryAdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 return [
-    DefaultQueryAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultQueryAdminComponent',
-    DefaultQueryAdminComponent::OPTION_SETTINGS => '{#lazy:~/project/module/statistics/configuration/metrika/model.settings.config.php}',
-    DefaultQueryAdminComponent::OPTION_CONTROLLERS => [
-        DefaultQueryAdminComponent::INTERFACE_LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
-        DefaultQueryAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
+    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\AdminComponent',
+    
+    AdminComponent::OPTION_SETTINGS => '{#lazy:~/project/module/statistics/configuration/metrika/model.settings.config.php}',
+    
+    AdminComponent::OPTION_CONTROLLERS => [
+        AdminComponent::INTERFACE_LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
+        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
 
-    DefaultQueryAdminComponent::OPTION_QUERY_ACTIONS => [
+    AdminComponent::OPTION_QUERY_ACTIONS => [
         'counter', 'counters', 'navigation'
     ],
 
-    DefaultQueryAdminComponent::OPTION_ROUTES => [
+    AdminComponent::OPTION_ROUTES => [
         'action' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/action/{action}',
             'defaults' => [
-                'controller' => 'action',
+                'controller' => AdminComponent::ACTION_CONTROLLER,
             ],
         ],
 
         'settings' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => DefaultQueryAdminComponent::INTERFACE_LAYOUT_CONTROLLER
+                'controller' => AdminComponent::INTERFACE_LAYOUT_CONTROLLER
             ]
         ]
     ]

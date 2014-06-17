@@ -8,8 +8,8 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\structure\api\object\StructureElement;
-use umicms\project\module\structure\api\object\SystemPage;
+use umicms\project\module\structure\model\object\StructureElement;
+use umicms\project\module\structure\model\object\SystemPage;
 
 return [
     'en-US' => [

@@ -11,11 +11,11 @@
 namespace umicms\project\module\seo\admin;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\AdminComponent',
 
     AdminComponent::OPTION_COMPONENTS => [
         'megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/component.config.php}',

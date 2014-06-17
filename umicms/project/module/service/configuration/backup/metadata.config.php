@@ -9,7 +9,7 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\module\service\api\object\Backup;
+use umicms\project\module\service\model\object\Backup;
 
 return [
     'dataSource' => [
@@ -75,7 +75,7 @@ return [
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\service\api\object\Backup',
+            'objectClass' => 'umicms\project\module\service\model\object\Backup',
             'fields' => [
                 Backup::FIELD_IDENTIFY,
                 Backup::FIELD_GUID,

@@ -99,26 +99,7 @@ define([], function(){
                             $(params.handler).removeClass('loading');
                         }
 
-                        if(isNewObject){
-                            if(params.object.store.metadataFor(params.object.constructor.typeKey).collectionType === 'hierarchic'){
-                                var parent = params.object.get('parent');
-                                if(parent && 'isFulfilled' in parent){
-                                    return parent.then(function(parent){
-                                        parent.reload().then(function(parent){
-                                            parent.trigger('needReloadHasMany');
-                                        });
-                                        self.send('edit', params.object);
-                                    });
-                                } else{
-                                    // Обновление связей рутовой ноды в дереве.
-                                    // TODO: подумать как можно избежать обращения к контроллеру дерева.
-                                    self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(params.object.get('id'), 'root');
-                                    self.send('edit', params.object);
-                                }
-                            }
-                            self.send('edit', params.object);
-                        }
-                        return true;
+                        return params.object;
                     },
 
                     function(results){
@@ -146,6 +127,30 @@ define([], function(){
                         );
                     }
                 );
+            },
+
+            beforeAdd: function(params){
+                var self = this;
+                return self.saveObject(params).then(function(addObject){
+                    if(addObject.store.metadataFor(addObject.constructor.typeKey).collectionType === 'hierarchic'){
+                        var parent = addObject.get('parent');
+                        if(parent && 'isFulfilled' in parent){
+                            return parent.then(function(parent){
+                                parent.reload().then(function(parent){
+                                    parent.trigger('needReloadHasMany');
+                                });
+                                return addObject;
+                            });
+                        } else{
+                            // Обновление связей рутовой ноды в дереве.
+                            // TODO: подумать как можно избежать обращения к контроллеру дерева.
+                            self.get('container').lookup('controller:treeControl').get('root')[0].updateChildren(addObject.get('id'), 'root');
+                            return addObject;
+                        }
+                    } else{
+                        return addObject;
+                    }
+                });
             },
 
             actions: {
@@ -231,6 +236,34 @@ define([], function(){
                     });
                 },
 
+                add: function(params){
+                    var self = this;
+                    return self.beforeAdd(params).then(function(addObject){
+                        self.send('edit', addObject);
+                    });
+                },
+
+                addAndGoBack: function(params){
+                    var self = this;
+                    return self.beforeAdd(params).then(function(){
+                        self.send('backToFilter');
+                    });
+                },
+
+                addAndCreate: function(params){
+                    var self = this;
+                    return self.beforeAdd(params).then(function(addObject){
+                        var behaviour = {typeName: addObject.get('type')};
+                        if(addObject.store.metadataFor(addObject.constructor.typeKey).collectionType === 'hierarchic'){
+                            return addObject.get('parent').then(function(parent){
+                                self.send('create', parent, behaviour);
+                            });
+                        } else{
+                            self.send('create', addObject, behaviour);
+                        }
+                    });
+                },
+
                 switchActivity: function(object){
                     try{
                         var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
@@ -250,7 +283,14 @@ define([], function(){
 
                 create: function(parentObject, behaviour){
                     var typeName = behaviour.typeName;
-                    this.transitionTo('action', parentObject.get('id'), 'createForm', {queryParams: {'typeName': typeName}});
+                    var contextId = 'root';
+                    if(parentObject.constructor.typeKey){
+                        var meta = this.store.metadataFor(parentObject.constructor.typeKey) || {};
+                        if(meta.hasOwnProperty('collectionType') && meta.collectionType === 'hierarchic'){
+                            contextId = parentObject.get('id');
+                        }
+                    }
+                    this.transitionTo('action', contextId, 'createForm', {queryParams: {'typeName': typeName}});
                 },
 
                 edit: function(object){
@@ -277,9 +317,14 @@ define([], function(){
                  * @returns {*|Promise}
                  */
                 trash: function(object){
+                    var self = this;
+                    var isActiveContext = this.modelFor('context') === object;
                     return object.destroyRecord().then(function(){
                         var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" удалено в корзину.'};
                         UMI.notification.create(settings);
+                       if(isActiveContext){
+                           self.send('backToFilter');
+                       }
                     }, function(){
                         var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" не удалось поместить в корзину.'};
                         UMI.notification.create(settings);
@@ -293,18 +338,24 @@ define([], function(){
                  * @returns {*|Promise}
                  */
                 "delete": function(object){
+                    var self = this;
+                    var isActiveContext = this.modelFor('context') === object;
                     var data = {
                         'close': false,
                         'title': 'Удаление "' + object.get('displayName') + '".',
-                        'content': 'Объект будет удалён без возможности востановления, всё равно продолжить?',
+                        'content': '<div>Объект будет удалён без возможности востановления, всё равно продолжить?</div>',
                         'confirm': 'Удалить',
-                        'reject': 'Отмена'
+                        'reject': 'Отмена',
+                        'proposeRemember': 'delete'
                     };
                     return UMI.dialog.open(data).then(
                         function(){
                             return object.destroyRecord().then(function(){
                                 var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" успешно удалено.'};
                                 UMI.notification.create(settings);
+                                if(isActiveContext){
+                                    self.send('backToFilter');
+                                }
                             }, function(){
                                 var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" не удалось удалить.'};
                                 UMI.notification.create(settings);
@@ -673,8 +724,8 @@ define([], function(){
                         this.get('controller').set('typeName', null);
                     }
                     var model = this.modelFor('action').object;
-                    if(this.modelFor('action').object.get('isNew')){// TODO: не удаляется мусор
-                        this.modelFor('action').createObject.deleteRecord();
+                    if(this.modelFor('action').object.get('isNew')){
+                        this.modelFor('action').object.deleteRecord();
                     }
                     if(model.get('isDirty')){
                         transition.abort();

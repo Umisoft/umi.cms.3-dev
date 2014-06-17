@@ -1,6 +1,6 @@
 <?php
 
-use umicms\project\module\users\api\collection\UserCollection;
+use umicms\project\module\users\model\collection\UserCollection;
 
 return [
     UserCollection::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS => [

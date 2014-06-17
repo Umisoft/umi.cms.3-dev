@@ -13,6 +13,7 @@ namespace project\install\controller;
 use Doctrine\DBAL\DBALException;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\driver\IDialect;
+use umi\hmvc\controller\BaseController;
 use umi\http\Response;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\SimpleCollection;
@@ -24,27 +25,26 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseController;
 use umicms\model\manager\IModelManagerAware;
 use umicms\model\manager\TModelManagerAware;
 use umicms\module\IModuleAware;
 use umicms\module\TModuleAware;
-use umicms\project\module\blog\api\object\BlogComment;
-use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\module\news\api\collection\NewsRssImportScenarioCollection;
-use umicms\project\module\search\api\SearchApi;
-use umicms\project\module\search\api\SearchModule;
-use umicms\project\module\service\api\collection\BackupCollection;
-use umicms\project\module\structure\api\object\InfoBlock;
-use umicms\project\module\structure\api\object\Menu;
-use umicms\project\module\structure\api\object\MenuExternalItem;
-use umicms\project\module\structure\api\object\MenuInternalItem;
-use umicms\project\module\structure\api\object\StaticPage;
-use umicms\project\module\structure\api\object\StructureElement;
-use umicms\project\module\users\api\object\AuthorizedUser;
-use umicms\project\module\users\api\object\Guest;
-use umicms\project\module\users\api\object\Supervisor;
-use umicms\project\module\users\api\object\UserGroup;
+use umicms\project\module\blog\model\object\BlogComment;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\news\model\collection\NewsRssImportScenarioCollection;
+use umicms\project\module\search\model\SearchApi;
+use umicms\project\module\search\model\SearchModule;
+use umicms\project\module\service\model\collection\BackupCollection;
+use umicms\project\module\structure\model\object\InfoBlock;
+use umicms\project\module\structure\model\object\Menu;
+use umicms\project\module\structure\model\object\MenuExternalItem;
+use umicms\project\module\structure\model\object\MenuInternalItem;
+use umicms\project\module\structure\model\object\StaticPage;
+use umicms\project\module\structure\model\object\StructureElement;
+use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\Guest;
+use umicms\project\module\users\model\object\Supervisor;
+use umicms\project\module\users\model\object\UserGroup;
 
 /**
  * Class InstallController
@@ -206,8 +206,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $visitors->roles = [
             'project' => ['siteExecutor', 'adminExecutor'],
-
-            'project.admin' => ['apiExecutor'],
+            'project.admin' => ['viewer', 'restExecutor'],
+            'project.admin.rest' => ['viewer'],
 
             'project.site' => [
                 'usersExecutor',
@@ -364,19 +364,19 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Администраторы')
             ->setValue('displayName', 'Administrator', 'en-US');
         $administrators->roles = [
-            'project.admin.api' => ['newsExecutor', 'structureExecutor', 'usersExecutor'],
+            'project.admin.rest' => ['newsExecutor', 'structureExecutor', 'usersExecutor'],
 
-            'project.admin.api.news' => ['rubricExecutor', 'itemExecutor', 'subjectExecutor'],
-            'project.admin.api.news.item' => ['editor'],
-            'project.admin.api.news.rubric' => ['editor'],
-            'project.admin.api.news.subject' => ['editor'],
+            'project.admin.rest.news' => ['rubricExecutor', 'itemExecutor', 'subjectExecutor'],
+            'project.admin.rest.news.item' => ['editor'],
+            'project.admin.rest.news.rubric' => ['editor'],
+            'project.admin.rest.news.subject' => ['editor'],
 
-            'project.admin.api.structure' => ['pageExecutor', 'layoutExecutor'],
-            'project.admin.api.structure.page' => ['editor'],
-            'project.admin.api.structure.layout' => ['editor'],
+            'project.admin.rest.structure' => ['pageExecutor', 'layoutExecutor'],
+            'project.admin.rest.structure.page' => ['editor'],
+            'project.admin.rest.structure.layout' => ['editor'],
 
-            'project.admin.api.users' => ['userExecutor'],
-            'project.admin.api.users.user' => ['editor'],
+            'project.admin.rest.users' => ['userExecutor'],
+            'project.admin.rest.users.user' => ['editor'],
         ];
 
         /**
@@ -539,7 +539,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $comment->getProperty('componentName')->setValue('comment');
         $comment->getProperty('componentPath')->setValue('blog.comment');
 
-        $author = $structureCollection->add('authors', 'system', $blogPage)
+        $author = $structureCollection->add('author', 'system', $blogPage)
             ->setValue('displayName', 'Авторы блога')
             ->setValue('displayName', 'Authors', 'en-US')
             ->setGUID('2ac90e34-16d0-4113-ab7c-de37c0287516');
@@ -547,6 +547,20 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $author->getProperty('locked')->setValue(true);
         $author->getProperty('componentName')->setValue('author');
         $author->getProperty('componentPath')->setValue('blog.author');
+
+        $profileAuthor = $structureCollection->add('profile', 'system', $author)
+            ->setValue('displayName', 'Редактирование профиля автора')
+            ->setValue('displayName', 'Edit author profile', 'en-US');
+        $profileAuthor->getProperty('locked')->setValue(true);
+        $profileAuthor->getProperty('componentName')->setValue('profile');
+        $profileAuthor->getProperty('componentPath')->setValue('blog.author.profile');
+
+        $viewAuthor = $structureCollection->add('view', 'system', $author)
+            ->setValue('displayName', 'Просмотр профиля автора')
+            ->setValue('displayName', 'View author profile', 'en-US');
+        $viewAuthor->getProperty('locked')->setValue(true);
+        $viewAuthor->getProperty('componentName')->setValue('view');
+        $viewAuthor->getProperty('componentPath')->setValue('blog.author.view');
 
         $category = $categoryCollection->add('hunters')
             ->setValue('displayName', 'Охотницы')
@@ -1175,7 +1189,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $menuCollection->add('bottomMenu-3', MenuExternalItem::TYPE, $bottomMenu)
             ->setValue(MenuExternalItem::FIELD_DISPLAY_NAME, 'Внешняя ссылка')
-            ->setValue(MenuExternalItem::FIELD_URL_RESOURCE, 'http://ya.ru/');
+            ->setValue(MenuExternalItem::FIELD_RESOURCE_URL, 'http://ya.ru/');
 
     }
 
@@ -1386,6 +1400,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `source` varchar(255) DEFAULT NULL,
                     `contents` text,
                     `contents_en` text,
+                    `contents_raw` text,
+                    `contents_raw_en` text,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
                     `comments_count` bigint(20) unsigned DEFAULT NULL,
@@ -1505,6 +1521,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `author_id` bigint(20) unsigned,
                     `contents` text,
                     `contents_en` text,
+                    `contents_raw` text,
+                    `contents_raw_en` text,
                     `publish_time` datetime DEFAULT NULL,
                     `publish_status` enum('published','rejected','moderate') DEFAULT NULL,
 
@@ -1549,6 +1567,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `last_activity` datetime DEFAULT NULL,
                     `contents` text,
                     `contents_en` text,
+                    `contents_raw` text,
+                    `contents_raw_en` text,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
                     `comments_count` bigint(20) unsigned DEFAULT NULL,
