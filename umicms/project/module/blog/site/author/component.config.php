@@ -32,10 +32,6 @@ return [
             'rssViewer' => []
         ],
         IAclFactory::OPTION_RULES => [
-            'viewer' => [
-                'widget:profile' => [],
-                'widget:view' => []
-            ],
             'rssViewer' => [
                 'widget:rss' => [],
                 'controller:rss' => []
