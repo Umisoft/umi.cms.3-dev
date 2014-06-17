@@ -394,6 +394,25 @@ define(
         });
 
         /**
+         * Значение поля "сериализованный массив"
+         * DS.attr('serialized')
+         */
+        UMI.SerializedTransform = DS.Transform.extend({
+            serialize: function(deserialized){
+                if(deserialized){
+                    deserialized = JSON.stringify(deserialized);
+                }
+                return deserialized;
+            },
+            deserialize: function(serialized){
+                if(serialized){
+                    serialized = JSON.parse(serialized);
+                }
+                return serialized;
+            }
+        });
+
+        /**
          * Позволяет незарегестрированным типам полей объектов отрабатывать в системе без ошибок (просто возвращает это поле)
          * TODO Проверить все приходящие типы и подумать над необходимостью этих методов
          * DS.attr('raw')
