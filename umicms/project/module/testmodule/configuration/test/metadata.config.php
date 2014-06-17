@@ -64,15 +64,11 @@ return [
         TestObject::SELECT => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::SELECT],
         TestObject::MULTISELECT => [
             'type' => SerializedArrayField::TYPE,
-            'columnName' => TestObject::MULTISELECT,
-            'accessor' => 'getMultiSelectValue',
-            'mutator' => 'setMultiSelectValue'
+            'columnName' => TestObject::MULTISELECT
         ],
         TestObject::CHECKBOX_GROUP => [
             'type' => SerializedArrayField::TYPE,
             'columnName' => TestObject::CHECKBOX_GROUP,
-            'accessor' => 'getCheckboxGroupValue',
-            'mutator' => 'setCheckboxGroupValue'
         ],
         TestObject::RADIO => [
             'type' => IField::TYPE_STRING,
@@ -104,7 +100,11 @@ return [
                 TestObject::SELECT,
                 TestObject::PASSWORD,
                 TestObject::CHECKBOX,
-                
+
+                //TestObject::MULTISELECT,
+                TestObject::CHECKBOX_GROUP,
+                TestObject::RADIO,
+
                 TestObject::DATE,
                 TestObject::DATE_TIME,
                 TestObject::EMAIL,
