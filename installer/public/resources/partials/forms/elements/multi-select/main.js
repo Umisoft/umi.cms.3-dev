@@ -157,7 +157,7 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
                 if(this.get('isLazy')){
                     object.set(property, selectedIds);
                 } else{
-                    selectedIds = Ember.typeOf(selectedIds) === 'array' ? JSON.stringify(selectedIds) : '';
+                    selectedIds = Ember.typeOf(selectedIds) === 'array' ? JSON.stringify(selectedIds.sort()) : '';
                     selectedIds = selectedIds === '[]' ? '' : selectedIds;
                     object.set(property, selectedIds);
                 }
