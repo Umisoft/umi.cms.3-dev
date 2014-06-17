@@ -36,7 +36,7 @@ class SerializedArrayField extends BaseField
     public function preparePropertyValue(IObject $object, $internalDbValue)
     {
         if (is_null($internalDbValue)) {
-            return null;
+            return [];
         }
 
         @settype($internalDbValue, $this->getDataType());
