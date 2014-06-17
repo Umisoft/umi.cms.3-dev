@@ -26,7 +26,7 @@ class SettingsComponent extends AdminComponent
     const OPTION_SETTINGS_CONFIG_ALIAS = 'settingsConfigAlias';
 
     /**
-     * @var array $defaultOptions настройки компонента по умолчанию
+     * {@inheritdoc}
      */
     public $defaultOptions = [
 
@@ -69,15 +69,6 @@ class SettingsComponent extends AdminComponent
             ]
         ]
     ];
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct($name, $path, array $options = [])
-    {
-        $options = $this->mergeConfigOptions($options, $this->defaultOptions);
-        parent::__construct($name, $path, $options);
-    }
 
     /**
      * Возвращает алиас пути к настройкам, управляемым компонентом

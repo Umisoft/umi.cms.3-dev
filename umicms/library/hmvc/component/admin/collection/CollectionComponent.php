@@ -79,7 +79,7 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
     const ACTION_UNTRASH = 'untrash';
 
     /**
-     * @var array $defaultOptions настройки компонента по умолчанию
+     * {@inheritdoc}
      */
     public $defaultOptions = [
 
@@ -136,15 +136,6 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
             ]
         ]
     ];
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct($name, $path, array $options = [])
-    {
-        $options = $this->mergeConfigOptions($options, $this->defaultOptions);
-        parent::__construct($name, $path, $options);
-    }
 
     /**
      * {@inheritdoc}

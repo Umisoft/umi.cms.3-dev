@@ -26,20 +26,6 @@ abstract class BaseSitePageComponent extends SiteComponent implements ICollectio
     use TCollectionManagerAware;
 
     /**
-     * @var array $defaultOptions настройки компонента по умолчанию
-     */
-    public $defaultOptions = [];
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct($name, $path, array $options = [])
-    {
-        $options = $this->mergeConfigOptions($options, $this->defaultOptions);
-        parent::__construct($name, $path, $options);
-    }
-
-    /**
      * Возвращает URI страницы относительно компонента.
      * @param ICmsPage $page страница
      * @throws RuntimeException если невозможно получить URI
