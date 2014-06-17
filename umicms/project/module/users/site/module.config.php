@@ -8,50 +8,20 @@
  * file that was distributed with this source code.
  */
 
-use umi\acl\IAclFactory;
-use umi\route\IRouteFactory;
-use umicms\hmvc\component\site\SiteComponent;
+use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
+    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
 
-    SiteComponent::OPTION_COMPONENTS => [
+    SiteGroupComponent::OPTION_COMPONENTS => [
         'authorization' => '{#lazy:~/project/module/users/site/authorization/component.config.php}',
         'registration' => '{#lazy:~/project/module/users/site/registration/component.config.php}',
         'restoration' => '{#lazy:~/project/module/users/site/restoration/component.config.php}',
         'profile' => '{#lazy:~/project/module/users/site/profile/component.config.php}',
     ],
 
-    SiteComponent::OPTION_CONTROLLERS => [
-        'index' => 'umicms\hmvc\component\site\SiteStructurePageController'
-    ],
-
-    SiteComponent::OPTION_ACL => [
-        IAclFactory::OPTION_ROLES => [
-            'viewer' => []
-        ],
-        IAclFactory::OPTION_RULES => [
-            'viewer' => [
-                'controller:index' => []
-            ]
-        ]
-    ],
-
-    SiteComponent::OPTION_VIEW        => [
+    SiteGroupComponent::OPTION_VIEW        => [
         'directories' => ['module/users']
-    ],
-
-    SiteComponent::OPTION_ROUTES      => [
-
-        'component' => [
-            'type' => 'SiteComponentRoute'
-        ],
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'index'
-            ]
-        ]
     ]
 ];

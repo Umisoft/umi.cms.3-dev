@@ -21,7 +21,7 @@ use umicms\hmvc\component\admin\AdminComponent;
 class SettingsGroupComponent extends AdminComponent
 {
     /**
-     * @var array $defaultOptions настройки компонента по умолчанию
+     * {@inheritdoc}
      */
     public $defaultOptions = [
 
@@ -44,15 +44,6 @@ class SettingsGroupComponent extends AdminComponent
             ]
         ]
     ];
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct($name, $path, array $options = [])
-    {
-        $options = $this->mergeConfigOptions($options, $this->defaultOptions);
-        parent::__construct($name, $path, $options);
-    }
 
     /**
      * {@inheritdoc}

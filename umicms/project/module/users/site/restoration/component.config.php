@@ -11,52 +11,33 @@
 namespace umicms\project\module\users\site\restoration;
 
 use umi\acl\IAclFactory;
-use umi\route\IRouteFactory;
-use umicms\hmvc\component\site\SiteComponent;
+use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
+    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
 
-    SiteComponent::OPTION_COMPONENTS => [
+    SiteGroupComponent::OPTION_COMPONENTS => [
         'confirmation' => '{#lazy:~/project/module/users/site/restoration/confirmation/component.config.php}'
     ],
 
-    SiteComponent::OPTION_CONTROLLERS => [
+    SiteGroupComponent::OPTION_CONTROLLERS => [
         'index' => __NAMESPACE__ . '\controller\IndexController',
     ],
 
-    SiteComponent::OPTION_WIDGET => [
+    SiteGroupComponent::OPTION_WIDGET => [
         'link' => __NAMESPACE__ . '\widget\LinkWidget',
         'form' => __NAMESPACE__ . '\widget\FormWidget',
     ],
 
-    SiteComponent::OPTION_VIEW => [
+    SiteGroupComponent::OPTION_VIEW => [
         'directories' => ['module/users/restoration']
     ],
 
-    SiteComponent::OPTION_ACL => [
-        IAclFactory::OPTION_ROLES => [
-            'viewer' => [],
-        ],
+    SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_RULES => [
             'viewer' => [
-                'controller:index' => [],
-                'widget:link' => [],
-                'widget:form' => []
-            ]
-        ]
-    ],
-
-    SiteComponent::OPTION_ROUTES      => [
-        'component' => [
-            'type' => 'SiteComponentRoute'
-        ],
-
-        'index' => [
-            'type' => IRouteFactory::ROUTE_SIMPLE,
-            'defaults' => [
-                'controller' => 'index'
+                'controller:index' => []
             ]
         ]
     ]

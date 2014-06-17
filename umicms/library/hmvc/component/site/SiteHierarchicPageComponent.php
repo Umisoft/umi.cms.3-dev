@@ -20,7 +20,7 @@ use umi\route\IRouteFactory;
 class SiteHierarchicPageComponent extends BaseSitePageComponent
 {
     /**
-     * @var array $defaultOptions настройки компонента по умолчанию
+     * {@inheritdoc}
      */
     public $defaultOptions = [
 

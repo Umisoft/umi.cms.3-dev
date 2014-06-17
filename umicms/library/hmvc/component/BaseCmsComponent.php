@@ -35,10 +35,25 @@ abstract class BaseCmsComponent extends Component implements IAclResource
      * Константа для формирования имен ролей для дочерних компонентов
      */
     const EXECUTOR_ROLE_SUFFIX = 'Executor';
+
+    /**
+     * @var array $defaultOptions настройки компонента по умолчанию
+     */
+    public $defaultOptions = [];
+
     /**
      * @var IAclManager $aclManager менеджер ACL
      */
     private $aclManager;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct($name, $path, array $options = [])
+    {
+        $options = $this->mergeConfigOptions($options, $this->defaultOptions);
+        parent::__construct($name, $path, $options);
+    }
 
     /**
      * {@inheritdoc}

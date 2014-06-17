@@ -14,9 +14,9 @@ use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 
 /**
- * Компонент для вывода простых страниц на сайте.
+ * Компонент сайта, имеющий дочерние компоненты.
  */
-class SitePageComponent extends BaseSitePageComponent
+class SiteGroupComponent extends SiteComponent
 {
     /**
      * {@inheritdoc}
@@ -24,40 +24,31 @@ class SitePageComponent extends BaseSitePageComponent
     public $defaultOptions = [
 
         self::OPTION_CONTROLLERS => [
-            'index' => 'umicms\hmvc\component\site\SiteStructurePageController',
-            'page' => 'umicms\hmvc\component\site\SitePageController'
+            'index' => 'umicms\hmvc\component\site\SiteStructurePageController'
         ],
 
         self::OPTION_ACL => [
             IAclFactory::OPTION_ROLES => [
-                'viewer' => [],
+                'viewer' => []
             ],
             IAclFactory::OPTION_RULES => [
                 'viewer' => [
-                    'controller:index' => [],
-                    'controller:page' => []
+                    'controller:index' => []
                 ]
             ]
         ],
 
-        self::OPTION_ROUTES      => [
-            'page' => [
-                'type'     => IRouteFactory::ROUTE_SIMPLE,
-                'priority'  => 100,
-                'route'    => '/{uri}',
-                'defaults' => [
-                    'controller' => 'page'
-                ]
+        SiteComponent::OPTION_ROUTES      => [
+            'component' => [
+                'type' => 'SiteComponentRoute'
             ],
             'index' => [
                 'type' => IRouteFactory::ROUTE_FIXED,
-                'priority'  => 200,
                 'defaults' => [
                     'controller' => 'index'
                 ]
             ]
         ]
     ];
-
 }
  
