@@ -11,6 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
+use umicms\filter\HtmlPurifier;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
 
@@ -126,9 +127,22 @@ return [
         BlogAuthor::FIELD_PAGE_CONTENTS => [
             'type' => IField::TYPE_TEXT,
             'columnName' => 'contents',
+            'mutator' => 'setContents',
+            'filters' => [
+                HtmlPurifier::TYPE => []
+            ],
             'localizations' => [
                 'ru-RU' => ['columnName' => 'contents'],
                 'en-US' => ['columnName' => 'contents_en']
+            ]
+        ],
+        BlogAuthor::FIELD_PAGE_CONTENTS_RAW => [
+            'type' => IField::TYPE_TEXT,
+            'columnName' => 'contents_raw',
+            'mutator' => 'setContents',
+            'localizations' => [
+                'ru-RU' => ['columnName' => 'contents_raw'],
+                'en-US' => ['columnName' => 'contents_raw_en']
             ]
         ],
         BlogAuthor::FIELD_PAGE_LAYOUT => [
@@ -173,6 +187,7 @@ return [
                 BlogAuthor::FIELD_PAGE_LAYOUT,
                 BlogAuthor::FIELD_PAGE_SLUG,
                 BlogAuthor::FIELD_PAGE_CONTENTS,
+                BlogAuthor::FIELD_PAGE_CONTENTS_RAW,
                 BlogAuthor::FIELD_PROFILE,
                 BlogAuthor::FIELD_POSTS_COUNT,
                 BlogAuthor::FIELD_COMMENTS_COUNT,

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\author\widget;
+namespace umicms\project\module\blog\site\author\view\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseCmsWidget;
@@ -18,7 +18,7 @@ use umicms\project\module\blog\model\object\BlogAuthor;
 /**
  * Виджет вывода авторов.
  */
-class BlogAuthorWidget extends BaseCmsWidget
+class AuthorWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

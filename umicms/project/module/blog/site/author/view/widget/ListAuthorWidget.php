@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\author\widget;
+namespace umicms\project\module\blog\site\author\view\widget;
 
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\model\BlogModule;
@@ -16,7 +16,7 @@ use umicms\project\module\blog\model\BlogModule;
 /**
  * Виджет для вывода списка авторов.
  */
-class BlogAuthorListWidget extends BaseListWidget
+class ListAuthorWidget extends BaseListWidget
 {
     /**
      * @var BlogModule $module модуль "Блоги"

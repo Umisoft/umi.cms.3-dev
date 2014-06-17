@@ -168,7 +168,7 @@ class UrlManager implements IUrlManager, ILocalizable
                     [
                         'guid' => $page->getGUID(),
                         'path' => $component->getPath(),
-                        'class' => 'umicms\hmvc\component\site\BaseDefaultSitePageComponent'
+                        'class' => 'umicms\hmvc\component\site\BaseSitePageComponent'
                     ]
                 )
             );

@@ -52,7 +52,7 @@ return [
                     'type' => Wysiwyg::TYPE_NAME,
                     'label' => BlogAuthor::FIELD_PAGE_CONTENTS,
                     'options' => [
-                        'dataSource' => BlogAuthor::FIELD_PAGE_CONTENTS
+                        'dataSource' => BlogAuthor::FIELD_PAGE_CONTENTS_RAW
                     ]
                 ]
             ],
