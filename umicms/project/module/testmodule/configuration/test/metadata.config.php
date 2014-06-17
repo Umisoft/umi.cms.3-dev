@@ -101,7 +101,7 @@ return [
                 TestObject::PASSWORD,
                 TestObject::CHECKBOX,
 
-                //TestObject::MULTISELECT,
+                TestObject::MULTISELECT,
                 TestObject::CHECKBOX_GROUP,
                 TestObject::RADIO,
 
