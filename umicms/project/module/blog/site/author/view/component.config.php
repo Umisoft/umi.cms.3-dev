@@ -11,7 +11,6 @@
 namespace umicms\project\module\blog\site\author\view;
 
 use umi\acl\IAclFactory;
-use umi\route\IRouteFactory;
 use umicms\hmvc\component\site\SitePageComponent;
 
 return [
@@ -46,13 +45,5 @@ return [
     ],
     SitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/author/view'],
-    ],
-    SitePageComponent::OPTION_ROUTES => [
-        'index' => [
-            'type' => IRouteFactory::ROUTE_SIMPLE,
-            'defaults' => [
-                'controller' => 'index'
-            ]
-        ]
     ]
 ];

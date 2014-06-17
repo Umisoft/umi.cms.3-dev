@@ -37,7 +37,8 @@ class IndexController extends BaseSitePageController
         return $this->createViewResponse(
             'index',
             [
-                'page' => $this->api->getCurrentAuthor()
+                'page' => $this->getCurrentPage(),
+                'author' => $this->api->getCurrentAuthor()
             ]
         );
     }

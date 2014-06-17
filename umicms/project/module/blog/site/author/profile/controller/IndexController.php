@@ -14,7 +14,7 @@ use umi\form\IForm;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\component\BaseCmsController;
+use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\hmvc\component\site\TFormController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogAuthor;
@@ -22,7 +22,7 @@ use umicms\project\module\blog\model\object\BlogAuthor;
 /**
  * Контроллер редактирования профиля автора блога.
  */
-class IndexController extends BaseCmsController implements IObjectPersisterAware
+class IndexController extends BaseSitePageController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;
@@ -79,7 +79,8 @@ class IndexController extends BaseCmsController implements IObjectPersisterAware
     protected function buildResponseContent()
     {
         return [
-            'success' => $this->success
+            'success' => $this->success,
+            'page' => $this->getCurrentPage()
         ];
     }
 }
