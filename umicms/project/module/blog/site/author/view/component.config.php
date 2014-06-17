@@ -18,28 +18,18 @@ return [
     SitePageComponent::OPTION_COLLECTION_NAME => 'blogAuthor',
     SitePageComponent::OPTION_CONTROLLERS => [
         'index' => __NAMESPACE__ . '\controller\IndexController',
-        'rss' => __NAMESPACE__ . '\controller\RssController',
     ],
     SitePageComponent::OPTION_WIDGET => [
         'author' => __NAMESPACE__ . '\widget\AuthorWidget',
         'list' => __NAMESPACE__ . '\widget\ListAuthorWidget',
         'posts' => __NAMESPACE__ . '\widget\ListPostWidget',
-        'rss' => __NAMESPACE__ . '\widget\ListRssLinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
-        IAclFactory::OPTION_ROLES => [
-            'viewer' => [],
-            'rssViewer' => [],
-        ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'widget:view' => [],
                 'widget:list' => [],
                 'widget:posts' => [],
-            ],
-            'rssViewer' => [
-                'controller:rss' => [],
-                'widget:rss' => []
             ]
         ]
     ],

@@ -33,7 +33,6 @@ class IndexController extends BaseSitePageController
      */
     public function __invoke()
     {
-        // todo: добавить проверку существования текущего автора, если он отсутствует - создать нового
         return $this->createViewResponse(
             'index',
             [

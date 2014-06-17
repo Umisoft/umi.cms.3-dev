@@ -10,13 +10,12 @@
 
 namespace umicms\project\module\blog\site\author\profile\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет для вывода URL на редактирование профиля автора.
  */
-class EditLinkWidget extends BaseLinkWidget implements IAclResource
+class EditLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}
