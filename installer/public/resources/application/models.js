@@ -218,6 +218,9 @@ define([], function(){
                         case 'dateTime':
                             fieldValue = DS.attr('CustomDateTime', params);
                             break;
+                        case 'time':
+                            fieldValue = DS.attr('string', params);
+                            break;
                         case 'belongsToRelation':
                             params.async = true;
                             //TODO: инверсия избыточна, но DS почему то без неё не может
