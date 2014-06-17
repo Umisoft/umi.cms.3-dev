@@ -1,13 +1,14 @@
 <?php
 namespace umicms\orm\metadata\field;
 
-use umi\orm\metadata\field\string\StringField;
-use umi\orm\metadata\field\TScalarField;
+use umi\orm\metadata\field\BaseField;
+use umi\orm\object\IObject;
 
-class SerializedArrayField extends StringField
+/**
+ * Класс поля для массивов.
+ */
+class SerializedArrayField extends BaseField
 {
-    use TScalarField;
-
     /**
      * Тип поля
      */
@@ -18,8 +19,36 @@ class SerializedArrayField extends StringField
      */
     public function getDataType()
     {
-        return self::TYPE;
+        return 'string';
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function validateInputPropertyValue($propertyValue)
+    {
+        return is_array($propertyValue);
+    }
+
+    /**
+     * @see IField::preparePropertyValue()
+     */
+    public function preparePropertyValue(IObject $object, $internalDbValue)
+    {
+        if (is_null($internalDbValue)) {
+            return null;
+        }
+
+        @settype($internalDbValue, $this->getDataType());
+
+        return unserialize($internalDbValue);
+    }
+
+    /**
+     * @see IField::prepareDbValue()
+     */
+    public function prepareDbValue(IObject $object, $propertyValue)
+    {
+        return serialize($propertyValue);
+    }
 }
- 
