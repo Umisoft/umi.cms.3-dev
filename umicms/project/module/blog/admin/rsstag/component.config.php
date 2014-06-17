@@ -8,11 +8,10 @@
  * file that was distributed with this source code.
  */
 
-use umi\orm\collection\ICollectionFactory;
+use umicms\hmvc\component\admin\collection\CollectionComponent;
 
 return [
-    'type' => ICollectionFactory::TYPE_SIMPLE,
-    'handlers' => [
-        'admin' => 'news.itemsubject'
-    ]
+    CollectionComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\collection\CollectionComponent',
+    CollectionComponent::OPTION_COLLECTION_NAME => 'rssBlogTag',
+    CollectionComponent::OPTION_SKIP_IN_DOCK => true
 ];

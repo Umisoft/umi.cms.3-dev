@@ -112,13 +112,6 @@ return [
             'relatedField' => 'subject',
             'targetField'  => 'newsItem',
         ],
-        NewsSubject::FIELD_RSS => [
-            'type'         => IField::TYPE_MANY_TO_MANY,
-            'target'       => 'newsRssImportScenario',
-            'bridge'       => 'rssScenarioSubject',
-            'relatedField' => 'subject',
-            'targetField'  => 'newsRssImportScenario',
-        ],
         NewsSubject::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
@@ -151,7 +144,6 @@ return [
                 NewsSubject::FIELD_PAGE_LAYOUT,
                 NewsSubject::FIELD_PAGE_SLUG,
                 NewsSubject::FIELD_NEWS,
-                NewsSubject::FIELD_RSS,
                 NewsSubject::FIELD_OWNER,
                 NewsSubject::FIELD_EDITOR
             ]

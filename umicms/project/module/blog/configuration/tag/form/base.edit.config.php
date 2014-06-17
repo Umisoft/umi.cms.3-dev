@@ -84,15 +84,7 @@ return [
                     'options' => [
                         'dataSource' => BlogTag::FIELD_PAGE_CONTENTS
                     ]
-                ],
-
-                'rssImportItem' => [
-                    'type' => MultiSelect::TYPE_NAME,
-                    'label' => BlogTag::FIELD_RSS,
-                    'options' => [
-                        'dataSource' => BlogTag::FIELD_RSS
-                    ]
-                ],
+                ]
             ]
         ]
     ]
