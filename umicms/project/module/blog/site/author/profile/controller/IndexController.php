@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\author\controller;
+namespace umicms\project\module\blog\site\author\profile\controller;
 
 use umi\form\IForm;
 use umi\orm\metadata\IObjectType;
@@ -22,7 +22,7 @@ use umicms\project\module\blog\model\object\BlogAuthor;
 /**
  * Контроллер редактирования профиля автора блога.
  */
-class ProfileEditController extends BaseCmsController implements IObjectPersisterAware
+class IndexController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;

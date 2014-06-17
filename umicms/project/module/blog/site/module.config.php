@@ -15,9 +15,7 @@ use umi\route\IRouteFactory;
 use umicms\hmvc\component\site\SiteComponent;
 
 return [
-
     SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
-
     SiteComponent::OPTION_COMPONENTS => [
         'post' => '{#lazy:~/project/module/blog/site/post/component.config.php}',
         'draft' => '{#lazy:~/project/module/blog/site/draft/component.config.php}',
@@ -28,11 +26,9 @@ return [
         'tag' => '{#lazy:~/project/module/blog/site/tag/component.config.php}',
         'comment' => '{#lazy:~/project/module/blog/site/comment/component.config.php}'
     ],
-
     SiteComponent::OPTION_CONTROLLERS => [
         'index' => 'umicms\hmvc\component\site\SiteStructurePageController'
     ],
-
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
@@ -67,12 +63,10 @@ return [
             ]
         ]
     ],
-
     SiteComponent::OPTION_VIEW => [
         'directories' => ['module/blog'],
     ],
-
-    SiteComponent::OPTION_ROUTES      => [
+    SiteComponent::OPTION_ROUTES => [
 
         'component' => [
             'type' => 'SiteComponentRoute'

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\author\widget;
+namespace umicms\project\module\blog\site\author\profile\widget;
 
 use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
@@ -21,14 +21,14 @@ class EditLinkWidget extends BaseLinkWidget implements IAclResource
     /**
      * {@inheritdoc}
      */
-    public $template = 'editProfileLink';
+    public $template = 'editLink';
 
     /**
      * {@inheritdoc}
      */
     protected function getLinkUrl()
     {
-        return $this->getUrl('edit');
+        return $this->getUrl('index');
     }
 }
  

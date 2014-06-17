@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\author\controller;
+namespace umicms\project\module\blog\site\author\view\controller;
 
 use umi\http\Response;
 use umicms\hmvc\component\BaseCmsController;
@@ -20,7 +20,7 @@ use umicms\project\site\config\TSiteSettingsAware;
 /**
  * Контроллер вывода RSS-ленты автора.
  */
-class BlogAuthorRssController extends BaseCmsController implements ISiteSettingsAware
+class RssController extends BaseCmsController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 
