@@ -23,11 +23,8 @@ define(['App', 'text!./checkboxGroupElement.hbs', 'text!./checkboxGroupCollectio
                 var $el = this.$();
                 if($el){
                     var checkboxes = $el.find('input[type="checkbox"]');
-                    var objectValue = this.get('object.' + self.get('meta.dataSource')) || "";
-                    objectValue = objectValue.split(',') || [];
-                    if(Ember.typeOf(objectValue) !== 'array'){
-                        objectValue = [];
-                    }
+                    var objectValue = this.get('object.' + self.get('meta.dataSource')) || "[]";
+                    objectValue = JSON.parse(objectValue);
                     for(var i = 0; i < checkboxes.length; i++){
                         checkboxes[i].checked = objectValue.contains(checkboxes[i].value);
                     }
@@ -54,8 +51,8 @@ define(['App', 'text!./checkboxGroupElement.hbs', 'text!./checkboxGroupCollectio
                     var name = Ember.get(meta, 'attributes.name');
                     var value = Ember.get(this, 'context.attributes.value');
                     var isChecked;
-                    var objectValue = Ember.get(object, Ember.get(meta, 'dataSource')) || "";
-                    objectValue = objectValue.split(',') || [];
+                    var objectValue = Ember.get(object, Ember.get(meta, 'dataSource')) || "[]";
+                    objectValue = JSON.parse(objectValue);
                     if(objectValue.contains(value)){
                         isChecked = true;
                     }
@@ -75,14 +72,14 @@ define(['App', 'text!./checkboxGroupElement.hbs', 'text!./checkboxGroupCollectio
                         var object = self.get('parentView.object');
                         var meta = self.get('parentView.meta');
                         var propertyName = Ember.get(meta, 'dataSource');
-                        var objectValue = Ember.get(object, propertyName) || "";
-                        objectValue = objectValue.split(',') || [];
+                        var objectValue = Ember.get(object, propertyName) || "[]";
+                        objectValue = JSON.parse(objectValue);
                         if(objectValue.contains(value)){
                             objectValue = objectValue.without(value);
-                            Ember.set(object, propertyName, objectValue.join(','));
+                            Ember.set(object, propertyName, JSON.stringify(objectValue));
                         } else{
                             objectValue.push(value);
-                            Ember.set(object, propertyName, objectValue.join(','));
+                            Ember.set(object, propertyName, JSON.stringify(objectValue));
                         }
                     }
                 }

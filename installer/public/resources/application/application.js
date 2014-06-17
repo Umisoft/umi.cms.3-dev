@@ -398,15 +398,19 @@ define(
          * DS.attr('serialized')
          */
         UMI.SerializedTransform = DS.Transform.extend({
-            serialize: function(deserialized){
+            deserialize: function(deserialized){
                 if(deserialized){
                     deserialized = JSON.stringify(deserialized);
+                } else{
+                    deserialized = '';
                 }
                 return deserialized;
             },
-            deserialize: function(serialized){
+            serialize: function(serialized){
                 if(serialized){
                     serialized = JSON.parse(serialized);
+                } else{
+                    serialized = null;
                 }
                 return serialized;
             }
