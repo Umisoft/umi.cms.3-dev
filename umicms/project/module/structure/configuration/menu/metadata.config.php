@@ -10,10 +10,10 @@ use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\structure\api\object\BaseMenu;
-use umicms\project\module\structure\api\object\Menu;
-use umicms\project\module\structure\api\object\MenuExternalItem;
-use umicms\project\module\structure\api\object\MenuInternalItem;
+use umicms\project\module\structure\model\object\BaseMenu;
+use umicms\project\module\structure\model\object\Menu;
+use umicms\project\module\structure\model\object\MenuExternalItem;
+use umicms\project\module\structure\model\object\MenuInternalItem;
 
 return [
     'dataSource' => [
@@ -143,14 +143,14 @@ return [
             'type' => IField::TYPE_OBJECT_RELATION,
             'columnName' => 'page_relation'
         ],
-        MenuExternalItem::FIELD_URL_RESOURCE => [
+        MenuExternalItem::FIELD_RESOURCE_URL => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'url_resource'
         ]
     ],
     'types' => [
         IObjectType::BASE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\BaseMenu',
+            'objectClass' => 'umicms\project\module\structure\model\object\BaseMenu',
             'fields' => [
                 BaseMenu::FIELD_IDENTIFY,
                 BaseMenu::FIELD_GUID,
@@ -173,7 +173,7 @@ return [
             ]
         ],
         Menu::TYPE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\Menu',
+            'objectClass' => 'umicms\project\module\structure\model\object\Menu',
             'fields' => [
                 Menu::FIELD_IDENTIFY,
                 Menu::FIELD_GUID,
@@ -183,7 +183,6 @@ return [
                 Menu::FIELD_PARENT,
                 Menu::FIELD_NAME,
                 Menu::FIELD_DISPLAY_NAME,
-                Menu::FIELD_PARENT,
                 Menu::FIELD_MPATH,
                 Menu::FIELD_SLUG,
                 Menu::FIELD_URI,
@@ -198,7 +197,7 @@ return [
             ]
         ],
         MenuInternalItem::TYPE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\MenuInternalItem',
+            'objectClass' => 'umicms\project\module\structure\model\object\MenuInternalItem',
             'fields' => [
                 MenuInternalItem::FIELD_IDENTIFY,
                 MenuInternalItem::FIELD_GUID,
@@ -207,7 +206,6 @@ return [
                 MenuInternalItem::FIELD_ACTIVE,
                 MenuInternalItem::FIELD_PARENT,
                 MenuInternalItem::FIELD_DISPLAY_NAME,
-                MenuInternalItem::FIELD_PARENT,
                 MenuInternalItem::FIELD_MPATH,
                 MenuInternalItem::FIELD_SLUG,
                 MenuInternalItem::FIELD_URI,
@@ -223,7 +221,7 @@ return [
             ]
         ],
         MenuExternalItem::TYPE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\MenuExternalItem',
+            'objectClass' => 'umicms\project\module\structure\model\object\MenuExternalItem',
             'fields' => [
                 MenuExternalItem::FIELD_IDENTIFY,
                 MenuExternalItem::FIELD_GUID,
@@ -232,7 +230,6 @@ return [
                 MenuExternalItem::FIELD_ACTIVE,
                 MenuExternalItem::FIELD_PARENT,
                 MenuExternalItem::FIELD_DISPLAY_NAME,
-                MenuExternalItem::FIELD_PARENT,
                 MenuExternalItem::FIELD_MPATH,
                 MenuExternalItem::FIELD_SLUG,
                 MenuExternalItem::FIELD_URI,
@@ -244,7 +241,7 @@ return [
                 MenuExternalItem::FIELD_CHILDREN,
                 MenuExternalItem::FIELD_OWNER,
                 MenuExternalItem::FIELD_EDITOR,
-                MenuExternalItem::FIELD_URL_RESOURCE
+                MenuExternalItem::FIELD_RESOURCE_URL
             ]
         ],
 

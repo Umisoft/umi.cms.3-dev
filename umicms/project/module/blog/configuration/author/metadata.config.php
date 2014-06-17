@@ -12,8 +12,8 @@ use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
 use umicms\filter\HtmlPurifier;
-use umicms\project\module\blog\api\object\BlogAuthor;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\object\BlogAuthor;
+use umicms\project\module\blog\model\object\BlogPost;
 
 return [
     'dataSource' => [
@@ -114,7 +114,11 @@ return [
         ],
         BlogAuthor::FIELD_PAGE_H1 => [
             'type' => IField::TYPE_STRING,
-            'columnName' => 'h1'
+            'columnName' => 'h1',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => [],
+                IFilterFactory::TYPE_STRIP_TAGS => []
+            ]
         ],
         BlogAuthor::FIELD_LAST_ACTIVITY => [
             'type' => IField::TYPE_DATE_TIME,
@@ -163,7 +167,7 @@ return [
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\blog\api\object\BlogAuthor',
+            'objectClass' => 'umicms\project\module\blog\model\object\BlogAuthor',
             'fields' => [
                 BlogAuthor::FIELD_IDENTIFY,
                 BlogAuthor::FIELD_GUID,

@@ -13,7 +13,7 @@ use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
-    'class' => 'umicms\project\module\blog\api\collection\BlogCategoryCollection',
+    'class' => 'umicms\project\module\blog\model\collection\BlogCategoryCollection',
     'handlers' => [
         'admin' => 'blog.category',
         'site' => 'blog.category'

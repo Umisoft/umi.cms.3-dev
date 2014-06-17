@@ -15,23 +15,23 @@ use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\site\controller\TFormController;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\hmvc\component\site\TFormController;
 
 /**
  * Контроллер редактирования черновика блога.
  */
-class BlogEditDraftController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class BlogEditDraftController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
     /**
      * @var bool $success флаг указывающий на успешное сохранение изменений
      */
@@ -39,11 +39,11 @@ class BlogEditDraftController extends BaseAccessRestrictedController implements 
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -59,7 +59,7 @@ class BlogEditDraftController extends BaseAccessRestrictedController implements 
      */
     protected function buildForm()
     {
-        $blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
+        $blogDraft = $this->module->post()->getDraftById($this->getRouteVar('id'));
 
         if (!$this->isAllowed($blogDraft)) {
             throw new ResourceAccessForbiddenException(
@@ -68,7 +68,7 @@ class BlogEditDraftController extends BaseAccessRestrictedController implements 
             );
         }
 
-        return $this->api->post()->getForm(
+        return $this->module->post()->getForm(
             BlogPost::FORM_EDIT_POST,
             IObjectType::BASE,
             $blogDraft

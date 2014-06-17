@@ -13,13 +13,13 @@ namespace umicms\project\module\search\site\widget;
 use umi\form\Form;
 use umi\http\Request;
 use umi\http\THttpAware;
-use umicms\hmvc\widget\BaseWidget;
-use umicms\project\module\search\api\SearchApi;
+use umicms\hmvc\widget\BaseCmsWidget;
+use umicms\project\module\search\model\SearchApi;
 
 /**
  * Виджет, выводящий форму поиска.
  */
-class SearchWidget extends BaseWidget
+class SearchWidget extends BaseCmsWidget
 {
     /**
      * Имя формы
@@ -37,7 +37,7 @@ class SearchWidget extends BaseWidget
     public $query;
 
     /**
-     * @var SearchApi $api API модуля "Поиск"
+     * @var SearchApi $api модуль "Поиск"
      */
     protected $api;
 
@@ -49,7 +49,7 @@ class SearchWidget extends BaseWidget
 
     /**
      * Конструктор.
-     * @param SearchApi $searchApi API модуля "Поиск"
+     * @param SearchApi $searchApi модуль "Поиск"
      * @param Request $request
      */
     public function __construct(SearchApi $searchApi, Request $request)

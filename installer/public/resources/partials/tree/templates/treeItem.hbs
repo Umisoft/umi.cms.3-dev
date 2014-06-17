@@ -1,0 +1,41 @@
+<div {{bind-attr class=":umi-item view.active view.inActive"}}>
+    {{#if childCount}}
+        <span {{action "expanded" on="mouseDown" target="view"}} {{bind-attr class=":umi-expand"}}>
+            {{#if view.isExpanded}}
+                {{#if sortedChildren}}
+                    <i {{bind-attr class=":icon view.isExpanded:icon-bottom:icon-right"}}></i>
+                {{else}}
+                    <i class="animate animate-loader-20"></i>
+                {{/if}}
+            {{else}}
+                <i {{bind-attr class=":icon view.isExpanded:icon-bottom:icon-right"}}></i>
+            {{/if}}
+        </span>
+        <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document root::move"}}></i>
+    {{else}}
+        <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document root::move"}}></i>
+    {{/if}}
+
+    {{#link-to "action" id "editForm" class="tree-item-link"}}
+        {{view.savedDisplayName}}
+    {{/link-to}}
+
+    {{#if controllers.treeControl.contextToolbar}}
+        {{#view "treeControlContextToolbar" elements=controllers.treeControl.contextToolbar}}
+            {{#each view.elements}}
+                {{view view.elementView}}
+            {{/each}}
+        {{/view}}
+    {{/if}}
+
+</div>
+
+{{#if childCount}}
+    {{#if view.isExpanded}}
+        <ul class="umi-tree-list" data-parent-id="{{unbound id}}">
+            {{#each sortedChildren itemController="treeItem"}}
+                {{view "treeItem" treeControlView=view.treeControlView}}
+            {{/each}}
+        </ul>
+    {{/if}}
+{{/if}}

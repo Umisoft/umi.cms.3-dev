@@ -10,7 +10,10 @@
 
 namespace umicms\hmvc\toolbox;
 
+use SplDoublyLinkedList;
+use SplStack;
 use umi\hmvc\toolbox\HmvcTools as FrameworkHmvcTools;
+use umicms\hmvc\callstack\IPageCallStackAware;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManager;
 use umicms\hmvc\url\IUrlManagerAware;
@@ -25,18 +28,21 @@ class HmvcTools extends FrameworkHmvcTools
      * @var string $urlManagerClass имя класса URL-менеджера
      */
     public $urlManagerClass = 'umicms\hmvc\url\UrlManager';
-
     /**
      * {@inheritdoc}
      */
     public $dispatcherClass = 'umicms\hmvc\dispatcher\CmsDispatcher';
 
     /**
+     * @var SplStack $pageCallStack стек вызова страниц
+     */
+    protected $pageCallStack;
+
+    /**
      * {@inheritdoc}
      */
     public function getService($serviceInterfaceName, $concreteClassName)
     {
-
         if ($serviceInterfaceName == 'umicms\hmvc\url\IUrlManager') {
             return $this->getUrlManager();
         }
@@ -51,6 +57,10 @@ class HmvcTools extends FrameworkHmvcTools
     {
         if ($object instanceof IUrlManagerAware) {
             $object->setUrlManager($this->getUrlManager());
+        }
+
+        if ($object instanceof IPageCallStackAware) {
+            $object->setPageCallStack($this->getPageCallStack());
         }
 
         parent::injectDependencies($object);
@@ -80,6 +90,20 @@ class HmvcTools extends FrameworkHmvcTools
             ['umicms\hmvc\url\IUrlManager']
         )
             ->createSingleInstance();
+    }
+
+    /**
+     * Возвращает стек вызова страниц
+     * @return SplStack
+     */
+    protected function getPageCallStack()
+    {
+        if (!$this->pageCallStack) {
+            $this->pageCallStack = new SplStack();
+            $this->pageCallStack->setIteratorMode(SplDoublyLinkedList::IT_MODE_LIFO);
+        }
+
+        return $this->pageCallStack;
     }
 
 }

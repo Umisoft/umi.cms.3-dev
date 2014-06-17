@@ -4,7 +4,7 @@ use umi\filter\IFilterFactory;
 use umi\form\element\CSRF;
 use umi\form\element\Submit;
 use umi\form\element\Text;
-use umicms\project\module\users\api\object\AuthorizedUser;
+use umicms\project\module\users\model\object\AuthorizedUser;
 
 return [
 

@@ -94,8 +94,8 @@ return [
                 'defaultHierarchicObjectClass' => 'umicms\orm\object\CmsHierarchicObject'
             ],
             'objectCollection' => [
-                'defaultSimpleCollectionClass' => 'umicms\orm\collection\SimpleCollection',
-                'defaultHierarchicCollectionClass' => 'umicms\orm\collection\SimpleHierarchicCollection'
+                'defaultSimpleCollectionClass' => 'umicms\orm\collection\CmsCollection',
+                'defaultHierarchicCollectionClass' => 'umicms\orm\collection\CmsHierarchicCollection'
             ],
             'selector' => [
                 'selectorClass' => 'umicms\orm\selector\CmsSelector'

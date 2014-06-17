@@ -10,9 +10,9 @@
 
 namespace umicms\project\module\service\admin\backup;
 
-use umicms\project\admin\api\component\DefaultAdminComponent;
+use umicms\hmvc\component\admin\collection\CollectionComponent;
 
 return [
-    DefaultAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultAdminComponent',
-    DefaultAdminComponent::OPTION_COLLECTION_NAME => 'serviceBackup'
+    CollectionComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\collection\CollectionComponent',
+    CollectionComponent::OPTION_COLLECTION_NAME => 'serviceBackup'
 ];

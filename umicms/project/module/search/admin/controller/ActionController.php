@@ -10,17 +10,20 @@
 
 namespace umicms\project\module\search\admin\controller;
 
-use umi\http\Response;
-use umicms\project\admin\api\controller\DefaultRestActionController;
-use umicms\project\module\search\api\SearchApi;
+use umi\orm\objectset\IObjectSet;
+use umicms\hmvc\component\admin\BaseController;
+use umicms\hmvc\component\admin\TActionController;
+use umicms\project\module\search\model\SearchApi;
 
 /**
- * Контроллер Read-Update-Delete операций над объектом.
+ * Контроллер действий.
  */
-class ActionController extends DefaultRestActionController
+class ActionController extends BaseController
 {
+    use TActionController;
+
     /**
-     * @var SearchApi $api
+     * @var SearchApi $module
      */
     protected $api;
 
@@ -34,32 +37,17 @@ class ActionController extends DefaultRestActionController
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function getQueryActions()
-    {
-        return ['search'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getModifyActions()
-    {
-        return [];
-    }
-
-    /**
-     * @return Response
+     * Возвращает результат поиска.
+     * @return IObjectSet
      */
     protected function actionSearch()
     {
         $query = $this->getQueryVar('query');
 
-        $resultSet = [];
+        $result = [];
         if (!is_null($query)) {
-            $resultSet = $this->api->search($query);
+            $result = $this->api->search($query);
         }
-        return $resultSet;
+        return $result;
     }
 }

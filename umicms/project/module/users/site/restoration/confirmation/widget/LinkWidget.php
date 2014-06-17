@@ -10,13 +10,12 @@
 
 namespace umicms\project\module\users\site\restoration\confirmation\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет вывода ссылки на подтверждение смены пароля.
  */
-class LinkWidget extends BaseLinkWidget implements IAclResource
+class LinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}

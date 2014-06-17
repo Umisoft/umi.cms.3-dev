@@ -11,7 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\structure\api\object\Layout;
+use umicms\project\module\structure\model\object\Layout;
 
 return [
     'dataSource' => [
@@ -80,7 +80,7 @@ return [
     ],
     'types'      => [
         'base' => [
-            'objectClass' => 'umicms\project\module\structure\api\object\Layout',
+            'objectClass' => 'umicms\project\module\structure\model\object\Layout',
             'fields'      => [
                 Layout::FIELD_IDENTIFY,
                 Layout::FIELD_GUID,

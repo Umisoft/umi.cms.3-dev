@@ -6,11 +6,6 @@ return [
     'en-US' => [
         'component:site:displayName' => 'Site settings',
 
-
-        'common' => 'Common',
-        'seo' => 'SEO',
-        'templating' => 'Templating',
-
         SiteApplication::SETTING_URL_POSTFIX => 'URL postfix',
 
         SiteApplication::SETTING_DEFAULT_DESCRIPTION => 'Default meta description tag',
@@ -31,10 +26,6 @@ return [
     'ru-RU' => [
 
         'component:site:displayName' => 'Настройки сайта',
-
-        'common' => 'Общие',
-        'seo' => 'SEO',
-        'templating' => 'Шаблонизация',
 
         SiteApplication::SETTING_URL_POSTFIX => 'Постфикс для URL',
 

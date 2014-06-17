@@ -11,7 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\news\api\object\NewsSubject;
+use umicms\project\module\news\model\object\NewsSubject;
 
 return [
     'dataSource' => [
@@ -132,7 +132,7 @@ return [
     ],
     'types'      => [
         'base' => [
-            'objectClass' => 'umicms\project\module\news\api\object\NewsSubject',
+            'objectClass' => 'umicms\project\module\news\model\object\NewsSubject',
             'fields'      => [
                 NewsSubject::FIELD_IDENTIFY,
                 NewsSubject::FIELD_GUID,

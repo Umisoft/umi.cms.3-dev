@@ -10,11 +10,11 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
-use umicms\project\module\structure\api\object\InfoBlock;
+use umicms\project\module\structure\model\object\InfoBlock;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\structure\api\collection\InfoBlockCollection',
+    'class' => 'umicms\project\module\structure\model\collection\InfoBlockCollection',
 
     'handlers' => [
         'admin' => 'structure.infoblock',
