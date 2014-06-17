@@ -9,11 +9,10 @@
  */
 
 return [
-    'umicms\project\module\structure\api\StructureModule' => [],
-    'umicms\project\module\blog\api\BlogModule' => [],
-    'umicms\project\module\users\api\UsersModule' => [],
+    'umicms\project\module\structure\model\StructureModule' => [],
+    'umicms\project\module\blog\model\BlogModule' => [],
 
-
-    'umicms\project\module\search\api\SearchModule' => '{#lazy:~/project/module/search/configuration/module.config.php}',
-    'umicms\project\module\news\api\NewsModule' => '{#lazy:~/project/module/news/configuration/module.config.php}'
+    'umicms\project\module\users\model\UsersModule' => '{#lazy:~/project/module/users/configuration/module.config.php}',
+    'umicms\project\module\search\model\SearchModule' => '{#lazy:~/project/module/search/configuration/module.config.php}',
+    'umicms\project\module\news\model\NewsModule' => '{#lazy:~/project/module/news/configuration/module.config.php}'
 ];

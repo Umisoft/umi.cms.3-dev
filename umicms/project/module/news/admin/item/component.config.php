@@ -10,9 +10,9 @@
 
 namespace umicms\project\module\news\admin\item;
 
-use umicms\project\admin\api\component\CollectionApiComponent;
+use umicms\hmvc\component\admin\collection\CollectionComponent;
 
 return [
-    CollectionApiComponent::OPTION_CLASS => 'umicms\project\admin\api\component\CollectionApiComponent',
-    CollectionApiComponent::OPTION_COLLECTION_NAME => 'newsItem'
+    CollectionComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\collection\CollectionComponent',
+    CollectionComponent::OPTION_COLLECTION_NAME => 'newsItem'
 ];

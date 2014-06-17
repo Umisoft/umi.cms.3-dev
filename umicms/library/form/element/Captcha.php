@@ -18,7 +18,7 @@ use umicms\captcha\ICaptchaAware;
 use umicms\captcha\TCaptchaAware;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\project\module\users\api\UsersModule;
+use umicms\project\module\users\model\UsersModule;
 
 /**
  * Поле типа captcha.

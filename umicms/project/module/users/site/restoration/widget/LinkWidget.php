@@ -10,13 +10,12 @@
 
 namespace umicms\project\module\users\site\restoration\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет вывода ссылки на страницу запроса смены пароля.
  */
-class LinkWidget extends BaseLinkWidget implements IAclResource
+class LinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}

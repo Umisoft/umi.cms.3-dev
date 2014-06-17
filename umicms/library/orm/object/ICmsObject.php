@@ -13,7 +13,7 @@ namespace umicms\orm\object;
 use DateTime;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IObject;
-use umicms\project\module\users\api\object\BaseUser;
+use umicms\project\module\users\model\object\BaseUser;
 
 /**
  * Интерфейс ORM-объекта для UMI.CMS.

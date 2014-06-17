@@ -12,15 +12,15 @@ namespace umicms\project\module\search\site\widget;
 
 use Exception;
 use umi\http\THttpAware;
-use umicms\hmvc\widget\BaseWidget;
+use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\orm\object\ICmsObject;
-use umicms\project\module\search\api\SearchApi;
-use umicms\project\module\search\api\SearchIndexApi;
+use umicms\project\module\search\model\SearchApi;
+use umicms\project\module\search\model\SearchIndexApi;
 
 /**
  * Виджет, выводящий подсвеченные фрагменты-цитаты результата поиска.
  */
-class SearchFragmentsWidget extends BaseWidget
+class SearchFragmentsWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

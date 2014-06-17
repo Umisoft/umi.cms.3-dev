@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\users\api\object\AuthorizedUser;
+use umicms\project\module\users\model\object\AuthorizedUser;
 
 return [
         'en-US' => [

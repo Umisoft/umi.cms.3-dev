@@ -15,21 +15,20 @@ use umi\i18n\ILocalesAware;
 use umi\i18n\ILocalesService;
 use umi\i18n\TLocalesAware;
 use umicms\exception\RequiredDependencyException;
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\view\CmsLayoutView;
 use umicms\i18n\CmsLocalesService;
-use umicms\project\module\structure\api\StructureModule;
-use umicms\project\site\callstack\IPageCallStackAware;
-use umicms\project\site\callstack\TPageCallStackAware;
+use umicms\project\module\structure\model\StructureModule;
+use umicms\hmvc\callstack\IPageCallStackAware;
+use umicms\hmvc\callstack\TPageCallStackAware;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 
 /**
  * Контроллер сетки сайта.
  */
-class LayoutController extends BaseController implements ISiteSettingsAware, IPageCallStackAware, ILocalesAware
+class LayoutController extends BaseCmsController implements ISiteSettingsAware, IPageCallStackAware, ILocalesAware
 {
-
     use TSiteSettingsAware;
     use TPageCallStackAware;
 

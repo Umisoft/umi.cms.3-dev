@@ -10,12 +10,12 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
-use umicms\project\module\blog\api\collection\BlogPostCollection;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\collection\BlogPostCollection;
+use umicms\project\module\blog\model\object\BlogPost;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\blog\api\collection\BlogPostCollection',
+    'class' => 'umicms\project\module\blog\model\collection\BlogPostCollection',
     'handlers' => [
         ICmsCollection::HANDLER_ADMIN => 'blog.post',
         ICmsCollection::HANDLER_SITE => 'blog.post',

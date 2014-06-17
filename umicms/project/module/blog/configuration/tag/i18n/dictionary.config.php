@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\blog\model\object\BlogTag;
 
 return [
         'en-US' => [

@@ -12,20 +12,20 @@ namespace umicms\project\module\blog\site\post;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSitePageComponent;
+use umicms\hmvc\component\site\SitePageComponent;
 
 return [
 
-    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
-    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    DefaultSitePageComponent::OPTION_CONTROLLERS => [
+    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
+    SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
+    SitePageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\PageController',
         'add' => __NAMESPACE__ . '\controller\PostAddController',
         'edit' => __NAMESPACE__ . '\controller\PostEditController',
         'unPublished' => __NAMESPACE__ . '\controller\PostToDraftController',
         'rss' => __NAMESPACE__ . '\controller\PostRssController'
     ],
-    DefaultSitePageComponent::OPTION_WIDGET => [
+    SitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\PostWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'rssLink' => __NAMESPACE__ . '\widget\ListRssLinkWidget',
@@ -33,10 +33,10 @@ return [
         'addPostLink' => __NAMESPACE__ . '\widget\AddLinkWidget',
         'editPostLink' => __NAMESPACE__ . '\widget\EditLinkWidget'
     ],
-    DefaultSitePageComponent::OPTION_VIEW => [
+    SitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/post'],
     ],
-    DefaultSitePageComponent::OPTION_ACL => [
+    SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'rssViewer' => [],
             'viewer' => [],
@@ -44,16 +44,6 @@ return [
             'moderator' => ['author']
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:rss',
-            'controller:add',
-            'controller:edit',
-            'controller:unPublished',
-            'widget:view',
-            'widget:list',
-            'widget:rssLink',
-            'widget:unPublished',
-            'widget:addPostLink',
-            'widget:editPostLink',
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
@@ -84,7 +74,7 @@ return [
             ]
         ]
     ],
-    DefaultSitePageComponent::OPTION_ROUTES => [
+    SitePageComponent::OPTION_ROUTES => [
         'rss' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'route' => '/rss',

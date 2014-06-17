@@ -10,17 +10,17 @@
 
 namespace umicms\project\module\blog\admin\rss;
 
-use umicms\project\admin\api\component\CollectionApiComponent;
+use umicms\hmvc\component\admin\collection\CollectionComponent;
 
 return [
-    CollectionApiComponent::OPTION_CLASS => 'umicms\project\admin\api\component\CollectionApiComponent',
-    CollectionApiComponent::OPTION_COLLECTION_NAME => 'blogRssImportScenario',
+    CollectionComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\collection\CollectionComponent',
+    CollectionComponent::OPTION_COLLECTION_NAME => 'blogRssImportScenario',
 
-    CollectionApiComponent::OPTION_CONTROLLERS => [
-        CollectionApiComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
+    CollectionComponent::OPTION_CONTROLLERS => [
+        CollectionComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
 
-    CollectionApiComponent::OPTION_MODIFY_ACTIONS => [
+    CollectionComponent::OPTION_MODIFY_ACTIONS => [
         'importFromRss'
     ]
 ];

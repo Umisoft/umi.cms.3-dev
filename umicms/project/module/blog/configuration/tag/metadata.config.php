@@ -11,7 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\blog\model\object\BlogTag;
 
 return [
     'dataSource' => [
@@ -142,7 +142,7 @@ return [
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\blog\api\object\BlogTag',
+            'objectClass' => 'umicms\project\module\blog\model\object\BlogTag',
             'fields' => [
                 BlogTag::FIELD_IDENTIFY,
                 BlogTag::FIELD_GUID,

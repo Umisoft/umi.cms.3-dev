@@ -11,14 +11,13 @@
 namespace umicms\project\module\blog\site;
 
 use umi\acl\IAclFactory;
-use umi\route\IRouteFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
+    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
 
-    SiteComponent::OPTION_COMPONENTS => [
+    SiteGroupComponent::OPTION_COMPONENTS => [
         'post' => '{#lazy:~/project/module/blog/site/post/component.config.php}',
         'draft' => '{#lazy:~/project/module/blog/site/draft/component.config.php}',
         'moderate' => '{#lazy:~/project/module/blog/site/moderate/component.config.php}',
@@ -29,23 +28,12 @@ return [
         'comment' => '{#lazy:~/project/module/blog/site/comment/component.config.php}'
     ],
 
-    SiteComponent::OPTION_CONTROLLERS => [
-        'index' => 'umicms\project\site\controller\DefaultStructurePageController'
-    ],
-
-    SiteComponent::OPTION_ACL => [
+    SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'viewer' => [],
             'author' => ['viewer'],
             'moderator' => ['author']
         ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:index'
-        ],
         IAclFactory::OPTION_RULES => [
-            'viewer' => [
-                'controller:index' => []
-            ],
             'author' => [
                 'component:post' => [
                     'edit' => ['own'],
@@ -71,20 +59,7 @@ return [
         ]
     ],
 
-    SiteComponent::OPTION_VIEW => [
+    SiteGroupComponent::OPTION_VIEW => [
         'directories' => ['module/blog'],
-    ],
-
-    SiteComponent::OPTION_ROUTES      => [
-
-        'component' => [
-            'type' => 'SiteComponentRoute'
-        ],
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'index'
-            ]
-        ]
     ]
 ];

@@ -8,13 +8,13 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
-use umicms\project\module\structure\api\object\Menu;
-use umicms\project\module\structure\api\object\MenuExternalItem;
-use umicms\project\module\structure\api\object\MenuInternalItem;
+use umicms\project\module\structure\model\object\Menu;
+use umicms\project\module\structure\model\object\MenuExternalItem;
+use umicms\project\module\structure\model\object\MenuInternalItem;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
-    'class' => 'umicms\project\module\structure\api\collection\MenuCollection',
+    'class' => 'umicms\project\module\structure\model\collection\MenuCollection',
 
     'handlers' => [
         'admin' => 'structure.menu',

@@ -10,13 +10,12 @@
 
 namespace umicms\project\module\users\admin;
 
-use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\AdminComponent',
 
     AdminComponent::OPTION_SETTINGS => [],
 

@@ -10,13 +10,12 @@
 
 namespace umicms\project\module\blog\site\post\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет для вывода URL на RSS-ленту по категории.
  */
-class ListRssLinkWidget extends BaseLinkWidget implements IAclResource
+class ListRssLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}

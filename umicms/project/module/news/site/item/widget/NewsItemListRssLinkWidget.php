@@ -10,13 +10,12 @@
 
 namespace umicms\project\module\news\site\item\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет для вывода URL на RSS-ленту по рубрике.
  */
-class NewsItemListRssLinkWidget extends BaseLinkWidget implements IAclResource
+class NewsItemListRssLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}
