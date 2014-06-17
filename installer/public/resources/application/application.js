@@ -400,6 +400,9 @@ define(
         UMI.SerializedTransform = DS.Transform.extend({
             deserialize: function(deserialized){
                 if(deserialized){
+                    if(Ember.typeOf(deserialized) === 'array'){
+                        deserialized.sort();
+                    }
                     deserialized = JSON.stringify(deserialized);
                 } else{
                     deserialized = '';
@@ -410,7 +413,7 @@ define(
                 if(serialized){
                     serialized = JSON.parse(serialized);
                 } else{
-                    serialized = null;
+                    serialized = [];
                 }
                 return serialized;
             }

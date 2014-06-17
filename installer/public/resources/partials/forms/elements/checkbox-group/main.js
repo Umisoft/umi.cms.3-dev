@@ -74,13 +74,14 @@ define(['App', 'text!./checkboxGroupElement.hbs', 'text!./checkboxGroupCollectio
                         var propertyName = Ember.get(meta, 'dataSource');
                         var objectValue = Ember.get(object, propertyName) || "[]";
                         objectValue = JSON.parse(objectValue);
+
                         if(objectValue.contains(value)){
                             objectValue = objectValue.without(value);
-                            Ember.set(object, propertyName, JSON.stringify(objectValue));
                         } else{
                             objectValue.push(value);
-                            Ember.set(object, propertyName, JSON.stringify(objectValue));
                         }
+                        objectValue.sort();
+                        Ember.set(object, propertyName, JSON.stringify(objectValue));
                     }
                 }
             })
