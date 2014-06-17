@@ -541,7 +541,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $comment->getProperty('componentName')->setValue('comment');
         $comment->getProperty('componentPath')->setValue('blog.comment');
 
-        $author = $structureCollection->add('authors', 'system', $blogPage)
+        $author = $structureCollection->add('author', 'system', $blogPage)
             ->setValue('displayName', 'Авторы блога')
             ->setValue('displayName', 'Authors', 'en-US')
             ->setGUID('2ac90e34-16d0-4113-ab7c-de37c0287516');
@@ -549,6 +549,20 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $author->getProperty('locked')->setValue(true);
         $author->getProperty('componentName')->setValue('author');
         $author->getProperty('componentPath')->setValue('blog.author');
+
+        $profileAuthor = $structureCollection->add('profile', 'system', $author)
+            ->setValue('displayName', 'Редактирование профиля автора')
+            ->setValue('displayName', 'Edit author profile', 'en-US');
+        $profileAuthor->getProperty('locked')->setValue(true);
+        $profileAuthor->getProperty('componentName')->setValue('profile');
+        $profileAuthor->getProperty('componentPath')->setValue('blog.author.profile');
+
+        $viewAuthor = $structureCollection->add('view', 'system', $author)
+            ->setValue('displayName', 'Просмотр профиля автора')
+            ->setValue('displayName', 'View author profile', 'en-US');
+        $viewAuthor->getProperty('locked')->setValue(true);
+        $viewAuthor->getProperty('componentName')->setValue('view');
+        $viewAuthor->getProperty('componentPath')->setValue('blog.author.view');
 
         $category = $categoryCollection->add('hunters')
             ->setValue('displayName', 'Охотницы')
@@ -1555,8 +1569,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `last_activity` datetime DEFAULT NULL,
                     `contents` text,
                     `contents_en` text,
-                    `contentsRaw` text,
-                    `contentsRaw_en` text,
+                    `contents_raw` text,
+                    `contents_raw_en` text,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
                     `comments_count` bigint(20) unsigned DEFAULT NULL,

@@ -8,21 +8,21 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\author\controller;
+namespace umicms\project\module\blog\site\author\profile\controller;
 
 use umi\form\IForm;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogAuthor;
-use umicms\project\site\controller\TFormController;
+use umicms\hmvc\component\site\BaseSitePageController;
+use umicms\hmvc\component\site\TFormController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogAuthor;
 
 /**
  * Контроллер редактирования профиля автора блога.
  */
-class ProfileEditController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class IndexController extends BaseSitePageController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;
@@ -79,7 +79,8 @@ class ProfileEditController extends BaseAccessRestrictedController implements IO
     protected function buildResponseContent()
     {
         return [
-            'success' => $this->success
+            'success' => $this->success,
+            'page' => $this->getCurrentPage()
         ];
     }
 }

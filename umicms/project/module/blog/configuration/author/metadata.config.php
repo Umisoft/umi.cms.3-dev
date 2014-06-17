@@ -138,11 +138,11 @@ return [
         ],
         BlogAuthor::FIELD_PAGE_CONTENTS_RAW => [
             'type' => IField::TYPE_TEXT,
-            'columnName' => 'contentsRaw',
+            'columnName' => 'contents_raw',
             'mutator' => 'setContents',
             'localizations' => [
-                'ru-RU' => ['columnName' => 'contentsRaw'],
-                'en-US' => ['columnName' => 'contentsRaw_en']
+                'ru-RU' => ['columnName' => 'contents_raw'],
+                'en-US' => ['columnName' => 'contents_raw_en']
             ]
         ],
         BlogAuthor::FIELD_PAGE_LAYOUT => [
