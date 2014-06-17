@@ -27,11 +27,6 @@ define(['App', 'text!./radioElement.hbs'], function(UMI, radioElement){
 
             init: function(){
                 this._super();
-                // temporary fix
-                var choices = [{"label":"Москва","value":"msk","attributes":{"name":"common[radio]","type":"checkbox","value":"msk"}},{"label":"СПб","value":"spt","attributes":{"name":"common[radio]","type":"checkbox","value":"spb"}}]
-                Ember.set(this.get('meta'), 'choices', choices);
-                Ember.set(this.get('meta'), 'dataSource', 'radio');
-                // end temporary fix
                 Ember.warn('Поле с типом radio не поддерживает lazy choices.', !this.get('meta.lazy'));
 
                 if(Ember.typeOf(this.get('object')) === 'instance'){
