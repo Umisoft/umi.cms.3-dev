@@ -58,4 +58,29 @@ class TestObject extends CmsObject
 
         return $this;
     }
+
+    /**
+     * Возвращает значение в виде массива
+     * @return array
+     */
+    public function getCheckboxGroupValue()
+    {
+        if ($value = $this->getProperty(self::CHECKBOX_GROUP)->getValue()) {
+            return unserialize($value);
+        }
+
+        return [];
+    }
+
+    /**
+     * Устанавливает значение в виде строки
+     * @param array $list
+     * @return $this
+     */
+    public function setCheckboxGroupValue(array $list)
+    {
+        $this->getProperty(self::CHECKBOX_GROUP)->setValue(serialize($list));
+
+        return $this;
+    }
 }

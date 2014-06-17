@@ -71,6 +71,9 @@ return [
                 TestObject::RADIO => [
                     'type' => Radio::TYPE_NAME,
                     'label' => TestObject::RADIO,
+                    'options' => [
+                        'dataSource' => TestObject::RADIO
+                    ],
                 ],
                 TestObject::PASSWORD => [
                     'type' => Password::TYPE_NAME,
