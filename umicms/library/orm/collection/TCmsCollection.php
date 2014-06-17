@@ -35,11 +35,6 @@ trait TCmsCollection
     use TLocalizable;
 
     /**
-     * @var callable $selectorInitializer инициализатор для селектора
-     */
-    protected static $selectorInitializer;
-
-    /**
      * @see ICmsCollection::getName()
      */
     abstract public function getName();
@@ -58,15 +53,6 @@ trait TCmsCollection
     }
 
     /**
-     * Устанавливает инициализатор для селектора
-     * @param callable $initializer
-     */
-    public static function setSelectorInitializer(callable $initializer = null)
-    {
-        self::$selectorInitializer = $initializer;
-    }
-
-    /**
      * Возвращает новый селектор для формирования выборки объектов коллекции.
      * @return CmsSelector
      */
@@ -79,6 +65,7 @@ trait TCmsCollection
         /** @noinspection PhpUndefinedClassInspection */
         $selector = parent::select();
 
+        /** @noinspection PhpUndefinedFieldInspection */
         if ($initializer = self::$selectorInitializer) {
             $initializer($selector);
         }
