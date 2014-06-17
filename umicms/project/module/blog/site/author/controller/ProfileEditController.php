@@ -14,15 +14,15 @@ use umi\form\IForm;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogAuthor;
-use umicms\project\site\controller\TFormController;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\hmvc\component\site\TFormController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogAuthor;
 
 /**
  * Контроллер редактирования профиля автора блога.
  */
-class ProfileEditController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class ProfileEditController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;

@@ -12,7 +12,7 @@ use umi\form\element\CSRF;
 use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\form\element\Textarea;
-use umicms\project\module\blog\api\object\BlogAuthor;
+use umicms\project\module\blog\model\object\BlogAuthor;
 
 return [
     'options' => [

@@ -158,12 +158,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "97475b2761f22cd9817c135283ad1079543a4586"
+                "reference": "77bc8cc35b33a2bcdaf5bc2c99fdcab8773f02a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/97475b2761f22cd9817c135283ad1079543a4586",
-                "reference": "97475b2761f22cd9817c135283ad1079543a4586",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/77bc8cc35b33a2bcdaf5bc2c99fdcab8773f02a0",
+                "reference": "77bc8cc35b33a2bcdaf5bc2c99fdcab8773f02a0",
                 "shasum": ""
             },
             "require": {
@@ -218,7 +218,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2014-05-07 01:20:20"
+            "time": "2014-06-05 18:37:07"
         },
         {
             "name": "doctrine/common",
@@ -494,6 +494,51 @@
             "time": "2013-12-20 21:39:00"
         },
         {
+            "name": "ezyang/htmlpurifier",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezyang/htmlpurifier.git",
+                "reference": "80ebd4322e3b98bc25c3ed3effe99a1653bc00fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/80ebd4322e3b98bc25c3ed3effe99a1653bc00fc",
+                "reference": "80ebd4322e3b98bc25c3ed3effe99a1653bc00fc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "HTMLPurifier": "library/"
+                },
+                "files": [
+                    "library/HTMLPurifier.composer.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Z. Yang",
+                    "email": "admin@htmlpurifier.org",
+                    "homepage": "http://ezyang.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Standards compliant HTML filter written in PHP",
+            "homepage": "http://htmlpurifier.org/",
+            "keywords": [
+                "html"
+            ],
+            "time": "2014-02-04 20:17:24"
+        },
+        {
             "name": "gregwar/captcha",
             "version": "dev-master",
             "target-dir": "Gregwar/Captcha",
@@ -548,12 +593,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "d79c9820cf8f8e4adff35f4f6719503e04674ba4"
+                "reference": "577a69ff7d0a24e9576a2885c3a7afbaadd51ec1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/d79c9820cf8f8e4adff35f4f6719503e04674ba4",
-                "reference": "d79c9820cf8f8e4adff35f4f6719503e04674ba4",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/577a69ff7d0a24e9576a2885c3a7afbaadd51ec1",
+                "reference": "577a69ff7d0a24e9576a2885c3a7afbaadd51ec1",
                 "shasum": ""
             },
             "require": {
@@ -605,7 +650,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-06-04 21:57:31"
+            "time": "2014-06-08 20:00:20"
         },
         {
             "name": "guzzlehttp/streams",
@@ -1240,12 +1285,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "138498f3d64981cfafcb5eec3b2b96fce44a178e"
+                "reference": "1b6f7c6ad081176650f1ac89be848d12e4849a18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/138498f3d64981cfafcb5eec3b2b96fce44a178e",
-                "reference": "138498f3d64981cfafcb5eec3b2b96fce44a178e",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/1b6f7c6ad081176650f1ac89be848d12e4849a18",
+                "reference": "1b6f7c6ad081176650f1ac89be848d12e4849a18",
                 "shasum": ""
             },
             "require": {
@@ -1286,7 +1331,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2014-05-22 16:21:00"
+            "time": "2014-06-07 15:45:34"
         },
         {
             "name": "symfony/yaml",
@@ -1400,7 +1445,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:Umisoft/umi.framework-dev.git",
-                "reference": "12de4f3ec64478d5715fdaa7cb6a83878d649bc6"
+                "reference": "f4fa211eaa0238683f470e1d975bc1b0356a9d8d"
             },
             "require": {
                 "doctrine/dbal": "2.4.*",
@@ -1430,7 +1475,7 @@
                 "framework",
                 "umi"
             ],
-            "time": "2014-06-04 15:43:33"
+            "time": "2014-06-05 13:02:32"
         }
     ],
     "packages-dev": [
@@ -1506,7 +1551,8 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "gregwar/captcha": 20
+        "gregwar/captcha": 20,
+        "ezyang/htmlpurifier": 20
     },
     "platform": {
         "php": ">=5.4.0"

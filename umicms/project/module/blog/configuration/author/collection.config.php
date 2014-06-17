@@ -10,7 +10,7 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
-use umicms\project\module\blog\api\object\BlogAuthor;
+use umicms\project\module\blog\model\object\BlogAuthor;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
