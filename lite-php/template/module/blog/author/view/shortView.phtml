@@ -6,5 +6,5 @@
 <h3>
     <a href="<?= $blogAuthor->getPageUrl() ?>">
         <?= $blogAuthor->displayName ?>
-    </a> <?=$this->widget('blog.author.rssLink', ['blogAuthor' => $blogAuthor, 'template' => 'rssLink']); ?>
+    </a> <?= $this->widget('blog.author.view.rss', ['blogAuthor' => $blogAuthor, 'template' => 'rssLink']); ?>
 </h3>

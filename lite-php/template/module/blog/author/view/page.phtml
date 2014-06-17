@@ -9,4 +9,4 @@
 <h1><?= $page->displayName ?></h1>
 <?= $page->contents ?>
 
-<?= $this->widget('blog.author.postList', ['blogAuthors' => [$page], 'template' => 'postList']); ?>
+<?= $this->widget('blog.author.view.posts', ['blogAuthors' => [$page], 'template' => 'postList']); ?>
