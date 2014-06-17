@@ -11,7 +11,6 @@
 use umi\form\element\Hidden;
 use umi\form\element\Submit;
 use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\blog\api\object\BlogPost;
 
 return [
     'options' => [

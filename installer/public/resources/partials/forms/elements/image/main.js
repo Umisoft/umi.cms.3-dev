@@ -1,42 +1,26 @@
 define(['App', 'text!./imageElement.hbs'], function(UMI, imageElement){
     "use strict";
 
-    Ember.TEMPLATES['UMI/components/image-element'] = Ember.Handlebars.compile(imageElement);
-
     return function(){
-        UMI.ImageElementComponent = Ember.Component.extend(UMI.InputValidate, {
+        UMI.ImageElementView = Ember.View.extend({
+            template: Ember.Handlebars.compile(imageElement),
+
             classNames: ['umi-element', 'umi-element-image'],
 
-            tumb: '/files/.tmb/l1_aW1hZ2VzXG1hcmt1cFx1bWktMzAtY29sb3IucG5n1397205000.png',
+            tumb: null,//TODO: Нужно превью? Если да, то предстоит генерить его на фронте
 
-            didInsertElement: function(){
-                var el = this.$();
-                el.find('.icon-delete').click(function(){
-                    el.find('input').val('');
-                });
-            },
-
-            actionForSend: 'showPopup', //Ультра хак без которого не будет работать sendAcrion - он не принимает имя напрямую, ему нужно отдавать перемнную с именем
             actions: {
-                showPopup: function(popupType, object, meta){
-                    this.get('elementId');
-                    this.sendAction('actionForSend', popupType, object, meta);
+                clearValue: function(){
+                    var self = this;
+                    var el = self.$();
+                    if(Ember.typeOf(self.get('object')) === 'instance'){
+                        var dataSource = self.get('meta.dataSource');
+                        self.get('object').set(dataSource, '');
+                    } else{
+                        el.find('input').val('');
+                    }
                 }
-            },
-
-            inputView: Ember.View.extend({
-                template: function(){
-                    var dataSource = this.get('parentView.meta.dataSource');
-                    return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection" name=meta.attributes.name}}');
-                }.property(),
-
-                willDestroyElement: function(){
-                    //Может ли возникнуть необходимость подтверждения действий для попапа перед переходом на другой роут?
-                    //При возврате на роут возможно есть смысл показывать попапы закрытые при уходе?
-                    //По-хорошему, попапу нужно добавлять id и уже по нему удалять
-                    $('.umi-popup').remove();
-                }
-            })
+            }
         });
     };
 });

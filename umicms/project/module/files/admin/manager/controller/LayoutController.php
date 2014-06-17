@@ -10,14 +10,14 @@
 
 namespace umicms\project\module\files\admin\manager\controller;
 
-use umicms\project\admin\api\controller\BaseAdminComponentLayoutController;
-use umicms\project\admin\layout\AdminComponentLayout;
-use umicms\project\admin\layout\control\AdminControl;
+use umicms\hmvc\component\admin\BaseLayoutController;
+use umicms\hmvc\component\admin\layout\AdminComponentLayout;
+use umicms\hmvc\component\admin\layout\control\AdminControl;
 
 /**
  * Контроллер вывода настроек компонента
  */
-class LayoutController extends BaseAdminComponentLayoutController
+class LayoutController extends BaseLayoutController
 {
 
     /**

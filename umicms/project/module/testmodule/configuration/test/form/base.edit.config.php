@@ -24,7 +24,7 @@ use umi\form\element\Textarea;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\File;
 use umicms\form\element\Image;
-use umicms\project\module\testmodule\api\object\TestObject;
+use umicms\project\module\testmodule\model\object\TestObject;
 
 return [
 

@@ -10,13 +10,12 @@
 
 namespace umicms\project\module\users\site\authorization\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет вывода ссылки на страницу авторизации.
  */
-class LoginLinkWidget extends BaseLinkWidget implements IAclResource
+class LoginLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}

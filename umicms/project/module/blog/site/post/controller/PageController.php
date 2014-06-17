@@ -12,13 +12,13 @@ namespace umicms\project\module\blog\site\post\controller;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\orm\object\ICmsPage;
-use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\site\controller\DefaultPageController;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\hmvc\component\site\SitePageController;
 
 /**
  * Контроллер для отображения поста
  */
-class PageController extends DefaultPageController
+class PageController extends SitePageController
 {
     /**
      * Возвращает хлебные крошки для текущего элемента.

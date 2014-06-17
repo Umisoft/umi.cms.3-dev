@@ -10,13 +10,12 @@
 
 namespace umicms\project\module\blog\site\moderate\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет для вывода ссылки на спискок постов текущего автора, требующих модерации.
  */
-class OwnListLinkWidget extends BaseLinkWidget implements IAclResource
+class OwnListLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}

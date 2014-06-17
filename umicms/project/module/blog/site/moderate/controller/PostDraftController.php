@@ -15,23 +15,23 @@ use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\site\controller\TFormSimpleController;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\hmvc\component\site\TFormSimpleController;
 
 /**
  * Контроллер снятия поста с модерации и переноса в черновики.
  */
-class PostDraftController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class PostDraftController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormSimpleController;
     use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
     /**
      * @var BlogPost $blogPost пост блога
      */
@@ -39,11 +39,11 @@ class PostDraftController extends BaseAccessRestrictedController implements IObj
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -51,7 +51,7 @@ class PostDraftController extends BaseAccessRestrictedController implements IObj
      */
     protected function buildForm()
     {
-        $this->blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
+        $this->blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
 
         if (!$this->isAllowed($this->blogPost)) {
             throw new ResourceAccessForbiddenException(
@@ -60,7 +60,7 @@ class PostDraftController extends BaseAccessRestrictedController implements IObj
             );
         }
 
-        return $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE);
+        return $this->module->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE);
     }
 
     /**

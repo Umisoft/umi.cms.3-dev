@@ -4,7 +4,7 @@ use umi\filter\IFilterFactory;
 use umi\form\element\Password;
 use umi\form\element\Text;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\users\api\object\AuthorizedUser;
+use umicms\project\module\users\model\object\AuthorizedUser;
 
 return [
 

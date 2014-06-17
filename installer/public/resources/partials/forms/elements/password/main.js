@@ -4,7 +4,7 @@ define(['App'], function(UMI){
     return function(){
         UMI.PasswordElementView = UMI.TextElementView.extend({
             classNames: ['umi-element', 'umi-element-password'],
-            type: 'password'
+            type: 'text'
         });
     };
 });

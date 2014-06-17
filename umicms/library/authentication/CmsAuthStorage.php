@@ -15,8 +15,8 @@ use umi\http\IHttpAware;
 use umi\http\THttpAware;
 use umi\orm\exception\RuntimeException;
 use umicms\project\Bootstrap;
-use umicms\project\module\users\api\UsersModule;
-use umicms\project\module\users\api\object\Guest;
+use umicms\project\module\users\model\UsersModule;
+use umicms\project\module\users\model\object\Guest;
 
 /**
  * {@inheritdoc}
@@ -26,16 +26,16 @@ class CmsAuthStorage extends SessionStorage implements IHttpAware
     use THttpAware;
 
     /**
-     * @var UsersModule $api
+     * @var UsersModule $module
      */
-    protected $api;
+    protected $module;
 
     /**
-     * @param UsersModule $api
+     * @param UsersModule $module
      */
-    public function __construct(UsersModule $api)
+    public function __construct(UsersModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -45,7 +45,7 @@ class CmsAuthStorage extends SessionStorage implements IHttpAware
     {
         $userId = parent::getIdentity();
 
-        return $this->api->user()->getById($userId);
+        return $this->module->user()->getById($userId);
     }
 
     /**
@@ -54,7 +54,7 @@ class CmsAuthStorage extends SessionStorage implements IHttpAware
      */
     public function getGuestIdentity()
     {
-        return $this->api->getGuest();
+        return $this->module->getGuest();
     }
 
     /**

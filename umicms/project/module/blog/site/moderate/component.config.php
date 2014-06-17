@@ -13,13 +13,13 @@ namespace umicms\project\module\blog\site\moderate;
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSitePageComponent;
+use umicms\hmvc\component\site\SitePageComponent;
 
 return [
 
-    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
-    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    DefaultSitePageComponent::OPTION_CONTROLLERS => [
+    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
+    SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
+    SitePageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\PostPageController',
         'edit' => __NAMESPACE__ . '\controller\PostEditController',
         'publish' => __NAMESPACE__ . '\controller\PostPublishController',
@@ -27,7 +27,7 @@ return [
         'draft' => __NAMESPACE__ . '\controller\PostDraftController',
         'all' => __NAMESPACE__ . '\controller\PostListController'
     ],
-    DefaultSitePageComponent::OPTION_WIDGET => [
+    SitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\PostWidget',
         'ownList' => __NAMESPACE__ . '\widget\OwnListWidget',
         'ownListLink' => __NAMESPACE__ . '\widget\OwnListLinkWidget',
@@ -38,26 +38,12 @@ return [
         'rejectModerate' => __NAMESPACE__ . '\widget\PostRejectWidget',
         'draftModerate' => __NAMESPACE__ . '\widget\PostDraftWidget'
     ],
-    DefaultSitePageComponent::OPTION_ACL => [
+    SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
             'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:edit',
-            'controller:publish',
-            'controller:reject',
-            'controller:draft',
-            'controller:all',
-            'widget:view',
-            'widget:ownList',
-            'widget:ownListLink',
-            'widget:allList',
-            'widget:allListLink',
-            'widget:editPostLink',
-            'widget:publishModerate',
-            'widget:rejectModerate',
-            'widget:draftModerate',
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
@@ -90,10 +76,10 @@ return [
             ]
         ]
     ],
-    DefaultSitePageComponent::OPTION_VIEW => [
+    SitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/moderate'],
     ],
-    DefaultSitePageComponent::OPTION_ROUTES => [
+    SitePageComponent::OPTION_ROUTES => [
         'all' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'route' => '/all',

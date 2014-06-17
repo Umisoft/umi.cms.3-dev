@@ -11,7 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\users\api\object\UserGroup;
+use umicms\project\module\users\model\object\UserGroup;
 
 return [
     'dataSource' => [
@@ -97,7 +97,7 @@ return [
     ],
     'types'      => [
         'base' => [
-            'objectClass' => 'umicms\project\module\users\api\object\UserGroup',
+            'objectClass' => 'umicms\project\module\users\model\object\UserGroup',
             'fields'      => [
                 UserGroup::FIELD_IDENTIFY,
                 UserGroup::FIELD_GUID,

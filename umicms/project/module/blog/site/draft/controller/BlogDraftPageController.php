@@ -10,27 +10,27 @@
 
 namespace umicms\project\module\blog\site\draft\controller;
 
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\site\controller\DefaultPageController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\hmvc\component\site\SitePageController;
 
 /**
  * Контроллер вывода черновика блога.
  */
-class BlogDraftPageController extends DefaultPageController
+class BlogDraftPageController extends SitePageController
 {
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule
+     * @param BlogModule $module
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -40,7 +40,7 @@ class BlogDraftPageController extends DefaultPageController
      */
     public function getPage($uri)
     {
-        return $this->api->post()->getDraftByUri($uri);
+        return $this->module->post()->getDraftByUri($uri);
     }
 }
  

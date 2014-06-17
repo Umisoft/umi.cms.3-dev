@@ -10,16 +10,16 @@
 
 namespace umicms\project\module\blog\site\category\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseListWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogCategory;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogCategory;
 
 /**
  * Виджет для вывода списка категорий блога.
  */
-class CategoryListWidget extends BaseListWidget implements IAclResource
+class CategoryListWidget extends BaseListWidget
+
 {
     /**
      * @var string|null|BlogCategory $parentCategory категория блога или GUID, из которой выводятся дочерние категории.
@@ -28,17 +28,17 @@ class CategoryListWidget extends BaseListWidget implements IAclResource
     public $parentCategory;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -47,7 +47,7 @@ class CategoryListWidget extends BaseListWidget implements IAclResource
     protected function getSelector()
     {
         if (is_string($this->parentCategory)) {
-            $this->parentCategory = $this->api->category()->get($this->parentCategory);
+            $this->parentCategory = $this->module->category()->get($this->parentCategory);
         }
 
         if (isset($this->parentCategory) && !$this->parentCategory instanceof BlogCategory) {
@@ -62,7 +62,7 @@ class CategoryListWidget extends BaseListWidget implements IAclResource
             );
         }
 
-        return  $this->api->getCategories($this->parentCategory);
+        return  $this->module->getCategories($this->parentCategory);
     }
 }
  

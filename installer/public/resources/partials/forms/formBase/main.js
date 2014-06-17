@@ -110,7 +110,7 @@ define(
                 }.property(),
 
                 colorTemplate: function(){
-                    return '{{input type="color" value=object.value meta=view.meta name=meta.attributes.name}}';
+                    return '{{view "colorElement" object=object meta=view.meta}}';
                 }.property(),
 
                 timeTemplate: function(){
@@ -118,7 +118,7 @@ define(
                 }.property(),
 
                 dateTemplate: function(){
-                    return '{{date-element object=object meta=view.meta}}';
+                    return '{{view "dateElement" object=object meta=view.meta}}';
                 }.property(),
 
                 datetimeTemplate: function(){
@@ -126,11 +126,11 @@ define(
                 }.property(),
 
                 fileTemplate: function(){
-                    return '{{file-element object=object meta=view.meta}}';
+                    return '{{view "fileElement" object=object meta=view.meta}}';
                 }.property(),
 
                 imageTemplate: function(){
-                    return '{{image-element object=object meta=view.meta}}';
+                    return '{{view "imageElement" object=object meta=view.meta}}';
                 }.property(),
 
                 textareaTemplate: function(){

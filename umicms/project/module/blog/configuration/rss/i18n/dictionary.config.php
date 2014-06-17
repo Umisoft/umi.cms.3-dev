@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\blog\api\object\BlogRssImportScenario;
+use umicms\project\module\blog\model\object\BlogRssImportScenario;
 
 return [
         'en-US' => [

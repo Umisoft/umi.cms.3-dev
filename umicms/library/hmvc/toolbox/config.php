@@ -18,7 +18,8 @@ return [
     'class'    => __NAMESPACE__ . '\HmvcTools',
     'awareInterfaces' => [
         'umi\hmvc\IMvcEntityFactoryAware',
-        'umicms\hmvc\url\IUrlManagerAware'
+        'umicms\hmvc\url\IUrlManagerAware',
+        'umicms\hmvc\callstack\IPageCallStackAware'
     ],
     'services' => [
         'umi\hmvc\IMvcEntityFactory',

@@ -14,7 +14,7 @@ define(['App'], function(UMI){
                     var validate = this.validateErrorsTemplate();
                     template = input + validate;
                 } else{
-                    template = '{{input type=view.text value=view.meta.attributes.value name=view.meta.attributes.name}}';
+                    template = '{{input type=view.type value=view.meta.attributes.value name=view.meta.attributes.name}}';
                 }
                 return Ember.Handlebars.compile(template);
             }.property()

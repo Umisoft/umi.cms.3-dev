@@ -13,7 +13,7 @@ use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\form\element\Textarea;
 use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\blog\api\object\BlogComment;
+use umicms\project\module\blog\model\object\BlogComment;
 
 return [
     'options' => [

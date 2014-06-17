@@ -10,8 +10,6 @@
 
 namespace umicms\project\site;
 
-use SplDoublyLinkedList;
-use SplStack;
 use umi\config\entity\IConfig;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
@@ -38,8 +36,7 @@ use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\Bootstrap;
-use umicms\project\site\callstack\IPageCallStackAware;
-use umicms\project\site\component\SiteComponent;
+use umicms\hmvc\component\site\SiteComponent;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 use umicms\serialization\ISerializationAware;
@@ -124,10 +121,6 @@ class SiteApplication extends SiteComponent
      * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
      */
     protected $supportedRequestPostfixes = ['json', 'xml'];
-    /**
-     * @var SplStack $pageCallStack стек вызова страниц
-     */
-    protected $pageCallStack;
 
     /**
      * {@inheritdoc}
@@ -137,7 +130,6 @@ class SiteApplication extends SiteComponent
         parent::__construct($name, $path, $options);
 
         $this->registerSiteSettings();
-        $this->registerPageCallStack();
     }
 
     /**
@@ -157,8 +149,8 @@ class SiteApplication extends SiteComponent
             $this->registerStreams($dispatcher);
         }
 
-        while (!$this->pageCallStack->isEmpty()) {
-            $this->pageCallStack->pop();
+        while (!$this->getPageCallStack()->isEmpty()) {
+            $this->getPageCallStack()->pop();
         }
 
         $element = null;
@@ -393,36 +385,14 @@ class SiteApplication extends SiteComponent
     {
         $this->setSiteSettings($this->getSettings());
 
-        $this->getToolkit()
-            ->registerAwareInterface(
-                'umicms\project\site\config\ISiteSettingsAware',
-                function ($object) {
-                    if ($object instanceof ISiteSettingsAware) {
-                        $object->setSiteSettings($this->getSettings());
-                    }
+        $this->getToolkit()->registerAwareInterface(
+            'umicms\project\site\config\ISiteSettingsAware',
+            function ($object) {
+                if ($object instanceof ISiteSettingsAware) {
+                    $object->setSiteSettings($this->getSettings());
                 }
-            );
-    }
-
-    /**
-     * Регистрирует стек вызова страниц.
-     */
-    protected function registerPageCallStack()
-    {
-        $this->pageCallStack = new SplStack();
-        $this->pageCallStack->setIteratorMode(SplDoublyLinkedList::IT_MODE_LIFO);
-
-        $this->setPageCallStack($this->pageCallStack);
-
-        $this->getToolkit()
-            ->registerAwareInterface(
-                'umicms\project\site\callstack\IPageCallStackAware',
-                function ($object) {
-                    if ($object instanceof IPageCallStackAware) {
-                        $object->setPageCallStack($this->pageCallStack);
-                    }
-                }
-            );
+            }
+        );
     }
 
     /**
@@ -430,8 +400,8 @@ class SiteApplication extends SiteComponent
      */
     protected function registerSelectorInitializer()
     {
-        TCmsCollection::setSelectorInitializer(function(CmsSelector $selector) {
-
+        TCmsCollection::setSelectorInitializer(
+            function(CmsSelector $selector) {
                 $collection = $selector->getCollection();
 
                 if ($collection instanceof IRecyclableCollection) {
@@ -441,8 +411,8 @@ class SiteApplication extends SiteComponent
                 if ($collection instanceof IActiveAccessibleCollection) {
                     $selector->where(IActiveAccessibleObject::FIELD_ACTIVE)->equals(true);
                 }
-
-            });
+            }
+        );
     }
 
     /**
@@ -455,7 +425,8 @@ class SiteApplication extends SiteComponent
          * @var IStreamService $streams
          */
         $streams = $this->getToolkit()->getService('umi\stream\IStreamService');
-        $streams->registerStream(self::WIDGET_PROTOCOL, function($uri) use ($dispatcher) {
+        $streams->registerStream(
+            self::WIDGET_PROTOCOL, function($uri) use ($dispatcher) {
                 $widgetInfo = parse_url($uri);
                 $widgetParams = [];
                 if (isset($widgetInfo['query'])) {
@@ -465,7 +436,8 @@ class SiteApplication extends SiteComponent
                 return $this->serializeResult(ISerializerFactory::TYPE_XML, [
                         'widget' => $dispatcher->executeWidgetByPath($widgetInfo['host'], $widgetParams)
                     ]);
-            });
+            }
+        );
     }
 
 }

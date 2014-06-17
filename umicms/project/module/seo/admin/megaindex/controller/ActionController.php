@@ -11,20 +11,22 @@
 namespace umicms\project\module\seo\admin\megaindex\controller;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\project\admin\api\component\DefaultQueryAdminComponent;
-use umicms\project\admin\api\controller\DefaultRestActionController;
+use umicms\hmvc\component\admin\BaseController;
+use umicms\hmvc\component\admin\TActionController;
 use umicms\project\module\seo\model\MegaindexModel;
 
 /**
  * Контроллер операций с API Мегаиндекса
  */
-class ActionController extends DefaultRestActionController
+class ActionController extends BaseController
 {
+    use TActionController;
+
     /**
      * Возвращает данные отчета {@link http://api.megaindex.ru/description/siteAnalyze «Видимость сайта»}
      * @return array
      */
-    public function actionSiteAnalyze()
+    protected function actionSiteAnalyze()
     {
         return $this->getModel()->queryApi('siteAnalyze');
     }
@@ -33,7 +35,7 @@ class ActionController extends DefaultRestActionController
      * Возвращает данные отчета {@link http://api.megaindex.ru/description/get_backlinks «Получение ссылок на сайт»}
      * @return array
      */
-    public function actionGetBacklinks()
+    protected function actionGetBacklinks()
     {
         return $this->getModel()->queryApi('get_backlinks');
     }
@@ -70,13 +72,5 @@ class ActionController extends DefaultRestActionController
             ));
         }
         return new MegaindexModel($login, $password, $siteUrl);
-    }
-
-    /**
-     * @return DefaultQueryAdminComponent
-     */
-    protected function getComponent()
-    {
-        return $this->getContext()->getComponent();
     }
 }

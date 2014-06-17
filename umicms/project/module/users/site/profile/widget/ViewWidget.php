@@ -10,17 +10,16 @@
 
 namespace umicms\project\module\users\site\profile\widget;
 
-use umi\acl\IAclResource;
 use umi\authentication\exception\RuntimeException;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\view\IView;
-use umicms\hmvc\widget\BaseWidget;
-use umicms\project\module\users\api\UsersModule;
+use umicms\hmvc\widget\BaseCmsWidget;
+use umicms\project\module\users\model\UsersModule;
 
 /**
  * Виджет вывода профиля текущего пользователя.
  */
-class ViewWidget extends BaseWidget implements IAclResource
+class ViewWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -28,17 +27,17 @@ class ViewWidget extends BaseWidget implements IAclResource
     public $template = 'view';
 
     /**
-     * @var UsersModule $api API модуля "Пользователи"
+     * @var UsersModule $module модуль "Пользователи"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param UsersModule $usersModule API модуля "Пользователи"
+     * @param UsersModule $module модуль "Пользователи"
      */
-    public function __construct(UsersModule $usersModule)
+    public function __construct(UsersModule $module)
     {
-        $this->api = $usersModule;
+        $this->module = $module;
     }
 
     /**
@@ -48,7 +47,7 @@ class ViewWidget extends BaseWidget implements IAclResource
     public function __invoke()
     {
         try {
-            $user = $this->api->getCurrentUser();
+            $user = $this->module->getCurrentUser();
         } catch (RuntimeException $e) {
             return $this->invokeForbidden(new ResourceAccessForbiddenException($this, $e->getMessage()));
         }

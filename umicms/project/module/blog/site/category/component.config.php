@@ -12,35 +12,28 @@ namespace umicms\project\module\blog\site\category;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSiteHierarchicPageComponent;
+use umicms\hmvc\component\site\SiteHierarchicPageComponent;
 
 return [
 
-    DefaultSiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSiteHierarchicPageComponent',
-    DefaultSiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogCategory',
-    DefaultSiteHierarchicPageComponent::OPTION_CONTROLLERS => [
+    SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteHierarchicPageComponent',
+    SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogCategory',
+    SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\BlogCategoryRssController'
     ],
-    DefaultSiteHierarchicPageComponent::OPTION_WIDGET => [
+    SiteHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\CategoryWidget',
         'postList' => __NAMESPACE__ . '\widget\CategoryPostListWidget',
         'list' => __NAMESPACE__ . '\widget\CategoryListWidget',
         'rssLink' => __NAMESPACE__ . '\widget\CategoryPostRssLinkWidget'
     ],
-    DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
+    SiteHierarchicPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/category'],
     ],
-    DefaultSiteHierarchicPageComponent::OPTION_ACL => [
+    SiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
             'rssViewer' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:rss',
-            'widget:view',
-            'widget:postList',
-            'widget:list',
-            'widget:rssLink'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -54,7 +47,7 @@ return [
             ]
         ]
     ],
-    DefaultSiteHierarchicPageComponent::OPTION_ROUTES => [
+    SiteHierarchicPageComponent::OPTION_ROUTES => [
         'rss' => [
             'type'     => IRouteFactory::ROUTE_REGEXP,
             'route' => '/rss/(?P<url>.+)',
