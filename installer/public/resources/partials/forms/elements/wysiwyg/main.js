@@ -21,7 +21,7 @@ define(['App'], function(UMI){
             classNames: ['ckeditor-row'],
 
             textareaId: function(){
-                return 'textarea-' + this.get('id');
+                return 'textarea-' + this.get('elementId');
             }.property(),
 
             template: function(){
