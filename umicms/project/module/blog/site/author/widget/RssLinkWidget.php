@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\author\view\widget;
+namespace umicms\project\module\blog\site\author\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
@@ -18,7 +18,7 @@ use umicms\project\module\blog\model\object\BlogAuthor;
 /**
  * Виджет для вывода URL на RSS-ленту по автору.
  */
-class ListRssLinkWidget extends BaseLinkWidget
+class RssLinkWidget extends BaseLinkWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

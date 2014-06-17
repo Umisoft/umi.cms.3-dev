@@ -48,13 +48,6 @@ return [
         'directories' => ['module/blog/author/view'],
     ],
     SitePageComponent::OPTION_ROUTES => [
-        'rss' => [
-            'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/rss/{slug}',
-            'defaults' => [
-                'controller' => 'rss'
-            ]
-        ],
         'index' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'defaults' => [

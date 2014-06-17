@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\author\view\controller;
+namespace umicms\project\module\blog\site\author\controller;
 
 use umi\http\Response;
 use umicms\hmvc\component\BaseCmsController;

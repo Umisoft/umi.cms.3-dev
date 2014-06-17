@@ -12,7 +12,7 @@
                     'blog.author.view.author',
                     ['blogAuthor' => $blogAuthor, 'template' => 'listShortView']
                 ) ?>
-                <?= $this->widget('blog.author.view.rss', ['blogAuthor' => $blogAuthor, 'template' => 'rssLink']) ?>
+                <?= $this->widget('blog.author.rss', ['blogAuthor' => $blogAuthor, 'template' => 'rssLink']) ?>
             </li>
         <?php endforeach; ?>
     </ol>

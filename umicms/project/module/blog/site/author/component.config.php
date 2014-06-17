@@ -18,7 +18,8 @@ return [
 
     SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
     SiteComponent::OPTION_CONTROLLERS => [
-        'index' => __NAMESPACE__ . '\controller\AuthorIndexController',
+        'index' => 'umicms\hmvc\component\site\SiteStructurePageController',
+        'rss' => __NAMESPACE__ . '\controller\RssController',
     ],
     SiteComponent::OPTION_COMPONENTS => [
         'profile' => '{#lazy:~/project/module/blog/site/author/profile/component.config.php}',
@@ -27,6 +28,7 @@ return [
     SiteComponent::OPTION_WIDGET => [
         'profile' => __NAMESPACE__ . '\widget\AuthorProfileWidget',
         'view' => __NAMESPACE__ . '\widget\AuthorViewWidget',
+        'rss' => __NAMESPACE__ . '\widget\RssLinkWidget',
     ],
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -43,6 +45,13 @@ return [
         'directories' => ['module/blog/author'],
     ],
     SiteComponent::OPTION_ROUTES => [
+        'rss' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/rss/{slug}',
+            'defaults' => [
+                'controller' => 'rss'
+            ]
+        ],
         'component' => [
             'type' => 'SiteComponentRoute'
         ],
