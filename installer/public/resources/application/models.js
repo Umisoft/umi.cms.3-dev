@@ -240,7 +240,7 @@ define([], function(){
                             fieldValue = DS.hasMany(collection.fields[i].targetCollection, params);
                             break;
                         default:
-                            fieldValue = DS.attr('raw', params);
+                            fieldValue = DS.attr('string', params);
                             break;
                     }
 
