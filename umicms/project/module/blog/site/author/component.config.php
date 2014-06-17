@@ -25,7 +25,7 @@ return [
         'view' => '{#lazy:~/project/module/blog/site/author/view/component.config.php}'
     ],
     SiteGroupComponent::OPTION_WIDGET => [
-        'rss' => __NAMESPACE__ . '\widget\RssLinkWidget',
+        'rssLink' => __NAMESPACE__ . '\widget\RssLinkWidget',
     ],
     SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -33,7 +33,7 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'rssViewer' => [
-                'widget:rss' => [],
+                'widget:rssLink' => [],
                 'controller:rss' => []
             ]
         ]

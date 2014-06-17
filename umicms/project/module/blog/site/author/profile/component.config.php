@@ -29,7 +29,7 @@ return [
         IAclFactory::OPTION_RULES => [
             'author' => [
                 'controller:index' => [],
-                'widget:edit' => []
+                'widget:editLink' => []
             ]
         ]
     ],
