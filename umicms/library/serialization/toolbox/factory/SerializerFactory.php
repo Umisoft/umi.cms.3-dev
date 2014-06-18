@@ -43,6 +43,7 @@ class SerializerFactory implements IFactory, ISerializerFactory
             'NULL' => 'umicms\serialization\xml\NullSerializer'
         ],
         self::TYPE_JSON => [
+            'umicms\exception\InvalidObjectsException' => 'umicms\serialization\json\InvalidObjectsExceptionSerializer',
             'Exception' => 'umicms\serialization\json\ExceptionSerializer',
             'object' => 'umicms\serialization\json\ObjectSerializer',
             'array' => 'umicms\serialization\json\ArraySerializer',
@@ -101,14 +102,14 @@ class SerializerFactory implements IFactory, ISerializerFactory
      * @throws OutOfBoundsException если тип сериализации или сериализатор не зарегистрирован
      * @return string
      */
-    private function resolveSerializerClass($type, $object) {
+    private function resolveSerializerClass($type, $object)
+    {
         if (!isset($this->types[$type])) {
             throw new OutOfBoundsException($this->translate(
                 'Serialization type "{type}" is not registered.',
                 ['type' => $type]
             ));
         }
-
 
         $objectType = gettype($object);
 
@@ -143,7 +144,8 @@ class SerializerFactory implements IFactory, ISerializerFactory
      * @param string $objectType имя класса либо тип объекта
      * @return string|null
      */
-    private function getSerializerByClassName($type, $objectType) {
+    private function getSerializerByClassName($type, $objectType)
+    {
         return isset($this->types[$type][$objectType]) ? $this->types[$type][$objectType] : null;
     }
 

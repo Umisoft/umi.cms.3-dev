@@ -10,6 +10,7 @@
 
 namespace umicms\orm\object;
 
+use umi\orm\object\property\IProperty;
 use umicms\hmvc\url\TUrlManagerAware;
 
 /**
@@ -23,6 +24,29 @@ trait TCmsObject
      * @var string $traitEditLink ссылка на редактирование объекта
      */
     private $traitEditLink;
+
+    /**
+     * @see ICmsObject::getIsModified()
+     */
+    abstract public function getIsModified();
+    /**
+     * @see ICmsObject::getIsNew()
+     */
+    abstract public function getIsNew();
+    /**
+     * @see ICmsObject::getAllProperties()
+     * @return IProperty[]
+     */
+    abstract public function getAllProperties();
+
+    /**
+     * @see TLocalesAware::getDefaultDataLocale()
+     */
+    abstract protected function getDefaultDataLocale();
+    /**
+     * @see TLocalesAware::getCurrentDataLocale()
+     */
+    abstract protected function getCurrentDataLocale();
 
     /**
      * Возаращает имя класса объекта.
@@ -43,6 +67,37 @@ trait TCmsObject
         }
 
         return $this->traitEditLink;
+    }
+
+    /**
+     * @see ICmsObject::validate()
+     */
+    public function validate()
+    {
+        /** @noinspection PhpUndefinedFieldInspection */
+        $this->validationErrors = [];
+
+        if (!$this->getIsModified() && !$this->getIsNew()) {
+            return true;
+        }
+
+        $result = true;
+
+        foreach ($this->getAllProperties() as $property) {
+
+            $localeId = $property->getLocaleId();
+            if ($localeId && $localeId !== $this->getDefaultDataLocale() && $localeId !== $this->getCurrentDataLocale()) {
+                continue;
+            }
+
+            if (!$property->validate()) {
+                /** @noinspection PhpUndefinedFieldInspection */
+                $this->validationErrors[$property->getFullName()] = $property->getValidationErrors();
+                $result = false;
+            }
+        }
+
+        return $result;
     }
 
 }

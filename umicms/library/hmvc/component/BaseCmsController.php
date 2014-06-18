@@ -20,6 +20,7 @@ use umi\orm\exception\RuntimeException;
 use umi\orm\persister\IObjectPersister;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
+use umicms\exception\InvalidObjectsException;
 use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
@@ -148,11 +149,22 @@ abstract class BaseCmsController extends BaseController
      * запуская перед этим валидацию объектов.
      * Если при сохранении какого-либо объекта возникли ошибки - все изменения
      * автоматически откатываются
+     * @throws InvalidObjectsException если объекты не прошли валидацию
      * @throws RuntimeException если транзакция не успешна
      * @return self
      */
     protected function commit()
     {
+        $persister = $this->getObjectPersister();
+        $invalidObjects = $persister->getInvalidObjects();
+
+        if (count($invalidObjects)) {
+            throw new InvalidObjectsException(
+                $this->translate('Cannot persist objects. Objects are not valid.'),
+                $invalidObjects
+            );
+        }
+
         $this->getObjectPersister()->commit();
     }
 
