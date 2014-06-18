@@ -10,25 +10,29 @@
 
 namespace umicms\project\module\blog\site\moderate\widget;
 
+use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseCmsWidget;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет вывода поста, требующего модерации.
+ * Виджет публикации поста, требующего модерации.
  */
-class PostWidget extends BaseCmsWidget
+class PublishWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'page';
+    public $template = 'publishForm';
     /**
-     * @var string|BlogPost $blogPost пост или GUID поста требующего модерации
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
+    /**
+     * @var string|BlogPost $blogPost пост или GUID поста, тербующего модерации
      */
     public $blogPost;
-
     /**
      * @var BlogModule $module модуль "Блоги"
      */
@@ -46,7 +50,7 @@ class PostWidget extends BaseCmsWidget
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getForm()
     {
         if (is_string($this->blogPost)) {
             $this->blogPost = $this->module->post()->getNeedModeratePost($this->blogPost);
@@ -64,12 +68,15 @@ class PostWidget extends BaseCmsWidget
             );
         }
 
-        return $this->createResult(
-            $this->template,
-            [
-                'blogPost' => $this->blogPost
-            ]
+        $form = $this->module->post()->getForm(
+            BlogPost::FORM_PUBLISH_POST,
+            IObjectType::BASE,
+            $this->blogPost
         );
+
+        $form->setAction($this->getUrl('publish', ['id' => $this->blogPost->getId()]));
+
+        return $form;
     }
 }
  

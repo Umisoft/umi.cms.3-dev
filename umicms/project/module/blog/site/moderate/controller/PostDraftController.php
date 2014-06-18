@@ -23,7 +23,7 @@ use umicms\hmvc\component\site\TFormSimpleController;
 /**
  * Контроллер снятия поста с модерации и переноса в черновики.
  */
-class PostDraftController extends BaseCmsController implements IObjectPersisterAware
+class DraftController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormSimpleController;
     use TObjectPersisterAware;

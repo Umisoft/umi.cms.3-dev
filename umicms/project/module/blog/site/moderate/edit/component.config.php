@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\draft\edit;
+namespace umicms\project\module\blog\site\moderate\edit;
 
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
@@ -22,44 +22,32 @@ return [
         'page' => __NAMESPACE__ . '\controller\EditController',
     ],
     SitePageComponent::OPTION_WIDGET => [
-        'editLink' => __NAMESPACE__ . '\widget\EditUrlWidget',
+        'editLink' => __NAMESPACE__ . '\widget\EditLinkWidget',
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
-            'publisher' => [],
+            'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
-                'controller:index' => [],
                 'controller:page' => [],
-                'widget:editDraftLink' => [],
-                'model:blogPost' => [
-                    IAclManager::OPERATION_ALL => ['own']
-                ]
-            ],
-            'publisher' => [
-                'controller:index' => [],
-                'controller:page' => [],
-                'controller:publish' => [],
-                'widget:view' => [],
-                'widget:ownList' => [],
-                'widget:ownListLink' => [],
-                'widget:editDraftLink' => [],
-                'widget:publishDraft' => [],
+                'widget:editLink' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
             ],
             'moderator' => [
+                'controller:page' => [],
+                'widget:editLink' => [],
                 'model:blogPost' => []
-            ],
+            ]
         ]
     ],
     SitePageComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/draft/edit'],
+        'directories' => ['module/blog/moderate/edit'],
     ]
 ];

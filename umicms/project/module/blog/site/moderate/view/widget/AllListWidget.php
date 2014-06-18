@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\widget;
+namespace umicms\project\module\blog\site\moderate\view\widget;
 
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\model\BlogModule;

@@ -8,9 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\controller;
+namespace umicms\project\module\blog\site\draft\edit\controller;
 
 use umi\form\IForm;
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
@@ -20,9 +21,9 @@ use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormController;
 
 /**
- * Контроллер редактирования поста блога, требующего модерации.
+ * Контроллер редактирования черновика блога.
  */
-class PostEditController extends BaseCmsController implements IObjectPersisterAware
+class EditController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;
@@ -50,7 +51,7 @@ class PostEditController extends BaseCmsController implements IObjectPersisterAw
      */
     protected function getTemplateName()
     {
-        return 'editPost';
+        return 'blogDraft';
     }
 
     /**
@@ -58,12 +59,19 @@ class PostEditController extends BaseCmsController implements IObjectPersisterAw
      */
     protected function buildForm()
     {
-        $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
+        $blogDraft = $this->module->post()->getDraftById($this->getRouteVar('uri'));
+
+        if (!$this->isAllowed($blogDraft)) {
+            throw new ResourceAccessForbiddenException(
+                $blogDraft,
+                $this->translate('Access denied')
+            );
+        }
 
         return $this->module->post()->getForm(
             BlogPost::FORM_EDIT_POST,
             IObjectType::BASE,
-            $blogPost
+            $blogDraft
         );
     }
 
@@ -76,9 +84,6 @@ class PostEditController extends BaseCmsController implements IObjectPersisterAw
         $this->success = true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function buildResponseContent()
     {
         return [

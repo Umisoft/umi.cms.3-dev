@@ -17,20 +17,20 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет публикации поста, требующего модерации.
+ * Виджет переноса поста с модерации в черновики.
  */
-class PostPublishWidget extends BaseFormWidget
+class DraftWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'publishForm';
+    public $template = 'draftForm';
     /**
      * {@inheritdoc}
      */
     public $redirectUrl = self::REFERER_REDIRECT;
     /**
-     * @var string|BlogPost $blogPost пост или GUID поста, тербующего модерации
+     * @var string|BlogPost $blogPost пост или GUID поста на модерации, необходимого перенесте в черновики
      */
     public $blogPost;
     /**
@@ -69,12 +69,12 @@ class PostPublishWidget extends BaseFormWidget
         }
 
         $form = $this->module->post()->getForm(
-            BlogPost::FORM_PUBLISH_POST,
+            BlogPost::FORM_DRAFT_POST,
             IObjectType::BASE,
             $this->blogPost
         );
 
-        $form->setAction($this->getUrl('publish', ['id' => $this->blogPost->getId()]));
+        $form->setAction($this->getUrl('draft', ['id' => $this->blogPost->getId()]));
 
         return $form;
     }

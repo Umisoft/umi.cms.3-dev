@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\controller;
+namespace umicms\project\module\blog\site\moderate\view\controller;
 
 use umicms\hmvc\component\site\BaseSitePageController;
 
 /**
  * Контроллер вывода списка всех постов, требующих модерирование.
  */
-class PostListController extends BaseSitePageController
+class ListController extends BaseSitePageController
 {
     /**
      * {@inheritdoc}

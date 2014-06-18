@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\widget;
+namespace umicms\project\module\blog\site\moderate\edit\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
@@ -18,7 +18,7 @@ use umicms\project\module\blog\model\object\BlogPost;
 /**
  * Виджет для вывода ссылки на редактирование поста, требующего модерации.
  */
-class PostEditLinkWidget extends BaseLinkWidget
+class EditLinkWidget extends BaseLinkWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -63,7 +63,7 @@ class PostEditLinkWidget extends BaseLinkWidget
             );
         }
 
-        return $this->getUrl('edit', ['id' => $this->blogPost->getId()], $this->absolute);
+        return $this->getUrl('page', ['uri' => $this->blogPost->getId()], $this->absolute);
     }
 }
  

@@ -8,31 +8,27 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\widget;
+namespace umicms\project\module\blog\site\moderate\view\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseFormWidget;
+use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет отклонения поста, требующего модерации.
+ * Виджет вывода поста, требующего модерации.
  */
-class PostRejectWidget extends BaseFormWidget
+class PostWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'rejectForm';
+    public $template = 'page';
     /**
-     * {@inheritdoc}
-     */
-    public $redirectUrl = self::REFERER_REDIRECT;
-    /**
-     * @var string|BlogPost $blogPost пост или GUID поста, тербующего модерации
+     * @var string|BlogPost $blogPost пост или GUID поста требующего модерации
      */
     public $blogPost;
+
     /**
      * @var BlogModule $module модуль "Блоги"
      */
@@ -50,7 +46,7 @@ class PostRejectWidget extends BaseFormWidget
     /**
      * {@inheritdoc}
      */
-    protected function getForm()
+    public function __invoke()
     {
         if (is_string($this->blogPost)) {
             $this->blogPost = $this->module->post()->getNeedModeratePost($this->blogPost);
@@ -68,16 +64,12 @@ class PostRejectWidget extends BaseFormWidget
             );
         }
 
-        $form = $this->module->post()->getForm(
-            BlogPost::FORM_REJECT_POST,
-            IObjectType::BASE,
-            $this->blogPost
+        return $this->createResult(
+            $this->template,
+            [
+                'blogPost' => $this->blogPost
+            ]
         );
-
-        $form->setAction($this->getUrl('reject', ['id' => $this->blogPost->getId()]));
-
-        return $form;
-
     }
 }
  

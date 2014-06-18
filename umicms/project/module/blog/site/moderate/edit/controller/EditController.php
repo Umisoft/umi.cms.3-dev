@@ -8,10 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\draft\edit\controller;
+namespace umicms\project\module\blog\site\moderate\edit\controller;
 
 use umi\form\IForm;
-use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
@@ -21,9 +20,9 @@ use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormController;
 
 /**
- * Контроллер редактирования черновика блога.
+ * Контроллер редактирования поста блога, требующего модерации.
  */
-class IndexController extends BaseCmsController implements IObjectPersisterAware
+class EditController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;
@@ -51,7 +50,7 @@ class IndexController extends BaseCmsController implements IObjectPersisterAware
      */
     protected function getTemplateName()
     {
-        return 'blogDraft';
+        return 'editPost';
     }
 
     /**
@@ -59,19 +58,12 @@ class IndexController extends BaseCmsController implements IObjectPersisterAware
      */
     protected function buildForm()
     {
-        $blogDraft = $this->module->post()->getDraftById($this->getRouteVar('uri'));
-
-        if (!$this->isAllowed($blogDraft)) {
-            throw new ResourceAccessForbiddenException(
-                $blogDraft,
-                $this->translate('Access denied')
-            );
-        }
+        $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('uri'));
 
         return $this->module->post()->getForm(
             BlogPost::FORM_EDIT_POST,
             IObjectType::BASE,
-            $blogDraft
+            $blogPost
         );
     }
 
@@ -84,6 +76,9 @@ class IndexController extends BaseCmsController implements IObjectPersisterAware
         $this->success = true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function buildResponseContent()
     {
         return [

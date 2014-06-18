@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\widget;
+namespace umicms\project\module\blog\site\moderate\view\widget;
 
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
- * Виджет для вывода ссылки на спискок постов текущего автора, требующих модерации.
+ * Виджет для вывода ссылки на спискок всех черновиков.
  */
-class OwnListLinkWidget extends BaseLinkWidget
+class AllListLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}
@@ -27,7 +27,7 @@ class OwnListLinkWidget extends BaseLinkWidget
      */
     protected function getLinkUrl()
     {
-        return $this->getUrl('index', [], $this->absolute);
+        return $this->getUrl('all', [], $this->absolute);
     }
+
 }
- 

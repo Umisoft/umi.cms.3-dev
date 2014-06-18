@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\controller;
+namespace umicms\project\module\blog\site\moderate\view\controller;
 
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -17,7 +17,7 @@ use umicms\hmvc\component\site\SitePageController;
 /**
  * Контроллер вывода поста блога, требующего модерации.
  */
-class PostPageController extends SitePageController
+class PageController extends SitePageController
 {
     /**
      * @var BlogModule $module модуль "Блоги"

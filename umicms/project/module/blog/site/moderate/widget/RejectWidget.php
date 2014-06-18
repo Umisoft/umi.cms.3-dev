@@ -17,20 +17,20 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет переноса поста с модерации в черновики.
+ * Виджет отклонения поста, требующего модерации.
  */
-class PostDraftWidget extends BaseFormWidget
+class RejectWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'draftForm';
+    public $template = 'rejectForm';
     /**
      * {@inheritdoc}
      */
     public $redirectUrl = self::REFERER_REDIRECT;
     /**
-     * @var string|BlogPost $blogPost пост или GUID поста на модерации, необходимого перенесте в черновики
+     * @var string|BlogPost $blogPost пост или GUID поста, тербующего модерации
      */
     public $blogPost;
     /**
@@ -69,14 +69,15 @@ class PostDraftWidget extends BaseFormWidget
         }
 
         $form = $this->module->post()->getForm(
-            BlogPost::FORM_DRAFT_POST,
+            BlogPost::FORM_REJECT_POST,
             IObjectType::BASE,
             $this->blogPost
         );
 
-        $form->setAction($this->getUrl('draft', ['id' => $this->blogPost->getId()]));
+        $form->setAction($this->getUrl('reject', ['id' => $this->blogPost->getId()]));
 
         return $form;
+
     }
 }
  

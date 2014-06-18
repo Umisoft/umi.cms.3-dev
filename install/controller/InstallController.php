@@ -536,11 +536,23 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $post->getProperty('componentName')->setValue('reject');
         $post->getProperty('componentPath')->setValue('blog.reject');
 
-        $post = $structureCollection->add('needModeration', 'system', $blogPage)
+        $moderationPost = $structureCollection->add('needModeration', 'system', $blogPage)
             ->setValue('displayName', 'Посты на модерацию')
             ->setValue('displayName', 'Posts to moderate', 'en-US');
-        $post->getProperty('componentName')->setValue('moderate');
-        $post->getProperty('componentPath')->setValue('blog.moderate');
+        $moderationPost->getProperty('componentName')->setValue('moderate');
+        $moderationPost->getProperty('componentPath')->setValue('blog.moderate');
+
+        $moderationPostEdit = $structureCollection->add('edit', 'system', $moderationPost)
+            ->setValue('displayName', 'Редактировать посты на модерации')
+            ->setValue('displayName', 'Edit posts to moderate', 'en-US');
+        $moderationPostEdit->getProperty('componentName')->setValue('edit');
+        $moderationPostEdit->getProperty('componentPath')->setValue('blog.moderate.edit');
+
+        $moderationPostView = $structureCollection->add('view', 'system', $moderationPost)
+            ->setValue('displayName', 'Просмотреть пост на модерации')
+            ->setValue('displayName', 'View posts to moderate', 'en-US');
+        $moderationPostView->getProperty('componentName')->setValue('view');
+        $moderationPostView->getProperty('componentPath')->setValue('blog.moderate.view');
 
         $comment = $structureCollection->add('blogcomment', 'system', $blogPage)
             ->setValue('displayName', 'Комментарий блога')

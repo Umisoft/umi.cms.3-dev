@@ -31,7 +31,7 @@
                     ['template' => 'draftLinkAuthor']
                 ) ?></li>
             <li><?= $this->translate('Post on moderation') ?>: <?= $this->widget(
-                    'blog.moderate.ownListLink',
+                    'blog.moderate.view.ownListLink',
                     ['template' => 'moderateLink']
                 ) ?></li>
             <li><?= $this->translate('Rejected posts') ?>: <?= $this->widget(
@@ -47,7 +47,7 @@
         <h4><?= $this->translate('Moderate') ?></h4>
         <ol class="list-unstyled">
             <li><?= $this->translate('Post on moderation') ?>: <?= $this->widget(
-                    'blog.moderate.allListLink',
+                    'blog.moderate.view.allListLink',
                     ['template' => 'moderateLink']
                 ) ?></li>
         </ol>

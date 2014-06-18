@@ -20,9 +20,9 @@ use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormSimpleController;
 
 /**
- * Контроллер публикации поста, требующего модерации.
+ * Контроллер отправки отклонённого поста на модерацию.
  */
-class PostPublishController extends BaseCmsController implements IObjectPersisterAware
+class RejectController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormSimpleController;
     use TObjectPersisterAware;
@@ -46,7 +46,7 @@ class PostPublishController extends BaseCmsController implements IObjectPersiste
      */
     protected function buildForm()
     {
-        return $this->module->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE);
+        return $this->module->post()->getForm(BlogPost::FORM_REJECT_POST, IObjectType::BASE);
     }
 
     /**
@@ -55,7 +55,7 @@ class PostPublishController extends BaseCmsController implements IObjectPersiste
     protected function processForm(IForm $form)
     {
         $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
-        $blogPost->published();
+        $blogPost->rejected();
 
         $this->getObjectPersister()->commit();
     }
