@@ -11,7 +11,6 @@
 namespace umicms\project\module\blog\site\post\edit;
 
 use umi\acl\IAclFactory;
-use umi\route\IRouteFactory;
 use umicms\hmvc\component\site\SitePageComponent;
 
 return [
