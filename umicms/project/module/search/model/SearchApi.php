@@ -7,18 +7,14 @@
  * @license For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace umicms\project\module\search\model;
 
 use umi\dbal\builder\IExpressionGroup;
 use umi\dbal\builder\ISelectBuilder;
-use umi\dbal\cluster\IDbClusterAware;
-use umi\dbal\cluster\TDbClusterAware;
 use umi\event\IEventObservant;
 use umi\event\TEventObservant;
 use umi\orm\collection\TCollectionManagerAware;
-use umi\orm\objectset\IObjectSet;
-use umi\spl\config\TConfigSupport;
-use umi\stemming\TStemmingAware;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\project\module\search\highlight\Fragmenter;
@@ -28,11 +24,9 @@ use utest\event\TEventSupport;
 /**
  * Публичный интерфейс поиска по модулям CMS
  */
-class SearchApi extends BaseSearchApi implements IDbClusterAware, IEventObservant
+class SearchApi extends BaseSearchApi implements IEventObservant
 {
-    use TDbClusterAware;
     use TEventObservant;
-    use TConfigSupport;
 
     /**
      * Минимальная длина слова в поисковом запросе.
@@ -49,9 +43,8 @@ class SearchApi extends BaseSearchApi implements IDbClusterAware, IEventObservan
 
     /**
      * Ищет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
-     *
      * @param string $searchString
-     * @return IObjectSet
+     * @return array
      */
     public function search($searchString)
     {
@@ -89,7 +82,7 @@ class SearchApi extends BaseSearchApi implements IDbClusterAware, IEventObservan
                 'result' => $result
             ]
         );
-        //todo pagination after filtering results
+
         return $result;
     }
 
@@ -219,49 +212,46 @@ class SearchApi extends BaseSearchApi implements IDbClusterAware, IEventObservan
     /**
      * Собирает условие поиска в бд по полнотекстовому индексу, в зависимости от используемой бд.
      * Позволяет модифицировать это условие после формирования, с помощью подписки на событие search.buildCondition.
-     *
-     * @param array $words Искомые слова
-     * @param array $wordBases Базовые формы искомых слов для второстепенных совпадений
+     * @param array $words искомые слова
+     * @param array $wordBases базовые формы искомых слов для второстепенных совпадений
      * @return ISelectBuilder
      */
     protected function buildQueryCondition($words, array $wordBases)
     {
-        $searchMetadata = $this->getSearchIndexCollection()
-            ->getMetadata();
-        $collectionNameColumn = $searchMetadata->getField(SearchIndex::FIELD_COLLECTION_NAME)
-            ->getColumnName();
-        $refGuidColumn = $searchMetadata->getField(SearchIndex::FIELD_REF_GUID)
-            ->getColumnName();
-        $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)
-            ->getColumnName();
+        $searchIndexCollection = $this->getSearchIndexCollection();
+        $searchMetadata = $searchIndexCollection->getMetadata();
+        $collectionNameColumn = $searchMetadata->getField(SearchIndex::FIELD_COLLECTION_NAME)->getColumnName();
+        $refGuidColumn = $searchMetadata->getField(SearchIndex::FIELD_REF_GUID)->getColumnName();
+        $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)->getColumnName();
 
-        $db = $this->getDbCluster()
-            ->getConnection();
+        $dataSource = $searchMetadata->getCollectionDataSource();
 
         /** @var $select ISelectBuilder */
-        $select = $this->getDbCluster()
+        $select = $dataSource
             ->select([$collectionNameColumn, $refGuidColumn, [':searchMatchExpression', 'searchRelevance']])
             ->distinct()
-            ->from(
-                $searchMetadata->getCollectionDataSource()
-                    ->getSourceName()
-            )
-            ->orderBy('searchRelevance', 'DESC')
-            ->where(IExpressionGroup::MODE_OR)
+            ->orderBy('searchRelevance', ISelectBuilder::ORDER_DESC);
+
+        $connection = $dataSource->getConnection();
+
+        $select->where(IExpressionGroup::MODE_OR)
             ->expr(':searchMatchExpression', '>', ':minimumSearchRelevance')
             ->bindExpression(
                 ':searchMatchExpression',
-                'MATCH(' . $db->quoteIdentifier($contentColumnName) . ') AGAINST (' . $db->quote($words)
+                'MATCH(' . $connection->quoteIdentifier($contentColumnName) . ') AGAINST (' . $connection->quote($words)
                 . '  WITH QUERY EXPANSION)'
             )
             ->bindInt(':minimumSearchRelevance', 0);
+
         if (count($wordBases)) {
             $select->begin(IExpressionGroup::MODE_OR)
                 ->expr($contentColumnName, 'LIKE', ":searchLikeCondition")
                 ->end()
                 ->bindString(':searchLikeCondition', "%" . $this->buildLikeQueryPart($wordBases) . "%");
         }
+
         $this->fireEvent('search.buildCondition', ['selectBuilder' => $select]);
+
         return $select;
     }
 

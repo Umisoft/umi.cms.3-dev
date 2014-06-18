@@ -16,6 +16,9 @@ use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umi\messages\ISwiftMailerAware;
 use umi\messages\TSwiftMailerAware;
+use umi\orm\exception\RuntimeException;
+use umi\orm\persister\IObjectPersisterAware;
+use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\hmvc\view\CmsView;
@@ -23,10 +26,12 @@ use umicms\hmvc\view\CmsView;
 /**
  * Базовый контроллер UMI.CMS
  */
-abstract class BaseCmsController extends BaseController implements IAclResource, IUrlManagerAware, ISwiftMailerAware
+abstract class BaseCmsController extends BaseController
+    implements IAclResource, IUrlManagerAware, ISwiftMailerAware, IObjectPersisterAware
 {
     use TUrlManagerAware;
     use TSwiftMailerAware;
+    use TObjectPersisterAware;
 
     const ACL_RESOURCE_PREFIX = 'controller:';
 
@@ -122,6 +127,19 @@ abstract class BaseCmsController extends BaseController implements IAclResource,
         );
 
         $this->sendMail($subject, $body, 'text/html', [], $to, $from);
+    }
+
+    /**
+     * Записывает изменения всех объектов в БД (бизнес транзакция),
+     * запуская перед этим валидацию объектов.
+     * Если при сохранении какого-либо объекта возникли ошибки - все изменения
+     * автоматически откатываются
+     * @throws RuntimeException если транзакция не успешна
+     * @return self
+     */
+    protected function commit()
+    {
+        $this->getObjectPersister()->commit();
     }
 
 }

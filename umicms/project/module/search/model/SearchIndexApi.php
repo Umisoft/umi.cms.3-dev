@@ -7,6 +7,7 @@
  * @license For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace umicms\project\module\search\model;
 
 use umi\config\entity\IConfig;
@@ -16,22 +17,16 @@ use umi\event\IEventObservant;
 use umi\event\TEventObservant;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\object\IObject;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umi\spl\config\TConfigSupport;
-use umi\stemming\IStemmingAware;
-use umi\stemming\TStemmingAware;
+use umicms\exception\UnexpectedValueException;
 use umicms\project\module\search\model\object\SearchIndex;
 
 /**
  * Публичный интерфейс для индексирования модулей CMS для поиска.
  */
-class SearchIndexApi extends BaseSearchApi implements IStemmingAware, IConfigIOAware,
-    IObjectPersisterAware, IEventObservant
+class SearchIndexApi extends BaseSearchApi implements IConfigIOAware, IEventObservant
 {
-    use TStemmingAware;
     use TConfigIOAware;
-    use TObjectPersisterAware;
     use TConfigSupport;
     use TEventObservant;
 
@@ -118,14 +113,16 @@ class SearchIndexApi extends BaseSearchApi implements IStemmingAware, IConfigIOA
     /**
      * Возвращает конфигурацию индексирования именованной коллекции.
      * @param string $collectionName Имя коллекции
-     * @throws \UnexpectedValueException
+     * @throws UnexpectedValueException
      * @return array
      */
     protected function getConfigForCollection($collectionName)
     {
         $config = $this->getIndexableCollectionsConfig();
         if (!isset($config[$collectionName])) {
-            throw new \UnexpectedValueException("Collection $collectionName is not mapped for search index");
+            throw new UnexpectedValueException(
+                sprintf('Collection "%s" is not mapped for search index', $collectionName)
+            );
         }
         $fields = $config[$collectionName];
         return $fields;

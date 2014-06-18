@@ -135,7 +135,7 @@ class ActionController extends BaseController
          */
          $collection->activate($object);
 
-        $this->getObjectPersister()->commit();
+        $this->commit();
 
         return '';
     }
@@ -164,7 +164,7 @@ class ActionController extends BaseController
          */
         $collection->deactivate($object);
 
-        $this->getObjectPersister()->commit();
+        $this->commit();
 
         return '';
     }
@@ -193,7 +193,7 @@ class ActionController extends BaseController
          */
         $collection->trash($object);
 
-        $this->getObjectPersister()->commit();
+        $this->commit();
 
         return '';
     }
@@ -223,7 +223,7 @@ class ActionController extends BaseController
         $collection->trash($object);
 
         $collection->untrash($object);
-        $this->getObjectPersister()->commit();
+        $this->commit();
 
         return '';
     }
