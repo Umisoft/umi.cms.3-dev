@@ -8,16 +8,15 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\draft\controller;
+namespace umicms\project\module\blog\site\draft\view\widget;
 
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\model\BlogModule;
-use umicms\project\module\blog\model\object\BlogPost;
-use umicms\hmvc\component\site\SitePageController;
 
 /**
- * Контроллер вывода черновика блога.
+ * Виджет для вывода списка черновиков текущего автора.
  */
-class BlogDraftPageController extends SitePageController
+class OwnListWidget extends BaseListWidget
 {
     /**
      * @var BlogModule $module модуль "Блоги"
@@ -26,7 +25,7 @@ class BlogDraftPageController extends SitePageController
 
     /**
      * Конструктор.
-     * @param BlogModule $module
+     * @param BlogModule $module модуль "Блоги"
      */
     public function __construct(BlogModule $module)
     {
@@ -34,13 +33,11 @@ class BlogDraftPageController extends SitePageController
     }
 
     /**
-     * Возвращает страницу для отображения.
-     * @param string $uri
-     * @return BlogPost
+     * {@inheritdoc}
      */
-    public function getPage($uri)
+    protected function getSelector()
     {
-        return $this->module->post()->getDraftByUri($uri);
+        return $this->module->getOwnDrafts();
     }
 }
  

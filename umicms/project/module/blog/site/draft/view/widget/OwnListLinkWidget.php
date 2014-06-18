@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\draft\widget;
+namespace umicms\project\module\blog\site\draft\view\widget;
 
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет для вывода ссылки на спискок черновиков текущего автора.
  */
-class DraftOwnListLinkWidget extends BaseLinkWidget
+class OwnListLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}

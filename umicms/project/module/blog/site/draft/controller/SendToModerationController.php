@@ -21,9 +21,9 @@ use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormSimpleController;
 
 /**
- * Контроллер публикации черновика.
+ * Контроллер отправки поста на модерацию.
  */
-class BlogPublishDraftController extends BaseCmsController implements IObjectPersisterAware
+class SendToModerationController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormSimpleController;
     use TObjectPersisterAware;
@@ -60,7 +60,7 @@ class BlogPublishDraftController extends BaseCmsController implements IObjectPer
             );
         }
 
-        return $this->module->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE);
+        return $this->module->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
     }
 
     /**
@@ -68,7 +68,7 @@ class BlogPublishDraftController extends BaseCmsController implements IObjectPer
      */
     protected function processForm(IForm $form)
     {
-        $this->blogDraft->published();
+        $this->blogDraft->needModeration();
         $this->getObjectPersister()->commit();
     }
 }

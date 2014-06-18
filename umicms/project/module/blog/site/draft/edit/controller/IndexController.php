@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\draft\controller;
+namespace umicms\project\module\blog\site\draft\edit\controller;
 
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
@@ -18,14 +18,14 @@ use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
-use umicms\hmvc\component\site\TFormSimpleController;
+use umicms\hmvc\component\site\TFormController;
 
 /**
- * Контроллер отправки поста на модерацию.
+ * Контроллер редактирования черновика блога.
  */
-class PostSendToModerationController extends BaseCmsController implements IObjectPersisterAware
+class IndexController extends BaseCmsController implements IObjectPersisterAware
 {
-    use TFormSimpleController;
+    use TFormController;
     use TObjectPersisterAware;
 
     /**
@@ -33,9 +33,9 @@ class PostSendToModerationController extends BaseCmsController implements IObjec
      */
     protected $module;
     /**
-     * @var BlogPost $blogDraft черновик поста
+     * @var bool $success флаг указывающий на успешное сохранение изменений
      */
-    protected $blogDraft;
+    private $success = false;
 
     /**
      * Конструктор.
@@ -49,18 +49,30 @@ class PostSendToModerationController extends BaseCmsController implements IObjec
     /**
      * {@inheritdoc}
      */
+    protected function getTemplateName()
+    {
+        return 'blogDraft';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function buildForm()
     {
-        $this->blogDraft = $this->module->post()->getDraftById($this->getRouteVar('id'));
+        $blogDraft = $this->module->post()->getDraftById($this->getRouteVar('uri'));
 
-        if (!$this->isAllowed($this->blogDraft)) {
+        if (!$this->isAllowed($blogDraft)) {
             throw new ResourceAccessForbiddenException(
-                $this->blogDraft,
+                $blogDraft,
                 $this->translate('Access denied')
             );
         }
 
-        return $this->module->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
+        return $this->module->post()->getForm(
+            BlogPost::FORM_EDIT_POST,
+            IObjectType::BASE,
+            $blogDraft
+        );
     }
 
     /**
@@ -68,8 +80,15 @@ class PostSendToModerationController extends BaseCmsController implements IObjec
      */
     protected function processForm(IForm $form)
     {
-        $this->blogDraft->needModeration();
         $this->getObjectPersister()->commit();
+        $this->success = true;
+    }
+
+    protected function buildResponseContent()
+    {
+        return [
+            'success' => $this->success
+        ];
     }
 }
  

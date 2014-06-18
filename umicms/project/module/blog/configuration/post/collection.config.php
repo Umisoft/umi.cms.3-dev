@@ -19,7 +19,7 @@ return [
     'handlers' => [
         ICmsCollection::HANDLER_ADMIN => 'blog.post',
         ICmsCollection::HANDLER_SITE => 'blog.post',
-        BlogPostCollection::HANDLER_DRAFT => 'blog.draft',
+        BlogPostCollection::HANDLER_DRAFT => 'blog.draft.view',
         BlogPostCollection::HANDLER_MODERATE => 'blog.moderate',
         BlogPostCollection::HANDLER_REJECT => 'blog.reject'
     ],

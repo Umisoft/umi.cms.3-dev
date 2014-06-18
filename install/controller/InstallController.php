@@ -512,11 +512,23 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $post->getProperty('componentName')->setValue('post');
         $post->getProperty('componentPath')->setValue('blog.post');
 
-        $post = $structureCollection->add('drafts', 'system', $blogPage)
+        $draft = $structureCollection->add('drafts', 'system', $blogPage)
             ->setValue('displayName', 'Черновики блога')
             ->setValue('displayName', 'Drafts', 'en-US');
-        $post->getProperty('componentName')->setValue('draft');
-        $post->getProperty('componentPath')->setValue('blog.draft');
+        $draft->getProperty('componentName')->setValue('draft');
+        $draft->getProperty('componentPath')->setValue('blog.draft');
+
+        $draftView = $structureCollection->add('view', 'system', $draft)
+            ->setValue('displayName', 'Просмотр черновика')
+            ->setValue('displayName', 'View draft', 'en-US');
+        $draftView->getProperty('componentName')->setValue('view');
+        $draftView->getProperty('componentPath')->setValue('blog.draft.view');
+
+        $draftEdit = $structureCollection->add('edit', 'system', $draft)
+            ->setValue('displayName', 'Редактирование черновика')
+            ->setValue('displayName', 'Edit draft', 'en-US');
+        $draftEdit->getProperty('componentName')->setValue('edit');
+        $draftEdit->getProperty('componentPath')->setValue('blog.draft.edit');
 
         $post = $structureCollection->add('rejected', 'system', $blogPage)
             ->setValue('displayName', 'Отклонённые посты')

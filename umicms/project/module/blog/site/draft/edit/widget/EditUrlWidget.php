@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\draft\widget;
+namespace umicms\project\module\blog\site\draft\edit\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
@@ -18,7 +18,7 @@ use umicms\project\module\blog\model\object\BlogPost;
 /**
  * Виджет для вывода URL на редактирование черновика.
  */
-class DraftEditUrlWidget extends BaseLinkWidget
+class EditUrlWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}
@@ -63,7 +63,7 @@ class DraftEditUrlWidget extends BaseLinkWidget
             );
         }
 
-        return $this->getUrl('edit', ['id' => $this->blogDraft->getId()]);
+        return $this->getUrl('page', ['uri' => $this->blogDraft->getId()]);
     }
 
 }

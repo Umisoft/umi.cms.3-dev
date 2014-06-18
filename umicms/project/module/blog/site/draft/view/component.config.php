@@ -8,33 +8,29 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\draft;
+namespace umicms\project\module\blog\site\draft\view;
 
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
-use umicms\hmvc\component\site\SiteGroupComponent;
+use umicms\hmvc\component\site\SitePageComponent;
 
 return [
 
-    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
-    SiteGroupComponent::OPTION_CONTROLLERS => [
-        'publish' => __NAMESPACE__ . '\controller\PublishController',
-        'sendToModeration' => __NAMESPACE__ . '\controller\SendToModerationController',
+    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
+    SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
+    SitePageComponent::OPTION_CONTROLLERS => [
+        'page' => __NAMESPACE__ . '\controller\PageController',
     ],
-    SiteGroupComponent::OPTION_COMPONENTS => [
-        'edit' => '{#lazy:~/project/module/blog/site/draft/edit/component.config.php}',
-        'view' => '{#lazy:~/project/module/blog/site/draft/view/component.config.php}'
+    SitePageComponent::OPTION_WIDGET => [
+        'draft' => __NAMESPACE__ . '\widget\DraftWidget',
+        'ownList' => __NAMESPACE__ . '\widget\OwnListWidget',
+        'ownListLink' => __NAMESPACE__ . '\widget\OwnListLinkWidget',
     ],
-    SiteGroupComponent::OPTION_WIDGET => [
-        'publishDraft' => __NAMESPACE__ . '\widget\PublishWidget',
-        'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
-    ],
-    SiteGroupComponent::OPTION_ACL => [
+    SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
-            'publisher' => [],
-            'moderator' => ['publisher']
+            'publisher' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
@@ -43,7 +39,12 @@ return [
             'author' => [
                 'controller:index' => [],
                 'controller:page' => [],
+                'controller:edit' => [],
                 'controller:sendToModeration' => [],
+                'widget:view' => [],
+                'widget:ownList' => [],
+                'widget:ownListLink' => [],
+                'widget:editDraftLink' => [],
                 'widget:sendToModeration' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
@@ -52,7 +53,12 @@ return [
             'publisher' => [
                 'controller:index' => [],
                 'controller:page' => [],
+                'controller:edit' => [],
                 'controller:publish' => [],
+                'widget:view' => [],
+                'widget:ownList' => [],
+                'widget:ownListLink' => [],
+                'widget:editDraftLink' => [],
                 'widget:publishDraft' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
@@ -63,10 +69,17 @@ return [
             ],
         ]
     ],
-    SiteGroupComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/draft'],
+    SitePageComponent::OPTION_VIEW => [
+        'directories' => ['module/blog/draft/view'],
     ],
-    SiteGroupComponent::OPTION_ROUTES => [
+    SitePageComponent::OPTION_ROUTES => [
+        'edit' => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/edit/{id:integer}',
+            'defaults' => [
+                'controller' => 'edit'
+            ]
+        ],
         'publish' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/publish/{id:integer}',

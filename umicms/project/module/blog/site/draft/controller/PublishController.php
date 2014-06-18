@@ -18,14 +18,14 @@ use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
-use umicms\hmvc\component\site\TFormController;
+use umicms\hmvc\component\site\TFormSimpleController;
 
 /**
- * Контроллер редактирования черновика блога.
+ * Контроллер публикации черновика.
  */
-class BlogEditDraftController extends BaseCmsController implements IObjectPersisterAware
+class PublishController extends BaseCmsController implements IObjectPersisterAware
 {
-    use TFormController;
+    use TFormSimpleController;
     use TObjectPersisterAware;
 
     /**
@@ -33,9 +33,9 @@ class BlogEditDraftController extends BaseCmsController implements IObjectPersis
      */
     protected $module;
     /**
-     * @var bool $success флаг указывающий на успешное сохранение изменений
+     * @var BlogPost $blogDraft черновик поста
      */
-    private $success = false;
+    protected $blogDraft;
 
     /**
      * Конструктор.
@@ -49,30 +49,18 @@ class BlogEditDraftController extends BaseCmsController implements IObjectPersis
     /**
      * {@inheritdoc}
      */
-    protected function getTemplateName()
-    {
-        return 'blogDraft';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     protected function buildForm()
     {
-        $blogDraft = $this->module->post()->getDraftById($this->getRouteVar('id'));
+        $this->blogDraft = $this->module->post()->getDraftById($this->getRouteVar('id'));
 
-        if (!$this->isAllowed($blogDraft)) {
+        if (!$this->isAllowed($this->blogDraft)) {
             throw new ResourceAccessForbiddenException(
-                $blogDraft,
+                $this->blogDraft,
                 $this->translate('Access denied')
             );
         }
 
-        return $this->module->post()->getForm(
-            BlogPost::FORM_EDIT_POST,
-            IObjectType::BASE,
-            $blogDraft
-        );
+        return $this->module->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE);
     }
 
     /**
@@ -80,15 +68,8 @@ class BlogEditDraftController extends BaseCmsController implements IObjectPersis
      */
     protected function processForm(IForm $form)
     {
+        $this->blogDraft->published();
         $this->getObjectPersister()->commit();
-        $this->success = true;
-    }
-
-    protected function buildResponseContent()
-    {
-        return [
-            'success' => $this->success
-        ];
     }
 }
  

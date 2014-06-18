@@ -18,11 +18,4 @@
     </p>
 
     <?= $page->contents ?>
-
 </div>
-
-<h1><?=$this->translate('Comments')?>:</h1>
-
-<?=$this->widget('blog.comment.list', ['blogPost' => $page, 'template' => 'list']); ?>
-
-<?=$this->widget('blog.comment.add', ['blogPost' => $page, 'template' => 'addComment'])?>
