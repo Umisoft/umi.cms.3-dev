@@ -17,8 +17,10 @@ use umi\http\Response;
 use umi\messages\ISwiftMailerAware;
 use umi\messages\TSwiftMailerAware;
 use umi\orm\exception\RuntimeException;
+use umi\orm\persister\IObjectPersister;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
+use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\hmvc\view\CmsView;
@@ -31,9 +33,21 @@ abstract class BaseCmsController extends BaseController
 {
     use TUrlManagerAware;
     use TSwiftMailerAware;
-    use TObjectPersisterAware;
 
     const ACL_RESOURCE_PREFIX = 'controller:';
+
+    /**
+     * @var IObjectPersister $traitObjectPersister синхронизатор объектов
+     */
+    private $objectPersister;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setObjectPersister(IObjectPersister $objectPersister)
+    {
+        $this->objectPersister = $objectPersister;
+    }
 
     /**
      * {@inheritdoc}
@@ -140,6 +154,23 @@ abstract class BaseCmsController extends BaseController
     protected function commit()
     {
         $this->getObjectPersister()->commit();
+    }
+
+    /**
+     * Возвращает синхронизатор объектов
+     * @throws RequiredDependencyException если синхронизатор объектов не установлен
+     * @return IObjectPersister
+     */
+    private function getObjectPersister()
+    {
+        if (!$this->objectPersister) {
+            throw new RequiredDependencyException(sprintf(
+                'Object persister is not injected in class "%s".',
+                get_class($this)
+            ));
+        }
+
+        return $this->objectPersister;
     }
 
 }
