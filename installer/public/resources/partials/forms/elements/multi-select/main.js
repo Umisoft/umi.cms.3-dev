@@ -153,7 +153,14 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
             changeRelations: function(){
                 var object = this.get('object');
                 var property = this.get('meta.dataSource');
-                object.set(property, this.get('selectedIds'));
+                var selectedIds = this.get('selectedIds');
+                if(this.get('isLazy')){
+                    object.set(property, selectedIds);
+                } else{
+                    selectedIds = Ember.typeOf(selectedIds) === 'array' ? JSON.stringify(selectedIds.sort()) : '';
+                    selectedIds = selectedIds === '[]' ? '' : selectedIds;
+                    object.set(property, selectedIds);
+                }
             },
 
             actions: {
@@ -316,13 +323,15 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
                         Ember.set(object.get('loadedRelationshipsByName'), property, relatedObjectsId);
                     });
                 } else{
+                    var propertyArray = object.get(property) || '[]';
+                    try{
+                        propertyArray = JSON.parse(propertyArray);
+                    } catch(error){
+                        error.message = 'Некорректное значение поля ' + property + '. Ожидается массив или null. ' + error.message;
+                        this.get('controller').send('backgroundError', error);
+                    }
                     self.set('collection', this.get('meta.choices'));
-                    self.set('selectedIds', this.get('meta.choices').findBy('value', object.get(property)) || []);
-                    /*this.addObserver('object.' + property, function(){
-                     Ember.run.once(function(){
-                     self.set('selection', self.get('meta.choices').findBy('value', object.get(property)));
-                     });
-                     });*/
+                    self.set('selectedIds', propertyArray);
                 }
             },
 

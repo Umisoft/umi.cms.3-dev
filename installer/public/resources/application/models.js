@@ -22,8 +22,9 @@ define([], function(){
             validErrors: null,
 
             filterProperty: function(propertyName){
-                if(this.get('filters').hasOwnProperty(propertyName)){
-                    var filters = this.get('filters')[propertyName];
+                var meta = this.get('store').metadataFor(this.constructor.typeKey) || '';
+                var filters = Ember.get(meta, 'filters.' + propertyName);
+                if(filters){
                     var value = this.get(propertyName);
                     for(var i = 0; i < filters.length; i++){
                         Ember.assert('Фильтр "' + filters[i].type + '" не определен.', propertyFilters.hasOwnProperty(filters[i].type));
@@ -34,8 +35,9 @@ define([], function(){
             },
 
             validateProperty: function(propertyName){
-                if(this.get('validators').hasOwnProperty(propertyName)){
-                    var validators = this.get('validators')[propertyName];
+                var meta = this.get('store').metadataFor(this.constructor.typeKey) || '';
+                var validators = Ember.get(meta, 'validators.' + propertyName);
+                if(validators){
                     var value = this.get(propertyName);
                     var errors = [];
                     var activeErrors;
@@ -210,12 +212,20 @@ define([], function(){
                         case 'bool':
                             fieldValue = DS.attr('boolean', params);
                             break;
-                        case 'dateTime':
+                        case 'date':
                             fieldValue = DS.attr('CustomDate', params);
+                            break;
+                        case 'dateTime':
+                            fieldValue = DS.attr('CustomDateTime', params);
+                            break;
+                        case 'time':
+                            fieldValue = DS.attr('string', params);
+                            break;
+                        case 'serialized':
+                            fieldValue = DS.attr('serialized', params);
                             break;
                         case 'belongsToRelation':
                             params.async = true;
-                            // Что значит инверсия избыточна?
                             //TODO: инверсия избыточна, но DS почему то без неё не может
                             if(collection.fields[i].targetCollection === collection.name){
                                 params.inverse = 'children';
@@ -249,13 +259,13 @@ define([], function(){
                     }
                 }
 
-                fields.filters = filters;// TODO: Зарезервировать эти свойсва со стороны back-end
-                fields.validators = validators;
-
-//                console.log('DS', collection.name, fields);
                 UMI[collection.name.capitalize()] = DS.Model.extend(fields);
 
-                UMI.__container__.lookup('store:main').metaForType(collection.name, {'collectionType': collection.type});// TODO: Найти рекоммендации на что заменить __container__
+                UMI.__container__.lookup('store:main').metaForType(collection.name, {
+                    "collectionType": collection.type,
+                    "filters": filters,
+                    "validators": validators
+                });// TODO: Найти рекоммендации на что заменить __container__
 
                 if(collection.source){
                     UMI[collection.name.capitalize() + 'Adapter'] = DS.UmiRESTAdapter.extend({

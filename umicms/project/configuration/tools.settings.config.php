@@ -27,6 +27,7 @@ use umicms\form\element\Permissions;
 use umicms\module\toolbox\ModuleTools;
 use umicms\orm\metadata\field\relation\CmsObjectRelationField;
 use umicms\orm\metadata\field\relation\CmsPageRelationField;
+use umicms\orm\metadata\field\SerializedArrayField;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 
 return [
@@ -104,7 +105,8 @@ return [
                 'fieldTypes' => [
                     IField::TYPE_BELONGS_TO => 'umicms\orm\metadata\field\relation\BelongsToRelationField',
                     CmsObjectRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsObjectRelationField',
-                    CmsPageRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsPageRelationField'
+                    CmsPageRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsPageRelationField',
+                    SerializedArrayField::TYPE => 'umicms\orm\metadata\field\SerializedArrayField'
                 ]
             ]
         ],

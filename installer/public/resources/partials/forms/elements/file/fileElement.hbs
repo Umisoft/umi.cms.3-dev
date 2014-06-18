@@ -1,12 +1,8 @@
-<div class="umi-element-left umi-element-left-file">
-
-</div>
-
-<div class="umi-element-center umi-element-center-file" {{action "showPopup" "fileManager" view.object this.meta}}>
-    {{view view.inputView}}
+<div class="umi-element-center umi-element-center-file">
+    {{view "textElement" object=view.object meta=view.meta}}
 </div>
 
 <div class="umi-element-right umi-element-right-file">
-    <i class="icon icon-delete"></i>
-    <i class="icon icon-open-folder"></i>
+    <i class="icon icon-delete" {{action "clearValue" target="view"}}></i>
+    <i class="icon icon-open-folder" {{action "showPopup" "fileManager" view.object view.meta}}></i>
 </div>
