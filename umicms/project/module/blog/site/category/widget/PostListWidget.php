@@ -18,7 +18,7 @@ use umicms\project\module\blog\model\object\BlogCategory;
 /**
  * Виджет для вывода списка постов по категориям.
  */
-class CategoryPostListWidget extends BaseListWidget
+class PostListWidget extends BaseListWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

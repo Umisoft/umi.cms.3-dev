@@ -19,13 +19,13 @@ return [
     SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteHierarchicPageComponent',
     SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogCategory',
     SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
-        'rss' => __NAMESPACE__ . '\controller\BlogCategoryRssController'
+        'rss' => __NAMESPACE__ . '\controller\RssController'
     ],
     SiteHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\CategoryWidget',
-        'postList' => __NAMESPACE__ . '\widget\CategoryPostListWidget',
-        'list' => __NAMESPACE__ . '\widget\CategoryListWidget',
-        'rssLink' => __NAMESPACE__ . '\widget\CategoryPostRssLinkWidget'
+        'postList' => __NAMESPACE__ . '\widget\PostListWidget',
+        'list' => __NAMESPACE__ . '\widget\ListWidget',
+        'rssLink' => __NAMESPACE__ . '\widget\RssLinkWidget'
     ],
     SiteHierarchicPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/category'],

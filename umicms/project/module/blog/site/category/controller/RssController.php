@@ -20,7 +20,7 @@ use umicms\project\site\config\TSiteSettingsAware;
 /**
  * Контроллер вывода RSS-ленты категории.
  */
-class BlogCategoryRssController extends BaseCmsController implements ISiteSettingsAware
+class RssController extends BaseCmsController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 

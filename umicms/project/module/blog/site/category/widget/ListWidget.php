@@ -18,7 +18,7 @@ use umicms\project\module\blog\model\object\BlogCategory;
 /**
  * Виджет для вывода списка категорий блога.
  */
-class CategoryListWidget extends BaseListWidget
+class ListWidget extends BaseListWidget
 
 {
     /**
