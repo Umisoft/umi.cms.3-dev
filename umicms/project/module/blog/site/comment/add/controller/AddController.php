@@ -22,7 +22,7 @@ use umicms\hmvc\component\site\TFormController;
 /**
  * Контроллер добавления комментария.
  */
-class IndexController extends BaseCmsController implements IObjectPersisterAware
+class AddController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;

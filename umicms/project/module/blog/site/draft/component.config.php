@@ -41,8 +41,6 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
-                'controller:index' => [],
-                'controller:page' => [],
                 'controller:sendToModeration' => [],
                 'widget:sendToModeration' => [],
                 'model:blogPost' => [
@@ -50,8 +48,6 @@ return [
                 ]
             ],
             'publisher' => [
-                'controller:index' => [],
-                'controller:page' => [],
                 'controller:publish' => [],
                 'widget:publishDraft' => [],
                 'model:blogPost' => [

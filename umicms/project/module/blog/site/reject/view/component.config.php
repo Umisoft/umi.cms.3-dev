@@ -36,7 +36,6 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
-                'controller:index' => [],
                 'controller:page' => [],
                 'widget:view' => [],
                 'widget:list' => [],

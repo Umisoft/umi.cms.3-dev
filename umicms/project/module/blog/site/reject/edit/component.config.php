@@ -34,10 +34,8 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
-                'controller:index' => [],
                 'controller:page' => [],
-                'controller:edit' => [],
-                'widget:editPostLink' => [],
+                'widget:editLink' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]

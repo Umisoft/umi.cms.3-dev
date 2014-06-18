@@ -49,14 +49,7 @@ return [
                 'widget:view' => [],
                 'widget:list' => []
             ],
-            'poster' => [
-                'widget:add' => [],
-                'controller:add' => [],
-                'model:blogComment' => []
-            ],
             'posterPremoderation' => [
-                'widget:add' => [],
-                'controller:add' => [],
                 'model:blogComment' => [
                     'publish' => ['premoderation']
                 ]

@@ -19,8 +19,8 @@
 </div>
 
 <?php if (
-    $this->isAllowedResource('blog.draft', 'widget:ownListLink') &&
-    $this->isAllowedResource('blog.moderate', 'widget:ownListLink') &&
+    $this->isAllowedResource('blog.draft.view', 'widget:ownListLink') &&
+    $this->isAllowedResource('blog.moderate.view', 'widget:ownListLink') &&
     $this->isAllowedResource('blog.reject', 'widget:listLink')
 ) : ?>
     <div class="sidebar-module">

@@ -18,7 +18,7 @@ return [
     SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteHierarchicPageComponent',
     SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
     SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
-        'add' => __NAMESPACE__ . '\controller\IndexController',
+        'add' => __NAMESPACE__ . '\controller\AddController',
     ],
     SiteHierarchicPageComponent::OPTION_WIDGET => [
         'addForm' => __NAMESPACE__ . '\widget\AddWidget',
@@ -35,7 +35,7 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'poster' => [
-                'widget:add' => [],
+                'widget:addForm' => [],
                 'controller:add' => [],
                 'model:blogComment' => []
             ],
@@ -44,7 +44,7 @@ return [
     SiteHierarchicPageComponent::OPTION_ROUTES => [
         'add' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/add/{parent:integer}',
+            'route' => '/{parent:integer}',
             'defaults' => [
                 'controller' => 'add',
                 'parent' => null

@@ -28,15 +28,15 @@ return [
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'moderator' => ['author']
+            'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
             'moderator' => [
-                'controller:edit' => [],
-                'widget:editPostLink' => [],
+                'controller:page' => [],
+                'widget:editLink' => [],
                 'model:blogPost' => []
             ]
         ]

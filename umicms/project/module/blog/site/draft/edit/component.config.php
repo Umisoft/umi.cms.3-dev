@@ -34,22 +34,15 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
-                'controller:index' => [],
                 'controller:page' => [],
-                'widget:editDraftLink' => [],
+                'widget:editLink' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
             ],
             'publisher' => [
-                'controller:index' => [],
                 'controller:page' => [],
-                'controller:publish' => [],
-                'widget:view' => [],
-                'widget:ownList' => [],
-                'widget:ownListLink' => [],
-                'widget:editDraftLink' => [],
-                'widget:publishDraft' => [],
+                'widget:editLink' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
