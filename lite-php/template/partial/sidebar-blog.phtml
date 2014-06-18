@@ -21,7 +21,7 @@
 <?php if (
     $this->isAllowedResource('blog.draft.view', 'widget:ownListLink') &&
     $this->isAllowedResource('blog.moderate.view', 'widget:ownListLink') &&
-    $this->isAllowedResource('blog.reject', 'widget:listLink')
+    $this->isAllowedResource('blog.reject.view', 'widget:listLink')
 ) : ?>
     <div class="sidebar-module">
         <h4><?= $this->translate('Authors\'s posts') ?></h4>
@@ -42,7 +42,7 @@
     </div>
 <?php endif; ?>
 
-<?php if ($this->isAllowedResource('blog.moderate', 'widget:allListLink')) : ?>
+<?php if ($this->isAllowedResource('blog.moderate.view', 'widget:allListLink')) : ?>
     <div class="sidebar-module">
         <h4><?= $this->translate('Moderate') ?></h4>
         <ol class="list-unstyled">

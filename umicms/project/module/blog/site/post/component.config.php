@@ -35,7 +35,7 @@ return [
     SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'rssViewer' => [],
-            'author' => ['viewer'],
+            'author' => [],
             'moderator' => ['author']
         ],
         IAclFactory::OPTION_RESOURCES => [

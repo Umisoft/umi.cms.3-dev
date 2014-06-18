@@ -256,7 +256,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'viewer'
             ],
             'project.site.blog.category' => ['viewer', 'rssViewer'],
-            'project.site.blog.post' => ['viewer', 'rssViewer'],
+
+            'project.site.blog.post.view' => ['viewer'],
+
+            'project.site.blog.post' => ['viewExecutor', 'viewer', 'rssViewer'],
             'project.site.blog.tag' => ['viewer', 'rssViewer'],
             'project.site.blog.author' => ['viewer', 'rssViewer'],
             'project.site.blog.comment' => ['viewer']
@@ -266,7 +269,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var UserGroup $registeredUsers
          */
         $registeredUsers = $groupCollection->add()
-            ->setValue('displayName', 'Зерегистрированные пользователи')
+            ->setValue('displayName', 'Зaрегистрированные пользователи')
             ->setValue('displayName', 'Registered users', 'en-US')
             ->setGUID('daabebf8-f3b3-4f62-a23d-522eff9b7f68');
         $registeredUsers->getProperty('locked')->setValue(true);
@@ -292,7 +295,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ],
             'project.site.blog.draft' => ['author'],
             'project.site.blog.moderate' => ['author'],
-            'project.site.blog.post' => ['author'],
+
+            'project.site.blog.post.add' => ['viewer'],
+
+            'project.site.blog.post' => ['addExecutor', 'author'],
             'project.site.blog.reject' => ['author']
         ];
 

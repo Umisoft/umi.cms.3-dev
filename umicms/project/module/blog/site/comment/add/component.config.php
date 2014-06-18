@@ -28,7 +28,7 @@ return [
     ],
     SiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'poster' => ['viewer'],
+            'poster' => [],
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogComment',

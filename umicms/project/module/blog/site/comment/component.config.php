@@ -36,8 +36,8 @@ return [
     ],
     SiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'poster' => ['viewer'],
-            'posterPremoderation' => ['viewer'],
+            'poster' => [],
+            'posterPremoderation' => [],
             'moderator' => ['poster']
         ],
         IAclFactory::OPTION_RESOURCES => [
