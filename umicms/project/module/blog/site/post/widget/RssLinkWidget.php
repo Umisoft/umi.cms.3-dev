@@ -15,7 +15,7 @@ use umicms\hmvc\widget\BaseLinkWidget;
 /**
  * Виджет для вывода URL на RSS-ленту по категории.
  */
-class ListRssLinkWidget extends BaseLinkWidget
+class RssLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}

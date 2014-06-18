@@ -18,7 +18,7 @@ return [
     'class' => 'umicms\project\module\blog\model\collection\BlogPostCollection',
     'handlers' => [
         ICmsCollection::HANDLER_ADMIN => 'blog.post',
-        ICmsCollection::HANDLER_SITE => 'blog.post',
+        ICmsCollection::HANDLER_SITE => 'blog.post.view',
         BlogPostCollection::HANDLER_DRAFT => 'blog.draft.view',
         BlogPostCollection::HANDLER_MODERATE => 'blog.moderate.view',
         BlogPostCollection::HANDLER_REJECT => 'blog.reject'

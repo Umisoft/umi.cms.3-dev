@@ -8,26 +8,26 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\post\widget;
+namespace umicms\project\module\blog\site\post\add\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\model\BlogModule;
-use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\BlogCategory;
 
 /**
- * Виджет для вывода URL на редактирование поста.
+ * Виджет для вывода URL на добавление поста.
  */
-class EditLinkWidget extends BaseLinkWidget
+class AddLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}
      */
-    public $template = 'editPostLink';
+    public $template = 'addPostLink';
     /**
-     * @var BlogPost $blogPost пост или GUID редактируемого поста
+     * @var string|BlogCategory $blogCategory категория или GUID в которую добавляется пост
      */
-    public $blogPost;
+    public $blogCategory;
     /**
      * @var BlogModule $module модуль "Блоги"
      */
@@ -47,23 +47,23 @@ class EditLinkWidget extends BaseLinkWidget
      */
     protected function getLinkUrl()
     {
-        if (is_string($this->blogPost)) {
-            $this->blogPost = $this->module->post()->get($this->blogPost);
+        if (is_string($this->blogCategory)) {
+            $this->blogCategory = $this->module->category()->get($this->blogCategory);
         }
 
-        if (!$this->blogPost instanceof BlogPost) {
+        if (!$this->blogCategory instanceof BlogCategory) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogPost',
-                        'class' => BlogPost::className()
+                        'param' => 'blogCategory',
+                        'class' => BlogCategory::className()
                     ]
                 )
             );
         }
 
-        return $this->getUrl('edit', ['id' => $this->blogPost->getId(), $this->absolute]);
+        return $this->getUrl('page', ['uri' => $this->blogCategory->getId(), $this->absolute]);
     }
 }
  

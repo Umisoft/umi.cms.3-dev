@@ -8,29 +8,24 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\post\widget;
+namespace umicms\project\module\blog\site\post\edit\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseFormWidget;
+use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет перемещения поста в черновики.
+ * Виджет для вывода URL на редактирование поста.
  */
-class PostToDraftWidget extends BaseFormWidget
+class EditLinkWidget extends BaseLinkWidget
 {
-    /**
-     * @var string $template имя шаблона, по которому выводится виджет
-     */
-    public $template = 'unPublishPostForm';
     /**
      * {@inheritdoc}
      */
-    public $redirectUrl = self::REFERER_REDIRECT;
+    public $template = 'editPostLink';
     /**
-     * @var string|BlogPost $blogPost пост или GUID поста
+     * @var BlogPost $blogPost пост или GUID редактируемого поста
      */
     public $blogPost;
     /**
@@ -50,7 +45,7 @@ class PostToDraftWidget extends BaseFormWidget
     /**
      * {@inheritdoc}
      */
-    protected function getForm()
+    protected function getLinkUrl()
     {
         if (is_string($this->blogPost)) {
             $this->blogPost = $this->module->post()->get($this->blogPost);
@@ -68,11 +63,7 @@ class PostToDraftWidget extends BaseFormWidget
             );
         }
 
-        $form = $this->module->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE, $this->blogPost);
-
-        $form->setAction($this->getUrl('unPublished', ['id' => $this->blogPost->getId()]));
-
-        return $form;
+        return $this->getUrl('page', ['uri' => $this->blogPost->getId(), $this->absolute]);
     }
 }
  

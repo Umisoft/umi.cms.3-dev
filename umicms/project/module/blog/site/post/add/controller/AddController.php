@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\post\controller;
+namespace umicms\project\module\blog\site\post\add\controller;
 
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
@@ -25,7 +25,7 @@ use umicms\hmvc\component\site\TFormController;
 /**
  * Контроллер добавления поста
  */
-class PostAddController extends BaseCmsController implements IObjectPersisterAware
+class AddController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;
@@ -66,7 +66,7 @@ class PostAddController extends BaseCmsController implements IObjectPersisterAwa
     protected function buildForm()
     {
         $blogCategory = null;
-        $blogCategoryId = $this->getRouteVar('id');
+        $blogCategoryId = $this->getRouteVar('uri');
 
         if (!is_null($blogCategoryId)) {
             $blogCategory = $this->module->category()->getById($blogCategoryId);
@@ -84,7 +84,7 @@ class PostAddController extends BaseCmsController implements IObjectPersisterAwa
             );
         }
 
-        $this->blogPost = $this->module->post()->add();
+        $this->blogPost = $this->module->addPost();
         $this->blogPost->category = $blogCategory;
 
         if (!$this->isAllowed($this->blogPost)) {

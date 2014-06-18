@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\post\controller;
+namespace umicms\project\module\blog\site\post\edit\controller;
 
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
@@ -23,7 +23,7 @@ use umicms\hmvc\component\site\TFormController;
 /**
  * Контроллер редактирования поста блога.
  */
-class PostEditController extends BaseCmsController implements IObjectPersisterAware
+class EditController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;
@@ -59,7 +59,7 @@ class PostEditController extends BaseCmsController implements IObjectPersisterAw
      */
     protected function buildForm()
     {
-        $blogPost = $this->module->post()->getById($this->getRouteVar('id'));
+        $blogPost = $this->module->post()->getById($this->getRouteVar('uri'));
 
         if (!$this->isAllowed($blogPost)) {
             throw new ResourceAccessForbiddenException(

@@ -10,24 +10,29 @@
 
 namespace umicms\project\module\blog\site\post\widget;
 
+use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseLinkWidget;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\model\BlogModule;
-use umicms\project\module\blog\model\object\BlogCategory;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет для вывода URL на добавление поста.
+ * Виджет перемещения поста в черновики.
  */
-class AddLinkWidget extends BaseLinkWidget
+class DraftWidget extends BaseFormWidget
 {
+    /**
+     * @var string $template имя шаблона, по которому выводится виджет
+     */
+    public $template = 'unPublishPostForm';
     /**
      * {@inheritdoc}
      */
-    public $template = 'addPostLink';
+    public $redirectUrl = self::REFERER_REDIRECT;
     /**
-     * @var string|BlogCategory $blogCategory категория или GUID в которую добавляется пост
+     * @var string|BlogPost $blogPost пост или GUID поста
      */
-    public $blogCategory;
+    public $blogPost;
     /**
      * @var BlogModule $module модуль "Блоги"
      */
@@ -45,25 +50,29 @@ class AddLinkWidget extends BaseLinkWidget
     /**
      * {@inheritdoc}
      */
-    protected function getLinkUrl()
+    protected function getForm()
     {
-        if (is_string($this->blogCategory)) {
-            $this->blogCategory = $this->module->category()->get($this->blogCategory);
+        if (is_string($this->blogPost)) {
+            $this->blogPost = $this->module->post()->get($this->blogPost);
         }
 
-        if (!$this->blogCategory instanceof BlogCategory) {
+        if (!$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogCategory',
-                        'class' => BlogCategory::className()
+                        'param' => 'blogPost',
+                        'class' => BlogPost::className()
                     ]
                 )
             );
         }
 
-        return $this->getUrl('add', ['id' => $this->blogCategory->getId(), $this->absolute]);
+        $form = $this->module->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE, $this->blogPost);
+
+        $form->setAction($this->getUrl('unPublished', ['id' => $this->blogPost->getId()]));
+
+        return $form;
     }
 }
  
