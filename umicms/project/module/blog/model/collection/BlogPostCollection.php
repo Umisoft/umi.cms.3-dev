@@ -308,7 +308,7 @@ class BlogPostCollection extends CmsPageCollection
         if (!$rejectedPost instanceof BlogPost) {
             throw new NonexistentEntityException(
                 $this->translate(
-                    'Cannot find rejected post by guid "{id}".',
+                    'Cannot find rejected post by id "{id}".',
                     ['id' => $id]
                 )
             );
