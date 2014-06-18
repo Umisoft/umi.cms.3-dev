@@ -323,7 +323,12 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
                     });
                 } else{
                     var propertyArray = object.get(property) || '[]';
-                    propertyArray = JSON.parse(propertyArray);
+                    try{
+                        propertyArray = JSON.parse(propertyArray);
+                    } catch(error){
+                        error.message = 'Некорректное значение поля ' + property + '. Ожидается массив или null. ' + error.message;
+                        this.get('controller').send('backgroundError', error);
+                    }
                     self.set('collection', this.get('meta.choices'));
                     self.set('selectedIds', propertyArray);
                 }

@@ -382,9 +382,14 @@ define(
             },
             serialize: function(serialized){
                 if(serialized){
-                    serialized = JSON.parse(serialized);
-                    if(serialized.date){
-                        Ember.set(serialized, 'date', moment(serialized.date, 'DD.MM.YYYY h:mm:ss').format('YYYY-MM-DD h:mm:ss'));
+                    try{
+                        serialized = JSON.parse(serialized);
+                        if(serialized.date){
+                            Ember.set(serialized, 'date', moment(serialized.date, 'DD.MM.YYYY h:mm:ss').format('YYYY-MM-DD h:mm:ss'));
+                        }
+                    } catch(error){
+                        error.message = 'Некорректное значение поля. Ожидается массив или null. ' + error.message;
+                        this.get('container').lookup('route:application').send('backgroundError', error);
                     }
                 } else{
                     serialized = null;
@@ -411,7 +416,12 @@ define(
             },
             serialize: function(serialized){
                 if(serialized){
-                    serialized = JSON.parse(serialized);
+                    try{
+                        serialized = JSON.parse(serialized);
+                    } catch(error){
+                        error.message = 'Некорректное значение поля. Ожидается массив или null. ' + error.message;
+                        this.get('container').lookup('route:application').send('backgroundError', error);
+                    }
                 } else{
                     serialized = [];
                 }

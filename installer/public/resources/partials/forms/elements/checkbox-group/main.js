@@ -24,7 +24,12 @@ define(['App', 'text!./checkboxGroupElement.hbs', 'text!./checkboxGroupCollectio
                 if($el){
                     var checkboxes = $el.find('input[type="checkbox"]');
                     var objectValue = this.get('object.' + self.get('meta.dataSource')) || "[]";
-                    objectValue = JSON.parse(objectValue);
+                    try{
+                        objectValue = JSON.parse(objectValue);
+                    } catch(error){
+                        error.message = 'Некорректное значение поля ' + propertyName + '. Ожидается массив или null. ' + error.message;
+                        this.get('controller').send('backgroundError', error);
+                    }
                     for(var i = 0; i < checkboxes.length; i++){
                         checkboxes[i].checked = objectValue.contains(checkboxes[i].value);
                     }
@@ -52,7 +57,12 @@ define(['App', 'text!./checkboxGroupElement.hbs', 'text!./checkboxGroupCollectio
                     var value = Ember.get(this, 'context.attributes.value');
                     var isChecked;
                     var objectValue = Ember.get(object, Ember.get(meta, 'dataSource')) || "[]";
-                    objectValue = JSON.parse(objectValue);
+                    try{
+                        objectValue = JSON.parse(objectValue);
+                    } catch(error){
+                        error.message = 'Некорректное значение поля ' + propertyName + '. Ожидается массив или null. ' + error.message;
+                        this.get('controller').send('backgroundError', error);
+                    }
                     if(objectValue.contains(value)){
                         isChecked = true;
                     }
@@ -73,7 +83,12 @@ define(['App', 'text!./checkboxGroupElement.hbs', 'text!./checkboxGroupCollectio
                         var meta = self.get('parentView.meta');
                         var propertyName = Ember.get(meta, 'dataSource');
                         var objectValue = Ember.get(object, propertyName) || "[]";
-                        objectValue = JSON.parse(objectValue);
+                        try{
+                            objectValue = JSON.parse(objectValue);
+                        } catch(error){
+                            error.message = 'Некорректное значение поля ' + propertyName + '. Ожидается массив или null. ' + error.message;
+                            this.get('controller').send('backgroundError', error);
+                        }
 
                         if(objectValue.contains(value)){
                             objectValue = objectValue.without(value);
