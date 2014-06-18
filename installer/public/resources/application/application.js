@@ -269,10 +269,21 @@ define(
                         label = "DS: Handle Adapter#findQuery of " + type;
 
                     return Ember.RSVP.Promise.cast(promise, label).then(function(adapterPayload) {
+                        var queryParams = Ember.get(query, 'fields') || '';
                         var payload = serializer.extract(store, type, adapterPayload, null, 'findQuery');
 
                         Ember.assert("The response from a findQuery must be an Array, not " + Ember.inspect(payload), Ember.typeOf(payload) === 'array');
 
+                        queryParams = queryParams.split(',');
+                        queryParams.push('id');
+                        queryParams.push('version');
+                        for(var i = 0; i < payload.length; i++){
+                            for(var key in payload[i]){
+                                if(payload[i].hasOwnProperty(key) && !queryParams.contains(key)){
+                                    delete payload[i][key];
+                                }
+                            }
+                        }
                         //recordArray.load(payload);
                         return payload;
                     }, null, "DS: Extract payload of findQuery " + type);
@@ -297,11 +308,6 @@ define(
                     var i;
                     var objects = [];
                     for(i = 0; i < result.length; i++){
-                        for(var key in result[i]){
-                            if(result[i].hasOwnProperty(key) && Ember.isEmpty(result[i][key])){
-                               delete result[i][key];
-                            }
-                        }
                         objects.push(self.update(type, result[i]));
                     }
 
@@ -323,6 +329,18 @@ define(
         });
 
         /**
+         * Для числовых полей меняет null на ''
+         * http://youtrack.umicloud.ru/issue/cms-414
+         * DS.NumberTransform
+         * @type {*|void|Object}
+         */
+        DS.NumberTransform.reopen({
+            deserialize: function(serialized) {
+                return Ember.isNone(serialized) ? "" : String(serialized);
+            }
+        });
+
+        /**
          * Приводит приходящий объект date:{} к нужному формату даты
          * TODO Смена формата в зависимости от языка системы
          * TODO Почему не прилылать в простом timeStamp
@@ -331,18 +349,81 @@ define(
          */
         UMI.CustomDateTransform = DS.Transform.extend({
             deserialize: function(deserialized){
-                if(deserialized && deserialized.date){
-                    Ember.set(deserialized, 'date', moment(deserialized.date).format('DD/MM/YYYY'));
-                    deserialized = JSON.stringify(deserialized);
+                deserialized = Ember.isNone(deserialized) ? "" : String(deserialized);
+                if(deserialized){
+                    deserialized = moment(deserialized).format('DD.MM.YYYY');
                 }
                 return deserialized;
             },
             serialize: function(serialized){
                 if(serialized){
-                    serialized = JSON.parse(serialized);
-                    if(serialized.date){
-                        Ember.set(serialized, 'date', moment(serialized.date, 'DD/MM/YYYY').format('YYYY-MM-DD h:mm:ss'));
+                    serialized = moment(serialized, 'DD.MM.YYYY').format('YYYY-MM-DD');
+                }
+                return serialized;
+            }
+        });
+
+        /**
+         * Приводит приходящий объект date:{} к нужному формату даты
+         * TODO Смена формата в зависимости от языка системы
+         * TODO Почему не прилылать в простом timeStamp
+         * DS.attr('date')
+         * @type {*|void|Object}
+         */
+        UMI.CustomDateTimeTransform = DS.Transform.extend({
+            deserialize: function(deserialized){
+                if(Ember.typeOf(deserialized) === 'object' && deserialized.date){
+                    Ember.set(deserialized, 'date', moment(deserialized.date).format('DD.MM.YYYY h:mm:ss'));
+                    deserialized = JSON.stringify(deserialized);
+                } else{
+                    deserialized = "";
+                }
+                return deserialized;
+            },
+            serialize: function(serialized){
+                if(serialized){
+                    try{
+                        serialized = JSON.parse(serialized);
+                        if(serialized.date){
+                            Ember.set(serialized, 'date', moment(serialized.date, 'DD.MM.YYYY h:mm:ss').format('YYYY-MM-DD h:mm:ss'));
+                        }
+                    } catch(error){
+                        error.message = 'Некорректное значение поля. Ожидается массив или null. ' + error.message;
+                        this.get('container').lookup('route:application').send('backgroundError', error);
                     }
+                } else{
+                    serialized = null;
+                }
+                return serialized;
+            }
+        });
+
+        /**
+         * Значение поля "сериализованный массив"
+         * DS.attr('serialized')
+         */
+        UMI.SerializedTransform = DS.Transform.extend({
+            deserialize: function(deserialized){
+                if(deserialized){
+                    if(Ember.typeOf(deserialized) === 'array'){
+                        deserialized.sort();
+                    }
+                    deserialized = JSON.stringify(deserialized);
+                } else{
+                    deserialized = '';
+                }
+                return deserialized;
+            },
+            serialize: function(serialized){
+                if(serialized){
+                    try{
+                        serialized = JSON.parse(serialized);
+                    } catch(error){
+                        error.message = 'Некорректное значение поля. Ожидается массив или null. ' + error.message;
+                        this.get('container').lookup('route:application').send('backgroundError', error);
+                    }
+                } else{
+                    serialized = [];
                 }
                 return serialized;
             }

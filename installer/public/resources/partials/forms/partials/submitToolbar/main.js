@@ -1,4 +1,4 @@
-define(['App', 'text!./submitToolbar.hbs'], function(UMI, submitToolbarTpl){
+define(['App', 'text!./submitToolbar.hbs', 'toolbar'], function(UMI, submitToolbarTpl){
     "use strict";
 
     return function(){
