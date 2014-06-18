@@ -534,10 +534,16 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Комментарий блога')
             ->setValue('displayName', 'Comment', 'en-US')
             ->setGUID('2099184c-013c-4653-8882-21c06d5e4e83');
-
         $comment->getProperty('locked')->setValue(true);
         $comment->getProperty('componentName')->setValue('comment');
         $comment->getProperty('componentPath')->setValue('blog.comment');
+
+        $commentAdd = $structureCollection->add('add', 'system', $comment)
+            ->setValue('displayName', 'Добавить комментарий')
+            ->setValue('displayName', 'Add comment', 'en-US');
+        $commentAdd->getProperty('locked')->setValue(true);
+        $commentAdd->getProperty('componentName')->setValue('add');
+        $commentAdd->getProperty('componentPath')->setValue('blog.comment.add');
 
         $author = $structureCollection->add('author', 'system', $blogPage)
             ->setValue('displayName', 'Авторы блога')

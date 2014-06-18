@@ -19,14 +19,15 @@ return [
     SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteHierarchicPageComponent',
     SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
     SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
-        'add' => __NAMESPACE__ . '\controller\AddController',
         'publish' => __NAMESPACE__ . '\controller\PublishController',
         'reject' => __NAMESPACE__ . '\controller\RejectController',
+    ],
+    SiteHierarchicPageComponent::OPTION_COMPONENTS => [
+        'add' => '{#lazy:~/project/module/blog/site/comment/add/component.config.php}'
     ],
     SiteHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\CommentWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
-        'add' => __NAMESPACE__ . '\widget\AddWidget',
         'publish' => __NAMESPACE__ . '\widget\PublishWidget',
         'reject' => __NAMESPACE__ . '\widget\RejectWidget'
     ],
@@ -35,7 +36,6 @@ return [
     ],
     SiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'viewer' => [],
             'poster' => ['viewer'],
             'posterPremoderation' => ['viewer'],
             'moderator' => ['poster']
@@ -74,14 +74,6 @@ return [
         ]
     ],
     SiteHierarchicPageComponent::OPTION_ROUTES => [
-        'add' => [
-            'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/add/{parent:integer}',
-            'defaults' => [
-                'controller' => 'add',
-                'parent' => null
-            ]
-        ],
         'publish' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/publish/{id:integer}',
@@ -95,6 +87,9 @@ return [
             'defaults' => [
                 'controller' => 'reject'
             ]
-        ]
+        ],
+        'component' => [
+            'type' => 'SiteComponentRoute'
+        ],
     ]
 ];

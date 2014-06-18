@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\comment\controller;
+namespace umicms\project\module\blog\site\comment\add\controller;
 
 use umi\form\TFormAware;
 use umi\form\IForm;
@@ -22,7 +22,7 @@ use umicms\hmvc\component\site\TFormController;
 /**
  * Контроллер добавления комментария.
  */
-class AddController extends BaseCmsController implements IObjectPersisterAware
+class IndexController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormController;
     use TObjectPersisterAware;
