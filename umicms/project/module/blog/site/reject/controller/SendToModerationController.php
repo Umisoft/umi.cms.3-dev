@@ -23,7 +23,7 @@ use umicms\hmvc\component\site\TFormSimpleController;
 /**
  * Контроллер отправки поста на модерацию.
  */
-class PostSendToModerationController extends BaseCmsController implements IObjectPersisterAware
+class SendToModerationController extends BaseCmsController implements IObjectPersisterAware
 {
     use TFormSimpleController;
     use TObjectPersisterAware;

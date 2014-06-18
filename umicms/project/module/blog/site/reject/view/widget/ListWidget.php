@@ -8,16 +8,15 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\reject\controller;
+namespace umicms\project\module\blog\site\reject\view\widget;
 
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\model\BlogModule;
-use umicms\project\module\blog\model\object\BlogPost;
-use umicms\hmvc\component\site\SitePageController;
 
 /**
- * Контроллер вывода отклонённого поста блога.
+ * Виджет для вывода списка отклонённых постов текущего автора.
  */
-class PostPageController extends SitePageController
+class ListWidget extends BaseListWidget
 {
     /**
      * @var BlogModule $module модуль "Блоги"
@@ -26,7 +25,7 @@ class PostPageController extends SitePageController
 
     /**
      * Конструктор.
-     * @param BlogModule $module
+     * @param BlogModule $module модуль "Блоги"
      */
     public function __construct(BlogModule $module)
     {
@@ -34,13 +33,11 @@ class PostPageController extends SitePageController
     }
 
     /**
-     * Возвращает страницу для отображения.
-     * @param string $uri
-     * @return BlogPost
+     * {@inheritdoc}
      */
-    public function getPage($uri)
+    protected function getSelector()
     {
-        return $this->module->post()->getRejectedPostByUri($uri);
+        return $this->module->getOwnRejected();
     }
 }
  

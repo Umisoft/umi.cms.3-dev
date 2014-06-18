@@ -21,7 +21,7 @@ return [
         ICmsCollection::HANDLER_SITE => 'blog.post.view',
         BlogPostCollection::HANDLER_DRAFT => 'blog.draft.view',
         BlogPostCollection::HANDLER_MODERATE => 'blog.moderate.view',
-        BlogPostCollection::HANDLER_REJECT => 'blog.reject'
+        BlogPostCollection::HANDLER_REJECT => 'blog.reject.view'
     ],
     'forms' => [
         'base' => [

@@ -13,26 +13,22 @@ namespace umicms\project\module\blog\site\reject;
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
-use umicms\hmvc\component\site\SitePageComponent;
+use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
 
-    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
-    SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    SitePageComponent::OPTION_CONTROLLERS => [
-        'page' => __NAMESPACE__ . '\controller\PostPageController',
-        'edit' => __NAMESPACE__ . '\controller\PostEditController',
-        'sendToModeration' => __NAMESPACE__ . '\controller\PostSendToModerationController',
+    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
+    SiteGroupComponent::OPTION_CONTROLLERS => [
+        'sendToModeration' => __NAMESPACE__ . '\controller\SendToModerationController',
     ],
-    SitePageComponent::OPTION_WIDGET => [
-        'view' => __NAMESPACE__ . '\widget\PostWidget',
-        'list' => __NAMESPACE__ . '\widget\ListWidget',
-        'listLink' => __NAMESPACE__ . '\widget\ListLinkWidget',
-        'editPostLink' => __NAMESPACE__ . '\widget\PostEditLinkWidget',
-        'sendToModeration' => __NAMESPACE__ . '\widget\PostSendToModerationWidget'
-
+    SiteGroupComponent::OPTION_COMPONENTS => [
+        'edit' => '{#lazy:~/project/module/blog/site/reject/edit/component.config.php}',
+        'view' => '{#lazy:~/project/module/blog/site/reject/view/component.config.php}'
     ],
-    SitePageComponent::OPTION_ACL => [
+    SiteGroupComponent::OPTION_WIDGET => [
+        'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
+],
+    SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
             'moderator' => ['author']
@@ -42,14 +38,7 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
-                'controller:index' => [],
-                'controller:page' => [],
-                'controller:edit' => [],
                 'controller:sendToModeration' => [],
-                'widget:view' => [],
-                'widget:list' => [],
-                'widget:listLink' => [],
-                'widget:editPostLink' => [],
                 'widget:sendToModeration' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
@@ -62,17 +51,10 @@ return [
             ]
         ]
     ],
-    SitePageComponent::OPTION_VIEW => [
+    SiteGroupComponent::OPTION_VIEW => [
         'directories' => ['module/blog/reject'],
     ],
-    SitePageComponent::OPTION_ROUTES => [
-        'edit' => [
-            'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/edit/{id:integer}',
-            'defaults' => [
-                'controller' => 'edit'
-            ]
-        ],
+    SiteGroupComponent::OPTION_ROUTES => [
         'sendToModeration' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/sendToModeration/{id:integer}',

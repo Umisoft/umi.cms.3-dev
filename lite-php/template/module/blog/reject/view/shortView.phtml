@@ -12,7 +12,7 @@
         </time>
         <?php endif; ?>
         <?php if ($blogPost->author) : ?><?=$this->translate('Author')?>: <a href="<?=$blogPost->author->getPageUrl()?>"><?=$blogPost->author->displayName?></a><?php endif; ?>
-        <?=$this->widget('blog.reject.editPostLink', ['blogPost' => $blogPost, 'template' => 'editPostLink'])?>
+        <?=$this->widget('blog.reject.edit.editLink', ['blogPost' => $blogPost, 'template' => 'editPostLink'])?>
     </p>
 
     <?= $blogPost->announcement ?>

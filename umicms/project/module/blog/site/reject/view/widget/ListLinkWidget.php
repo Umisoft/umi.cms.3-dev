@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\reject\widget;
+namespace umicms\project\module\blog\site\reject\view\widget;
 
 use umicms\hmvc\widget\BaseLinkWidget;
 

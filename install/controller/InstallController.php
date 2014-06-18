@@ -553,12 +553,26 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $draftEdit->getProperty('componentName')->setValue('edit');
         $draftEdit->getProperty('componentPath')->setValue('blog.draft.edit');
 
-        $post = $structureCollection->add('rejected', 'system', $blogPage)
+        $rejectedPost = $structureCollection->add('rejected', 'system', $blogPage)
             ->setValue('displayName', 'Отклонённые посты')
             ->setValue('displayName', 'Rejected posts', 'en-US');
-        $post->getProperty('locked')->setValue(true);
-        $post->getProperty('componentName')->setValue('reject');
-        $post->getProperty('componentPath')->setValue('blog.reject');
+        $rejectedPost->getProperty('locked')->setValue(true);
+        $rejectedPost->getProperty('componentName')->setValue('reject');
+        $rejectedPost->getProperty('componentPath')->setValue('blog.reject');
+
+        $rejectedPostEdit = $structureCollection->add('edit', 'system', $rejectedPost)
+            ->setValue('displayName', 'Редактировать отклонённый пост')
+            ->setValue('displayName', 'Edit rejected posts', 'en-US');
+        $rejectedPostEdit->getProperty('locked')->setValue(true);
+        $rejectedPostEdit->getProperty('componentName')->setValue('edit');
+        $rejectedPostEdit->getProperty('componentPath')->setValue('blog.reject.edit');
+
+        $rejectedPostView = $structureCollection->add('view', 'system', $rejectedPost)
+            ->setValue('displayName', 'Просмотреть отклонённый пост')
+            ->setValue('displayName', 'View rejected posts', 'en-US');
+        $rejectedPostView->getProperty('locked')->setValue(true);
+        $rejectedPostView->getProperty('componentName')->setValue('view');
+        $rejectedPostView->getProperty('componentPath')->setValue('blog.reject.view');
 
         $moderationPost = $structureCollection->add('needModeration', 'system', $blogPage)
             ->setValue('displayName', 'Посты на модерацию')

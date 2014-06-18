@@ -10,22 +10,27 @@
 
 namespace umicms\project\module\blog\site\reject\widget;
 
+use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseLinkWidget;
+use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет для вывода ссылки на редактирование отклонённого поста.
+ * Виджет отправки поста на модерацию.
  */
-class PostEditLinkWidget extends BaseLinkWidget
+class SendToModerationWidget extends BaseFormWidget
 {
+    /**
+     * @var string $template имя шаблона, по которому выводится виджет
+     */
+    public $template = 'sendToModerationForm';
     /**
      * {@inheritdoc}
      */
-    public $template = 'editPostLink';
+    public $redirectUrl = self::REFERER_REDIRECT;
     /**
-     * @var string|BlogPost $blogPost пост или GUID отклонённого поста
+     * @var string|BlogPost $blogPost пост или GUID поста отправляемого на модерацию
      */
     public $blogPost;
     /**
@@ -45,7 +50,7 @@ class PostEditLinkWidget extends BaseLinkWidget
     /**
      * {@inheritdoc}
      */
-    protected function getLinkUrl()
+    protected function getForm()
     {
         if (is_string($this->blogPost)) {
             $this->blogPost = $this->module->post()->getRejectedPost($this->blogPost);
@@ -63,7 +68,15 @@ class PostEditLinkWidget extends BaseLinkWidget
             );
         }
 
-        return $this->getUrl('edit', ['id' => $this->blogPost->getId()], $this->absolute);
+        $form = $this->module->post()->getForm(
+            BlogPost::FORM_MODERATE_POST,
+            IObjectType::BASE,
+            $this->blogPost
+        );
+
+        $form->setAction($this->getUrl('sendToModeration', ['id' => $this->blogPost->getId()]));
+
+        return $form;
     }
 }
  
