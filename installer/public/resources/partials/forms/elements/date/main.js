@@ -1,24 +1,13 @@
 define(['App', 'text!./dateElement.hbs'], function(UMI, dateElement){
     'use strict';
 
-    Ember.TEMPLATES['UMI/components/date-element'] = Ember.Handlebars.compile(dateElement);
-
     return function(){
-        UMI.DateElementComponent = Ember.Component.extend(UMI.InputValidate, {
+        UMI.DateElementView = Ember.View.extend({
+            template: Ember.Handlebars.compile(dateElement),
+
             classNames: ['umi-element', 'umi-element-date'],
 
             didInsertElement: function(){
-                var el = this.$();
-                el.find('.icon-delete').click(function(){
-                    el.find('input').val('');
-                });
-//                this.$().find('input').jdPicker({
-//                    month_names: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-//                    short_month_names: ["Янв", "Февр", "Март", "Апр", "Май", "Июнь", "Июль", "Авг", "Сент", "Окт", "Нояб", "Дек"],
-//                    short_day_names: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-//                    date_format: "dd mm YYYY"
-//                });
-
                 this.$().find('input').datepicker({
                     changeMonth: true,
                     changeYear: true,
@@ -26,12 +15,18 @@ define(['App', 'text!./dateElement.hbs'], function(UMI, dateElement){
                 });
             },
 
-            inputView: Ember.View.extend({
-                template: function(){
-                    var dataSource = this.get('parentView.meta.dataSource');
-                    return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection" name=meta.attributes.name}}');
-                }.property()
-            })
+            actions: {
+                clearValue: function(){
+                    var self = this;
+                    var el = self.$();
+                    if(Ember.typeOf(self.get('object')) === 'instance'){
+                        var dataSource = self.get('meta.dataSource');
+                        self.get('object').set(dataSource, '');
+                    } else{
+                        el.find('input').val('');
+                    }
+                }
+            }
         });
     };
 });

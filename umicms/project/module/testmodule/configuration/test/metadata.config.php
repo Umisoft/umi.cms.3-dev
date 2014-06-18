@@ -11,6 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
+use umicms\orm\metadata\field\SerializedArrayField;
 use umicms\project\module\testmodule\model\object\TestObject;
 
 return [
@@ -61,10 +62,21 @@ return [
         TestObject::TEXT => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::TEXT],
         TestObject::TEXTAREA => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::TEXTAREA],
         TestObject::SELECT => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::SELECT],
-        TestObject::MULTISELECT => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::MULTISELECT, 'accessor' => 'getMultiSelectValue', 'mutator' => 'setMultiSelectValue'],
+        TestObject::MULTISELECT => [
+            'type' => SerializedArrayField::TYPE,
+            'columnName' => TestObject::MULTISELECT
+        ],
+        TestObject::CHECKBOX_GROUP => [
+            'type' => SerializedArrayField::TYPE,
+            'columnName' => TestObject::CHECKBOX_GROUP,
+        ],
+        TestObject::RADIO => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => TestObject::RADIO
+        ],
         TestObject::PASSWORD => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::PASSWORD],
         TestObject::CHECKBOX => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::CHECKBOX],
-
+        
         TestObject::DATE => ['type' => IField::TYPE_DATE, 'columnName' => TestObject::DATE],
         TestObject::TIME => ['type' => IField::TYPE_TIME, 'columnName' => TestObject::TIME],
         TestObject::DATE_TIME => ['type' => IField::TYPE_DATE_TIME, 'columnName' => TestObject::DATE_TIME],
@@ -82,12 +94,16 @@ return [
                 TestObject::FIELD_TYPE,
                 TestObject::FIELD_VERSION,
                 TestObject::FIELD_DISPLAY_NAME,
-
+                
                 TestObject::TEXT,
                 TestObject::TEXTAREA,
                 TestObject::SELECT,
                 TestObject::PASSWORD,
                 TestObject::CHECKBOX,
+
+                TestObject::MULTISELECT,
+                TestObject::CHECKBOX_GROUP,
+                TestObject::RADIO,
 
                 TestObject::DATE,
                 TestObject::DATE_TIME,

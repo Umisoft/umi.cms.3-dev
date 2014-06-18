@@ -44,7 +44,7 @@ define(['App'], function(UMI){
                     object.set(property, value);
                     object.changeRelationshipsValue(property, selectedObject ? selectedObject.get('id') : undefined);
                 } else{
-                    value = selectedObject ? selectedObject.value : undefined;
+                    value = selectedObject ? selectedObject.value : '';
                     object.set(property, value);
                 }
             }.observes('value'),

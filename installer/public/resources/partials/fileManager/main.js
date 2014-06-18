@@ -1,29 +1,28 @@
 define(['App'], function(UMI){
     'use strict';
 
-    UMI.FileManagerController = Ember.ObjectController.extend({
-        needs: ['action'],
-        data: function(){
-            return this.get('controllers.action').get('model').get('action');
-        }.property()
+    UMI.FileManagerControlController = Ember.ObjectController.extend({
+        needs: ['component'],
+        connector: function(){
+            return this.get('controllers.component').get('settings.actions.connector');
+        }.property('model')
     });
 
-    UMI.FileManagerView = Ember.View.extend({
+    UMI.FileManagerControlView = Ember.View.extend({
         tagName: 'div',
         classNames: ['umi-file-manager'],
 
-        template: Ember.Handlebars.compile('<div id="elfinder"></div>'),
+        layout: Ember.Handlebars.compile('<div id="elfinder"></div>'),
 
         didInsertElement: function(){
-            var that = this;
+            var self = this;
             $('#elfinder').elfinder({
-                url : '/admin/api/files/manager/action/connector',
+                url : self.get('controller.connector.source'),
                 lang: 'ru',
-
                 getFileCallback : function(fileInfo){
                     var contentParams = {};
                     contentParams.fileInfo = fileInfo;
-                    that.set('parentView.contentParams', contentParams);
+                    self.set('parentView.contentParams', contentParams);
                     $('.umi-popup').remove(); //TODO отправлять событие на закрытие Popup
                 },
 

@@ -2,11 +2,10 @@ define(
     [
         'App',
         'text!./form.hbs',
-        'partials/forms/elements/main',
         'partials/forms/partials/magellan/main',
         'partials/forms/partials/submitToolbar/main'
     ],
-    function(UMI, formTpl, elements, magellan, submitToolbar){
+    function(UMI, formTpl, magellan, submitToolbar){
         'use strict';
 
         /**
@@ -17,7 +16,6 @@ define(
          */
         return function(){
 
-            elements();
             magellan();
             submitToolbar();
 
@@ -95,25 +93,52 @@ define(
                     return template;
                 },
 
-                //TODO Привести все элементы к виду: {{view "nameElement"}}
                 textTemplate: function(){
-                    return '{{input value=object.value meta=view.meta name=view.meta.attributes.name}}';
+                    return '{{view "textElement" object=object meta=view.meta}}';
                 }.property(),
 
                 emailTemplate: function(){
-                    return '{{email-element object=object meta=view.meta}}';
+                    return '{{view "emailElement" object=object meta=view.meta}}';
                 }.property(),
 
                 passwordTemplate: function(){
-                    return '{{password-element object=object meta=view.meta}}';
+                    return '{{view "passwordElement" object=object meta=view.meta}}';
                 }.property(),
 
                 numberTemplate: function(){
-                    return '{{number-element object=object meta=view.meta}}';
+                    return '{{view "numberElement" object=object meta=view.meta}}';
+                }.property(),
+
+                colorTemplate: function(){
+                    return '{{view "colorElement" object=object meta=view.meta}}';
+                }.property(),
+
+                timeTemplate: function(){
+                    return '{{time-element object=object meta=view.meta}}';
+                }.property(),
+
+                dateTemplate: function(){
+                    return '{{view "dateElement" object=object meta=view.meta}}';
+                }.property(),
+
+                datetimeTemplate: function(){
+                    return '{{view "dateTimeElement" object=object meta=view.meta}}';
+                }.property(),
+
+                fileTemplate: function(){
+                    return '{{view "fileElement" object=object meta=view.meta}}';
+                }.property(),
+
+                imageTemplate: function(){
+                    return '{{view "imageElement" object=object meta=view.meta}}';
+                }.property(),
+
+                textareaTemplate: function(){
+                    return '{{view "textareaElement" object=object meta=view.meta}}';
                 }.property(),
 
                 wysiwygTemplate: function(){
-                    return '{{html-editor object=object property="' + this.get('meta').dataSource + '" validator="collection" dataSource=view.meta.dataSource}}';
+                    return '{{view "htmlEditor" object=object meta=view.meta}}';
                 }.property(),
 
                 selectTemplate: function(){
@@ -125,7 +150,7 @@ define(
                 }.property(),
 
                 checkboxTemplate: function(){
-                    return '{{checkbox-element object=object meta=view.meta}}';
+                    return '{{view "checkboxElement" object=object meta=view.meta}}';
                 }.property(),
 
                 checkboxGroupTemplate: function(){
@@ -134,34 +159,6 @@ define(
 
                 radioTemplate: function(){
                     return '{{view "radioElement" object=object meta=view.meta}}';
-                }.property(),
-
-                timeTemplate: function(){
-                    return '{{time-element object=object meta=view.meta}}';
-                }.property(),
-
-                dateTemplate: function(){
-                    return '{{date-element object=object meta=view.meta}}';
-                }.property(),
-
-                datetimeTemplate: function(){
-                    return '{{view "dateTimeElement" object=object meta=view.meta}}';
-                }.property(),
-
-                fileTemplate: function(){
-                    return '{{file-element object=object meta=view.meta}}';
-                }.property(),
-
-                imageTemplate: function(){
-                    return '{{image-element object=object meta=view.meta}}';
-                }.property(),
-
-                textareaTemplate: function(){
-                    return '{{textarea-element object=object meta=view.meta}}';
-                }.property(),
-
-                colorTemplate: function(){
-                    return '{{input type="color" value=object.value meta=view.meta name=meta.attributes.name}}';
                 }.property()
             });
 
@@ -173,12 +170,7 @@ define(
                  */
                 hasFieldset: function(){
                     return this.get('model.elements').isAny('type', 'fieldset');
-                }.property('model'),
-                attributeBindings: ['action'],
-
-                action: function(){
-                    return this.get('context.model.attributes.action');
-                }.property('context.model')
+                }.property('model')
             });
 
             UMI.FormBaseView = Ember.View.extend(UMI.FormViewMixin, {
@@ -195,6 +187,12 @@ define(
                  * @type Array
                  */
                 classNames: ['s-margin-clear', 's-full-height', 'umi-form-control'],
+
+                attributeBindings: ['action'],
+
+                action: function(){
+                    return this.get('context.model.attributes.action');
+                }.property('context.model'),
 
                 actions: {
                     submit: function(handler){
