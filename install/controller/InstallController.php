@@ -503,36 +503,60 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $tag->getProperty('componentName')->setValue('tag');
         $tag->getProperty('componentPath')->setValue('blog.tag');
 
-        $post = $structureCollection->add('blogpost', 'system', $blogPage)
+        $post = $structureCollection->add('post', 'system', $blogPage)
             ->setValue('displayName', 'Пост блога')
             ->setValue('displayName', 'Post', 'en-US')
             ->setGUID('257fb155-9fbf-4b99-8b1c-c0ae179070ca');
-
         $post->getProperty('locked')->setValue(true);
         $post->getProperty('componentName')->setValue('post');
         $post->getProperty('componentPath')->setValue('blog.post');
 
+        $addPost = $structureCollection->add('add', 'system', $post)
+            ->setValue('displayName', 'Добавить пост')
+            ->setValue('displayName', 'Add post', 'en-US');
+        $addPost->getProperty('locked')->setValue(true);
+        $addPost->getProperty('componentName')->setValue('add');
+        $addPost->getProperty('componentPath')->setValue('blog.post.add');
+
+        $editPost = $structureCollection->add('edit', 'system', $post)
+            ->setValue('displayName', 'Редактирование поста')
+            ->setValue('displayName', 'Edit post', 'en-US');
+        $editPost->getProperty('locked')->setValue(true);
+        $editPost->getProperty('componentName')->setValue('edit');
+        $editPost->getProperty('componentPath')->setValue('blog.post.edit');
+
+        $viewPost = $structureCollection->add('view', 'system', $post)
+            ->setValue('displayName', 'Просмотр поста')
+            ->setValue('displayName', 'View post', 'en-US');
+        $viewPost->getProperty('locked')->setValue(true);
+        $viewPost->getProperty('componentName')->setValue('view');
+        $viewPost->getProperty('componentPath')->setValue('blog.post.view');
+
         $draft = $structureCollection->add('drafts', 'system', $blogPage)
             ->setValue('displayName', 'Черновики блога')
             ->setValue('displayName', 'Drafts', 'en-US');
+        $draft->getProperty('locked')->setValue(true);
         $draft->getProperty('componentName')->setValue('draft');
         $draft->getProperty('componentPath')->setValue('blog.draft');
 
         $draftView = $structureCollection->add('view', 'system', $draft)
             ->setValue('displayName', 'Просмотр черновика')
             ->setValue('displayName', 'View draft', 'en-US');
+        $draftView->getProperty('locked')->setValue(true);
         $draftView->getProperty('componentName')->setValue('view');
         $draftView->getProperty('componentPath')->setValue('blog.draft.view');
 
         $draftEdit = $structureCollection->add('edit', 'system', $draft)
             ->setValue('displayName', 'Редактирование черновика')
             ->setValue('displayName', 'Edit draft', 'en-US');
+        $draftEdit->getProperty('locked')->setValue(true);
         $draftEdit->getProperty('componentName')->setValue('edit');
         $draftEdit->getProperty('componentPath')->setValue('blog.draft.edit');
 
         $post = $structureCollection->add('rejected', 'system', $blogPage)
             ->setValue('displayName', 'Отклонённые посты')
             ->setValue('displayName', 'Rejected posts', 'en-US');
+        $post->getProperty('locked')->setValue(true);
         $post->getProperty('componentName')->setValue('reject');
         $post->getProperty('componentPath')->setValue('blog.reject');
 
