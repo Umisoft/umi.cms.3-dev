@@ -255,11 +255,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'commentExecutor',
                 'viewer'
             ],
-            'project.site.blog.category' => ['viewer', 'rssViewer'],
 
+            'project.site.blog.post' => [
+                'viewExecutor',
+                'viewer',
+                'rssViewer'
+            ],
             'project.site.blog.post.view' => ['viewer'],
 
-            'project.site.blog.post' => ['viewExecutor', 'viewer', 'rssViewer'],
+            'project.site.blog.category' => ['viewer', 'rssViewer'],
             'project.site.blog.tag' => ['viewer', 'rssViewer'],
             'project.site.blog.author' => ['viewer', 'rssViewer'],
             'project.site.blog.comment' => ['viewer']
@@ -297,34 +301,38 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             'project.site.blog.draft' => [
                 'editExecutor',
                 'viewExecutor',
+                'viewer',
                 'author'
             ],
-            'project.site.blog.draft.edit' => ['author'],
-            'project.site.blog.draft.view' => ['author'],
+            'project.site.blog.draft.edit' => ['viewer', 'author'],
+            'project.site.blog.draft.view' => ['viewer', 'author'],
 
             'project.site.blog.moderate' => [
                 'editExecutor',
                 'viewExecutor',
+                'viewer',
                 'author'
             ],
-            'project.site.blog.moderate.edit' => ['author'],
-            'project.site.blog.moderate.view' => ['author'],
+            'project.site.blog.moderate.edit' => ['viewer', 'author'],
+            'project.site.blog.moderate.view' => ['viewer', 'author'],
 
             'project.site.blog.post' => [
                 'addExecutor',
                 'editExecutor',
                 'viewExecutor',
+                'viewer',
                 'author'
             ],
-            'project.site.blog.post.add' => ['author'],
+            'project.site.blog.post.add' => ['viewer', 'author'],
 
             'project.site.blog.reject' => [
                 'editExecutor',
                 'viewExecutor',
+                'viewer',
                 'author'
             ],
-            'project.site.blog.reject.edit' => ['author'],
-            'project.site.blog.reject.view' => ['author']
+            'project.site.blog.reject.edit' => ['viewer', 'author'],
+            'project.site.blog.reject.view' => ['viewer', 'author']
         ];
 
         /**
@@ -344,34 +352,38 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             'project.site.blog.draft' => [
                 'editExecutor',
                 'viewExecutor',
+                'viewer',
                 'publisher'
             ],
-            'project.site.blog.draft.edit' => ['author'],
-            'project.site.blog.draft.view' => ['author'],
+            'project.site.blog.draft.edit' => ['viewer', 'author'],
+            'project.site.blog.draft.view' => ['viewer', 'author'],
 
             'project.site.blog.moderate' => [
                 'editExecutor',
                 'viewExecutor',
+                'viewer',
                 'author'
             ],
-            'project.site.blog.moderate.edit' => ['author'],
-            'project.site.blog.moderate.view' => ['author'],
+            'project.site.blog.moderate.edit' => ['viewer', 'author'],
+            'project.site.blog.moderate.view' => ['viewer', 'author'],
 
             'project.site.blog.post' => [
                 'addExecutor',
                 'editExecutor',
                 'viewExecutor',
+                'viewer',
                 'author'
             ],
-            'project.site.blog.post.add' => ['author'],
+            'project.site.blog.post.add' => ['viewer', 'author'],
 
             'project.site.blog.reject' => [
                 'editExecutor',
                 'viewExecutor',
+                'viewer',
                 'author'
             ],
-            'project.site.blog.reject.edit' => ['author'],
-            'project.site.blog.reject.view' => ['author']
+            'project.site.blog.reject.edit' => ['viewer', 'author'],
+            'project.site.blog.reject.view' => ['viewer', 'author']
         ];
 
         /**
@@ -385,7 +397,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             'project.site.blog.comment' => [
                 'addExecutor'
             ],
-            'project.site.blog.comment.add' => ['poster']
+            'project.site.blog.comment.add' => ['viewer', 'poster']
         ];
 
         /**
@@ -399,7 +411,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             'project.site.blog.comment' => [
                 'addExecutor'
             ],
-            'project.site.blog.comment.add' => ['posterPremoderation']
+            'project.site.blog.comment.add' => ['viewer', 'posterPremoderation']
         ];
 
         /**
@@ -423,8 +435,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'viewExecutor',
                 'moderator'
             ],
-            'project.site.blog.moderate.edit' => ['moderator'],
-            'project.site.blog.moderate.view' => ['moderator'],
+            'project.site.blog.moderate.edit' => ['viewer', 'moderator'],
+            'project.site.blog.moderate.view' => ['viewer', 'moderator'],
 
             'project.site.blog.post' => [
                 'addExecutor',
@@ -432,7 +444,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'viewExecutor',
                 'moderator'
             ],
-            'project.site.blog.post.edit' => ['moderator'],
+            'project.site.blog.post.edit' => ['viewer', 'moderator'],
         ];
 
         /**

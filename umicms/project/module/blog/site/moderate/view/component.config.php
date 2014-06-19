@@ -30,8 +30,6 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
-                'controller:index' => [],
-                'controller:page' => [],
                 'widget:post' => [],
                 'widget:ownList' => [],
                 'widget:ownListLink' => []

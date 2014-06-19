@@ -32,7 +32,6 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
-                'controller:page' => [],
                 'widget:addLink' => [],
             ]
         ]

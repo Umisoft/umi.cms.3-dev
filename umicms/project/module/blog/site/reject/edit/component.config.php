@@ -33,7 +33,6 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
-                'controller:page' => [],
                 'widget:editLink' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']

@@ -35,7 +35,6 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'moderator' => [
-                'controller:page' => [],
                 'widget:editLink' => [],
                 'model:blogPost' => []
             ]

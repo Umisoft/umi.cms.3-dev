@@ -53,7 +53,7 @@ class DraftController extends BaseCmsController implements IObjectPersisterAware
     {
         $this->blogPost = $this->module->post()->getById($this->getRouteVar('id'));
 
-        if (!$this->isAllowed($this->blogPost)) {
+        if (!$this->isAllowed($this->blogPost, 'draft')) {
             throw new ResourceAccessForbiddenException(
                 $this->blogPost,
                 $this->translate('Access denied')
