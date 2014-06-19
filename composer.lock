@@ -596,12 +596,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "521b9d8ae7030036dc67d96562caba2f7eb0c136"
+                "reference": "095cf4db559bebc78d967890eb93280d8ceb5a08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/521b9d8ae7030036dc67d96562caba2f7eb0c136",
-                "reference": "521b9d8ae7030036dc67d96562caba2f7eb0c136",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/095cf4db559bebc78d967890eb93280d8ceb5a08",
+                "reference": "095cf4db559bebc78d967890eb93280d8ceb5a08",
                 "shasum": ""
             },
             "require": {
@@ -653,7 +653,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-06-18 03:26:15"
+            "time": "2014-06-18 18:22:41"
         },
         {
             "name": "guzzlehttp/streams",
@@ -1721,7 +1721,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:Umisoft/umi.framework-dev.git",
-                "reference": "890a1044a752d93185464161e963aa0cf56ec626"
+                "reference": "e3bc0cb4e8981b601d2f25888431fb547e7cc925"
             },
             "require": {
                 "doctrine/dbal": "2.4.*",
@@ -1751,7 +1751,7 @@
                 "framework",
                 "umi"
             ],
-            "time": "2014-06-17 15:37:44"
+            "time": "2014-06-19 15:16:00"
         }
     ],
     "packages-dev": [

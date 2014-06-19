@@ -19,7 +19,6 @@ use umi\hmvc\exception\http\HttpUnauthorized;
 use umi\http\Response;
 use umi\i18n\ILocalesAware;
 use umi\i18n\ILocalesService;
-use umi\i18n\TLocalesAware;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umicms\exception\RequiredDependencyException;
@@ -37,7 +36,6 @@ use umicms\Utils;
 class ActionController extends BaseController implements ILocalesAware, ISessionAware
 {
     use TSessionAware;
-    use TLocalesAware;
     use TActionController;
 
     /**
@@ -140,7 +138,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
         return [
             'user' => $user,
             'token' => $this->getCsrfToken(),
-            'locale' => $this->getCurrentLocale(),
+            'locale' => $this->getLocalesService()->getCurrentLocale(),
             'isSettingsAllowed' => false //TODO убрать это вообще
         ];
     }
