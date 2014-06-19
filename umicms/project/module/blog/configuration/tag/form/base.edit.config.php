@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-use umi\form\element\MultiSelect;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
