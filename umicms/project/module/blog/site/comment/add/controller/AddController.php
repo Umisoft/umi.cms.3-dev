@@ -10,9 +10,8 @@
 
 namespace umicms\project\module\blog\site\comment\add\controller;
 
-use umi\form\TFormAware;
 use umi\form\IForm;
-use umicms\hmvc\component\BaseCmsController;
+use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\hmvc\component\site\TFormController;
@@ -20,7 +19,7 @@ use umicms\hmvc\component\site\TFormController;
 /**
  * Контроллер добавления комментария.
  */
-class AddController extends BaseCmsController
+class AddController extends BaseSitePageController
 {
     use TFormController;
 
@@ -43,7 +42,7 @@ class AddController extends BaseCmsController
      */
     protected function getTemplateName()
     {
-        return 'addComment';
+        return 'index';
     }
 
     /**
@@ -84,6 +83,16 @@ class AddController extends BaseCmsController
         $this->commit();
 
         return $this->buildRedirectResponse();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildResponseContent()
+    {
+        return [
+            'page' => $this->getCurrentPage()
+        ];
     }
 }
  

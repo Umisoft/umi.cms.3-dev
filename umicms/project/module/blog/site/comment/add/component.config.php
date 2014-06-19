@@ -12,24 +12,23 @@ namespace umicms\project\module\blog\site\comment\add;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\hmvc\component\site\SiteHierarchicPageComponent;
+use umicms\hmvc\component\site\SiteComponent;
 
 return [
-    SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteHierarchicPageComponent',
-    SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
-    SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
+    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
+    SiteComponent::OPTION_CONTROLLERS => [
         'add' => __NAMESPACE__ . '\controller\AddController'
     ],
-    SiteHierarchicPageComponent::OPTION_WIDGET => [
+    SiteComponent::OPTION_WIDGET => [
         'addForm' => __NAMESPACE__ . '\widget\AddWidget'
     ],
-    SiteHierarchicPageComponent::OPTION_VIEW => [
+    SiteComponent::OPTION_VIEW => [
         'directories' => ['module/blog/comment/add']
     ],
-    SiteHierarchicPageComponent::OPTION_ACL => [
+    SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'poster' => [],
-            'posterPremoderation' => ['poster']
+            'posterPremoderation' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogComment'
@@ -41,13 +40,15 @@ return [
                 'model:blogComment' => []
             ],
             'posterPremoderation' => [
+                'widget:addForm' => [],
+                'controller:add' => [],
                 'model:blogComment' => [
                     'publish' => ['premoderation']
                 ]
             ]
         ]
     ],
-    SiteHierarchicPageComponent::OPTION_ROUTES => [
+    SiteComponent::OPTION_ROUTES => [
         'add' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{parent:integer}',

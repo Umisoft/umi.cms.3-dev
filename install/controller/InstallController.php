@@ -403,7 +403,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             'project.site.blog.comment' => [
                 'addExecutor'
             ],
-            'project.site.blog.comment.add' => ['viewer', 'poster']
+            'project.site.blog.comment.add' => ['poster']
         ];
 
         /**
@@ -417,7 +417,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             'project.site.blog.comment' => [
                 'addExecutor'
             ],
-            'project.site.blog.comment.add' => ['viewer', 'posterPremoderation']
+            'project.site.blog.comment.add' => ['posterPremoderation']
         ];
 
         /**
@@ -517,6 +517,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $user->groups->attach($visitors);
         $user->groups->attach($authorsWithPremoderation);
+        $user->groups->attach($commentWithPremoderation);
         $user->groups->attach($registeredUsers);
         $user->setPassword('demo');
 

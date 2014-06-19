@@ -12,29 +12,28 @@ namespace umicms\project\module\blog\site\comment;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\hmvc\component\site\SiteHierarchicPageComponent;
+use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
 
-    SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteHierarchicPageComponent',
-    SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
-    SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
+    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
+    SiteGroupComponent::OPTION_CONTROLLERS => [
         'publish' => __NAMESPACE__ . '\controller\PublishController',
         'reject' => __NAMESPACE__ . '\controller\RejectController'
     ],
-    SiteHierarchicPageComponent::OPTION_COMPONENTS => [
+    SiteGroupComponent::OPTION_COMPONENTS => [
         'add' => '{#lazy:~/project/module/blog/site/comment/add/component.config.php}'
     ],
-    SiteHierarchicPageComponent::OPTION_WIDGET => [
+    SiteGroupComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\CommentWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'publish' => __NAMESPACE__ . '\widget\PublishWidget',
         'reject' => __NAMESPACE__ . '\widget\RejectWidget'
     ],
-    SiteHierarchicPageComponent::OPTION_VIEW => [
+    SiteGroupComponent::OPTION_VIEW => [
         'directories' => ['module/blog/comment']
     ],
-    SiteHierarchicPageComponent::OPTION_ACL => [
+    SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'moderator' => []
         ],
@@ -59,7 +58,7 @@ return [
             ]
         ]
     ],
-    SiteHierarchicPageComponent::OPTION_ROUTES => [
+    SiteGroupComponent::OPTION_ROUTES => [
         'publish' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/publish/{id:integer}',
@@ -73,9 +72,6 @@ return [
             'defaults' => [
                 'controller' => 'reject'
             ]
-        ],
-        'component' => [
-            'type' => 'SiteComponentRoute'
         ]
     ]
 ];

@@ -596,12 +596,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "521b9d8ae7030036dc67d96562caba2f7eb0c136"
+                "reference": "095cf4db559bebc78d967890eb93280d8ceb5a08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/521b9d8ae7030036dc67d96562caba2f7eb0c136",
-                "reference": "521b9d8ae7030036dc67d96562caba2f7eb0c136",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/095cf4db559bebc78d967890eb93280d8ceb5a08",
+                "reference": "095cf4db559bebc78d967890eb93280d8ceb5a08",
                 "shasum": ""
             },
             "require": {
@@ -653,7 +653,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-06-18 03:26:15"
+            "time": "2014-06-18 18:22:41"
         },
         {
             "name": "guzzlehttp/streams",
