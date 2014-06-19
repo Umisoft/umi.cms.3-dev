@@ -293,13 +293,38 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'moderateExecutor',
                 'rejectExecutor'
             ],
-            'project.site.blog.draft' => ['author'],
-            'project.site.blog.moderate' => ['author'],
 
-            'project.site.blog.post.add' => ['viewer'],
+            'project.site.blog.draft' => [
+                'editExecutor',
+                'viewExecutor',
+                'author'
+            ],
+            'project.site.blog.draft.edit' => ['author'],
+            'project.site.blog.draft.view' => ['author'],
 
-            'project.site.blog.post' => ['addExecutor', 'author'],
-            'project.site.blog.reject' => ['author']
+            'project.site.blog.moderate' => [
+                'editExecutor',
+                'viewExecutor',
+                'author'
+            ],
+            'project.site.blog.moderate.edit' => ['author'],
+            'project.site.blog.moderate.view' => ['author'],
+
+            'project.site.blog.post' => [
+                'addExecutor',
+                'editExecutor',
+                'viewExecutor',
+                'author'
+            ],
+            'project.site.blog.post.add' => ['author'],
+
+            'project.site.blog.reject' => [
+                'editExecutor',
+                'viewExecutor',
+                'author'
+            ],
+            'project.site.blog.reject.edit' => ['author'],
+            'project.site.blog.reject.view' => ['author']
         ];
 
         /**
@@ -315,10 +340,38 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'moderateExecutor',
                 'rejectExecutor'
             ],
-            'project.site.blog.draft' => ['publisher'],
-            'project.site.blog.moderate' => ['author'],
-            'project.site.blog.post' => ['author'],
-            'project.site.blog.reject' => ['author']
+
+            'project.site.blog.draft' => [
+                'editExecutor',
+                'viewExecutor',
+                'publisher'
+            ],
+            'project.site.blog.draft.edit' => ['author'],
+            'project.site.blog.draft.view' => ['author'],
+
+            'project.site.blog.moderate' => [
+                'editExecutor',
+                'viewExecutor',
+                'author'
+            ],
+            'project.site.blog.moderate.edit' => ['author'],
+            'project.site.blog.moderate.view' => ['author'],
+
+            'project.site.blog.post' => [
+                'addExecutor',
+                'editExecutor',
+                'viewExecutor',
+                'author'
+            ],
+            'project.site.blog.post.add' => ['author'],
+
+            'project.site.blog.reject' => [
+                'editExecutor',
+                'viewExecutor',
+                'author'
+            ],
+            'project.site.blog.reject.edit' => ['author'],
+            'project.site.blog.reject.view' => ['author']
         ];
 
         /**
@@ -329,7 +382,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Comment without premoderation', 'en-US');
 
         $commentWithoutPremoderation->roles = [
-            'project.site.blog.comment' => ['poster']
+            'project.site.blog.comment' => [
+                'addExecutor'
+            ],
+            'project.site.blog.comment.add' => ['poster']
         ];
 
         /**
@@ -340,7 +396,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Comment with premoderation', 'en-US');
 
         $commentWithPremoderation->roles = [
-            'project.site.blog.comment' => ['posterPremoderation']
+            'project.site.blog.comment' => [
+                'addExecutor'
+            ],
+            'project.site.blog.comment.add' => ['posterPremoderation']
         ];
 
         /**
@@ -356,11 +415,24 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'moderateExecutor',
                 'rejectExecutor'
             ],
+
             'project.site.blog.comment' => ['moderator'],
-            'project.site.blog.moderate' => ['moderator'],
-            'project.site.blog.post' => ['moderator'],
-            'project.site.blog.reject' => ['moderator'],
-            'project.site.blog.draft' => ['moderator'],
+
+            'project.site.blog.moderate' => [
+                'editExecutor',
+                'viewExecutor',
+                'moderator'
+            ],
+            'project.site.blog.moderate.edit' => ['moderator'],
+            'project.site.blog.moderate.view' => ['moderator'],
+
+            'project.site.blog.post' => [
+                'addExecutor',
+                'editExecutor',
+                'viewExecutor',
+                'moderator'
+            ],
+            'project.site.blog.post.edit' => ['moderator'],
         ];
 
         /**

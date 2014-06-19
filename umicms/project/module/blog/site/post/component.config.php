@@ -36,7 +36,7 @@ return [
         IAclFactory::OPTION_ROLES => [
             'rssViewer' => [],
             'author' => [],
-            'moderator' => ['author']
+            'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
@@ -54,6 +54,8 @@ return [
                 ]
             ],
             'moderator' => [
+                'widget:draft' => [],
+                'controller:draft' => [],
                 'model:blogPost' => []
             ]
         ]
