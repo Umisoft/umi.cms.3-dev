@@ -84,12 +84,8 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => [
-                    'columnName' => 'display_name'
-                ],
-                'en-US' => [
-                    'columnName' => 'display_name_en'
-                ]
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
+                'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
         InfoBlock::FIELD_PHONE_NUMBER => [

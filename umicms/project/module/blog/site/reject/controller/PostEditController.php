@@ -13,8 +13,6 @@ namespace umicms\project\module\blog\site\reject\controller;
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -23,10 +21,9 @@ use umicms\hmvc\component\site\TFormController;
 /**
  * Контроллер редактирования отклонённого поста блога.
  */
-class PostEditController extends BaseCmsController implements IObjectPersisterAware
+class PostEditController extends BaseCmsController
 {
     use TFormController;
-    use TObjectPersisterAware;
 
     /**
      * @var BlogModule $module модуль "Блоги"
@@ -80,7 +77,7 @@ class PostEditController extends BaseCmsController implements IObjectPersisterAw
      */
     protected function processForm(IForm $form)
     {
-        $this->getObjectPersister()->commit();
+        $this->commit();
         $this->success = true;
     }
 

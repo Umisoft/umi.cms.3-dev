@@ -11,6 +11,7 @@
 namespace umicms\orm\collection;
 
 use umi\form\TFormAware;
+use umi\i18n\TLocalesAware;
 use umi\i18n\TLocalizable;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\metadata\IMetadata;
@@ -33,6 +34,7 @@ trait TCmsCollection
     use TFormAware;
     use TConfigSupport;
     use TLocalizable;
+    use TLocalesAware;
 
     /**
      * @see ICmsCollection::getName()
@@ -181,6 +183,42 @@ trait TCmsCollection
         $dictionaries = $this->configToArray($dictionaries);
 
         return $dictionaries;
+    }
+
+    /**
+     * @see ICmsCollection::getCreateTypeList()
+     */
+    public function getCreateTypeList()
+    {
+        $result = [];
+
+        if ($this->getCurrentDataLocale() != $this->getDefaultDataLocale()) {
+            return $result;
+        }
+
+        foreach ($this->getMetadata()->getTypesList() as $typeName) {
+            if ($this->hasForm(ICmsCollection::FORM_CREATE, $typeName)) {
+                $result[] = $typeName;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * @see ICmsCollection::getEditTypeList()
+     */
+    public function getEditTypeList()
+    {
+        $result = [];
+
+        foreach ($this->getMetadata()->getTypesList() as $typeName) {
+            if ($this->hasForm(ICmsCollection::FORM_EDIT, $typeName)) {
+                $result[] = $typeName;
+            }
+        }
+
+        return $result;
     }
 
     /**
