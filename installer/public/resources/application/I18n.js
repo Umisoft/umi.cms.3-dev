@@ -2,11 +2,11 @@ define([], function(){
     'use strict';
     return function(UMI){
         Ember.Handlebars.registerHelper('I18n',
-            function(label, options){
-                if(Ember.typeOf(options) !== 'string'){
-                    options = undefined;
+            function(label, path){
+                if(Ember.typeOf(path) !== 'string'){
+                    path = undefined;
                 }
-                var translateLabel = UMI.I18n.getTranslate(label, options);
+                var translateLabel = UMI.I18n.getTranslate(label, path);
                 return translateLabel ? translateLabel : label;
             }
         );
@@ -24,10 +24,11 @@ define([], function(){
             locale: function(){
                 return window.UmiSettings.locale;
             }.property(),
-            getTranslate: function(label, component){
+            getTranslate: function(label, componentPath){
                 var locale = this.get('locale');
-                component = component || 'layout';
-                var translate = this.get('dictionary.' + component + '.' + locale + '.' + label);
+                componentPath = componentPath || 'layout';
+
+                var translate = this.get('dictionary.' + componentPath + '.' + locale + '.' + label);
                 return translate ? translate : label;
             }
         }).create({});

@@ -5,12 +5,44 @@
             "Open site in new tab": "Открыть сайт в новой вкладке",
             "System settings": "Системные настройки",
             "Logout": "Выход из системы"
-        }
-    },
-    "search": {
-        "en-US": {},
-        "ru-RU": {
-            "Search": "Поиск"
+        },
+        "search": {
+            "en-US": {},
+            "ru-RU": {
+                "Search": "Поиск",
+                "min characters": "В запросе должно быть не менее трёх символов"
+            }
+        },
+        "dialog": {
+            "en-US": {},
+            "ru-RU": {
+                "Remember my choice": "Запомнить мой выбор"
+            }
+        },
+        "forms": {
+            "multiselect": {
+                "en-US": {},
+                "ru-RU": {
+                    "Nothing found": "Ничего не найдено"
+                }
+            }
+        },
+        "tableControl": {
+            "en-US": {},
+            "ru-RU": {
+                "Rows on page": "Строк на странице",
+                "No data": "Нет данных"
+            }
+        },
+        "toolbar": {
+            "en-US": {},
+            "ru-RU": {},
+            "dropdownButton": {
+                "en-US": {},
+                "ru-RU": {
+                    "User name": "Имя пользователя"
+                }
+            }
         }
     }
 }
