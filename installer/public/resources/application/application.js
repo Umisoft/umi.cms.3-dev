@@ -153,7 +153,7 @@ define(
              Удаление объекта-обёртки result из всех приходящих объектов
              Удаление объекта-обёртки collection из всех объектов его содержащих
              */
-            normalizePayload: function(type, payload){
+            normalizePayload: function(payload){
                 payload = payload.result;
                 if(payload.hasOwnProperty('collection')){
                     payload = payload.collection;
@@ -206,7 +206,7 @@ define(
             }
         });
 
-        UMI.Store = DS.Store.extend({
+        UMI.ApplicationStore = DS.Store.extend({
             /**
              * Обновление объектов коллекции без очищения загруженных полей
              * @method updateCollection
