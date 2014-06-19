@@ -329,18 +329,6 @@ define(
         });
 
         /**
-         * Для числовых полей меняет null на ''
-         * http://youtrack.umicloud.ru/issue/cms-414
-         * DS.NumberTransform
-         * @type {*|void|Object}
-         */
-        DS.NumberTransform.reopen({
-            deserialize: function(serialized) {
-                return Ember.isNone(serialized) ? "" : String(serialized);
-            }
-        });
-
-        /**
          * Приводит приходящий объект date:{} к нужному формату даты
          * TODO Смена формата в зависимости от языка системы
          * TODO Почему не прилылать в простом timeStamp
