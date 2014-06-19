@@ -265,7 +265,13 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
             'project.site.blog.category' => ['viewer', 'rssViewer'],
             'project.site.blog.tag' => ['viewer', 'rssViewer'],
-            'project.site.blog.author' => ['viewer', 'rssViewer'],
+            'project.site.blog.author' => [
+                'viewExecutor',
+                'viewer',
+                'rssViewer'
+            ],
+            'project.site.blog.author.view' => ['viewer', 'rssViewer'],
+
             'project.site.blog.comment' => ['viewer']
         ];
 
