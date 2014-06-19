@@ -1,0 +1,27 @@
+
+default:
+
+    suites:
+      admin_features:
+        paths:
+            - %paths.base%/../umicms/project/admin/features
+        contexts:
+              - tests\context\admin\AdminPanelContext
+
+        news_features:
+        paths:
+            - %paths.base%/../umicms/project/module/news/features
+        contexts:
+              - tests\context\admin\AdminPanelContext
+
+    extensions:
+        Behat\MinkExtension:
+            base_url: http://realloc3.srv09.megaserver.umisoft.ru
+            browser_name: firefox
+            javascript_session: selenium2
+            selenium2: ~
+
+        SensioLabs\Behat\PageObjectExtension:
+           namespaces:
+               page: ['']
+               element: ['']
