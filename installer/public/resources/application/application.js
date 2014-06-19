@@ -11,13 +11,14 @@ define(
         'moment',
         'application/config',
         'application/utils',
+        'application/I18n',
         'application/templates',
         'application/models',
         'application/router',
         'application/controllers',
         'application/views'
     ],
-    function(DS, Modernizr, iscroll, ckEditor, jQueryUI, elFinder, timepicker, /* datepicker,*/ moment, config, utils, templates, models, router, controller, views){
+    function(DS, Modernizr, iscroll, ckEditor, jQueryUI, elFinder, timepicker, /* datepicker,*/ moment, config, utils, I18n, templates, models, router, controller, views){
         'use strict';
 
         var UMI = window.UMI = window.UMI || {};
@@ -48,6 +49,7 @@ define(
 
         utils(UMI);
         config(UMI);
+        I18n(UMI);
 
         /**
          * @class UmiRESTAdapter

@@ -1,0 +1,16 @@
+{
+    "layout": {
+        "en-US": {},
+        "ru-RU": {
+            "Open site in new tab": "Открыть сайт в новой вкладке",
+            "System settings": "Системные настройки",
+            "Logout": "Выход из системы"
+        }
+    },
+    "search": {
+        "en-US": {},
+        "ru-RU": {
+            "Search": "Поиск"
+        }
+    }
+}

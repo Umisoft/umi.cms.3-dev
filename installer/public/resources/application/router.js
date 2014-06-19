@@ -46,13 +46,16 @@ define([], function(){
                 return $.get(UmiSettings.baseApiURL).then(function(results){
                     var result = results.result;
                     if(result){
-                        self.controllerFor('application').set('settings', result);
-                        if(result.collections){
-                            UMI.modelsFactory(result.collections);
-                        }
-                        if(result.modules){
-                            self.controllerFor('dock').set('modules', result.modules);
-                        }
+                        return $.get('/resources/application/dictionary.json').then(function(dictionary){
+                            UMI.I18n.setDictionary(dictionary);
+                            self.controllerFor('application').set('settings', result);
+                            if(result.collections){
+                                UMI.modelsFactory(result.collections);
+                            }
+                            if(result.modules){
+                                self.controllerFor('dock').set('modules', result.modules);
+                            }
+                        });
                     } else{
                         try{
                             throw new Error(results);
