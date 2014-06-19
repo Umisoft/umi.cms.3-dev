@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\controller;
+namespace umicms\project\module\blog\site\moderate\edit\controller;
 
 use umi\form\IForm;
 use umi\orm\metadata\IObjectType;

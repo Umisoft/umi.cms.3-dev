@@ -30,9 +30,13 @@ return [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
         ],
+        IAclFactory::OPTION_RESOURCES => [
+            'model:blogPost'
+        ],
         IAclFactory::OPTION_RULES => [
             'author' => [
                 'widget:addLink' => [],
+                'model:blogPost' => []
             ]
         ]
     ]

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\draft\controller;
+namespace umicms\project\module\blog\site\draft\edit\controller;
 
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
