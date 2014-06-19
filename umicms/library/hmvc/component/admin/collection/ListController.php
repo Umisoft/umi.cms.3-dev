@@ -14,8 +14,6 @@ use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umi\orm\selector\condition\IFieldCondition;
 use umicms\exception\OutOfBoundsException;
 use umicms\exception\RuntimeException;
@@ -29,10 +27,8 @@ use umicms\orm\selector\CmsSelector;
 /**
  * Контроллер действий над списком.
  */
-class ListController extends BaseController implements IObjectPersisterAware
+class ListController extends BaseController
 {
-    use TObjectPersisterAware;
-
     /**
      * {@inheritdoc}
      */

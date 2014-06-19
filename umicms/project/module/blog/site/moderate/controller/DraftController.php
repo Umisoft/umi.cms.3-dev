@@ -13,8 +13,6 @@ namespace umicms\project\module\blog\site\moderate\controller;
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -23,10 +21,9 @@ use umicms\hmvc\component\site\TFormSimpleController;
 /**
  * Контроллер снятия поста с модерации и переноса в черновики.
  */
-class DraftController extends BaseCmsController implements IObjectPersisterAware
+class DraftController extends BaseCmsController
 {
     use TFormSimpleController;
-    use TObjectPersisterAware;
 
     /**
      * @var BlogModule $module модуль "Блоги"
@@ -69,7 +66,7 @@ class DraftController extends BaseCmsController implements IObjectPersisterAware
     protected function processForm(IForm $form)
     {
         $this->blogPost->draft();
-        $this->getObjectPersister()->commit();
+        $this->commit();
     }
 }
  

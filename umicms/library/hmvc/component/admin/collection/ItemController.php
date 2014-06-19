@@ -86,7 +86,7 @@ class ItemController extends BaseController
     protected function delete(ICmsObject $object)
     {
         $this->getComponent()->getCollection()->delete($object);
-        $this->getObjectPersister()->commit();
+        $this->commit();
     }
 
 }

@@ -1721,7 +1721,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:Umisoft/umi.framework-dev.git",
-                "reference": "890a1044a752d93185464161e963aa0cf56ec626"
+                "reference": "9344a9d211093905d1ac90d62578fbd9037f8683"
             },
             "require": {
                 "doctrine/dbal": "2.4.*",
@@ -1751,7 +1751,7 @@
                 "framework",
                 "umi"
             ],
-            "time": "2014-06-17 15:37:44"
+            "time": "2014-06-18 13:31:08"
         }
     ],
     "packages-dev": [

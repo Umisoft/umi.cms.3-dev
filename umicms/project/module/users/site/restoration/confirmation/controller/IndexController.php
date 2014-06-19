@@ -11,8 +11,6 @@
 namespace umicms\project\module\users\site\restoration\confirmation\controller;
 
 use umi\http\Response;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\UsersModule;
 use umicms\hmvc\component\site\BaseSitePageController;
@@ -20,10 +18,8 @@ use umicms\hmvc\component\site\BaseSitePageController;
 /**
  * Контроллер сброса пароля пользователя
  */
-class IndexController extends BaseSitePageController implements IObjectPersisterAware
+class IndexController extends BaseSitePageController
 {
-    use TObjectPersisterAware;
-
     /**
      * @var UsersModule $module модуль "Пользователи"
      */
@@ -46,7 +42,7 @@ class IndexController extends BaseSitePageController implements IObjectPersister
         try {
 
             $user = $this->module->changePassword($this->getRouteVar('activationCode'));
-            $this->getObjectPersister()->commit();
+            $this->commit();
 
             $this->sendNewPassword($user);
 

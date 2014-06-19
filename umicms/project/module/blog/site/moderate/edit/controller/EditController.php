@@ -8,12 +8,10 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\edit\controller;
+namespace umicms\project\module\blog\site\moderate\controller;
 
 use umi\form\IForm;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -22,10 +20,9 @@ use umicms\hmvc\component\site\TFormController;
 /**
  * Контроллер редактирования поста блога, требующего модерации.
  */
-class EditController extends BaseCmsController implements IObjectPersisterAware
+class EditController extends BaseCmsController
 {
     use TFormController;
-    use TObjectPersisterAware;
 
     /**
      * @var BlogModule $module модуль "Блоги"
@@ -72,7 +69,7 @@ class EditController extends BaseCmsController implements IObjectPersisterAware
      */
     protected function processForm(IForm $form)
     {
-        $this->getObjectPersister()->commit();
+        $this->commit();
         $this->success = true;
     }
 
