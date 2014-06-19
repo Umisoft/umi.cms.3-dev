@@ -12,8 +12,6 @@ namespace umicms\project\module\blog\site\author\profile\controller;
 
 use umi\form\IForm;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\hmvc\component\site\TFormController;
 use umicms\project\module\blog\model\BlogModule;
@@ -22,10 +20,9 @@ use umicms\project\module\blog\model\object\BlogAuthor;
 /**
  * Контроллер редактирования профиля автора блога.
  */
-class IndexController extends BaseSitePageController implements IObjectPersisterAware
+class IndexController extends BaseSitePageController
 {
     use TFormController;
-    use TObjectPersisterAware;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
@@ -72,7 +69,7 @@ class IndexController extends BaseSitePageController implements IObjectPersister
      */
     protected function processForm(IForm $form)
     {
-        $this->getObjectPersister()->commit();
+        $this->commit();
         $this->success = true;
     }
 

@@ -13,8 +13,6 @@ namespace umicms\project\module\blog\site\post\controller;
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\exception\InvalidArgumentException;
 use umicms\project\module\blog\model\BlogModule;
@@ -25,10 +23,9 @@ use umicms\hmvc\component\site\TFormController;
 /**
  * Контроллер добавления поста
  */
-class PostAddController extends BaseCmsController implements IObjectPersisterAware
+class PostAddController extends BaseCmsController
 {
     use TFormController;
-    use TObjectPersisterAware;
 
     /**
      * @var BlogModule $module модуль "Блоги"
@@ -106,7 +103,7 @@ class PostAddController extends BaseCmsController implements IObjectPersisterAwa
      */
     protected function processForm(IForm $form)
     {
-        $this->getObjectPersister()->commit();
+        $this->commit();
         $this->added = true;
     }
 

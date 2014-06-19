@@ -44,7 +44,7 @@ class ActionController extends CollectionActionController
         $scenario = $this->getEditedObject($this->getIncomingData());
 
         $this->module->importRss($scenario);
-        $this->getObjectPersister()->commit();
+        $this->commit();
 
         return '';
     }

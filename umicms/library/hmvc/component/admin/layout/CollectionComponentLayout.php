@@ -68,7 +68,10 @@ class CollectionComponentLayout extends AdminComponentLayout
     protected function configureEmptyContextControls()
     {
         $this->addEmptyContextControl('filter',  new TableControl($this->component));
-        $this->addEmptyContextControl('createForm',  new CreateObjectControl($this->component));
+
+        if ($this->collection->getCreateTypeList()) {
+            $this->addEmptyContextControl('createForm',  new CreateObjectControl($this->component));
+        }
     }
 
     /**
@@ -76,9 +79,11 @@ class CollectionComponentLayout extends AdminComponentLayout
      */
     protected function configureSelectedContextControls()
     {
-        $this->addSelectedContextControl('editForm', new EditObjectControl($this->component));
+        if ($this->collection->getEditTypeList()) {
+            $this->addSelectedContextControl('editForm', new EditObjectControl($this->component));
+        }
 
-        if ($this->collection instanceof CmsHierarchicCollection) {
+        if ($this->collection instanceof CmsHierarchicCollection && $this->collection->getCreateTypeList()) {
             $this->addSelectedContextControl('createForm', new CreateObjectControl($this->component));
         }
     }

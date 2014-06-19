@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\news\admin\rss\controller;
 
-use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\component\admin\collection\ActionController as CollectionActionController;
 use umicms\project\module\news\model\NewsModule;
 use umicms\project\module\news\model\object\NewsRssImportScenario;
@@ -45,7 +44,7 @@ class ActionController extends CollectionActionController
         $scenario = $this->getEditedObject($this->getIncomingData());
 
         $this->module->importRss($scenario);
-        $this->getObjectPersister()->commit();
+        $this->commit();
 
         return '';
     }
