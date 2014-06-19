@@ -304,15 +304,21 @@ define(
                     promise = self.findById(type, coerceId(id));
                 }
 
-                return promiseArray(promise.then(function(result){
+                var deffered = Ember.RSVP.defer();
+                promise.then(function(result){
                     var i;
                     var objects = [];
-                    for(i = 0; i < result.length; i++){
-                        objects.push(self.update(type, result[i]));
-                    }
-
-                    return objects;
-                }));
+                    Ember.run.later(function(){//TODO: Очередь запросов
+                        var updateMany = function(self, objects, type, params){
+                            objects.push(self.update(type, params));
+                        };
+                        for(i = 0; i < result.length; i++){
+                            updateMany(self, objects, type, result[i]);
+                        }
+                        deffered.resolve(objects);
+                    }, 700);
+                });
+                return promiseArray(deffered.promise);
             }
         });
 
