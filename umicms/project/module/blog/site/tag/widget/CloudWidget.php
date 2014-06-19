@@ -16,7 +16,7 @@ use umicms\project\module\blog\model\BlogModule;
 /**
  * Виджет для вывода облака тэгов.
  */
-class TagCloudWidget extends BaseCmsWidget
+class CloudWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

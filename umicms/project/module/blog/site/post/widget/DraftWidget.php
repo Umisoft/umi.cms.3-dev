@@ -70,7 +70,7 @@ class DraftWidget extends BaseFormWidget
 
         $form = $this->module->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE, $this->blogPost);
 
-        $form->setAction($this->getUrl('unPublished', ['id' => $this->blogPost->getId()]));
+        $form->setAction($this->getUrl('draft', ['id' => $this->blogPost->getId()]));
 
         return $form;
     }

@@ -18,7 +18,7 @@ use umicms\project\module\blog\model\object\BlogTag;
 /**
  * Виджет для вывода URL на RSS-ленту по тэгу.
  */
-class TagListRssLinkWidget extends BaseLinkWidget
+class RssLinkWidget extends BaseLinkWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

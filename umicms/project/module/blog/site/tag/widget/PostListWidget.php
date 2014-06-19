@@ -18,7 +18,7 @@ use umicms\project\module\blog\model\object\BlogTag;
 /**
  * Виджет для вывода списка постов по тэгам.
  */
-class TagPostListWidget extends BaseListWidget
+class PostListWidget extends BaseListWidget
 {
     /**
      * {@inheritdoc}

@@ -18,20 +18,21 @@ return [
     SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteHierarchicPageComponent',
     SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
     SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
-        'add' => __NAMESPACE__ . '\controller\AddController',
+        'add' => __NAMESPACE__ . '\controller\AddController'
     ],
     SiteHierarchicPageComponent::OPTION_WIDGET => [
-        'addForm' => __NAMESPACE__ . '\widget\AddWidget',
+        'addForm' => __NAMESPACE__ . '\widget\AddWidget'
     ],
     SiteHierarchicPageComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/comment/add'],
+        'directories' => ['module/blog/comment/add']
     ],
     SiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'poster' => [],
+            'posterPremoderation' => ['poster']
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'model:blogComment',
+            'model:blogComment'
         ],
         IAclFactory::OPTION_RULES => [
             'poster' => [
@@ -39,6 +40,11 @@ return [
                 'controller:add' => [],
                 'model:blogComment' => []
             ],
+            'posterPremoderation' => [
+                'model:blogComment' => [
+                    'publish' => ['premoderation']
+                ]
+            ]
         ]
     ],
     SiteHierarchicPageComponent::OPTION_ROUTES => [

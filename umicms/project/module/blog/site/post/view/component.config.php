@@ -18,14 +18,14 @@ return [
     SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
     SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     SitePageComponent::OPTION_CONTROLLERS => [
-        'page' => __NAMESPACE__ . '\controller\PageController',
+        'page' => __NAMESPACE__ . '\controller\PageController'
     ],
     SitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\PostWidget',
-        'list' => __NAMESPACE__ . '\widget\ListWidget',
+        'list' => __NAMESPACE__ . '\widget\ListWidget'
     ],
     SitePageComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/post/view'],
+        'directories' => ['module/blog/post/view']
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_RULES => [

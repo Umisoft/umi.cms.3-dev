@@ -11,7 +11,6 @@
 namespace umicms\project\module\blog\site\reject\view;
 
 use umi\acl\IAclFactory;
-use umi\acl\IAclManager;
 use umicms\hmvc\component\site\SitePageComponent;
 
 return [
@@ -19,7 +18,7 @@ return [
     SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
     SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     SitePageComponent::OPTION_CONTROLLERS => [
-        'page' => __NAMESPACE__ . '\controller\PageController',
+        'page' => __NAMESPACE__ . '\controller\PageController'
     ],
     SitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\PostWidget',
@@ -40,15 +39,10 @@ return [
                 'widget:view' => [],
                 'widget:list' => [],
                 'widget:listLink' => [],
-            ],
-            'moderator' => [
-                'model:blogPost' => [
-                    IAclManager::OPERATION_ALL => []
-                ]
             ]
         ]
     ],
     SitePageComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/reject/view'],
+        'directories' => ['module/blog/reject/view']
     ]
 ];

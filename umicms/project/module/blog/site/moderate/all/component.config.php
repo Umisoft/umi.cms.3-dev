@@ -8,44 +8,30 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\draft\edit;
+namespace umicms\project\module\blog\site\moderate\all;
 
 use umi\acl\IAclFactory;
-use umi\acl\IAclManager;
 use umicms\hmvc\component\site\SitePageComponent;
 
 return [
-
     SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
     SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    SitePageComponent::OPTION_CONTROLLERS => [
-        'page' => __NAMESPACE__ . '\controller\EditController'
-    ],
     SitePageComponent::OPTION_WIDGET => [
-        'editLink' => __NAMESPACE__ . '\widget\EditUrlWidget'
+        'allList' => __NAMESPACE__ . '\widget\AllListWidget',
+        'allListLink' => __NAMESPACE__ . '\widget\AllListLinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'author' => [],
-            'moderator' => ['author']
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'model:blogPost'
+            'moderator' => []
         ],
         IAclFactory::OPTION_RULES => [
-            'author' => [
-                'controller:page' => [],
-                'widget:editLink' => [],
-                'model:blogPost' => [
-                    IAclManager::OPERATION_ALL => ['own']
-                ]
-            ],
             'moderator' => [
-                'model:blogPost' => []
-            ],
+                'widget:allList' => [],
+                'widget:allListLink' => []
+            ]
         ]
     ],
     SitePageComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/draft/edit']
+        'directories' => ['module/blog/moderate/all']
     ]
 ];

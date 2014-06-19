@@ -598,6 +598,12 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $moderationPostView->getProperty('componentName')->setValue('view');
         $moderationPostView->getProperty('componentPath')->setValue('blog.moderate.view');
 
+        $moderationPostAll = $structureCollection->add('all', 'system', $moderationPost)
+            ->setValue('displayName', 'Очередь на модерацию')
+            ->setValue('displayName', 'Turn on moderation', 'en-US');
+        $moderationPostAll->getProperty('componentName')->setValue('all');
+        $moderationPostAll->getProperty('componentPath')->setValue('blog.moderate.all');
+
         $comment = $structureCollection->add('blogcomment', 'system', $blogPage)
             ->setValue('displayName', 'Комментарий блога')
             ->setValue('displayName', 'Comment', 'en-US')

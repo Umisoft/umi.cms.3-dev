@@ -19,7 +19,7 @@ return [
 
     SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
     SiteGroupComponent::OPTION_CONTROLLERS => [
-        'sendToModeration' => __NAMESPACE__ . '\controller\SendToModerationController',
+        'sendToModeration' => __NAMESPACE__ . '\controller\SendToModerationController'
     ],
     SiteGroupComponent::OPTION_COMPONENTS => [
         'edit' => '{#lazy:~/project/module/blog/site/reject/edit/component.config.php}',
@@ -27,11 +27,10 @@ return [
     ],
     SiteGroupComponent::OPTION_WIDGET => [
         'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
-],
+    ],
     SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'author' => [],
-            'moderator' => ['author']
+            'author' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
@@ -43,16 +42,11 @@ return [
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
-            ],
-            'moderator' => [
-                'model:blogPost' => [
-                    IAclManager::OPERATION_ALL => []
-                ]
             ]
         ]
     ],
     SiteGroupComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/reject'],
+        'directories' => ['module/blog/reject']
     ],
     SiteGroupComponent::OPTION_ROUTES => [
         'sendToModeration' => [

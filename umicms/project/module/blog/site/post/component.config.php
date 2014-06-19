@@ -17,20 +17,20 @@ use umicms\hmvc\component\site\SiteGroupComponent;
 return [
     SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
     SiteGroupComponent::OPTION_CONTROLLERS => [
-        'unPublished' => __NAMESPACE__ . '\controller\DraftController',
+        'draft' => __NAMESPACE__ . '\controller\DraftController',
         'rss' => __NAMESPACE__ . '\controller\RssController'
     ],
     SiteGroupComponent::OPTION_COMPONENTS => [
         'add' => '{#lazy:~/project/module/blog/site/post/add/component.config.php}',
         'edit' => '{#lazy:~/project/module/blog/site/post/edit/component.config.php}',
-        'view' => '{#lazy:~/project/module/blog/site/post/view/component.config.php}',
+        'view' => '{#lazy:~/project/module/blog/site/post/view/component.config.php}'
     ],
     SiteGroupComponent::OPTION_WIDGET => [
         'rssLink' => __NAMESPACE__ . '\widget\RssLinkWidget',
-        'unPublished' => __NAMESPACE__ . '\widget\DraftWidget',
+        'draft' => __NAMESPACE__ . '\widget\DraftWidget'
     ],
     SiteGroupComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/post'],
+        'directories' => ['module/blog/post']
     ],
     SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -47,10 +47,10 @@ return [
                 'widget:rssLink' => []
             ],
             'author' => [
-                'widget:unPublished' => [],
-                'controller:unPublished' => [],
+                'widget:draft' => [],
+                'controller:draft' => [],
                 'model:blogPost' => [
-                    'unPublished' => ['own']
+                    'draft' => ['own']
                 ]
             ],
             'moderator' => [
@@ -66,11 +66,11 @@ return [
                 'controller' => 'rss'
             ]
         ],
-        'unPublished' => [
+        'draft' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/unPublish/{id:integer}',
+            'route' => '/draft/{id:integer}',
             'defaults' => [
-                'controller' => 'unPublished'
+                'controller' => 'draft'
             ]
         ]
     ]

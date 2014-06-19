@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\blog\site;
 
-use umi\acl\IAclFactory;
 use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [

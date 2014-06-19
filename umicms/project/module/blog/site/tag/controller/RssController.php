@@ -20,7 +20,7 @@ use umicms\project\site\config\TSiteSettingsAware;
 /**
  * Контроллер вывода общей RSS-ленты.
  */
-class BlogTagRssController extends BaseCmsController implements ISiteSettingsAware
+class RssController extends BaseCmsController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 

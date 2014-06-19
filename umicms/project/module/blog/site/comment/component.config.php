@@ -20,7 +20,7 @@ return [
     SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
     SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
         'publish' => __NAMESPACE__ . '\controller\PublishController',
-        'reject' => __NAMESPACE__ . '\controller\RejectController',
+        'reject' => __NAMESPACE__ . '\controller\RejectController'
     ],
     SiteHierarchicPageComponent::OPTION_COMPONENTS => [
         'add' => '{#lazy:~/project/module/blog/site/comment/add/component.config.php}'
@@ -32,13 +32,11 @@ return [
         'reject' => __NAMESPACE__ . '\widget\RejectWidget'
     ],
     SiteHierarchicPageComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/comment'],
+        'directories' => ['module/blog/comment']
     ],
     SiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'poster' => [],
-            'posterPremoderation' => [],
-            'moderator' => ['poster']
+            'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogComment',
@@ -48,11 +46,6 @@ return [
             'viewer' => [
                 'widget:view' => [],
                 'widget:list' => []
-            ],
-            'posterPremoderation' => [
-                'model:blogComment' => [
-                    'publish' => ['premoderation']
-                ]
             ],
             'moderator' => [
                 'widget:reject' => [],
@@ -83,6 +76,6 @@ return [
         ],
         'component' => [
             'type' => 'SiteComponentRoute'
-        ],
+        ]
     ]
 ];

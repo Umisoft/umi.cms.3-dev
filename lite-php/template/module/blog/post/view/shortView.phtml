@@ -20,6 +20,6 @@
     <a href="<?=$blogPost->getPageUrl()?>"><?=$this->translate('Read more')?></a>
 
     <div class="btn-toolbar">
-        <?=$this->widget('blog.post.unPublished', ['blogPost' => $blogPost, 'template' => 'unPublishPostForm'])?>
+        <?=$this->widget('blog.post.draft', ['blogPost' => $blogPost, 'template' => 'unPublishPostForm'])?>
     </div>
 </div>

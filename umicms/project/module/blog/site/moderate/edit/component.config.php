@@ -19,10 +19,10 @@ return [
     SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
     SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     SitePageComponent::OPTION_CONTROLLERS => [
-        'page' => __NAMESPACE__ . '\controller\EditController',
+        'page' => __NAMESPACE__ . '\controller\EditController'
     ],
     SitePageComponent::OPTION_WIDGET => [
-        'editLink' => __NAMESPACE__ . '\widget\EditLinkWidget',
+        'editLink' => __NAMESPACE__ . '\widget\EditLinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -48,6 +48,6 @@ return [
         ]
     ],
     SitePageComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/moderate/edit'],
+        'directories' => ['module/blog/moderate/edit']
     ]
 ];

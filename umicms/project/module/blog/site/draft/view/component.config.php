@@ -12,7 +12,6 @@ namespace umicms\project\module\blog\site\draft\view;
 
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
-use umi\route\IRouteFactory;
 use umicms\hmvc\component\site\SitePageComponent;
 
 return [
@@ -20,12 +19,12 @@ return [
     SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
     SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     SitePageComponent::OPTION_CONTROLLERS => [
-        'page' => __NAMESPACE__ . '\controller\PageController',
+        'page' => __NAMESPACE__ . '\controller\PageController'
     ],
     SitePageComponent::OPTION_WIDGET => [
         'draft' => __NAMESPACE__ . '\widget\DraftWidget',
         'ownList' => __NAMESPACE__ . '\widget\OwnListWidget',
-        'ownListLink' => __NAMESPACE__ . '\widget\OwnListLinkWidget',
+        'ownListLink' => __NAMESPACE__ . '\widget\OwnListLinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -47,29 +46,6 @@ return [
         ]
     ],
     SitePageComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/draft/view'],
-    ],
-    SitePageComponent::OPTION_ROUTES => [
-        'edit' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/edit/{id:integer}',
-            'defaults' => [
-                'controller' => 'edit'
-            ]
-        ],
-        'publish' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/publish/{id:integer}',
-            'defaults' => [
-                'controller' => 'publish'
-            ]
-        ],
-        'sendToModeration' => [
-            'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/sendToModeration/{id:integer}',
-            'defaults' => [
-                'controller' => 'sendToModeration'
-            ]
-        ]
+        'directories' => ['module/blog/draft/view']
     ]
 ];

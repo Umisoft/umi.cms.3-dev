@@ -24,7 +24,8 @@ return [
     ],
     SiteGroupComponent::OPTION_COMPONENTS => [
         'edit' => '{#lazy:~/project/module/blog/site/moderate/edit/component.config.php}',
-        'view' => '{#lazy:~/project/module/blog/site/moderate/view/component.config.php}'
+        'view' => '{#lazy:~/project/module/blog/site/moderate/view/component.config.php}',
+        'all' => '{#lazy:~/project/module/blog/site/moderate/all/component.config.php}'
     ],
     SiteGroupComponent::OPTION_WIDGET => [
         'publish' => __NAMESPACE__ . '\widget\PublishWidget',

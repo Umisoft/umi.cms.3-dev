@@ -20,14 +20,14 @@ return [
     SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
     SiteGroupComponent::OPTION_CONTROLLERS => [
         'publish' => __NAMESPACE__ . '\controller\PublishController',
-        'sendToModeration' => __NAMESPACE__ . '\controller\SendToModerationController',
+        'sendToModeration' => __NAMESPACE__ . '\controller\SendToModerationController'
     ],
     SiteGroupComponent::OPTION_COMPONENTS => [
         'edit' => '{#lazy:~/project/module/blog/site/draft/edit/component.config.php}',
         'view' => '{#lazy:~/project/module/blog/site/draft/view/component.config.php}'
     ],
     SiteGroupComponent::OPTION_WIDGET => [
-        'publishDraft' => __NAMESPACE__ . '\widget\PublishWidget',
+        'publish' => __NAMESPACE__ . '\widget\PublishWidget',
         'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
     ],
     SiteGroupComponent::OPTION_ACL => [
@@ -49,18 +49,18 @@ return [
             ],
             'publisher' => [
                 'controller:publish' => [],
-                'widget:publishDraft' => [],
+                'widget:publish' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
             ],
             'moderator' => [
                 'model:blogPost' => []
-            ],
+            ]
         ]
     ],
     SiteGroupComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/draft'],
+        'directories' => ['module/blog/draft']
     ],
     SiteGroupComponent::OPTION_ROUTES => [
         'publish' => [

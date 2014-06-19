@@ -23,7 +23,6 @@ return [
     ],
     SitePageComponent::OPTION_WIDGET => [
         'editLink' => __NAMESPACE__ . '\widget\EditLinkWidget'
-
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -43,6 +42,6 @@ return [
         ]
     ],
     SitePageComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/reject/edit'],
+        'directories' => ['module/blog/reject/edit']
     ]
 ];
