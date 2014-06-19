@@ -17,8 +17,6 @@ use umi\orm\metadata\field\relation\HasManyRelationField;
 use umi\orm\metadata\field\relation\ManyToManyRelationField;
 use umi\orm\objectset\IManyToManyObjectSet;
 use umi\orm\objectset\IObjectSet;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\RuntimeException;
 use umicms\exception\UnexpectedValueException;
 use umicms\orm\collection\ICmsCollection;
@@ -29,10 +27,8 @@ use umicms\hmvc\component\admin\BaseController as BaseAdminController;
 /**
  * Базовый контроллер компонента, управляющего коллекцией объектов.
  */
-abstract class BaseController extends BaseAdminController implements IObjectPersisterAware
+abstract class BaseController extends BaseAdminController
 {
-    use TObjectPersisterAware;
-
     /**
      * Возвращает компонент, у которого вызван контроллер.
      * @throws RuntimeException при неверном классе компонента
@@ -160,7 +156,7 @@ abstract class BaseController extends BaseAdminController implements IObjectPers
             }
         }
 
-        $this->getObjectPersister()->commit();
+        $this->commit();
 
         return $object;
     }

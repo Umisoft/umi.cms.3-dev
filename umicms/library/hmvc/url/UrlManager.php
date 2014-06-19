@@ -225,11 +225,17 @@ class UrlManager implements IUrlManager, ILocalizable
          * @var ICmsCollection $collection
          */
         $collection = $object->getCollection();
+        if (!$collection->hasForm(ICmsCollection::FORM_EDIT, $object->getTypeName())) {
+            throw new RuntimeException($this->translate(
+                'Collection "{collection}" does not have edit form for type "{type}".',
+                ['collection' => $collection->getName(), 'type' => $object->getTypeName()]
+            ));
+        }
 
         $editLink = $isAbsolute ? $this->schemeAndHttpHost : '';
         $editLink .= $this->getBaseAdminUrl();
         $editLink .= '/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
-        $editLink .= '/form/' . $object->getId();
+        $editLink .= '/' . $object->getId() . '/editForm';
 
         return $editLink;
     }

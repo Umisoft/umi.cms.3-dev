@@ -11,8 +11,6 @@
 namespace umicms\project\module\users\site\registration\controller;
 
 use umi\form\IForm;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\UsersModule;
 use umicms\hmvc\component\site\BaseSitePageController;
@@ -21,10 +19,9 @@ use umicms\hmvc\component\site\TFormController;
 /**
  * Контроллер регистрации пользователя
  */
-class IndexController extends BaseSitePageController implements IObjectPersisterAware
+class IndexController extends BaseSitePageController
 {
     use TFormController;
-    use TObjectPersisterAware;
 
     /**
      * @var UsersModule $module модуль "Пользователи"
@@ -69,7 +66,7 @@ class IndexController extends BaseSitePageController implements IObjectPersister
     protected function processForm(IForm $form)
     {
         $this->module->register($this->user);
-        $this->getObjectPersister()->commit();
+        $this->commit();
 
         if ($this->user->active) {
             $this->module->setCurrentUser($this->user);

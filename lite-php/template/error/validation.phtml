@@ -1,0 +1,31 @@
+<?php
+/** @var umicms\exception\InvalidObjectsException $error */
+/** @var umicms\orm\object\ICmsObject $object */
+?>
+
+<h1><?= $this->translate('Validation error') ?></h1>
+<h2><?= $error->getMessage() ?></h2>
+
+<ul>
+<?php foreach ($error->getInvalidObjects() as $object) : ?>
+
+<li>
+    <h2><?= $object->displayName ?>(<?= $object->getCollectionName() ?>)</h2>
+    <ul>
+        <?php foreach ($object->getValidationErrors() as $propertyName => $errorMessages) : ?>
+            <li>
+                <?= $propertyName ?>
+                <ul>
+                    <?php foreach ($errorMessages as $errorMessage) : ?>
+                        <li>
+                            <?= $errorMessage ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</li>
+
+<?php endforeach; ?>
+</ul>

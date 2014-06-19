@@ -10,7 +10,6 @@
 
 namespace umicms\hmvc\component\admin\layout\control;
 
-use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\ICmsCollection;
@@ -74,34 +73,12 @@ class CollectionControl extends AdminControl
     }
 
     /**
-     * Возвращает список имен типов, доступных для создания
-     * @return array
-     */
-    protected function getCreateTypeList()
-    {
-        $typeNames = array_merge(
-            [IObjectType::BASE],
-            $this->collection->getMetadata()
-                ->getDescendantTypesList()
-        );
-
-        $result = [];
-        foreach ($typeNames as $typeName) {
-            if ($this->collection->hasForm(ICmsCollection::FORM_CREATE, $typeName)) {
-                $result[] = $typeName;
-            }
-        }
-
-        return $result;
-    }
-
-    /**
      * Конфигурирует опции выбора для создания разнотипных объектов
      * @param ChoicesBehaviour $choices
      */
     protected function configureCreateChoiceList(ChoicesBehaviour $choices)
     {
-        foreach ($this->getCreateTypeList() as $typeName) {
+        foreach ($this->collection->getCreateTypeList() as $typeName) {
             $choices->addChoice($typeName, $this->createTypeChoice($typeName));
         }
     }
@@ -123,7 +100,7 @@ class CollectionControl extends AdminControl
      */
     protected function buildCreateButton()
     {
-        $typeList = $this->getCreateTypeList();
+        $typeList = $this->collection->getCreateTypeList();
         $typesCount = count($typeList);
 
         if ($typesCount == 1) {

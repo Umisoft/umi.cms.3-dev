@@ -12,8 +12,6 @@ namespace umicms\project\module\users\site\profile\password\controller;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\UsersModule;
 use umicms\project\module\users\site\profile\password\model\PasswordValidator;
@@ -23,10 +21,9 @@ use umicms\hmvc\component\site\TFormController;
 /**
  * Контроллер изменения пароля пользователя
  */
-class IndexController extends BaseSitePageController implements IObjectPersisterAware
+class IndexController extends BaseSitePageController
 {
     use TFormController;
-    use TObjectPersisterAware;
 
     /**
      * @var UsersModule $module модуль "Пользователи"
@@ -87,7 +84,7 @@ class IndexController extends BaseSitePageController implements IObjectPersister
     protected function processForm(IForm $form)
     {
         $this->success = true;
-        $this->getObjectPersister()->commit();
+        $this->commit();
 
         return $this->buildRedirectResponse();
     }

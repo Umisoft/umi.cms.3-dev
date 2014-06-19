@@ -12,8 +12,6 @@ namespace umicms\project\module\blog\site\comment\controller;
 
 use umi\form\TFormAware;
 use umi\form\IForm;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogComment;
@@ -22,10 +20,9 @@ use umicms\hmvc\component\site\TFormController;
 /**
  * Контроллер добавления комментария.
  */
-class AddController extends BaseCmsController implements IObjectPersisterAware
+class AddController extends BaseCmsController
 {
     use TFormController;
-    use TObjectPersisterAware;
 
     /**
      * @var BlogModule $module модуль "Блоги"
@@ -84,7 +81,7 @@ class AddController extends BaseCmsController implements IObjectPersisterAware
      */
     protected function processForm(IForm $form)
     {
-        $this->getObjectPersister()->commit();
+        $this->commit();
 
         return $this->buildRedirectResponse();
     }
