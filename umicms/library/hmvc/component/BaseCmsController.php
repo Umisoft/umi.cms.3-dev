@@ -26,6 +26,8 @@ use umicms\hmvc\url\TUrlManagerAware;
 use umicms\hmvc\view\CmsView;
 use umicms\module\IModuleAware;
 use umicms\module\TModuleAware;
+use umicms\orm\collection\behaviour\IRecoverableCollection;
+use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
 use umicms\project\module\users\model\UsersModule;
 
@@ -167,8 +169,14 @@ abstract class BaseCmsController extends BaseController
 
         $persister = $this->getObjectPersister();
         /**
-         * @var ICmsObject $object
+         * @var ICmsObject|IRecoverableObject $object
          */
+        foreach ($persister->getModifiedObjects() as $object) {
+            $collection = $object->getCollection();
+            if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
+                $collection->createBackup($object);
+            }
+        }
         foreach ($persister->getNewObjects() as $object) {
             $object->owner = $currentUser;
             $object->setCreatedTime();

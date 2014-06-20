@@ -27,6 +27,8 @@ use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\InvalidObjectsException;
 use umicms\exception\RuntimeException;
+use umicms\orm\collection\behaviour\IRecoverableCollection;
+use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -2228,8 +2230,14 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $persister = $this->getObjectPersister();
 
         /**
-         * @var ICmsObject $object
+         * @var ICmsObject|IRecoverableObject $object
          */
+        foreach ($persister->getModifiedObjects() as $object) {
+            $collection = $object->getCollection();
+            if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
+                $collection->createBackup($object);
+            }
+        }
         foreach ($persister->getNewObjects() as $object) {
             $object->owner = $currentUser;
             $object->setCreatedTime();

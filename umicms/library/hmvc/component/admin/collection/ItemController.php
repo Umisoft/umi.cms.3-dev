@@ -13,8 +13,6 @@ namespace umicms\hmvc\component\admin\collection;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
-use umicms\orm\collection\behaviour\IRecoverableCollection;
-use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
 
 /**
@@ -36,11 +34,6 @@ class ItemController extends BaseController
             }
             case 'PUT': {
                 $object = $this->getRequestedObject();
-
-                $collection = $object->getCollection();
-                if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
-                    $collection->createBackup($object);
-                }
 
                 return $this->createViewResponse(
                     'update',
