@@ -20,8 +20,8 @@ return [
         'index' => 'umicms\hmvc\component\site\SiteStructurePageController'
     ],
     SiteComponent::OPTION_WIDGET => [
-        'allList' => __NAMESPACE__ . '\widget\AllListWidget',
-        'allListLink' => __NAMESPACE__ . '\widget\AllListLinkWidget'
+        'list' => __NAMESPACE__ . '\widget\ListWidget',
+        'listLink' => __NAMESPACE__ . '\widget\ListLinkWidget'
     ],
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -30,8 +30,8 @@ return [
         IAclFactory::OPTION_RULES => [
             'moderator' => [
                 'controller:index' => [],
-                'widget:allList' => [],
-                'widget:allListLink' => []
+                'widget:list' => [],
+                'widget:listLink' => []
             ]
         ]
     ],

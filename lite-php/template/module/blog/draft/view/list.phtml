@@ -6,6 +6,6 @@
 ?>
 <?php if ($list->getTotal()) : ?>
     <?php foreach ($list as $blogDraft) : ?>
-        <?= $this->widget('blog.draft.view.draft', ['blogDraft' => $blogDraft, 'template' => 'shortView']); ?>
+        <?= $this->widget('blog.draft.view.toDraftForm', ['blogDraft' => $blogDraft, 'template' => 'shortView']); ?>
     <?php endforeach; ?>
 <?php endif; ?>

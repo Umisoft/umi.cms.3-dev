@@ -20,7 +20,7 @@ return [
         'add' => __NAMESPACE__ . '\controller\AddController'
     ],
     SiteComponent::OPTION_WIDGET => [
-        'addForm' => __NAMESPACE__ . '\widget\AddWidget'
+        'addForm' => __NAMESPACE__ . '\widget\AddFormWidget'
     ],
     SiteComponent::OPTION_VIEW => [
         'directories' => ['module/blog/comment/add']

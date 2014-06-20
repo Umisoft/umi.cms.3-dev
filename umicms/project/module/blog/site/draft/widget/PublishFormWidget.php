@@ -8,30 +8,31 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\comment\widget;
+namespace umicms\project\module\blog\site\draft\widget;
 
+use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\model\BlogModule;
-use umicms\project\module\blog\model\object\BlogComment;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет отклонения комментария.
+ * Виджет публикации черновика.
  */
-class RejectWidget extends BaseFormWidget
+class PublishFormWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'rejectForm';
+    public $template = 'publishDraftForm';
     /**
      * {@inheritdoc}
      */
     public $redirectUrl = self::REFERER_REDIRECT;
     /**
-     * @var string|BlogComment $blogComment комментарий или GUID комментария
+     * @var string|BlogPost $blogDraft черновик или GUID черновика
      */
-    public $blogComment;
+    public $blogDraft;
     /**
      * @var BlogModule $module модуль "Блоги"
      */
@@ -51,31 +52,28 @@ class RejectWidget extends BaseFormWidget
      */
     protected function getForm()
     {
-        if (is_string($this->blogComment)) {
-            $this->blogComment = $this->module->comment()->get($this->blogComment);
+        if (is_string($this->blogDraft)) {
+            $this->blogDraft = $this->module->post()->getDraft($this->blogDraft);
         }
 
-        if (!$this->blogComment instanceof BlogComment) {
+        if (!$this->blogDraft instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogComment',
-                        'class' => BlogComment::className()
+                        'param' => 'blogDraft',
+                        'class' => BlogPost::className()
                     ]
                 )
             );
         }
 
-        $form = $this->module->comment()->getForm(
-            BlogComment::FORM_REJECT_COMMENT,
-            BlogComment::TYPE,
-            $this->blogComment
-        );
+        $form = $this->module->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE, $this->blogDraft);
 
-        $form->setAction($this->getUrl('reject', ['id' => $this->blogComment->getId()]));
+        $form->setAction($this->getUrl('publish', ['id' => $this->blogDraft->getId()]));
 
         return $form;
+
     }
 }
  

@@ -17,14 +17,14 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет публикации поста, требующего модерации.
+ * Виджет отклонения поста, требующего модерации.
  */
-class PublishWidget extends BaseFormWidget
+class RejectFormWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'publishForm';
+    public $template = 'rejectForm';
     /**
      * {@inheritdoc}
      */
@@ -69,14 +69,15 @@ class PublishWidget extends BaseFormWidget
         }
 
         $form = $this->module->post()->getForm(
-            BlogPost::FORM_PUBLISH_POST,
+            BlogPost::FORM_REJECT_POST,
             IObjectType::BASE,
             $this->blogPost
         );
 
-        $form->setAction($this->getUrl('publish', ['id' => $this->blogPost->getId()]));
+        $form->setAction($this->getUrl('reject', ['id' => $this->blogPost->getId()]));
 
         return $form;
+
     }
 }
  

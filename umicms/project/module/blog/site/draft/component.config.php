@@ -27,8 +27,8 @@ return [
         'view' => '{#lazy:~/project/module/blog/site/draft/view/component.config.php}'
     ],
     SiteGroupComponent::OPTION_WIDGET => [
-        'publish' => __NAMESPACE__ . '\widget\PublishWidget',
-        'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
+        'publishForm' => __NAMESPACE__ . '\widget\PublishFormWidget',
+        'sendToModerationForm' => __NAMESPACE__ . '\widget\SendToModerationFormWidget'
     ],
     SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -42,21 +42,21 @@ return [
         IAclFactory::OPTION_RULES => [
             'author' => [
                 'controller:sendToModeration' => [],
-                'widget:sendToModeration' => [],
+                'widget:sendToModerationForm' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
             ],
             'publisher' => [
                 'controller:publish' => [],
-                'widget:publish' => [],
+                'widget:publishForm' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
             ],
             'moderator' => [
                 'controller:publish' => [],
-                'widget:publish' => [],
+                'widget:publishForm' => [],
                 'model:blogPost' => []
             ]
         ]

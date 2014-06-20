@@ -13,7 +13,7 @@ namespace umicms\project\module\blog\site\moderate\all\widget;
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\model\BlogModule;
 
-class AllListWidget extends BaseListWidget
+class ListWidget extends BaseListWidget
 {
     /**
      * @var BlogModule $module модуль "Блоги"

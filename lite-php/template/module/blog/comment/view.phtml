@@ -15,8 +15,8 @@
 
     <?php if ($blogComment->publishStatus == $blogComment::COMMENT_STATUS_NEED_MODERATE) : ?>
     <div class="btn-toolbar">
-        <?= $this->widget('blog.comment.publish', ['blogComment' => $blogComment, 'template' => 'publishForm']); ?>
-        <?= $this->widget('blog.comment.reject', ['blogComment' => $blogComment, 'template' => 'rejectForm']); ?>
+        <?= $this->widget('blog.comment.publishForm', ['blogComment' => $blogComment, 'template' => 'publishForm']); ?>
+        <?= $this->widget('blog.comment.rejectForm', ['blogComment' => $blogComment, 'template' => 'rejectForm']); ?>
     </div>
     <?php endif; ?>
 </div>

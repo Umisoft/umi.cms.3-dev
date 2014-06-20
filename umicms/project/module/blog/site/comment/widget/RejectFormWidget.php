@@ -8,31 +8,30 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\draft\widget;
+namespace umicms\project\module\blog\site\comment\widget;
 
-use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\model\BlogModule;
-use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\BlogComment;
 
 /**
- * Виджет отправки поста на модерацию.
+ * Виджет отклонения комментария.
  */
-class SendToModerationWidget extends BaseFormWidget
+class RejectFormWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'sendToModerationForm';
+    public $template = 'rejectForm';
     /**
      * {@inheritdoc}
      */
     public $redirectUrl = self::REFERER_REDIRECT;
     /**
-     * @var string|BlogPost $blogDraft черновик или GUID черновика отправляемого на модерацию
+     * @var string|BlogComment $blogComment комментарий или GUID комментария
      */
-    public $blogDraft;
+    public $blogComment;
     /**
      * @var BlogModule $module модуль "Блоги"
      */
@@ -52,29 +51,29 @@ class SendToModerationWidget extends BaseFormWidget
      */
     protected function getForm()
     {
-        if (is_string($this->blogDraft)) {
-            $this->blogDraft = $this->module->post()->getDraft($this->blogDraft);
+        if (is_string($this->blogComment)) {
+            $this->blogComment = $this->module->comment()->get($this->blogComment);
         }
 
-        if (!$this->blogDraft instanceof BlogPost) {
+        if (!$this->blogComment instanceof BlogComment) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogDraft',
-                        'class' => BlogPost::className()
+                        'param' => 'blogComment',
+                        'class' => BlogComment::className()
                     ]
                 )
             );
         }
 
-        $form = $this->module->post()->getForm(
-            BlogPost::FORM_MODERATE_POST,
-            IObjectType::BASE,
-            $this->blogDraft
+        $form = $this->module->comment()->getForm(
+            BlogComment::FORM_REJECT_COMMENT,
+            BlogComment::TYPE,
+            $this->blogComment
         );
 
-        $form->setAction($this->getUrl('sendToModeration', ['id' => $this->blogDraft->getId()]));
+        $form->setAction($this->getUrl('reject', ['id' => $this->blogComment->getId()]));
 
         return $form;
     }

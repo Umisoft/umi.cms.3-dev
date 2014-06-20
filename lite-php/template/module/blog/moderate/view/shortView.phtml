@@ -20,8 +20,8 @@
     <a href="<?= $blogPost->getPageUrl() ?>"><?=$this->translate('Read more')?></a>
 
     <div class="btn-toolbar">
-        <?=$this->widget('blog.moderate.publish', ['blogPost' => $blogPost, 'template' => 'publishForm'])?>
-        <?=$this->widget('blog.moderate.reject', ['blogPost' => $blogPost, 'template' => 'rejectForm'])?>
-        <?=$this->widget('blog.moderate.draft', ['blogPost' => $blogPost, 'template' => 'draftForm'])?>
+        <?=$this->widget('blog.moderate.publishForm', ['blogPost' => $blogPost, 'template' => 'publishForm'])?>
+        <?=$this->widget('blog.moderate.rejectForm', ['blogPost' => $blogPost, 'template' => 'rejectForm'])?>
+        <?=$this->widget('blog.moderate.toDraftForm', ['blogPost' => $blogPost, 'template' => 'draftForm'])?>
     </div>
 </div>

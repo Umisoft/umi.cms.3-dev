@@ -42,12 +42,12 @@
     </div>
 <?php endif; ?>
 
-<?php if ($this->isAllowedResource('blog.moderate.all', 'widget:allListLink')) : ?>
+<?php if ($this->isAllowedResource('blog.moderate.all', 'widget:listLink')) : ?>
     <div class="sidebar-module">
         <h4><?= $this->translate('Moderate') ?></h4>
         <ol class="list-unstyled">
             <li><?= $this->translate('Post on moderation') ?>: <?= $this->widget(
-                    'blog.moderate.all.allListLink',
+                    'blog.moderate.all.listLink',
                     ['template' => 'moderateLink']
                 ) ?></li>
         </ol>

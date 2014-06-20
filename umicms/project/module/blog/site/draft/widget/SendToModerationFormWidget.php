@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\widget;
+namespace umicms\project\module\blog\site\draft\widget;
 
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
@@ -17,22 +17,22 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет переноса поста с модерации в черновики.
+ * Виджет отправки поста на модерацию.
  */
-class DraftWidget extends BaseFormWidget
+class SendToModerationFormWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'draftForm';
+    public $template = 'sendToModerationForm';
     /**
      * {@inheritdoc}
      */
     public $redirectUrl = self::REFERER_REDIRECT;
     /**
-     * @var string|BlogPost $blogPost пост или GUID поста на модерации, необходимого перенесте в черновики
+     * @var string|BlogPost $blogDraft черновик или GUID черновика отправляемого на модерацию
      */
-    public $blogPost;
+    public $blogDraft;
     /**
      * @var BlogModule $module модуль "Блоги"
      */
@@ -52,16 +52,16 @@ class DraftWidget extends BaseFormWidget
      */
     protected function getForm()
     {
-        if (is_string($this->blogPost)) {
-            $this->blogPost = $this->module->post()->getNeedModeratePost($this->blogPost);
+        if (is_string($this->blogDraft)) {
+            $this->blogDraft = $this->module->post()->getDraft($this->blogDraft);
         }
 
-        if (!$this->blogPost instanceof BlogPost) {
+        if (!$this->blogDraft instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogPost',
+                        'param' => 'blogDraft',
                         'class' => BlogPost::className()
                     ]
                 )
@@ -69,12 +69,12 @@ class DraftWidget extends BaseFormWidget
         }
 
         $form = $this->module->post()->getForm(
-            BlogPost::FORM_DRAFT_POST,
+            BlogPost::FORM_MODERATE_POST,
             IObjectType::BASE,
-            $this->blogPost
+            $this->blogDraft
         );
 
-        $form->setAction($this->getUrl('draft', ['id' => $this->blogPost->getId()]));
+        $form->setAction($this->getUrl('sendToModeration', ['id' => $this->blogDraft->getId()]));
 
         return $form;
     }

@@ -22,7 +22,7 @@ return [
         'page' => __NAMESPACE__ . '\controller\PageController'
     ],
     SitePageComponent::OPTION_WIDGET => [
-        'draft' => __NAMESPACE__ . '\widget\DraftWidget',
+        'toDraftForm' => __NAMESPACE__ . '\widget\DraftWidget',
         'ownList' => __NAMESPACE__ . '\widget\OwnListWidget',
         'ownListLink' => __NAMESPACE__ . '\widget\OwnListLinkWidget'
     ],
@@ -35,7 +35,7 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
-                'widget:draft' => [],
+                'widget:toDraftForm' => [],
                 'widget:ownList' => [],
                 'widget:ownListLink' => [],
                 'model:blogPost' => [

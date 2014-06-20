@@ -18,7 +18,7 @@ use umicms\project\module\blog\model\object\BlogComment;
 /**
  * Виджет публикации комментария.
  */
-class PublishWidget extends BaseFormWidget
+class PublishFormWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\reject\widget;
+namespace umicms\project\module\blog\site\moderate\widget;
 
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
@@ -17,20 +17,20 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет отправки поста на модерацию.
+ * Виджет публикации поста, требующего модерации.
  */
-class SendToModerationWidget extends BaseFormWidget
+class PublishFormWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'sendToModerationForm';
+    public $template = 'publishForm';
     /**
      * {@inheritdoc}
      */
     public $redirectUrl = self::REFERER_REDIRECT;
     /**
-     * @var string|BlogPost $blogPost пост или GUID поста отправляемого на модерацию
+     * @var string|BlogPost $blogPost пост или GUID поста, тербующего модерации
      */
     public $blogPost;
     /**
@@ -53,7 +53,7 @@ class SendToModerationWidget extends BaseFormWidget
     protected function getForm()
     {
         if (is_string($this->blogPost)) {
-            $this->blogPost = $this->module->post()->getRejectedPost($this->blogPost);
+            $this->blogPost = $this->module->post()->getNeedModeratePost($this->blogPost);
         }
 
         if (!$this->blogPost instanceof BlogPost) {
@@ -69,12 +69,12 @@ class SendToModerationWidget extends BaseFormWidget
         }
 
         $form = $this->module->post()->getForm(
-            BlogPost::FORM_MODERATE_POST,
+            BlogPost::FORM_PUBLISH_POST,
             IObjectType::BASE,
             $this->blogPost
         );
 
-        $form->setAction($this->getUrl('sendToModeration', ['id' => $this->blogPost->getId()]));
+        $form->setAction($this->getUrl('publish', ['id' => $this->blogPost->getId()]));
 
         return $form;
     }

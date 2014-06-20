@@ -28,9 +28,9 @@ return [
         'all' => '{#lazy:~/project/module/blog/site/moderate/all/component.config.php}'
     ],
     SiteGroupComponent::OPTION_WIDGET => [
-        'publish' => __NAMESPACE__ . '\widget\PublishWidget',
-        'reject' => __NAMESPACE__ . '\widget\RejectWidget',
-        'draft' => __NAMESPACE__ . '\widget\DraftWidget'
+        'publishForm' => __NAMESPACE__ . '\widget\PublishFormWidget',
+        'rejectForm' => __NAMESPACE__ . '\widget\RejectFormWidget',
+        'toDraftForm' => __NAMESPACE__ . '\widget\ToDraftFormWidget'
     ],
     SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -43,7 +43,7 @@ return [
         IAclFactory::OPTION_RULES => [
             'author' => [
                 'controller:draft' => [],
-                'widget:draft' => [],
+                'widget:toDraftForm' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
@@ -52,9 +52,9 @@ return [
                 'controller:publish' => [],
                 'controller:reject' => [],
                 'controller:draft' => [],
-                'widget:publish' => [],
-                'widget:reject' => [],
-                'widget:draft' => [],
+                'widget:publishForm' => [],
+                'widget:rejectForm' => [],
+                'widget:toDraftForm' => [],
                 'model:blogPost' => []
             ]
         ]

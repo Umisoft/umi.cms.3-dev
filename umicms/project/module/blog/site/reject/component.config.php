@@ -26,7 +26,7 @@ return [
         'view' => '{#lazy:~/project/module/blog/site/reject/view/component.config.php}'
     ],
     SiteGroupComponent::OPTION_WIDGET => [
-        'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
+        'sendToModerationForm' => __NAMESPACE__ . '\widget\SendToModerationFormWidget'
     ],
     SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -38,7 +38,7 @@ return [
         IAclFactory::OPTION_RULES => [
             'author' => [
                 'controller:sendToModeration' => [],
-                'widget:sendToModeration' => [],
+                'widget:sendToModerationForm' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]

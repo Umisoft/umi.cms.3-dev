@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\widget;
+namespace umicms\project\module\blog\site\post\widget;
 
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
@@ -17,20 +17,20 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет отклонения поста, требующего модерации.
+ * Виджет перемещения поста в черновики.
  */
-class RejectWidget extends BaseFormWidget
+class ToDraftFormWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'rejectForm';
+    public $template = 'unPublishPostForm';
     /**
      * {@inheritdoc}
      */
     public $redirectUrl = self::REFERER_REDIRECT;
     /**
-     * @var string|BlogPost $blogPost пост или GUID поста, тербующего модерации
+     * @var string|BlogPost $blogPost пост или GUID поста
      */
     public $blogPost;
     /**
@@ -53,7 +53,7 @@ class RejectWidget extends BaseFormWidget
     protected function getForm()
     {
         if (is_string($this->blogPost)) {
-            $this->blogPost = $this->module->post()->getNeedModeratePost($this->blogPost);
+            $this->blogPost = $this->module->post()->get($this->blogPost);
         }
 
         if (!$this->blogPost instanceof BlogPost) {
@@ -68,16 +68,11 @@ class RejectWidget extends BaseFormWidget
             );
         }
 
-        $form = $this->module->post()->getForm(
-            BlogPost::FORM_REJECT_POST,
-            IObjectType::BASE,
-            $this->blogPost
-        );
+        $form = $this->module->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE, $this->blogPost);
 
-        $form->setAction($this->getUrl('reject', ['id' => $this->blogPost->getId()]));
+        $form->setAction($this->getUrl('draft', ['id' => $this->blogPost->getId()]));
 
         return $form;
-
     }
 }
  

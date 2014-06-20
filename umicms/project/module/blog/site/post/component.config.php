@@ -27,7 +27,7 @@ return [
     ],
     SiteGroupComponent::OPTION_WIDGET => [
         'rssLink' => __NAMESPACE__ . '\widget\RssLinkWidget',
-        'draft' => __NAMESPACE__ . '\widget\DraftWidget'
+        'toDraftForm' => __NAMESPACE__ . '\widget\ToDraftFormWidget'
     ],
     SiteGroupComponent::OPTION_VIEW => [
         'directories' => ['module/blog/post']
@@ -47,14 +47,14 @@ return [
                 'widget:rssLink' => []
             ],
             'author' => [
-                'widget:draft' => [],
+                'widget:toDraftForm' => [],
                 'controller:draft' => [],
                 'model:blogPost' => [
                     'draft' => ['own']
                 ]
             ],
             'moderator' => [
-                'widget:draft' => [],
+                'widget:toDraftForm' => [],
                 'controller:draft' => [],
                 'model:blogPost' => []
             ]

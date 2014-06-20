@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\draft\widget;
+namespace umicms\project\module\blog\site\reject\widget;
 
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
@@ -17,22 +17,22 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
- * Виджет публикации черновика.
+ * Виджет отправки поста на модерацию.
  */
-class PublishWidget extends BaseFormWidget
+class SendToModerationFormWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'publishDraftForm';
+    public $template = 'sendToModerationForm';
     /**
      * {@inheritdoc}
      */
     public $redirectUrl = self::REFERER_REDIRECT;
     /**
-     * @var string|BlogPost $blogDraft черновик или GUID черновика
+     * @var string|BlogPost $blogPost пост или GUID поста отправляемого на модерацию
      */
-    public $blogDraft;
+    public $blogPost;
     /**
      * @var BlogModule $module модуль "Блоги"
      */
@@ -52,28 +52,31 @@ class PublishWidget extends BaseFormWidget
      */
     protected function getForm()
     {
-        if (is_string($this->blogDraft)) {
-            $this->blogDraft = $this->module->post()->getDraft($this->blogDraft);
+        if (is_string($this->blogPost)) {
+            $this->blogPost = $this->module->post()->getRejectedPost($this->blogPost);
         }
 
-        if (!$this->blogDraft instanceof BlogPost) {
+        if (!$this->blogPost instanceof BlogPost) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',
                     [
-                        'param' => 'blogDraft',
+                        'param' => 'blogPost',
                         'class' => BlogPost::className()
                     ]
                 )
             );
         }
 
-        $form = $this->module->post()->getForm(BlogPost::FORM_PUBLISH_POST, IObjectType::BASE, $this->blogDraft);
+        $form = $this->module->post()->getForm(
+            BlogPost::FORM_MODERATE_POST,
+            IObjectType::BASE,
+            $this->blogPost
+        );
 
-        $form->setAction($this->getUrl('publish', ['id' => $this->blogDraft->getId()]));
+        $form->setAction($this->getUrl('sendToModeration', ['id' => $this->blogPost->getId()]));
 
         return $form;
-
     }
 }
  

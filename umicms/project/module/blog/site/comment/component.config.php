@@ -27,8 +27,8 @@ return [
     SiteGroupComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\CommentWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
-        'publish' => __NAMESPACE__ . '\widget\PublishWidget',
-        'reject' => __NAMESPACE__ . '\widget\RejectWidget'
+        'publishForm' => __NAMESPACE__ . '\widget\PublishFormWidget',
+        'rejectForm' => __NAMESPACE__ . '\widget\RejectFormWidget'
     ],
     SiteGroupComponent::OPTION_VIEW => [
         'directories' => ['module/blog/comment']
@@ -47,8 +47,8 @@ return [
                 'widget:list' => []
             ],
             'moderator' => [
-                'widget:reject' => [],
-                'widget:publish' => [],
+                'widget:rejectForm' => [],
+                'widget:publishForm' => [],
                 'controller:reject' => [],
                 'controller:publish' => [],
                 'collection:blogComment' => [

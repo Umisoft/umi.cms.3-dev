@@ -15,7 +15,7 @@ use umicms\hmvc\widget\BaseLinkWidget;
 /**
  * Виджет для вывода ссылки на спискок всех черновиков.
  */
-class AllListLinkWidget extends BaseLinkWidget
+class ListLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}

@@ -20,7 +20,7 @@
     <a href="<?= $blogDraft->getPageUrl() ?>"><?=$this->translate('Read more')?></a>
 
     <div class="btn-toolbar">
-        <?=$this->widget('blog.draft.publish', ['blogDraft' => $blogDraft, 'template' => 'publishDraftForm'])?>
-        <?=$this->widget('blog.draft.sendToModeration', ['blogDraft' => $blogDraft, 'template' => 'sendToModerationForm'])?>
+        <?=$this->widget('blog.draft.publishForm', ['blogDraft' => $blogDraft, 'template' => 'publishDraftForm'])?>
+        <?=$this->widget('blog.draft.sendToModerationForm', ['blogDraft' => $blogDraft, 'template' => 'sendToModerationForm'])?>
     </div>
 </div>

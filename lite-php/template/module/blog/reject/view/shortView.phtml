@@ -19,6 +19,6 @@
 
     <a href="<?= $blogPost->getPageUrl() ?>"><?=$this->translate('Read more')?></a>
     <div class="btn-toolbar">
-        <?=$this->widget('blog.reject.sendToModeration', ['blogPost' => $blogPost, 'template' => 'sendToModerationForm'])?>
+        <?=$this->widget('blog.reject.sendToModerationForm', ['blogPost' => $blogPost, 'template' => 'sendToModerationForm'])?>
     </div>
 </div>
