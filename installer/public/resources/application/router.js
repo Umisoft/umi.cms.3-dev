@@ -53,8 +53,8 @@ define([], function(){
                         if(result.modules){
                             self.controllerFor('dock').set('modules', result.modules);
                         }
-                        if(result.I18n){
-                            UMI.I18n.setDictionary(result.I18n);
+                        if(result.i18n){
+                            UMI.I18n.setDictionary(result.i18n);
                         }
                     } else{
                         try{

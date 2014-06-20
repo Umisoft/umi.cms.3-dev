@@ -21,14 +21,9 @@ define([], function(){
                 }
             },
             dictionary: {},
-            locale: function(){
-                return window.UmiSettings.locale;
-            }.property(),
             getTranslate: function(label, componentPath){
-                var locale = this.get('locale');
-                componentPath = componentPath || 'layout';
-
-                var translate = this.get('dictionary.' + componentPath + '.' + locale + '.' + label);
+                var path = 'dictionary.' + (componentPath ? componentPath + '.' : '') + label ;
+                var translate = this.get(path);
                 return translate ? translate : label;
             }
         }).create({});
