@@ -10,6 +10,7 @@
 
 namespace tests\context\admin\page;
 
+use Behat\Mink\Exception\ElementNotFoundException;
 use tests\context\BaseCmsPageObject;
 
 /**
@@ -22,41 +23,69 @@ abstract class AdminComponentPage extends BaseCmsPageObject
      */
     protected $elements = [
         'topBar' => ['css' => '.top-bar'],
-        'dock' => ['css' => '.umi-dock'],
+        'dock' => ['css' => 'div.umi-dock'],
         'tree' => ['css' => '.umi-tree'],
         'tableControl' => ['css' => '.umi-table-control'],
         'formControl' => ['css' => '.umi-form-control']
     ];
 
+    /**
+     * @var string $moduleName имя модуля
+     */
+    protected $moduleName;
+    /**
+     * @var string $componentName имя компонента
+     */
+    protected $componentName;
 
+
+    /**
+     * Открывает страницу компонента
+     * @param array $urlParameters
+     * @throws \RuntimeException если не задан модуль и компонент
+     * @return $this
+     *
+     */
     public function open(array $urlParameters = array())
     {
-        if (!$urlParameters['module']){
-            throw new \InvalidArgumentException();
+        if (!$this->moduleName || !$this->componentName) {
+            throw new \RuntimeException(
+                'Cannot open component page. Define protected properties moduleName and componentName.'
+            );
         }
-    }
 
+        $this->waitForElements('dock');
 
-    /**
-     * Выбирает указанный административный компонент.
-     * @param string $modulePath путь модуля
-     * @param string $componentPath путь компонента
-     */
-    public function chooseModuleComponent($modulePath, $componentPath)
-    {
+        $this->selectDockModule($this->moduleName);
 
-    }
-
-    /**
-     * Выбирает указанный модуль.
-     * @param string $modulePath
-     */
-    public function chooseModule($modulePath)
-    {
-        if (!$module = $this->getElement('dock')->find('css', '.dock-module')) {
-            $this->elementNotFound(sprintf('Dock module %s', $modulePath));
-        }
-        $module->mouseOver();
         sleep(10);
+
+        return $this;
     }
+
+    /**
+     * Выбирает модуль в доке
+     * @param string $moduleName string имя модуля
+     * @throws ElementNotFoundException
+     * @return $this
+     */
+    public function selectDockModule($moduleName)
+    {
+        $module = $this->getElement('dock')->find('css', 'span.' . $moduleName);
+
+        if (!$module) {
+            throw $this->elementNotFound(sprintf('Module "%s"', $moduleName));
+        }
+
+        $module->mouseOver();
+
+        return $this;
+    }
+
+    public function selectDockComponent($componentName)
+    {
+        
+    }
+
+
 }

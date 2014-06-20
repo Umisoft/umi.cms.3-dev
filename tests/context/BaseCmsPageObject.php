@@ -37,7 +37,7 @@ abstract class BaseCmsPageObject extends Page
 
     /**
      * Ожидает загрузки элемента(ов) пока не истечет $timeout
-     * @param string $elementNames имя элемента или массив имен элементов
+     * @param string|array $elementNames имя элемента или массив имен элементов
      * @param int|null $timeout таймаут в миллисекундах, если не задан, будет взят $this->defaultWaitTimeout
      * @throws ElementNotFoundException если элементы не найдены за указанный таймаут
      * @return Element последний найденный элемент

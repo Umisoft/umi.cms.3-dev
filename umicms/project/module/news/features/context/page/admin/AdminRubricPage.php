@@ -17,6 +17,13 @@ use tests\context\admin\page\AdminComponentPage;
  */
 class AdminRubricPage extends AdminComponentPage
 {
-
+    /**
+     * {@inheritdoc}
+     */
+    protected $moduleName = 'news';
+    /**
+     * {@inheritdoc}
+     */
+    protected $componentName = 'rubric';
 }
  
