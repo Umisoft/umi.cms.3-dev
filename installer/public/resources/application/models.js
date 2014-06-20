@@ -239,7 +239,6 @@ define([], function(){
                             break;
                         case 'manyToManyRelation':
                             params.async = true;
-                            params.inverse = collection.fields[i].mirrorField;
                             fieldValue = DS.hasMany(collection.fields[i].targetCollection, params);
                             break;
                         default:

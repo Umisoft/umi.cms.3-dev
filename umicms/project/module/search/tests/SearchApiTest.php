@@ -27,7 +27,6 @@ class SearchApiTest extends SearchTestCase
         parent::setUp();
         $api = new SearchApi();
         $api->setCollectionManager($this->mockColectionManager());
-        $api->setDbCluster($this->toolkit->getService('umi\dbal\cluster\IDbCluster'));
         $api->setStemming($this->toolkit->getService('umi\stemming\IStemming'));
         $this->searchApi = $api;
     }
