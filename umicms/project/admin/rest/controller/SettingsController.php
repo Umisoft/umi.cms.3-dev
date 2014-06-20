@@ -32,7 +32,8 @@ class SettingsController extends BaseCmsController implements ICollectionManager
             'settings',
             [
                 'modules'     => $this->getModulesInfo(),
-                'collections' => $this->getCollectionsInfo()
+                'collections' => $this->getCollectionsInfo(),
+                'i18n'        => $this->getLabels()
             ]
         );
     }
@@ -101,6 +102,20 @@ class SettingsController extends BaseCmsController implements ICollectionManager
         }
 
         return $collections;
+    }
+
+    /**
+     * Возвращает лейблы для интерфейса в текущей локали
+     * @return array
+     */
+    protected function getLabels()
+    {
+        return [
+            'Open site in new tab' => $this->translate('Open site in new tab'),
+            'Logout' => $this->translate('Logout'),
+            'Remember my choice' => $this->translate('Remember my choice'),
+            'Nothing found' => $this->translate('Nothing found')
+        ];
     }
 
 }

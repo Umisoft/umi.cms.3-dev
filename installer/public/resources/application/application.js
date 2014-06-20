@@ -11,13 +11,14 @@ define(
         'moment',
         'application/config',
         'application/utils',
+        'application/i18n',
         'application/templates',
         'application/models',
         'application/router',
         'application/controllers',
         'application/views'
     ],
-    function(DS, Modernizr, iscroll, ckEditor, jQueryUI, elFinder, timepicker, /* datepicker,*/ moment, config, utils, templates, models, router, controller, views){
+    function(DS, Modernizr, iscroll, ckEditor, jQueryUI, elFinder, timepicker, /* datepicker,*/ moment, config, utils, i18n, templates, models, router, controller, views){
         'use strict';
 
         var UMI = window.UMI = window.UMI || {};
@@ -48,6 +49,7 @@ define(
 
         utils(UMI);
         config(UMI);
+        i18n(UMI);
 
         /**
          * @class UmiRESTAdapter
@@ -153,7 +155,7 @@ define(
              Удаление объекта-обёртки result из всех приходящих объектов
              Удаление объекта-обёртки collection из всех объектов его содержащих
              */
-            normalizePayload: function(type, payload){
+            normalizePayload: function(payload){
                 payload = payload.result;
                 if(payload.hasOwnProperty('collection')){
                     payload = payload.collection;
@@ -206,7 +208,7 @@ define(
             }
         });
 
-        UMI.Store = DS.Store.extend({
+        UMI.ApplicationStore = DS.Store.extend({
             /**
              * Обновление объектов коллекции без очищения загруженных полей
              * @method updateCollection
@@ -304,15 +306,21 @@ define(
                     promise = self.findById(type, coerceId(id));
                 }
 
-                return promiseArray(promise.then(function(result){
+                var deffered = Ember.RSVP.defer();
+                promise.then(function(result){
                     var i;
                     var objects = [];
-                    for(i = 0; i < result.length; i++){
-                        objects.push(self.update(type, result[i]));
-                    }
-
-                    return objects;
-                }));
+                    Ember.run.later(function(){//TODO: Очередь запросов
+                        var updateMany = function(self, objects, type, params){
+                            objects.push(self.update(type, params));
+                        };
+                        for(i = 0; i < result.length; i++){
+                            updateMany(self, objects, type, result[i]);
+                        }
+                        deffered.resolve(objects);
+                    }, 700);
+                });
+                return promiseArray(deffered.promise);
             }
         });
 
@@ -323,18 +331,6 @@ define(
          * @type {*|void|Object}
          */
         DS.StringTransform.reopen({
-            deserialize: function(serialized) {
-                return Ember.isNone(serialized) ? "" : String(serialized);
-            }
-        });
-
-        /**
-         * Для числовых полей меняет null на ''
-         * http://youtrack.umicloud.ru/issue/cms-414
-         * DS.NumberTransform
-         * @type {*|void|Object}
-         */
-        DS.NumberTransform.reopen({
             deserialize: function(serialized) {
                 return Ember.isNone(serialized) ? "" : String(serialized);
             }

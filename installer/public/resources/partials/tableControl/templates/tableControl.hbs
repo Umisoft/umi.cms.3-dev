@@ -13,7 +13,7 @@
         </div>
 
         <div class="right pagination-limit">
-            <span class="pagination-label">Строк на странице:</span>
+            <span class="pagination-label">{{i18n "Rows on page" "tableControl"}}:</span>
             {{view view.limitView}}
         </div>
     {{/view}}
@@ -92,7 +92,7 @@
                 </tr>
             {{#if objects.content.isFulfilled}}
                 {{#each object in objects}}
-                    <tr {{bind-attr class=":umi-table-control-content-row object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
+                    <tr {{bind-attr class=":umi-table-control-content-row object.type object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
                         {{#each column in content.viewSettings.columns}}
                             <td class="umi-table-control-content-cell">
                                 {{view "tableCellContent" objectBinding="object" column=column}}
@@ -104,7 +104,7 @@
                         <tr>
                             <td>
                                 <div class="umi-table-control-content-div-empty">
-                                    <span>Нет данных</span>
+                                    <span>{{i18n "No data" "tableControl"}}</span>
                                 </div>
                             </td>
                         </tr>

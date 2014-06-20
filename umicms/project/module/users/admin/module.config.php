@@ -22,6 +22,7 @@ return [
     AdminComponent::OPTION_COMPONENTS => [
         'user' => '{#lazy:~/project/module/users/admin/user/component.config.php}',
         'group' => '{#lazy:~/project/module/users/admin/group/component.config.php}',
+        'usergroup' => '{#lazy:~/project/module/users/admin/usergroup/component.config.php}',
     ],
 
     AdminComponent::OPTION_ROUTES      => [
