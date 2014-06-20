@@ -11,7 +11,6 @@
 namespace umicms\project\module\seo\admin\yandex\controller;
 
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\component\admin\AdminComponent;
 use umicms\hmvc\component\admin\BaseController;
 use umicms\hmvc\component\admin\TActionController;
 use umicms\project\module\seo\model\YandexModel;
@@ -89,7 +88,6 @@ class ActionController extends BaseController
      */
     protected function getModel()
     {
-        /** @var $component AdminComponent */
         $component = $this->getComponent();
         $oauthToken = $component->getSetting(YandexModel::YANDEX_OAUTH_TOKEN);
         if (is_null($oauthToken)) {
@@ -110,7 +108,6 @@ class ActionController extends BaseController
     protected function getHostId()
     {
         if (is_null($this->hostId)) {
-            /** @var $component AdminComponent */
             $component = $this->getComponent();
             $hostId = $component->getSetting(YandexModel::YANDEX_HOST_ID);
             if (is_null($hostId)) {

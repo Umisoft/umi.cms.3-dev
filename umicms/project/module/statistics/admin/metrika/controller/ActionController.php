@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\statistics\admin\metrika\controller;
 
-use umi\orm\persister\TObjectPersisterAware;
 use umi\spl\config\TConfigSupport;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\component\admin\BaseController;

@@ -10,8 +10,6 @@
 namespace umicms\project\module\blog\site\comment\controller;
 
 use umi\form\IForm;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogComment;
@@ -20,10 +18,9 @@ use umicms\hmvc\component\site\TFormSimpleController;
 /**
  * Контроллер публикации комментария.
  */
-class PublishController extends BaseCmsController implements IObjectPersisterAware
+class PublishController extends BaseCmsController
 {
     use TFormSimpleController;
-    use TObjectPersisterAware;
 
     /**
      * @var BlogModule $module модуль "Блоги"
@@ -55,7 +52,7 @@ class PublishController extends BaseCmsController implements IObjectPersisterAwa
         $blogComment = $this->module->comment()->getById($this->getRouteVar('id'));
         $blogComment->published();
 
-        $this->getObjectPersister()->commit();
+        $this->commit();
     }
 }
  

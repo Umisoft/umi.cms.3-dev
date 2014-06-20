@@ -57,7 +57,7 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => ['columnName' => 'display_name'],
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
                 'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
@@ -131,13 +131,6 @@ return [
         BlogTag::FIELD_POSTS_COUNT => [
             'type' => IField::TYPE_COUNTER,
             'columnName' => 'posts_count'
-        ],
-        BlogTag::FIELD_RSS => [
-            'type' => IField::TYPE_MANY_TO_MANY,
-            'target' => 'blogRssImportScenario',
-            'bridge' => 'rssBlogTag',
-            'relatedField' => 'tag',
-            'targetField' => 'blogRssImportScenario',
         ]
     ],
     'types' => [
@@ -161,7 +154,6 @@ return [
                 BlogTag::FIELD_PAGE_LAYOUT,
                 BlogTag::FIELD_PAGE_SLUG,
                 BlogTag::FIELD_POSTS,
-                BlogTag::FIELD_RSS,
                 BlogTag::FIELD_OWNER,
                 BlogTag::FIELD_POSTS_COUNT,
                 BlogTag::FIELD_EDITOR

@@ -11,6 +11,7 @@
 namespace umicms\project\module\users\site\registration;
 
 use umi\acl\IAclFactory;
+use umi\route\IRouteFactory;
 use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\hmvc\component\site\SiteGroupComponent;
 
@@ -46,6 +47,7 @@ return [
 
     SiteGroupComponent::OPTION_ROUTES      => [
         'index' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{type:string}',
             'defaults' => [
                 'type' => AuthorizedUser::TYPE_NAME

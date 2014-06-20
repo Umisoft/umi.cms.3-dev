@@ -8,16 +8,12 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\blog\model\object\BlogTag;
-
 return [
         'en-US' => [
-            BlogTag::FIELD_RSS => 'RSS feeds',
             'type:base:displayName' => 'Tag'
         ],
 
         'ru-RU' => [
-            BlogTag::FIELD_RSS => 'RSS-ленты',
             'type:base:displayName' => 'Тэг'
         ]
     ];

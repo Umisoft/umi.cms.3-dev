@@ -10,7 +10,7 @@
 
 namespace umicms\serialization\json\orm;
 
-use umi\orm\metadata\field\IField;
+use umi\orm\metadata\field\relation\BelongsToRelationField;
 use umi\orm\selector\Selector;
 use umicms\orm\object\ICmsObject;
 use umicms\serialization\json\BaseSerializer;
@@ -39,6 +39,13 @@ class SelectorSerializer extends BaseSerializer
 
         $mainCollectionName = $selector->getCollection()->getName();
         $this->collections[$mainCollectionName] = [];
+        foreach ($selector->getWithInfo() as $fieldInfo) {
+            /**
+             * @var BelongsToRelationField $field
+             */
+            list($field) = $fieldInfo;
+            $this->collections[$field->getTargetCollectionName()] = [];
+        }
 
         foreach($selector->getResult()->fetchAll() as $object) {
             $this->collections[$mainCollectionName][$object->getId()] = [$object, $fields];
@@ -46,9 +53,6 @@ class SelectorSerializer extends BaseSerializer
             foreach ($selector->getWithInfo() as $fieldPath => $fieldInfo) {
 
                 $fieldParts = explode(Selector::FIELD_SEPARATOR, $fieldPath);
-                /**
-                 * @var IField $field
-                 */
                 list($field, $selectiveFields) = $fieldInfo;
 
                 if ($fields && !array_key_exists($field->getName(), $fields)) {
