@@ -11,6 +11,7 @@
 namespace umicms\project\module\blog\site\reject\view;
 
 use umi\acl\IAclFactory;
+use umi\acl\IAclManager;
 use umicms\hmvc\component\site\SitePageComponent;
 
 return [
@@ -27,8 +28,7 @@ return [
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'author' => [],
-            'moderator' => ['author']
+            'author' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
@@ -38,6 +38,9 @@ return [
                 'widget:view' => [],
                 'widget:list' => [],
                 'widget:listLink' => [],
+                'model:blogPost' => [
+                    IAclManager::OPERATION_ALL => ['own']
+                ]
             ]
         ]
     ],

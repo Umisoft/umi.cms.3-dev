@@ -34,7 +34,7 @@ return [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
             'publisher' => [],
-            'moderator' => ['publisher']
+            'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
@@ -55,6 +55,8 @@ return [
                 ]
             ],
             'moderator' => [
+                'controller:publish' => [],
+                'widget:publish' => [],
                 'model:blogPost' => []
             ]
         ]

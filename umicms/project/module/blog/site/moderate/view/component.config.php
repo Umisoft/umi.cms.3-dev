@@ -11,6 +11,7 @@
 namespace umicms\project\module\blog\site\moderate\view;
 
 use umi\acl\IAclFactory;
+use umi\acl\IAclManager;
 use umicms\hmvc\component\site\SitePageComponent;
 
 return [
@@ -28,11 +29,17 @@ return [
         IAclFactory::OPTION_ROLES => [
             'author' => []
         ],
+        IAclFactory::OPTION_RESOURCES => [
+            'model:blogPost'
+        ],
         IAclFactory::OPTION_RULES => [
             'author' => [
                 'widget:post' => [],
                 'widget:ownList' => [],
-                'widget:ownListLink' => []
+                'widget:ownListLink' => [],
+                'model:blogPost' => [
+                    IAclManager::OPERATION_ALL => ['own']
+                ]
             ]
         ]
     ],

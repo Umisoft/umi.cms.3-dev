@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\blog\site\moderate\view\controller;
 
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\SitePageController;
@@ -36,11 +37,21 @@ class PageController extends SitePageController
     /**
      * Возвращает страницу для отображения.
      * @param string $uri
+     * @throws ResourceAccessForbiddenException в случае если просмотр поста запрещён
      * @return BlogPost
      */
     public function getPage($uri)
     {
-        return $this->module->post()->getNeedModeratePostByUri($uri);
+        $blogPost = $this->module->post()->getNeedModeratePostByUri($uri);
+
+        if (!$this->isAllowed($blogPost)) {
+            throw new ResourceAccessForbiddenException(
+                $blogPost,
+                $this->translate('Access denied')
+            );
+        }
+
+        return $blogPost;
     }
 }
  

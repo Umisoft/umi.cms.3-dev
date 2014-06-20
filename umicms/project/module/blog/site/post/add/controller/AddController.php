@@ -13,8 +13,8 @@ namespace umicms\project\module\blog\site\post\add\controller;
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
-use umicms\hmvc\component\BaseCmsController;
 use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogCategory;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -23,7 +23,7 @@ use umicms\hmvc\component\site\TFormController;
 /**
  * Контроллер добавления поста
  */
-class AddController extends BaseCmsController
+class AddController extends BaseSitePageController
 {
     use TFormController;
 
@@ -111,7 +111,8 @@ class AddController extends BaseCmsController
     {
         return [
             'added' => $this->added,
-            'blogPost' => $this->blogPost
+            'blogPost' => $this->blogPost,
+            'page' => $this->getCurrentPage()
         ];
     }
 }

@@ -13,7 +13,7 @@ namespace umicms\project\module\blog\site\post\edit\controller;
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
-use umicms\hmvc\component\BaseCmsController;
+use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\hmvc\component\site\TFormController;
@@ -21,7 +21,7 @@ use umicms\hmvc\component\site\TFormController;
 /**
  * Контроллер редактирования поста блога.
  */
-class EditController extends BaseCmsController
+class EditController extends BaseSitePageController
 {
     use TFormController;
 
@@ -84,7 +84,8 @@ class EditController extends BaseCmsController
     protected function buildResponseContent()
     {
         return [
-            'success' => $this->success
+            'success' => $this->success,
+            'page' => $this->getCurrentPage()
         ];
     }
 }

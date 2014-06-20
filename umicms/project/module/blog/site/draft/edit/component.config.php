@@ -27,7 +27,7 @@ return [
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
-            'moderator' => ['author']
+            'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
@@ -40,6 +40,7 @@ return [
                 ]
             ],
             'moderator' => [
+                'widget:editLink' => [],
                 'model:blogPost' => []
             ],
         ]
