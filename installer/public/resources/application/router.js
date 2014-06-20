@@ -44,29 +44,30 @@ define([], function(){
                  * http://localhost/admin/api/settings
                  */
                 return $.get(UmiSettings.baseApiURL).then(function(results){
-                    var result = results.result;
-                    if(result){
-                        return $.get('/resources/application/dictionary.json').then(function(dictionary){
-                            UMI.I18n.setDictionary(dictionary);
-                            self.controllerFor('application').set('settings', result);
-                            if(result.collections){
-                                UMI.modelsFactory(result.collections);
-                            }
-                            if(result.modules){
-                                self.controllerFor('dock').set('modules', result.modules);
-                            }
-                        });
+                    if(results && results.result){
+                        var result = results.result;
+                        self.controllerFor('application').set('settings', result);
+                        if(result.collections){
+                            UMI.modelsFactory(result.collections);
+                        }
+                        if(result.modules){
+                            self.controllerFor('dock').set('modules', result.modules);
+                        }
+                        if(result.I18n){
+                            UMI.I18n.setDictionary(result.I18n);
+                        }
                     } else{
                         try{
-                            throw new Error(results);
+                            throw new Error('Запрашиваемый ресурс ' + UmiSettings.baseApiURL + ' некорректен.');
                         } catch(error){
-                            transition.send('templateLogs', error);
+                            transition.abort();
+                            transition.send('dialogError', error);
                         }
                     }
                 }, function(error){
-                    var becameError = new Error(results);
+                    var becameError = new Error(error);
                     error.stack = becameError.stack;
-                    transition.send('templateLogs', error);
+                    transition.send('dialogError', error);
                 });
             },
             /**
