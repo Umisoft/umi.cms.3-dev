@@ -13,6 +13,7 @@ use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
 use umicms\filter\Slug;
 use umicms\project\module\blog\model\object\BlogPost;
+use umicms\filter\HtmlPurifier;
 
 return [
     'dataSource' => [

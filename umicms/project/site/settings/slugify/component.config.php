@@ -8,15 +8,15 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\admin\settings\component\DefaultSettingsComponent;
+use umicms\hmvc\component\admin\settings\SettingsComponent;
 
 return [
 
-    DefaultSettingsComponent::OPTION_CLASS => 'umicms\project\admin\settings\component\DefaultSettingsComponent',
+    SettingsComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\settings\SettingsComponent',
 
-    DefaultSettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/configuration/slugGenerator.config.php',
+    SettingsComponent::OPTION_SETTINGS_CONFIG_ALIAS => '~/project/configuration/slugGenerator.config.php',
 
-    DefaultSettingsComponent::OPTION_FORMS => [
+    SettingsComponent::OPTION_FORMS => [
         'settings' => '{#lazy:~/project/site/settings/slugify/form/settings.php}'
     ]
 

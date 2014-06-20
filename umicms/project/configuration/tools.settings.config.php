@@ -188,21 +188,12 @@ return [
         'factories' => [
             'filter' => [
                 'types' => [
-                    HtmlPurifier::TYPE => 'umicms\filter\HtmlPurifier'
+                    HtmlPurifier::TYPE => 'umicms\filter\HtmlPurifier',
+                    Slug::TYPE => 'umicms\filter\Slug'
                 ]
             ]
         ]
     ],
 
-    SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}',
-
-    FilterTools::NAME => [
-        'factories' => [
-            'filter' => [
-                'types' => [
-                    Slug::TYPE => 'umicms\filter\Slug'
-                ]
-            ]
-        ]
-    ]
+    SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}'
 ];
