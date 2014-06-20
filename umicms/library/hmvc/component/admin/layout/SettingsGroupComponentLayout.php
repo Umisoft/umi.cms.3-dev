@@ -10,6 +10,7 @@
 
 namespace umicms\hmvc\component\admin\layout;
 
+use umicms\hmvc\component\admin\layout\control\AdminControl;
 use umicms\hmvc\url\IUrlManager;
 use umicms\hmvc\component\admin\AdminComponent;
 use umicms\hmvc\component\admin\layout\control\ComponentsMenuControl;
@@ -40,6 +41,18 @@ class SettingsGroupComponentLayout extends AdminComponentLayout
     {
         $menu = new ComponentsMenuControl($this->component, $this->urlManager);
         $this->addSideBarControl('menu', $menu);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureEmptyContextControls()
+    {
+        $control = new AdminControl($this->component);
+        $childComponentNames = $this->component->getChildComponentNames();
+        $control->params['slug'] = array_shift($childComponentNames);
+
+        $this->addEmptyContextControl('redirect', $control);
     }
 }
  
