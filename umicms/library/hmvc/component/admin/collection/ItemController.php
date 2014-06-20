@@ -14,8 +14,8 @@ use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
-use umicms\orm\object\ICmsObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
+use umicms\orm\object\ICmsObject;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
