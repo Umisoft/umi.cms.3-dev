@@ -2,8 +2,14 @@ define(['App'], function(UMI){
     "use strict";
 
     return function(){
-        UMI.TableControlController = Ember.ObjectController.extend({
+        UMI.TableControlController = Ember.ObjectController.extend(UMI.i18nInterface,{
             componentNameBinding: 'controllers.component.name',
+            dictionaryNamespace: 'tableControl',
+            localDictionary: function(){
+                var contentControls = this.get('controllers.component.contentControls') || [];
+                var filter = contentControls.findBy('name', 'filter') || {};
+                return filter.i18n;
+            }.property(),
             /**
              * Данные
              * @property objects
