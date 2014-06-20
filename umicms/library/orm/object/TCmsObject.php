@@ -123,7 +123,7 @@ trait TCmsObject
      */
     public function setUpdatedTime()
     {
-        $property = $this->getProperty('created');
+        $property = $this->getProperty('updated');
         $property->setValue(new \DateTime());
 
         return $this;
