@@ -46,6 +46,7 @@ class ComponentsMenuControl extends AdminControl
             $childComponent = $this->component->getChildComponent($name);
 
             $this->params['links'][] = [
+                'name' => $name,
                 'resource' => $this->urlManager->getAdminComponentResourceUrl($childComponent),
                 'label' => $childComponent->translate(
                     'component:' . $name . ':displayName'
