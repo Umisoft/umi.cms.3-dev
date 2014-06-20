@@ -80,3 +80,8 @@ $ php composer.phar update
 cd installer/public/resources
 bower update
 ```
+
+Также, необходимо переустановить данные demo-проектов, запустив в браузере:
+```
+http://localhost/install
+```
