@@ -2575,6 +2575,30 @@ label.error {
     border-top-right-radius: 1000px;
     border-bottom-right-radius: 1000px; }
 
+.side-nav {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  list-style-position: inside;
+  font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif; }
+  .side-nav li {
+    margin: 0 0 0.4375rem 0;
+    font-size: 0.875rem; }
+    .side-nav li a {
+      display: block;
+      color: #535E6D; }
+    .side-nav li.active > a:first-child {
+      color: #fff;
+      font-weight: normal;
+      font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif; }
+    .side-nav li.divider {
+      border-top: 1px solid;
+      height: 0;
+      padding: 0;
+      list-style: none;
+      border-top-color: white; }
+
 .s-hide {
   display: none; }
 
@@ -6018,6 +6042,23 @@ table td {
 
 .ui-timepicker-rtl dl dd {
   margin: 0 45% 10px 10px; }
+
+.side-nav {
+  background: #F5F5F5;
+  overflow: hidden; }
+  .side-nav li {
+    height: 33px;
+    line-height: 34px;
+    padding: 0 0.625rem;
+    margin: 0;
+    background: -webkit-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
+    background: -o-linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
+    background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);
+    background: linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
+    border-bottom: 1px solid #98A2AB; }
+    .side-nav li:hover {
+      background: #EEEEEE;
+      color: #000000; }
 
 .umi-table-control-column-selector-popup-wrapper {
   overflow: hidden;

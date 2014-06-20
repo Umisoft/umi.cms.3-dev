@@ -12,9 +12,7 @@ define([
     'text!./templates/actions/counter.hbs',
     'text!./templates/actions/megaIndex.hbs',
     'text!./templates/actions/yandexWebmaster.hbs',
-    'text!./templates/actions/createForm.hbs',
-    'text!./templates/settings/settings.hbs',
-    'text!./templates/settings/settingComponent.hbs'
+    'text!./templates/actions/menu.hbs'
 
 ], function(
     applicationTpl,
@@ -30,9 +28,7 @@ define([
         counterTpl,
         megaIndexTpl,
         yandexWebmasterTpl,
-        createFormTpl,
-        settingsTpl, 
-        settingComponentTpl
+        menuTpl
     ){
     'use strict';
     return function(){
@@ -53,8 +49,6 @@ define([
         Ember.TEMPLATES['UMI/megaindexReport'] = Ember.Handlebars.compile(megaIndexTpl);
         Ember.TEMPLATES['UMI/yandexWebmasterReport'] = Ember.Handlebars.compile(yandexWebmasterTpl);
         Ember.TEMPLATES['UMI/createForm'] = Ember.Handlebars.compile(editFormTpl);
-
-        Ember.TEMPLATES['UMI/settings'] = Ember.Handlebars.compile(settingsTpl);
-        Ember.TEMPLATES['UMI/settings/component'] = Ember.Handlebars.compile(settingComponentTpl);
+        Ember.TEMPLATES['UMI/menu'] = Ember.Handlebars.compile(menuTpl);
     };
 });

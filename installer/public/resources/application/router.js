@@ -517,7 +517,12 @@ define([], function(){
 
             redirect: function(model, transition){
                 if(transition.targetName === this.routeName + '.index'){
-                    this.transitionTo('context', 'root');
+                    var emptyControl = this.controllerFor('component').get('settings.contents.emptyContext.redirect');
+                    if(emptyControl){
+                        this.transitionTo('context', Ember.get(emptyControl, 'params.slug'));
+                    } else{
+                        this.transitionTo('context', 'root');
+                    }
                 }
             },
 

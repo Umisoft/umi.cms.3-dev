@@ -56,6 +56,7 @@ require.config({
         {name: 'popup',             location: "partials/popup"},
         {name: 'search',            location: "partials/search"},
         {name: 'megaIndex',         location: "partials/seo/megaIndex"},
+        {name: 'sideMenu',          location: "partials/sideMenu"},
         {name: 'yandexWebmaster',   location: "partials/seo/yandexWebmaster"},
         //skeleton                  partials/skeleton
         {name: 'table',             location: "partials/table"},
