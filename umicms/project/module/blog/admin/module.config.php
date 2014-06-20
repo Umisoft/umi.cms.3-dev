@@ -23,6 +23,8 @@ return [
         'author' => '{#lazy:~/project/module/blog/admin/author/component.config.php}',
         'comment' => '{#lazy:~/project/module/blog/admin/comment/component.config.php}',
         'tag' => '{#lazy:~/project/module/blog/admin/tag/component.config.php}',
+        'posttag' => '{#lazy:~/project/module/blog/admin/posttag/component.config.php}',
+        'rssttag' => '{#lazy:~/project/module/blog/admin/posttag/component.config.php}',
         'rss' => '{#lazy:~/project/module/blog/admin/rss/component.config.php}'
     ],
 

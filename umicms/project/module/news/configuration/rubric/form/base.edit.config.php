@@ -99,8 +99,8 @@ return [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => NewsRubric::FIELD_NEWS,
                     'options' => [
-                        'lazy' => true,
-                        'dataSource' => NewsRubric::FIELD_NEWS
+                        'dataSource' => NewsRubric::FIELD_NEWS,
+                        'lazy' => true
                     ]
                 ]
             ]
