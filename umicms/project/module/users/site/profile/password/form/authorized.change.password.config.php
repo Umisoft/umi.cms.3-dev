@@ -8,7 +8,7 @@ use umi\form\element\Submit;
 use umi\validation\IValidatorFactory;
 use umicms\form\element\PasswordWithConfirmation;
 use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\users\api\object\AuthorizedUser;
+use umicms\project\module\users\model\object\AuthorizedUser;
 
 return [
 
@@ -27,9 +27,6 @@ return [
             'type' => Password::TYPE_NAME,
             'label' => AuthorizedUser::FIELD_PASSWORD,
             'options' => [
-                'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => []
-                ],
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []
                 ]

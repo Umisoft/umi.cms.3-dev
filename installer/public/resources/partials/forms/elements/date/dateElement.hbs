@@ -1,12 +1,7 @@
-<div class="umi-element-left umi-element-left-date">
-
-</div>
-
 <div class="umi-element-center umi-element-center-date">
-    {{view view.inputView}}
+    {{view "textElement" object=view.object meta=view.meta}}
 </div>
 
 <div class="umi-element-right umi-element-right-date">
-    <i class="icon icon-delete"></i>
-    <i class="icon icon-calendar"></i>
+    <i class="icon icon-delete" {{action "clearValue" target="view"}}></i>
 </div>

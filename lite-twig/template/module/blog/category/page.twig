@@ -5,6 +5,3 @@
 
 {{ widget('blog.category.list', {'parentCategory' : page, 'template' : 'list'}) }}
 {{ widget('blog.category.postList', {'categories' : [page], 'template' : 'postList'}) }}
-
-<h1>{{ translate('Создать пост') }}</h1>
-{{ widget('blog.post.add', {'blogCategory' : page, 'template' : 'addPostForm'}) }}

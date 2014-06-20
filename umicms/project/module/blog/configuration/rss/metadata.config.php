@@ -11,7 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\blog\api\object\BlogRssImportScenario;
+use umicms\project\module\blog\model\object\BlogRssImportScenario;
 
 return [
     'dataSource' => [
@@ -54,7 +54,7 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => ['columnName' => 'display_name'],
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
                 'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
@@ -98,7 +98,7 @@ return [
     ],
     'types'      => [
         'base' => [
-            'objectClass' => 'umicms\project\module\blog\api\object\BlogRssImportScenario',
+            'objectClass' => 'umicms\project\module\blog\model\object\BlogRssImportScenario',
             'fields'      => [
                 BlogRssImportScenario::FIELD_IDENTIFY,
                 BlogRssImportScenario::FIELD_GUID,

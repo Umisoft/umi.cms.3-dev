@@ -13,18 +13,18 @@ namespace umicms\project\module\blog\site\reject;
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSitePageComponent;
+use umicms\hmvc\component\site\SitePageComponent;
 
 return [
 
-    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
-    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    DefaultSitePageComponent::OPTION_CONTROLLERS => [
+    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
+    SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
+    SitePageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\PostPageController',
         'edit' => __NAMESPACE__ . '\controller\PostEditController',
         'sendToModeration' => __NAMESPACE__ . '\controller\PostSendToModerationController',
     ],
-    DefaultSitePageComponent::OPTION_WIDGET => [
+    SitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\PostWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'listLink' => __NAMESPACE__ . '\widget\ListLinkWidget',
@@ -32,18 +32,12 @@ return [
         'sendToModeration' => __NAMESPACE__ . '\widget\PostSendToModerationWidget'
 
     ],
-    DefaultSitePageComponent::OPTION_ACL => [
+    SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'author' => []
+            'author' => [],
+            'moderator' => ['author']
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:edit',
-            'controller:sendToModeration',
-            'widget:view',
-            'widget:list',
-            'widget:listLink',
-            'widget:editPostLink',
-            'widget:sendToModeration',
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
@@ -60,13 +54,18 @@ return [
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
+            ],
+            'moderator' => [
+                'model:blogPost' => [
+                    IAclManager::OPERATION_ALL => []
+                ]
             ]
         ]
     ],
-    DefaultSitePageComponent::OPTION_VIEW => [
+    SitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/reject'],
     ],
-    DefaultSitePageComponent::OPTION_ROUTES => [
+    SitePageComponent::OPTION_ROUTES => [
         'edit' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/edit/{id:integer}',

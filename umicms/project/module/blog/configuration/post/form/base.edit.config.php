@@ -14,7 +14,7 @@ use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\object\BlogPost;
 
 return [
 
@@ -38,9 +38,9 @@ return [
                 ],
                 BlogPost::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogPost::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogPost::FIELD_PAGE_LAYOUT
                     ],
                 ]
@@ -87,9 +87,9 @@ return [
 
                 BlogPost::FIELD_CATEGORY => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogPost::FIELD_CATEGORY,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogPost::FIELD_CATEGORY
                     ]
                 ],
@@ -102,9 +102,9 @@ return [
                 ],
                 BlogPost::FIELD_AUTHOR => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogPost::FIELD_AUTHOR,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogPost::FIELD_AUTHOR
                     ],
                 ],
@@ -139,7 +139,7 @@ return [
                     'type' => Wysiwyg::TYPE_NAME,
                     'label' => BlogPost::FIELD_PAGE_CONTENTS,
                     'options' => [
-                        'dataSource' => BlogPost::FIELD_PAGE_CONTENTS
+                        'dataSource' => BlogPost::FIELD_PAGE_CONTENTS_RAW
                     ]
                 ],
                 BlogPost::FIELD_SOURCE => [

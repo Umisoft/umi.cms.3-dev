@@ -6,14 +6,15 @@
         <time datetime="{{ page.publishTime.format('c') }}">
             {{ page.publishTime.format('d.m.Y | H:i') }}
         </time>
-        {{ translate('Автор') }}: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
+        {{ translate('Author') }}: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
     </p>
 
     {{ page.contents | raw }}
 
 </div>
 
-<h1>{{ translate('Комментарии') }}:</h1>
+<h1>{{ translate('Comments') }}:</h1>
+
 {{ widget('blog.comment.list', {'blogPost' : page, 'template' : 'list'}) }}
 
 {{ widget('blog.comment.add', {'blogPost' : page, 'template' : 'addComment'}) }}

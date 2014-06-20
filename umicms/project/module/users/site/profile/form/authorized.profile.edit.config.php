@@ -4,7 +4,7 @@ use umi\filter\IFilterFactory;
 use umi\form\element\CSRF;
 use umi\form\element\Submit;
 use umi\form\element\Text;
-use umicms\project\module\users\api\object\AuthorizedUser;
+use umicms\project\module\users\model\object\AuthorizedUser;
 
 return [
 
@@ -25,7 +25,8 @@ return [
             'options' => [
                 'dataSource' => AuthorizedUser::FIELD_DISPLAY_NAME,
                 'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => []
+                    IFilterFactory::TYPE_STRING_TRIM => [],
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ]
             ]
         ],
@@ -36,7 +37,8 @@ return [
             'options' => [
                 'dataSource' => AuthorizedUser::FIELD_EMAIL,
                 'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => []
+                    IFilterFactory::TYPE_STRING_TRIM => [],
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ]
             ]
         ],
@@ -47,7 +49,8 @@ return [
             'options' => [
                 'dataSource' => AuthorizedUser::FIELD_FIRST_NAME,
                 'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => []
+                    IFilterFactory::TYPE_STRING_TRIM => [],
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ]
             ]
         ],
@@ -57,7 +60,8 @@ return [
             'options' => [
                 'dataSource' => AuthorizedUser::FIELD_MIDDLE_NAME,
                 'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => []
+                    IFilterFactory::TYPE_STRING_TRIM => [],
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ]
             ]
         ],
@@ -67,7 +71,8 @@ return [
             'options' => [
                 'dataSource' => AuthorizedUser::FIELD_LAST_NAME,
                 'filters' => [
-                    IFilterFactory::TYPE_STRING_TRIM => []
+                    IFilterFactory::TYPE_STRING_TRIM => [],
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ]
             ]
         ],

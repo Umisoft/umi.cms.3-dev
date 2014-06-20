@@ -11,7 +11,7 @@
 namespace umicms\orm\collection\behaviour;
 
 use umicms\exception\NotAllowedOperationException;
-use umicms\orm\collection\SimpleHierarchicCollection;
+use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\CmsHierarchicObject;
@@ -55,7 +55,7 @@ trait TRecyclableCollection
             );
         }
 
-        if ($object instanceof CmsHierarchicObject && $this instanceof SimpleHierarchicCollection) {
+        if ($object instanceof CmsHierarchicObject && $this instanceof CmsHierarchicCollection) {
             $descendants = $this->selectDescendants($object);
             foreach($descendants as $descendant) {
                 $descendant->getProperty(IRecyclableObject::FIELD_TRASHED)->setValue(true);
@@ -72,7 +72,7 @@ trait TRecyclableCollection
      */
     public function untrash(IRecyclableObject $object)
     {
-        if ($object instanceof CmsHierarchicObject && $this instanceof SimpleHierarchicCollection) {
+        if ($object instanceof CmsHierarchicObject && $this instanceof CmsHierarchicCollection) {
             $ancestry = $this->selectAncestry($object);
             /**
              * @var CmsHierarchicObject $parent

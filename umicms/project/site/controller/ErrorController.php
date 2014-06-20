@@ -13,13 +13,14 @@ namespace umicms\project\site\controller;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
+use umicms\exception\InvalidObjectsException;
 use umicms\exception\NonexistentEntityException;
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\component\BaseCmsController;
 
 /**
  * Контроллер ошибок для сайта.
  */
-class ErrorController extends BaseController
+class ErrorController extends BaseCmsController
 {
 
     /**
@@ -50,15 +51,16 @@ class ErrorController extends BaseController
 
         $code = $this->getHttpStatusCode();
 
+        $templateName = ($this->exception instanceof InvalidObjectsException) ? 'error/validation' : 'error/controller';
+
         return $this->createViewResponse(
-            'error/controller',
+            $templateName,
             [
                 'error' => $this->exception,
                 'code' => $code,
                 'stack' => $stack
             ]
-        )
-            ;//->setStatusCode($code); TODO раскомментировать
+        )->setStatusCode($code);
     }
 
     /**

@@ -11,7 +11,7 @@
 use umi\form\element\Text;
 use umi\form\element\Textarea;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\structure\api\object\InfoBlock;
+use umicms\project\module\structure\model\object\InfoBlock;
 
 return [
 
@@ -32,6 +32,13 @@ return [
                     'label' => InfoBlock::FIELD_DISPLAY_NAME,
                     'options' => [
                         'dataSource' => InfoBlock::FIELD_DISPLAY_NAME
+                    ],
+                ],
+                InfoBlock::FIELD_INFOBLOCK_NAME => [
+                    'type' => Text::TYPE_NAME,
+                    'label' => InfoBlock::FIELD_INFOBLOCK_NAME,
+                    'options' => [
+                        'dataSource' => InfoBlock::FIELD_INFOBLOCK_NAME
                     ],
                 ]
             ]

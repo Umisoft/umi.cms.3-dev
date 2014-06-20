@@ -8,19 +8,17 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\news\api\object\NewsSubject;
+use umicms\project\module\news\model\object\NewsSubject;
 
 return [
         'en-US' => [
             NewsSubject::FIELD_NEWS => 'News items',
-            NewsSubject::FIELD_RSS => 'RSS feeds',
 
             'type:base:displayName' => 'News subject'
         ],
 
         'ru-RU' => [
             NewsSubject::FIELD_NEWS => 'Новости',
-            NewsSubject::FIELD_RSS => 'RSS-ленты',
 
             'type:base:displayName' => 'Новостной сюжет'
         ]

@@ -10,13 +10,12 @@
 
 namespace umicms\project\module\blog\admin;
 
-use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\AdminComponent',
 
     AdminComponent::OPTION_COMPONENTS => [
         'category' => '{#lazy:~/project/module/blog/admin/category/component.config.php}',
@@ -24,37 +23,9 @@ return [
         'author' => '{#lazy:~/project/module/blog/admin/author/component.config.php}',
         'comment' => '{#lazy:~/project/module/blog/admin/comment/component.config.php}',
         'tag' => '{#lazy:~/project/module/blog/admin/tag/component.config.php}',
+        'posttag' => '{#lazy:~/project/module/blog/admin/posttag/component.config.php}',
+        'rssttag' => '{#lazy:~/project/module/blog/admin/posttag/component.config.php}',
         'rss' => '{#lazy:~/project/module/blog/admin/rss/component.config.php}'
-    ],
-
-    AdminComponent::OPTION_ACL => [
-        AdminComponent::OPTION_ACL => [
-
-            IAclFactory::OPTION_ROLES => [
-                'categoryEditor' => [],
-                'postEditor' => [],
-                'commentEditor' => [],
-                'authorEditor' => [],
-                'tagEditor' => [],
-                'rssEditor' => []
-            ],
-            IAclFactory::OPTION_RESOURCES => [
-                'component:category',
-                'component:post',
-                'component:comment',
-                'component:author',
-                'component:tag',
-                'component:rss'
-            ],
-            IAclFactory::OPTION_RULES => [
-                'categoryEditor' => ['component:category' => []],
-                'postEditor' => ['component:post' => []],
-                'commentEditor' => ['component:comment' => []],
-                'authorEditor' => ['component:author' => []],
-                'tagEditor' => ['component:tag' => []],
-                'rssEditor' => ['component:rss' => []]
-            ]
-        ],
     ],
 
     AdminComponent::OPTION_ROUTES      => [

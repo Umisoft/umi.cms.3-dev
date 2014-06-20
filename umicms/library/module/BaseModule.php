@@ -45,6 +45,10 @@ abstract class BaseModule implements IModule, ICollectionManagerAware, IModelEnt
      * @var array $api конфигурация API модуля
      */
     public $api = [];
+    /**
+     * @var array $options настройки модуля
+     */
+    public $options = [];
 
     /**
      * @var ModelCollection $modelCollection
@@ -114,6 +118,19 @@ abstract class BaseModule implements IModule, ICollectionManagerAware, IModelEnt
         return isset($this->api[$apiClassName]) ? $this->configToArray($this->api[$apiClassName], true) : [];
     }
 
+    /**
+     * Возвращает значение настройки для модуля.
+     * @param string $settingName имя настройки
+     * @param mixed $defaultValue значение по умолчанию
+     * @return mixed
+     */
+    protected function getSetting($settingName, $defaultValue = null) {
+        if (isset($this->options[$settingName])) {
+            return $this->options[$settingName];
+        }
+
+        return $defaultValue;
+    }
 
 }
  

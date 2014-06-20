@@ -17,57 +17,58 @@ use umicms\orm\object\ICmsPage;
 
 return [
 
-        'project.admin.api' => '{#lazy:~/project/admin/api/i18n/dictionary.config.php}',
+        'project.admin.rest' => '{#lazy:~/project/admin/rest/i18n/dictionary.config.php}',
 
-        'project.admin.api.news' => '{#lazy:~/project/module/news/admin/i18n/dictionary.config.php}',
-        'project.admin.api.news.item' => '{#lazy:~/project/module/news/admin/item/i18n/dictionary.config.php}',
-        'project.admin.api.news.rubric' => '{#lazy:~/project/module/news/admin/rubric/i18n/dictionary.config.php}',
-        'project.admin.api.news.subject' => '{#lazy:~/project/module/news/admin/subject/i18n/dictionary.config.php}',
-        'project.admin.api.news.rss' => '{#lazy:~/project/module/news/admin/rss/i18n/dictionary.config.php}',
+        'project.admin.rest.news' => '{#lazy:~/project/module/news/admin/i18n/dictionary.config.php}',
+        'project.admin.rest.news.item' => '{#lazy:~/project/module/news/admin/item/i18n/dictionary.config.php}',
+        'project.admin.rest.news.rubric' => '{#lazy:~/project/module/news/admin/rubric/i18n/dictionary.config.php}',
+        'project.admin.rest.news.subject' => '{#lazy:~/project/module/news/admin/subject/i18n/dictionary.config.php}',
+        'project.admin.rest.news.rss' => '{#lazy:~/project/module/news/admin/rss/i18n/dictionary.config.php}',
 
-        'project.admin.api.files' => '{#lazy:~/project/module/files/admin/i18n/dictionary.config.php}',
-        'project.admin.api.files.manager' => '{#lazy:~/project/module/files/admin/manager/i18n/dictionary.config.php}',
+        'project.admin.rest.files' => '{#lazy:~/project/module/files/admin/i18n/dictionary.config.php}',
+        'project.admin.rest.files.manager' => '{#lazy:~/project/module/files/admin/manager/i18n/dictionary.config.php}',
 
-        'project.admin.api.users' => '{#lazy:~/project/module/users/admin/i18n/dictionary.config.php}',
-        'project.admin.api.users.user' => '{#lazy:~/project/module/users/admin/user/i18n/dictionary.config.php}',
-        'project.admin.api.users.group' => '{#lazy:~/project/module/users/admin/group/i18n/dictionary.config.php}',
+        'project.admin.rest.users' => '{#lazy:~/project/module/users/admin/i18n/dictionary.config.php}',
+        'project.admin.rest.users.user' => '{#lazy:~/project/module/users/admin/user/i18n/dictionary.config.php}',
+        'project.admin.rest.users.group' => '{#lazy:~/project/module/users/admin/group/i18n/dictionary.config.php}',
 
-        'project.admin.api.structure' => '{#lazy:~/project/module/structure/admin/i18n/dictionary.config.php}',
-        'project.admin.api.structure.page' => '{#lazy:~/project/module/structure/admin/page/i18n/dictionary.config.php}',
-        'project.admin.api.structure.layout' => '{#lazy:~/project/module/structure/admin/layout/i18n/dictionary.config.php}',
-        'project.admin.api.structure.infoblock' => '{#lazy:~/project/module/structure/admin/infoblock/i18n/dictionary.config.php}',
+        'project.admin.rest.structure' => '{#lazy:~/project/module/structure/admin/i18n/dictionary.config.php}',
+        'project.admin.rest.structure.page' => '{#lazy:~/project/module/structure/admin/page/i18n/dictionary.config.php}',
+        'project.admin.rest.structure.layout' => '{#lazy:~/project/module/structure/admin/layout/i18n/dictionary.config.php}',
+        'project.admin.rest.structure.infoblock' => '{#lazy:~/project/module/structure/admin/infoblock/i18n/dictionary.config.php}',
+        'project.admin.rest.structure.menu' => '{#lazy:~/project/module/structure/admin/menu/i18n/dictionary.config.php}',
 
-        'project.admin.api.statistics' => '{#lazy:~/project/module/statistics/admin/i18n/dictionary.config.php}',
-        'project.admin.api.statistics.metrika' => '{#lazy:~/project/module/statistics/admin/metrika/i18n/dictionary.config.php}',
+        'project.admin.rest.statistics' => '{#lazy:~/project/module/statistics/admin/i18n/dictionary.config.php}',
+        'project.admin.rest.statistics.metrika' => '{#lazy:~/project/module/statistics/admin/metrika/i18n/dictionary.config.php}',
 
-        'project.admin.api.service' => '{#lazy:~/project/module/service/admin/i18n/dictionary.config.php}',
-        'project.admin.api.service.backup' => '{#lazy:~/project/module/service/admin/backup/i18n/dictionary.config.php}',
+        'project.admin.rest.service' => '{#lazy:~/project/module/service/admin/i18n/dictionary.config.php}',
+        'project.admin.rest.service.backup' => '{#lazy:~/project/module/service/admin/backup/i18n/dictionary.config.php}',
 
-        'project.admin.api.seo' => '{#lazy:~/project/module/seo/admin/i18n/dictionary.config.php}',
-        'project.admin.api.seo.megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/i18n/dictionary.config.php}',
-        'project.admin.api.seo.yandex' => '{#lazy:~/project/module/seo/admin/yandex/i18n/dictionary.config.php}',
+        'project.admin.rest.seo' => '{#lazy:~/project/module/seo/admin/i18n/dictionary.config.php}',
+        'project.admin.rest.seo.megaindex' => '{#lazy:~/project/module/seo/admin/megaindex/i18n/dictionary.config.php}',
+        'project.admin.rest.seo.yandex' => '{#lazy:~/project/module/seo/admin/yandex/i18n/dictionary.config.php}',
 
-        'project.admin.api.search' => '{#lazy:~/project/module/search/admin/i18n/dictionary.config.php}',
+        'project.admin.rest.search' => '{#lazy:~/project/module/search/admin/i18n/dictionary.config.php}',
 
-        'project.admin.api.blog' => '{#lazy:~/project/module/blog/admin/i18n/dictionary.config.php}',
+        'project.admin.rest.blog' => '{#lazy:~/project/module/blog/admin/i18n/dictionary.config.php}',
 
-        'project.admin.api.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
+        'project.admin.rest.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
 
 
-        'project.admin.settings' => '{#lazy:~/project/admin/settings/i18n/dictionary.config.php}',
-        'project.admin.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
-        'project.admin.settings.site.slugify' => '{#lazy:~/project/site/settings/slugify/i18n/dictionary.config.php}',
-        'project.admin.settings.service' => '{#lazy:~/project/module/service/settings/i18n/dictionary.config.php}',
-        'project.admin.settings.service.backup' => '{#lazy:~/project/module/service/settings/backup/i18n/dictionary.config.php}',
-        'project.admin.settings.seo' => '{#lazy:~/project/module/seo/settings/i18n/dictionary.config.php}',
-        'project.admin.settings.seo.megaindex' => '{#lazy:~/project/module/seo/settings/megaindex/i18n/dictionary.config.php}',
-        'project.admin.settings.seo.yandex' => '{#lazy:~/project/module/seo/settings/yandex/i18n/dictionary.config.php}',
-        'project.admin.settings.statistics' => '{#lazy:~/project/module/statistics/settings/i18n/dictionary.config.php}',
-        'project.admin.settings.statistics.metrika' => '{#lazy:~/project/module/statistics/settings/metrika/i18n/dictionary.config.php}',
-        'project.admin.settings.users' => '{#lazy:~/project/module/users/settings/i18n/dictionary.config.php}',
+        'project.admin.rest.settings' => '{#lazy:~/project/module/settings/admin/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
+        'project.admin.rest.site.slugify' => '{#lazy:~/project/site/settings/slugify/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.service' => '{#lazy:~/project/module/service/admin/settings/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.service.backup' => '{#lazy:~/project/module/service/admin/settings/backup/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.seo' => '{#lazy:~/project/module/seo/admin/settings/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.seo.megaindex' => '{#lazy:~/project/module/seo/admin/settings/megaindex/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.seo.yandex' => '{#lazy:~/project/module/seo/admin/settings/yandex/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.statistics' => '{#lazy:~/project/module/statistics/admin/settings/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.statistics.metrika' => '{#lazy:~/project/module/statistics/admin/settings/metrika/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.users' => '{#lazy:~/project/module/users/admin/settings/i18n/dictionary.config.php}',
 
-        'project.admin.settings.forms' => '{#lazy:~/project/module/forms/settings/i18n/dictionary.config.php}',
-        'project.admin.settings.forms.captcha' => '{#lazy:~/project/module/forms/settings/captcha/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.forms' => '{#lazy:~/project/module/forms/admin/settings/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.forms.captcha' => '{#lazy:~/project/module/forms/admin/settings/captcha/i18n/dictionary.config.php}',
 
         'project.site.users' => '{#lazy:~/project/module/users/site/i18n/dictionary.config.php}',
         'project.site.users.authorization' => '{#lazy:~/project/module/users/site/authorization/i18n/dictionary.config.php}',
@@ -111,7 +112,6 @@ return [
                 IRecyclableObject::FIELD_TRASHED => 'Trashed',
                 ILockedAccessibleObject::FIELD_LOCKED => 'Locked',
                 IActiveAccessibleObject::FIELD_ACTIVE => 'Active',
-
             ],
 
             'ru-RU' => [
@@ -186,4 +186,5 @@ return [
         'collection.layout' => '{#lazy:~/project/module/structure/configuration/layout/i18n/dictionary.config.php}',
         'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',
         'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',
+        'collection.menu' => '{#lazy:~/project/module/structure/configuration/menu/i18n/dictionary.config.php}',
     ];

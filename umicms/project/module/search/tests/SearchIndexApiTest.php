@@ -9,8 +9,8 @@
  */
 namespace umicms\project\module\search\tests;
 
-use umicms\project\module\search\api\SearchApi;
-use umicms\project\module\search\api\SearchIndexApi;
+use umicms\project\module\search\model\SearchApi;
+use umicms\project\module\search\model\SearchIndexApi;
 
 /**
  * Tests for SearchApiTest

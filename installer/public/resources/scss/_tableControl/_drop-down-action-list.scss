@@ -1,6 +1,40 @@
 //----------------- Выпадающее меню с действиями над объектом
-.umi-table-control-content-fixed-right-second{
+
+.table-context-toolbar{
     position: relative;
+    .dropdown.button{
+        background: transparent;
+        padding: 0;
+        padding-right: 48px;
+        .button-label{
+            display: none;
+        }
+        > .icon{
+            margin: 5px;
+        }
+        &:hover{
+            background: #fff;
+        }
+        span{
+            &:before{
+                border-top-color: #7B899C;
+            }
+        }
+        .f-dropdown{
+            margin-top: 4px;
+            right: 0;
+            left: auto;
+            width: auto;
+            &:before{
+                left: auto;
+                right: 7px;
+            }
+            &:after{
+                left: auto;
+                right: 8px;
+            }
+        }
+    }
 }
 
 .umi-table-action-list{

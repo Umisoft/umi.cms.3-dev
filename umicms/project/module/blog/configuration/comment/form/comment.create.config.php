@@ -14,7 +14,7 @@ use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\blog\api\object\BlogComment;
+use umicms\project\module\blog\model\object\BlogComment;
 
 return [
 
@@ -58,9 +58,9 @@ return [
             'elements' => [
                 BlogComment::FIELD_AUTHOR => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogComment::FIELD_AUTHOR,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogComment::FIELD_AUTHOR
                     ],
                 ],
@@ -73,9 +73,9 @@ return [
                 ],
                 BlogComment::FIELD_PUBLISH_STATUS => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogComment::FIELD_PUBLISH_STATUS,
                     'options' => [
+                        'lazy' => false,
                         'dataSource' => BlogComment::FIELD_PUBLISH_STATUS,
                         'choices' => [
                             BlogComment::COMMENT_STATUS_NEED_MODERATE => BlogComment::COMMENT_STATUS_NEED_MODERATE,

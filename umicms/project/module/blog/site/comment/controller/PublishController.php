@@ -1,73 +1,58 @@
 <?php
 /**
- * This file is part of UMI.CMS.
+ * UMI.Framework (http://umi-framework.ru/)
  *
- * @link http://umi-cms.ru
- * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
- * @license For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * @link      http://github.com/Umisoft/framework for the canonical source repository
+ * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
+ * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
 namespace umicms\project\module\blog\site\comment\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
-use umi\hmvc\exception\http\HttpNotFound;
-use umi\http\Response;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogComment;
+use umi\form\IForm;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogComment;
+use umicms\hmvc\component\site\TFormSimpleController;
 
 /**
  * Контроллер публикации комментария.
  */
-class PublishController extends BaseAccessRestrictedController implements IFormAware, IObjectPersisterAware
+class PublishController extends BaseCmsController
 {
-    use TFormAware;
-    use TObjectPersisterAware;
+    use TFormSimpleController;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws HttpNotFound
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function buildForm()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
-        }
+        return $this->module->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE);
+    }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE);
-        $formData = $this->getAllPostVars();
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $blogComment = $this->module->comment()->getById($this->getRouteVar('id'));
+        $blogComment->published();
 
-        if ($form->setData($formData) && $form->isValid()) {
-
-            $blogComment = $this->api->comment()->getById($this->getRouteVar('id'));
-            $blogComment->published();
-
-            $this->getObjectPersister()->commit();
-
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages()); exit();
-        }
+        $this->commit();
     }
 }
  

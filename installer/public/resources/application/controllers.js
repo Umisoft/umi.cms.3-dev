@@ -23,7 +23,9 @@ define([], function(){
 
             collectionName: function(){
                 var settings = this.get('settings');
-                return settings.collectionName;
+                if(settings && Ember.typeOf(settings.params) === 'object'){
+                    return settings.params.collectionName;
+                }
             }.property('settings'),
 
             settings: null,
@@ -45,7 +47,7 @@ define([], function(){
                 var settings = this.get('settings');
                 try{
                     var selectedContext = this.get('selectedContext') === 'root' ? 'emptyContext' : 'selectedContext';
-                    var controls = settings.layout.contents[selectedContext];
+                    var controls = settings.contents[selectedContext];
                     var key;
                     var control;
                     for(key in controls){ //for empty - createForm & filter
@@ -80,11 +82,11 @@ define([], function(){
                 var self = this;
                 try{
                     var settings = this.get('settings');
-                    if(settings && settings.layout.hasOwnProperty('sideBar')){
+                    if(settings && settings.hasOwnProperty('sideBar')){
                         var control;
-                        for(control in settings.layout.sideBar){
-                            if(settings.layout.sideBar.hasOwnProperty(control)){
-                                sideBarControl = settings.layout.sideBar[control];
+                        for(control in settings.sideBar){
+                            if(settings.sideBar.hasOwnProperty(control)){
+                                sideBarControl = settings.sideBar[control];
                                 sideBarControl.name = control;
                                 sideBarControl = Ember.Object.create(sideBarControl);
                             }

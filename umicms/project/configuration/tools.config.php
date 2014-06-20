@@ -24,6 +24,7 @@ use umi\validation\toolbox\ValidationTools;
 use umicms\captcha\toolbox\CaptchaTools;
 use umicms\model\toolbox\ModelTools;
 use umicms\module\toolbox\ModuleTools;
+use umicms\purifier\toolbox\PurifierTools;
 use umicms\serialization\toolbox\SerializationTools;
 use umicms\slugify\toolbox\SlugGeneratorTools;
 
@@ -46,5 +47,6 @@ return [
     ModelTools::NAME => require(CMS_LIBRARY_DIR . '/model/toolbox/config.php'),
     SerializationTools::NAME => require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php'),
     CaptchaTools::NAME => require(CMS_LIBRARY_DIR . '/captcha/toolbox/config.php'),
+    PurifierTools::NAME => require(CMS_LIBRARY_DIR . '/purifier/toolbox/config.php'),
     SlugGeneratorTools::NAME => require(CMS_LIBRARY_DIR . '/slugify/toolbox/config.php')
 ];

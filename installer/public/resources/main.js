@@ -8,17 +8,17 @@ require.config({
 
         Modernizr:  'libs/modernizr/modernizr',
         jQuery:     'libs/jquery/dist/jquery',
-        jQueryUI:   'libs/jqueryui/ui/jquery-ui',
+        jQueryUI:   'libs/jquery-ui/ui/jquery-ui', //Официальный репозиторий jquery.ui (через точку), но там нет собранного файла. Поменял прошлый репозиторий из-за того, что на момент pull-request в нём тоже не было собранного файла
         Handlebars: 'libs/handlebars/handlebars',
         Ember:      'libs/ember/ember',
         DS:         'libs/ember-data/ember-data',
 
         iscroll:    'libsStatic/iscroll-probe-5.1.1',
         ckEditor:   'libs/ckeditor/ckeditor',
-        datepicker: 'libsStatic/datepicker',
+//        datepicker: 'libsStatic/datepicker',
         timepicker: 'libs/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
         moment:     'libs/momentjs/min/moment-with-langs.min',
-        elFinder:   'libsStatic/elFinder',
+        elFinder:   'libsStatic/elFinder', //Почему папку с языками не сохраняем? Как это вообще сейчас работает?
         chartJs:    'libs/chartjs/Chart'
     },
 
@@ -37,7 +37,7 @@ require.config({
         Ember:      {exports: 'Ember',      deps: ['Handlebars', 'jQuery']},
         DS:         {exports: 'DS',         deps: ['Ember']},
         ckEditor:   {exports: 'ckEditor'},
-        datepicker: {exports: 'datepicker', deps: ['jQuery']},
+//        datepicker: {exports: 'datepicker', deps: ['jQuery']},
         timepicker: {exports: 'timepicker', deps: ['jQuery', 'jQueryUI']},
         chartJs:    {exports: 'chartJs'}
     },
@@ -60,7 +60,7 @@ require.config({
         //skeleton                  partials/skeleton
         {name: 'table',             location: "partials/table"},
         {name: 'tableControl',      location: "partials/tableControl"},
-        {name: 'toolBar',           location: "partials/toolBar"},
+        {name: 'toolbar',           location: "partials/toolbar"},
         {name: 'topBar',            location: "partials/topBar"},
         {name: 'tree',              location: "partials/tree"},
         {name: 'treeSimple',        location: "partials/treeSimple"}
@@ -82,16 +82,16 @@ require(['jQuery'], function(jQuery){
         };
 
         if(data.result){
-            objectMerge(window.UmiSettings, data.result);
+            objectMerge(window.UmiSettings, data.result.auth);
         }
         require(['application/main'], function(application){
             application();
         });
     });
+
     deffer.fail(function(error){
         require(['auth/main'], function(auth){
             auth({accessError: error});
         });
     });
 });
-

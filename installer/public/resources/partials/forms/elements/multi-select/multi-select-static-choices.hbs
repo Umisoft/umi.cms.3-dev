@@ -1,0 +1,27 @@
+<div class="small-12 columns">
+    {{view view.inputView}}
+    <span class="postfix radius" {{action "toggleList" target="view"}}>
+        <i class="triangle"></i>
+    </span>
+    {{#if view.isOpen}}
+        <ul class="umi-multi-select-list">
+            {{#each view.notSelectedObjects}}
+                <li {{action "select" value target="view"}} {{bind-attr class="hover"}}>
+                    {{label}}
+                </li>
+            {{else}}
+                <li class="placeholder">
+                    {{i18n "Nothing found"}}
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
+</div>
+
+{{#if view.selectedObjects.length}}
+    <div class="selected-list">
+        {{#each view.selectedObjects}}
+            <div class="item" {{action "unSelect" value target="view"}}>{{label}} <i class="close">&times;</i></div>
+        {{/each}}
+    </div>
+{{/if}}

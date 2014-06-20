@@ -10,28 +10,16 @@
 
 namespace umicms\project\module\service\admin;
 
-use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\AdminComponent',
     AdminComponent::OPTION_COMPONENTS => [
         'backup' => '{#lazy:~/project/module/service/admin/backup/component.config.php}'
     ],
-    AdminComponent::OPTION_ACL => [
 
-        IAclFactory::OPTION_ROLES => [
-            'backupEditor' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'component:backup'
-        ],
-        IAclFactory::OPTION_RULES => [
-            'backupEditor' => ['component:backup' => []]
-        ]
-    ],
     AdminComponent::OPTION_ROUTES => [
         'component' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,

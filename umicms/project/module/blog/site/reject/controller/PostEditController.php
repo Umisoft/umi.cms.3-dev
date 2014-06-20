@@ -10,45 +10,53 @@
 
 namespace umicms\project\module\blog\site\reject\controller;
 
+use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\http\Response;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\hmvc\component\site\TFormController;
 
 /**
  * Контроллер редактирования отклонённого поста блога.
  */
-class PostEditController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class PostEditController extends BaseCmsController
 {
-    use TObjectPersisterAware;
+    use TFormController;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
+    /**
+     * @var bool $success флаг указывающий на успешное сохранение изменений
+     */
+    private $success = false;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getTemplateName()
     {
-        $id = $this->getRouteVar('id');
-        $blogPost = $this->api->post()->getRejectedPostById($id);
+        return 'editPost';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
+    {
+        $blogPost = $this->module->post()->getRejectedPostById($this->getRouteVar('id'));
 
         if (!$this->isAllowed($blogPost)) {
             throw new ResourceAccessForbiddenException(
@@ -56,27 +64,28 @@ class PostEditController extends BaseAccessRestrictedController implements IObje
                 $this->translate('Access denied')
             );
         }
-        $form = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $blogPost);
 
-        if ($this->isRequestMethodPost()) {
-
-            $formData = $this->getAllPostVars();
-
-            if ($form->setData($formData) && $form->isValid()) {
-
-                $this->getObjectPersister()->commit();
-
-                return $this->createRedirectResponse($this->getRequest()->getReferer());
-            }
-        }
-
-        return $this->createViewResponse(
-            'editPost',
-            [
-                'blogPost' => $blogPost,
-                'form' => $form
-            ]
+        return $this->module->post()->getForm(
+            BlogPost::FORM_EDIT_POST,
+            IObjectType::BASE,
+            $blogPost
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $this->commit();
+        $this->success = true;
+    }
+
+    protected function buildResponseContent()
+    {
+        return [
+            'success' => $this->success
+        ];
     }
 }
  

@@ -10,14 +10,13 @@
 
 namespace umicms\project\module\news\site\rubric\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseTreeWidget;
-use umicms\project\module\news\api\NewsModule;
+use umicms\project\module\news\model\NewsModule;
 
 /**
  * Виджет для вывода дерева новостных рубрик.
  */
-class RubricTreeWidget extends BaseTreeWidget implements IAclResource
+class RubricTreeWidget extends BaseTreeWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -25,17 +24,17 @@ class RubricTreeWidget extends BaseTreeWidget implements IAclResource
     public $template = 'tree';
 
     /**
-     * @var NewsModule $api API модуля "Новости"
+     * @var NewsModule $module модуль "Новости"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param NewsModule $newsApi API модуля "Новости"
+     * @param NewsModule $newsApi модуль "Новости"
      */
     public function __construct(NewsModule $newsApi)
     {
-        $this->api = $newsApi;
+        $this->module = $newsApi;
     }
 
     /**
@@ -43,7 +42,7 @@ class RubricTreeWidget extends BaseTreeWidget implements IAclResource
      */
     protected function getSelector()
     {
-        return $this->api->rubric()->select();
+        return $this->module->rubric()->select();
     }
 }
  

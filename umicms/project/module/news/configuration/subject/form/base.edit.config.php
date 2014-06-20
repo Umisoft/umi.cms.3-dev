@@ -8,12 +8,11 @@
  * file that was distributed with this source code.
  */
 
-use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\news\api\object\NewsSubject;
+use umicms\project\module\news\model\object\NewsSubject;
 
 return [
 
@@ -38,9 +37,9 @@ return [
                 ],
                 NewsSubject::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => NewsSubject::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsSubject::FIELD_PAGE_LAYOUT
                     ],
                 ]
@@ -93,15 +92,7 @@ return [
                     'options' => [
                         'dataSource' => NewsSubject::FIELD_PAGE_CONTENTS
                     ]
-                ],
-
-                'newsRssImportScenario' => [
-                    'type' => MultiSelect::TYPE_NAME,
-                    'label' => NewsSubject::FIELD_RSS,
-                    'options' => [
-                        'dataSource' => NewsSubject::FIELD_RSS
-                    ]
-                ],
+                ]
             ]
         ]
     ]

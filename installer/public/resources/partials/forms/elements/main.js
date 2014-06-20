@@ -18,7 +18,9 @@ define(
         'partials/forms/elements/datetime/main',
         'partials/forms/elements/file/main',
         'partials/forms/elements/image/main',
-        'partials/forms/elements/textarea/main'
+        'partials/forms/elements/textarea/main',
+        'partials/forms/elements/checkbox-group/main',
+        'partials/forms/elements/color/main'
     ],
     function(
         UMI,
@@ -39,7 +41,9 @@ define(
         datetimeElement,
         fileElement,
         imageElement,
-        textareaElement
+        textareaElement,
+        checkboxGroupElement,
+        colorElement
     ){
         "use strict";
 
@@ -49,7 +53,6 @@ define(
             wysiwygElement();
             selectElement();
             multiSelectElement();
-            /* TODO плавно переносим элементы на другую структуру + стандартизированные названия */
             checkboxElement();
             radioElement();
             textElement();
@@ -62,6 +65,8 @@ define(
             fileElement();
             imageElement();
             textareaElement();
+            checkboxGroupElement();
+            colorElement();
         };
     }
 );

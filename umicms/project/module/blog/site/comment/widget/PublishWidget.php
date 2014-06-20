@@ -10,37 +10,40 @@
 
 namespace umicms\project\module\blog\site\comment\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogComment;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogComment;
 
 /**
  * Виджет публикации комментария.
  */
-class PublishWidget extends BaseFormWidget implements IAclResource
+class PublishWidget extends BaseFormWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
     public $template = 'publishForm';
     /**
+     * {@inheritdoc}
+     */
+    public $redirectUrl = self::REFERER_REDIRECT;
+    /**
      * @var string|BlogComment $blogComment комментарий или GUID комментария
      */
     public $blogComment;
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -49,7 +52,7 @@ class PublishWidget extends BaseFormWidget implements IAclResource
     protected function getForm()
     {
         if (is_string($this->blogComment)) {
-            $this->blogComment = $this->api->comment()->get($this->blogComment);
+            $this->blogComment = $this->module->comment()->get($this->blogComment);
         }
 
         if (!$this->blogComment instanceof BlogComment) {
@@ -64,7 +67,12 @@ class PublishWidget extends BaseFormWidget implements IAclResource
             );
         }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE, $this->blogComment);
+        $form = $this->module->comment()->getForm(
+            BlogComment::FORM_PUBLISH_COMMENT,
+            BlogComment::TYPE,
+            $this->blogComment
+        );
+
         $form->setAction($this->getUrl('publish', ['id' => $this->blogComment->getId()]));
 
         return $form;

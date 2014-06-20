@@ -10,75 +10,63 @@
 
 namespace umicms\project\module\blog\site\post\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
+use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\hmvc\exception\http\HttpNotFound;
-use umi\http\Response;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\hmvc\component\site\TFormSimpleController;
 
 /**
  * Контроллер помещения поста блога в черновики.
  */
-class PostToDraftController extends BaseAccessRestrictedController implements IFormAware, IObjectPersisterAware
+class PostToDraftController extends BaseCmsController
 {
-    use TFormAware;
-    use TObjectPersisterAware;
+    use TFormSimpleController;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
+    /**
+     * @var BlogPost $blogPost пост блога
+     */
+    protected $blogPost;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
-     * @throws HttpNotFound
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function buildForm()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
-        }
+        $this->blogPost = $this->module->post()->getById($this->getRouteVar('id'));
 
-        $blogPost = $this->api->post()->getById($this->getRouteVar('id'));
-
-        if (!$this->isAllowed($blogPost)) {
+        if (!$this->isAllowed($this->blogPost)) {
             throw new ResourceAccessForbiddenException(
-                $blogPost,
+                $this->blogPost,
                 $this->translate('Access denied')
             );
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE);
-        $formData = $this->getAllPostVars();
+        return $this->module->post()->getForm(BlogPost::FORM_DRAFT_POST, IObjectType::BASE);
+    }
 
-        if ($form->setData($formData) && $form->isValid()) {
-
-            $blogPost->draft();
-
-            $this->getObjectPersister()->commit();
-
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages()); exit();
-        }
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $this->blogPost->draft();
+        $this->commit();
     }
 }
  

@@ -9,11 +9,10 @@
  */
 
 use umi\form\element\Checkbox;
-use umi\form\element\MultiSelect;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\blog\model\object\BlogTag;
 
 return [
 
@@ -99,15 +98,7 @@ return [
                     'options' => [
                         'dataSource' => BlogTag::FIELD_PAGE_CONTENTS
                     ]
-                ],
-
-                'rssImportItem' => [
-                    'type' => MultiSelect::TYPE_NAME,
-                    'label' => BlogTag::FIELD_RSS,
-                    'options' => [
-                        'dataSource' => BlogTag::FIELD_RSS
-                    ]
-                ],
+                ]
             ]
         ]
     ]

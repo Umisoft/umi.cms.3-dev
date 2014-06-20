@@ -11,31 +11,31 @@
 namespace umicms\project\module\blog\site\tag\controller;
 
 use umi\http\Response;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\project\module\blog\api\BlogModule;
+use umicms\project\module\blog\model\BlogModule;
 use umicms\project\site\config\ISiteSettingsAware;
 use umicms\project\site\config\TSiteSettingsAware;
 
 /**
  * Контроллер вывода общей RSS-ленты.
  */
-class BlogTagRssController extends BaseAccessRestrictedController implements ISiteSettingsAware
+class BlogTagRssController extends BaseCmsController implements ISiteSettingsAware
 {
     use TSiteSettingsAware;
 
     /**
-     * @var BlogModule $api
+     * @var BlogModule $module
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $api
+     * @param BlogModule $module
      */
-    public function __construct(BlogModule $api)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -46,11 +46,11 @@ class BlogTagRssController extends BaseAccessRestrictedController implements ISi
     {
         $slugTag = $this->getRouteVar('slug');
 
-        $blogTag = $this->api->tag()->getByUri($slugTag);
+        $blogTag = $this->module->tag()->getByUri($slugTag);
 
-        $BlogTagPosts = $this->api->getPostByTag([$blogTag]);
+        $BlogTagPosts = $this->module->getPostByTag([$blogTag]);
 
-        $rssFeed = $this->api->getPostRssFeed(
+        $rssFeed = $this->module->getPostRssFeed(
             $blogTag->displayName,
             $blogTag->contents,
             $BlogTagPosts

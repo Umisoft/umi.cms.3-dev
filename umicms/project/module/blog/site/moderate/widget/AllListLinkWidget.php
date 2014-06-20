@@ -10,13 +10,12 @@
 
 namespace umicms\project\module\blog\site\moderate\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет для вывода ссылки на спискок всех черновиков.
  */
-class AllListLinkWidget extends BaseLinkWidget implements IAclResource
+class AllListLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}

@@ -10,14 +10,13 @@
 
 namespace umicms\project\module\blog\site\tag\widget;
 
-use umi\acl\IAclResource;
-use umicms\hmvc\widget\BaseWidget;
-use umicms\project\module\blog\api\BlogModule;
+use umicms\hmvc\widget\BaseCmsWidget;
+use umicms\project\module\blog\model\BlogModule;
 
 /**
  * Виджет для вывода облака тэгов.
  */
-class TagCloudWidget extends BaseWidget implements IAclResource
+class TagCloudWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -32,17 +31,17 @@ class TagCloudWidget extends BaseWidget implements IAclResource
      */
     public $maxFontSize = '24';
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -50,7 +49,7 @@ class TagCloudWidget extends BaseWidget implements IAclResource
      */
     public function __invoke()
     {
-        $tags = $this->api->getTagCloud($this->minFontSize, $this->maxFontSize);
+        $tags = $this->module->getTagCloud($this->minFontSize, $this->maxFontSize);
         return $this->createResult(
             $this->template,
             [

@@ -17,6 +17,7 @@ use umi\i18n\toolbox\I18nTools;
 use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
 use umi\templating\toolbox\TemplatingTools;
+use umicms\filter\HtmlPurifier;
 use umicms\filter\Slug;
 use umicms\form\element\Captcha;
 use umicms\form\element\File;
@@ -25,6 +26,9 @@ use umicms\form\element\PasswordWithConfirmation;
 use umicms\form\element\Wysiwyg;
 use umicms\form\element\Permissions;
 use umicms\module\toolbox\ModuleTools;
+use umicms\orm\metadata\field\relation\CmsObjectRelationField;
+use umicms\orm\metadata\field\relation\CmsPageRelationField;
+use umicms\orm\metadata\field\SerializedArrayField;
 use umicms\slugify\toolbox\SlugGeneratorTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 
@@ -93,15 +97,18 @@ return [
                 'defaultHierarchicObjectClass' => 'umicms\orm\object\CmsHierarchicObject'
             ],
             'objectCollection' => [
-                'defaultSimpleCollectionClass' => 'umicms\orm\collection\SimpleCollection',
-                'defaultHierarchicCollectionClass' => 'umicms\orm\collection\SimpleHierarchicCollection'
+                'defaultSimpleCollectionClass' => 'umicms\orm\collection\CmsCollection',
+                'defaultHierarchicCollectionClass' => 'umicms\orm\collection\CmsHierarchicCollection'
             ],
             'selector' => [
                 'selectorClass' => 'umicms\orm\selector\CmsSelector'
             ],
             'metadata' => [
                 'fieldTypes' => [
-                    IField::TYPE_BELONGS_TO => 'umicms\orm\metadata\field\relation\BelongsToRelationField'
+                    IField::TYPE_BELONGS_TO => 'umicms\orm\metadata\field\relation\BelongsToRelationField',
+                    CmsObjectRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsObjectRelationField',
+                    CmsPageRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsPageRelationField',
+                    SerializedArrayField::TYPE => 'umicms\orm\metadata\field\SerializedArrayField'
                 ]
             ]
         ],
@@ -109,6 +116,7 @@ return [
             'structure' => '{#lazy:~/project/module/structure/configuration/structure/metadata.config.php}',
             'layout' => '{#lazy:~/project/module/structure/configuration/layout/metadata.config.php}',
             'infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/metadata.config.php}',
+            'menu' => '{#lazy:~/project/module/structure/configuration/menu/metadata.config.php}',
 
             'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/metadata.config.php}',
             'newsItem' => '{#lazy:~/project/module/news/configuration/item/metadata.config.php}',
@@ -141,6 +149,7 @@ return [
             'structure'     => '{#lazy:~/project/module/structure/configuration/structure/collection.config.php}',
             'layout'     => '{#lazy:~/project/module/structure/configuration/layout/collection.config.php}',
             'infoblock'     => '{#lazy:~/project/module/structure/configuration/infoblock/collection.config.php}',
+            'menu'     => '{#lazy:~/project/module/structure/configuration/menu/collection.config.php}',
 
             'newsRubric' => '{#lazy:~/project/module/news/configuration/rubric/collection.config.php}',
             'newsItem' => '{#lazy:~/project/module/news/configuration/item/collection.config.php}',
@@ -173,6 +182,16 @@ return [
     I18nTools::NAME => [
         'localesServiceClass' => 'umicms\i18n\CmsLocalesService',
         'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
+    ],
+
+    FilterTools::NAME => [
+        'factories' => [
+            'filter' => [
+                'types' => [
+                    HtmlPurifier::TYPE => 'umicms\filter\HtmlPurifier'
+                ]
+            ]
+        ]
     ],
 
     SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}',

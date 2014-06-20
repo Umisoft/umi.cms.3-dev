@@ -10,48 +10,53 @@
 
 namespace umicms\project\module\blog\site\draft\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
+use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\http\Response;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\hmvc\component\site\TFormController;
 
 /**
  * Контроллер редактирования черновика блога.
  */
-class BlogEditDraftController extends BaseAccessRestrictedController implements IFormAware, IObjectPersisterAware
+class BlogEditDraftController extends BaseCmsController
 {
-    use TFormAware;
-    use TObjectPersisterAware;
+    use TFormController;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
+    /**
+     * @var bool $success флаг указывающий на успешное сохранение изменений
+     */
+    private $success = false;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getTemplateName()
     {
-        $id = $this->getRouteVar('id');
-        $blogDraft = $this->api->post()->getDraftById($id);
+        return 'blogDraft';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
+    {
+        $blogDraft = $this->module->post()->getDraftById($this->getRouteVar('id'));
 
         if (!$this->isAllowed($blogDraft)) {
             throw new ResourceAccessForbiddenException(
@@ -60,27 +65,27 @@ class BlogEditDraftController extends BaseAccessRestrictedController implements 
             );
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $blogDraft);
-
-        if ($this->isRequestMethodPost()) {
-
-            $formData = $this->getAllPostVars();
-
-            if ($form->setData($formData) && $form->isValid()) {
-
-                $this->getObjectPersister()->commit();
-
-                return $this->createRedirectResponse($this->getRequest()->getReferer());
-            }
-        }
-
-        return $this->createViewResponse(
-            'blogDraft',
-            [
-                'blogDraft' => $blogDraft,
-                'form' => $form
-            ]
+        return $this->module->post()->getForm(
+            BlogPost::FORM_EDIT_POST,
+            IObjectType::BASE,
+            $blogDraft
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $this->commit();
+        $this->success = true;
+    }
+
+    protected function buildResponseContent()
+    {
+        return [
+            'success' => $this->success
+        ];
     }
 }
  

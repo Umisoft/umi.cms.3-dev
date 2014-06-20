@@ -16,7 +16,7 @@ use umi\form\IForm;
 /**
  * Базовый класс виджета вывода формы.
  */
-abstract class BaseFormWidget extends BaseWidget
+abstract class BaseFormWidget extends BaseCmsWidget
 {
     /**
      * Имя инпута для хранения URL для редиректа после успешной обработки формы

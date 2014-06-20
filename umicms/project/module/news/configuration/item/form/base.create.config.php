@@ -15,7 +15,7 @@ use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\news\api\object\NewsItem;
+use umicms\project\module\news\model\object\NewsItem;
 
 return [
 
@@ -40,9 +40,9 @@ return [
                 ],
                 NewsItem::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => NewsItem::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsItem::FIELD_PAGE_LAYOUT
                     ],
                 ],
@@ -105,9 +105,9 @@ return [
 
                 NewsItem::FIELD_RUBRIC => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => NewsItem::FIELD_RUBRIC,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsItem::FIELD_RUBRIC
                     ]
                 ],

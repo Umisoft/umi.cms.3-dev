@@ -3,9 +3,7 @@ define(['App'], function(UMI){
     return function(){
 
         UMI.TreeControlController = Ember.ObjectController.extend({
-            controlName: function(){
-                return 'treeControl' + Ember.String.capitalize(this.get('controllers.component.collectionName'));
-            }.property('controllers.component.collectionName'),
+            needs: ['component', 'context'],
 
             expandedBranches: [],
 
@@ -18,7 +16,7 @@ define(['App'], function(UMI){
                 var activeContext = this.get('activeContext');
                 if(activeContext){
                     var mpath = [];
-                    if(activeContext.get('id') !== 'root'){
+                    if(activeContext.get('id') !== 'root' && activeContext.get('mpath')){
                         mpath = activeContext.get('mpath').without(parseFloat(activeContext.get('id'))) || [];
                     }
                     mpath.push('root');
@@ -40,7 +38,7 @@ define(['App'], function(UMI){
                 }
                 var self = this;
                 var Root = Ember.Object.extend({
-                    displayName: sideBarControl.displayName,
+                    displayName: Ember.typeOf(sideBarControl.params) === 'object' ? sideBarControl.params.rootNodeName : '',
                     root: true,
                     hasChildren: true,
                     id: 'root',
@@ -91,27 +89,20 @@ define(['App'], function(UMI){
                 });
                 var root = Root.create({});
                 return [root];// Намеренно возвращается значение в виде массива, так как шаблон ожидает именно такой формат
-            }.property('root.childCount', 'controllers.component.sideBarControl'),
+            }.property('root.childCount', 'model'),
 
             rootChildren: null,
-
-            filters: function(){
-                var filters = this.get('controllers.component.sideBarControl.filters');
-                return filters;
-            }.property('controllers.component.sideBarControl'),
-
-            activeFilters: function(){
-                if(this.get('filters')){
-                    return this.get('filters').filterBy('isActive', true);
-                }
-            }.property('filters.@each.isActive'),
-
             /**
              Активный контекст
              */
             activeContextBinding: 'controllers.context.model',
 
-            needs: ['component', 'context'],
+            contextToolbar: function(){
+                var sideBarControl = this.get('controllers.component.sideBarControl');
+                if(sideBarControl && sideBarControl.get('contextToolbar')){
+                    return sideBarControl.get('contextToolbar');
+                }
+            }.property('controllers.component.sideBarControl.contextToolbar'),
 
             actions: {
                 /**
@@ -197,57 +188,15 @@ define(['App'], function(UMI){
                     );
                 },
 
-                toggleFastAction: function(action){
-                    var selectAction;
-                    var controlName = this.get('controlName');
-                    if(!this.get('selectAction') || this.get('selectAction').type !== action.type){
-                        selectAction = action;
-                    } else{
-                        selectAction = null;
-                    }
-                    this.set('selectAction', selectAction);
-                    UMI.Utils.LS.set('treeControls.' + controlName + '.contextAction', selectAction);
-                },
-
-                sendAction: function(action, object){
-                    this.send(action.type, object, action);
+                sendActionForBehaviour: function(behaviour, object){
+                    this.send(behaviour.name, object, behaviour);
                 }
-            },
-
-            selectAction: function(){
-                var controlName = this.get('controlName');
-                return UMI.Utils.LS.get('treeControls.' + controlName + '.contextAction');
-            }.property('controlName'),
-
-            selectActionIcon: function(){
-                var iconType;
-                if(this.get('selectAction')){
-                    switch(this.get('selectAction.type')){
-                        case 'create':
-                            iconType = 'add';
-                            break;
-                        case 'edit':
-                            iconType = 'edit';
-                            break;
-                        case 'switchActivity':
-                            iconType = 'pause';
-                            break;
-                        case 'viewOnSite':
-                            iconType = 'eye';
-                            break;
-                        default:
-                            iconType = this.get('selectAction.type');
-                    }
-                    return 'icon-' + iconType;
-                }
-            }.property('selectAction'),
-
-            actionList: function(){
-                return this.get('controllers.component.sideBarControl.toolbar');
-            }.property()
+            }
         });
 
         UMI.TreeItemController = Ember.ObjectController.extend({
+            objectBinding: 'content',
+
             getChildren: function(){
                 var model = this.get('model');
                 var collectionName = model.get('typeKey') || model.constructor.typeKey;
@@ -267,21 +216,6 @@ define(['App'], function(UMI){
             sortedChildren: function(){
                 return this.getChildren();
             }.property('didUpdate'),
-
-            visible: function(){
-                var visible = true;
-                var filters = this.get('filters') || [];
-                var model = this.get('model');
-                var i;
-                for(i = 0; i < filters.length; i++){
-                    if(!filters[i].allow.contains(model.get(filters[i].fieldName))){
-                        visible = false;
-                    }
-                }
-                return visible;
-            }.property('model', 'filters'),
-
-            filters: Ember.computed.alias("controllers.treeControl.activeFilters"),
 
             needs: 'treeControl',
 

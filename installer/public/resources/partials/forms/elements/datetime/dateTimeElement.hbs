@@ -1,14 +1,7 @@
-<style>
-    .umi-element-date-time .umi-element-date{
-        float: left;
-        width: calc(50% - 10px);
-        margin-right: 10px;
-    }
-    .umi-element-date-time .umi-element-time{
-        float: left;
-        width: calc(50% - 10px);
-        margin-left: 10px;
-    }
-</style>
-{{!input type="text" class="umi-element-date" value=valueObject}}
-{{!input type="text" class="umi-element-time" value=valueObject}}
+<div class="umi-element-center umi-element-center-date">
+    {{input type="text" class="umi-date" value=view.value}}
+</div>
+
+<div class="umi-element-right umi-element-right-date">
+    <i class="icon icon-delete" {{action "clearValue" target="view"}}></i>
+</div>

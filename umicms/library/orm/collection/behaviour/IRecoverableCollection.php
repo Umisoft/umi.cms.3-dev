@@ -15,7 +15,7 @@ use umicms\exception\NotAllowedOperationException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\service\api\object\Backup;
+use umicms\project\module\service\model\object\Backup;
 
 /**
  * Интерфейс коллекций, поддерживающих создание резервных копий объектов.

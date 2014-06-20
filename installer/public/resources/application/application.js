@@ -7,17 +7,18 @@ define(
         'jQueryUI',
         'elFinder',
         'timepicker',
-        'datepicker',
+//        'datepicker',
         'moment',
         'application/config',
         'application/utils',
+        'application/i18n',
         'application/templates',
         'application/models',
         'application/router',
         'application/controllers',
         'application/views'
     ],
-    function(DS, Modernizr, iscroll, ckEditor, jQueryUI, elFinder, timepicker, datepicker, moment, config, utils, templates, models, router, controller, views){
+    function(DS, Modernizr, iscroll, ckEditor, jQueryUI, elFinder, timepicker, /* datepicker,*/ moment, config, utils, i18n, templates, models, router, controller, views){
         'use strict';
 
         var UMI = window.UMI = window.UMI || {};
@@ -48,6 +49,7 @@ define(
 
         utils(UMI);
         config(UMI);
+        i18n(UMI);
 
         /**
          * @class UmiRESTAdapter
@@ -153,7 +155,7 @@ define(
              Удаление объекта-обёртки result из всех приходящих объектов
              Удаление объекта-обёртки collection из всех объектов его содержащих
              */
-            normalizePayload: function(type, payload){
+            normalizePayload: function(payload){
                 payload = payload.result;
                 if(payload.hasOwnProperty('collection')){
                     payload = payload.collection;
@@ -206,7 +208,7 @@ define(
             }
         });
 
-        UMI.Store = DS.Store.extend({
+        UMI.ApplicationStore = DS.Store.extend({
             /**
              * Обновление объектов коллекции без очищения загруженных полей
              * @method updateCollection
@@ -269,10 +271,21 @@ define(
                         label = "DS: Handle Adapter#findQuery of " + type;
 
                     return Ember.RSVP.Promise.cast(promise, label).then(function(adapterPayload) {
+                        var queryParams = Ember.get(query, 'fields') || '';
                         var payload = serializer.extract(store, type, adapterPayload, null, 'findQuery');
 
                         Ember.assert("The response from a findQuery must be an Array, not " + Ember.inspect(payload), Ember.typeOf(payload) === 'array');
 
+                        queryParams = queryParams.split(',');
+                        queryParams.push('id');
+                        queryParams.push('version');
+                        for(var i = 0; i < payload.length; i++){
+                            for(var key in payload[i]){
+                                if(payload[i].hasOwnProperty(key) && !queryParams.contains(key)){
+                                    delete payload[i][key];
+                                }
+                            }
+                        }
                         //recordArray.load(payload);
                         return payload;
                     }, null, "DS: Extract payload of findQuery " + type);
@@ -293,20 +306,21 @@ define(
                     promise = self.findById(type, coerceId(id));
                 }
 
-                return promiseArray(promise.then(function(result){
+                var deffered = Ember.RSVP.defer();
+                promise.then(function(result){
                     var i;
                     var objects = [];
-                    for(i = 0; i < result.length; i++){
-                        for(var key in result[i]){
-                            if(result[i].hasOwnProperty(key) && Ember.isEmpty(result[i][key])){
-                               delete result[i][key];
-                            }
+                    Ember.run.later(function(){//TODO: Очередь запросов
+                        var updateMany = function(self, objects, type, params){
+                            objects.push(self.update(type, params));
+                        };
+                        for(i = 0; i < result.length; i++){
+                            updateMany(self, objects, type, result[i]);
                         }
-                        objects.push(self.update(type, result[i]));
-                    }
-
-                    return objects;
-                }));
+                        deffered.resolve(objects);
+                    }, 700);
+                });
+                return promiseArray(deffered.promise);
             }
         });
 
@@ -331,18 +345,81 @@ define(
          */
         UMI.CustomDateTransform = DS.Transform.extend({
             deserialize: function(deserialized){
-                if(deserialized && deserialized.date){
-                    Ember.set(deserialized, 'date', moment(deserialized.date).format('DD/MM/YYYY'));
-                    deserialized = JSON.stringify(deserialized);
+                deserialized = Ember.isNone(deserialized) ? "" : String(deserialized);
+                if(deserialized){
+                    deserialized = moment(deserialized).format('DD.MM.YYYY');
                 }
                 return deserialized;
             },
             serialize: function(serialized){
                 if(serialized){
-                    serialized = JSON.parse(serialized);
-                    if(serialized.date){
-                        Ember.set(serialized, 'date', moment(serialized.date, 'DD/MM/YYYY').format('YYYY-MM-DD h:mm:ss'));
+                    serialized = moment(serialized, 'DD.MM.YYYY').format('YYYY-MM-DD');
+                }
+                return serialized;
+            }
+        });
+
+        /**
+         * Приводит приходящий объект date:{} к нужному формату даты
+         * TODO Смена формата в зависимости от языка системы
+         * TODO Почему не прилылать в простом timeStamp
+         * DS.attr('date')
+         * @type {*|void|Object}
+         */
+        UMI.CustomDateTimeTransform = DS.Transform.extend({
+            deserialize: function(deserialized){
+                if(Ember.typeOf(deserialized) === 'object' && deserialized.date){
+                    Ember.set(deserialized, 'date', moment(deserialized.date).format('DD.MM.YYYY h:mm:ss'));
+                    deserialized = JSON.stringify(deserialized);
+                } else{
+                    deserialized = "";
+                }
+                return deserialized;
+            },
+            serialize: function(serialized){
+                if(serialized){
+                    try{
+                        serialized = JSON.parse(serialized);
+                        if(serialized.date){
+                            Ember.set(serialized, 'date', moment(serialized.date, 'DD.MM.YYYY h:mm:ss').format('YYYY-MM-DD h:mm:ss'));
+                        }
+                    } catch(error){
+                        error.message = 'Некорректное значение поля. Ожидается массив или null. ' + error.message;
+                        this.get('container').lookup('route:application').send('backgroundError', error);
                     }
+                } else{
+                    serialized = null;
+                }
+                return serialized;
+            }
+        });
+
+        /**
+         * Значение поля "сериализованный массив"
+         * DS.attr('serialized')
+         */
+        UMI.SerializedTransform = DS.Transform.extend({
+            deserialize: function(deserialized){
+                if(deserialized){
+                    if(Ember.typeOf(deserialized) === 'array'){
+                        deserialized.sort();
+                    }
+                    deserialized = JSON.stringify(deserialized);
+                } else{
+                    deserialized = '';
+                }
+                return deserialized;
+            },
+            serialize: function(serialized){
+                if(serialized){
+                    try{
+                        serialized = JSON.parse(serialized);
+                    } catch(error){
+                        error.message = 'Некорректное значение поля. Ожидается массив или null. ' + error.message;
+                        this.get('container').lookup('route:application').send('backgroundError', error);
+                    }
+                } else{
+                    serialized = [];
                 }
                 return serialized;
             }

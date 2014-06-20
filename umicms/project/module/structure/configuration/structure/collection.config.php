@@ -10,12 +10,12 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
-use umicms\project\module\structure\api\object\StaticPage;
-use umicms\project\module\structure\api\object\SystemPage;
+use umicms\project\module\structure\model\object\StaticPage;
+use umicms\project\module\structure\model\object\SystemPage;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
-    'class' => 'umicms\project\module\structure\api\collection\StructureElementCollection',
+    'class' => 'umicms\project\module\structure\model\collection\StructureElementCollection',
 
     'handlers' => [
         'admin' => 'structure.page',

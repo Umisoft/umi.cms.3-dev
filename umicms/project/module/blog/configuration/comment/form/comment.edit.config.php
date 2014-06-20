@@ -13,7 +13,7 @@ use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\blog\api\object\BlogComment;
+use umicms\project\module\blog\model\object\BlogComment;
 
 return [
 
@@ -73,7 +73,7 @@ return [
                     'type' => Wysiwyg::TYPE_NAME,
                     'label' => BlogComment::FIELD_CONTENTS,
                     'options' => [
-                        'dataSource' => BlogComment::FIELD_CONTENTS
+                        'dataSource' => BlogComment::FIELD_CONTENTS_RAW
                     ]
                 ]
             ],

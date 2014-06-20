@@ -1,1 +1,3 @@
-{{input type="radio" id=inputId name=meta.attributes.name}}<label for="{{unbound inputId}}" unselectable="on" onselectstart="return false;"><span></span>{{meta.label}}</label>
+{{#each view.meta.choices}}
+    {{view view.radioElementView}}
+{{/each}}

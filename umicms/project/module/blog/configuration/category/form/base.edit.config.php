@@ -13,7 +13,7 @@ use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\blog\api\object\BlogCategory;
+use umicms\project\module\blog\model\object\BlogCategory;
 
 return [
 
@@ -38,9 +38,9 @@ return [
                 ],
                 BlogCategory::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogCategory::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogCategory::FIELD_PAGE_LAYOUT
                     ],
                 ]
@@ -99,7 +99,8 @@ return [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => BlogCategory::FIELD_POSTS,
                     'options' => [
-                        'dataSource' => BlogCategory::FIELD_POSTS
+                        'dataSource' => BlogCategory::FIELD_POSTS,
+                        'lazy' => true
                     ]
                 ]
             ]

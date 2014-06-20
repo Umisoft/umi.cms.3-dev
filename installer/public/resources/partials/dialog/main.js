@@ -6,6 +6,9 @@ define(['App', 'text!./dialog-layout.hbs', 'text!./dialog.hbs'], function(UMI, d
         open: function(params){
             this.set('deferred', Ember.RSVP.defer());
             var deferred = this.get('deferred');
+            if(Ember.get(params, 'proposeRemember')){
+                //проверить присутсвие запомненного действия
+            }
             this.set('model', Ember.Object.create(params));
             return deferred.promise;
         },
@@ -47,7 +50,6 @@ define(['App', 'text!./dialog-layout.hbs', 'text!./dialog.hbs'], function(UMI, d
         },
         actions: {
             confirm: function(){
-                console.log('confirm');
                 var element = this.$();
                 var dialog = element.children('.umi-dialog');
                 dialog.removeClass('visible');

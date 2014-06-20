@@ -13,7 +13,7 @@ use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\blog\api\collection\BlogTagCollection',
+    'class' => 'umicms\project\module\blog\model\collection\BlogTagCollection',
     'handlers' => [
         'admin' => 'blog.tag',
         'site' => 'blog.tag'

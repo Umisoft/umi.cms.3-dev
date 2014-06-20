@@ -11,10 +11,10 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\users\api\object\AuthorizedUser;
-use umicms\project\module\users\api\object\BaseUser;
-use umicms\project\module\users\api\object\Guest;
-use umicms\project\module\users\api\object\Supervisor;
+use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\BaseUser;
+use umicms\project\module\users\model\object\Guest;
+use umicms\project\module\users\model\object\Supervisor;
 
 return [
     'dataSource' => [
@@ -57,7 +57,7 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => ['columnName' => 'display_name'],
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
                 'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
@@ -187,7 +187,7 @@ return [
     ],
     'types'      => [
         'base'                    => [
-            'objectClass' => 'umicms\project\module\users\api\object\BaseUser',
+            'objectClass' => 'umicms\project\module\users\model\object\BaseUser',
             'fields'      => [
                 BaseUser::FIELD_IDENTIFY,
                 BaseUser::FIELD_GUID,
@@ -205,7 +205,7 @@ return [
             ]
         ],
         'guest'                   => [
-            'objectClass' => 'umicms\project\module\users\api\object\Guest',
+            'objectClass' => 'umicms\project\module\users\model\object\Guest',
             'fields'      => [
                 Guest::FIELD_IDENTIFY,
                 Guest::FIELD_GUID,
@@ -223,7 +223,7 @@ return [
             ]
         ],
         AuthorizedUser::TYPE_NAME => [
-            'objectClass' => 'umicms\project\module\users\api\object\AuthorizedUser',
+            'objectClass' => 'umicms\project\module\users\model\object\AuthorizedUser',
             'fields'      => [
                 AuthorizedUser::FIELD_IDENTIFY,
                 AuthorizedUser::FIELD_GUID,
@@ -250,7 +250,7 @@ return [
             ]
         ],
         'authorized.supervisor'   => [
-            'objectClass' => 'umicms\project\module\users\api\object\Supervisor',
+            'objectClass' => 'umicms\project\module\users\model\object\Supervisor',
             'fields'      => [
                 Supervisor::FIELD_IDENTIFY,
                 Supervisor::FIELD_GUID,

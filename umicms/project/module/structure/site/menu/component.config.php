@@ -11,22 +11,20 @@
 namespace umicms\project\module\structure\site\menu;
 
 use umi\acl\IAclFactory;
-use umicms\project\site\component\SiteComponent;
+use umicms\hmvc\component\site\SiteComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
+    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
 
     SiteComponent::OPTION_WIDGET => [
-        'auto' => __NAMESPACE__ . '\widget\AutoMenuWidget'
+        'auto' => __NAMESPACE__ . '\widget\AutoMenuWidget',
+        'custom' => __NAMESPACE__ . '\widget\CustomMenuWidget'
     ],
 
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'widget:auto',
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [

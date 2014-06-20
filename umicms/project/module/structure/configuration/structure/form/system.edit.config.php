@@ -13,7 +13,7 @@ use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\structure\api\object\SystemPage;
+use umicms\project\module\structure\model\object\SystemPage;
 
 return [
 
@@ -38,9 +38,9 @@ return [
                 ],
                 SystemPage::FIELD_PAGE_LAYOUT => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => SystemPage::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => SystemPage::FIELD_PAGE_LAYOUT
                     ],
                 ],

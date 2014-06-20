@@ -12,7 +12,7 @@ use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\blog\api\object\BlogAuthor;
+use umicms\project\module\blog\model\object\BlogAuthor;
 
 return [
 
@@ -42,9 +42,9 @@ return [
             'elements' => [
                 BlogAuthor::FIELD_PROFILE => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogAuthor::FIELD_PROFILE,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogAuthor::FIELD_PROFILE
                     ],
                 ],
@@ -52,7 +52,7 @@ return [
                     'type' => Wysiwyg::TYPE_NAME,
                     'label' => BlogAuthor::FIELD_PAGE_CONTENTS,
                     'options' => [
-                        'dataSource' => BlogAuthor::FIELD_PAGE_CONTENTS
+                        'dataSource' => BlogAuthor::FIELD_PAGE_CONTENTS_RAW
                     ]
                 ]
             ],

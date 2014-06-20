@@ -12,7 +12,7 @@ use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
 use umicms\filter\Slug;
-use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\blog\model\object\BlogTag;
 
 return [
     'dataSource' => [
@@ -64,7 +64,7 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => ['columnName' => 'display_name'],
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
                 'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
@@ -138,18 +138,11 @@ return [
         BlogTag::FIELD_POSTS_COUNT => [
             'type' => IField::TYPE_COUNTER,
             'columnName' => 'posts_count'
-        ],
-        BlogTag::FIELD_RSS => [
-            'type' => IField::TYPE_MANY_TO_MANY,
-            'target' => 'blogRssImportScenario',
-            'bridge' => 'rssBlogTag',
-            'relatedField' => 'tag',
-            'targetField' => 'blogRssImportScenario',
         ]
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\blog\api\object\BlogTag',
+            'objectClass' => 'umicms\project\module\blog\model\object\BlogTag',
             'fields' => [
                 BlogTag::FIELD_IDENTIFY,
                 BlogTag::FIELD_GUID,
@@ -168,7 +161,6 @@ return [
                 BlogTag::FIELD_PAGE_LAYOUT,
                 BlogTag::FIELD_PAGE_SLUG,
                 BlogTag::FIELD_POSTS,
-                BlogTag::FIELD_RSS,
                 BlogTag::FIELD_OWNER,
                 BlogTag::FIELD_POSTS_COUNT,
                 BlogTag::FIELD_EDITOR

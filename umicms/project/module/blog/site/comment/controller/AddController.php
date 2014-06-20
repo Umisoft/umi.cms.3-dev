@@ -10,67 +10,80 @@
 
 namespace umicms\project\module\blog\site\comment\controller;
 
-use umi\form\IFormAware;
 use umi\form\TFormAware;
-use umi\hmvc\exception\http\HttpNotFound;
-use umi\http\Response;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogComment;
+use umi\form\IForm;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogComment;
+use umicms\hmvc\component\site\TFormController;
 
 /**
  * Контроллер добавления комментария.
  */
-class AddController extends BaseAccessRestrictedController implements IFormAware, IObjectPersisterAware
+class AddController extends BaseCmsController
 {
-    use TFormAware;
-    use TObjectPersisterAware;
+    use TFormController;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws HttpNotFound
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getTemplateName()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
-        }
+        return 'addComment';
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
+    {
         $parentCommentId = $this->getRouteVar('parent');
-        $parentComment = $parentCommentId ? $this->api->comment()->getById($parentCommentId) : null;
+        $parentComment = $parentCommentId ? $this->module->comment()->getById($parentCommentId) : null;
 
-        $post = $this->api->post()->getById($this->getPostVar('post'));
+        $post = $this->module->post()->getById($this->getPostVar('post'));
 
-        $comment = $this->api->addComment(BlogComment::TYPE, $post, $parentComment);
+        $comment = $this->module->addComment(
+            BlogComment::TYPE,
+            $post,
+            $parentComment
+        );
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_ADD_COMMENT, BlogComment::TYPE, $comment);
-        $formData = $this->getAllPostVars();
 
-        if ($form->setData($formData) && $form->isValid()) {
-            $this->getObjectPersister()->commit();
-
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
+        if ($this->isAllowed($comment, 'publish')) {
+            $comment->published();
         } else {
-            //TODO ajax
-            var_dump($form->getMessages()); exit();
+            $comment->needModerate();
         }
+
+        return $this->module->comment()->getForm(
+            BlogComment::FORM_ADD_COMMENT,
+            BlogComment::TYPE,
+            $comment
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $this->commit();
+
+        return $this->buildRedirectResponse();
     }
 }
  

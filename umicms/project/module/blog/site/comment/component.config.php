@@ -12,42 +12,37 @@ namespace umicms\project\module\blog\site\comment;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSiteHierarchicPageComponent;
+use umicms\hmvc\component\site\SiteHierarchicPageComponent;
 
 return [
 
-    DefaultSiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSiteHierarchicPageComponent',
-    DefaultSiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
-    DefaultSiteHierarchicPageComponent::OPTION_CONTROLLERS => [
+    SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteHierarchicPageComponent',
+    SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'blogComment',
+    SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
         'add' => __NAMESPACE__ . '\controller\AddController',
         'publish' => __NAMESPACE__ . '\controller\PublishController',
         'reject' => __NAMESPACE__ . '\controller\RejectController',
     ],
-    DefaultSiteHierarchicPageComponent::OPTION_WIDGET => [
+    SiteHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\CommentWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'add' => __NAMESPACE__ . '\widget\AddWidget',
         'publish' => __NAMESPACE__ . '\widget\PublishWidget',
         'reject' => __NAMESPACE__ . '\widget\RejectWidget'
     ],
-    DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
+    SiteHierarchicPageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/comment'],
     ],
-    DefaultSiteHierarchicPageComponent::OPTION_ACL => [
+    SiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
             'poster' => ['viewer'],
+            'posterPremoderation' => ['viewer'],
             'moderator' => ['poster']
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:add',
-            'controller:publish',
-            'controller:reject',
-            'widget:view',
-            'widget:list',
-            'widget:add',
-            'widget:publish',
-            'widget:reject'
+            'model:blogComment',
+            'collection:blogComment'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -56,16 +51,29 @@ return [
             ],
             'poster' => [
                 'widget:add' => [],
-                'widget:publish' => [],
-                'controller:publish' => []
+                'controller:add' => [],
+                'model:blogComment' => []
+            ],
+            'posterPremoderation' => [
+                'widget:add' => [],
+                'controller:add' => [],
+                'model:blogComment' => [
+                    'publish' => ['premoderation']
+                ]
             ],
             'moderator' => [
                 'widget:reject' => [],
-                'controller:reject' => []
+                'widget:publish' => [],
+                'controller:reject' => [],
+                'controller:publish' => [],
+                'collection:blogComment' => [
+                    'getComments' => ['withNeedModeration']
+                ],
+                'model:blogComment' => []
             ]
         ]
     ],
-    DefaultSiteHierarchicPageComponent::OPTION_ROUTES => [
+    SiteHierarchicPageComponent::OPTION_ROUTES => [
         'add' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/add/{parent:integer}',

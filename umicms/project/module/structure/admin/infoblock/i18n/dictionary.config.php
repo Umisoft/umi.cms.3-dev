@@ -11,11 +11,15 @@
 return [
 
     'en-US' => [
-        'component:infoblock:displayName' => 'Information blocks'
+        'component:infoblock:displayName' => 'Info blocks',
+
+        'action:create:infoblock' => 'Create info block'
     ],
 
     'ru-RU' => [
-        'component:infoblock:displayName' => 'Информационные блоки'
+        'component:infoblock:displayName' => 'Информационные блоки',
+
+        'action:create:infoblock' => 'Добавить информационный блок'
     ]
 
 ];

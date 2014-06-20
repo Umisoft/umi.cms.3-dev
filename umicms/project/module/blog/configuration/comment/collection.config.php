@@ -10,12 +10,12 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
-use umicms\project\module\blog\api\object\BlogBranchComment;
-use umicms\project\module\blog\api\object\BlogComment;
+use umicms\project\module\blog\model\object\BlogBranchComment;
+use umicms\project\module\blog\model\object\BlogComment;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
-    'class' => 'umicms\project\module\blog\api\collection\BlogCommentCollection',
+    'class' => 'umicms\project\module\blog\model\collection\BlogCommentCollection',
     'handlers' => [
         'admin' => 'blog.comment',
         'site' => 'blog.comment'

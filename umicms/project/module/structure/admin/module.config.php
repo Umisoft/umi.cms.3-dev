@@ -10,34 +10,18 @@
 
 namespace umicms\project\module\structure\admin;
 
-use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\AdminComponent',
 
     AdminComponent::OPTION_COMPONENTS => [
         'page' => '{#lazy:~/project/module/structure/admin/page/component.config.php}',
         'layout' => '{#lazy:~/project/module/structure/admin/layout/component.config.php}',
         'infoblock' => '{#lazy:~/project/module/structure/admin/infoblock/component.config.php}',
-    ],
-
-    AdminComponent::OPTION_ACL => [
-
-        IAclFactory::OPTION_ROLES => [
-            'pageEditor' => [],
-            'layoutEditor' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'component:page',
-            'component:layout'
-        ],
-        IAclFactory::OPTION_RULES => [
-            'pageEditor' => ['component:page' => []],
-            'layoutEditor' => ['component:layout' => []],
-        ]
+        'menu' => '{#lazy:~/project/module/structure/admin/menu/component.config.php}',
     ],
 
     AdminComponent::OPTION_ROUTES      => [

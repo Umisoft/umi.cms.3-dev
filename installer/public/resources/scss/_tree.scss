@@ -43,8 +43,10 @@ $umi-dark-border-color: #CCD9E2;
         }
         &:hover{
             background: #AFD3EC;
-            .umi-tree-context-menu{
-                display: block;
+            .umi-tree-context-toolbar{
+                .button.split{
+                    display: block;
+                }
             }
             a{
                 text-decoration: none;
@@ -57,15 +59,15 @@ $umi-dark-border-color: #CCD9E2;
                 color: #FFFFFF;
                 border-bottom: none!important;
             }
+            .f-dropdown{
+                a{
+                    color: $umi-font-color;
+                }
+            }
         }
         &.in-active{
             .umi-tree-type-icon, .tree-item-link{
                 opacity: 0.65;
-            }
-        }
-        &.context-menu-is-open{
-            .umi-tree-context-menu{
-                display: block;
             }
         }
     }
@@ -83,7 +85,7 @@ $umi-dark-border-color: #CCD9E2;
         height: rem-calc(20);
         cursor: hand;
         position: absolute;
-        margin-left: rem-calc(-24);
+        margin-left: rem-calc(-27);
 //        margin-top: rem-calc(2);
         padding: rem-calc(2);
         &:hover{
@@ -125,16 +127,49 @@ $umi-dark-border-color: #CCD9E2;
     }
 
     // Выпадающее меню --------------------------------------
-    .umi-tree-context-menu{
-        display: none;
+    .umi-tree-context-toolbar{
         position: absolute;
         right: rem-calc(4);
         margin: 0;
         padding: 0;
         margin-top: -24px;
-        a{
-            text-decoration: none !important;
-            border-bottom: none !important;
+        .dropdown.button{
+            background: transparent;
+            padding: 0;
+            padding-right: 26px;
+            display: none;
+            &.open{
+                display: block;
+            }
+            .button-label{
+                display: none;
+            }
+            > .icon{
+                margin: 1px;
+            }
+            &:hover{
+                background: #fff;
+            }
+            span{
+                width: 1.5rem;
+                &:before{
+                    border-top-color: #7B899C;
+                }
+            }
+            .f-dropdown{
+                margin-top: 4px;
+                right: 0;
+                left: auto;
+                width: auto;
+                &:before{
+                    left: auto;
+                    right: 7px;
+                }
+                &:after{
+                    left: auto;
+                    right: 8px;
+                }
+            }
         }
     }
 
@@ -176,7 +211,7 @@ $umi-dark-border-color: #CCD9E2;
                     background: #FFFFFF;
                     width: 26px;
                     height: 3px;
-                    bottom: -4px;
+                    bottom: -3px;
                     left: -3px;
                 }
             }

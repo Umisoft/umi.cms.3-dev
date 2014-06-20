@@ -12,8 +12,8 @@ use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\structure\api\object\BaseInfoBlock;
-use umicms\project\module\structure\api\object\InfoBlock;
+use umicms\project\module\structure\model\object\BaseInfoBlock;
+use umicms\project\module\structure\model\object\InfoBlock;
 
 return [
     'dataSource' => [
@@ -46,12 +46,6 @@ return [
             'readOnly' => true,
             'defaultValue' => 1
         ],
-        BaseInfoBlock::FIELD_LOCKED => [
-            'type' => IField::TYPE_BOOL,
-            'columnName' => 'locked',
-            'readOnly' => true,
-            'defaultValue' => 0
-        ],
         BaseInfoBlock::FIELD_CREATED => [
             'type' => IField::TYPE_DATE_TIME,
             'columnName' => 'created'
@@ -70,6 +64,16 @@ return [
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
+        BaseInfoBlock::FIELD_INFOBLOCK_NAME => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'name',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
+        ],
         BaseInfoBlock::FIELD_DISPLAY_NAME => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'display_name',
@@ -80,12 +84,8 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => [
-                    'columnName' => 'display_name'
-                ],
-                'en-US' => [
-                    'columnName' => 'display_name_en'
-                ]
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
+                'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
         InfoBlock::FIELD_PHONE_NUMBER => [
@@ -223,14 +223,14 @@ return [
     ],
     'types' => [
         IObjectType::BASE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\BaseInfoBlock',
+            'objectClass' => 'umicms\project\module\structure\model\object\BaseInfoBlock',
             'fields' => [
                 BaseInfoBlock::FIELD_IDENTIFY,
                 BaseInfoBlock::FIELD_GUID,
                 BaseInfoBlock::FIELD_TYPE,
                 BaseInfoBlock::FIELD_VERSION,
                 BaseInfoBlock::FIELD_DISPLAY_NAME,
-                BaseInfoBlock::FIELD_LOCKED,
+                BaseInfoBlock::FIELD_INFOBLOCK_NAME,
                 BaseInfoBlock::FIELD_CREATED,
                 BaseInfoBlock::FIELD_UPDATED,
                 BaseInfoBlock::FIELD_OWNER,
@@ -238,13 +238,13 @@ return [
             ]
         ],
         InfoBlock::TYPE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\InfoBlock',
+            'objectClass' => 'umicms\project\module\structure\model\object\InfoBlock',
             'fields' => [
                 InfoBlock::FIELD_IDENTIFY,
                 InfoBlock::FIELD_GUID,
                 InfoBlock::FIELD_TYPE,
                 InfoBlock::FIELD_VERSION,
-                InfoBlock::FIELD_LOCKED,
+                InfoBlock::FIELD_INFOBLOCK_NAME,
                 InfoBlock::FIELD_DISPLAY_NAME,
                 InfoBlock::FIELD_CREATED,
                 InfoBlock::FIELD_UPDATED,

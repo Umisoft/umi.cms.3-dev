@@ -14,7 +14,7 @@ use umi\form\element\BaseFormElement;
 use umi\form\FormEntityView;
 use umi\hmvc\dispatcher\IDispatcher;
 use umi\i18n\translator\ITranslator;
-use umicms\hmvc\component\BaseComponent;
+use umicms\hmvc\component\BaseCmsComponent;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\project\admin\AdminApplication;
 use umicms\project\site\SiteApplication;
@@ -77,9 +77,10 @@ class Permissions extends BaseFormElement
          */
         $adminApplication = $project->getChildComponent('admin');
 
-        $resources = [];
-        $this->buildResourcesForComponent($siteApplication, $resources);
-        $this->buildResourcesForComponent($adminApplication, $resources);
+        $resources = [
+            $this->buildResourcesForComponent($siteApplication),
+            $this->buildResourcesForComponent($adminApplication)
+        ];
 
         return $resources;
 
@@ -87,35 +88,42 @@ class Permissions extends BaseFormElement
 
     /**
      * Формирует список ресурсов и ролей для них у компонента
-     * @param BaseComponent $component
-     * @param array $resources
+     * @param BaseCmsComponent $component
+     * @return array
      */
-    private function buildResourcesForComponent(BaseComponent $component, array &$resources)
+    private function buildResourcesForComponent(BaseCmsComponent $component)
     {
-        $componentRoles = $component->getAclManager()->getRoleList();
-        if ($componentRoles) {
+        $aclManager = $component->getAclManager();
+        $roles = $aclManager->getRoleList();
 
-            $resources[$component->getPath()] = [
+        $childComponentNames = $component->getChildComponentNames();
+
+        $resourceInfo = [
+            'path' => $component->getPath(),
+            'roles' => [],
+        ];
+        foreach ($roles as $roleName => $parentRoles) {
+
+            $roleInfo = [
                 'label' =>
                     $this->translator->translate(
-                        $component->getDictionariesNames(), 'component:' . $component->getName() . ':displayName'
+                        $component->getDictionariesNames(), 'role:' . $roleName . ':displayName'
                     ),
-                'roles' => [],
+                'value' => $roleName
             ];
-            foreach ($componentRoles as $name => $parentRoles) {
-                $resources[$component->getPath()]['roles'][] = [
-                    'label' =>
-                        $this->translator->translate(
-                            $component->getDictionariesNames(), 'role:' . $name . ':displayName'
-                        ),
-                    'value' => $name
-                ];
+
+            foreach ($childComponentNames as $componentName) {
+                if ($aclManager->isAllowed($roleName, BaseCmsComponent::ACL_RESOURCE_PREFIX . $componentName)) {
+                    $roleInfo['component'] = $this->buildResourcesForComponent(
+                        $component->getChildComponent($componentName)
+                    );
+                }
             }
+
+            $resourceInfo['roles'][] = $roleInfo;
         }
 
-        foreach($component->getChildComponentNames() as $name) {
-            $this->buildResourcesForComponent($component->getChildComponent($name), $resources);
-        }
+        return $resourceInfo;
     }
 }
  

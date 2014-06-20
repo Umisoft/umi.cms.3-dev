@@ -1,27 +1,23 @@
-define(['App', 'text!./textElement.hbs'], function(UMI, textElement){
+define(['App'], function(UMI){
     "use strict";
 
-    Ember.TEMPLATES['UMI/components/text-element'] = Ember.Handlebars.compile(textElement);
-
     return function(){
-        UMI.TextElementComponent = Ember.Component.extend(UMI.InputValidate, {
-            classNames: ['umi-element', 'umi-element-text'],
-
-            didInsertElement: function(){
-                var that = this;
-                var el = this.$();
-                el.find('.icon-delete').click(function(){
-                    el.find('input').val('');
-                    that.focusIn();
-                });
-            },
-
-            inputView: Ember.View.extend({
-                template: function(){
-                    var dataSource = this.get('parentView.meta.dataSource');
-                    return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection" name=meta.attributes.name}}');
-                }.property()
-            })
+        UMI.TextElementView = Ember.View.extend(UMI.InputValidate, {
+            type: "text",
+            classNames: ['umi-element-text'],
+            template: function(){
+                var template;
+                if(Ember.typeOf(this.get('object')) === 'instance'){
+                    this.set('validator', 'collection');
+                    var dataSource = this.get('meta.dataSource');
+                    var input = '{{input type=view.type value=view.object.' + dataSource + ' placeholder=view.meta.placeholder name=view.meta.attributes.name}}';
+                    var validate = this.validateErrorsTemplate();
+                    template = input + validate;
+                } else{
+                    template = '{{input type=view.type value=view.meta.attributes.value name=view.meta.attributes.name}}';
+                }
+                return Ember.Handlebars.compile(template);
+            }.property()
         });
     };
 });

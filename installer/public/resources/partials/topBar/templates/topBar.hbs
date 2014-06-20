@@ -4,26 +4,25 @@
         <ul>
             <li>
                 <a href="javascript:void(0)" {{action 'viewOnSite'}} class="left-off-canvas-toggle">
-                    Открыть сайт в новом окне
+                    {{i18n "Open site in new tab"}}
                 </a>
             </li>
 
             {{#if controller.settingsAllowed}}
                 <li>
-                    {{#link-to 'settings' class="left-off-canvas-toggle"}}Настройки системы{{/link-to}}
+                    {{#link-to 'settings' class="left-off-canvas-toggle"}}{{i18n "System settings"}}{{/link-to}}
                 </li>
             {{/if}}
 
             <li class="right has-dropdown umi-top-bar-user-menu">
                 <a href="javascript:void(0)">mail@yandex.ru</a>
                 <ul class="dropdown umi-top-bar-user-menu-drop-down umi-hide-on-html">
-                    <li><a href="javascript:void(0)">Сменить пароль</a></li>
-                    <li><a href="javascript:void(0)" {{action 'logout'}}>Выход из системы</a></li>
+                    <li><a href="javascript:void(0)" {{action 'logout'}}>{{i18n "Logout"}}</a></li>
                 </ul>
             </li>
 
             <li class="right">
-                {{render "search"}}
+                {{!render "search"}}
             </li>
 
             {{view "notificationList"}}
