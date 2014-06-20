@@ -439,10 +439,13 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             'project.site.blog.moderate' => [
                 'editExecutor',
                 'viewExecutor',
+                'allExecutor',
+                'viewer',
                 'moderator'
             ],
             'project.site.blog.moderate.edit' => ['viewer', 'moderator'],
             'project.site.blog.moderate.view' => ['viewer', 'moderator'],
+            'project.site.blog.moderate.all' => ['moderator'],
 
             'project.site.blog.post' => [
                 'addExecutor',

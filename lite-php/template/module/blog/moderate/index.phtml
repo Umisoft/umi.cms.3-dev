@@ -1,0 +1,4 @@
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
+<h1><?=$this->translate('Post on moderation')?></h1>
+<?= $this->widget('blog.moderate.view.ownList', ['template' => 'list']); ?>
