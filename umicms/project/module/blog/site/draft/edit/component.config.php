@@ -22,7 +22,7 @@ return [
         'page' => __NAMESPACE__ . '\controller\EditController'
     ],
     SitePageComponent::OPTION_WIDGET => [
-        'editLink' => __NAMESPACE__ . '\widget\EditUrlWidget'
+        'editLink' => __NAMESPACE__ . '\widget\EditLinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [

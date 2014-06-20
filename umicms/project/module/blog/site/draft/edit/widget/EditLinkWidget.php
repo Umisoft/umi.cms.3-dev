@@ -18,7 +18,7 @@ use umicms\project\module\blog\model\object\BlogPost;
 /**
  * Виджет для вывода URL на редактирование черновика.
  */
-class EditUrlWidget extends BaseLinkWidget
+class EditLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}
