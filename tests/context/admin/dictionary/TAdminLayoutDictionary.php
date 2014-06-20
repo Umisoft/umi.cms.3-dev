@@ -10,13 +10,20 @@
 
 namespace tests\context\admin\dictionary;
 
+use tests\context\admin\page\AdminComponentPage;
 use tests\context\BaseCmsContext;
 
 /**
- * Словарь для тестирования административного компонента
+ * Словарь для работы с административными страницами
  * @mixin BaseCmsContext
  */
-trait TComponentDictionary
+trait TAdminLayoutDictionary
 {
+    /**
+     * Должен вернуть конкретную административную страницу
+     * @return AdminComponentPage
+     */
+    abstract protected function getAdminComponentPage();
+
 
 }

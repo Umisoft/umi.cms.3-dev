@@ -6,13 +6,13 @@ default:
         paths:
             - %paths.base%/../umicms/project/admin/features
         contexts:
-              - tests\context\admin\AdminPanelContext
+              - umicms\project\admin\features\context\AdminContext
 
-        news_features:
+      news_features:
         paths:
             - %paths.base%/../umicms/project/module/news/features
         contexts:
-              - tests\context\admin\AdminPanelContext
+              - umicms\project\module\news\features\context\AdminRubricContext
 
     extensions:
         Behat\MinkExtension:

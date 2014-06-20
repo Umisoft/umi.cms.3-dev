@@ -10,4 +10,18 @@
 
 namespace tests\context\admin\page\element;
 
- 
+use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
+
+/**
+ * Dock - панель.
+ */
+class DockElement extends Element
+{
+    /**
+     * @var array|string $selector
+     */
+    protected $selector = 'div.umi-dock';
+
+
+
+}

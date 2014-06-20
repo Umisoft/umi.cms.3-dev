@@ -21,8 +21,42 @@ abstract class AdminComponentPage extends BaseCmsPageObject
      * @var array $elements элементы страницы
      */
     protected $elements = [
-
+        'topBar' => ['css' => '.top-bar'],
+        'dock' => ['css' => '.umi-dock'],
+        'tree' => ['css' => '.umi-tree'],
+        'tableControl' => ['css' => '.umi-table-control'],
+        'formControl' => ['css' => '.umi-form-control']
     ];
 
 
+    public function open(array $urlParameters = array())
+    {
+        if (!$urlParameters['module']){
+            throw new \InvalidArgumentException();
+        }
+    }
+
+
+    /**
+     * Выбирает указанный административный компонент.
+     * @param string $modulePath путь модуля
+     * @param string $componentPath путь компонента
+     */
+    public function chooseModuleComponent($modulePath, $componentPath)
+    {
+
+    }
+
+    /**
+     * Выбирает указанный модуль.
+     * @param string $modulePath
+     */
+    public function chooseModule($modulePath)
+    {
+        if (!$module = $this->getElement('dock')->find('css', '.dock-module')) {
+            $this->elementNotFound(sprintf('Dock module %s', $modulePath));
+        }
+        $module->mouseOver();
+        sleep(10);
+    }
 }

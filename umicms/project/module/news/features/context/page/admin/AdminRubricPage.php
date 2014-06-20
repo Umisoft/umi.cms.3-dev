@@ -8,12 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace tests\context\admin;
+namespace umicms\project\module\news\features\context\page\admin;
+
+use tests\context\admin\page\AdminComponentPage;
 
 /**
- * Class AdminConponentContext
+ * Страница администрирования рубрик новостей
  */
-class AdminComponentContext
+class AdminRubricPage extends AdminComponentPage
 {
 
 }
