@@ -14,16 +14,12 @@ use umi\http\Response;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\project\module\blog\model\BlogModule;
-use umicms\project\site\config\ISiteSettingsAware;
-use umicms\project\site\config\TSiteSettingsAware;
 
 /**
  * Контроллер вывода общей RSS-ленты.
  */
-class RssController extends BaseCmsController implements ISiteSettingsAware
+class RssController extends BaseCmsController
 {
-    use TSiteSettingsAware;
-
     /**
      * @var BlogModule $module
      */
