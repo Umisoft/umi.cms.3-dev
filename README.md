@@ -73,10 +73,10 @@ $ bower install
 
 1) Composer:
 ```sh
-$ php composer.phar install
+$ php composer.phar update
 ```
 2) Bower:
 ```sh
 cd installer/public/resources
-bower update ember-data
+bower update
 ```
