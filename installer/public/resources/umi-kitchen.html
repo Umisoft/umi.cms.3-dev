@@ -1,22 +1,96 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guide STYLE for UMI.CMS</title>
-    <link rel="stylesheet" type="text/css" href="deploy/app.css">
-    <script type="text/javascript" src="libs/jquery/jquery.js"></script>
-    <script src="deploy/foundation.js"></script>
-    <script>
-        window.onload = function(){
-            $(document).foundation();
-        }
-    </script>
-</head>
-<body style="overflow: auto;">
-    <div class="row">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Guide UMI.CMS HTML Elements</title>
+        <link rel="stylesheet" type="text/css" href="/resources/deploy/styles.css">
+        <link rel="stylesheet" type="text/css" href="/resources/libs/highlightjs/styles/github.css">
+    </head>
+    <body style="overflow: auto;">
+        <div data-magellan-expedition="fixed">
+            <ul class="sub-nav">
+                <li data-magellan-arrival="buttons"><a href="#buttons">Buttons</a></li>
+            </ul>
+            <hr />
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <h3 data-magellan-destination="buttons">Buttons [Кнопки].</h3>
+                <p>Для объявления кнопки достаточно задать класс <code>.button</code>.</p>
+                <button class="button">Базовая кнопка</button>
+                <p>Кнопки имеют классы-модификаторы изменяющие:</p>
+                <div class="row">
+                    <div class="medium-12 large-6 columns">
+                        <p>Размер. Классы <code>tiny, small, large</code>.</p>
+                        <pre>
+                            <code class="html">
+                                <button class="button tiny">tiny</button>
+                                <button class="button small">small</button>
+                                <button class="button medium">medium</button>
+                                <button class="button large">large</button>
+                            </code>
+                        </pre>
+                    </div>
+                    <div class="medium-12 large-6 columns">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="medium-12 large-6 columns">
+                        <p></p>
+                    </div>
+                </div>
+                <ul>
+                    <li>
+
+
+                    </li>
+                    <li>
+                        Ширину. Классы <code>expand, wide, square</code>.
+                        <div>
+                            <button class="button expand">expand</button>
+                            <button class="button wide">wide</button>
+                            <button class="button square">square</button>
+                        </div>
+                    </li>
+                    <li>
+                        Цвет. Классы <code>secondary, success, alert, white, flat</code>.
+                        <div>
+                            <button class="button secondary">secondary</button>
+                            <button class="button success">success</button>
+                            <button class="button alert">alert</button>
+                            <button class="button white">white</button>
+                            <button class="button flat">flat</button>
+                        </div>
+                    </li>
+                    <li>
+                        Радиус. Классы <code>round, radius</code>.
+                        <div>
+                            <button class="button round">round</button>
+                            <button class="button radius">radius</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="small-6 large-6 columns">
+                <a href="#" class="tiny button">.tiny.button</a><br>
+                <a href="#" class="small button">.small.button</a><br>
+                <a href="#" class="button">.button</a><br>
+                <a href="#" class="button expand">.expand</a><br>
+            </div>
+            <div class="small-6 large-6 columns">
+                <a href="#" class="tiny button secondary">.tiny.secondary</a><br>
+                <a href="#" class="small button success radius">.small.success.radius</a><br>
+                <a href="#" class="button alert round disabled">.round.disabled</a><br>
+
+            </div>
+        </div>
+
+        <!-- OLD KITCHEN-->
+        <div class="row">
         <div class="small-12 columns">
-            <h1>Guide STYLE for UMI.CMS</h1>
+            <h1>Guide STYLES for UMI.CMS</h1>
 
             <h3 class="subheader">Alert Boxes</h3>
 
@@ -73,23 +147,6 @@
             <li class="current"><a href="#">Cloning</a></li>
         </ul>
 
-        <hr>
-        <h4 id="buttons">Buttons</h4>
-
-        <div class="row">
-            <div class="small-6 large-6 columns">
-                <a href="#" class="tiny button">.tiny.button</a><br>
-                <a href="#" class="small button">.small.button</a><br>
-                <a href="#" class="button">.button</a><br>
-                <a href="#" class="button expand">.expand</a><br>
-            </div>
-            <div class="small-6 large-6 columns">
-                <a href="#" class="tiny button secondary">.tiny.secondary</a><br>
-                <a href="#" class="small button success radius">.small.success.radius</a><br>
-                <a href="#" class="button alert round disabled">.round.disabled</a><br>
-
-            </div>
-        </div>
 
         <hr>
         <h4 id="button-groups">Button Groups</h4>
@@ -901,5 +958,17 @@
 
         </div>
         </div>
+        <script type="text/javascript" src="/resources/libs/modernizr/modernizr.js"></script>
+        <script type="text/javascript" src="/resources/libs/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/resources/libs/foundation/js/foundation.min.js"></script>
+        <script type="text/javascript" src="/resources/libs/highlightjs/highlight.pack.js"></script>
+        <script>
+            $(document).foundation();
+            $(document).ready(function() {
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+        </script>
     </body>
 </html>

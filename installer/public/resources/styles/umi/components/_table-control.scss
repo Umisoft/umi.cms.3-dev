@@ -341,7 +341,7 @@ $table-control-row-bg-hover: #C8DEEE;
     padding: rem-calc(0 10);
     border-right: 1px solid $table-control-cell-border-color;
     box-sizing: border-box;
-//    overflow: hidden;
+    //    overflow: hidden;
     &.filter{
         input{
             padding: 0 rem-calc(6);

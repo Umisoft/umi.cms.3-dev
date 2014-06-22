@@ -86,11 +86,11 @@ $umi-dark-border-color: #CCD9E2;
         cursor: hand;
         position: absolute;
         margin-left: rem-calc(-27);
-//        margin-top: rem-calc(2);
+        //        margin-top: rem-calc(2);
         padding: rem-calc(2);
         &:hover{
             background: #FFFFFF;
-//            box-shadow: 0 0px 2px 0px #7C99AC;
+            //            box-shadow: 0 0px 2px 0px #7C99AC;
         }
 
         &:not(:hover) {
@@ -191,8 +191,8 @@ $umi-dark-border-color: #CCD9E2;
             margin-bottom: 0;
         }
         &.is-open{
-//            box-shadow: 0 0px 2px 1px #7C99AC;
-//            z-index: 2;
+            //            box-shadow: 0 0px 2px 1px #7C99AC;
+            //            z-index: 2;
             .button{
                 box-shadow: 0 0px 3px 0px #7C99AC;
                 z-index: 2;
@@ -231,7 +231,7 @@ $umi-dark-border-color: #CCD9E2;
     .tree-control-select-action{
         position: relative;
         .button{
-//            z-index: 2;
+            //            z-index: 2;
             margin-bottom: 0;
             &:hover{
                 background: #fff;
@@ -285,7 +285,7 @@ $umi-dark-border-color: #CCD9E2;
         right: 0;
         background: #FFFFFF;
         box-shadow: 0 0px 3px 0px #7C99AC;
-//        border-top: 1px solid #BEC9D0;
+        //        border-top: 1px solid #BEC9D0;
         .button{
             border: none !important;
         }
