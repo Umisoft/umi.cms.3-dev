@@ -114,6 +114,9 @@ class ViewSmartyExtension implements ISmartyExtension
      */
     public function getWidgetHelper($params)
     {
+        if (!isset($params['params'])) {
+            $params['params'] = [];
+        }
         /** @var CmsDispatcher $dispatcher */
         $dispatcher = $this->toolkit->getService('umi\hmvc\dispatcher\IDispatcher');
         return $dispatcher->executeWidgetByPath($params['widgetPath'], $params['params']);

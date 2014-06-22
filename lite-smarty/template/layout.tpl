@@ -10,7 +10,17 @@
     <div class="container">
 
         <div class="navbar-collapse collapse">
+            {widget widgetPath='structure.menu.auto' params=['depth' => 1]}
 
+            {if count($locales)}
+            <ul class="nav navbar-nav navbar-right">
+                {foreach $locales as $localeId => $localeInfo}
+                <li class="{if $localeInfo['current']}active{/if}">
+                    <a href="{$localeInfo['url']}">{translate message=$localeId}</a>
+                </li>
+                {/foreach}
+            </ul>
+            {/if}
 
         </div>
 
@@ -20,7 +30,7 @@
 <div class="container">
 
     <header class="blog-header">
-
+        {widget widgetPath='structure.infoblock.view' params=['template' => 'logo', 'infoBlock' => 'commonInfoBlock']}
     </header>
 
     <main class="row">
@@ -41,8 +51,10 @@
 
 <footer class="blog-footer">
     {widget widgetPath='structure.menu.custom' params=['menuName' => 'bottomMenu']}
+
+    {widget widgetPath='structure.infoblock.view' params=['template' => 'footer', 'infoBlock' => 'commonInfoBlock']}
     <p>
-        {translate message='Back to top'}
+        <a href="#">{translate message='Back to top'}</a>
     </p>
 </footer>
 

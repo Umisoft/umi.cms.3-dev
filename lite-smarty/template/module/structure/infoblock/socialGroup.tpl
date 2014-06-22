@@ -1,0 +1,2 @@
+{$infoBlock->widgetFacebook}
+{$infoBlock->widgetVk}
