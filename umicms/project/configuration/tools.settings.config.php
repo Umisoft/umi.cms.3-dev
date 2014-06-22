@@ -28,6 +28,7 @@ use umicms\module\toolbox\ModuleTools;
 use umicms\orm\metadata\field\relation\CmsObjectRelationField;
 use umicms\orm\metadata\field\relation\CmsPageRelationField;
 use umicms\orm\metadata\field\SerializedArrayField;
+use umicms\templating\engine\smarty\SmartyTemplateEngine;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 
 return [
@@ -61,6 +62,7 @@ return [
                 'engineClasses' => [
                     TwigTemplateEngine::NAME => 'umi\extension\twig\TwigTemplateEngine',
                     XsltTemplateEngine::NAME => 'umicms\templating\engine\xslt\XsltTemplateEngine',
+                    SmartyTemplateEngine::NAME => 'umicms\templating\engine\smarty\SmartyTemplateEngine'
                 ]
             ]
         ]

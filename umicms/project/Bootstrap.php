@@ -35,6 +35,9 @@ use umicms\i18n\SiteLocale;
 use umicms\route\ProjectHostRoute;
 use umicms\templating\engine\php\TemplatingPhpExtension;
 use umicms\templating\engine\php\ViewPhpExtension;
+use umicms\templating\engine\smarty\SmartyTemplateEngine;
+use umicms\templating\engine\smarty\TemplatingSmartyExtension;
+use umicms\templating\engine\smarty\ViewSmartyExtension;
 use umicms\templating\engine\twig\TemplatingTwigExtension;
 use umicms\templating\engine\twig\ViewTwigExtension;
 
@@ -394,6 +397,19 @@ class Bootstrap
                 $templateEngine
                     ->addExtension($viewExtension)
                     ->addExtension($templateExtension);
+            }
+        );
+
+        $templateEngineFactory->setInitializer(
+            SmartyTemplateEngine::NAME,
+            function (SmartyTemplateEngine $templateEngine) {
+
+                $viewExtension = new ViewSmartyExtension($this->toolkit);
+                $templateExtension = new TemplatingSmartyExtension($this->toolkit);
+
+                $templateEngine
+                    ->addExtension($templateExtension)
+                    ->addExtension($viewExtension);
             }
         );
     }
