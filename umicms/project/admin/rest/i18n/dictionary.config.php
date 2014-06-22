@@ -45,7 +45,7 @@ return [
     ],
 
     'ru-RU' => [
-        //'action:create:base' => 'Добавить',
+        'action:create:base' => 'Добавить',
         'action:switchActivity' => 'Сменить активность',
         'action:switchActivity:activate' => 'Активировать',
         'action:switchActivity:deactivate' => 'Снять активность',
