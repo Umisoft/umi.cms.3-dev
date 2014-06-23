@@ -63,8 +63,8 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
     {
         $actions = [];
         if (isset($this->options[self::OPTION_QUERY_ACTIONS])) {
-            foreach ($this->options[self::OPTION_QUERY_ACTIONS] as $actionName) {
-                $actions[$actionName] = $this->createQueryAction($actionName);
+            foreach ($this->options[self::OPTION_QUERY_ACTIONS] as $actionName => $params) {
+                $actions[$actionName] = $this->createQueryAction($actionName, $params);
             }
         }
 
@@ -80,8 +80,8 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
         $actions = [];
 
         if (isset($this->options[self::OPTION_MODIFY_ACTIONS])) {
-            foreach ($this->options[self::OPTION_MODIFY_ACTIONS] as $actionName) {
-                $actions[$actionName] = $this->createModifyAction($actionName);
+            foreach ($this->options[self::OPTION_MODIFY_ACTIONS] as $actionName => $params) {
+                $actions[$actionName] = $this->createModifyAction($actionName, $params);
             }
         }
 
@@ -104,12 +104,13 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
     /**
      * Создает новое REST-действие компонента для выборки данных
      * @param string $actionName имя действия
+     * @param array $params список GET-параметров. Значение может быть плейсхолдером, который будет обработан на клиенте.
      * @return Action
      */
-    protected function createQueryAction($actionName)
+    protected function createQueryAction($actionName, array $params = [])
     {
         return new Action(
-            $this->getUrlManager()->getAdminComponentActionResourceUrl($this, $actionName),
+            $this->getUrlManager()->getAdminComponentActionResourceUrl($this, $actionName, $params),
             Action::TYPE_QUERY
         );
     }
@@ -117,12 +118,13 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
     /**
      * Создает новое REST-действие компонента для модификации данных
      * @param string $actionName имя действия
+     * @param array $params список GET-параметров. Значение может быть плейсхолдером, который будет обработан на клиенте.
      * @return Action
      */
-    protected function createModifyAction($actionName)
+    protected function createModifyAction($actionName, array $params = [])
     {
         return new Action(
-            $this->getUrlManager()->getAdminComponentActionResourceUrl($this, $actionName),
+            $this->getUrlManager()->getAdminComponentActionResourceUrl($this, $actionName, $params),
             Action::TYPE_MODIFY
         );
     }

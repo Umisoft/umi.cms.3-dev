@@ -10,6 +10,7 @@
 
 namespace umicms\hmvc\component\admin\layout\control;
 
+use umicms\hmvc\component\admin\collection\CollectionComponent;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
@@ -42,13 +43,17 @@ class EditObjectControl extends CollectionControl
         }
 
         if ($this->collection instanceof IRecyclableCollection) {
-            $this->addToolbarButton('trash', $this->createActionButton('trash'));
+            $this->addToolbarButton('trash', $this->createActionButton(
+                'trash', ['action' => CollectionComponent::ACTION_TRASH])
+            );
         } else {
             $this->addToolbarButton('delete', $this->createActionButton('delete'));
         }
 
         if ($this->collection instanceof IRecoverableCollection && $this->collection->isBackupEnabled()) {
-            $this->addToolbarButton('backupList', $this->createActionDropdownButton('backupList'));
+            $this->addToolbarButton('backupList', $this->createActionDropdownButton(
+                'backupList', ['action' => CollectionComponent::ACTION_GET_BACKUP_LIST]
+            ));
         }
     }
 

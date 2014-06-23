@@ -29,7 +29,7 @@ return [
     ],
 
     AdminComponent::OPTION_QUERY_ACTIONS => [
-        'siteAnalyze', 'getBacklinks'
+        'siteAnalyze' => [], 'getBacklinks' => []
     ],
 
     AdminComponent::OPTION_ROUTES => [

@@ -36,7 +36,7 @@ class SettingsComponent extends AdminComponent
         ],
 
         self::OPTION_MODIFY_ACTIONS => [
-            'save'
+            'save' => []
         ],
 
         self::OPTION_ACL => [

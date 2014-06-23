@@ -261,6 +261,7 @@ class ActionController extends BaseController
     {
         $collection = $this->getCollection();
         $object = $collection->getById($this->getRequiredQueryVar('id'));
+        $backupId = $this->getRequiredQueryVar('backupId');
 
         if (!$collection instanceof IRecoverableCollection || !$object instanceof IRecoverableObject) {
             throw new RuntimeException(
@@ -273,7 +274,7 @@ class ActionController extends BaseController
         /**
          * @var IRecoverableObject $object
          */
-        return $collection->wakeUpBackup($object, $this->getRequiredQueryVar('backupId'));
+        return $collection->wakeUpBackup($object, $backupId);
     }
 
     /**

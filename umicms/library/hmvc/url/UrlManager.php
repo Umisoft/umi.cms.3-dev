@@ -283,7 +283,7 @@ class UrlManager implements IUrlManager, ILocalizable
         $actionUrl .= $component->getRouter()->assemble('action', ['action' => $actionName]);
 
         if ($params) {
-            $actionUrl .= '?' . http_build_query($params);
+            $actionUrl .= '?' . urldecode(http_build_query($params));
         }
 
         return $actionUrl;
@@ -294,8 +294,8 @@ class UrlManager implements IUrlManager, ILocalizable
      */
     public function getCurrentUrl($isAbsolute = false)
     {
-        if (null !== $qs = $this->getQueryString()) {
-            $qs = '?'.$qs;
+        if (null !== ($qs = $this->getQueryString())) {
+            $qs = '?' . $qs;
         }
 
         return $this->getRequestedUrl($isAbsolute) . $qs;
