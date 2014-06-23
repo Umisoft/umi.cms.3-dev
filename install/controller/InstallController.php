@@ -2136,34 +2136,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
-
-        $structureCollection = $this->getCollectionManager()->getCollection('structure');
-
-        /**
-         * @var BackupCollection $backupCollection
-         */
-        $backupCollection = $this->getCollectionManager()->getCollection('serviceBackup');
-
-        $page = $structureCollection->get('d534fd83-0f12-4a0d-9853-583b9181a948');
-        $backupCollection->createBackup($page);
-        $page = $structureCollection->get('3d765c94-bb80-4e8f-b6d9-b66c3ea7a5a4');
-        $backupCollection->createBackup($page);
-        $page = $structureCollection->get('98751ebf-7f76-4edb-8210-c2c3305bd8a0');
-        $backupCollection->createBackup($page);
-
-        $newsCollection = $this->getCollectionManager()->getCollection('newsItem');
-        $news = $newsCollection->get('d6eb9ad1-667e-429d-a476-fa64c5eec115');
-        $backupCollection->createBackup($news);
-
-        $rubricCollection = $this->getCollectionManager()->getCollection('newsRubric');
-        $rubric = $rubricCollection->get('8650706f-04ca-49b6-a93d-966a42377a61');
-        $backupCollection->createBackup($rubric);
-
-        $subjectCollection = $this->getCollectionManager()->getCollection('newsSubject');
-        $subject = $subjectCollection->get('0d106acb-92a9-4145-a35a-86acd5c802c7');
-        $backupCollection->createBackup($subject);
-
-        $this->commit();
     }
 
     protected function installTest()
