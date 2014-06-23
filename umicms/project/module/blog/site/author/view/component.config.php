@@ -27,7 +27,7 @@ return [
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_RULES => [
             'viewer' => [
-                'widget:view' => [],
+                'widget:author' => [],
                 'widget:list' => [],
                 'widget:posts' => [],
             ]
