@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\structure\api;
@@ -12,6 +13,7 @@ namespace umicms\project\module\structure\api;
 use umicms\module\BaseModule;
 use umicms\project\module\structure\api\collection\InfoBlockCollection;
 use umicms\project\module\structure\api\collection\LayoutCollection;
+use umicms\project\module\structure\api\collection\MenuCollection;
 use umicms\project\module\structure\api\collection\StructureElementCollection;
 use umicms\project\module\structure\api\object\Layout;
 use umicms\project\module\structure\api\object\StructureElement;
@@ -50,12 +52,30 @@ class StructureModule extends BaseModule
     }
 
     /**
-     * Возвращает API для работы с автогенерируемым меню структуры
-     * @return AutoMenu
+     * Возвращает коллекцию для работы с настраиваемым меню.
+     * @return MenuCollection
      */
     public function menu()
     {
+        return $this->getCollection('menu');
+    }
+
+    /**
+     * Возвращает API для работы с автогенерируемым меню структуры
+     * @return AutoMenu
+     */
+    public function autoMenu()
+    {
         return $this->getApi('umicms\project\module\structure\api\AutoMenu');
+    }
+
+    /**
+     * Возвращает API для работы с настраиваемым меню
+     * @return CustomMenu
+     */
+    public function customMenu()
+    {
+        return $this->getApi('umicms\project\module\structure\api\CustomMenu');
     }
 
     /**

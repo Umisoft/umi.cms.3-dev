@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 use umi\form\element\Checkbox;
@@ -17,6 +18,7 @@ use umi\form\element\html5\Time;
 use umi\form\element\Password;
 use umi\form\element\Radio;
 use umi\form\element\Select;
+use umi\form\element\MultiSelect;
 use umi\form\element\Text;
 use umi\form\element\Textarea;
 use umi\form\fieldset\FieldSet;
@@ -78,14 +80,14 @@ return [
                     ],
                 ],
                 TestObject::MULTISELECT => [
-                    'type' => Select::TYPE_NAME,
+                    'type' => MultiSelect::TYPE_NAME,
                     'label' => TestObject::MULTISELECT,
                     'options' => [
                         'dataSource' => TestObject::MULTISELECT,
                         'choices' => [
-                            'msk' => 'Москва',
-                            'spt' => 'СПб',
-                            'vlg' => 'Волгоград',
+                            'msk' => 'Геленджик',
+                            'spt' => 'Ашхабад',
+                            'vlg' => 'Душамбе',
                             'rostov' => 'Ростов',
                             'krasnodar' => 'Краснодар'
                         ]

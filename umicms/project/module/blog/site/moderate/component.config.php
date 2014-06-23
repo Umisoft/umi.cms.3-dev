@@ -1,14 +1,17 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\site\moderate;
 
 use umi\acl\IAclFactory;
+use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
 use umicms\project\site\component\DefaultSitePageComponent;
 
@@ -54,7 +57,8 @@ return [
             'widget:editPostLink',
             'widget:publishModerate',
             'widget:rejectModerate',
-            'widget:draftModerate'
+            'widget:draftModerate',
+            'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
@@ -64,21 +68,25 @@ return [
                 'widget:view' => [],
                 'controller:page' => [],
                 'widget:ownList' => [],
-                'widget:ownListLink' => []
+                'widget:ownListLink' => [],
+                'model:blogPost' => [
+                    IAclManager::OPERATION_ALL => ['own']
+                ]
             ],
             'moderator' => [
                 'controller:index' => [],
+                'controller:page' => [],
                 'controller:edit' => [],
                 'controller:publish' => [],
                 'controller:reject' => [],
                 'controller:all' => [],
                 'widget:view' => [],
-                'controller:page' => [],
                 'widget:allList' => [],
                 'widget:allListLink' => [],
                 'widget:editPostLink' => [],
                 'widget:publishModerate' => [],
-                'widget:rejectModerate' => []
+                'widget:rejectModerate' => [],
+                'model:blogPost' => []
             ]
         ]
     ],

@@ -1,37 +1,41 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\site\draft\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
+use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\http\Response;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер редактирования черновика блога.
  */
-class BlogEditDraftController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class BlogEditDraftController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
-    use TFormAware;
+    use TFormController;
     use TObjectPersisterAware;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
     protected $api;
+    /**
+     * @var bool $success флаг указывающий на успешное сохранение изменений
+     */
+    private $success = false;
 
     /**
      * Конструктор.
@@ -43,14 +47,19 @@ class BlogEditDraftController extends BaseSecureController implements IFormAware
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws ResourceAccessForbiddenException если запрашиваемое действие запрещено
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getTemplateName()
     {
-        $id = $this->getRouteVar('id');
-        $blogDraft = $this->api->post()->getDraftById($id);
+        return 'blogDraft';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
+    {
+        $blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
 
         if (!$this->isAllowed($blogDraft)) {
             throw new ResourceAccessForbiddenException(
@@ -59,27 +68,27 @@ class BlogEditDraftController extends BaseSecureController implements IFormAware
             );
         }
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_EDIT_POST, IObjectType::BASE, $blogDraft);
-
-        if ($this->isRequestMethodPost()) {
-
-            $formData = $this->getAllPostVars();
-
-            if ($form->setData($formData) && $form->isValid()) {
-
-                $this->getObjectPersister()->commit();
-
-                return $this->createRedirectResponse($this->getRequest()->getReferer());
-            }
-        }
-
-        return $this->createViewResponse(
-            'blogDraft',
-            [
-                'blogDraft' => $blogDraft,
-                'form' => $form
-            ]
+        return $this->api->post()->getForm(
+            BlogPost::FORM_EDIT_POST,
+            IObjectType::BASE,
+            $blogDraft
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $this->getObjectPersister()->commit();
+        $this->success = true;
+    }
+
+    protected function buildResponseContent()
+    {
+        return [
+            'success' => $this->success
+        ];
     }
 }
  

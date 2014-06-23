@@ -163,6 +163,7 @@ define(
                     return template;
                 },
 
+                //TODO Привести все элементы к виду: {{view "nameElement"}}
                 textTemplate: function(){
                     return '{{input value=object.value meta=view.meta name=view.meta.attributes.name}}';
                 }.property(),
@@ -195,12 +196,12 @@ define(
                     return '{{checkbox-element object=object meta=view.meta}}';
                 }.property(),
 
-                multiCheckboxTemplate: function(){
-                    return 'Элемент multi-checkbox не реализован{{!multi-checkbox-element object=object meta=view.meta}}';
+                checkboxGroupTemplate: function(){
+                    return '{{view "checkboxGroupElement" object=object meta=view.meta}}';
                 }.property(),
 
                 radioTemplate: function(){
-                    return '{{radio-element object=object meta=view.meta}}';
+                    return '{{view "radioElement" object=object meta=view.meta}}';
                 }.property(),
 
                 timeTemplate: function(){
@@ -209,6 +210,10 @@ define(
 
                 dateTemplate: function(){
                     return '{{date-element object=object meta=view.meta}}';
+                }.property(),
+
+                datetimeTemplate: function(){
+                    return '{{view "dateTimeElement" object=object meta=view.meta}}';
                 }.property(),
 
                 fileTemplate: function(){

@@ -4,13 +4,13 @@
         <time datetime="{{ blogDraft.publishTime.format('c') }}">
             {{ blogDraft.publishTime.format('d.m.Y | H:i') }}
         </time>
-        {{ translate('Автор') }}: <a href="{{ blogDraft.author.getPageUrl() }}">{{ blogDraft.author.displayName }}</a>
+        {{ translate('Author') }}: <a href="{{ blogDraft.author.getPageUrl() }}">{{ blogDraft.author.displayName }}</a>
         {{ widget('blog.draft.editDraftLink', {'blogDraft' : blogDraft, 'template' : 'editDraftLink'}) }}
     </p>
 
     {{ blogDraft.announcement | raw }}
 
-    <a href="{{ blogDraft.getPageUrl() }}">{{ translate('Читать далее') }}</a>
+    <a href="{{ blogDraft.getPageUrl() }}">{{ translate('Read more') }}</a>
     {{ widget('blog.draft.publishDraft', {'blogDraft' : blogDraft, 'template' : 'publishDraftForm'}) }}
     {{ widget('blog.draft.sendToModeration', {'blogDraft' : blogDraft, 'template' : 'sendToModerationForm'}) }}
 </div>

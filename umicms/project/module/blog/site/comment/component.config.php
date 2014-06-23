@@ -1,9 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\site\comment;
@@ -35,6 +37,7 @@ return [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
             'poster' => ['viewer'],
+            'posterPremoderation' => ['viewer'],
             'moderator' => ['poster']
         ],
         IAclFactory::OPTION_RESOURCES => [
@@ -45,7 +48,9 @@ return [
             'widget:list',
             'widget:add',
             'widget:publish',
-            'widget:reject'
+            'widget:reject',
+            'model:blogComment',
+            'collection:blogComment'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -54,12 +59,25 @@ return [
             ],
             'poster' => [
                 'widget:add' => [],
-                'widget:publish' => [],
-                'controller:publish' => []
+                'controller:add' => [],
+                'model:blogComment' => []
+            ],
+            'posterPremoderation' => [
+                'widget:add' => [],
+                'controller:add' => [],
+                'model:blogComment' => [
+                    'publish' => ['premoderation']
+                ]
             ],
             'moderator' => [
                 'widget:reject' => [],
-                'controller:reject' => []
+                'widget:publish' => [],
+                'controller:reject' => [],
+                'controller:publish' => [],
+                'collection:blogComment' => [
+                    'getComments' => ['withNeedModeration']
+                ],
+                'model:blogComment' => []
             ]
         ]
     ],

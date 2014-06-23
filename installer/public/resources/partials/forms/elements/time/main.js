@@ -18,12 +18,6 @@ define(['App', 'text!./timeElement.hbs'], function(UMI, timeElement){
                     minuteText: 'Минуты',
                     currentText: 'Выставить текущее время'
                 });
-
-//                this.$().find('input').click(function(){
-//                    var y = $(this).offset().left;
-//                    var y = $(this).offset().top;
-//                    $('body').append('<div class="umi-timepicker"></div>');
-//                });
             },
 
             inputView: Ember.View.extend({

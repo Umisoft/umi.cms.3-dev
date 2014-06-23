@@ -1,9 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\site\draft;
@@ -28,12 +30,14 @@ return [
         'ownList' => __NAMESPACE__ . '\widget\DraftOwnListWidget',
         'ownListLink' => __NAMESPACE__ . '\widget\DraftOwnListLinkWidget',
         'publishDraft' => __NAMESPACE__ . '\widget\PublishWidget',
+        'editDraftLink' => __NAMESPACE__ . '\widget\DraftEditUrlWidget',
         'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
     ],
     DefaultSitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
-            'publisher' => ['author']
+            'publisher' => [],
+            'moderator' => ['publisher']
         ],
         IAclFactory::OPTION_RESOURCES => [
             'controller:edit',
@@ -42,6 +46,7 @@ return [
             'widget:view',
             'widget:ownList',
             'widget:ownListLink',
+            'widget:editDraftLink',
             'widget:publishDraft',
             'widget:sendToModeration',
             'model:blogPost'
@@ -55,17 +60,28 @@ return [
                 'widget:view' => [],
                 'widget:ownList' => [],
                 'widget:ownListLink' => [],
+                'widget:editDraftLink' => [],
                 'widget:sendToModeration' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
             ],
             'publisher' => [
+                'controller:index' => [],
+                'controller:page' => [],
+                'controller:edit' => [],
                 'controller:publish' => [],
+                'widget:view' => [],
+                'widget:ownList' => [],
+                'widget:ownListLink' => [],
+                'widget:editDraftLink' => [],
                 'widget:publishDraft' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
+            ],
+            'moderator' => [
+                'model:blogPost' => []
             ],
         ]
     ],

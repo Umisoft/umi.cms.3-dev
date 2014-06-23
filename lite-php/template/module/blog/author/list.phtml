@@ -1,12 +1,12 @@
 <?php
 /**
- * @var \umicms\orm\selector\CmsSelector $authors
+ * @var \umicms\orm\selector\CmsSelector $list
  * @var umicms\project\module\blog\api\object\BlogAuthor $blogAuthor
  */
 ?>
-<?php if ($authors->getTotal()) :?>
+<?php if ($list->getTotal()) : ?>
     <ul>
-        <?php foreach ($authors as $blogAuthor) : ?>
+        <?php foreach ($list as $blogAuthor) : ?>
             <li>
                 <?=$this->widget('blog.author.view', ['blogAuthor' => $blogAuthor, 'template' => 'shortView']); ?>
             </li>

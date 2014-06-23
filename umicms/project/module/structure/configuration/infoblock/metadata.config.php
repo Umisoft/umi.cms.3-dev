@@ -1,9 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 use umi\filter\IFilterFactory;
@@ -44,12 +46,6 @@ return [
             'readOnly' => true,
             'defaultValue' => 1
         ],
-        BaseInfoBlock::FIELD_LOCKED => [
-            'type' => IField::TYPE_BOOL,
-            'columnName' => 'locked',
-            'readOnly' => true,
-            'defaultValue' => 0
-        ],
         BaseInfoBlock::FIELD_CREATED => [
             'type' => IField::TYPE_DATE_TIME,
             'columnName' => 'created'
@@ -67,6 +63,16 @@ return [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'editor_id',
             'target' => 'user'
+        ],
+        BaseInfoBlock::FIELD_INFOBLOCK_NAME => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'name',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         BaseInfoBlock::FIELD_DISPLAY_NAME => [
             'type' => IField::TYPE_STRING,
@@ -228,7 +234,7 @@ return [
                 BaseInfoBlock::FIELD_TYPE,
                 BaseInfoBlock::FIELD_VERSION,
                 BaseInfoBlock::FIELD_DISPLAY_NAME,
-                BaseInfoBlock::FIELD_LOCKED,
+                BaseInfoBlock::FIELD_INFOBLOCK_NAME,
                 BaseInfoBlock::FIELD_CREATED,
                 BaseInfoBlock::FIELD_UPDATED,
                 BaseInfoBlock::FIELD_OWNER,
@@ -242,7 +248,7 @@ return [
                 InfoBlock::FIELD_GUID,
                 InfoBlock::FIELD_TYPE,
                 InfoBlock::FIELD_VERSION,
-                InfoBlock::FIELD_LOCKED,
+                InfoBlock::FIELD_INFOBLOCK_NAME,
                 InfoBlock::FIELD_DISPLAY_NAME,
                 InfoBlock::FIELD_CREATED,
                 InfoBlock::FIELD_UPDATED,

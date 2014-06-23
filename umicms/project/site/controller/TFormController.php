@@ -1,17 +1,17 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\site\controller;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;
-use umi\http\Request;
 use umi\http\Response;
 use umicms\hmvc\url\IUrlManager;
 use umicms\hmvc\widget\BaseFormWidget;
@@ -31,12 +31,6 @@ trait TFormController
     private $form;
 
     /**
-     * Возвращает имя шаблона отбражения
-     * @return string
-     */
-    abstract protected function getTemplateName();
-
-    /**
      * Возвращает форму для обработки
      * @return IForm
      */
@@ -50,12 +44,6 @@ trait TFormController
     abstract protected function processForm(IForm $form);
 
     /**
-     * Возвращает переменные для шаблонизации
-     * @return array
-     */
-    abstract protected function buildResponseContent();
-
-    /**
      * @see BaseController::isRequestMethodPost()
      */
     abstract protected function isRequestMethodPost();
@@ -64,12 +52,6 @@ trait TFormController
      * @see BaseController::getAllPostVars()
      */
     abstract protected function getAllPostVars();
-
-    /**
-     * @see BaseController::getRequest()
-     * @return Request
-     */
-    abstract protected function getRequest();
 
     /**
      * @see BaseController::getUrlManager()
@@ -122,6 +104,24 @@ trait TFormController
         }
 
         return $response;
+    }
+
+    /**
+     * Возвращает имя шаблона отбражения
+     * @return string
+     */
+    protected function getTemplateName()
+    {
+        return 'form';
+    }
+
+    /**
+     * Возвращает переменные для шаблонизации
+     * @return array
+     */
+    protected function buildResponseContent()
+    {
+        return [];
     }
 
     /**

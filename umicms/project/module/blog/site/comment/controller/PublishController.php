@@ -9,23 +9,20 @@
 
 namespace umicms\project\module\blog\site\comment\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
-use umi\hmvc\exception\http\HttpNotFound;
-use umi\http\Response;
-use umi\orm\metadata\IObjectType;
+use umi\form\IForm;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
 use umicms\project\module\blog\api\BlogModule;
 use umicms\project\module\blog\api\object\BlogComment;
+use umicms\project\site\controller\TFormSimpleController;
 
 /**
  * Контроллер публикации комментария.
  */
-class PublishController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PublishController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
-    use TFormAware;
+    use TFormSimpleController;
     use TObjectPersisterAware;
 
     /**
@@ -43,31 +40,22 @@ class PublishController extends BaseSecureController implements IFormAware, IObj
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws HttpNotFound
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function buildForm()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound('Page not found');
-        }
+        return $this->api->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE);
+    }
 
-        $form = $this->api->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE);
-        $formData = $this->getAllPostVars();
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $blogComment = $this->api->comment()->getById($this->getRouteVar('id'));
+        $blogComment->published();
 
-        if ($form->setData($formData) && $form->isValid()) {
-
-            $blogComment = $this->api->comment()->getById($this->getRouteVar('id'));
-            $blogComment->published();
-
-            $this->getObjectPersister()->commit();
-
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages()); exit();
-        }
+        $this->getObjectPersister()->commit();
     }
 }
  

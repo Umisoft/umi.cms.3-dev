@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\hmvc\widget;
@@ -15,7 +16,7 @@ use umi\form\IForm;
 /**
  * Базовый класс виджета вывода формы.
  */
-abstract class BaseFormWidget extends BaseSecureWidget
+abstract class BaseFormWidget extends BaseWidget
 {
     /**
      * Имя инпута для хранения URL для редиректа после успешной обработки формы
@@ -69,12 +70,22 @@ abstract class BaseFormWidget extends BaseSecureWidget
             $redirectUrlInput->setValue($redirectUrl);
         }
 
+        $result = (array) $this->buildResponseContent();
+        $result['form'] = $form->getView();
+
         return $this->createResult(
             $this->template,
-            [
-                'form' => $form->getView()
-            ]
+            $result
         );
+    }
+
+    /**
+     * Возвращает дополнительные (помимо самой формы) переменные для шаблонизации
+     * @return array
+     */
+    protected function buildResponseContent()
+    {
+        return [];
     }
 
 }

@@ -2604,14 +2604,14 @@ label.error {
     .umi-button-icon-32.umi-light-bg:hover.umi-disabled {
       background: none; }
 
-.umi-button {
+.umi-button, button.umi-button {
   background-image: linear-gradient(to bottom, #3aadff, #0087d4);
   background-repeat: repeat-x;
   background-color: #0086cf;
   transition: background-position 0.1s linear;
   position: relative;
   float: left;
-  height: 31px;
+  height: 32px;
   border-top: 1px solid #6BC2FF;
   background-image: linear-gradient(to bottom, #3aadff, #0087d4);
   background-repeat: repeat-x;
@@ -2624,54 +2624,54 @@ label.error {
   padding: 0 20px;
   line-height: 31px;
   cursor: pointer; }
-  .umi-button:hover, .umi-button:focus {
+  .umi-button:hover, .umi-button:focus, button.umi-button:hover, button.umi-button:focus {
     background-position-y: -0.525rem;
     background-color: #0086cf; }
-  .umi-button:focus {
+  .umi-button:focus, button.umi-button:focus {
     background-color: #0083ca; }
-  .umi-button:hover, .umi-button:focus {
+  .umi-button:hover, .umi-button:focus, button.umi-button:hover, button.umi-button:focus {
     background-position-y: -0.525rem;
     background-color: #0086cf; }
-  .umi-button:focus {
+  .umi-button:focus, button.umi-button:focus {
     background-color: #0083ca; }
-  .umi-button:hover {
+  .umi-button:hover, button.umi-button:hover {
     color: #FFFFFF; }
-  .umi-button:focus {
+  .umi-button:focus, button.umi-button:focus {
     outline: none; }
-  .umi-button.umi-disabled {
+  .umi-button.umi-disabled, button.umi-button.umi-disabled {
     opacity: 0.4;
     cursor: default; }
-  .umi-button.secondary {
+  .umi-button.secondary, button.umi-button.secondary {
     background-image: linear-gradient(to bottom, #FDFDFD, #F5F5F5);
     background-repeat: repeat-x;
     background-color: #f2f2f2;
     transition: background-position 0.1s linear; }
-    .umi-button.secondary:hover, .umi-button.secondary:focus {
+    .umi-button.secondary:hover, .umi-button.secondary:focus, button.umi-button.secondary:hover, button.umi-button.secondary:focus {
       background-position-y: -0.525rem;
       background-color: #f2f2f2; }
-    .umi-button.secondary:focus {
+    .umi-button.secondary:focus, button.umi-button.secondary:focus {
       background-color: #f0f0f0; }
-  .umi-button.success {
+  .umi-button.success, button.umi-button.success {
     background-image: linear-gradient(to bottom, #43AC6A, #358753);
     background-repeat: repeat-x;
     background-color: #33844f;
     transition: background-position 0.1s linear; }
-    .umi-button.success:hover, .umi-button.success:focus {
+    .umi-button.success:hover, .umi-button.success:focus, button.umi-button.success:hover, button.umi-button.success:focus {
       background-position-y: -0.525rem;
       background-color: #33844f; }
-    .umi-button.success:focus {
+    .umi-button.success:focus, button.umi-button.success:focus {
       background-color: #32804d; }
-  .umi-button.alert {
+  .umi-button.alert, button.umi-button.alert {
     background-image: linear-gradient(to bottom, #b94a48, #953b39);
     background-repeat: repeat-x;
     background-color: #913838;
     transition: background-position 0.1s linear; }
-    .umi-button.alert:hover, .umi-button.alert:focus {
+    .umi-button.alert:hover, .umi-button.alert:focus, button.umi-button.alert:hover, button.umi-button.alert:focus {
       background-position-y: -0.525rem;
       background-color: #913838; }
-    .umi-button.alert:focus {
+    .umi-button.alert:focus, button.umi-button.alert:focus {
       background-color: #8e3636; }
-  .umi-button.white {
+  .umi-button.white, button.umi-button.white {
     border-style: solid;
     border-width: 1px;
     cursor: pointer;
@@ -2696,29 +2696,29 @@ label.error {
     background-repeat: repeat-x;
     background-color: #fcfcfc;
     transition: background-position 0.1s linear; }
-    .umi-button.white:hover, .umi-button.white:focus {
+    .umi-button.white:hover, .umi-button.white:focus, button.umi-button.white:hover, button.umi-button.white:focus {
       background-color: #cccccc; }
-    .umi-button.white:hover, .umi-button.white:focus {
+    .umi-button.white:hover, .umi-button.white:focus, button.umi-button.white:hover, button.umi-button.white:focus {
       color: #333; }
-    .umi-button.white:hover, .umi-button.white:focus {
+    .umi-button.white:hover, .umi-button.white:focus, button.umi-button.white:hover, button.umi-button.white:focus {
       background-position-y: -0.525rem;
       background-color: #fcfcfc; }
-    .umi-button.white:focus {
+    .umi-button.white:focus, button.umi-button.white:focus {
       background-color: #fafafa; }
-  .umi-button.flat {
+  .umi-button.flat, button.umi-button.flat {
     background: none;
     border-color: transparent;
     color: #333; }
-  .umi-button.wide {
+  .umi-button.wide, button.umi-button.wide {
     padding-left: 2.5rem;
     padding-right: 2.5rem; }
-  .umi-button.loading {
+  .umi-button.loading, button.umi-button.loading {
     animation: animate-bg-primary 2s linear infinite;
     position: relative;
     background-position-y: 0;
     transition: none;
     opacity: 1; }
-    .umi-button.loading:before {
+    .umi-button.loading:before, button.umi-button.loading:before {
       position: absolute;
       content: "";
       width: 20px;
@@ -2730,8 +2730,6 @@ label.error {
       background: url("img/animate/loader-20.gif") center center no-repeat; }
 
 .button, button {
-  border: 1px solid;
-  border-color: #4D9ED8;
   background-image: linear-gradient(to bottom, #3aadff, #0087d4);
   background-repeat: repeat-x;
   background-color: #0086cf;
@@ -2743,6 +2741,7 @@ label.error {
   .button:focus, button:focus {
     background-color: #0083ca; }
   .button.secondary, button.secondary {
+    border: 1px solid #A8ADB1;
     background-image: linear-gradient(to bottom, #FDFDFD, #F5F5F5);
     background-repeat: repeat-x;
     background-color: #f2f2f2;
@@ -3799,7 +3798,7 @@ ul.umi-search-result {
     height: 1.25rem;
     cursor: hand;
     position: absolute;
-    margin-left: -1.5rem;
+    margin-left: -1.6875rem;
     padding: 0.125rem; }
     .umi-tree .umi-expand:hover {
       background: #FFFFFF; }
@@ -3860,7 +3859,7 @@ ul.umi-search-result {
         background: #FFFFFF;
         width: 26px;
         height: 3px;
-        bottom: -4px;
+        bottom: -3px;
         left: -3px; }
   .umi-tree .umi-item.active .umi-tree-drop-down-toggler:before {
     background: #91B5F6;
@@ -4957,7 +4956,7 @@ input::-ms-clear {
 .umi-element-center {
   float: left; }
 
-/* Вычитаем ширину левой и правой частей из центральной части*/
+/* Ширина левой части                        || Вычитаем ширину левой и правой частей из центральной части       || Ширина правой части*/
 .umi-element-left-text {
   width: 0px; }
 
@@ -5030,6 +5029,15 @@ input::-ms-clear {
 .umi-element-right-date {
   width: 64px; }
 
+.umi-element-left-datetime {
+  width: 0px; }
+
+.umi-element-center-datetime {
+  width: calc(100% - 0px - 32px); }
+
+.umi-element-right-datetime {
+  width: 32px; }
+
 .umi-element-right {
   float: right; }
   .umi-element-right .icon {
@@ -5056,6 +5064,12 @@ input::-ms-clear {
 .umi-element-select {
   color: #535E6D;
   padding-left: 5px; }
+
+.umi-element-radio {
+  margin-bottom: 13px; }
+
+.umi-element-checkbox-group {
+  margin-bottom: 13px; }
 
 .umi-overlay {
   position: absolute;
@@ -5627,6 +5641,44 @@ table td {
 .umi-file-manager {
   height: 100%; }
 
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header {
+  margin-bottom: 8px; }
+
+.ui-timepicker-div dl {
+  text-align: left; }
+
+.ui-timepicker-div dl dt {
+  float: left;
+  clear: left;
+  padding: 0 0 0 5px; }
+
+.ui-timepicker-div dl dd {
+  margin: 0 10px 10px 45%; }
+
+.ui-timepicker-div td {
+  font-size: 90%; }
+
+.ui-tpicker-grid-label {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0; }
+
+.ui-timepicker-rtl {
+  direction: rtl; }
+
+.ui-timepicker-rtl dl {
+  text-align: right;
+  padding: 0 5px 0 0; }
+
+.ui-timepicker-rtl dl dt {
+  float: right;
+  clear: right; }
+
+.ui-timepicker-rtl dl dd {
+  margin: 0 45% 10px 10px; }
+
 .umi-table-control-column-selector-popup-wrapper {
   overflow: hidden;
   margin: 10px 0 10px 10px; }
@@ -5663,231 +5715,10 @@ table td {
 .umi-table-control-column-selector-popup li:hover {
   background: #A4DCF7; }
 
-.jdpicker_w .date_selector * {
-  width: auto;
-  height: auto;
-  border: none;
-  background: none;
-  margin: 0;
-  padding: 0;
-  text-align: left;
-  text-decoration: none;
-  font-size: 12px; }
-
-.jdpicker_w .date_selector {
-  display: none;
-  position: absolute;
-  z-index: 100000;
-  top: 55px;
-  left: 55px;
-  padding: 5px;
-  margin: 0;
-  width: 210px;
-  background: #FFFFFF;
-  border: 1px solid #d3d7da;
-  border-top: none;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px; }
-
-.jdpicker_w .date_selector table {
-  width: 210px;
-  margin-left: 3px; }
-
-.jdpicker_w .date_clearer {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  margin-top: -10px;
-  right: 35px;
-  height: 20px;
-  width: 20px;
-  text-align: center;
-  line-height: 17px;
-  display: inline-block; }
-
-.jdpicker_w .date_selector_ieframe {
-  position: absolute;
-  z-index: 99999;
-  display: none; }
-
-.jdpicker_w .error_msg {
-  display: none;
-  text-align: center;
-  font-size: 0.8em;
-  color: #666; }
-
-.jdpicker_w .date_selector .nav {
-  width: 17.5em;
-  /* 7 * 2.5em */ }
-
-.jdpicker_w .date_selector .month_nav, .jdpicker_w .date_selector .year_nav {
-  margin: 0 0 3px 0;
-  padding: 0;
-  display: block;
-  position: relative;
-  text-align: center; }
-
-.jdpicker_w .date_selector .month_nav {
-  float: left;
-  width: 56%; }
-
-.jdpicker_w .date_selector .year_nav {
-  float: right;
-  width: 37%;
-  position: relative; }
-
-.jdpicker_w .date_selector .month_nav select {
-  width: 75px;
-  margin: 0 auto;
-  border: 1px solid #ccc;
-  position: relative;
-  top: 1px; }
-
-.jdpicker_w .date_selector .year_nav .year_input {
-  text-align: center;
-  width: 36px;
-  border: 1px solid #ccc;
-  position: relative;
-  top: 2px; }
-
-.jdpicker_w .date_selector .month_name, .jdpicker_w .date_selector .year_name {
-  font-weight: bold;
-  line-height: 20px; }
-
-.jdpicker_w .date_selector .button {
-  display: block;
-  position: absolute;
-  top: 0;
-  width: 18px;
-  height: 18px;
-  line-height: 17px;
-  font-weight: bold;
-  color: #333;
-  text-align: center;
-  font-size: 120%;
-  overflow: hidden;
-  cursor: pointer; }
-
-.jdpicker_w .date_selector .button:hover, .jdpicker_w .date_selector .button.hover {
-  background: none;
-  color: #333;
-  cursor: pointer;
-  border-color: #ccc; }
-
-.jdpicker_w .date_selector .prev {
-  left: 0; }
-
-.jdpicker_w .date_selector .next {
-  right: 0; }
-
-.jdpicker_w .date_selector table {
-  margin: 0 auto;
-  border-spacing: 1px;
-  clear: both; }
-
-.jdpicker_w .date_selector th {
-  padding-top: 5px;
-  padding-bottom: 5px; }
-
-.jdpicker_w .date_selector th, .jdpicker_w .date_selector td {
-  text-align: center;
-  color: black; }
-
-.jdpicker_w .date_selector th.week_label {
-  font-weight: normal;
-  font-style: italic;
-  font-size: 80%;
-  width: 25px; }
-
-.jdpicker_w .date_selector .week_num, .jdpicker_w .date_selector .hover .week_num, .jdpicker_w .date_selector .selected .week_num {
-  font-style: italic;
-  color: #333 !important;
-  vertical-align: bottom !important;
-  text-align: right;
-  border: none !important;
-  font-size: 70%;
-  background: #FCFCFC !important;
-  padding-right: 4px; }
-
-.jdpicker_w .date_selector td {
-  line-height: 2em;
-  text-align: center;
-  white-space: nowrap;
-  color: #003C78;
-  background: white; }
-
-.jdpicker_w .date_selector td.today {
-  background: #F6F7F8; }
-
-.jdpicker_w .date_selector td.unselected_month {
-  color: #ccc; }
-
-.jdpicker_w .date_selector td.selectable_day, .jdpicker_w .date_selector tr.selectable_week td {
-  cursor: pointer;
-  border: 1px dotted #aaa;
-  color: #333; }
-
-.jdpicker_w .date_selector td.selected, .jdpicker_w .date_selector tr.selected td {
-  background: linear-gradient(to bottom, #35a9fc 0%, #0f8bd5 50%);
-  font-weight: bold;
-  color: #FFFFFF;
-  border: none; }
-
-.jdpicker_w .date_selector tr.selectable_week.hover td, .jdpicker_w .date_selector td.selectable_day.hover {
-  background: #D6E0E9;
-  color: #000000; }
-
-.calendar {
-  position: relative; }
-
-.datepicker {
-  position: absolute;
-  z-index: 1;
-  background: #FFFFFF;
-  border: 1px solid #6d7580; }
-
 .ui-datepicker {
-  background: #FFFFFF;
-  border: 1px solid #d3d7da;
-  padding: 5px;
-  margin-left: 32px;
-  border-radius: 3px;
   font-size: 13px; }
-
-.ui-datepicker-buttonpane {
-  float: left; }
-
-.ui-datepicker-current {
-  margin: 0; }
-
-.ui-slider-horizontal {
-  position: relative;
-  border: 1px solid #d3d7da;
-  border-radius: 3px;
-  height: 5px;
-  margin-left: 10px;
-  margin-right: 10px; }
-
-.ui-slider-handle {
-  position: absolute;
-  border-radius: 5px;
-  width: 10px;
-  height: 9px;
-  background: #D3D7DA;
-  margin-top: -2px;
-  margin-left: -5px; }
-  .ui-slider-handle:hover {
-    background: #444444; }
-  .ui-slider-handle.ui-state-focus {
-    background: #444444 !important;
-    outline: none; }
-
-.ui-datepicker-title, .ui_tpicker_time_label, .ui_tpicker_time, .ui-datepicker-close {
-  display: none; }
-
-.ui_tpicker_hour_label, .ui_tpicker_minute_label {
-  font-size: 13px !important;
-  font-weight: normal !important; }
+  .ui-datepicker dl {
+    font-size: 13px; }
 
 .iScrollIndicator {
   background: rgba(123, 137, 156, 0.9) !important;
@@ -5902,7 +5733,8 @@ table td {
 .iScrollHorizontalScrollbar {
   /*left: -25px!important;
     right: -25px!important;*/
-  bottom: 5px !important; }
+  bottom: 5px !important;
+  z-index: 2 !important; }
 
 .cke_chrome {
   border-radius: 5px;
@@ -6416,37 +6248,38 @@ table td {
   padding: 0;
   background: #D6E0E9; }
 
-.elfinder-cwd-wrapper:before {
-  content: "";
-  position: absolute;
-  float: left;
-  z-index: 1;
-  display: block;
-  height: 3px;
-  width: calc(100% + 1px);
-  top: 0;
-  left: 0;
-  background: url(img/shadows/toBottomShadow.png); }
-
-.elfinder-cwd-wrapper:after {
-  content: "";
-  position: absolute;
-  float: left;
-  display: block;
-  height: 3px;
-  width: calc(100% + 1px);
-  bottom: 0;
-  left: 0;
-  background: url(img/shadows/toTopShadow.png); }
-
 /* container */
 .elfinder-cwd {
   height: 100% !important;
   position: relative;
+  z-index: 3;
   cursor: default;
   padding: 0;
   margin: 0;
-  user-select: none; }
+  user-select: none;
+  overflow: scroll; }
+
+.elfinder-cwd-wrapper:before {
+  content: "";
+  position: absolute;
+  float: left;
+  z-index: 1000;
+  display: block;
+  width: 1px;
+  height: calc(100% - 14px);
+  left: 0px;
+  background: #ADB9C5; }
+
+.elfinder-workzone:before {
+  content: "";
+  position: absolute;
+  float: left;
+  z-index: 10;
+  display: block;
+  width: 1px;
+  height: calc(100% - 14px);
+  right: 14px;
+  background: #ADB9C5; }
 
 /* container active on dropenter */
 .elfinder .elfinder-cwd-wrapper.elfinder-droppable-active {
@@ -6711,13 +6544,39 @@ table td {
 
 /* titlebar */
 .std42-dialog .ui-dialog-titlebar {
+  position: relative;
   border-left: 0 solid transparent;
   border-top: 0 solid transparent;
   border-right: 0 solid transparent;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  font-weight: normal;
-  padding: 0.2em 1em; }
+  font-weight: bold;
+  padding: 15px 10px;
+  cursor: move; }
+  .std42-dialog .ui-dialog-titlebar:after {
+    content: "";
+    position: absolute;
+    float: left;
+    display: block;
+    height: 3px;
+    width: calc(100% + 1px);
+    left: 0;
+    bottom: -3px;
+    background: url(img/shadows/toBottomShadow.png); }
+  .std42-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
+    float: right;
+    margin-top: -10px;
+    margin-right: -3px;
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    background-position: 0 0;
+    position: relative;
+    display: inline-block;
+    line-height: 16px;
+    background: url(img/icons.png) no-repeat;
+    background-color: transparent;
+    background-position: -240px 0px; }
 
 .std42-dialog .ui-dialog-titlebar-close, .std42-dialog .ui-dialog-titlebar-close:hover {
   padding: 1px; }
@@ -6730,18 +6589,14 @@ table td {
   left: 0.3em; }
 
 /* content */
-.std42-dialog .ui-dialog-content {
-  padding: 0.3em 0.5em; }
-
 /* buttons */
 .std42-dialog .ui-dialog-buttonpane {
+  float: right;
   border: 0 solid;
-  margin: 0;
-  padding: 0.5em 0.7em; }
+  margin: 0; }
 
 .std42-dialog .ui-dialog-buttonpane button {
   margin: 0 0 0 0.4em;
-  padding: 0;
   outline: 0 solid; }
 
 .std42-dialog .ui-dialog-buttonpane button span {
@@ -6770,8 +6625,9 @@ table td {
 
 /*********************** ERROR DIALOG **************************/
 .elfinder-dialog-error .ui-dialog-content, .elfinder-dialog-confirm .ui-dialog-content {
-  padding-left: 56px;
-  min-height: 35px; }
+  padding: 10px 0 10px 56px;
+  min-height: 35px;
+  line-height: 21px; }
 
 .elfinder-rtl .elfinder-dialog-error .ui-dialog-content, .elfinder-rtl .elfinder-dialog-confirm .ui-dialog-content {
   padding-left: 0;
@@ -6789,6 +6645,7 @@ table td {
   border-bottom: 1px solid #ccc;
   position: relative;
   padding: 0.5em;
+  line-height: 21px;
   text-align: center;
   overflow: hidden; }
 
@@ -6814,9 +6671,6 @@ table td {
   width: 100%;
   height: 8px;
   background: url(img/elfinder/img/progress.gif) center center repeat-x; }
-
-.elfinder-notify-progressbar, .elfinder-notify-progress {
-  border-radius: 2px; }
 
 /* icons */
 .elfinder-dialog-icon-open, .elfinder-dialog-icon-file {
@@ -6997,40 +6851,17 @@ table td {
 /*********************************************/
 /* container */
 .elfinder .elfinder-navbar {
-  overflow: hidden;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 1;
   width: 230px;
-  height: calc(100% - 16px) !important;
-  padding: 8px 0;
+  height: 100% !important;
+  padding: 0 0 30px 0;
   background-image: none;
-  border-top: 0 solid;
-  border-bottom: 0 solid;
-  /*overflow: auto;*/
   display: none;
   position: relative;
   user-select: none; }
-
-.elfinder .elfinder-navbar:before {
-  content: "";
-  position: absolute;
-  float: left;
-  z-index: 1;
-  display: block;
-  height: 3px;
-  width: calc(100% + 1px);
-  top: 0;
-  left: 0;
-  background: url(img/shadows/toBottomShadow.png); }
-
-.elfinder .elfinder-navbar:after {
-  content: "";
-  position: absolute;
-  float: left;
-  display: block;
-  height: 3px;
-  width: calc(100% + 1px);
-  bottom: 0;
-  left: 0;
-  background: url(img/shadows/toTopShadow.png); }
 
 /* ltr/rtl enviroment */
 .elfinder-ltr .elfinder-navbar {
@@ -7163,7 +6994,7 @@ table td {
   display: block;
   top: 50%;
   margin-top: -7px;
-  background: url("img/animate/loader-20.gif") center center no-repeat; }
+  background: url("svg/animation/spinner.svg") center center no-repeat; }
 
 /* spinner ltr/rtl enviroment */
 .elfinder-ltr .elfinder-navbar-spinner {
@@ -7199,11 +7030,10 @@ table td {
   width: 4px;
   height: 100%;
   background: #F5F6F7;
-  left: 0;
   right: 0 !important;
   border-left: 1px solid #ADB9C5;
   border-right: 1px solid #ADB9C5;
-  cursor: move; }
+  cursor: col-resize; }
 
 .elfinder-nav-handle-icon {
   position: absolute;
@@ -7434,15 +7264,41 @@ embed.elfinder-quicklook-preview-audio {
 /******************************************************************/
 /* statusbar container */
 .elfinder-statusbar {
+  position: relative;
   text-align: center;
   font-weight: normal;
   padding: 6px 20px;
   height: 14px;
   line-height: 14px;
+  border-top: 1px solid transparent;
   border-right: 0 solid transparent;
   border-bottom: 0 solid transparent;
   border-left: 0 solid transparent;
   background: #F5F6F7; }
+
+.elfinder .elfinder-statusbar:before {
+  content: "";
+  position: absolute;
+  float: left;
+  z-index: 2;
+  display: block;
+  height: 14px;
+  width: 100%;
+  top: -15px;
+  left: 0;
+  background: #F5F6F7; }
+
+.elfinder .elfinder-statusbar:after {
+  content: "";
+  position: absolute;
+  float: left;
+  z-index: 100;
+  display: block;
+  height: 3px;
+  width: 100%;
+  top: -18px;
+  left: 0;
+  background: url(img/shadows/toTopShadow.png); }
 
 .elfinder-statusbar a {
   text-decoration: none; }
@@ -7482,7 +7338,7 @@ embed.elfinder-quicklook-preview-audio {
  **/
 /* dialogs */
 .std42-dialog, .std42-dialog .ui-widget-content {
-  background-color: #ededed;
+  background-color: #FFFFFF;
   background-image: none;
   background-clip: content-box; }
 
@@ -7545,11 +7401,25 @@ embed.elfinder-quicklook-preview-audio {
 .elfinder-contextmenu .ui-state-hover .elfinder-contextmenu-arrow {
   background-image: url('img/elfinder/img/arrows-active.png'); }
 
+.std42-dialog .elfinder-help {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 300px;
+  padding: 10px;
+  line-height: 21px;
+  font-size: 13px;
+  margin-bottom: 0; }
+  .std42-dialog .elfinder-help ul {
+    list-style-type: none;
+    font-size: 13px;
+    margin-left: 0; }
+
 /*********************************************/
 /*               TOOLBAR STYLES              */
 /*********************************************/
 /* toolbar container */
 .elfinder-toolbar {
+  position: relative;
   /*padding:4px 0 3px 0; */
   border-left: 0 solid transparent;
   border-top: 0 solid transparent;
@@ -7557,6 +7427,18 @@ embed.elfinder-quicklook-preview-audio {
   background: #F5F6F7;
   display: inline-block;
   width: 100%; }
+
+.elfinder .elfinder-toolbar:after {
+  content: "";
+  position: absolute;
+  float: left;
+  display: block;
+  z-index: 100;
+  height: 3px;
+  width: 100%;
+  bottom: -3px;
+  left: 0;
+  background: url(img/shadows/toBottomShadow.png); }
 
 /* container for button's group */
 .elfinder-buttonset {

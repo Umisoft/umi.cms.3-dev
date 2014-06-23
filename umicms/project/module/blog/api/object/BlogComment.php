@@ -1,14 +1,18 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\api\object;
 
+use umi\acl\IAclAssertionResolver;
+use umi\acl\IAclResource;
+use umi\hmvc\acl\ComponentRoleProvider;
 use umicms\project\module\users\api\UsersModule;
 
 /**
@@ -18,7 +22,7 @@ use umicms\project\module\users\api\UsersModule;
  * @property string $contents комментарий
  * @property string $publishStatus статус публикации комментария
  */
-class BlogComment extends BlogBaseComment
+class BlogComment extends BlogBaseComment implements IAclResource, IAclAssertionResolver
 {
     /**
      * Тип объекта
@@ -89,6 +93,32 @@ class BlogComment extends BlogBaseComment
     {
         $this->publishStatus = self::COMMENT_STATUS_REJECTED;
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAclResourceName()
+    {
+        return 'model:blogComment';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAllowed($role, $operationName, array $assertions)
+    {
+        if (!$role instanceof ComponentRoleProvider) {
+            return false;
+        }
+
+        foreach ($assertions as $assertion) {
+            if ($assertion === 'premoderation') {
+                return false;
+            }
+        }
+
+        return false;
     }
 }
  

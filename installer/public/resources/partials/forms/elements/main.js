@@ -19,6 +19,7 @@ define(
         'partials/forms/elements/file/main',
         'partials/forms/elements/image/main',
         'partials/forms/elements/textarea/main',
+        'partials/forms/elements/checkbox-group/main',
         'partials/forms/elements/permissions/main'
     ],
     function(
@@ -41,6 +42,7 @@ define(
         fileElement,
         imageElement,
         textareaElement,
+        checkboxGroupElement,
         permissions
     ){
         "use strict";
@@ -64,6 +66,7 @@ define(
             fileElement();
             imageElement();
             textareaElement();
+            checkboxGroupElement();
             permissions();
         };
     }

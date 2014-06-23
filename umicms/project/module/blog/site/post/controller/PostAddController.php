@@ -1,37 +1,47 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\site\post\controller;
 
-use umi\form\IFormAware;
-use umi\form\TFormAware;
-use umi\hmvc\exception\http\HttpNotFound;
-use umi\http\Response;
+use umi\form\IForm;
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseSecureController;
+use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\exception\InvalidArgumentException;
 use umicms\project\module\blog\api\BlogModule;
+use umicms\project\module\blog\api\object\BlogCategory;
 use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\site\controller\TFormController;
 
 /**
  * Контроллер добавления поста
  */
-class PostAddController extends BaseSecureController implements IFormAware, IObjectPersisterAware
+class PostAddController extends BaseAccessRestrictedController implements IObjectPersisterAware
 {
-    use TFormAware;
+    use TFormController;
     use TObjectPersisterAware;
 
     /**
      * @var BlogModule $api API модуля "Блоги"
      */
     protected $api;
+    /**
+     * @var bool $added флаг указывающий на статус добавление поста
+     */
+    private $added = false;
+    /**
+     * @var BlogPost $blogPost добавляемый пост
+     */
+    private $blogPost;
 
     /**
      * Конструктор.
@@ -43,32 +53,69 @@ class PostAddController extends BaseSecureController implements IFormAware, IObj
     }
 
     /**
-     * Вызывает контроллер.
-     * @throws HttpNotFound
-     * @return Response
+     * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getTemplateName()
     {
-        if (!$this->isRequestMethodPost()) {
-            throw new HttpNotFound(
-                $this->translate('Page not found')
+        return 'addPost';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function buildForm()
+    {
+        $blogCategory = null;
+        $blogCategoryId = $this->getRouteVar('id');
+
+        if (!is_null($blogCategoryId)) {
+            $blogCategory = $this->api->category()->getById($blogCategoryId);
+        }
+
+        if (!$blogCategory instanceof BlogCategory) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Widget parameter "{param}" should be instance of "{class}".',
+                    [
+                        'param' => 'blogCategory',
+                        'class' => BlogCategory::className()
+                    ]
+                )
             );
         }
 
-        $post = $this->api->addPost();
+        $this->blogPost = $this->api->post()->add();
+        $this->blogPost->category = $blogCategory;
 
-        $form = $this->api->post()->getForm(BlogPost::FORM_ADD_POST, IObjectType::BASE, $post);
-        $formData = $this->getAllPostVars();
-
-        if ($form->setData($formData) && $form->isValid()) {
-
-            $this->getObjectPersister()->commit();
-
-            return $this->createRedirectResponse($this->getRequest()->getReferer());
-        } else {
-            //TODO ajax
-            var_dump($form->getMessages()); exit();
+        if (!$this->isAllowed($this->blogPost)) {
+            throw new ResourceAccessForbiddenException(
+                $this->blogPost,
+                $this->translate('Access denied')
+            );
         }
+
+        return $this->api->post()->getForm(
+            BlogPost::FORM_ADD_POST,
+            IObjectType::BASE,
+            $this->blogPost
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function processForm(IForm $form)
+    {
+        $this->getObjectPersister()->commit();
+        $this->added = true;
+    }
+
+    protected function buildResponseContent()
+    {
+        return [
+            'added' => $this->added,
+            'blogPost' => $this->blogPost
+        ];
     }
 }
  

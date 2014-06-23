@@ -1,14 +1,15 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\admin;
 
-use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 
 return [
@@ -23,22 +24,6 @@ return [
     AdminApplication::OPTION_COMPONENTS => [
         'api' => '{#lazy:~/project/admin/api/api.config.php}',
         'settings' => '{#lazy:~/project/admin/settings/settings.config.php}',
-    ],
-
-    AdminApplication::OPTION_ACL => [
-
-        IAclFactory::OPTION_ROLES => [
-            'visitor' => [],
-            'configurator' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'component:api',
-            'component:settings',
-        ],
-        IAclFactory::OPTION_RULES => [
-            'visitor' => ['component:api' => []],
-            'configurator' => ['component:settings' => []]
-        ]
     ],
 
     AdminApplication::OPTION_VIEW        => [

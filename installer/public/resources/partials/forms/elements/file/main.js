@@ -25,7 +25,14 @@ define(['App', 'text!./fileElement.hbs'], function(UMI, fileElement){
                 template: function(){
                     var dataSource = this.get('parentView.meta.dataSource');
                     return Ember.Handlebars.compile('{{input type="text" value=object.' + dataSource + ' placeholder=meta.placeholder validator="collection" name=meta.attributes.name}}');
-                }.property()
+                }.property(),
+
+                willDestroyElement: function(){
+                    //Может ли возникнуть необходимость подтверждения действий для попапа перед переходом на другой роут?
+                    //При возврате на роут возможно есть смысл показывать попапы закрытые при уходе?
+                    //По-хорошему, попапу нужно добавлять id и уже по нему удалять
+                    $('.umi-popup').remove();
+                }
             })
         });
     };

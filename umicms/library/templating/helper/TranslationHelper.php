@@ -1,17 +1,18 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\templating\helper;
 
 use umi\i18n\ILocalizable;
 use umi\i18n\translator\ITranslator;
-use umicms\hmvc\component\BaseComponent;
+use umicms\hmvc\component\BaseCmsComponent;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 
 /**
@@ -56,7 +57,7 @@ class TranslationHelper implements ILocalizable
     {
         if (!$dictionaries) {
             $component = $this->dispatcher->getCurrentContext()->getComponent();
-            if ($component instanceof BaseComponent) {
+            if ($component instanceof BaseCmsComponent) {
                 $dictionaries = $component->getDictionariesNames();
             }
         }

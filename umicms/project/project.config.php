@@ -1,9 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project;
@@ -18,22 +20,25 @@ return [
 
     Bootstrap::OPTION_TOOLS_SETTINGS => '{#partial:~/project/configuration/tools.settings.config.php}',
 
-    IComponent::OPTION_ACL => [
-
-        IAclFactory::OPTION_ROLES => [
-            'visitor' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'component:admin'
-        ],
-        IAclFactory::OPTION_RULES => [
-            'visitor' => ['component:admin' => []]
-        ]
-    ],
-
     IComponent::OPTION_COMPONENTS  => [
         'site'       => '{#lazy:~/project/site/site.config.php}',
         'admin'      => '{#lazy:~/project/admin/admin.config.php}'
+    ],
+
+    IComponent::OPTION_ACL => [
+
+        IAclFactory::OPTION_ROLES => [
+            'adminExecutor' => [],
+            'siteExecutor' => [],
+        ],
+        IAclFactory::OPTION_RESOURCES => [
+            'component:admin',
+            'component:site',
+        ],
+        IAclFactory::OPTION_RULES => [
+            'adminExecutor' => ['component:admin' => []],
+            'siteExecutor' => ['component:site' => []]
+        ]
     ],
 
     IComponent::OPTION_ROUTES => [

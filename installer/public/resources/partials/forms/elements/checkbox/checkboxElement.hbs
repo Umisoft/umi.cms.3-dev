@@ -1,4 +1,9 @@
-{{input type="checkbox" id=inputId name=meta.attributes.name}}
+<!-- Если у checkbox значение false - он не оправляется на сервер -->
+<!-- Ставим перед ним поле hidden с тем же имененем и значением false -->
+<!-- На сервер всегда отправляется fasle, но если checkbox установлен в true -->
+<!-- он затирает hidden -->
+<input type="hidden" name="{{unbound inputId}}" value="false" />
+{{input type=checkbox id=inputId name=inputId name=meta.attributes.name}}
 <label for="{{unbound inputId}}" unselectable="on" onselectstart="return false;">
     <span></span>
     {{meta.label}}

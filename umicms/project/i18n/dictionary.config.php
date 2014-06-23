@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
@@ -35,6 +36,7 @@ return [
         'project.admin.api.structure.page' => '{#lazy:~/project/module/structure/admin/page/i18n/dictionary.config.php}',
         'project.admin.api.structure.layout' => '{#lazy:~/project/module/structure/admin/layout/i18n/dictionary.config.php}',
         'project.admin.api.structure.infoblock' => '{#lazy:~/project/module/structure/admin/infoblock/i18n/dictionary.config.php}',
+        'project.admin.api.structure.menu' => '{#lazy:~/project/module/structure/admin/menu/i18n/dictionary.config.php}',
 
         'project.admin.api.statistics' => '{#lazy:~/project/module/statistics/admin/i18n/dictionary.config.php}',
         'project.admin.api.statistics.metrika' => '{#lazy:~/project/module/statistics/admin/metrika/i18n/dictionary.config.php}',
@@ -184,4 +186,5 @@ return [
         'collection.layout' => '{#lazy:~/project/module/structure/configuration/layout/i18n/dictionary.config.php}',
         'collection.structure' => '{#lazy:~/project/module/structure/configuration/structure/i18n/dictionary.config.php}',
         'collection.infoblock' => '{#lazy:~/project/module/structure/configuration/infoblock/i18n/dictionary.config.php}',
+        'collection.menu' => '{#lazy:~/project/module/structure/configuration/menu/i18n/dictionary.config.php}',
     ];

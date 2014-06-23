@@ -1,9 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\admin\api;
@@ -56,46 +58,22 @@ return [
 
             'administrator' => [],
 
-            'blogEditor' => ['administrator'],
-            'serviceEditor' => ['administrator'],
-            'filesEditor' => ['administrator'],
-            'modelsEditor' => ['administrator'],
-            'newsEditor' => ['administrator'],
-            'seoEditor' => ['administrator'],
-            'searchEditor' => ['administrator'],
-            'statisticsEditor' => ['administrator'],
-            'structureEditor' => ['administrator'],
-            'usersEditor' => ['administrator'],
+            'blogExecutor' => ['administrator'],
+            'serviceExecutor' => ['administrator'],
+            'filesExecutor' => ['administrator'],
+            'modelsExecutor' => ['administrator'],
+            'newsExecutor' => ['administrator'],
+            'seoExecutor' => ['administrator'],
+            'searchExecutor' => ['administrator'],
+            'statisticsExecutor' => ['administrator'],
+            'structureExecutor' => ['administrator'],
+            'usersExecutor' => ['administrator'],
         ],
         IAclFactory::OPTION_RESOURCES => [
-
             'controller:settings',
-
-            'component:blog',
-            'component:service',
-            'component:files',
-            'component:models',
-            'component:news',
-            'component:seo',
-            'component:search',
-            'component:statistics',
-            'component:structure',
-            'component:users'
         ],
         IAclFactory::OPTION_RULES => [
-
-            'administrator' => ['controller:settings' => []],
-
-            'blogEditor' => ['component:blog' => []],
-            'serviceEditor' => ['component:service' => []],
-            'filesEditor' => ['component:files' => []],
-            'modelsEditor' => ['component:models' => []],
-            'newsEditor' => ['component:news' => []],
-            'seoEditor' => ['component:seo' => []],
-            'searchEditor' => ['component:search' => []],
-            'statisticsEditor' => ['component:statistics' => []],
-            'structureEditor' => ['component:structure' => []],
-            'usersEditor' => ['component:users' => []],
+            'administrator' => ['controller:settings' => []]
         ]
     ],
 
@@ -121,9 +99,7 @@ return [
                     'route' => '/{component}'
                 ]
             ]
-        ],
-
-
+        ]
     ]
 
 ];

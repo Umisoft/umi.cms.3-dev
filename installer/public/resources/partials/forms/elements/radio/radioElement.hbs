@@ -1,1 +1,9 @@
-{{input type="radio" id=inputId name=meta.attributes.name}}<label for="{{unbound inputId}}" unselectable="on" onselectstart="return false;"><span></span>{{meta.label}}</label>
+{{#each element in meta.choices}}
+    <div style="height: 24px; line-height: 24px;">
+        <input type="radio" value="{{unbound element.attributes.value}}" name="{{unbound element.attributes.name}}" id="input-radio-{{unbound element.attributes.value}}" />
+        <label for="input-radio-{{unbound element.attributes.value}}" unselectable="on" onselectstart="return false;">
+            <span></span>
+            {{unbound element.label}}
+        </label>
+    </div>
+{{/each}}

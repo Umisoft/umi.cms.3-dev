@@ -1,9 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\admin;
@@ -23,36 +25,6 @@ return [
         'comment' => '{#lazy:~/project/module/blog/admin/comment/component.config.php}',
         'tag' => '{#lazy:~/project/module/blog/admin/tag/component.config.php}',
         'rss' => '{#lazy:~/project/module/blog/admin/rss/component.config.php}'
-    ],
-
-    AdminComponent::OPTION_ACL => [
-        AdminComponent::OPTION_ACL => [
-
-            IAclFactory::OPTION_ROLES => [
-                'categoryEditor' => [],
-                'postEditor' => [],
-                'commentEditor' => [],
-                'authorEditor' => [],
-                'tagEditor' => [],
-                'rssEditor' => []
-            ],
-            IAclFactory::OPTION_RESOURCES => [
-                'component:category',
-                'component:post',
-                'component:comment',
-                'component:author',
-                'component:tag',
-                'component:rss'
-            ],
-            IAclFactory::OPTION_RULES => [
-                'categoryEditor' => ['component:category' => []],
-                'postEditor' => ['component:post' => []],
-                'commentEditor' => ['component:comment' => []],
-                'authorEditor' => ['component:author' => []],
-                'tagEditor' => ['component:tag' => []],
-                'rssEditor' => ['component:rss' => []]
-            ]
-        ],
     ],
 
     AdminComponent::OPTION_ROUTES      => [

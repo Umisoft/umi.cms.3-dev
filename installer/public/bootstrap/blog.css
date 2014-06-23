@@ -152,15 +152,28 @@ h6, .h6 {
     margin-bottom: 20px;
     color: #999;
 }
+.btn-toolbar form {
+    float: left;
+    margin: 10px 10px 0 0;
+}
 
 /*
  * Footer
  */
 
 .blog-footer {
+    margin: 40px 0 0;
     padding: 40px 0;
     color: #999;
     text-align: center;
     background-color: #f9f9f9;
     border-top: 1px solid #e5e5e5;
+}
+
+.bottomMenu {
+    margin: 0 0 20px;
+}
+.bottomMenu li {
+    display: inline;
+    margin: 0 15px;
 }

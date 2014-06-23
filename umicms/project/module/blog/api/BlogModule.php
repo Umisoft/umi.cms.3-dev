@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\module\blog\api;
@@ -15,7 +16,6 @@ use umi\rss\IRssFeed;
 use umi\rss\IRssFeedAware;
 use umi\rss\RssItem;
 use umi\rss\TRssFeedAware;
-use umicms\exception\InvalidArgumentException;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManagerAware;
@@ -298,21 +298,44 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     public function getComments()
     {
         $comments = $this->comment()->select()
+            ->orderBy(BlogComment::FIELD_HIERARCHY_LEVEL, CmsSelector::ORDER_ASC)
             ->orderBy(BlogComment::FIELD_PUBLISH_TIME, CmsSelector::ORDER_DESC);
 
         return $comments;
     }
 
     /**
-     * Возвращает селектор для выборки комментариев к посту.
+     * Возвращает селектор для выборки опубликованных комментариев к посту.
      * @param BlogPost $blogPost
      * @return CmsSelector|BlogComment[]
      */
-    public function getCommentByPost(BlogPost $blogPost)
+    public function getCommentsByPost(BlogPost $blogPost)
     {
         $comments = $this->getComments()
             ->types([BlogComment::TYPE . '*'])
-            ->where(BlogComment::FIELD_POST)->equals($blogPost);
+            ->where(BlogComment::FIELD_POST)->equals($blogPost)
+            ->where(BlogComment::FIELD_PUBLISH_STATUS)->equals(
+                BlogComment::COMMENT_STATUS_PUBLISHED
+            );
+
+        return $comments;
+    }
+
+    /**
+     * Возвращает селектор для выборки опубликованных и требующих модерации комментариев к посту.
+     * @param BlogPost $blogPost
+     * @return CmsSelector|BlogComment[]
+     */
+
+    public function getCommentByPostWithNeedModeration(BlogPost $blogPost)
+    {
+        $comments = $this->getComments()
+            ->types([BlogComment::TYPE . '*'])
+            ->where(BlogComment::FIELD_POST)->equals($blogPost)
+            ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
+                BlogComment::COMMENT_STATUS_PUBLISHED,
+                BlogComment::COMMENT_STATUS_NEED_MODERATE
+            ]);
 
         return $comments;
     }
@@ -391,8 +414,8 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает текущего автора блога.
-     * @throws InvalidArgumentException
-     * @return mixed
+     * @throws RuntimeException в случае, если текущий автор не установлен
+     * @return BlogAuthor
      */
     public function getCurrentAuthor()
     {
@@ -405,13 +428,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             ->getResult()
             ->fetch();
 
-        if (isset($this->currentAuthor) && !$this->currentAuthor instanceof BlogAuthor) {
-            throw new InvalidArgumentException(
+        if (!$this->currentAuthor instanceof BlogAuthor) {
+            throw new RuntimeException(
                 $this->translate(
-                    'Method parameter "{param} should be instance of "{class}".',
+                    'Current author should be instance of "{class}".',
                     [
-                        'param' => 'currentAuthor',
-                        'class' => 'BlogAuthor'
+                        'class' => BlogAuthor::className()
                     ]
                 )
             );
@@ -426,7 +448,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     public function hasCurrentAuthor()
     {
-        return $this->getCurrentAuthor() ? true : false;
+        try {
+            $this->getCurrentAuthor();
+        } catch (RuntimeException $e) {
+            return false;
+        }
+        return true;
     }
 
     /**

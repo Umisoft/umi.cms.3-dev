@@ -20,7 +20,7 @@
     <select class="form-control" <?= $element->attributes ?> >
 
         <?php foreach ($element->choices as $choice) : ?>
-            <option <?= $choice['attributes'] ?> > <?= $choice['label'] ?> </option>
+            <option <?= $choice['attributes'] ?> ><?= $choice['label'] ?></option>
         <?php endforeach; ?>
 
     </select>

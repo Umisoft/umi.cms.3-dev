@@ -1,10 +1,11 @@
 <?php
 /**
- * UMI.Framework (http://umi-framework.ru/)
+ * This file is part of UMI.CMS.
  *
- * @link      http://github.com/Umisoft/framework for the canonical source repository
- * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
- * @license   http://umi-framework.ru/license/bsd-3 BSD-3 License
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace umicms\project\site\component;
@@ -16,7 +17,7 @@ use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\model\IModelAware;
 use umi\hmvc\view\IViewRenderer;
 use umi\http\Request;
-use umicms\hmvc\component\BaseComponent;
+use umicms\hmvc\component\BaseCmsComponent;
 use umicms\orm\object\ICmsPage;
 use umicms\project\site\callstack\IPageCallStackAware;
 use umicms\project\site\callstack\TPageCallStackAware;
@@ -26,7 +27,7 @@ use umicms\project\site\config\TSiteSettingsAware;
 /**
  * Компонент сайта.
  */
-class SiteComponent extends BaseComponent implements IPageCallStackAware, ISiteSettingsAware, IConfigAliasResolverAware
+class SiteComponent extends BaseCmsComponent implements IPageCallStackAware, ISiteSettingsAware, IConfigAliasResolverAware
 {
     use TPageCallStackAware;
     use TSiteSettingsAware;
