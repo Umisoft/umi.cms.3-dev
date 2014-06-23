@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\blog\site\comment\widget;
 
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
 use umicms\project\module\blog\model\BlogModule;
@@ -64,6 +65,13 @@ class RejectFormWidget extends BaseFormWidget
                         'class' => BlogComment::className()
                     ]
                 )
+            );
+        }
+
+        if (!$this->isAllowed($this->blogComment)) {
+            throw new ResourceAccessForbiddenException(
+                $this->blogComment,
+                $this->translate('Access denied')
             );
         }
 

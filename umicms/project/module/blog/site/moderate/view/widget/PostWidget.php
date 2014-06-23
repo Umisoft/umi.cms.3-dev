@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\blog\site\moderate\view\widget;
 
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\blog\model\BlogModule;
@@ -61,6 +62,13 @@ class PostWidget extends BaseCmsWidget
                         'class' => BlogPost::className()
                     ]
                 )
+            );
+        }
+
+        if (!$this->isAllowed($this->blogPost)) {
+            throw new ResourceAccessForbiddenException(
+                $this->blogPost,
+                $this->translate('Access denied')
             );
         }
 

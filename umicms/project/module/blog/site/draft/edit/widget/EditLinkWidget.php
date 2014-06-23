@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\blog\site\draft\edit\widget;
 
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseLinkWidget;
 use umicms\project\module\blog\model\BlogModule;
@@ -60,6 +61,13 @@ class EditLinkWidget extends BaseLinkWidget
                         'class' => BlogPost::className()
                     ]
                 )
+            );
+        }
+
+        if (!$this->isAllowed($this->blogDraft)) {
+            throw new ResourceAccessForbiddenException(
+                $this->blogDraft,
+                $this->translate('Access denied')
             );
         }
 

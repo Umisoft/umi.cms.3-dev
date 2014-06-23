@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\blog\site\reject\widget;
 
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
@@ -65,6 +66,13 @@ class SendToModerationFormWidget extends BaseFormWidget
                         'class' => BlogPost::className()
                     ]
                 )
+            );
+        }
+
+        if (!$this->isAllowed($this->blogPost)) {
+            throw new ResourceAccessForbiddenException(
+                $this->blogPost,
+                $this->translate('Access denied')
             );
         }
 

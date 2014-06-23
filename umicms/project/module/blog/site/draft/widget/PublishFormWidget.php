@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\blog\site\draft\widget;
 
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseFormWidget;
@@ -65,6 +66,13 @@ class PublishFormWidget extends BaseFormWidget
                         'class' => BlogPost::className()
                     ]
                 )
+            );
+        }
+
+        if (!$this->isAllowed($this->blogDraft)) {
+            throw new ResourceAccessForbiddenException(
+                $this->blogDraft,
+                $this->translate('Access denied')
             );
         }
 
