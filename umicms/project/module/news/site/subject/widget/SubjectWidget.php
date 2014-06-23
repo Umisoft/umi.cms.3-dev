@@ -10,16 +10,15 @@
 
 namespace umicms\project\module\news\site\subject\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\project\module\news\api\NewsModule;
-use umicms\hmvc\widget\BaseWidget;
-use umicms\project\module\news\api\object\NewsSubject;
+use umicms\project\module\news\model\NewsModule;
+use umicms\hmvc\widget\BaseCmsWidget;
+use umicms\project\module\news\model\object\NewsSubject;
 
 /**
  * Виджет вывода сюжета новостей.
  */
-class SubjectWidget extends BaseWidget implements IAclResource
+class SubjectWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -31,17 +30,17 @@ class SubjectWidget extends BaseWidget implements IAclResource
     public $subject;
 
     /**
-     * @var NewsModule $api API модуля "Новости"
+     * @var NewsModule $module модуль "Новости"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param NewsModule $newsApi API модуля "Новости"
+     * @param NewsModule $newsApi модуль "Новости"
      */
     public function __construct(NewsModule $newsApi)
     {
-        $this->api = $newsApi;
+        $this->module = $newsApi;
     }
 
     /**
@@ -50,7 +49,7 @@ class SubjectWidget extends BaseWidget implements IAclResource
     public function __invoke()
     {
         if (is_string($this->subject)) {
-            $this->subject = $this->api->rubric()->get($this->subject);
+            $this->subject = $this->module->rubric()->get($this->subject);
         }
 
         if (!$this->subject instanceof NewsSubject) {

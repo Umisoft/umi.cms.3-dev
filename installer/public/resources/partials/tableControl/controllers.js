@@ -2,7 +2,14 @@ define(['App'], function(UMI){
     "use strict";
 
     return function(){
-        UMI.TableControlController = Ember.ObjectController.extend({
+        UMI.TableControlController = Ember.ObjectController.extend(UMI.i18nInterface,{
+            componentNameBinding: 'controllers.component.name',
+            dictionaryNamespace: 'tableControl',
+            localDictionary: function(){
+                var contentControls = this.get('controllers.component.contentControls') || [];
+                var filter = contentControls.findBy('name', 'filter') || {};
+                return filter.i18n;
+            }.property(),
             /**
              * Данные
              * @property objects
@@ -162,14 +169,13 @@ define(['App'], function(UMI){
 
             /**
              * Возвращает список кнопок контекстного меню
-             * @property contextMenu
+             * @property contextToolbar
              * return Array
              */
-            contextMenu: function(){
-                var contextMenu = this.get('controllers.component.contentControls') || [];
-                contextMenu = contextMenu.findBy('name', 'filter') || {};
-                contextMenu = contextMenu.toolbar || [];
-                return [{"type":"create","displayName":"Создать Рубрика новостей","typeName":"base"},{"type":"switchActivity","displayName":"Сменить активность"},{"type":"viewOnSite","displayName":"Посмотреть на сайте"}, {"type":"trash","displayName":"Удалить в корзину"},  {"type":"delete","displayName":"Удалить навсегда"}];//contextMenu;
+            contextToolbar: function(){
+                var contentControls = this.get('controllers.component.contentControls') || [];
+                var filter = contentControls.findBy('name', 'filter') || {};
+                return filter.contextToolbar;
             }.property('controllers.component.contentControls'),
 
             /**
@@ -182,23 +188,23 @@ define(['App'], function(UMI){
                 toolbar = toolbar.findBy('name', 'filter') || {};
                 toolbar = toolbar.toolbar || [];
                 return toolbar;
-            }.property('controllers.component.contentControls'),
+            }.property('model'),
 
             actions: {
                 orderByProperty: function(propertyName, sortAscending){
                     this.set('orderByProperty', {'property' : propertyName, 'direction': sortAscending});
-                },
-
-                sendAction: function(action, object){
-                    this.send(action.type, object, action);
                 }
             },
 
-            needs: ['component']
+            needs: ['component'],
+
+            itemController: 'tableControlContextToolbarItem'
         });
 
-        UMI.TableControlColumnSelectorPopupController = Ember.ObjectController.extend({});// Для чего нужна такая запись? она избыточна
+        UMI.TableControlContextToolbarItemController = Ember.ObjectController.extend({
+            objectBinding: 'content',
+            componentNameBinding: 'parentController.componentName'
+        });
 
-        UMI.tableControlColumnSelectorPopup = UMI.TableControlColumnSelectorPopupController.create();
     };
 });

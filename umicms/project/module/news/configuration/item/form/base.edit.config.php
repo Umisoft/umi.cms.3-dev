@@ -14,7 +14,7 @@ use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\news\api\object\NewsItem;
+use umicms\project\module\news\model\object\NewsItem;
 
 return [
 

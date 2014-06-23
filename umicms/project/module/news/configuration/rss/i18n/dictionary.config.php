@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\news\api\object\NewsRssImportScenario;
+use umicms\project\module\news\model\object\NewsRssImportScenario;
 
 return [
         'en-US' => [

@@ -1,11 +1,13 @@
 define(
-    ['App', 'text!./form.hbs'],
+    ['App', 'text!./form.hbs', 'partials/forms/partials/siblingsNavigation/main'],
 
-    function(UMI, formTpl){
+    function(UMI, formTpl, siblingsNavigation){
         "use strict";
 
         return function(){
-            UMI.FormControlController = UMI.FormBaseController.extend({
+            siblingsNavigation();
+
+            UMI.FormControlController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
                 needs: ['component'],
 
                 settings: function(){
@@ -18,7 +20,13 @@ define(
                     var actionName = this.get('container').lookup('route:action').get('context.action.name');
                     var editForm = this.get('controllers.component.contentControls').findBy('name', actionName);
                     return editForm && editForm.toolbar;
-                }.property('controllers.component.contentControls'),
+                }.property('object'),
+
+                submitToolbar: function(){
+                    var actionName = this.get('container').lookup('route:action').get('context.action.name');
+                    var editForm = this.get('controllers.component.contentControls').findBy('name', actionName);
+                    return editForm && editForm.submitToolbar;
+                }.property('object'),
 
                 hasFieldset: function(){
                     var hasFieldset;
@@ -37,7 +45,7 @@ define(
                 }.property('model.@each')
             });
 
-            UMI.FormControlView = UMI.FormBaseView.extend({
+            UMI.FormControlView = Ember.View.extend(UMI.FormViewMixin, {
                 /**
                  * Шаблон формы
                  * @property layout
@@ -45,14 +53,10 @@ define(
                  */
                 layout: Ember.Handlebars.compile(formTpl),
 
-                classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control'],
-
-                submit: function(){
-                    return false;
-                }
+                classNames: ['s-margin-clear', 's-full-height', 'umi-validator', 'umi-form-control']
             });
 
-            UMI.FieldFormControlView = UMI.FieldBaseView.extend({
+            UMI.FieldFormControlView = Ember.View.extend(UMI.FieldMixin, {
                 classNameBindings: ['isError:error'],
 
                 isError: function(){
@@ -60,17 +64,16 @@ define(
                     return !!this.get('object.validErrors.' + meta.dataSource);
                 }.property('object.validErrors'),
 
-                extendTemplate: function(template){
-                    var meta = this.get('meta');
-                    return template + '{{#if object.validErrors.' + meta.dataSource + '}}' + '<small class="error">' + '{{#each error in object.validErrors.' + meta.dataSource + '}}' + '{{error.message}}' + '{{/each}}' + '</small>' + '{{/if}}';
-                },
-
-                textTemplate: function(){
-                    return '{{text-element object=object meta=view.meta}}';
+                wysiwygTemplate: function(){
+                    return '{{view "htmlEditorCollection" object=object meta=view.meta}}';
                 }.property(),
 
                 selectTemplate: function(){
                     return '{{view "selectCollection" object=object meta=view.meta}}';
+                }.property(),
+
+                checkboxGroupTemplate: function(){
+                    return '{{view "checkboxGroupCollectionElement" object=object meta=view.meta}}';
                 }.property()
             });
         };

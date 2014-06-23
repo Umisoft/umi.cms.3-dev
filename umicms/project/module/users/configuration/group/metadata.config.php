@@ -11,7 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\users\api\object\UserGroup;
+use umicms\project\module\users\model\object\UserGroup;
 
 return [
     'dataSource' => [
@@ -54,7 +54,7 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => ['columnName' => 'display_name'],
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
                 'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
@@ -97,7 +97,7 @@ return [
     ],
     'types'      => [
         'base' => [
-            'objectClass' => 'umicms\project\module\users\api\object\UserGroup',
+            'objectClass' => 'umicms\project\module\users\model\object\UserGroup',
             'fields'      => [
                 UserGroup::FIELD_IDENTIFY,
                 UserGroup::FIELD_GUID,

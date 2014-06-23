@@ -9,12 +9,11 @@
  */
 
 use umi\form\element\Checkbox;
-use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\news\api\object\NewsSubject;
+use umicms\project\module\news\model\object\NewsSubject;
 
 return [
 
@@ -108,15 +107,7 @@ return [
                     'options' => [
                         'dataSource' => NewsSubject::FIELD_PAGE_CONTENTS
                     ]
-                ],
-
-                'newsRssImportScenario' => [
-                    'type' => MultiSelect::TYPE_NAME,
-                    'label' => NewsSubject::FIELD_RSS,
-                    'options' => [
-                        'dataSource' => NewsSubject::FIELD_RSS
-                    ]
-                ],
+                ]
             ]
         ]
     ]

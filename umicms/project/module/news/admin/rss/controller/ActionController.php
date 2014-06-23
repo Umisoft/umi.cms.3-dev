@@ -10,28 +10,27 @@
 
 namespace umicms\project\module\news\admin\rss\controller;
 
-use umi\orm\persister\TObjectPersisterAware;
-use umicms\project\admin\api\controller\DefaultRestActionController;
-use umicms\project\module\news\api\NewsModule;
-use umicms\project\module\news\api\object\NewsRssImportScenario;
+use umicms\hmvc\component\admin\collection\ActionController as CollectionActionController;
+use umicms\project\module\news\model\NewsModule;
+use umicms\project\module\news\model\object\NewsRssImportScenario;
 
 /**
  * Контроллер операций.
  */
-class ActionController extends DefaultRestActionController
+class ActionController extends CollectionActionController
 {
     /**
-     * @var NewsModule $api
+     * @var NewsModule $module
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param NewsModule $api
+     * @param NewsModule $module
      */
-    public function __construct(NewsModule $api)
+    public function __construct(NewsModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -44,8 +43,8 @@ class ActionController extends DefaultRestActionController
          */
         $scenario = $this->getEditedObject($this->getIncomingData());
 
-        $this->api->importRss($scenario);
-        $this->getObjectPersister()->commit();
+        $this->module->importRss($scenario);
+        $this->commit();
 
         return '';
     }

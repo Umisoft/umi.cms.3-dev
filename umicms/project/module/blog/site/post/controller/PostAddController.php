@@ -13,27 +13,24 @@ namespace umicms\project\module\blog\site\post\controller;
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\exception\InvalidArgumentException;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogCategory;
-use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\site\controller\TFormController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogCategory;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\hmvc\component\site\TFormController;
 
 /**
  * Контроллер добавления поста
  */
-class PostAddController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class PostAddController extends BaseCmsController
 {
     use TFormController;
-    use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
     /**
      * @var bool $added флаг указывающий на статус добавление поста
      */
@@ -45,11 +42,11 @@ class PostAddController extends BaseAccessRestrictedController implements IObjec
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -69,7 +66,7 @@ class PostAddController extends BaseAccessRestrictedController implements IObjec
         $blogCategoryId = $this->getRouteVar('id');
 
         if (!is_null($blogCategoryId)) {
-            $blogCategory = $this->api->category()->getById($blogCategoryId);
+            $blogCategory = $this->module->category()->getById($blogCategoryId);
         }
 
         if (!$blogCategory instanceof BlogCategory) {
@@ -84,7 +81,7 @@ class PostAddController extends BaseAccessRestrictedController implements IObjec
             );
         }
 
-        $this->blogPost = $this->api->post()->add();
+        $this->blogPost = $this->module->post()->add();
         $this->blogPost->category = $blogCategory;
 
         if (!$this->isAllowed($this->blogPost)) {
@@ -94,7 +91,7 @@ class PostAddController extends BaseAccessRestrictedController implements IObjec
             );
         }
 
-        return $this->api->post()->getForm(
+        return $this->module->post()->getForm(
             BlogPost::FORM_ADD_POST,
             IObjectType::BASE,
             $this->blogPost
@@ -106,7 +103,7 @@ class PostAddController extends BaseAccessRestrictedController implements IObjec
      */
     protected function processForm(IForm $form)
     {
-        $this->getObjectPersister()->commit();
+        $this->commit();
         $this->added = true;
     }
 

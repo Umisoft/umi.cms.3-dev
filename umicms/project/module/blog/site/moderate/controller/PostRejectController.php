@@ -12,33 +12,30 @@ namespace umicms\project\module\blog\site\moderate\controller;
 
 use umi\form\IForm;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\site\controller\TFormSimpleController;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\hmvc\component\site\TFormSimpleController;
 
 /**
  * Контроллер отправки отклонённого поста на модерацию.
  */
-class PostRejectController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class PostRejectController extends BaseCmsController
 {
     use TFormSimpleController;
-    use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -46,7 +43,7 @@ class PostRejectController extends BaseAccessRestrictedController implements IOb
      */
     protected function buildForm()
     {
-        return $this->api->post()->getForm(BlogPost::FORM_REJECT_POST, IObjectType::BASE);
+        return $this->module->post()->getForm(BlogPost::FORM_REJECT_POST, IObjectType::BASE);
     }
 
     /**
@@ -54,10 +51,10 @@ class PostRejectController extends BaseAccessRestrictedController implements IOb
      */
     protected function processForm(IForm $form)
     {
-        $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
+        $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
         $blogPost->rejected();
 
-        $this->getObjectPersister()->commit();
+        $this->commit();
     }
 }
  

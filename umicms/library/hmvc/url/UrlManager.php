@@ -18,11 +18,10 @@ use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
-use umicms\project\admin\component\AdminComponent;
-use umicms\project\admin\settings\component\SettingsComponent;
-use umicms\project\module\structure\api\StructureModule;
-use umicms\project\module\structure\api\object\StructureElement;
-use umicms\project\site\component\BaseDefaultSitePageComponent;
+use umicms\hmvc\component\admin\AdminComponent;
+use umicms\project\module\structure\model\StructureModule;
+use umicms\project\module\structure\model\object\StructureElement;
+use umicms\hmvc\component\site\BaseSitePageComponent;
 
 /**
  * URL-менеджер.
@@ -55,10 +54,6 @@ class UrlManager implements IUrlManager, ILocalizable
      * @var string $restUrlPrefix префикс URL для REST-запросов
      */
     protected $restUrlPrefix;
-    /**
-     * @var string $settingsUrlPrefix префикс URL для запросов связанных с настройками
-     */
-    protected $settingsUrlPrefix;
     /**
      * @var array $systemPageUrls url системных страниц, по пути компонентов
      */
@@ -108,16 +103,6 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function setSettingsUrlPrefix($settingsUrlPrefix)
-    {
-        $this->settingsUrlPrefix = $settingsUrlPrefix;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setAdminUrlPrefix($adminUrlPrefix)
     {
         $this->adminUrlPrefix = $adminUrlPrefix;
@@ -156,14 +141,6 @@ class UrlManager implements IUrlManager, ILocalizable
     /**
      * {@inheritdoc}
      */
-    public function getBaseSettingsUrl()
-    {
-        return $this->getBaseAdminUrl() . $this->settingsUrlPrefix;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getBaseAdminUrl()
     {
         return $this->urlPrefix . $this->adminUrlPrefix;
@@ -184,14 +161,14 @@ class UrlManager implements IUrlManager, ILocalizable
         $component = $this->dispatcher->getComponentByPath(
             CmsDispatcher::SITE_COMPONENT_PATH . IComponent::PATH_SEPARATOR . $handlerPath
         );
-        if (!$component instanceof BaseDefaultSitePageComponent) {
+        if (!$component instanceof BaseSitePageComponent) {
             throw new RuntimeException(
                 $this->translate(
                     'Cannot get url for page with GUID "{guid}". Component "{path}" should be instance of "{class}".',
                     [
                         'guid' => $page->getGUID(),
                         'path' => $component->getPath(),
-                        'class' => 'umicms\project\site\component\BaseDefaultSitePageComponent'
+                        'class' => 'umicms\hmvc\component\site\BaseSitePageComponent'
                     ]
                 )
             );
@@ -248,11 +225,17 @@ class UrlManager implements IUrlManager, ILocalizable
          * @var ICmsCollection $collection
          */
         $collection = $object->getCollection();
+        if (!$collection->hasForm(ICmsCollection::FORM_EDIT, $object->getTypeName())) {
+            throw new RuntimeException($this->translate(
+                'Collection "{collection}" does not have edit form for type "{type}".',
+                ['collection' => $collection->getName(), 'type' => $object->getTypeName()]
+            ));
+        }
 
         $editLink = $isAbsolute ? $this->schemeAndHttpHost : '';
         $editLink .= $this->getBaseAdminUrl();
         $editLink .= '/' . str_replace('.', '/', $collection->getHandlerPath('admin'));
-        $editLink .= '/form/' . $object->getId();
+        $editLink .= '/' . $object->getId() . '/editForm';
 
         return $editLink;
     }
@@ -304,17 +287,6 @@ class UrlManager implements IUrlManager, ILocalizable
         }
 
         return $actionUrl;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSettingsComponentResourceUrl(SettingsComponent $component)
-    {
-        $url = $this->getBaseSettingsUrl();
-        $url .= str_replace(SettingsComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 22));
-
-        return $url;
     }
 
     /**
@@ -378,13 +350,13 @@ class UrlManager implements IUrlManager, ILocalizable
     }
 
     /**
-     * Возвращает URL админ-компонента относительно API-компонента.
+     * Возвращает URL админ-компонента относительно REST-компонента.
      * @param AdminComponent $component
      * @return string
      */
     protected function getAdminRelativeComponentUrl(AdminComponent $component)
     {
-        return str_replace(AdminComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 17));
+        return str_replace(AdminComponent::PATH_SEPARATOR, '/', substr($component->getPath(), 18));
     }
 
 }

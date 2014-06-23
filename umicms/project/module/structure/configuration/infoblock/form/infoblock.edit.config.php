@@ -11,7 +11,7 @@
 use umi\form\element\Text;
 use umi\form\element\Textarea;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\structure\api\object\InfoBlock;
+use umicms\project\module\structure\model\object\InfoBlock;
 
 return [
 

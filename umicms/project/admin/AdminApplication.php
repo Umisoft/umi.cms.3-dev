@@ -17,7 +17,7 @@ use umi\i18n\ILocalesService;
 use umi\i18n\TLocalesAware;
 use umicms\exception\RequiredDependencyException;
 use umicms\i18n\CmsLocalesService;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 /**
  * Приложение административной панели.
@@ -26,10 +26,13 @@ class AdminApplication extends AdminComponent implements ILocalesAware
 {
     use TLocalesAware;
 
+    /**
+     * Имя куки, для выбранной пользователем локали.
+     */
     const CURRENT_LOCALE_COOKIE_NAME = 'locale';
 
     /**
-     * @var CmsLocalesService $traitLocalesService сервис для работы с локалями
+     * @var CmsLocalesService $localesService сервис для работы с локалями
      */
     private $localesService;
 

@@ -10,31 +10,31 @@
 
 namespace umicms\project\module\statistics\site\widget;
 
-use umicms\hmvc\widget\BaseWidget;
+use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\project\module\statistics\admin\metrika\model\MetrikaModel;
 
 /**
  * Получает от Яндекс.Метрики и выводит HTML-код счетчика,
  * в точном соответствии с его настройками на сайте Метрики.
  */
-class CounterWidget extends BaseWidget
+class CounterWidget extends BaseCmsWidget
 {
     /**
      * @var int $counterId идентификатор счетчика Метрики
      */
     public $counterId;
     /**
-     * @var MetrikaModel $api API Яндекс.Метрики
+     * @var MetrikaModel $model API Яндекс.Метрики
      */
-    private $api;
+    private $model;
 
     /**
      * Конструктор.
-     * @param MetrikaModel $api API Яндекс.Метрики
+     * @param MetrikaModel $model API Яндекс.Метрики
      */
-    public function __construct(MetrikaModel $api)
+    public function __construct(MetrikaModel $model)
     {
-        $this->api = $api;
+        $this->model = $model;
     }
 
     /**
@@ -44,13 +44,13 @@ class CounterWidget extends BaseWidget
     public function __invoke()
     {
         if (!is_int($this->counterId)) {
-            if (is_int($this->api->defaultCounterId)) {
-                $this->counterId = $this->api->defaultCounterId;
+            if (is_int($this->model->defaultCounterId)) {
+                $this->counterId = $this->model->defaultCounterId;
             } else {
                 return '';
             }
         }
 
-        return $this->api->counterData($this->counterId)['code'];
+        return $this->model->counterData($this->counterId)['code'];
     }
 }

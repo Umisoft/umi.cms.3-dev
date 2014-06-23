@@ -2,11 +2,10 @@ define(
     [
         'App',
         'text!./form.hbs',
-        'partials/forms/elements/main',
         'partials/forms/partials/magellan/main',
-        'partials/forms/partials/toolbar/main'
+        'partials/forms/partials/submitToolbar/main'
     ],
-    function(UMI, formTpl, elements, magellan, toolbar){
+    function(UMI, formTpl, magellan, submitToolbar){
         'use strict';
 
         /**
@@ -17,46 +16,12 @@ define(
          */
         return function(){
 
-            elements();
             magellan();
-            toolbar();
+            submitToolbar();
 
-            UMI.FormBaseController = Ember.ObjectController.extend({
-                /**
-                 * Toolbar кнопок для формы
-                 * @method toolbar
-                 */
-                toolbarBinding: 'toolbar',
-                /**
-                 * Проверяет наличие toolbar
-                 * @method hasToolbar
-                 * @return bool
-                 */
-                hasToolbar: function(){
-                    var toolbar = this.get('toolbar');
-                    // TODO: убрать как только back будет возвращать тулбар в виде массива
-                    if(Ember.typeOf(toolbar) === 'object'){
-                        toolbar = [toolbar];
-                    }
-                    return toolbar && toolbar.length;
-                }.property('toolbar'),
-                /**
-                 * Проверяет наличие fieldset
-                 * @method hasFieldset
-                 * @return bool
-                 */
-                hasFieldset: function(){
-                    return this.get('model.elements').isAny('type', 'fieldset');
-                }.property('model')
-            });
+            UMI.FormControllerMixin = Ember.Mixin.create({});
 
-            UMI.FormBaseView = Ember.View.extend({
-                /**
-                 * Шаблон формы
-                 * @property layout
-                 * @type String
-                 */
-                layout: Ember.Handlebars.compile(formTpl),
+            UMI.FormViewMixin = Ember.Mixin.create({
                 /**
                  * Тип DOM элемента
                  * @property tagName
@@ -64,31 +29,9 @@ define(
                  * @default "form"
                  */
                 tagName: 'form',
-                /**
-                 * Классы view
-                 * @property classNames
-                 * @type Array
-                 */
-                classNames: ['s-margin-clear', 's-full-height', 'umi-form-control'],
-
-                attributeBindings: ['action'],
-
-                action: function(){
-                    return this.get('context.model.attributes.action');
-                }.property('context.model'),
-
-                loading: false,
-
-                submit: function(event){
-                    event.preventDefault();
-                    var self = this;
-                    self.toggleProperty('loading');
-                    var data = this.$().serialize();
-                    $.post(self.get('action'), data).then(function(result){
-                        self.toggleProperty('loading');
-                    });
+                submit: function(){
+                    return false;
                 },
-
                 elementView: Ember.View.extend({
                     classNameBindings: ['isField'],
                     isFieldset: function(){
@@ -104,17 +47,7 @@ define(
                      * @method gridType
                      */
                     gridType: function(){
-                        var className = 'umi-columns ';
-                        switch(this.get('content.type')){
-                            case 'wysiwyg':
-                            case 'permissions':
-                                className += 'small-12';
-                                break;
-                            default:
-                                className += 'large-4 small-12';
-                                break;
-                        }
-                        return className;
+                        return 'umi-columns ' + (this.get('content.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12');
                     },
 
                     actions: {
@@ -125,8 +58,7 @@ define(
                 })
             });
 
-
-            UMI.FieldBaseView = Ember.View.extend({
+            UMI.FieldMixin = Ember.Mixin.create({
                 /**
                  * Метаданные свойства. В базовой реализации
                  * соответствует самому объекту
@@ -134,9 +66,7 @@ define(
                  * @type String
                  */
                 metaBinding: 'object',
-
                 layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{view.meta.label}}</span></div>{{yield}}'),
-
                 template: function(){
                     var meta;
                     var template;
@@ -163,25 +93,52 @@ define(
                     return template;
                 },
 
-                //TODO Привести все элементы к виду: {{view "nameElement"}}
                 textTemplate: function(){
-                    return '{{input value=object.value meta=view.meta name=view.meta.attributes.name}}';
+                    return '{{view "textElement" object=object meta=view.meta}}';
                 }.property(),
 
                 emailTemplate: function(){
-                    return '{{email-element object=object meta=view.meta}}';
+                    return '{{view "emailElement" object=object meta=view.meta}}';
                 }.property(),
 
                 passwordTemplate: function(){
-                    return '{{password-element object=object meta=view.meta}}';
+                    return '{{view "passwordElement" object=object meta=view.meta}}';
                 }.property(),
 
                 numberTemplate: function(){
-                    return '{{number-element object=object meta=view.meta}}';
+                    return '{{view "numberElement" object=object meta=view.meta}}';
+                }.property(),
+
+                colorTemplate: function(){
+                    return '{{view "colorElement" object=object meta=view.meta}}';
+                }.property(),
+
+                timeTemplate: function(){
+                    return '{{time-element object=object meta=view.meta}}';
+                }.property(),
+
+                dateTemplate: function(){
+                    return '{{view "dateElement" object=object meta=view.meta}}';
+                }.property(),
+
+                datetimeTemplate: function(){
+                    return '{{view "dateTimeElement" object=object meta=view.meta}}';
+                }.property(),
+
+                fileTemplate: function(){
+                    return '{{view "fileElement" object=object meta=view.meta}}';
+                }.property(),
+
+                imageTemplate: function(){
+                    return '{{view "imageElement" object=object meta=view.meta}}';
+                }.property(),
+
+                textareaTemplate: function(){
+                    return '{{view "textareaElement" object=object meta=view.meta}}';
                 }.property(),
 
                 wysiwygTemplate: function(){
-                    return '{{html-editor object=object property="' + this.get('meta').dataSource + '" validator="collection" dataSource=view.meta.dataSource}}';
+                    return '{{view "htmlEditor" object=object meta=view.meta}}';
                 }.property(),
 
                 selectTemplate: function(){
@@ -193,7 +150,7 @@ define(
                 }.property(),
 
                 checkboxTemplate: function(){
-                    return '{{checkbox-element object=object meta=view.meta}}';
+                    return '{{view "checkboxElement" object=object meta=view.meta}}';
                 }.property(),
 
                 checkboxGroupTemplate: function(){
@@ -202,40 +159,74 @@ define(
 
                 radioTemplate: function(){
                     return '{{view "radioElement" object=object meta=view.meta}}';
-                }.property(),
-
-                timeTemplate: function(){
-                    return '{{time-element object=object meta=view.meta}}';
-                }.property(),
-
-                dateTemplate: function(){
-                    return '{{date-element object=object meta=view.meta}}';
-                }.property(),
-
-                datetimeTemplate: function(){
-                    return '{{view "dateTimeElement" object=object meta=view.meta}}';
-                }.property(),
-
-                fileTemplate: function(){
-                    return '{{file-element object=object meta=view.meta}}';
-                }.property(),
-
-                imageTemplate: function(){
-                    return '{{image-element object=object meta=view.meta}}';
-                }.property(),
-
-                textareaTemplate: function(){
-                    return '{{textarea-element object=object meta=view.meta}}';
-                }.property(),
-
-                colorTemplate: function(){
-                    return '{{input type="color" value=object.value meta=view.meta name=meta.attributes.name}}';
-                }.property(),
-
-                permissionsTemplate: function(){
-                    return '{{view "permissions" object=object meta=view.meta}}';
                 }.property()
             });
+
+            UMI.FormBaseController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
+                /**
+                 * Проверяет наличие fieldset
+                 * @method hasFieldset
+                 * @return bool
+                 */
+                hasFieldset: function(){
+                    return this.get('model.elements').isAny('type', 'fieldset');
+                }.property('model')
+            });
+
+            UMI.FormBaseView = Ember.View.extend(UMI.FormViewMixin, {
+                /**
+                 * Шаблон формы
+                 * @property layout
+                 * @type String
+                 */
+                layout: Ember.Handlebars.compile(formTpl),
+
+                /**
+                 * Классы view
+                 * @property classNames
+                 * @type Array
+                 */
+                classNames: ['s-margin-clear', 's-full-height', 'umi-form-control'],
+
+                attributeBindings: ['action'],
+
+                action: function(){
+                    return this.get('context.model.attributes.action');
+                }.property('context.model'),
+
+                actions: {
+                    submit: function(handler){
+                        var self = this;
+                        if(handler){
+                            handler.addClass('loading');
+                        }
+                        var data = this.$().serialize();
+                        $.post(self.get('action'), data).then(function(){
+                            handler.removeClass('loading');
+                        });
+                    }
+                },
+
+                submitToolbarView: UMI.SubmitToolbarView.extend({
+                    elementView: UMI.ToolbarElementView.extend({
+                        buttonView: function(){
+                            var button = this._super();
+                            if(this.get('context.behaviour.name') === 'save'){
+                                button.reopen({
+                                    actions: {
+                                        save: function(){
+                                            this.get('parentView.parentView.parentView').send('submit', this.$());
+                                        }
+                                    }
+                                });
+                            }
+                            return button;
+                        }.property()
+                    })
+                })
+            });
+
+            UMI.FieldBaseView = Ember.View.extend(UMI.FieldMixin, {});
         };
     }
 );

@@ -16,9 +16,9 @@ use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\validation\IValidatorFactory;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\blog\api\object\BlogCategory;
-use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\module\blog\api\object\BlogTag;
+use umicms\project\module\blog\model\object\BlogCategory;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\project\module\blog\model\object\BlogTag;
 
 return [
     'options' => [
@@ -72,7 +72,7 @@ return [
             'type' => Wysiwyg::TYPE_NAME,
             'label' => BlogPost::FIELD_PAGE_CONTENTS,
             'options' => [
-                'dataSource' => BlogPost::FIELD_PAGE_CONTENTS,
+                'dataSource' => BlogPost::FIELD_PAGE_CONTENTS_RAW,
                 'filters' => [
                     IFilterFactory::TYPE_STRING_TRIM => []
                 ],

@@ -13,25 +13,22 @@ namespace umicms\project\module\blog\site\draft\controller;
 use umi\form\IForm;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\site\controller\TFormSimpleController;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\hmvc\component\site\TFormSimpleController;
 
 /**
  * Контроллер отправки поста на модерацию.
  */
-class PostSendToModerationController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class PostSendToModerationController extends BaseCmsController
 {
     use TFormSimpleController;
-    use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
     /**
      * @var BlogPost $blogDraft черновик поста
      */
@@ -39,11 +36,11 @@ class PostSendToModerationController extends BaseAccessRestrictedController impl
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -51,7 +48,7 @@ class PostSendToModerationController extends BaseAccessRestrictedController impl
      */
     protected function buildForm()
     {
-        $this->blogDraft = $this->api->post()->getDraftById($this->getRouteVar('id'));
+        $this->blogDraft = $this->module->post()->getDraftById($this->getRouteVar('id'));
 
         if (!$this->isAllowed($this->blogDraft)) {
             throw new ResourceAccessForbiddenException(
@@ -60,7 +57,7 @@ class PostSendToModerationController extends BaseAccessRestrictedController impl
             );
         }
 
-        return $this->api->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
+        return $this->module->post()->getForm(BlogPost::FORM_MODERATE_POST, IObjectType::BASE);
     }
 
     /**
@@ -69,7 +66,7 @@ class PostSendToModerationController extends BaseAccessRestrictedController impl
     protected function processForm(IForm $form)
     {
         $this->blogDraft->needModeration();
-        $this->getObjectPersister()->commit();
+        $this->commit();
     }
 }
  

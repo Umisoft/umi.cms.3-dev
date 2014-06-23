@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\structure\api\object\InfoBlock;
+use umicms\project\module\structure\model\object\InfoBlock;
 
 return [
     'en-US' => [

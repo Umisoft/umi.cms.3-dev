@@ -2,7 +2,7 @@
 
 return [
     'api' => [
-        'umicms\project\module\search\api\SearchIndexApi' => [
+        'umicms\project\module\search\model\SearchIndexApi' => [
             'collectionsMap' => [
                 'newsItem' => ['properties' => ['displayName', 'announcement']],
                 'newsSubject' => ['properties' => ['displayName', 'h1', 'contents']],
@@ -12,7 +12,7 @@ return [
                 'blogPost' => ['properties' => ['displayName', 'h1', 'announcement', 'contents']],
             ]
         ],
-        'umicms\project\module\search\api\SearchApi' => [
+        'umicms\project\module\search\model\SearchApi' => [
             'minimumPhraseLength' => 3,
             'minimumWordRootLength' => 3,
         ]

@@ -14,10 +14,11 @@
 
 .umi-button-icon-32{
     float: left;
-    width: 20px;
     height: 20px;
     padding: 6px;
     cursor: pointer;
+    color: #4C4C53;
+    font-size: 13px;
     &.umi-disabled{
         opacity: .4;
         cursor: default;
@@ -58,7 +59,7 @@
 
     position: relative;
     float: left;
-    height: 32px;
+    height: 31px;
     border-top: 1px solid #6BC2FF;
     @include button-bg-gradient(#3aadff, #0087d4);
     color: #FFFFFF;
@@ -224,4 +225,62 @@
     80%{
         background: darken($primary-color, 5%);
     }
+}
+
+// INCORRECT STYLE HERE
+.umi-toolbar-create-text{
+    float: left;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: Arial;
+    padding: 0 10px 0 0;
+    line-height: 31px;
+}
+
+.umi-toolbar-create-icon{
+    padding: 0 2px;
+    float: right;
+    margin-right: -20px;
+    height: 100%;
+    border-left: 1px solid #297AD1;
+}
+
+.umi-toolbar-create-icon i{
+    margin-top: 6px;
+    margin-right: 1px;
+}
+
+.umi-toolbar-create-list{
+    display: none;
+    position: absolute;
+    z-index: 20;
+    float: left;
+    min-width: calc(100% - 1px); /* Минимальная ширина соответствует ширине кнопки */
+    top: 31px;
+    left: 0;
+    background: #FFFFFF;
+    color: #535E6D;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 21px;
+    padding: 4px 0;
+    box-shadow: 0 0 3px 0 #7C99AC;
+}
+
+.umi-toolbar-create-list span{
+    display: block;
+    width: calc(100% - 20px);
+    height: 28px;
+    line-height: 28px;
+    padding: 0 10px;
+    white-space: nowrap;
+}
+
+.umi-toolbar-create-list span:nth-of-type(even){
+    background: #E8EDEF;
+}
+
+.umi-toolbar-create-list span:hover{
+    background: #A4DCF7;
 }

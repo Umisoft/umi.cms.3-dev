@@ -11,8 +11,8 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\blog\api\object\BlogCategory;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\object\BlogCategory;
+use umicms\project\module\blog\model\object\BlogPost;
 
 return [
     'dataSource' => [
@@ -101,7 +101,7 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => ['columnName' => 'display_name'],
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
                 'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
@@ -150,7 +150,10 @@ return [
         ],
         BlogCategory::FIELD_PAGE_H1 => [
             'type' => IField::TYPE_STRING,
-            'columnName' => 'h1'
+            'columnName' => 'h1',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ]
         ],
         BlogCategory::FIELD_PAGE_CONTENTS => [
             'type' => IField::TYPE_TEXT,
@@ -179,7 +182,7 @@ return [
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\blog\api\object\BlogCategory',
+            'objectClass' => 'umicms\project\module\blog\model\object\BlogCategory',
             'fields' => [
                 BlogCategory::FIELD_IDENTIFY,
                 BlogCategory::FIELD_GUID,

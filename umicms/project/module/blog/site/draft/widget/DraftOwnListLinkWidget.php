@@ -10,13 +10,12 @@
 
 namespace umicms\project\module\blog\site\draft\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
  * Виджет для вывода ссылки на спискок черновиков текущего автора.
  */
-class DraftOwnListLinkWidget extends BaseLinkWidget implements IAclResource
+class DraftOwnListLinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}

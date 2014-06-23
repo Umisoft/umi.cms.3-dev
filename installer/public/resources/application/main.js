@@ -8,7 +8,7 @@ define(
         //Вызов partials
         'topBar',
         'dock',
-        'toolBar',
+        'toolbar',
         'tableControl',
         'fileManager',
         'treeSimple',

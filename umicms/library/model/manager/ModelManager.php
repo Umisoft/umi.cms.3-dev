@@ -122,9 +122,6 @@ class ModelManager implements IDbClusterAware
         }
 
         $createScheme = new Schema($createTables);
-
-        var_dump($synchronizer->getCreateSchema($createScheme));
-        exit;
         $synchronizer->createSchema($createScheme);
     }
 

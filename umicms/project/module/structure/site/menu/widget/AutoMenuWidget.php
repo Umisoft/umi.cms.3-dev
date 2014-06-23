@@ -10,16 +10,15 @@
 
 namespace umicms\project\module\structure\site\menu\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseWidget;
-use umicms\project\module\structure\api\object\StructureElement;
-use umicms\project\module\structure\api\StructureModule;
+use umicms\hmvc\widget\BaseCmsWidget;
+use umicms\project\module\structure\model\object\StructureElement;
+use umicms\project\module\structure\model\StructureModule;
 
 /**
  * Виджет для вывода автогенерируемого меню
  */
-class AutoMenuWidget extends BaseWidget implements IAclResource
+class AutoMenuWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет.
@@ -37,17 +36,17 @@ class AutoMenuWidget extends BaseWidget implements IAclResource
     public $depth = 1;
 
     /**
-     * @var StructureModule $api
+     * @var StructureModule $module
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param StructureModule $api
+     * @param StructureModule $module
      */
-    public function __construct(StructureModule $api)
+    public function __construct(StructureModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -56,7 +55,7 @@ class AutoMenuWidget extends BaseWidget implements IAclResource
     public function __invoke()
     {
         if (is_string($this->branch)) {
-            $this->branch = $this->api->element()->get($this->branch);
+            $this->branch = $this->module->element()->get($this->branch);
         }
 
         if (isset($this->branch) && !$this->branch instanceof StructureElement) {
@@ -74,7 +73,7 @@ class AutoMenuWidget extends BaseWidget implements IAclResource
         return $this->createResult(
             $this->template,
             [
-                'menu' => $this->api->autoMenu()->buildMenu($this->branch, $this->depth)
+                'menu' => $this->module->autoMenu()->buildMenu($this->branch, $this->depth)
             ]
         );
     }

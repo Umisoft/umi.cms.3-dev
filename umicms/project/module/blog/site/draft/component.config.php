@@ -13,19 +13,19 @@ namespace umicms\project\module\blog\site\draft;
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSitePageComponent;
+use umicms\hmvc\component\site\SitePageComponent;
 
 return [
 
-    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
-    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    DefaultSitePageComponent::OPTION_CONTROLLERS => [
+    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
+    SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
+    SitePageComponent::OPTION_CONTROLLERS => [
         'page' => __NAMESPACE__ . '\controller\BlogDraftPageController',
         'edit' => __NAMESPACE__ . '\controller\BlogEditDraftController',
         'publish' => __NAMESPACE__ . '\controller\BlogPublishDraftController',
         'sendToModeration' => __NAMESPACE__ . '\controller\PostSendToModerationController',
     ],
-    DefaultSitePageComponent::OPTION_WIDGET => [
+    SitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\DraftWidget',
         'ownList' => __NAMESPACE__ . '\widget\DraftOwnListWidget',
         'ownListLink' => __NAMESPACE__ . '\widget\DraftOwnListLinkWidget',
@@ -33,22 +33,13 @@ return [
         'editDraftLink' => __NAMESPACE__ . '\widget\DraftEditUrlWidget',
         'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
     ],
-    DefaultSitePageComponent::OPTION_ACL => [
+    SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
             'publisher' => [],
             'moderator' => ['publisher']
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:edit',
-            'controller:publish',
-            'controller:sendToModeration',
-            'widget:view',
-            'widget:ownList',
-            'widget:ownListLink',
-            'widget:editDraftLink',
-            'widget:publishDraft',
-            'widget:sendToModeration',
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
@@ -85,10 +76,10 @@ return [
             ],
         ]
     ],
-    DefaultSitePageComponent::OPTION_VIEW => [
+    SitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/draft'],
     ],
-    DefaultSitePageComponent::OPTION_ROUTES => [
+    SitePageComponent::OPTION_ROUTES => [
         'edit' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/edit/{id:integer}',

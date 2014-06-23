@@ -12,25 +12,22 @@ namespace umicms\project\module\blog\site\moderate\controller;
 
 use umi\form\IForm;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogPost;
-use umicms\project\site\controller\TFormController;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogPost;
+use umicms\hmvc\component\site\TFormController;
 
 /**
  * Контроллер редактирования поста блога, требующего модерации.
  */
-class PostEditController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class PostEditController extends BaseCmsController
 {
     use TFormController;
-    use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
     /**
      * @var bool $success флаг указывающий на успешное сохранение изменений
      */
@@ -38,11 +35,11 @@ class PostEditController extends BaseAccessRestrictedController implements IObje
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -58,9 +55,9 @@ class PostEditController extends BaseAccessRestrictedController implements IObje
      */
     protected function buildForm()
     {
-        $blogPost = $this->api->post()->getNeedModeratePostById($this->getRouteVar('id'));
+        $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
 
-        return $this->api->post()->getForm(
+        return $this->module->post()->getForm(
             BlogPost::FORM_EDIT_POST,
             IObjectType::BASE,
             $blogPost
@@ -72,7 +69,7 @@ class PostEditController extends BaseAccessRestrictedController implements IObje
      */
     protected function processForm(IForm $form)
     {
-        $this->getObjectPersister()->commit();
+        $this->commit();
         $this->success = true;
     }
 

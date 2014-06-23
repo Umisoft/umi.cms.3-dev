@@ -7,7 +7,7 @@
  * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
-use umicms\project\module\structure\api\object\MenuInternalItem;
+use umicms\project\module\structure\model\object\MenuInternalItem;
 
 return [
     'en-US' => [

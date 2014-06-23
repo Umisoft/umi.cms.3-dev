@@ -16,6 +16,11 @@
     <h4>{{ translate('Authors') }}</h4>
     {{ widget('blog.author.list', {'template' : 'listShort'}) }}
 </div>
+{% if (
+    isAllowedResource('blog.draft', 'widget:ownListLink') and
+    isAllowedResource('blog.moderate', 'widget:ownListLink') and
+    isAllowedResource('blog.reject', 'widget:listLink')
+) %}
 <div class="sidebar-module">
     <h4>{{ translate('Authors\'s posts') }}</h4>
     <ol class="list-unstyled">
@@ -24,10 +29,13 @@
         <li>{{ translate('Rejected posts') }}: {{ widget('blog.reject.listLink', {'template' : 'listLink'}) }}</li>
     </ol>
 </div>
+{% endif %}
+{% if (isAllowedResource('blog.moderate', 'widget:allListLink')) %}
 <div class="sidebar-module">
     <h4>{{ translate('Moderate') }}</h4>
     <ol class="list-unstyled">
         <li>{{ translate('Post on moderation') }}: {{ widget('blog.moderate.allListLink', {'template' : 'moderateLink'}) }}</li>
     </ol>
 </div>
+{% endif %}
 {{ widget('structure.infoblock.view', {'template' : 'socialGroup', 'infoBlock' : 'commonInfoBlock'}) }}
