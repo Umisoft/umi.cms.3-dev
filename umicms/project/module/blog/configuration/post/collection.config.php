@@ -28,11 +28,11 @@ return [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/post/form/base.edit.config.php}',
             ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/post/form/base.create.config.php}',
             BlogPost::FORM_ADD_POST => '{#lazy:~/project/module/blog/site/post/add/form/base.add.config.php}',
-            BlogPost::FORM_EDIT_POST => '{#lazy:~/project/module/blog/site/post/edit/form/base.edit.config.php}',
-            BlogPost::FORM_PUBLISH_POST => '{#lazy:~/project/module/blog/site/post/form/base.publish.config.php}',
-            BlogPost::FORM_MODERATE_POST => '{#lazy:~/project/module/blog/site/post/form/base.moderate.config.php}',
-            BlogPost::FORM_REJECT_POST => '{#lazy:~/project/module/blog/site/post/form/base.reject.config.php}',
-            BlogPost::FORM_DRAFT_POST => '{#lazy:~/project/module/blog/site/post/form/base.draft.config.php}',
+            BlogPost::FORM_EDIT_POST => '{#lazy:~/project/module/blog/site/form/base.edit.config.php}',
+            BlogPost::FORM_PUBLISH_POST => '{#lazy:~/project/module/blog/site/form/base.publish.config.php}',
+            BlogPost::FORM_MODERATE_POST => '{#lazy:~/project/module/blog/site/form/base.moderate.config.php}',
+            BlogPost::FORM_REJECT_POST => '{#lazy:~/project/module/blog/site/form/base.reject.config.php}',
+            BlogPost::FORM_DRAFT_POST => '{#lazy:~/project/module/blog/site/form/base.draft.config.php}',
         ]
     ],
     'dictionaries' => [
