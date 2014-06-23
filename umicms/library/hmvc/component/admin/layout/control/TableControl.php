@@ -10,9 +10,8 @@
 
 namespace umicms\hmvc\component\admin\layout\control;
 
-
 /**
- * Административный контрол "Таблица для упарвления коллекцией"
+ * Административный контрол "Таблица для управления коллекцией"
  */
 class TableControl extends CollectionControl
 {
@@ -25,8 +24,15 @@ class TableControl extends CollectionControl
         if ($createButton = $this->buildCreateButton()) {
             $this->addToolbarButton('create', $createButton);
         }
+    }
 
-        return $this;
+    /**
+     * Конфигурирует дополнительные лейблы контрола.
+     */
+    protected function configureI18n()
+    {
+        $this->labels['Rows on page'] = $this->component->translate('Rows on page');
+        $this->labels['No data'] = $this->component->translate('No data');
     }
 }
  

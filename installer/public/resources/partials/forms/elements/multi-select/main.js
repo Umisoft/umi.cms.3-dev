@@ -66,7 +66,7 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
              * Коллекция объектов (choices)
              * @property collection
              */
-            collection: null,
+            collection: [],
             /**
              * Выбранные ID объектов
              * @property selectedIds
@@ -317,9 +317,11 @@ define(['App', 'text!./multi-select-static-choices.hbs', 'text!./multi-select-la
                     });
 
                     return Ember.RSVP.all(promises).then(function(results){
+                        var relatedObjectsId = results[0].mapBy('id') || [];
+                        var loadedRelationshipsByName = results[0].mapBy('id') || [];
                         self.set('collection', results[1]);
-                        self.set('selectedIds', results[0].mapBy('id') || []);
-                        Ember.set(object.get('loadedRelationshipsByName'), property, results[0].mapBy('id'));
+                        self.set('selectedIds', relatedObjectsId);
+                        Ember.set(object.get('loadedRelationshipsByName'), property, loadedRelationshipsByName);
                     });
                 } else{
                     var propertyArray = object.get(property) || '[]';

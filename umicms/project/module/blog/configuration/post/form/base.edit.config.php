@@ -97,7 +97,8 @@ return [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => BlogPost::FIELD_TAGS,
                     'options' => [
-                        'dataSource' => BlogPost::FIELD_TAGS
+                        'dataSource' => BlogPost::FIELD_TAGS,
+                        'lazy' => true
                     ]
                 ],
                 BlogPost::FIELD_AUTHOR => [

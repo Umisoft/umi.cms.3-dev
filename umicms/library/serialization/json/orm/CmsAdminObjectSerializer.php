@@ -68,7 +68,7 @@ class CmsAdminObjectSerializer extends CmsObjectSerializer
                              */
                             $targetCollection = $field->getTargetCollection();
                             if ($targetCollection->hasHandler('admin')) {
-                                $links[$name] = $this->getCollectionResourceUri($targetCollection, $targetCollection->getIdentifyField()->getName(), $value);
+                                $links[$name] = $this->getTargetCollectionResourceUri($targetCollection, $targetCollection->getIdentifyField()->getName(), $value);
                             }
                         }
                     }
@@ -77,16 +77,22 @@ class CmsAdminObjectSerializer extends CmsObjectSerializer
                 case $field instanceof HasManyRelationField: {
                     $targetCollection = $field->getTargetCollection();
                     if ($targetCollection->hasHandler('admin')) {
-                        $links[$name] = $this->getCollectionResourceUri($targetCollection, $field->getTargetFieldName(), $object->getId());
+                        $links[$name] = $this->getTargetCollectionResourceUri($targetCollection, $field->getTargetFieldName(), $object->getId());
                     }
                     break;
                 }
                 case $field instanceof ManyToManyRelationField: {
-                    $targetCollection = $field->getTargetCollection();
-                    $mirrorFieldName = $targetCollection->getMetadata()->getFieldByRelation($field->getTargetFieldName(), $field->getBridgeCollectionName())->getName();
-
-                    if ($targetCollection->hasHandler('admin')) {
-                        $links[$name] = $this->getCollectionResourceUri($targetCollection, $mirrorFieldName, $object->getId());
+                    /**
+                     * @var ICmsCollection $bridgeCollection
+                     */
+                    $bridgeCollection = $field->getBridgeCollection();
+                    if ($bridgeCollection->hasHandler('admin')) {
+                        $links[$name] = $this->getBridgeCollectionResourceUri(
+                            $bridgeCollection,
+                            $field->getRelatedFieldName(),
+                            $object->getId(),
+                            $field->getTargetFieldName()
+                        );
                     }
 
                     break;
@@ -120,16 +126,37 @@ class CmsAdminObjectSerializer extends CmsObjectSerializer
     }
 
     /**
-     * Возвращает ссылку на REST-ресурс для получения связи объекта
+     * Возвращает ссылку на REST-ресурс для получения значений связи объекта через target-коллекцию
      * @param ICmsCollection $collection связанная коллекция
      * @param string $filterName имя связанного поля
      * @param string $filterValue значение связанного поля
      * @return string
      */
-    protected function getCollectionResourceUri(ICmsCollection $collection, $filterName, $filterValue)
+    protected function getTargetCollectionResourceUri(ICmsCollection $collection, $filterName, $filterValue)
     {
         $link = $this->getUrlManager()->getCollectionResourceUrl($collection);
         $link .= '?' . http_build_query(['filters' => [$filterName => $filterValue]]);
+
+        return $link;
+    }
+
+    /**
+     * Возвращает ссылку на REST-ресурс для получения значений связи объекта через bridge-коллекцию
+     * @param ICmsCollection $collection bridge-коллекция
+     * @param string $filterName имя поля, через которое осуществляется связь с коллекцией объекта
+     * @param string $filterValue идентификатор объекта
+     * @param string $withName имя поля, через которое осуществляется связь с target-коллекцией
+     * @return string
+     */
+    protected function getBridgeCollectionResourceUri(ICmsCollection $collection, $filterName, $filterValue, $withName)
+    {
+        $link = $this->getUrlManager()->getCollectionResourceUrl($collection);
+        $link .= '?' . http_build_query(
+            [
+                'filters' => [$filterName => $filterValue],
+                'with' => [$withName => ICmsObject::FIELD_DISPLAY_NAME]
+            ]
+        );
 
         return $link;
     }

@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="small-12 columns">
                     {{#ifCond type 'select'}}
-                        <select name="{{attributes.name}}" placeholder="{{label}}" >
+                        <select name="{{attributes.name}}" placeholder="{{label}}" class="select-language">
                             {{#each choices}}
                                 <option value="{{attributes.value}}">{{label}}</option>
                             {{/each}}

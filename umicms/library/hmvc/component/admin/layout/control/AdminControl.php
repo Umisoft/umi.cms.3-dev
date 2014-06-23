@@ -26,6 +26,10 @@ class AdminControl
      * @var array $params список параметров контрола
      */
     public $params = [];
+    /**
+     * @var array $labels список лейблов контрола в текущей локали
+     */
+    public $labels = [];
 
     /**
      * @var Button[] $contextToolbar кнопки контекстного меню
@@ -53,6 +57,7 @@ class AdminControl
         $this->component = $component;
 
         $this->configureParams();
+        $this->configureI18n();
         $this->configureContextMenu();
         $this->configureToolbar();
         $this->configureSubmitToolbar();
@@ -210,6 +215,10 @@ class AdminControl
             $result['params'] = $this->params;
         }
 
+        if ($this->labels) {
+            $result['i18n'] = $this->labels;
+        }
+
         if ($toolbar) {
             $result['toolbar'] = $toolbar;
         }
@@ -284,6 +293,14 @@ class AdminControl
      * Конфигурирует параметры контрола.
      */
     protected function configureParams()
+    {
+
+    }
+
+    /**
+     * Конфигурирует дополнительные лейблы контрола.
+     */
+    protected function configureI18n()
     {
 
     }
