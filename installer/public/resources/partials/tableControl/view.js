@@ -265,9 +265,9 @@ define(['App', 'toolbar'], function(UMI){
 
                 var template;
                 if(meta.name === 'displayName'){
-                    template = '{{#link-to "action" object.id "editForm" class="edit-link"}}' + object.get(meta.name) + '{{/link-to}}';
+                    template = '{{#link-to "action" object.id "editForm" class="edit-link"}}' + object.get(meta.dataSource) + '{{/link-to}}';
                 } else{
-                    template = object.get(meta.name) + '&nbsp;';
+                    template = object.get(meta.dataSource) + '&nbsp;';
                 }
                 return Ember.Handlebars.compile(template);
             }.property('object','column')

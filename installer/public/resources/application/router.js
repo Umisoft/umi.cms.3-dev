@@ -628,6 +628,7 @@ define([], function(){
                 var collectionName = componentController.get('collectionName');
                 var actions = componentController.get('contentControls');
                 var action = actions.findBy('name', actionName);
+                var actionResource;
                 var data = {
                     'object': contextModel,
                     'action': action
@@ -659,13 +660,24 @@ define([], function(){
 
                     // Временное решение для таблицы
                     if(actionName === 'children' || actionName === 'filter'){
-                        return Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
-                            data.viewSettings = results.settings;
+                        actionResource = Ember.get(componentController, 'settings.actions.getEditForm');
+                        Ember.assert('Для получения метаданных табличного контрола обязателен action "getEditForm"', !!actionResource);
+                        return Ember.$.getJSON(actionResource.source + '?type=base').then(function(results){
+                            var settings = Ember.get(results, 'result.getEditForm');
+                            var tableMetadata = {columns: []};
+                            for(var i =0; i < settings.elements.length; i++){
+                                if(settings.elements[i].type === 'fieldset'){
+                                    tableMetadata.columns = tableMetadata.columns.concat(settings.elements[i].elements);
+                                } else{
+                                    tableMetadata.columns.push(settings.elements[i]);
+                                }
+                            }
+                            data.viewSettings = tableMetadata;
                             return data;
                         });
                     } else if(actionName === 'editForm' || actionName === 'createForm'){
                         actionParams = actionParams ? '?' + $.param(actionParams) : '';
-                        var actionResource = componentController.get('settings').actions['get' + Ember.String.capitalize(actionName)].source + actionParams;
+                        actionResource = componentController.get('settings').actions['get' + Ember.String.capitalize(actionName)].source + actionParams;
 
                         return Ember.$.get(actionResource).then(function(results){
                             data.viewSettings = results.result['get' + Ember.String.capitalize(actionName)];

@@ -34,10 +34,10 @@
             <tbody>
                 <tr class="umi-table-control-row">
                     {{#each column in content.viewSettings.columns}}
-                        <td class="umi-table-control-header-column column-id-{{unbound column.name}}" style="width: {{unbound column.width}}px">
+                        <td class="umi-table-control-header-column column-id-{{unbound column.name}}" style="width: 200px">
                             <div class="umi-table-control-cell-firefox-fix">
                                 <div class="umi-table-control-header-cell">
-                                    {{column.title}}
+                                    {{column.label}}
                                 </div>
                                 <div class="umi-table-control-column-resizer"></div>
                             </div>
@@ -86,7 +86,7 @@
             <tbody>
                 <tr class="umi-table-control-content-row-size">
                     {{#each column in content.viewSettings.columns}}
-                        <td class="umi-table-control-content-cell column-id-{{unbound column.name}}" style="width: {{unbound column.width}}px"></td>
+                        <td class="umi-table-control-content-cell column-id-{{unbound column.name}}" style="width: 200px"></td>
                     {{/each}}
                     <td class="umi-table-control-empty-column"></td>
                 </tr>
