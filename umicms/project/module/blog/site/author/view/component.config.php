@@ -21,8 +21,8 @@ return [
     ],
     SitePageComponent::OPTION_WIDGET => [
         'author' => __NAMESPACE__ . '\widget\AuthorWidget',
-        'list' => __NAMESPACE__ . '\widget\ListAuthorWidget',
-        'posts' => __NAMESPACE__ . '\widget\ListPostWidget',
+        'list' => __NAMESPACE__ . '\widget\AuthorListWidget',
+        'posts' => __NAMESPACE__ . '\widget\PostListWidget',
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_RULES => [

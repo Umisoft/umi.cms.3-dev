@@ -8,20 +8,24 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\author\view\controller;
+namespace umicms\project\module\blog\site\author\view\widget;
 
-use umicms\hmvc\component\site\BaseSitePageController;
+use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\model\BlogModule;
 
-class IndexController extends BaseSitePageController
+/**
+ * Виджет для вывода списка авторов.
+ */
+class AuthorListWidget extends BaseListWidget
 {
     /**
      * @var BlogModule $module модуль "Блоги"
      */
-    private $module;
+    protected $module;
 
     /**
      * Конструктор.
+     * @param BlogModule $module модуль "Блоги"
      */
     public function __construct(BlogModule $module)
     {
@@ -31,15 +35,9 @@ class IndexController extends BaseSitePageController
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getSelector()
     {
-        return $this->createViewResponse(
-            'index',
-            [
-                'page' => $this->getCurrentPage(),
-                'author' => $this->module->getCurrentAuthor()
-            ]
-        );
+        return $this->module->getAuthors();
     }
 }
  
