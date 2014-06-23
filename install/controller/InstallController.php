@@ -507,6 +507,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $admin->groups->attach($visitors);
         $admin->groups->attach($registeredUsers);
         $admin->groups->attach($administrators);
+        $admin->groups->attach($moderator);
         $admin->setPassword('admin');
 
         /**
