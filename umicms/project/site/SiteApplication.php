@@ -196,16 +196,19 @@ class SiteApplication extends SiteComponent
         $requestFormat = $this->getRequestFormatByPostfix($request->getRequestFormat(null));
 
         if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
-            if ($response->getIsCompleted()) {
+
+            if ($response->headers->has('content-type') && $response->headers->get('content-type') != 'text/html; charset=UTF-8') {
                 throw new HttpException(Response::HTTP_BAD_REQUEST, $this->translate(
-                    'Resource serialization is not supported.'
+                    'Cannot serialize response. Headers had been already set.'
                 ));
             }
 
-            $result = $this->serializeResult($requestFormat, [
-                    'layout' => $response->getContent()
-                ]);
+            $result = $this->serializeResult(
+                $requestFormat,
+                ['layout' => $response->getContent()]
+            );
             $response->setContent($result);
+
         } elseif ($this->getSiteBrowserCacheEnabled()) {
             $this->setBrowserCacheHeaders($request, $response);
         }
