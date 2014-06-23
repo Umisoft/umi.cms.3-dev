@@ -23,7 +23,7 @@ abstract class AdminComponentPage extends BaseCmsPageObject
      */
     protected $elements = [
         'topBar' => ['css' => '.top-bar'],
-        'dock' => ['css' => 'div.umi-dock'],
+        'dock' => ['css' => 'div.umi-dock ul.dock'],
         'tree' => ['css' => '.umi-tree'],
         'tableControl' => ['css' => '.umi-table-control'],
         'formControl' => ['css' => '.umi-form-control']
@@ -57,21 +57,22 @@ abstract class AdminComponentPage extends BaseCmsPageObject
         $this->waitForElements('dock');
 
         $this->selectDockModule($this->moduleName);
+        $this->chooseDockComponent($this->moduleName, $this->componentName);
 
-        sleep(10);
+        sleep(20);
 
         return $this;
     }
 
     /**
      * Выбирает модуль в доке
-     * @param string $moduleName string имя модуля
+     * @param string $moduleName имя модуля
      * @throws ElementNotFoundException
      * @return $this
      */
     public function selectDockModule($moduleName)
     {
-        $module = $this->getElement('dock')->find('css', 'span.' . $moduleName);
+        $module = $this->getElement('dock')->find('css', 'li.' . $moduleName);
 
         if (!$module) {
             throw $this->elementNotFound(sprintf('Module "%s"', $moduleName));
@@ -82,9 +83,26 @@ abstract class AdminComponentPage extends BaseCmsPageObject
         return $this;
     }
 
-    public function selectDockComponent($componentName)
+    /**
+     * Выбирает компонент в доке
+     * @param string $componentName имя компонента
+     * @throws ElementNotFoundException
+     * @return $this
+     */
+    public function chooseDockComponent($componentName)
     {
-        
+
+        $component = $this->getElement('dock')->find(
+            'css', 'li.open li.' . $componentName . ' > a'
+        );
+
+        if (!$component) {
+            throw $this->elementNotFound(sprintf('Component "%s"', $componentName));
+        }
+
+        $component->click();
+
+        return $this;
     }
 
 

@@ -25,7 +25,7 @@ abstract class BaseCmsPageObject extends Page
      * Таймаут для ожидания загрузки страницы по умолчанию в миллисекундах
      * @var int $timeout
      */
-    protected $defaultWaitTimeout = 5000;
+    protected $defaultWaitTimeout = 8000;
 
     /**
      * Возаращает имя класса страницы.
