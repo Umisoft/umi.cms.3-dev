@@ -16,16 +16,16 @@ use umicms\project\module\blog\model\BlogModule;
 class IndexController extends BaseSitePageController
 {
     /**
-     * @var BlogModule $api
+     * @var BlogModule $module модуль "Блоги"
      */
-    private $api;
+    private $module;
 
     /**
      * Конструктор.
      */
-    public function __construct(BlogModule $api)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -37,7 +37,7 @@ class IndexController extends BaseSitePageController
             'index',
             [
                 'page' => $this->getCurrentPage(),
-                'author' => $this->api->getCurrentAuthor()
+                'author' => $this->module->getCurrentAuthor()
             ]
         );
     }
