@@ -150,7 +150,7 @@ $table-control-row-bg-hover: #C8DEEE;
 .umi-table-control-content-fixed-left{
     position: absolute;
     z-index: 2;
-    left: -$table-control-left-column-width;
+    left: 0;
     top: 0;
     border-right: 1px solid $table-control-cell-border-color;
     border-bottom: 1px solid #A7B9C5;
@@ -187,7 +187,7 @@ $table-control-row-bg-hover: #C8DEEE;
     position: absolute;
     z-index: 2;
     top: 0;
-    right: -82px;
+    right: 0;
     border-right: none;
     border-left: 1px solid #E3E4E5;
     border-bottom: 1px solid #A7B9C5;
@@ -242,6 +242,7 @@ $table-control-row-bg-hover: #C8DEEE;
 
 // ----------- table content
 .umi-table-control-content-wrapper{
+    overflow: hidden;
     height: calc(100% - 66px - 33px);
     position: relative;
     &:before{
@@ -261,7 +262,6 @@ $table-control-row-bg-hover: #C8DEEE;
         padding: 0;
     }
     .s-scroll-wrap{
-        overflow: visible;
         margin: 0 82px 0 32px;
     }
 }

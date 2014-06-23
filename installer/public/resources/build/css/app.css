@@ -4280,7 +4280,7 @@ ul.umi-search-result {
 .umi-table-control-content-fixed-left {
   position: absolute;
   z-index: 2;
-  left: -32px;
+  left: 0;
   top: 0;
   border-right: 1px solid #E3E4E5;
   border-bottom: 1px solid #A7B9C5; }
@@ -4311,7 +4311,7 @@ ul.umi-search-result {
   position: absolute;
   z-index: 2;
   top: 0;
-  right: -82px;
+  right: 0;
   border-right: none;
   border-left: 1px solid #E3E4E5;
   border-bottom: 1px solid #A7B9C5; }
@@ -4354,6 +4354,7 @@ ul.umi-search-result {
   line-height: 32px; }
 
 .umi-table-control-content-wrapper {
+  overflow: hidden;
   height: calc(100% - 66px - 33px);
   position: relative; }
   .umi-table-control-content-wrapper:before {
@@ -4371,7 +4372,6 @@ ul.umi-search-result {
     border-bottom: 0;
     padding: 0; }
   .umi-table-control-content-wrapper .s-scroll-wrap {
-    overflow: visible;
     margin: 0 82px 0 32px; }
 
 .umi-table-control-cell-drop-size {

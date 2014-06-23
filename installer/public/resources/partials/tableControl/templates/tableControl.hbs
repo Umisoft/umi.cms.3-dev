@@ -112,31 +112,29 @@
             {{/if}}
             </tbody>
         </table>
+    </div>
+    <!-- Колонка слева от контента -->
+    <div class="umi-table-control-content-fixed-left">
+        {{#each object in objects}}
+            <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
+                <input type="checkbox" id="checkbox-{{unbound object.id}}" class="s-margin-clear"/>
+                <label for="checkbox-{{unbound object.id}}"><span></span></label>
+            </div>
+        {{/each}}
+    </div>
 
-        <!-- Колонка слева от контента -->
-        <div class="umi-table-control-content-fixed-left">
-            {{#each object in objects}}
-                <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
-                    <input type="checkbox" id="checkbox-{{unbound object.id}}" class="s-margin-clear"/>
-                    <label for="checkbox-{{unbound object.id}}"><span></span></label>
-                </div>
-            {{/each}}
-        </div>
-
-        <!-- Колонка справа от контента -->
-
-        <div class="umi-table-control-content-fixed-right">
-            {{#each object in objects itemController="tableControlContextToolbarItem"}}
-                <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
-                    {{#if controller.parentController.contextToolbar}}
-                        {{#view "tableControlContextToolbar" elements=controller.parentController.contextToolbar}}
-                            {{#each view.elements}}
-                                {{view view.elementView}}
-                            {{/each}}
-                        {{/view}}
-                    {{/if}}
-                </div>
-            {{/each}}
-        </div>
+    <!-- Колонка справа от контента -->
+    <div class="umi-table-control-content-fixed-right">
+        {{#each object in objects itemController="tableControlContextToolbarItem"}}
+            <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
+                {{#if controller.parentController.contextToolbar}}
+                    {{#view "tableControlContextToolbar" elements=controller.parentController.contextToolbar}}
+                        {{#each view.elements}}
+                            {{view view.elementView}}
+                        {{/each}}
+                    {{/view}}
+                {{/if}}
+            </div>
+        {{/each}}
     </div>
 </div>

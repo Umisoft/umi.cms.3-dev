@@ -264,7 +264,7 @@ define(['App', 'toolbar'], function(UMI){
                 var object = this.get('object');
 
                 var template;
-                if(meta.name === 'displayName'){
+                if(meta.dataSource === 'displayName'){
                     template = '{{#link-to "action" object.id "editForm" class="edit-link"}}' + object.get(meta.dataSource) + '{{/link-to}}';
                 } else{
                     template = object.get(meta.dataSource) + '&nbsp;';
