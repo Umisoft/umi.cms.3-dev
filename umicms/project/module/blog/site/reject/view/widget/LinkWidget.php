@@ -20,7 +20,7 @@ class LinkWidget extends BaseLinkWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'listLink';
+    public $template = 'link';
 
     /**
      * {@inheritdoc}
