@@ -11,39 +11,34 @@
 namespace umicms\project\module\blog\site\moderate\all;
 
 use umi\acl\IAclFactory;
-use umi\route\IRouteFactory;
-use umicms\hmvc\component\site\SiteComponent;
+use umicms\hmvc\component\site\SitePageComponent;
 
 return [
-    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
-    SiteComponent::OPTION_CONTROLLERS => [
-        'index' => 'umicms\hmvc\component\site\SiteStructurePageController'
+    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
+    SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
+    SitePageComponent::OPTION_CONTROLLERS => [
+        'index' => 'umicms\hmvc\component\site\SiteStructurePageController',
+        'page' => __NAMESPACE__ . '\controller\PageController'
     ],
-    SiteComponent::OPTION_WIDGET => [
+    SitePageComponent::OPTION_WIDGET => [
+        'post' => __NAMESPACE__ . '\widget\PostWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'listLink' => __NAMESPACE__ . '\widget\LinkWidget'
     ],
-    SiteComponent::OPTION_ACL => [
+    SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'moderator' => []
         ],
         IAclFactory::OPTION_RULES => [
             'moderator' => [
                 'controller:index' => [],
+                'widget:post' => [],
                 'widget:list' => [],
                 'widget:listLink' => []
             ]
         ]
     ],
-    SiteComponent::OPTION_VIEW => [
+    SitePageComponent::OPTION_VIEW => [
         'directories' => ['module/blog/moderate/all']
-    ],
-    SiteComponent::OPTION_ROUTES => [
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'index'
-            ]
-        ]
     ]
 ];

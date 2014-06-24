@@ -20,11 +20,11 @@ return [
     SiteGroupComponent::OPTION_CONTROLLERS => [
         'publish' => __NAMESPACE__ . '\controller\PublishController',
         'reject' => __NAMESPACE__ . '\controller\RejectController',
-        'draft' => __NAMESPACE__ . '\controller\DraftController'
+        'draft' => __NAMESPACE__ . '\controller\ToDraftController'
     ],
     SiteGroupComponent::OPTION_COMPONENTS => [
         'edit' => '{#lazy:~/project/module/blog/site/moderate/edit/component.config.php}',
-        'view' => '{#lazy:~/project/module/blog/site/moderate/view/component.config.php}',
+        'own' => '{#lazy:~/project/module/blog/site/moderate/own/component.config.php}',
         'all' => '{#lazy:~/project/module/blog/site/moderate/all/component.config.php}'
     ],
     SiteGroupComponent::OPTION_WIDGET => [

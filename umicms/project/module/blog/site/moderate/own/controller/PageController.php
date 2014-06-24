@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\view\controller;
+namespace umicms\project\module\blog\site\moderate\own\controller;
 
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umicms\project\module\blog\model\BlogModule;

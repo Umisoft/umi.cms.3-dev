@@ -315,12 +315,12 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
             'project.site.blog.moderate' => [
                 'editExecutor',
-                'viewExecutor',
+                'ownExecutor',
                 'viewer',
                 'author'
             ],
             'project.site.blog.moderate.edit' => ['viewer', 'author'],
-            'project.site.blog.moderate.view' => ['viewer', 'author'],
+            'project.site.blog.moderate.own' => ['viewer', 'author'],
 
             'project.site.blog.post' => [
                 'addExecutor',
@@ -371,7 +371,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'author'
             ],
             'project.site.blog.moderate.edit' => ['viewer', 'author'],
-            'project.site.blog.moderate.view' => ['viewer', 'author'],
+            'project.site.blog.moderate.own' => ['viewer', 'author'],
 
             'project.site.blog.post' => [
                 'addExecutor',
@@ -444,7 +444,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'moderator'
             ],
             'project.site.blog.moderate.edit' => ['viewer', 'moderator'],
-            'project.site.blog.moderate.view' => ['viewer', 'moderator'],
+            'project.site.blog.moderate.own' => ['viewer', 'moderator'],
             'project.site.blog.moderate.all' => ['moderator'],
 
             'project.site.blog.post' => [
@@ -687,11 +687,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $moderationPostEdit->getProperty('componentName')->setValue('edit');
         $moderationPostEdit->getProperty('componentPath')->setValue('blog.moderate.edit');
 
-        $moderationPostView = $structureCollection->add('view', 'system', $moderationPost)
+        $moderationPostView = $structureCollection->add('own', 'system', $moderationPost)
             ->setValue('displayName', 'Просмотреть пост на модерации')
             ->setValue('displayName', 'View posts to moderate', 'en-US');
-        $moderationPostView->getProperty('componentName')->setValue('view');
-        $moderationPostView->getProperty('componentPath')->setValue('blog.moderate.view');
+        $moderationPostView->getProperty('componentName')->setValue('own');
+        $moderationPostView->getProperty('componentPath')->setValue('blog.moderate.own');
 
         $moderationPostAll = $structureCollection->add('all', 'system', $moderationPost)
             ->setValue('displayName', 'Очередь на модерацию')

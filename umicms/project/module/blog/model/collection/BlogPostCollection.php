@@ -28,7 +28,8 @@ use umicms\project\module\blog\model\object\BlogPost;
 class BlogPostCollection extends CmsPageCollection
 {
     const HANDLER_DRAFT = 'draft';
-    const HANDLER_MODERATE = 'moderate';
+    const HANDLER_MODERATE_OWN = 'moderateOwn';
+    const HANDLER_MODERATE_ALL = 'moderateAll';
     const HANDLER_REJECT = 'reject';
     /**
      * Возвращает пост по его источнику.

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\view\widget;
+namespace umicms\project\module\blog\site\moderate\all\widget;
 
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umicms\exception\InvalidArgumentException;

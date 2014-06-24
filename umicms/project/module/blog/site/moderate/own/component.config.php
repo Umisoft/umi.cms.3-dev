@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\view;
+namespace umicms\project\module\blog\site\moderate\own;
 
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;

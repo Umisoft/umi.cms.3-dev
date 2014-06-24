@@ -20,7 +20,8 @@ return [
         ICmsCollection::HANDLER_ADMIN => 'blog.post',
         ICmsCollection::HANDLER_SITE => 'blog.post.view',
         BlogPostCollection::HANDLER_DRAFT => 'blog.draft.view',
-        BlogPostCollection::HANDLER_MODERATE => 'blog.moderate.view',
+        BlogPostCollection::HANDLER_MODERATE_OWN => 'blog.moderate.own',
+        BlogPostCollection::HANDLER_MODERATE_ALL => 'blog.moderate.all',
         BlogPostCollection::HANDLER_REJECT => 'blog.reject.view'
     ],
     'forms' => [

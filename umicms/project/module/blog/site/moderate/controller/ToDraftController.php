@@ -21,7 +21,7 @@ use umicms\hmvc\component\site\TFormSimpleController;
 /**
  * Контроллер снятия поста с модерации и переноса в черновики.
  */
-class DraftController extends BaseCmsController
+class ToDraftController extends BaseCmsController
 {
     use TFormSimpleController;
 
