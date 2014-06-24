@@ -134,10 +134,32 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
                     }
                 };
 
+                function setCheckboxIndeterminate(checkbox){
+                    if(checkbox.checked){
+                        var childrenCheckboxes =$(checkbox).closest('.umi-permissions-role-list-item').children('.umi-permissions-component').find('.umi-permissions-role-checkbox');
+                        var checkedChildrenCheckboxes = 0;
+                        for(var i = 0; i < childrenCheckboxes.length; i++){
+                            if(childrenCheckboxes[i].checked){
+                                checkedChildrenCheckboxes++;
+                            }
+                        }
+                        if(checkedChildrenCheckboxes === childrenCheckboxes.length){
+                            checkbox.indeterminate = false;
+                        } else{
+                            checkbox.indeterminate = true;
+                        }
+                    }
+                }
+
                 for(var key in property){
                     if(property.hasOwnProperty(key)){
                         checkedInput(property, key);
                     }
+                }
+
+                var $checkboxes = $el.find('.umi-permissions-role-checkbox');
+                for(var i = 0; i < $checkboxes.length; i++){
+                    setCheckboxIndeterminate($checkboxes[i]);
                 }
 
                 var accordion = $el.find('.accordion');
