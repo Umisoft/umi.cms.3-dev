@@ -47,7 +47,12 @@ define(
                      * @method gridType
                      */
                     gridType: function(){
-                        return 'umi-columns ' + (this.get('content.type') === 'permissions' ? 'small-12' : 'large-4 small-12');
+                        var wideElements = ['wysiwyg', 'permissions'];
+                        var widthClass = 'large-4 small-12';
+                        if(wideElements.contains(this.get('content.type'))){
+                            widthClass = 'small-12';
+                        }
+                        return 'umi-columns ' + widthClass;
                     },
 
                     actions: {
