@@ -8,19 +8,19 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\view\widget;
+namespace umicms\project\module\blog\site\reject\view\widget;
 
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
- * Виджет для вывода ссылки на спискок постов текущего автора, требующих модерации.
+ * Виджет для вывода ссылки на спискок отклонённых постов текущего автора.
  */
-class OwnListLinkWidget extends BaseLinkWidget
+class LinkWidget extends BaseLinkWidget
 {
     /**
-     * {@inheritdoc}
+     * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'moderateLink';
+    public $template = 'listLink';
 
     /**
      * {@inheritdoc}

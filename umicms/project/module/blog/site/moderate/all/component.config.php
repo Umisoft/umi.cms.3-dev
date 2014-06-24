@@ -21,7 +21,7 @@ return [
     ],
     SiteComponent::OPTION_WIDGET => [
         'list' => __NAMESPACE__ . '\widget\ListWidget',
-        'listLink' => __NAMESPACE__ . '\widget\ListLinkWidget'
+        'listLink' => __NAMESPACE__ . '\widget\LinkWidget'
     ],
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [

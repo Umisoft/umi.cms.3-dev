@@ -8,19 +8,19 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\reject\view\widget;
+namespace umicms\project\module\blog\site\moderate\all\widget;
 
 use umicms\hmvc\widget\BaseLinkWidget;
 
 /**
- * Виджет для вывода ссылки на спискок отклонённых постов текущего автора.
+ * Виджет для вывода ссылки на спискок всех черновиков.
  */
-class ListLinkWidget extends BaseLinkWidget
+class LinkWidget extends BaseLinkWidget
 {
     /**
-     * @var string $template имя шаблона, по которому выводится виджет
+     * {@inheritdoc}
      */
-    public $template = 'listLink';
+    public $template = 'moderateLink';
 
     /**
      * {@inheritdoc}
@@ -29,5 +29,5 @@ class ListLinkWidget extends BaseLinkWidget
     {
         return $this->getUrl('index', [], $this->absolute);
     }
+
 }
- 

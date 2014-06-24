@@ -23,8 +23,8 @@ return [
     ],
     SitePageComponent::OPTION_WIDGET => [
         'draft' => __NAMESPACE__ . '\widget\DraftWidget',
-        'ownList' => __NAMESPACE__ . '\widget\OwnListWidget',
-        'ownListLink' => __NAMESPACE__ . '\widget\OwnListLinkWidget'
+        'list' => __NAMESPACE__ . '\widget\ListWidget',
+        'listLink' => __NAMESPACE__ . '\widget\LinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -36,8 +36,8 @@ return [
         IAclFactory::OPTION_RULES => [
             'author' => [
                 'widget:draft' => [],
-                'widget:ownList' => [],
-                'widget:ownListLink' => [],
+                'widget:list' => [],
+                'widget:listLink' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]

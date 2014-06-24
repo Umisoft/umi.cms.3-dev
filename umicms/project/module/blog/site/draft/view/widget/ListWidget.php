@@ -8,15 +8,15 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\blog\site\moderate\view\widget;
+namespace umicms\project\module\blog\site\draft\view\widget;
 
 use umicms\hmvc\widget\BaseListWidget;
 use umicms\project\module\blog\model\BlogModule;
 
 /**
- * Виджет для вывода списка постов текущего автора, требующих модерации.
+ * Виджет для вывода списка черновиков текущего автора.
  */
-class OwnListWidget extends BaseListWidget
+class ListWidget extends BaseListWidget
 {
     /**
      * @var BlogModule $module модуль "Блоги"
@@ -37,7 +37,7 @@ class OwnListWidget extends BaseListWidget
      */
     protected function getSelector()
     {
-        return $this->module->getOwnModerate();
+        return $this->module->getOwnDrafts();
     }
 }
  

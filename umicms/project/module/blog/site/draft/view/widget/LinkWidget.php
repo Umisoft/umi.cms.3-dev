@@ -15,7 +15,7 @@ use umicms\hmvc\widget\BaseLinkWidget;
 /**
  * Виджет для вывода ссылки на спискок черновиков текущего автора.
  */
-class OwnListLinkWidget extends BaseLinkWidget
+class LinkWidget extends BaseLinkWidget
 {
     /**
      * {@inheritdoc}

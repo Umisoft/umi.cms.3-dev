@@ -22,8 +22,8 @@ return [
     ],
     SitePageComponent::OPTION_WIDGET => [
         'post' => __NAMESPACE__ . '\widget\PostWidget',
-        'ownList' => __NAMESPACE__ . '\widget\OwnListWidget',
-        'ownListLink' => __NAMESPACE__ . '\widget\OwnListLinkWidget'
+        'ownList' => __NAMESPACE__ . '\widget\ListWidget',
+        'ownListLink' => __NAMESPACE__ . '\widget\LinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
