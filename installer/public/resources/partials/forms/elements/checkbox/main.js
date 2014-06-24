@@ -5,13 +5,13 @@ define(['App'], function(UMI){
         UMI.CheckboxElementView = Ember.View.extend({
             template: function(){
                 var self = this;
-                var isChecked;
                 var name = self.get('name');
-                var value = self.get('value');
-                isChecked = value;
+                var attributeValue = self.get('attributeValue');
+                var className = self.get('className');
+                var isChecked = self.get('value');
 
-                var hiddenInput = '<input type="hidden" name="' + name + '" value="0" />';
-                var checkbox = '<input type="checkbox" ' + (isChecked ? "checked" : "") + ' name="' + name + '" value="' + value + '"/>';
+                var hiddenInput = '<input type="hidden" name="' + name + '" value="' + attributeValue + '" />';
+                var checkbox = '<input type="checkbox" ' + (isChecked ? "checked" : "") + ' name="' + name + '" value="' + attributeValue + '" class="' + className + '"/>';
                 var label = '<label unselectable="on" onselectstart="return false;" {{action "change" target="view"}}><span></span>{{view.meta.label}}</label>';
                 return Ember.Handlebars.compile(hiddenInput + checkbox + label);
             }.property(),
@@ -23,6 +23,11 @@ define(['App'], function(UMI){
 
             value: function(){
                 var meta = this.get('meta');
+                return Ember.get(meta, 'value');
+            }.property('meta.value'),
+
+            attributeValue: function(){
+                var meta = this.get('meta');
                 return Ember.get(meta, 'attributes.value');
             }.property('meta.attributes.value'),
 
@@ -33,6 +38,7 @@ define(['App'], function(UMI){
                     var $el = this.$();
                     var checkbox = $el.find('input[type="checkbox"]')[0];
                     checkbox.checked = !checkbox.checked;
+                    $(checkbox).trigger("change");
                 }
             }
         });

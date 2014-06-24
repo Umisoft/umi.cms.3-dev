@@ -1,10 +1,10 @@
 <div class="umi-permissions">
-    {{#each view.meta.resources}}
+    {{#each component in view.meta.resources}}
         <dl class="accordion">
             <dd class="accordion-navigation">
-                <a class="accordion-navigation-button" href="javascript:void(0)"><i class="icon icon-right"></i> {{path}}</a>
+                <a class="accordion-navigation-button" href="javascript:void(0)"><i class="icon icon-right"></i> {{component.path}}</a>
                 <div class="content">
-                    {{view "permissionsPartial" roles=roles}}
+                    {{view "permissionsPartial" component=component}}
                 </div>
             </dd>
         </dl>

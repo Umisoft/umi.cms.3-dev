@@ -1,4 +1,4 @@
-{{#each role in view.roles}}
+{{#each role in view.component.roles}}
     <li class="umi-permissions-role-list-item">
         <div class="umi-permissions-role">
             {{#if role.component}}
@@ -6,15 +6,15 @@
                    <i class="icon icon-right"></i>
                </span>
             {{/if}}
-            <span class="umi-permissions-role-label">
-                {{view "checkboxElement" object=role meta=role}}
+            <span class="umi-permissions-role-label" {{bind-attr data-permissions-component-path="view.component.path"}}>
+                {{view "checkboxElement" meta=role name=role.value attributeValue=role.value value="" className="umi-permissions-role-checkbox"}}
             </span>
         </div>
         {{#if role.component}}
             <div class="umi-permissions-component">
                 <div class="umi-permissions-component-label">{{role.component.path}}</div>
                 <ul class="umi-permissions-component-list">
-                    {{view "permissionsPartial" roles=role.component.roles}}
+                    {{view "permissionsPartial" component=role.component}}
                 </ul>
             </div>
         {{/if}}
