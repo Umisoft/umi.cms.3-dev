@@ -11,6 +11,7 @@
 namespace umicms\project\module\blog\site\moderate\edit\controller;
 
 use umi\form\IForm;
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\project\module\blog\model\BlogModule;
@@ -56,6 +57,13 @@ class EditController extends BaseSitePageController
     protected function buildForm()
     {
         $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
+
+        if (!$this->isAllowed($blogPost)) {
+            throw new ResourceAccessForbiddenException(
+                $blogPost,
+                $this->translate('Access denied')
+            );
+        }
 
         return $this->module->post()->getForm(
             BlogPost::FORM_EDIT_POST,
