@@ -47,7 +47,7 @@ define(
                      * @method gridType
                      */
                     gridType: function(){
-                        return 'umi-columns ' + (this.get('content.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12');
+                        return 'umi-columns ' + (this.get('content.type') === 'permissions' ? 'small-12' : 'large-4 small-12');
                     },
 
                     actions: {
@@ -150,7 +150,7 @@ define(
                 }.property(),
 
                 checkboxTemplate: function(){
-                    return '{{view "checkboxElement" object=object meta=view.meta}}';
+                    return '{{view "checkboxElement" meta=view.meta}}';
                 }.property(),
 
                 checkboxGroupTemplate: function(){
