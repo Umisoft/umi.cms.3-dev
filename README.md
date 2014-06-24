@@ -14,7 +14,7 @@ $ git clone git@github.com:Umisoft/umi.cms.3-dev.git
 
 1) <a href="http://nodejs.org/download/">Скачать</a> и установить Node.JS.
 
-2) Установка менеджера пактов "Bower":
+2) Установка менеджера пакетов "Bower":
 
 ```sh
 $ npm install -g bower

@@ -56,6 +56,7 @@ class ListController extends BaseController
             case 'PUT':
             case 'POST': {
                 $object = $this->create($this->getCollectionIncomingData());
+
                 return $this->createViewResponse(
                     'item', [$this->getCollectionName() => $object]
                 );

@@ -9,16 +9,13 @@
  */
 
 return [
+
     'en-US' => [
-        'type:base:displayName' => 'Layout',
-        'type:base:createLabel' => 'layout',
-        'fileName' => 'File name'
+        'action:create:base' => 'Create tag',
     ],
 
     'ru-RU' => [
-        'type:base:displayName' => 'Шаблон',
-        'type:base:createLabel' => 'Добавить шаблон',
-        'fileName' => 'Имя файла'
+        'action:create:base' => 'Создать тэг',
     ]
+
 ];
- 
