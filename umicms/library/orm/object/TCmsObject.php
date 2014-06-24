@@ -38,6 +38,13 @@ trait TCmsObject
      * @return IProperty[]
      */
     abstract public function getAllProperties();
+    /**
+     * @see ICmsObject::getProperty()
+     * @param string $propName
+     * @param null|string $localeId
+     * @return IProperty
+     */
+    abstract public function getProperty($propName, $localeId = null);
 
     /**
      * @see TLocalesAware::getDefaultDataLocale()
@@ -98,6 +105,28 @@ trait TCmsObject
         }
 
         return $result;
+    }
+
+    /**
+     * @see ICmsObject::setCreatedTime()
+     */
+    public function setCreatedTime()
+    {
+        $property = $this->getProperty('created');
+        $property->setValue(new \DateTime());
+
+        return $this;
+    }
+
+    /**
+     * @see ICmsObject::setUpdatedTime()
+     */
+    public function setUpdatedTime()
+    {
+        $property = $this->getProperty('updated');
+        $property->setValue(new \DateTime());
+
+        return $this;
     }
 
 }
