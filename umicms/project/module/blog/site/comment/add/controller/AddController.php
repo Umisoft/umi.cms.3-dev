@@ -29,9 +29,9 @@ class AddController extends BaseSitePageController
     protected $module;
 
     /**
-     * @var bool $added флаг указывающий на публикацию комментария
+     * @var string|null $added флаг указывающий на публикацию комментария
      */
-    private $added = null;
+    private $added;
 
     /**
      * Конструктор.
