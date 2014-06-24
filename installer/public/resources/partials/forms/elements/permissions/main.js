@@ -103,7 +103,7 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
                             if(Ember.typeOf(childComponentRoles) !== 'array'){
                                 childComponentRoles = objectProperty[childComponentName] = [];
                             }
-                            childComponentRoles = childComponentRoles.without(childrenCheckboxes[i].name);
+                            childComponentRoles = objectProperty[childComponentName] = childComponentRoles.without(childrenCheckboxes[i].name);
                             if(!childComponentRoles.length){
                                 delete objectProperty[childComponentName];
                             }
