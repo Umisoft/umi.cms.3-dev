@@ -35,10 +35,23 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
 
                 function checkedParentCheckboxes(checkbox){
                     if(checkbox){
+                        var checkedSiblingsCheckboxes = 0;
+                        var checkboxes = $(checkbox).closest('.umi-permissions-role-list-item').children('.umi-permissions-component').find('.umi-permissions-role-checkbox');
+                        for(var i = 0; i < checkboxes.length; i++){
+                            if(checkboxes[i].checked){
+                                checkedSiblingsCheckboxes++;
+                            }
+                        }
+                        if(checkedSiblingsCheckboxes === checkboxes.length){
+                            checkbox.indeterminate = false;
+                        } else{
+                            checkbox.indeterminate = true;
+                        }
+
                         var parentCheckbox = $(checkbox).closest('.umi-permissions-component').closest('.umi-permissions-role-list-item').children('.umi-permissions-role').find('.umi-permissions-role-checkbox');
                         if(parentCheckbox.length){
                             parentCheckbox[0].checked = true;
-                            //intermediate
+
                             var parentComponentName = $(parentCheckbox[0]).closest('.umi-permissions-role-label').attr('data-permissions-component-path');
                             var parentComponentRoles = objectProperty[parentComponentName];
                             if(Ember.typeOf(parentComponentRoles) !== 'array'){
@@ -46,33 +59,59 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
                             }
                             if(!parentComponentRoles.contains(parentCheckbox[0].name)){
                                 parentComponentRoles.push(parentCheckbox[0].name);
+                                parentComponentRoles.sort();
                             }
                             checkedParentCheckboxes(parentCheckbox[0]);
                         }
                     }
                 }
 
+                function setParentCheckboxesIndeterminate(checkbox){
+                    var parentCheckbox =$(checkbox).closest('.umi-permissions-component').closest('.umi-permissions-role-list-item').children('.umi-permissions-role').find('.umi-permissions-role-checkbox');
+                    if(parentCheckbox.length){
+                        if(parentCheckbox[0].checked){
+                            parentCheckbox[0].indeterminate = true;
+                        }
+                        setParentCheckboxesIndeterminate(parentCheckbox[0]);
+                    }
+                }
+
                 if(isChecked){
                     if(!componentRoles.contains(currentRole)){
                         componentRoles.push(currentRole);
+                        componentRoles.sort();
                     }
                     checkedParentCheckboxes(checkbox);
                 } else{
                     if(componentRoles.contains(currentRole)){
-                        componentRoles = componentRoles.without(currentRole);
+                        objectProperty[path] = componentRoles.without(currentRole);
+                        if(!objectProperty[path].length){
+                            delete objectProperty[path];
+                        }
                     }
+
+                    checkbox.indeterminate = false;
+                    setParentCheckboxesIndeterminate(checkbox);
+
                     childrenCheckboxes = $(checkbox).closest('.umi-permissions-role-list-item').children('.umi-permissions-component').find('.umi-permissions-role-checkbox');
                     if(childrenCheckboxes.length){
                         for(i = 0; i < childrenCheckboxes.length; i++){
                             childrenCheckboxes[i].checked = false;
+                            childrenCheckboxes[i].indeterminate = false;
                             childComponentName = $(childrenCheckboxes[i]).closest('.umi-permissions-role-label').attr('data-permissions-component-path');
                             var childComponentRoles = objectProperty[childComponentName];
                             if(Ember.typeOf(childComponentRoles) !== 'array'){
                                 childComponentRoles = objectProperty[childComponentName] = [];
                             }
                             childComponentRoles = childComponentRoles.without(childrenCheckboxes[i].name);
+                            if(!childComponentRoles.length){
+                                delete objectProperty[childComponentName];
+                            }
                         }
                     }
+                }
+                if(JSON.stringify(objectProperty) === '{}'){
+                    objectProperty = [];
                 }
                 object.set(this.get('meta.dataSource'), JSON.stringify(objectProperty));
             },
