@@ -12,19 +12,19 @@ namespace umicms\project\module\blog\site\draft\edit;
 
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
-use umicms\hmvc\component\site\SitePageComponent;
+use umi\route\IRouteFactory;
+use umicms\hmvc\component\site\SiteComponent;
 
 return [
 
-    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
-    SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    SitePageComponent::OPTION_CONTROLLERS => [
-        'page' => __NAMESPACE__ . '\controller\EditController'
+    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
+    SiteComponent::OPTION_CONTROLLERS => [
+        'index' => __NAMESPACE__ . '\controller\EditController'
     ],
-    SitePageComponent::OPTION_WIDGET => [
+    SiteComponent::OPTION_WIDGET => [
         'editLink' => __NAMESPACE__ . '\widget\EditLinkWidget'
     ],
-    SitePageComponent::OPTION_ACL => [
+    SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
             'moderator' => []
@@ -34,18 +34,29 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
+                'controller:index' => [],
                 'widget:editLink' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
             ],
             'moderator' => [
+                'controller:index' => [],
                 'widget:editLink' => [],
                 'model:blogPost' => []
             ],
         ]
     ],
-    SitePageComponent::OPTION_VIEW => [
+    SiteComponent::OPTION_VIEW => [
         'directories' => ['module/blog/draft/edit']
+    ],
+    SiteComponent::OPTION_ROUTES => [
+        'index' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/{id:integer}',
+            'defaults' => [
+                'controller' => 'index'
+            ]
+        ]
     ]
 ];

@@ -71,7 +71,7 @@ class EditLinkWidget extends BaseLinkWidget
             );
         }
 
-        return $this->getUrl('page', ['uri' => $this->blogPost->getId(), $this->absolute]);
+        return $this->getUrl('index', ['id' => $this->blogPost->getId(), $this->absolute]);
     }
 }
  

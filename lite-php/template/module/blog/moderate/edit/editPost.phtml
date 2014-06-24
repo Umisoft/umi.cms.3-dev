@@ -4,6 +4,11 @@
  * @var bool $success
  */
 ?>
+
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
+<h1><?= $page->displayName ?></h1>
+
 <?php if($success) : ?>
     <div class="alert alert-success">
         <p class="bg-success text-success"><?=$this->translate('Moderated post has been saved!')?></p>

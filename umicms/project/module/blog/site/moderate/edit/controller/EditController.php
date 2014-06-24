@@ -55,7 +55,7 @@ class EditController extends BaseSitePageController
      */
     protected function buildForm()
     {
-        $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('uri'));
+        $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
 
         return $this->module->post()->getForm(
             BlogPost::FORM_EDIT_POST,

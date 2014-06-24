@@ -56,7 +56,7 @@ class EditController extends BaseSitePageController
      */
     protected function buildForm()
     {
-        $blogPost = $this->module->post()->getRejectedPostById($this->getRouteVar('uri'));
+        $blogPost = $this->module->post()->getRejectedPostById($this->getRouteVar('id'));
 
         if (!$this->isAllowed($blogPost)) {
             throw new ResourceAccessForbiddenException(
