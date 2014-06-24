@@ -63,6 +63,13 @@ return [
                     TwigTemplateEngine::NAME => 'umi\extension\twig\TwigTemplateEngine',
                     XsltTemplateEngine::NAME => 'umicms\templating\engine\xslt\XsltTemplateEngine',
                     SmartyTemplateEngine::NAME => 'umicms\templating\engine\smarty\SmartyTemplateEngine'
+                ],
+                'defaultOptions' => [
+                    SmartyTemplateEngine::NAME => [
+                        SmartyTemplateEngine::OPTION_COMPILE_DIR => '~/project/smarty/templates_c/',
+                        SmartyTemplateEngine::OPTION_CACHE_DIR => '~/project/smarty/cache',
+                        SmartyTemplateEngine::OPTION_CONFIG_DIR => '~/project/smarty/configs'
+                    ]
                 ]
             ]
         ]

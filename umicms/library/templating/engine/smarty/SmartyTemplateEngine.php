@@ -104,11 +104,11 @@ class SmartyTemplateEngine implements ITemplateEngine
 
             $this->environment = new Smarty();
             $this->environment
-                ->setTemplateDir($templateDirectories);
+                ->setTemplateDir($templateDirectories)
             // todo: что делать с директориями для скомпилированных шаблонов?
-                /*->setCompileDir($this->options[self::OPTION_COMPILE_DIR])
+                ->setCompileDir($this->options[self::OPTION_COMPILE_DIR])
                 ->setCacheDir($this->options[self::OPTION_CACHE_DIR])
-                ->setConfigDir($this->options[self::OPTION_CONFIG_DIR]);*/
+                ->setConfigDir($this->options[self::OPTION_CONFIG_DIR]);
         }
 
         return $this->environment;

@@ -10,12 +10,4 @@
 
 namespace umicms\project\site;
 
-use umicms\templating\engine\smarty\SmartyTemplateEngine;
-
-return [
-    SiteApplication::OPTION_VIEW => [
-        SmartyTemplateEngine::OPTION_COMPILE_DIR => '/home/georgy/htdocs/umi/www/lite-smarty/smarty/templates_c',
-        SmartyTemplateEngine::OPTION_CACHE_DIR => '/home/georgy/htdocs/umi/www/lite-smarty/smarty/cache',
-        SmartyTemplateEngine::OPTION_CONFIG_DIR => '/home/georgy/htdocs/umi/www/lite-smarty/smarty/configs'
-    ]
-];
+return [];
