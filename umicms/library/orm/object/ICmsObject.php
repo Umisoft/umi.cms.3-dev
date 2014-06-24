@@ -56,4 +56,16 @@ interface ICmsObject extends IObject
      * @return string
      */
     public function getEditLink($isAbsolute = false);
+
+    /**
+     * Выставляет время создания объекта.
+     * @return self
+     */
+    public function setCreatedTime();
+
+    /**
+     * Выставляет время обновления объекта.
+     * @return self
+     */
+    public function setUpdatedTime();
 }
