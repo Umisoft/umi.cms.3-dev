@@ -11,6 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
+use umicms\filter\Slug;
 use umicms\project\module\blog\model\object\BlogTag;
 
 return [
@@ -45,7 +46,13 @@ return [
         ],
         BlogTag::FIELD_PAGE_SLUG => [
             'type' => IField::TYPE_SLUG,
-            'columnName' => 'slug'
+            'columnName' => 'slug',
+            'filters' => [
+                Slug::TYPE => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         BlogTag::FIELD_DISPLAY_NAME => [
             'type' => IField::TYPE_STRING,

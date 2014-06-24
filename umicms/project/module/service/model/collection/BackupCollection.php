@@ -44,8 +44,8 @@ class BackupCollection extends CmsCollection
                 [
                     Backup::FIELD_OBJECT_ID,
                     Backup::FIELD_COLLECTION_NAME,
-                    Backup::FIELD_DATE,
-                    Backup::FIELD_USER
+                    Backup::FIELD_CREATED,
+                    Backup::FIELD_OWNER
                 ]
             );
     }
@@ -60,7 +60,7 @@ class BackupCollection extends CmsCollection
         return $this->select()
             ->where(Backup::FIELD_OBJECT_ID)->equals($object->getId())
             ->where(Backup::FIELD_COLLECTION_NAME)->equals($object->getCollectionName())
-            ->orderBy(Backup::FIELD_DATE, CmsSelector::ORDER_DESC);
+            ->orderBy(Backup::FIELD_CREATED, CmsSelector::ORDER_DESC);
     }
 
     /**
@@ -130,8 +130,6 @@ class BackupCollection extends CmsCollection
         $backup = $this->add();
         $backup->objectId = $object->getId();
         $backup->collectionName = $object->getCollectionName();
-        $backup->date = new \DateTime();
-        $backup->user = $object->editor;
         $backup->getProperty(Backup::FIELD_DATA)->setValue(serialize($object));
 
         return $this;

@@ -32,28 +32,4 @@ class UserGroup extends CmsObject implements IActiveAccessibleObject, ILockedAcc
      */
     const FIELD_ROLES = 'roles';
 
-    /**
-     * Возвращает список ролей доступных группе по компонентам.
-     * @return array
-     */
-    public function getRoles()
-    {
-        if ($value = $this->getProperty(self::FIELD_ROLES)->getValue()) {
-            return unserialize($value);
-        }
-
-        return [];
-    }
-
-    /**
-     * Устанавливает список ролей доступных группе по компонентам.
-     * @param array $roles
-     * @return $this
-     */
-    public function setRoles(array $roles)
-    {
-        $this->getProperty(self::FIELD_ROLES)->setValue(serialize($roles));
-
-        return $this;
-    }
 }
