@@ -74,6 +74,10 @@ define(
 
                 checkboxGroupTemplate: function(){
                     return '{{view "checkboxGroupCollectionElement" object=object meta=view.meta}}';
+                }.property(),
+
+                permissionsTemplate: function(){
+                    return '{{view "permissions" object=object meta=view.meta}}';
                 }.property()
             });
         };

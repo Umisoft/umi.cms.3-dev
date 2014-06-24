@@ -1,20 +1,12 @@
-<table style="width: 100%;">
-    <thead>
-        <tr>
-            <td>Модули</td>
-            <td>{{view.meta.label}}</td>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each view.meta.resources}}
-            <tr>
-                <td>{{label}}</td>
-                <td>
-                    {{#each roles}}
-                        <div>{{label}}</div>
-                    {{/each}}
-                </td>
-            </tr>
-        {{/each}}
-    </tbody>
-</table>
+<div class="umi-permissions">
+    {{#each view.meta.resources}}
+        <dl class="accordion">
+            <dd class="accordion-navigation">
+                <a class="accordion-navigation-button" href="javascript:void(0)"><i class="icon icon-right"></i> {{path}}</a>
+                <div class="content">
+                    {{view "permissionsPartial" roles=roles}}
+                </div>
+            </dd>
+        </dl>
+    {{/each}}
+</div>

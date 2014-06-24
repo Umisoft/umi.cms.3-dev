@@ -1,3 +1,58 @@
+.umi-permissions{
+    border: 1px solid #dee2e5;
+    border-top-color: #eff1f3;
+    .accordion{
+        border-top: 1px solid #D5D5D5;
+        .content{
+            border-top: 1px solid #c2ced8;
+            padding-left: rem-calc(58);
+            &.active{
+                background: #f0f7fc;
+            }
+        }
+        dd{
+            > a{
+                background: #fff;
+                padding: rem-calc(6)  rem-calc(10);
+                font-size: rem-calc(13);
+                font-weight: bold;
+            }
+        }
+    }
+    &-role{
+        position: relative;
+        .button{
+            position: absolute;
+            left: - rem-calc(24);
+        }
+        &-label{
+            margin-left: 4px;
+            display: inline-block;
+        }
+        &-list{
+            margin-bottom: 0;
+            &-item{
+                margin-bottom: 10px;
+            }
+        }
+    }
+    &-component{
+        display: none;
+        margin: 10px 0 15px 27px;
+        &.expand{
+            display: block;
+        }
+        &-label{
+            background: #E7F1F8;
+            font-size: rem-calc(13);
+            padding: 5px 10px;
+        }
+        &-list{
+            margin-left: 24px;
+        }
+    }
+}
+
 .umi-accordion{
     margin: 0;
     font-size: rem-calc(13);

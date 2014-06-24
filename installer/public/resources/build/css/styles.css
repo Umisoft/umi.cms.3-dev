@@ -2575,6 +2575,35 @@ label.error {
     border-top-right-radius: 1000px;
     border-bottom-right-radius: 1000px; }
 
+.accordion {
+  *zoom: 1;
+  margin-bottom: 0; }
+  .accordion:before, .accordion:after {
+    content: " ";
+    display: table; }
+  .accordion:after {
+    clear: both; }
+  .accordion dd {
+    display: block;
+    margin-bottom: 0 !important; }
+    .accordion dd.active a {
+      background: #e8e8e8; }
+    .accordion dd > a {
+      background: #efefef;
+      color: #222;
+      padding: 1rem;
+      display: block;
+      font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+      font-size: 1rem; }
+      .accordion dd > a:hover {
+        background: #e3e3e3; }
+  .accordion .content {
+    display: none;
+    padding: 0.9375rem; }
+    .accordion .content.active {
+      display: block;
+      background: #fff; }
+
 .s-hide {
   display: none; }
 
@@ -2934,10 +2963,11 @@ label.error {
     margin-top: -4px;
     margin-bottom: -3px; }
   .button.tiny .icon, button.tiny .icon {
-    margin-top: -7px;
-    margin-bottom: -6px;
+    margin-top: -6px;
+    margin-bottom: -7px;
     margin-left: -4px;
-    margin-right: -4px; }
+    margin-right: -4px;
+    display: block; }
   .button.tiny.square, button.tiny.square {
     padding-left: 0.3125rem;
     padding-right: 0.3125rem; }
@@ -5763,6 +5793,45 @@ input[type="text"].umi-search-input.active {
 .umi-search-result li:not(.umi-search-empty):hover {
   background: #F5F6F7;
   cursor: pointer; }
+
+.umi-permissions {
+  border: 1px solid #dee2e5;
+  border-top-color: #eff1f3; }
+  .umi-permissions .accordion {
+    border-top: 1px solid #D5D5D5; }
+    .umi-permissions .accordion .content {
+      border-top: 1px solid #c2ced8;
+      padding-left: 3.625rem; }
+      .umi-permissions .accordion .content.active {
+        background: #f0f7fc; }
+    .umi-permissions .accordion dd > a {
+      background: #fff;
+      padding: 0.375rem 0.625rem;
+      font-size: 0.8125rem;
+      font-weight: bold; }
+  .umi-permissions-role {
+    position: relative; }
+    .umi-permissions-role .button {
+      position: absolute;
+      left: -1.5rem; }
+    .umi-permissions-role-label {
+      margin-left: 4px;
+      display: inline-block; }
+    .umi-permissions-role-list {
+      margin-bottom: 0; }
+      .umi-permissions-role-list-item {
+        margin-bottom: 10px; }
+  .umi-permissions-component {
+    display: none;
+    margin: 10px 0 15px 27px; }
+    .umi-permissions-component.expand {
+      display: block; }
+    .umi-permissions-component-label {
+      background: #E7F1F8;
+      font-size: 0.8125rem;
+      padding: 5px 10px; }
+    .umi-permissions-component-list {
+      margin-left: 24px; }
 
 .umi-accordion {
   margin: 0;

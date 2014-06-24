@@ -1,0 +1,22 @@
+{{#each role in view.roles}}
+    <li class="umi-permissions-role-list-item">
+        <div class="umi-permissions-role">
+            {{#if role.component}}
+               <span class="button tiny square white left s-margin-clear umi-permissions-role-button-expand">
+                   <i class="icon icon-right"></i>
+               </span>
+            {{/if}}
+            <span class="umi-permissions-role-label">
+                {{view "checkboxElement" object=role meta=role}}
+            </span>
+        </div>
+        {{#if role.component}}
+            <div class="umi-permissions-component">
+                <div class="umi-permissions-component-label">{{role.component.path}}</div>
+                <ul class="umi-permissions-component-list">
+                    {{view "permissionsPartial" roles=role.component.roles}}
+                </ul>
+            </div>
+        {{/if}}
+    </li>
+{{/each}}
