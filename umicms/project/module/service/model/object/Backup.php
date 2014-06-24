@@ -12,15 +12,12 @@ namespace umicms\project\module\service\model\object;
 
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsObject;
-use umicms\project\module\users\model\object\AuthorizedUser;
 
 /**
  * Бэкап объекта CMS.
  *
  * @property int $objectId идентификатор объекта, которому принадлежит резервная копия
  * @property string $collectionName имя коллекции к которой относится объект
- * @property \DateTime $date дата
- * @property AuthorizedUser $user пользователь редактировавший объект
  * @property ICmsObject $data данные резервной копии объекта
  */
 class Backup extends CmsObject
@@ -33,14 +30,6 @@ class Backup extends CmsObject
      * Имя поля для хранения имени коллекции к которой относится объект
      */
     const FIELD_COLLECTION_NAME = 'collectionName';
-    /**
-     * Имя поля для хранения даты создания резервной копии
-     */
-    const FIELD_DATE = 'date';
-    /**
-     * Имя поля для хранения пользователя редактировавшего страницу
-     */
-    const FIELD_USER = 'user';
     /**
      * Имя поля для хранения данных резервной копии
      */

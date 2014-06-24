@@ -40,6 +40,16 @@ return [
             'mutator' => 'setVersion',
             'defaultValue' => 1
         ],
+        Backup::FIELD_CREATED             => [
+            'type'       => IField::TYPE_DATE_TIME,
+            'columnName' => 'created',
+            'readOnly'   => true
+        ],
+        Backup::FIELD_UPDATED             => [
+            'type'       => IField::TYPE_DATE_TIME,
+            'columnName' => 'updated',
+            'readOnly'   => true
+        ],
         Backup::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
@@ -57,14 +67,6 @@ return [
         Backup::FIELD_COLLECTION_NAME => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'collection_name'
-        ],
-        Backup::FIELD_DATE => [
-            'type' => IField::TYPE_DATE_TIME,
-            'columnName' => 'date'
-        ],
-        Backup::FIELD_USER => [
-            'type' => IField::TYPE_INTEGER,
-            'columnName' => 'user',
         ],
         Backup::FIELD_DATA => [
             'type' => IField::TYPE_TEXT,
@@ -84,9 +86,9 @@ return [
                 Backup::FIELD_OBJECT_ID,
                 Backup::FIELD_OWNER,
                 Backup::FIELD_EDITOR,
+                Backup::FIELD_CREATED,
+                Backup::FIELD_UPDATED,
                 Backup::FIELD_COLLECTION_NAME,
-                Backup::FIELD_DATE,
-                Backup::FIELD_USER,
                 Backup::FIELD_DATA
             ]
         ]
