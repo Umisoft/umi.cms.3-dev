@@ -19,35 +19,35 @@
 </div>
 
 <?php if (
-    $this->isAllowedResource('blog.draft', 'widget:ownListLink') &&
-    $this->isAllowedResource('blog.moderate', 'widget:ownListLink') &&
-    $this->isAllowedResource('blog.reject', 'widget:listLink')
+    $this->isAllowedResource('blog.draft.view', 'widget:link') &&
+    $this->isAllowedResource('blog.moderate.own', 'widget:link') &&
+    $this->isAllowedResource('blog.reject.view', 'widget:link')
 ) : ?>
     <div class="sidebar-module">
         <h4><?= $this->translate('Authors\'s posts') ?></h4>
         <ol class="list-unstyled">
             <li><?= $this->translate('Drafts') ?>: <?= $this->widget(
-                    'blog.draft.ownListLink',
+                    'blog.draft.view.link',
                     ['template' => 'draftLinkAuthor']
                 ) ?></li>
             <li><?= $this->translate('Post on moderation') ?>: <?= $this->widget(
-                    'blog.moderate.ownListLink',
+                    'blog.moderate.own.link',
                     ['template' => 'moderateLink']
                 ) ?></li>
             <li><?= $this->translate('Rejected posts') ?>: <?= $this->widget(
-                    'blog.reject.listLink',
+                    'blog.reject.view.link',
                     ['template' => 'listLink']
                 ) ?></li>
         </ol>
     </div>
 <?php endif; ?>
 
-<?php if ($this->isAllowedResource('blog.moderate', 'widget:allListLink')) : ?>
+<?php if ($this->isAllowedResource('blog.moderate.all', 'widget:link')) : ?>
     <div class="sidebar-module">
         <h4><?= $this->translate('Moderate') ?></h4>
         <ol class="list-unstyled">
             <li><?= $this->translate('Post on moderation') ?>: <?= $this->widget(
-                    'blog.moderate.allListLink',
+                    'blog.moderate.all.link',
                     ['template' => 'moderateLink']
                 ) ?></li>
         </ol>

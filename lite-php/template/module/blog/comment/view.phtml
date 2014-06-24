@@ -1,7 +1,8 @@
 <?php
 /**
- * @var umicms\project\module\blog\api\object\BlogComment $blogComment
+ * @var umicms\project\module\blog\model\object\BlogComment $blogComment
  */
+
 ?>
 <div class="media-body">
     <h1><?= $blogComment->displayName ?></h1>
@@ -14,8 +15,8 @@
 
     <?php if ($blogComment->publishStatus == $blogComment::COMMENT_STATUS_NEED_MODERATE) : ?>
     <div class="btn-toolbar">
-        <?= $this->widget('blog.comment.publish', ['blogComment' => $blogComment, 'template' => 'publishForm']); ?>
-        <?= $this->widget('blog.comment.reject', ['blogComment' => $blogComment, 'template' => 'rejectForm']); ?>
+        <?= $this->widget('blog.comment.publishForm', ['blogComment' => $blogComment, 'template' => 'publishForm']); ?>
+        <?= $this->widget('blog.comment.rejectForm', ['blogComment' => $blogComment, 'template' => 'rejectForm']); ?>
     </div>
     <?php endif; ?>
 </div>
