@@ -29,6 +29,8 @@ register_shutdown_function(function() {
     }
 });
 
+mb_internal_encoding("utf8");
+
 if (!file_exists($autoLoaderPath)) {
     throw new RuntimeException(
         sprintf('Cannot load application. File "%s" not found.', $autoLoaderPath)

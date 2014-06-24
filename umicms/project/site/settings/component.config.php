@@ -17,7 +17,8 @@ return [
     SettingsGroupComponent::OPTION_COMPONENTS => [
         'common' => '{#lazy:~/project/site/settings/common/component.config.php}',
         'seo' => '{#lazy:~/project/site/settings/seo/component.config.php}',
-        'templating' => '{#lazy:~/project/site/settings/templating/component.config.php}'
+        'templating' => '{#lazy:~/project/site/settings/templating/component.config.php}',
+        'slugify' => '{#lazy:~/project/site/settings/slugify/component.config.php}'
     ]
 
 ];
