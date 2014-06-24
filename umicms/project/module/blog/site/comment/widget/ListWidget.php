@@ -63,7 +63,7 @@ class ListWidget extends BaseTreeWidget
             );
         }
 
-        if ($this->isAllowed($this->module->comment(), 'getComments')) {
+        if ($this->isAllowed($this->module->comment(), 'getCommentsWithNeedModeration')) {
             return $this->module->getCommentByPostWithNeedModeration($this->blogPost);
         } else {
             return $this->module->getCommentsByPost($this->blogPost);
