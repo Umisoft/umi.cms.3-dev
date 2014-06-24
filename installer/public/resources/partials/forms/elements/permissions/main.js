@@ -173,8 +173,11 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
                 });
 
                 $el.on('click.umi.permissions', '.umi-permissions-role-button-expand', function(){
-                    $(this).closest('li').children('.umi-permissions-component').toggleClass('expand');
+                    var component = $(this).closest('li').children('.umi-permissions-component');
+                    component.toggleClass('expand');
                     $(this).find('.icon').toggleClass('icon-right icon-bottom');
+                    component.find('.umi-permissions-component').removeClass('expand');
+                    component.find('.umi-permissions-role-button-expand').find('.icon').addClass('icon-right').removeClass('icon-bottom');
                 });
 
                 $el.find('.umi-permissions-role-checkbox').on('change', function(){
