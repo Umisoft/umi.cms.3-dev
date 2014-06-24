@@ -36,7 +36,8 @@ return [
         IAclFactory::OPTION_RULES => [
             'commentator' => [
                 'widget:addForm' => [],
-                'controller:add' => [
+                'controller:add' => [],
+                'model:blogComment' => [
                     'publish' => []
                 ]
             ],

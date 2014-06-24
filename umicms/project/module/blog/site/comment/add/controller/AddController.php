@@ -31,7 +31,7 @@ class AddController extends BaseSitePageController
     /**
      * @var bool $added флаг указывающий на публикацию комментария
      */
-    private $added = false;
+    private $added = null;
 
     /**
      * Конструктор.
@@ -68,10 +68,10 @@ class AddController extends BaseSitePageController
 
 
         if ($this->isAllowed($comment, 'publish')) {
-            $this->added = true;
+            $this->added = BlogComment::COMMENT_STATUS_PUBLISHED;
             $comment->published();
         } else {
-            $this->added = false;
+            $this->added = BlogComment::COMMENT_STATUS_NEED_MODERATE;
             $comment->needModerate();
         }
 

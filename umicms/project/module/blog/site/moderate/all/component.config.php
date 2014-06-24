@@ -17,24 +17,20 @@ return [
     SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
     SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
     SitePageComponent::OPTION_CONTROLLERS => [
-        'index' => 'umicms\hmvc\component\site\SiteStructurePageController',
         'page' => __NAMESPACE__ . '\controller\PageController'
     ],
     SitePageComponent::OPTION_WIDGET => [
         'post' => __NAMESPACE__ . '\widget\PostWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
-        'listLink' => __NAMESPACE__ . '\widget\LinkWidget'
+        'link' => __NAMESPACE__ . '\widget\LinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
-        IAclFactory::OPTION_ROLES => [
-            'moderator' => []
-        ],
         IAclFactory::OPTION_RULES => [
-            'moderator' => [
+            'viewer' => [
                 'controller:index' => [],
                 'widget:post' => [],
                 'widget:list' => [],
-                'widget:listLink' => []
+                'widget:link' => []
             ]
         ]
     ],

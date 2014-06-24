@@ -24,7 +24,7 @@ return [
     SitePageComponent::OPTION_WIDGET => [
         'draft' => __NAMESPACE__ . '\widget\DraftWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
-        'listLink' => __NAMESPACE__ . '\widget\LinkWidget'
+        'link' => __NAMESPACE__ . '\widget\LinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -37,7 +37,7 @@ return [
             'author' => [
                 'widget:draft' => [],
                 'widget:list' => [],
-                'widget:listLink' => [],
+                'widget:link' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
