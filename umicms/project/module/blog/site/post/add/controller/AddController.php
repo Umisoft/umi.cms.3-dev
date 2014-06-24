@@ -63,13 +63,13 @@ class AddController extends BaseSitePageController
     protected function buildForm()
     {
         $blogCategory = null;
-        $blogCategoryId = $this->getRouteVar('uri');
+        $blogCategoryId = $this->getRouteVar('id');
 
         if (!is_null($blogCategoryId)) {
             $blogCategory = $this->module->category()->getById($blogCategoryId);
         }
 
-        if (!$blogCategory instanceof BlogCategory) {
+        if ($blogCategory && !$blogCategory instanceof BlogCategory) {
             throw new InvalidArgumentException(
                 $this->translate(
                     'Widget parameter "{param}" should be instance of "{class}".',

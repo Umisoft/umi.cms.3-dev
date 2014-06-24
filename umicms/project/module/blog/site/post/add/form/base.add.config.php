@@ -9,7 +9,6 @@
  */
 
 use umi\filter\IFilterFactory;
-use umi\form\element\Hidden;
 use umi\form\element\MultiSelect;
 use umi\form\element\Submit;
 use umi\form\element\Text;
@@ -28,13 +27,6 @@ return [
         'method' => 'post'
     ],
     'elements' => [
-        BlogPost::FIELD_CATEGORY => [
-            'type' => Hidden::TYPE_NAME,
-            'label' => BlogPost::FIELD_CATEGORY,
-            'options' => [
-                'dataSource' => BlogPost::FIELD_CATEGORY
-            ],
-        ],
         BlogPost::FIELD_DISPLAY_NAME => [
             'type' => Text::TYPE_NAME,
             'label' => BlogPost::FIELD_DISPLAY_NAME,

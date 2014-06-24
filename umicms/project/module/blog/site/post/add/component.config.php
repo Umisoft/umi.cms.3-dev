@@ -11,22 +11,22 @@
 namespace umicms\project\module\blog\site\post\add;
 
 use umi\acl\IAclFactory;
-use umicms\hmvc\component\site\SitePageComponent;
+use umi\route\IRouteFactory;
+use umicms\hmvc\component\site\SiteComponent;
 
 return [
 
-    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
-    SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    SitePageComponent::OPTION_CONTROLLERS => [
-        'page' => __NAMESPACE__ . '\controller\AddController',
+    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
+    SiteComponent::OPTION_CONTROLLERS => [
+        'index' => __NAMESPACE__ . '\controller\AddController',
     ],
-    SitePageComponent::OPTION_WIDGET => [
+    SiteComponent::OPTION_WIDGET => [
         'addLink' => __NAMESPACE__ . '\widget\AddLinkWidget',
     ],
-    SitePageComponent::OPTION_VIEW => [
+    SiteComponent::OPTION_VIEW => [
         'directories' => ['module/blog/post/add'],
     ],
-    SitePageComponent::OPTION_ACL => [
+    SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
         ],
@@ -37,6 +37,16 @@ return [
             'author' => [
                 'widget:addLink' => [],
                 'model:blogPost' => []
+            ]
+        ]
+    ],
+    SiteComponent::OPTION_ROUTES => [
+        'index' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/{id:integer}',
+            'defaults' => [
+                'id' => null,
+                'controller' => 'index'
             ]
         ]
     ]

@@ -63,7 +63,7 @@ class AddLinkWidget extends BaseLinkWidget
             );
         }
 
-        return $this->getUrl('page', ['uri' => $this->blogCategory->getId(), $this->absolute]);
+        return $this->getUrl('index', ['id' => $this->blogCategory->getId(), $this->absolute]);
     }
 }
  

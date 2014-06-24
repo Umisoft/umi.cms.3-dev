@@ -17,7 +17,7 @@ use umicms\hmvc\component\site\SiteGroupComponent;
 return [
     SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
     SiteGroupComponent::OPTION_CONTROLLERS => [
-        'draft' => __NAMESPACE__ . '\controller\DraftController',
+        'draft' => __NAMESPACE__ . '\controller\ToDraftController',
         'rss' => __NAMESPACE__ . '\controller\RssController'
     ],
     SiteGroupComponent::OPTION_COMPONENTS => [

@@ -21,7 +21,7 @@ use umicms\hmvc\component\site\TFormSimpleController;
 /**
  * Контроллер помещения поста блога в черновики.
  */
-class DraftController extends BaseCmsController
+class ToDraftController extends BaseCmsController
 {
     use TFormSimpleController;
 
