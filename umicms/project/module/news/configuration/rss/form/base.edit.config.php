@@ -61,6 +61,7 @@ return [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => NewsRssImportScenario::FIELD_SUBJECTS,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsRssImportScenario::FIELD_SUBJECTS
                     ]
                 ]

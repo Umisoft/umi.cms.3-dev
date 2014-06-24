@@ -229,6 +229,14 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(templates){
                         parallax(event);
                     };
 
+                    if(history.state && history.state.hasOwnProperty('language')){
+                        $('.select-language').val(history.state.language);
+                    }
+
+                    $(document).on('change.umi.auth', '.select-language', function(){
+                        history.replaceState({language: this.value}, "?language=" + this.value);
+                        window.location.href = window.location.href;
+                    });
 
                     $(document).on('click.umi.auth', '.close', function(){
                         this.parentNode.parentNode.removeChild(this.parentNode);
@@ -287,6 +295,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(templates){
             destroy: function(){
                 $(document).off('click.umi.auth');
                 $(document).off('submit.umi.auth');
+                $(document).off('change.umi.auth');
             }
         };
 

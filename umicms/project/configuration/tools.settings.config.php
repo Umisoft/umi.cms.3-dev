@@ -18,6 +18,7 @@ use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
 use umi\templating\toolbox\TemplatingTools;
 use umicms\filter\HtmlPurifier;
+use umicms\filter\Slug;
 use umicms\form\element\Captcha;
 use umicms\form\element\File;
 use umicms\form\element\Image;
@@ -27,6 +28,8 @@ use umicms\form\element\Permissions;
 use umicms\module\toolbox\ModuleTools;
 use umicms\orm\metadata\field\relation\CmsObjectRelationField;
 use umicms\orm\metadata\field\relation\CmsPageRelationField;
+use umicms\orm\metadata\field\SerializedArrayField;
+use umicms\slugify\toolbox\SlugGeneratorTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 
 return [
@@ -104,7 +107,8 @@ return [
                 'fieldTypes' => [
                     IField::TYPE_BELONGS_TO => 'umicms\orm\metadata\field\relation\BelongsToRelationField',
                     CmsObjectRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsObjectRelationField',
-                    CmsPageRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsPageRelationField'
+                    CmsPageRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsPageRelationField',
+                    SerializedArrayField::TYPE => 'umicms\orm\metadata\field\SerializedArrayField'
                 ]
             ]
         ],
@@ -184,9 +188,12 @@ return [
         'factories' => [
             'filter' => [
                 'types' => [
-                    HtmlPurifier::TYPE => 'umicms\filter\HtmlPurifier'
+                    HtmlPurifier::TYPE => 'umicms\filter\HtmlPurifier',
+                    Slug::TYPE => 'umicms\filter\Slug'
                 ]
             ]
         ]
-    ]
+    ],
+
+    SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}'
 ];

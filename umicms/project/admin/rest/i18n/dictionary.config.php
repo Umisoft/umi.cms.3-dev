@@ -29,15 +29,24 @@ return [
         // default save actions
         'action:save' => 'Save',
         'action:saveAndGoBack' => 'Save and go back',
+        'button:save:notModified' => 'Saved',
 
         'button:add' => 'Create',
         'button:save' => 'Save',
         'button:create' => 'Create',
 
+        'Open site in new tab' => 'Open site in new tab',
+        'Logout' => 'Logout',
+        'Remember my choice' => 'Remember my choice',
+        'Nothing found' => 'Nothing found',
+
+        'Rows on page' => 'Rows on page',
+        'No data' => 'No data'
+
     ],
 
     'ru-RU' => [
-        //'action:create:base' => 'Добавить',
+        'action:create:base' => 'Добавить',
         'action:switchActivity' => 'Сменить активность',
         'action:switchActivity:activate' => 'Активировать',
         'action:switchActivity:deactivate' => 'Снять активность',
@@ -61,6 +70,14 @@ return [
         'button:save' => 'Сохранить',
         'button:save:notModified' => 'Сохранено',
         'button:create' => 'Добавить',
+
+        'Open site in new tab' => 'Открыть сайт в новой вкладке',
+        'Logout' => 'Выход из системы',
+        'Remember my choice' => 'Запомнить мой выбор',
+        'Nothing found' => 'Ничего не найдено',
+
+        'Rows on page' => 'Строк на странице',
+        'No data' => 'Нет данных'
     ]
 
 ];

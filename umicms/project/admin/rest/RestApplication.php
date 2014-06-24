@@ -16,6 +16,7 @@ use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpForbidden;
 use umi\http\Request;
 use umi\http\Response;
+use umi\orm\collection\BaseCollection;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umi\toolkit\IToolkitAware;
@@ -146,7 +147,7 @@ class RestApplication extends AdminComponent implements ISerializationAware, ITo
      */
     protected function registerSelectorInitializer()
     {
-        TCmsCollection::setSelectorInitializer(function(CmsSelector $selector) {
+        BaseCollection::setSelectorInitializer(function(CmsSelector $selector) {
 
             $collection = $selector->getCollection();
 

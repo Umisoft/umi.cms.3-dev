@@ -20,7 +20,7 @@ return [
         'index' => __NAMESPACE__ . '\controller\IndexController',
     ],
     SiteComponent::OPTION_WIDGET => [
-        'edit' => __NAMESPACE__ . '\widget\EditLinkWidget',
+        'editLink' => __NAMESPACE__ . '\widget\EditLinkWidget',
     ],
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -29,7 +29,7 @@ return [
         IAclFactory::OPTION_RULES => [
             'author' => [
                 'controller:index' => [],
-                'widget:edit' => []
+                'widget:editLink' => []
             ]
         ]
     ],

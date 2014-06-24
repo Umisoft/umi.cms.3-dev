@@ -1,5 +1,5 @@
-define(['App', 'text!./template.hbs', 'text!./backupList.hbs'],
-    function(UMI, template, backupListTemplate){
+define(['App', 'moment', 'text!./template.hbs', 'text!./backupList.hbs'],
+    function(UMI, moment, template, backupListTemplate){
         "use strict";
 
         return function(){
@@ -102,6 +102,13 @@ define(['App', 'text!./template.hbs', 'text!./backupList.hbs'],
                                     object.rollback();
                                     delete data.result.getBackup.version;
                                     delete data.result.getBackup.id;
+                                    // При обновлении свойств не вызываются методы desialize для атрибутов модели
+                                    self.get('controller.store').modelFor(object.constructor.typeKey).eachTransformedAttribute(function(name, type){
+                                        if(type === 'CustomDateTime' && data.result.getBackup.hasOwnProperty(name) && Ember.typeOf(data.result.getBackup[name]) === 'object'){
+                                            Ember.set(data.result.getBackup[name], 'date', moment(data.result.getBackup[name].date).format('DD.MM.YYYY h:mm:ss'));
+                                            data.result.getBackup[name] = JSON.stringify(data.result.getBackup[name]);
+                                        }
+                                    });
                                     object.setProperties(data.result.getBackup);
                                     setCurrent();
                                 });

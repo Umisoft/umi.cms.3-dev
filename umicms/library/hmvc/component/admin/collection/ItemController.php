@@ -13,9 +13,7 @@ namespace umicms\hmvc\component\admin\collection;
 use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\exception\http\HttpMethodNotAllowed;
 use umi\http\Response;
-use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\object\ICmsObject;
-use umicms\orm\object\behaviour\IRecoverableObject;
 
 /**
  * Контроллер Read-Update-Delete операций над объектом.
@@ -36,11 +34,6 @@ class ItemController extends BaseController
             }
             case 'PUT': {
                 $object = $this->getRequestedObject();
-
-                $collection = $object->getCollection();
-                if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
-                    $collection->createBackup($object);
-                }
 
                 return $this->createViewResponse(
                     'update',
@@ -86,7 +79,7 @@ class ItemController extends BaseController
     protected function delete(ICmsObject $object)
     {
         $this->getComponent()->getCollection()->delete($object);
-        $this->getObjectPersister()->commit();
+        $this->commit();
     }
 
 }

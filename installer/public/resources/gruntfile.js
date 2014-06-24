@@ -15,7 +15,7 @@ module.exports = function(grunt){
         sass: {
             dev: {
                 options: {
-                    includePaths: ['libs/foundation/scss/']
+                    includePaths: ['libs/foundation/scss/', 'libs/jquery.ui/themes/base/']
                 },
 
                 files: {
@@ -129,13 +129,12 @@ module.exports = function(grunt){
                     'partials/fileManager/elFinder/js/commands/*.js',
                     'partials/fileManager/elFinder/js/i18n/elfinder.ru.js'
                 ],
-                dest: 'libs/elFinder.js'
+                dest: 'libsStatic/elFinder.js'
             },
 
             //Объединяем стили с иконками
             css: {
                 src: [
-                    'libs/jquery.ui/themes/base/*.css', //Подтягиваются все стили с jQueryUI.
                     'build/css/app.css',
                     'build/css/icons.data.svg.css',
                     'build/css/icons.dock.svg.css'

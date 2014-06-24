@@ -12,8 +12,6 @@ namespace umicms\project\module\blog\site\author\profile\controller;
 
 use umi\form\IForm;
 use umi\orm\metadata\IObjectType;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\hmvc\component\site\TFormController;
 use umicms\project\module\blog\model\BlogModule;
@@ -22,15 +20,14 @@ use umicms\project\module\blog\model\object\BlogAuthor;
 /**
  * Контроллер редактирования профиля автора блога.
  */
-class IndexController extends BaseSitePageController implements IObjectPersisterAware
+class IndexController extends BaseSitePageController
 {
     use TFormController;
-    use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
     /**
      * @var bool $success флаг указывающий на успешное сохранение изменений
      */
@@ -38,11 +35,11 @@ class IndexController extends BaseSitePageController implements IObjectPersister
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $blogModule модуля "Блоги"
      */
     public function __construct(BlogModule $blogModule)
     {
-        $this->api = $blogModule;
+        $this->module = $blogModule;
     }
 
     /**
@@ -58,9 +55,9 @@ class IndexController extends BaseSitePageController implements IObjectPersister
      */
     protected function buildForm()
     {
-        $blogAuthor = $this->api->getCurrentAuthor();
+        $blogAuthor = $this->module->getCurrentAuthor();
 
-        return $this->api->author()->getForm(
+        return $this->module->author()->getForm(
             BlogAuthor::FORM_EDIT_PROFILE,
             IObjectType::BASE,
             $blogAuthor
@@ -72,7 +69,7 @@ class IndexController extends BaseSitePageController implements IObjectPersister
      */
     protected function processForm(IForm $form)
     {
-        $this->getObjectPersister()->commit();
+        $this->commit();
         $this->success = true;
     }
 

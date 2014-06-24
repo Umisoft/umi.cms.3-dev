@@ -16,19 +16,45 @@ use umi\hmvc\exception\http\HttpException;
 use umi\http\Response;
 use umi\messages\ISwiftMailerAware;
 use umi\messages\TSwiftMailerAware;
+use umi\orm\exception\RuntimeException;
+use umi\orm\persister\IObjectPersister;
+use umi\orm\persister\IObjectPersisterAware;
+use umicms\exception\InvalidObjectsException;
+use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\hmvc\view\CmsView;
+use umicms\module\IModuleAware;
+use umicms\module\TModuleAware;
+use umicms\orm\collection\behaviour\IRecoverableCollection;
+use umicms\orm\object\behaviour\IRecoverableObject;
+use umicms\orm\object\ICmsObject;
+use umicms\project\module\users\model\UsersModule;
 
 /**
  * Базовый контроллер UMI.CMS
  */
-abstract class BaseCmsController extends BaseController implements IAclResource, IUrlManagerAware, ISwiftMailerAware
+abstract class BaseCmsController extends BaseController
+    implements IAclResource, IUrlManagerAware, ISwiftMailerAware, IObjectPersisterAware, IModuleAware
 {
     use TUrlManagerAware;
     use TSwiftMailerAware;
+    use TModuleAware;
 
     const ACL_RESOURCE_PREFIX = 'controller:';
+
+    /**
+     * @var IObjectPersister $traitObjectPersister синхронизатор объектов
+     */
+    private $objectPersister;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setObjectPersister(IObjectPersister $objectPersister)
+    {
+        $this->objectPersister = $objectPersister;
+    }
 
     /**
      * {@inheritdoc}
@@ -122,6 +148,71 @@ abstract class BaseCmsController extends BaseController implements IAclResource,
         );
 
         $this->sendMail($subject, $body, 'text/html', [], $to, $from);
+    }
+
+    /**
+     * Записывает изменения всех объектов в БД (бизнес транзакция),
+     * запуская перед этим валидацию объектов.
+     * Если при сохранении какого-либо объекта возникли ошибки - все изменения
+     * автоматически откатываются
+     * @throws InvalidObjectsException если объекты не прошли валидацию
+     * @throws RuntimeException если транзакция не успешна
+     * @return self
+     */
+    protected function commit()
+    {
+        /**
+         * @var UsersModule $usersModule
+         */
+        $usersModule = $this->getModule(UsersModule::className());
+        $currentUser = $usersModule->isAuthenticated() ? $usersModule->getCurrentUser() : $usersModule->getGuest();
+
+        $persister = $this->getObjectPersister();
+        /**
+         * @var ICmsObject|IRecoverableObject $object
+         */
+        foreach ($persister->getModifiedObjects() as $object) {
+            $collection = $object->getCollection();
+            if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
+                $collection->createBackup($object);
+            }
+        }
+        foreach ($persister->getNewObjects() as $object) {
+            $object->owner = $currentUser;
+            $object->setCreatedTime();
+        }
+        foreach ($persister->getModifiedObjects() as $object) {
+            $object->editor = $currentUser;
+            $object->setUpdatedTime();
+        }
+
+        $invalidObjects = $persister->getInvalidObjects();
+
+        if (count($invalidObjects)) {
+            throw new InvalidObjectsException(
+                $this->translate('Cannot persist objects. Objects are not valid.'),
+                $invalidObjects
+            );
+        }
+
+        $this->getObjectPersister()->commit();
+    }
+
+    /**
+     * Возвращает синхронизатор объектов
+     * @throws RequiredDependencyException если синхронизатор объектов не установлен
+     * @return IObjectPersister
+     */
+    private function getObjectPersister()
+    {
+        if (!$this->objectPersister) {
+            throw new RequiredDependencyException(sprintf(
+                'Object persister is not injected in class "%s".',
+                get_class($this)
+            ));
+        }
+
+        return $this->objectPersister;
     }
 
 }

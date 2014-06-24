@@ -11,8 +11,9 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\filter\HtmlPurifier;
+use umicms\filter\Slug;
 use umicms\project\module\blog\model\object\BlogPost;
+use umicms\filter\HtmlPurifier;
 
 return [
     'dataSource' => [
@@ -47,6 +48,12 @@ return [
         BlogPost::FIELD_PAGE_SLUG => [
             'type' => IField::TYPE_SLUG,
             'columnName' => 'slug',
+            'filters' => [
+                Slug::TYPE => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         BlogPost::FIELD_DISPLAY_NAME => [
             'type' => IField::TYPE_STRING,
@@ -59,7 +66,7 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => ['columnName' => 'display_name'],
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
                 'en-US' => ['columnName' => 'display_name_en']
             ]
         ],

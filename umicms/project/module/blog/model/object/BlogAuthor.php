@@ -15,12 +15,12 @@ use umi\orm\objectset\IObjectSet;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
-use umicms\project\module\users\model\UsersModule;
+use umicms\project\module\users\model\object\AuthorizedUser;
 
 /**
  * Автор поста.
  *
- * @property UsersModule $profile профиль автора
+ * @property AuthorizedUser $profile профиль автора
  * @property int $postsCount количество постов автора
  * @property int $commentsCount количество постов автора
  * @property DateTime $lastActivity дата последней активности

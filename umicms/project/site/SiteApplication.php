@@ -18,6 +18,7 @@ use umi\http\IHttpAware;
 use umi\http\Request;
 use umi\http\Response;
 use umi\http\THttpAware;
+use umi\orm\collection\BaseCollection;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umi\stream\IStreamService;
@@ -400,7 +401,7 @@ class SiteApplication extends SiteComponent
      */
     protected function registerSelectorInitializer()
     {
-        TCmsCollection::setSelectorInitializer(
+        BaseCollection::setSelectorInitializer(
             function(CmsSelector $selector) {
                 $collection = $selector->getCollection();
 

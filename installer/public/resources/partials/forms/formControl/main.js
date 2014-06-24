@@ -64,17 +64,16 @@ define(
                     return !!this.get('object.validErrors.' + meta.dataSource);
                 }.property('object.validErrors'),
 
-                extendTemplate: function(template){
-                    var meta = this.get('meta');
-                    return template + '{{#if object.validErrors.' + meta.dataSource + '}}' + '<small class="error">' + '{{#each error in object.validErrors.' + meta.dataSource + '}}' + '{{error.message}}' + '{{/each}}' + '</small>' + '{{/if}}';
-                },
-
-                textTemplate: function(){
-                    return '{{text-element object=object meta=view.meta}}';
+                wysiwygTemplate: function(){
+                    return '{{view "htmlEditorCollection" object=object meta=view.meta}}';
                 }.property(),
 
                 selectTemplate: function(){
                     return '{{view "selectCollection" object=object meta=view.meta}}';
+                }.property(),
+
+                checkboxGroupTemplate: function(){
+                    return '{{view "checkboxGroupCollectionElement" object=object meta=view.meta}}';
                 }.property()
             });
         };

@@ -11,6 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
+use umicms\filter\Slug;
 use umicms\project\module\structure\model\object\StaticPage;
 use umicms\project\module\structure\model\object\StructureElement;
 use umicms\project\module\structure\model\object\SystemPage;
@@ -63,6 +64,12 @@ return [
             'type'       => IField::TYPE_SLUG,
             'columnName' => 'slug',
             'accessor'   => 'getSlug',
+            'filters' => [
+                Slug::TYPE => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ],
             'readOnly'   => true
         ],
         StructureElement::FIELD_URI                   => [
@@ -100,7 +107,7 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => ['columnName' => 'display_name'],
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
                 'en-US' => ['columnName' => 'display_name_en']
             ]
         ],

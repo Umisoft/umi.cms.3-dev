@@ -25,6 +25,9 @@ return [
     AdminComponent::OPTION_MODIFY_ACTIONS => [
         'connector'
     ],
+    AdminComponent::OPTION_QUERY_ACTIONS => [
+        'connector'
+    ],
 
     AdminComponent::OPTION_ROUTES      => [
 

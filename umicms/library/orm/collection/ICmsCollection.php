@@ -12,6 +12,7 @@ namespace umicms\orm\collection;
 
 use umi\form\IForm;
 use umi\form\IFormAware;
+use umi\i18n\ILocalesAware;
 use umi\i18n\ILocalizable;
 use umi\orm\collection\ICollection;
 use umi\orm\collection\ICollectionManagerAware;
@@ -23,7 +24,7 @@ use umicms\orm\object\ICmsObject;
 /**
  * Интерфейс коллекции объектов UMI.CMS
  */
-interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAware, IFormAware
+interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAware, IFormAware, ILocalesAware
 {
     /**
      * Имя формы для редактирования объектов по умолчанию
@@ -88,8 +89,20 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
     public function hasHandler($applicationName);
 
     /**
-     * Возвращает список имен словарей для перевода лейблов коллекции
+     * Возвращает список имен словарей для перевода лейблов коллекции.
      * @return array
      */
     public function getDictionaryNames();
+
+    /**
+     * Возвращает список имен типов, доступных для создания.
+     * @return array
+     */
+    public function getCreateTypeList();
+
+    /**
+     * Возвращает список имен типов, объекты которых доступны для редактирования.
+     * @return array
+     */
+    public function getEditTypeList();
 }

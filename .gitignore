@@ -1,5 +1,6 @@
 /.idea
 /composer.phar
+/composer.lock
 /configuration/db.config.php
 /vendor
 installer/public/resources/node_modules

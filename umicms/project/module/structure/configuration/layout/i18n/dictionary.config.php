@@ -11,12 +11,14 @@
 return [
     'en-US' => [
         'type:base:displayName' => 'Layout',
-        'type:base:createLabel' => 'layout'
+        'type:base:createLabel' => 'layout',
+        'fileName' => 'File name'
     ],
 
     'ru-RU' => [
         'type:base:displayName' => 'Шаблон',
-        'type:base:createLabel' => 'Добавить шаблон'
+        'type:base:createLabel' => 'Добавить шаблон',
+        'fileName' => 'Имя файла'
     ]
 ];
  

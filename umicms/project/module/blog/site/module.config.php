@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\blog\site;
 
-use umi\acl\IAclFactory;
 use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
@@ -26,37 +25,6 @@ return [
         'author' => '{#lazy:~/project/module/blog/site/author/component.config.php}',
         'tag' => '{#lazy:~/project/module/blog/site/tag/component.config.php}',
         'comment' => '{#lazy:~/project/module/blog/site/comment/component.config.php}'
-    ],
-
-    SiteGroupComponent::OPTION_ACL => [
-        IAclFactory::OPTION_ROLES => [
-            'author' => ['viewer'],
-            'moderator' => ['author']
-        ],
-        IAclFactory::OPTION_RULES => [
-            'author' => [
-                'component:post' => [
-                    'edit' => ['own'],
-                    'publish' => ['own', 'unpublished'],
-                    'draft' => ['own', 'published']
-                ],
-                'component:draft' => [
-                    'edit' => ['own'],
-                    'publish' => ['own', 'unpublished'],
-                ],
-            ],
-            'moderator' => [
-                'component:post' => [
-                    'edit' => [],
-                    'publish' => ['unpublished'],
-                    'draft' => ['published']
-                ],
-                'component:draft' => [
-                    'edit' => [],
-                    'publish' => ['unpublished'],
-                ],
-            ]
-        ]
     ],
 
     SiteGroupComponent::OPTION_VIEW => [

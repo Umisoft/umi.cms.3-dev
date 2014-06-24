@@ -16,9 +16,8 @@ use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
 
-    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
+    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
     SiteGroupComponent::OPTION_CONTROLLERS => [
-        'index' => 'umicms\hmvc\component\site\SiteStructurePageController',
         'rss' => __NAMESPACE__ . '\controller\RssController',
     ],
     SiteGroupComponent::OPTION_COMPONENTS => [
@@ -26,18 +25,16 @@ return [
         'view' => '{#lazy:~/project/module/blog/site/author/view/component.config.php}'
     ],
     SiteGroupComponent::OPTION_WIDGET => [
-        'profile' => __NAMESPACE__ . '\widget\AuthorProfileWidget',
-        'view' => __NAMESPACE__ . '\widget\AuthorViewWidget',
-        'rss' => __NAMESPACE__ . '\widget\RssLinkWidget',
+        'rssLink' => __NAMESPACE__ . '\widget\RssLinkWidget',
     ],
     SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'viewer' => []
+            'rssViewer' => []
         ],
         IAclFactory::OPTION_RULES => [
-            'viewer' => [
-                'widget:profile' => [],
-                'widget:view' => []
+            'rssViewer' => [
+                'widget:rssLink' => [],
+                'controller:rss' => []
             ]
         ]
     ],
@@ -50,15 +47,6 @@ return [
             'route' => '/rss/{slug}',
             'defaults' => [
                 'controller' => 'rss'
-            ]
-        ],
-        'component' => [
-            'type' => 'SiteComponentRoute'
-        ],
-        'index' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'defaults' => [
-                'controller' => 'index'
             ]
         ]
     ]
