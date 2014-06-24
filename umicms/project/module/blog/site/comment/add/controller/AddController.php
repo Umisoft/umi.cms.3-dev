@@ -29,6 +29,11 @@ class AddController extends BaseSitePageController
     protected $module;
 
     /**
+     * @var bool $added флаг указывающий на публикацию комментария
+     */
+    private $added = false;
+
+    /**
      * Конструктор.
      * @param BlogModule $module модуль "Блоги"
      */
@@ -63,8 +68,10 @@ class AddController extends BaseSitePageController
 
 
         if ($this->isAllowed($comment, 'publish')) {
+            $this->added = true;
             $comment->published();
         } else {
+            $this->added = false;
             $comment->needModerate();
         }
 
@@ -91,6 +98,7 @@ class AddController extends BaseSitePageController
     protected function buildResponseContent()
     {
         return [
+            'added' => $this->added,
             'page' => $this->getCurrentPage()
         ];
     }

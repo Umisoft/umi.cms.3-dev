@@ -52,7 +52,7 @@ return [
                 'controller:reject' => [],
                 'controller:publish' => [],
                 'collection:blogComment' => [
-                    'getComments' => ['withNeedModeration']
+                    'getCommentsWithNeedModeration' => []
                 ],
                 'model:blogComment' => []
             ]

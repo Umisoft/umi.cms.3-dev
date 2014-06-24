@@ -27,24 +27,22 @@ return [
     ],
     SiteComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'poster' => [],
-            'posterPremoderation' => []
+            'commentator' => [],
+            'commentatorPremoderation' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogComment'
         ],
         IAclFactory::OPTION_RULES => [
-            'poster' => [
+            'commentator' => [
                 'widget:addForm' => [],
-                'controller:add' => [],
-                'model:blogComment' => []
-            ],
-            'posterPremoderation' => [
-                'widget:addForm' => [],
-                'controller:add' => [],
-                'model:blogComment' => [
-                    'publish' => ['premoderation']
+                'controller:add' => [
+                    'publish' => []
                 ]
+            ],
+            'commentatorPremoderation' => [
+                'widget:addForm' => [],
+                'controller:add' => []
             ]
         ]
     ],

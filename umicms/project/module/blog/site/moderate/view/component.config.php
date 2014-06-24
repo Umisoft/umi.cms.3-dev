@@ -22,8 +22,8 @@ return [
     ],
     SitePageComponent::OPTION_WIDGET => [
         'post' => __NAMESPACE__ . '\widget\PostWidget',
-        'ownList' => __NAMESPACE__ . '\widget\ListWidget',
-        'ownListLink' => __NAMESPACE__ . '\widget\LinkWidget'
+        'list' => __NAMESPACE__ . '\widget\ListWidget',
+        'listLink' => __NAMESPACE__ . '\widget\LinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
@@ -36,16 +36,16 @@ return [
         IAclFactory::OPTION_RULES => [
             'author' => [
                 'widget:post' => [],
-                'widget:ownList' => [],
-                'widget:ownListLink' => [],
+                'widget:list' => [],
+                'widget:listLink' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
             ],
             'moderator' => [
                 'widget:post' => [],
-                'widget:ownList' => [],
-                'widget:ownListLink' => [],
+                'widget:list' => [],
+                'widget:listLink' => [],
                 'model:blogPost' => []
             ]
         ]

@@ -403,7 +403,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             'project.site.blog.comment' => [
                 'addExecutor'
             ],
-            'project.site.blog.comment.add' => ['poster']
+            'project.site.blog.comment.add' => ['commentator']
         ];
 
         /**
@@ -417,7 +417,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             'project.site.blog.comment' => [
                 'addExecutor'
             ],
-            'project.site.blog.comment.add' => ['posterPremoderation']
+            'project.site.blog.comment.add' => ['commentatorPremoderation']
         ];
 
         /**

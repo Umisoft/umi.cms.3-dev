@@ -19,8 +19,8 @@
 </div>
 
 <?php if (
-    $this->isAllowedResource('blog.draft.view', 'widget:ownListLink') &&
-    $this->isAllowedResource('blog.moderate.view', 'widget:ownListLink') &&
+    $this->isAllowedResource('blog.draft.view', 'widget:listLink') &&
+    $this->isAllowedResource('blog.moderate.view', 'widget:listLink') &&
     $this->isAllowedResource('blog.reject.view', 'widget:listLink')
 ) : ?>
     <div class="sidebar-module">
@@ -31,7 +31,7 @@
                     ['template' => 'draftLinkAuthor']
                 ) ?></li>
             <li><?= $this->translate('Post on moderation') ?>: <?= $this->widget(
-                    'blog.moderate.view.ownListLink',
+                    'blog.moderate.view.listLink',
                     ['template' => 'moderateLink']
                 ) ?></li>
             <li><?= $this->translate('Rejected posts') ?>: <?= $this->widget(
