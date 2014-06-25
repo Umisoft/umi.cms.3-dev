@@ -32,9 +32,10 @@ define([
     ){
     'use strict';
     return function(){
-        Ember.TEMPLATES['UMI/error'] = Ember.Handlebars.compile(errorsTpl);
-        Ember.TEMPLATES['UMI/module/error'] = Ember.Handlebars.compile(errorsTpl);
-        Ember.TEMPLATES['UMI/component/error'] = Ember.Handlebars.compile(errorsTpl);
+        Ember.TEMPLATES['UMI/errors'] =  Ember.TEMPLATES['UMI/error'] = Ember.Handlebars.compile(errorsTpl);
+        Ember.TEMPLATES['UMI/module/errors'] = Ember.TEMPLATES['UMI/module/error'] =  Ember.Handlebars.compile(errorsTpl);
+        Ember.TEMPLATES['UMI/component/errors'] = Ember.TEMPLATES['UMI/component/error'] = Ember.Handlebars.compile(errorsTpl);
+
         Ember.TEMPLATES['UMI/application'] = Ember.Handlebars.compile(applicationTpl);
         Ember.TEMPLATES['UMI/component'] = Ember.Handlebars.compile(componentTpl);
 
