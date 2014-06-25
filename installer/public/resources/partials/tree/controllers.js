@@ -7,9 +7,11 @@ define(['App'], function(UMI){
 
             expandedBranches: [],
 
+            collectionNameBinding: 'controllers.component.dataSource.name',
+
             clearExpanded: function(){
                 this.set('expandedBranches', []);
-            }.observes('controllers.component.collectionName'),
+            }.observes('collectionName'),
 
             activeContextChange: function(){
                 var expandedBranches = this.get('expandedBranches');
@@ -31,7 +33,7 @@ define(['App'], function(UMI){
              @return
              */
             root: function(){
-                var collectionName = this.get('controllers.component.collectionName');
+                var collectionName = this.get('collectionName');
                 var sideBarControl = this.get('controllers.component.sideBarControl');
                 if(!sideBarControl){
                     return;
@@ -74,7 +76,7 @@ define(['App'], function(UMI){
                     }.property(),
                     updateChildren: function(id, parentId){
                         var objectContext = this;
-                        var collectionName = self.get('controllers.component.collectionName');
+                        var collectionName = self.get('collectionName');
                         var object = self.store.find(collectionName, id);
                         object.then(function(object){
                             objectContext.get('children.content').then(function(children){
@@ -115,7 +117,7 @@ define(['App'], function(UMI){
                  */
                 updateSortOrder: function(id, parentId, prevSiblingId, nextSibling){
                     var self = this;
-                    var type = this.get('controllers.component.collectionName');
+                    var type = this.get('collectionName');
                     var ids = nextSibling || [];
                     var moveParams = {};
                     var resource;
@@ -177,9 +179,6 @@ define(['App'], function(UMI){
                                 if(parentId !== oldParentId && (parentId === 'root' || oldParentId === 'root')){
                                     self.get('root')[0].updateChildren(id, parentId);
                                 }
-
-                                //
-
                             });
                         },
                         function(error){
