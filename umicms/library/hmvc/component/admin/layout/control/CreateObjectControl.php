@@ -10,6 +10,7 @@
 
 namespace umicms\hmvc\component\admin\layout\control;
 
+use umicms\hmvc\component\admin\collection\CollectionComponent;
 use umicms\hmvc\component\admin\layout\button\behaviour\ChoicesBehaviour;
 use umicms\hmvc\component\admin\layout\button\SplitButton;
 
@@ -18,6 +19,14 @@ use umicms\hmvc\component\admin\layout\button\SplitButton;
  */
 class CreateObjectControl extends CollectionControl
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureParams()
+    {
+        $this->params['action'] = CollectionComponent::ACTION_GET_CREATE_FORM;
+    }
+
     /**
      * Конфигурирует Submit-кнопки.
      */
