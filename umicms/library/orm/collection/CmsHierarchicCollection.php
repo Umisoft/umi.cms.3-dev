@@ -10,6 +10,7 @@
 
 namespace umicms\orm\collection;
 
+use umi\dbal\builder\ISelectBuilder;
 use umi\orm\collection\SimpleHierarchicCollection;
 use umi\orm\metadata\field\special\MaterializedPathField;
 use umicms\exception\InvalidArgumentException;
@@ -80,4 +81,51 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
         return $selector;
     }
 
+    /**
+     * Разрешено ли использование slug.
+     * @param CmsHierarchicObject $object объект, слаг которого необходимо проверить
+     * @return bool
+     */
+    public function isAllowedSlug(CmsHierarchicObject $object)
+    {
+        if ($object->getIsNew() && $this->hasSlug($object)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Проверяет используется ли slug, учитывая родителя объекта.
+     * @param CmsHierarchicObject $object объект, для которого необходимо проверить уникальность slug'а
+     * @return bool
+     */
+    protected function hasSlug(CmsHierarchicObject $object)
+    {
+        $pidColumn = $this->getMetadata()->getField(CmsHierarchicObject::FIELD_PARENT)->getColumnName();
+        $slugColumn = $this->getMetadata()->getField(CmsHierarchicObject::FIELD_SLUG)->getColumnName();
+
+        /** @var ISelectBuilder $select */
+        $select = $this->getMetadata()->getCollectionDataSource()
+            ->select($pidColumn, $slugColumn)
+            ->where()
+            ->expr($slugColumn, '=', ':slug')
+            ->bindString(':slug', $object->getProperty(CmsHierarchicObject::FIELD_SLUG)->getValue());
+
+        $parent = $object->getProperty(CmsHierarchicObject::FIELD_PARENT)->getValue();
+        if ($parent instanceof CmsHierarchicObject) {
+            $select
+                ->expr($pidColumn, '=', ':pid')
+                ->bindString(
+                    ':pid',
+                    $parent->getId()
+                );
+        } else {
+            $select
+                ->expr($pidColumn, 'IS', ':pid')
+                ->bindNull(':pid');
+        }
+
+        return (bool) $select->getTotal();
+    }
 }
