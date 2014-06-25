@@ -22,7 +22,6 @@ use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\manager\IObjectManagerAware;
 use umi\orm\manager\TObjectManagerAware;
 use umi\orm\metadata\IObjectType;
-use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\InvalidObjectsException;
@@ -30,13 +29,13 @@ use umicms\exception\RuntimeException;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
+use umicms\project\module\blog\model\collection\BlogCommentCollection;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\news\model\collection\NewsRssImportScenarioCollection;
 use umicms\project\module\search\model\SearchApi;
 use umicms\project\module\search\model\SearchIndexApi;
 use umicms\project\module\search\model\SearchModule;
-use umicms\project\module\service\model\collection\BackupCollection;
 use umicms\project\module\structure\model\object\InfoBlock;
 use umicms\project\module\structure\model\object\Menu;
 use umicms\project\module\structure\model\object\MenuExternalItem;
@@ -876,7 +875,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('post', $post1);
 
         /**
-         * @var IHierarchicObject $comment1
+         * @var BlogCommentCollection $comment1
          */
         $comment1 = $commentCollection->add('comment1', 'comment',$commentBranch)
             ->setValue('displayName', 'Re: Девиантное поведение призраков и домовых и способы влияния на него')
@@ -884,7 +883,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>О да. Недавно в нашем замке один милый маленький призрак покончил с собой. Мы были уверены, что это невозможно, но каким-то образом ему удалось раствориться в воде, наполняющей наш древний колодец.</p>')
             ->setValue('contents', '<p>Oh yeah. Recently in our castle one cute little ghost committed suicide. We were sure that it was impossible, but somehow he managed to dissolve in water, filling our ancient well.</p>', 'en-US')
             ->setValue('post', $post1)
-            ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'));
+            ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'))
+            ->setValue('author',$bives);
         $commentCollection->publish($comment1);
 
         $comment2 = $commentCollection->add('comment2', 'comment', $comment1)
@@ -894,7 +894,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>Perhaps your ghost still be salvaged. Try to pour into the well a couple of tablespoons of ground seeds Helichrysum. This should help the ghost again condense his intangible body. And yes, it is important that the seeds have been collected in the new moon.</p>', 'en-US')
             ->setValue('post', $post1)
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_REJECTED)
-            ->setValue('publishTime', new \DateTime('2012-11-15 15:11:21'));
+            ->setValue('publishTime', new \DateTime('2012-11-15 15:11:21'))
+            ->setValue('author',$bives);
 
         $commentBranch2 = $commentCollection->add('branch', 'branchComment')
             ->setValue('displayName', $post2->getValue('displayName'))
@@ -907,7 +908,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>Is there a phrase book to communicate with UFO? Basics of etiquette?</p>', 'en-US')
             ->setValue('post', $post2)
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_PUBLISHED)
-            ->setValue('publishTime', new \DateTime('2012-11-15 15:05:34'));
+            ->setValue('publishTime', new \DateTime('2012-11-15 15:05:34'))
+            ->setValue('author',$buthead);
         $commentCollection->publish($comment3);
 
         $commentCollection->add('comment1', 'comment', $comment2)
@@ -917,7 +919,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>Oh, yeah. This nested comment.</p>', 'en-US')
             ->setValue('post', $post1)
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_REJECTED)
-            ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'));
+            ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'))
+            ->setValue('author',$buthead);
 
         $rssScenarioCollection->add()
             ->setValue('displayName', 'Scripting News')
