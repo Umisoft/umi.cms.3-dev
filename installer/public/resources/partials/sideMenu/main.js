@@ -8,14 +8,13 @@ define(
 
         UMI.SideMenuController = Ember.ObjectController.extend({
             needs: ['component'],
-            settings: function(){
-                return this.get('controllers.component.sideBarControl');
+            objects: function(){
+                return this.get('controllers.component.dataSource.objects');
             }.property('model')
         });
 
         UMI.SideMenuView = Ember.View.extend({
-            layout: Ember.Handlebars.compile(sideMenuTpl),
-            linksBinding: 'controller.settings.params.links'
+            layout: Ember.Handlebars.compile(sideMenuTpl)
         });
     }
 );

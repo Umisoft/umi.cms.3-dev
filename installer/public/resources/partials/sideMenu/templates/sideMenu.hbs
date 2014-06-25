@@ -1,5 +1,5 @@
 <ul class="side-nav">
-    {{#each view.links}}
-        <li>{{#link-to 'context' name}}{{label}}{{/link-to}}</li>
+    {{#each object in objects}}
+        <li>{{#link-to 'context' object.id}}{{object.displayName}}{{/link-to}}</li>
     {{/each}}
 </ul>
