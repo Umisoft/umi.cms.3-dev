@@ -11,11 +11,11 @@
 use umi\orm\collection\ICollectionFactory;
 use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\ICmsCollection;
-use umicms\project\module\users\api\object\AuthorizedUser;
+use umicms\project\module\users\model\object\AuthorizedUser;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\users\api\collection\UserCollection',
+    'class' => 'umicms\project\module\users\model\collection\UserCollection',
     'handlers' => [
         'admin' => 'users.user'
     ],
@@ -42,5 +42,9 @@ return [
             AuthorizedUser::FORM_CHANGE_PASSWORD => '{#lazy:~/project/module/users/site/profile/password/form/authorized.change.password.config.php}',
         ]
     ],
-    'settings' => '{#lazy:~/project/module/users/configuration/user/collection.settings.config.php}'
+    'settings' => '{#lazy:~/project/module/users/configuration/user/collection.settings.config.php}',
+
+    'dictionaries' => [
+        'collection.user', 'collection'
+    ]
 ];

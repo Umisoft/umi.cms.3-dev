@@ -13,7 +13,7 @@ use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\structure\api\collection\LayoutCollection',
+    'class' => 'umicms\project\module\structure\model\collection\LayoutCollection',
     'handlers' => [
         'admin' => 'structure.layout'
     ],

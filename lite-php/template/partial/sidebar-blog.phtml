@@ -1,35 +1,57 @@
-
-<?=$this->render('partial/authorization.phtml') ?>
+<?= $this->render('partial/authorization.phtml') ?>
 
 <div class="sidebar-module sidebar-module-inset">
-    <h4><?=$this->translate('RSS feed')?></h4>
-    <p><?=$this->translate('Blogs')?>: <?=$this->widget('blog.post.rssLink', ['template' => 'rssLink'])?></p>
+    <h4><?= $this->translate('RSS feed') ?></h4>
+
+    <p><?= $this->translate('Blogs') ?>: <?= $this->widget('blog.post.rssLink', ['template' => 'rssLink']) ?></p>
 </div>
 <div class="sidebar-module">
-    <h4><?=$this->translate('Categories')?></h4>
-    <?=$this->widget('blog.category.list', ['template' => 'listShort'])?>
+    <h4><?= $this->translate('Categories') ?></h4>
+    <?= $this->widget('blog.category.list', ['template' => 'listShort']) ?>
 </div>
 <div class="sidebar-module">
-    <h4><?=$this->translate('Tags cloud')?></h4>
-    <?=$this->widget('blog.tag.cloud', ['template' => 'cloud'])?>
+    <h4><?= $this->translate('Tags cloud') ?></h4>
+    <?= $this->widget('blog.tag.cloud', ['template' => 'cloud']) ?>
 </div>
 <div class="sidebar-module">
-    <h4><?=$this->translate('Authors')?></h4>
-    <?=$this->widget('blog.author.list', ['template' => 'listShort'])?>
-</div>
-<div class="sidebar-module">
-    <h4><?=$this->translate('Authors\'s posts')?></h4>
-    <ol class="list-unstyled">
-        <li><?=$this->translate('Drafts')?>: <?=$this->widget('blog.draft.ownListLink', ['template' => 'draftLinkAuthor'])?></li>
-        <li><?=$this->translate('Post on moderation')?>: <?=$this->widget('blog.moderate.ownListLink', ['template' => 'moderateLink'])?></li>
-        <li><?=$this->translate('Rejected posts')?>: <?=$this->widget('blog.reject.listLink', ['template' => 'listLink'])?></li>
-    </ol>
-</div>
-<div class="sidebar-module">
-    <h4><?=$this->translate('Moderate')?></h4>
-    <ol class="list-unstyled">
-        <li><?=$this->translate('Post on moderation')?>: <?=$this->widget('blog.moderate.allListLink', ['template' => 'moderateLink'])?></li>
-    </ol>
+    <h4><?= $this->translate('Authors') ?></h4>
+    <?= $this->widget('blog.author.view.list', ['template' => 'listShort']) ?>
 </div>
 
-<?=$this->widget('structure.infoblock.view', ['template' => 'socialGroup', 'infoBlock' => 'commonInfoBlock'])?>
+<?php if (
+    $this->isAllowedResource('blog.draft.view', 'widget:link') &&
+    $this->isAllowedResource('blog.moderate.own', 'widget:link') &&
+    $this->isAllowedResource('blog.reject.view', 'widget:link')
+) : ?>
+    <div class="sidebar-module">
+        <h4><?= $this->translate('Authors\'s posts') ?></h4>
+        <ol class="list-unstyled">
+            <li><?= $this->translate('Drafts') ?>: <?= $this->widget(
+                    'blog.draft.view.link',
+                    ['template' => 'draftLinkAuthor']
+                ) ?></li>
+            <li><?= $this->translate('Post on moderation') ?>: <?= $this->widget(
+                    'blog.moderate.own.link',
+                    ['template' => 'moderateLink']
+                ) ?></li>
+            <li><?= $this->translate('Rejected posts') ?>: <?= $this->widget(
+                    'blog.reject.view.link',
+                    ['template' => 'listLink']
+                ) ?></li>
+        </ol>
+    </div>
+<?php endif; ?>
+
+<?php if ($this->isAllowedResource('blog.moderate.all', 'widget:link')) : ?>
+    <div class="sidebar-module">
+        <h4><?= $this->translate('Moderate') ?></h4>
+        <ol class="list-unstyled">
+            <li><?= $this->translate('Post on moderation') ?>: <?= $this->widget(
+                    'blog.moderate.all.link',
+                    ['template' => 'moderateLink']
+                ) ?></li>
+        </ol>
+    </div>
+<?php endif; ?>
+
+<?= $this->widget('structure.infoblock.view', ['template' => 'socialGroup', 'infoBlock' => 'commonInfoBlock']) ?>

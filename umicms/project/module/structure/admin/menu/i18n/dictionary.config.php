@@ -10,11 +10,19 @@
 return [
 
     'en-US' => [
-        'component:menu:displayName' => 'Menu'
+        'component:menu:displayName' => 'Menu',
+
+        'action:create:menu' => 'Create menu',
+        'action:create:internalItem' => 'Create internal element',
+        'action:create:externalItem' => 'Create external element'
     ],
 
     'ru-RU' => [
-        'component:menu:displayName' => 'Меню'
+        'component:menu:displayName' => 'Меню',
+
+        'action:create:menu' => 'Добавить меню',
+        'action:create:internalItem' => 'Добавить внутренний элемент меню',
+        'action:create:externalItem' => 'Добавить внешний элемент меню'
     ]
 
 ];

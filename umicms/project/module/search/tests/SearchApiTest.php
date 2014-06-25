@@ -9,7 +9,7 @@
  */
 namespace umicms\project\module\search\tests;
 
-use umicms\project\module\search\api\SearchApi;
+use umicms\project\module\search\model\SearchApi;
 use umicms\project\module\search\highlight\Fragment;
 
 /**
@@ -27,7 +27,6 @@ class SearchApiTest extends SearchTestCase
         parent::setUp();
         $api = new SearchApi();
         $api->setCollectionManager($this->mockColectionManager());
-        $api->setDbCluster($this->toolkit->getService('umi\dbal\cluster\IDbCluster'));
         $api->setStemming($this->toolkit->getService('umi\stemming\IStemming'));
         $this->searchApi = $api;
     }

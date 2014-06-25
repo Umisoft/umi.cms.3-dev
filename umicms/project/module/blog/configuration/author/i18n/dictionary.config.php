@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\blog\api\object\BlogAuthor;
+use umicms\project\module\blog\model\object\BlogAuthor;
 
 return [
         'en-US' => [

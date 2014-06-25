@@ -1,9 +1,9 @@
 define(
     [
         'App',
-        'text!./treeControl.hbs',
-        'text!./treeItem.hbs',
-        'text!./treeControlContextMenu.hbs', //Гораздо удобнее искать шаблоны если они совпадают с именами файлов
+        'text!./templates/treeControl.hbs',
+        'text!./templates/treeItem.hbs',
+        'text!./templates/treeControlContextMenu.hbs',
         './controllers',
         './views'
     ],

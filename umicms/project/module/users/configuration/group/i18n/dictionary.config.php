@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\users\api\object\UserGroup;
+use umicms\project\module\users\model\object\UserGroup;
 
 return [
         'en-US' => [

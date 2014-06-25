@@ -11,11 +11,14 @@
 use umi\authentication\adapter\ORMAdapter;
 use umi\authentication\toolbox\AuthenticationTools;
 use umi\extension\twig\TwigTemplateEngine;
+use umi\filter\toolbox\FilterTools;
 use umi\form\toolbox\FormTools;
 use umi\i18n\toolbox\I18nTools;
 use umi\orm\metadata\field\IField;
 use umi\orm\toolbox\ORMTools;
 use umi\templating\toolbox\TemplatingTools;
+use umicms\filter\HtmlPurifier;
+use umicms\filter\Slug;
 use umicms\form\element\Captcha;
 use umicms\form\element\File;
 use umicms\form\element\Image;
@@ -25,6 +28,8 @@ use umicms\form\element\Permissions;
 use umicms\module\toolbox\ModuleTools;
 use umicms\orm\metadata\field\relation\CmsObjectRelationField;
 use umicms\orm\metadata\field\relation\CmsPageRelationField;
+use umicms\orm\metadata\field\SerializedArrayField;
+use umicms\slugify\toolbox\SlugGeneratorTools;
 use umicms\templating\engine\xslt\XsltTemplateEngine;
 
 return [
@@ -92,8 +97,8 @@ return [
                 'defaultHierarchicObjectClass' => 'umicms\orm\object\CmsHierarchicObject'
             ],
             'objectCollection' => [
-                'defaultSimpleCollectionClass' => 'umicms\orm\collection\SimpleCollection',
-                'defaultHierarchicCollectionClass' => 'umicms\orm\collection\SimpleHierarchicCollection'
+                'defaultSimpleCollectionClass' => 'umicms\orm\collection\CmsCollection',
+                'defaultHierarchicCollectionClass' => 'umicms\orm\collection\CmsHierarchicCollection'
             ],
             'selector' => [
                 'selectorClass' => 'umicms\orm\selector\CmsSelector'
@@ -102,7 +107,8 @@ return [
                 'fieldTypes' => [
                     IField::TYPE_BELONGS_TO => 'umicms\orm\metadata\field\relation\BelongsToRelationField',
                     CmsObjectRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsObjectRelationField',
-                    CmsPageRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsPageRelationField'
+                    CmsPageRelationField::TYPE => 'umicms\orm\metadata\field\relation\CmsPageRelationField',
+                    SerializedArrayField::TYPE => 'umicms\orm\metadata\field\SerializedArrayField'
                 ]
             ]
         ],
@@ -176,5 +182,18 @@ return [
     I18nTools::NAME => [
         'localesServiceClass' => 'umicms\i18n\CmsLocalesService',
         'translatorDictionaries' => '{#lazy:~/project/i18n/dictionary.config.php}',
-    ]
+    ],
+
+    FilterTools::NAME => [
+        'factories' => [
+            'filter' => [
+                'types' => [
+                    HtmlPurifier::TYPE => 'umicms\filter\HtmlPurifier',
+                    Slug::TYPE => 'umicms\filter\Slug'
+                ]
+            ]
+        ]
+    ],
+
+    SlugGeneratorTools::NAME => '{#lazy:~/project/configuration/slugGenerator.config.php}'
 ];

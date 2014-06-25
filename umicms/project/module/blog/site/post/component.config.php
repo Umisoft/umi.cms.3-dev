@@ -12,79 +12,55 @@ namespace umicms\project\module\blog\site\post;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSitePageComponent;
+use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
-
-    DefaultSitePageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSitePageComponent',
-    DefaultSitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    DefaultSitePageComponent::OPTION_CONTROLLERS => [
-        'page' => __NAMESPACE__ . '\controller\PageController',
-        'add' => __NAMESPACE__ . '\controller\PostAddController',
-        'edit' => __NAMESPACE__ . '\controller\PostEditController',
-        'unPublished' => __NAMESPACE__ . '\controller\PostToDraftController',
-        'rss' => __NAMESPACE__ . '\controller\PostRssController'
+    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
+    SiteGroupComponent::OPTION_CONTROLLERS => [
+        'draft' => __NAMESPACE__ . '\controller\ToDraftController',
+        'rss' => __NAMESPACE__ . '\controller\RssController'
     ],
-    DefaultSitePageComponent::OPTION_WIDGET => [
-        'view' => __NAMESPACE__ . '\widget\PostWidget',
-        'list' => __NAMESPACE__ . '\widget\ListWidget',
-        'rssLink' => __NAMESPACE__ . '\widget\ListRssLinkWidget',
-        'unPublished' => __NAMESPACE__ . '\widget\PostToDraftWidget',
-        'addPostLink' => __NAMESPACE__ . '\widget\AddLinkWidget',
-        'editPostLink' => __NAMESPACE__ . '\widget\EditLinkWidget'
+    SiteGroupComponent::OPTION_COMPONENTS => [
+        'add' => '{#lazy:~/project/module/blog/site/post/add/component.config.php}',
+        'edit' => '{#lazy:~/project/module/blog/site/post/edit/component.config.php}',
+        'view' => '{#lazy:~/project/module/blog/site/post/view/component.config.php}'
     ],
-    DefaultSitePageComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/post'],
+    SiteGroupComponent::OPTION_WIDGET => [
+        'rssLink' => __NAMESPACE__ . '\widget\RssLinkWidget',
+        'toDraftForm' => __NAMESPACE__ . '\widget\ToDraftFormWidget'
     ],
-    DefaultSitePageComponent::OPTION_ACL => [
+    SiteGroupComponent::OPTION_VIEW => [
+        'directories' => ['module/blog/post']
+    ],
+    SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'rssViewer' => [],
-            'viewer' => [],
-            'author' => ['viewer'],
-            'moderator' => ['author']
+            'author' => [],
+            'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
-            'controller:rss',
-            'controller:add',
-            'controller:edit',
-            'controller:unPublished',
-            'widget:view',
-            'widget:list',
-            'widget:rssLink',
-            'widget:unPublished',
-            'widget:addPostLink',
-            'widget:editPostLink',
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
-            'viewer' => [
-                'widget:view' => [],
-                'widget:list' => []
-            ],
             'rssViewer' => [
                 'controller:rss' => [],
                 'widget:rssLink' => []
             ],
             'author' => [
-                'widget:addPostLink' => [],
-                'widget:unPublished' => [],
-                'controller:add' => [],
-                'controller:unPublished' => [],
+                'widget:toDraftForm' => [],
+                'controller:draft' => [],
                 'model:blogPost' => [
-                    'unPublished' => ['own']
+                    'draft' => ['own']
                 ]
             ],
             'moderator' => [
-                'controller:index' => [],
-                'controller:page' => [],
-                'controller:edit' => [],
-                'controller:unPublished' => [],
-                'widget:editPostLink' => [],
+                'widget:toDraftForm' => [],
+                'controller:draft' => [],
                 'model:blogPost' => []
             ]
         ]
     ],
-    DefaultSitePageComponent::OPTION_ROUTES => [
+    SiteGroupComponent::OPTION_ROUTES => [
         'rss' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'route' => '/rss',
@@ -92,25 +68,11 @@ return [
                 'controller' => 'rss'
             ]
         ],
-        'add' => [
+        'draft' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/add/{id:integer}',
+            'route' => '/draft/{id:integer}',
             'defaults' => [
-                'controller' => 'add'
-            ]
-        ],
-        'unPublished' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/unPublish/{id:integer}',
-            'defaults' => [
-                'controller' => 'unPublished'
-            ]
-        ],
-        'edit' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/edit/{id:integer}',
-            'defaults' => [
-                'controller' => 'edit'
+                'controller' => 'draft'
             ]
         ]
     ]

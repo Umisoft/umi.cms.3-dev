@@ -13,7 +13,7 @@ namespace umicms\orm\object;
 use DateTime;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IObject;
-use umicms\project\module\users\api\object\BaseUser;
+use umicms\project\module\users\model\object\BaseUser;
 
 /**
  * Интерфейс ORM-объекта для UMI.CMS.
@@ -56,4 +56,16 @@ interface ICmsObject extends IObject
      * @return string
      */
     public function getEditLink($isAbsolute = false);
+
+    /**
+     * Выставляет время создания объекта.
+     * @return self
+     */
+    public function setCreatedTime();
+
+    /**
+     * Выставляет время обновления объекта.
+     * @return self
+     */
+    public function setUpdatedTime();
 }

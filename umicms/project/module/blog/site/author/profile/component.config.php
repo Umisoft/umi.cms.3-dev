@@ -1,0 +1,47 @@
+<?php
+/**
+ * This file is part of UMI.CMS.
+ *
+ * @link http://umi-cms.ru
+ * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
+ * @license For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace umicms\project\module\blog\site\author\profile;
+
+use umi\acl\IAclFactory;
+use umi\route\IRouteFactory;
+use umicms\hmvc\component\site\SiteComponent;
+
+return [
+    SiteComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteComponent',
+    SiteComponent::OPTION_CONTROLLERS => [
+        'index' => __NAMESPACE__ . '\controller\IndexController',
+    ],
+    SiteComponent::OPTION_WIDGET => [
+        'editLink' => __NAMESPACE__ . '\widget\EditLinkWidget',
+    ],
+    SiteComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'author' => []
+        ],
+        IAclFactory::OPTION_RULES => [
+            'author' => [
+                'controller:index' => [],
+                'widget:editLink' => []
+            ]
+        ]
+    ],
+    SiteComponent::OPTION_VIEW => [
+        'directories' => ['module/blog/author/profile'],
+    ],
+    SiteComponent::OPTION_ROUTES => [
+        'index' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'defaults' => [
+                'controller' => 'index'
+            ]
+        ]
+    ]
+];

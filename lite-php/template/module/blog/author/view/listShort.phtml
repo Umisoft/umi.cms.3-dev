@@ -1,0 +1,19 @@
+<?php
+/**
+ * @var \umicms\orm\selector\CmsSelector $list
+ * @var umicms\project\module\blog\model\object\BlogAuthor $blogAuthor
+ */
+?>
+<?php if ($list->getTotal()) : ?>
+    <ol class="list-unstyled">
+        <?php foreach ($list as $blogAuthor) : ?>
+            <li>
+                <?= $this->widget(
+                    'blog.author.view.author',
+                    ['blogAuthor' => $blogAuthor, 'template' => 'listShortView']
+                ) ?>
+                <?= $this->widget('blog.author.rssLink', ['blogAuthor' => $blogAuthor, 'template' => 'rssLink']) ?>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+<? endif; ?>

@@ -11,7 +11,8 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\news\api\object\NewsSubject;
+use umicms\filter\Slug;
+use umicms\project\module\news\model\object\NewsSubject;
 
 return [
     'dataSource' => [
@@ -53,7 +54,7 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => ['columnName' => 'display_name'],
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
                 'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
@@ -103,7 +104,13 @@ return [
         ],
         NewsSubject::FIELD_PAGE_SLUG             => [
             'type'       => IField::TYPE_SLUG,
-            'columnName' => 'slug'
+            'columnName' => 'slug',
+            'filters' => [
+                Slug::TYPE => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         NewsSubject::FIELD_NEWS => [
             'type'         => IField::TYPE_MANY_TO_MANY,
@@ -111,13 +118,6 @@ return [
             'bridge'       => 'newsItemSubject',
             'relatedField' => 'subject',
             'targetField'  => 'newsItem',
-        ],
-        NewsSubject::FIELD_RSS => [
-            'type'         => IField::TYPE_MANY_TO_MANY,
-            'target'       => 'newsRssImportScenario',
-            'bridge'       => 'rssScenarioSubject',
-            'relatedField' => 'subject',
-            'targetField'  => 'newsRssImportScenario',
         ],
         NewsSubject::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
@@ -132,7 +132,7 @@ return [
     ],
     'types'      => [
         'base' => [
-            'objectClass' => 'umicms\project\module\news\api\object\NewsSubject',
+            'objectClass' => 'umicms\project\module\news\model\object\NewsSubject',
             'fields'      => [
                 NewsSubject::FIELD_IDENTIFY,
                 NewsSubject::FIELD_GUID,
@@ -151,7 +151,6 @@ return [
                 NewsSubject::FIELD_PAGE_LAYOUT,
                 NewsSubject::FIELD_PAGE_SLUG,
                 NewsSubject::FIELD_NEWS,
-                NewsSubject::FIELD_RSS,
                 NewsSubject::FIELD_OWNER,
                 NewsSubject::FIELD_EDITOR
             ]

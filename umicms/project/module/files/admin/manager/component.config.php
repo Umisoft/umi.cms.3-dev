@@ -11,31 +11,38 @@
 namespace umicms\project\module\files\admin\manager;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\component\AdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 return [
 
-    AdminComponent::OPTION_CLASS => 'umicms\project\admin\component\AdminComponent',
+    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\AdminComponent',
 
     AdminComponent::OPTION_CONTROLLERS => [
         'connector' => __NAMESPACE__ . '\controller\ConnectorController',
-        AdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
+        AdminComponent::INTERFACE_LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
+    ],
+
+    AdminComponent::OPTION_MODIFY_ACTIONS => [
+        'connector'
+    ],
+    AdminComponent::OPTION_QUERY_ACTIONS => [
+        'connector'
     ],
 
     AdminComponent::OPTION_ROUTES      => [
 
-        'connector' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'route'    => '/action/connector',
+        'action'     => [
+            'type'     => IRouteFactory::ROUTE_SIMPLE,
+            'route'    => '/action/{action}',
             'defaults' => [
                 'controller' => 'connector'
             ]
         ],
 
-        'settings' => [
+        'layout' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => AdminComponent::SETTINGS_CONTROLLER
+                'controller' => AdminComponent::INTERFACE_LAYOUT_CONTROLLER
             ]
         ]
     ]

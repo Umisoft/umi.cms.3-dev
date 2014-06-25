@@ -12,8 +12,8 @@ use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\orm\metadata\IObjectType;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\structure\api\object\BaseInfoBlock;
-use umicms\project\module\structure\api\object\InfoBlock;
+use umicms\project\module\structure\model\object\BaseInfoBlock;
+use umicms\project\module\structure\model\object\InfoBlock;
 
 return [
     'dataSource' => [
@@ -84,12 +84,8 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => [
-                    'columnName' => 'display_name'
-                ],
-                'en-US' => [
-                    'columnName' => 'display_name_en'
-                ]
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
+                'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
         InfoBlock::FIELD_PHONE_NUMBER => [
@@ -227,7 +223,7 @@ return [
     ],
     'types' => [
         IObjectType::BASE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\BaseInfoBlock',
+            'objectClass' => 'umicms\project\module\structure\model\object\BaseInfoBlock',
             'fields' => [
                 BaseInfoBlock::FIELD_IDENTIFY,
                 BaseInfoBlock::FIELD_GUID,
@@ -242,7 +238,7 @@ return [
             ]
         ],
         InfoBlock::TYPE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\InfoBlock',
+            'objectClass' => 'umicms\project\module\structure\model\object\InfoBlock',
             'fields' => [
                 InfoBlock::FIELD_IDENTIFY,
                 InfoBlock::FIELD_GUID,

@@ -10,12 +10,12 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\orm\collection\ICmsCollection;
-use umicms\project\module\blog\api\object\BlogBranchComment;
-use umicms\project\module\blog\api\object\BlogComment;
+use umicms\project\module\blog\model\object\BlogBranchComment;
+use umicms\project\module\blog\model\object\BlogComment;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE_HIERARCHIC,
-    'class' => 'umicms\project\module\blog\api\collection\BlogCommentCollection',
+    'class' => 'umicms\project\module\blog\model\collection\BlogCommentCollection',
     'handlers' => [
         'admin' => 'blog.comment',
         'site' => 'blog.comment'
@@ -24,7 +24,7 @@ return [
         BlogComment::TYPE => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/comment/form/comment.edit.config.php}',
             ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/comment/form/comment.create.config.php}',
-            BlogComment::FORM_ADD_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/comment.addComment.config.php}',
+            BlogComment::FORM_ADD_COMMENT => '{#lazy:~/project/module/blog/site/comment/add/form/comment.addComment.config.php}',
             BlogComment::FORM_PUBLISH_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.publish.config.php}',
             BlogComment::FORM_REJECT_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.reject.config.php}',
             BlogComment::FORM_UNPUBLISH_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.unpublish.config.php}',

@@ -15,7 +15,7 @@ use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\blog\api\object\BlogPost;
+use umicms\project\module\blog\model\object\BlogPost;
 
 return [
 
@@ -112,7 +112,8 @@ return [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => BlogPost::FIELD_TAGS,
                     'options' => [
-                        'dataSource' => BlogPost::FIELD_TAGS
+                        'dataSource' => BlogPost::FIELD_TAGS,
+                        'lazy' => true
                     ]
                 ],
                 BlogPost::FIELD_AUTHOR => [

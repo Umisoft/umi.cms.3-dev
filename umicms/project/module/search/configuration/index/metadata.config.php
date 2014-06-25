@@ -9,7 +9,7 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\module\search\api\object\SearchIndex;
+use umicms\project\module\search\model\object\SearchIndex;
 
 return [
     'dataSource' => [
@@ -60,6 +60,16 @@ return [
             'type' => IField::TYPE_DATE_TIME,
             'columnName' => 'date_indexed',
         ],
+        SearchIndex::FIELD_CREATED             => [
+            'type'       => IField::TYPE_DATE_TIME,
+            'columnName' => 'created',
+            'readOnly'   => true
+        ],
+        SearchIndex::FIELD_UPDATED             => [
+            'type'       => IField::TYPE_DATE_TIME,
+            'columnName' => 'updated',
+            'readOnly'   => true
+        ],
         SearchIndex::FIELD_OWNER => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'owner_id',
@@ -73,7 +83,7 @@ return [
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\search\api\object\SearchIndex',
+            'objectClass' => 'umicms\project\module\search\model\object\SearchIndex',
             'fields' => [
                 SearchIndex::FIELD_IDENTIFY,
                 SearchIndex::FIELD_GUID,
@@ -83,7 +93,9 @@ return [
                 SearchIndex::FIELD_COLLECTION_NAME,
                 SearchIndex::FIELD_DATE_INDEXED,
                 SearchIndex::FIELD_OWNER,
-                SearchIndex::FIELD_EDITOR
+                SearchIndex::FIELD_EDITOR,
+                SearchIndex::FIELD_CREATED,
+                SearchIndex::FIELD_UPDATED
             ]
         ]
     ]

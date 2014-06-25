@@ -1,3 +1,24 @@
+{{#view 'toolbar' toolbar=toolbar}}
+    {{#view view.parentView.paginationView}}
+        <div class="right pagination-controls">
+            <span class="pagination-counter">
+                {{view.counter}}
+            </span>
+            {{#view view.prevButtonView}}
+                <i class="icon black icon-left-thin"></i>
+            {{/view}}
+            {{#view view.nextButtonView}}
+                <i class="icon black icon-right-thin"></i>
+            {{/view}}
+        </div>
+
+        <div class="right pagination-limit">
+            <span class="pagination-label">{{i18n "Rows on page" "tableControl"}}:</span>
+            {{view view.limitView}}
+        </div>
+    {{/view}}
+{{/view}}
+
 <div class="umi-table-control-header s-unselectable">
 
     <div class="umi-table-control-header-fixed-left">
@@ -71,7 +92,7 @@
                 </tr>
             {{#if objects.content.isFulfilled}}
                 {{#each object in objects}}
-                    <tr {{bind-attr class=":umi-table-control-content-row object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
+                    <tr {{bind-attr class=":umi-table-control-content-row object.type object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
                         {{#each column in content.viewSettings.columns}}
                             <td class="umi-table-control-content-cell">
                                 {{view "tableCellContent" objectBinding="object" column=column}}
@@ -83,7 +104,7 @@
                         <tr>
                             <td>
                                 <div class="umi-table-control-content-div-empty">
-                                    <span>Нет данных</span>
+                                    <span>{{i18n "No data" "tableControl"}}</span>
                                 </div>
                             </td>
                         </tr>
@@ -105,58 +126,17 @@
         <!-- Колонка справа от контента -->
 
         <div class="umi-table-control-content-fixed-right">
-            {{#each object in objects}}
+            {{#each object in objects itemController="tableControlContextToolbarItem"}}
                 <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
-
-                    {{#view "tableControlContextMenu"}}
-                        <div class="umi-table-control-content-fixed-right-first">
-                            {{#if view.parentView.selectAction}}
-                                <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg" {{action 'sendAction' view.parentView.selectAction object}}>
-                                    <i {{bind-attr class=":icon view.parentView.selectActionIcon"}}></i>
-                                </a>
-                            {{/if}}
-                        </div>
-
-                        <div class="umi-table-control-content-fixed-right-second">
-                            <a href="javascript:void(0)" class="umi-button-icon-32 umi-dark-bg umi-table-action-list-show">
-                                <i class="icon icon-bottom"></i>
-                            </a>
-
-                            <ul class="umi-table-action-list umi-hide-on-html umi-list">
-                                {{#each controller.contextMenu}}
-                                    {{#view view.itemView action=this}}
-                                        <i {{bind-attr class=":icon :icon-accept view.isFastAction::white"}} {{action 'toggleFastAction' this target="view.parentView.parentView"}}></i>
-                                        <a href="javascript:void(0)" {{action 'sendAction' this object}}>{{displayName}}</a>
-                                    {{/view}}
-                                {{/each}}
-                            </ul>
-                        </div>
-                    {{/view}}
-
+                    {{#if controller.parentController.contextToolbar}}
+                        {{#view "tableControlContextToolbar" elements=controller.parentController.contextToolbar}}
+                            {{#each view.elements}}
+                                {{view view.elementView}}
+                            {{/each}}
+                        {{/view}}
+                    {{/if}}
                 </div>
             {{/each}}
         </div>
     </div>
-</div>
-
-<!-- Футер-->
-<div class="umi-table-control-footer s-unselectable">
-    {{#view view.paginationView}}
-        <div class="right pagination-controls">
-            <span class="pagination-counter">
-                {{view.counter}}
-            </span>
-            {{#view view.prevButtonView}}
-                <i class="icon black icon-left-thin"></i>
-            {{/view}}
-            {{#view view.nextButtonView}}
-                <i class="icon black icon-right-thin"></i>
-            {{/view}}
-        </div>
-
-        <div class="right pagination-limit">
-            <span class="pagination-label">Строк на странице:</span>
-            {{view view.limitView}}
-        </div>
-    {{/view}}
 </div>

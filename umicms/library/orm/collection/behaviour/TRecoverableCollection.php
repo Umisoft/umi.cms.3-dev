@@ -13,7 +13,7 @@ namespace umicms\orm\collection\behaviour;
 use umi\orm\collection\ICollectionManager;
 use umicms\exception\NotAllowedOperationException;
 use umicms\orm\object\behaviour\IRecoverableObject;
-use umicms\project\module\service\api\collection\BackupCollection;
+use umicms\project\module\service\model\collection\BackupCollection;
 
 /**
  * Трейт для коллекций, поддерживающих резервное копирование объектов.

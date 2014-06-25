@@ -8,16 +8,14 @@
  * file that was distributed with this source code.
  */
 
-use umicms\project\module\news\api\object\NewsRubric;
+use umicms\project\module\news\model\object\NewsRubric;
 
 return [
         'en-US' => [
-            NewsRubric::FIELD_NEWS => 'News items',
-           'type:base:displayName' => 'News rubric'
+            NewsRubric::FIELD_NEWS => 'News items'
         ],
 
         'ru-RU' => [
-            NewsRubric::FIELD_NEWS => 'Новости',
-            'type:base:displayName' => 'Рубрика новостей'
+            NewsRubric::FIELD_NEWS => 'Новости'
         ]
     ];

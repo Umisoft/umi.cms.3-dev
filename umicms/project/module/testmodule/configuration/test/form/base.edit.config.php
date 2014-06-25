@@ -24,7 +24,7 @@ use umi\form\element\Textarea;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\File;
 use umicms\form\element\Image;
-use umicms\project\module\testmodule\api\object\TestObject;
+use umicms\project\module\testmodule\model\object\TestObject;
 
 return [
 
@@ -71,6 +71,16 @@ return [
                 TestObject::RADIO => [
                     'type' => Radio::TYPE_NAME,
                     'label' => TestObject::RADIO,
+                    'options' => [
+                        'dataSource' => TestObject::RADIO,
+                        'choices' => [
+                            'msk' => 'Мск',
+                            'spt' => 'СПб',
+                            'vlg' => 'Влг',
+                            'rostov' => 'Ростов',
+                            'krasnodar' => 'Краснодар'
+                        ]
+                    ],
                 ],
                 TestObject::PASSWORD => [
                     'type' => Password::TYPE_NAME,

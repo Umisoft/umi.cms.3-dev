@@ -11,9 +11,10 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\structure\api\object\StaticPage;
-use umicms\project\module\structure\api\object\StructureElement;
-use umicms\project\module\structure\api\object\SystemPage;
+use umicms\filter\Slug;
+use umicms\project\module\structure\model\object\StaticPage;
+use umicms\project\module\structure\model\object\StructureElement;
+use umicms\project\module\structure\model\object\SystemPage;
 
 return [
     'dataSource' => [
@@ -63,6 +64,12 @@ return [
             'type'       => IField::TYPE_SLUG,
             'columnName' => 'slug',
             'accessor'   => 'getSlug',
+            'filters' => [
+                Slug::TYPE => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ],
             'readOnly'   => true
         ],
         StructureElement::FIELD_URI                   => [
@@ -100,7 +107,7 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => ['columnName' => 'display_name'],
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
                 'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
@@ -190,7 +197,7 @@ return [
     ],
     'types'      => [
         'base'   => [
-            'objectClass' => 'umicms\project\module\structure\api\object\StructureElement',
+            'objectClass' => 'umicms\project\module\structure\model\object\StructureElement',
             'fields'      => [
                 StructureElement::FIELD_IDENTIFY,
                 StructureElement::FIELD_GUID,
@@ -225,7 +232,7 @@ return [
             ]
         ],
         SystemPage::TYPE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\SystemPage',
+            'objectClass' => 'umicms\project\module\structure\model\object\SystemPage',
             'fields'      => [
                 SystemPage::FIELD_IDENTIFY,
                 SystemPage::FIELD_GUID,
@@ -261,7 +268,7 @@ return [
             ]
         ],
         StaticPage::TYPE => [
-            'objectClass' => 'umicms\project\module\structure\api\object\StaticPage',
+            'objectClass' => 'umicms\project\module\structure\model\object\StaticPage',
             'fields'      => [
                 StaticPage::FIELD_IDENTIFY,
                 StaticPage::FIELD_GUID,

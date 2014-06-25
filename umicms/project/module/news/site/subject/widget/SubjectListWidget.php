@@ -10,27 +10,26 @@
 
 namespace umicms\project\module\news\site\subject\widget;
 
-use umi\acl\IAclResource;
 use umicms\hmvc\widget\BaseListWidget;
-use umicms\project\module\news\api\NewsModule;
+use umicms\project\module\news\model\NewsModule;
 
 /**
  * Виджет для вывода списка новостных сюжетов.
  */
-class SubjectListWidget extends BaseListWidget implements IAclResource
+class SubjectListWidget extends BaseListWidget
 {
     /**
-     * @var NewsModule $api API модуля "Новости"
+     * @var NewsModule $module модуль "Новости"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param NewsModule $newsApi API модуля "Новости"
+     * @param NewsModule $newsApi модуль "Новости"
      */
     public function __construct(NewsModule $newsApi)
     {
-        $this->api = $newsApi;
+        $this->module = $newsApi;
     }
 
     /**
@@ -38,7 +37,7 @@ class SubjectListWidget extends BaseListWidget implements IAclResource
      */
     protected function getSelector()
     {
-        return $this->api->getSubjects();
+        return $this->module->getSubjects();
     }
 }
  

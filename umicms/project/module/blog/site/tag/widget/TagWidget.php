@@ -10,16 +10,15 @@
 
 namespace umicms\project\module\blog\site\tag\widget;
 
-use umi\acl\IAclResource;
 use umicms\exception\InvalidArgumentException;
-use umicms\hmvc\widget\BaseWidget;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogTag;
+use umicms\hmvc\widget\BaseCmsWidget;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogTag;
 
 /**
  * Виджет вывода тэга.
  */
-class TagWidget extends BaseWidget implements IAclResource
+class TagWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -31,17 +30,17 @@ class TagWidget extends BaseWidget implements IAclResource
     public $blogTag;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $module модуль "Блоги"
      */
-    public function __construct(BlogModule $blogModule)
+    public function __construct(BlogModule $module)
     {
-        $this->api = $blogModule;
+        $this->module = $module;
     }
 
     /**
@@ -50,7 +49,7 @@ class TagWidget extends BaseWidget implements IAclResource
     public function __invoke()
     {
         if (is_string($this->blogTag)) {
-            $this->blogTag = $this->api->tag()->get($this->blogTag);
+            $this->blogTag = $this->module->tag()->get($this->blogTag);
         }
 
         if (!$this->blogTag instanceof BlogTag) {

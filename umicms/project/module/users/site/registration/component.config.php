@@ -12,60 +12,45 @@ namespace umicms\project\module\users\site\registration;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\module\users\api\object\AuthorizedUser;
-use umicms\project\site\component\SiteComponent;
+use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
 
-    SiteComponent::OPTION_CLASS => 'umicms\project\site\component\SiteComponent',
+    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
 
-    SiteComponent::OPTION_COMPONENTS => [
+    SiteGroupComponent::OPTION_COMPONENTS => [
         'activation' => '{#lazy:~/project/module/users/site/registration/activation/component.config.php}'
     ],
 
-    SiteComponent::OPTION_CONTROLLERS => [
+    SiteGroupComponent::OPTION_CONTROLLERS => [
         'index' => __NAMESPACE__ . '\controller\IndexController',
     ],
 
-    SiteComponent::OPTION_WIDGET => [
+    SiteGroupComponent::OPTION_WIDGET => [
         'link' => __NAMESPACE__ . '\widget\LinkWidget',
         'form' => __NAMESPACE__ . '\widget\FormWidget',
     ],
 
-    SiteComponent::OPTION_VIEW => [
+    SiteGroupComponent::OPTION_VIEW => [
         'directories' => ['module/users/registration']
     ],
 
-    SiteComponent::OPTION_ACL => [
-        IAclFactory::OPTION_ROLES => [
-            'viewer' => [],
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'index' => 'controller:index',
-            'link'  => 'widget:link',
-            'form'  => 'widget:form',
-        ],
+    SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_RULES => [
             'viewer' => [
-                'controller:index' => [],
                 'widget:link' => [],
                 'widget:form' => []
             ]
         ]
     ],
 
-    SiteComponent::OPTION_ROUTES      => [
-
-        'component' => [
-            'type' => 'SiteComponentRoute'
-        ],
-
+    SiteGroupComponent::OPTION_ROUTES      => [
         'index' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/{type:string}',
             'defaults' => [
-                'type' => AuthorizedUser::TYPE_NAME,
-                'controller' => 'index'
+                'type' => AuthorizedUser::TYPE_NAME
             ]
         ]
     ]

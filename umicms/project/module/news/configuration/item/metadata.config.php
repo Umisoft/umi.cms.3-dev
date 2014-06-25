@@ -11,7 +11,8 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\news\api\object\NewsItem;
+use umicms\filter\Slug;
+use umicms\project\module\news\model\object\NewsItem;
 
 return [
     'dataSource' => [
@@ -54,7 +55,7 @@ return [
                 IValidatorFactory::TYPE_REQUIRED => []
             ],
             'localizations' => [
-                'ru-RU' => ['columnName' => 'display_name'],
+                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
                 'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
@@ -104,7 +105,13 @@ return [
         ],
         NewsItem::FIELD_PAGE_SLUG             => [
             'type'       => IField::TYPE_SLUG,
-            'columnName' => 'slug'
+            'columnName' => 'slug',
+            'filters' => [
+                Slug::TYPE => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         NewsItem::FIELD_ANNOUNCEMENT          => [
             'type' => IField::TYPE_TEXT,
@@ -147,7 +154,7 @@ return [
     ],
     'types'      => [
         'base' => [
-            'objectClass' => 'umicms\project\module\news\api\object\NewsItem',
+            'objectClass' => 'umicms\project\module\news\model\object\NewsItem',
             'fields'      => [
                 NewsItem::FIELD_IDENTIFY,
                 NewsItem::FIELD_GUID,

@@ -11,30 +11,27 @@
 namespace umicms\project\module\users\site\registration\activation\controller;
 
 use umi\http\Response;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
-use umicms\project\module\users\api\UsersModule;
-use umicms\project\site\controller\SitePageController;
+use umicms\project\module\users\model\UsersModule;
+use umicms\hmvc\component\site\BaseSitePageController;
 
 /**
  * Контроллер активации пользователя
  */
-class IndexController extends SitePageController implements IObjectPersisterAware
+class IndexController extends BaseSitePageController
 {
-    use TObjectPersisterAware;
 
     /**
-     * @var UsersModule $api API модуля "Пользователи"
+     * @var UsersModule $module модуль "Пользователи"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param UsersModule $usersModule API модуля "Пользователи"
+     * @param UsersModule $module модуль "Пользователи"
      */
-    public function __construct(UsersModule $usersModule)
+    public function __construct(UsersModule $module)
     {
-        $this->api = $usersModule;
+        $this->module = $module;
     }
 
     /**
@@ -44,15 +41,15 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
     {
         try {
 
-            $user = $this->api->activate($this->getRouteVar('activationCode'));
-            $this->getObjectPersister()->commit();
-            $this->api->setCurrentUser($user);
+            $user = $this->module->activate($this->getRouteVar('activationCode'));
+            $this->commit();
+            $this->module->setCurrentUser($user);
 
             return $this->createViewResponse(
                 'index',
                 [
                     'page' => $this->getCurrentPage(),
-                    'authenticated' => $this->api->isAuthenticated(),
+                    'authenticated' => $this->module->isAuthenticated(),
                     'user' => $user
                 ]
             );
@@ -62,7 +59,7 @@ class IndexController extends SitePageController implements IObjectPersisterAwar
                 'index',
                 [
                     'page' => $this->getCurrentPage(),
-                    'authenticated' => $this->api->isAuthenticated(),
+                    'authenticated' => $this->module->isAuthenticated(),
                     'errors' => [
                         $e->getMessage()
                     ]

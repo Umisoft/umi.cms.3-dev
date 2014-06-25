@@ -12,7 +12,7 @@ use umi\form\element\MultiSelect;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\blog\api\object\BlogRssImportScenario;
+use umicms\project\module\blog\model\object\BlogRssImportScenario;
 
 return [
 
@@ -61,7 +61,8 @@ return [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => BlogRssImportScenario::FIELD_TAGS,
                     'options' => [
-                        'dataSource' => BlogRssImportScenario::FIELD_TAGS
+                        'dataSource' => BlogRssImportScenario::FIELD_TAGS,
+                        'lazy' => true
                     ]
                 ]
             ]

@@ -13,7 +13,7 @@ use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
-use umicms\project\module\news\api\object\NewsRubric;
+use umicms\project\module\news\model\object\NewsRubric;
 
 return [
 
@@ -99,7 +99,8 @@ return [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => NewsRubric::FIELD_NEWS,
                     'options' => [
-                        'dataSource' => NewsRubric::FIELD_NEWS
+                        'dataSource' => NewsRubric::FIELD_NEWS,
+                        'lazy' => true
                     ]
                 ]
             ]

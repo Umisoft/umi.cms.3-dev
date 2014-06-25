@@ -13,7 +13,7 @@ use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\testmodule\api\collection\TestCollection',
+    'class' => 'umicms\project\module\testmodule\model\collection\TestCollection',
     'handlers' => [
         'admin' => 'testmodule.test'
     ],

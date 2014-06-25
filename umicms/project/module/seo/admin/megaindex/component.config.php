@@ -11,35 +11,39 @@
 namespace umicms\project\module\seo\admin\megaindex;
 
 use umi\route\IRouteFactory;
-use umicms\project\admin\api\component\DefaultQueryAdminComponent;
+use umicms\hmvc\component\admin\AdminComponent;
 
 return [
 
-    DefaultQueryAdminComponent::OPTION_CLASS => 'umicms\project\admin\api\component\DefaultQueryAdminComponent',
-    DefaultQueryAdminComponent::OPTION_MODELS => [
+    AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\AdminComponent',
+
+    AdminComponent::OPTION_MODELS => [
         'umicms\project\module\seo\model\MegaindexModel'
     ],
-    DefaultQueryAdminComponent::OPTION_SETTINGS => '{#lazy:~/project/module/seo/configuration/megaindex/model.settings.config.php}',
-    DefaultQueryAdminComponent::OPTION_CONTROLLERS => [
-        DefaultQueryAdminComponent::SETTINGS_CONTROLLER => __NAMESPACE__ . '\controller\SettingsController',
-        DefaultQueryAdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
+
+    AdminComponent::OPTION_SETTINGS => '{#lazy:~/project/module/seo/configuration/megaindex/model.settings.config.php}',
+
+    AdminComponent::OPTION_CONTROLLERS => [
+        AdminComponent::INTERFACE_LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
+        AdminComponent::ACTION_CONTROLLER => __NAMESPACE__ . '\controller\ActionController'
     ],
 
-    DefaultQueryAdminComponent::OPTION_QUERY_ACTIONS => [
+    AdminComponent::OPTION_QUERY_ACTIONS => [
         'siteAnalyze', 'getBacklinks'
     ],
-    DefaultQueryAdminComponent::OPTION_ROUTES => [
+
+    AdminComponent::OPTION_ROUTES => [
         'action' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/action/{action}',
             'defaults' => [
-                'controller' => 'action',
+                'controller' => AdminComponent::ACTION_CONTROLLER,
             ],
         ],
-        'settings' => [
+        'layout' => [
             'type' => IRouteFactory::ROUTE_FIXED,
             'defaults' => [
-                'controller' => DefaultQueryAdminComponent::SETTINGS_CONTROLLER
+                'controller' => AdminComponent::INTERFACE_LAYOUT_CONTROLLER
             ]
         ]
     ]

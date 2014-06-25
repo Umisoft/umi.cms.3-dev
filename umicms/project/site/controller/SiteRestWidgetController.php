@@ -10,13 +10,13 @@
 
 namespace umicms\project\site\controller;
 
-use umicms\hmvc\controller\BaseController;
+use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 
 /**
  * Контроллер для REST-вызова виджета.
  */
-class SiteRestWidgetController extends BaseController
+class SiteRestWidgetController extends BaseCmsController
 {
     /**
      * Имя контроллера.

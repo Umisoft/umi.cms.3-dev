@@ -23,6 +23,7 @@ $table-control-row-bg-hover: #C8DEEE;
 // -------- Шапка таблицы
 .umi-table-control-header{
     background: #F5F6F7;
+    position: relative;
     .umi-table-control-control-cell-empty{
         background: #F5F6F7;
     }
@@ -241,7 +242,7 @@ $table-control-row-bg-hover: #C8DEEE;
 
 // ----------- table content
 .umi-table-control-content-wrapper{
-    height: calc(100% - 66px - 32px);
+    height: calc(100% - 66px - 33px);
     position: relative;
     &:before{
         content: "";

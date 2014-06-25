@@ -12,18 +12,18 @@ namespace umicms\project\module\news\site\rubric;
 
 use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
-use umicms\project\site\component\DefaultSiteHierarchicPageComponent;
+use umicms\hmvc\component\site\SiteHierarchicPageComponent;
 
 return [
 
-    DefaultSiteHierarchicPageComponent::OPTION_CLASS => 'umicms\project\site\component\DefaultSiteHierarchicPageComponent',
-    DefaultSiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'newsRubric',
+    SiteHierarchicPageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteHierarchicPageComponent',
+    SiteHierarchicPageComponent::OPTION_COLLECTION_NAME => 'newsRubric',
 
-    DefaultSiteHierarchicPageComponent::OPTION_CONTROLLERS => [
+    SiteHierarchicPageComponent::OPTION_CONTROLLERS => [
         'rss' => __NAMESPACE__ . '\controller\NewsRubricRssController'
     ],
 
-    DefaultSiteHierarchicPageComponent::OPTION_WIDGET => [
+    SiteHierarchicPageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ .  '\widget\RubricWidget',
         'newsList' => __NAMESPACE__ . '\widget\RubricNewsListWidget',
         'list' => __NAMESPACE__ .  '\widget\RubricListWidget',
@@ -31,18 +31,10 @@ return [
         'rssLink' => __NAMESPACE__ .  '\widget\RubricNewsRssLinkWidget'
     ],
 
-    DefaultSiteHierarchicPageComponent::OPTION_ACL => [
+    SiteHierarchicPageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'viewer' => [],
             'rssViewer' => []
-        ],
-        IAclFactory::OPTION_RESOURCES => [
-            'controller:rss',
-            'widget:view',
-            'widget:list',
-            'widget:tree',
-            'widget:newsList',
-            'widget:rssLink'
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
@@ -58,11 +50,11 @@ return [
         ]
     ],
 
-    DefaultSiteHierarchicPageComponent::OPTION_VIEW => [
+    SiteHierarchicPageComponent::OPTION_VIEW => [
         'directories' => ['module/news/rubric']
     ],
 
-    DefaultSiteHierarchicPageComponent::OPTION_ROUTES      => [
+    SiteHierarchicPageComponent::OPTION_ROUTES      => [
         'rss' => [
             'type'     => IRouteFactory::ROUTE_REGEXP,
             'route' => '/rss/(?P<url>.+)',

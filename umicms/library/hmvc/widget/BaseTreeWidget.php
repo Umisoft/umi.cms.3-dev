@@ -13,7 +13,7 @@ namespace umicms\hmvc\widget;
 use umi\orm\collection\ICollection;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
-use umicms\orm\collection\SimpleHierarchicCollection;
+use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\selector\CmsSelector;
 
@@ -21,7 +21,7 @@ use umicms\orm\selector\CmsSelector;
  * Базовый класс виджета вывода деревьев.
  * Применяет условия выборки для дерева.
  */
-abstract class BaseTreeWidget extends BaseWidget
+abstract class BaseTreeWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -53,7 +53,7 @@ abstract class BaseTreeWidget extends BaseWidget
 
         $collection = $selector->getCollection();
 
-        if (!$collection instanceof SimpleHierarchicCollection) {
+        if (!$collection instanceof CmsHierarchicCollection) {
             throw new RuntimeException($this->translate(
                 'Cannot create tree. Collection is not hierarchical'
             ));
