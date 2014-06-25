@@ -52,7 +52,7 @@ class PublishController extends BaseCmsController
     protected function processForm(IForm $form)
     {
         $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
-        $blogPost->published();
+        $this->module->post()->publish($blogPost);
 
         $this->commit();
     }

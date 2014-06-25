@@ -11,8 +11,6 @@
 namespace umicms\project\module\blog\model\object;
 
 use umi\acl\IAclResource;
-use umicms\project\module\users\model\UsersModule;
-use umi\hmvc\acl\ComponentRoleProvider;
 
 /**
  * Комментарий к посту.

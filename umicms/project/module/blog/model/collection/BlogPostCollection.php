@@ -17,6 +17,7 @@ use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\selector\CmsSelector;
+use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
 
 /**
@@ -355,7 +356,10 @@ class BlogPostCollection extends CmsPageCollection
     public function publish(BlogPost $post)
     {
         $post->publish();
-        $post->author->incrementPostCount();
+
+        if ($post->author instanceof BlogAuthor) {
+            $post->author->incrementPostCount();
+        }
 
         return $post;
     }
@@ -368,7 +372,9 @@ class BlogPostCollection extends CmsPageCollection
     public function unPublish(BlogPost $post)
     {
         $post->draft();
-        $post->author->decrementPostCount();
+        if ($post->author instanceof BlogAuthor) {
+            $post->author->decrementPostCount();
+        }
 
         return $post;
     }
@@ -380,7 +386,7 @@ class BlogPostCollection extends CmsPageCollection
     {
         parent::activate($object);
 
-        if ($object instanceof BlogPost) {
+        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
             $object->author->incrementPostCount();
         }
 
@@ -394,7 +400,7 @@ class BlogPostCollection extends CmsPageCollection
     {
         parent::deactivate($object);
 
-        if ($object instanceof BlogPost) {
+        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
             $object->author->decrementPostCount();
         }
 
@@ -406,7 +412,7 @@ class BlogPostCollection extends CmsPageCollection
      */
     public function delete(IObject $object)
     {
-        if ($object instanceof BlogPost) {
+        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
             $object->author->decrementPostCount();
         }
 
