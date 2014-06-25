@@ -35,7 +35,7 @@ use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\blog\model\object\BlogRssImportScenario;
 use umicms\project\module\blog\model\object\BlogTag;
-use umicms\project\module\users\model\object\BaseUser;
+use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\UsersModule;
 
 /**
@@ -460,14 +460,13 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Создаёт автора на основе юзера.
-     * @param BaseUser $user
+     * @param AuthorizedUser $user
      * @return BlogAuthor
      */
-    public function createAuthor(BaseUser $user)
+    public function createAuthor(AuthorizedUser $user)
     {
         return $this->author()->add(IObjectType::BASE)
-            // todo: заменить генерацию слага.
-            ->setValue(BlogAuthor::FIELD_PAGE_SLUG, $user->displayName)
+            ->setValue(BlogAuthor::FIELD_PAGE_SLUG, $user->login)
             ->setValue(BlogAuthor::FIELD_DISPLAY_NAME, $user->displayName)
             ->setValue(BlogAuthor::FIELD_PROFILE, $user);
     }
