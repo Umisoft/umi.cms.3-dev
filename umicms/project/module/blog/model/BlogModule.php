@@ -49,7 +49,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * @var BlogAuthor $currentAuthor текущий автор блога
      */
-    protected $currentAuthor;
+    protected $currentAuthor = null;
 
     /**
      * @var int $maxPostsCount максимальное количество постов у тега
@@ -290,9 +290,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         }
 
         $comment = $this->comment()->add(null, $typeName, $parentComment);
-        if ($this->hasCurrentAuthor()) {
-            $comment->author = $post->author = $this->getCurrentAuthor();
-        }
+        $comment->author = $this->getCurrentAuthor();
 
         return $comment;
     }
@@ -419,8 +417,9 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     }
 
     /**
-     * Возвращает текущего автора блога, если автора не существует - создаёт нового.
-     * @return BlogAuthor
+     * Возвращает текущего автора блога.
+     * Если пользователь авторизован и автора не существует - создаёт нового.
+     * @return BlogAuthor|null
      */
     public function getCurrentAuthor()
     {
@@ -428,7 +427,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             return $this->currentAuthor;
         }
 
-        if (!$this->hasCurrentAuthor()) {
+        if ($this->usersModule->isAuthenticated() && !$this->hasCurrentAuthor()) {
             $this->currentAuthor = $this->createAuthor(
                 $this->usersModule->getCurrentUser()
             );
