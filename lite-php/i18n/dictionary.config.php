@@ -62,7 +62,7 @@ return [
             'Post has been saved.' => 'Post has been saved.',
             'Profile has been saved.' => 'Profile has been saved.',
             'Edit profile author' => 'Edit profile author',
-            'Post has been unpublish.' => 'Post has been unpublish.',
+            'Comment has been unpublish.' => 'Comment has been unpublish.',
         ],
         'ru-RU' => [
             'RSS' => 'RSS ленты',
@@ -77,7 +77,7 @@ return [
             'Post has been saved.' => 'Пост сохранён.',
             'Profile has been saved.' => 'Профиль сохранён.',
             'Edit profile author' => 'Редактировать автора',
-            'Post has been unpublish.' => 'Пост был снят с публикации',
+            'Comment has been unpublish.' => 'Комментарий был снят с публикации',
         ]
     ],
 

@@ -28,9 +28,9 @@ return [
     SiteGroupComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\CommentWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
-        'publishForm' => __NAMESPACE__ . '\widget\PublishWidget',
-        'rejectForm' => __NAMESPACE__ . '\widget\RejectWidget',
-        'unpublishForm' => __NAMESPACE__ . '\widget\UnpublishWidget'
+        'publishForm' => __NAMESPACE__ . '\widget\PublishFormWidget',
+        'rejectForm' => __NAMESPACE__ . '\widget\RejectFormWidget',
+        'unpublishForm' => __NAMESPACE__ . '\widget\UnpublishFormWidget'
     ],
     SiteGroupComponent::OPTION_VIEW => [
         'directories' => ['module/blog/comment']

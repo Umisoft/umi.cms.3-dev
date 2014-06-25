@@ -11,33 +11,30 @@
 namespace umicms\project\module\blog\site\comment\controller;
 
 use umi\form\IForm;
-use umi\orm\persister\IObjectPersisterAware;
-use umi\orm\persister\TObjectPersisterAware;
-use umicms\hmvc\controller\BaseAccessRestrictedController;
-use umicms\project\module\blog\api\BlogModule;
-use umicms\project\module\blog\api\object\BlogComment;
-use umicms\project\site\controller\TFormSimpleController;
+use umicms\hmvc\component\BaseCmsController;
+use umicms\hmvc\component\site\TFormSimpleController;
+use umicms\project\module\blog\model\BlogModule;
+use umicms\project\module\blog\model\object\BlogComment;
 
 /**
  * Контроллер снятия комментария с публикации.
  */
-class UnpublishController extends BaseAccessRestrictedController implements IObjectPersisterAware
+class UnpublishController extends BaseCmsController
 {
     use TFormSimpleController;
-    use TObjectPersisterAware;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $api модуль "Блоги"
      */
-    protected $api;
+    protected $model;
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $blogModule модуль "Блоги"
      */
     public function __construct(BlogModule $blogModule)
     {
-        $this->api = $blogModule;
+        $this->model = $blogModule;
     }
 
     /**
@@ -45,7 +42,7 @@ class UnpublishController extends BaseAccessRestrictedController implements IObj
      */
     protected function buildForm()
     {
-        return $this->api->comment()->getForm(BlogComment::FORM_UNPUBLISH_COMMENT, BlogComment::TYPE);
+        return $this->model->comment()->getForm(BlogComment::FORM_UNPUBLISH_COMMENT, BlogComment::TYPE);
     }
 
     /**
@@ -53,11 +50,11 @@ class UnpublishController extends BaseAccessRestrictedController implements IObj
      */
     protected function processForm(IForm $form)
     {
-        $this->api->comment()->getById(
+        $this->model->comment()->getById(
             $this->getRouteVar('id')
         )->unPublish();
 
-        $this->getObjectPersister()->commit();
+        $this->commit();
     }
 }
  
