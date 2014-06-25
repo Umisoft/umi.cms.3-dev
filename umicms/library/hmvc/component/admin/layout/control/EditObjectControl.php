@@ -26,6 +26,14 @@ class EditObjectControl extends CollectionControl
     /**
      * {@inheritdoc}
      */
+    protected function configureParams()
+    {
+        $this->params['action'] = CollectionComponent::ACTION_GET_EDIT_FORM;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function configureToolbar()
     {
         if ($createButton = $this->buildCreateButton()) {
