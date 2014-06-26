@@ -9,6 +9,17 @@ define([], function(){
          */
         UMI.Utils = {};
 
+        UMI.Utils.replacePlaceholder = function(object, pattern){
+            var deserialize;
+            deserialize = pattern.replace(/{\w+}/g, function(key) {
+                if(key){
+                    key = key.slice(1, -1);
+                }
+                return Ember.get(object, key) || key;//TODO: error handling
+            });
+            return deserialize;
+        };
+
         /**
          * Local Storage
          */

@@ -3,9 +3,7 @@ define([], function(){
     return function(UMI){
         UMI.ApplicationController = Ember.ObjectController.extend({
             settings: null,
-            settingsAllowed: function(){
-                return window.UmiSettings.isSettingsAllowed;
-            }.property()
+            modules: null
         });
 
         /**
@@ -21,14 +19,10 @@ define([], function(){
                 return this.get('container').lookup('route:module').get('context.name') + Ember.String.capitalize(this.get('model.name'));
             }.property('model.name'),
 
-            collectionName: function(){
-                var settings = this.get('settings');
-                if(settings && Ember.typeOf(settings.params) === 'object'){
-                    return settings.params.collectionName;
-                }
-            }.property('settings'),
-
             settings: null,
+
+            dataSourceBinding: 'settings.dataSource',
+
             /**
              Выбранный контекcт, соответствующий модели роута 'Context'
              @property selectedContext

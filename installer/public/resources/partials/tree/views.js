@@ -205,7 +205,7 @@ define(['App', 'toolbar'], function(UMI){
             },
 
             willDestroyElement: function(){
-                this.get('controller').removeObserver('controllers.component.collectionName');
+                this.get('controller').removeObserver('collectionName');
                 this.get('controller').removeObserver('activeContext');
                 this.get('controller').removeObserver('objects.@each.isDeleted');
                 this.removeObserver('controller.expandedBranches');
