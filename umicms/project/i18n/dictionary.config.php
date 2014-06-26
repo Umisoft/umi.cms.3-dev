@@ -77,6 +77,10 @@ return [
 
     'project.site' => '{#lazy:~/project/site/i18n/dictionary.config.php}',
 
+    'project.site.structure' => '{#lazy:~/project/module/structure/site/i18n/dictionary.config.php}',
+    'project.site.structure.menu' => '{#lazy:~/project/module/structure/site/menu/i18n/dictionary.config.php}',
+    'project.site.structure.infoblock' => '{#lazy:~/project/module/structure/site/infoblock/i18n/dictionary.config.php}',
+
     'project.site.users' => '{#lazy:~/project/module/users/site/i18n/dictionary.config.php}',
     'project.site.users.authorization' => '{#lazy:~/project/module/users/site/authorization/i18n/dictionary.config.php}',
     'project.site.users.registration' => '{#lazy:~/project/module/users/site/registration/i18n/dictionary.config.php}',
