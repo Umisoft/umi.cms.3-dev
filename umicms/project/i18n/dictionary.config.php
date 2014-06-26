@@ -93,6 +93,7 @@ return [
     'project.site.blog.author' => '{#lazy:~/project/module/blog/site/author/i18n/dictionary.config.php}',
     'project.site.blog.author.profile' => '{#lazy:~/project/module/blog/site/author/profile/i18n/dictionary.config.php}',
     'project.site.blog.author.view' => '{#lazy:~/project/module/blog/site/author/view/i18n/dictionary.config.php}',
+    'project.site.blog.tag' => '{#lazy:~/project/module/blog/site/tag/i18n/dictionary.config.php}',
 
     'collection' => [
 
