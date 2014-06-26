@@ -23,6 +23,8 @@ use umicms\hmvc\view\CmsView;
 use umicms\orm\selector\CmsSelector;
 use umicms\hmvc\callstack\IPageCallStackAware;
 use umicms\hmvc\callstack\TPageCallStackAware;
+use umicms\serialization\ISerializer;
+use umicms\serialization\xml\BaseSerializer;
 
 /**
  * Базовый виджет UMI.CMS
@@ -58,18 +60,6 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
     }
 
     /**
-     * Устанавливает опции сериализации результата работы виджета в XML или JSON.
-     * Может быть переопределен в конкретном виджете для задания переменных,
-     * которые будут преобразованы в атрибуты xml, а так же переменные, которые будут проигнорированы
-     * в xml или json.
-     * @param CmsView $view результат работы виджета
-     */
-    protected function setSerializationOptions(CmsView $view)
-    {
-
-    }
-
-    /**
      * Возвращает URL маршрута компонента.
      * @param string $routeName
      * @param array $routeParams параметры маршрута
@@ -93,8 +83,14 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
         $variables['widget'] = $this->getShortPath();
         $view = new CmsView($this, $this->getContext(), $templateName, $variables);
 
-        $view->setXmlAttributes(['widget']);
-        $this->setSerializationOptions($view);
+        $view->addSerializerConfigurator(
+            function(ISerializer $serializer)
+            {
+                if ($serializer instanceof BaseSerializer) {
+                    $serializer->setAttributes(['widget']);
+                }
+            }
+        );
 
         return $view;
     }

@@ -8,48 +8,89 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\serialization\json\orm;
+namespace umicms\serialization\xml\orm;
+
 use umi\orm\metadata\field\IField;
+use umi\orm\metadata\IObjectType;
 use umi\orm\object\property\IProperty;
-use umicms\hmvc\url\IUrlManagerAware;
-use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
-use umicms\serialization\json\BaseSerializer;
+use umicms\serialization\xml\BaseSerializer;
 
 /**
- * JSON-сериализатор для объекта.
+ * XML-сериализатор для CmsObject.
  */
-class CmsObjectSerializer extends BaseSerializer implements IUrlManagerAware
+class CmsObjectSerializer extends BaseSerializer
 {
-    use TUrlManagerAware;
 
     /**
-     * Сериализует ICmsObject в JSON.
+     * Сериализует CmsObject в XML.
      * @param ICmsObject $object
-     * @param array $options опции сериализации - список полей, которые должны быть отображены
+     * @param array $options опции сериализации
      */
     public function __invoke(ICmsObject $object, array $options = [])
     {
         $this->configure($object);
+        /**
+         * @var IProperty[] $attributes
+         * @var IProperty[] $properties
+         */
+        $attributes = [];
+        $properties = [];
 
         $selectedFields = isset($options['fields']) ? $options['fields'] : [];
         $usedProperties = $this->getUsedProperties($object, $selectedFields);
 
-        $properties = [];
+        /**
+         * @var IProperty $property
+         */
         foreach ($usedProperties as $property) {
             $name = $property->getName();
+
             if (in_array($name, $this->currentExcludes)) {
                 continue;
             }
-            $properties[$name] = $object->getValue($name);
+
+            if (in_array($name, $this->currentAttributes)) {
+                $attributes[$name] = $property;
+            } else {
+                $properties[$name] = $property;
+            }
         }
 
-        if ($object instanceof ICmsPage) {
-            $properties['meta'] = ['pageUrl' => $object->getPageUrl()];
+        foreach ($attributes as $name => $attribute) {
+
+            $value = $object->getValue($name);
+            if ($value instanceof IObjectType) {
+                $value = $value->getName();
+            }
+            if ($value instanceof ICmsObject) {
+                $value = $value->getGUID();
+            }
+            $this->writeAttribute($name, $value);
         }
+        if ($object instanceof ICmsPage) {
+            $this->writeAttribute('url', $object->getPageUrl());
+        }
+
         $options['fields'] = [ICmsObject::FIELD_DISPLAY_NAME => null];
-        $this->delegate($properties, $options);
+        foreach ($properties as $name => $property) {
+            $this->getXmlWriter()->startElement('property');
+
+           $this->getXmlWriter()->writeAttribute('name', $property->getName());
+
+           $this->delegate($property->getField());
+
+            $this->getXmlWriter()->startElement('value');
+            $value = $object->getValue($name);
+
+            if (!is_null($value)) {
+                $this->delegate($value, $options);
+            }
+            $this->getXmlWriter()->endElement();
+
+            $this->getXmlWriter()->endElement();
+        }
     }
 
     /**
@@ -73,6 +114,4 @@ class CmsObjectSerializer extends BaseSerializer implements IUrlManagerAware
 
         return $properties;
     }
-
 }
- 

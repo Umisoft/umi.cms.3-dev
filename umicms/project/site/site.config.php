@@ -19,9 +19,11 @@ return [
 
     SiteApplication::OPTION_SERIALIZERS => [
         ISerializerFactory::TYPE_XML => [
-            'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
-            'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\object\CmsElementSerializer',
-            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\object\FieldSerializer',
+            'umi\orm\metadata\ObjectType' => 'umicms\serialization\xml\orm\ObjectTypeSerializer',
+            'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\orm\CmsObjectSerializer',
+            'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\orm\CmsObjectSerializer',
+            'umi\orm\selector\Selector' => 'umicms\serialization\xml\orm\SelectorSerializer',
+            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\orm\FieldSerializer',
             'umicms\hmvc\view\CmsLayoutView' => 'umicms\serialization\xml\view\CmsLayoutViewSerializer',
             'umicms\hmvc\view\CmsView' => 'umicms\serialization\xml\view\CmsViewSerializer',
         ],

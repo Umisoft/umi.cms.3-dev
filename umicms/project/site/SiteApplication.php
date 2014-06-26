@@ -198,7 +198,7 @@ class SiteApplication extends SiteComponent
         if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
 
             if ($response->headers->has('content-type') && $response->headers->get('content-type') != 'text/html; charset=UTF-8') {
-                throw new HttpException(Response::HTTP_BAD_REQUEST, $this->translate(
+                throw new HttpException(Response::HTTP_NOT_FOUND, $this->translate(
                     'Cannot serialize response. Headers had been already set.'
                 ));
             }

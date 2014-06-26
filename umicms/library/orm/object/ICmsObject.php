@@ -14,6 +14,7 @@ use DateTime;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IObject;
 use umicms\project\module\users\model\object\BaseUser;
+use umicms\serialization\ISerializerConfigurator;
 
 /**
  * Интерфейс ORM-объекта для UMI.CMS.
@@ -27,7 +28,7 @@ use umicms\project\module\users\model\object\BaseUser;
  * @property BaseUser $owner владелец объекта
  * @property BaseUser $editor последний редактор объекта
  */
-interface ICmsObject extends IObject
+interface ICmsObject extends IObject, ISerializerConfigurator
 {
     /**
      *  Имя поля для хранения времени создания объекта

@@ -33,7 +33,7 @@ class CmsLayoutViewSerializer extends BaseSerializer
                 break;
                 default:
                     $this->getXmlWriter()->startElement($name);
-                    $this->delegate($value);
+                    $this->delegate($value, $options);
                     $this->getXmlWriter()->endElement();
             }
 

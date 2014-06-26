@@ -90,7 +90,6 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
             }
             $result = ['list' => $selector];
         }
-
         return $this->createResult($this->template, $result);
     }
 
