@@ -48,7 +48,7 @@ define([], function(){
                         if(controls.hasOwnProperty(key)){
                             control = controls[key];
                             control.name = key;
-                            contentControls.push(Ember.Object.create(control));
+                            contentControls.push(control);
                         }
                     }
                 } catch(error){
@@ -82,7 +82,6 @@ define([], function(){
                             if(settings.sideBar.hasOwnProperty(control)){
                                 sideBarControl = settings.sideBar[control];
                                 sideBarControl.name = control;
-                                sideBarControl = Ember.Object.create(sideBarControl);
                             }
                         }
                     }
