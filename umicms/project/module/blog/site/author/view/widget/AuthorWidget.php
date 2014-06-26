@@ -16,7 +16,7 @@ use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogAuthor;
 
 /**
- * Виджет вывода авторов.
+ * Виджет вывода информации об авторе.
  */
 class AuthorWidget extends BaseCmsWidget
 {

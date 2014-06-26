@@ -1,13 +1,13 @@
 <?php
 /**
- * @var umicms\project\module\blog\api\object\BlogCategory $page
+ * @var umicms\project\module\blog\model\object\BlogCategory $page
  */
 ?>
 
 <?=$this->render('breadcrumbs.phtml', $scope) ?>
 
 <h1><?= $page->displayName ?></h1>
-<?= $this->widget('blog.post.addPostLink', ['blogCategory' => $page, 'template' => 'addPostLink']); ?>
+<?= $this->widget('blog.post.add.addLink', ['blogCategory' => $page, 'template' => 'addPostLink']); ?>
 <?= $page->contents ?>
 
 <?= $this->widget('blog.category.list', ['parentCategory' => $page, 'template' => 'list']); ?>
