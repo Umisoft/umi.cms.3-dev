@@ -15,7 +15,8 @@ return [
         'Reject' => 'Reject',
 
         'role:moderator:displayName' => 'Moderating',
-        'role:viewer:displayName' => 'Viewer comments'
+        'role:viewer:displayName' => 'Viewer comments',
+        'role:addExecutor:displayName' => 'Сommentation'
     ],
 
     'ru-RU' => [
@@ -23,7 +24,8 @@ return [
         'Reject' => 'Отклонить',
 
         'role:moderator:displayName' => 'Модерирование',
-        'role:viewer:displayName' => 'Просмотр комментариев'
+        'role:viewer:displayName' => 'Просмотр комментариев',
+        'role:addExecutor:displayName' => 'Комментирование'
     ]
 
 ];

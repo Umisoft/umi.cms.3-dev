@@ -14,12 +14,16 @@ return [
         'role:author:displayName' => 'Management rejected posts',
         'role:moderator:displayName' => 'Moderating',
         'role:viewer:displayName' => 'View list posts rejected',
+        'role:editExecutor:displayName' => 'Edit rejected post',
+        'role:viewExecutor:displayName' => 'Viewer rejected post',
     ],
 
     'ru-RU' => [
         'role:author:displayName' => 'Управление отклонёнными постами',
         'role:moderator:displayName' => 'Модерирование',
         'role:viewer:displayName' => 'Просмотр списка отклонённых постов',
+        'role:editExecutor:displayName' => 'Редактирование отклонённого поста',
+        'role:viewExecutor:displayName' => 'Просмотр отклонённого поста',
     ]
 
 ];

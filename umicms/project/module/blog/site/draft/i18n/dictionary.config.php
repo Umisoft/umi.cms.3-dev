@@ -15,6 +15,8 @@ return [
         'role:publisher:displayName' => 'Publish posts without moderated',
         'role:moderator:displayName' => 'Moderating',
         'role:viewer:displayName' => 'Viewer list drafts',
+        'role:editExecutor:displayName' => 'Edit draft',
+        'role:viewExecutor:displayName' => 'Viewer draft'
     ],
 
     'ru-RU' => [
@@ -22,6 +24,8 @@ return [
         'role:publisher:displayName' => 'Публикация постов без премодерации',
         'role:moderator:displayName' => 'Модерирование',
         'role:viewer:displayName' => 'Просмотр списка черновиков',
+        'role:editExecutor:displayName' => 'Редактирование черновика',
+        'role:viewExecutor:displayName' => 'Просмотр черновика'
     ]
 
 ];

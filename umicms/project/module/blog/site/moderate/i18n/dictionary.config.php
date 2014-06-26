@@ -14,12 +14,17 @@ return [
         'role:author:displayName' => 'Manage own posts pending moderated',
         'role:moderator:displayName' => 'Moderating',
         'role:viewer:displayName' => 'View own posts awaiting moderation',
+        'role:ownExecutor:displayName' => 'Own posts',
+        'role:allExecutor:displayName' => 'All posts',
     ],
 
     'ru-RU' => [
         'role:author:displayName' => 'Управление своими постами ожидающими премодерацию',
         'role:moderator:displayName' => 'Модерирование',
         'role:viewer:displayName' => 'Просмотр своих постов ожидающих модерацию',
+        'role:editExecutor:displayName' => 'Редактирование поста',
+        'role:ownExecutor:displayName' => 'Собственные посты',
+        'role:allExecutor:displayName' => 'Все посты',
     ]
 
 ];

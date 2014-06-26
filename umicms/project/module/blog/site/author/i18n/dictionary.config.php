@@ -13,11 +13,15 @@ return [
     'en-US' => [
         'role:rssViewer:displayName' => 'Viewer RSS-feed',
         'role:viewer:displayName' => 'Viewer list authors',
+        'role:profileExecutor:displayName' => 'Edit profile',
+        'role:viewExecutor:displayName' => 'Viewer profile',
     ],
 
     'ru-RU' => [
         'role:rssViewer:displayName' => 'Просмотр RSS-лент',
         'role:viewer:displayName' => 'Просмотр списка авторов',
+        'role:profileExecutor:displayName' => 'Редактирование профиля',
+        'role:viewExecutor:displayName' => 'Просмотр профиля',
     ]
 
 ];
