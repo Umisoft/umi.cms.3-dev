@@ -20,6 +20,15 @@ define([], function(){
             return deserialize;
         };
 
+        UMI.Utils.objectsMerge = function(objectBase, objectProperty){
+            Ember.assert('Некорректный тип аргументов. Метод objectsMerge ожидает аргументы с типом "object"', Ember.typeOf(objectBase) === 'object' && Ember.typeOf(objectProperty) === 'object');
+            for(var key in objectProperty){
+                if(objectProperty.hasOwnProperty(key)){
+                    objectBase[key] = objectProperty[key];
+                }
+            }
+        };
+
         /**
          * Local Storage
          */
