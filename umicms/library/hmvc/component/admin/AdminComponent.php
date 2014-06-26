@@ -61,14 +61,15 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
      */
     public function getQueryActions()
     {
-        $actions = [];
+        $result = [];
         if (isset($this->options[self::OPTION_QUERY_ACTIONS])) {
-            foreach ($this->options[self::OPTION_QUERY_ACTIONS] as $actionName => $params) {
-                $actions[$actionName] = $this->createQueryAction($actionName, $params);
+            $actions = $this->configToArray($this->options[self::OPTION_QUERY_ACTIONS], true);
+            foreach ($actions as $actionName => $params) {
+                $result[$actionName] = $this->createQueryAction($actionName, $params);
             }
         }
 
-        return $actions;
+        return $result;
     }
 
     /**
@@ -77,15 +78,16 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
      */
     public function getModifyActions()
     {
-        $actions = [];
+        $result = [];
 
         if (isset($this->options[self::OPTION_MODIFY_ACTIONS])) {
-            foreach ($this->options[self::OPTION_MODIFY_ACTIONS] as $actionName => $params) {
-                $actions[$actionName] = $this->createModifyAction($actionName, $params);
+            $actions = $this->configToArray($this->options[self::OPTION_MODIFY_ACTIONS], true);
+            foreach ($actions as $actionName => $params) {
+                $result[$actionName] = $this->createModifyAction($actionName, $params);
             }
         }
 
-        return $actions;
+        return $result;
     }
 
     /**
