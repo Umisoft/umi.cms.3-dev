@@ -14,14 +14,14 @@ return [
         'role:author:displayName' => 'Publish posts with moderated',
         'role:publisher:displayName' => 'Publish posts without moderated',
         'role:moderator:displayName' => 'Moderating',
-        'role:viewer:displayName' => 'Viewer draft',
+        'role:viewer:displayName' => 'Viewer list drafts',
     ],
 
     'ru-RU' => [
         'role:author:displayName' => 'Публикация постов с премодерацией',
         'role:publisher:displayName' => 'Публикация постов без премодерации',
         'role:moderator:displayName' => 'Модерирование',
-        'role:viewer:displayName' => 'Просмотр черновиков',
+        'role:viewer:displayName' => 'Просмотр списка черновиков',
     ]
 
 ];

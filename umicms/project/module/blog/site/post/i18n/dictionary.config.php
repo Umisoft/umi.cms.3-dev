@@ -17,9 +17,12 @@ return [
         'Revert to draft' => 'Revert to draft',
 
         'role:rssViewer:displayName' => 'Viewer RSS-feed',
-        'role:viewer:displayName' => 'Viewer posts',
-        'role:author:displayName' => 'Create posts',
+        'role:viewer:displayName' => 'Viewer list posts',
+        'role:author:displayName' => 'Manage published a post',
         'role:moderator:displayName' => 'Moderating',
+        'role:addExecutor:displayName' => 'Create post',
+        'role:editExecutor:displayName' => 'Edit post',
+        'role:viewExecutor:displayName' => 'Viewer post',
     ],
 
     'ru-RU' => [
@@ -29,9 +32,12 @@ return [
         'Revert to draft' => 'В черновики',
 
         'role:rssViewer:displayName' => 'Просмотр RSS-лент',
-        'role:viewer:displayName' => 'Просмотр постов',
-        'role:author:displayName' => 'Создание постов',
+        'role:viewer:displayName' => 'Просмотр списка постов',
+        'role:author:displayName' => 'Управление опубликованными постами',
         'role:moderator:displayName' => 'Модерирование',
+        'role:addExecutor:displayName' => 'Создание поста',
+        'role:editExecutor:displayName' => 'Редактирование поста',
+        'role:viewExecutor:displayName' => 'Просмотр поста',
     ]
 
 ];

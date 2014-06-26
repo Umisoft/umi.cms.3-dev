@@ -14,16 +14,16 @@ return [
         'Publish' => 'Publish',
         'Reject' => 'Reject',
 
-        'role:moderator:displayName' => 'Moderating',
-        'role:viewer:displayName' => 'Viewer comments'
+        'role:commentator:displayName' => 'Comments with moderation',
+        'role:commentatorPremoderation:displayName' => 'Comments without moderation'
     ],
 
     'ru-RU' => [
         'Publish' => 'Опубликовать',
         'Reject' => 'Отклонить',
 
-        'role:moderator:displayName' => 'Модерирование',
-        'role:viewer:displayName' => 'Просмотр комментариев'
+        'role:commentator:displayName' => 'Комментирование без премодерации',
+        'role:commentatorPremoderation:displayName' => 'Комментирование c премодерацией'
     ]
 
 ];

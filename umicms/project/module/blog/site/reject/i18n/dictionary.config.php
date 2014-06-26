@@ -13,13 +13,13 @@ return [
     'en-US' => [
         'role:author:displayName' => 'Management rejected posts',
         'role:moderator:displayName' => 'Moderating',
-        'role:viewer:displayName' => 'View posts rejected',
+        'role:viewer:displayName' => 'View list posts rejected',
     ],
 
     'ru-RU' => [
         'role:author:displayName' => 'Управление отклонёнными постами',
         'role:moderator:displayName' => 'Модерирование',
-        'role:viewer:displayName' => 'Просмотр отклонённых постов',
+        'role:viewer:displayName' => 'Просмотр списка отклонённых постов',
     ]
 
 ];
