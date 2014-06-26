@@ -16,9 +16,15 @@
         <i {{bind-attr class=":icon :umi-tree-type-icon :icon-document root::move"}}></i>
     {{/if}}
 
-    {{#link-to "action" id "editForm" class="tree-item-link"}}
-        {{view.savedDisplayName}}
-    {{/link-to}}
+    {{#if view.editLink}}
+        <a {{bind-attr href=view.editLink}} class="tree-item-link">
+            {{view.savedDisplayName}}
+        </a>
+    {{else}}
+        <span class="tree-item-link">
+            {{view.savedDisplayName}}
+        </span>
+    {{/if}}
 
     {{#if controllers.treeControl.contextToolbar}}
         {{#view "treeControlContextToolbar" elements=controllers.treeControl.contextToolbar}}
