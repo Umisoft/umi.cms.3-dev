@@ -1,13 +1,13 @@
-{{#if toolbar}}
+{{#if control.toolbar}}
     <div class="s-full-height-before">
-        {{view 'toolbar' toolbar=toolbar}}
+        {{view 'toolbar' toolbar=control.toolbar}}
     </div>
 {{/if}}
 
 <div class="s-full-height">
-    {{#if hasFieldset}}
-        {{#view "magellan" elements=model.viewSettings.elements}}
-            {{#each formElement in model.viewSettings.elements itemViewClass="view.elementView"}}
+    {{#if view.hasFieldset}}
+        {{#view "magellan" elements=control.meta.elements}}
+            {{#each formElement in view.elements itemViewClass="view.elementView"}}
                 {{#if view.isFieldset}}
                     {{#view view.parentView.buttonView model=formElement}}{{formElement.label}}{{/view}}
                 {{/if}}
@@ -17,7 +17,7 @@
 
     <div class="row s-full-height collapse">
         <div class="columns small-12 magellan-content">
-            {{#each formElements in model.viewSettings.elements itemViewClass="view.elementView"}}
+            {{#each formElements in control.meta.elements itemViewClass="view.elementView"}}
                 {{#if view.isFieldset}}
                     <fieldset id="fieldset-{{unbound formElements.id}}">
                         <legend {{action 'expand' target="view"}} class="s-unselectable">
@@ -31,13 +31,13 @@
                         {{/if}}
                     </fieldset>
                 {{else}}
-                    {{view "fieldFormControl" objectBinding="model.object" metaBinding="this"}}
+                    {{view "fieldFormControl" objectBinding="object" metaBinding="formElements"}}
                 {{/if}}
             {{/each}}
         </div>
     </div>
 </div>
 
-{{#if submitToolbar}}
-    {{view 'submitToolbar' elements=submitToolbar}}
+{{#if control.submitToolbar}}
+    {{view 'submitToolbar' elements=control.submitToolbar}}
 {{/if}}
