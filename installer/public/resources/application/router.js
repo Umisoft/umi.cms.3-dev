@@ -281,8 +281,9 @@ define([], function(){
                     try{
                         var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
                         var switchActivitySource = this.controllerFor('component').get('settings').actions[(object.get('active') ? 'de' : '') + 'activate'].source;
+                        switchActivitySource = UMI.Utils.replacePlaceholder(object, switchActivitySource);
                         $.ajax({
-                            url: switchActivitySource + '?id=' + object.get('id'),
+                            url: switchActivitySource,
                             type: "POST",
                             data: serializeObject,
                             contentType: 'application/json; charset=UTF-8'
@@ -688,13 +689,14 @@ define([], function(){
                 var contextModel;
                 var componentController;
                 var collectionName;
-                var actions;
-                var action;
-                var data;
+                var contentControls;
+                var contentControl;
+                var routeData;
                 var actionParams = {};
                 var createdParams;
                 var deferred;
                 var actionResource;
+                var actionResourceName;
 
                 try{
                     deferred = Ember.RSVP.defer();
@@ -702,85 +704,99 @@ define([], function(){
                     contextModel = this.modelFor('context');
                     componentController = this.controllerFor('component');
                     collectionName = componentController.get('collectionName');
-                    actions = componentController.get('contentControls');
-                    action = actions.findBy('name', actionName);
-                    data = {
+                    contentControls = componentController.get('contentControls');
+                    contentControl = contentControls.findBy('name', actionName);
+                    routeData = {
                         'object': contextModel,
-                        'action': action
+                        'control': contentControl
                     };
-                    actionResource = Ember.get(action, 'params.action');
-                    actionResource = Ember.get(componentController, 'settings.actions.' + actionResource + '.source');
 
-                    if(actionResource || 1){//TODO: НЕ у всех контролов сейчас есть actionResource
-                        // Временное решение для таблицы
+                    if(Ember.get(contentControl, 'isStatic')){
+                        // Понадобится когда не будет необходимости менять метаданные контрола в зависимости от контекста
+                        deferred.resolve(routeData);
+                    } else{
+                        // Временно для табличного контрола
                         if(actionName === 'children' || actionName === 'filter'){
                             Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
-                                data.viewSettings = results.settings;
-                                deferred.resolve(data);
+                                routeData.control = {
+                                    name: actionName,
+                                    meta: results.getFilter
+                                };
+                                deferred.resolve(routeData);
                             });
                         } else{
-                            actionResource = UMI.Utils.replacePlaceholder(data.object, actionResource);
+                            actionResourceName = Ember.get(contentControl, 'params.action');
+                            actionResource = Ember.get(componentController, 'settings.actions.' + actionResourceName + '.source');
 
-                            if(actionName === 'createForm'){
-                                createdParams = contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
-                                if(transition.queryParams.typeName){
-                                    createdParams.type = transition.queryParams.typeName;
+                            if(actionResource){
+                                actionResource = UMI.Utils.replacePlaceholder(routeData.object, actionResource);
+
+                                if(actionName === 'createForm'){
+                                    createdParams = contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
+                                    if(transition.queryParams.typeName){
+                                        createdParams.type = transition.queryParams.typeName;
+                                    }
+                                    routeData.createObject = self.store.createRecord(collectionName, createdParams);
+                                    if(transition.queryParams.typeName){
+                                        actionParams.type = transition.queryParams.typeName;
+                                    } else{
+                                        throw new Error("Тип создаваемого объекта не был указан.");
+                                    }
                                 }
-                                data.createObject = self.store.createRecord(collectionName, createdParams);
-                                if(transition.queryParams.typeName){
-                                    actionParams.type = transition.queryParams.typeName;
-                                } else{
-                                    throw new Error("Тип создаваемого объекта не был указан.");
-                                }
+
+                                Ember.$.get(actionResource).then(function(results){
+                                    var dynamicControl;
+                                    var dynamicControlName;
+                                    if(actionName === 'dynamic'){
+                                        dynamicControl = Ember.get(results, 'result') || {};
+                                        for(var key in dynamicControl){
+                                            if(dynamicControl.hasOwnProperty(key)){
+                                                dynamicControlName = key;
+                                            }
+                                        }
+                                        dynamicControl = dynamicControl[dynamicControlName] || {};
+                                        dynamicControl.name = dynamicControlName;
+
+                                        UMI.Utils.objectsMerge(routeData.control, dynamicControl);
+                                    } else{
+                                        Ember.set(routeData.control, 'meta', Ember.get(results, 'result.' + actionResourceName));
+                                    }
+                                    deferred.resolve(routeData);
+                                }/*, function(error){
+                                 Сообщение ошибки в таких случаях возникает на уровне ajaxSetup, получается две одинаковых. Нужно научить ajax наследованию
+                                 deferred.reject(transition.send('backgroundError', error));
+                                 }*/);
+                            } else{
+                                throw new Error('Дествие ' + Ember.get(contentControl, 'name') + ' для данного котекста недоступно.');
                             }
-
-                            Ember.$.get(actionResource).then(function(results){
-                                data.viewSettings = results.result['get' + Ember.String.capitalize(actionName)];
-                                deferred.resolve(data);
-                            }, function(error){
-                                //transition.send('templateLogs', error, 'component');
-                            });
                         }
-                    } else{
-                        throw new Error('Дествие ' + Ember.get(action, 'name') + ' для данного котекста недоступно.');
                     }
                 } catch(error){
-                    console.log(error.stack);
+                    deferred.reject(transition.send('backgroundError', error));
                 } finally{
                     return deferred.promise;
                 }
             },
 
-            serialize: function(data){
-                if(Ember.get(data, 'action')){
-                    return {action: Ember.get(data, 'action.name')};
+            serialize: function(routeData){
+                if(Ember.get(routeData, 'control')){
+                    return {action: Ember.get(routeData, 'control.name')};
                 }
             },
 
-            renderTemplate: function(controller, model){
+            renderTemplate: function(controller, routeData){
                 try{
-                    var templateType = Ember.get(model, 'action.name');
+                    var templateType = Ember.get(routeData, 'control.name');
                     this.render(templateType, {
                         controller: controller
                     });
                 } catch(error){
-                    var errorObject = {
-                        'statusText': error.name,
-                        'message': error.message,
-                        'stack': error.stack
-                    };
                     this.send('templateLogs', errorObject, 'component');
                 }
             },
 
             setupController: function(controller, model){
                 this._super(controller, model);
-                var context = this.modelFor('context');
-                var actions = this.controllerFor('component').get('contentControls');
-                var action = actions.findBy('name', model.action.get('name'));
-                if(!action){
-                    return this.transitionTo('context', context.get('id'));
-                }
                 if(model.createObject){
                     Ember.set(model, 'object', model.createObject);
                     Ember.set(model, 'createObject', null);
