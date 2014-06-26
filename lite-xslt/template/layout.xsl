@@ -15,22 +15,21 @@
             doctype-system="about:legacy-compat"
             />
 
-    <xsl:template match="/">
+    <xsl:template match="/layout">
         <html>
             <head>
                 <meta charset="utf-8"/>
 
-                <title><xsl:value-of select="result/title" /></title>
-                <meta name="description" content="{result/description}" />
-                <meta name="keywords" content="{result/keywords}" />
+                <title><xsl:value-of select="title" /></title>
+                <meta name="description" content="{description}" />
+                <meta name="keywords" content="{keywords}" />
 
             </head>
             <body>
 
+                 <xsl:apply-templates select="document('widget://structure.menu.auto')/result" />
 
-                <!-- xsl:apply-templates select="document('widget://structure.menu.auto')/result" /-->
-
-                <xsl:apply-templates select="page/contents/page" />
+                <xsl:apply-templates select="contents/page" />
             </body>
         </html>
 
@@ -40,7 +39,7 @@
         <xsl:value-of select="property[@name = 'contents']/value" disable-output-escaping="yes" />
     </xsl:template>
 
-    <!-- xsl:template match="result/contents[@widget = 'structure.menu.auto']">
+    <xsl:template match="result/contents[@widget = 'structure.menu.auto']">
         <ul>
             <xsl:apply-templates select="menu/item" />
         </ul>
@@ -50,6 +49,6 @@
         <li>
             <a href="#"><xsl:value-of select="page/@displayName" /></a>
         </li>
-    </xsl:template -->
+    </xsl:template>
 
 </xsl:stylesheet>

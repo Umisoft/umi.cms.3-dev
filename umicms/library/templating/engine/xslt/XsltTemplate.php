@@ -11,11 +11,8 @@
 namespace umicms\templating\engine\xslt;
 
 use DOMDocument;
-use DOMNode;
-use DOMXPath;
 use umi\templating\exception\RuntimeException;
 use umicms\exception\LibXMLException;
-use umicms\project\site\SiteApplication;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\TSerializationAware;
 use XSLTProcessor;
@@ -42,30 +39,11 @@ class XsltTemplate implements ISerializationAware
     }
 
     /**
-     * Вызывает виджет через стрим.
-     * @param string $widgetName имя виджета
-     * @param string $paramString параметры для вызова виджета
-     * @return string результат работы виджета
-     */
-    public static function callWidget($widgetName, $paramString = '')
-    {
-        $uri = SiteApplication::WIDGET_PROTOCOL . '://' . $widgetName;
-        if ($paramString) {
-            $uri .= '?' . $paramString;
-        }
-        $result = file_get_contents($uri);
-
-        $dom = new DOMDocument('1.0', 'utf8');
-        $dom->loadXML($result);
-
-        return $dom;
-    }
-
-    /**
      * Запускает XSLT-шаблонизацию.
      * @param string $templateName имя XSL-шаблона
      * @param string $xmlData данные в XML
-     * @throws \umi\templating\exception\RuntimeException
+     * @throws RuntimeException
+     * @throws LibXMLException
      * @return string
      */
     public function render($templateName, $xmlData)
@@ -80,8 +58,6 @@ class XsltTemplate implements ISerializationAware
         }
 
         $template = $this->createDomDocument(file_get_contents($templateFilePath));
-        $this->prepareTemplate($template);
-        $template = $this->createDomDocument($template->saveXML());
 
         $data = $this->createDomDocument($xmlData);
 
@@ -89,31 +65,15 @@ class XsltTemplate implements ISerializationAware
         $xslt->registerPHPFunctions();
         $xslt->importStylesheet($template);
 
-        $result = (string) $xslt->transformToXML($data);
+        libxml_clear_errors();
+        $result = (string) @$xslt->transformToXML($data);
+        if ($error = libxml_get_last_error()) {
+            throw new LibXMLException($error);
+        }
 
         return $result;
     }
 
-    protected function prepareTemplate(DOMDocument $template)
-    {
-        $xpath = new DOMXPath($template);
-
-        /**
-         * @var DOMNode $widgetNode
-         */
-        foreach ($xpath->query('//umi:widget') as $widgetNode) {
-            if ($widgetName = $widgetNode->attributes->getNamedItem('name')) {
-                $functionNode = $template->createElement('xsl:apply-templates');
-                $function = 'php:function(\'' .__CLASS__ . '::callWidget\'';
-                $function .= ', \'' . $widgetName->nodeValue . '\')/result';
-                $functionNode->setAttribute('select', $function);
-
-                $widgetNode->parentNode->replaceChild($functionNode, $widgetNode);
-            }
-
-        }
-
-    }
     /**
      * Создает DOMDocument из xml-строки
      * @param string $xmlString
@@ -126,10 +86,9 @@ class XsltTemplate implements ISerializationAware
         $document->substituteEntities = true;
         $document->formatOutput = true;
 
+        libxml_clear_errors();
         @$document->loadXML($xmlString);
-
         if ($error = libxml_get_last_error()) {
-            libxml_clear_errors();
             throw new LibXMLException($error);
         }
 

@@ -197,15 +197,21 @@ class SiteApplication extends SiteComponent
 
         if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
 
-            if ($response->headers->has('content-type') && $response->headers->get('content-type') != 'text/html; charset=UTF-8') {
+            if ($response->headers->has('content-type')) {
                 throw new HttpException(Response::HTTP_NOT_FOUND, $this->translate(
                     'Cannot serialize response. Headers had been already set.'
                 ));
             }
 
+             if ($response->getIsCompleted())  {
+                 $variables = ['result' => $response->getContent()];
+             } else {
+                 $variables = ['layout' => $response->getContent()];
+             }
+
             $result = $this->serializeResult(
                 $requestFormat,
-                ['layout' => $response->getContent()]
+                $variables
             );
             $response->setContent($result);
 
@@ -431,6 +437,7 @@ class SiteApplication extends SiteComponent
         $streams = $this->getToolkit()->getService('umi\stream\IStreamService');
         $streams->registerStream(
             self::WIDGET_PROTOCOL, function($uri) use ($dispatcher) {
+
                 $widgetInfo = parse_url($uri);
                 $widgetParams = [];
                 if (isset($widgetInfo['query'])) {
@@ -438,8 +445,9 @@ class SiteApplication extends SiteComponent
                 }
 
                 return $this->serializeResult(ISerializerFactory::TYPE_XML, [
-                        'widget' => $dispatcher->executeWidgetByPath($widgetInfo['host'], $widgetParams)
-                    ]);
+                        'result' => $dispatcher->executeWidgetByPath($widgetInfo['host'], $widgetParams)
+                    ]
+                );
             }
         );
     }

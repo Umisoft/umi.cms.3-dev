@@ -65,18 +65,6 @@ abstract class BaseCmsController extends BaseController
     }
 
     /**
-     * Конфигурирует опции сериализации результата работы контроллера в XML или JSON.
-     * Может быть переопределен в конкретном контроллере для задания переменных,
-     * которые будут преобразованы в атрибуты xml, а так же переменные, которые будут проигнорированы
-     * в xml или json.
-     * @param CmsView $view результат работы виджета
-     */
-    protected function configureSerializationOptions(CmsView $view)
-    {
-
-    }
-
-    /**
      * Возвращает значение параметра из GET-параметров запроса.
      * @param string $name имя параметра
      * @throws HttpException если значение не найдено
@@ -118,11 +106,7 @@ abstract class BaseCmsController extends BaseController
      */
     protected function createView($templateName, array $variables = [])
     {
-        $view = new CmsView($this, $this->getContext(), $templateName, $variables);
-
-        $this->configureSerializationOptions($view);
-
-        return $view;
+        return new CmsView($this, $this->getContext(), $templateName, $variables);
     }
 
     /**

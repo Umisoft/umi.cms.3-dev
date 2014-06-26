@@ -16,6 +16,7 @@ use umi\pagination\IPaginator;
 use umi\pagination\TPaginationAware;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\OutOfBoundsException;
+use umicms\orm\object\ICmsObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\orm\selector\TSelectorConfigurator;
 use umicms\templating\helper\PaginationHelper;
@@ -61,6 +62,11 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
      *
      */
     public $pagination = [];
+    /**
+     * @var bool $fullyLoad признак необходимости загружать все свойства объектов списка.
+     * Список полей для загрузки, занный опциями, при значении true игнорируется.
+     */
+    public $fullyLoad;
 
     /**
      * Возвращает выборку для постраничной навигации.
@@ -100,8 +106,12 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
      */
     protected function applySelectorConditions(CmsSelector $selector)
     {
-        if (isset($this->options['fields'])) {
-            $this->applySelectorSelectedFields($selector, $this->options['fields']);
+        if (!$this->fullyLoad) {
+            $fields = ICmsObject::FIELD_DISPLAY_NAME;
+            if (isset($this->options['fields'])) {
+                $fields = $fields . ',' . $this->options['fields'];
+            }
+            $this->applySelectorSelectedFields($selector, $fields);
         }
 
         if (isset($this->options['with']) && is_array($this->options['with'])) {

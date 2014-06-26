@@ -87,7 +87,7 @@ class XsltTemplateEngine implements ITemplateEngine, ISerializationAware
      * @return string
      */
     protected function serializeVariablesToXml(array $variables) {
-        $result = ['result' => $variables];
+        $result = ['layout' => $variables];
 
         $serializer = $this->getSerializer(ISerializerFactory::TYPE_XML, $result);
         $serializer->init();
