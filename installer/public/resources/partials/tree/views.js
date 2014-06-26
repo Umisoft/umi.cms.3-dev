@@ -219,6 +219,10 @@ define(['App', 'toolbar'], function(UMI){
             classNameBindings: ['controller.model.isDragged:hide', 'controller.model.isDeleted:hide'],
             attributeBindings: ['dataId:data-id'],
 
+            editLink: function(){
+                this.get('meta.editLink');
+            }.property('controller.model'),
+
             dataId: function(){
                 return this.get('controller.model.id');
             }.property('controller.model'),

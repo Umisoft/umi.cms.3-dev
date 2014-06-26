@@ -7,8 +7,7 @@ define(['App'], function(UMI){
             collectionNameBinding: 'controllers.component.dataSource.name',
             dictionaryNamespace: 'tableControl',
             localDictionary: function(){
-                var contentControls = this.get('controllers.component.contentControls') || [];
-                var filter = contentControls.findBy('name', 'filter') || {};
+                var filter = this.get('control') || {};
                 return filter.i18n;
             }.property(),
             /**
@@ -137,8 +136,8 @@ define(['App'], function(UMI){
                 // Вычисляем фильтр в зависимости от типа коллекции
                 var collectionName = this.get('collectionName');
                 var metaForCollection = this.get('store').metadataFor(collectionName);
-                var contextFilter = {};// TODO: Убрать в условии значение filter
-                if(metaForCollection && metaForCollection.collectionType === 'hierarchic' && this.get('container').lookup('route:action').get('context.action').name !== 'filter'){
+                var contextFilter = {};
+                if(metaForCollection && metaForCollection.collectionType === 'hierarchic' && Ember.get(this.get('container').lookup('route:action'), 'context.control.name') === 'children'){
                     contextFilter.parent = this.get('model.object.id');
                 }
                 // Сбрасываем параметры запроса, не вызывая обсервер query
@@ -174,10 +173,9 @@ define(['App'], function(UMI){
              * return Array
              */
             contextToolbar: function(){
-                var contentControls = this.get('controllers.component.contentControls') || [];
-                var filter = contentControls.findBy('name', 'filter') || {};
+                var filter = this.get('control') || {};
                 return filter.contextToolbar;
-            }.property('controllers.component.contentControls'),
+            }.property('control'),
 
             /**
              * Возвращает toolbar
@@ -185,10 +183,8 @@ define(['App'], function(UMI){
              * return Array
              */
             toolbar: function(){
-                var toolbar = this.get('controllers.component.contentControls') || [];
-                toolbar = toolbar.findBy('name', 'filter') || {};
-                toolbar = toolbar.toolbar || [];
-                return toolbar;
+                var filter = this.get('control') || {};
+                return filter.toolbar || [];
             }.property('model'),
 
             actions: {

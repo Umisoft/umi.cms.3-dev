@@ -32,6 +32,15 @@ define(
                 submit: function(){
                     return false;
                 },
+                /**
+                 * Проверяет наличие fieldset
+                 * @method hasFieldset
+                 * @return bool
+                 */
+                hasFieldset: function(){
+                    return this.get('context.control.meta.elements').isAny('type', 'fieldset');
+                }.property('context.control.meta'),
+
                 elementView: Ember.View.extend({
                     classNameBindings: ['isField'],
                     isFieldset: function(){
@@ -162,16 +171,7 @@ define(
                 }.property()
             });
 
-            UMI.FormBaseController = Ember.ObjectController.extend(UMI.FormControllerMixin, {
-                /**
-                 * Проверяет наличие fieldset
-                 * @method hasFieldset
-                 * @return bool
-                 */
-                hasFieldset: function(){
-                    return this.get('model.elements').isAny('type', 'fieldset');
-                }.property('model')
-            });
+            UMI.FormBaseController = Ember.ObjectController.extend(UMI.FormControllerMixin, {});
 
             UMI.FormBaseView = Ember.View.extend(UMI.FormViewMixin, {
                 /**
@@ -191,8 +191,8 @@ define(
                 attributeBindings: ['action'],
 
                 action: function(){
-                    return this.get('context.model.attributes.action');
-                }.property('context.model'),
+                    return this.get('context.control.meta.attributes.action');
+                }.property('context.control.meta.attributes.action'),
 
                 actions: {
                     submit: function(handler){

@@ -25,14 +25,16 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
-use umicms\model\manager\IModelManagerAware;
-use umicms\model\manager\TModelManagerAware;
-use umicms\module\IModuleAware;
-use umicms\module\TModuleAware;
+use umicms\exception\InvalidObjectsException;
+use umicms\exception\RuntimeException;
+use umicms\orm\collection\behaviour\IRecoverableCollection;
+use umicms\orm\object\behaviour\IRecoverableObject;
+use umicms\orm\object\ICmsObject;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\news\model\collection\NewsRssImportScenarioCollection;
 use umicms\project\module\search\model\SearchApi;
+use umicms\project\module\search\model\SearchIndexApi;
 use umicms\project\module\search\model\SearchModule;
 use umicms\project\module\service\model\collection\BackupCollection;
 use umicms\project\module\structure\model\object\InfoBlock;
@@ -45,23 +47,26 @@ use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\object\Guest;
 use umicms\project\module\users\model\object\Supervisor;
 use umicms\project\module\users\model\object\UserGroup;
+use umicms\project\module\users\model\UsersModule;
 
 /**
  * Class InstallController
  */
-class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware, IObjectManagerAware, IModuleAware, IModelManagerAware
+class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware, IObjectManagerAware
 {
 
     use TCollectionManagerAware;
     use TObjectPersisterAware;
     use TObjectManagerAware;
-    use TModuleAware;
-    use TModelManagerAware;
 
     /**
      * @var IDbCluster $dbCluster
      */
     protected $dbCluster;
+    /**
+     * @var UsersModule $usersModule
+     */
+    protected $usersModule;
     /**
      * @var string $testLayout
      */
@@ -70,6 +75,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      * @var SearchApi $searchApi
      */
     protected $backupRepository;
+    /**
+     * @var SearchIndexApi $searchIndexApi
+     */
     private $searchIndexApi;
     /**
      * @var AuthorizedUser $userSv
@@ -80,9 +88,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     private $user;
 
-    public function __construct(IDbCluster $dbCluster, SearchModule $searchModule)
+    public function __construct(IDbCluster $dbCluster, SearchModule $searchModule, UsersModule $usersModule)
     {
         $this->dbCluster = $dbCluster;
+        $this->usersModule = $usersModule;
         $this->searchIndexApi = $searchModule->getSearchApi();
     }
 
@@ -101,7 +110,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             $this->installGratitude();
             $this->installBlog();
 
-            $this->getObjectPersister()->commit();
+            $this->commit();
             $this->getObjectManager()->unloadObjects();
 
             $this->installSearch();
@@ -2087,9 +2096,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 UNIQUE KEY `search_index_ref_guid` (`ref_guid`),
                 KEY `search_index_type` (`type`),
                 KEY `search_index_collection_id` (`collection_id`),
-                FULLTEXT(`contents`),
-                CONSTRAINT `FK_search_index_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                CONSTRAINT `FK_search_index_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+                FULLTEXT(`contents`)
             ) ENGINE=MyISAM DEFAULT CHARSET=utf8
             "
         );
@@ -2101,7 +2108,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->searchIndexApi->buildIndex('blogCategory');
         $this->searchIndexApi->buildIndex('blogPost');
         $this->searchIndexApi->buildIndex('blogComment');
-        $this->getObjectPersister()->commit();
+        $this->commit();
     }
 
     private function installBackup()
@@ -2118,46 +2125,17 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 `collection_name` varchar(255) NOT NULL,
                 `owner_id` bigint(20) unsigned DEFAULT NULL,
                 `editor_id` bigint(20) unsigned DEFAULT NULL,
-                `date` datetime DEFAULT NULL,
-                `user` bigint(20) unsigned DEFAULT NULL,
+                `created` datetime DEFAULT NULL,
+                `updated` datetime DEFAULT NULL,
                 `data` longtext DEFAULT NULL,
 
                 PRIMARY KEY (`id`),
                 UNIQUE KEY `backup_guid` (`guid`),
-                CONSTRAINT `FK_search_index_user` FOREIGN KEY (`user`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                CONSTRAINT `FK_search_index_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                CONSTRAINT `FK_search_index_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-            ) ENGINE=MyISAM DEFAULT CHARSET=utf8
+                CONSTRAINT `FK_backup_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                CONSTRAINT `FK_backup_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
-
-        $structureCollection = $this->getCollectionManager()->getCollection('structure');
-
-        /**
-         * @var BackupCollection $backupCollection
-         */
-        $backupCollection = $this->getCollectionManager()->getCollection('serviceBackup');
-
-        $page = $structureCollection->get('d534fd83-0f12-4a0d-9853-583b9181a948');
-        $backupCollection->createBackup($page);
-        $page = $structureCollection->get('3d765c94-bb80-4e8f-b6d9-b66c3ea7a5a4');
-        $backupCollection->createBackup($page);
-        $page = $structureCollection->get('98751ebf-7f76-4edb-8210-c2c3305bd8a0');
-        $backupCollection->createBackup($page);
-
-        $newsCollection = $this->getCollectionManager()->getCollection('newsItem');
-        $news = $newsCollection->get('d6eb9ad1-667e-429d-a476-fa64c5eec115');
-        $backupCollection->createBackup($news);
-
-        $rubricCollection = $this->getCollectionManager()->getCollection('newsRubric');
-        $rubric = $rubricCollection->get('8650706f-04ca-49b6-a93d-966a42377a61');
-        $backupCollection->createBackup($rubric);
-
-        $subjectCollection = $this->getCollectionManager()->getCollection('newsSubject');
-        $subject = $subjectCollection->get('0d106acb-92a9-4145-a35a-86acd5c802c7');
-        $backupCollection->createBackup($subject);
-
-        $this->getObjectPersister()->commit();
     }
 
     protected function installTest()
@@ -2190,8 +2168,13 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 `file` varchar(255) DEFAULT NULL,
                 `image` varchar(255) DEFAULT NULL,
 
+                `owner_id` bigint(20) unsigned DEFAULT NULL,
+                `editor_id` bigint(20) unsigned DEFAULT NULL,
+                `created` datetime DEFAULT NULL,
+                `updated` datetime DEFAULT NULL,
+
                 PRIMARY KEY (`id`)
-            ) ENGINE=MyISAM DEFAULT CHARSET=utf8
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );
 
@@ -2199,6 +2182,51 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $testCollection->add()
             ->setValue('displayName', 'test 1');
+
+        $this->commit();
+    }
+
+    /**
+     * Записывает изменения всех объектов в БД (бизнес транзакция),
+     * запуская перед этим валидацию объектов.
+     * Если при сохранении какого-либо объекта возникли ошибки - все изменения
+     * автоматически откатываются
+     * @throws InvalidObjectsException если объекты не прошли валидацию
+     * @throws RuntimeException если транзакция не успешна
+     * @return self
+     */
+    protected function commit()
+    {
+        $currentUser = $this->usersModule->isAuthenticated() ? $this->usersModule->getCurrentUser() : $this->usersModule->getGuest();
+
+        $persister = $this->getObjectPersister();
+
+        /**
+         * @var ICmsObject|IRecoverableObject $object
+         */
+        foreach ($persister->getModifiedObjects() as $object) {
+            $collection = $object->getCollection();
+            if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
+                $collection->createBackup($object);
+            }
+        }
+        foreach ($persister->getNewObjects() as $object) {
+            $object->owner = $currentUser;
+            $object->setCreatedTime();
+        }
+        foreach ($persister->getModifiedObjects() as $object) {
+            $object->editor = $currentUser;
+            $object->setUpdatedTime();
+        }
+
+        $invalidObjects = $persister->getInvalidObjects();
+
+        if (count($invalidObjects)) {
+            throw new InvalidObjectsException(
+                $this->translate('Cannot persist objects. Objects are not valid.'),
+                $invalidObjects
+            );
+        }
 
         $this->getObjectPersister()->commit();
     }

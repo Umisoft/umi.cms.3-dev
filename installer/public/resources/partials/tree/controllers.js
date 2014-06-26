@@ -100,10 +100,8 @@ define(['App'], function(UMI){
             activeContextBinding: 'controllers.context.model',
 
             contextToolbar: function(){
-                var sideBarControl = this.get('controllers.component.sideBarControl');
-                if(sideBarControl && sideBarControl.get('contextToolbar')){
-                    return sideBarControl.get('contextToolbar');
-                }
+                var sideBarControl = this.get('controllers.component.sideBarControl') || {};
+                return Ember.get(sideBarControl, 'contextToolbar');
             }.property('controllers.component.sideBarControl.contextToolbar'),
 
             actions: {
