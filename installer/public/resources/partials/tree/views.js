@@ -220,7 +220,8 @@ define(['App', 'toolbar'], function(UMI){
             attributeBindings: ['dataId:data-id'],
 
             editLink: function(){
-                this.get('meta.editLink');
+                var link = this.get('controller.model.meta.editLink');
+                return link;
             }.property('controller.model'),
 
             dataId: function(){

@@ -17,13 +17,13 @@
     {{/if}}
 
     {{#if view.editLink}}
-        <a {{bind-attr href=view.editLink}} class="tree-item-link">
+        {{#link-to "action" id "editForm" class="tree-item-link"}}
             {{view.savedDisplayName}}
-        </a>
+        {{/link-to}}
     {{else}}
-        <span class="tree-item-link">
+        {{#link-to "context" id class="tree-item-link"}}
             {{view.savedDisplayName}}
-        </span>
+        {{/link-to}}
     {{/if}}
 
     {{#if controllers.treeControl.contextToolbar}}
