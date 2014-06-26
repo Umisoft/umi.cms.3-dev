@@ -74,7 +74,7 @@ class SettingsGroupComponentLayout extends AdminComponentLayout
      */
     protected function configureSelectedContextControls()
     {
-        $this->addSelectedContextControl('editForm', $this->createDynamicControl());
+        $this->addSelectedContextControl('dynamic', $this->createDynamicControl());
     }
 
     /**

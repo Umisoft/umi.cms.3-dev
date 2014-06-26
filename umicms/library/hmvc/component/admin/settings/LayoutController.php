@@ -27,12 +27,14 @@ class LayoutController extends BaseController
         $saveButton = new Button($this->getComponent()->translate('button:save'), $saveBehaviour);
 
         return $this->createViewResponse(
-            'editForm',
+            'simpleForm',
             [
-                'submitToolbar' => [
-                    $saveButton->build()
-                ],
-                'form' => $this->getConfigForm()->getView()
+                'simpleForm' => [
+                    'submitToolbar' => [
+                        $saveButton->build()
+                    ],
+                    'meta' => $this->getConfigForm()->getView()
+                ]
             ]
         );
     }
