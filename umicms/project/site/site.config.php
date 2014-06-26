@@ -20,10 +20,10 @@ return [
     SiteApplication::OPTION_SERIALIZERS => [
         ISerializerFactory::TYPE_XML => [
             'umi\orm\metadata\ObjectType' => 'umicms\serialization\xml\orm\ObjectTypeSerializer',
+            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\orm\FieldSerializer',
             'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\orm\CmsObjectSerializer',
             'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\orm\CmsObjectSerializer',
             'umi\orm\selector\Selector' => 'umicms\serialization\xml\orm\SelectorSerializer',
-            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\orm\FieldSerializer',
             'umicms\hmvc\view\CmsLayoutView' => 'umicms\serialization\xml\view\CmsLayoutViewSerializer',
             'umicms\hmvc\view\CmsView' => 'umicms\serialization\xml\view\CmsViewSerializer',
         ],
@@ -32,7 +32,8 @@ return [
             'umi\orm\metadata\field\BaseField' => 'umicms\serialization\json\orm\FieldSerializer',
             'umicms\orm\object\CmsObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
             'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
-            'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer'
+            'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer',
+            'umicms\hmvc\view\CmsView' => 'umicms\serialization\json\view\CmsViewSerializer'
         ]
     ],
 
