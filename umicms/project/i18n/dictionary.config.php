@@ -86,6 +86,13 @@ return [
 
     'project.site.blog.comment' => '{#lazy:~/project/module/blog/site/comment/i18n/dictionary.config.php}',
     'project.site.blog.post' => '{#lazy:~/project/module/blog/site/post/i18n/dictionary.config.php}',
+    'project.site.blog.draft' => '{#lazy:~/project/module/blog/site/draft/i18n/dictionary.config.php}',
+    'project.site.blog.moderate' => '{#lazy:~/project/module/blog/site/moderate/i18n/dictionary.config.php}',
+    'project.site.blog.reject' => '{#lazy:~/project/module/blog/site/reject/i18n/dictionary.config.php}',
+    'project.site.blog.category' => '{#lazy:~/project/module/blog/site/category/i18n/dictionary.config.php}',
+    'project.site.blog.author' => '{#lazy:~/project/module/blog/site/author/i18n/dictionary.config.php}',
+    'project.site.blog.author.profile' => '{#lazy:~/project/module/blog/site/author/profile/i18n/dictionary.config.php}',
+    'project.site.blog.author.view' => '{#lazy:~/project/module/blog/site/author/view/i18n/dictionary.config.php}',
 
     'collection' => [
 

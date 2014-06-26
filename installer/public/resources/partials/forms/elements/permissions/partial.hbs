@@ -12,7 +12,7 @@
         </div>
         {{#if role.component}}
             <div class="umi-permissions-component">
-                <div class="umi-permissions-component-label">{{role.component.path}}</div>
+                <div class="umi-permissions-component-label">{{role.component.label}}</div>
                 {{view "permissionsPartial" component=role.component}}
             </div>
         {{/if}}
