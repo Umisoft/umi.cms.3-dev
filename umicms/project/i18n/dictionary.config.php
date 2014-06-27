@@ -34,6 +34,7 @@ return [
     'project.admin.rest.users' => '{#lazy:~/project/module/users/admin/i18n/dictionary.config.php}',
     'project.admin.rest.users.user' => '{#lazy:~/project/module/users/admin/user/i18n/dictionary.config.php}',
     'project.admin.rest.users.group' => '{#lazy:~/project/module/users/admin/group/i18n/dictionary.config.php}',
+    'project.admin.rest.users.usergroup' => '{#lazy:~/project/module/users/admin/usergroup/i18n/dictionary.config.php}',
 
     'project.admin.rest.structure' => '{#lazy:~/project/module/structure/admin/i18n/dictionary.config.php}',
     'project.admin.rest.structure.page' => '{#lazy:~/project/module/structure/admin/page/i18n/dictionary.config.php}',
