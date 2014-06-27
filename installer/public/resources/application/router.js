@@ -814,11 +814,11 @@ define([], function(){
                     if(transition.params.action && transition.params.action.action !== 'createForm'){
                         this.get('controller').set('typeName', null);
                     }
-                    var model = this.modelFor('action').object;
-                    if(this.modelFor('action').object.get('isNew')){
-                        this.modelFor('action').object.deleteRecord();
+                    var model = Ember.get(this.modelFor('action'), 'object');
+                    if(Ember.get(model, 'isNew')){
+                        model.deleteRecord();
                     }
-                    if(model.get('isDirty')){
+                    if(Ember.get(model, 'isDirty')){
                         transition.abort();
                         var data = {
                             'close': false,
