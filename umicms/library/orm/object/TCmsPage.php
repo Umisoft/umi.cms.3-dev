@@ -68,10 +68,10 @@ trait TCmsPage
         /** @var CmsPageCollection|CmsHierarchicCollection $collection */
         $collection = $this->getCollection();
 
-        if (!$collection instanceof CmsPageCollection || !$collection instanceof CmsHierarchicCollection) {
+        if (!($collection instanceof CmsPageCollection) && !($collection instanceof CmsHierarchicCollection)) {
             throw new RuntimeException(
                 $this->translate(
-                    'Collection {collection} should be should be instance of CmsPageCollection or CmsHierarchicCollection.',
+                    'Collection {collection} should be instance of CmsPageCollection or CmsHierarchicCollection.',
                     [
                         'collection' => $collection::className()
                     ]
