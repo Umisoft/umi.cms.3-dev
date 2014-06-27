@@ -13,11 +13,19 @@ return [
     'en-US' => [
         'component:structure:displayName' => 'Site structure',
 
-
+        'role:pageExecutor:displayName' => 'Page',
+        'role:layoutExecutor:displayName' => 'Layout',
+        'role:infoblockExecutor:displayName' => 'Information block',
+        'role:menuExecutor:displayName' => 'Menu'
     ],
 
     'ru-RU' => [
         'component:structure:displayName' => 'Структура сайта',
+
+        'role:pageExecutor:displayName' => 'Страницы',
+        'role:layoutExecutor:displayName' => 'Шаблоны',
+        'role:infoblockExecutor:displayName' => 'Информационные блоки',
+        'role:menuExecutor:displayName' => 'Меню'
     ]
 
 ];
