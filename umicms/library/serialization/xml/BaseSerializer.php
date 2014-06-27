@@ -41,6 +41,10 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
      * @var array $currentExcludes список имен исключений
      */
     protected $currentExcludes = [];
+    /**
+     * @var array $currentOptions список опций сериализации
+     */
+    protected $currentOptions = [];
 
     /**
      * @var XMLWriter $xmlWriter
@@ -63,6 +67,16 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function setOptions(array $options)
+    {
+        $this->currentOptions = array_merge($this->currentOptions, $options);
+
+        return $this;
+    }
+
+    /**
      * Устанавливает список имен атрибутов.
      * @param array $attributes
      * @return $this
@@ -75,9 +89,7 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
     }
 
     /**
-     * Устанавливает список имен исключений.
-     * @param array $excludes
-     * @return $this
+     * {@inheritdoc}
      */
     public function setExcludes(array $excludes)
     {
@@ -94,6 +106,7 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
     {
         $this->currentExcludes = [];
         $this->currentAttributes = [];
+        $this->currentOptions = [];
         $configurator->configureSerializer($this);
     }
 

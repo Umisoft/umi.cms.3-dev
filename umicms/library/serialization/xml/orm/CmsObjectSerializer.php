@@ -38,7 +38,13 @@ class CmsObjectSerializer extends BaseSerializer
         $attributes = [];
         $properties = [];
 
-        $selectedFields = isset($options['fields']) ? $options['fields'] : [];
+        $selectedFields = [];
+        if (isset($options['fields'])) {
+            $selectedFields = $options['fields'];
+        }
+        if (isset($this->currentOptions['fields'])) {
+            $selectedFields = array_merge($selectedFields, $this->currentOptions['fields']);
+        }
         $usedProperties = $this->getUsedProperties($object, $selectedFields);
 
         /**
