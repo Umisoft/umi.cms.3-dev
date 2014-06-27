@@ -102,8 +102,12 @@ define(['App', 'text!./splitButton.hbs'],
                         }, 0);
                     },
 
+                    /**
+                     * @method sendActionForBehaviour
+                     * @param behaviour
+                     */
                     sendActionForBehaviour: function(behaviour){
-                        this.send(behaviour.name, behaviour);
+                        this.send(behaviour.name, {behaviour: behaviour});
                     }
                 },
 

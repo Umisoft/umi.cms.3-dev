@@ -16,7 +16,7 @@ define(['App', 'moment', 'text!./template.hbs', 'text!./backupList.hbs'],
                 },
                 actions: {
                     sendActionForBehaviour: function(behaviour){
-                        this.send(behaviour.name, behaviour);
+                        this.send(behaviour.name, {behaviour: behaviour});
                     }
                 }
             });
@@ -88,9 +88,9 @@ define(['App', 'moment', 'text!./template.hbs', 'text!./backupList.hbs'],
                             var self = this;
                             var object = this.get('controller.object');
                             var list = self.get('backupList');
+                            var current = list.findBy('id', backup.id);
                             var setCurrent = function(){
                                 list.setEach('isActive', false);
-                                var current = list.findBy('id', backup.id);
                                 Ember.set(current, 'isActive', true);
                             };
                             var backupObjectAction;
@@ -98,7 +98,7 @@ define(['App', 'moment', 'text!./template.hbs', 'text!./backupList.hbs'],
                                 object.rollback();
                                 setCurrent();
                             } else{
-                                backupObjectAction = UMI.Utils.replacePlaceholder(object, Ember.get(self.get('controller.settings'), 'actions.getBackup.source'));
+                                backupObjectAction = UMI.Utils.replacePlaceholder(current, Ember.get(self.get('controller.settings'), 'actions.getBackup.source'));
                                 $.get(backupObjectAction).then(function(data){
                                     object.rollback();
                                     delete data.result.getBackup.version;
