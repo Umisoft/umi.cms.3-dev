@@ -13,7 +13,7 @@ define(['App'], function(UMI){
                 this.set('expandedBranches', []);
             }.observes('collectionName'),
 
-            activeContextChange: function(){
+            setExpandedBranches: function(){
                 var expandedBranches = this.get('expandedBranches');
                 var activeContext = this.get('activeContext');
                 if(activeContext){
@@ -24,6 +24,10 @@ define(['App'], function(UMI){
                     mpath.push('root');
                     this.set('expandedBranches', expandedBranches.concat(mpath).uniq());
                 }
+            },
+
+            activeContextChange: function(){
+                Ember.run.next(this, 'setExpandedBranches');
             }.observes('activeContext').on('init'),
 
             /**
@@ -97,7 +101,9 @@ define(['App'], function(UMI){
             /**
              Активный контекст
              */
-            activeContextBinding: 'controllers.context.model',
+            activeContext: function(){
+                return this.get('controllers.context.model');
+            }.property('controllers.context.model'),
 
             contextToolbar: function(){
                 var sideBarControl = this.get('controllers.component.sideBarControl') || {};
@@ -183,47 +189,6 @@ define(['App'], function(UMI){
                             self.send('backgroundError', error);
                         }
                     );
-                },
-
-                sendActionForBehaviour: function(behaviour, object){
-                    this.send(behaviour.name, object, behaviour);
-                }
-            }
-        });
-
-        UMI.TreeItemController = Ember.ObjectController.extend({
-            objectBinding: 'content',
-
-            getChildren: function(){
-                var model = this.get('model');
-                var collectionName = model.get('typeKey') || model.constructor.typeKey;
-                var promise;
-                if(model.get('id') === 'root'){
-                    promise = this.get('children');
-                } else{
-                    promise = this.store.updateCollection(collectionName, {'filters[parent]': this.get('model.id'), 'fields': 'displayName,order,active,childCount,children,parent'});
-                }
-                return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-                    content: promise,
-                    sortProperties: ['order', 'id'],
-                    sortAscending: true
-                });
-            },
-
-            sortedChildren: function(){
-                return this.getChildren();
-            }.property('didUpdate'),
-
-            needs: 'treeControl',
-
-            init: function(){
-                var self = this;
-                if('needReloadHasMany' in this.get('content')){
-                    this.get('content').on('needReloadHasMany', function(){
-                        self.get('children').then(function(children){
-                            children.reloadLinks();
-                        });
-                    });
                 }
             }
         });
