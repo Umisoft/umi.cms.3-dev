@@ -418,18 +418,28 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает текущего автора блога.
-     * Если пользователь авторизован и автора не существует - создаёт нового.
-     * @return BlogAuthor|null
+     * @throws RuntimeException в случае, если текущий автор не установлен
+     * @return BlogAuthor
      */
     public function getCurrentAuthor()
     {
-        if ($this->currentAuthor instanceof BlogAuthor) {
+        if ($this->currentAuthor) {
             return $this->currentAuthor;
         }
 
-        if ($this->usersModule->isAuthenticated() && !$this->hasCurrentAuthor()) {
-            $this->currentAuthor = $this->createAuthor(
-                $this->usersModule->getCurrentUser()
+        $this->currentAuthor = $this->author()->select()
+            ->where(BlogAuthor::FIELD_PROFILE)->equals($this->usersModule->getCurrentUser())
+            ->getResult()
+            ->fetch();
+
+        if (!$this->currentAuthor instanceof BlogAuthor) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Current author should be instance of "{class}".',
+                    [
+                        'class' => BlogAuthor::className()
+                    ]
+                )
             );
         }
 
@@ -442,20 +452,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     public function hasCurrentAuthor()
     {
-        if ($this->currentAuthor instanceof BlogAuthor) {
-            return true;
+        try {
+            $this->getCurrentAuthor();
+        } catch (RuntimeException $e) {
+            return false;
         }
-
-        $this->currentAuthor = $this->author()->select()
-            ->where(BlogAuthor::FIELD_PROFILE)->equals($this->usersModule->getCurrentUser())
-            ->getResult()
-            ->fetch();
-
-        if ($this->currentAuthor instanceof BlogAuthor) {
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
     /**
@@ -465,6 +467,10 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     public function createAuthor(AuthorizedUser $user)
     {
+        if ($this->hasCurrentAuthor()) {
+            return $this->getCurrentAuthor();
+        }
+
         return $this->author()->add(IObjectType::BASE)
             ->setValue(BlogAuthor::FIELD_PAGE_SLUG, $user->login)
             ->setValue(BlogAuthor::FIELD_DISPLAY_NAME, $user->displayName)
