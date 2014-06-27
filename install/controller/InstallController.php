@@ -795,7 +795,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('slug', 'deviant')
             ->setGUID('8e675484-bea4-4fb5-9802-4750cc21e509')
             ->setValue('publishTime', new \DateTime('2010-08-11 17:35:00'));
-        $postCollection->publish($post1);
+        $post1->publish();
 
         $post2 = $postCollection->add()
             ->setValue('displayName', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
@@ -867,7 +867,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('author', $buthead)
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty-5')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
-        $postCollection->publish($post3);
+        $post3->publish();
 
 
         $commentBranch = $commentCollection->add('branch', 'branchComment')

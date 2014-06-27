@@ -65,7 +65,7 @@ class PublishController extends BaseCmsController
      */
     protected function processForm(IForm $form)
     {
-        $this->module->post()->publish($this->blogDraft);
+        $this->blogDraft->publish();
         $this->commit();
     }
 }

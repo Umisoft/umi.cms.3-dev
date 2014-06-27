@@ -201,12 +201,30 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
     }
 
     /**
-     * Выставляет статус поста опубликован.
+     * Публикует пост.
      * @return $this
      */
     public function publish()
     {
-        $this->publishStatus = self::POST_STATUS_PUBLISHED;
+        if ($this->author instanceof BlogAuthor) {
+            $this->author->incrementPostCount();
+        }
+
+        $this->getProperty(BlogPost::FIELD_PUBLISH_STATUS)->setValue(self::POST_STATUS_PUBLISHED);
+        return $this;
+    }
+
+    /**
+     * Снимает пост с публикации и помещает его в черновики.
+     * @return $this
+     */
+    public function unPublish()
+    {
+        if ($this->author instanceof BlogAuthor) {
+            $this->author->decrementPostCount();
+        }
+
+        $this->getProperty(BlogPost::FIELD_PUBLISH_STATUS)->setValue(self::POST_STATUS_DRAFT);
         return $this;
     }
 
@@ -279,6 +297,33 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
         }
 
         return $result;
+    }
+
+    /**
+     * Мутатор для поля статус публикации.
+     * @param string $value статус публикации
+     * @return string
+     */
+    public function changeStatus($value)
+    {
+        switch ($value) {
+            case BlogPost::POST_STATUS_PUBLISHED : {
+                if ($this->publishStatus !== BlogPost::POST_STATUS_PUBLISHED) {
+                    $this->publish();
+                }
+                break;
+            }
+            case BlogPost::POST_STATUS_NEED_MODERATE :
+            case BlogPost::FORM_REJECT_POST :
+            case BlogPost::POST_STATUS_DRAFT : {
+                if ($this->publishStatus === BlogPost::POST_STATUS_PUBLISHED) {
+                    $this->unPublish();
+                }
+                break;
+            }
+        }
+
+        return $value;
     }
 
 }

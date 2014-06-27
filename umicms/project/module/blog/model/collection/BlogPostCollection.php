@@ -349,41 +349,14 @@ class BlogPostCollection extends CmsPageCollection
     }
 
     /**
-     * Публикует пост.
-     * @param BlogPost $post публикуемый пост
-     * @return BlogPost
-     */
-    public function publish(BlogPost $post)
-    {
-        $post->publish();
-
-        if ($post->author instanceof BlogAuthor) {
-            $post->author->incrementPostCount();
-        }
-
-        return $post;
-    }
-
-    /**
-     * Снимает пост с публикации и помещает его в черновики.
-     * @param BlogPost $post переносимый пост
-     * @return BlogPost
-     */
-    public function unPublish(BlogPost $post)
-    {
-        $post->draft();
-        if ($post->author instanceof BlogAuthor) {
-            $post->author->decrementPostCount();
-        }
-
-        return $post;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function activate(IActiveAccessibleObject $object)
     {
+        if ($object->active) {
+            return $this;
+        }
+
         parent::activate($object);
 
         if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
@@ -398,6 +371,10 @@ class BlogPostCollection extends CmsPageCollection
      */
     public function deactivate(IActiveAccessibleObject $object)
     {
+        if (!$object->active) {
+            return $this;
+        }
+
         parent::deactivate($object);
 
         if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {

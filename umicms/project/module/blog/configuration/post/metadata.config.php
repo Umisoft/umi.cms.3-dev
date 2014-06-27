@@ -119,6 +119,7 @@ return [
         ],
         BlogPost::FIELD_PUBLISH_STATUS => [
             'type' => IField::TYPE_STRING,
+            'mutator' => 'changeStatus',
             'columnName' => 'publish_status',
             'defaultValue' => BlogPost::POST_STATUS_DRAFT
         ],
