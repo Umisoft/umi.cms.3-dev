@@ -69,7 +69,10 @@ return [
 
     'project.admin.rest.settings' => '{#lazy:~/project/module/settings/admin/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.site.common' => '{#lazy:~/project/site/settings/common/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.slugify' => '{#lazy:~/project/site/settings/slugify/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.site.seo' => '{#lazy:~/project/site/settings/seo/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.site.templating' => '{#lazy:~/project/site/settings/templating/i18n/dictionary.config.php}',
     'project.admin.rest.settings.service' => '{#lazy:~/project/module/service/admin/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.service.backup' => '{#lazy:~/project/module/service/admin/settings/backup/i18n/dictionary.config.php}',
     'project.admin.rest.settings.seo' => '{#lazy:~/project/module/seo/admin/settings/i18n/dictionary.config.php}',
@@ -78,6 +81,8 @@ return [
     'project.admin.rest.settings.statistics' => '{#lazy:~/project/module/statistics/admin/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.statistics.metrika' => '{#lazy:~/project/module/statistics/admin/settings/metrika/i18n/dictionary.config.php}',
     'project.admin.rest.settings.users' => '{#lazy:~/project/module/users/admin/settings/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.users.notifications' => '{#lazy:~/project/module/users/admin/settings/notifications/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.users.registration' => '{#lazy:~/project/module/users/admin/settings/registration/i18n/dictionary.config.php}',
 
     'project.admin.rest.settings.forms' => '{#lazy:~/project/module/forms/admin/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.forms.captcha' => '{#lazy:~/project/module/forms/admin/settings/captcha/i18n/dictionary.config.php}',
