@@ -69,12 +69,11 @@ define(
 
             UMI.FieldMixin = Ember.Mixin.create({
                 /**
-                 * Метаданные свойства. В базовой реализации
-                 * соответствует самому объекту
+                 * Объект. В базовой реализации соответствует метадданым
                  * @property metaBinding
                  * @type String
                  */
-                metaBinding: 'object',
+                objectBinding: 'meta',
                 layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{view.meta.label}}</span></div>{{yield}}'),
                 template: function(){
                     var meta;
@@ -91,7 +90,7 @@ define(
                         template = this.extendTemplate(template);
                         return Ember.Handlebars.compile(template);
                     }
-                }.property('meta'),
+                }.property(),
                 /**
                  * Метод используется декораторами для расширения базового шаблона.
                  * @method extendTemplate
@@ -103,71 +102,71 @@ define(
                 },
 
                 textTemplate: function(){
-                    return '{{view "textElement" object=object meta=view.meta}}';
+                    return '{{view "textElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 emailTemplate: function(){
-                    return '{{view "emailElement" object=object meta=view.meta}}';
+                    return '{{view "emailElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 passwordTemplate: function(){
-                    return '{{view "passwordElement" object=object meta=view.meta}}';
+                    return '{{view "passwordElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 numberTemplate: function(){
-                    return '{{view "numberElement" object=object meta=view.meta}}';
+                    return '{{view "numberElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 colorTemplate: function(){
-                    return '{{view "colorElement" object=object meta=view.meta}}';
+                    return '{{view "colorElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 timeTemplate: function(){
-                    return '{{time-element object=object meta=view.meta}}';
+                    return '{{time-element object=view.object meta=view.meta}}';
                 }.property(),
 
                 dateTemplate: function(){
-                    return '{{view "dateElement" object=object meta=view.meta}}';
+                    return '{{view "dateElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 datetimeTemplate: function(){
-                    return '{{view "dateTimeElement" object=object meta=view.meta}}';
+                    return '{{view "dateTimeElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 fileTemplate: function(){
-                    return '{{view "fileElement" object=object meta=view.meta}}';
+                    return '{{view "fileElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 imageTemplate: function(){
-                    return '{{view "imageElement" object=object meta=view.meta}}';
+                    return '{{view "imageElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 textareaTemplate: function(){
-                    return '{{view "textareaElement" object=object meta=view.meta}}';
+                    return '{{view "textareaElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 wysiwygTemplate: function(){
-                    return '{{view "htmlEditor" object=object meta=view.meta}}';
+                    return '{{view "htmlEditor" object=view.object meta=view.meta}}';
                 }.property(),
 
                 selectTemplate: function(){
-                    return '{{view "select" object=object meta=view.meta name=view.meta.attributes.name}}';
+                    return '{{view "select" object=view.object meta=view.meta name=view.meta.attributes.name}}';
                 }.property(),
 
                 multiSelectTemplate: function(){
-                    return '{{view "multiSelect" object=object meta=view.meta name=view.meta.attributes.name}}';
+                    return '{{view "multiSelect" object=view.object meta=view.meta name=view.meta.attributes.name}}';
                 }.property(),
 
                 checkboxTemplate: function(){
-                    return '{{view "checkboxElement" object=object meta=view.meta}}';
+                    return '{{view "checkboxElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 checkboxGroupTemplate: function(){
-                    return '{{view "checkboxGroupElement" object=object meta=view.meta}}';
+                    return '{{view "checkboxGroupElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 radioTemplate: function(){
-                    return '{{view "radioElement" object=object meta=view.meta}}';
+                    return '{{view "radioElement" object=view.object meta=view.meta}}';
                 }.property()
             });
 

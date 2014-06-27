@@ -32,20 +32,20 @@ define(
                 classNameBindings: ['isError:error'],
 
                 isError: function(){
-                    var meta = this.get('meta');
-                    return !!this.get('object.validErrors.' + meta.dataSource);
+                    var dataSource = this.get('meta.dataSource');
+                    return !!this.get('object.validErrors.' + dataSource);
                 }.property('object.validErrors'),
 
                 wysiwygTemplate: function(){
-                    return '{{view "htmlEditorCollection" object=object meta=view.meta}}';
+                    return '{{view "htmlEditorCollection" object=view.object meta=view.meta}}';
                 }.property(),
 
                 selectTemplate: function(){
-                    return '{{view "selectCollection" object=object meta=view.meta}}';
+                    return '{{view "selectCollection" object=view.object meta=view.meta}}';
                 }.property(),
 
                 checkboxGroupTemplate: function(){
-                    return '{{view "checkboxGroupCollectionElement" object=object meta=view.meta}}';
+                    return '{{view "checkboxGroupCollectionElement" object=view.object meta=view.meta}}';
                 }.property()
             });
         };
