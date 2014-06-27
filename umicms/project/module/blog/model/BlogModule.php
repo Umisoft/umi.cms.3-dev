@@ -418,6 +418,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает текущего автора блога.
+     * Если автора не существует - создаёт нового.
      * @throws RuntimeException в случае, если текущий автор не установлен
      * @return BlogAuthor
      */
@@ -431,6 +432,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             ->where(BlogAuthor::FIELD_PROFILE)->equals($this->usersModule->getCurrentUser())
             ->getResult()
             ->fetch();
+
+        if ($this->usersModule->isAuthenticated()) {
+            $this->currentAuthor = $this->createAuthor(
+                $this->usersModule->getCurrentUser()
+            );
+        }
 
         if (!$this->currentAuthor instanceof BlogAuthor) {
             throw new RuntimeException(
@@ -452,12 +459,14 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     public function hasCurrentAuthor()
     {
-        try {
-            $this->getCurrentAuthor();
-        } catch (RuntimeException $e) {
-            return false;
+        if (!$this->currentAuthor && $this->usersModule->isAuthenticated()) {
+            $this->currentAuthor = $this->author()->select()
+                ->where(BlogAuthor::FIELD_PROFILE)->equals($this->usersModule->getCurrentUser())
+                ->getResult()
+                ->fetch();
         }
-        return true;
+
+        return $this->currentAuthor instanceof BlogAuthor;
     }
 
     /**
@@ -626,7 +635,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      * @param BlogPost $blogPost
      * @return CmsSelector|BlogComment[]
      */
-    protected  function getBranchCommentByPost(BlogPost $blogPost)
+    protected function getBranchCommentByPost(BlogPost $blogPost)
     {
         $branchComments = $this->getComments()
             ->types([BlogBranchComment::TYPE])
