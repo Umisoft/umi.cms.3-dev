@@ -22,9 +22,11 @@ return [
 
     'project.admin.rest.news' => '{#lazy:~/project/module/news/admin/i18n/dictionary.config.php}',
     'project.admin.rest.news.item' => '{#lazy:~/project/module/news/admin/item/i18n/dictionary.config.php}',
+    'project.admin.rest.news.itemsubject' => '{#lazy:~/project/module/news/admin/itemsubject/i18n/dictionary.config.php}',
     'project.admin.rest.news.rubric' => '{#lazy:~/project/module/news/admin/rubric/i18n/dictionary.config.php}',
     'project.admin.rest.news.subject' => '{#lazy:~/project/module/news/admin/subject/i18n/dictionary.config.php}',
     'project.admin.rest.news.rss' => '{#lazy:~/project/module/news/admin/rss/i18n/dictionary.config.php}',
+    'project.admin.rest.news.rsssubject' => '{#lazy:~/project/module/news/admin/rsssubject/i18n/dictionary.config.php}',
 
     'project.admin.rest.files' => '{#lazy:~/project/module/files/admin/i18n/dictionary.config.php}',
     'project.admin.rest.files.manager' => '{#lazy:~/project/module/files/admin/manager/i18n/dictionary.config.php}',
