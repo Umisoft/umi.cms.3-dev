@@ -64,20 +64,7 @@ class CmsObjectSerializer extends BaseSerializer
             }
         }
 
-        foreach ($attributes as $name => $attribute) {
-
-            $value = $object->getValue($name);
-            if ($value instanceof IObjectType) {
-                $value = $value->getName();
-            }
-            if ($value instanceof ICmsObject) {
-                $value = $value->getGUID();
-            }
-            $this->writeAttribute($name, $value);
-        }
-        if ($object instanceof ICmsPage) {
-            $this->writeAttribute('url', $object->getPageUrl());
-        }
+        $this->buildAttributes($object, $attributes);
 
         $options['fields'] = [ICmsObject::FIELD_DISPLAY_NAME => null];
         foreach ($properties as $name => $property) {
@@ -96,6 +83,29 @@ class CmsObjectSerializer extends BaseSerializer
             $this->getXmlWriter()->endElement();
 
             $this->getXmlWriter()->endElement();
+        }
+    }
+
+    /**
+     * Сериализует атрибуты
+     * @param ICmsObject $object
+     * @param array $attributes
+     */
+    protected function buildAttributes(ICmsObject $object, array $attributes)
+    {
+        foreach ($attributes as $name => $attribute) {
+
+            $value = $object->getValue($name);
+            if ($value instanceof IObjectType) {
+                $value = $value->getName();
+            }
+            if ($value instanceof ICmsObject) {
+                $value = $value->getGUID();
+            }
+            $this->writeAttribute($name, $value);
+        }
+        if ($object instanceof ICmsPage) {
+            $this->writeAttribute('url', $object->getPageUrl());
         }
     }
 

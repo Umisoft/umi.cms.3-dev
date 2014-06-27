@@ -13,21 +13,25 @@ namespace umicms\hmvc\view;
 use umicms\orm\object\CmsHierarchicObject;
 
 /**
- * Класс, описывающий ноду дерева.
+ * Класс, описывающий список локалей.
  *
  * @property CmsTreeNode[] $children список детей элемента
  * @property CmsHierarchicObject $item элемент
  */
-class CmsTreeNode extends \ArrayObject
+class LocalesView extends \ArrayObject
 {
     /**
-     * Конструктор.
-     * @param CmsHierarchicObject $item элемент
-     * @param CmsTreeNode[] $children список детей элемента
+     * @var array $locales список локалей
      */
-    public function __construct(CmsHierarchicObject $item, array $children)
+    protected $locales = [];
+    /**
+     * Конструктор.
+     * @param array $locales список локалей
+     */
+    public function __construct(array $locales)
     {
-        parent::__construct(['item' => $item, 'children' => $children], self::ARRAY_AS_PROPS | self::STD_PROP_LIST);
+        $this->locales = $locales;
+        parent::__construct([$locales], self::ARRAY_AS_PROPS | self::STD_PROP_LIST);
     }
 
     /**
@@ -35,7 +39,7 @@ class CmsTreeNode extends \ArrayObject
      */
     public function getIterator()
     {
-        return new \ArrayIterator($this->children);
+        return new \ArrayIterator($this->locales);
     }
 }
  

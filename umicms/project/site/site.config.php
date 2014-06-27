@@ -24,10 +24,11 @@ return [
             'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\orm\CmsObjectSerializer',
             'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\orm\CmsObjectSerializer',
             'umi\orm\selector\Selector' => 'umicms\serialization\xml\orm\SelectorSerializer',
-            'umicms\hmvc\view\CmsLayoutView' => 'umicms\serialization\xml\view\CmsLayoutViewSerializer',
             'umicms\hmvc\view\CmsView' => 'umicms\serialization\xml\view\CmsViewSerializer',
             'umicms\hmvc\view\CmsTreeView' => 'umicms\serialization\xml\view\CmsTreeViewSerializer',
             'umicms\hmvc\view\CmsTreeNode' => 'umicms\serialization\xml\view\CmsTreeNodeSerializer',
+            'umicms\hmvc\view\LocalesView' => 'umicms\serialization\xml\view\LocalesViewSerializer',
+            'umicms\project\module\structure\model\object\MenuItem' => 'umicms\serialization\xml\orm\MenuItemSerializer',
         ],
         ISerializerFactory::TYPE_JSON => [
             'umi\orm\metadata\ObjectType' => 'umicms\serialization\json\orm\ObjectTypeSerializer',
@@ -38,6 +39,7 @@ return [
             'umicms\hmvc\view\CmsView' => 'umicms\serialization\json\view\CmsViewSerializer',
             'umicms\hmvc\view\CmsTreeView' => 'umicms\serialization\json\view\CmsTreeViewSerializer',
             'umicms\hmvc\view\CmsTreeNode' => 'umicms\serialization\json\view\CmsTreeNodeSerializer',
+            'umicms\project\module\structure\model\object\MenuItem' => 'umicms\serialization\xml\json\MenuItemSerializer',
         ]
     ],
 

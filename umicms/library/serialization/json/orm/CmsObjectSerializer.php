@@ -60,6 +60,16 @@ class CmsObjectSerializer extends BaseSerializer implements IUrlManagerAware
     }
 
     /**
+     * Позволяет достроить массив с информацией об объектк для сериализации.
+     * @param ICmsObject $object
+     * @param array $properties
+     */
+    protected function buildProperties(ICmsObject $object, array &$properties)
+    {
+
+    }
+
+    /**
      * Возвращает список свойств объекта для отображения
      * @param ICmsObject $object
      * @param IField[] $fields

@@ -48,7 +48,7 @@ class XsltTemplate implements ISerializationAware
      */
     public function render($templateName, $xmlData)
     {
-        $templateFilePath = $this->findTemplate($templateName);
+        $templateFilePath = $this->templateEngine->findTemplate($templateName);
         if (!is_readable($templateFilePath)) {
             throw new RuntimeException(sprintf(
                 'Cannot render template "%s". XSLT Template file "%s" is not readable.',
@@ -93,21 +93,5 @@ class XsltTemplate implements ISerializationAware
         }
 
         return $document;
-    }
-
-    protected function findTemplate($templateName)
-    {
-        $directories = $this->templateEngine->getTemplateDirectories();
-
-        foreach($directories as $directory) {
-            $templateFilePath = $directory . DIRECTORY_SEPARATOR . $templateName;
-            if (is_file($templateFilePath)) {
-                return $templateFilePath;
-            }
-        }
-
-        throw new RuntimeException(
-            sprintf('Unable to find template "%s" (looked into: %s).', $templateName, implode(', ', $directories))
-        );
     }
 }
