@@ -11,15 +11,11 @@
 return [
 
     'en-US' => [
-        'component:rss:displayName' => 'Import RSS-feed',
-
-        'role:editor:displayName' => 'Managing import RSS-feed'
+        'role:editor:displayName' => 'Managing relation'
     ],
 
     'ru-RU' => [
-        'component:rss:displayName' => 'Импорт RSS-лент',
-
-        'role:editor:displayName' => 'Управление импортом RSS-лент'
+        'role:editor:displayName' => 'Управление связью'
     ]
 
 ];
