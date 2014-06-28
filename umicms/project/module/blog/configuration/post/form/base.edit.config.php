@@ -110,7 +110,7 @@ return [
                     ],
                     'attributes' => [
                         'disabled' => 'disabled'
-                    ],
+                    ]
                 ],
                 BlogPost::FIELD_PUBLISH_TIME => [
                     'type' => DateTime::TYPE_NAME,

@@ -115,5 +115,18 @@ class BlogAuthor extends CmsObject implements ICmsPage
 
         return $this;
     }
+
+    /**
+     * Уменьшает количество комментариев, опубликованных автором.
+     * @return $this
+     */
+    public function decrementCommentCount()
+    {
+        /** @var ICounterProperty $authorCommentsCount */
+        $authorCommentsCount = $this->getProperty(BlogAuthor::FIELD_COMMENTS_COUNT);
+        $authorCommentsCount->decrement();
+
+        return $this;
+    }
 }
  

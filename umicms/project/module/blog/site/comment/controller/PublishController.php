@@ -50,9 +50,7 @@ class PublishController extends BaseCmsController
      */
     protected function processForm(IForm $form)
     {
-        $this->module->comment()->publish(
-            $this->module->comment()->getById($this->getRouteVar('id'))
-        );
+        $this->module->comment()->getById($this->getRouteVar('id'))->publish();
 
         $this->commit();
     }

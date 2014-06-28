@@ -145,7 +145,10 @@ return [
         BlogComment::FIELD_POST => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'post_id',
-            'target' => 'blogPost'
+            'target' => 'blogPost',
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         BlogComment::FIELD_CONTENTS => [
             'type' => IField::TYPE_TEXT,
@@ -174,7 +177,9 @@ return [
         ],
         BlogComment::FIELD_PUBLISH_STATUS => [
             'type' => IField::TYPE_STRING,
-            'columnName' => 'publish_status'
+            'mutator' => 'changeStatus',
+            'columnName' => 'publish_status',
+            'defaultValue' => BlogComment::COMMENT_STATUS_NEED_MODERATE
         ],
         BlogComment::FIELD_CHILDREN => [
             'type' => IField::TYPE_HAS_MANY,

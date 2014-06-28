@@ -885,7 +885,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('post', $post1)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'))
             ->setValue('author',$bives);
-        $commentCollection->publish($comment1);
+        $comment1->publish();
 
         $comment2 = $commentCollection->add('comment2', 'comment', $comment1)
             ->setValue('displayName', 'Re: Re: Девиантное поведение призраков и домовых и способы влияния на него')
@@ -910,7 +910,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_PUBLISHED)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:05:34'))
             ->setValue('author',$buthead);
-        $commentCollection->publish($comment3);
+        $comment3->publish();
 
         $commentCollection->add('comment1', 'comment', $comment2)
             ->setValue('displayName', 'Вложенный комментарий')
@@ -1712,7 +1712,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `contents_raw` text,
                     `contents_raw_en` text,
                     `publish_time` datetime DEFAULT NULL,
-                    `publish_status` enum('published','rejected','unpublished','moderate') DEFAULT NULL,
+                    `publish_status` enum('published','rejected','unpublished','moderate') DEFAULT 'moderate',
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_comment_guid` (`guid`),

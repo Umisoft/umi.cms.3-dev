@@ -92,12 +92,20 @@ class BlogComment extends BlogBaseComment implements IAclResource
     }
 
     /**
-     * Выставляет статус комментария: опубликован.
+     * Публикует комментарий.
      * @return $this
      */
     public function publish()
     {
-        $this->publishStatus = self::COMMENT_STATUS_PUBLISHED;
+        if ($this->publishStatus !== self::COMMENT_STATUS_PUBLISHED) {
+            if ($this->author instanceof BlogAuthor) {
+                $this->author->incrementCommentCount();
+            }
+            $this->post->incrementCommentCount();
+
+            $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::COMMENT_STATUS_PUBLISHED);
+        }
+
         return $this;
     }
 
@@ -107,7 +115,14 @@ class BlogComment extends BlogBaseComment implements IAclResource
      */
     public function needModerate()
     {
-        $this->publishStatus = self::COMMENT_STATUS_NEED_MODERATE;
+        if ($this->publishStatus === self::COMMENT_STATUS_PUBLISHED) {
+            if ($this->author instanceof BlogAuthor) {
+                $this->author->decrementCommentCount();
+            }
+            $this->post->decrementCommentCount();
+        }
+
+        $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::COMMENT_STATUS_NEED_MODERATE);
         return $this;
     }
 
@@ -117,7 +132,14 @@ class BlogComment extends BlogBaseComment implements IAclResource
      */
     public function reject()
     {
-        $this->publishStatus = self::COMMENT_STATUS_REJECTED;
+        if ($this->publishStatus === self::COMMENT_STATUS_PUBLISHED) {
+            if ($this->author instanceof BlogAuthor) {
+                $this->author->decrementCommentCount();
+            }
+            $this->post->decrementCommentCount();
+        }
+
+        $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::COMMENT_STATUS_REJECTED);
         return $this;
     }
 
@@ -127,7 +149,14 @@ class BlogComment extends BlogBaseComment implements IAclResource
      */
     public function unPublish()
     {
-        $this->publishStatus = self::COMMENT_STATUS_UNPUBLISHED;
+        if ($this->publishStatus === self::COMMENT_STATUS_PUBLISHED) {
+            if ($this->author instanceof BlogAuthor) {
+                $this->author->decrementCommentCount();
+            }
+            $this->post->decrementCommentCount();
+        }
+
+        $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::COMMENT_STATUS_UNPUBLISHED);
         return $this;
     }
 
@@ -137,6 +166,35 @@ class BlogComment extends BlogBaseComment implements IAclResource
     public function getAclResourceName()
     {
         return 'model:blogComment';
+    }
+
+    /**
+     * Мутатор для поля статус публикации.
+     * @param string $value статус публикации
+     * @return $this
+     */
+    public function changeStatus($value)
+    {
+        switch($value) {
+            case self::COMMENT_STATUS_PUBLISHED : {
+                $this->publish();
+                break;
+            }
+            case self::COMMENT_STATUS_NEED_MODERATE : {
+                $this->needModerate();
+                break;
+            }
+            case self::COMMENT_STATUS_REJECTED : {
+                $this->reject();
+                break;
+            }
+            case self::COMMENT_STATUS_UNPUBLISHED : {
+                $this->unPublish();
+                break;
+            }
+        }
+
+        return $this;
     }
 }
  
