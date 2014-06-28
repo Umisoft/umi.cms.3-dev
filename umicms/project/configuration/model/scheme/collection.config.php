@@ -2,6 +2,9 @@
 
 use Doctrine\DBAL\Types\Type;
 
+/**
+ * Схема таблицы для простой коллекции объектов
+ */
 return [
     'columns' => [
         'id'           => [

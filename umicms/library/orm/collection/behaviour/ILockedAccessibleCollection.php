@@ -14,7 +14,7 @@ use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\behaviour\ILockedAccessibleObject;
 
 /**
- * Интерфейс коллекций, поддерживающих управлению заблокированнойстью объекта на удаление и некоторые операции.
+ * Интерфейс коллекций, поддерживающих управление заблокированнойстью объекта на удаление и некоторые операции.
  */
 interface ILockedAccessibleCollection extends ICmsCollection
 {
