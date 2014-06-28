@@ -78,9 +78,14 @@ define([], function(){
                     var settings = this.get('settings');
                     if(settings && settings.hasOwnProperty('sideBar')){
                         var control;
+                        var controlParams;
                         for(control in settings.sideBar){
                             if(settings.sideBar.hasOwnProperty(control)){
-                                sideBarControl = settings.sideBar[control];
+                                controlParams = settings.sideBar[control];
+                                if(Ember.typeOf(controlParams) !== 'object'){
+                                    controlParams = {};
+                                }
+                                sideBarControl = controlParams;
                                 sideBarControl.name = control;
                             }
                         }
