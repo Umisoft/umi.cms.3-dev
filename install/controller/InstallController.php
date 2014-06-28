@@ -115,6 +115,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
             $this->installSearch();
             $this->installBackup();
+            $this->installRobots();
             $this->installTest();
         } catch (DBALException $e) {
             var_dump($e->getMessage());
@@ -2308,6 +2309,29 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 UNIQUE KEY `backup_guid` (`guid`),
                 CONSTRAINT `FK_backup_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
                 CONSTRAINT `FK_backup_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            "
+        );
+    }
+
+    private function installRobots()
+    {
+        $connection = $this->dbCluster->getConnection();
+
+        $connection->exec(
+            "CREATE TABLE `demohunt_robots` (
+                `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                `guid` varchar(255),
+                `version` int(10) unsigned DEFAULT '1',
+                `type` varchar(255),
+                `owner_id` bigint(20) unsigned DEFAULT NULL,
+                `editor_id` bigint(20) unsigned DEFAULT NULL,
+                `page_relation` varchar(255) DEFAULT NULL,
+
+                PRIMARY KEY (`id`),
+                UNIQUE KEY `robots_guid` (`guid`),
+                CONSTRAINT `FK_robots_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+                CONSTRAINT `FK_robots_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8
             "
         );

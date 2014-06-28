@@ -141,6 +141,7 @@ return [
             'searchIndex' => '{#lazy:~/project/module/search/configuration/index/metadata.config.php}',
 
             'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/metadata.config.php}',
+            'serviceRobots' => '{#lazy:~/project/module/service/configuration/robots/metadata.config.php}',
 
             'testTest' => '{#lazy:~/project/module/testmodule/configuration/test/metadata.config.php}',
         ],
@@ -174,6 +175,7 @@ return [
             'searchIndex' => '{#lazy:~/project/module/search/configuration/index/collection.config.php}',
 
             'serviceBackup' => '{#lazy:~/project/module/service/configuration/backup/collection.config.php}',
+            'serviceRobots' => '{#lazy:~/project/module/service/configuration/robots/collection.config.php}',
 
             'testTest' => '{#lazy:~/project/module/testmodule/configuration/test/collection.config.php}',
         ]

@@ -17,7 +17,8 @@ return [
 
     AdminComponent::OPTION_CLASS => 'umicms\hmvc\component\admin\AdminComponent',
     AdminComponent::OPTION_COMPONENTS => [
-        'backup' => '{#lazy:~/project/module/service/admin/backup/component.config.php}'
+        'backup' => '{#lazy:~/project/module/service/admin/backup/component.config.php}',
+        'robots' => '{#lazy:~/project/module/service/admin/robots/component.config.php}'
     ],
 
     AdminComponent::OPTION_ROUTES => [
