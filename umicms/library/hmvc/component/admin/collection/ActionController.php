@@ -119,7 +119,7 @@ class ActionController extends BaseController
     protected function actionActivate()
     {
         $collection = $this->getCollection();
-        $object = $collection->getById($this->getRequiredQueryVar('id'));
+        $object = $this->getEditedObject($this->getIncomingData());
 
         if (!$collection instanceof IActiveAccessibleCollection || !$object instanceof IActiveAccessibleObject) {
             throw new RuntimeException(
@@ -148,7 +148,7 @@ class ActionController extends BaseController
     protected function actionDeactivate()
     {
         $collection = $this->getCollection();
-        $object = $collection->getById($this->getRequiredQueryVar('id'));
+        $object = $this->getEditedObject($this->getIncomingData());
 
         if (!$collection instanceof IActiveAccessibleCollection || !$object instanceof IActiveAccessibleObject) {
             throw new RuntimeException(
