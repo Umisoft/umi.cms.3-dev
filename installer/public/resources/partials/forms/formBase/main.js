@@ -203,7 +203,7 @@ define(
                 submitToolbarView: UMI.SubmitToolbarView.extend({
                     elementView: UMI.ToolbarElementView.extend({
                         buttonView: function(){
-                            var button = this._super();
+                            var button = UMI.ButtonView.extend();
                             if(this.get('context.behaviour.name') === 'save'){
                                 button.reopen({
                                     actions: {
