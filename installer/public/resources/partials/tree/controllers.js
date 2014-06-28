@@ -16,7 +16,7 @@ define(['App'], function(UMI){
             setExpandedBranches: function(){
                 var expandedBranches = this.get('expandedBranches');
                 var activeContext = this.get('activeContext');
-                if(activeContext){
+                if(activeContext && this.get('controllers.component.sideBarControl.name') === 'tree'){
                     var mpath = [];
                     if(activeContext.get('id') !== 'root' && activeContext.get('mpath')){
                         mpath = activeContext.get('mpath').without(parseFloat(activeContext.get('id'))) || [];
