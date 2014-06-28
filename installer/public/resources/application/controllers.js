@@ -47,7 +47,8 @@ define([], function(){
                     for(key in controls){ //for empty - createForm & filter
                         if(controls.hasOwnProperty(key)){
                             control = controls[key];
-                            control.name = key;
+                            control.id = key;// used by router
+                            control.name = key;// used by templates
                             contentControls.push(control);
                         }
                     }

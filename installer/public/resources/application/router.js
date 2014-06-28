@@ -656,7 +656,7 @@ define([], function(){
                     var controlName;
                     try{
                         control = this.controllerFor('component').get('contentControls')[0];
-                        controlName = Ember.get(control, 'name');
+                        controlName = Ember.get(control, 'id');
                         if(!controlName){
                             throw new Error('Действия для данного контекста не доступны.');
                         }
@@ -705,7 +705,7 @@ define([], function(){
                     componentController = this.controllerFor('component');
                     collectionName = componentController.get('collectionName');
                     contentControls = componentController.get('contentControls');
-                    contentControl = contentControls.findBy('name', actionName);
+                    contentControl = contentControls.findBy('id', actionName);
                     routeData = {
                         'object': contextModel,
                         'control': contentControl
@@ -780,7 +780,7 @@ define([], function(){
 
             serialize: function(routeData){
                 if(Ember.get(routeData, 'control')){
-                    return {action: Ember.get(routeData, 'control.name')};
+                    return {action: Ember.get(routeData, 'control.id')};
                 }
             },
 
