@@ -208,7 +208,7 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
     public function publish()
     {
         if ($this->publishStatus !== self::POST_STATUS_PUBLISHED) {
-            if ($this->author instanceof BlogAuthor) {
+            if ($this->active && $this->author instanceof BlogAuthor) {
                 $this->author->incrementPostCount();
             }
 
@@ -227,6 +227,7 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
     public function unPublish($status = self::POST_STATUS_DRAFT)
     {
         if (
+            $this->active &&
             ($this->publishStatus === self::POST_STATUS_PUBLISHED) &&
             ($this->author instanceof BlogAuthor)
         ) {

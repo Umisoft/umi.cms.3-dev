@@ -359,7 +359,11 @@ class BlogPostCollection extends CmsPageCollection
 
         parent::activate($object);
 
-        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
+        if (
+            $object instanceof BlogPost &&
+            $object->publishStatus === BlogPost::POST_STATUS_PUBLISHED &&
+            $object->author instanceof BlogAuthor
+        ) {
             $object->author->incrementPostCount();
         }
 
@@ -377,7 +381,11 @@ class BlogPostCollection extends CmsPageCollection
 
         parent::deactivate($object);
 
-        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
+        if (
+            $object instanceof BlogPost &&
+            $object->publishStatus === BlogPost::POST_STATUS_PUBLISHED &&
+            $object->author instanceof BlogAuthor
+        ) {
             $object->author->decrementPostCount();
         }
 
