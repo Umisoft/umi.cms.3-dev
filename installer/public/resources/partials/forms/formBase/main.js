@@ -68,12 +68,6 @@ define(
             });
 
             UMI.FieldMixin = Ember.Mixin.create({
-                /**
-                 * Объект. В базовой реализации соответствует метадданым
-                 * @property metaBinding
-                 * @type String
-                 */
-                objectBinding: 'meta',
                 layout: Ember.Handlebars.compile('<div><span class="umi-form-label">{{view.meta.label}}</span></div>{{yield}}'),
                 template: function(){
                     var meta;
