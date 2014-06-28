@@ -32,8 +32,10 @@ class ActionController extends BaseController implements IConfigIOAware
          * @var SettingsComponent $component
          */
         $component = $this->getComponent();
+
         $config = $this->readConfig($component->getSettingsConfigAlias());
-        $form = $this->getConfigForm();
+        $form = $this->getForm(self::SETTINGS_FORM_NAME, $config);
+        $form->setAction($this->getUrl('action', ['action' => 'save']));
 
         $valid = $form->isValid();
 
