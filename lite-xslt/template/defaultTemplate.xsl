@@ -92,7 +92,7 @@
 
                     <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')/result" mode="footer"/>
                     <p>
-                        <a href="#">Back to top</a>
+                        <a href="#"><xsl:value-of select="document('translate://project.site/Back%20to%20top')/result"/></a>
                     </p>
                 </footer>
 

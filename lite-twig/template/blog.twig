@@ -16,7 +16,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% for localeId,localeInfo in locales %}
                         <li class="{{ localeInfo.current ? 'active' }}">
-                            <a href="{{ localeInfo.url }}">{{ translate(localeId) }}</a>
+                            <a href="{{ localeInfo.url }}">{{ translate(localeInfo.id) }}</a>
                         </li>
                     {% endfor %}
                 </ul>
