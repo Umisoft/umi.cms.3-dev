@@ -74,7 +74,7 @@
 
                         <section class="col-sm-8 blog-main">
 
-                            <xsl:apply-templates select="contents/page" mode="layout"/>
+                            <xsl:apply-templates select="contents" mode="layout"/>
 
                         </section>
 

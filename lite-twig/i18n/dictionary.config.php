@@ -23,7 +23,7 @@ return [
             'Subjects' => 'Subjects',
             'BackToTop' => 'Back to top',
             'Add post' => 'Add post',
-            'Read more' => 'Читать далее',
+            'ReadMore' => 'Читать далее',
         ],
         'ru-RU' => [
             'ru-RU' => 'RU',
@@ -46,7 +46,7 @@ return [
             'Subjects' => 'Сюжеты',
             'BackToTop' => 'Наверх',
             'Add post' => 'Добавить пост',
-            'Read more' => 'Читать далее',
+            'ReadMore' => 'Читать далее',
         ]
     ],
 

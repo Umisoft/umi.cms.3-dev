@@ -170,7 +170,7 @@
                     <xsl:text>has-error</xsl:text>
                 </xsl:if>
             </xsl:attribute>
-            <xsl:apply-templates select="erros" mode="formErrors"/>
+            <xsl:apply-templates select="errors" mode="formErrors"/>
             <input class="form-control">
                 <xsl:copy-of select="attributes/@*"/>
             </input>

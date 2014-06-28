@@ -16,7 +16,15 @@
             />
 
 
+    <xsl:template match="contents" mode="layout">
+
+        <xsl:apply-templates select="breadcrumbs" mode="layout"/>
+
+        <xsl:apply-templates select="page" mode="layout"/>
+    </xsl:template>
+
     <xsl:template match="page" mode="layout">
+        <h1><xsl:value-of select="@header" /></h1>
         <xsl:value-of select="property[@name = 'contents']/value" disable-output-escaping="yes" />
     </xsl:template>
 
@@ -35,6 +43,25 @@
                 <a href="{@url}"><xsl:value-of select="document(concat('translate://project.site/', @id))/result"/></a>
             </li>
         </ul>
+    </xsl:template>
+
+    <xsl:template match="breadcrumbs" mode="layout"/>
+
+    <xsl:template match="breadcrumbs[count(item) > 1]" mode="layout">
+        <ol class="breadcrumb">
+            <xsl:apply-templates select="item" mode="breadcrumb"/>
+        </ol>
+    </xsl:template>
+
+    <xsl:template match="item" mode="breadcrumb">
+        <li>
+            <xsl:attribute name="class">
+                <xsl:if test="position() = last()">
+                    active
+                </xsl:if>
+            </xsl:attribute>
+            <a href="{url}"><xsl:value-of select="displayName"/></a>
+        </li>
     </xsl:template>
 
 </xsl:stylesheet>

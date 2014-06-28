@@ -106,6 +106,7 @@ class CmsObjectSerializer extends BaseSerializer
         }
         if ($object instanceof ICmsPage) {
             $this->writeAttribute('url', $object->getPageUrl());
+            $this->writeAttribute('header', $object->getHeader());
         }
     }
 

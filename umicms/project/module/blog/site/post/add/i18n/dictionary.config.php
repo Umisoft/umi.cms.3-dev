@@ -11,11 +11,13 @@
 return [
 
     'en-US' => [
-        'role:author:displayName' => 'Create a post'
+        'role:author:displayName' => 'Create a post',
+        'PostHasBeenAdded' => 'Post has been added'
     ],
 
     'ru-RU' => [
-        'role:author:displayName' => 'Создание поста'
+        'role:author:displayName' => 'Создание поста',
+        'PostHasBeenAdded' => 'Пост был успешно добавлен'
     ]
 
 ];

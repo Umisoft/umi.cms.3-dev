@@ -84,13 +84,6 @@ class AddController extends BaseSitePageController
         $this->blogPost = $this->module->addPost();
         $this->blogPost->category = $blogCategory;
 
-        if (!$this->isAllowed($this->blogPost)) {
-            throw new ResourceAccessForbiddenException(
-                $this->blogPost,
-                $this->translate('Access denied')
-            );
-        }
-
         return $this->module->post()->getForm(
             BlogPost::FORM_ADD_POST,
             IObjectType::BASE,
@@ -109,11 +102,16 @@ class AddController extends BaseSitePageController
 
     protected function buildResponseContent()
     {
-        return [
+        $result = [
             'added' => $this->added,
-            'blogPost' => $this->blogPost,
             'page' => $this->getCurrentPage()
         ];
+
+        if ($this->added) {
+            $result['blogPost'] = $this->blogPost;
+        }
+
+        return $result;
     }
 }
  
