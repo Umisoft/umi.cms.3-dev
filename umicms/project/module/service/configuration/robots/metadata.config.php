@@ -8,7 +8,9 @@
  * file that was distributed with this source code.
  */
 
+use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
+use umi\validation\IValidatorFactory;
 use umicms\project\module\service\model\object\Robots;
 
 return [
@@ -50,6 +52,35 @@ return [
             'columnName' => 'editor_id',
             'target' => 'user'
         ],
+        Robots::FIELD_CREATED => [
+            'type' => IField::TYPE_DATE_TIME,
+            'columnName' => 'created'
+        ],
+        Robots::FIELD_UPDATED => [
+            'type' => IField::TYPE_DATE_TIME,
+            'columnName' => 'updated'
+        ],
+        Robots::FIELD_DISPLAY_NAME => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'display_name',
+            'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ],
+            'localizations' => [
+                'ru-RU' => [
+                    'columnName' => 'display_name',
+                    'validators' => [
+                        IValidatorFactory::TYPE_REQUIRED => []
+                    ]
+                ],
+                'en-US' => [
+                    'columnName' => 'display_name_en'
+                ]
+            ]
+        ],
         Robots::FIELD_PAGE_RELATION => [
             'type' => IField::TYPE_OBJECT_RELATION,
             'columnName' => 'page_relation'
@@ -65,6 +96,9 @@ return [
                 Robots::FIELD_VERSION,
                 Robots::FIELD_OWNER,
                 Robots::FIELD_EDITOR,
+                Robots::FIELD_CREATED,
+                Robots::FIELD_UPDATED,
+                Robots::FIELD_DISPLAY_NAME,
                 Robots::FIELD_PAGE_RELATION
             ]
         ]

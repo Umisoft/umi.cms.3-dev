@@ -37,6 +37,8 @@ use umicms\project\module\search\model\SearchApi;
 use umicms\project\module\search\model\SearchIndexApi;
 use umicms\project\module\search\model\SearchModule;
 use umicms\project\module\service\model\collection\BackupCollection;
+use umicms\project\module\service\model\collection\RobotsCollection;
+use umicms\project\module\service\model\object\Robots;
 use umicms\project\module\structure\model\object\InfoBlock;
 use umicms\project\module\structure\model\object\Menu;
 use umicms\project\module\structure\model\object\MenuExternalItem;
@@ -103,6 +105,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     {
         try {
             $this->installDbStructure();
+            $this->installRobots();
 
             $this->installUsers();
             $this->installStructure();
@@ -115,7 +118,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
             $this->installSearch();
             $this->installBackup();
-            $this->installRobots();
             $this->installTest();
         } catch (DBALException $e) {
             var_dump($e->getMessage());
@@ -1187,6 +1189,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var SimpleHierarchicCollection $menuCollection
          */
         $menuCollection = $this->getCollectionManager()->getCollection('menu');
+        /**
+         * @var RobotsCollection $robotsCollection
+         */
+        $robotsCollection = $this->getCollectionManager()->getCollection('serviceRobots');
 
 
         $parent = null;
@@ -1376,6 +1382,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue(MenuExternalItem::FIELD_DISPLAY_NAME, 'Внешняя ссылка')
             ->setValue(MenuExternalItem::FIELD_RESOURCE_URL, 'http://ya.ru/');
 
+        $robotsCollection->disallow($about);
+        $robotsCollection->disallow($service);
     }
 
     protected function dropTables()
@@ -2326,6 +2334,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 `type` varchar(255),
                 `owner_id` bigint(20) unsigned DEFAULT NULL,
                 `editor_id` bigint(20) unsigned DEFAULT NULL,
+                `created` datetime DEFAULT NULL,
+                `updated` datetime DEFAULT NULL,
+                `display_name` varchar(255) DEFAULT NULL,
+                `display_name_en` varchar(255) DEFAULT NULL,
                 `page_relation` varchar(255) DEFAULT NULL,
 
                 PRIMARY KEY (`id`),

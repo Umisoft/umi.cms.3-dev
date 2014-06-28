@@ -15,12 +15,13 @@ use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\behaviour\IRobotsAccessibleCollection;
 use umicms\orm\object\ICmsPage;
 
 /**
  * Интерфейс коллекции объектов, которые имеют страницу на сайте.
  */
-interface ICmsPageCollection extends ICmsCollection, IRecoverableCollection, IRecyclableCollection, IActiveAccessibleCollection
+interface ICmsPageCollection extends ICmsCollection, IRecoverableCollection, IRecyclableCollection, IActiveAccessibleCollection, IRobotsAccessibleCollection
 {
     /**
      * Возвращает объект по URI.

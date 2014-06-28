@@ -13,6 +13,7 @@ namespace umicms\project\module\service\model\collection;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umicms\orm\collection\CmsCollection;
+use umicms\orm\object\behaviour\IRobotsAccessibleObject;
 use umicms\project\module\service\model\object\Robots;
 
 /**
@@ -24,4 +25,29 @@ use umicms\project\module\service\model\object\Robots;
  */
 class RobotsCollection extends CmsCollection
 {
+    /**
+     * Добавляет страницу в robots
+     * @param IRobotsAccessibleObject $page добавляемая страница
+     * @return Robots
+     */
+    public function disallow(IRobotsAccessibleObject $page)
+    {
+        return $this->add()
+            ->setValue(Robots::FIELD_DISPLAY_NAME, $page->displayName)
+            ->setValue(Robots::FIELD_PAGE_RELATION, $page);
+    }
+
+    public function allow(IRobotsAccessibleObject $page)
+    {
+        $robots = $this->select()
+            ->where(Robots::FIELD_PAGE_RELATION)->equals($page)
+            ->result()
+            ->fetch();
+
+        if ($robots instanceof IRobotsAccessibleObject) {
+            $this->delete($robots);
+        }
+
+        return $this;
+    }
 }
