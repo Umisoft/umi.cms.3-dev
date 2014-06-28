@@ -26,6 +26,10 @@
         <xsl:value-of select="infoBlock/property[@name='phoneNumber']/value" disable-output-escaping="yes"/>
     </xsl:template>
 
+    <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="social">
+        <xsl:value-of select="infoBlock/property[@name='widgetFacebook']/value" disable-output-escaping="yes"/>
+        <xsl:value-of select="infoBlock/property[@name='widgetVk']/value" disable-output-escaping="yes"/>
+    </xsl:template>
 
 
 </xsl:stylesheet>

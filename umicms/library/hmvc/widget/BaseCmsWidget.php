@@ -13,8 +13,11 @@ namespace umicms\hmvc\widget;
 use umi\acl\IAclResource;
 use umi\hmvc\component\IComponent;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
+use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\view\IView;
 use umi\hmvc\widget\BaseWidget;
+use umi\http\Response;
+use umicms\exception\NonexistentEntityException;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
@@ -56,7 +59,7 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
      */
     public function invokeForbidden(ResourceAccessForbiddenException $e)
     {
-        return $this->createResult($this->forbiddenTemplate, ['error' => $e]);
+        return $this->createResult($this->forbiddenTemplate, ['error' => $e, 'code' => $this->getExceptionStatusCode($e)]);
     }
 
     /**
@@ -109,6 +112,25 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
         return $this->createResult($templateName, [
             'tree' => $view
         ]);
+    }
+
+    /**
+     * Определяет код статуса ответа по произошедшему исключению.
+     * @param \Exception $e
+     * @return int
+     */
+    protected function getExceptionStatusCode(\Exception $e)
+    {
+        switch(true) {
+            case $e instanceof NonexistentEntityException:
+                return Response::HTTP_NOT_FOUND;
+            case $e instanceof ResourceAccessForbiddenException:
+                return Response::HTTP_FORBIDDEN;
+            case $e instanceof HttpException:
+                return $e->getCode();
+            default:
+                return Response::HTTP_INTERNAL_SERVER_ERROR;
+        }
     }
 
     /**

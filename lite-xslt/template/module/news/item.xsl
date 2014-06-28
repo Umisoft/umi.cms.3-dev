@@ -15,13 +15,9 @@
             doctype-system="about:legacy-compat"
             />
 
-    <xsl:include href="template://blogTemplate" />
-    <xsl:include href="template://common/common" />
-    <xsl:include href="template://common/form" />
 
-    <xsl:include href="template://module/structure/components" />
-    <xsl:include href="template://module/users/components" />
-
-    <xsl:include href="template://module/blog/components" />
+    <xsl:template match="result[@widget = 'news.item.rssLink']">
+        <a href="{url}"><xsl:value-of select="document('translate://project.site/RSSFeed')/result"/></a>
+    </xsl:template>
 
 </xsl:stylesheet>

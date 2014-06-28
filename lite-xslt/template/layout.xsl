@@ -16,7 +16,12 @@
             />
 
     <xsl:include href="template://defaultTemplate" />
-    <xsl:include href="template://module/structure/menu" />
-    <xsl:include href="template://module/structure/infoblock" />
+    <xsl:include href="template://common/common" />
+    <xsl:include href="template://common/form" />
+
+    <xsl:include href="template://module/structure/components" />
+    <xsl:include href="template://module/users/components" />
+
+    <xsl:include href="template://module/news/components" />
 
 </xsl:stylesheet>

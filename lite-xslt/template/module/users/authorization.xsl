@@ -15,13 +15,8 @@
             doctype-system="about:legacy-compat"
             />
 
-    <xsl:include href="template://blogTemplate" />
-    <xsl:include href="template://common/common" />
-    <xsl:include href="template://common/form" />
-
-    <xsl:include href="template://module/structure/components" />
-    <xsl:include href="template://module/users/components" />
-
-    <xsl:include href="template://module/blog/components" />
+    <xsl:template match="result[@widget = 'users.authorization.loginForm']">
+        <xsl:apply-templates select="form"/>
+    </xsl:template>
 
 </xsl:stylesheet>

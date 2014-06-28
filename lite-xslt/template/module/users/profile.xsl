@@ -15,13 +15,15 @@
             doctype-system="about:legacy-compat"
             />
 
-    <xsl:include href="template://blogTemplate" />
-    <xsl:include href="template://common/common" />
-    <xsl:include href="template://common/form" />
+    <xsl:template match="result[@widget = 'users.profile.view'][code = 403]" mode="sideBar">
 
-    <xsl:include href="template://module/structure/components" />
-    <xsl:include href="template://module/users/components" />
+        <xsl:apply-templates select="document('widget://users.authorization.loginForm')/result"/>
 
-    <xsl:include href="template://module/blog/components" />
+        <p style="margin-top: 10px">
+            <xsl:apply-templates select="document('widget://users.registration.link')/result"/>
+            <xsl:apply-templates select="document('widget://users.restoration.link')/result"/>
+        </p>
+    </xsl:template>
+
 
 </xsl:stylesheet>

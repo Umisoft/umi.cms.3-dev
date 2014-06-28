@@ -15,13 +15,8 @@
             doctype-system="about:legacy-compat"
             />
 
-    <xsl:include href="template://blogTemplate" />
-    <xsl:include href="template://common/common" />
-    <xsl:include href="template://common/form" />
 
-    <xsl:include href="template://module/structure/components" />
-    <xsl:include href="template://module/users/components" />
-
-    <xsl:include href="template://module/blog/components" />
+    <xsl:include href="template://module/structure/menu" />
+    <xsl:include href="template://module/structure/infoblock" />
 
 </xsl:stylesheet>

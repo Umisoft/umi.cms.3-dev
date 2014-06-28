@@ -79,7 +79,29 @@
                         </section>
 
                         <aside class="col-sm-3 col-sm-offset-1 blog-sidebar">
-                            <!--<?=$this->render('partial/sidebar-news.phtml', $scope) ?>-->
+                            <div class="sidebar-module sidebar-module-inset">
+                                <xsl:apply-templates select="document('widget://users.profile.view')/result" mode="sideBar"/>
+                            </div>
+
+                            <div class="sidebar-module sidebar-module-inset">
+                                <h4><xsl:value-of select="document('translate://project.site/RSSFeed')/result"/></h4>
+                                <p>
+                                    <xsl:value-of select="document('translate://project.site/News')/result"/>:
+                                    <xsl:apply-templates select="document('widget://news.item.rssLink')/result"/>
+                                </p>
+                            </div>
+                            <div class="sidebar-module">
+                                <h4><xsl:value-of select="document('translate://project.site/Rubrics')/result"/></h4>
+                                <xsl:apply-templates select="document('widget://news.rubric.tree')/result" mode="short"/>
+                            </div>
+                            <div class="sidebar-module">
+                                <h4><xsl:value-of select="document('translate://project.site/Subjects')/result"/></h4>
+                                <xsl:apply-templates select="document('widget://news.subject.list')/result" mode="short"/>
+                            </div>
+
+                            <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')/result" mode="social"/>
+
+
                         </aside>
 
                     </main>
@@ -92,7 +114,7 @@
 
                     <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')/result" mode="footer"/>
                     <p>
-                        <a href="#"><xsl:value-of select="document('translate://project.site/Back%20to%20top')/result"/></a>
+                        <a href="#"><xsl:value-of select="document('translate://project.site/BackToTop')/result"/></a>
                     </p>
                 </footer>
 
@@ -106,27 +128,6 @@
             </body>
         </html>
 
-    </xsl:template>
-
-    <xsl:template match="page" mode="layout">
-        <xsl:value-of select="property[@name = 'contents']/value" disable-output-escaping="yes" />
-    </xsl:template>
-
-    <xsl:template match="locales[locale]" mode="layout">
-        <ul class="nav navbar-nav navbar-right">
-            <xsl:apply-templates select="locale" mode="layout"/>
-        </ul>
-    </xsl:template>
-
-    <xsl:template match="locale" mode="layout">
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <xsl:attribute name="class">
-                    <xsl:if test="@current = 1">active</xsl:if>
-                </xsl:attribute>
-                <a href="{@url}"><xsl:value-of select="id"/><xsl:value-of select="@id"/></a>
-            </li>
-        </ul>
     </xsl:template>
 
 </xsl:stylesheet>
