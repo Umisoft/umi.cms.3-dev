@@ -31,7 +31,7 @@
                 </xsl:if>
             </xsl:attribute>
             <label><xsl:value-of select="label"/></label>
-            <xsl:apply-templates select="erros" mode="formErrors"/>
+            <xsl:apply-templates select="errors" mode="formErrors"/>
             <input class="form-control">
                 <xsl:copy-of select="attributes/@*"/>
             </input>
@@ -53,7 +53,7 @@
 
         <div class="form-group">
             <label><xsl:value-of select="label"/></label>
-            <xsl:apply-templates select="erros" mode="formErrors"/>
+            <xsl:apply-templates select="errors" mode="formErrors"/>
             <textarea class="form-control" rows="4">
                 <xsl:copy-of select="attributes/@*"/>
                 <xsl:value-of select="value" disable-output-escaping="yes"/>
@@ -64,7 +64,7 @@
     <xsl:template match="item[type='select' or type='multiSelect']" mode="formElement">
         <div class="form-group">
             <label><xsl:value-of select="label"/></label>
-            <xsl:apply-templates select="erros" mode="formErrors"/>
+            <xsl:apply-templates select="errors" mode="formErrors"/>
             <select class="form-control">
                 <xsl:copy-of select="attributes/@*"/>
                 <xsl:apply-templates select="choices/item" mode="selectOption"/>
@@ -80,7 +80,7 @@
     </xsl:template>
 
     <xsl:template match="item[type='checkboxGroup']" mode="formElement">
-        <xsl:apply-templates select="erros" mode="formErrors"/>
+        <xsl:apply-templates select="errors" mode="formErrors"/>
         <xsl:apply-templates select="choices/item" mode="checkboxOption"/>
     </xsl:template>
 
@@ -113,7 +113,7 @@
                 </xsl:if>
             </xsl:attribute>
             <label><xsl:value-of select="label"/></label>
-            <xsl:apply-templates select="erros" mode="formErrors"/>
+            <xsl:apply-templates select="errors" mode="formErrors"/>
             <input class="form-control">
                 <xsl:copy-of select="attributes/@*"/>
             </input>
@@ -140,7 +140,7 @@
                 </xsl:if>
             </xsl:attribute>
             <label><xsl:value-of select="label"/></label>
-            <xsl:apply-templates select="erros" mode="formErrors"/>
+            <xsl:apply-templates select="errors" mode="formErrors"/>
 
             <script type="text/javascript">
                 function reloadCaptcha_<xsl:value-of select="sessionKey"/>() {
@@ -186,7 +186,7 @@
     </xsl:template>
 
     <xsl:template match="item" mode="formErrors">
-        <li><xsl-value-of select="."/></li>
+        <li><xsl:value-of select="."/></li>
     </xsl:template>
 
 </xsl:stylesheet>

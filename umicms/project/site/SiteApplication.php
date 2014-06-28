@@ -132,9 +132,9 @@ class SiteApplication extends SiteComponent
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        if ($response = $this->postRedirectGet($request)) {
-            return $response;
-        }
+        /*if ($response = $this->postRedirectGet($request)) {
+            return $response; //TODO разобраться, почему проблема в xslt
+        }*/
 
         $this->registerSelectorInitializer();
         $this->registerSerializers();
