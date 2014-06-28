@@ -61,12 +61,12 @@ class StructureModule extends BaseModule
     }
 
     /**
-     * Возвращает модуль для работы с автогенерируемым меню структуры
+     * Возвращает API для работы с автогенерируемым меню структуры
      * @return AutoMenu
      */
     public function autoMenu()
     {
-        return $this->getSubmodule('umicms\project\module\structure\model\AutoMenu');
+        return $this->getApi('umicms\project\module\structure\model\AutoMenu');
     }
 
     /**

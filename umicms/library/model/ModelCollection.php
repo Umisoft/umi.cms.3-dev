@@ -10,13 +10,11 @@
 
 namespace umicms\model;
 
-use Doctrine\DBAL\Schema\Schema;
-use Doctrine\DBAL\Schema\Synchronizer\SingleDatabaseSynchronizer;
-use umi\dbal\cluster\IDbClusterAware;
-use umi\dbal\cluster\TDbClusterAware;
+use umi\config\entity\IConfig;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umi\spl\config\TConfigSupport;
+use umicms\exception\AlreadyExistentEntityException;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\UnexpectedValueException;
 use umicms\model\manager\IModelManagerAware;
@@ -25,26 +23,12 @@ use umicms\model\manager\TModelManagerAware;
 /**
  * API для управления моделями данных
  */
-class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelManagerAware, IDbClusterAware
+class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelManagerAware
 {
     use TLocalizable;
     use TModelEntityFactoryAware;
     use TModelManagerAware;
     use TConfigSupport;
-    use TDbClusterAware;
-
-    /**
-     * Имя файла конфигурации схемы таблицы
-     */
-    const MODEL_SCHEME_CONFIG = 'scheme.config.php';
-    /**
-     * Имя файла конфигурации метаданных коллекции
-     */
-    const MODEL_METADATA_CONFIG = 'metadata.config.php';
-    /**
-     * Имя файла конфигурации коллекции
-     */
-    const MODEL_COLLECTION_CONFIG = 'collection.config.php';
 
     /**
      * @var Model[] $models список моделей
@@ -70,21 +54,9 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
      */
     public function migrateAll()
     {
-        $synchronizer = new SingleDatabaseSynchronizer(
-            $this->getDbCluster()->getMaster()->getConnection()
-        );
-
-        $tables = [];
         foreach ($this->getModels() as $model) {
-            $tables[] = $model->getTableScheme();
-            break;
+            $model->setIsModified();
         }
-
-        $scheme = new Schema($tables);
-        var_dump($synchronizer->getUpdateSchema($scheme, true));
-        $synchronizer->updateSchema($scheme, true);
-        exit;
-       //
 
         return $this;
     }
@@ -120,14 +92,7 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
             return $this->models[$modelName];
         }
 
-        list($schemeConfig, $metadataConfig, $collectionConfig) = $this->getModelResources($modelName);
-
-        $model = $this->getModelEntityFactory()->createModel(
-            $modelName,
-            $schemeConfig,
-            $metadataConfig,
-            $collectionConfig
-        );
+        $model = $this->getModelEntityFactory()->createModel($modelName, $this->getModelConfig($modelName));
 
         return $this->models[$modelName] = $model;
 
@@ -147,13 +112,51 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
     }
 
     /**
-     * Возвращает ресурсы модели данных.
+     * Добавляет модель.
+     * @param string $modelName имя модели
+     * @param IConfig $modelConfig конфигурация
+     * @throws AlreadyExistentEntityException если модель с заданным именем существует
+     * @return Model
+     */
+    public function addModel($modelName, IConfig $modelConfig)
+    {
+        if ($this->hasModel($modelName)) {
+            throw new AlreadyExistentEntityException(
+                $this->translate(
+                    'Model "{modelName}" already exists.',
+                    ['modelName' => $modelName]
+                )
+            );
+        }
+
+        $model = $this->getModelEntityFactory()->createModel($modelName, $modelConfig);
+        $this->getModelManager()->markAsNew($model);
+
+        return $this->models[$modelName] = $model;
+    }
+
+    /**
+     * Удаляет модель данных по имени.
+     * @param string $modelName имя модели
+     * @throws NonexistentEntityException если модели с заданным именем не существует
+     * @return $this
+     */
+    public function deleteModel($modelName)
+    {
+        $model = $this->getModel($modelName);
+        $this->getModelManager()->markAsDeleted($model);
+
+        return $this;
+    }
+
+    /**
+     * Возвращает конфигурацию модели данных.
      * @param string $modelName имя модели
      * @throws NonexistentEntityException если модели с заданным именем не существует
      * @throws UnexpectedValueException если конфигурация невалидная
-     * @return array [$schemeConfigPath, $metadataConfigPath, $collectionConfigPath]
+     * @return IConfig
      */
-    protected function getModelResources($modelName)
+    protected function getModelConfig($modelName)
     {
         if (!$this->hasModel($modelName)) {
             throw new NonexistentEntityException(
@@ -164,13 +167,15 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
             );
         }
 
-        $resource = $this->modelsConfig[$modelName] . '/';
+        $modelConfig = $this->modelsConfig[$modelName];
+        if (!$modelConfig instanceof IConfig) {
+            throw new UnexpectedValueException($this->translate(
+                'Invalid model "{modelName}" configuration.',
+                ['modelName' => $modelName]
+            ));
+        }
 
-        return [
-            $resource . self::MODEL_SCHEME_CONFIG,
-            $resource . self::MODEL_METADATA_CONFIG,
-            $resource . self::MODEL_COLLECTION_CONFIG
-        ];
+        return $modelConfig;
     }
 
 }

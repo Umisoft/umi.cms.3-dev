@@ -27,16 +27,12 @@ use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\InvalidObjectsException;
 use umicms\exception\RuntimeException;
-use umicms\module\IModuleAware;
-use umicms\module\TModuleAware;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
-use umicms\project\module\news\install\Package;
 use umicms\project\module\news\model\collection\NewsRssImportScenarioCollection;
-use umicms\project\module\news\model\NewsModule;
 use umicms\project\module\search\model\SearchApi;
 use umicms\project\module\search\model\SearchIndexApi;
 use umicms\project\module\search\model\SearchModule;
@@ -56,13 +52,12 @@ use umicms\project\module\users\model\UsersModule;
 /**
  * Class InstallController
  */
-class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware, IObjectManagerAware, IModuleAware
+class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware, IObjectManagerAware
 {
 
     use TCollectionManagerAware;
     use TObjectPersisterAware;
     use TObjectManagerAware;
-    use TModuleAware;
 
     /**
      * @var IDbCluster $dbCluster
@@ -101,48 +96,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     }
 
     /**
-     * Устанавливает модель
-     * @param array $modelInfo информацию о модели
-     * @throws \RuntimeException
-     * @throws \InvalidArgumentException
-     */
-    protected function installModel($modelInfo)
-    {
-        if (!isset($modelInfo['collection'])) {
-            throw new \InvalidArgumentException('Cannot install model. Option "collection" required.');
-        }
-        if (!isset($modelInfo['metadata'])) {
-            throw new \InvalidArgumentException('Cannot install model. Option "metadata" required.');
-        }
-        if (!isset($modelInfo['scheme'])) {
-            throw new \InvalidArgumentException('Cannot install model. Option "scheme" required.');
-        }
-
-        if (!is_file($modelInfo['scheme'])) {
-            throw new \RuntimeException(sprintf('Cannot install model "%s". Scheme file "%s" does not exists.'));
-        }
-
-        $schemeConfig = require $modelInfo;
-        if (!is_array($schemeConfig)) {
-
-        }
-    }
-
-
-    /**
      * Вызывает контроллер.
      * @return Response
      */
     public function __invoke()
     {
-        $newsModule = $this->getModule(NewsModule::className());
-        $newsModule->getModels()->migrateAll();
-        exit;
-
-        foreach ($news->getModels() as $modelInfo) {
-            $this->installModel($modelInfo);
-        }
-
         try {
             $this->installDbStructure();
 
