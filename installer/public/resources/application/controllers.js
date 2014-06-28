@@ -110,8 +110,8 @@ define([], function(){
         UMI.ContextController = Ember.ObjectController.extend({});
 
         UMI.ActionController = Ember.ObjectController.extend({
-            queryParams: ['typeName'],
-            typeName: null
+            queryParams: ['type'],
+            type: null
         });
     };
 });

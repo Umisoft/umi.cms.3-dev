@@ -53,8 +53,8 @@ define(
                     actions: {
                         create: function(params){
                             var behaviour = params.behaviour;
-                            var model = this.get('controller.object');
-                            this.get('controller').send('create', model, behaviour);
+                            var object = params.object || this.get('controller.object');
+                            this.get('controller').send('create', {behaviour: behaviour, object: object});
                         }
                     }
                 },

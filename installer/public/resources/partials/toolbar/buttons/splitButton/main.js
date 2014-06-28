@@ -76,7 +76,7 @@ define(['App', 'text!./splitButton.hbs'],
                 click: function(event){
                     var el = this.$();
                     if(event.target.getAttribute('id') === el[0].getAttribute('id') || ( ($(event.target).hasClass('icon') || $(event.target).hasClass('button-label')) && event.target.parentElement.getAttribute('id') === el[0].getAttribute('id'))){
-                        this.send(this.get('defaultBehaviour').behaviour.name, this.get('defaultBehaviour').behaviour);
+                        this.send('sendActionForBehaviour', this.get('defaultBehaviour').behaviour);
                     }
                 },
                 actions: {

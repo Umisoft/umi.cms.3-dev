@@ -266,7 +266,7 @@ define([], function(){
                 addAndCreate: function(params){
                     var self = this;
                     return self.beforeAdd(params).then(function(addObject){
-                        var behaviour = {typeName: addObject.get('type')};
+                        var behaviour = {type: addObject.get('type')};
                         if(addObject.store.metadataFor(addObject.constructor.typeKey).collectionType === 'hierarchic'){
                             return addObject.get('parent').then(function(parent){
                                 self.send('create', parent, behaviour);
@@ -295,8 +295,9 @@ define([], function(){
                     }
                 },
 
-                create: function(parentObject, behaviour){
-                    var typeName = behaviour.typeName;
+                create: function(params){
+                    var type = params.behaviour.type;
+                    var parentObject = params.object;
                     var contextId = 'root';
                     if(parentObject.constructor.typeKey){
                         var meta = this.store.metadataFor(parentObject.constructor.typeKey) || {};
@@ -304,7 +305,7 @@ define([], function(){
                             contextId = parentObject.get('id');
                         }
                     }
-                    this.transitionTo('action', contextId, 'createForm', {queryParams: {'typeName': typeName}});
+                    this.transitionTo('action', contextId, 'createForm', {queryParams: {'type': type}});
                 },
 
                 edit: function(object){
@@ -677,7 +678,7 @@ define([], function(){
 
         UMI.ActionRoute = Ember.Route.extend({
             queryParams: {
-                typeName: {
+                type: {
                     refreshModel: true,
                     replace: true
                 }
@@ -688,7 +689,6 @@ define([], function(){
                 var actionName;
                 var contextModel;
                 var componentController;
-                var collectionName;
                 var contentControls;
                 var contentControl;
                 var routeData;
@@ -703,7 +703,6 @@ define([], function(){
                     actionName = params.action;
                     contextModel = this.modelFor('context');
                     componentController = this.controllerFor('component');
-                    collectionName = componentController.get('collectionName');
                     contentControls = componentController.get('contentControls');
                     contentControl = contentControls.findBy('id', actionName);
                     routeData = {
@@ -730,15 +729,14 @@ define([], function(){
 
                             if(actionResource){
                                 actionResource = UMI.Utils.replacePlaceholder(routeData.object, actionResource);
-
                                 if(actionName === 'createForm'){
                                     createdParams = contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
-                                    if(transition.queryParams.typeName){
-                                        createdParams.type = transition.queryParams.typeName;
+                                    if(transition.queryParams.type){
+                                        createdParams.type = transition.queryParams.type;
                                     }
-                                    routeData.createObject = self.store.createRecord(collectionName, createdParams);
-                                    if(transition.queryParams.typeName){
-                                        actionParams.type = transition.queryParams.typeName;
+                                    routeData.createObject = self.store.createRecord(componentController.get('dataSource.name'), createdParams);
+                                    if(transition.queryParams.type){
+                                        actionParams.type = transition.queryParams.type;
                                     } else{
                                         throw new Error("Тип создаваемого объекта не был указан.");
                                     }
