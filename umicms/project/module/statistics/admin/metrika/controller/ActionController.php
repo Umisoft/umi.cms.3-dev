@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\statistics\admin\metrika\controller;
 
-use umi\spl\config\TConfigSupport;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\component\admin\BaseController;
 use umicms\hmvc\component\admin\TActionController;
@@ -21,7 +20,6 @@ use umicms\project\module\statistics\admin\metrika\model\MetrikaModel;
  */
 class ActionController extends BaseController
 {
-    use TConfigSupport;
     use TActionController;
 
     /**
@@ -138,18 +136,7 @@ class ActionController extends BaseController
     protected function createModel()
     {
         $component = $this->getComponent();
-
-        $oauthToken = $component->getSetting(MetrikaModel::OAUTH_TOKEN);
-        $apiResources = $this->configToArray($component->getSetting(MetrikaModel::API_RESOURCES), true);
-
-        if (is_null($oauthToken)) {
-            throw new InvalidArgumentException($this->translate(
-                "Option {option} is required",
-                ['option' => MetrikaModel::OAUTH_TOKEN]
-            ));
-        }
-
-        $this->model = new MetrikaModel($oauthToken, $apiResources);
+        $this->model = new MetrikaModel($component);
     }
 
 }

@@ -9,16 +9,16 @@
  */
 namespace umicms\project\module\statistics\admin\metrika\model;
 
-use umi\i18n\ILocalizable;
-use umi\i18n\TLocalizable;
+use umi\spl\config\TConfigSupport;
 use umicms\exception\InvalidArgumentException;
+use umicms\hmvc\component\BaseCmsComponent;
 
 /**
  * API Яндекс.Метрики. Производит запросы к Метрике, получает статистические отчеты, информацию о счетчиках и пр.
  */
-class MetrikaModel implements ILocalizable
+class MetrikaModel
 {
-    use TLocalizable;
+    use TConfigSupport;
 
     /**
      * Полученный oAuth token.
@@ -51,14 +51,29 @@ class MetrikaModel implements ILocalizable
     private $prefixLocalizable = 'component:metrika:';
 
     /**
-     * Конструктор.
-     * @param string $oauthToken авторизационный токен
-     * @param array $apiResources список доступных ресурсов
+     * Компонент вызываемый Яндекс.Метрику
+     * @var \umi\hmvc\component\IComponent $component
      */
-    public function __construct($oauthToken, array $apiResources)
+    private $component;
+
+    /**
+     * Конструктор.
+     * @param \umicms\hmvc\component\BaseCmsComponent $component компонент вызываемый Яндекс.Метрику
+     * @throws \umicms\exception\InvalidArgumentException
+     */
+    public function __construct(BaseCmsComponent $component)
     {
-        $this->oauthToken = $oauthToken;
-        $this->apiResources = $apiResources;
+        $this->component = $component;
+
+        $this->oauthToken = $this->component->getSetting(self::OAUTH_TOKEN);
+        $this->apiResources = $this->configToArray($component->getSetting(self::API_RESOURCES), true);
+
+        if (is_null($this->oauthToken)) {
+            throw new InvalidArgumentException($this->component->translate(
+                "Option {option} is required",
+                ['option' => self::OAUTH_TOKEN]
+            ));
+        }
     }
 
     /**
@@ -230,7 +245,7 @@ class MetrikaModel implements ILocalizable
     {
         $prefix = str_replace('/', ':', $prefix);
 
-        return $this->translate($this->prefixLocalizable . $prefix . (is_null($name) ? $name : ':' . $name));
+        return $this->component->translate($this->prefixLocalizable . $prefix . (is_null($name) ? $name : ':' . $name));
     }
 
     /**
@@ -264,7 +279,7 @@ class MetrikaModel implements ILocalizable
         }
         if (is_null($dataConfig)) {
             throw new InvalidArgumentException(
-                $this->translate("Wrong resource query")
+                $this->component->translate("Wrong resource query")
             );
         }
         return $dataConfig;
