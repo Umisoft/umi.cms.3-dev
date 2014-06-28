@@ -13,44 +13,45 @@ use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
 use umicms\orm\object\CmsObject;
 
-/**
- * Метаданные простой коллекции объектов
- */
 return [
     'fields'     => [
-        CmsObject::FIELD_IDENTIFY            => [
+        CmsObject::FIELD_IDENTIFY              => [
             'type'       => IField::TYPE_IDENTIFY,
             'columnName' => 'id',
             'accessor'   => 'getId',
             'readOnly'   => true
         ],
-        CmsObject::FIELD_GUID                => [
+        CmsObject::FIELD_GUID                  => [
             'type'       => IField::TYPE_GUID,
             'columnName' => 'guid',
             'accessor'   => 'getGuid',
             'readOnly'   => true
         ],
-        CmsObject::FIELD_TYPE                => [
+        CmsObject::FIELD_TYPE                  => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'type',
             'accessor'   => 'getType',
             'readOnly'   => true
         ],
-        CmsObject::FIELD_VERSION             => [
+        CmsObject::FIELD_VERSION               => [
             'type'         => IField::TYPE_VERSION,
             'columnName'   => 'version',
             'accessor'     => 'getVersion',
             'readOnly'     => true,
             'defaultValue' => 1
         ],
-        CmsObject::FIELD_DISPLAY_NAME        => [
-            'type'          => IField::TYPE_STRING,
-            'columnName'    => 'display_name',
-            'filters'       => [
+        CmsObject::FIELD_DISPLAY_NAME          => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'display_name',
+            'filters' => [
                 IFilterFactory::TYPE_STRING_TRIM => []
             ],
-            'validators'    => [
+            'validators' => [
                 IValidatorFactory::TYPE_REQUIRED => []
+            ],
+            'localizations' => [
+                //TODO 'ru-RU' => ['columnName' => 'display_name'],
+                //'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
         CmsObject::FIELD_CREATED               => [

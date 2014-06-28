@@ -24,7 +24,7 @@ class SearchModule extends BaseModule
      */
     public function getSearchApi()
     {
-        return $this->getSubmodule('umicms\project\module\search\model\SearchIndexApi');
+        return $this->getApi('umicms\project\module\search\model\SearchIndexApi');
     }
 }
  

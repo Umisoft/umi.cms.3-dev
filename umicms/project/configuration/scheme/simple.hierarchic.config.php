@@ -1,12 +1,10 @@
 <?php
 
 use Doctrine\DBAL\Types\Type;
+use umicms\project\Environment;
 
-/**
- * Схема таблицы для простой иерархической коллекции объектов
- */
 return array_merge_recursive(
-    require __DIR__ . '/collection.config.php',
+    require Environment::$directoryCmsProject . '/configuration/scheme/simple.config.php',
     [
         'columns' => [
             'parent_id' => [
@@ -17,6 +15,9 @@ return array_merge_recursive(
                 ]
             ],
             'mpath' => [
+                'type' => Type::STRING
+            ],
+            'slug'             => [
                 'type' => Type::STRING
             ],
             'uri' => [
@@ -48,6 +49,10 @@ return array_merge_recursive(
             ]
         ],
         'indexes' => [
+            'parent_slug' => [
+                'type' => 'unique',
+                'columns' => ['parent_id', 'slug']
+            ],
             'uri' => [
                 'type' => 'unique',
                 'columns' => ['uri']

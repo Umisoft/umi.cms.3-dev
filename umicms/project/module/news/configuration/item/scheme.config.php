@@ -12,13 +12,26 @@ use Doctrine\DBAL\Types\Type;
 use umicms\project\Environment;
 
 return array_merge_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
+    require Environment::$directoryCmsProject . '/configuration/scheme/page.config.php',
     [
+        'name'        => 'project_news_item',
         'columns'     =>  [
+            'display_name_en' => [
+                'type'    => Type::STRING,
+                'options' => [
+                    'notnull' => false
+                ]
+            ],
+            'contents_en'     => [
+                'type' => Type::TEXT
+            ],
             'date'            => [
                 'type' => Type::DATETIME
             ],
             'announcement'    => [
+                'type' => Type::TEXT
+            ],
+            'announcement_en' => [
                 'type' => Type::TEXT
             ],
             'source' => [

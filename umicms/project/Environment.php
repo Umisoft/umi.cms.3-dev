@@ -38,6 +38,6 @@ class Environment
     /**
      * @var string $projectConfiguration файл с настройками проектов
      */
-    public static $projectsConfiguration;
+    public static $projectsConfiguration = '%directory-project%/configuration/projects.config.php';
 
 }

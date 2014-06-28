@@ -2,13 +2,14 @@
 
 use Doctrine\DBAL\Types\Type;
 
-/**
- * Схема колонок, общая для всех коллекций, объекты которых имеют страницу на сайте.
- */
 return [
     'columns' => [
-        'slug'             => [
-            'type' => Type::STRING
+        'layout_id'        => [
+            'type'    => Type::BIGINT,
+            'options' => [
+                'unsigned' => true,
+                'notnull' => false
+            ]
         ],
         'meta_title'       => [
             'type'    => Type::STRING,
@@ -39,18 +40,6 @@ return [
             'options' => [
                 'notnull' => false
             ]
-        ],
-        'layout_id'        => [
-            'type'    => Type::BIGINT,
-            'options' => [
-                'unsigned' => true,
-                'notnull' => false
-            ]
-        ]
-    ],
-    'indexes' => [
-        'slug' => [
-            'columns' => ['slug']
         ]
     ]
 ];
