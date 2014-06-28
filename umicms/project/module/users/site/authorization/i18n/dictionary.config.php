@@ -15,7 +15,9 @@ return [
         'Log in' => 'Log in',
         'Sign in' => 'Sign in',
         'Log out' => 'Log out',
-        'You are already logged in' => 'You are already logged in'
+        'You are already logged in' => 'You are already logged in',
+
+        'role:viewer:displayName' => 'Authorization users',
     ],
 
     'ru-RU' => [
@@ -23,7 +25,9 @@ return [
         'Log in' => 'Войти',
         'Sign in' => 'Авторизация',
         'Log out' => 'Выйти',
-        'You are already logged in' => 'Вы уже авторизованы'
+        'You are already logged in' => 'Вы уже авторизованы',
+
+        'role:viewer:displayName' => 'Авторизация пользователей',
     ]
 
 ];

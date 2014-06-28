@@ -320,7 +320,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'author'
             ],
             'project.site.blog.draft.edit' => ['author'],
-            'project.site.blog.draft.view' => ['viewer', 'author'],
+            'project.site.blog.draft.view' => ['viewer'],
 
             'project.site.blog.moderate' => [
                 'editExecutor',
@@ -347,7 +347,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'author'
             ],
             'project.site.blog.reject.edit' => ['author'],
-            'project.site.blog.reject.view' => ['viewer', 'author']
+            'project.site.blog.reject.view' => ['viewer']
         ];
 
         /**
@@ -371,7 +371,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'publisher'
             ],
             'project.site.blog.draft.edit' => ['author'],
-            'project.site.blog.draft.view' => ['viewer', 'author'],
+            'project.site.blog.draft.view' => ['viewer'],
 
             'project.site.blog.moderate' => [
                 'editExecutor',
@@ -398,7 +398,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'author'
             ],
             'project.site.blog.reject.edit' => ['author'],
-            'project.site.blog.reject.view' => ['viewer', 'author']
+            'project.site.blog.reject.view' => ['viewer']
         ];
 
         /**
