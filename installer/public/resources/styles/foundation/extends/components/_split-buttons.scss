@@ -1,0 +1,18 @@
+.split.button{
+    &.white{
+        @include split-button(false, $split-button-pip-color-alt, false, false);
+    }
+    span {
+        border-#{$default-float}-color: darken($primary-color, 10%);
+    }
+    &.secondary{
+        span{
+            border-#{$default-float}-color: darken($secondary-color, 16%);
+        }
+    }
+    &.white{
+        span{
+            border-#{$default-float}-color: darken(#fff, 16%);
+        }
+    }
+}

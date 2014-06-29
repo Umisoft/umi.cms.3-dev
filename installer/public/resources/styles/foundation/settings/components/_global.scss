@@ -1,0 +1,37 @@
+//
+// Foundation Variables
+//
+$base-font-size: 100% !default;
+
+// $base-line-height is 24px while $base-font-size is 16px
+$base-line-height: 150% !default;
+
+// We use these to control various global styles
+$body-bg: #f6f7f8;
+$body-font-color: #535E6D;
+$body-font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+
+// We use these as default colors throughout
+$primary-color: #259cec;
+$secondary-color: #F5F5F5;
+$alert-color: #f04124 !default;
+$success-color: #43AC6A !default;
+$warning-color: #f08a24 !default;
+$info-color: #a0d3e8 !default;
+
+// We use these to control inset shadow shiny edges and depressions.
+$shiny-edge-size: 0 1px 0 !default;
+$shiny-edge-color: rgba(#fff, .5) !default;
+$shiny-edge-active-color: rgba(#000, .2) !default;
+
+// We use this to control whether or not CSS classes come through in the gem files.
+$include-print-styles: true !default;
+
+// Media Query Ranges
+$small-range: (0em, 40em) !default;
+$medium-range: (40.063em, 64em) !default;
+$large-range: (64.063em, 90em) !default;
+$xlarge-range: (90.063em, 120em) !default;
+$xxlarge-range: (120.063em) !default;
+
+$include-html-global-classes: true;// check effect

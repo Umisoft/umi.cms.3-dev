@@ -2,17 +2,6 @@
 // Authorization
 //
 
-html{
-    color: #000;
-    overflow: hidden;
-    body{
-        overflow: hidden;
-        background: none;
-        height: 100%;
-
-    }
-}
-
 .auth-mask{
     transition: opacity 0.3s linear 0.4s;
     opacity: 1;
@@ -206,45 +195,4 @@ html{
             height: auto;
         }
     }
-    .loading{
-        [type="submit"]{
-            text-indent: -9999px;
-            background: $primary-color;
-            animation: animate-stripes 2s linear infinite;
-            position: relative;
-            background-position-y: 0;
-            transition: none;
-            opacity: 1;
-        }
-        .loader{
-            position: absolute;
-            margin-top: rem-calc(-22);
-            margin-left: rem-calc(-24);
-            left: 50%;
-            color: #EEE;
-            font-size: 11px;
-            text-shadow: 0 0 1px #443939;
-            &:before{
-                content: "Загрузка.."
-            }
-        }
-    }
 }
-
-@media #{$medium-up} {
-
-}
-
-@keyframes animate-stripes{
-    20%{
-        background: darken($primary-color, 5%);
-    }
-    50%{
-        background: darken($primary-color, 15%);
-    }
-    80%{
-        background: darken($primary-color, 5%);
-    }
-}
-
-//@keyframes animate-opacity { 100% { opacity: 0; } }

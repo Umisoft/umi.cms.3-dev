@@ -28,7 +28,7 @@
         @include button-bg-gradient($alert-color, darken($alert-color, 10%));
     }
     &.white{
-        @include button($padding: $button-med, $bg: #FFF);
+        @include button-style(#fff, $radius:false, $disabled:false);
         @include button-bg-gradient(#FFF, #FFF);
     }
     &.flat{
@@ -75,21 +75,28 @@
         vertical-align: middle;
     }
     &.loading{
-        animation: animate-bg-primary 2s linear infinite;
+        background: $primary-color;
+        animation: animate-stripes-bg-primary 2s linear infinite;
         position: relative;
         background-position-y: 0;
         transition: none;
         opacity: 1;
-        &:before{
+        cursor: default;
+        /*&:before{
             position: absolute;
             content: "";
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             line-height: 16px;
-            left: 10px;
+            left: 50%;
             top: 50%;
-            margin-top: -10px;
-            background: url("img/animate/loader-20.gif") center center no-repeat;
+            margin-top: -12px;
+            margin-left: -12px;
+            background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9z…iMC44cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+DQogIDwvcGF0aD4NCjwvc3ZnPg==") center center no-repeat;
+        }*/
+        &.secondary{
+            background: $secondary-color;
+            animation: animate-stripes-bg-secondary 2s linear infinite;
         }
     }
     &:focus{
@@ -100,5 +107,29 @@
             background-position-y: 0;
         }
         background-position-y: 0;
+    }
+}
+
+@keyframes animate-stripes-bg-primary{
+    20%{
+        background: darken($primary-color, 5%);
+    }
+    50%{
+        background: darken($primary-color, 15%);
+    }
+    80%{
+        background: darken($primary-color, 5%);
+    }
+}
+
+@keyframes animate-stripes-bg-secondary{
+    20%{
+        background: darken($secondary-color, 5%);
+    }
+    50%{
+        background: darken($secondary-color, 15%);
+    }
+    80%{
+        background: darken($secondary-color, 5%);
     }
 }

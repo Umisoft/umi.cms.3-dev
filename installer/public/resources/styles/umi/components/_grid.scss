@@ -1,0 +1,13 @@
+.umi-columns{
+    @include grid-column(
+        $collapse: false,
+            // Specify the float direction
+        $float: none
+    );
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    margin: 0 -0.1em;
+    padding-left: 22px;
+    padding-right: 0;
+}

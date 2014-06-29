@@ -1,0 +1,19 @@
+@import "global";
+
+// We use these to controls height and width styles.
+$f-dropdown-max-width: none;
+$f-dropdown-max-height: none !default;
+$f-dropdown-margin-top: 2px !default;
+
+// We use this to set the border styles for dropdowns.
+$f-dropdown-border-color: scale-color($secondary-color, $lightness: -25%);
+
+// We use these to style the triangle pip.
+$f-dropdown-triangle-size: 8px;
+
+// We use these to control styles for the list elements.
+$f-dropdown-font-color: $body-font-color;
+$f-dropdown-font-size: rem-calc(14) !default;
+$f-dropdown-list-padding: rem-calc(5, 8) !default;
+$f-dropdown-line-height: rem-calc(18) !default;
+$f-dropdown-list-hover-bg: $secondary-color;
