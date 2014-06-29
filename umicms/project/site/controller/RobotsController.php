@@ -37,12 +37,15 @@ class RobotsController extends BaseCmsController
      */
     public function __invoke()
     {
-        return $this->createViewResponse(
+        $response = $this->createViewResponse(
             'module/structure/robots/robots',
             [
                 'pages' => $this->module->robots()->select()->result(),
                 'host' => $this->getUrlManager()->getProjectUrl(true)
             ]
         )->setIsCompleted();
+        $response->headers->set('Content-type', 'text/plain');
+
+        return $response;
     }
 }
