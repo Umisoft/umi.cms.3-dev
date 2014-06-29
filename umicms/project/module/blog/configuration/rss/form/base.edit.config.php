@@ -61,7 +61,8 @@ return [
                     'type' => MultiSelect::TYPE_NAME,
                     'label' => BlogRssImportScenario::FIELD_TAGS,
                     'options' => [
-                        'dataSource' => BlogRssImportScenario::FIELD_TAGS
+                        'dataSource' => BlogRssImportScenario::FIELD_TAGS,
+                        'lazy' => true
                     ]
                 ]
             ]

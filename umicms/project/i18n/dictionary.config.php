@@ -51,12 +51,18 @@ return [
         'project.admin.rest.search' => '{#lazy:~/project/module/search/admin/i18n/dictionary.config.php}',
 
         'project.admin.rest.blog' => '{#lazy:~/project/module/blog/admin/i18n/dictionary.config.php}',
+        'project.admin.rest.blog.category' => '{#lazy:~/project/module/blog/admin/category/i18n/dictionary.config.php}',
+        'project.admin.rest.blog.comment' => '{#lazy:~/project/module/blog/admin/comment/i18n/dictionary.config.php}',
+        'project.admin.rest.blog.post' => '{#lazy:~/project/module/blog/admin/post/i18n/dictionary.config.php}',
+        'project.admin.rest.blog.author' => '{#lazy:~/project/module/blog/admin/author/i18n/dictionary.config.php}',
+        'project.admin.rest.blog.tag' => '{#lazy:~/project/module/blog/admin/tag/i18n/dictionary.config.php}',
 
         'project.admin.rest.models' => '{#lazy:~/project/module/models/admin/i18n/dictionary.config.php}',
 
 
         'project.admin.rest.settings' => '{#lazy:~/project/module/settings/admin/i18n/dictionary.config.php}',
         'project.admin.rest.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.site.slugify' => '{#lazy:~/project/site/settings/slugify/i18n/dictionary.config.php}',
         'project.admin.rest.settings.service' => '{#lazy:~/project/module/service/admin/settings/i18n/dictionary.config.php}',
         'project.admin.rest.settings.service.backup' => '{#lazy:~/project/module/service/admin/settings/backup/i18n/dictionary.config.php}',
         'project.admin.rest.settings.seo' => '{#lazy:~/project/module/seo/admin/settings/i18n/dictionary.config.php}',

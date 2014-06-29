@@ -83,7 +83,27 @@ return [
         TestObject::EMAIL => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::EMAIL],
         TestObject::NUMBER => ['type' => IField::TYPE_INTEGER, 'columnName' => TestObject::NUMBER],
         TestObject::FILE => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::FILE],
-        TestObject::IMAGE => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::IMAGE]
+        TestObject::IMAGE => ['type' => IField::TYPE_STRING, 'columnName' => TestObject::IMAGE],
+        TestObject::FIELD_CREATED             => [
+            'type'       => IField::TYPE_DATE_TIME,
+            'columnName' => 'created',
+            'readOnly'   => true
+        ],
+        TestObject::FIELD_UPDATED             => [
+            'type'       => IField::TYPE_DATE_TIME,
+            'columnName' => 'updated',
+            'readOnly'   => true
+        ],
+        TestObject::FIELD_OWNER => [
+            'type' => IField::TYPE_BELONGS_TO,
+            'columnName' => 'owner_id',
+            'target' => 'user'
+        ],
+        TestObject::FIELD_EDITOR => [
+            'type' => IField::TYPE_BELONGS_TO,
+            'columnName' => 'editor_id',
+            'target' => 'user'
+        ],
     ],
     'types' => [
         'base' => [
@@ -111,7 +131,11 @@ return [
                 TestObject::NUMBER,
                 TestObject::TIME,
                 TestObject::FILE,
-                TestObject::IMAGE
+                TestObject::IMAGE,
+                TestObject::FIELD_EDITOR,
+                TestObject::FIELD_OWNER,
+                TestObject::FIELD_CREATED,
+                TestObject::FIELD_UPDATED,
             ]
         ]
     ]
