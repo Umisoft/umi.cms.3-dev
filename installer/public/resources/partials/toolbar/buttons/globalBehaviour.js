@@ -167,6 +167,13 @@ define(
                             return this.get('meta.attributes.states.allow.label');
                         }
                     }.property('meta.attributes.label', 'isAllowedRobots'),
+                    iconClass: function(){
+                        if(this.get('isAllowedRobots')){
+                            return 'icon-allowRobots';
+                        } else{
+                            return 'icon-disallowRobots';
+                        }
+                    }.property('meta.attributes.label', 'isAllowedRobots'),
                     actions: {
                         switchRobots: function(){
                             var model = this.get('controller.object');

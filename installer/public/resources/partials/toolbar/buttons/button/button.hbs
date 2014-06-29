@@ -1,5 +1,5 @@
 {{#if view.meta.attributes.hasIcon}}
-    <i class="icon icon-{{unbound view.meta.name}}"></i>
+    <i {{bind-attr class=":icon iconClass"}}></i>
 {{/if}}
 
 {{view.label}}

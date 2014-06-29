@@ -7,6 +7,9 @@ define(['App', 'text!./button.hbs'],
                 label: function(){
                     return this.get('meta.attributes.label');
                 }.property('meta.attributes.label'),
+                iconClass: function(){
+                    return 'icon-' + this.get('view.meta.name');
+                }.property('view.meta.name'),
                 template: Ember.Handlebars.compile(buttonTemplate),
                 tagName: 'a',
                 classNames: ['s-margin-clear'],//TODO: избавиться от класса после возвращения Foundation
