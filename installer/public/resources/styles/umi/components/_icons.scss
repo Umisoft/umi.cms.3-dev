@@ -1,6 +1,7 @@
 //
 // Icons
 //
+$umi-icons: 'img/icons.png' !default;
 
 .animate{
     background-position: 0 0;
@@ -36,7 +37,7 @@
     display: inline-block;
 
     line-height: 16px;
-    background: url(img/icons.png) no-repeat;
+    background: url($umi-icons) no-repeat;
     background-color: transparent;
 
     &.icon-image{
