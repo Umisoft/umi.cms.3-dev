@@ -660,19 +660,11 @@ define([], function(){
 
                     // Временное решение для таблицы
                     if(actionName === 'children' || actionName === 'filter'){
-                        actionResource = Ember.get(componentController, 'settings.actions.getEditForm');
+                        actionResource = Ember.get(componentController, 'settings.actions.getFilter');
                         Ember.assert('Для получения метаданных табличного контрола обязателен action "getEditForm"', !!actionResource);
-                        return Ember.$.getJSON(actionResource.source + '?type=base').then(function(results){
-                            var settings = Ember.get(results, 'result.getEditForm');
-                            var tableMetadata = {columns: []};
-                            for(var i =0; i < settings.elements.length; i++){
-                                if(settings.elements[i].type === 'fieldset'){
-                                    tableMetadata.columns = tableMetadata.columns.concat(settings.elements[i].elements);
-                                } else{
-                                    tableMetadata.columns.push(settings.elements[i]);
-                                }
-                            }
-                            data.viewSettings = tableMetadata;
+                        return Ember.$.getJSON(actionResource.source).then(function(results){
+                            var settings = Ember.get(results, 'result.getFilter');
+                            data.viewSettings = settings;
                             return data;
                         });
                     } else if(actionName === 'editForm' || actionName === 'createForm'){

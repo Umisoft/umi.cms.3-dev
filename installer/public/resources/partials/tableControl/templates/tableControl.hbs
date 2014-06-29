@@ -33,7 +33,7 @@
         <table class="umi-table-control-header">
             <tbody>
                 <tr class="umi-table-control-row">
-                    {{#each column in content.viewSettings.columns}}
+                    {{#each column in content.viewSettings.elements}}
                         <td class="umi-table-control-header-column column-id-{{unbound column.name}}" style="width: 200px">
                             <div class="umi-table-control-cell-firefox-fix">
                                 <div class="umi-table-control-header-cell">
@@ -47,7 +47,7 @@
                 </tr>
 
                 <tr class="umi-table-control-row filters">
-                    {{#each column in content.viewSettings.columns}}
+                    {{#each column in content.viewSettings.elements}}
                         <td class="umi-table-control-header-column">
                             <div class="umi-table-control-header-cell filter column-id-{{unbound column.name}}">
                                 <input type="text" />
@@ -85,7 +85,7 @@
         <table class="umi-table-control-content">
             <tbody>
                 <tr class="umi-table-control-content-row-size">
-                    {{#each column in content.viewSettings.columns}}
+                    {{#each column in content.viewSettings.elements}}
                         <td class="umi-table-control-content-cell column-id-{{unbound column.name}}" style="width: 200px"></td>
                     {{/each}}
                     <td class="umi-table-control-empty-column"></td>
@@ -93,7 +93,7 @@
             {{#if objects.content.isFulfilled}}
                 {{#each object in objects}}
                     <tr {{bind-attr class=":umi-table-control-content-row object.type object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
-                        {{#each column in content.viewSettings.columns}}
+                        {{#each column in content.viewSettings.elements}}
                             <td class="umi-table-control-content-cell">
                                 {{view "tableCellContent" objectBinding="object" column=column}}
                             </td>
