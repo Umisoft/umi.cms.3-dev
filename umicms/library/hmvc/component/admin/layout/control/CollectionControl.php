@@ -12,6 +12,7 @@ namespace umicms\hmvc\component\admin\layout\control;
 
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\behaviour\IRobotsAccessibleCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\ICmsPageCollection;
 use umicms\hmvc\component\admin\layout\button\Button;
@@ -55,6 +56,10 @@ class CollectionControl extends AdminControl
 
         if ($this->collection instanceof IActiveAccessibleCollection) {
             $choices->addChoice('switchActivity', $this->createSwitchActivityButton(true));
+        }
+
+        if ($this->collection instanceof IRobotsAccessibleCollection) {
+            $choices->addChoice('switchRobots', $this->createRobotsAccessibleButton(true));
         }
 
         if ($this->collection instanceof ICmsPageCollection) {
