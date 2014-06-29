@@ -63,7 +63,7 @@ return array_merge_recursive(
                 ]
             ],
             StaticPage::TYPE => [
-                'objectClass' => 'umicms\project\module\structure\model\object\StaticPage',
+                'objectClass' => 'umicms\project\module\structure\model\object\StaticPage'
             ]
         ]
     ]

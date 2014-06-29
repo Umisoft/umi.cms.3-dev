@@ -154,6 +154,14 @@ return array_merge_recursive(
                     'notnull' => false
                 ]
             ]
+        ],
+        'indexes' => [
+            'name' => [
+                'type' => 'unique',
+                'columns' => [
+                    'name' => []
+                ]
+            ]
         ]
     ]
 );
