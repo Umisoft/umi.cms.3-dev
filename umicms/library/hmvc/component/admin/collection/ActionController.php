@@ -19,12 +19,14 @@ use umicms\hmvc\component\admin\TActionController;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\collection\behaviour\IRobotsAccessibleCollection;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\collection\CmsHierarchicPageCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
+use umicms\orm\object\behaviour\IRobotsAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
@@ -163,6 +165,64 @@ class ActionController extends BaseController
          * @var IActiveAccessibleObject $object
          */
         $collection->deactivate($object);
+
+        $this->commit();
+
+        return '';
+    }
+
+    /**
+     * Изменяет разрешение на индексацию объекта поисковыми машинами.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return string
+     */
+    protected function actionAllow()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IRobotsAccessibleCollection || !$object instanceof IRobotsAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot switch object robots accessible. Collection "{collection}" and its objects should be robots accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
+        }
+
+        /**
+         * @var IRobotsAccessibleObject $object
+         */
+        $collection->allow($object);
+
+        $this->commit();
+
+        return '';
+    }
+
+    /**
+     * Изменяет разрешение на индексацию объекта поисковыми машинами.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return string
+     */
+    protected function actionDisallow()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IRobotsAccessibleCollection || !$object instanceof IRobotsAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot switch object robots accessible. Collection "{collection}" and its objects should be robots accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
+        }
+
+        /**
+         * @var IRobotsAccessibleObject $object
+         */
+        $collection->disallow($object);
 
         $this->commit();
 
