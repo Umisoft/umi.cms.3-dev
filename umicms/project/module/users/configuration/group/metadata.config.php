@@ -91,7 +91,8 @@ return [
         ],
         UserGroup::FIELD_ROLES => [
             'type' => SerializedArrayField::TYPE,
-            'columnName' => 'roles'
+            'columnName' => 'roles',
+            'mutator' => 'setRoles',
         ]
     ],
     'types'      => [
