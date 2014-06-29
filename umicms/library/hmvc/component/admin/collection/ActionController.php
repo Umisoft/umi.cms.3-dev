@@ -251,11 +251,7 @@ class ActionController extends BaseController
         /**
          * @var IRobotsAccessibleObject $object
          */
-        $collection->isAllowedRobots($object);
-
-        $this->commit();
-
-        return '';
+        return $collection->isAllowedRobots($object);
     }
 
     /**

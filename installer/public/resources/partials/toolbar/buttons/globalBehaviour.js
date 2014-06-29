@@ -156,6 +156,39 @@ define(
                             }
                         }
                     }
+                },
+
+                switchRobots: {
+                    isAllowedRobots: '',
+                    label: function(){
+                        if(this.get('isAllowedRobots')){
+                            return this.get('meta.attributes.states.disallow.label');
+                        } else{
+                            return this.get('meta.attributes.states.allow.label');
+                        }
+                    }.property('meta.attributes.label', 'isAllowedRobots'),
+                    actions: {
+                        switchRobots: function(){
+                            var model = this.get('controller.object');
+                            this.get('controller').send('switchRobots', model);
+                        }
+                    },
+                    init: function(){
+                        this._super();
+                        var self = this;
+                        var object = this.get('controller.object');
+                        var componentController = this.get('container').lookup('controller:component');
+                        var isAllowedRobotsSource;
+                        var serializeObject;
+                        if(componentController){
+                            serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+                            isAllowedRobotsSource = componentController.get('settings.actions.isAllowedRobots.source');
+                            return $.get(isAllowedRobotsSource + '?id=' + object.get('id')).then(function(results){
+                                results = results || {};
+                                self.set('isAllowedRobots', Ember.get(results, 'result.isAllowedRobots'));
+                            });
+                        }
+                    }
                 }
             });
         };

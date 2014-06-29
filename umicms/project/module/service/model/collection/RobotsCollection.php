@@ -69,6 +69,6 @@ class RobotsCollection extends CmsCollection
             ->result()
             ->count();
 
-        return (bool) $robots > 0;
+        return (bool) $robots < 0;
     }
 }
