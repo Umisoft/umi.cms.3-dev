@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\service\admin\robots;
+namespace umicms\project\module\structure\admin\robots;
 
 use umicms\hmvc\component\admin\collection\CollectionComponent;
 

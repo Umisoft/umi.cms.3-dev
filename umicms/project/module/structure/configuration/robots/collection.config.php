@@ -15,7 +15,7 @@ return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
     'class' => 'umicms\project\module\structure\model\collection\RobotsCollection',
     'handlers' => [
-        'admin' => 'service.robots'
+        'admin' => 'structure.robots'
     ],
     'forms' => [
         'base' => [
