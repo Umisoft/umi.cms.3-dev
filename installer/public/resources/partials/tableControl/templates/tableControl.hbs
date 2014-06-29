@@ -92,14 +92,14 @@
                 </tr>
             {{#if objects.content.isFulfilled}}
                 {{#each object in objects}}
-                    <tr {{bind-attr class=":umi-table-control-content-row object.type object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
+                    {{#view view.rowView object=object}}
                         {{#each column in content.viewSettings.elements}}
                             <td class="umi-table-control-content-cell">
                                 {{view "tableCellContent" objectBinding="object" column=column}}
                             </td>
                         {{/each}}
                         <td class="umi-table-control-empty-column"></td>
-                    </tr>
+                    {{/view}}
                     {{else}}
                         <tr>
                             <td>

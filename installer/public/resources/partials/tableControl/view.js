@@ -252,6 +252,19 @@ define(['App', 'toolbar'], function(UMI){
                     var sortAscending = this.get('sortAscending');
                     this.get('controller').send('orderByProperty', propertyName, sortAscending);
                 }
+            }),
+
+            rowView: Ember.View.extend({
+                tagName: 'tr',
+                classNames: ['umi-table-control-content-row'],
+                classNameBindings: ['object.type', 'object.active::umi-inactive'],
+                attributeBindings: ['objectId'],
+                objectIdBinding: 'object.id',
+                click: function(){
+                    if(this.get('object.meta.editLink')){
+                        this.get('controller').transitionToRoute(this.get('object.meta.editLink').substr(6));
+                    }
+                }
             })
         });
 
@@ -262,13 +275,7 @@ define(['App', 'toolbar'], function(UMI){
             template: function(){
                 var meta = this.get('column');
                 var object = this.get('object');
-
-                var template;
-                if(meta.dataSource === 'displayName'){
-                    template = '{{#link-to "action" object.id "editForm" class="edit-link"}}' + object.get(meta.dataSource) + '{{/link-to}}';
-                } else{
-                    template = object.get(meta.dataSource) + '&nbsp;';
-                }
+                var template = object.get(meta.dataSource) + '&nbsp;';
                 return Ember.Handlebars.compile(template);
             }.property('object','column')
         });
