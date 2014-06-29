@@ -12,8 +12,9 @@ namespace umicms\project\admin\rest\controller;
 
 use Symfony\Component\HttpFoundation\Cookie;
 use umi\form\element\Select;
-use umi\form\IEntityFactory;
 use umi\form\IForm;
+use umi\form\IFormAware;
+use umi\form\TFormAware;
 use umi\hmvc\exception\http\HttpForbidden;
 use umi\hmvc\exception\http\HttpUnauthorized;
 use umi\http\Response;
@@ -33,19 +34,16 @@ use umicms\Utils;
 /**
  * Контроллер действий авторизации пользователя в административной панели.
  */
-class ActionController extends BaseController implements ILocalesAware, ISessionAware
+class ActionController extends BaseController implements ILocalesAware, ISessionAware, IFormAware
 {
     use TSessionAware;
     use TActionController;
+    use TFormAware;
 
     /**
      * @var UsersModule $module
      */
     protected $module;
-    /**
-     * @var IEntityFactory $formEntityFactory фабрика сущностей формы
-     */
-    protected $formEntityFactory;
     /**
      * @var CmsLocalesService $traitLocalesService сервис для работы с локалями
      */
@@ -54,12 +52,10 @@ class ActionController extends BaseController implements ILocalesAware, ISession
     /**
      * Конструктор.
      * @param UsersModule $module
-     * @param IEntityFactory $formEntityFactory
      */
-    public function __construct(UsersModule $module, IEntityFactory $formEntityFactory)
+    public function __construct(UsersModule $module)
     {
         $this->module = $module;
-        $this->formEntityFactory = $formEntityFactory;
     }
 
     /**
@@ -170,7 +166,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
             foreach ($adminLocales as $adminLocale) {
                 $locales[$adminLocale->getId()] = $adminLocale->getId();
             }
-            $localeInput = $this->formEntityFactory->createFormEntity(
+            $localeInput = $this->createFormEntity(
                 'locale',
                 [
                     'type' => Select::TYPE_NAME,

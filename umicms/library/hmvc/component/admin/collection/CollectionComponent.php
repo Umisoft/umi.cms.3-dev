@@ -46,6 +46,10 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
      */
     const ACTION_GET_CREATE_FORM = 'getCreateForm';
     /**
+     * Действие для получения настроек полей для фильтрации
+     */
+    const ACTION_GET_FILTER = 'getFilter';
+    /**
      * Действие для получения списка резервных копий
      */
     const ACTION_GET_BACKUP_LIST = 'getBackupList';
@@ -89,6 +93,7 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
             self::ACTION_CONTROLLER   => 'umicms\hmvc\component\admin\collection\ActionController',
             self::INTERFACE_LAYOUT_CONTROLLER => 'umicms\hmvc\component\admin\collection\LayoutController',
         ],
+
         self::OPTION_ACL         => [
 
             IAclFactory::OPTION_ROLES     => [
@@ -167,6 +172,7 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
 
         $actions[self::ACTION_GET_EDIT_FORM] = $this->createQueryAction(self::ACTION_GET_EDIT_FORM);
         $actions[self::ACTION_GET_CREATE_FORM] = $this->createQueryAction(self::ACTION_GET_CREATE_FORM);
+        $actions[self::ACTION_GET_FILTER] = $this->createQueryAction(self::ACTION_GET_FILTER);
 
         $collection = $this->getCollection();
         if ($collection instanceof IRecoverableCollection) {
