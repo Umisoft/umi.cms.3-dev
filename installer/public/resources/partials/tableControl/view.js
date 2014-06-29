@@ -262,7 +262,7 @@ define(['App', 'toolbar'], function(UMI){
                 objectIdBinding: 'object.id',
                 click: function(){
                     if(this.get('object.meta.editLink')){
-                        this.get('controller').transitionToRoute(this.get('object.meta.editLink').substr(6));
+                        this.get('controller').transitionToRoute(this.get('object.meta.editLink').replace('/admin', ''));//TODO: fix replace
                     }
                 }
             })
