@@ -12,7 +12,9 @@ namespace umicms\orm\object;
 
 use umi\orm\object\HierarchicObject;
 use umi\orm\objectset\IObjectSet;
+use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManagerAware;
+use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\selector\CmsSelector;
 
 /**
@@ -55,10 +57,20 @@ class CmsHierarchicObject extends HierarchicObject implements ICmsObject, IUrlMa
 
     /**
      * Возвращает селектор для выбора родителей страницы.
+     * @throws RuntimeException в случае, если коллекция не иерархическая
      * @return CmsSelector
      */
     public function getAncestry()
     {
-        return $this->getCollection()->selectAncestry($this);
+        $collection = $this->getCollection();
+
+        if (!$collection instanceof CmsHierarchicCollection) {
+            throw new RuntimeException(sprintf(
+                'Cannot get ancestry. Collection "%s" is not hierarchic.',
+                $collection->getName()
+            ));
+        }
+
+        return $collection->selectAncestry($this);
     }
 }

@@ -1,0 +1,11 @@
+<?php
+/**
+ * @var umicms\orm\selector\CmsSelector $list
+ * @var umicms\project\module\blog\model\object\BlogPost $blogPost
+ */
+?>
+<?php if ($list->getTotal()) : ?>
+    <?php foreach ($list as $blogPost) : ?>
+        <?= $this->widget('blog.reject.view.view', ['blogPost' => $blogPost, 'template' => 'shortView']); ?>
+    <?php endforeach; ?>
+<?php endif; ?>
