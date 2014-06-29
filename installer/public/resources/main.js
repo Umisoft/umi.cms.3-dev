@@ -8,7 +8,7 @@ require.config({
 
         Modernizr:  'libs/modernizr/modernizr',
         jQuery:     'libs/jquery/dist/jquery',
-        jQueryUI:   'libs/jquery-ui/ui/jquery-ui', //Официальный репозиторий jquery.ui (через точку), но там нет собранного файла. Поменял прошлый репозиторий из-за того, что на момент pull-request в нём тоже не было собранного файла
+        jQueryUI:   'libs/jquery-ui/jquery-ui.min',
         Handlebars: 'libs/handlebars/handlebars',
         Ember:      'libs/ember/ember',
         DS:         'libs/ember-data/ember-data',
