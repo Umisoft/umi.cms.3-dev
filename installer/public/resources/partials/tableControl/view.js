@@ -294,15 +294,17 @@ define(['App', 'toolbar'], function(UMI){
                         for(i = 0; i < choices.length; i++){
                             var prefix = '';
                             var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
-                            if(behaviourAction.hasOwnProperty('_actions')){
-                                prefix = '_';
-                            }
-                            action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
-                            if(action){
-                                if(Ember.typeOf(behaviour.actions) !== 'object'){
-                                    behaviour.actions = {};
+                            if(behaviourAction){
+                                if(behaviourAction.hasOwnProperty('_actions')){
+                                    prefix = '_';
                                 }
-                                behaviour.actions[choices[i].behaviour.name] = action;
+                                action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
+                                if(action){
+                                    if(Ember.typeOf(behaviour.actions) !== 'object'){
+                                        behaviour.actions = {};
+                                    }
+                                    behaviour.actions[choices[i].behaviour.name] = action;
+                                }
                             }
                         }
                     }
