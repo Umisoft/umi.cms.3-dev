@@ -3158,6 +3158,12 @@ label.error {
     background-position: -1080px 0; }
   .icon.icon-right-thin {
     background-position: -1100px 0; }
+  .icon.icon-allowRobots {
+    background-position: -1120px 0; }
+  .icon.icon-disallowRobots {
+    background-position: -1140px 0; }
+  .icon.icon-viewOnSite {
+    background-position: -1160px 0; }
   .icon.white.icon-image {
     background-position: 0px -20px; }
   .icon.white.icon-letter {
@@ -3258,6 +3264,12 @@ label.error {
     background-position: -1080px -20px; }
   .icon.white.icon-right-thin {
     background-position: -1100px -20px; }
+  .icon.white.icon-allowRobots {
+    background-position: -1120px -20px; }
+  .icon.white.icon-disallowRobots {
+    background-position: -1140px -20px; }
+  .icon.white.icon-viewOnSite {
+    background-position: -1160px -20px; }
   .icon.black.icon-image {
     background-position: 0px -40px; }
   .icon.black.icon-letter {
@@ -3358,6 +3370,12 @@ label.error {
     background-position: -1080px -40px; }
   .icon.black.icon-right-thin {
     background-position: -1100px -40px; }
+  .icon.black.icon-allowRobots {
+    background-position: -1120px -40px; }
+  .icon.black.icon-disallowRobots {
+    background-position: -1140px -40px; }
+  .icon.black.icon-viewOnSite {
+    background-position: -1160px -40px; }
 
 html {
   color: #000;
