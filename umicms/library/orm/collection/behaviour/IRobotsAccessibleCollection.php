@@ -29,10 +29,18 @@ interface IRobotsAccessibleCollection extends ICmsCollection
     public function disallow(IRobotsAccessibleObject $page);
 
     /**
-     * Разрешает индексацию объекта.
+     * Разрешает индексацию страницы.
      * @param IRobotsAccessibleObject $page страницу, удаляемая из robots.txt
      * @throws NotAllowedOperationException в случае, если операция запрещена
      * @return Robots
      */
     public function allow(IRobotsAccessibleObject $page);
+
+    /**
+     * Проверяет наличие страницы в robots.txt
+     * @param IRobotsAccessibleObject $page проверяемая страница
+     * @throws NotAllowedOperationException в случае, если операция запрещена
+     * @return bool
+     */
+    public function isAllowedRobots(IRobotsAccessibleObject $page);
 }

@@ -176,7 +176,7 @@ class ActionController extends BaseController
      * @throws RuntimeException если невозможно выполнить действие
      * @return string
      */
-    protected function actionAllow()
+    protected function actionAllowRobots()
     {
         $collection = $this->getCollection();
         $object = $collection->getById($this->getRequiredQueryVar('id'));
@@ -205,7 +205,7 @@ class ActionController extends BaseController
      * @throws RuntimeException если невозможно выполнить действие
      * @return string
      */
-    protected function actionDisallow()
+    protected function actionDisallowRobots()
     {
         $collection = $this->getCollection();
         $object = $collection->getById($this->getRequiredQueryVar('id'));
@@ -223,6 +223,35 @@ class ActionController extends BaseController
          * @var IRobotsAccessibleObject $object
          */
         $collection->disallow($object);
+
+        $this->commit();
+
+        return '';
+    }
+
+    /**
+     * Изменяет разрешение на индексацию объекта поисковыми машинами.
+     * @throws RuntimeException если невозможно выполнить действие
+     * @return string
+     */
+    protected function actionIsAllowedRobots()
+    {
+        $collection = $this->getCollection();
+        $object = $collection->getById($this->getRequiredQueryVar('id'));
+
+        if (!$collection instanceof IRobotsAccessibleCollection || !$object instanceof IRobotsAccessibleObject) {
+            throw new RuntimeException(
+                $this->translate(
+                    'Cannot check object robots accessible. Collection "{collection}" and its objects should be robots accessible.',
+                    ['collection' => $collection->getName()]
+                )
+            );
+        }
+
+        /**
+         * @var IRobotsAccessibleObject $object
+         */
+        $collection->isAllowedRobots($object);
 
         $this->commit();
 

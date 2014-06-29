@@ -65,11 +65,15 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
     /**
      * Действие для разрешения индексации страницы
      */
-    const ACTION_ALLOW = 'allow';
+    const ACTION_ALLOW_ROBOTS = 'allowRobots';
     /**
-     * Действие для запрета индексации объекта
+     * Действие для запрета индексации страницы
      */
-    const ACTION_DISALLOW = 'disallow';
+    const ACTION_DISALLOW_ROBOTS = 'disallowRobots';
+    /**
+     * Действие для проверки статуса разрешения индексации страницы
+     */
+    const ACTION_IS_ALLOWED_ROBOTS = 'isAllowedRobots';
     /**
      * Действие для изменения ЧПУ объекта
      */
@@ -201,8 +205,9 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
         }
 
         if ($collection instanceof IRobotsAccessibleCollection) {
-            $actions[self::ACTION_ALLOW] = $this->createModifyAction(self::ACTION_ALLOW);
-            $actions[self::ACTION_DISALLOW] = $this->createModifyAction(self::ACTION_DISALLOW);
+            $actions[self::ACTION_ALLOW_ROBOTS] = $this->createModifyAction(self::ACTION_ALLOW_ROBOTS);
+            $actions[self::ACTION_DISALLOW_ROBOTS] = $this->createModifyAction(self::ACTION_DISALLOW_ROBOTS);
+            $actions[self::ACTION_IS_ALLOWED_ROBOTS] = $this->createModifyAction(self::ACTION_IS_ALLOWED_ROBOTS);
         }
         if ($collection instanceof CmsHierarchicCollection) {
             $actions[self::ACTION_MOVE] = $this->createModifyAction(self::ACTION_MOVE);

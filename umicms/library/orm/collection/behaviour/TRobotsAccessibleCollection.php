@@ -59,13 +59,13 @@ trait TRobotsAccessibleCollection
      * Разрешает индексацию объекта.
      * @param IRobotsAccessibleObject $page страницу, удаляемая из robots.txt
      * @throws NotAllowedOperationException в случае, если операция запрещена
-     * @return mixed
+     * @return Robots
      */
     public function allow(IRobotsAccessibleObject $page)
     {
         if ($page->getCollection() !== $this) {
             throw new NotAllowedOperationException($this->translate(
-                'Cannot add object into robots.txt. Object from another collection "{collection}" given.',
+                'Cannot delete object from robots.txt. Object from another collection "{collection}" given.',
                 [
                     'collection' => $page->getCollectionName()
                 ]
@@ -73,6 +73,26 @@ trait TRobotsAccessibleCollection
         }
 
         return $this->getRobotsCollection()->allow($page);
+    }
+
+    /**
+     * Проверяет наличие страницы в robots.txt
+     * @param IRobotsAccessibleObject $page проверяемая страница
+     * @throws NotAllowedOperationException в случае, если операция запрещена
+     * @return bool
+     */
+    public function isAllowedRobots(IRobotsAccessibleObject $page)
+    {
+        if ($page->getCollection() !== $this) {
+            throw new NotAllowedOperationException($this->translate(
+                'Cannot check object in robots.txt. Object from another collection "{collection}" given.',
+                [
+                    'collection' => $page->getCollectionName()
+                ]
+            ));
+        }
+
+        return $this->getRobotsCollection()->checkPage($page);
     }
 
     /**
