@@ -13,7 +13,7 @@ namespace umicms\orm\collection\behaviour;
 use umicms\exception\NotAllowedOperationException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\behaviour\IRobotsAccessibleObject;
-use umicms\project\module\service\model\object\Robots;
+use umicms\project\module\structure\model\object\Robots;
 
 /**
  * Интерфейс коллекций, поддерживающих управления доступом на индексацию поисковыми системами.

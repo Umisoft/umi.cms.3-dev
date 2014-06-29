@@ -2,13 +2,11 @@
 
 return [
     'en-US' => [
-        'component:service:displayName' => 'Service',
-        'component:robots:displayName' => 'Robots.txt'
+        'component:service:displayName' => 'Service'
     ],
 
     'ru-RU' => [
-        'component:service:displayName' => 'Сервис',
-        'component:robots:displayName' => 'Robots.txt'
+        'component:service:displayName' => 'Сервис'
     ]
 ];
  

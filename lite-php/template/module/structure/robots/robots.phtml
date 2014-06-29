@@ -1,0 +1,13 @@
+<?php
+/** @var \umicms\project\module\structure\model\object\Robots[] $pages */
+?>
+User-Agent: *
+
+Disallow: /?
+<?php
+foreach($pages as $page) {
+    echo 'Disallow: ' . $page->pageRelation->getPageUrl() . "\n";
+}
+?>
+
+Host: <?= $host ?>

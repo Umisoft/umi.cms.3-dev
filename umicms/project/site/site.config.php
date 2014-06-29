@@ -49,6 +49,7 @@ return [
         SiteApplication::LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
         SiteRestWidgetController::NAME => __NAMESPACE__ . '\controller\SiteRestWidgetController',
         'captcha' => __NAMESPACE__ . '\controller\CaptchaController',
+        'robots' => __NAMESPACE__ . '\controller\RobotsController',
     ],
 
     SiteApplication::OPTION_WIDGET => [
@@ -76,6 +77,13 @@ return [
         ],
         'page' => [
             'type' => 'SiteStaticPageRoute'
+        ],
+        'robots' => [
+            'type' => IRouteFactory::ROUTE_FIXED,
+            'route' => '/robots',
+            'defaults' => [
+                'controller' => 'robots'
+            ]
         ],
         'component' => [
             'type' => 'SiteComponentRoute'

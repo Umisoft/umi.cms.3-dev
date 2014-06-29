@@ -8,14 +8,15 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\project\module\service\model\object;
+namespace umicms\project\module\structure\model\object;
 
 use umicms\orm\object\CmsObject;
+use umicms\orm\object\ICmsPage;
 
 /**
  * Запись в Robots.txt.
  *
- * @property string $pageRelation ссылка на страницу
+ * @property ICmsPage $pageRelation ссылка на страницу
  */
 class Robots extends CmsObject
 {

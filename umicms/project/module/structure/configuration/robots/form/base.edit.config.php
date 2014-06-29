@@ -9,13 +9,13 @@
 
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\service\model\object\Robots;
+use umicms\project\module\structure\model\object\Robots;
 
 return [
 
     'options' => [
         'dictionaries' => [
-            'collection.serviceRobots', 'collection', 'form'
+            'collection.robots', 'collection', 'form'
         ]
     ],
 

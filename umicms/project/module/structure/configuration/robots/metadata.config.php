@@ -11,7 +11,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\project\module\service\model\object\Robots;
+use umicms\project\module\structure\model\object\Robots;
 
 return [
     'dataSource' => [
@@ -88,7 +88,7 @@ return [
     ],
     'types' => [
         'base' => [
-            'objectClass' => 'umicms\project\module\service\model\object\Robots',
+            'objectClass' => 'umicms\project\module\structure\model\object\Robots',
             'fields' => [
                 Robots::FIELD_IDENTIFY,
                 Robots::FIELD_GUID,

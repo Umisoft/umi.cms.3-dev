@@ -36,9 +36,7 @@ use umicms\project\module\news\model\collection\NewsRssImportScenarioCollection;
 use umicms\project\module\search\model\SearchApi;
 use umicms\project\module\search\model\SearchIndexApi;
 use umicms\project\module\search\model\SearchModule;
-use umicms\project\module\service\model\collection\BackupCollection;
-use umicms\project\module\service\model\collection\RobotsCollection;
-use umicms\project\module\service\model\object\Robots;
+use umicms\project\module\structure\model\collection\RobotsCollection;
 use umicms\project\module\structure\model\object\InfoBlock;
 use umicms\project\module\structure\model\object\Menu;
 use umicms\project\module\structure\model\object\MenuExternalItem;
@@ -1198,7 +1196,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var RobotsCollection $robotsCollection
          */
-        $robotsCollection = $this->getCollectionManager()->getCollection('serviceRobots');
+        $robotsCollection = $this->getCollectionManager()->getCollection('robots');
 
 
         $parent = null;
