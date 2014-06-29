@@ -187,6 +187,10 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
             $actions[self::ACTION_GET_BACKUP] = $this->createQueryAction(self::ACTION_GET_BACKUP);
         }
 
+        if ($collection instanceof IRobotsAccessibleCollection) {
+            $actions[self::ACTION_IS_ALLOWED_ROBOTS] = $this->createQueryAction(self::ACTION_IS_ALLOWED_ROBOTS);
+        }
+
         return $actions;
     }
 
@@ -207,7 +211,6 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
         if ($collection instanceof IRobotsAccessibleCollection) {
             $actions[self::ACTION_ALLOW_ROBOTS] = $this->createModifyAction(self::ACTION_ALLOW_ROBOTS);
             $actions[self::ACTION_DISALLOW_ROBOTS] = $this->createModifyAction(self::ACTION_DISALLOW_ROBOTS);
-            $actions[self::ACTION_IS_ALLOWED_ROBOTS] = $this->createModifyAction(self::ACTION_IS_ALLOWED_ROBOTS);
         }
         if ($collection instanceof CmsHierarchicCollection) {
             $actions[self::ACTION_MOVE] = $this->createModifyAction(self::ACTION_MOVE);

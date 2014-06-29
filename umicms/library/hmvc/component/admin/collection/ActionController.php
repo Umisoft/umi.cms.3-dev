@@ -230,7 +230,7 @@ class ActionController extends BaseController
     }
 
     /**
-     * Изменяет разрешение на индексацию объекта поисковыми машинами.
+     * Проверяет разрешение на индексацию объекта поисковыми машинами.
      * @throws RuntimeException если невозможно выполнить действие
      * @return string
      */

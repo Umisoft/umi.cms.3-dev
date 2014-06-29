@@ -45,7 +45,9 @@ class RobotsCollection extends CmsCollection
     public function allow(IRobotsAccessibleObject $page)
     {
         $robots = $this->select()
-            ->where(Robots::FIELD_PAGE_RELATION)->equals($page)
+            ->where(Robots::FIELD_PAGE_RELATION)->equals(
+                $page->getCollection()->getName() . '#' . $page->getGUID()
+            )
             ->result()
             ->fetch();
 
@@ -64,11 +66,13 @@ class RobotsCollection extends CmsCollection
     public function checkPage(IRobotsAccessibleObject $page)
     {
         $robots = $this->select()
-            ->where(Robots::FIELD_PAGE_RELATION)->equals($page)
+            ->where(Robots::FIELD_PAGE_RELATION)->equals(
+                $page->getCollection()->getName() . '#' . $page->getGUID()
+            )
             ->limit(1)
             ->result()
             ->count();
 
-        return (bool) $robots < 0;
+        return $robots === 0;
     }
 }
