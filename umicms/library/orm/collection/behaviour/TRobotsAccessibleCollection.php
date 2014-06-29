@@ -13,8 +13,8 @@ namespace umicms\orm\collection\behaviour;
 use umi\orm\collection\ICollectionManager;
 use umicms\exception\NotAllowedOperationException;
 use umicms\orm\object\behaviour\IRobotsAccessibleObject;
-use umicms\project\module\service\model\collection\RobotsCollection;
-use umicms\project\module\service\model\object\Robots;
+use umicms\project\module\structure\model\collection\RobotsCollection;
+use umicms\project\module\structure\model\object\Robots;
 
 /**
  * Трейт для коллекций, поддерживающих запрещение индексирования страниц.
@@ -101,6 +101,6 @@ trait TRobotsAccessibleCollection
      */
     private function getRobotsCollection()
     {
-        return $this->getCollectionManager()->getCollection('serviceRobots');
+        return $this->getCollectionManager()->getCollection('robots');
     }
 }

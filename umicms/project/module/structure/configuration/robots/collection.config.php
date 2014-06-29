@@ -13,14 +13,14 @@ use umicms\orm\collection\ICmsCollection;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
-    'class' => 'umicms\project\module\service\model\collection\RobotsCollection',
+    'class' => 'umicms\project\module\structure\model\collection\RobotsCollection',
     'handlers' => [
         'admin' => 'service.robots'
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/service/configuration/robots/form/base.create.config.php}',
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/service/configuration/robots/form/base.edit.config.php}'
+            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/robots/form/base.create.config.php}',
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/robots/form/base.edit.config.php}'
         ]
     ],
     'dictionaries' => [

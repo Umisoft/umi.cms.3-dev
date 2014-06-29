@@ -12,12 +12,12 @@ return [
 
     'en-US' => [
         'component:structure:displayName' => 'Site structure',
-
-
+        'component:robots:displayName' => 'Robots.txt'
     ],
 
     'ru-RU' => [
         'component:structure:displayName' => 'Структура сайта',
+        'component:robots:displayName' => 'Robots.txt'
     ]
 
 ];
