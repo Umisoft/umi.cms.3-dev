@@ -15,7 +15,7 @@ return [
     ],
 
     'ru-RU' => [
-        'role:author:displayName' => 'Редактировать профиль'
+        'role:author:displayName' => 'Редактировать профиль автора'
     ]
 
 ];

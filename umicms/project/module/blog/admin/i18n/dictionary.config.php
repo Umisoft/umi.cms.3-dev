@@ -36,7 +36,7 @@ return [
         'component:author:displayName' => 'Авторы',
         'component:comment:displayName' => 'Комментарии',
         'component:tag:displayName' => 'Тэги',
-        'component:rss:displayName' => 'Импорт RSS-лент',
+        'component:rss:displayName' => 'Управление импортом RSS-лент',
 
         'role:categoryExecutor:displayName' => 'Категории',
         'role:postExecutor:displayName' => 'Посты',
@@ -45,7 +45,7 @@ return [
         'role:tagExecutor:displayName' => 'Тэги',
         'role:posttagExecutor:displayName' => 'Управление связью посты-тэги',
         'role:rsstagExecutor:displayName' => 'Управление связью RSS-тэги',
-        'role:rssExecutor:displayName' => 'Импорт RSS',
+        'role:rssExecutor:displayName' => 'Управление импортом RSS-лент',
     ]
 
 ];

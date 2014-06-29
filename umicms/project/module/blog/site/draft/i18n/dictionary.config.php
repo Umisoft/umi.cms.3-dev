@@ -22,7 +22,7 @@ return [
     'ru-RU' => [
         'role:author:displayName' => 'Публикация постов с премодерацией',
         'role:publisher:displayName' => 'Публикация постов без премодерации',
-        'role:moderator:displayName' => 'Модерирование',
+        'role:moderator:displayName' => 'Модерирование черновиков',
         'role:viewer:displayName' => 'Просмотр списка черновиков',
         'role:editExecutor:displayName' => 'Редактирование черновика',
         'role:viewExecutor:displayName' => 'Просмотр черновика'

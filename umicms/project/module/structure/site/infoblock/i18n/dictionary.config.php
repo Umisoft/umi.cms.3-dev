@@ -15,7 +15,7 @@ return [
     ],
 
     'ru-RU' => [
-        'role:viewer:displayName' => 'Просмотр информационных блоков'
+        'role:viewer:displayName' => 'Просмотр'
     ]
 
 ];

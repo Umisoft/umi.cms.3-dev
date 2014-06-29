@@ -23,7 +23,7 @@ return [
         'Publish' => 'Опубликовать',
         'Reject' => 'Отклонить',
 
-        'role:moderator:displayName' => 'Модерирование',
+        'role:moderator:displayName' => 'Модерирование комментариев',
         'role:viewer:displayName' => 'Просмотр комментариев',
         'role:addExecutor:displayName' => 'Комментирование'
     ]

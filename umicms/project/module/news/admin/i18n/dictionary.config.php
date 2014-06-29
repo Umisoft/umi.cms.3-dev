@@ -28,7 +28,7 @@ return [
         'role:itemExecutor:displayName' => 'Новости',
         'role:subjectExecutor:displayName' => 'Сюжеты',
         'role:itemsubjectExecutor:displayName' => 'Управление связью новости-сюжеты',
-        'role:rssExecutor:displayName' => 'Импорт RSS',
+        'role:rssExecutor:displayName' => 'Управление импортом RSS-лент',
         'role:rsssubjectExecutor:displayName' => 'Управление связью RSS-сюжеты',
     ]
 
