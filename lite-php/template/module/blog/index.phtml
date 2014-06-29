@@ -1,6 +1,6 @@
 <?php
 /**
-* @var umicms\project\module\structure\api\object\SystemPage $page
+* @var umicms\project\module\structure\model\object\SystemPage $page
 */
 ?>
 
@@ -9,4 +9,4 @@
 <h1><?= $page->displayName ?></h1>
 <?= $page->contents ?>
 
-<?= $this->widget('blog.post.list', ['template' => 'list']) ?>
+<?= $this->widget('blog.post.view.list', ['template' => 'list']) ?>

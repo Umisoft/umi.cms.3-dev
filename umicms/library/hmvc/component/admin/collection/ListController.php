@@ -392,4 +392,3 @@ class ListController extends BaseController
     }
 
 }
- 
