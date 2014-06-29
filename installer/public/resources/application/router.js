@@ -377,10 +377,10 @@ define([], function(){
                 /**
                  *
                  */
-                switchRobots: function(object){
+                switchRobots: function(object, currentState){
                     try{
                         var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
-                        var switchActivitySource = this.controllerFor('component').get('settings').actions[(object.get('active') ? 'de' : '') + 'activate'].source;
+                        var switchActivitySource = this.controllerFor('component').get('settings').actions[(currentState ? 'dis' : '') + 'allowRobots'].source;
                         $.ajax({
                             url: switchActivitySource + '?id=' + object.get('id'),
                             type: "POST",

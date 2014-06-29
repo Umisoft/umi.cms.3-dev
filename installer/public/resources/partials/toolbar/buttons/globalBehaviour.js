@@ -159,7 +159,7 @@ define(
                 },
 
                 switchRobots: {
-                    isAllowedRobots: '',
+                    isAllowedRobots: null,
                     label: function(){
                         if(this.get('isAllowedRobots')){
                             return this.get('meta.attributes.states.disallow.label');
@@ -170,11 +170,10 @@ define(
                     actions: {
                         switchRobots: function(){
                             var model = this.get('controller.object');
-                            this.get('controller').send('switchRobots', model);
+                            this.get('controller').send('switchRobots', model, this.get('isAllowedRobots'));
                         }
                     },
-                    init: function(){
-                        this._super();
+                    checkIsAllowedRobots: function(){
                         var self = this;
                         var object = this.get('controller.object');
                         var componentController = this.get('container').lookup('controller:component');
@@ -188,6 +187,13 @@ define(
                                 self.set('isAllowedRobots', Ember.get(results, 'result.isAllowedRobots'));
                             });
                         }
+                    },
+                    checkIsAllowedRobotsChange: function(){
+                        Ember.run.once(this, 'checkIsAllowedRobots');
+                    }.observes('controller.object').on('init'),
+
+                    willDestroyElement: function(){
+                        this.removeObserver('controller.object');
                     }
                 }
             });
