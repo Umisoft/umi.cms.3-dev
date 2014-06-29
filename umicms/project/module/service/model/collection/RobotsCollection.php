@@ -37,6 +37,11 @@ class RobotsCollection extends CmsCollection
             ->setValue(Robots::FIELD_PAGE_RELATION, $page);
     }
 
+    /**
+     * Удаляет страницу из robots
+     * @param IRobotsAccessibleObject $page удаляемая страница
+     * @return Robots
+     */
     public function allow(IRobotsAccessibleObject $page)
     {
         $robots = $this->select()
@@ -49,5 +54,21 @@ class RobotsCollection extends CmsCollection
         }
 
         return $this;
+    }
+
+    /**
+     * Проверяет наличие страницы в robots
+     * @param IRobotsAccessibleObject $page проверяемая страница
+     * @return bool
+     */
+    public function checkPage(IRobotsAccessibleObject $page)
+    {
+        $robots = $this->select()
+            ->where(Robots::FIELD_PAGE_RELATION)->equals($page)
+            ->limit(1)
+            ->result()
+            ->count();
+
+        return (bool) $robots > 0;
     }
 }
