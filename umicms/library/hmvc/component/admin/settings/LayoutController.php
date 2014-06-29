@@ -25,6 +25,12 @@ class LayoutController extends BaseController
     {
         $saveBehaviour = new Behaviour('save');
         $saveButton = new Button($this->getComponent()->translate('button:save'), $saveBehaviour);
+        $saveButton->attributes['hasIcon'] = false;
+
+        $config = $this->readConfig($this->getComponent()->getSettingsConfigAlias());
+
+        $form = $this->getForm(self::SETTINGS_FORM_NAME, $config);
+        $form->setAction($this->getUrl('action', ['action' => 'save']));
 
         return $this->createViewResponse(
             'simpleForm',
@@ -33,7 +39,7 @@ class LayoutController extends BaseController
                     'submitToolbar' => [
                         $saveButton->build()
                     ],
-                    'meta' => $this->getConfigForm()->getView()
+                    'meta' => $form->getView()
                 ]
             ]
         );

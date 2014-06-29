@@ -47,7 +47,8 @@ define([], function(){
                     for(key in controls){ //for empty - createForm & filter
                         if(controls.hasOwnProperty(key)){
                             control = controls[key];
-                            control.name = key;
+                            control.id = key;// used by router
+                            control.name = key;// used by templates
                             contentControls.push(control);
                         }
                     }
@@ -78,9 +79,14 @@ define([], function(){
                     var settings = this.get('settings');
                     if(settings && settings.hasOwnProperty('sideBar')){
                         var control;
+                        var controlParams;
                         for(control in settings.sideBar){
                             if(settings.sideBar.hasOwnProperty(control)){
-                                sideBarControl = settings.sideBar[control];
+                                controlParams = settings.sideBar[control];
+                                if(Ember.typeOf(controlParams) !== 'object'){
+                                    controlParams = {};
+                                }
+                                sideBarControl = controlParams;
                                 sideBarControl.name = control;
                             }
                         }
@@ -104,8 +110,8 @@ define([], function(){
         UMI.ContextController = Ember.ObjectController.extend({});
 
         UMI.ActionController = Ember.ObjectController.extend({
-            queryParams: ['typeName'],
-            typeName: null
+            queryParams: ['type'],
+            type: null
         });
     };
 });
