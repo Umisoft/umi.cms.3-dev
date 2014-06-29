@@ -2428,7 +2428,15 @@ elFinder.prototype = {
 				}
 				
 				xhr.open('POST', self.uploadURL, true);
-				formData.append('cmd', 'upload');
+                //TODO: add headers params for xhr upload
+                try{
+                    var csrfToken = $.ajaxSettings.headers['X-Csrf-Token'];
+                    xhr.setRequestHeader("X-Csrf-Token", csrfToken);
+                } catch(error){
+                    console.log('csrfToken for FileManager not available.');
+                };
+
+                formData.append('cmd', 'upload');
 				formData.append(self.newAPI ? 'target' : 'current', self.cwd().hash);
 				$.each(self.options.customData, function(key, val) {
 					formData.append(key, val);
