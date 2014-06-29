@@ -23,7 +23,7 @@ use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
 use umicms\project\module\blog\model\collection\BlogPostCollection;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 
 /**
@@ -242,12 +242,12 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
      */
     public function isAllowed($role, $operationName, array $assertions)
     {
-        if (!$role instanceof ComponentRoleProvider || !$role->getIdentity() instanceof AuthorizedUser) {
+        if (!$role instanceof ComponentRoleProvider || !$role->getIdentity() instanceof RegisteredUser) {
             return false;
         }
 
         /**
-         * @var AuthorizedUser $user
+         * @var RegisteredUser $user
          */
         $user = $role->getIdentity();
         $result = true;

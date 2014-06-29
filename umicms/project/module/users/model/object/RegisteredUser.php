@@ -14,7 +14,7 @@ use umicms\project\module\users\model\collection\UserCollection;
 use umicms\Utils;
 
 /**
- * Пользователь.
+ * Зарегистрированный пользователь.
  *
  * @property string $login логин
  * @property string $email e-mail
@@ -23,12 +23,12 @@ use umicms\Utils;
  * @property string $lastName фамилия
  * @property \DateTime $registrationDate дата регистрации
  */
-class AuthorizedUser extends BaseUser
+class RegisteredUser extends BaseUser
 {
     /**
-     * Имя типа авторизованного пользователя
+     * Имя типа.
      */
-    const TYPE_NAME = 'authorized';
+    const TYPE_NAME = 'registered';
 
     /**
      * Имя поля для хранения логина
@@ -152,7 +152,7 @@ class AuthorizedUser extends BaseUser
      */
     public function updateActivationCode()
     {
-        $this->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->setValue(Utils::generateGUID());
+        $this->getProperty(RegisteredUser::FIELD_ACTIVATION_CODE)->setValue(Utils::generateGUID());
 
         return $this;
     }

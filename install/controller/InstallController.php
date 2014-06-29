@@ -48,7 +48,7 @@ use umicms\project\module\structure\model\object\MenuInternalItem;
 use umicms\project\module\structure\model\object\StaticPage;
 use umicms\project\module\structure\model\object\StructureElement;
 use umicms\project\module\structure\model\StructureModule;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\Guest;
 use umicms\project\module\users\model\object\Supervisor;
 use umicms\project\module\users\model\object\UserGroup;
@@ -86,11 +86,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     private $searchIndexApi;
     /**
-     * @var AuthorizedUser $userSv
+     * @var RegisteredUser $userSv
      */
     private $userSv;
     /**
-     * @var AuthorizedUser $user
+     * @var RegisteredUser $user
      */
     private $user;
 
@@ -136,6 +136,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     public function __invoke()
     {
+        $users = $this->getModule(UsersModule::className());
+        $users->getModels()->migrateAll();
+        exit;
+
         $structure = $this->getModule(StructureModule::className());
         $structure->getModels()->migrateAll();
 
@@ -550,7 +554,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->userSv = $sv;
 
         /**
-         * @var AuthorizedUser $admin
+         * @var RegisteredUser $admin
          */
         $admin = $userCollection->add('authorized')
             ->setValue('displayName', 'Администратор')
@@ -566,7 +570,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $admin->setPassword('admin');
 
         /**
-         * @var AuthorizedUser $user
+         * @var RegisteredUser $user
          */
         $user = $userCollection->add('authorized')
             ->setValue('displayName', 'Зарегистрированный пользователь')

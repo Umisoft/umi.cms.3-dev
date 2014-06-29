@@ -13,15 +13,15 @@ return [
     'en-US' => [
         'component:user:displayName' => 'Users',
         'button:create' => 'Create user',
-        'action:create:authorized' => 'Registered',
-        'action:create:authorized.supervisor' => 'Create supervisor'
+        'action:create:registered' => 'Registered',
+        'action:create:registered.supervisor' => 'Create supervisor'
     ],
 
     'ru-RU' => [
         'component:user:displayName' => 'Пользователи',
         'button:create' => 'Создать пользователя',
-        'action:create:authorized' => 'Зарегистрированного',
-        'action:create:authorized.supervisor' => 'Супервайзера'
+        'action:create:registered' => 'Зарегистрированного',
+        'action:create:registered.supervisor' => 'Супервайзера'
     ]
 
 ];

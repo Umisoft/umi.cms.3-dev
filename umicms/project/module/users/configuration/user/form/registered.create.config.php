@@ -13,7 +13,7 @@ use umi\form\element\MultiSelect;
 use umi\form\element\Password;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 
 return [
 
@@ -29,47 +29,47 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'common',
             'elements' => [
-                AuthorizedUser::FIELD_DISPLAY_NAME => [
+                RegisteredUser::FIELD_DISPLAY_NAME => [
                     'type' => Text::TYPE_NAME,
-                    'label' => AuthorizedUser::FIELD_DISPLAY_NAME,
+                    'label' => RegisteredUser::FIELD_DISPLAY_NAME,
                     'options' => [
-                        'dataSource' => AuthorizedUser::FIELD_DISPLAY_NAME
+                        'dataSource' => RegisteredUser::FIELD_DISPLAY_NAME
                     ],
                 ],
-                AuthorizedUser::FIELD_LOGIN => [
+                RegisteredUser::FIELD_LOGIN => [
                     'type' => Text::TYPE_NAME,
-                    'label' => AuthorizedUser::FIELD_LOGIN,
+                    'label' => RegisteredUser::FIELD_LOGIN,
                     'options' => [
-                        'dataSource' => AuthorizedUser::FIELD_LOGIN
+                        'dataSource' => RegisteredUser::FIELD_LOGIN
                     ],
                 ],
-                AuthorizedUser::FIELD_PASSWORD => [
+                RegisteredUser::FIELD_PASSWORD => [
                     'type' => Password::TYPE_NAME,
-                    'label' => AuthorizedUser::FIELD_PASSWORD,
+                    'label' => RegisteredUser::FIELD_PASSWORD,
                     'options' => [
-                        'dataSource' => AuthorizedUser::FIELD_PASSWORD
+                        'dataSource' => RegisteredUser::FIELD_PASSWORD
                     ],
                 ],
-                AuthorizedUser::FIELD_EMAIL => [
+                RegisteredUser::FIELD_EMAIL => [
                     'type' => Text::TYPE_NAME,
-                    'label' => AuthorizedUser::FIELD_EMAIL,
+                    'label' => RegisteredUser::FIELD_EMAIL,
                     'options' => [
-                        'dataSource' => AuthorizedUser::FIELD_EMAIL
+                        'dataSource' => RegisteredUser::FIELD_EMAIL
                     ],
                 ],
-                AuthorizedUser::FIELD_REGISTRATION_DATE => [
+                RegisteredUser::FIELD_REGISTRATION_DATE => [
                     'type' => DateTime::TYPE_NAME,
-                    'label' => AuthorizedUser::FIELD_REGISTRATION_DATE,
+                    'label' => RegisteredUser::FIELD_REGISTRATION_DATE,
                     'options' => [
-                        'dataSource' => AuthorizedUser::FIELD_REGISTRATION_DATE
+                        'dataSource' => RegisteredUser::FIELD_REGISTRATION_DATE
                     ]
                 ],
-                AuthorizedUser::FIELD_GROUPS => [
+                RegisteredUser::FIELD_GROUPS => [
                     'type' => MultiSelect::TYPE_NAME,
-                    'label' => AuthorizedUser::FIELD_GROUPS,
+                    'label' => RegisteredUser::FIELD_GROUPS,
                     'options' => [
                         'lazy' => true,
-                        'dataSource' => AuthorizedUser::FIELD_GROUPS
+                        'dataSource' => RegisteredUser::FIELD_GROUPS
                     ]
                 ],
             ]
@@ -78,25 +78,25 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'personal',
             'elements' => [
-                AuthorizedUser::FIELD_FIRST_NAME => [
+                RegisteredUser::FIELD_FIRST_NAME => [
                     'type' => Text::TYPE_NAME,
-                    'label' => AuthorizedUser::FIELD_FIRST_NAME,
+                    'label' => RegisteredUser::FIELD_FIRST_NAME,
                     'options' => [
-                        'dataSource' => AuthorizedUser::FIELD_FIRST_NAME
+                        'dataSource' => RegisteredUser::FIELD_FIRST_NAME
                     ],
                 ],
-                AuthorizedUser::FIELD_MIDDLE_NAME => [
+                RegisteredUser::FIELD_MIDDLE_NAME => [
                     'type' => Text::TYPE_NAME,
-                    'label' => AuthorizedUser::FIELD_MIDDLE_NAME,
+                    'label' => RegisteredUser::FIELD_MIDDLE_NAME,
                     'options' => [
-                        'dataSource' => AuthorizedUser::FIELD_MIDDLE_NAME
+                        'dataSource' => RegisteredUser::FIELD_MIDDLE_NAME
                     ],
                 ],
-                AuthorizedUser::FIELD_LAST_NAME => [
+                RegisteredUser::FIELD_LAST_NAME => [
                     'type' => Text::TYPE_NAME,
-                    'label' => AuthorizedUser::FIELD_LAST_NAME,
+                    'label' => RegisteredUser::FIELD_LAST_NAME,
                     'options' => [
-                        'dataSource' => AuthorizedUser::FIELD_LAST_NAME
+                        'dataSource' => RegisteredUser::FIELD_LAST_NAME
                     ],
                 ],
             ]

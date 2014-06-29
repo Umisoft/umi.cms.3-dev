@@ -1,19 +1,16 @@
 <?php
 
 use umi\filter\IFilterFactory;
-use umi\form\element\Hidden;
 use umi\form\element\Password;
-use umi\form\element\Submit;
 use umi\form\element\Text;
 use umi\validation\IValidatorFactory;
-use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 
 return [
 
     'options' => [
         'dictionaries' => [
-            'collection.user', 'collection', 'project.site.users.authorization'
+            'collection.user', 'collection'
         ],
     ],
     'attributes' => [
@@ -21,9 +18,9 @@ return [
     ],
 
     'elements' => [
-        AuthorizedUser::FIELD_LOGIN => [
+        RegisteredUser::FIELD_LOGIN => [
             'type' => Text::TYPE_NAME,
-            'label' => AuthorizedUser::FIELD_LOGIN,
+            'label' => RegisteredUser::FIELD_LOGIN,
             'options' => [
                 'filters' => [
                     IFilterFactory::TYPE_STRING_TRIM => []
@@ -33,22 +30,17 @@ return [
                 ]
             ]
         ],
-        AuthorizedUser::FIELD_PASSWORD => [
+        RegisteredUser::FIELD_PASSWORD => [
             'type' => Password::TYPE_NAME,
-            'label' => AuthorizedUser::FIELD_PASSWORD,
+            'label' => RegisteredUser::FIELD_PASSWORD,
             'options' => [
+                'filters' => [
+                    IFilterFactory::TYPE_STRING_TRIM => []
+                ],
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []
                 ]
             ],
-        ],
-        BaseFormWidget::INPUT_REDIRECT_URL => [
-            'type' => Hidden::TYPE_NAME
-        ],
-
-        'submit' => [
-            'type' => Submit::TYPE_NAME,
-            'label' => 'Log in'
         ]
     ]
 ];
