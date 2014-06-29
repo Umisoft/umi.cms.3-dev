@@ -73,6 +73,8 @@ return [
         'project.admin.rest.settings.statistics' => '{#lazy:~/project/module/statistics/admin/settings/i18n/dictionary.config.php}',
         'project.admin.rest.settings.statistics.metrika' => '{#lazy:~/project/module/statistics/admin/settings/metrika/i18n/dictionary.config.php}',
         'project.admin.rest.settings.users' => '{#lazy:~/project/module/users/admin/settings/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.users.registration' => '{#lazy:~/project/module/users/admin/settings/registration/i18n/dictionary.config.php}',
+        'project.admin.rest.settings.users.notifications' => '{#lazy:~/project/module/users/admin/settings/notifications/i18n/dictionary.config.php}',
 
         'project.admin.rest.settings.forms' => '{#lazy:~/project/module/forms/admin/settings/i18n/dictionary.config.php}',
         'project.admin.rest.settings.forms.captcha' => '{#lazy:~/project/module/forms/admin/settings/captcha/i18n/dictionary.config.php}',
