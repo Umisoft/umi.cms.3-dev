@@ -51,7 +51,7 @@ class RobotsCollection extends CmsCollection
             ->result()
             ->fetch();
 
-        if ($robots instanceof IRobotsAccessibleObject) {
+        if ($robots instanceof Robots) {
             $this->delete($robots);
         }
 
