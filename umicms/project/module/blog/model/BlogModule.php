@@ -49,7 +49,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     /**
      * @var BlogAuthor $currentAuthor текущий автор блога
      */
-    protected $currentAuthor = null;
+    protected $currentAuthor;
 
     /**
      * @var int $maxPostsCount максимальное количество постов у тега
