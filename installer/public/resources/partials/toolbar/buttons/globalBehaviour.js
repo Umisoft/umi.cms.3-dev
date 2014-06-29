@@ -167,10 +167,24 @@ define(
                             return this.get('meta.attributes.states.allow.label');
                         }
                     }.property('meta.attributes.label', 'isAllowedRobots'),
+                    iconClass: function(){
+                        if(this.get('isAllowedRobots')){
+                            return 'icon-allowRobots';
+                        } else{
+                            return 'icon-disallowRobots';
+                        }
+                    }.property('isAllowedRobots'),
                     actions: {
                         switchRobots: function(){
+                            var self = this;
+                            var defer = Ember.RSVP.defer();
+                            var promise = defer.promise;
+                            var currentState = this.get('isAllowedRobots');
                             var model = this.get('controller.object');
-                            this.get('controller').send('switchRobots', model, this.get('isAllowedRobots'));
+                            this.get('controller').send('switchRobots', model, currentState, defer);
+                            promise.then(function(){
+                                self.set('isAllowedRobots', !currentState);
+                            });
                         }
                     },
                     checkIsAllowedRobots: function(){

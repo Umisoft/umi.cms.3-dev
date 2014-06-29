@@ -377,17 +377,17 @@ define([], function(){
                 /**
                  *
                  */
-                switchRobots: function(object, currentState){
+                switchRobots: function(object, currentState, defer){
                     try{
                         var serializeObject = JSON.stringify(object.toJSON({includeId: true}));
-                        var switchActivitySource = this.controllerFor('component').get('settings').actions[(currentState ? 'dis' : '') + 'allowRobots'].source;
+                        var switchRobotsSource = this.controllerFor('component').get('settings').actions[(currentState ? 'dis' : '') + 'allowRobots'].source;
                         $.ajax({
-                            url: switchActivitySource + '?id=' + object.get('id'),
+                            url: switchRobotsSource + '?id=' + object.get('id'),
                             type: "POST",
                             data: serializeObject,
                             contentType: 'application/json; charset=UTF-8'
                         }).then(function(){
-                            object.reload();
+                            defer.resolve();
                         });
                     } catch(error){
                         this.send('backgroundError', error);
