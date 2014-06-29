@@ -13,8 +13,6 @@ namespace umicms\hmvc\component\site;
 use umi\hmvc\component\IComponent;
 use umicms\hmvc\component\BaseCmsController;
 use umicms\hmvc\dispatcher\CmsDispatcher;
-use umicms\module\IModuleAware;
-use umicms\module\TModuleAware;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\model\object\SystemPage;
 use umicms\project\module\structure\model\StructureModule;
@@ -24,10 +22,9 @@ use umicms\hmvc\callstack\TPageCallStackAware;
 /**
  * Базовый контроллер для сайта
  */
-abstract class BaseSitePageController extends BaseCmsController implements IPageCallStackAware, IModuleAware
+abstract class BaseSitePageController extends BaseCmsController implements IPageCallStackAware
 {
     use TPageCallStackAware;
-    use TModuleAware;
 
     /**
      * {@inheritdoc}
@@ -79,7 +76,9 @@ abstract class BaseSitePageController extends BaseCmsController implements IPage
             }
         }
 
-        /** @var StructureModule $structureModule */
+        /**
+         * @var StructureModule $structureModule
+         */
         $structureModule = $this->getModule(StructureModule::className());
 
         $defaultPage = $structureModule->getDefaultPage();

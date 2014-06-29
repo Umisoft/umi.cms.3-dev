@@ -29,6 +29,7 @@ return [
         // default save actions
         'action:save' => 'Save',
         'action:saveAndGoBack' => 'Save and go back',
+        'button:save:notModified' => 'Saved',
 
         'button:add' => 'Create',
         'button:save' => 'Save',
@@ -45,7 +46,7 @@ return [
     ],
 
     'ru-RU' => [
-        //'action:create:base' => 'Добавить',
+        'action:create:base' => 'Добавить',
         'action:switchActivity' => 'Сменить активность',
         'action:switchActivity:activate' => 'Активировать',
         'action:switchActivity:deactivate' => 'Снять активность',

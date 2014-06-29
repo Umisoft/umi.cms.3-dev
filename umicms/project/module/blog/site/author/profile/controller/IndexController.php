@@ -25,9 +25,9 @@ class IndexController extends BaseSitePageController
     use TFormController;
 
     /**
-     * @var BlogModule $api API модуля "Блоги"
+     * @var BlogModule $module модуль "Блоги"
      */
-    protected $api;
+    protected $module;
     /**
      * @var bool $success флаг указывающий на успешное сохранение изменений
      */
@@ -35,11 +35,11 @@ class IndexController extends BaseSitePageController
 
     /**
      * Конструктор.
-     * @param BlogModule $blogModule API модуля "Блоги"
+     * @param BlogModule $blogModule модуля "Блоги"
      */
     public function __construct(BlogModule $blogModule)
     {
-        $this->api = $blogModule;
+        $this->module = $blogModule;
     }
 
     /**
@@ -55,9 +55,9 @@ class IndexController extends BaseSitePageController
      */
     protected function buildForm()
     {
-        $blogAuthor = $this->api->getCurrentAuthor();
+        $blogAuthor = $this->module->getCurrentAuthor();
 
-        return $this->api->author()->getForm(
+        return $this->module->author()->getForm(
             BlogAuthor::FORM_EDIT_PROFILE,
             IObjectType::BASE,
             $blogAuthor

@@ -15,6 +15,7 @@ return [
         'component:category:displayName' => 'Category',
         'component:post:displayName' => 'Posts',
         'component:author:displayName' => 'Authors',
+        'component:comment:displayName' => 'Comments',
         'component:tag:displayName' => 'Tags',
         'component:rss:displayName' => 'Import RSS feed'
     ],

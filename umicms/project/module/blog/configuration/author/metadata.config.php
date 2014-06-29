@@ -12,6 +12,7 @@ use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
 use umicms\filter\HtmlPurifier;
+use umicms\filter\Slug;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
 
@@ -48,6 +49,12 @@ return [
         BlogAuthor::FIELD_PAGE_SLUG => [
             'type' => IField::TYPE_SLUG,
             'columnName' => 'slug',
+            'filters' => [
+                Slug::TYPE => []
+            ],
+            'validators' => [
+                IValidatorFactory::TYPE_REQUIRED => []
+            ]
         ],
         BlogAuthor::FIELD_DISPLAY_NAME => [
             'type' => IField::TYPE_STRING,
