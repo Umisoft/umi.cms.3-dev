@@ -19,7 +19,7 @@ return [
     'ru-RU' => [
         'component:rss:displayName' => 'Управление импортом RSS-лент',
 
-        'role:editor:displayName' => 'Управление импортом RSS-лент'
+        'role:editor:displayName' => 'Управление импортом'
     ]
 
 ];

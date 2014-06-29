@@ -20,7 +20,7 @@ return [
 
     'ru-RU' => [
         'role:author:displayName' => 'Управление отклонёнными постами',
-        'role:moderator:displayName' => 'Модерирование',
+        'role:moderator:displayName' => 'Модерирование отклонённых постов',
         'role:viewer:displayName' => 'Просмотр списка отклонённых постов',
         'role:editExecutor:displayName' => 'Редактирование отклонённого поста',
         'role:viewExecutor:displayName' => 'Просмотр отклонённого поста',

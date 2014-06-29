@@ -21,7 +21,7 @@ return [
     'ru-RU' => [
         'role:viewer:displayName' => 'Управление своими постами, ожидающими премодерацию',
         'role:moderator:displayName' => 'Модерирование постов',
-        'role:editExecutor:displayName' => 'Редактирование поста на модерации',
+        'role:editExecutor:displayName' => 'Редактирование',
         'role:ownExecutor:displayName' => 'Собственные посты',
         'role:allExecutor:displayName' => 'Все посты',
     ]

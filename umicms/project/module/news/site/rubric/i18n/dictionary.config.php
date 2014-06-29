@@ -17,7 +17,7 @@ return [
 
     'ru-RU' => [
         'role:rssViewer:displayName' => 'Просмотр RSS-ленты рубрики',
-        'role:viewer:displayName' => 'Просмотр',
+        'role:viewer:displayName' => 'Просмотр рубрики',
     ]
 
 ];
