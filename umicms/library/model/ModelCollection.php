@@ -14,6 +14,7 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Schema\Synchronizer\SingleDatabaseSynchronizer;
 use umi\dbal\cluster\IDbClusterAware;
 use umi\dbal\cluster\TDbClusterAware;
+use umi\dbal\driver\IDialect;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umi\spl\config\TConfigSupport;
@@ -70,14 +71,18 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
      */
     public function migrateAll()
     {
-        $synchronizer = new SingleDatabaseSynchronizer(
-            $this->getDbCluster()->getMaster()->getConnection()
-        );
+
+        $connection = $this->getDbCluster()->getMaster()->getConnection();
+        /** @var IDialect $dialect */
+        $dialect = $connection->getDatabasePlatform();
+
+        $connection->exec($dialect->getDisableForeignKeysSQL());
+
+        $synchronizer = new SingleDatabaseSynchronizer($connection);
 
         $tables = [];
         foreach ($this->getModels() as $model) {
             $tables[] = $model->getTableScheme();
-            break;
         }
 
         $scheme = new Schema($tables);

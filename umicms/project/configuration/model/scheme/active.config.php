@@ -13,10 +13,5 @@ return [
                 'default' => 1
             ]
         ]
-    ],
-    'indexes' => [
-        'active' => [
-            'columns' => ['active']
-        ]
     ]
 ];

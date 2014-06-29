@@ -14,53 +14,31 @@ use umicms\project\Environment;
 return array_merge_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/collection.config.php',
     [
-        'name' => 'news_item_subject',
+        'name' => 'news_rss_import_scenario',
         'columns'     =>  [
-            'news_item_id' => [
+            'rubric_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true,
                     'notnull' => false
                 ]
             ],
-            'subject_id' => [
-                'type' => Type::BIGINT,
-                'options' => [
-                    'unsigned' => true,
-                    'notnull' => false
-                ]
+            'rss_url' => [
+                'type' => Type::STRING
             ]
         ],
         'indexes'     => [
-            'news_item' => [
+            'rubric' => [
                 'columns' => [
-                    'news_item_id' => []
-                ]
-            ],
-            'subject' => [
-                'columns' => [
-                    'subject_id' => []
+                    'rubric_id' => []
                 ]
             ]
         ],
         'constraints' => [
-            'to_item' => [
-                'foreignTable' => 'news_item',
+            'rss_to_rubric' => [
+                'foreignTable' => 'news_rubric',
                 'columns' => [
-                    'news_item_id' => []
-                ],
-                'foreignColumns' => [
-                    'id' => []
-                ],
-                'options' => [
-                    'onUpdate' => 'CASCADE',
-                    'onDelete' => 'SET NULL'
-                ]
-            ],
-            'to_subject' => [
-                'foreignTable' => 'news_subject',
-                'columns' => [
-                    'subject_id' => []
+                    'rubric_id' => []
                 ],
                 'foreignColumns' => [
                     'id' => []

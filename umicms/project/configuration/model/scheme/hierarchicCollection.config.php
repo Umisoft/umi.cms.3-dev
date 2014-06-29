@@ -20,8 +20,9 @@ return array_merge_recursive(
                 'type' => Type::STRING
             ],
             'uri' => [
-                'type' => Type::TEXT,
+                'type' => Type::STRING,
                 'options' => [
+                    'length' => 255,
                     'notnull' => false
                 ]
             ],
@@ -50,7 +51,29 @@ return array_merge_recursive(
         'indexes' => [
             'uri' => [
                 'type' => 'unique',
-                'columns' => ['uri']
+                'columns' => [
+                    'uri' => []
+                ]
+            ],
+            'parent' => [
+                'columns' => [
+                    'parent_id' => []
+                ]
+            ]
+        ],
+        'constraints' => [
+            'to_parent' => [
+                'foreignTable' => '%self%',
+                'columns' => [
+                    'parent_id' => []
+                ],
+                'foreignColumns' => [
+                    'id' => []
+                ],
+                'options' => [
+                    'onUpdate' => 'CASCADE',
+                    'onDelete' => 'CASCADE'
+                ]
             ]
         ]
     ]

@@ -8,8 +8,11 @@
  * file that was distributed with this source code.
  */
 
-return [
-    'dataSource' => [
-        'sourceName' => 'demohunt_search_index'
-    ],
-];
+use umicms\project\Environment;
+
+return array_merge_recursive(
+    require Environment::$directoryCmsProject . '/configuration/model/scheme/hierarchicPageCollection.config.php',
+    [
+        'name' => 'news_rubric'
+    ]
+);

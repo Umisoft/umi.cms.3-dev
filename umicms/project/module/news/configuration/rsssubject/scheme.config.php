@@ -14,9 +14,9 @@ use umicms\project\Environment;
 return array_merge_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/collection.config.php',
     [
-        'name' => 'news_item_subject',
+        'name' => 'news_rss_import_scenario_subject',
         'columns'     =>  [
-            'news_item_id' => [
+            'scenario_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true,
@@ -32,9 +32,9 @@ return array_merge_recursive(
             ]
         ],
         'indexes'     => [
-            'news_item' => [
+            'scenario' => [
                 'columns' => [
-                    'news_item_id' => []
+                    'scenario_id' => []
                 ]
             ],
             'subject' => [
@@ -44,10 +44,10 @@ return array_merge_recursive(
             ]
         ],
         'constraints' => [
-            'to_item' => [
-                'foreignTable' => 'news_item',
+            'to_scenario' => [
+                'foreignTable' => 'news_rss_import_scenario',
                 'columns' => [
-                    'news_item_id' => []
+                    'scenario_id' => []
                 ],
                 'foreignColumns' => [
                     'id' => []

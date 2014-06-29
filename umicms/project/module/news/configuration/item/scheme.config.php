@@ -14,11 +14,15 @@ use umicms\project\Environment;
 return array_merge_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
     [
+        'name' => 'news_item',
         'columns'     =>  [
             'date'            => [
                 'type' => Type::DATETIME
             ],
             'announcement'    => [
+                'type' => Type::TEXT
+            ],
+            'announcement_en' => [
                 'type' => Type::TEXT
             ],
             'source' => [
@@ -32,8 +36,27 @@ return array_merge_recursive(
                 ]
             ]
         ],
-        'indexes'     => [],
-        'constraints' => [],
-        'options'     => []
+        'indexes'     => [
+            'rubric' => [
+                'columns' => [
+                    'rubric_id' => []
+                ]
+            ]
+        ],
+        'constraints' => [
+            'item_to_rubric' => [
+                'foreignTable' => 'news_rubric',
+                'columns' => [
+                    'rubric_id' => []
+                ],
+                'foreignColumns' => [
+                    'id' => []
+                ],
+                'options' => [
+                    'onUpdate' => 'CASCADE',
+                    'onDelete' => 'SET NULL'
+                ]
+            ]
+        ]
     ]
 );

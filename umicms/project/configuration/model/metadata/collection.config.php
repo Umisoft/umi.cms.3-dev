@@ -51,6 +51,15 @@ return [
             ],
             'validators'    => [
                 IValidatorFactory::TYPE_REQUIRED => []
+            ],
+            'localizations' => [
+                'ru-RU' => [
+                    'columnName' => 'display_name',
+                    'validators' => [
+                        IValidatorFactory::TYPE_REQUIRED => []
+                    ]
+                ],
+                'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
         CmsObject::FIELD_CREATED               => [

@@ -14,10 +14,5 @@ return [
                 'default' => 0
             ]
         ]
-    ],
-    'indexes' => [
-        'trashed' => [
-            'columns' => ['trashed']
-        ]
     ]
 ];

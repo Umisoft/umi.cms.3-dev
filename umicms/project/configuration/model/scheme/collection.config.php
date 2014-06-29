@@ -6,6 +6,11 @@ use Doctrine\DBAL\Types\Type;
  * Схема таблицы для простой коллекции объектов
  */
 return [
+    'options' => [
+        'engine' => 'InnoDB',
+        'charset' => 'utf8',
+        'collate' => 'utf8_unicode_ci'
+    ],
     'columns' => [
         'id'           => [
             'type'    => Type::BIGINT,
@@ -28,6 +33,12 @@ return [
             ]
         ],
         'display_name' => [
+            'type'    => Type::STRING,
+            'options' => [
+                'notnull' => false
+            ]
+        ],
+        'display_name_en' => [
             'type'    => Type::STRING,
             'options' => [
                 'notnull' => false
@@ -63,14 +74,58 @@ return [
     'indexes' => [
         'primary' => [
             'type' => 'primary',
-            'columns' => ['id']
+            'columns' => [
+                'id' => []
+            ]
         ],
         'guid' => [
             'type' => 'unique',
-            'columns' => ['guid']
+            'columns' => [
+                'guid' => []
+            ]
         ],
         'type' => [
-            'columns' => ['type']
+            'columns' => [
+                'type' => []
+            ]
+        ],
+        'owner' => [
+            'columns' => [
+                'owner_id' => []
+            ]
+        ],
+        'editor' => [
+            'columns' => [
+                'editor_id' => []
+            ]
+        ]
+    ],
+    'constraints' => [
+        'editor_to_user' => [
+            'foreignTable' => 'user',
+            'columns' => [
+                'editor_id' => []
+            ],
+            'foreignColumns' => [
+                'id' => []
+            ],
+            'options' => [
+                'onUpdate' => 'CASCADE',
+                'onDelete' => 'SET NULL'
+            ]
+        ],
+        'owner_to_user' => [
+            'foreignTable' => 'user',
+            'columns' => [
+                'owner_id' => []
+            ],
+            'foreignColumns' => [
+                'id' => []
+            ],
+            'options' => [
+                'onUpdate' => 'CASCADE',
+                'onDelete' => 'SET NULL'
+            ]
         ]
     ]
 ];

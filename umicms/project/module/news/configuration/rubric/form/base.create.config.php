@@ -108,14 +108,6 @@ return [
                     'options' => [
                         'dataSource' => NewsRubric::FIELD_PAGE_CONTENTS
                     ]
-                ],
-
-                NewsRubric::FIELD_NEWS => [
-                    'type' => MultiSelect::TYPE_NAME,
-                    'label' => NewsRubric::FIELD_NEWS,
-                    'options' => [
-                        'dataSource' => NewsRubric::FIELD_NEWS
-                    ]
                 ]
             ]
         ]

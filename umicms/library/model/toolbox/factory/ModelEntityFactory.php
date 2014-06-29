@@ -35,6 +35,10 @@ class ModelEntityFactory implements IFactory
      * @var string $tableSchemeLoaderClass класс загрузчика схемы таблицы из конфигурации
      */
     public $tableSchemeLoaderClass = 'umicms\model\scheme\TableSchemeLoader';
+    /**
+     * @var string $tableNamePrefix префикс для имен таблиц проекта
+     */
+    public $tableNamePrefix = '';
 
     /**
      * Создает коллекцию моделей.
@@ -77,7 +81,7 @@ class ModelEntityFactory implements IFactory
             $this->tableSchemeLoaderClass,
             ['umicms\model\scheme\TableSchemeLoader']
         )
-            ->createSingleInstance();
+            ->createSingleInstance([], ['tableNamePrefix' => $this->tableNamePrefix]);
     }
 }
  

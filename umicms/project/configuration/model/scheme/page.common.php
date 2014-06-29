@@ -16,7 +16,19 @@ return [
                 'notnull' => false
             ]
         ],
+        'meta_title_en'       => [
+            'type'    => Type::STRING,
+            'options' => [
+                'notnull' => false
+            ]
+        ],
         'meta_keywords'    => [
+            'type'    => Type::STRING,
+            'options' => [
+                'notnull' => false
+            ]
+        ],
+        'meta_keywords_en'       => [
             'type'    => Type::STRING,
             'options' => [
                 'notnull' => false
@@ -28,7 +40,19 @@ return [
                 'notnull' => false
             ]
         ],
+        'meta_description_en' => [
+            'type'    => Type::STRING,
+            'options' => [
+                'notnull' => false
+            ]
+        ],
         'h1'               => [
+            'type'    => Type::STRING,
+            'options' => [
+                'notnull' => false
+            ]
+        ],
+        'h1_en'               => [
             'type'    => Type::STRING,
             'options' => [
                 'notnull' => false
@@ -40,6 +64,9 @@ return [
                 'notnull' => false
             ]
         ],
+        'contents_en'     => [
+            'type' => Type::TEXT
+        ],
         'layout_id'        => [
             'type'    => Type::BIGINT,
             'options' => [
@@ -50,7 +77,9 @@ return [
     ],
     'indexes' => [
         'slug' => [
-            'columns' => ['slug']
+            'columns' => [
+                'slug' => []
+            ]
         ]
     ]
 ];
