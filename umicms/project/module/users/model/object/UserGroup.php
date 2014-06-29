@@ -32,4 +32,22 @@ class UserGroup extends CmsObject implements IActiveAccessibleObject, ILockedAcc
      */
     const FIELD_ROLES = 'roles';
 
+    protected $defaultRoles = [
+        'project' => ['siteExecutor', 'adminExecutor'],
+
+    ];
+
+    /**
+     * Устанавливает права группы.
+     * @param array $roles
+     * @return $this
+     */
+    public function setRoles(array $roles)
+    {
+        $roles = array_merge_recursive($this->defaultRoles, $roles);
+        $this->getProperty(self::FIELD_ROLES)->setValue($roles);
+
+        return $this;
+    }
+
 }
