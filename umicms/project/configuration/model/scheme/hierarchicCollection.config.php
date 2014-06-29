@@ -17,7 +17,11 @@ return array_merge_recursive(
                 ]
             ],
             'mpath' => [
-                'type' => Type::STRING
+                'type' => Type::STRING,
+                'options' => [
+                    'length' => 255,
+                    'notnull' => false
+                ]
             ],
             'uri' => [
                 'type' => Type::STRING,
@@ -53,6 +57,12 @@ return array_merge_recursive(
                 'type' => 'unique',
                 'columns' => [
                     'uri' => []
+                ]
+            ],
+            'mpath' => [
+                'type' => 'unique',
+                'columns' => [
+                    'mpath' => []
                 ]
             ],
             'parent' => [

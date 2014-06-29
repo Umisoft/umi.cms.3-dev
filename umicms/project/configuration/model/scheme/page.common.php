@@ -80,6 +80,26 @@ return [
             'columns' => [
                 'slug' => []
             ]
+        ],
+        'layout' => [
+            'columns' => [
+                'layout_id' => []
+            ]
+        ]
+    ],
+    'constraints' => [
+        'to_layout' => [
+            'foreignTable' => 'layout',
+            'columns' => [
+                'layout_id' => []
+            ],
+            'foreignColumns' => [
+                'id' => []
+            ],
+            'options' => [
+                'onUpdate' => 'CASCADE',
+                'onDelete' => 'SET NULL'
+            ]
         ]
     ]
 ];

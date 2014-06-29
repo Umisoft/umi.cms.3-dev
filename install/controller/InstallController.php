@@ -47,6 +47,7 @@ use umicms\project\module\structure\model\object\MenuExternalItem;
 use umicms\project\module\structure\model\object\MenuInternalItem;
 use umicms\project\module\structure\model\object\StaticPage;
 use umicms\project\module\structure\model\object\StructureElement;
+use umicms\project\module\structure\model\StructureModule;
 use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\object\Guest;
 use umicms\project\module\users\model\object\Supervisor;
@@ -135,8 +136,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     public function __invoke()
     {
-        $newsModule = $this->getModule(NewsModule::className());
-        $newsModule->getModels()->migrateAll();
+        $structure = $this->getModule(StructureModule::className());
+        $structure->getModels()->migrateAll();
+
+        $news = $this->getModule(NewsModule::className());
+        $news->getModels()->migrateAll();
         exit;
 
         foreach ($news->getModels() as $modelInfo) {

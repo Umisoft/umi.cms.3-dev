@@ -3,6 +3,7 @@
 /**
  * Общие метаданные коллекций, объекты которых имеют страницу на сайте.
  */
+use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
 use umicms\filter\Slug;
@@ -17,6 +18,7 @@ return [
             'type'       => IField::TYPE_SLUG,
             'columnName' => 'slug',
             'filters' => [
+                IFilterFactory::TYPE_STRING_TRIM => [],
                 Slug::TYPE => []
             ],
             'validators' => [
