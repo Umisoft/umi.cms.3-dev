@@ -338,7 +338,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'viewer',
                 'author'
             ],
-            'project.site.blog.post.add' => ['viewer', 'author'],
+            'project.site.blog.post.add' => ['author'],
 
             'project.site.blog.reject' => [
                 'editExecutor',
@@ -347,7 +347,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'author'
             ],
             'project.site.blog.reject.edit' => ['author'],
-            'project.site.blog.reject.view' => ['viewer', 'author']
+            'project.site.blog.reject.view' => ['viewer', 'author'],
+
+            'project.site.blog.author' => ['profileExecutor'],
+            'project.site.blog.author.profile' => ['author'],
         ];
 
         /**
@@ -389,7 +392,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'viewer',
                 'author'
             ],
-            'project.site.blog.post.add' => ['viewer', 'author'],
+            'project.site.blog.post.add' => ['author'],
 
             'project.site.blog.reject' => [
                 'editExecutor',
@@ -398,7 +401,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'author'
             ],
             'project.site.blog.reject.edit' => ['author'],
-            'project.site.blog.reject.view' => ['viewer', 'author']
+            'project.site.blog.reject.view' => ['viewer', 'author'],
+
+            'project.site.blog.author.profile' => ['author'],
         ];
 
         /**
@@ -546,6 +551,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $guest->getProperty('locked')->setValue(true);
 
         $guest->groups->attach($visitors);
+        $guest->groups->attach($commentWithPremoderation);
 
     }
 
