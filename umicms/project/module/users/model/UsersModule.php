@@ -240,7 +240,7 @@ class UsersModule extends BaseModule implements IAuthenticationAware
 
     /**
      * Возвращает отправителя электронных писем.
-     * @return array
+     * @return array|null
      */
     public function getMailSender()
     {
@@ -249,7 +249,7 @@ class UsersModule extends BaseModule implements IAuthenticationAware
 
     /**
      * Возвращает получателей уведомлений.
-     * @return array
+     * @return array|null
      */
     public function getNotificationRecipients()
     {

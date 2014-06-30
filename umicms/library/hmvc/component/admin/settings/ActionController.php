@@ -37,13 +37,11 @@ class ActionController extends BaseController implements IConfigIOAware
         $form = $this->getForm(self::SETTINGS_FORM_NAME, $config);
         $form->setAction($this->getUrl('action', ['action' => 'save']));
 
-        $valid = $form->isValid();
+        $form->setData($this->getAllPostVars());
 
-        if ($form->setData($this->getAllPostVars()) && $valid) {
+        if ($form->isValid()) {
             $this->writeConfig($config);
-        }
-
-        if (!$valid) {
+        } else {
             $this->setResponseStatusCode(Response::HTTP_BAD_REQUEST);
         }
 
