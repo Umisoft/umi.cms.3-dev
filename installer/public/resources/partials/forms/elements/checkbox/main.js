@@ -14,7 +14,7 @@ define(['App'], function(UMI){
                 if(Ember.typeOf(object) === 'instance'){
                     isChecked = Ember.get(object, Ember.get(meta, 'dataSource'));
                 } else{
-                    isChecked = value;
+                    isChecked = Ember.get(meta, 'value');
                 }
 
                 var hiddenInput = '<input type="hidden" name="' + name + '" value="0" />';

@@ -11,13 +11,23 @@ define(['App'], function(UMI){
                 return 'content.value';
             }.property(),
             prompt: function(){
-                return this.get('meta.placeholder') || "Ничего не выбрано";
+                var label = 'Nothing is selected';
+                var translateLabel = UMI.i18n.getTranslate(label, 'form:select');//TODO: localize
+                return translateLabel ? translateLabel : label;
             }.property('meta.placeholder'),
             content: null,
             init: function(){
                 this._super();
                 this.set('selection', this.get('object.choices').findBy('value', this.get('object.value')));
                 this.set('content', this.get('object.choices'));
+            },
+            didInsertElement: function(){
+                var prompt = this.$().find('option')[0];
+                var validators = this.get('meta.validators') || [];
+                validators = validators.findBy({'type': 'required'});
+                if(!prompt.value && validators){
+                    prompt.disabled = true;
+                }
             }
         });
 
@@ -31,7 +41,9 @@ define(['App'], function(UMI){
                 return this.get('isLazy') ? 'content.id' : 'content.value';
             }.property(),
             prompt: function(){
-                return this.get('meta.placeholder') || "Ничего не выбрано";
+                var label = 'Nothing is selected';
+                var translateLabel = UMI.i18n.getTranslate(label, 'form:select');//TODO: localize
+                return translateLabel ? translateLabel : label;
             }.property('meta.placeholder'),
             content: null,
             changeValue: function(){
@@ -82,6 +94,14 @@ define(['App'], function(UMI){
                             self.set('selection', self.get('meta.choices').findBy('value', object.get(property)));
                         });
                     });
+                }
+            },
+            didInsertElement: function(){
+                var prompt = this.$().find('option')[0];
+                var validators = this.get('meta.validators') || [];
+                validators = validators.findBy({'type': 'required'});
+                if(!prompt.value && validators){
+                    prompt.disabled = true;
                 }
             },
             willDestroyElement: function(){
