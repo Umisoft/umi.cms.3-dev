@@ -40,20 +40,23 @@
             </head>
 
             <body>
-
                 <header id="top">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-12 col-sm-3 col-md-2">
+                                <!-- Языки -->
                                 <ul class="langs">
                                     <xsl:apply-templates select="locales" />
                                 </ul>
                                 <br />
+                                <!-- Логотип -->
                                 <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')" mode="logo"/>
                             </div>
                             <div class="right col-xs-12 col-sm-9 col-md-10 text-right">
+                                <!-- Номер телефона -->
                                 <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')" mode="phone"/>
                                 <br />
+                                <!-- Меню в хедере -->
                                 <xsl:apply-templates select="document('widget://structure.menu.auto?depth=1')" mode="headerMenu"/>
                             </div>
                         </div>
@@ -62,23 +65,22 @@
 
                 <div class="header-height"></div>
 
-
                 <xsl:apply-templates select="contents" mode="content"/>
 
                 <footer>
                     <div class="container-fluid">
                         <div class="row">
+                            <!-- Меню в футере -->
                             <xsl:apply-templates select="document('widget://structure.menu.auto?depth=2')" mode="footerMenu"/>
 
                             <div class="col-md-12 text-center">
-                                <ul class="social">
-                                    <li><a href="#"><img src="/resources/umi-rockband/images/social/facebook.png" alt="" /></a></li>
-                                    <li><a href="#"><img src="/resources/umi-rockband/images/social/twitter.png" alt="" /></a></li>
-                                    <li><a href="#"><img src="/resources/umi-rockband/images/social/google.png" alt="" /></a></li>
-                                </ul>
+                                <!-- Значки социальных сетей -->
+                                <xsl:call-template name="footerSocial"/>
+                                <!-- Текст Копирайта -->
                                 <p class="copy">
                                     <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')" mode="copyright"/>
                                 </p>
+                                <!-- Стрелка "Подняться вверх" -->
                                 <a href="#top" class="top-scroll"><img src="/resources/umi-rockband/images/top-scroll.png" alt=""/></a>
                             </div>
                         </div>

@@ -47,5 +47,14 @@
     </xsl:template>
     <!-- Языки в хедере <Конец> -->
 
+    <xsl:template name="footerSocial">
+        <ul class="social">
+            <li><a href="#"><img src="/resources/umi-rockband/images/social/facebook.png" alt="" /></a></li>
+            <li><a href="#"><img src="/resources/umi-rockband/images/social/twitter.png" alt="" /></a></li>
+            <li><a href="#"><img src="/resources/umi-rockband/images/social/google.png" alt="" /></a></li>
+        </ul>
+    </xsl:template>
+
+
 
 </xsl:stylesheet>
