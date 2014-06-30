@@ -370,6 +370,9 @@ $table-control-row-bg-hover: #C8DEEE;
 
 .umi-table-control-content-cell{
     padding: 0;
+    .umi-checkbox-state-checked{
+        vertical-align: middle;
+    }
 }
 
 .umi-table-control-content-cell-div{

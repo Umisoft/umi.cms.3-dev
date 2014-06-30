@@ -273,11 +273,48 @@ define(['App', 'toolbar'], function(UMI){
             classNameBindings: ['columnId'],
 
             template: function(){
-                var meta = this.get('column');
-                var object = this.get('object');
-                var template = object.get(meta.dataSource) + '&nbsp;';
-                return Ember.Handlebars.compile(template);
-            }.property('object','column')
+                var column;
+                var object;
+                var template = '';
+                var value;
+                try{
+                    object = this.get('object');
+                    column = this.get('column');
+                    switch(column.type){
+                        case 'wysiwyg':
+                            break;
+                        case 'checkbox':
+                            value = object.get(column.dataSource);
+                            template = '<span class="umi-checkbox-state-checked"></span>';
+                            break;
+                        case 'checkboxGroup':
+                        case 'multiSelect':
+                            value = object.get(column.dataSource);
+                            if(Ember.typeOf(value) === 'array'){
+                                template = value.join(', ');
+                            }
+                            break;
+                        case 'datetime':
+                            value = object.get(column.dataSource);
+                            if(value){
+                                try{
+                                    value = JSON.parse(value);
+                                    template = Ember.get(value, 'date');
+                                } catch(error){
+                                    this.get('controller').send('backgroundError', error);
+                                }
+                            }
+                            break;
+                        default:
+                            template = object.get(column.dataSource) + '&nbsp;';
+                            break;
+                    }
+                } catch(error){
+                    this.get('controller').send('backgroundError', error);
+                } finally{
+                    return Ember.Handlebars.compile(template);
+                }
+            }.property('column')
         });
 
 
