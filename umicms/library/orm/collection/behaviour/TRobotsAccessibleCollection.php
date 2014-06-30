@@ -96,7 +96,7 @@ trait TRobotsAccessibleCollection
     }
 
     /**
-     * Возвращает коллекцию резервных копий.
+     * Возвращает коллекцию robots.
      * @return RobotsCollection
      */
     private function getRobotsCollection()
