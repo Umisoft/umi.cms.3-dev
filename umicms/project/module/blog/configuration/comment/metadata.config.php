@@ -15,7 +15,7 @@ use umicms\project\module\blog\model\object\BlogBaseComment;
 use umicms\project\module\blog\model\object\BlogBranchComment;
 use umicms\project\module\blog\model\object\BlogComment;
 
-return array_merge_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicCollection.config.php',
     require Environment::$directoryCmsProject . '/configuration/model/metadata/active.config.php',
     require Environment::$directoryCmsProject . '/configuration/model/metadata/recyclable.config.php',

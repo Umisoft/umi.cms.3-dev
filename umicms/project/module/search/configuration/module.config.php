@@ -16,5 +16,8 @@ return [
             'minimumPhraseLength' => 3,
             'minimumWordRootLength' => 3,
         ]
+    ],
+    'models' => [
+        'index' => '~/project/module/search/configuration/index',
     ]
 ];

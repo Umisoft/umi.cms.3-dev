@@ -12,15 +12,21 @@ use Doctrine\DBAL\Types\Type;
 use umicms\project\Environment;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
+    require Environment::$directoryCmsProject . '/configuration/model/scheme/collection.config.php',
     [
-        'name' => 'blog_tag',
+        'name' => 'backup',
         'columns' => [
-            'posts_count' => [
+            'object_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true
                 ]
+            ],
+            'collection_name' => [
+                'type' => Type::STRING
+            ],
+            'data' => [
+                'type' => Type::TEXT
             ]
         ]
     ]

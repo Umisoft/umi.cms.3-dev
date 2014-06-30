@@ -11,12 +11,12 @@
 use Doctrine\DBAL\Types\Type;
 use umicms\project\Environment;
 
-return array_merge_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
     [
-        'name' => 'rss_rss_post_tag',
+        'name' => 'blog_rss_tag',
         'columns' => [
-            'rss_import_scenario_id' => [
+            'scenario_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true
@@ -32,7 +32,7 @@ return array_merge_recursive(
         'indexes' => [
             'rss_import_scenario' => [
                 'columns' => [
-                    'rss_import_scenario_id' => []
+                    'scenario_id' => []
                 ]
             ],
             'tag' => [
@@ -45,7 +45,7 @@ return array_merge_recursive(
             'scenario_to_tag' => [
                 'foreignTable' => 'blog_blog_post_tags',
                 'columns' => [
-                    'rss_import_scenario_id' => []
+                    'scenario_id' => []
                 ],
                 'foreignColumns' => [
                     'id' => []

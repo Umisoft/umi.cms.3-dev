@@ -11,16 +11,16 @@
 use umi\orm\metadata\field\IField;
 use umicms\project\Environment;
 
-return array_merge_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
     [
         'dataSource' => [
-            'sourceName' => 'rss_rss_post_tag'
+            'sourceName' => 'blog_rss_tag'
         ],
         'fields' => [
             'blogRssImportScenario' => [
                 'type' => IField::TYPE_BELONGS_TO,
-                'columnName' => 'rss_import_scenario_id',
+                'columnName' => 'scenario_id',
                 'target' => 'blogRssImportScenario'
             ],
             'tag' => [

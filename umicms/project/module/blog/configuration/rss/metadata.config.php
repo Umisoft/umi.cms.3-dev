@@ -12,11 +12,11 @@ use umi\orm\metadata\field\IField;
 use umicms\project\Environment;
 use umicms\project\module\blog\model\object\BlogRssImportScenario;
 
-return array_merge_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
     [
         'dataSource' => [
-            'sourceName' => 'rss_rss_post'
+            'sourceName' => 'blog_rss_post'
         ],
         'fields' => [
             BlogRssImportScenario::FIELD_RSS_URL => [
