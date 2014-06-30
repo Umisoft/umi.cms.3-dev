@@ -1,0 +1,34 @@
+/* line 2, ../scss/bootstrap-class.scss */
+.container-fluid {
+  max-width: 1200px;
+}
+
+/* line 6, ../scss/bootstrap-class.scss */
+.btn.btn-custom {
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: 700;
+  padding: 10px 20px;
+}
+/* line 11, ../scss/bootstrap-class.scss */
+.btn.btn-custom.btn-primary {
+  background: #3e7ef3;
+  border: none;
+  box-shadow: 0 -2px 0 #2b64cc inset;
+}
+/* line 16, ../scss/bootstrap-class.scss */
+.btn.btn-custom.btn-warning {
+  color: #313131;
+  text-transform: uppercase;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: 700;
+  background: #f3d73e;
+  border: none;
+  padding: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* line 29, ../scss/bootstrap-class.scss */
+.carousel .btn {
+  width: 240px;
+}

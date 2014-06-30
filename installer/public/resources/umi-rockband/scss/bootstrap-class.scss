@@ -1,0 +1,35 @@
+
+.container-fluid{
+  max-width:1200px;
+}
+ .btn{
+   &.btn-custom{
+    text-transform:uppercase;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight:700;
+    padding:10px 20px;
+    &.btn-primary{
+      background:#3e7ef3;
+      border:none;
+      box-shadow: 0 -2px 0 rgba(43,100,204,1) inset;
+    }
+    &.btn-warning{
+      color:#313131;
+      text-transform:uppercase;
+      font-family: 'Open Sans Condensed', sans-serif;
+      font-weight:700;
+      background:#f3d73e;
+      border:none;
+      padding:10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+  }
+}
+.carousel{
+  .btn{
+    width:240px;
+  }
+
+}
+
+

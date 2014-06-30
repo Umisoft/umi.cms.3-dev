@@ -2,6 +2,45 @@
 
 return [
 
+    'umi-rockband' => [
+        'locales' => [
+            'site' => [
+                'ru-RU' => [
+                    'route' => 'default'
+                ],
+                'en-US' => [
+                    'route' => 'en-US'
+                ]
+            ],
+            'admin' => [
+                'ru-RU' => [],
+                'en-US' => []
+            ]
+        ],
+
+        'routes' => [
+            'en-US' => [
+                'type' => 'ProjectHostRoute',
+                'defaults' => [
+                    'prefix' => '/rock/en',
+                    'locale' => 'en-US'
+                ]
+            ],
+
+            'default' => [
+                'type' => 'ProjectHostRoute',
+                'defaults' => [
+                    'prefix' => '/rock',
+                    'locale' => 'ru-RU'
+                ]
+            ]
+        ],
+
+        'destination' => '~/umi-rockband',
+        'config' => '~/project/project.config.php',
+        'defaultLocale' => 'ru-RU'
+    ],
+
     'default-xslt' => [
         'locales' => [
             'site' => [

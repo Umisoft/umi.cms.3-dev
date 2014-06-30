@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+
+@mixin box-sizing{
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
+
+@mixin border-radius($rad){
+  -webkit-border-radius:$rad;
+  -moz-border-radius:$rad;
+  border-radius:$rad;
+}
+

@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*основные настройки*/
+$font-default: 'Open Sans', sans-serif;
+$font-default-size: 14px;
+$yellow: #f3d73e;
+$blue: #4b9bff;
+$blue-light: #7ceafa;
+
+.light{
+  font-weight:300;
+}
+.semibold{
+  font-weight:600;
+}
+.extrabold{
+  font-weight:800;
+}
+
+
