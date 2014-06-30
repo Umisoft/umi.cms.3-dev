@@ -91,7 +91,7 @@ return [
     ],
     'constraints' => [
         'editor_to_user' => [
-            'foreignTable' => 'user',
+            'foreignTable' => 'users_user',
             'columns' => [
                 'editor_id' => []
             ],
@@ -104,7 +104,7 @@ return [
             ]
         ],
         'owner_to_user' => [
-            'foreignTable' => 'user',
+            'foreignTable' => 'users_user',
             'columns' => [
                 'owner_id' => []
             ],

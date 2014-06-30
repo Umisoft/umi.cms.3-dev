@@ -1,5 +1,6 @@
 <?php
 
+use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
 
 /**
@@ -35,10 +36,16 @@ return [
             'type'    => Type::STRING
         ],
         'contents'         => [
-            'type' => Type::TEXT
+            'type' => Type::TEXT,
+            'options' => [
+                'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
+            ]
         ],
         'contents_en'     => [
-            'type' => Type::TEXT
+            'type' => Type::TEXT,
+            'options' => [
+                'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
+            ]
         ],
         'layout_id'        => [
             'type'    => Type::BIGINT,
