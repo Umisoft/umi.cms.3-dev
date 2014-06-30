@@ -15,12 +15,15 @@ use umicms\project\Environment;
 return array_merge_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
     [
-        'name' => 'news_item',
-        'columns'     =>  [
-            'date'            => [
+        'name' => 'blog_post',
+        'columns' => [
+            'publish_time' => [
                 'type' => Type::DATETIME
             ],
-            'announcement'    => [
+            'publish_status' => [
+                'type' => Type::DATETIME
+            ],
+            'announcement' => [
                 'type' => Type::TEXT,
                 'options' => [
                     'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
@@ -33,27 +36,54 @@ return array_merge_recursive(
                 ]
             ],
             'source' => [
-                'type' => Type::STRING
+                'type' => Type::TEXT,
+                'options' => [
+                    'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
+                ]
             ],
-            'rubric_id' => [
+            'contents_raw' => [
+                'type' => Type::TEXT,
+                'options' => [
+                    'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
+                ]
+            ],
+            'contents_raw_en' => [
+                'type' => Type::TEXT,
+                'options' => [
+                    'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
+                ]
+            ],
+            'category_id' => [
+                'type' => Type::BIGINT,
+                'options' => [
+                    'unsigned' => true
+                ]
+            ],
+            'author_id' => [
+                'type' => Type::BIGINT,
+                'options' => [
+                    'unsigned' => true
+                ]
+            ],
+            'comments_count' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true
                 ]
             ]
         ],
-        'indexes'     => [
-            'rubric' => [
+        'indexes' => [
+            'author' => [
                 'columns' => [
-                    'rubric_id' => []
+                    'author_id' => []
                 ]
             ]
         ],
         'constraints' => [
-            'item_to_rubric' => [
-                'foreignTable' => 'news_rubric',
+            'post_to_author' => [
+                'foreignTable' => 'blog_author',
                 'columns' => [
-                    'rubric_id' => []
+                    'author_id' => []
                 ],
                 'foreignColumns' => [
                     'id' => []

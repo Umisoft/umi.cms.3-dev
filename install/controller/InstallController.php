@@ -32,6 +32,7 @@ use umicms\module\TModuleAware;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
+use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\news\install\Package;
@@ -136,11 +137,12 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     public function __invoke()
     {
-        $users = $this->getModule(UsersModule::className());
-        $users->getModels()->migrateAll();
-
-        $structure = $this->getModule(StructureModule::className());
-        $structure->getModels()->migrateAll();
+        //$users = $this->getModule(UsersModule::className());
+        //$users->getModels()->migrateAll();
+        
+        $blog = $this->getModule(BlogModule::className());
+        $blog->getModels()->migrateAll();
+        exit;
 
         $structure = $this->getModule(StructureModule::className());
         $structure->getModels()->migrateAll();

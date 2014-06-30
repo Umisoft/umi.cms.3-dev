@@ -8,52 +8,57 @@
  * file that was distributed with this source code.
  */
 
-use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
 use umicms\project\Environment;
 
 return array_merge_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
     [
-        'name' => 'news_item',
-        'columns'     =>  [
-            'date'            => [
-                'type' => Type::DATETIME
-            ],
-            'announcement'    => [
-                'type' => Type::TEXT,
+        'name' => 'blog_blog_post_tags',
+        'columns' => [
+            'post_id' => [
+                'type' => Type::BIGINT,
                 'options' => [
-                    'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
+                    'unsigned' => true
                 ]
             ],
-            'announcement_en' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
-                ]
-            ],
-            'source' => [
-                'type' => Type::STRING
-            ],
-            'rubric_id' => [
+            'tag_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true
                 ]
             ]
         ],
-        'indexes'     => [
-            'rubric' => [
+        'indexes' => [
+            'post' => [
                 'columns' => [
-                    'rubric_id' => []
+                    'post_id' => []
+                ]
+            ],
+            'tag' => [
+                'columns' => [
+                    'tag_id' => []
                 ]
             ]
         ],
         'constraints' => [
-            'item_to_rubric' => [
-                'foreignTable' => 'news_rubric',
+            'post_to_tag' => [
+                'foreignTable' => 'blog_post',
                 'columns' => [
-                    'rubric_id' => []
+                    'post_id' => []
+                ],
+                'foreignColumns' => [
+                    'id' => []
+                ],
+                'options' => [
+                    'onUpdate' => 'CASCADE',
+                    'onDelete' => 'SET NULL'
+                ]
+            ],
+            'tag_to_post' => [
+                'foreignTable' => 'blog_tag',
+                'columns' => [
+                    'tag_id' => []
                 ],
                 'foreignColumns' => [
                     'id' => []

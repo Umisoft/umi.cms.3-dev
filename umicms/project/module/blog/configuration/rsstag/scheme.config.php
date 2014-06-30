@@ -8,52 +8,57 @@
  * file that was distributed with this source code.
  */
 
-use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
 use umicms\project\Environment;
 
 return array_merge_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
     [
-        'name' => 'news_item',
-        'columns'     =>  [
-            'date'            => [
-                'type' => Type::DATETIME
-            ],
-            'announcement'    => [
-                'type' => Type::TEXT,
+        'name' => 'rss_rss_post_tag',
+        'columns' => [
+            'rss_import_scenario_id' => [
+                'type' => Type::BIGINT,
                 'options' => [
-                    'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
+                    'unsigned' => true
                 ]
             ],
-            'announcement_en' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
-                ]
-            ],
-            'source' => [
-                'type' => Type::STRING
-            ],
-            'rubric_id' => [
+            'tag_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true
                 ]
             ]
         ],
-        'indexes'     => [
-            'rubric' => [
+        'indexes' => [
+            'rss_import_scenario' => [
                 'columns' => [
-                    'rubric_id' => []
+                    'rss_import_scenario_id' => []
+                ]
+            ],
+            'tag' => [
+                'columns' => [
+                    'tag_id' => []
                 ]
             ]
         ],
         'constraints' => [
-            'item_to_rubric' => [
-                'foreignTable' => 'news_rubric',
+            'scenario_to_tag' => [
+                'foreignTable' => 'blog_blog_post_tags',
                 'columns' => [
-                    'rubric_id' => []
+                    'rss_import_scenario_id' => []
+                ],
+                'foreignColumns' => [
+                    'id' => []
+                ],
+                'options' => [
+                    'onUpdate' => 'CASCADE',
+                    'onDelete' => 'SET NULL'
+                ]
+            ],
+            'tag_to_scenarion' => [
+                'foreignTable' => 'blog_tag',
+                'columns' => [
+                    'tag_id' => []
                 ],
                 'foreignColumns' => [
                     'id' => []
