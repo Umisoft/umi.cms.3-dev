@@ -23,7 +23,9 @@ define(['App'], function(UMI){
             },
             didInsertElement: function(){
                 var prompt = this.$().find('option')[0];
-                if(!prompt.value){
+                var validators = this.get('meta.validators') || [];
+                validators = validators.findBy({'type': 'required'});
+                if(!prompt.value && validators){
                     prompt.disabled = true;
                 }
             }
@@ -96,7 +98,9 @@ define(['App'], function(UMI){
             },
             didInsertElement: function(){
                 var prompt = this.$().find('option')[0];
-                if(!prompt.value){
+                var validators = this.get('meta.validators') || [];
+                validators = validators.findBy({'type': 'required'});
+                if(!prompt.value && validators){
                     prompt.disabled = true;
                 }
             },
