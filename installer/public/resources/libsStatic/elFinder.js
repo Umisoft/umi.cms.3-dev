@@ -2435,8 +2435,7 @@ elFinder.prototype = {
                 } catch(error){
                     console.log('csrfToken for FileManager not available.');
                 };
-
-                formData.append('cmd', 'upload');
+				formData.append('cmd', 'upload');
 				formData.append(self.newAPI ? 'target' : 'current', self.cwd().hash);
 				$.each(self.options.customData, function(key, val) {
 					formData.append(key, val);
