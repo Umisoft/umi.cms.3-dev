@@ -66,6 +66,24 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
                     }
                 }
 
+                function checkedChildrenCheckboxes(checkbox){
+                    checkbox.indeterminate = false;
+                    var childrenCheckboxes;
+                    var childComponentName;
+                    childrenCheckboxes = $(checkbox).closest('.umi-permissions-role-list-item').children('.umi-permissions-component').find('.umi-permissions-role-checkbox');
+                    if(childrenCheckboxes.length){
+                        for(i = 0; i < childrenCheckboxes.length; i++){
+                            childrenCheckboxes[i].checked = true;
+                            childrenCheckboxes[i].indeterminate = false;
+                            childComponentName = $(childrenCheckboxes[i]).closest('.umi-permissions-role-label').attr('data-permissions-component-path');
+                            if(Ember.typeOf(objectProperty[childComponentName]) !== 'array'){
+                                objectProperty[childComponentName] = [];
+                            }
+                            objectProperty[childComponentName].push(childrenCheckboxes[i].name);
+                        }
+                    }
+                }
+
                 function setParentCheckboxesIndeterminate(checkbox){
                     var parentCheckbox =$(checkbox).closest('.umi-permissions-component').closest('.umi-permissions-role-list-item').children('.umi-permissions-role').find('.umi-permissions-role-checkbox');
                     if(parentCheckbox.length){
@@ -81,6 +99,7 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
                         componentRoles.push(currentRole);
                         componentRoles.sort();
                     }
+                    checkedChildrenCheckboxes(checkbox);
                     checkedParentCheckboxes(checkbox);
                 } else{
                     if(componentRoles.contains(currentRole)){
@@ -136,7 +155,7 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
 
                 function setCheckboxIndeterminate(checkbox){
                     if(checkbox.checked){
-                        var childrenCheckboxes =$(checkbox).closest('.umi-permissions-role-list-item').children('.umi-permissions-component').find('.umi-permissions-role-checkbox');
+                        var childrenCheckboxes = $(checkbox).closest('.umi-permissions-role-list-item').children('.umi-permissions-component').find('.umi-permissions-role-checkbox');
                         var checkedChildrenCheckboxes = 0;
                         for(var i = 0; i < childrenCheckboxes.length; i++){
                             if(childrenCheckboxes[i].checked){
@@ -166,7 +185,7 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
                 accordion.each(function(index){
                     var triggerButton = $(accordion[index]).find('.accordion-navigation-button');
                     var triggerBlock = $(accordion[index]).find('.content');
-                    triggerButton.on('click', function(){
+                    triggerButton.on('click.umi.permissions.triggerButton', function(){
                         triggerBlock.toggleClass('active');
                         triggerButton.find('.icon').toggleClass('icon-right icon-bottom');
                     });
@@ -180,11 +199,16 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
                     component.find('.umi-permissions-role-button-expand').find('.icon').addClass('icon-right').removeClass('icon-bottom');
                 });
 
-                $el.find('.umi-permissions-role-checkbox').on('change', function(){
+                $el.on('change.umi.permissions', '.umi-permissions-role-checkbox', function(){
                     var isChecked = this.checked;
                     var componentName = $(this).closest('.umi-permissions-role-label').attr('data-permissions-component-path');
                     self.setObjectProperty(this, componentName, isChecked);
                 });
+            },
+            willDestroyElement: function(){
+                var $el = this.$();
+                $el.off('click.umi.permissions');
+                $el.off('change.umi.permissions');
             }
         });
 
