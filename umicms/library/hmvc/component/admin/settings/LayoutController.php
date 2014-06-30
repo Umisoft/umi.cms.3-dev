@@ -26,6 +26,7 @@ class LayoutController extends BaseController
         $saveBehaviour = new Behaviour('save');
         $saveButton = new Button($this->getComponent()->translate('button:save'), $saveBehaviour);
         $saveButton->attributes['hasIcon'] = false;
+        $saveButton->attributes['class'] = 'button';
 
         $config = $this->readConfig($this->getComponent()->getSettingsConfigAlias());
 
