@@ -15,7 +15,7 @@ use umicms\project\Environment;
 use umicms\project\module\structure\model\object\BaseInfoBlock;
 use umicms\project\module\structure\model\object\InfoBlock;
 
-return array_merge_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
     [
         'dataSource' => [

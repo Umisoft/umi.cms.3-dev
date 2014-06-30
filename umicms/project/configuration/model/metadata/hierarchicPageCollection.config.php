@@ -4,7 +4,7 @@
 /**
  * Метаданные иерархических коллекции объектов, которые имеют страницу на сайте
  */
-return array_merge_recursive(
+return array_replace_recursive(
     require __DIR__ . '/hierarchicCollection.config.php',
     require __DIR__ . '/page.common.php',
     require __DIR__ . '/active.config.php',

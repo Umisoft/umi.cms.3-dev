@@ -136,31 +136,22 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     public function __invoke()
     {
-        $users = $this->getModule(UsersModule::className());
-        $users->getModels()->migrateAll();
+        header('Content-type: text/plain');
 
-        $structure = $this->getModule(StructureModule::className());
-        $structure->getModels()->migrateAll();
-
-        $structure = $this->getModule(StructureModule::className());
-        $structure->getModels()->migrateAll();
-
-        $news = $this->getModule(NewsModule::className());
-        $news->getModels()->migrateAll();
-
-        exit;
-
-        foreach ($news->getModels() as $modelInfo) {
-            $this->installModel($modelInfo);
+        foreach ($this->getModules() as $module) {
+            $module->getModels()->migrateAll();
         }
 
         try {
-            $this->installDbStructure();
-
-            $this->installUsers();
+            echo "Installing structure...\n";
             $this->installStructure();
+            echo "Installing users...\n";
+            $this->installUsers();
+            echo "Installing news...\n";
             $this->installNews();
+            echo "Installing gratitude...\n";
             $this->installGratitude();
+            echo "Installing blog...\n";
             $this->installBlog();
 
             $this->commit();
@@ -173,7 +164,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             var_dump($e->getMessage());
         }
 
-        return $this->createResponse('Installed');
+        exit('Done');
     }
 
     protected function installUsers()

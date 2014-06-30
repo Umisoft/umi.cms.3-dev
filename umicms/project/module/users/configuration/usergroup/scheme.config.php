@@ -11,7 +11,7 @@
 use Doctrine\DBAL\Types\Type;
 use umicms\project\Environment;
 
-return array_merge_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/collection.config.php',
     [
         'name' => 'users_user_group',

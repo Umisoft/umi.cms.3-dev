@@ -14,7 +14,7 @@ use umicms\project\module\blog\model\object\BlogCategory;
 use umicms\project\module\blog\model\object\BlogPost;
 
 
-return array_merge_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicPageCollection.config.php',
     [
         'dataSource' => [

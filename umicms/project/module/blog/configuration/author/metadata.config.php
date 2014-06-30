@@ -13,7 +13,7 @@ use umicms\project\Environment;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
 
-return array_merge_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/pageCollection.config.php',
     [
         'dataSource' => [
