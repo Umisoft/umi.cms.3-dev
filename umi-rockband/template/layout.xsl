@@ -53,69 +53,21 @@
                                 <a href="" class="logo"><img src="/resources/umi-rockband/images/logo.png" /></a>
                             </div>
                             <div class="right col-xs-12 col-sm-9 col-md-10 text-right">
-
-                                <!--<span class="phone">8 800 5555 864</span>-->
                                 <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')" mode="phone"/>
                                 <br />
                                 <xsl:apply-templates select="document('widget://structure.menu.auto?depth=1')" mode="headerMenu"/>
-
-                                <!--<ul class="menu">-->
-                                    <!--<li><a href="#">Главная</a></li>-->
-                                    <!--<li><a href="#">События</a></li>-->
-                                    <!--<li><a href="#">О звезде</a></li>-->
-                                    <!--<li><a href="#">Блог</a></li>-->
-                                    <!--<li class="search">-->
-                                        <!--<form class="h-search-form">-->
-                                            <!--<div class="input-group input-group-sm">-->
-                                                <!--<span class="input-group-btn">-->
-                                                    <!--<button class="btn" type="button"><img src="/resources/umi-rockband/images/search-icon.png" width="12" height="12" /></button>-->
-                                                <!--</span>-->
-                                                <!--<input type="text" class="form-control" />-->
-                                            <!--</div>-->
-                                        <!--</form>-->
-                                    <!--</li>-->
-                                <!--</ul>-->
                             </div>
                         </div>
                     </div>
                 </header>
-                <div class="header-height"></div>
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                    </ol>
 
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <img src="/resources/umi-rockband/images/slider-img.jpg" alt="" />
-                            <div class="carousel-caption">
-                                <h1>UMI ROCK THEME</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat </p>
-                                <a href="#" class="btn btn-custom btn-warning">Подробнее</a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="/resources/umi-rockband/images/slider-img.jpg" alt="" />
-                            <div class="carousel-caption">
-                                <h1>UMI ROCK THEME</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat </p>
-                                <a href="#" class="btn btn-custom btn-warning">Подробнее</a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="/resources/umi-rockband/images/slider-img.jpg" alt="" />
-                            <div class="carousel-caption">
-                                <h1>UMI ROCK THEME</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat </p>
-                                <a href="#" class="btn btn-custom btn-warning">Подробнее</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="header-height"></div>
+
+                <xsl:apply-templates select="contents" mode="content"/>
+
+
+
+
                 <div class="content-main">
                     <div class="container-fluid">
                         <div class="block">
@@ -225,57 +177,17 @@
                 <footer>
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-2">
-                                <h5>Блог</h5>
-                                <ul class="menu">
-                                    <li><a href="#">Концерты</a></li>
-                                    <li><a href="#">Фестивали</a></li>
-                                    <li><a href="#">Альбомы</a></li>
-                                    <li><a href="#">Клипы</a></li>
-                                    <li><a href="#">Рецензии</a></li>
-                                    <li><a href="#">Дебюты</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-md-2">
-                                <h5>Новости</h5>
-                                <ul class="menu">
-                                    <li><a href="#">Концерты</a></li>
-                                    <li><a href="#">Фестивали</a></li>
-                                    <li><a href="#">Альбомы</a></li>
-                                    <li><a href="#">Клипы</a></li>
-                                    <li><a href="#">Рецензии</a></li>
-                                    <li><a href="#">Дебюты</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-md-3">
-                                <h5>Помощь</h5>
-                                <ul class="menu">
-                                    <li><a href="#">Концертная программа</a></li>
-                                    <li><a href="#">Оплата</a></li>
-                                    <li><a href="#">Образец договора</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-md-3">
-                                <h5>Организаторам мероприятий</h5>
-                                <ul class="menu">
-                                    <li><a href="#">Требования к площадке</a></li>
-                                    <li><a href="#">Требования к аппаратуре</a></li>
-                                    <li><a href="#">Райдер артиста</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-md-2">
-                                <h5>Реклама на сайте</h5>
-                                <ul class="menu">
-                                    <li></li>
-                                </ul>
-                            </div>
+                            <xsl:apply-templates select="document('widget://structure.menu.auto?depth=2')" mode="footerMenu"/>
+
                             <div class="col-md-12 text-center">
                                 <ul class="social">
                                     <li><a href="#"><img src="/resources/umi-rockband/images/social/facebook.png" alt="" /></a></li>
                                     <li><a href="#"><img src="/resources/umi-rockband/images/social/twitter.png" alt="" /></a></li>
                                     <li><a href="#"><img src="/resources/umi-rockband/images/social/google.png" alt="" /></a></li>
                                 </ul>
-                                <p class="copy">UMI.CMS 2014 Все права защищены</p>
+                                <p class="copy">
+                                    <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')" mode="copyright"/>
+                                </p>
                                 <a href="#top" class="top-scroll"><img src="/resources/umi-rockband/images/top-scroll.png" alt=""/></a>
                             </div>
                         </div>
@@ -349,5 +261,82 @@
     </xsl:template>
     <!-- Меню в хедере <Конец> -->
 
+    <!-- Слайдер на главной <Начало> -->
+    <xsl:template name="mainSlider">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="/resources/umi-rockband/images/slider-img.jpg" alt="" />
+                    <div class="carousel-caption">
+                        <h1>UMI ROCK THEME</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat </p>
+                        <a href="#" class="btn btn-custom btn-warning">Подробнее</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/resources/umi-rockband/images/slider-img.jpg" alt="" />
+                    <div class="carousel-caption">
+                        <h1>UMI ROCK THEME</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat </p>
+                        <a href="#" class="btn btn-custom btn-warning">Подробнее</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/resources/umi-rockband/images/slider-img.jpg" alt="" />
+                    <div class="carousel-caption">
+                        <h1>UMI ROCK THEME</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat </p>
+                        <a href="#" class="btn btn-custom btn-warning">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </xsl:template>
+    <!-- Слайдер на главной <Конец> -->
+
+    <!-- Статические страницы <Начало> -->
+    <xsl:template match="contents[@controller = 'structure.index'][page]" mode="content">
+            <xsl:call-template name="mainSlider" />
+            <textarea id="debug">
+                <xsl:copy-of select="."/>
+            </textarea>
+    </xsl:template>
+    <!-- Статические страницы <Конец> -->
+
+    <!-- Меню в футере <Начало> -->
+    <xsl:template match="result[@widget = 'structure.menu.auto']" mode="footerMenu">
+        <xsl:apply-templates select="menu/item" mode="footerMenu"/>
+    </xsl:template>
+
+    <xsl:template match="item" mode="footerMenu">
+        <div class="col-md-2">
+            <h5><xsl:value-of select="page/@displayName"/></h5>
+            <ul class="menu">
+                <xsl:apply-templates select="children/item" mode="footerMenuLevel2"/>
+            </ul>
+        </div>
+    </xsl:template>
+
+    <xsl:template match="item" mode="footerMenuLevel2">
+        <li><a href="page/@url">
+            <xsl:value-of select="page/@displayName" />
+        </a></li>
+    </xsl:template>
+    <!-- Меню в футере <Конец> -->
+
+    <!-- Копирайт в футере <Начало> -->
+    <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="copyright">
+        <!--<xsl:value-of select="infoBlock/property[@name = 'copyright']/value" disable-output-escaping="yes"/>-->
+        UMI.CMS 2014 Все права защищены
+    </xsl:template>
+    <!-- Копирайт в футере <Конец> -->
 
 </xsl:stylesheet>
