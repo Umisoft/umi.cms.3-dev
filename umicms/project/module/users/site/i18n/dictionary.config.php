@@ -11,11 +11,23 @@
 return [
 
     'en-US' => [
-        'Password confirmation' => 'Password confirmation',
+        'PasswordConfirmation' => 'Password confirmation',
+
+        'role:viewer:displayName' => 'Viewer users',
+        'role:authorizationExecutor:displayName' => 'Authorization',
+        'role:registrationExecutor:displayName' => 'Registration',
+        'role:restorationExecutor:displayName' => 'Restoration password',
+        'role:profileExecutor:displayName' => 'Profile',
     ],
 
     'ru-RU' => [
-        'Password confirmation' => 'Подтверждение пароля',
+        'PasswordConfirmation' => 'Подтверждение пароля',
+
+        'role:viewer:displayName' => 'Просмотр пользователей',
+        'role:authorizationExecutor:displayName' => 'Авторизация',
+        'role:registrationExecutor:displayName' => 'Регистрация',
+        'role:restorationExecutor:displayName' => 'Восстановление пароля',
+        'role:profileExecutor:displayName' => 'Профиль пользователя',
     ]
 
 ];

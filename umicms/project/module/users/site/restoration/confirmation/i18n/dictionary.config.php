@@ -13,13 +13,17 @@ return [
     'en-US' => [
         'A new password was sent to your email' => 'A new password was sent to your email',
         'New password' => 'New password',
-        'Your new password on the website {site}' => 'Your new password on the website {site}'
+        'Your new password on the website {site}' => 'Your new password on the website {site}',
+
+        'role:viewer:displayName' => 'Confirmation restoration'
     ],
 
     'ru-RU' => [
         'A new password was sent to your email' => 'Новый пароль был выслан на Ваш электронный адрес',
         'New password' => 'Новый пароль',
-        'Your new password on the website {site}' => 'Ваш новый пароль на сайте {site}'
+        'Your new password on the website {site}' => 'Ваш новый пароль на сайте {site}',
+
+        'role:viewer:displayName' => 'Подтверждение восстановления'
     ]
 
 ];

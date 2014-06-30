@@ -34,9 +34,13 @@ class XsltTemplateEngine implements ITemplateEngine, ISerializationAware, IToolk
      */
     const WIDGET_PROTOCOL = 'widget';
     /**
-     * Имя протокола для вызова виджетов
+     * Имя протокола для подключения шаблонов
      */
     const TEMPLATE_PROTOCOL = 'template';
+    /**
+     * Имя протокола для перевода лейблов
+     */
+    const TRANSLATE_PROTOCOL = 'translate';
     /**
      * Опция для задания директорий расположения шаблонов
      */
@@ -91,10 +95,28 @@ class XsltTemplateEngine implements ITemplateEngine, ISerializationAware, IToolk
 
             $streams->registerStream(
                 self::TEMPLATE_PROTOCOL, function($uri) {
-
                     $filePathInfo = parse_url($uri);
                     $filePath = (isset($filePathInfo['path'])) ? $filePathInfo['host'] . $filePathInfo['path'] : $filePathInfo['host'];
                     return file_get_contents($this->findTemplate($this->getTemplateFilename($filePath)));
+                }
+            );
+
+            $streams->registerStream(
+                self::TRANSLATE_PROTOCOL, function($uri) use ($dispatcher) {
+
+                    $translateInfo = parse_url($uri);
+                    $placeholders = [];
+                    if (isset($translateInfo['query'])) {
+                        parse_str($translateInfo['query'], $placeholders);
+                    }
+
+                    $component = $dispatcher->getComponentByPath($translateInfo['host']);
+                    $message = isset($translateInfo['path']) ? trim($translateInfo['path'], '/') : '';
+
+                    return $this->serializeResult(ISerializerFactory::TYPE_XML, [
+                            'result' => $component->translate(urldecode($message), $placeholders)
+                        ]
+                    );
                 }
             );
 

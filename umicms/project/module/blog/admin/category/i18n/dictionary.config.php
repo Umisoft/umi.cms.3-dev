@@ -12,10 +12,14 @@ return [
 
     'en-US' => [
         'action:create:base' => 'Create subcategory',
+
+        'role:editor:displayName' => 'Managing category'
     ],
 
     'ru-RU' => [
         'action:create:base' => 'Создать подкатегорию',
+
+        'role:editor:displayName' => 'Управление категориями'
     ]
 
 ];

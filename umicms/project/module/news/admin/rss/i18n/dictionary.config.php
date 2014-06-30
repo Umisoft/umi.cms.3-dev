@@ -13,13 +13,17 @@ return [
     'en-US' => [
         'component:rss:displayName' => 'Import RSS-feed',
 
-        'action:create:base' => 'Create RSS-feed'
+        'action:create:base' => 'Create RSS-feed',
+
+        'role:editor:displayName' => 'Managing import RSS-feed'
     ],
 
     'ru-RU' => [
         'component:rss:displayName' => 'Импорт RSS-лент',
 
-        'action:create:base' => 'Добавить RSS-ленту'
+        'action:create:base' => 'Добавить RSS-ленту',
+
+        'role:editor:displayName' => 'Управление импортом RSS-лент'
     ]
 
 ];

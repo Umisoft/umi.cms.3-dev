@@ -1147,7 +1147,7 @@ button, .button {
     .button-group.even-2 li button, .button-group.even-2 li .button {
       width: 100%; }
   .button-group.even-3 li {
-    width: 33.33333%; }
+    width: 33.3333333333%; }
     .button-group.even-3 li > button, .button-group.even-3 li .button {
       border-right: 1px solid;
       border-color: rgba(255, 255, 255, 0.5); }
@@ -1174,7 +1174,7 @@ button, .button {
     .button-group.even-5 li button, .button-group.even-5 li .button {
       width: 100%; }
   .button-group.even-6 li {
-    width: 16.66667%; }
+    width: 16.6666666667%; }
     .button-group.even-6 li > button, .button-group.even-6 li .button {
       border-right: 1px solid;
       border-color: rgba(255, 255, 255, 0.5); }
@@ -1183,7 +1183,7 @@ button, .button {
     .button-group.even-6 li button, .button-group.even-6 li .button {
       width: 100%; }
   .button-group.even-7 li {
-    width: 14.28571%; }
+    width: 14.2857142857%; }
     .button-group.even-7 li > button, .button-group.even-7 li .button {
       border-right: 1px solid;
       border-color: rgba(255, 255, 255, 0.5); }
@@ -1748,19 +1748,19 @@ label.error {
     float: right; }
   .small-push-1 {
     position: relative;
-    left: 8.33333%;
+    left: 8.3333333333%;
     right: auto; }
   .small-pull-1 {
     position: relative;
-    right: 8.33333%;
+    right: 8.3333333333%;
     left: auto; }
   .small-push-2 {
     position: relative;
-    left: 16.66667%;
+    left: 16.6666666667%;
     right: auto; }
   .small-pull-2 {
     position: relative;
-    right: 16.66667%;
+    right: 16.6666666667%;
     left: auto; }
   .small-push-3 {
     position: relative;
@@ -1772,19 +1772,19 @@ label.error {
     left: auto; }
   .small-push-4 {
     position: relative;
-    left: 33.33333%;
+    left: 33.3333333333%;
     right: auto; }
   .small-pull-4 {
     position: relative;
-    right: 33.33333%;
+    right: 33.3333333333%;
     left: auto; }
   .small-push-5 {
     position: relative;
-    left: 41.66667%;
+    left: 41.6666666667%;
     right: auto; }
   .small-pull-5 {
     position: relative;
-    right: 41.66667%;
+    right: 41.6666666667%;
     left: auto; }
   .small-push-6 {
     position: relative;
@@ -1796,19 +1796,19 @@ label.error {
     left: auto; }
   .small-push-7 {
     position: relative;
-    left: 58.33333%;
+    left: 58.3333333333%;
     right: auto; }
   .small-pull-7 {
     position: relative;
-    right: 58.33333%;
+    right: 58.3333333333%;
     left: auto; }
   .small-push-8 {
     position: relative;
-    left: 66.66667%;
+    left: 66.6666666667%;
     right: auto; }
   .small-pull-8 {
     position: relative;
-    right: 66.66667%;
+    right: 66.6666666667%;
     left: auto; }
   .small-push-9 {
     position: relative;
@@ -1820,19 +1820,19 @@ label.error {
     left: auto; }
   .small-push-10 {
     position: relative;
-    left: 83.33333%;
+    left: 83.3333333333%;
     right: auto; }
   .small-pull-10 {
     position: relative;
-    right: 83.33333%;
+    right: 83.3333333333%;
     left: auto; }
   .small-push-11 {
     position: relative;
-    left: 91.66667%;
+    left: 91.6666666667%;
     right: auto; }
   .small-pull-11 {
     position: relative;
-    right: 91.66667%;
+    right: 91.6666666667%;
     left: auto; }
   .column, .columns {
     position: relative;
@@ -1841,37 +1841,37 @@ label.error {
     float: left; }
   .small-1 {
     position: relative;
-    width: 8.33333%; }
+    width: 8.3333333333%; }
   .small-2 {
     position: relative;
-    width: 16.66667%; }
+    width: 16.6666666667%; }
   .small-3 {
     position: relative;
     width: 25%; }
   .small-4 {
     position: relative;
-    width: 33.33333%; }
+    width: 33.3333333333%; }
   .small-5 {
     position: relative;
-    width: 41.66667%; }
+    width: 41.6666666667%; }
   .small-6 {
     position: relative;
     width: 50%; }
   .small-7 {
     position: relative;
-    width: 58.33333%; }
+    width: 58.3333333333%; }
   .small-8 {
     position: relative;
-    width: 66.66667%; }
+    width: 66.6666666667%; }
   .small-9 {
     position: relative;
     width: 75%; }
   .small-10 {
     position: relative;
-    width: 83.33333%; }
+    width: 83.3333333333%; }
   .small-11 {
     position: relative;
-    width: 91.66667%; }
+    width: 91.6666666667%; }
   .small-12 {
     position: relative;
     width: 100%; }
@@ -1884,34 +1884,34 @@ label.error {
     margin-left: 0% !important; }
   .small-offset-1 {
     position: relative;
-    margin-left: 8.33333% !important; }
+    margin-left: 8.3333333333% !important; }
   .small-offset-2 {
     position: relative;
-    margin-left: 16.66667% !important; }
+    margin-left: 16.6666666667% !important; }
   .small-offset-3 {
     position: relative;
     margin-left: 25% !important; }
   .small-offset-4 {
     position: relative;
-    margin-left: 33.33333% !important; }
+    margin-left: 33.3333333333% !important; }
   .small-offset-5 {
     position: relative;
-    margin-left: 41.66667% !important; }
+    margin-left: 41.6666666667% !important; }
   .small-offset-6 {
     position: relative;
     margin-left: 50% !important; }
   .small-offset-7 {
     position: relative;
-    margin-left: 58.33333% !important; }
+    margin-left: 58.3333333333% !important; }
   .small-offset-8 {
     position: relative;
-    margin-left: 66.66667% !important; }
+    margin-left: 66.6666666667% !important; }
   .small-offset-9 {
     position: relative;
     margin-left: 75% !important; }
   .small-offset-10 {
     position: relative;
-    margin-left: 83.33333% !important; }
+    margin-left: 83.3333333333% !important; }
   .column.small-reset-order, .columns.small-reset-order {
     margin-left: 0;
     margin-right: 0;
@@ -1933,19 +1933,19 @@ label.error {
     float: right; }
   .medium-push-1 {
     position: relative;
-    left: 8.33333%;
+    left: 8.3333333333%;
     right: auto; }
   .medium-pull-1 {
     position: relative;
-    right: 8.33333%;
+    right: 8.3333333333%;
     left: auto; }
   .medium-push-2 {
     position: relative;
-    left: 16.66667%;
+    left: 16.6666666667%;
     right: auto; }
   .medium-pull-2 {
     position: relative;
-    right: 16.66667%;
+    right: 16.6666666667%;
     left: auto; }
   .medium-push-3 {
     position: relative;
@@ -1957,19 +1957,19 @@ label.error {
     left: auto; }
   .medium-push-4 {
     position: relative;
-    left: 33.33333%;
+    left: 33.3333333333%;
     right: auto; }
   .medium-pull-4 {
     position: relative;
-    right: 33.33333%;
+    right: 33.3333333333%;
     left: auto; }
   .medium-push-5 {
     position: relative;
-    left: 41.66667%;
+    left: 41.6666666667%;
     right: auto; }
   .medium-pull-5 {
     position: relative;
-    right: 41.66667%;
+    right: 41.6666666667%;
     left: auto; }
   .medium-push-6 {
     position: relative;
@@ -1981,19 +1981,19 @@ label.error {
     left: auto; }
   .medium-push-7 {
     position: relative;
-    left: 58.33333%;
+    left: 58.3333333333%;
     right: auto; }
   .medium-pull-7 {
     position: relative;
-    right: 58.33333%;
+    right: 58.3333333333%;
     left: auto; }
   .medium-push-8 {
     position: relative;
-    left: 66.66667%;
+    left: 66.6666666667%;
     right: auto; }
   .medium-pull-8 {
     position: relative;
-    right: 66.66667%;
+    right: 66.6666666667%;
     left: auto; }
   .medium-push-9 {
     position: relative;
@@ -2005,19 +2005,19 @@ label.error {
     left: auto; }
   .medium-push-10 {
     position: relative;
-    left: 83.33333%;
+    left: 83.3333333333%;
     right: auto; }
   .medium-pull-10 {
     position: relative;
-    right: 83.33333%;
+    right: 83.3333333333%;
     left: auto; }
   .medium-push-11 {
     position: relative;
-    left: 91.66667%;
+    left: 91.6666666667%;
     right: auto; }
   .medium-pull-11 {
     position: relative;
-    right: 91.66667%;
+    right: 91.6666666667%;
     left: auto; }
   .column, .columns {
     position: relative;
@@ -2026,37 +2026,37 @@ label.error {
     float: left; }
   .medium-1 {
     position: relative;
-    width: 8.33333%; }
+    width: 8.3333333333%; }
   .medium-2 {
     position: relative;
-    width: 16.66667%; }
+    width: 16.6666666667%; }
   .medium-3 {
     position: relative;
     width: 25%; }
   .medium-4 {
     position: relative;
-    width: 33.33333%; }
+    width: 33.3333333333%; }
   .medium-5 {
     position: relative;
-    width: 41.66667%; }
+    width: 41.6666666667%; }
   .medium-6 {
     position: relative;
     width: 50%; }
   .medium-7 {
     position: relative;
-    width: 58.33333%; }
+    width: 58.3333333333%; }
   .medium-8 {
     position: relative;
-    width: 66.66667%; }
+    width: 66.6666666667%; }
   .medium-9 {
     position: relative;
     width: 75%; }
   .medium-10 {
     position: relative;
-    width: 83.33333%; }
+    width: 83.3333333333%; }
   .medium-11 {
     position: relative;
-    width: 91.66667%; }
+    width: 91.6666666667%; }
   .medium-12 {
     position: relative;
     width: 100%; }
@@ -2069,34 +2069,34 @@ label.error {
     margin-left: 0% !important; }
   .medium-offset-1 {
     position: relative;
-    margin-left: 8.33333% !important; }
+    margin-left: 8.3333333333% !important; }
   .medium-offset-2 {
     position: relative;
-    margin-left: 16.66667% !important; }
+    margin-left: 16.6666666667% !important; }
   .medium-offset-3 {
     position: relative;
     margin-left: 25% !important; }
   .medium-offset-4 {
     position: relative;
-    margin-left: 33.33333% !important; }
+    margin-left: 33.3333333333% !important; }
   .medium-offset-5 {
     position: relative;
-    margin-left: 41.66667% !important; }
+    margin-left: 41.6666666667% !important; }
   .medium-offset-6 {
     position: relative;
     margin-left: 50% !important; }
   .medium-offset-7 {
     position: relative;
-    margin-left: 58.33333% !important; }
+    margin-left: 58.3333333333% !important; }
   .medium-offset-8 {
     position: relative;
-    margin-left: 66.66667% !important; }
+    margin-left: 66.6666666667% !important; }
   .medium-offset-9 {
     position: relative;
     margin-left: 75% !important; }
   .medium-offset-10 {
     position: relative;
-    margin-left: 83.33333% !important; }
+    margin-left: 83.3333333333% !important; }
   .column.medium-reset-order, .columns.medium-reset-order {
     margin-left: 0;
     margin-right: 0;
@@ -2105,19 +2105,19 @@ label.error {
     float: left; }
   .push-1 {
     position: relative;
-    left: 8.33333%;
+    left: 8.3333333333%;
     right: auto; }
   .pull-1 {
     position: relative;
-    right: 8.33333%;
+    right: 8.3333333333%;
     left: auto; }
   .push-2 {
     position: relative;
-    left: 16.66667%;
+    left: 16.6666666667%;
     right: auto; }
   .pull-2 {
     position: relative;
-    right: 16.66667%;
+    right: 16.6666666667%;
     left: auto; }
   .push-3 {
     position: relative;
@@ -2129,19 +2129,19 @@ label.error {
     left: auto; }
   .push-4 {
     position: relative;
-    left: 33.33333%;
+    left: 33.3333333333%;
     right: auto; }
   .pull-4 {
     position: relative;
-    right: 33.33333%;
+    right: 33.3333333333%;
     left: auto; }
   .push-5 {
     position: relative;
-    left: 41.66667%;
+    left: 41.6666666667%;
     right: auto; }
   .pull-5 {
     position: relative;
-    right: 41.66667%;
+    right: 41.6666666667%;
     left: auto; }
   .push-6 {
     position: relative;
@@ -2153,19 +2153,19 @@ label.error {
     left: auto; }
   .push-7 {
     position: relative;
-    left: 58.33333%;
+    left: 58.3333333333%;
     right: auto; }
   .pull-7 {
     position: relative;
-    right: 58.33333%;
+    right: 58.3333333333%;
     left: auto; }
   .push-8 {
     position: relative;
-    left: 66.66667%;
+    left: 66.6666666667%;
     right: auto; }
   .pull-8 {
     position: relative;
-    right: 66.66667%;
+    right: 66.6666666667%;
     left: auto; }
   .push-9 {
     position: relative;
@@ -2177,19 +2177,19 @@ label.error {
     left: auto; }
   .push-10 {
     position: relative;
-    left: 83.33333%;
+    left: 83.3333333333%;
     right: auto; }
   .pull-10 {
     position: relative;
-    right: 83.33333%;
+    right: 83.3333333333%;
     left: auto; }
   .push-11 {
     position: relative;
-    left: 91.66667%;
+    left: 91.6666666667%;
     right: auto; }
   .pull-11 {
     position: relative;
-    right: 91.66667%;
+    right: 91.6666666667%;
     left: auto; } }
 
 @media only screen and (min-width:64.063em) {
@@ -2206,19 +2206,19 @@ label.error {
     float: right; }
   .large-push-1 {
     position: relative;
-    left: 8.33333%;
+    left: 8.3333333333%;
     right: auto; }
   .large-pull-1 {
     position: relative;
-    right: 8.33333%;
+    right: 8.3333333333%;
     left: auto; }
   .large-push-2 {
     position: relative;
-    left: 16.66667%;
+    left: 16.6666666667%;
     right: auto; }
   .large-pull-2 {
     position: relative;
-    right: 16.66667%;
+    right: 16.6666666667%;
     left: auto; }
   .large-push-3 {
     position: relative;
@@ -2230,19 +2230,19 @@ label.error {
     left: auto; }
   .large-push-4 {
     position: relative;
-    left: 33.33333%;
+    left: 33.3333333333%;
     right: auto; }
   .large-pull-4 {
     position: relative;
-    right: 33.33333%;
+    right: 33.3333333333%;
     left: auto; }
   .large-push-5 {
     position: relative;
-    left: 41.66667%;
+    left: 41.6666666667%;
     right: auto; }
   .large-pull-5 {
     position: relative;
-    right: 41.66667%;
+    right: 41.6666666667%;
     left: auto; }
   .large-push-6 {
     position: relative;
@@ -2254,19 +2254,19 @@ label.error {
     left: auto; }
   .large-push-7 {
     position: relative;
-    left: 58.33333%;
+    left: 58.3333333333%;
     right: auto; }
   .large-pull-7 {
     position: relative;
-    right: 58.33333%;
+    right: 58.3333333333%;
     left: auto; }
   .large-push-8 {
     position: relative;
-    left: 66.66667%;
+    left: 66.6666666667%;
     right: auto; }
   .large-pull-8 {
     position: relative;
-    right: 66.66667%;
+    right: 66.6666666667%;
     left: auto; }
   .large-push-9 {
     position: relative;
@@ -2278,19 +2278,19 @@ label.error {
     left: auto; }
   .large-push-10 {
     position: relative;
-    left: 83.33333%;
+    left: 83.3333333333%;
     right: auto; }
   .large-pull-10 {
     position: relative;
-    right: 83.33333%;
+    right: 83.3333333333%;
     left: auto; }
   .large-push-11 {
     position: relative;
-    left: 91.66667%;
+    left: 91.6666666667%;
     right: auto; }
   .large-pull-11 {
     position: relative;
-    right: 91.66667%;
+    right: 91.6666666667%;
     left: auto; }
   .column, .columns {
     position: relative;
@@ -2299,37 +2299,37 @@ label.error {
     float: left; }
   .large-1 {
     position: relative;
-    width: 8.33333%; }
+    width: 8.3333333333%; }
   .large-2 {
     position: relative;
-    width: 16.66667%; }
+    width: 16.6666666667%; }
   .large-3 {
     position: relative;
     width: 25%; }
   .large-4 {
     position: relative;
-    width: 33.33333%; }
+    width: 33.3333333333%; }
   .large-5 {
     position: relative;
-    width: 41.66667%; }
+    width: 41.6666666667%; }
   .large-6 {
     position: relative;
     width: 50%; }
   .large-7 {
     position: relative;
-    width: 58.33333%; }
+    width: 58.3333333333%; }
   .large-8 {
     position: relative;
-    width: 66.66667%; }
+    width: 66.6666666667%; }
   .large-9 {
     position: relative;
     width: 75%; }
   .large-10 {
     position: relative;
-    width: 83.33333%; }
+    width: 83.3333333333%; }
   .large-11 {
     position: relative;
-    width: 91.66667%; }
+    width: 91.6666666667%; }
   .large-12 {
     position: relative;
     width: 100%; }
@@ -2342,34 +2342,34 @@ label.error {
     margin-left: 0% !important; }
   .large-offset-1 {
     position: relative;
-    margin-left: 8.33333% !important; }
+    margin-left: 8.3333333333% !important; }
   .large-offset-2 {
     position: relative;
-    margin-left: 16.66667% !important; }
+    margin-left: 16.6666666667% !important; }
   .large-offset-3 {
     position: relative;
     margin-left: 25% !important; }
   .large-offset-4 {
     position: relative;
-    margin-left: 33.33333% !important; }
+    margin-left: 33.3333333333% !important; }
   .large-offset-5 {
     position: relative;
-    margin-left: 41.66667% !important; }
+    margin-left: 41.6666666667% !important; }
   .large-offset-6 {
     position: relative;
     margin-left: 50% !important; }
   .large-offset-7 {
     position: relative;
-    margin-left: 58.33333% !important; }
+    margin-left: 58.3333333333% !important; }
   .large-offset-8 {
     position: relative;
-    margin-left: 66.66667% !important; }
+    margin-left: 66.6666666667% !important; }
   .large-offset-9 {
     position: relative;
     margin-left: 75% !important; }
   .large-offset-10 {
     position: relative;
-    margin-left: 83.33333% !important; }
+    margin-left: 83.3333333333% !important; }
   .column.large-reset-order, .columns.large-reset-order {
     margin-left: 0;
     margin-right: 0;
@@ -2378,19 +2378,19 @@ label.error {
     float: left; }
   .push-1 {
     position: relative;
-    left: 8.33333%;
+    left: 8.3333333333%;
     right: auto; }
   .pull-1 {
     position: relative;
-    right: 8.33333%;
+    right: 8.3333333333%;
     left: auto; }
   .push-2 {
     position: relative;
-    left: 16.66667%;
+    left: 16.6666666667%;
     right: auto; }
   .pull-2 {
     position: relative;
-    right: 16.66667%;
+    right: 16.6666666667%;
     left: auto; }
   .push-3 {
     position: relative;
@@ -2402,19 +2402,19 @@ label.error {
     left: auto; }
   .push-4 {
     position: relative;
-    left: 33.33333%;
+    left: 33.3333333333%;
     right: auto; }
   .pull-4 {
     position: relative;
-    right: 33.33333%;
+    right: 33.3333333333%;
     left: auto; }
   .push-5 {
     position: relative;
-    left: 41.66667%;
+    left: 41.6666666667%;
     right: auto; }
   .pull-5 {
     position: relative;
-    right: 41.66667%;
+    right: 41.6666666667%;
     left: auto; }
   .push-6 {
     position: relative;
@@ -2426,19 +2426,19 @@ label.error {
     left: auto; }
   .push-7 {
     position: relative;
-    left: 58.33333%;
+    left: 58.3333333333%;
     right: auto; }
   .pull-7 {
     position: relative;
-    right: 58.33333%;
+    right: 58.3333333333%;
     left: auto; }
   .push-8 {
     position: relative;
-    left: 66.66667%;
+    left: 66.6666666667%;
     right: auto; }
   .pull-8 {
     position: relative;
-    right: 66.66667%;
+    right: 66.6666666667%;
     left: auto; }
   .push-9 {
     position: relative;
@@ -2450,19 +2450,19 @@ label.error {
     left: auto; }
   .push-10 {
     position: relative;
-    left: 83.33333%;
+    left: 83.3333333333%;
     right: auto; }
   .pull-10 {
     position: relative;
-    right: 83.33333%;
+    right: 83.3333333333%;
     left: auto; }
   .push-11 {
     position: relative;
-    left: 91.66667%;
+    left: 91.6666666667%;
     right: auto; }
   .pull-11 {
     position: relative;
-    right: 91.66667%;
+    right: 91.6666666667%;
     left: auto; } }
 
 /* Panels */
@@ -2593,6 +2593,35 @@ label.error {
     -webkit-border-bottom-right-radius: 1000px;
     border-top-right-radius: 1000px;
     border-bottom-right-radius: 1000px; }
+
+.accordion {
+  *zoom: 1;
+  margin-bottom: 0; }
+  .accordion:before, .accordion:after {
+    content: " ";
+    display: table; }
+  .accordion:after {
+    clear: both; }
+  .accordion dd {
+    display: block;
+    margin-bottom: 0 !important; }
+    .accordion dd.active a {
+      background: #e8e8e8; }
+    .accordion dd > a {
+      background: #efefef;
+      color: #222;
+      padding: 1rem;
+      display: block;
+      font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+      font-size: 1rem; }
+      .accordion dd > a:hover {
+        background: #e3e3e3; }
+  .accordion .content {
+    display: none;
+    padding: 0.9375rem; }
+    .accordion .content.active {
+      display: block;
+      background: #fff; }
 
 .s-hide {
   display: none; }
@@ -2900,10 +2929,11 @@ label.error {
     margin-top: -4px;
     margin-bottom: -3px; }
   .button.tiny .icon, button.tiny .icon {
-    margin-top: -7px;
-    margin-bottom: -6px;
+    margin-top: -6px;
+    margin-bottom: -7px;
     margin-left: -4px;
-    margin-right: -4px; }
+    margin-right: -4px;
+    display: block; }
   .button.tiny.square, button.tiny.square {
     padding-left: 0.3125rem;
     padding-right: 0.3125rem; }
@@ -4661,8 +4691,8 @@ select {
     line-height: normal; }
 
 .prefix, .postfix {
-  height: 1.84688rem;
-  line-height: 1.84688rem; }
+  height: 1.846875rem;
+  line-height: 1.846875rem; }
 
 .umi-validator span.error, .umi-validator small.error {
   position: absolute;
@@ -5040,6 +5070,10 @@ input[type="checkbox"] + label span {
   cursor: pointer; }
 
 input[type="checkbox"]:checked + label span {
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9ItCh0LvQvtC5XzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxnPg0KCQk8Zz4NCgkJCTxnIG9wYWNpdHk9IjAuMjUiPg0KCQkJCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik02LDE4Yy0xLjcsMC0zLTEuNC0zLTNWN2MwLTEuNywxLjMtMywzLTNoOGMxLjYsMCwzLDEuMywzLDN2OGMwLDEuNi0xLjQsMy0zLDNINnoiLz4NCgkJCTwvZz4NCgkJCTxsaW5lYXJHcmFkaWVudCBpZD0iU1ZHSURfMV8iIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMTAiIHkxPSIzIiB4Mj0iMTAiIHkyPSIxNyI+DQoJCQkJPHN0b3AgIG9mZnNldD0iMCIgc3R5bGU9InN0b3AtY29sb3I6I0I0QkVDNiIvPg0KCQkJCTxzdG9wICBvZmZzZXQ9IjEiIHN0eWxlPSJzdG9wLWNvbG9yOiNCNEJFQzY7c3RvcC1vcGFjaXR5OjAuNSIvPg0KCQkJPC9saW5lYXJHcmFkaWVudD4NCgkJCTxwYXRoIGZpbGw9InVybCgjU1ZHSURfMV8pIiBkPSJNNiwxN2MtMS43LDAtMy0xLjQtMy0zVjZjMC0xLjcsMS4zLTMsMy0zaDhjMS42LDAsMywxLjMsMywzdjhjMCwxLjYtMS40LDMtMywzSDZ6Ii8+DQoJCTwvZz4NCgkJPGxpbmVhckdyYWRpZW50IGlkPSJTVkdJRF8yXyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIxMCIgeTE9IjE1LjI3OTEiIHgyPSIxMCIgeTI9IjQuODc0NSI+DQoJCQk8c3RvcCAgb2Zmc2V0PSIwIiBzdHlsZT0ic3RvcC1jb2xvcjojRTBFNEU3Ii8+DQoJCQk8c3RvcCAgb2Zmc2V0PSIxIiBzdHlsZT0ic3RvcC1jb2xvcjojQjRCRUM2Ii8+DQoJCTwvbGluZWFyR3JhZGllbnQ+DQoJCTxwYXRoIGZpbGw9InVybCgjU1ZHSURfMl8pIiBkPSJNNiwxNmMtMS4xLDAtMi0wLjktMi0yVjZjMC0xLjEsMC45LTIsMi0yaDhjMS4xLDAsMiwwLjksMiwydjhjMCwxLjEtMC45LDItMiwySDZ6Ii8+DQoJCTxnPg0KCQkJPGRlZnM+DQoJCQkJPGZpbHRlciBpZD0iQWRvYmVfT3BhY2l0eU1hc2tGaWx0ZXIiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeD0iNCIgeT0iNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIj4NCgkJCQkJPGZlRmxvb2QgIHN0eWxlPSJmbG9vZC1jb2xvcjp3aGl0ZTtmbG9vZC1vcGFjaXR5OjEiIHJlc3VsdD0iYmFjayIvPg0KCQkJCQk8ZmVCbGVuZCAgaW49IlNvdXJjZUdyYXBoaWMiIGluMj0iYmFjayIgbW9kZT0ibm9ybWFsIi8+DQoJCQkJPC9maWx0ZXI+DQoJCQk8L2RlZnM+DQoJCQk8bWFzayBtYXNrVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSI0IiB5PSI0IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIGlkPSJTVkdJRF8zXyI+DQoJCQkJPGcgZmlsdGVyPSJ1cmwoI0Fkb2JlX09wYWNpdHlNYXNrRmlsdGVyKSI+DQoJCQkJCQ0KCQkJCQkJPGltYWdlIG92ZXJmbG93PSJ2aXNpYmxlIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2UvanBlZztiYXNlNjQsLzlqLzRBQVFTa1pKUmdBQkFnRUFTQUJJQUFELzdBQVJSSFZqYTNrQUFRQUVBQUFBSGdBQS8rNEFJVUZrYjJKbEFHVEFBQUFBQVFNQQpFQU1DQXdZQUFBRjdBQUFCbUFBQUFlci8yd0NFQUJBTEN3c01DeEFNREJBWER3MFBGeHNVRUJBVUd4OFhGeGNYRng4ZUZ4b2FHaG9YCkhoNGpKU2NsSXg0dkx6TXpMeTlBUUVCQVFFQkFRRUJBUUVCQVFFQUJFUThQRVJNUkZSSVNGUlFSRkJFVUdoUVdGaFFhSmhvYUhCb2EKSmpBakhoNGVIaU13S3k0bkp5Y3VLelUxTURBMU5VQkFQMEJBUUVCQVFFQkFRRUJBUVAvQ0FCRUlBQkVBRVFNQklnQUNFUUVERVFILwp4QUJzQUFFQkFRQUFBQUFBQUFBQUFBQUFBQUFBQWdjQkFRQUFBQUFBQUFBQUFBQUFBQUFBQUFBUUFRRUJBUUFBQUFBQUFBQUFBQUFBCkFBVUdJQUFSQVFBQkJBSURBUUFBQUFBQUFBQUFBQUlCRVNJREJBQkJFQ0FoUWhJQkFBQUFBQUFBQUFBQUFBQUFBQUFBSVAvYUFBd0QKQVFBQ0VRTVJBQUFBaTRHaGdBQS8vOW9BQ0FFQ0FBRUZBTWYvMmdBSUFRTUFBUVVBeC8vYUFBZ0JBUUFCQlFDUWtCMWg2eVFES0c2UQpyeHlSNit2SFdIeC8vOW9BQ0FFQ0FnWS9BQi8vMmdBSUFRTUNCajhBSC8vYUFBZ0JBUUVHUHdBYnU2R3NpYk5yUmloVXgxUE11N3FqCklNb2trM3l2cW1uNm53TkxkYkdRTnEwSlJSS3ZYSHBhVGJ5TmhYQkdLRlY3OWYvWiIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMSAyIDIpIj4NCgkJCQkJPC9pbWFnZT4NCgkJCQk8L2c+DQoJCQk8L21hc2s+DQoJCQk8cGF0aCBtYXNrPSJ1cmwoI1NWR0lEXzNfKSIgZmlsbD0iI0ZGRkZGRiIgZD0iTTYsMTZjLTEuMSwwLTItMC45LTItMlY2YzAtMS4xLDAuOS0yLDItMmg4YzEuMSwwLDIsMC45LDIsMnY4YzAsMS4xLTAuOSwyLTIsMkg2eg0KCQkJCSIvPg0KCQk8L2c+DQoJPC9nPg0KCQ0KCQk8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNTc1RTZDIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBwb2ludHM9Ig0KCQk3LDExIDksMTMgMTQsNyAJIi8+DQo8L2c+DQo8L3N2Zz4NCg==) left top no-repeat; }
+
+input[type="checkbox"]:indeterminate + label span {
+  opacity: 0.6;
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9ItCh0LvQvtC5XzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxnPg0KCQk8Zz4NCgkJCTxnIG9wYWNpdHk9IjAuMjUiPg0KCQkJCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik02LDE4Yy0xLjcsMC0zLTEuNC0zLTNWN2MwLTEuNywxLjMtMywzLTNoOGMxLjYsMCwzLDEuMywzLDN2OGMwLDEuNi0xLjQsMy0zLDNINnoiLz4NCgkJCTwvZz4NCgkJCTxsaW5lYXJHcmFkaWVudCBpZD0iU1ZHSURfMV8iIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMTAiIHkxPSIzIiB4Mj0iMTAiIHkyPSIxNyI+DQoJCQkJPHN0b3AgIG9mZnNldD0iMCIgc3R5bGU9InN0b3AtY29sb3I6I0I0QkVDNiIvPg0KCQkJCTxzdG9wICBvZmZzZXQ9IjEiIHN0eWxlPSJzdG9wLWNvbG9yOiNCNEJFQzY7c3RvcC1vcGFjaXR5OjAuNSIvPg0KCQkJPC9saW5lYXJHcmFkaWVudD4NCgkJCTxwYXRoIGZpbGw9InVybCgjU1ZHSURfMV8pIiBkPSJNNiwxN2MtMS43LDAtMy0xLjQtMy0zVjZjMC0xLjcsMS4zLTMsMy0zaDhjMS42LDAsMywxLjMsMywzdjhjMCwxLjYtMS40LDMtMywzSDZ6Ii8+DQoJCTwvZz4NCgkJPGxpbmVhckdyYWRpZW50IGlkPSJTVkdJRF8yXyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIxMCIgeTE9IjE1LjI3OTEiIHgyPSIxMCIgeTI9IjQuODc0NSI+DQoJCQk8c3RvcCAgb2Zmc2V0PSIwIiBzdHlsZT0ic3RvcC1jb2xvcjojRTBFNEU3Ii8+DQoJCQk8c3RvcCAgb2Zmc2V0PSIxIiBzdHlsZT0ic3RvcC1jb2xvcjojQjRCRUM2Ii8+DQoJCTwvbGluZWFyR3JhZGllbnQ+DQoJCTxwYXRoIGZpbGw9InVybCgjU1ZHSURfMl8pIiBkPSJNNiwxNmMtMS4xLDAtMi0wLjktMi0yVjZjMC0xLjEsMC45LTIsMi0yaDhjMS4xLDAsMiwwLjksMiwydjhjMCwxLjEtMC45LDItMiwySDZ6Ii8+DQoJCTxnPg0KCQkJPGRlZnM+DQoJCQkJPGZpbHRlciBpZD0iQWRvYmVfT3BhY2l0eU1hc2tGaWx0ZXIiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeD0iNCIgeT0iNCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjEyIj4NCgkJCQkJPGZlRmxvb2QgIHN0eWxlPSJmbG9vZC1jb2xvcjp3aGl0ZTtmbG9vZC1vcGFjaXR5OjEiIHJlc3VsdD0iYmFjayIvPg0KCQkJCQk8ZmVCbGVuZCAgaW49IlNvdXJjZUdyYXBoaWMiIGluMj0iYmFjayIgbW9kZT0ibm9ybWFsIi8+DQoJCQkJPC9maWx0ZXI+DQoJCQk8L2RlZnM+DQoJCQk8bWFzayBtYXNrVW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4PSI0IiB5PSI0IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIGlkPSJTVkdJRF8zXyI+DQoJCQkJPGcgZmlsdGVyPSJ1cmwoI0Fkb2JlX09wYWNpdHlNYXNrRmlsdGVyKSI+DQoJCQkJCQ0KCQkJCQkJPGltYWdlIG92ZXJmbG93PSJ2aXNpYmxlIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2UvanBlZztiYXNlNjQsLzlqLzRBQVFTa1pKUmdBQkFnRUFTQUJJQUFELzdBQVJSSFZqYTNrQUFRQUVBQUFBSGdBQS8rNEFJVUZrYjJKbEFHVEFBQUFBQVFNQQpFQU1DQXdZQUFBRjdBQUFCbUFBQUFlci8yd0NFQUJBTEN3c01DeEFNREJBWER3MFBGeHNVRUJBVUd4OFhGeGNYRng4ZUZ4b2FHaG9YCkhoNGpKU2NsSXg0dkx6TXpMeTlBUUVCQVFFQkFRRUJBUUVCQVFFQUJFUThQRVJNUkZSSVNGUlFSRkJFVUdoUVdGaFFhSmhvYUhCb2EKSmpBakhoNGVIaU13S3k0bkp5Y3VLelUxTURBMU5VQkFQMEJBUUVCQVFFQkFRRUJBUVAvQ0FCRUlBQkVBRVFNQklnQUNFUUVERVFILwp4QUJzQUFFQkFRQUFBQUFBQUFBQUFBQUFBQUFBQWdjQkFRQUFBQUFBQUFBQUFBQUFBQUFBQUFBUUFRRUJBUUFBQUFBQUFBQUFBQUFBCkFBVUdJQUFSQVFBQkJBSURBUUFBQUFBQUFBQUFBQUlCRVNJREJBQkJFQ0FoUWhJQkFBQUFBQUFBQUFBQUFBQUFBQUFBSVAvYUFBd0QKQVFBQ0VRTVJBQUFBaTRHaGdBQS8vOW9BQ0FFQ0FBRUZBTWYvMmdBSUFRTUFBUVVBeC8vYUFBZ0JBUUFCQlFDUWtCMWg2eVFES0c2UQpyeHlSNit2SFdIeC8vOW9BQ0FFQ0FnWS9BQi8vMmdBSUFRTUNCajhBSC8vYUFBZ0JBUUVHUHdBYnU2R3NpYk5yUmloVXgxUE11N3FqCklNb2trM3l2cW1uNm53TkxkYkdRTnEwSlJSS3ZYSHBhVGJ5TmhYQkdLRlY3OWYvWiIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMSAyIDIpIj4NCgkJCQkJPC9pbWFnZT4NCgkJCQk8L2c+DQoJCQk8L21hc2s+DQoJCQk8cGF0aCBtYXNrPSJ1cmwoI1NWR0lEXzNfKSIgZmlsbD0iI0ZGRkZGRiIgZD0iTTYsMTZjLTEuMSwwLTItMC45LTItMlY2YzAtMS4xLDAuOS0yLDItMmg4YzEuMSwwLDIsMC45LDIsMnY4YzAsMS4xLTAuOSwyLTIsMkg2eg0KCQkJCSIvPg0KCQk8L2c+DQoJPC9nPg0KCQ0KCQk8cG9seWxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNTc1RTZDIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBwb2ludHM9Ig0KCQk3LDExIDksMTMgMTQsNyAJIi8+DQo8L2c+DQo8L3N2Zz4NCg==) left top no-repeat; }
 
 input[type="radio"] {
@@ -5588,6 +5622,46 @@ input[type="text"].umi-search-input.active {
 .umi-search-result li:not(.umi-search-empty):hover {
   background: #F5F6F7;
   cursor: pointer; }
+
+.umi-permissions {
+  border: 1px solid #dee2e5;
+  border-top-color: #eff1f3; }
+  .umi-permissions .accordion {
+    border-top: 1px solid #D5D5D5; }
+    .umi-permissions .accordion .content {
+      border-top: 1px solid #c2ced8;
+      padding-left: 3.625rem; }
+      .umi-permissions .accordion .content.active {
+        background: #f0f7fc; }
+    .umi-permissions .accordion dd > a {
+      background: #fff;
+      padding: 0.375rem 0.625rem;
+      font-size: 0.8125rem;
+      font-weight: bold; }
+  .umi-permissions-role {
+    position: relative; }
+    .umi-permissions-role .button {
+      position: absolute;
+      left: -1.5rem; }
+    .umi-permissions-role-label {
+      margin-left: 4px;
+      display: inline-block; }
+    .umi-permissions-role-list {
+      margin-bottom: 0; }
+      .umi-permissions-role-list-item {
+        margin-bottom: 10px; }
+  .umi-permissions-component {
+    display: none;
+    margin: 10px 0 15px 27px; }
+    .umi-permissions-component.expand {
+      display: block; }
+    .umi-permissions-component-label {
+      background: #E7F1F8;
+      font-size: 0.8125rem;
+      padding: 5px 10px;
+      font-weight: bold; }
+    .umi-permissions-component-list {
+      margin-left: 24px; }
 
 .umi-accordion {
   margin: 0;

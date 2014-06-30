@@ -31,5 +31,14 @@ trait TCmsPage
         /** @noinspection PhpParamsInspection */
         return $this->getUrlManager()->getSitePageUrl($this, $isAbsolute);
     }
+
+    /**
+     * @see ICmsPage::getHeader()
+     */
+    public function getHeader()
+    {
+        /** @noinspection PhpUndefinedFieldInspection */
+        return $this->h1 ? $this->h1 : $this->displayName;
+    }
 }
  
