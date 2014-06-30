@@ -19,15 +19,13 @@ return array_merge_recursive(
             'news_item_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true,
-                    'notnull' => false
+                    'unsigned' => true
                 ]
             ],
             'subject_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true,
-                    'notnull' => false
+                    'unsigned' => true
                 ]
             ]
         ],

@@ -17,33 +17,30 @@ return array_merge_recursive(
         'name' => 'structure',
         'columns'     =>  [
             'component_name' => [
-                'type' => Type::STRING,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::STRING
             ],
             'component_path' => [
-                'type' => Type::STRING,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::STRING
             ],
             'in_menu'          => [
                 'type'    => Type::BOOLEAN,
                 'options' => [
-                    'default' => 0
+                    'default' => 0,
+                    'notnull' => true
                 ]
             ],
             'submenu_state' => [
                 'type'    => Type::SMALLINT,
                 'options' => [
-                    'default' => 0
+                    'default' => 0,
+                    'notnull' => true
                 ]
             ],
             'skip_in_breadcrumbs' => [
                 'type'    => Type::BOOLEAN,
                 'options' => [
-                    'default' => 0
+                    'default' => 0,
+                    'notnull' => true
                 ]
             ]
         ],

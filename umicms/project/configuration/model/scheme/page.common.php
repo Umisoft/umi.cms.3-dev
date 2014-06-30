@@ -11,58 +11,31 @@ return [
             'type' => Type::STRING
         ],
         'meta_title'       => [
-            'type'    => Type::STRING,
-            'options' => [
-                'notnull' => false
-            ]
+            'type'    => Type::STRING
         ],
         'meta_title_en'       => [
-            'type'    => Type::STRING,
-            'options' => [
-                'notnull' => false
-            ]
+            'type'    => Type::STRING
         ],
         'meta_keywords'    => [
-            'type'    => Type::STRING,
-            'options' => [
-                'notnull' => false
-            ]
+            'type'    => Type::STRING
         ],
         'meta_keywords_en'       => [
-            'type'    => Type::STRING,
-            'options' => [
-                'notnull' => false
-            ]
+            'type'    => Type::STRING
         ],
         'meta_description' => [
-            'type'    => Type::STRING,
-            'options' => [
-                'notnull' => false
-            ]
+            'type'    => Type::STRING
         ],
         'meta_description_en' => [
-            'type'    => Type::STRING,
-            'options' => [
-                'notnull' => false
-            ]
+            'type'    => Type::STRING
         ],
         'h1'               => [
-            'type'    => Type::STRING,
-            'options' => [
-                'notnull' => false
-            ]
+            'type'    => Type::STRING
         ],
         'h1_en'               => [
-            'type'    => Type::STRING,
-            'options' => [
-                'notnull' => false
-            ]
+            'type'    => Type::STRING
         ],
         'contents'         => [
-            'type' => Type::TEXT,
-            'options' => [
-                'notnull' => false
-            ]
+            'type' => Type::TEXT
         ],
         'contents_en'     => [
             'type' => Type::TEXT

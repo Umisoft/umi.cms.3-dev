@@ -18,22 +18,13 @@ return array_merge_recursive(
         'name' => 'menu',
         'columns'     =>  [
             'name' => [
-                'type' => Type::STRING,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::STRING
             ],
             'page_relation' => [
-                'type' => Type::STRING,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::STRING
             ],
             'url_resource' => [
-                'type' => Type::STRING,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::STRING
             ]
         ],
         'indexes' => [

@@ -19,10 +19,7 @@ return array_merge_recursive(
         'name' => 'users_group',
         'columns'     =>  [
             'roles' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ]
         ]
     ]

@@ -20,7 +20,10 @@ return [
             ]
         ],
         'guid'         => [
-            'type'    => Type::GUID
+            'type'    => Type::GUID,
+            'options' => [
+                'notnull' => true
+            ]
         ],
         'type'         => [
             'type'    => Type::STRING
@@ -33,41 +36,27 @@ return [
             ]
         ],
         'display_name' => [
-            'type'    => Type::STRING,
-            'options' => [
-                'notnull' => false
-            ]
+            'type'    => Type::STRING
         ],
         'display_name_en' => [
-            'type'    => Type::STRING,
-            'options' => [
-                'notnull' => false
-            ]
+            'type'    => Type::STRING
         ],
         'created' => [
-            'type' => Type::DATETIME,
-            'options' => [
-                'notnull' => false
-            ]
+            'type' => Type::DATETIME
         ],
         'updated' => [
-            'type' => Type::DATETIME,
-            'options' => [
-                'notnull' => false
-            ]
+            'type' => Type::DATETIME
         ],
         'owner_id' => [
             'type' => Type::BIGINT,
             'options' => [
-                'unsigned' => true,
-                'notnull' => false
+                'unsigned' => true
             ]
         ],
         'editor_id' => [
             'type' => Type::BIGINT,
             'options' => [
-                'unsigned' => true,
-                'notnull' => false
+                'unsigned' => true
             ]
         ]
     ],

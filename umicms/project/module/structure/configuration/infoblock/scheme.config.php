@@ -23,136 +23,70 @@ return array_merge_recursive(
                 ]
             ],
             'phone_number' => [
-                'type' => Type::STRING,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::STRING
             ],
             'phone_number_en' => [
-                'type' => Type::STRING,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::STRING
             ],
             'email' => [
-                'type' => Type::STRING,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::STRING
             ],
             'email_en' => [
-                'type' => Type::STRING,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::STRING
             ],
             'address' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'address_en' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'logo' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'logo_en' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'copyright' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'copyright_en' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'counter' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'counter_en' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'widget_vk' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'widget_vk_en' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'widget_facebook' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'widget_facebook_en' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'widget_twitter' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'widget_twitter_en' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'share' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'share_en' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'social_group_link' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ],
             'social_group_link_en' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'notnull' => false
-                ]
+                'type' => Type::TEXT
             ]
         ],
         'indexes' => [

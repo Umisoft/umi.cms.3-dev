@@ -278,6 +278,9 @@ class TableSchemeLoader implements ILocalizable
 
         $options = $columnConfig->get('options') ? : [];
         $options = $this->configToArray($options, true);
+        if (!isset($options['notnull'])) {
+            $options['notnull'] = false;
+        }
 
         $table->addColumn($columnName, $type, $options);
     }

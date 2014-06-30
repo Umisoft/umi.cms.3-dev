@@ -14,30 +14,51 @@ use umicms\project\Environment;
 return array_merge_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/collection.config.php',
     [
-        'name' => 'news_rss_import_scenario',
+        'name' => 'users_user_group',
         'columns'     =>  [
-            'rubric_id' => [
+            'user_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
                     'unsigned' => true
                 ]
             ],
-            'rss_url' => [
-                'type' => Type::STRING
+            'group_id' => [
+                'type' => Type::BIGINT,
+                'options' => [
+                    'unsigned' => true
+                ]
             ]
         ],
         'indexes'     => [
-            'rubric' => [
+            'user' => [
                 'columns' => [
-                    'rubric_id' => []
+                    'user_id' => []
+                ]
+            ],
+            'group' => [
+                'columns' => [
+                    'group_id' => []
                 ]
             ]
         ],
         'constraints' => [
-            'rss_to_rubric' => [
-                'foreignTable' => 'news_rubric',
+            'to_user' => [
+                'foreignTable' => 'users_user',
                 'columns' => [
-                    'rubric_id' => []
+                    'user_id' => []
+                ],
+                'foreignColumns' => [
+                    'id' => []
+                ],
+                'options' => [
+                    'onUpdate' => 'CASCADE',
+                    'onDelete' => 'SET NULL'
+                ]
+            ],
+            'to_group' => [
+                'foreignTable' => 'users_group',
+                'columns' => [
+                    'group_id' => []
                 ],
                 'foreignColumns' => [
                     'id' => []

@@ -11,7 +11,8 @@ return [
         'trashed'          => [
             'type'    => Type::BOOLEAN,
             'options' => [
-                'default' => 0
+                'default' => 0,
+                'notnull' => true
             ]
         ]
     ]

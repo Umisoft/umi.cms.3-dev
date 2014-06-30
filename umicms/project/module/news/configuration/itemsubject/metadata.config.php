@@ -14,6 +14,9 @@ use umicms\project\Environment;
 return array_merge_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
     [
+        'dataSource' => [
+            'sourceName' => 'news_item_subject'
+        ],
         'fields'     => [
             'newsItem'                    => [
                 'type'       => IField::TYPE_BELONGS_TO,

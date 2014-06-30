@@ -12,42 +12,38 @@ return array_merge_recursive(
             'parent_id' => [
                 'type'    => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true,
-                    'notnull' => false
+                    'unsigned' => true
                 ]
             ],
             'mpath' => [
                 'type' => Type::STRING,
                 'options' => [
-                    'length' => 255,
-                    'notnull' => false
+                    'length' => 255
                 ]
             ],
             'uri' => [
                 'type' => Type::STRING,
                 'options' => [
-                    'length' => 255,
-                    'notnull' => false
+                    'length' => 255
                 ]
             ],
             'order' => [
                 'type'    => Type::INTEGER,
                 'options' => [
-                    'unsigned' => true,
-                    'notnull' => false
+                    'unsigned' => true
                 ]
             ],
             'level' => [
                 'type'    => Type::SMALLINT,
                 'options' => [
-                    'unsigned' => true,
-                    'notnull' => false
+                    'unsigned' => true
                 ]
             ],
             'child_count' => [
                 'type'    => Type::INTEGER,
                 'options' => [
                     'unsigned' => true,
+                    'notnull' => true,
                     'default' => 0
                 ]
             ]

@@ -138,13 +138,16 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     {
         $users = $this->getModule(UsersModule::className());
         $users->getModels()->migrateAll();
-        exit;
+
+        $structure = $this->getModule(StructureModule::className());
+        $structure->getModels()->migrateAll();
 
         $structure = $this->getModule(StructureModule::className());
         $structure->getModels()->migrateAll();
 
         $news = $this->getModule(NewsModule::className());
         $news->getModels()->migrateAll();
+
         exit;
 
         foreach ($news->getModels() as $modelInfo) {

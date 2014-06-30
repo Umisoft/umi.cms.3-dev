@@ -31,8 +31,7 @@ return array_merge_recursive(
             'rubric_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true,
-                    'notnull' => false
+                    'unsigned' => true
                 ]
             ]
         ],

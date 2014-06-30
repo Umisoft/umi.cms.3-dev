@@ -19,15 +19,13 @@ return array_merge_recursive(
             'scenario_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true,
-                    'notnull' => false
+                    'unsigned' => true
                 ]
             ],
             'subject_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true,
-                    'notnull' => false
+                    'unsigned' => true
                 ]
             ]
         ],
