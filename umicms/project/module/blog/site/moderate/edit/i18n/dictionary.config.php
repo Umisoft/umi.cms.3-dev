@@ -16,8 +16,8 @@ return [
     ],
 
     'ru-RU' => [
-        'role:author:displayName' => 'Редактирование своих постов',
-        'role:moderator:displayName' => 'Модерирование',
+        'role:author:displayName' => 'Своих постов',
+        'role:moderator:displayName' => 'Всех постов',
     ]
 
 ];

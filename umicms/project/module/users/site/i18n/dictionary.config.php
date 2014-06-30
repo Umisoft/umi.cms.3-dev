@@ -24,8 +24,8 @@ return [
         'Password confirmation' => 'Подтверждение пароля',
 
         'role:viewer:displayName' => 'Просмотр пользователей',
-        'role:authorizationExecutor:displayName' => 'Авторизация',
-        'role:registrationExecutor:displayName' => 'Регистрация',
+        'role:authorizationExecutor:displayName' => 'Авторизация пользователя',
+        'role:registrationExecutor:displayName' => 'Регистрация пользователей',
         'role:restorationExecutor:displayName' => 'Восстановление пароля',
         'role:profileExecutor:displayName' => 'Профиль пользователя',
     ]

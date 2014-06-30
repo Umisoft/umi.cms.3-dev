@@ -27,7 +27,7 @@ return [
         'Log out' => 'Выйти',
         'You are already logged in' => 'Вы уже авторизованы',
 
-        'role:viewer:displayName' => 'Авторизация пользователей',
+        'role:viewer:displayName' => 'Авторизация пользователя',
     ]
 
 ];

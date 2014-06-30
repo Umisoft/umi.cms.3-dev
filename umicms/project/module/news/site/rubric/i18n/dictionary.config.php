@@ -11,12 +11,12 @@
 return [
 
     'en-US' => [
-        'role:rssViewer:displayName' => 'Viewer RSS-feed',
-        'role:viewer:displayName' => 'Viewer rubric',
+        'role:rssViewer:displayName' => 'Viewer RSS-feed rubrics',
+        'role:viewer:displayName' => 'Viewer',
     ],
 
     'ru-RU' => [
-        'role:rssViewer:displayName' => 'Просмотр RSS-лент',
+        'role:rssViewer:displayName' => 'Просмотр RSS-ленты рубрики',
         'role:viewer:displayName' => 'Просмотр рубрики',
     ]
 

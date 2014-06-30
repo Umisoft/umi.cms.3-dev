@@ -24,7 +24,7 @@ return [
         'Edit profile' => 'Редактировать профиль',
         'Change password' => 'Смена пароля',
 
-        'role:viewer:displayName' => 'Просмотр профиля',
+        'role:viewer:displayName' => 'Просмотр профиля пользователя',
         'role:passwordExecutor:displayName' => 'Смена пароля'
     ]
 

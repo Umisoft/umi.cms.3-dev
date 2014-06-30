@@ -14,6 +14,6 @@ return [
         ],
 
         'ru-RU' => [
-            'type:base:displayName' => 'Тэг'
+            'type:base:displayName' => 'Тег'
         ]
     ];

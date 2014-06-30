@@ -18,7 +18,7 @@ return [
     ],
 
     'ru-RU' => [
-        'role:viewer:displayName' => 'Просмотр структуры',
+        'role:viewer:displayName' => 'Просмотр структуры новостей',
         'role:rubricExecutor:displayName' => 'Рубрики',
         'role:itemExecutor:displayName' => 'Новости',
         'role:subjectExecutor:displayName' => 'Сюжеты',
