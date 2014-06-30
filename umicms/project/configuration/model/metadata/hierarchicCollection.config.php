@@ -3,6 +3,7 @@
 /**
  * Метаданные иерархической коллекции объектов
  */
+use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\orm\object\IHierarchicObject;
 use umi\validation\IValidatorFactory;
@@ -11,7 +12,7 @@ use umicms\filter\Slug;
 /**
  * Метаданные иерархической коллекции объектов
  */
-return array_merge_recursive(
+return array_replace_recursive(
     require __DIR__ . '/collection.config.php',
     [
         'fields'     => [
@@ -33,12 +34,12 @@ return array_merge_recursive(
                 'columnName' => 'slug',
                 'accessor'   => 'getSlug',
                 'filters' => [
+                    IFilterFactory::TYPE_STRING_TRIM => [],
                     Slug::TYPE => []
                 ],
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []
-                ],
-                'readOnly'   => true
+                ]
             ],
             IHierarchicObject::FIELD_URI                   => [
                 'type'       => IField::TYPE_URI,

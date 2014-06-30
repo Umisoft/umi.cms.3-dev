@@ -12,7 +12,7 @@ use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
 use umicms\project\Environment;
 
-return array_merge_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
     [
         'name' => 'news_item',

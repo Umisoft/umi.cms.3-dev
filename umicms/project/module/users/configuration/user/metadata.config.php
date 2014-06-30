@@ -17,7 +17,7 @@ use umicms\project\module\users\model\object\Guest;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\Supervisor;
 
-return array_merge_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
     require Environment::$directoryCmsProject . '/configuration/model/metadata/active.config.php',
     require Environment::$directoryCmsProject . '/configuration/model/metadata/locked.config.php',

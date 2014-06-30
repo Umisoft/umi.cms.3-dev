@@ -11,7 +11,7 @@ use umi\orm\metadata\field\IField;
 use umicms\project\Environment;
 use umicms\project\module\news\model\object\NewsItem;
 
-return array_merge_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/pageCollection.config.php',
     [
         'dataSource' => [

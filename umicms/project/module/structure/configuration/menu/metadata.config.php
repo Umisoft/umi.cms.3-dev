@@ -15,7 +15,7 @@ use umicms\project\module\structure\model\object\Menu;
 use umicms\project\module\structure\model\object\MenuExternalItem;
 use umicms\project\module\structure\model\object\MenuInternalItem;
 
-return array_merge_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
     require Environment::$directoryCmsProject . '/configuration/model/metadata/active.config.php',
     [

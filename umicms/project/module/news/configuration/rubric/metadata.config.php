@@ -13,7 +13,7 @@ use umicms\project\Environment;
 use umicms\project\module\news\model\object\NewsItem;
 use umicms\project\module\news\model\object\NewsRubric;
 
-return array_merge_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicPageCollection.config.php',
     [
         'dataSource' => [

@@ -164,7 +164,7 @@ abstract class BaseCmsController extends BaseController
         /**
          * @var UsersModule $usersModule
          */
-        $usersModule = $this->getModule(UsersModule::className());
+        $usersModule = $this->getModuleByClass(UsersModule::className());
         $currentUser = $usersModule->isAuthenticated() ? $usersModule->getCurrentUser() : $usersModule->getGuest();
 
         $persister = $this->getObjectPersister();

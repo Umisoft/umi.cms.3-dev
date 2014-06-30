@@ -13,7 +13,7 @@ use umicms\project\module\structure\model\object\StaticPage;
 use umicms\project\module\structure\model\object\StructureElement;
 use umicms\project\module\structure\model\object\SystemPage;
 
-return array_merge_recursive(
+var_dump( array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicPageCollection.config.php',
     [
         'dataSource' => [
@@ -67,4 +67,5 @@ return array_merge_recursive(
             ]
         ]
     ]
-);
+));
+exit;

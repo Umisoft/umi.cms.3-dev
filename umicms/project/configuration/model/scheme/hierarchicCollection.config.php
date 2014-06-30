@@ -5,7 +5,7 @@ use Doctrine\DBAL\Types\Type;
 /**
  * Схема таблицы для простой иерархической коллекции объектов
  */
-return array_merge_recursive(
+return array_replace_recursive(
     require __DIR__ . '/collection.config.php',
     [
         'columns' => [
