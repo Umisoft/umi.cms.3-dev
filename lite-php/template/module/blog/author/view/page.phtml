@@ -9,7 +9,7 @@
 <h1><?= $page->displayName ?></h1>
 <p><?= $page->contents ?></p>
 
-<p>Комментариев: <?=$page->commentsCount?></p>
-<p>Постов: <?=$page->postsCount?></p>
+<p><?= $this->translate('All comments') ?>: <?=$page->commentsCount?></p>
+<p><?= $this->translate('All posts') ?>: <?=$page->postsCount?></p>
 
 <?= $this->widget('blog.author.view.posts', ['blogAuthors' => [$page], 'template' => 'postList']); ?>

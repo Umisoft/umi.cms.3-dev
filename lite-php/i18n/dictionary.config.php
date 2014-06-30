@@ -61,8 +61,11 @@ return [
             'Moderation queue' => 'Moderation queue',
             'Post has been saved.' => 'Post has been saved.',
             'Profile has been saved.' => 'Profile has been saved.',
-            'Edit profile author' => 'Edit profile author',
+            'Edit author profile' => 'Edit author profile',
             'Comment has been unpublish.' => 'Comment has been unpublish.',
+            'Add comment' => 'Add comment',
+            'All comments' => 'All comments',
+            'All posts' => 'All posts'
         ],
         'ru-RU' => [
             'RSS' => 'RSS ленты',
@@ -76,8 +79,11 @@ return [
             'Moderation queue' => 'Очередь модерации',
             'Post has been saved.' => 'Пост сохранён.',
             'Profile has been saved.' => 'Профиль сохранён.',
-            'Edit profile author' => 'Редактировать автора',
+            'Edit author profile' => 'Редактировать автора',
             'Comment has been unpublish.' => 'Комментарий был снят с публикации',
+            'Add comment' => 'Оставить комментарий',
+            'All comments' => 'Комментариев',
+            'All posts' => 'Постов'
         ]
     ],
 

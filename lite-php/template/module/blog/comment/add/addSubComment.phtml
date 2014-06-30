@@ -6,7 +6,7 @@
 
 ?>
 <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#comment-<?= $blogComment->getId() ?>">
-    <?= $this->translate('Оставить комментарий')  ?>
+    <?= $this->translate('Add comment')  ?>
 </button>
 <div id="comment-<?= $blogComment->getId() ?>" class="collapse">
     <?=$this->render('form/form.phtml', ['form' => $form])?>

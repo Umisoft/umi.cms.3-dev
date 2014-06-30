@@ -46,7 +46,7 @@ trait TRecyclableCollection
      */
     public function trash(IRecyclableObject $object)
     {
-        if (!$object->trashed) {
+        if ($object->trashed) {
             return $this;
         }
 
@@ -76,7 +76,7 @@ trait TRecyclableCollection
      */
     public function untrash(IRecyclableObject $object)
     {
-        if ($object->trashed) {
+        if (!$object->trashed) {
             return $this;
         }
 

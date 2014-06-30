@@ -397,7 +397,7 @@ class BlogPostCollection extends CmsPageCollection
      */
     public function delete(IObject $object)
     {
-        if ($object instanceof BlogPost && $object->author instanceof BlogAuthor) {
+        if ($object instanceof BlogPost && $object->publishStatus === BlogPost::POST_STATUS_PUBLISHED && $object->author instanceof BlogAuthor) {
             $object->author->decrementPostCount();
         }
 
