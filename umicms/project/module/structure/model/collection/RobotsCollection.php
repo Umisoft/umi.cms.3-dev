@@ -32,9 +32,13 @@ class RobotsCollection extends CmsCollection
      */
     public function disallow(IRobotsAccessibleObject $page)
     {
-        return $this->add()
-            ->setValue(Robots::FIELD_DISPLAY_NAME, $page->displayName)
-            ->setValue(Robots::FIELD_PAGE_RELATION, $page);
+        if ($this->checkPage($page)) {
+            return $this->add()
+                ->setValue(Robots::FIELD_DISPLAY_NAME, $page->displayName)
+                ->setValue(Robots::FIELD_PAGE_RELATION, $page);
+        }
+
+        return $this;
     }
 
     /**
