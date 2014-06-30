@@ -24,25 +24,25 @@
 
     <xsl:template match="locale">
         <li><a href="{@url}">
-            <xsl:value-of select="@id"/>
+            <xsl:value-of select="document(concat('translate://project.site/', @id))/result"/>
         </a>/</li>
     </xsl:template>
 
     <xsl:template match="locale[@current = '1']">
         <li><a href="{@url}" class="active">
-            <xsl:value-of select="@id"/>
+            <xsl:value-of select="document(concat('translate://project.site/', @id))/result"/>
         </a>/</li>
     </xsl:template>
 
     <xsl:template match="locale[position() = last()]">
         <li><a href="{@url}">
-            <xsl:value-of select="@id"/>
+            <xsl:value-of select="document(concat('translate://project.site/', @id))/result"/>
         </a></li>
     </xsl:template>
 
     <xsl:template match="locale[@current = '1' and position() = last()]">
         <li><a href="{@url}" class="active">
-            <xsl:value-of select="@id"/>
+            <xsl:value-of select="document(concat('translate://project.site/', @id))/result"/>
         </a></li>
     </xsl:template>
     <!-- Языки в хедере <Конец> -->

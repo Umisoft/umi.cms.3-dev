@@ -32,7 +32,7 @@
 
     <!-- Шаблон для логотипа <Начало> -->
     <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="logo">
-        <xsl:value-of select="infoBlock/property[@name='logo']/value" disable-output-escaping="yes"/>
+        <a href="" class="logo"><img src="/resources/umi-rockband/images/logo.png" /></a>
     </xsl:template>
     <!-- Шаблон для логотипа <Конец> -->
 

@@ -40,6 +40,7 @@
             </head>
 
             <body>
+
                 <header id="top">
                     <div class="container-fluid">
                         <div class="row">
@@ -48,7 +49,7 @@
                                     <xsl:apply-templates select="locales" />
                                 </ul>
                                 <br />
-                                <a href="" class="logo"><img src="/resources/umi-rockband/images/logo.png" /></a>
+                                <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')" mode="logo"/>
                             </div>
                             <div class="right col-xs-12 col-sm-9 col-md-10 text-right">
                                 <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')" mode="phone"/>
@@ -60,6 +61,7 @@
                 </header>
 
                 <div class="header-height"></div>
+
 
                 <xsl:apply-templates select="contents" mode="content"/>
 
