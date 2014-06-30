@@ -15,9 +15,26 @@
         doctype-system="about:legacy-compat"
         />
 
+    <!-- Телефон в хедере <Начало> -->
+    <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="phone">
+        <span class="phone">
+            <xsl:value-of select="infoBlock/property[@name = 'phoneNumber']/value" disable-output-escaping="yes"/>
+        </span>
+    </xsl:template>
+    <!-- Телефон в хедере <Конец> -->
+
+    <!-- Копирайт в футере <Начало> -->
+    <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="copyright">
+        <!--<xsl:value-of select="infoBlock/property[@name = 'copyright']/value" disable-output-escaping="yes"/>-->
+        UMI.CMS 2014 Все права защищены
+    </xsl:template>
+    <!-- Копирайт в футере <Конец> -->
+
+    <!-- Шаблон для логотипа <Начало> -->
     <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="logo">
         <xsl:value-of select="infoBlock/property[@name='logo']/value" disable-output-escaping="yes"/>
     </xsl:template>
+    <!-- Шаблон для логотипа <Конец> -->
 
     <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="footer">
         <xsl:value-of select="infoBlock/property[@name='share']/value" disable-output-escaping="yes"/>
