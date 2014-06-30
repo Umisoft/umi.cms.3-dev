@@ -50,26 +50,31 @@
                                     <xsl:apply-templates select="locales" />
                                 </ul>
                                 <br />
-                                <a href="#" class="logo"><img src="/resources/umi-rockband/images/logo.png" /></a>
+                                <a href="" class="logo"><img src="/resources/umi-rockband/images/logo.png" /></a>
                             </div>
                             <div class="right col-xs-12 col-sm-9 col-md-10 text-right">
-                                <span class="phone">8 800 5555 864</span><br />
-                                <ul class="menu">
-                                    <li><a href="#">Главная</a></li>
-                                    <li><a href="#">События</a></li>
-                                    <li><a href="#">О звезде</a></li>
-                                    <li><a href="#">Блог</a></li>
-                                    <li class="search">
-                                        <form class="h-search-form">
-                                            <div class="input-group input-group-sm">
-                                                <span class="input-group-btn">
-                                                    <button class="btn" type="button"><img src="/resources/umi-rockband/images/search-icon.png" width="12" height="12" /></button>
-                                                </span>
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </form>
-                                    </li>
-                                </ul>
+
+                                <!--<span class="phone">8 800 5555 864</span>-->
+                                <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')" mode="phone"/>
+                                <br />
+                                <xsl:apply-templates select="document('widget://structure.menu.auto?depth=1')" mode="headerMenu"/>
+
+                                <!--<ul class="menu">-->
+                                    <!--<li><a href="#">Главная</a></li>-->
+                                    <!--<li><a href="#">События</a></li>-->
+                                    <!--<li><a href="#">О звезде</a></li>-->
+                                    <!--<li><a href="#">Блог</a></li>-->
+                                    <!--<li class="search">-->
+                                        <!--<form class="h-search-form">-->
+                                            <!--<div class="input-group input-group-sm">-->
+                                                <!--<span class="input-group-btn">-->
+                                                    <!--<button class="btn" type="button"><img src="/resources/umi-rockband/images/search-icon.png" width="12" height="12" /></button>-->
+                                                <!--</span>-->
+                                                <!--<input type="text" class="form-control" />-->
+                                            <!--</div>-->
+                                        <!--</form>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
                             </div>
                         </div>
                     </div>
@@ -280,7 +285,7 @@
         </html>
 
     </xsl:template>
-
+    <!-- Языки в хедере <Начало> -->
     <xsl:template match="locales">
         <ul class="langs">
             <xsl:apply-templates select="locale" />
@@ -294,7 +299,7 @@
     </xsl:template>
 
     <xsl:template match="locale[@current = '1']">
-        <li><a href="{@url}">
+        <li><a href="{@url}" class="active">
             <xsl:value-of select="@id"/>
         </a>/</li>
     </xsl:template>
@@ -304,6 +309,45 @@
             <xsl:value-of select="@id"/>
         </a></li>
     </xsl:template>
+
+    <xsl:template match="locale[@current = '1' and position() = last()]">
+        <li><a href="{@url}" class="active">
+            <xsl:value-of select="@id"/>
+        </a></li>
+    </xsl:template>
+    <!-- Языки в хедере <Конец> -->
+
+    <!-- Телефон в хедере <Начало> -->
+    <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="phone">
+        <span class="phone">
+            <xsl:value-of select="infoBlock/property[@name = 'phoneNumber']/value" disable-output-escaping="yes"/>
+        </span>
+    </xsl:template>
+    <!-- Телефон в хедере <Конец> -->
+
+    <!-- Меню в хедере <Начало> -->
+    <xsl:template match="result[@widget = 'structure.menu.auto']" mode="headerMenu">
+        <ul class="menu">
+            <xsl:apply-templates select="menu/item" mode="headerMenu"/>
+            <li class="search">
+                <form class="h-search-form">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-btn">
+                            <button class="btn" type="button"><img src="/resources/umi-rockband/images/search-icon.png" width="12" height="12" /></button>
+                        </span>
+                        <input type="text" class="form-control" />
+                    </div>
+                </form>
+            </li>
+        </ul>
+    </xsl:template>
+
+    <xsl:template match="item" mode="headerMenu">
+        <li><a href="{page/@url}">
+            <xsl:value-of select="page/@displayName"/>
+        </a></li>
+    </xsl:template>
+    <!-- Меню в хедере <Конец> -->
 
 
 </xsl:stylesheet>
