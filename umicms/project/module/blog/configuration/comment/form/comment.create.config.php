@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-use umi\form\element\Checkbox;
 use umi\form\element\html5\DateTime;
 use umi\form\element\Select;
 use umi\form\element\Text;
@@ -34,13 +33,6 @@ return [
                     'label' => BlogComment::FIELD_DISPLAY_NAME,
                     'options' => [
                         'dataSource' => BlogComment::FIELD_DISPLAY_NAME
-                    ],
-                ],
-                BlogComment::FIELD_ACTIVE => [
-                    'type' => Checkbox::TYPE_NAME,
-                    'label' => BlogComment::FIELD_ACTIVE,
-                    'options' => [
-                        'dataSource' => BlogComment::FIELD_ACTIVE
                     ],
                 ],
                 BlogComment::FIELD_SLUG => [

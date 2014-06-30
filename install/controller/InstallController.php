@@ -1698,7 +1698,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `level` int(10) unsigned DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
