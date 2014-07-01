@@ -12,10 +12,10 @@ namespace umicms\project\module\blog\model\collection;
 
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
-use umi\orm\object\IObject;
 use umicms\exception\NonexistentEntityException;
 use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
+use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -395,12 +395,24 @@ class BlogPostCollection extends CmsPageCollection
     /**
      * {@inheritdoc}
      */
-    public function delete(IObject $object)
+    public function trash(IRecyclableObject $object)
     {
         if ($object instanceof BlogPost && $object->publishStatus === BlogPost::POST_STATUS_PUBLISHED && $object->author instanceof BlogAuthor) {
             $object->author->decrementPostCount();
         }
 
-        return parent::delete($object);
+        return parent::trash($object);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function untrash(IRecyclableObject $object)
+    {
+        if ($object instanceof BlogPost && $object->publishStatus === BlogPost::POST_STATUS_PUBLISHED && $object->author instanceof BlogAuthor) {
+            $object->author->incrementPostCount();
+        }
+
+        return parent::untrash($object);
     }
 }

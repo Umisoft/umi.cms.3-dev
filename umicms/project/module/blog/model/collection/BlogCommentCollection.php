@@ -14,9 +14,12 @@ use umi\acl\IAclResource;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
+use umi\orm\object\IObject;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\selector\CmsSelector;
+use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogComment;
+use umicms\project\module\blog\model\object\BlogPost;
 
 /**
  * Коллекция комментариев блога.
@@ -34,6 +37,21 @@ class BlogCommentCollection extends CmsHierarchicCollection implements IAclResou
     public function getAclResourceName()
     {
         return 'collection:blogComment';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete(IObject $object)
+    {
+        if ($object instanceof BlogComment && $object->publishStatus === BlogComment::COMMENT_STATUS_PUBLISHED && $object->author instanceof BlogAuthor) {
+            $object->author->decrementCommentCount();
+            if ($object->post instanceof BlogPost) {
+                $object->post->decrementCommentCount();
+            }
+        }
+
+        parent::delete($object);
     }
 }
  
