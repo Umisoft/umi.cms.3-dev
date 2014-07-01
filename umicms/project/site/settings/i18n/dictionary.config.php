@@ -37,7 +37,7 @@ return [
 
         SiteApplication::SETTING_DEFAULT_PAGE_GUID => 'Главная страница',
         SiteApplication::SETTING_DEFAULT_LAYOUT_GUID => 'Шаблон страниц по умолчанию',
-        SiteApplication::SETTING_BROWSER_CACHE_ENABLED => 'Кэширования страниц браузером',
+        SiteApplication::SETTING_BROWSER_CACHE_ENABLED => 'Разрешить кэширование браузером',
 
         SiteApplication::SETTING_TEMPLATE_DIRECTORY => 'Директория с шаблонами',
         SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => 'Директория с общими шаблонами',
