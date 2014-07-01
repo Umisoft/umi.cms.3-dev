@@ -281,8 +281,6 @@ define(['App', 'toolbar'], function(UMI){
                     object = this.get('object');
                     column = this.get('column');
                     switch(column.type){
-                        case 'wysiwyg':
-                            break;
                         case 'checkbox':
                             value = object.get(column.dataSource);
                             template = '<span class="umi-checkbox-state-checked"></span>';
@@ -306,7 +304,11 @@ define(['App', 'toolbar'], function(UMI){
                             }
                             break;
                         default:
-                            template = object.get(column.dataSource) + '&nbsp;';
+                            value = object.get(column.dataSource);
+                            if(Ember.typeOf(value) === 'null'){
+                                value = '';
+                            }
+                            template = value + '&nbsp;';
                             break;
                     }
                 } catch(error){
