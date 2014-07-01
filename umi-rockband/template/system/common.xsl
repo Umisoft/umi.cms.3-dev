@@ -65,4 +65,32 @@
     </xsl:template>
     <!-- Шаблон по умолчанию для виджетов <Конец> -->
 
+    <!-- Шаблон для вывода сообщений об ошибках <Начало> -->
+    <xsl:template match="contents[error]">
+        <div class="content-main">
+            <div class="container-fluid">
+                <div class="block">
+                    <h3>
+                        Ошибка:
+                        <span style="color:red;">
+                            <xsl:value-of select="error/@message" />
+                        </span>
+                    </h3>
+                    <ul>
+                        <xsl:apply-templates select="stack/item" mode="errorStackItem"/>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </xsl:template>
+
+    <xsl:template match="item" mode="errorStackItem">
+        <li>
+            <xsl:value-of select="concat(position(), '.: ')" />
+            <xsl:value-of select="@message" />
+        </li>
+    </xsl:template>
+    
+    <!-- Шаблон для вывода сообщений об ошибках <Конец> -->
+
 </xsl:stylesheet>

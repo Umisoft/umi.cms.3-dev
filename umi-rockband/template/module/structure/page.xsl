@@ -16,7 +16,7 @@
         />
 
     <!-- Статические страницы <Начало> -->
-    <xsl:template match="contents[@controller = 'structure.index'][page]" mode="content">
+    <xsl:template match="contents[@controller = 'structure.index'][page]" >
         <xsl:call-template name="mainSlider" />
 
         <div class="content-main">
@@ -29,8 +29,9 @@
                     <p class="desc-block">
                         <xsl:value-of select="document('translate://project.site.news/LatestNews24Hours')/result"/>
                     </p>
+                    <!-- Список последних новостей  -->
                     <ul class="list-dev row">
-                        <xsl:apply-templates select="document('widget://news.item.list?limit=5')" mode="mainPage"/>
+                        <xsl:apply-templates select="document('widget://news.item.list?limit=5')" mode="mainNewsList"/>
                     </ul>
                     <div class="text-center"><a href="#" class="btn btn-custom btn-primary" style="width:240px">Загрузить еще</a></div>
                 </div>
@@ -38,8 +39,12 @@
             <!-- О нас -->
             <div class="block">
                 <div class="container-fluid text-center">
-                    <h2 class="title-block"><span>О нас</span></h2>
-                    <p class="desc-block">Мы самая известная рок группа в мире</p>
+                    <h2 class="title-block"><span>
+                        <xsl:value-of select="document('translate://project.site.news/AboutUs')/result" />
+                    </span></h2>
+                    <p class="desc-block">
+                        Мы самая известная рок группа в мире
+                    </p>
                 </div>
                 <ul class="list-about">
                     <li><img src="/resources/umi-rockband/images/about/1.jpg" alt="" /></li>
@@ -51,20 +56,26 @@
             </div>
             <!-- Контент -->
             <div class="container-fluid content-page">
-                <h3>Невероятно крутой заголовок</h3>
+                <xsl:value-of select="page/property[@name='contents']/value" disable-output-escaping="yes" />
+                <!-- <h3>Невероятно крутой заголовок</h3>
                 <p>Товарищи! постоянный количественный рост и сфера нашей активности требуют определения и уточнения новых предложений. Повседневная практика показывает, что постоянный количественный рост и сфера нашей активности в значительной степени обуславливает создание системы обучения кадров, соответствует насущным потребностям. Товарищи! сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании форм развития. Повседневная практика показывает, что начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки соответствующий условий активизации. </p>
                 <br />
                 <h3>Дополнительный заголовок</h3>
                 <p>Сфера нашей активности в значительной степени обуславливает создание системы обучения кадров, соответствует насущным потребностям. Товарищи! сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании форм развития. </p>
-                <p>Повседневная практика показывает, что начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки соответствующий условий активизации. Товарищи! укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании новых предложений. Не следует, однако забывать, что сложившаяся структура организации в значительной степени обуславливает создание существенных финансовых и административных условий.</p>
+                <p>Повседневная практика показывает, что начало повседневной работы по формированию позиции представляет собой интересный эксперимент проверки соответствующий условий активизации. Товарищи! укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании новых предложений. Не следует, однако забывать, что сложившаяся структура организации в значительной степени обуславливает создание существенных финансовых и административных условий.</p> -->
             </div>
             <div class="block">
-                <h2 class="title-block"><span>Блог</span></h2>
-                <p class="desc-block">Последние статьи из блога</p>
+                <h2 class="title-block"><span>
+                    <xsl:value-of select="document('translate://project.site.news/Blog')/result" />
+                </span></h2>
+                <p class="desc-block">
+                    <xsl:value-of select="document('translate://project.site.blog/RecentBlogPosts')/result" />
+                </p>
             </div>
             <!-- Последние посты блогов -->
             <div class="main-blog">
                 <div class="container-fluid">
+                    <xsl:apply-templates select="document('widget://blog.post.view.list')" mode="mainPage"/>
                     <div class="row list-blog">
                         <div class="item col-md-4 blue col-sm-5 col-xs-12">
                             <a href="#"><img src="/resources/umi-rockband/images/list-blog/1.jpg" class="img" alt="" /></a>

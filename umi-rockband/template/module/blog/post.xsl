@@ -15,20 +15,20 @@
         doctype-system="about:legacy-compat"
         />
 
-    <!-- Список свежих новостей на главной <Начало> -->
-    <xsl:template match="result[@widget = 'news.item.list']" mode="mainNewsList">
-        <ul class="list-dev row">
+    <!-- Список последних постов блога на главной <Начало> -->
+    <xsl:template match="result[@widget = 'blog.post.view.list']" mode="mainPage">
+        <div class="row list-blog">
             <xsl:apply-templates select="list/collection/item" mode="mainPage"/>
-        </ul>
+        </div>
     </xsl:template>
 
     <xsl:template match="item" mode="mainPage">
-        <xsl:apply-templates select="document(concat('widget://news.item.view?newsItem=', @guid))/result/newsItem"
-                             mode="mainNewsList"/>
+        <xsl:apply-templates select="document(concat('widget://blog.post.view.list?newsItem=', @guid))/result/newsItem"
+                             mode="mainPage"/>
     </xsl:template>
 
     <!-- Отдельная новость -->
-    <xsl:template match="newsItem" mode="mainNewsList">
+    <xsl:template match="newsItem" mode="mainPage">
         <li class="col-md-3 col-sm-6" >
             <a href="{@url}"><img src="/resources/umi-rockband/images/list-dev/1.jpg" class="img" alt="" /></a><br />
             <a href="{@url}" class="title">
@@ -43,6 +43,8 @@
             </p>
         </li>
     </xsl:template>
-    <!-- Список свежих новостей на главной <Конец> -->
+    <!-- Список последних постов блога на главной <Конец> -->
+
+
 
 </xsl:stylesheet>

@@ -22,7 +22,9 @@ return [
             'Rubrics' => 'Rubrics',
             'Subjects' => 'Subjects',
             'Back to top' => 'Back to top',
-            'Add post' => 'Add post'
+            'Add post' => 'Add post',
+            'AboutUs' => 'About us',
+            'Blog' => 'Blog',
         ],
         'ru-RU' => [
             'ru-RU' => 'РУС',
@@ -45,6 +47,8 @@ return [
             'Subjects' => 'Сюжеты',
             'Back to top' => 'Наверх',
             'Add post' => 'Добавить пост',
+            'AboutUs' => 'О нас',
+            'Blog' => 'Блог',
         ]
     ],
 
@@ -61,7 +65,8 @@ return [
             'Moderation queue' => 'Moderation queue',
             'Post has been saved.' => 'Post has been saved.',
             'Profile has been saved.' => 'Profile has been saved.',
-            'Edit profile author' => 'Edit profile author'
+            'Edit profile author' => 'Edit profile author',
+            'RecentBlogPosts' => 'Recent posts from the blog'
         ],
         'ru-RU' => [
             'RSS' => 'RSS ленты',
@@ -75,7 +80,8 @@ return [
             'Moderation queue' => 'Очередь модерации',
             'Post has been saved.' => 'Пост сохранён.',
             'Profile has been saved.' => 'Профиль сохранён.',
-            'Edit profile author' => 'Редактировать автора'
+            'Edit profile author' => 'Редактировать автора',
+            'RecentBlogPosts' => 'Последние статьи из блога'
         ]
     ],
 

@@ -17,6 +17,7 @@
 
     <xsl:include href="template://module/structure/common" />
     <xsl:include href="template://module/news/common" />
+    <xsl:include href="template://module/blog/common" />
     <xsl:include href="template://system/common" />
 
 
@@ -67,7 +68,7 @@
                 <div class="header-height"></div>
 
                 <!-- Основное содержание -->
-                <xsl:apply-templates select="contents" mode="content"/>
+                <xsl:apply-templates select="contents" />
 
                 <footer>
                     <div class="container-fluid">
