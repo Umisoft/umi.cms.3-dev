@@ -95,6 +95,15 @@ return [
             'relatedField' => 'blogRssImportScenario',
             'targetField'  => 'tag'
         ],
+        BlogRssImportScenario::FIELD_AUTHOR => [
+            'type' => IField::TYPE_BELONGS_TO,
+            'columnName' => 'author_id',
+            'target' => 'blogAuthor'
+        ],
+        BlogRssImportScenario::FIELD_PUBLISH_STATUS => [
+            'type' => IField::TYPE_STRING,
+            'columnName' => 'publish_status'
+        ]
     ],
     'types'      => [
         'base' => [
@@ -111,7 +120,9 @@ return [
                 BlogRssImportScenario::FIELD_EDITOR,
                 BlogRssImportScenario::FIELD_RSS_URL,
                 BlogRssImportScenario::FIELD_CATEGORY,
-                BlogRssImportScenario::FIELD_TAGS
+                BlogRssImportScenario::FIELD_TAGS,
+                BlogRssImportScenario::FIELD_AUTHOR,
+                BlogRssImportScenario::FIELD_PUBLISH_STATUS
             ]
         ]
     ]
