@@ -123,6 +123,8 @@ return [
                 IRecyclableObject::FIELD_TRASHED => 'Trashed',
                 ILockedAccessibleObject::FIELD_LOCKED => 'Locked',
                 IActiveAccessibleObject::FIELD_ACTIVE => 'Active',
+
+                'Default or inherited layout' => 'Default or inherited layout',
             ],
 
             'ru-RU' => [
@@ -153,6 +155,8 @@ return [
                 IRecyclableObject::FIELD_TRASHED => 'В корзине',
                 ILockedAccessibleObject::FIELD_LOCKED => 'Заблокировано',
                 IActiveAccessibleObject::FIELD_ACTIVE => 'Активность',
+
+                'Default or inherited layout' => 'Шаблон по умолчанию или унаследованный',
             ]
         ],
 
