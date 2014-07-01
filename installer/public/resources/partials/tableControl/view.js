@@ -282,8 +282,7 @@ define(['App', 'toolbar'], function(UMI){
                     column = this.get('column');
                     switch(column.type){
                         case 'checkbox':
-                            value = object.get(column.dataSource);
-                            template = '<span class="umi-checkbox-state-checked"></span>';
+                            template = '<span {{bind-attr class="view.object.' + column.dataSource + ':umi-checkbox-state-checked:umi-checkbox-state-unchecked"}}></span>&nbsp;';
                             break;
                         case 'checkboxGroup':
                         case 'multiSelect':
