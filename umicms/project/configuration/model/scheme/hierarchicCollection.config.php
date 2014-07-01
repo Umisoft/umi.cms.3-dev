@@ -77,7 +77,6 @@ return array_replace_recursive(
         ],
         'constraints' => [
             'to_parent' => [
-                'foreignTable' => '%self%',
                 'columns' => [
                     'parent_id' => []
                 ],

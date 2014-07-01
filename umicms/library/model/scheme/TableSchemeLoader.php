@@ -112,14 +112,6 @@ class TableSchemeLoader implements ILocalizable
     protected function loadConstraint(Table $table, $constraintName, IConfig $constraintConfig)
     {
         if (!$foreignTableName = $constraintConfig->get('foreignTable')) {
-            throw new UnexpectedValueException(
-                $this->translate(
-                    'Cannot load constraint configuration. Option "foreignTable" required.'
-                )
-            );
-        }
-
-        if ($foreignTableName === '%self%') {
             $foreignTableName = $table->getName();
         }
 
@@ -195,6 +187,8 @@ class TableSchemeLoader implements ILocalizable
      */
     protected function loadIndex(Table $table, $indexName, IConfig $indexConfig)
     {
+        $uniqueIndexName = uniqid('ind');
+
         $columnsConfig = $indexConfig->get('columns');
         if (!$columnsConfig instanceof IConfig) {
             throw new UnexpectedValueException(
@@ -209,14 +203,14 @@ class TableSchemeLoader implements ILocalizable
         if ($indexConfig->get('type') == 'primary') {
             $table->setPrimaryKey($columnNames);
         } elseif ($indexConfig->get('type') == 'unique') {
-            $table->addUniqueIndex($columnNames, 'uidx_' . $indexName);
+            $table->addUniqueIndex($columnNames, $uniqueIndexName);
         } else {
             $flags = [];
             if ($indexConfig->get('flags') instanceof IConfig) {
                 $flags = $indexConfig->get('flags')->toArray();
             }
 
-            $table->addIndex($columnNames, 'idx_' . $indexName, $flags);
+            $table->addIndex($columnNames, $uniqueIndexName, $flags);
         }
     }
 

@@ -10,8 +10,6 @@
 
 namespace project\install\controller;
 
-use Doctrine\DBAL\DBALException;
-use PDOException;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\driver\IDialect;
 use umi\hmvc\controller\BaseController;
@@ -33,16 +31,12 @@ use umicms\module\TModuleAware;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
-use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
-use umicms\project\module\news\install\Package;
 use umicms\project\module\news\model\collection\NewsRssImportScenarioCollection;
-use umicms\project\module\news\model\NewsModule;
 use umicms\project\module\search\model\SearchApi;
 use umicms\project\module\search\model\SearchIndexApi;
 use umicms\project\module\search\model\SearchModule;
-use umicms\project\module\service\model\collection\BackupCollection;
 use umicms\project\module\structure\model\object\InfoBlock;
 use umicms\project\module\structure\model\object\Menu;
 use umicms\project\module\structure\model\object\MenuExternalItem;
@@ -123,7 +117,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         try {
             foreach ($this->getModules() as $module) {
-                $module->getModels()->migrateAll();
+                $module->getModels()->installAllSchemes();
             }
 
             echo "Installing structure...\n";
@@ -1452,7 +1446,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
      */
     protected function commit()
     {
-        $currentUser = $this->usersModule->isAuthenticated() ? $this->usersModule->getCurrentUser() : $this->usersModule->getGuest();
+        $currentUser = $this->usersModule->user()->get('68347a1d-c6ea-49c0-9ec3-b7406e42b01e');
 
         $persister = $this->getObjectPersister();
 

@@ -17,7 +17,7 @@ return array_replace_recursive(
     [
         'fields'     => [
             IHierarchicObject::FIELD_PARENT                => [
-                'type'       => IField::TYPE_BELONGS_TO_SELF,
+                'type'       => IField::TYPE_BELONGS_TO,
                 'columnName' => 'parent_id',
                 'accessor'   => 'getParent',
                 'readOnly'   => true
@@ -48,7 +48,6 @@ return array_replace_recursive(
             ],
             IHierarchicObject::FIELD_CHILDREN              => [
                 'type'        => IField::TYPE_HAS_MANY,
-                'target'      => 'newsRubric',
                 'targetField' => IHierarchicObject::FIELD_PARENT,
                 'readOnly'    => true
             ],
@@ -76,6 +75,7 @@ return array_replace_recursive(
             'base' => [
                 'fields'      => [
                     IHierarchicObject::FIELD_PARENT  => [],
+                    IHierarchicObject::FIELD_CHILDREN => [],
                     IHierarchicObject::FIELD_MPATH => [],
                     IHierarchicObject::FIELD_SLUG => [],
                     IHierarchicObject::FIELD_URI => [],
