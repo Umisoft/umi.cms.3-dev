@@ -85,9 +85,6 @@ return array_replace_recursive(
                 'columns' => [
                     'author_id' => []
                 ],
-                'foreignColumns' => [
-                    'id' => []
-                ],
                 'options' => [
                     'onUpdate' => 'CASCADE',
                     'onDelete' => 'SET NULL'

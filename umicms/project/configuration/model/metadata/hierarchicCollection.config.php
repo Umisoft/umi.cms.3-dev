@@ -17,10 +17,9 @@ return array_replace_recursive(
     [
         'fields'     => [
             IHierarchicObject::FIELD_PARENT                => [
-                'type'       => IField::TYPE_BELONGS_TO,
-                'columnName' => 'pid',
+                'type'       => IField::TYPE_BELONGS_TO_SELF,
+                'columnName' => 'parent_id',
                 'accessor'   => 'getParent',
-                'target'     => 'newsRubric',
                 'readOnly'   => true
             ],
             IHierarchicObject::FIELD_MPATH                 => [
@@ -47,6 +46,12 @@ return array_replace_recursive(
                 'accessor'   => 'getURI',
                 'readOnly'   => true
             ],
+            IHierarchicObject::FIELD_CHILDREN              => [
+                'type'        => IField::TYPE_HAS_MANY,
+                'target'      => 'newsRubric',
+                'targetField' => IHierarchicObject::FIELD_PARENT,
+                'readOnly'    => true
+            ],
             IHierarchicObject::FIELD_CHILD_COUNT           => [
                 'type'         => IField::TYPE_COUNTER,
                 'columnName'   => 'child_count',
@@ -70,13 +75,13 @@ return array_replace_recursive(
         'types'      => [
             'base' => [
                 'fields'      => [
-                    IHierarchicObject::FIELD_PARENT,
-                    IHierarchicObject::FIELD_MPATH,
-                    IHierarchicObject::FIELD_SLUG,
-                    IHierarchicObject::FIELD_URI,
-                    IHierarchicObject::FIELD_CHILD_COUNT,
-                    IHierarchicObject::FIELD_ORDER,
-                    IHierarchicObject::FIELD_HIERARCHY_LEVEL
+                    IHierarchicObject::FIELD_PARENT  => [],
+                    IHierarchicObject::FIELD_MPATH => [],
+                    IHierarchicObject::FIELD_SLUG => [],
+                    IHierarchicObject::FIELD_URI => [],
+                    IHierarchicObject::FIELD_CHILD_COUNT => [],
+                    IHierarchicObject::FIELD_ORDER => [],
+                    IHierarchicObject::FIELD_HIERARCHY_LEVEL => []
                 ]
             ]
         ]

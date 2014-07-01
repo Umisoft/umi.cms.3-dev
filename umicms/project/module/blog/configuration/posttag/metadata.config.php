@@ -31,9 +31,10 @@ return array_replace_recursive(
         ],
         'types' => [
             'base' => [
+                'objectClass' => 'umicms\orm\object\CmsLinkObject',
                 'fields' => [
-                    'blogPost',
-                    'tag'
+                    'blogPost'  => [],
+                    'tag'  => []
                 ]
             ]
         ]

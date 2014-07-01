@@ -135,11 +135,7 @@ class TableSchemeLoader implements ILocalizable
 
         $foreignColumnsConfig = $constraintConfig->get('foreignColumns');
         if (!$foreignColumnsConfig instanceof IConfig) {
-            throw new UnexpectedValueException(
-                $this->translate(
-                    'Cannot load constraint configuration. Option "foreignColumns" required and should be an array.'
-                )
-            );
+            $foreignColumnsConfig['id'] = [];
         }
 
         $foreignTable = $this->createTableScheme($foreignTableName);
@@ -151,8 +147,8 @@ class TableSchemeLoader implements ILocalizable
 
         $table->addForeignKeyConstraint(
             $foreignTable,
-            array_keys($columnsConfig->toArray()),
-            array_keys($foreignColumnsConfig->toArray()),
+            array_keys($this->configToArray($columnsConfig, true)),
+            array_keys($this->configToArray($foreignColumnsConfig, true)),
             $constraintConfig->has('options') ? $constraintConfig->get('options')->toArray() : [],
             'fk_' . $table->getName() . '_' . $constraintName
         );

@@ -1,5 +1,6 @@
 <?php
 use umi\dbal\toolbox\DbalTools;
+use umi\orm\toolbox\ORMTools;
 use umicms\model\toolbox\ModelTools;
 
 return [
@@ -10,6 +11,13 @@ return [
         'factories' => [
             'modelEntity' => [
                 'tableNamePrefix' => 'demo_'
+            ]
+        ]
+    ],
+    ORMTools::NAME => [
+        'factories' => [
+            'metadata' => [
+                'dataSourceNamePrefix' => 'demo_'
             ]
         ]
     ]

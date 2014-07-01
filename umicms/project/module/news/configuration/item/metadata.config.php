@@ -51,11 +51,11 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\news\model\object\NewsItem',
                 'fields'      => [
-                    NewsItem::FIELD_RUBRIC,
-                    NewsItem::FIELD_ANNOUNCEMENT,
-                    NewsItem::FIELD_SOURCE,
-                    NewsItem::FIELD_SUBJECTS,
-                    NewsItem::FIELD_DATE
+                    NewsItem::FIELD_RUBRIC => [],
+                    NewsItem::FIELD_ANNOUNCEMENT => [],
+                    NewsItem::FIELD_SOURCE => [],
+                    NewsItem::FIELD_SUBJECTS => [],
+                    NewsItem::FIELD_DATE => []
                 ]
             ]
         ],

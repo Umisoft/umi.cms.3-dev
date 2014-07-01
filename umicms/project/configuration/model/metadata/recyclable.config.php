@@ -7,16 +7,18 @@ use umicms\orm\object\behaviour\IRecyclableObject;
  * Метаданные для коллекций, поддерживающих удаление объектов в корзину.
  */
 return [
-    IRecyclableObject::FIELD_TRASHED              => [
-        'type'         => IField::TYPE_BOOL,
-        'columnName'   => 'trashed',
-        'defaultValue' => 0,
-        'readOnly'     => true,
+    'fields' => [
+        IRecyclableObject::FIELD_TRASHED => [
+            'type'         => IField::TYPE_BOOL,
+            'columnName'   => 'trashed',
+            'defaultValue' => 0,
+            'readOnly'     => true,
+        ]
     ],
-    'types'      => [
+    'types'  => [
         'base' => [
-            'fields'      => [
-                IRecyclableObject::FIELD_TRASHED
+            'fields' => [
+                IRecyclableObject::FIELD_TRASHED => []
             ]
         ]
     ]

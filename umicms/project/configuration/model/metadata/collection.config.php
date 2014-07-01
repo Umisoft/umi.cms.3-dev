@@ -86,15 +86,15 @@ return [
     'types'      => [
         'base' => [
             'fields'      => [
-                CmsObject::FIELD_IDENTIFY,
-                CmsObject::FIELD_GUID,
-                CmsObject::FIELD_TYPE,
-                CmsObject::FIELD_VERSION,
-                CmsObject::FIELD_DISPLAY_NAME,
-                CmsObject::FIELD_CREATED,
-                CmsObject::FIELD_UPDATED,
-                CmsObject::FIELD_OWNER,
-                CmsObject::FIELD_EDITOR
+                CmsObject::FIELD_IDENTIFY => [],
+                CmsObject::FIELD_GUID => [],
+                CmsObject::FIELD_TYPE => [],
+                CmsObject::FIELD_VERSION => [],
+                CmsObject::FIELD_DISPLAY_NAME => [],
+                CmsObject::FIELD_CREATED => [],
+                CmsObject::FIELD_UPDATED => [],
+                CmsObject::FIELD_OWNER => [],
+                CmsObject::FIELD_EDITOR => []
             ]
         ]
     ]

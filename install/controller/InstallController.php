@@ -11,6 +11,7 @@
 namespace project\install\controller;
 
 use Doctrine\DBAL\DBALException;
+use PDOException;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\driver\IDialect;
 use umi\hmvc\controller\BaseController;
@@ -103,35 +104,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     }
 
     /**
-     * Устанавливает модель
-     * @param array $modelInfo информацию о модели
-     * @throws \RuntimeException
-     * @throws \InvalidArgumentException
-     */
-    protected function installModel($modelInfo)
-    {
-        if (!isset($modelInfo['collection'])) {
-            throw new \InvalidArgumentException('Cannot install model. Option "collection" required.');
-        }
-        if (!isset($modelInfo['metadata'])) {
-            throw new \InvalidArgumentException('Cannot install model. Option "metadata" required.');
-        }
-        if (!isset($modelInfo['scheme'])) {
-            throw new \InvalidArgumentException('Cannot install model. Option "scheme" required.');
-        }
-
-        if (!is_file($modelInfo['scheme'])) {
-            throw new \RuntimeException(sprintf('Cannot install model "%s". Scheme file "%s" does not exists.'));
-        }
-
-        $schemeConfig = require $modelInfo;
-        if (!is_array($schemeConfig)) {
-
-        }
-    }
-
-
-    /**
      * Вызывает контроллер.
      * @return Response
      */
@@ -139,11 +111,21 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     {
         header('Content-type: text/plain');
 
-        foreach ($this->getModules() as $module) {
-            $module->getModels()->migrateAll();
-        }
+        $connection = $this->dbCluster->getConnection();
+        /**
+         * @var IDialect $dialect
+         */
+        $dialect = $connection->getDatabasePlatform();
+
+        $connection->exec($dialect->getDisableForeignKeysSQL());
+
+        $this->dropTables();
 
         try {
+            foreach ($this->getModules() as $module) {
+                $module->getModels()->migrateAll();
+            }
+
             echo "Installing structure...\n";
             $this->installStructure();
             echo "Installing users...\n";
@@ -158,11 +140,13 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             $this->commit();
             $this->getObjectManager()->unloadObjects();
 
-            $this->installSearch();
-            $this->installBackup();
-            $this->installTest();
-        } catch (DBALException $e) {
-            var_dump($e->getMessage());
+            //$this->installSearch();
+        } catch (\Exception $e) {
+            echo $e->getMessage() . "\n";
+            while ($e = $e->getPrevious()) {
+                echo '... ' . $e->getMessage() . "\n";
+            }
+            debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 100);
         }
 
         exit('Done');
@@ -535,7 +519,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var Supervisor $sv
          */
-        $sv = $userCollection->add('authorized.supervisor')
+        $sv = $userCollection->add(Supervisor::TYPE_NAME)
             ->setValue('displayName', 'Супервайзер')
             ->setValue('displayName', 'Supervisor', 'en-US')
             ->setValue('login', 'sv')
@@ -551,7 +535,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var RegisteredUser $admin
          */
-        $admin = $userCollection->add('authorized')
+        $admin = $userCollection->add(RegisteredUser::TYPE_NAME)
             ->setValue('displayName', 'Администратор')
             ->setValue('displayName', 'Administrator', 'en-US')
             ->setValue('firstName', 'Администратор')
@@ -567,7 +551,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var RegisteredUser $user
          */
-        $user = $userCollection->add('authorized')
+        $user = $userCollection->add(RegisteredUser::TYPE_NAME)
             ->setValue('displayName', 'Зарегистрированный пользователь')
             ->setValue('firstName', 'Зарегистрированный пользователь')
             ->setValue('login', 'demo')
@@ -584,7 +568,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         /**
          * @var Guest $guest
          */
-        $guest = $userCollection->add('guest')
+        $guest = $userCollection->add(Guest::TYPE_NAME)
             ->setValue('displayName', 'Гость')
             ->setValue('displayName', 'Guest', 'en-US')
             ->setGUID('552802d2-278c-46c2-9525-cd464bbed63e');
@@ -916,7 +900,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
 
 
-        $commentBranch = $commentCollection->add('branch', 'branchComment')
+        $commentBranch = $commentCollection->add('branch1', 'branchComment')
             ->setValue('displayName', $post1->getValue('displayName'))
             ->setValue('post', $post1);
 
@@ -941,7 +925,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_REJECTED)
             ->setValue('publishTime', new \DateTime('2012-11-15 15:11:21'));
 
-        $commentBranch2 = $commentCollection->add('branch', 'branchComment')
+        $commentBranch2 = $commentCollection->add('branch2', 'branchComment')
             ->setValue('displayName', $post2->getValue('displayName'))
             ->setValue('post', $post2);
 
@@ -1432,850 +1416,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         }
     }
 
-    protected function installDbStructure()
-    {
-        $connection = $this->dbCluster->getConnection();
-        /**
-         * @var IDialect $dialect
-         */
-        $dialect = $connection->getDatabasePlatform();
-
-        $connection->exec($dialect->getDisableForeignKeysSQL());
-
-        $this->dropTables();
-
-        $this->installStructureTables();
-        $this->installNewsTables();
-        $this->installBlogTables();
-
-        $this->installUsersTables();
-
-        $connection->exec($dialect->getEnableForeignKeysSQL());
-    }
-
-    protected function installUsersTables()
-    {
-        $connection = $this->dbCluster->getConnection();
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_user` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `locked` tinyint(1) unsigned DEFAULT '0',
-                    `trashed` tinyint(1) unsigned DEFAULT '0',
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `login` varchar(255) DEFAULT NULL,
-                    `email` varchar(255) DEFAULT NULL,
-                    `password` varchar(255) DEFAULT NULL,
-                    `password_salt` varchar(255) DEFAULT NULL,
-                    `first_name` varchar(255) DEFAULT NULL,
-                    `middle_name` varchar(255) DEFAULT NULL,
-                    `last_name` varchar(255) DEFAULT NULL,
-                    `activation_code` varchar(255) DEFAULT NULL,
-                    `registration_date` datetime DEFAULT NULL,
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `user_guid` (`guid`),
-                    KEY `user_type` (`type`),
-                    UNIQUE KEY `user_login` (`login`),
-                    CONSTRAINT `FK_user_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_user_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_user_group` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `locked` tinyint(1) unsigned DEFAULT '0',
-                    `trashed` tinyint(1) unsigned DEFAULT '0',
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `roles` text,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `group_guid` (`guid`),
-                    KEY `group_type` (`type`),
-                    CONSTRAINT `FK_user_group_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_user_group_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_user_user_group` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `user_id` bigint(20) unsigned,
-                    `user_group_id` bigint(20) unsigned,
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `user_user_group_guid` (`guid`),
-                    KEY `user_user_group_type` (`type`),
-                    KEY `user_user_group_user` (`user_id`),
-                    KEY `user_user_group_group` (`user_group_id`),
-                    CONSTRAINT `FK_user_user_group_user` FOREIGN KEY (`user_id`) REFERENCES `demohunt_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_user_user_group_group` FOREIGN KEY (`user_group_id`) REFERENCES `demohunt_user_group` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_user_user_group_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_user_user_group_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-    }
-
-    protected function installBlogTables()
-    {
-        $connection = $this->dbCluster->getConnection();
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_blog_category` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-
-                    `pid` bigint(20) unsigned DEFAULT NULL,
-                    `mpath` varchar(255) DEFAULT NULL,
-                    `slug` varchar(255),
-                    `uri` text,
-                    `child_count` int(10) unsigned DEFAULT '0',
-                    `order` int(10) unsigned DEFAULT NULL,
-                    `level` int(10) unsigned DEFAULT NULL,
-
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `trashed` tinyint(1) unsigned DEFAULT '0',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `meta_title` varchar(255) DEFAULT NULL,
-                    `meta_keywords` varchar(255) DEFAULT NULL,
-                    `meta_description` varchar(255) DEFAULT NULL,
-                    `h1` varchar(255) DEFAULT NULL,
-                    `contents` text,
-                    `contents_en` text,
-                    `layout_id` bigint(20) unsigned DEFAULT NULL,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `blog_category_guid` (`guid`),
-                    UNIQUE KEY `blog_category_pid_slug` (`pid`, `slug`),
-                    KEY `blog_category_type` (`type`),
-                    KEY `blog_category_pid` (`pid`),
-                    KEY `blog_category_layout` (`layout_id`),
-                    CONSTRAINT `FK_blog_category_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_category_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_category_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_blog_post` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-
-                    `slug` varchar(255),
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `trashed` tinyint(1) unsigned DEFAULT '0',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `author_id` bigint(20) unsigned DEFAULT NULL,
-                    `publish_time` datetime DEFAULT NULL,
-                    `meta_title` varchar(255) DEFAULT NULL,
-                    `meta_keywords` varchar(255) DEFAULT NULL,
-                    `meta_description` varchar(255) DEFAULT NULL,
-                    `h1` varchar(255) DEFAULT NULL,
-                    `announcement` text,
-                    `announcement_en` text,
-                    `source` varchar(255) DEFAULT NULL,
-                    `contents` text,
-                    `contents_en` text,
-                    `contents_raw` text,
-                    `contents_raw_en` text,
-                    `category_id` bigint(20) unsigned DEFAULT NULL,
-                    `layout_id` bigint(20) unsigned DEFAULT NULL,
-                    `comments_count` bigint(20) unsigned DEFAULT NULL,
-                    `publish_status` enum('draft','published','rejected','moderate') DEFAULT 'draft',
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `blog_post_guid` (`guid`),
-                    UNIQUE KEY `blog_post_slug` (`slug`),
-                    UNIQUE KEY `blog_post_source` (`source`),
-                    KEY `blog_post_type` (`type`),
-                    KEY `blog_post_category` (`category_id`),
-                    KEY `blog_post_publish_status` (`publish_status`),
-                    CONSTRAINT `FK_blog_post_category` FOREIGN KEY (`category_id`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_post_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_post_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_post_author` FOREIGN KEY (`author_id`) REFERENCES `demohunt_blog_author` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_post_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_blog_tag` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-
-                    `slug` varchar(255),
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `trashed` tinyint(1) unsigned DEFAULT '0',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `posts_count` bigint(20) unsigned DEFAULT NULL,
-                    `meta_title` varchar(255) DEFAULT NULL,
-                    `meta_keywords` varchar(255) DEFAULT NULL,
-                    `meta_description` varchar(255) DEFAULT NULL,
-                    `h1` varchar(255) DEFAULT NULL,
-                    `contents` text,
-                    `contents_en` text,
-                    `layout_id` bigint(20) unsigned DEFAULT NULL,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `blog_tag_guid` (`guid`),
-                    UNIQUE KEY `blog_tag_slug` (`slug`),
-                    KEY `blog_tag_type` (`type`),
-                    CONSTRAINT `FK_blog_tag_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_tag_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_tag_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_blog_blog_post_tag` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `post_id` bigint(20) unsigned,
-                    `tag_id` bigint(20) unsigned,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `post_tag_guid` (`guid`),
-                    KEY `post_tag_type` (`type`),
-                    KEY `post_tag_tag` (`tag_id`),
-                    KEY `post_tag_post` (`post_id`),
-                    CONSTRAINT `FK_blog_post_tag_tag` FOREIGN KEY (`tag_id`) REFERENCES `demohunt_blog_tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_post_tag_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_blog_post_tag_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_blog_post_tag_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_blog_comment` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-
-                    `pid` bigint(20) unsigned DEFAULT NULL,
-                    `mpath` varchar(255) DEFAULT NULL,
-                    `slug` varchar(255),
-                    `uri` text,
-                    `child_count` int(10) unsigned DEFAULT '0',
-                    `order` int(10) unsigned DEFAULT NULL,
-                    `level` int(10) unsigned DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `trashed` tinyint(1) unsigned DEFAULT '0',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `post_id` bigint(20) unsigned,
-                    `author_id` bigint(20) unsigned,
-                    `contents` text,
-                    `contents_en` text,
-                    `contents_raw` text,
-                    `contents_raw_en` text,
-                    `publish_time` datetime DEFAULT NULL,
-                    `publish_status` enum('published','rejected','moderate') DEFAULT NULL,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `blog_comment_guid` (`guid`),
-                    UNIQUE KEY `blog_comment_pid_slug` (`pid`, `slug`),
-                    KEY `blog_comment_type` (`type`),
-                    KEY `blog_comment_pid` (`pid`),
-                    KEY `blog_comment_post` (`post_id`),
-                    CONSTRAINT `FK_blog_comment_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_blog_comment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_comment_post` FOREIGN KEY (`post_id`) REFERENCES `demohunt_blog_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_comment_author` FOREIGN KEY (`author_id`) REFERENCES `demohunt_blog_author` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_comment_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_comment_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_blog_author` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-
-                    `slug` varchar(255),
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `trashed` tinyint(1) unsigned DEFAULT '0',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `profile_id` bigint(20) unsigned DEFAULT NULL,
-                    `meta_title` varchar(255) DEFAULT NULL,
-                    `meta_keywords` varchar(255) DEFAULT NULL,
-                    `meta_description` varchar(255) DEFAULT NULL,
-                    `h1` varchar(255) DEFAULT NULL,
-                    `last_activity` datetime DEFAULT NULL,
-                    `contents` text,
-                    `contents_en` text,
-                    `contents_raw` text,
-                    `contents_raw_en` text,
-                    `category_id` bigint(20) unsigned DEFAULT NULL,
-                    `layout_id` bigint(20) unsigned DEFAULT NULL,
-                    `comments_count` bigint(20) unsigned DEFAULT NULL,
-                    `posts_count` bigint(20) unsigned DEFAULT NULL,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `blog_author_guid` (`guid`),
-                    UNIQUE KEY `blog_author_slug` (`slug`),
-                    KEY `blog_author_type` (`type`),
-                    CONSTRAINT `FK_blog_author_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_author_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_author_profile` FOREIGN KEY (`profile_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_blog_author_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_blog_rss_import_scenario_tag` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `rss_import_scenario_id` bigint(20) unsigned,
-                    `tag_id` bigint(20) unsigned,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `rss_rss_post_tag_guid` (`guid`),
-                    KEY `rss_rss_post_tag_type` (`type`),
-                    KEY `rss_rss_post_tag_item` (`rss_import_scenario_id`),
-                    KEY `rss_import_scenario_tag` (`tag_id`),
-                    CONSTRAINT `FK_rss_rss_item_tag_item` FOREIGN KEY (`rss_import_scenario_id`) REFERENCES `demohunt_news_rss_import_scenario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_import_scenario_tag` FOREIGN KEY (`tag_id`) REFERENCES `demohunt_blog_tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_import_scenario_tag_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_import_scenario_tag_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_blog_rss_import_scenario` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `rss_url` varchar(255) DEFAULT NULL,
-                    `category_id` bigint(20) unsigned DEFAULT NULL,
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `rss_rss_post_guid` (`guid`),
-                    KEY `rss_rss_post_type` (`type`),
-                    KEY `rss_rss_post_category` (`category_id`),
-                    CONSTRAINT `FK_rss_rss_post_category` FOREIGN KEY (`category_id`) REFERENCES `demohunt_blog_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_rss_post_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_rss_post_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-    }
-
-    protected function installNewsTables()
-    {
-        $connection = $this->dbCluster->getConnection();
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_news_rubric` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-
-                    `pid` bigint(20) unsigned DEFAULT NULL,
-                    `mpath` varchar(255) DEFAULT NULL,
-                    `uri` text,
-                    `slug` varchar(255),
-                    `order` int(10) unsigned DEFAULT NULL,
-                    `level` int(10) unsigned DEFAULT NULL,
-                    `child_count` int(10) unsigned DEFAULT '0',
-
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `trashed` tinyint(1) unsigned DEFAULT '0',
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `contents` text,
-                    `contents_en` text,
-                    `meta_description` varchar(255) DEFAULT NULL,
-                    `meta_keywords` varchar(255) DEFAULT NULL,
-                    `meta_title` varchar(255) DEFAULT NULL,
-                    `h1` varchar(255) DEFAULT NULL,
-                    `layout_id` bigint(20) unsigned DEFAULT NULL,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `news_rubric_guid` (`guid`),
-                    UNIQUE KEY `news_rubric_pid_slug` (`pid`, `slug`),
-                    KEY `news_rubric_type` (`type`),
-                    KEY `news_rubric_pid` (`pid`),
-                    KEY `news_rubric_layout` (`layout_id`),
-                    CONSTRAINT `FK_news_rubric_pid` FOREIGN KEY (`pid`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_rubric_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_rubric_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_rubric_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_news_news_item` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `slug` varchar(255),
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `trashed` tinyint(1) unsigned DEFAULT '0',
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `date` datetime DEFAULT NULL,
-                    `contents` text,
-                    `contents_en` text,
-                    `announcement` text,
-                    `announcement_en` text,
-                    `source` varchar(255) DEFAULT NULL,
-                    `meta_description` varchar(255) DEFAULT NULL,
-                    `meta_keywords` varchar(255) DEFAULT NULL,
-                    `meta_title` varchar(255) DEFAULT NULL,
-                    `h1` varchar(255) DEFAULT NULL,
-                    `rubric_id` bigint(20) unsigned DEFAULT NULL,
-                    `layout_id` bigint(20) unsigned DEFAULT NULL,
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `news_news_item_guid` (`guid`),
-                    UNIQUE KEY `news_news_item_slug` (`slug`),
-                    UNIQUE KEY `news_news_item_source` (`source`),
-                    KEY `news_news_item_type` (`type`),
-                    KEY `news_news_item_rubric` (`rubric_id`),
-                    KEY `news_news_item_layout` (`layout_id`),
-                    CONSTRAINT `FK_news_news_item_rubric` FOREIGN KEY (`rubric_id`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_news_item_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_news_item_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_news_item_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_news_subject` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `slug` varchar(255),
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `trashed` tinyint(1) unsigned DEFAULT '0',
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `contents` text,
-                    `contents_en` text,
-                    `meta_description` varchar(255) DEFAULT NULL,
-                    `meta_keywords` varchar(255) DEFAULT NULL,
-                    `meta_title` varchar(255) DEFAULT NULL,
-                    `h1` varchar(255) DEFAULT NULL,
-                    `layout_id` bigint(20) unsigned DEFAULT NULL,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `news_subject_guid` (`guid`),
-                    UNIQUE KEY `news_subject_slug` (`slug`),
-                    KEY `news_subject_type` (`type`),
-                    KEY `news_subject_layout` (`layout_id`),
-                    CONSTRAINT `FK_news_subject_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_news_news_item_subject` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `news_item_id` bigint(20) unsigned,
-                    `subject_id` bigint(20) unsigned,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `news_news_item_subject_guid` (`guid`),
-                    KEY `news_news_item_subject_type` (`type`),
-                    KEY `news_news_item_subject_item` (`news_item_id`),
-                    KEY `news_news_item_subject_subject` (`subject_id`),
-                    CONSTRAINT `FK_news_news_item_subject_item` FOREIGN KEY (`news_item_id`) REFERENCES `demohunt_news_news_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_news_item_subject_subject` FOREIGN KEY (`subject_id`) REFERENCES `demohunt_news_subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_news_item_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_news_news_item_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_news_rss_import_scenario_subject` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `rss_import_scenario_id` bigint(20) unsigned,
-                    `subject_id` bigint(20) unsigned,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `rss_rss_item_subject_guid` (`guid`),
-                    KEY `rss_rss_item_subject_type` (`type`),
-                    KEY `rss_rss_item_subject_item` (`rss_import_scenario_id`),
-                    KEY `rss_import_scenario_subject` (`subject_id`),
-                    CONSTRAINT `FK_rss_rss_item_subject_item` FOREIGN KEY (`rss_import_scenario_id`) REFERENCES `demohunt_news_rss_import_scenario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_import_scenario_subject` FOREIGN KEY (`subject_id`) REFERENCES `demohunt_news_subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_import_scenario_subject_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_import_scenario_subject_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_news_rss_import_scenario` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `rss_url` varchar(255) DEFAULT NULL,
-                    `rubric_id` bigint(20) unsigned DEFAULT NULL,
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `rss_rss_item_guid` (`guid`),
-                    KEY `rss_rss_item_type` (`type`),
-                    KEY `rss_rss_item_rubric` (`rubric_id`),
-                    CONSTRAINT `FK_rss_rss_item_rubric` FOREIGN KEY (`rubric_id`) REFERENCES `demohunt_news_rubric` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_rss_item_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_rss_rss_item_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-    }
-
-    protected function installStructureTables()
-    {
-        $connection = $this->dbCluster->getConnection();
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_layout` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `type` varchar(255),
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `locked` tinyint(1) unsigned DEFAULT '0',
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `file_name` varchar(255) DEFAULT NULL,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `layout_guid` (`guid`),
-                    KEY `layout_type` (`type`),
-                    CONSTRAINT `FK_layout_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_layout_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_structure` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `type` varchar(255),
-                    `pid` bigint(20) unsigned DEFAULT NULL,
-                    `mpath` varchar(255) DEFAULT NULL,
-                    `uri` text,
-                    `slug` varchar(255),
-                    `order` int(10) unsigned DEFAULT NULL,
-                    `level` int(10) unsigned DEFAULT NULL,
-                    `child_count` int(10) unsigned DEFAULT '0',
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `skip_in_breadcrumbs` tinyint(1) unsigned DEFAULT '0',
-                    `locked` tinyint(1) unsigned DEFAULT '0',
-                    `trashed` tinyint(1) unsigned DEFAULT '0',
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `contents` text,
-                    `contents_en` text,
-                    `meta_description` varchar(255) DEFAULT NULL,
-                    `meta_keywords` varchar(255) DEFAULT NULL,
-                    `meta_title` varchar(255) DEFAULT NULL,
-                    `h1` varchar(255) DEFAULT NULL,
-                    `component_path` varchar(255) DEFAULT NULL,
-                    `component_name` varchar(255) DEFAULT NULL,
-                    `layout_id` bigint(20) unsigned DEFAULT NULL,
-                    `in_menu` tinyint(1) unsigned DEFAULT 0,
-                    `submenu_state` tinyint(1) unsigned DEFAULT 0,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `structure_guid` (`guid`),
-                    UNIQUE KEY `structure_mpath` (`mpath`),
-                    UNIQUE KEY `structure_pid_slug` (`pid`, `slug`),
-                    KEY `structure_parent` (`pid`),
-                    KEY `structure_parent_order` (`pid`,`order`),
-                    KEY `structure_type` (`type`),
-                    KEY `structure_layout` (`layout_id`),
-                    KEY `component_path` (`component_path`),
-                    KEY `component_name` (`component_name`),
-                    CONSTRAINT `FK_structure_parent` FOREIGN KEY (`pid`) REFERENCES `demohunt_structure` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_structure_layout` FOREIGN KEY (`layout_id`) REFERENCES `demohunt_layout` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_structure_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_structure_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_infoblock` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `type` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `name` varchar(255) DEFAULT NULL,
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `phone_number` TEXT DEFAULT NULL,
-                    `phone_number_en` TEXT DEFAULT NULL,
-                    `email` varchar(255) DEFAULT NULL,
-                    `email_en` varchar(255) DEFAULT NULL,
-                    `address` TEXT DEFAULT NULL,
-                    `address_en` TEXT DEFAULT NULL,
-                    `logo` TEXT DEFAULT NULL,
-                    `logo_en` TEXT DEFAULT NULL,
-                    `copyright` TEXT DEFAULT NULL,
-                    `copyright_en` TEXT DEFAULT NULL,
-                    `counter` TEXT DEFAULT NULL,
-                    `counter_en` TEXT DEFAULT NULL,
-                    `widget_vk` TEXT DEFAULT NULL,
-                    `widget_vk_en` TEXT DEFAULT NULL,
-                    `widget_facebook` TEXT DEFAULT NULL,
-                    `widget_facebook_en` TEXT DEFAULT NULL,
-                    `widget_twitter` TEXT DEFAULT NULL,
-                    `widget_twitter_en` TEXT DEFAULT NULL,
-                    `share` TEXT DEFAULT NULL,
-                    `share_en` TEXT DEFAULT NULL,
-                    `social_group_link` TEXT DEFAULT NULL,
-                    `social_group_link_en` TEXT DEFAULT NULL,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `infoblock_guid` (`guid`),
-                    UNIQUE KEY `infoblock_name` (`name`),
-                    KEY `infoblock_type` (`type`),
-                    CONSTRAINT `FK_infoblock_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_infoblock_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $connection->exec(
-            "
-                CREATE TABLE `demohunt_menu` (
-                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                    `guid` varchar(255),
-                    `version` int(10) unsigned DEFAULT '1',
-                    `type` varchar(255),
-                    `pid` bigint(20) unsigned DEFAULT NULL,
-                    `mpath` varchar(255) DEFAULT NULL,
-                    `uri` text,
-                    `slug` varchar(255),
-                    `order` int(10) unsigned DEFAULT NULL,
-                    `level` int(10) unsigned DEFAULT NULL,
-                    `child_count` int(10) unsigned DEFAULT '0',
-                    `active` tinyint(1) unsigned DEFAULT '1',
-                    `name` varchar(255) DEFAULT NULL,
-                    `display_name` varchar(255) DEFAULT NULL,
-                    `display_name_en` varchar(255) DEFAULT NULL,
-                    `created` datetime DEFAULT NULL,
-                    `updated` datetime DEFAULT NULL,
-                    `owner_id` bigint(20) unsigned DEFAULT NULL,
-                    `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                    `page_relation` varchar(255) DEFAULT NULL,
-                    `url_resource` varchar(255) DEFAULT NULL,
-
-                    PRIMARY KEY (`id`),
-                    UNIQUE KEY `menu_guid` (`guid`),
-                    UNIQUE KEY `menu_name` (`name`),
-                    UNIQUE KEY `menu_mpath` (`mpath`),
-                    UNIQUE KEY `menu_pid_slug` (`pid`, `slug`),
-                    KEY `menu_parent` (`pid`),
-                    KEY `menu_parent_order` (`pid`,`order`),
-                    KEY `menu_type` (`type`),
-                    KEY `page_relation` (`page_relation`),
-                    CONSTRAINT `FK_menu_parent` FOREIGN KEY (`pid`) REFERENCES `demohunt_menu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT `FK_menu_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                    CONSTRAINT `FK_menu_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-    }
-
     private function installSearch()
     {
         /**
@@ -2290,36 +1430,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $searchRoot->getProperty('componentName')->setValue('search');
         $searchRoot->getProperty('componentPath')->setValue('search');
 
-        $connection = $this->dbCluster->getConnection();
-
-        $connection->exec(
-            "CREATE TABLE `demohunt_search_index` (
-                `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                `guid` varchar(255),
-                `version` int(10) unsigned DEFAULT '1',
-                `type` varchar(255),
-                `display_name` varchar(255) DEFAULT NULL,
-                `display_name_en` varchar(255) DEFAULT NULL,
-                `active` tinyint(1) unsigned DEFAULT '1',
-                `created` datetime DEFAULT NULL,
-                `updated` datetime DEFAULT NULL,
-                `owner_id` bigint(20) unsigned DEFAULT NULL,
-                `editor_id` bigint(20) unsigned DEFAULT NULL,
-
-                `date_indexed` datetime DEFAULT NULL,
-                `collection_id` varchar(255) DEFAULT NULL,
-                `ref_guid` varchar(255) DEFAULT NULL,
-                `contents` TEXT DEFAULT NULL,
-
-                PRIMARY KEY (`id`),
-                UNIQUE KEY `search_index_guid` (`guid`),
-                UNIQUE KEY `search_index_ref_guid` (`ref_guid`),
-                KEY `search_index_type` (`type`),
-                KEY `search_index_collection_id` (`collection_id`),
-                FULLTEXT(`contents`)
-            ) ENGINE=MyISAM DEFAULT CHARSET=utf8
-            "
-        );
 
 //        $this->searchIndexApi->buildIndex('structure');
         $this->searchIndexApi->buildIndex('newsRubric');
@@ -2328,81 +1438,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->searchIndexApi->buildIndex('blogCategory');
         $this->searchIndexApi->buildIndex('blogPost');
         $this->searchIndexApi->buildIndex('blogComment');
-        $this->commit();
-    }
-
-    private function installBackup()
-    {
-        $connection = $this->dbCluster->getConnection();
-
-        $connection->exec(
-            "CREATE TABLE `demohunt_backup` (
-                `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                `guid` varchar(255),
-                `version` int(10) unsigned DEFAULT '1',
-                `type` varchar(255),
-                `object_id` bigint(20) unsigned NOT NULL,
-                `collection_name` varchar(255) NOT NULL,
-                `owner_id` bigint(20) unsigned DEFAULT NULL,
-                `editor_id` bigint(20) unsigned DEFAULT NULL,
-                `created` datetime DEFAULT NULL,
-                `updated` datetime DEFAULT NULL,
-                `data` longtext DEFAULT NULL,
-
-                PRIMARY KEY (`id`),
-                UNIQUE KEY `backup_guid` (`guid`),
-                CONSTRAINT `FK_backup_owner` FOREIGN KEY (`owner_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-                CONSTRAINT `FK_backup_editor` FOREIGN KEY (`editor_id`) REFERENCES `demohunt_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-    }
-
-    protected function installTest()
-    {
-        $connection = $this->dbCluster->getConnection();
-
-        $connection->exec(
-            "CREATE TABLE `demohunt_module_test` (
-                `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-                `guid` varchar(255),
-                `version` int(10) unsigned DEFAULT '1',
-                `type` varchar(255),
-                `display_name` varchar(255) DEFAULT NULL,
-                `display_name_en` varchar(255) DEFAULT NULL,
-
-                `text` varchar(255) DEFAULT NULL,
-                `textarea` varchar(255) DEFAULT NULL,
-                `select` varchar(255) DEFAULT NULL,
-                `multiselect` varchar(255) DEFAULT NULL,
-                `radio` varchar(255) DEFAULT NULL,
-                `password` varchar(255) DEFAULT NULL,
-                `checkbox` varchar(255) DEFAULT NULL,
-                `checkbox_group` varchar(255) DEFAULT NULL,
-
-                `date` date DEFAULT NULL,
-                `date_time` datetime DEFAULT NULL,
-                `email` varchar(255) DEFAULT NULL,
-                `number` varchar(255) DEFAULT NULL,
-                `time` time DEFAULT NULL,
-                `file` varchar(255) DEFAULT NULL,
-                `image` varchar(255) DEFAULT NULL,
-
-                `owner_id` bigint(20) unsigned DEFAULT NULL,
-                `editor_id` bigint(20) unsigned DEFAULT NULL,
-                `created` datetime DEFAULT NULL,
-                `updated` datetime DEFAULT NULL,
-
-                PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
-            "
-        );
-
-        $testCollection = $this->getCollectionManager()->getCollection('testTest');
-
-        $testCollection->add()
-            ->setValue('displayName', 'test 1');
-
         $this->commit();
     }
 
@@ -2442,6 +1477,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $invalidObjects = $persister->getInvalidObjects();
 
         if (count($invalidObjects)) {
+            foreach ($invalidObjects as $object)
+            {
+                var_dump([$object->getTypePath() . '#' . $object->guid => $object->getValidationErrors()]);
+            }
+
             throw new InvalidObjectsException(
                 $this->translate('Cannot persist objects. Objects are not valid.'),
                 $invalidObjects
@@ -2449,5 +1489,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         }
 
         $this->getObjectPersister()->commit();
+
     }
 }

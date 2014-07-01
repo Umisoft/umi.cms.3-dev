@@ -17,7 +17,7 @@ return [
     'types'      => [
         'base' => [
             'fields'      => [
-                IActiveAccessibleObject::FIELD_ACTIVE
+                IActiveAccessibleObject::FIELD_ACTIVE => []
             ]
         ]
     ]

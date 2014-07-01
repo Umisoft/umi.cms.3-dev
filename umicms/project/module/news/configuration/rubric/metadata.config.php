@@ -30,7 +30,7 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\news\model\object\NewsRubric',
                 'fields'      => [
-                    NewsItem::FIELD_RUBRIC
+                    NewsRubric::FIELD_NEWS => []
                  ]
             ]
         ]

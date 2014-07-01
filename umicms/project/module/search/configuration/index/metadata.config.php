@@ -44,10 +44,10 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\search\model\object\SearchIndex',
                 'fields' => [
-                    SearchIndex::FIELD_REF_GUID,
-                    SearchIndex::FIELD_CONTENT,
-                    SearchIndex::FIELD_COLLECTION_NAME,
-                    SearchIndex::FIELD_DATE_INDEXED
+                    SearchIndex::FIELD_REF_GUID => [],
+                    SearchIndex::FIELD_CONTENT => [],
+                    SearchIndex::FIELD_COLLECTION_NAME => [],
+                    SearchIndex::FIELD_DATE_INDEXED => []
                 ]
             ]
         ]

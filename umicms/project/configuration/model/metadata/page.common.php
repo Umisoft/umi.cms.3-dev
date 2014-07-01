@@ -74,13 +74,13 @@ return [
     'types'      => [
         'base' => [
             'fields'      => [
-                ICmsPage::FIELD_PAGE_SLUG,
-                ICmsPage::FIELD_PAGE_META_TITLE,
-                ICmsPage::FIELD_PAGE_META_DESCRIPTION,
-                ICmsPage::FIELD_PAGE_META_KEYWORDS,
-                ICmsPage::FIELD_PAGE_H1,
-                ICmsPage::FIELD_PAGE_CONTENTS,
-                ICmsPage::FIELD_PAGE_LAYOUT
+                ICmsPage::FIELD_PAGE_SLUG  => [],
+                ICmsPage::FIELD_PAGE_META_TITLE => [],
+                ICmsPage::FIELD_PAGE_META_DESCRIPTION => [],
+                ICmsPage::FIELD_PAGE_META_KEYWORDS => [],
+                ICmsPage::FIELD_PAGE_H1 => [],
+                ICmsPage::FIELD_PAGE_CONTENTS => [],
+                ICmsPage::FIELD_PAGE_LAYOUT => []
             ]
         ]
     ]

@@ -16,7 +16,7 @@ return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
     [
         'dataSource' => [
-            'sourceName' => 'blog_rss_post'
+            'sourceName' => 'blog_rss_import_scenario'
         ],
         'fields' => [
             BlogRssImportScenario::FIELD_RSS_URL => [
@@ -41,9 +41,9 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\blog\model\object\BlogRssImportScenario',
                 'fields' => [
-                    BlogRssImportScenario::FIELD_RSS_URL,
-                    BlogRssImportScenario::FIELD_CATEGORY,
-                    BlogRssImportScenario::FIELD_TAGS
+                    BlogRssImportScenario::FIELD_RSS_URL  => [],
+                    BlogRssImportScenario::FIELD_CATEGORY => [],
+                    BlogRssImportScenario::FIELD_TAGS => []
                 ]
             ]
         ]
