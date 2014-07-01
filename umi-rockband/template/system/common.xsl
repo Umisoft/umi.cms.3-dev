@@ -90,7 +90,16 @@
             <xsl:value-of select="@message" />
         </li>
     </xsl:template>
-    
     <!-- Шаблон для вывода сообщений об ошибках <Конец> -->
+
+    <!-- Шаблон для вывода числовых значений полей <Начало> -->
+    <xsl:template match="value[*]" mode="number">
+        <xsl:value-of select="." />
+    </xsl:template>
+
+    <xsl:template match="value" mode="number">
+        <xsl:text>0</xsl:text>
+    </xsl:template>
+    <!-- Шаблон для вывода числовых значений полей <Конец> -->
 
 </xsl:stylesheet>

@@ -75,42 +75,7 @@
             <!-- Последние посты блогов -->
             <div class="main-blog">
                 <div class="container-fluid">
-                    <xsl:apply-templates select="document('widget://blog.post.view.list')" mode="mainPage"/>
-                    <div class="row list-blog">
-                        <div class="item col-md-4 blue col-sm-5 col-xs-12">
-                            <a href="#"><img src="/resources/umi-rockband/images/list-blog/1.jpg" class="img" alt="" /></a>
-                            <div class="bottom">
-                                <h4><a href="#" class="title">Значение новых предложений</a></h4>
-                                <p class="desc">Повседневная практика показывает, что новая модель организационной деятельности позволяет оценить значение новых предложений. Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке дальнейших направлений развития. Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет </p>
-                                <ul class="info">
-                                    <li class="date">17 мая 2014</li>
-                                    <li class="cat">Музыка  |  22 комментария</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="item col-md-4 yellow col-sm-5 col-xs-12">
-                            <a href="#"><img src="/resources/umi-rockband/images/list-blog/2.jpg" class="img" alt="" /></a>
-                            <div class="bottom">
-                                <h4><a href="#" class="title">Значение новых предложений</a></h4>
-                                <p class="desc">Повседневная практика показывает, что новая модель организационной деятельности позволяет оценить значение новых предложений. Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке дальнейших направлений развития. Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет </p>
-                                <ul class="info">
-                                    <li class="date">17 мая 2014</li>
-                                    <li class="cat">Музыка  |  22 комментария</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="item col-md-4 blue-light col-sm-5 col-xs-12">
-                            <a href="#"><img src="/resources/umi-rockband/images/list-blog/3.jpg" class="img" alt="" /></a>
-                            <div class="bottom">
-                                <h4><a href="#" class="title">Значение новых предложений</a></h4>
-                                <p class="desc">Повседневная практика показывает, что новая модель организационной деятельности позволяет оценить значение новых предложений. Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке дальнейших направлений развития. Задача организации, в особенности же начало повседневной работы по формированию позиции позволяет </p>
-                                <ul class="info">
-                                    <li class="date">17 мая 2014</li>
-                                    <li class="cat">Музыка  |  22 комментария</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <xsl:apply-templates select="document('widget://blog.post.view.list')" mode="mainList"/>
                     <div class="text-center"><a href="#" class="btn btn-custom btn-primary" style="width:240px">Загрузить еще</a></div>
                 </div>
             </div>

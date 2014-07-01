@@ -15,7 +15,7 @@
         doctype-system="about:legacy-compat"
         />
 
-    <xsl:include href="template://module/news/item" />
+    <xsl:include href="template://module/blog/post" />
 
 
 
