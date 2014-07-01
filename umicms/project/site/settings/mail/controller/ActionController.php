@@ -11,6 +11,7 @@
 namespace umicms\project\site\settings\mail\controller;
 
 use umi\config\io\IConfigIOAware;
+use umi\form\element\IFormElement;
 use umi\http\Response;
 use umi\messages\toolbox\MessagesTools;
 use umicms\hmvc\component\admin\settings\BaseController;
@@ -44,9 +45,11 @@ class ActionController extends BaseController implements IConfigIOAware
 
         if ($form->isValid()) {
 
-            $mailSenderInfo = Utils::parseEmailList($form->get('sender_address')->getValue());
-            $mailRecipientInfo = Utils::parseEmailList($form->get('delivery_address')->getValue());
-
+            /**
+             * @var IFormElement $emailSenderInput
+             */
+            $emailSenderInput = $form->get('sender_address');
+            $mailSenderInfo = Utils::parseEmailList($emailSenderInput->getValue());
 
             $config->del(MessagesTools::NAME . '.mailerOptions.sender_address');
             $config->del(MessagesTools::NAME . '.mailerOptions.delivery_address');
@@ -59,19 +62,6 @@ class ActionController extends BaseController implements IConfigIOAware
                     } else {
                         $config->set(MessagesTools::NAME . '.mailerOptions.sender_address.'. $i . '.email', $key);
                         $config->set(MessagesTools::NAME . '.mailerOptions.sender_address.'. $i . '.name', $value);
-                    }
-                    $i++;
-                }
-            }
-
-            if ($mailRecipientInfo) {
-                $i = 0;
-                foreach ($mailRecipientInfo as $key => $value) {
-                    if (is_numeric($key)) {
-                        $config->set(MessagesTools::NAME . '.mailerOptions.delivery_address.'. $i . '.email', $value);
-                    } else {
-                        $config->set(MessagesTools::NAME . '.mailerOptions.delivery_address.'. $i . '.email', $key);
-                        $config->set(MessagesTools::NAME . '.mailerOptions.delivery_address.'. $i . '.name', $value);
                     }
                     $i++;
                 }
