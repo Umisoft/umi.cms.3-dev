@@ -63,7 +63,9 @@ class CmsObjectSerializer extends BaseSerializer implements IUrlManagerAware
 
         $properties = [];
         foreach($fields as $fieldName => $field) {
-            $properties[$fieldName] = $object->getProperty($fieldName);
+            if ($object->hasProperty($fieldName)) {
+                $properties[$fieldName] = $object->getProperty($fieldName);
+            }
         }
 
         return $properties;
