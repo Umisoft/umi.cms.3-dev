@@ -202,6 +202,8 @@ define(
                         var data = this.$().serialize();
                         $.post(self.get('action'), data).then(function(){
                             handler.removeClass('loading');
+                            var params = {type: 'success', 'content': 'Сохранено.'};
+                            UMI.notification.create(params);
                         });
                     }
                 },
