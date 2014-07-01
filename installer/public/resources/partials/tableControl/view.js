@@ -306,6 +306,8 @@ define(['App', 'toolbar'], function(UMI){
                             value = object.get(column.dataSource);
                             if(Ember.typeOf(value) === 'null'){
                                 value = '';
+                            } else{
+                                value = UMI.Utils.htmlEncode(value);
                             }
                             template = value + '&nbsp;';
                             break;
