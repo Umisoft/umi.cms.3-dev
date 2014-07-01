@@ -19,7 +19,13 @@ define(
             magellan();
             submitToolbar();
 
-            UMI.FormControllerMixin = Ember.Mixin.create({});
+            UMI.FormControllerMixin = Ember.Mixin.create(UMI.i18nInterface, {
+                dictionaryNamespace: 'form',
+                localDictionary: function(){
+                    var form = this.get('control') || {};
+                    return form.i18n;
+                }.property()
+            });
 
             UMI.FormViewMixin = Ember.Mixin.create({
                 /**
