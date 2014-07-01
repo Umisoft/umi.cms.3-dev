@@ -102,4 +102,23 @@
     </xsl:template>
     <!-- Шаблон для вывода числовых значений полей <Конец> -->
 
+    <!-- Шаблон для вывода даты/времени в нужном формате <Начало> -->
+    <xsl:template name="dateTime">
+        <xsl:param name="timestamp" />
+        <xsl:param name="format" />
+        <xsl:param name="stringTime" />
+
+        <xsl:choose>
+            <xsl:when test="$stringTime">
+                <xsl:variable name="resultTimestamp" select="php:function('strtotime', $stringTime, $timestamp)" />
+                <xsl:value-of select="php:function('date', $format, $resultTimestamp)" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="php:function('date', $format, $timestamp)" />
+            </xsl:otherwise>
+        </xsl:choose>
+
+    </xsl:template>
+    <!-- Шаблон для вывода даты/времени в нужном формат <Конец> -->
+
 </xsl:stylesheet>

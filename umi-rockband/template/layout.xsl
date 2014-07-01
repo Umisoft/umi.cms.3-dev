@@ -40,7 +40,13 @@
                 <script type="text/javascript" src="/resources/umi-rockband/js/bootstrap.min.js"></script>
                 <script type="text/javascript" src="/resources/umi-rockband/js/scripts.js"></script>
             </head>
-
+            <textarea>
+                <xsl:call-template name="dateTime" >
+                    <xsl:with-param name="timestamp" select="2323" />
+                    <xsl:with-param name="format" select="'Y-m-d H:i:s'" />
+                    <!--<xsl:with-param name="stringTime" select="'this Monday'" />-->
+                </xsl:call-template>
+            </textarea>
             <body>
                 <header id="top">
                     <div class="container-fluid">
@@ -93,8 +99,5 @@
         </html>
 
     </xsl:template>
-
-
-
 
 </xsl:stylesheet>
