@@ -1,9 +1,16 @@
 <div class="media-body">
     <h1>{{ blogComment.displayName }}</h1>
+    {% if (blogComment.publishTime) %}
     <time datetime="{{ blogComment.publishTime.format('c') }}">
         {{ blogComment.publishTime.format('d.m.Y | H:i') }}
     </time>
+    {% endif %}
     {{ blogComment.contents | raw }}
-    {{ widget('blog.comment.publish', {'blogComment' : blogComment, 'template' : 'publishForm'}) }}
-    {{ widget('blog.comment.reject', {'blogComment' : blogComment, 'template' : 'rejectForm'}) }}
+
+    {% if (blogComment.publishStatus == constant('COMMENT_STATUS_NEED_MODERATE', blogComment)) %}
+    <div class="btn-toolbar">
+    {{ widget('blog.comment.publishForm', {'blogComment' : blogComment, 'template' : 'publishForm'}) }}
+    {{ widget('blog.comment.rejectForm', {'blogComment' : blogComment, 'template' : 'rejectForm'}) }}
+    </div>
+    {% endif %}
 </div>

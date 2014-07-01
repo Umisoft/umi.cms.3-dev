@@ -2,7 +2,7 @@
     <ol class="list-unstyled">
         {% for blogAuthor in list %}
             <li>
-                {{ widget('blog.author.view', {'blogAuthor' : blogAuthor, 'template' : 'listShortView'}) }}
+                {{ widget('blog.author.view.author', {'blogAuthor' : blogAuthor, 'template' : 'listShortView'}) }}
                 {{ widget('blog.author.rssLink', {'blogAuthor' : blogAuthor, 'template' : 'rssLink'}) }}
             </li>
         {% endfor %}

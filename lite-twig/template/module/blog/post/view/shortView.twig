@@ -6,14 +6,15 @@
             {{ blogPost.publishTime.format('d.m.Y | H:i') }}
         </time>
         {% endif %}
-        {%  if (blogPost.author) %}
-            {{ translate('Author') }}: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>
-        {%  endif %}
-        {{ widget('blog.reject.editPostLink', {'blogPost' : blogPost, 'template' : 'editPostLink'}) }}
+        {% if (blogPost.author) %}{{ translate('Author') }}: <a href="{{ blogPost.author.getPageUrl() }}">{{ blogPost.author.displayName }}</a>{% endif %}
+        {{ widget('blog.post.edit.editLink', {'blogPost' : blogPost, 'template' : 'editPostLink'}) }}
     </p>
 
     {{ blogPost.announcement | raw }}
 
     <a href="{{ blogPost.getPageUrl() }}">{{ translate('Read more') }}</a>
-    {{ widget('blog.reject.sendToModeration', {'blogPost' : blogPost, 'template' : 'sendToModerationForm'}) }}
+
+    <div class="btn-toolbar">
+        {{ widget('blog.post.toDraftForm', {'blogPost' : blogPost, 'template' : 'unPublishPostForm'}) }}
+    </div>
 </div>

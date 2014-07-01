@@ -1,6 +1,11 @@
-{% if (comments.getTotal()) %}
-    {% for blogComment in comments %}
-        {{ widget('blog.comment.view', {'blogComment' : blogComment, 'template' : 'view'}) }}
-        {{ widget('blog.comment.add', {'blogPost' : blogComment.post, 'blogComment' : blogComment, 'template' : 'addComment'}) }}
+{% if (tree) %}
+    <ul>
+    {% for node in tree %}
+        <li>
+            {{ widget('blog.comment.view', {'blogComment' : node.item, 'template' : 'view'}) }}
+            {{ widget('blog.comment.add.addForm', {'blogPost' : node.item.post, 'blogComment' : node.item, 'template' : 'addComment'}) }}
+            {{ include('list.twig', {'tree' : node.children}) }}
+        </li>
     {% endfor %}
+    </ul>
 {% endif %}
