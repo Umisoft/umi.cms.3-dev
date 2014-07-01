@@ -16,6 +16,7 @@
             />
 
     <xsl:include href="template://module/structure/common" />
+    <xsl:include href="template://module/news/common" />
     <xsl:include href="template://system/common" />
 
 
@@ -65,6 +66,7 @@
 
                 <div class="header-height"></div>
 
+                <!-- Основное содержание -->
                 <xsl:apply-templates select="contents" mode="content"/>
 
                 <footer>
@@ -76,7 +78,7 @@
                             <div class="col-md-12 text-center">
                                 <!-- Значки социальных сетей -->
                                 <xsl:call-template name="footerSocial"/>
-                                <!-- Текст Копирайта -->
+                                <!-- Текст копирайта -->
                                 <p class="copy">
                                     <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')" mode="copyright"/>
                                 </p>

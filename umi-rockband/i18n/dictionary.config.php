@@ -84,11 +84,15 @@ return [
             'RSS' => 'RSS feed',
             'Read more' => 'Read more',
             'All news' => 'All news',
+            'RecentEvents' => 'Recent events',
+            'LatestNews24Hours' => 'Latest news for 24 hours',
         ],
         'ru-RU' => [
             'RSS' => 'RSS ленты',
             'Read more' => 'Читать далее',
             'All news' => 'Все новости',
+            'RecentEvents' => 'Последние события',
+            'LatestNews24Hours' => 'Свежие новости за последние 24 часа',
         ]
     ],
 

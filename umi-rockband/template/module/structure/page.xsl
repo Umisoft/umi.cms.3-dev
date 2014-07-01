@@ -23,39 +23,14 @@
             <div class="container-fluid">
                 <!-- Последние новости  -->
                 <div class="block">
-                    <h2 class="title-block"><span>Последние события</span></h2>
-                    <p class="desc-block">Свежие новости за последние 24 часа</p>
+                    <h2 class="title-block"><span>
+                        <xsl:value-of select="document('translate://project.site.news/RecentEvents')/result"/>
+                    </span></h2>
+                    <p class="desc-block">
+                        <xsl:value-of select="document('translate://project.site.news/LatestNews24Hours')/result"/>
+                    </p>
                     <ul class="list-dev row">
-                        <li class="col-md-3 col-sm-6" >
-                            <a href="#"><img src="/resources/umi-rockband/images/list-dev/1.jpg" class="img" alt="" /></a><br />
-                            <a href="#" class="title">Ученые из ЕС создали возобновляемый керосин</a>
-                            <span class="date">May 6, 2014 at 7:53am</span>
-                            <p class="desc">Ученым из проекта Solar-jet удалось в лабораторных условиях воссоздать небольшое количество топлива из продуктов его...</p>
-                        </li>
-                        <li class="col-md-3 col-sm-6">
-                            <a href="#"><img src="/resources/umi-rockband/images/list-dev/2.jpg" class="img" alt="" /></a><br />
-                            <a href="#" class="title">Ученые из ЕС создали возобновляемый керосин</a>
-                            <span class="date">May 6, 2014 at 7:53am</span>
-                            <p class="desc">Ученым из проекта Solar-jet удалось в лабораторных условиях воссоздать небольшое количество топлива из продуктов его...</p>
-                        </li>
-                        <li class="col-md-3 col-sm-6">
-                            <a href="#"><img src="/resources/umi-rockband/images/list-dev/3.jpg" class="img" alt="" /></a><br />
-                            <a href="#" class="title">Ученые из ЕС создали возобновляемый керосин</a>
-                            <span class="date">May 6, 2014 at 7:53am</span>
-                            <p class="desc">Ученым из проекта Solar-jet удалось в лабораторных условиях воссоздать небольшое количество топлива из продуктов его...</p>
-                        </li>
-                        <li class="col-md-3 col-sm-6">
-                            <a href="#"><img src="/resources/umi-rockband/images/list-dev/4.jpg" class="img" alt=""/></a><br />
-                            <a href="#" class="title">Ученые из ЕС создали возобновляемый керосин</a>
-                            <span class="date">May 6, 2014 at 7:53am</span>
-                            <p class="desc">Ученым из проекта Solar-jet удалось в лабораторных условиях воссоздать небольшое количество топлива из продуктов его...</p>
-                        </li>
-                        <li class="col-md-3 col-sm-6">
-                            <a href="#"><img src="/resources/umi-rockband/images/list-dev/5.jpg" class="img" alt="" /></a><br />
-                            <a href="#" class="title">Ученые из ЕС создали возобновляемый керосин</a>
-                            <span class="date">May 6, 2014 at 7:53am</span>
-                            <p class="desc">Ученым из проекта Solar-jet удалось в лабораторных условиях воссоздать небольшое количество топлива из продуктов его...</p>
-                        </li>
+                        <xsl:apply-templates select="document('widget://news.item.list?limit=5')" mode="mainPage"/>
                     </ul>
                     <div class="text-center"><a href="#" class="btn btn-custom btn-primary" style="width:240px">Загрузить еще</a></div>
                 </div>

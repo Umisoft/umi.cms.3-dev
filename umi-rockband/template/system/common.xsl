@@ -47,6 +47,7 @@
     </xsl:template>
     <!-- Языки в хедере <Конец> -->
 
+    <!-- Значки социальных сетей <Начало> -->
     <xsl:template name="footerSocial">
         <ul class="social">
             <li><a href="#"><img src="/resources/umi-rockband/images/social/facebook.png" alt="" /></a></li>
@@ -54,7 +55,14 @@
             <li><a href="#"><img src="/resources/umi-rockband/images/social/google.png" alt="" /></a></li>
         </ul>
     </xsl:template>
+    <!-- Значки социальных сетей <Конец> -->
 
-
+    <!-- Шаблон по умолчанию для виджетов <Начало> -->
+    <xsl:template match="result">
+        <textarea id="debug">
+            <xsl:copy-of select="." />
+        </textarea>
+    </xsl:template>
+    <!-- Шаблон по умолчанию для виджетов <Конец> -->
 
 </xsl:stylesheet>
