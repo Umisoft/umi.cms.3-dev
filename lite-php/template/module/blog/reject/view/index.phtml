@@ -1,0 +1,4 @@
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
+<h1><?=$this->translate('List of rejected posts')?></h1>
+<?= $this->widget('blog.reject.view.list', ['template' => 'list']); ?>

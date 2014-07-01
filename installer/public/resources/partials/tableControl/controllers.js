@@ -51,7 +51,7 @@ define(['App'], function(UMI){
              * Количество объектов на странице
              * @property limit
              */
-            limit: 100,
+            limit: 25,
             /**
              * Индекс первого объекта на странице
              * @property offset
@@ -81,6 +81,35 @@ define(['App'], function(UMI){
                     return order;
                 }
             }.property('orderByProperty'),
+            /**
+             * Список отображаемых полей принадлежащих объекту
+             */
+            nativeFieldsList: null,
+            /**
+             * Вычисляемое свойство списка полей принадлежащих объекту
+             * @property fields
+             */
+            nativeFields: function(){
+                var fieldsList = this.get('fieldsList');
+                if(Ember.typeOf(fieldsList) === 'array' && fieldsList.length){
+                    fieldsList = fieldsList.join(',');
+                    return fieldsList;
+                }
+            }.property('nativeFieldsList'),
+            /**
+             * Список полей имеющих связь belongsTo
+             */
+            relatedFieldsList: null,
+            /**
+             * Вычисляемое свойство возвращающее поля belongsTo
+             * @property fields
+             */
+            relatedFields: function(){
+                var relatedFields = this.get('relatedFieldsList');
+                if(Ember.typeOf(relatedFields) === 'object' && JSON.stringify(relatedFields) !== '{}'){
+                    return relatedFields;
+                }
+            }.property('relatedFieldsList'),
 
             /**
              * Свойства фильтрации
@@ -108,10 +137,18 @@ define(['App'], function(UMI){
              */
             query: function(){
                 var query = {};
+                var nativeFields = this.get('nativeFields');
+                var relatedFields = this.get('relatedFields');
                 var limit = this.get('limit');
                 var filters = this.get('filters');
                 var offset = this.get('offset');
                 var order = this.get('order');
+                if(nativeFields){
+                    query.fields = nativeFields;
+                }
+                if(relatedFields){
+                    //query['with'] = relatedFields;
+                }
                 if(limit){
                     query.limit = limit;
                 }
@@ -125,7 +162,7 @@ define(['App'], function(UMI){
                     query.orderBy = order;
                 }
                 return query;
-            }.property('limit', 'filters', 'offset', 'order'),
+            }.property('limit', 'filters', 'offset', 'order', 'nativeFields'),
 
             /**
              * Метод вызывается при смене контекста (компонента).
@@ -133,16 +170,55 @@ define(['App'], function(UMI){
              * @method contextChanged
              */
             contextChanged: function(){
+                var store = this.get('store');
                 // Вычисляем фильтр в зависимости от типа коллекции
                 var collectionName = this.get('controllers.component.collectionName');
-                var metaForCollection = this.get('store').metadataFor(collectionName);
+                var metaForCollection = store.metadataFor(collectionName);
                 var contextFilter = {};// TODO: Убрать в условии значение filter
                 if(metaForCollection && metaForCollection.collectionType === 'hierarchic' && this.get('container').lookup('route:action').get('context.action').name !== 'filter'){
                     contextFilter.parent = this.get('model.object.id');
                 }
+
+                //TODO: check user configurations
+                var modelForCollection = store.modelFor(collectionName);
+                var fieldsList = this.get('viewSettings.elements') || [];
+                var nativeFieldsList = [];
+                var relatedFieldsList = {};
+                modelForCollection.eachRelationship(function(name, relatedModel){
+                    var i;
+                    var relatedModelFields = {};
+                    relatedModelFields = [];
+                    var relatedModelDataSource;
+                    if(relatedModel.kind === 'belongsTo' && fieldsList.findBy('dataSource', name)){
+                        for(i = 0; i < fieldsList.length; i++){
+                            relatedModelDataSource = fieldsList[i].dataSource;
+                            if(relatedModelDataSource === name){
+                                fieldsList.splice(i, 1);
+                                --i;
+                            } else if(relatedModelDataSource.indexOf(name + '.', 0) === 0){
+                                relatedModelFields.push(relatedModelDataSource.slice(name.length + 1));
+                                fieldsList.splice(i, 1);
+                                --i;
+                            }
+                        }
+                        relatedFieldsList[name] = relatedModelFields.join(',');
+                    } else if(relatedModel.kind === 'hasMany' || relatedModel.kind === 'manyToMany'){
+                        for(i = 0; i < fieldsList.length; i++){
+                            relatedModelDataSource = fieldsList[i].dataSource;
+                            if(relatedModelDataSource === name || relatedModelDataSource.indexOf(name + '.', 0) === 0){
+                                fieldsList.splice(i, 1);
+                                --i;
+                            }
+                        }
+                        //Ember.assert('Поля с типом hasMany и manyToMany недопустимы в фильтре.'); TODO: uncomment
+                    }
+                });
+
+                nativeFieldsList = fieldsList.mapBy('dataSource') || [];
+
                 // Сбрасываем параметры запроса, не вызывая обсервер query
                 this.set('withoutChangeQuery', true);
-                this.setProperties({offset: 0, orderByProperty: null, total: 0, filterParams: contextFilter});
+                this.setProperties({nativeFieldsList: nativeFieldsList, relatedFieldsList: relatedFieldsList, offset: 0, orderByProperty: null, total: 0, filterParams: contextFilter});
                 this.set('withoutChangeQuery', false);
 
                 this.getObjects();

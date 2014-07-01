@@ -13,80 +13,58 @@ namespace umicms\project\module\blog\site\draft;
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
-use umicms\hmvc\component\site\SitePageComponent;
+use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
 
-    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
-    SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    SitePageComponent::OPTION_CONTROLLERS => [
-        'page' => __NAMESPACE__ . '\controller\BlogDraftPageController',
-        'edit' => __NAMESPACE__ . '\controller\BlogEditDraftController',
-        'publish' => __NAMESPACE__ . '\controller\BlogPublishDraftController',
-        'sendToModeration' => __NAMESPACE__ . '\controller\PostSendToModerationController',
+    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
+    SiteGroupComponent::OPTION_CONTROLLERS => [
+        'publish' => __NAMESPACE__ . '\controller\PublishController',
+        'sendToModeration' => __NAMESPACE__ . '\controller\SendToModerationController'
     ],
-    SitePageComponent::OPTION_WIDGET => [
-        'view' => __NAMESPACE__ . '\widget\DraftWidget',
-        'ownList' => __NAMESPACE__ . '\widget\DraftOwnListWidget',
-        'ownListLink' => __NAMESPACE__ . '\widget\DraftOwnListLinkWidget',
-        'publishDraft' => __NAMESPACE__ . '\widget\PublishWidget',
-        'editDraftLink' => __NAMESPACE__ . '\widget\DraftEditUrlWidget',
-        'sendToModeration' => __NAMESPACE__ . '\widget\SendToModerationWidget'
+    SiteGroupComponent::OPTION_COMPONENTS => [
+        'edit' => '{#lazy:~/project/module/blog/site/draft/edit/component.config.php}',
+        'view' => '{#lazy:~/project/module/blog/site/draft/view/component.config.php}'
     ],
-    SitePageComponent::OPTION_ACL => [
+    SiteGroupComponent::OPTION_WIDGET => [
+        'publishForm' => __NAMESPACE__ . '\widget\PublishFormWidget',
+        'sendToModerationForm' => __NAMESPACE__ . '\widget\SendToModerationFormWidget'
+    ],
+    SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
             'publisher' => [],
-            'moderator' => ['publisher']
+            'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
             'author' => [
-                'controller:index' => [],
-                'controller:page' => [],
-                'controller:edit' => [],
                 'controller:sendToModeration' => [],
-                'widget:view' => [],
-                'widget:ownList' => [],
-                'widget:ownListLink' => [],
-                'widget:editDraftLink' => [],
-                'widget:sendToModeration' => [],
+                'widget:sendToModerationForm' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
             ],
             'publisher' => [
-                'controller:index' => [],
-                'controller:page' => [],
-                'controller:edit' => [],
                 'controller:publish' => [],
-                'widget:view' => [],
-                'widget:ownList' => [],
-                'widget:ownListLink' => [],
-                'widget:editDraftLink' => [],
-                'widget:publishDraft' => [],
+                'widget:publishForm' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
             ],
             'moderator' => [
+                'controller:publish' => [],
+                'widget:publishForm' => [],
                 'model:blogPost' => []
-            ],
+            ]
         ]
     ],
-    SitePageComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/draft'],
+    SiteGroupComponent::OPTION_VIEW => [
+        'directories' => ['module/blog/draft']
     ],
-    SitePageComponent::OPTION_ROUTES => [
-        'edit' => [
-            'type'     => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/edit/{id:integer}',
-            'defaults' => [
-                'controller' => 'edit'
-            ]
-        ],
+    SiteGroupComponent::OPTION_ROUTES => [
         'publish' => [
             'type'     => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/publish/{id:integer}',

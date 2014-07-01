@@ -252,6 +252,19 @@ define(['App', 'toolbar'], function(UMI){
                     var sortAscending = this.get('sortAscending');
                     this.get('controller').send('orderByProperty', propertyName, sortAscending);
                 }
+            }),
+
+            rowView: Ember.View.extend({
+                tagName: 'tr',
+                classNames: ['umi-table-control-content-row'],
+                classNameBindings: ['object.type', 'object.active::umi-inactive'],
+                attributeBindings: ['objectId'],
+                objectIdBinding: 'object.id',
+                click: function(){
+                    if(this.get('object.meta.editLink')){
+                        this.get('controller').transitionToRoute(this.get('object.meta.editLink').replace('/admin', ''));//TODO: fix replace
+                    }
+                }
             })
         });
 
@@ -260,17 +273,51 @@ define(['App', 'toolbar'], function(UMI){
             classNameBindings: ['columnId'],
 
             template: function(){
-                var meta = this.get('column');
-                var object = this.get('object');
-
-                var template;
-                if(meta.dataSource === 'displayName'){
-                    template = '{{#link-to "action" object.id "editForm" class="edit-link"}}' + object.get(meta.dataSource) + '{{/link-to}}';
-                } else{
-                    template = object.get(meta.dataSource) + '&nbsp;';
+                var column;
+                var object;
+                var template = '';
+                var value;
+                try{
+                    object = this.get('object');
+                    column = this.get('column');
+                    switch(column.type){
+                        case 'checkbox':
+                            template = '<span {{bind-attr class="view.object.' + column.dataSource + ':umi-checkbox-state-checked:umi-checkbox-state-unchecked"}}></span>&nbsp;';
+                            break;
+                        case 'checkboxGroup':
+                        case 'multiSelect':
+                            value = object.get(column.dataSource);
+                            if(Ember.typeOf(value) === 'array'){
+                                template = value.join(', ');
+                            }
+                            break;
+                        case 'datetime':
+                            value = object.get(column.dataSource);
+                            if(value){
+                                try{
+                                    value = JSON.parse(value);
+                                    template = Ember.get(value, 'date');
+                                } catch(error){
+                                    this.get('controller').send('backgroundError', error);
+                                }
+                            }
+                            break;
+                        default:
+                            value = object.get(column.dataSource);
+                            if(Ember.typeOf(value) === 'null'){
+                                value = '';
+                            } else{
+                                value = UMI.Utils.htmlEncode(value);
+                            }
+                            template = value + '&nbsp;';
+                            break;
+                    }
+                } catch(error){
+                    this.get('controller').send('backgroundError', error);
+                } finally{
+                    return Ember.Handlebars.compile(template);
                 }
-                return Ember.Handlebars.compile(template);
-            }.property('object','column')
+            }.property('column')
         });
 
 

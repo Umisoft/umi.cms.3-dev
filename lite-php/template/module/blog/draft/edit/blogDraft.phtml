@@ -1,0 +1,18 @@
+<?php
+/**
+ * @var umi\form\IForm $form
+ * @var bool $success
+ */
+?>
+
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
+<h1><?= $page->displayName ?></h1>
+
+<?php if($success) : ?>
+    <div class="alert alert-success">
+        <p class="bg-success text-success"><?=$this->translate('Draft saved successfully!')?></p>
+    </div>
+<?php endif;?>
+
+<?= $this->render('form/form.phtml', ['form' => $form]) ?>

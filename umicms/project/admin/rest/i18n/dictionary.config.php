@@ -29,6 +29,7 @@ return [
         // default save actions
         'action:save' => 'Save',
         'action:saveAndGoBack' => 'Save and go back',
+        'button:save:notModified' => 'Saved',
 
         'button:add' => 'Create',
         'button:save' => 'Save',

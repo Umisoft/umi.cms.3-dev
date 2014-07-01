@@ -258,6 +258,8 @@ define([], function(){
                     }
                 }
 
+                fields.meta = DS.attr('raw');
+
                 UMI[collection.name.capitalize()] = DS.Model.extend(fields);
 
                 UMI.__container__.lookup('store:main').metaForType(collection.name, {

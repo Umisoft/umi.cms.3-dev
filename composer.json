@@ -22,7 +22,8 @@
         "guzzlehttp/guzzle": "4.*",
         "twig/twig": "1.*",
         "gregwar/captcha": "dev-master",
-        "ezyang/htmlpurifier": "dev-master"
+        "ezyang/htmlpurifier": "dev-master",
+        "jbroadway/urlify": "1.0.3"
     },
     "require-dev":{
         "mockery/mockery": "0.9.*"

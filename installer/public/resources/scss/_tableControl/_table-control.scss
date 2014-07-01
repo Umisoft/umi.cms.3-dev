@@ -56,7 +56,6 @@ $table-control-row-bg-hover: #C8DEEE;
         padding: 0;
         line-height: 1.375rem;
         border-bottom: 1px solid #E2E3E4;
-        cursor: move;
     }
 }
 
@@ -370,6 +369,9 @@ $table-control-row-bg-hover: #C8DEEE;
 
 .umi-table-control-content-cell{
     padding: 0;
+    .umi-checkbox-state-checked{
+        vertical-align: middle;
+    }
 }
 
 .umi-table-control-content-cell-div{
