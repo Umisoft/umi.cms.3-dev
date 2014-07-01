@@ -34,6 +34,14 @@ class EditObjectControl extends CollectionControl
     /**
      * {@inheritdoc}
      */
+    protected function configureI18n()
+    {
+        $this->labels['Nothing is selected'] = $this->component->translate('Nothing is selected');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function configureToolbar()
     {
         if ($createButton = $this->buildCreateButton()) {

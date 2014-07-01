@@ -41,7 +41,8 @@ return [
         'Nothing found' => 'Nothing found',
 
         'Rows on page' => 'Rows on page',
-        'No data' => 'No data'
+        'No data' => 'No data',
+        'Nothing is selected' => 'Nothing is selected'
 
     ],
 
@@ -77,7 +78,8 @@ return [
         'Nothing found' => 'Ничего не найдено',
 
         'Rows on page' => 'Строк на странице',
-        'No data' => 'Нет данных'
+        'No data' => 'Нет данных',
+        'Nothing is selected' => 'Ничего не выбрано'
     ]
 
 ];

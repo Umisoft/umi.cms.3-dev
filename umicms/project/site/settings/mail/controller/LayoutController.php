@@ -12,25 +12,18 @@ namespace umicms\project\site\settings\mail\controller;
 
 use umi\config\entity\IConfig;
 use umi\messages\toolbox\MessagesTools;
-use umicms\hmvc\component\admin\layout\button\behaviour\Behaviour;
-use umicms\hmvc\component\admin\layout\button\Button;
-use umicms\hmvc\component\admin\settings\BaseController;
+use umicms\hmvc\component\admin\settings\LayoutController as SettingsLayoutController;
 
 /**
  * Контроллер вывода настроек компонента, управляющего настройками
  */
-class LayoutController extends BaseController
+class LayoutController extends SettingsLayoutController
 {
     /**
      * {@inheritdoc}
      */
-    public function __invoke()
+    protected function getConfigForm()
     {
-        $saveBehaviour = new Behaviour('save');
-        $saveButton = new Button($this->getComponent()->translate('button:save'), $saveBehaviour);
-        $saveButton->attributes['hasIcon'] = false;
-        $saveButton->attributes['class'] = 'button';
-
         $config = $this->readConfig($this->getComponent()->getSettingsConfigAlias());
 
         $sendersInfo = $config->get(MessagesTools::NAME . '.mailerOptions.sender_address');
@@ -69,17 +62,7 @@ class LayoutController extends BaseController
         $form->setData($data);
         $form->setAction($this->getUrl('action', ['action' => 'save']));
 
-        return $this->createViewResponse(
-            'simpleForm',
-            [
-                'simpleForm' => [
-                    'submitToolbar' => [
-                        $saveButton->build()
-                    ],
-                    'meta' => $form->getView()
-                ]
-            ]
-        );
+        return $form;
     }
 }
  

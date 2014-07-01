@@ -10,6 +10,7 @@
 
 namespace umicms\hmvc\component\admin\settings;
 
+use umi\form\IForm;
 use umicms\hmvc\component\admin\layout\button\behaviour\Behaviour;
 use umicms\hmvc\component\admin\layout\button\Button;
 
@@ -28,22 +29,34 @@ class LayoutController extends BaseController
         $saveButton->attributes['hasIcon'] = false;
         $saveButton->attributes['class'] = 'button';
 
+        return $this->createViewResponse(
+            'simpleForm',
+            [
+                'simpleForm' => [
+                    'i18n' => [
+                        'Nothing is selected' => $this->getComponent()->translate('Nothing is selected')
+                    ],
+                    'submitToolbar' => [
+                        $saveButton->build()
+                    ],
+                    'meta' => $this->getConfigForm()->getView()
+                ]
+            ]
+        );
+    }
+
+    /**
+     * Возвращает форму для редактирования конфига
+     * @return IForm
+     */
+    protected function getConfigForm()
+    {
         $config = $this->readConfig($this->getComponent()->getSettingsConfigAlias());
 
         $form = $this->getForm(self::SETTINGS_FORM_NAME, $config);
         $form->setAction($this->getUrl('action', ['action' => 'save']));
 
-        return $this->createViewResponse(
-            'simpleForm',
-            [
-                'simpleForm' => [
-                    'submitToolbar' => [
-                        $saveButton->build()
-                    ],
-                    'meta' => $form->getView()
-                ]
-            ]
-        );
+        return $form;
     }
 }
  
