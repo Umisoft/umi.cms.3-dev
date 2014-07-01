@@ -15,13 +15,17 @@ use umi\orm\metadata\IObjectType;
 use umi\orm\object\property\IProperty;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
+use umicms\project\site\config\ISiteSettingsAware;
+use umicms\project\site\config\TSiteSettingsAware;
 use umicms\serialization\xml\BaseSerializer;
 
 /**
  * XML-сериализатор для CmsObject.
  */
-class CmsObjectSerializer extends BaseSerializer
+class CmsObjectSerializer extends BaseSerializer implements ISiteSettingsAware
 {
+
+    use TSiteSettingsAware;
 
     /**
      * Сериализует CmsObject в XML.
@@ -100,13 +104,16 @@ class CmsObjectSerializer extends BaseSerializer
                 $value = $value->getName();
             }
             if ($value instanceof ICmsObject) {
-                $value = $value->getGUID();
+                $value = $value->guid;
             }
             $this->writeAttribute($name, $value);
         }
         if ($object instanceof ICmsPage) {
             $this->writeAttribute('url', $object->getPageUrl());
             $this->writeAttribute('header', $object->getHeader());
+            if ($this->getSiteDefaultPageGuid() === $object->guid) {
+                $this->writeAttribute('isDefault', true);
+            }
         }
     }
 
