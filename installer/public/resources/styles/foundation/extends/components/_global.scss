@@ -1,5 +1,6 @@
+
 // Set box-sizing globally to handle padding and border widths
-.row, .columns, .button, {
+.row, .column, .columns, button, .button, input, textarea, select{
     @include box-sizing(border-box);
     &:before,
     &:after{
@@ -22,6 +23,7 @@ body {
     line-height: 1; // Set to $base-line-height to take on browser default of 150%
     position: relative;
     cursor: $cursor-default-value;
+    min-width: upper-bound($small-range) + 1em;
 }
 
 a:hover { cursor: $cursor-pointer-value; }

@@ -1,8 +1,11 @@
 // Компоненты UMI
+@import "snippets";
+
 @import "components/dialog";
+@import "components/divider";
 @import "components/dock";
 @import "components/icons";
-@import "components/forms";
+@import "components/forms/main";
 @import "components/grid";
 @import "components/popup";
 @import "components/table";

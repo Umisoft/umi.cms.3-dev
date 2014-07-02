@@ -49,24 +49,6 @@ define([], function(){
             }
         };
 
-        //Удалить после возвращения Foundation
-            $(document).mousedown(function(event){
-                    var targetElement = $(event.target).closest('.umi-hide-on-html');
-                    if(!targetElement.length){
-                        $('body').off('click.umi.tree.contextMenu');
-                        $('.umi-hide-on-html').hide();
-                    }
-                event.stopPropagation();
-            });
-
-            $(document).on('click', '.umi-top-bar-user-menu', function(){
-                $('.umi-top-bar-user-menu-drop-down').toggle();
-            });
-
-            $(document).on('click', '.umi-table-action-list-show', function(){
-                $(this).siblings('.umi-table-action-list').toggle();
-            });
-
         //Проверка браузера на мобильность
         window.mobileDetection = {
             Android:    function(){return navigator.userAgent.match(/Android/i);},

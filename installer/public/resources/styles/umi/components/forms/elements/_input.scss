@@ -1,0 +1,11 @@
+input::-ms-clear { //Убираем крестик браузера из поля
+    display: none;
+}
+
+//Хак для Firefox input file на один пискел выше
+@-moz-document url-prefix() {
+    .umi-input-wrapper-file input{
+        position: relative;
+        top: -1px;
+    }
+}

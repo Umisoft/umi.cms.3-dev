@@ -1,20 +1,23 @@
+@import "../components/dock";
+@import "../components/top-bar";
+
 //
 // Webkit-scrollbar
 //
-::-webkit-scrollbar {
+::-webkit-scrollbar{
     width: 14px;
     height: 14px;
     margin: 10px;
     background: #F5F6F7;
 }
 
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb{
     border-radius: 8px;
     background: rgba(123, 137, 156, 0.9);
     border: 4px solid #F5F6F7;
 }
 
-::-webkit-scrollbar-button {
+::-webkit-scrollbar-button{
     width: 6px;
     height: 6px;
     background: #F5F6F7;
@@ -25,22 +28,19 @@
 }
 
 html{
-    height: unquote(calc(100% + 1px));
-    //Костыль: по неясной причине, снизу экрана появляется полоска незанятого пикселя.
-    // Методом тыка найдено это решение
+    height: 100%;
 }
 
 body{
-    overflow: hidden;
-
+    //overflow: hidden;
     height: 100%;
     image-rendering: -webkit-optimize-contrast;
-    .loading{
+    &.loading{
         background: #D6E0E9;
         background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzRDNjE3RCI+DQogIDxwYXRoIG9wYWNpdHk9Ii4yNSIgZD0iTTE2IDAgQTE2IDE2IDAgMCAwIDE2IDMyIEExNiAxNiAwIDAgMCAxNiAwIE0xNiA0IEExMiAxMiAwIDAgMSAxNiAyOCBBMTIgMTIgMCAwIDEgMTYgNCIvPg0KICA8cGF0aCBkPSJNMTYgMCBBMTYgMTYgMCAwIDEgMzIgMTYgTDI4IDE2IEExMiAxMiAwIDAgMCAxNiA0eiI+DQogICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGZyb209IjAgMTYgMTYiIHRvPSIzNjAgMTYgMTYiIGR1cj0iMC44cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+DQogIDwvcGF0aD4NCjwvc3ZnPg==);
         background-repeat: no-repeat;
         background-position: center center;
-        background-size: 10%
+        background-size: 6%
     }
 }
 
@@ -61,6 +61,7 @@ body{
     }
 }
 
+//FIX
 .umi-left-bottom-panel{
     position: absolute;
     z-index: 7000;
@@ -75,7 +76,6 @@ body{
         height: 3px;
         width: unquote("calc(100% + 1px)");
         top: -3px;
-        //        bottom: 0;
         background: url(img/shadows/toTopShadow.png);
     }
     &:after{
@@ -91,17 +91,10 @@ body{
     }
 }
 
-#component{
-    position: relative;
-    overflow: hidden;
-}
-
-$umi-dock-height: 85px;
-$umi-header-height: $umi-dock-height + $topbar-height;
-//TODO: Заменить на сумму высот(отступов) элементов Dock
+$umi-header-height: $umi-dock-height + $umi-top-bar-height;
 .umi-header{
     position: relative;
-    //height: //$umi-dock-height;
+    height: $umi-header-height;
     ~ .s-full-height{
         margin-top: -$umi-header-height;
         padding-top: $umi-header-height;

@@ -1,0 +1,18 @@
+fieldset{
+    border-width: 0;
+    border-top-width: 2px;
+}
+
+.prefix,
+.postfix{
+    height: ($form-label-font-size + ($form-spacing * 1.35));
+    line-height: ($form-label-font-size + ($form-spacing * 1.35));
+}
+
+.error {
+    input,
+    textarea,
+    select {
+        margin-bottom: $form-spacing;
+    }
+}

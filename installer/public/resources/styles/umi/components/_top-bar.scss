@@ -1,55 +1,43 @@
+$umi-top-bar-height: rem-calc(25);
+
+//nth($umi-bg-darken-set, 1);
+$umi-bg-darken-set: #404959, #181B21;
+
 .umi-top-bar{
-    background: linear-gradient(to bottom, #3E4756 0%, #1C1F26 100%);
-    background: linear-gradient(top, #3E4756 0%, #1C1F26 100%);
-}
-
-.top-bar-section > ul{
-    > li{
-        background: linear-gradient(to bottom, #3E4756 0%, #1C1F26 100%);
-        background: linear-gradient(top, #3E4756 0%, #1C1F26 100%);
+    background: linear-gradient(nth($umi-bg-darken-set, 1) 0%, nth($umi-bg-darken-set, 2) 100%);
+    position: relative;
+    @include clearfix();
+    &-list{
+        @extend .no-bullet;
+        @extend .s-margin-clear;
+    }
+    &-button.button{
         margin: 0;
-        height: 24px;
-        a{
-            background: linear-gradient(to bottom, #3E4756 0%, #1C1F26 100%) repeat scroll 0% 0% transparent;
-            background: linear-gradient(top, #3E4756 0%, #1C1F26 100%);
-            color: #D5D6D8 !important;
-            font-weight: bold;
-            line-height: rem-calc(22) !important;
-            height: rem-calc(24);
+        height: $umi-top-bar-height;
+        line-height: $umi-top-bar-height;
+        color: #D5D6D8;
+        font-weight: bold;
+        font-size: rem-calc(12);
+        padding-top: 0;
+        padding-bottom: 0;
+        .icon{
+            margin: -3px 0 0 3px;
+        }
+        &:hover{
+            background: linear-gradient(#535b69 0%, #31353b 100%);
+            border-bottom-color: #31353b;
         }
     }
-
-    .dropdown{
-        box-shadow: 0 0 3px 0 #000000;
-        padding-top: 5px!important;
-        padding-bottom: 5px!important;
-        background: #FFFFFF;
+    .dropdown.button.tiny{
+        &:before{
+            margin-top: -1px;
+        }
+    }
+    .f-dropdown{
         li{
-            background: #FFFFFF;
-            &:nth-child(even){
-                background: #E8EDEF;
-            }
             a{
-                padding: 0 10px!important;
-                height: 28px!important;
-                line-height: 28px!important;
-                font-weight: normal;
-                background: none;
-                color: #535E6D!important;
-                &:hover{
-                    background: #A4DCF7;
-                }
+                display: block;
             }
         }
     }
-}
-
-.umi-search-result-wrapper{
-    overflow: hidden;
-    max-height: 400px;
-}
-
-ul.umi-search-result{
-    background: #ffffff;
-    float: left;
 }

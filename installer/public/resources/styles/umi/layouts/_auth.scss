@@ -37,12 +37,6 @@
     }
 }
 
-//У body в layout.phtml добавлен background со спиннером - появляется моментально после перезагрузки страницы
-//Этот стиль добавлен для перекрытия спиннера body сразу после загрузки application
-.umi-main-view{
-    background: #D6E0E9;
-}
-
 .auth-layout{
     overflow: hidden;
     height: 100%;
@@ -83,6 +77,9 @@
         top: 50%;
         margin-top: -180px;
     }
+    .auth-layout-content{
+        width: 460px;
+    }
     .panel{
         margin-left: rem-calc(40px);
         margin-right: rem-calc(40px);
@@ -107,33 +104,6 @@
         height: rem-calc(46);
         font-size: rem-calc(18);
         border-radius: 3px;
-    }
-    .button{
-        &.flat{
-            margin: 0;
-            padding: 0;
-            color: #FFF;
-        }
-    }
-    .lang-case{
-        font-size: 14px;
-        text-align: center;
-        position: absolute;
-        top: 16px;
-        right: 10px;
-        display: inline-block;
-
-        span{
-            color: #ffffff;
-            font-weight: bold;
-            text-shadow: 0 1px 1px #214c6c;
-            display: block;
-            padding: 6px 12px;
-            border: 1px solid darken(#4A94B1, 10%);
-            background-image: linear-gradient(#4A94B1, #005E89);
-            border-radius: 3px;
-            cursor: default;
-        }
     }
     .umi-validator span.error{
         background: #fff;
@@ -171,9 +141,6 @@
         }
     }
     .error{
-        input[type="text"], input[type="email"], input[type="password"]{
-            margin-bottom: rem-calc(14);
-        }
         span.error{
             margin-right: -156px;
             opacity: 1;
