@@ -1,4 +1,4 @@
-define([], function(){
+define(['Modernizr'], function(Modernizr){
     "use strict";
 
     return function(UMI){
@@ -13,24 +13,25 @@ define([], function(){
          * Local Storage
          */
         UMI.Utils.LS = {
+            store: localStorage,
             init: (function(){
-                if(typeof(localStorage) !== "undefined"){
+                if(Modernizr.localstorage){
                     if(!localStorage.getItem("UMI")){
                         localStorage.setItem("UMI", JSON.stringify({}));
                     }
                 } else{
                     //TODO: Не обрабатывается сутуация когда Local Storage не поддерживается
-                    Ember.assert('Local Storage не поддерживается браузером', typeof(localStorage) !== "undefined");
+                    this.store = {'UMI': JSON.stringify({})};
                 }
             }()),
 
             get: function(key){
-                var data = JSON.parse(localStorage['UMI']);
+                var data = JSON.parse(this.store.UMI);
                 return Ember.get(data, key);
             },
 
             set: function(keyPath, value){
-                var data = JSON.parse(localStorage['UMI']);
+                var data = JSON.parse(this.store.UMI);
                 var keys = keyPath.split('.');
                 var i = 0;
                 var setNestedProperty = function getNestedProperty(obj, key, value){
@@ -45,7 +46,11 @@ define([], function(){
                     }
                 };
                 setNestedProperty(data, keys[0], value);
-                localStorage.setItem('UMI', JSON.stringify(data));
+                if(Modernizr.localstorage){
+                    this.store.setItem('UMI', JSON.stringify(data));
+                } else{
+                    this.store.UMI = JSON.stringify(data);
+                }
             }
         };
 
