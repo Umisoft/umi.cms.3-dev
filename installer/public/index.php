@@ -9,6 +9,8 @@
  */
 
 use Composer\Autoload\ClassLoader;
+use umi\hmvc\exception\http\HttpException;
+use umi\http\Response;
 use umicms\project\Bootstrap;
 use umicms\project\Environment;
 
@@ -19,15 +21,6 @@ error_reporting(-1);
 ini_set('display_errors', 1);
 
 $umicmsStartTime = microtime(true);
-
-// TODO: error_reporting control
-register_shutdown_function(function() {
-    $error = error_get_last();
-    if (is_array($error) && in_array($error['type'], array(E_ERROR))) {
-        http_response_code(500);
-        echo $error['message'];
-    }
-});
 
 mb_internal_encoding("utf8");
 
@@ -55,7 +48,50 @@ Environment::$bootConfigLocal = $directoryProjects . '/configuration/boot.config
 
 Environment::$projectsConfiguration =  $directoryProjects . '/configuration/projects.config.php';
 Environment::$directoryCms = $directoryCms;
+Environment::$directoryCmsError = $directoryCms . '/error';
 Environment::$directoryCmsProject = $directoryCms . '/project';
 Environment::$directoryProjects = $directoryProjects;
 
-(new Bootstrap())->run();
+Environment::$debugModeOn = true;
+
+if (!Environment::$debugModeOn) {
+    error_reporting(0);
+    ini_set('display_errors', 0);
+}
+
+register_shutdown_function(function() {
+    $error = error_get_last();
+    /*if (is_array($error) && in_array($error['type'], array(E_ERROR))) {
+        reportError('error.phtml', ['e' => $error]);
+    }*/
+        echo($error['message']);
+});
+
+try {
+    (new Bootstrap())->run();
+} catch (\Exception $e) {
+
+    $code = Response::HTTP_INTERNAL_SERVER_ERROR;
+    if ($e instanceof HttpException) {
+        $code = $e->getCode();
+    }
+    reportError('exception.phtml', ['e' => $e], $code);
+}
+
+function reportError($templateName, array $scope = [], $responseStatusCode = Response::HTTP_INTERNAL_SERVER_ERROR)
+{
+    $scope['debugModeOn'] = Environment::$debugModeOn;
+    extract($scope);
+
+    ob_start();
+    /** @noinspection PhpIncludeInspection */
+    require Environment::$directoryCmsError . '/' . $templateName;
+    $content = ob_get_clean();
+
+    $response = new Response();
+    $response->setContent($content);
+    $response->setStatusCode($responseStatusCode);
+    $response->send();
+}
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html data-foundation>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMI.CMS</title>
+</head>
+<body>
+    <h1>An error has occurred</h1>
+
+    <?php if ($debugModeOn): ?>
+
+        <h2><?= $e->getMessage() ?></h2>
+        <h3>Trace:</h3>
+        <pre><?= $e->getTraceAsString() ?></pre>
+
+        <?php $error = $e->getPrevious(); ?>
+
+        <?php if ($error) :?>
+            <hr/>
+            <h3>Previous exceptions:</h3>
+            <ul>
+                <?php while ($error) : ?>
+                    <li>
+                        <h4><?= get_class($error); ?></h4>
+                        <dl>
+                            <dt>File:</dt>
+                            <dd>
+                                <pre><?= $error->getFile() ?>:<?= $error->getLine() ?></pre>
+                            </dd>
+                            <dt>Message:</dt>
+                            <dd>
+                                <pre><?= $error->getMessage(); ?></pre>
+                            </dd>
+                            <dt>Stack trace:</dt>
+                            <dd>
+                                <pre><?= $error->getTraceAsString() ?></pre>
+                            </dd>
+                        </dl>
+                    </li>
+                    <?php
+                    $error = $error->getPrevious();
+                endwhile;
+                ?>
+            </ul>
+        <?php endif; ?>
+    <?php endif?>
+</body>
+</html>

@@ -28,6 +28,10 @@ class Environment
      */
     public static $directoryCms;
     /**
+     * @var string $directoryCmsError директория шаблонов ошибок ядра UMI.CMS
+     */
+    public static $directoryCmsError;
+    /**
      * @var string $directoryCmsProject директория файлов проекта UMI.CMS
      */
     public static $directoryCmsProject;
@@ -38,6 +42,10 @@ class Environment
     /**
      * @var string $projectConfiguration файл с настройками проектов
      */
-    public static $projectsConfiguration = '%directory-project%/configuration/projects.config.php';
+    public static $projectsConfiguration;
+    /**
+     * @var bool $debugModeOn режим дебага
+     */
+    public static $debugModeOn = false;
 
 }
