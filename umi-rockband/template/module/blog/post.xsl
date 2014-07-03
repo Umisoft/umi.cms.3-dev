@@ -15,23 +15,10 @@
         doctype-system="about:legacy-compat"
         />
 
-    <!-- Список последних постов блога на главной <Начало> -->
-    <xsl:template match="result[@widget = 'blog.post.view.list']" mode="mainList">
-        <div class="row list-blog">
-            <xsl:apply-templates select="list/collection/item" mode="mainList"/>
-        </div>
-    </xsl:template>
 
-    <xsl:template match="item" mode="mainList">
-        <xsl:apply-templates select="document(concat('widget://blog.post.view.view?blogPost=', @guid))/result/blogPost"
-                             mode="mainList"/>
-    </xsl:template>
 
-    <!-- Отдельный пост -->
-    <xsl:template match="blogPost" mode="mainList">
-        <textarea>
-            <xsl:copy-of select="."/>
-        </textarea>
+    <!-- Отдельный пост на главной -->
+    <xsl:template match="blogPost" mode="mainPost">
         <div class="item col-md-4 blue col-sm-5 col-xs-12">
             <a href="{@url}"><img src="/resources/umi-rockband/images/list-blog/1.jpg" class="img" alt="" /></a>
             <div class="bottom">
@@ -51,14 +38,50 @@
                         <xsl:text> | </xsl:text>
                         <xsl:apply-templates select="property[@name='commentsCount']/value" mode="number"/>
                         <xsl:text> комментариев</xsl:text>
-
                         <!--Музыка  |  22 -->
                     </li>
                 </ul>
             </div>
         </div>
     </xsl:template>
-    <!-- Список последних постов блога на главной <Конец> -->
 
+    <!-- Отдельный пост в категории блога -->
+    <xsl:template match="blogPost" mode="blogPost">
+        <div class="article">
+            <h3 class="article-title">
+                <a href="{@url}">
+                    <xsl:value-of select="@displayName" />
+                </a>
+            </h3>
+            <div class="more">
+                <div class="name">
+                    <xsl:value-of select="property[@name = 'author']/value/@displayName" />
+                </div>
+                <div class="date">
+                    <!-- 16 июня 2014, 15:05 -->
+                    <xsl:value-of select="property[@name = 'publishTime']/value/date" />
+                </div>
+                <div class="view">
+                    21 829
+                </div>
+                <div class="comments">
+                    <xsl:apply-templates select="property[@name = 'commentsCount']/value" mode="number" />
+                </div>
+
+                <div class="settings">
+                    <a href="{@url}"></a>
+                </div>
+            </div>
+            <div class="article-content wide">
+                <img src="/resources/umi-rockband/blog/images/article2-img.png" alt="{displayName}" />
+                <div class="content">
+                    <xsl:value-of select="property[@name = 'announcement']/value" disable-output-escaping="yes" />
+                </div>
+                <a class="moar" href="{@url}">
+                    <xsl:value-of select="document('translate://project.site.blog/ReadMore')/result" />
+                </a>
+            </div>
+        </div>
+    </xsl:template>
 
 </xsl:stylesheet>

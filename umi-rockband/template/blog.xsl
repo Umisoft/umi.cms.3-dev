@@ -46,6 +46,7 @@
                 <xsl:call-template name="header" />
 
                 <div class="header-height"></div>
+
                 <div class="site-name">
                     <div class="container-fluid">
                         <span>
@@ -56,6 +57,7 @@
                         </span>
                     </div>
                 </div>
+
                 <!-- Основное содержание -->
                 <xsl:apply-templates select="contents" />
                 

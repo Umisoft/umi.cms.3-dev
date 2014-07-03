@@ -121,7 +121,7 @@
     </xsl:template>
     <!-- Шаблон для вывода даты/времени в нужном формат <Конец> -->
 
-    <!-- Шаблон для хлебных крошек <Начало> -->
+    <!-- Шаблоны для хлебных крошек <Начало> -->
     <xsl:template match="breadcrumbs" mode="blog">
         <xsl:apply-templates select="item" mode="blog" />
     </xsl:template>
@@ -140,6 +140,6 @@
         <xsl:value-of select="displayName" />
     </xsl:template>
 
-    <!-- Шаблон для для хлебных крошек <Конец> -->
+    <!-- Шаблоны для для хлебных крошек <Конец> -->
 
 </xsl:stylesheet>

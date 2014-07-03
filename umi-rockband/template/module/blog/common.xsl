@@ -17,6 +17,8 @@
 
     <xsl:include href="template://module/blog/post" />
     <xsl:include href="template://module/blog/blog" />
+    <xsl:include href="template://module/blog/postList" />
+    <xsl:include href="template://module/blog/category" />
 
 
 
