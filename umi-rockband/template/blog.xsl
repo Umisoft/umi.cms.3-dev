@@ -30,25 +30,35 @@
                 <meta name="Keywords" content="{keywords}" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title><xsl:value-of select="title" /></title>
-                <link type="text/css" rel="stylesheet" href="/resources/umi-rockband/css/reset.css" />
-                <link rel="stylesheet" href="/resources/umi-rockband/css/bootstrap.css" type="text/css" />
-                <link rel="stylesheet" href="/resources/umi-rockband/css/bootstrap-theme.css" type="text/css" />
-                <link type="text/css" rel="stylesheet" href="/resources/umi-rockband/css/style.css" />
-                <link type="text/css" rel="stylesheet" href="/resources/umi-rockband/css/bootstrap-class.css" />
+                <link type="text/css" rel="stylesheet" href="/resources/umi-rockband/blog/css/reset.css" />
+                <link rel="stylesheet" href="/resources/umi-rockband/blog/css/bootstrap.css" type="text/css" />
+                <link rel="stylesheet" href="/resources/umi-rockband/blog/css/bootstrap-theme.css" type="text/css" />
+                <link type="text/css" rel="stylesheet" href="/resources/umi-rockband/blog/css/style.css" />
+                <link type="text/css" rel="stylesheet" href="/resources/umi-rockband/blog/css/bootstrap-class.css" />
                 <link rel="shortcut icon" href="/resources/umi-rockband/images/favicon.ico" />
                 <script src="/resources/umi-rockband/js/jquery-1.11.0.min.js"></script>
                 <script type="text/javascript" src="/resources/umi-rockband/js/bootstrap.min.js"></script>
                 <script type="text/javascript" src="/resources/umi-rockband/js/scripts.js"></script>
             </head>
             <body>
+
                 <!-- Хедер сайта -->
                 <xsl:call-template name="header" />
 
                 <div class="header-height"></div>
-
+                <div class="site-name">
+                    <div class="container-fluid">
+                        <span>
+                            <xsl:value-of select="contents/page/@displayName" />
+                        </span>
+                        <span class="sm">
+                            <xsl:apply-templates select="contents/breadcrumbs" mode="blog"/>
+                        </span>
+                    </div>
+                </div>
                 <!-- Основное содержание -->
                 <xsl:apply-templates select="contents" />
-
+                
                 <!-- Футер сайта -->
                 <xsl:call-template name="footer" />
             </body>

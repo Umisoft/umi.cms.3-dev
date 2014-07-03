@@ -16,6 +16,7 @@
         />
 
     <xsl:include href="template://module/blog/post" />
+    <xsl:include href="template://module/blog/blog" />
 
 
 

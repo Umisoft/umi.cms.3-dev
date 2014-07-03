@@ -18,6 +18,8 @@
     <xsl:include href="template://module/structure/menu" />
     <xsl:include href="template://module/structure/infoblock" />
     <xsl:include href="template://module/structure/page" />
+    <xsl:include href="template://module/structure/header" />
+    <xsl:include href="template://module/structure/footer" />
 
 
 </xsl:stylesheet>

@@ -121,4 +121,25 @@
     </xsl:template>
     <!-- Шаблон для вывода даты/времени в нужном формат <Конец> -->
 
+    <!-- Шаблон для хлебных крошек <Начало> -->
+    <xsl:template match="breadcrumbs" mode="blog">
+        <xsl:apply-templates select="item" mode="blog" />
+    </xsl:template>
+
+    <xsl:template match="item[position() = '1']" mode="blog">
+        <xsl:text>Главная</xsl:text>
+        <xsl:text> / </xsl:text>
+    </xsl:template>
+
+    <xsl:template match="item" mode="blog">
+        <xsl:value-of select="displayName" />
+        <xsl:text> / </xsl:text>
+    </xsl:template>
+
+    <xsl:template match="item[position() = last()]" mode="blog">
+        <xsl:value-of select="displayName" />
+    </xsl:template>
+
+    <!-- Шаблон для для хлебных крошек <Конец> -->
+
 </xsl:stylesheet>
