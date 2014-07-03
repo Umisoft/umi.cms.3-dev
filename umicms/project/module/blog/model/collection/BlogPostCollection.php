@@ -397,7 +397,8 @@ class BlogPostCollection extends CmsPageCollection
      */
     public function trash(IRecyclableObject $object)
     {
-        if ($object instanceof BlogPost && $object->publishStatus === BlogPost::POST_STATUS_PUBLISHED && $object->author instanceof BlogAuthor) {
+        if ($this->isActivePublishedPost($object)) {
+            /** @var $object BlogPost */
             $object->author->decrementPostCount();
         }
 
@@ -409,10 +410,24 @@ class BlogPostCollection extends CmsPageCollection
      */
     public function untrash(IRecyclableObject $object)
     {
-        if ($object instanceof BlogPost && $object->publishStatus === BlogPost::POST_STATUS_PUBLISHED && $object->author instanceof BlogAuthor) {
+        if ($this->isActivePublishedPost($object)) {
+            /** @var $object BlogPost */
             $object->author->incrementPostCount();
         }
 
         return parent::untrash($object);
+    }
+
+    /**
+     * Проверяет является ли пост активным, опубликованным и принадлежащим автору.
+     * @param IRecyclableObject|BlogPost $post проверяемый пост
+     * @return bool
+     */
+    private function isActivePublishedPost(IRecyclableObject $post)
+    {
+        return $post instanceof BlogPost &&
+            $post->active &&
+            $post->publishStatus === BlogPost::POST_STATUS_PUBLISHED &&
+            $post->author instanceof BlogAuthor;
     }
 }
