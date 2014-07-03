@@ -14,7 +14,7 @@ define(['Modernizr'], function(Modernizr){
          */
         UMI.Utils.LS = {
             store: localStorage,
-            init: (function(){
+            init: function(){
                 if(Modernizr.localstorage){
                     if(!localStorage.getItem("UMI")){
                         localStorage.setItem("UMI", JSON.stringify({}));
@@ -23,7 +23,7 @@ define(['Modernizr'], function(Modernizr){
                     //TODO: Не обрабатывается сутуация когда Local Storage не поддерживается
                     this.store = {'UMI': JSON.stringify({})};
                 }
-            }()),
+            },
 
             get: function(key){
                 var data = JSON.parse(this.store.UMI);
@@ -53,6 +53,8 @@ define(['Modernizr'], function(Modernizr){
                 }
             }
         };
+
+        UMI.Utils.LS.init();
 
         //Удалить после возвращения Foundation
             $(document).mousedown(function(event){
