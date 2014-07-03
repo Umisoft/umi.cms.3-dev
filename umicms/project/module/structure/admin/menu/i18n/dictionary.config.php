@@ -14,7 +14,9 @@ return [
 
         'action:create:menu' => 'Create menu',
         'action:create:internalItem' => 'Create internal element',
-        'action:create:externalItem' => 'Create external element'
+        'action:create:externalItem' => 'Create external element',
+
+        'role:editor:displayName' => 'Managing menu'
     ],
 
     'ru-RU' => [
@@ -22,7 +24,9 @@ return [
 
         'action:create:menu' => 'Добавить меню',
         'action:create:internalItem' => 'Добавить внутренний элемент меню',
-        'action:create:externalItem' => 'Добавить внешний элемент меню'
+        'action:create:externalItem' => 'Добавить внешний элемент меню',
+
+        'role:editor:displayName' => 'Управление меню'
     ]
 
 ];

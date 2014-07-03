@@ -36,6 +36,7 @@ return [
 
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
+            'viewer' => [],
             'rssViewer' => []
         ],
         IAclFactory::OPTION_RULES => [
