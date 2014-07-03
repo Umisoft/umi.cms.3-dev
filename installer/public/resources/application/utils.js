@@ -56,6 +56,12 @@ define([], function(){
             }
         };
 
+        Ember.Handlebars.registerHelper('filterClassName', function(value, options){
+            value = Ember.Handlebars.helpers.unbound.apply(this, [value, options]);
+            value =value.replace(/\./g, '__');//TODO: replace all deprecated symbols
+            return value;
+        });
+
         //Удалить после возвращения Foundation
             $(document).mousedown(function(event){
                     var targetElement = $(event.target).closest('.umi-hide-on-html');
