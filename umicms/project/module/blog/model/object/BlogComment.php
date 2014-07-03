@@ -11,12 +11,11 @@
 namespace umicms\project\module\blog\model\object;
 
 use umi\acl\IAclResource;
-use umicms\project\module\users\model\UsersModule;
 
 /**
  * Комментарий к посту.
  *
- * @property UsersModule $author автор поста
+ * @property BlogAuthor $author автор поста
  * @property string $contents комментарий
  * @property string $publishStatus статус публикации комментария
  */

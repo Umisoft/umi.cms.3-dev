@@ -38,14 +38,12 @@ use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\collection\CmsHierarchicPageCollection;
 use umicms\orm\metadata\field\relation\BelongsToRelationField;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
-use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\service\model\object\Backup;
-use umicms\project\module\users\model\object\AuthorizedUser;
 
 /**
  * Контроллер действий над объектом.
@@ -64,21 +62,6 @@ class ActionController extends BaseController implements IFormAware
     {
         $this->translator = $translator;
     }
-
-    /**
-     * @var array $filterExcludedList список имен полей, которые не попадают в фильтр
-     */
-    protected $filterExcludedList = [
-        ICmsObject::FIELD_VERSION,
-        CmsHierarchicObject::FIELD_MPATH,
-        CmsHierarchicObject::FIELD_URI,
-        IRecyclableObject::FIELD_TRASHED,
-        ILockedAccessibleObject::FIELD_LOCKED,
-        AuthorizedUser::FIELD_ACTIVATION_CODE,
-        AuthorizedUser::FIELD_PASSWORD_SALT,
-        AuthorizedUser::FIELD_PASSWORD,
-
-    ];
 
     /**
      * Возвращает форму для редактирования объекта коллекции.
@@ -112,11 +95,12 @@ class ActionController extends BaseController implements IFormAware
     {
         $elements = [];
         $collection = $this->getCollection();
+        $ignoredFieldNames = $collection->getIgnoredTableFilterFieldNames();
         foreach ($this->getCollection()->getMetadata()->getFields() as $field) {
 
             if (
                 ($field instanceof IRelationField && !$field instanceof BelongsToRelationField)
-                || in_array($field->getName(), $this->filterExcludedList)
+                || in_array($field->getName(), $ignoredFieldNames)
             ) {
                 continue;
             }
@@ -130,11 +114,12 @@ class ActionController extends BaseController implements IFormAware
                  * @var ICmsCollection $targetCollection
                  */
                 $targetCollection = $field->getTargetCollection();
+                $targetIgnoredFieldNames = $targetCollection->getIgnoredTableFilterFieldNames();
                 foreach ($targetCollection->getMetadata()->getFields() as $relatedField) {
 
                     if (
                         $relatedField instanceof IRelationField
-                        || in_array($relatedField->getName(), $this->filterExcludedList)
+                        || in_array($relatedField->getName(), $targetIgnoredFieldNames)
                     ) {
                         continue;
                     }
@@ -159,7 +144,7 @@ class ActionController extends BaseController implements IFormAware
             $form->add($element);
         }
 
-        return $form->getView();
+        return ['defaultFields' => $collection->getDefaultTableFilterFieldNames(), 'form' => $form->getView()];
     }
 
     /**

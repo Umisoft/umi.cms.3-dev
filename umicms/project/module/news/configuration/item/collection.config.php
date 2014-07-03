@@ -9,7 +9,9 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
-use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\news\model\collection\NewsItemCollection;
+use umicms\project\module\news\model\object\NewsItem;
+use umicms\project\module\news\model\object\NewsRubric;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -20,11 +22,16 @@ return [
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/news/configuration/item/form/base.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/news/configuration/item/form/base.create.config.php}'
+            NewsItemCollection::FORM_EDIT => '{#lazy:~/project/module/news/configuration/item/form/base.edit.config.php}',
+            NewsItemCollection::FORM_CREATE => '{#lazy:~/project/module/news/configuration/item/form/base.create.config.php}'
         ]
     ],
     'dictionaries' => [
         'collection.newsItem', 'collection'
+    ],
+
+    NewsItemCollection::DEFAULT_TABLE_FILTER_FIELDS => [
+        NewsItem::FIELD_RUBRIC . '.' . NewsRubric::FIELD_DISPLAY_NAME => [],
+        NewsItem::FIELD_DATE => []
     ]
 ];

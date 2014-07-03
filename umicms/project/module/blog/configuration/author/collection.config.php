@@ -9,8 +9,9 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
-use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\blog\model\collection\BlogAuthorCollection;
 use umicms\project\module\blog\model\object\BlogAuthor;
+use umicms\project\module\users\model\object\AuthorizedUser;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -21,12 +22,15 @@ return [
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/author/form/base.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/author/form/base.create.config.php}',
+            BlogAuthorCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/author/form/base.edit.config.php}',
+            BlogAuthorCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/author/form/base.create.config.php}',
             BlogAuthor::FORM_EDIT_PROFILE => '{#lazy:~/project/module/blog/site/author/profile/form/base.editAuthor.config.php}'
         ]
     ],
     'dictionaries' => [
         'collection.blogAuthor', 'collection'
+    ],
+    BlogAuthorCollection::DEFAULT_TABLE_FILTER_FIELDS => [
+        BlogAuthor::FIELD_PROFILE . '.' . AuthorizedUser::FIELD_DISPLAY_NAME => []
     ]
 ];
