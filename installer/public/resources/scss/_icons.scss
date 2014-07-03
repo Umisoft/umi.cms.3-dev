@@ -204,6 +204,15 @@
     &.icon-right-thin{
         background-position: -1100px 0;
     }
+    &.icon-allowRobots{
+        background-position: -1120px 0;
+    }
+    &.icon-disallowRobots{
+        background-position: -1140px 0;
+    }
+    &.icon-viewOnSite{
+        background-position: -1160px 0;
+    }
 
     &.white{
         &.icon-image{
@@ -370,6 +379,15 @@
         }
         &.icon-right-thin{
             background-position: -1100px -20px;
+        }
+        &.icon-allowRobots{
+            background-position: -1120px -20px;
+        }
+        &.icon-disallowRobots{
+            background-position: -1140px -20px;
+        }
+        &.icon-viewOnSite{
+            background-position: -1160px -20px;
         }
     }
 
@@ -538,6 +556,15 @@
         }
         &.icon-right-thin{
             background-position: -1100px -40px;
+        }
+        &.icon-allowRobots{
+            background-position: -1120px -40px;
+        }
+        &.icon-disallowRobots{
+            background-position: -1140px -40px;
+        }
+        &.icon-viewOnSite{
+            background-position: -1160px -40px;
         }
     }
 }

@@ -11,15 +11,11 @@
 return [
 
     'en-US' => [
-        'role:author:displayName' => 'Manage own posts pending moderated',
-        'role:moderator:displayName' => 'Moderating',
-        'role:viewer:displayName' => 'View own posts awaiting moderation',
+        'role:viewer:displayName' => 'View own posts awaiting moderation'
     ],
 
     'ru-RU' => [
-        'role:author:displayName' => 'Управление своими постами ожидающими премодерацию',
-        'role:moderator:displayName' => 'Модерирование',
-        'role:viewer:displayName' => 'Просмотр своих постов ожидающих модерацию',
+        'role:viewer:displayName' => 'Просмотр своих постов, ожидающих модерацию'
     ]
 
 ];

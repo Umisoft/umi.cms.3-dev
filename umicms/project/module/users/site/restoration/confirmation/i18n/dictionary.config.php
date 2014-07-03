@@ -23,7 +23,7 @@ return [
         'New password' => 'Новый пароль',
         'Your new password on the website {site}' => 'Ваш новый пароль на сайте {site}',
 
-        'role:viewer:displayName' => 'Подтверждение восстановления'
+        'role:viewer:displayName' => 'Подтверждение восстановления пароля'
     ]
 
 ];

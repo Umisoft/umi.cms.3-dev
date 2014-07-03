@@ -11,18 +11,17 @@
 return [
 
     'en-US' => [
-        'role:author:displayName' => 'Manage own posts pending moderated',
-        'role:moderator:displayName' => 'Moderating',
-        'role:viewer:displayName' => 'View own posts awaiting moderation',
+        'role:viewer:displayName' => 'Manage own posts pending moderated',
+        'role:moderator:displayName' => 'Moderating posts',
+        'role:editExecutor:displayName' => 'Edit own moderating post',
         'role:ownExecutor:displayName' => 'Own posts',
         'role:allExecutor:displayName' => 'All posts',
     ],
 
     'ru-RU' => [
-        'role:author:displayName' => 'Управление своими постами ожидающими премодерацию',
-        'role:moderator:displayName' => 'Модерирование',
-        'role:viewer:displayName' => 'Просмотр своих постов ожидающих модерацию',
-        'role:editExecutor:displayName' => 'Редактирование поста',
+        'role:viewer:displayName' => 'Управление своими постами, ожидающими премодерацию',
+        'role:moderator:displayName' => 'Модерирование постов',
+        'role:editExecutor:displayName' => 'Редактирование',
         'role:ownExecutor:displayName' => 'Собственные посты',
         'role:allExecutor:displayName' => 'Все посты',
     ]

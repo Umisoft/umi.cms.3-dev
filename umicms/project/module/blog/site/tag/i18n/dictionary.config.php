@@ -17,7 +17,7 @@ return [
 
     'ru-RU' => [
         'role:rssViewer:displayName' => 'Просмотр RSS-лент',
-        'role:viewer:displayName' => 'Просмотр тэгов',
+        'role:viewer:displayName' => 'Просмотр тегов',
     ]
 
 ];

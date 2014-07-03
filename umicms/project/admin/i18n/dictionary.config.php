@@ -17,9 +17,9 @@ return [
     ],
 
     'ru-RU' => [
-        'component:admin:displayName' => 'Административная панель',
-        'role:viewer:displayName' => 'Возможность входа в административную панель',
-        'role:restExecutor:displayName' => 'Административная панель'
+        'component:admin:displayName' => 'Административный интерфейс',
+        'role:viewer:displayName' => 'Возможность входа в административный интерфейс',
+        'role:restExecutor:displayName' => 'Административный интерфейс'
     ]
 
 ];

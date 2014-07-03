@@ -20,8 +20,8 @@ return [
     'ru-RU' => [
         'role:rssViewer:displayName' => 'Просмотр RSS-лент',
         'role:viewer:displayName' => 'Просмотр списка авторов',
-        'role:profileExecutor:displayName' => 'Редактирование профиля',
-        'role:viewExecutor:displayName' => 'Просмотр профиля',
+        'role:profileExecutor:displayName' => 'Редактирование профиля автора',
+        'role:viewExecutor:displayName' => 'Просмотр профиля автора',
     ]
 
 ];

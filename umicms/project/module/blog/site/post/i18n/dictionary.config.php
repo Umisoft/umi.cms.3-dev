@@ -31,10 +31,10 @@ return [
         'Moderate' => 'На модерацию',
         'Revert to draft' => 'В черновики',
 
-        'role:rssViewer:displayName' => 'Просмотр RSS-лент',
+        'role:rssViewer:displayName' => 'Просмотр RSS-лент постов',
         'role:viewer:displayName' => 'Просмотр списка постов',
         'role:author:displayName' => 'Управление опубликованными постами',
-        'role:moderator:displayName' => 'Модерирование',
+        'role:moderator:displayName' => 'Модерирование постов',
         'role:addExecutor:displayName' => 'Создание поста',
         'role:editExecutor:displayName' => 'Редактирование поста',
         'role:viewExecutor:displayName' => 'Просмотр поста',

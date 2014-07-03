@@ -11,7 +11,6 @@
 namespace umicms\project\module\blog\site\post\add\controller;
 
 use umi\form\IForm;
-use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\component\site\BaseSitePageController;

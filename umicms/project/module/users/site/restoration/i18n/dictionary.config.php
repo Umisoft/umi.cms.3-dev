@@ -43,7 +43,7 @@ return [
             'Если Вы не запрашивали смену пароля, просто проигнорируете данное письмо ',
 
         'role:viewer:displayName' => 'Восстановление пароля',
-        'role:confirmationExecutor:displayName' => 'Подтверждение восстановления'
+        'role:confirmationExecutor:displayName' => 'Подтверждение восстановления пароля'
     ]
 
 ];
