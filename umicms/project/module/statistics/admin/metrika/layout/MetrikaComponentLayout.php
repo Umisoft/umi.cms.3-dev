@@ -30,8 +30,7 @@ class MetrikaComponentLayout extends AdminComponentLayout
         $this->component = $component;
 
         $this->dataSource = [
-            'type' => 'static',
-            'objects' => []
+            'type' => 'lazy'
         ];
 
         $this->configureEmptyContextControls();
@@ -57,7 +56,7 @@ class MetrikaComponentLayout extends AdminComponentLayout
         $dynamicControl = new AdminControl($this->component);
         $dynamicControl->params['action'] = 'navigation';
 
-        $this->addSelectedContextControl('dynamic', $dynamicControl);
+        $this->addSelectedContextControl('counterLayout', $dynamicControl);
     }
 }
  
