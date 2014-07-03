@@ -278,6 +278,7 @@ define(['App', 'toolbar'], function(UMI){
                 var template = '';
                 var value;
                 var self = this;
+                var properties;
                 function propertyHtmlEncode(value){
                     if(Ember.typeOf(value) === 'null'){
                         value = '';
@@ -312,14 +313,17 @@ define(['App', 'toolbar'], function(UMI){
                             }
                             break;
                         default:
-                            var properties = column.dataSource.split('.');
-                            if(properties.length > 1){
-                                object.get(properties[0]).then(function(object){
-                                    value = object.get(properties[1]);
-                                    value = propertyHtmlEncode(value);
-                                    self.set('promiseProperty', value);
-                                });
-                                template = '{{view.promiseProperty}}';
+                            properties = column.dataSource.split('.');
+                            if(properties.length > 1 && this.checkRelation(properties[0])){
+                                value = object.get(properties[0]);
+                                if(Ember.typeOf(value) === 'instance'){
+                                    value.then(function(object){
+                                        value = object.get(properties[1]);
+                                        value = propertyHtmlEncode(value);
+                                        self.set('promiseProperty', value);
+                                    });
+                                    template = '{{view.promiseProperty}}';
+                                }
                             } else{
                                 value = object.get(column.dataSource);
                                 value = propertyHtmlEncode(value);
@@ -332,7 +336,20 @@ define(['App', 'toolbar'], function(UMI){
                 } finally{
                     return Ember.Handlebars.compile(template);
                 }
-            }.property('column')
+            }.property('column'),
+
+            checkRelation: function(property){
+                var store = this.get('controller.store');
+                var collectionName = this.get('object').constructor.typeKey;
+                var modelForCollection = store.modelFor(collectionName);
+                var isRelation = false;
+                modelForCollection.eachRelationship(function(name, relatedModel){
+                    if(property === name){
+                        isRelation = true;
+                    }
+                });
+                return isRelation;
+            }
         });
 
 
