@@ -85,10 +85,36 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
                 }
 
                 function setParentCheckboxesIndeterminate(checkbox){
+                    var childrenCheckboxes;
+                    var childrenCheckboxesChecked = 0;
+                    var parentComponentName;
+                    var parentComponentRoles;
                     var parentCheckbox =$(checkbox).closest('.umi-permissions-component').closest('.umi-permissions-role-list-item').children('.umi-permissions-role').find('.umi-permissions-role-checkbox');
                     if(parentCheckbox.length){
                         if(parentCheckbox[0].checked){
-                            parentCheckbox[0].indeterminate = true;
+                            childrenCheckboxes = $(parentCheckbox).closest('.umi-permissions-role-list-item').children('.umi-permissions-component').find('.umi-permissions-role-checkbox');
+                            if(childrenCheckboxes.length){
+                                for(var i = 0; i < childrenCheckboxes.length; i++){
+                                    if(childrenCheckboxes[i].checked){
+                                        ++childrenCheckboxesChecked;
+                                    }
+                                }
+                            }
+                            if(!childrenCheckboxesChecked){
+                                parentCheckbox[0].checked = false;
+                                parentCheckbox[0].indeterminate = false;
+                                parentComponentName = $(parentCheckbox[0]).closest('.umi-permissions-role-label').attr('data-permissions-component-path');
+                                parentComponentRoles = objectProperty[parentComponentName];
+                                if(Ember.typeOf(parentComponentRoles) !== 'array'){
+                                    parentComponentRoles = objectProperty[parentComponentName] = [];
+                                }
+                                parentComponentRoles = objectProperty[parentComponentName] = parentComponentRoles.without(parentCheckbox[0].name);
+                                if(!parentComponentRoles.length){
+                                    delete objectProperty[parentComponentName];
+                                }
+                            } else{
+                                parentCheckbox[0].indeterminate = true;
+                            }
                         }
                         setParentCheckboxesIndeterminate(parentCheckbox[0]);
                     }
@@ -110,7 +136,6 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
                     }
 
                     checkbox.indeterminate = false;
-                    setParentCheckboxesIndeterminate(checkbox);
 
                     childrenCheckboxes = $(checkbox).closest('.umi-permissions-role-list-item').children('.umi-permissions-component').find('.umi-permissions-role-checkbox');
                     if(childrenCheckboxes.length){
@@ -128,6 +153,8 @@ define(['App', 'text!./permissions.hbs', 'text!./partial.hbs'], function(UMI, pe
                             }
                         }
                     }
+
+                    setParentCheckboxesIndeterminate(checkbox);
                 }
                 if(JSON.stringify(objectProperty) === '{}'){
                     objectProperty = [];
