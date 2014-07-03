@@ -75,6 +75,7 @@ class LayoutController extends BaseCmsController implements ISiteSettingsAware, 
         $variables['description'] = $this->getMetaDescription();
         $variables['keywords'] = $this->getMetaKeywords();
         $variables['locales'] = $this->getLocales();
+        $variables['projectUrl'] = $this->getUrlManager()->getProjectUrl();
 
         $variables['contents'] = $this->response->getContent();
 

@@ -11,18 +11,18 @@
 namespace umicms\serialization\json\orm;
 use umi\orm\metadata\field\IField;
 use umi\orm\object\property\IProperty;
-use umicms\hmvc\url\IUrlManagerAware;
-use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
+use umicms\project\site\config\ISiteSettingsAware;
+use umicms\project\site\config\TSiteSettingsAware;
 use umicms\serialization\json\BaseSerializer;
 
 /**
  * JSON-сериализатор для объекта.
  */
-class CmsObjectSerializer extends BaseSerializer implements IUrlManagerAware
+class CmsObjectSerializer extends BaseSerializer implements ISiteSettingsAware
 {
-    use TUrlManagerAware;
+    use TSiteSettingsAware;
 
     /**
      * Сериализует ICmsObject в JSON.
@@ -57,6 +57,9 @@ class CmsObjectSerializer extends BaseSerializer implements IUrlManagerAware
                 'pageUrl' => $object->getPageUrl(),
                 'header' => $object->getHeader()
             ];
+            if ($this->getSiteDefaultPageGuid() === $object->guid) {
+                $properties['meta']['isDefault'] = true;
+            }
         }
         $options['fields'] = [ICmsObject::FIELD_DISPLAY_NAME => null];
         $this->delegate($properties, $options);
