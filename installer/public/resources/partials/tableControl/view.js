@@ -271,12 +271,21 @@ define(['App', 'toolbar'], function(UMI){
         UMI.TableCellContentView = Ember.View.extend({
             classNames: ['umi-table-control-content-cell-div'],
             classNameBindings: ['columnId'],
-
+            promise: null,
             template: function(){
                 var column;
                 var object;
                 var template = '';
                 var value;
+                var self = this;
+                function propertyHtmlEncode(value){
+                    if(Ember.typeOf(value) === 'null'){
+                        value = '';
+                    } else{
+                        value = UMI.Utils.htmlEncode(value);
+                    }
+                    return value;
+                }
                 try{
                     object = this.get('object');
                     column = this.get('column');
@@ -305,14 +314,15 @@ define(['App', 'toolbar'], function(UMI){
                         default:
                             var properties = column.dataSource.split('.');
                             if(properties.length > 1){
-                                template = '{{view.object.' + column.dataSource + '}}';
-                            } else{ //TODO: избавиться от фильтрации когда будут сделаны достойные фильтры и валидаторы в форме.
+                                object.get(properties[0]).then(function(object){
+                                    value = object.get(properties[1]);
+                                    value = propertyHtmlEncode(value);
+                                    self.set('promiseProperty', value);
+                                });
+                                template = '{{view.promiseProperty}}';
+                            } else{
                                 value = object.get(column.dataSource);
-                                if(Ember.typeOf(value) === 'null'){
-                                    value = '';
-                                } else{
-                                    value = UMI.Utils.htmlEncode(value);
-                                }
+                                value = propertyHtmlEncode(value);
                                 template = value;
                             }
                             break;
