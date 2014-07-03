@@ -74,7 +74,7 @@ define(['App', 'toolbar'], function(UMI){
                         }
 
                         Ember.run.scheduleOnce('afterRender', self, function(){
-                            var scrollContent = new IScroll(tableContent[0], UMI.config.iScroll); //TODO Из-за этой строки не работают чекбоксы строк
+                            var scrollContent = new IScroll(tableContent[0], UMI.config.iScroll);
                             self.set('iScroll', scrollContent);
 
                             scrollContent.on('scroll', function(){
@@ -93,7 +93,7 @@ define(['App', 'toolbar'], function(UMI){
                             // Событие изменения ширины колонки
                             tableControl.on('mousedown.umi.tableControl', '.umi-table-control-column-resizer', function(){
                                 $('html').addClass('s-unselectable');
-                                var handler = this; //Почему не that или self? Зачем плодить понятия?
+                                var handler = this;
                                 $(handler).addClass('on-resize');
                                 var columnEl = handler.parentNode.parentNode;
                                 var columnName = columnEl.className;
@@ -303,13 +303,18 @@ define(['App', 'toolbar'], function(UMI){
                             }
                             break;
                         default:
-                            value = object.get(column.dataSource);
-                            if(Ember.typeOf(value) === 'null'){
-                                value = '';
-                            } else{
-                                value = UMI.Utils.htmlEncode(value);
+                            var properties = column.dataSource.split('.');
+                            if(properties.length > 1){
+                                template = '{{view.object.' + column.dataSource + '}}';
+                            } else{ //TODO: избавиться от фильтрации когда будут сделаны достойные фильтры и валидаторы в форме.
+                                value = object.get(column.dataSource);
+                                if(Ember.typeOf(value) === 'null'){
+                                    value = '';
+                                } else{
+                                    value = UMI.Utils.htmlEncode(value);
+                                }
+                                template = value;
                             }
-                            template = value + '&nbsp;';
                             break;
                     }
                 } catch(error){

@@ -147,7 +147,7 @@ define(['App'], function(UMI){
                     query.fields = nativeFields;
                 }
                 if(relatedFields){
-                    //query['with'] = relatedFields;
+                    query['with'] = relatedFields;
                 }
                 if(limit){
                     query.limit = limit;
@@ -197,8 +197,8 @@ define(['App'], function(UMI){
                                 --i;
                             } else if(relatedModelDataSource.indexOf(name + '.', 0) === 0){
                                 relatedModelFields.push(relatedModelDataSource.slice(name.length + 1));
-                                fieldsList.splice(i, 1);
-                                --i;
+                                //fieldsList.splice(i, 1);
+                                //--i;
                             }
                         }
                         relatedFieldsList[name] = relatedModelFields.join(',');
