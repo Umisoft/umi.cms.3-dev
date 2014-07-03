@@ -112,7 +112,6 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
                 AbstractPlatform::CREATE_INDEXES | AbstractPlatform::CREATE_FOREIGNKEYS
             );
             foreach ($queries as $sql) {
-                var_dump($sql);
                 $connection->exec($sql);
             }
         }

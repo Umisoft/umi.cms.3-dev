@@ -116,8 +116,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $this->dropTables();
 
         try {
+            echo "Sync table schemes...\n";
             foreach ($this->getModules() as $module) {
-                $module->getModels()->installAllSchemes();
+                $module->getModels()->syncAllSchemes();
             }
 
             echo "Installing structure...\n";
