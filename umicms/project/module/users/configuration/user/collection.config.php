@@ -10,7 +10,7 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umi\orm\metadata\IObjectType;
-use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\users\model\collection\UserCollection;
 use umicms\project\module\users\model\object\AuthorizedUser;
 
 return [
@@ -21,18 +21,18 @@ return [
     ],
     'forms' => [
         IObjectType::BASE => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/base.edit.config.php}'
+            UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/base.edit.config.php}'
         ],
         'guest' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/guest.edit.config.php}'
+            UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/guest.edit.config.php}'
         ],
         'authorized.supervisor' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/authorized.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/authorized.create.config.php}',
+            UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/authorized.edit.config.php}',
+            UserCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/authorized.create.config.php}',
         ],
         AuthorizedUser::TYPE_NAME => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/authorized.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/authorized.create.config.php}',
+            UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/authorized.edit.config.php}',
+            UserCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/authorized.create.config.php}',
             AuthorizedUser::FORM_LOGIN_ADMIN => '{#lazy:~/project/module/users/configuration/user/form/authorized.login.config.php}',
             AuthorizedUser::FORM_LOGIN_SITE => '{#lazy:~/project/module/users/site/authorization/form/authorized.login.config.php}',
             AuthorizedUser::FORM_LOGOUT_SITE => '{#lazy:~/project/module/users/site/authorization/form/authorized.logout.config.php}',
@@ -46,5 +46,17 @@ return [
 
     'dictionaries' => [
         'collection.user', 'collection'
+    ],
+
+    UserCollection::IGNORED_TABLE_FILTER_FIELDS => [
+        AuthorizedUser::FIELD_ACTIVATION_CODE => [],
+        AuthorizedUser::FIELD_PASSWORD_SALT => [],
+        AuthorizedUser::FIELD_PASSWORD => []
+    ],
+
+    UserCollection::DEFAULT_TABLE_FILTER_FIELDS => [
+        AuthorizedUser::FIELD_LOGIN => [],
+        AuthorizedUser::FIELD_EMAIL => [],
+        AuthorizedUser::FIELD_REGISTRATION_DATE => []
     ]
 ];

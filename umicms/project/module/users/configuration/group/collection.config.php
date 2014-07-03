@@ -9,7 +9,8 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
-use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\users\model\collection\UserGroupCollection;
+use umicms\project\module\users\model\object\UserGroup;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -19,7 +20,10 @@ return [
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/group/form/base.edit.config.php}'
+            UserGroupCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/group/form/base.edit.config.php}'
         ]
+    ],
+    UserGroupCollection::IGNORED_TABLE_FILTER_FIELDS => [
+        UserGroup::FIELD_ROLES => []
     ]
 ];

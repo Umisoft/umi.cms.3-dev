@@ -9,7 +9,9 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
-use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\news\model\collection\NewsRssImportScenarioCollection;
+use umicms\project\module\news\model\object\NewsRssImportScenario;
+use umicms\project\module\news\model\object\NewsRubric;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -20,11 +22,16 @@ return [
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/news/configuration/rss/form/base.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/news/configuration/rss/form/base.create.config.php}'
+            NewsRssImportScenarioCollection::FORM_EDIT => '{#lazy:~/project/module/news/configuration/rss/form/base.edit.config.php}',
+            NewsRssImportScenarioCollection::FORM_CREATE => '{#lazy:~/project/module/news/configuration/rss/form/base.create.config.php}'
         ]
     ],
     'dictionaries' => [
         'collection.newsRssImportScenario', 'collection'
+    ],
+
+    NewsRssImportScenarioCollection::DEFAULT_TABLE_FILTER_FIELDS => [
+        NewsRssImportScenario::FIELD_RUBRIC . '.' . NewsRubric::FIELD_DISPLAY_NAME => [],
+        NewsRssImportScenario::FIELD_RSS_URL => []
     ]
 ];
