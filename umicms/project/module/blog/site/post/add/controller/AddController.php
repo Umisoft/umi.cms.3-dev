@@ -101,11 +101,16 @@ class AddController extends BaseSitePageController
 
     protected function buildResponseContent()
     {
-        return [
+        $result = [
             'added' => $this->added,
-            'blogPost' => $this->blogPost,
             'page' => $this->getCurrentPage()
         ];
+
+        if ($this->added) {
+            $result['blogPost'] = $this->blogPost;
+        }
+
+        return $result;
     }
 }
  

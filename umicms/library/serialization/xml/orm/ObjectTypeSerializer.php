@@ -8,26 +8,23 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\serialization\xml\object;
+namespace umicms\serialization\xml\orm;
 
-
-use umi\orm\metadata\field\BaseField;
+use umi\orm\metadata\ObjectType;
 use umicms\serialization\xml\BaseSerializer;
 
 /**
- * XML-сериализатор для свойств объектов.
+ * XML-сериализатор для типов коллекции.
  */
-class FieldSerializer extends BaseSerializer
+class ObjectTypeSerializer extends BaseSerializer
 {
     /**
-     * Сериализует поле в XML.
-     * @param BaseField $field
+     * Сериализует тип.
+     * @param ObjectType $objectType
      * @param array $options опции сериализации
      */
-    public function __invoke(BaseField $field, array $options = [])
+    public function __invoke(ObjectType $objectType, array $options = [])
     {
-        $this->writeElement('field', [
-            'type' => $field->getType()
-        ]);
+        $this->delegate($objectType->getName());
     }
 }
