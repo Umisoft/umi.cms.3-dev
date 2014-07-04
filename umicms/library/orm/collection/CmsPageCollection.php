@@ -10,7 +10,6 @@
 
 namespace umicms\orm\collection;
 
-use umi\dbal\builder\ISelectBuilder;
 use umi\dbal\builder\SelectBuilder;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\field\IField;
@@ -114,10 +113,21 @@ class CmsPageCollection extends CmsCollection implements ICmsPageCollection
     /**
      * Разрешено ли использование slug.
      * @param ICmsPage $object объект, слаг которого необходимо проверить
+     * @throws RuntimeException в случае, если коллекция объекта не совпадает с коллекцией, в которой проверяется slug
      * @return bool
      */
     public function isAllowedSlug(ICmsPage $object)
     {
+        if ($this->getName() !== $object->getCollectionName()) {
+            throw new RuntimeException($this->translate(
+                'Object collection "{objectCollection}" is not belong "{collection}".',
+                [
+                    'objectCollection' => $object->getCollectionName(),
+                    'collection' => $this->getName()
+                ]
+            ));
+        }
+
         if ($object->getIsNew() && $this->hasSlug($object->getProperty(ICmsPage::FIELD_PAGE_SLUG)->getValue())) {
             return false;
         } else {
@@ -132,15 +142,10 @@ class CmsPageCollection extends CmsCollection implements ICmsPageCollection
      */
     protected function hasSlug($slug)
     {
-        $metadata = $this->getMetadata();
-        $slugColumn = $metadata->getField(ICmsPage::FIELD_PAGE_SLUG)->getColumnName();
-
-        /** @var ISelectBuilder $select */
-        $select = $metadata->getCollectionDataSource()
-            ->select($slugColumn)
-            ->where()
-            ->expr($slugColumn, '=', ':slug')
-            ->bindString(':slug', $slug);
+        $select = $this->select()
+            ->fields([ICmsPage::FIELD_IDENTIFY])
+            ->where(ICmsPage::FIELD_PAGE_SLUG)
+                ->equals($slug);
 
         return (bool) $select->getTotal();
     }

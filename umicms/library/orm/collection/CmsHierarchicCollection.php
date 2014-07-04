@@ -10,10 +10,10 @@
 
 namespace umicms\orm\collection;
 
-use umi\dbal\builder\ISelectBuilder;
 use umi\orm\collection\SimpleHierarchicCollection;
 use umi\orm\metadata\field\special\MaterializedPathField;
 use umicms\exception\InvalidArgumentException;
+use umicms\exception\RuntimeException;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\selector\CmsSelector;
 
@@ -84,10 +84,21 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
     /**
      * Разрешено ли использование slug.
      * @param CmsHierarchicObject $object объект, слаг которого необходимо проверить
+     * @throws RuntimeException в случае, если коллекция объекта не совпадает с коллекцией, в которой проверяется slug
      * @return bool
      */
     public function isAllowedSlug(CmsHierarchicObject $object)
     {
+        if ($this->getName() !== $object->getCollectionName()) {
+            throw new RuntimeException($this->translate(
+                'Object collection "{objectCollection}" is not belong "{collection}".',
+                [
+                    'objectCollection' => $object->getCollectionName(),
+                    'collection' => $this->getName()
+                ]
+            ));
+        }
+
         if ($object->getIsNew() && $this->hasSlug($object)) {
             return false;
         } else {
@@ -102,28 +113,17 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
      */
     protected function hasSlug(CmsHierarchicObject $object)
     {
-        $pidColumn = $this->getMetadata()->getField(CmsHierarchicObject::FIELD_PARENT)->getColumnName();
-        $slugColumn = $this->getMetadata()->getField(CmsHierarchicObject::FIELD_SLUG)->getColumnName();
+        $select = $this->select()
+            ->fields([CmsHierarchicObject::FIELD_IDENTIFY])
+            ->where(CmsHierarchicObject::FIELD_SLUG)
+                ->equals($object->getProperty(CmsHierarchicObject::FIELD_SLUG)->getValue());
 
-        /** @var ISelectBuilder $select */
-        $select = $this->getMetadata()->getCollectionDataSource()
-            ->select($pidColumn, $slugColumn)
-            ->where()
-            ->expr($slugColumn, '=', ':slug')
-            ->bindString(':slug', $object->getProperty(CmsHierarchicObject::FIELD_SLUG)->getValue());
-
-        $parent = $object->getProperty(CmsHierarchicObject::FIELD_PARENT)->getValue();
-        if ($parent instanceof CmsHierarchicObject) {
-            $select
-                ->expr($pidColumn, '=', ':pid')
-                ->bindString(
-                    ':pid',
-                    $parent->getId()
-                );
+        if ($object->parent instanceof CmsHierarchicObject) {
+            $select->where(CmsHierarchicObject::FIELD_PARENT)
+                ->equals($object->getParent());
         } else {
-            $select
-                ->expr($pidColumn, 'IS', ':pid')
-                ->bindNull(':pid');
+            $select->where(CmsHierarchicObject::FIELD_PARENT)
+                ->isNull();
         }
 
         return (bool) $select->getTotal();
