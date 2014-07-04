@@ -27,7 +27,7 @@ return [
             'options' => [
                 'dataSource' => SiteApplication::SETTING_DEFAULT_DESCRIPTION,
                 'filters' => [
-                    HtmlPurifier::TYPE => []
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ]
             ]
         ],
@@ -37,7 +37,7 @@ return [
             'options' => [
                 'dataSource' => SiteApplication::SETTING_DEFAULT_KEYWORDS,
                 'filters' => [
-                    HtmlPurifier::TYPE => []
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ]
             ]
         ],
@@ -47,7 +47,7 @@ return [
             'options' => [
                 'dataSource' => SiteApplication::SETTING_DEFAULT_TITLE,
                 'filters' => [
-                    HtmlPurifier::TYPE => []
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ]
             ]
         ],
@@ -57,7 +57,7 @@ return [
             'options' => [
                 'dataSource' => SiteApplication::SETTING_TITLE_PREFIX,
                 'filters' => [
-                    HtmlPurifier::TYPE => []
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ]
             ]
         ]
