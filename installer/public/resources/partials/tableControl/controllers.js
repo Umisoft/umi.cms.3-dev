@@ -261,7 +261,7 @@ define(['App'], function(UMI){
                 var contentControls = this.get('controllers.component.contentControls') || [];
                 var filter = contentControls.findBy('name', 'filter') || {};
                 return filter.contextToolbar;
-            }.property('controllers.component.contentControls'),
+            }.property('model'),
 
             /**
              * Возвращает toolbar
