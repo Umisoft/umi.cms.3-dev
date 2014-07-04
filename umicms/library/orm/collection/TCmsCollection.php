@@ -237,9 +237,9 @@ trait TCmsCollection
 
     /**
      * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
-     * @return CmsSelector
+     * @return CmsSelector|ICmsObject[]
      */
-    protected function selectInternal() {
+    public function getInternalSelector() {
         /** @noinspection PhpUndefinedMethodInspection */
         /** @noinspection PhpUndefinedClassInspection */
         return parent::select();

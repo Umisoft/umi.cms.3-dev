@@ -29,11 +29,14 @@ use umicms\exception\RuntimeException;
 use umicms\module\IModuleAware;
 use umicms\module\TModuleAware;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
+use umicms\orm\dump\ICmsObjectDumpAware;
+use umicms\orm\dump\TCmsObjectDumpAware;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\news\model\collection\NewsRssImportScenarioCollection;
+use umicms\project\module\news\model\NewsModule;
 use umicms\project\module\search\model\SearchApi;
 use umicms\project\module\search\model\SearchIndexApi;
 use umicms\project\module\search\model\SearchModule;
@@ -43,7 +46,6 @@ use umicms\project\module\structure\model\object\MenuExternalItem;
 use umicms\project\module\structure\model\object\MenuInternalItem;
 use umicms\project\module\structure\model\object\StaticPage;
 use umicms\project\module\structure\model\object\StructureElement;
-use umicms\project\module\structure\model\StructureModule;
 use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\Guest;
 use umicms\project\module\users\model\object\Supervisor;
@@ -53,13 +55,14 @@ use umicms\project\module\users\model\UsersModule;
 /**
  * Class InstallController
  */
-class InstallController extends BaseController implements ICollectionManagerAware, IObjectPersisterAware, IObjectManagerAware, IModuleAware
+class InstallController extends BaseController implements ICmsObjectDumpAware, ICollectionManagerAware, IObjectPersisterAware, IObjectManagerAware, IModuleAware
 {
 
     use TCollectionManagerAware;
     use TObjectPersisterAware;
     use TObjectManagerAware;
     use TModuleAware;
+    use TCmsObjectDumpAware;
 
     /**
      * @var IDbCluster $dbCluster
@@ -104,6 +107,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
     public function __invoke()
     {
         header('Content-type: text/plain');
+
+        /**
+         * @var NewsModule $news
+         */
+        $news = $this->getModuleByClass(NewsModule::className());
+        $selector = $news->rubric()->getInternalSelector();
+
+        var_dump($this->getObjectsDump($selector));
+        exit;
 
         $connection = $this->dbCluster->getConnection();
         /**
