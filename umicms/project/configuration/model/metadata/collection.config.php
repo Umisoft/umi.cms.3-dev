@@ -47,7 +47,8 @@ return [
             'type'          => IField::TYPE_STRING,
             'columnName'    => 'display_name',
             'filters'       => [
-                IFilterFactory::TYPE_STRING_TRIM => []
+                IFilterFactory::TYPE_STRING_TRIM => [],
+                IFilterFactory::TYPE_STRIP_TAGS => []
             ],
             'validators'    => [
                 IValidatorFactory::TYPE_REQUIRED => []

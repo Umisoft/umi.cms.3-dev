@@ -10,7 +10,6 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\filter\HtmlPurifier;
 use umicms\project\Environment;
 use umicms\project\module\users\model\object\BaseUser;
 use umicms\project\module\users\model\object\Guest;
@@ -38,7 +37,7 @@ return array_replace_recursive(
                 'columnName' => 'login',
                 'filters'    => [
                     IFilterFactory::TYPE_STRING_TRIM => [],
-                    HtmlPurifier::TYPE               => []
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ],
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []
@@ -49,7 +48,7 @@ return array_replace_recursive(
                 'columnName' => 'email',
                 'filters'    => [
                     IFilterFactory::TYPE_STRING_TRIM => [],
-                    HtmlPurifier::TYPE               => []
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ],
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => [],
@@ -80,7 +79,7 @@ return array_replace_recursive(
                 'columnName' => 'first_name',
                 'filters'    => [
                     IFilterFactory::TYPE_STRING_TRIM => [],
-                    HtmlPurifier::TYPE               => []
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ]
             ],
             RegisteredUser::FIELD_MIDDLE_NAME       => [
@@ -88,7 +87,7 @@ return array_replace_recursive(
                 'columnName' => 'middle_name',
                 'filters'    => [
                     IFilterFactory::TYPE_STRING_TRIM => [],
-                    HtmlPurifier::TYPE               => []
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ]
             ],
             RegisteredUser::FIELD_LAST_NAME         => [
@@ -96,7 +95,7 @@ return array_replace_recursive(
                 'columnName' => 'last_name',
                 'filters'    => [
                     IFilterFactory::TYPE_STRING_TRIM => [],
-                    HtmlPurifier::TYPE               => []
+                    IFilterFactory::TYPE_STRIP_TAGS => []
                 ]
             ],
             RegisteredUser::FIELD_REGISTRATION_DATE => [
