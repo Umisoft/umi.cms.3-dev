@@ -353,11 +353,9 @@ define(['App', 'toolbar'], function(UMI){
             }.property('column'),
 
             checkRelation: function(property){
-                var store = this.get('controller.store');
-                var collectionName = this.get('object').constructor.typeKey;
-                var modelForCollection = store.modelFor(collectionName);
+                var object = this.get('object');
                 var isRelation = false;
-                modelForCollection.eachRelationship(function(name, relatedModel){
+                object.eachRelationship(function(name, relatedModel){
                     if(property === name){
                         isRelation = true;
                     }
