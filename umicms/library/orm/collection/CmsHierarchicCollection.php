@@ -15,6 +15,7 @@ use umi\orm\metadata\field\special\MaterializedPathField;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
 use umicms\orm\object\CmsHierarchicObject;
+use umicms\orm\object\ICmsObject;
 use umicms\orm\selector\CmsSelector;
 
 /**
@@ -83,15 +84,24 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
 
     /**
      * Разрешено ли использование slug.
-     * @param CmsHierarchicObject $object объект, слаг которого необходимо проверить
-     * @throws RuntimeException в случае, если коллекция объекта не совпадает с коллекцией, в которой проверяется slug
+     * @param CmsHierarchicObject|ICmsObject $object объект, слаг которого необходимо проверить
+     * @throws RuntimeException в случае если пришёл неверный объект или коллекция объекта не совпадает с коллекцией, в которой проверяется slug
      * @return bool
      */
-    public function isAllowedSlug(CmsHierarchicObject $object)
+    public function isAllowedSlug(ICmsObject $object)
     {
-        if ($this->getName() !== $object->getCollectionName()) {
+        if (!$object instanceof CmsHierarchicObject) {
             throw new RuntimeException($this->translate(
-                'Object collection "{objectCollection}" is not belong "{collection}".',
+                'Cannot check slug. Object should be instance of "{class}".',
+                [
+                    'class' => CmsHierarchicObject::className()
+                ]
+            ));
+        }
+
+        if (!$this->contains($object)) {
+            throw new RuntimeException($this->translate(
+                'Object from collection "{objectCollection}" does not belong to "{collection}".',
                 [
                     'objectCollection' => $object->getCollectionName(),
                     'collection' => $this->getName()
