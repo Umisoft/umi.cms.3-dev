@@ -2623,6 +2623,30 @@ label.error {
       display: block;
       background: #fff; }
 
+.side-nav {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  list-style-position: inside;
+  font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif; }
+  .side-nav li {
+    margin: 0 0 0.4375rem 0;
+    font-size: 0.875rem; }
+    .side-nav li a {
+      display: block;
+      color: #535E6D; }
+    .side-nav li.active > a:first-child {
+      color: #fff;
+      font-weight: normal;
+      font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif; }
+    .side-nav li.divider {
+      border-top: 1px solid;
+      height: 0;
+      padding: 0;
+      list-style: none;
+      border-top-color: white; }
+
 .s-hide {
   display: none; }
 
@@ -3817,23 +3841,13 @@ ul.umi-search-result {
       background-image: linear-gradient(#535c6a, #2b2d34); }
       .umi-dock .umi-dock-button:hover span {
         color: #FFF; }
-    .umi-dock .umi-dock-button.active {
+    .umi-dock .umi-dock-button .dock-module.active {
       position: relative;
       margin-top: -1px;
       border-top: 1px solid #3a404a;
       border-left: 1px solid #44474B;
       border-right: 1px solid #44474B;
       background-image: linear-gradient(#282e38, #101217); }
-      .umi-dock .umi-dock-button.active + li:hover {
-        border-left: 1px solid transparent; }
-      .umi-dock .umi-dock-button.active.favorites img + img {
-        position: absolute;
-        display: none;
-        opacity: 0;
-        left: 0;
-        top: 0; }
-      .umi-dock .umi-dock-button.active.disabled {
-        opacity: 0.3; }
   .umi-dock .f-dropdown {
     width: 160%;
     margin-left: -30%;
@@ -5931,6 +5945,23 @@ table td {
 
 .ui-timepicker-rtl dl dd {
   margin: 0 45% 10px 10px; }
+
+.side-nav {
+  background: #F5F5F5;
+  overflow: hidden; }
+  .side-nav li {
+    height: 33px;
+    line-height: 34px;
+    padding: 0 0.625rem;
+    margin: 0;
+    background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);
+    background: linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);
+    border-bottom: 1px solid #98A2AB; }
+    .side-nav li:hover {
+      background: #EEEEEE;
+      color: #000000; }
+    .side-nav li.active {
+      background: #259cec; }
 
 .umi-table-control-column-selector-popup-wrapper {
   overflow: hidden;
