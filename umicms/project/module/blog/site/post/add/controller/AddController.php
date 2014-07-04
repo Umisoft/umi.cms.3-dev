@@ -99,6 +99,9 @@ class AddController extends BaseSitePageController
         $this->added = true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function buildResponseContent()
     {
         $result = [
