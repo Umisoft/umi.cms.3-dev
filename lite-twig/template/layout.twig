@@ -16,7 +16,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% for localeId,localeInfo in locales %}
                         <li class="{{ localeInfo.current ? 'active' }}">
-                            <a href="{{ localeInfo.url }}">{{ translate(localeId) }}</a>
+                            <a href="{{ localeInfo.url }}">{{ translate(localeInfo.id) }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -54,7 +54,7 @@
 
     {{ widget('structure.infoblock.view', {'template' : 'footer', 'infoBlock' : 'commonInfoBlock'}) }}
     <p>
-        <a href="#">{{ translate('Back to top') }}</a>
+        <a href="#">{{ translate('BackToTop') }}</a>
     </p>
 </footer>
 

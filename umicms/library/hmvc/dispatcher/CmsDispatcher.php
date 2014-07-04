@@ -88,7 +88,6 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware
 
                 return $this->invokeWidget($widget);
             } catch (ResourceAccessForbiddenException $e) {
-
                 $resource = $e->getResource();
                 if ($resource instanceof BaseCmsWidget) {
                     return $this->invokeWidgetForbidden($resource, $e);

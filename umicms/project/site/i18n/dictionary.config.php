@@ -16,7 +16,9 @@ return [
         'role:newsExecutor:displayName' => 'News',
         'role:blogExecutor:displayName' => 'Blog',
         'role:searchExecutor:displayName' => 'Search',
-        'role:usersExecutor:displayName' => 'Users'
+        'role:usersExecutor:displayName' => 'Users',
+        'role:viewer:displayName' => 'View',
+        'role:widgetExecutor:displayName' => 'View widget results via http',
     ],
 
     'ru-RU' => [
@@ -25,7 +27,9 @@ return [
         'role:newsExecutor:displayName' => 'Новости',
         'role:blogExecutor:displayName' => 'Блог',
         'role:searchExecutor:displayName' => 'Поиск',
-        'role:usersExecutor:displayName' => 'Пользователи'
+        'role:usersExecutor:displayName' => 'Пользователи',
+        'role:viewer:displayName' => 'Просмотр',
+        'role:widgetExecutor:displayName' => 'Просмотр виджетов через http',
     ]
 
 ];

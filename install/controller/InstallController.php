@@ -223,7 +223,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'newsExecutor',
                 'structureExecutor',
                 'blogExecutor',
-                'searchExecutor'
+                'searchExecutor',
+                'viewer',
+                'widgetExecutor'
             ],
 
             'project.site.users' => [

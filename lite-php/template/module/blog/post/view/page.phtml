@@ -7,7 +7,7 @@
 <?=$this->render('breadcrumbs.phtml', $scope) ?>
 
 <div class="blog-post">
-    <h1><?=$page->displayName?></h1>
+    <h1><?=$page->getHeader()?></h1>
     <p class="blog-post-meta">
         <?php if ($page->publishTime) : ?>
         <time datetime="<?= $page->publishTime->format('c')?>">
