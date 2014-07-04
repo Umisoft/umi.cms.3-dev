@@ -181,7 +181,16 @@ define(['App'], function(UMI){
 
                 //TODO: check user configurations
                 var modelForCollection = store.modelFor(collectionName);
-                var fieldsList = this.get('viewSettings.elements') || [];
+                var fieldsList = this.get('viewSettings.form.elements') || [];
+                var defaultFields = this.get('viewSettings.defaultFields') || [];
+                var i;
+                for(i = 0; i < fieldsList.length; i++){
+                    if(!defaultFields.contains(fieldsList[i].id)){
+                        fieldsList.splice(i, 1);
+                        --i;
+                    }
+                }
+
                 var nativeFieldsList = [];
                 var relatedFieldsList = {};
                 modelForCollection.eachRelationship(function(name, relatedModel){
