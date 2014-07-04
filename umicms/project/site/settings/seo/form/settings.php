@@ -21,17 +21,6 @@ return [
     ],
 
     'elements' => [
-        SiteApplication::SETTING_URL_POSTFIX => [
-            'type' => Text::TYPE_NAME,
-            'label' => SiteApplication::SETTING_URL_POSTFIX,
-            'options' => [
-                'dataSource' => SiteApplication::SETTING_URL_POSTFIX,
-                'filters'       => [
-                    IFilterFactory::TYPE_STRING_TRIM => [],
-                    HtmlPurifier::TYPE => []
-                ]
-            ]
-        ],
         SiteApplication::SETTING_DEFAULT_DESCRIPTION => [
             'type' => Text::TYPE_NAME,
             'label' => SiteApplication::SETTING_DEFAULT_DESCRIPTION,

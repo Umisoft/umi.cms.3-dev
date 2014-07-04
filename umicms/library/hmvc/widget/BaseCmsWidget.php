@@ -82,6 +82,10 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
         $url .= $this->getContext()->getBaseUrl();
         $url .= $this->getComponent()->getRouter()->assemble($routeName, $routeParams);
 
+        if ($postfix = $this->getUrlManager()->getSiteUrlPostfix()) {
+            $url .= '.' . $postfix;
+        }
+
         return $url;
     }
 

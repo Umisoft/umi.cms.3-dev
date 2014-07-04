@@ -62,7 +62,8 @@ return [
                 'type' => 'ProjectHostRoute',
                 'defaults' => [
                     'prefix' => '/twig/en',
-                    'locale' => 'en-US'
+                    'locale' => 'en-US',
+                    'postfix' => 'html'
                 ]
             ],
 
@@ -94,7 +95,8 @@ return [
             'default' => [
                 'type' => 'ProjectHostRoute',
                 'defaults' => [
-                    'locale' => 'ru-RU'
+                    'locale' => 'ru-RU',
+                    'postfix' => 'html'
                 ]
             ]
         ],

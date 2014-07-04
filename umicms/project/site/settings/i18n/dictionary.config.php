@@ -6,8 +6,6 @@ return [
     'en-US' => [
         'component:site:displayName' => 'Site settings',
 
-        SiteApplication::SETTING_URL_POSTFIX => 'URL postfix',
-
         SiteApplication::SETTING_DEFAULT_DESCRIPTION => 'Default meta description tag',
         SiteApplication::SETTING_DEFAULT_KEYWORDS => 'Default meta keywords tag',
         SiteApplication::SETTING_DEFAULT_TITLE => 'Default title tag',
@@ -27,8 +25,6 @@ return [
     'ru-RU' => [
 
         'component:site:displayName' => 'Настройки сайта',
-
-        SiteApplication::SETTING_URL_POSTFIX => 'Постфикс для URL',
 
         SiteApplication::SETTING_DEFAULT_DESCRIPTION => 'Значение для атрибута description метатега <meta> по умолчанию',
         SiteApplication::SETTING_DEFAULT_KEYWORDS => 'Значение для атрибута keywords метатега <meta> по умолчанию',
