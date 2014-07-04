@@ -11,7 +11,6 @@
 use umi\filter\IFilterFactory;
 use umi\form\element\Text;
 use umicms\project\site\SiteApplication;
-use umicms\filter\HtmlPurifier;
 
 return [
     'options' => [
