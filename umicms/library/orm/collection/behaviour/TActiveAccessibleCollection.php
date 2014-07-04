@@ -49,6 +49,10 @@ trait TActiveAccessibleCollection
      */
     public function activate(IActiveAccessibleObject $object)
     {
+        if ($object->active) {
+            return $this;
+        }
+
         if ($object instanceof CmsHierarchicObject && $this instanceof CmsHierarchicCollection) {
             $ancestry = $this->selectAncestry($object);
             /**
@@ -69,6 +73,10 @@ trait TActiveAccessibleCollection
      */
     public function deactivate(IActiveAccessibleObject $object)
     {
+        if (!$object->active) {
+            return $this;
+        }
+
         if ($object instanceof CmsHierarchicObject && $this instanceof CmsHierarchicCollection) {
             $descendants = $this->selectDescendants($object);
             foreach($descendants as $descendant) {

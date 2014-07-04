@@ -10,6 +10,7 @@
 
 namespace umicms\project\site;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\project\site\controller\SiteRestWidgetController;
 use umicms\serialization\ISerializerFactory;
@@ -19,18 +20,29 @@ return [
 
     SiteApplication::OPTION_SERIALIZERS => [
         ISerializerFactory::TYPE_XML => [
-            'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\object\CmsObjectSerializer',
-            'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\object\CmsElementSerializer',
-            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\object\FieldSerializer',
-            'umicms\hmvc\view\CmsLayoutView' => 'umicms\serialization\xml\view\CmsLayoutViewSerializer',
+            'umi\orm\metadata\ObjectType' => 'umicms\serialization\xml\orm\ObjectTypeSerializer',
+            'umi\orm\metadata\field\BaseField' => 'umicms\serialization\xml\orm\FieldSerializer',
+            'umicms\orm\object\CmsObject' => 'umicms\serialization\xml\orm\CmsObjectSerializer',
+            'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\xml\orm\CmsObjectSerializer',
+            'umi\orm\selector\Selector' => 'umicms\serialization\xml\orm\SelectorSerializer',
             'umicms\hmvc\view\CmsView' => 'umicms\serialization\xml\view\CmsViewSerializer',
+            'umicms\hmvc\view\CmsTreeView' => 'umicms\serialization\xml\view\CmsTreeViewSerializer',
+            'umicms\hmvc\view\CmsTreeNode' => 'umicms\serialization\xml\view\CmsTreeNodeSerializer',
+            'umicms\hmvc\view\LocalesView' => 'umicms\serialization\xml\view\LocalesViewSerializer',
+            'umi\form\EntityAttributesView' => 'umicms\serialization\xml\view\EntityAttributesViewSerializer',
+            'umicms\project\module\structure\model\object\MenuItem' => 'umicms\serialization\xml\orm\MenuItemSerializer',
         ],
         ISerializerFactory::TYPE_JSON => [
             'umi\orm\metadata\ObjectType' => 'umicms\serialization\json\orm\ObjectTypeSerializer',
             'umi\orm\metadata\field\BaseField' => 'umicms\serialization\json\orm\FieldSerializer',
             'umicms\orm\object\CmsObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
             'umicms\orm\object\CmsHierarchicObject' => 'umicms\serialization\json\orm\CmsObjectSerializer',
-            'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer'
+            'umi\orm\selector\Selector' => 'umicms\serialization\json\orm\SelectorSerializer',
+            'umicms\hmvc\view\CmsView' => 'umicms\serialization\json\view\CmsViewSerializer',
+            'umicms\hmvc\view\CmsTreeView' => 'umicms\serialization\json\view\CmsTreeViewSerializer',
+            'umicms\hmvc\view\CmsTreeNode' => 'umicms\serialization\json\view\CmsTreeNodeSerializer',
+            'umi\form\EntityAttributesView' => 'umicms\serialization\json\view\EntityAttributesViewSerializer',
+            'umicms\project\module\structure\model\object\MenuItem' => 'umicms\serialization\xml\json\MenuItemSerializer',
         ]
     ],
 
@@ -58,6 +70,21 @@ return [
 
     SiteApplication::OPTION_VIEW        => [
         'directories' => ['.']
+    ],
+
+    SiteApplication::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'viewer' => [],
+            'widgetExecutor' => []
+        ],
+        IAclFactory::OPTION_RULES => [
+            'viewer' => [
+                'controller:captcha' => []
+            ],
+            'widgetExecutor' => [
+                'controller:widget' => []
+            ]
+        ]
     ],
 
     SiteApplication::OPTION_ROUTES => [

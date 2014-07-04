@@ -26,27 +26,17 @@ return [
         'link' => __NAMESPACE__ . '\widget\LinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
-        IAclFactory::OPTION_ROLES => [
-            'author' => [],
-            'moderator' => []
-        ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
-            'author' => [
+            'viewer' => [
                 'widget:post' => [],
                 'widget:list' => [],
                 'widget:link' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
-            ],
-            'moderator' => [
-                'widget:post' => [],
-                'widget:list' => [],
-                'widget:link' => [],
-                'model:blogPost' => []
             ]
         ]
     ],

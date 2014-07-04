@@ -65,5 +65,11 @@ interface ICmsPage extends ICmsObject, IRecoverableObject, IRecyclableObject, IA
      */
     public function getPageUrl($isAbsolute = false);
 
+    /**
+     * Возвращает значение для H1, взятое из соответсвующего свойства, или из displayName, если H1 не заполнен.
+     * @return string
+     */
+    public function getHeader();
+
 }
  
