@@ -13,13 +13,17 @@ return [
     'en-US' => [
         'component:infoblock:displayName' => 'Info blocks',
 
-        'action:create:infoblock' => 'Create info block'
+        'action:create:infoblock' => 'Create info block',
+
+        'role:editor:displayName' => 'Managing information block'
     ],
 
     'ru-RU' => [
         'component:infoblock:displayName' => 'Информационные блоки',
 
-        'action:create:infoblock' => 'Добавить информационный блок'
+        'action:create:infoblock' => 'Добавить информационный блок',
+
+        'role:editor:displayName' => 'Управление информационными блоками'
     ]
 
 ];

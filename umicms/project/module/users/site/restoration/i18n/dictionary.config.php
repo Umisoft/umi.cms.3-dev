@@ -22,7 +22,10 @@ return [
         'There has been a request to reset the password on your {site} account. To do this please click the link below' =>
             'There has been a request to reset the password on your {site} account. To do this please click the link below',
         'If you did nоt request to reset your password please ignore this message' =>
-            'If you did nоt request to reset your password please ignore this message'
+            'If you did nоt request to reset your password please ignore this message',
+
+        'role:viewer:displayName' => 'Restoration password',
+        'role:confirmationExecutor:displayName' => 'Confirmation restoration'
     ],
 
     'ru-RU' => [
@@ -37,7 +40,10 @@ return [
         'There has been a request to reset the password on your {site} account. To do this please click the link below' =>
             'Для Вашего аккаунта на {site} был сделан запрос на смену пароля. Чтобы сменить пароль перейдите по ссылке ниже',
         'If you did nоt request to reset your password please ignore this message' =>
-            'Если Вы не запрашивали смену пароля, просто проигнорируете данное письмо '
+            'Если Вы не запрашивали смену пароля, просто проигнорируете данное письмо ',
+
+        'role:viewer:displayName' => 'Восстановление пароля',
+        'role:confirmationExecutor:displayName' => 'Подтверждение восстановления пароля'
     ]
 
 ];

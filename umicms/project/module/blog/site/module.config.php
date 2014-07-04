@@ -28,6 +28,6 @@ return [
     ],
 
     SiteGroupComponent::OPTION_VIEW => [
-        'directories' => ['module/blog'],
+        'directories' => ['module/blog']
     ]
 ];

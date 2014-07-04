@@ -14,14 +14,18 @@ return [
         'Change password' => 'Change password',
         'New password' => 'New password',
         'Wrong password.' => 'Wrong password.',
-        'You have successfully changed your password' => 'You have successfully changed your password'
+        'You have successfully changed your password' => 'You have successfully changed your password',
+
+        'role:viewer:displayName' => 'Change password'
     ],
 
     'ru-RU' => [
         'Change password' => 'Сменить пароль',
         'New password' => 'Новый пароль',
         'Wrong password.' => 'Неверный пароль.',
-        'You have successfully changed your password' => 'Вы успешно сменили пароль'
+        'You have successfully changed your password' => 'Вы успешно сменили пароль',
+
+        'role:viewer:displayName' => 'Смена пароля'
     ]
 
 ];

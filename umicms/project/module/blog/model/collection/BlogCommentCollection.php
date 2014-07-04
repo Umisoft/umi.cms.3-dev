@@ -10,7 +10,6 @@
 
 namespace umicms\project\module\blog\model\collection;
 
-use umi\acl\IAclResource;
 use umi\i18n\ILocalesService;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IHierarchicObject;
@@ -28,7 +27,7 @@ use umicms\project\module\blog\model\object\BlogComment;
  * @method BlogComment getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает комментарий блога по его id
  * @method BlogComment add($slug, $typeName = IObjectType::BASE, IHierarchicObject $branch = null) Создает и возвращает комментарий блога
  */
-class BlogCommentCollection extends CmsHierarchicCollection implements IActiveAccessibleCollection, IAclResource
+class BlogCommentCollection extends CmsHierarchicCollection implements IActiveAccessibleCollection
 {
     use TActiveAccessibleCollection;
 
