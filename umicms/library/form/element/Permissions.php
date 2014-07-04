@@ -99,6 +99,10 @@ class Permissions extends BaseFormElement
         $childComponentNames = $component->getChildComponentNames();
 
         $resourceInfo = [
+            'label' =>
+                $this->translator->translate(
+                    $component->getDictionariesNames(), 'component:' . $component->getName() . ':displayName'
+                ),
             'path' => $component->getPath(),
             'roles' => [],
         ];

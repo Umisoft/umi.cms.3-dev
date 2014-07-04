@@ -11,8 +11,6 @@
 namespace umicms\project\module\blog\model\object;
 
 use DateTime;
-use umi\acl\IAclAssertionResolver;
-use umi\acl\IAclResource;
 use umi\hmvc\acl\ComponentRoleProvider;
 use umi\orm\collection\ICollection;
 use umi\orm\metadata\IObjectType;
@@ -40,7 +38,7 @@ use umicms\project\module\users\model\UsersModule;
  * @property string $oldUrl старый URL поста
  * @property string $source источник поста
  */
-class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertionResolver
+class BlogPost extends CmsObject implements ICmsPage
 {
     use TCmsPage;
 
