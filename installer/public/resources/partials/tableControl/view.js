@@ -257,7 +257,21 @@ define(['App', 'toolbar'], function(UMI){
             rowView: Ember.View.extend({
                 tagName: 'tr',
                 classNames: ['umi-table-control-content-row'],
-                classNameBindings: ['object.type', 'object.active::umi-inactive'],
+                classNameBindings: ['object.type', 'isActive::umi-inactive'],
+                isActive: function(){
+                    var object = this.get('object');
+                    var hasActiveProperty  = false;
+                    object.eachAttribute(function(name){
+                        if(name === 'active'){
+                            hasActiveProperty = true;
+                        }
+                    });
+                    if(hasActiveProperty){
+                        return object.get('active');
+                    } else{
+                        return true;
+                    }
+                }.property('object.active'),
                 attributeBindings: ['objectId'],
                 objectIdBinding: 'object.id',
                 click: function(){
