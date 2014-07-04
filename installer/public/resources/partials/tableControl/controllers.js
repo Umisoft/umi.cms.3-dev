@@ -122,14 +122,27 @@ define(['App'], function(UMI){
              */
             filters: function(){
                 var filters = {};
-                var filterParams = this.get('filterParams');
+                var filterParams = this.get('filterParams') || {};
                 for(var filter in filterParams){
-                    if(filter === 'parent'){
-                        filters[filter] = filterParams[filter] !== 'root' ? 'equals(' + this.get('model.object.id') + ')' : 'null()';
+                    if(filterParams.hasOwnProperty(filter)){
+                        if(Ember.typeOf(filterParams[filter]) === 'string' && !filterParams[filter].length){
+                            delete filters[filter];
+                        } else{
+                            filters[filter] = 'like(' + filterParams[filter] + '%)';
+                        }
                     }
                 }
                 return filters;
-            }.property('filterParams'),
+            }.property('filterParams.@each'),
+
+            setFilters: function(property, value){
+                this.propertyWillChange('filterParams');
+                this.set('filterParams', null);
+                var filterParams = {};
+                filterParams[property] = value;
+                this.set('filterParams', filterParams);
+                this.propertyDidChange('filterParams');
+            },
 
             /**
              * Вычисляемое свойство параметров запроса коллекции
@@ -174,10 +187,6 @@ define(['App'], function(UMI){
                 // Вычисляем фильтр в зависимости от типа коллекции
                 var collectionName = this.get('controllers.component.collectionName');
                 var metaForCollection = store.metadataFor(collectionName);
-                var contextFilter = {};// TODO: Убрать в условии значение filter
-                if(metaForCollection && metaForCollection.collectionType === 'hierarchic' && this.get('container').lookup('route:action').get('context.action').name !== 'filter'){
-                    contextFilter.parent = this.get('model.object.id');
-                }
 
                 //TODO: check user configurations
                 var modelForCollection = store.modelFor(collectionName);
@@ -233,15 +242,13 @@ define(['App'], function(UMI){
                 });
                 // Сбрасываем параметры запроса, не вызывая обсервер query
                 this.set('withoutChangeQuery', true);
-                this.setProperties({nativeFieldsList: nativeFieldsList, relatedFieldsList: relatedFieldsList, offset: 0, orderByProperty: null, total: 0, filterParams: contextFilter});
+                this.setProperties({nativeFieldsList: nativeFieldsList, relatedFieldsList: relatedFieldsList, offset: 0, orderByProperty: null, total: 0});
                 this.set('withoutChangeQuery', false);
 
                 this.getObjects();
                 Ember.run.next(this, function(){
                     var self = this;
                     this.get('objects.content').then(function(){
-                        var collectionName = self.get('controllers.component.collectionName');
-                        var metaForCollection = self.get('store').metadataFor(collectionName);
                         self.set('total', metaForCollection.total);
                     });
                 });

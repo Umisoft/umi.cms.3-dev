@@ -280,12 +280,51 @@ define(['App', 'toolbar'], function(UMI){
                         return true;
                     }
                 }.property('object.active'),
+
                 attributeBindings: ['objectId'],
+
                 objectIdBinding: 'object.id',
+
                 click: function(){
                     if(this.get('object.meta.editLink')){
                         this.get('controller').transitionToRoute(this.get('object.meta.editLink').replace('/admin', ''));//TODO: fix replace
                     }
+                }
+            }),
+
+            filterRowView: Ember.View.extend({
+                filterType: null,
+                template: function(){
+                    var column = this.get('column');
+                    var template = '';
+                    switch(Ember.get(column, 'attributes.type')){
+                        case 'text':
+                            this.set('filterType', 'text');
+                            template = '<input type="text" class="table-control-filter-input"/>';
+                            break;
+                    }
+                    return Ember.Handlebars.compile(template);
+                }.property('column'),
+                didInsertElement: function(){
+                    var self = this;
+                    var $el = this.$();
+                    var $input = $el.children('input');
+                    var filterType = this.get('filterType');
+                    $input.on('focus', function(){
+                        $(this).closest('.umi-table-control-row').find('.table-control-filter-input').val('');
+                    });
+                    switch(filterType){
+                        case 'text':
+                            $input.on('keypress.umi.tableControl.filters', function(event){
+                               if(event.keyCode === 13){
+                                   self.setFilter(this.value);
+                               }
+                           });
+                            break;
+                    }
+                },
+                setFilter: function(value){
+                    this.get('controller').setFilters(this.get('column.dataSource'), value);
                 }
             })
         });

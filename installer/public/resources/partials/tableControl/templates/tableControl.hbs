@@ -41,7 +41,7 @@
                     {{#each column in content.viewSettings.form.elements}}
                         <td class="umi-table-control-header-column">
                             <div class="umi-table-control-header-cell filter column-id-{{filterClassName column.attributes.name}}">
-                                <input type="text" />
+                                {{view view.filterRowView column=column}}
                                 {{#view view.sortHandlerView propertyName=column.attributes.name}}
                                     <i {{bind-attr class=":icon :black view.sortAscending:icon-bottom-thin:icon-top-thin"}}></i>
                                 {{/view}}
