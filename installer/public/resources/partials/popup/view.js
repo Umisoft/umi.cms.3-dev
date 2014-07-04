@@ -83,7 +83,12 @@ define(['App'], function(UMI){
             },
 
             fadeIn: function(){
+                var self = this;
                 $('body').append('<div class="umi-popup-visible-overlay"></div>');
+                $('body').on('click.umi.popup', '.umi-popup-visible-overlay', function(){
+                    self.send('closePopup');
+                    $('body').off('click.umi.popup');
+                });
             },
 
             addBlur: function(){
