@@ -42,8 +42,8 @@ return [
     ],
 
     BlogPostCollection::DEFAULT_TABLE_FILTER_FIELDS => [
-        BlogPost::FIELD_CATEGORY . '.' . BlogCategory::FIELD_DISPLAY_NAME=> [],
-        BlogPost::FIELD_AUTHOR . '.' . BlogAuthor::FIELD_DISPLAY_NAME => [],
+        BlogPost::FIELD_CATEGORY => [],
+        BlogPost::FIELD_AUTHOR => [],
         BlogPost::FIELD_PUBLISH_TIME => [],
         BlogPost::FIELD_PUBLISH_STATUS => []
     ]

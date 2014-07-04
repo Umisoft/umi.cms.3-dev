@@ -31,7 +31,7 @@ return [
     ],
 
     BlogRssImportScenarioCollection::DEFAULT_TABLE_FILTER_FIELDS => [
-        BlogRssImportScenario::FIELD_CATEGORY . '.' . BlogCategory::FIELD_DISPLAY_NAME => [],
+        BlogRssImportScenario::FIELD_CATEGORY => [],
         BlogRssImportScenario::FIELD_RSS_URL => []
     ]
 ];

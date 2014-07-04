@@ -11,7 +11,6 @@
 use umi\orm\collection\ICollectionFactory;
 use umicms\project\module\news\model\collection\NewsItemCollection;
 use umicms\project\module\news\model\object\NewsItem;
-use umicms\project\module\news\model\object\NewsRubric;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -31,7 +30,7 @@ return [
     ],
 
     NewsItemCollection::DEFAULT_TABLE_FILTER_FIELDS => [
-        NewsItem::FIELD_RUBRIC . '.' . NewsRubric::FIELD_DISPLAY_NAME => [],
+        NewsItem::FIELD_RUBRIC => [],
         NewsItem::FIELD_DATE => []
     ]
 ];

@@ -10,7 +10,6 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umicms\project\module\blog\model\collection\BlogCommentCollection;
-use umicms\project\module\blog\model\object\BlogAuthor;
 use umicms\project\module\blog\model\object\BlogBranchComment;
 use umicms\project\module\blog\model\object\BlogComment;
 
@@ -37,7 +36,7 @@ return [
         'collection.blogComment', 'collection'
     ],
     BlogCommentCollection::DEFAULT_TABLE_FILTER_FIELDS => [
-        BlogComment::FIELD_AUTHOR . '.' . BlogAuthor::FIELD_DISPLAY_NAME => [],
+        BlogComment::FIELD_AUTHOR => [],
         BlogComment::FIELD_PUBLISH_TIME => [],
         BlogComment::FIELD_PUBLISH_STATUS => []
     ]

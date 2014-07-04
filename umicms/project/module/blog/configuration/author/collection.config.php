@@ -11,7 +11,6 @@
 use umi\orm\collection\ICollectionFactory;
 use umicms\project\module\blog\model\collection\BlogAuthorCollection;
 use umicms\project\module\blog\model\object\BlogAuthor;
-use umicms\project\module\users\model\object\AuthorizedUser;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -31,6 +30,6 @@ return [
         'collection.blogAuthor', 'collection'
     ],
     BlogAuthorCollection::DEFAULT_TABLE_FILTER_FIELDS => [
-        BlogAuthor::FIELD_PROFILE . '.' . AuthorizedUser::FIELD_DISPLAY_NAME => []
+        BlogAuthor::FIELD_PROFILE => []
     ]
 ];
