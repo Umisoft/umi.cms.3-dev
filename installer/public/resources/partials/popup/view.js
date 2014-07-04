@@ -37,7 +37,7 @@ define(['App'], function(UMI){
             height: 400,
             contentOverflow: ['overflow', 'hidden'],
             blur: false,
-            fade: false,
+            fade: true,
             drag: true,
             resize: true,
             layoutName: 'popup',
