@@ -336,15 +336,19 @@ define(['App', 'toolbar'], function(UMI){
                             break;
                         default:
                             properties = column.dataSource.split('.');
-                            if(properties.length > 1 && this.checkRelation(properties[0])){
-                                value = object.get(properties[0]);
-                                if(Ember.typeOf(value) === 'instance'){
-                                    value.then(function(object){
-                                        value = object.get(properties[1]);
-                                        value = propertyHtmlEncode(value);
-                                        self.set('promiseProperty', value);
-                                    });
-                                    template = '{{view.promiseProperty}}';
+                            if(this.checkRelation(properties[0])){
+                                if(properties.length > 1){
+                                    value = object.get(properties[0]);
+                                    if(Ember.typeOf(value) === 'instance'){
+                                        value.then(function(object){
+                                            value = object.get(properties[1]);
+                                            value = propertyHtmlEncode(value);
+                                            self.set('promiseProperty', value);
+                                        });
+                                        template = '{{view.promiseProperty}}';
+                                    }
+                                } else{
+                                    template = '{{view.object.' + column.dataSource + '.displayName}}';
                                 }
                             } else{
                                 value = object.get(column.dataSource);

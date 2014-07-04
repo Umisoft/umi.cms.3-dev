@@ -211,8 +211,6 @@ define(['App'], function(UMI){
                             relatedModelDataSource = fieldsList[i].dataSource;
                             if(relatedModelDataSource === name){
                                 relatedFieldsList[name] = relatedFieldsList[name] || [];
-                                fieldsList.splice(i, 1);
-                                --i;
                             } else if(relatedModelDataSource.indexOf(name + '.', 0) === 0){
                                 relatedFieldsList[name] = relatedFieldsList[name] || [];
                                 relatedFieldsList[name].push(relatedModelDataSource.slice(name.length + 1));
