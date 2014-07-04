@@ -108,6 +108,8 @@ class ActionController extends BaseController implements IFormAware
             $fieldName = $field->getName();
             $label = $this->translator->translate($collection->getDictionaryNames(), $fieldName);
 
+            $elements[] = $this->buildFormElement($field, $collection, $fieldName, $fieldName, $label);
+
 
             if ($field instanceof BelongsToRelationField) {
                 /**
@@ -133,8 +135,6 @@ class ActionController extends BaseController implements IFormAware
                     );
                 }
 
-            } else {
-                $elements[] = $this->buildFormElement($field, $collection, $fieldName, $fieldName, $label);
             }
         }
 

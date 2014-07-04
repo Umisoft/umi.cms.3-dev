@@ -234,7 +234,7 @@ trait TCmsCollection
         ];
         if ($this instanceof ICmsPageCollection) {
             $defaultFieldNames[] = ICmsPage::FIELD_PAGE_H1;
-            $defaultFieldNames[] = ICmsPage::FIELD_PAGE_LAYOUT . '.' . ICmsObject::FIELD_DISPLAY_NAME;
+            $defaultFieldNames[] = ICmsPage::FIELD_PAGE_LAYOUT;
             $defaultFieldNames[] = ICmsPage::FIELD_PAGE_SLUG;
         }
 

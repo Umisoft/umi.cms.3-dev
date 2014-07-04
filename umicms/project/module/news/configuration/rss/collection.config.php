@@ -11,7 +11,6 @@
 use umi\orm\collection\ICollectionFactory;
 use umicms\project\module\news\model\collection\NewsRssImportScenarioCollection;
 use umicms\project\module\news\model\object\NewsRssImportScenario;
-use umicms\project\module\news\model\object\NewsRubric;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -31,7 +30,7 @@ return [
     ],
 
     NewsRssImportScenarioCollection::DEFAULT_TABLE_FILTER_FIELDS => [
-        NewsRssImportScenario::FIELD_RUBRIC . '.' . NewsRubric::FIELD_DISPLAY_NAME => [],
+        NewsRssImportScenario::FIELD_RUBRIC => [],
         NewsRssImportScenario::FIELD_RSS_URL => []
     ]
 ];
