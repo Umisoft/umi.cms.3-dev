@@ -13,7 +13,7 @@ return [
     'en-US' => [
         'action:create:base' => 'Create author',
 
-        'role:editor:displayName' => 'Managing authors'
+        'role:editor:displayName' => 'Manage authors'
     ],
 
     'ru-RU' => [

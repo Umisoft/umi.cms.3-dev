@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'View profile author'
+        'role:viewer:displayName' => 'View author\'s profile'
     ],
 
     'ru-RU' => [

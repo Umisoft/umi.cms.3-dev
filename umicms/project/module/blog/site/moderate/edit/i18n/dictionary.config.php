@@ -12,7 +12,7 @@ return [
 
     'en-US' => [
         'role:author:displayName' => 'Edit own posts',
-        'role:moderator:displayName' => 'Moderating',
+        'role:moderator:displayName' => 'Edit all posts',
     ],
 
     'ru-RU' => [

@@ -14,8 +14,8 @@ return [
         'Publish' => 'Publish',
         'Reject' => 'Reject',
 
-        'role:moderator:displayName' => 'Moderating',
-        'role:viewer:displayName' => 'Viewer comments',
+        'role:moderator:displayName' => 'Moderate comments',
+        'role:viewer:displayName' => 'View comments',
         'role:addExecutor:displayName' => 'Сommentation'
     ],
 

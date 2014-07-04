@@ -13,7 +13,7 @@ return [
     'en-US' => [
         'component:files:displayName' => 'File system',
 
-        'role:managerExecutor:displayName' => 'Managing files'
+        'role:managerExecutor:displayName' => 'Manage files'
     ],
 
     'ru-RU' => [

@@ -12,7 +12,7 @@ return [
 
     'en-US' => [
         'component:site:displayName' => 'Site',
-        'role:structureExecutor:displayName' => 'Structure site',
+        'role:structureExecutor:displayName' => 'Site structure',
         'role:newsExecutor:displayName' => 'News',
         'role:blogExecutor:displayName' => 'Blog',
         'role:searchExecutor:displayName' => 'Search',
