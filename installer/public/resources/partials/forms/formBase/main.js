@@ -205,7 +205,10 @@ define(
                             handler.addClass('loading');
                         }
                         var data = this.$().serialize();
-                        $.post(self.get('action'), data).then(function(){
+                        $.post(self.get('action'), data).then(function(results){
+                            var meta = Ember.get(results, 'result.save');
+                            var context = self.get('context');
+                            Ember.set(context, 'control.meta', meta);
                             handler.removeClass('loading');
                             var params = {type: 'success', 'content': 'Сохранено.'};
                             UMI.notification.create(params);
