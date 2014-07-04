@@ -29,12 +29,12 @@ define(['App'], function(UMI){
             },
 
             /**
-             * метод получает данные учитывая query параметры
+             * метод получает данные учитывая queryParams параметры
              * @method getObjects
              */
             getObjects: function(){
                 var self = this;
-                var query = this.get('query');
+                var query = this.get('query') || {};
                 var collectionName = self.get('controllers.component.collectionName');
                 var objects = self.store.find(collectionName, query);
                 var orderByProperty = this.get('orderByProperty');
@@ -90,10 +90,10 @@ define(['App'], function(UMI){
              * @property fields
              */
             nativeFields: function(){
-                var fieldsList = this.get('fieldsList');
-                if(Ember.typeOf(fieldsList) === 'array' && fieldsList.length){
-                    fieldsList = fieldsList.join(',');
-                    return fieldsList;
+                var nativeFieldsList = this.get('nativeFieldsList');
+                if(Ember.typeOf(nativeFieldsList) === 'array' && nativeFieldsList.length){
+                    nativeFieldsList = nativeFieldsList.join(',');
+                    return nativeFieldsList;
                 }
             }.property('nativeFieldsList'),
             /**
@@ -162,7 +162,7 @@ define(['App'], function(UMI){
                     query.orderBy = order;
                 }
                 return query;
-            }.property('limit', 'filters', 'offset', 'order', 'nativeFields'),
+            }.property('limit', 'filters', 'offset', 'order', 'nativeFields', 'relatedFields'),
 
             /**
              * Метод вызывается при смене контекста (компонента).
@@ -185,7 +185,7 @@ define(['App'], function(UMI){
                 var defaultFields = this.get('viewSettings.defaultFields') || [];
                 var i;
                 for(i = 0; i < fieldsList.length; i++){
-                    if(!defaultFields.contains(fieldsList[i].id)){
+                    if(!defaultFields.contains(fieldsList[i].dataSource)){
                         fieldsList.splice(i, 1);
                         --i;
                     }
@@ -193,24 +193,31 @@ define(['App'], function(UMI){
 
                 var nativeFieldsList = [];
                 var relatedFieldsList = {};
+
+                modelForCollection.eachAttribute(function(name){
+                    var selfProperty = fieldsList.findBy('dataSource', name);
+                    if(selfProperty){
+                        nativeFieldsList.push(selfProperty.dataSource);
+                    } else if(name === 'active'){
+                        nativeFieldsList.push('active');
+                    }
+                });
+
                 modelForCollection.eachRelationship(function(name, relatedModel){
                     var i;
-                    var relatedModelFields = {};
-                    relatedModelFields = [];
                     var relatedModelDataSource;
-                    if(relatedModel.kind === 'belongsTo' && fieldsList.findBy('dataSource', name)){
+                    if(relatedModel.kind === 'belongsTo'){
                         for(i = 0; i < fieldsList.length; i++){
                             relatedModelDataSource = fieldsList[i].dataSource;
                             if(relatedModelDataSource === name){
+                                relatedFieldsList[name] = relatedFieldsList[name] || [];
                                 fieldsList.splice(i, 1);
                                 --i;
                             } else if(relatedModelDataSource.indexOf(name + '.', 0) === 0){
-                                relatedModelFields.push(relatedModelDataSource.slice(name.length + 1));
-                                //fieldsList.splice(i, 1);
-                                //--i;
+                                relatedFieldsList[name] = relatedFieldsList[name] || [];
+                                relatedFieldsList[name].push(relatedModelDataSource.slice(name.length + 1));
                             }
                         }
-                        relatedFieldsList[name] = relatedModelFields.join(',');
                     } else if(relatedModel.kind === 'hasMany' || relatedModel.kind === 'manyToMany'){
                         for(i = 0; i < fieldsList.length; i++){
                             relatedModelDataSource = fieldsList[i].dataSource;
@@ -221,10 +228,11 @@ define(['App'], function(UMI){
                         }
                         //Ember.assert('Поля с типом hasMany и manyToMany недопустимы в фильтре.'); TODO: uncomment
                     }
+
+                    if(relatedFieldsList[name]){
+                        relatedFieldsList[name] = relatedFieldsList[name].join(',');
+                    }
                 });
-
-                nativeFieldsList = fieldsList.mapBy('dataSource') || [];
-
                 // Сбрасываем параметры запроса, не вызывая обсервер query
                 this.set('withoutChangeQuery', true);
                 this.setProperties({nativeFieldsList: nativeFieldsList, relatedFieldsList: relatedFieldsList, offset: 0, orderByProperty: null, total: 0, filterParams: contextFilter});

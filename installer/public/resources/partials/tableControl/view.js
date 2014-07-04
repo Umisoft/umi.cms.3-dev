@@ -165,6 +165,8 @@ define(['App', 'toolbar'], function(UMI){
                 $(window).off('.umi.tableControl');
                 // Удаляем Observes для контоллера
                 this.get('controller').removeObserver('content.object.id');
+                this.get('controller').removeObserver('query');
+                this.get('controller').removeObserver('objects.@each.isDeleted');
             },
 
             paginationView: Ember.View.extend({
