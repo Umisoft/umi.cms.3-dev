@@ -4336,7 +4336,7 @@ ul.umi-search-result {
     background: #F5F6F7; }
 
 .umi-table-control-header-center {
-  padding: 0 82px 0 32px; }
+  padding: 0 82px 0 0; }
   .umi-table-control-header-center .umi-table-control-header {
     table-layout: fixed;
     border: 0;
@@ -4523,7 +4523,7 @@ ul.umi-search-result {
     border-bottom: 0;
     padding: 0; }
   .umi-table-control-content-wrapper .s-scroll-wrap {
-    margin: 0 82px 0 32px; }
+    margin: 0 82px 0 0; }
 
 .umi-table-control-cell-drop-size {
   height: 0;

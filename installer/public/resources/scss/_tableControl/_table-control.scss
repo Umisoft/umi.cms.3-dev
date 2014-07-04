@@ -30,7 +30,7 @@ $table-control-row-bg-hover: #C8DEEE;
 }
 
 .umi-table-control-header-center{
-    padding: 0 82px 0 $table-control-left-column-width;
+    padding: 0 82px 0 0;
 
     .umi-table-control-header{
         table-layout: fixed;
@@ -261,7 +261,7 @@ $table-control-row-bg-hover: #C8DEEE;
         padding: 0;
     }
     .s-scroll-wrap{
-        margin: 0 82px 0 32px;
+        margin: 0 82px 0 0;
     }
 }
 

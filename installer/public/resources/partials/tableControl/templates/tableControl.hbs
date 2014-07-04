@@ -20,14 +20,6 @@
 {{/view}}
 
 <div class="umi-table-control-header s-unselectable">
-
-    <div class="umi-table-control-header-fixed-left">
-        <div class="umi-table-control-header-cell">
-            <input type="checkbox" id="checkbox-checkall" class="s-margin-clear"/>
-            <label for="checkbox-checkall"><span></span></label>
-        </div>
-        <div class="umi-table-control-control-cell-empty"></div>
-    </div>
     <div class="umi-table-control-header-center">
         <table class="umi-table-control-header">
             <tbody>
@@ -111,15 +103,6 @@
             {{/if}}
             </tbody>
         </table>
-    </div>
-    <!-- Колонка слева от контента -->
-    <div class="umi-table-control-content-fixed-left">
-        {{#each object in objects}}
-            <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
-                <input type="checkbox" id="checkbox-{{unbound object.id}}" class="s-margin-clear"/>
-                <label for="checkbox-{{unbound object.id}}"><span></span></label>
-            </div>
-        {{/each}}
     </div>
 
     <!-- Колонка справа от контента -->

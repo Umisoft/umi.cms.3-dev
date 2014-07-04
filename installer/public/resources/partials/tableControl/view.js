@@ -32,11 +32,11 @@ define(['App', 'toolbar'], function(UMI){
                 var scrollUpdate = function(){
                     Ember.run.scheduleOnce('afterRender', self, function(){
                         // Элементы позицию которых необходимо изменять при прокрутке/ресайзе таблицы
-                        var umiTableLeft = tableControl.find('.umi-table-control-content-fixed-left')[0];
+                        //var umiTableLeft = tableControl.find('.umi-table-control-content-fixed-left')[0];
                         var umiTableRight = tableControl.find('.umi-table-control-content-fixed-right')[0];
                         var umiTableHeader = tableControl.find('.umi-table-control-header-center')[0];
                         iScroll.refresh();
-                        umiTableLeft.style.marginTop = 0;
+                        //umiTableLeft.style.marginTop = 0;
                         umiTableRight.style.marginTop = 0;
                         umiTableHeader.style.marginLeft = 0;
                     });
@@ -59,7 +59,7 @@ define(['App', 'toolbar'], function(UMI){
                 var objects = this.get('controller.objects.content');
 
                 // Элементы позицию которых необходимо изменять при прокрутке/ресайзе таблицы
-                var umiTableLeft = tableControl.find('.umi-table-control-content-fixed-left')[0];
+                //var umiTableLeft = tableControl.find('.umi-table-control-content-fixed-left')[0];
                 var umiTableRight = tableControl.find('.umi-table-control-content-fixed-right')[0];
                 var umiTableHeader = tableControl.find('.umi-table-control-header-center')[0];
 
@@ -78,14 +78,14 @@ define(['App', 'toolbar'], function(UMI){
                             self.set('iScroll', scrollContent);
 
                             scrollContent.on('scroll', function(){
-                                umiTableLeft.style.marginTop = this.y + 'px';
+                                //umiTableLeft.style.marginTop = this.y + 'px';
                                 umiTableRight.style.marginTop = this.y + 'px';
                                 umiTableHeader.style.marginLeft = this.x + 'px';
                             });
 
                             // После ресайза страницы необходимо изменить отступы у элементов  umiTableLeft, umiTableRight, umiTableHeader
                             $(window).on('resize.umi.tableControl', function(){
-                                umiTableLeft.style.marginTop = scrollContent.y + 'px';
+                                //umiTableLeft.style.marginTop = scrollContent.y + 'px';
                                 umiTableRight.style.marginTop = scrollContent.y + 'px';
                                 umiTableHeader.style.marginLeft = scrollContent.x + 'px';
                             });
@@ -129,12 +129,12 @@ define(['App', 'toolbar'], function(UMI){
                                         break;
                                     }
                                 }
-                                var leftElements = umiTableLeft.querySelectorAll('.umi-table-control-column-fixed-cell');
+                                //var leftElements = umiTableLeft.querySelectorAll('.umi-table-control-column-fixed-cell');
                                 var rightElements = umiTableRight.querySelectorAll('.umi-table-control-column-fixed-cell');
                                 if(!isContentRow){
                                     el = tableContent[0].querySelectorAll('.umi-table-control-content-row')[i];
                                 }
-                                return [el, leftElements[i], rightElements[i]];
+                                return [el, rightElements[i]];//[el, leftElements[i], rightElements[i]];
                             };
 
                             tableControl.on('mouseenter.umi.tableControl', '.umi-table-control-content-row, .umi-table-control-column-fixed-cell', function(){
