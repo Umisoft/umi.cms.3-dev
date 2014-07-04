@@ -7,7 +7,7 @@ define(['App'], function(UMI){
 
             objectProperties: function(){
                 var objectProperties = ['displayName', 'order', 'active', 'childCount', 'children', 'parent'] ;
-                var collectionName = this.get('controllers.component.collectionName');
+                var collectionName = this.get('collectionName');
                 var model = this.get('store').modelFor(collectionName);
                 var modelFields = Ember.get(model, 'fields');
                 modelFields = modelFields.keys.list;
