@@ -19,8 +19,11 @@ return [
         SiteApplication::SETTING_TEMPLATE_DIRECTORY => 'Template directory',
         SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => 'Common template directory',
         SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION => 'Default template extension',
-        SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE => 'Default templating engine type'
+        SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE => 'Default templating engine type',
 
+        'role:commonExecutor:displayName' => 'Common',
+        'role:templatingExecutor:displayName' => 'Templating',
+        'role:slugifyExecutor:displayName' => 'Slug formation'
     ],
 
     'ru-RU' => [

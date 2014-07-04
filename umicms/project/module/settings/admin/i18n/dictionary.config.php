@@ -14,8 +14,8 @@ return [
         'component:settings:displayName' => 'Settings',
         'control:settings:toolbar:apply' => 'Apply',
 
-        'role:siteExecutor:displayName' => 'Structure site',
-        'role:formsExecutor:displayName' => 'Forms on site'
+        'role:siteExecutor:displayName' => 'Site structure',
+        'role:formsExecutor:displayName' => 'Site forms'
     ],
 
     'ru-RU' => [

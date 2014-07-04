@@ -15,7 +15,7 @@ return [
 
         'action:create:static' => 'Create subpage',
 
-        'role:editor:displayName' => 'Managing page'
+        'role:editor:displayName' => 'Manage pages'
     ],
 
     'ru-RU' => [

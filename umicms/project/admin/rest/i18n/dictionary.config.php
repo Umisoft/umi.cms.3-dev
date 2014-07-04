@@ -47,7 +47,7 @@ return [
         'role:blogExecutor:displayName' => 'Blog',
         'role:serviceExecutor:displayName' => 'Service',
         'role:filesExecutor:displayName' => 'File manager',
-        'role:modelsExecutor:displayName' => 'Models data',
+        'role:modelsExecutor:displayName' => 'Data models',
         'role:newsExecutor:displayName' => 'News',
         'role:seoExecutor:displayName' => 'SEO',
         'role:searchExecutor:displayName' => 'Search',

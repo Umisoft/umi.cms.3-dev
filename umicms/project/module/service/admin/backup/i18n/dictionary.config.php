@@ -4,7 +4,7 @@ return [
     'en-US' => [
         'component:backup:displayName' => 'Backups',
 
-        'role:editor:displayName' => 'Managing reserving'
+        'role:editor:displayName' => 'Manage reserving'
     ],
 
     'ru-RU' => [

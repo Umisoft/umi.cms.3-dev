@@ -16,7 +16,7 @@ return [
         'action:create:internalItem' => 'Create internal element',
         'action:create:externalItem' => 'Create external element',
 
-        'role:editor:displayName' => 'Managing menu'
+        'role:editor:displayName' => 'Manage menu'
     ],
 
     'ru-RU' => [

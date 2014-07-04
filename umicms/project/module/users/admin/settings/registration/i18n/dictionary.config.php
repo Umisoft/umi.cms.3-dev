@@ -4,7 +4,7 @@ return [
     'en-US' => [
         'component:registration:displayName' => 'Registration',
 
-        'role:configurator:displayName' => 'Managing setting'
+        'role:configurator:displayName' => 'Manage settings'
     ],
 
     'ru-RU' => [
