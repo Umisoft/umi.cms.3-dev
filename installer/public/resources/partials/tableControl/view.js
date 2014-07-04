@@ -35,10 +35,13 @@ define(['App', 'toolbar'], function(UMI){
                         //var umiTableLeft = tableControl.find('.umi-table-control-content-fixed-left')[0];
                         var umiTableRight = tableControl.find('.umi-table-control-content-fixed-right')[0];
                         var umiTableHeader = tableControl.find('.umi-table-control-header-center')[0];
-                        iScroll.refresh();
                         //umiTableLeft.style.marginTop = 0;
                         umiTableRight.style.marginTop = 0;
                         umiTableHeader.style.marginLeft = 0;
+                        setTimeout(function(){
+                            iScroll.refresh();
+                            iScroll.scrollTo(0, 0);
+                        }, 0);
                     });
                 };
 
@@ -85,9 +88,11 @@ define(['App', 'toolbar'], function(UMI){
 
                             // После ресайза страницы необходимо изменить отступы у элементов  umiTableLeft, umiTableRight, umiTableHeader
                             $(window).on('resize.umi.tableControl', function(){
-                                //umiTableLeft.style.marginTop = scrollContent.y + 'px';
-                                umiTableRight.style.marginTop = scrollContent.y + 'px';
-                                umiTableHeader.style.marginLeft = scrollContent.x + 'px';
+                                setTimeout(function(){
+                                    //umiTableLeft.style.marginTop = scrollContent.y + 'px';
+                                    umiTableRight.style.marginTop = scrollContent.y + 'px';
+                                    umiTableHeader.style.marginLeft = scrollContent.x + 'px';
+                                }, 100);// TODO: заменить на событие окончания ресайза iScroll
                             });
 
                             // Событие изменения ширины колонки
@@ -116,6 +121,7 @@ define(['App', 'toolbar'], function(UMI){
                                     $('body').off('mousemove');
                                     $('body').off('mouseup.umi.tableControl');
                                     scrollContent.refresh();
+                                    umiTableHeader.style.marginLeft = scrollContent.x + 'px';
                                 });
                             });
 
