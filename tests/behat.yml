@@ -1,0 +1,27 @@
+
+default:
+
+    suites:
+      admin_features:
+        paths:
+            - %paths.base%/../umicms/project/admin/features
+        contexts:
+              - umicms\project\admin\features\context\AdminContext
+
+      news_features:
+        paths:
+            - %paths.base%/../umicms/project/module/news/features
+        contexts:
+              - umicms\project\module\news\features\context\AdminRubricContext
+
+    extensions:
+        Behat\MinkExtension:
+            base_url: http://localhost:8080
+            browser_name: firefox
+            javascript_session: selenium2
+            selenium2: ~
+
+        SensioLabs\Behat\PageObjectExtension:
+           namespaces:
+               page: ['']
+               element: ['']
