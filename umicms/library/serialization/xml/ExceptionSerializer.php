@@ -24,6 +24,5 @@ class ExceptionSerializer extends BaseSerializer
     {
         $this->writeAttribute('message', $exception->getMessage());
         $this->writeAttribute('code', $exception->getCode());
-
     }
 }

@@ -11,9 +11,10 @@
 namespace umicms\project\module\blog\model\object;
 
 use DateTime;
-use umi\acl\IAclAssertionResolver;
-use umi\acl\IAclResource;
 use umi\hmvc\acl\ComponentRoleProvider;
+use umi\orm\collection\ICollection;
+use umi\orm\metadata\IObjectType;
+use umi\orm\object\property\IPropertyFactory;
 use umi\orm\objectset\IManyToManyObjectSet;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\CmsObject;
@@ -21,6 +22,7 @@ use umicms\orm\object\ICmsPage;
 use umicms\orm\object\TCmsPage;
 use umicms\project\module\blog\model\collection\BlogPostCollection;
 use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\UsersModule;
 
 /**
  * Пост блога.
@@ -36,7 +38,7 @@ use umicms\project\module\users\model\object\AuthorizedUser;
  * @property string $oldUrl старый URL поста
  * @property string $source источник поста
  */
-class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertionResolver
+class BlogPost extends CmsObject implements ICmsPage
 {
     use TCmsPage;
 
@@ -118,6 +120,25 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
     const POST_STATUS_NEED_MODERATE = 'moderate';
 
     /**
+     * @var UsersModule $usersModule модуль "Пользователи"
+     */
+    private $usersModule;
+
+    /**
+     * Конструктор.
+     * @param ICollection $collection
+     * @param IObjectType $objectType
+     * @param IPropertyFactory $propertyFactory
+     * @param UsersModule $usersModule
+     */
+    public function __construct(ICollection $collection, IObjectType $objectType, IPropertyFactory $propertyFactory, UsersModule $usersModule)
+    {
+        parent::__construct($collection, $objectType, $propertyFactory);
+
+        $this->usersModule = $usersModule;
+    }
+
+    /**
      * Мутатор для контентного поля.
      * @param string $contents контент поста
      * @param string $locale локаль
@@ -151,7 +172,11 @@ class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertio
                 break;
             }
             case self::POST_STATUS_NEED_MODERATE : {
-                $handler = BlogPostCollection::HANDLER_MODERATE;
+                if ($this->usersModule->getCurrentUser() === $this->author->profile) {
+                    $handler = BlogPostCollection::HANDLER_MODERATE_OWN;
+                } else {
+                    $handler = BlogPostCollection::HANDLER_MODERATE_ALL;
+                }
                 break;
             }
             default : {

@@ -229,7 +229,7 @@ define(['auth/templates', 'Handlebars', 'jQuery'], function(templates){
                         parallax(event);
                     };
 
-                    if(history.state.hasOwnProperty('language')){
+                    if(history.state && history.state.hasOwnProperty('language')){
                         $('.select-language').val(history.state.language);
                     }
 

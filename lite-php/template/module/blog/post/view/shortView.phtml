@@ -1,0 +1,25 @@
+<?php
+/**
+ * @var umicms\project\module\blog\model\object\BlogPost $blogPost
+ */
+?>
+<div class="blog-post">
+    <h1><?=$blogPost->displayName?></h1>
+    <p class="blog-post-meta">
+        <?php if ($blogPost->publishTime) : ?>
+        <time datetime="<?= $blogPost->publishTime->format('c')?>">
+            <?= $blogPost->publishTime->format('d.m.Y | H:i')?>
+        </time>
+        <?php endif; ?>
+        <?php if ($blogPost->author) : ?><?=$this->translate('Author')?>: <a href="<?=$blogPost->author->getPageUrl()?>"><?=$blogPost->author->displayName?></a><?php endif; ?>
+        <?=$this->widget('blog.post.edit.editLink', ['blogPost' => $blogPost, 'template' => 'editPostLink'])?>
+    </p>
+
+    <?= $blogPost->announcement ?>
+
+    <a href="<?=$blogPost->getPageUrl()?>"><?=$this->translate('ReadMore')?></a>
+
+    <div class="btn-toolbar">
+        <?=$this->widget('blog.post.toDraftForm', ['blogPost' => $blogPost, 'template' => 'unPublishPostForm'])?>
+    </div>
+</div>

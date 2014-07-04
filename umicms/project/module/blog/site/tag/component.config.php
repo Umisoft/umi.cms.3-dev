@@ -19,18 +19,17 @@ return [
     SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
     SitePageComponent::OPTION_COLLECTION_NAME => 'blogTag',
     SitePageComponent::OPTION_CONTROLLERS => [
-        'rss' => __NAMESPACE__ . '\controller\BlogTagRssController'
+        'rss' => __NAMESPACE__ . '\controller\RssController'
     ],
     SitePageComponent::OPTION_WIDGET => [
         'view' => __NAMESPACE__ . '\widget\TagWidget',
-        'postList' => __NAMESPACE__ . '\widget\TagPostListWidget',
+        'postList' => __NAMESPACE__ . '\widget\PostListWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
-        'cloud' => __NAMESPACE__ . '\widget\TagCloudWidget',
-        'rssLink' => __NAMESPACE__ . '\widget\TagListRssLinkWidget'
+        'cloud' => __NAMESPACE__ . '\widget\CloudWidget',
+        'rssLink' => __NAMESPACE__ . '\widget\RssLinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'viewer' => [],
             'rssViewer' => []
         ],
         IAclFactory::OPTION_RULES => [
@@ -47,7 +46,7 @@ return [
         ]
     ],
     SitePageComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/tag'],
+        'directories' => ['module/blog/tag']
     ],
     SitePageComponent::OPTION_ROUTES => [
         'rss' => [

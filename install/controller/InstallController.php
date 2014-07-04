@@ -223,7 +223,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'newsExecutor',
                 'structureExecutor',
                 'blogExecutor',
-                'searchExecutor'
+                'searchExecutor',
+                'viewer',
+                'widgetExecutor'
             ],
 
             'project.site.users' => [
@@ -264,10 +266,23 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'commentExecutor',
                 'viewer'
             ],
+
+            'project.site.blog.post' => [
+                'viewExecutor',
+                'viewer',
+                'rssViewer'
+            ],
+            'project.site.blog.post.view' => ['viewer'],
+
             'project.site.blog.category' => ['viewer', 'rssViewer'],
-            'project.site.blog.post' => ['viewer', 'rssViewer'],
             'project.site.blog.tag' => ['viewer', 'rssViewer'],
-            'project.site.blog.author' => ['viewer', 'rssViewer'],
+            'project.site.blog.author' => [
+                'viewExecutor',
+                'viewer',
+                'rssViewer'
+            ],
+            'project.site.blog.author.view' => ['viewer', 'rssViewer'],
+
             'project.site.blog.comment' => ['viewer']
         ];
 
@@ -275,7 +290,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          * @var UserGroup $registeredUsers
          */
         $registeredUsers = $groupCollection->add()
-            ->setValue('displayName', 'Зерегистрированные пользователи')
+            ->setValue('displayName', 'Зaрегистрированные пользователи')
             ->setValue('displayName', 'Registered users', 'en-US')
             ->setGUID('daabebf8-f3b3-4f62-a23d-522eff9b7f68');
         $registeredUsers->getProperty('locked')->setValue(true);
@@ -299,10 +314,44 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'moderateExecutor',
                 'rejectExecutor'
             ],
-            'project.site.blog.draft' => ['author'],
-            'project.site.blog.moderate' => ['author'],
-            'project.site.blog.post' => ['author'],
-            'project.site.blog.reject' => ['author']
+
+            'project.site.blog.draft' => [
+                'editExecutor',
+                'viewExecutor',
+                'viewer',
+                'author'
+            ],
+            'project.site.blog.draft.edit' => ['author'],
+            'project.site.blog.draft.view' => ['viewer'],
+
+            'project.site.blog.moderate' => [
+                'editExecutor',
+                'ownExecutor',
+                'viewer',
+            ],
+            'project.site.blog.moderate.edit' => ['author'],
+            'project.site.blog.moderate.own' => ['viewer'],
+
+            'project.site.blog.post' => [
+                'addExecutor',
+                'editExecutor',
+                'viewExecutor',
+                'viewer',
+                'author'
+            ],
+            'project.site.blog.post.add' => ['author'],
+
+            'project.site.blog.reject' => [
+                'editExecutor',
+                'viewExecutor',
+                'viewer',
+                'author'
+            ],
+            'project.site.blog.reject.edit' => ['author'],
+            'project.site.blog.reject.view' => ['viewer', 'author'],
+
+            'project.site.blog.author' => ['profileExecutor'],
+            'project.site.blog.author.profile' => ['author'],
         ];
 
         /**
@@ -318,10 +367,43 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'moderateExecutor',
                 'rejectExecutor'
             ],
-            'project.site.blog.draft' => ['publisher'],
-            'project.site.blog.moderate' => ['author'],
-            'project.site.blog.post' => ['author'],
-            'project.site.blog.reject' => ['author']
+
+            'project.site.blog.draft' => [
+                'editExecutor',
+                'viewExecutor',
+                'viewer',
+                'publisher'
+            ],
+            'project.site.blog.draft.edit' => ['author'],
+            'project.site.blog.draft.view' => ['viewer'],
+
+            'project.site.blog.moderate' => [
+                'editExecutor',
+                'viewExecutor',
+                'viewer',
+            ],
+            'project.site.blog.moderate.edit' => ['author'],
+            'project.site.blog.moderate.own' => ['viewer'],
+
+            'project.site.blog.post' => [
+                'addExecutor',
+                'editExecutor',
+                'viewExecutor',
+                'viewer',
+                'author'
+            ],
+            'project.site.blog.post.add' => ['author'],
+
+            'project.site.blog.reject' => [
+                'editExecutor',
+                'viewExecutor',
+                'viewer',
+                'author'
+            ],
+            'project.site.blog.reject.edit' => ['author'],
+            'project.site.blog.reject.view' => ['viewer', 'author'],
+
+            'project.site.blog.author.profile' => ['author'],
         ];
 
         /**
@@ -332,7 +414,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Comment without premoderation', 'en-US');
 
         $commentWithoutPremoderation->roles = [
-            'project.site.blog.comment' => ['poster']
+            'project.site.blog.comment' => [
+                'addExecutor'
+            ],
+            'project.site.blog.comment.add' => ['commentator']
         ];
 
         /**
@@ -343,7 +428,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('displayName', 'Comment with premoderation', 'en-US');
 
         $commentWithPremoderation->roles = [
-            'project.site.blog.comment' => ['posterPremoderation']
+            'project.site.blog.comment' => [
+                'addExecutor'
+            ],
+            'project.site.blog.comment.add' => ['commentatorPremoderation']
         ];
 
         /**
@@ -359,11 +447,25 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'moderateExecutor',
                 'rejectExecutor'
             ],
+
             'project.site.blog.comment' => ['moderator'],
-            'project.site.blog.moderate' => ['moderator'],
-            'project.site.blog.post' => ['moderator'],
-            'project.site.blog.reject' => ['moderator'],
-            'project.site.blog.draft' => ['moderator'],
+
+            'project.site.blog.moderate' => [
+                'editExecutor',
+                'ownExecutor',
+                'allExecutor',
+                'moderator'
+            ],
+            'project.site.blog.moderate.edit' => ['moderator'],
+            'project.site.blog.moderate.all' => ['viewer'],
+
+            'project.site.blog.post' => [
+                'addExecutor',
+                'editExecutor',
+                'viewExecutor',
+                'moderator'
+            ],
+            'project.site.blog.post.edit' => ['moderator'],
         ];
 
         /**
@@ -417,6 +519,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $admin->groups->attach($visitors);
         $admin->groups->attach($registeredUsers);
         $admin->groups->attach($administrators);
+        $admin->groups->attach($moderator);
         $admin->setPassword('admin');
 
         /**
@@ -430,6 +533,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
 
         $user->groups->attach($visitors);
         $user->groups->attach($authorsWithPremoderation);
+        $user->groups->attach($commentWithPremoderation);
         $user->groups->attach($registeredUsers);
         $user->setPassword('demo');
 
@@ -445,6 +549,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $guest->getProperty('locked')->setValue(true);
 
         $guest->groups->attach($visitors);
+        $guest->groups->attach($commentWithPremoderation);
 
     }
 
@@ -512,41 +617,115 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $tag->getProperty('componentName')->setValue('tag');
         $tag->getProperty('componentPath')->setValue('blog.tag');
 
-        $post = $structureCollection->add('blogpost', 'system', $blogPage)
+        $post = $structureCollection->add('post', 'system', $blogPage)
             ->setValue('displayName', 'Пост блога')
             ->setValue('displayName', 'Post', 'en-US')
             ->setGUID('257fb155-9fbf-4b99-8b1c-c0ae179070ca');
-
         $post->getProperty('locked')->setValue(true);
         $post->getProperty('componentName')->setValue('post');
         $post->getProperty('componentPath')->setValue('blog.post');
 
-        $post = $structureCollection->add('drafts', 'system', $blogPage)
+        $addPost = $structureCollection->add('add', 'system', $post)
+            ->setValue('displayName', 'Добавить пост')
+            ->setValue('displayName', 'Add post', 'en-US');
+        $addPost->getProperty('locked')->setValue(true);
+        $addPost->getProperty('componentName')->setValue('add');
+        $addPost->getProperty('componentPath')->setValue('blog.post.add');
+
+        $editPost = $structureCollection->add('edit', 'system', $post)
+            ->setValue('displayName', 'Редактирование поста')
+            ->setValue('displayName', 'Edit post', 'en-US');
+        $editPost->getProperty('locked')->setValue(true);
+        $editPost->getProperty('componentName')->setValue('edit');
+        $editPost->getProperty('componentPath')->setValue('blog.post.edit');
+
+        $viewPost = $structureCollection->add('view', 'system', $post)
+            ->setValue('displayName', 'Просмотр поста')
+            ->setValue('displayName', 'View post', 'en-US');
+        $viewPost->getProperty('locked')->setValue(true);
+        $viewPost->getProperty('componentName')->setValue('view');
+        $viewPost->getProperty('componentPath')->setValue('blog.post.view');
+
+        $draft = $structureCollection->add('drafts', 'system', $blogPage)
             ->setValue('displayName', 'Черновики блога')
             ->setValue('displayName', 'Drafts', 'en-US');
-        $post->getProperty('componentName')->setValue('draft');
-        $post->getProperty('componentPath')->setValue('blog.draft');
+        $draft->getProperty('locked')->setValue(true);
+        $draft->getProperty('componentName')->setValue('draft');
+        $draft->getProperty('componentPath')->setValue('blog.draft');
 
-        $post = $structureCollection->add('rejected', 'system', $blogPage)
+        $draftView = $structureCollection->add('view', 'system', $draft)
+            ->setValue('displayName', 'Просмотр черновика')
+            ->setValue('displayName', 'View draft', 'en-US');
+        $draftView->getProperty('locked')->setValue(true);
+        $draftView->getProperty('componentName')->setValue('view');
+        $draftView->getProperty('componentPath')->setValue('blog.draft.view');
+
+        $draftEdit = $structureCollection->add('edit', 'system', $draft)
+            ->setValue('displayName', 'Редактирование черновика')
+            ->setValue('displayName', 'Edit draft', 'en-US');
+        $draftEdit->getProperty('locked')->setValue(true);
+        $draftEdit->getProperty('componentName')->setValue('edit');
+        $draftEdit->getProperty('componentPath')->setValue('blog.draft.edit');
+
+        $rejectedPost = $structureCollection->add('rejected', 'system', $blogPage)
             ->setValue('displayName', 'Отклонённые посты')
             ->setValue('displayName', 'Rejected posts', 'en-US');
-        $post->getProperty('componentName')->setValue('reject');
-        $post->getProperty('componentPath')->setValue('blog.reject');
+        $rejectedPost->getProperty('locked')->setValue(true);
+        $rejectedPost->getProperty('componentName')->setValue('reject');
+        $rejectedPost->getProperty('componentPath')->setValue('blog.reject');
 
-        $post = $structureCollection->add('needModeration', 'system', $blogPage)
+        $rejectedPostEdit = $structureCollection->add('edit', 'system', $rejectedPost)
+            ->setValue('displayName', 'Редактировать отклонённый пост')
+            ->setValue('displayName', 'Edit rejected posts', 'en-US');
+        $rejectedPostEdit->getProperty('locked')->setValue(true);
+        $rejectedPostEdit->getProperty('componentName')->setValue('edit');
+        $rejectedPostEdit->getProperty('componentPath')->setValue('blog.reject.edit');
+
+        $rejectedPostView = $structureCollection->add('view', 'system', $rejectedPost)
+            ->setValue('displayName', 'Просмотреть отклонённый пост')
+            ->setValue('displayName', 'View rejected posts', 'en-US');
+        $rejectedPostView->getProperty('locked')->setValue(true);
+        $rejectedPostView->getProperty('componentName')->setValue('view');
+        $rejectedPostView->getProperty('componentPath')->setValue('blog.reject.view');
+
+        $moderationPost = $structureCollection->add('needModeration', 'system', $blogPage)
             ->setValue('displayName', 'Посты на модерацию')
             ->setValue('displayName', 'Posts to moderate', 'en-US');
-        $post->getProperty('componentName')->setValue('moderate');
-        $post->getProperty('componentPath')->setValue('blog.moderate');
+        $moderationPost->getProperty('componentName')->setValue('moderate');
+        $moderationPost->getProperty('componentPath')->setValue('blog.moderate');
+
+        $moderationPostEdit = $structureCollection->add('edit', 'system', $moderationPost)
+            ->setValue('displayName', 'Редактировать посты на модерации')
+            ->setValue('displayName', 'Edit posts to moderate', 'en-US');
+        $moderationPostEdit->getProperty('componentName')->setValue('edit');
+        $moderationPostEdit->getProperty('componentPath')->setValue('blog.moderate.edit');
+
+        $moderationPostView = $structureCollection->add('own', 'system', $moderationPost)
+            ->setValue('displayName', 'Просмотреть пост на модерации')
+            ->setValue('displayName', 'View posts to moderate', 'en-US');
+        $moderationPostView->getProperty('componentName')->setValue('own');
+        $moderationPostView->getProperty('componentPath')->setValue('blog.moderate.own');
+
+        $moderationPostAll = $structureCollection->add('all', 'system', $moderationPost)
+            ->setValue('displayName', 'Очередь на модерацию')
+            ->setValue('displayName', 'Turn on moderation', 'en-US');
+        $moderationPostAll->getProperty('componentName')->setValue('all');
+        $moderationPostAll->getProperty('componentPath')->setValue('blog.moderate.all');
 
         $comment = $structureCollection->add('blogcomment', 'system', $blogPage)
             ->setValue('displayName', 'Комментарий блога')
             ->setValue('displayName', 'Comment', 'en-US')
             ->setGUID('2099184c-013c-4653-8882-21c06d5e4e83');
-
         $comment->getProperty('locked')->setValue(true);
         $comment->getProperty('componentName')->setValue('comment');
         $comment->getProperty('componentPath')->setValue('blog.comment');
+
+        $commentAdd = $structureCollection->add('add', 'system', $comment)
+            ->setValue('displayName', 'Добавить комментарий')
+            ->setValue('displayName', 'Add comment', 'en-US');
+        $commentAdd->getProperty('locked')->setValue(true);
+        $commentAdd->getProperty('componentName')->setValue('add');
+        $commentAdd->getProperty('componentPath')->setValue('blog.comment.add');
 
         $author = $structureCollection->add('author', 'system', $blogPage)
             ->setValue('displayName', 'Авторы блога')

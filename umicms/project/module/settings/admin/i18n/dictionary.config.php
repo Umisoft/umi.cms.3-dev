@@ -12,12 +12,18 @@ return [
 
     'en-US' => [
         'component:settings:displayName' => 'Settings',
-        'control:settings:toolbar:apply' => 'Apply'
+        'control:settings:toolbar:apply' => 'Apply',
+
+        'role:siteExecutor:displayName' => 'Structure site',
+        'role:formsExecutor:displayName' => 'Forms on site'
     ],
 
     'ru-RU' => [
         'component:settings:displayName' => 'Настройки',
-        'control:settings:toolbar:apply' => 'Применить'
+        'control:settings:toolbar:apply' => 'Применить',
+
+        'role:siteExecutor:displayName' => 'Структура сайта',
+        'role:formsExecutor:displayName' => 'Формы на сайте'
     ]
 
 ];

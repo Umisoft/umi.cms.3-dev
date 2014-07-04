@@ -1,12 +1,12 @@
 <?php
 /**
- * @var \umicms\project\module\news\api\object\NewsRubric $page
+ * @var \umicms\project\module\news\model\object\NewsRubric $page
  */
 ?>
 
 <?=$this->render('breadcrumbs.phtml', $scope) ?>
 
-<h1><?=$page->displayName?></h1>
+<h1><?=$page->getHeader()?></h1>
 <?=$page->contents?>
 
 <?=$this->widget('news.rubric.list', [

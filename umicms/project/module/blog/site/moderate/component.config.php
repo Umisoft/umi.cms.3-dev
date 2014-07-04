@@ -13,87 +13,56 @@ namespace umicms\project\module\blog\site\moderate;
 use umi\acl\IAclFactory;
 use umi\acl\IAclManager;
 use umi\route\IRouteFactory;
-use umicms\hmvc\component\site\SitePageComponent;
+use umicms\hmvc\component\site\SiteGroupComponent;
 
 return [
-
-    SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
-    SitePageComponent::OPTION_COLLECTION_NAME => 'blogPost',
-    SitePageComponent::OPTION_CONTROLLERS => [
-        'page' => __NAMESPACE__ . '\controller\PostPageController',
-        'edit' => __NAMESPACE__ . '\controller\PostEditController',
-        'publish' => __NAMESPACE__ . '\controller\PostPublishController',
-        'reject' => __NAMESPACE__ . '\controller\PostRejectController',
-        'draft' => __NAMESPACE__ . '\controller\PostDraftController',
-        'all' => __NAMESPACE__ . '\controller\PostListController'
+    SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
+    SiteGroupComponent::OPTION_CONTROLLERS => [
+        'publish' => __NAMESPACE__ . '\controller\PublishController',
+        'reject' => __NAMESPACE__ . '\controller\RejectController',
+        'draft' => __NAMESPACE__ . '\controller\ToDraftController'
     ],
-    SitePageComponent::OPTION_WIDGET => [
-        'view' => __NAMESPACE__ . '\widget\PostWidget',
-        'ownList' => __NAMESPACE__ . '\widget\OwnListWidget',
-        'ownListLink' => __NAMESPACE__ . '\widget\OwnListLinkWidget',
-        'allList' => __NAMESPACE__ . '\widget\AllListWidget',
-        'allListLink' => __NAMESPACE__ . '\widget\AllListLinkWidget',
-        'editPostLink' => __NAMESPACE__ . '\widget\PostEditLinkWidget',
-        'publishModerate' => __NAMESPACE__ . '\widget\PostPublishWidget',
-        'rejectModerate' => __NAMESPACE__ . '\widget\PostRejectWidget',
-        'draftModerate' => __NAMESPACE__ . '\widget\PostDraftWidget'
+    SiteGroupComponent::OPTION_COMPONENTS => [
+        'edit' => '{#lazy:~/project/module/blog/site/moderate/edit/component.config.php}',
+        'own' => '{#lazy:~/project/module/blog/site/moderate/own/component.config.php}',
+        'all' => '{#lazy:~/project/module/blog/site/moderate/all/component.config.php}'
     ],
-    SitePageComponent::OPTION_ACL => [
+    SiteGroupComponent::OPTION_WIDGET => [
+        'publishForm' => __NAMESPACE__ . '\widget\PublishFormWidget',
+        'rejectForm' => __NAMESPACE__ . '\widget\RejectFormWidget',
+        'toDraftForm' => __NAMESPACE__ . '\widget\ToDraftFormWidget'
+    ],
+    SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'author' => [],
             'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
-            'author' => [
-                'controller:index' => [],
+            'viewer' => [
                 'controller:draft' => [],
-                'widget:draftModerate' => [],
-                'widget:view' => [],
-                'controller:page' => [],
-                'widget:ownList' => [],
-                'widget:ownListLink' => [],
+                'widget:toDraftForm' => [],
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
             ],
             'moderator' => [
                 'controller:index' => [],
-                'controller:page' => [],
-                'controller:edit' => [],
                 'controller:publish' => [],
                 'controller:reject' => [],
-                'controller:all' => [],
-                'widget:view' => [],
-                'widget:allList' => [],
-                'widget:allListLink' => [],
-                'widget:editPostLink' => [],
-                'widget:publishModerate' => [],
-                'widget:rejectModerate' => [],
+                'controller:draft' => [],
+                'widget:publishForm' => [],
+                'widget:rejectForm' => [],
+                'widget:toDraftForm' => [],
                 'model:blogPost' => []
             ]
         ]
     ],
-    SitePageComponent::OPTION_VIEW => [
-        'directories' => ['module/blog/moderate'],
+    SiteGroupComponent::OPTION_VIEW => [
+        'directories' => ['module/blog/moderate']
     ],
-    SitePageComponent::OPTION_ROUTES => [
-        'all' => [
-            'type' => IRouteFactory::ROUTE_FIXED,
-            'route' => '/all',
-            'defaults' => [
-                'controller' => 'all'
-            ]
-        ],
-        'edit' => [
-            'type' => IRouteFactory::ROUTE_SIMPLE,
-            'route' => '/edit/{id:integer}',
-            'defaults' => [
-                'controller' => 'edit'
-            ]
-        ],
+    SiteGroupComponent::OPTION_ROUTES => [
         'publish' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,
             'route' => '/publish/{id:integer}',

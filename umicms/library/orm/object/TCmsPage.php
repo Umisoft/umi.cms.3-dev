@@ -57,6 +57,15 @@ trait TCmsPage
     }
 
     /**
+     * @see ICmsPage::getHeader()
+     */
+    public function getHeader()
+    {
+        /** @noinspection PhpUndefinedFieldInspection */
+        return $this->h1 ? $this->h1 : $this->displayName;
+    }
+
+    /**
      * Метод валидации slug.
      * @throws RuntimeException в случае, если объект не принадлежит CmsPageCollection или CmsHierarchicCollection
      * @return bool
@@ -89,3 +98,4 @@ trait TCmsPage
         return $result;
     }
 }
+ 

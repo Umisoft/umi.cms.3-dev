@@ -16,18 +16,15 @@ use umicms\hmvc\component\site\SitePageComponent;
 return [
     SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
     SitePageComponent::OPTION_COLLECTION_NAME => 'blogAuthor',
-    SitePageComponent::OPTION_CONTROLLERS => [
-        'index' => __NAMESPACE__ . '\controller\IndexController',
-    ],
     SitePageComponent::OPTION_WIDGET => [
         'author' => __NAMESPACE__ . '\widget\AuthorWidget',
-        'list' => __NAMESPACE__ . '\widget\ListAuthorWidget',
-        'posts' => __NAMESPACE__ . '\widget\ListPostWidget',
+        'list' => __NAMESPACE__ . '\widget\AuthorListWidget',
+        'posts' => __NAMESPACE__ . '\widget\PostListWidget',
     ],
     SitePageComponent::OPTION_ACL => [
         IAclFactory::OPTION_RULES => [
             'viewer' => [
-                'widget:view' => [],
+                'widget:author' => [],
                 'widget:list' => [],
                 'widget:posts' => [],
             ]

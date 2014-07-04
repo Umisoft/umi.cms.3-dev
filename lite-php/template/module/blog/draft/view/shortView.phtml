@@ -1,0 +1,26 @@
+<?php
+/**
+ * @var umicms\project\module\blog\model\object\BlogPost $blogDraft
+ */
+?>
+<div class="blog-post">
+    <h1><?= $blogDraft->displayName ?></h1>
+    <p class="blog-post-meta">
+        <?php if ($blogDraft->publishTime) : ?>
+        <time datetime="<?= $blogDraft->publishTime->format('c')?>">
+            <?= $blogDraft->publishTime->format('d.m.Y | H:i')?>
+        </time>
+        <?php endif; ?>
+        <?php if ($blogDraft->author) : ?><?=$this->translate('Author')?>: <a href="<?=$blogDraft->author->getPageUrl()?>"><?=$blogDraft->author->displayName?></a><?php endif; ?>
+        <?=$this->widget('blog.draft.edit.editLink', ['blogDraft' => $blogDraft, 'template' => 'editDraftLink'])?>
+    </p>
+
+    <?= $blogDraft->announcement ?>
+
+    <a href="<?= $blogDraft->getPageUrl() ?>"><?=$this->translate('ReadMore')?></a>
+
+    <div class="btn-toolbar">
+        <?=$this->widget('blog.draft.publishForm', ['blogDraft' => $blogDraft, 'template' => 'publishDraftForm'])?>
+        <?=$this->widget('blog.draft.sendToModerationForm', ['blogDraft' => $blogDraft, 'template' => 'sendToModerationForm'])?>
+    </div>
+</div>

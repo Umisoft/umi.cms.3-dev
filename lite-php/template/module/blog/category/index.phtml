@@ -1,12 +1,12 @@
 <?php
 /**
- * @var \umicms\project\module\blog\api\object\BlogCategory $page
+ * @var \umicms\project\module\blog\model\object\BlogCategory $page
  */
 ?>
 
 <?=$this->render('breadcrumbs.phtml', $scope) ?>
 
-<h1><?=$page->displayName?></h1>
+<h1><?=$page->getHeader()?></h1>
 <?=$page->contents?>
 
 <?=$this->widget('blog.category.list', ['template' => 'list'])?>

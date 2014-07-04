@@ -1,0 +1,21 @@
+<?php
+/**
+ * @var umicms\project\module\blog\model\object\BlogPost $page
+ */
+?>
+
+<?=$this->render('breadcrumbs.phtml', $scope) ?>
+
+<div class="blog-post">
+    <h1><?=$page->getHeader()?></h1>
+    <p class="blog-post-meta">
+        <?php if ($page->publishTime) : ?>
+        <time datetime="<?= $page->publishTime->format('c')?>">
+            <?= $page->publishTime->format('d.m.Y | H:i')?>
+        </time>
+        <?php endif; ?>
+        <?php if ($page->author) : ?><?=$this->translate('Author')?>: <a href="<?=$page->author->getPageUrl()?>"><?=$page->author->displayName?></a><?php endif ?>
+    </p>
+
+    <?= $page->contents ?>
+</div>
