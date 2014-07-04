@@ -61,7 +61,8 @@ return [
             'Moderation queue' => 'Moderation queue',
             'Post has been saved.' => 'Post has been saved.',
             'Profile has been saved.' => 'Profile has been saved.',
-            'Edit profile author' => 'Edit profile author'
+            'Edit profile author' => 'Edit profile author',
+            'Post has been unpublish.' => 'Post has been unpublish.'
         ],
         'ru-RU' => [
             'Create post' => 'Создать пост',
@@ -73,7 +74,8 @@ return [
             'Moderation queue' => 'Очередь модерации',
             'Post has been saved.' => 'Пост сохранён.',
             'Profile has been saved.' => 'Профиль сохранён.',
-            'Edit profile author' => 'Редактировать автора'
+            'Edit profile author' => 'Редактировать автора',
+            'Post has been unpublish.' => 'Пост был снят с публикации'
         ]
     ],
 

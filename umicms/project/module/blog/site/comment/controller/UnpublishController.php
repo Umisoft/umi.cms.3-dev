@@ -12,29 +12,29 @@ namespace umicms\project\module\blog\site\comment\controller;
 
 use umi\form\IForm;
 use umicms\hmvc\component\BaseCmsController;
+use umicms\hmvc\component\site\TFormSimpleController;
 use umicms\project\module\blog\model\BlogModule;
 use umicms\project\module\blog\model\object\BlogComment;
-use umicms\hmvc\component\site\TFormSimpleController;
 
 /**
- * Контроллер публикации комментария.
+ * Контроллер снятия комментария с публикации.
  */
-class PublishController extends BaseCmsController
+class UnpublishController extends BaseCmsController
 {
     use TFormSimpleController;
 
     /**
-     * @var BlogModule $module модуль "Блоги"
+     * @var BlogModule $api модуль "Блоги"
      */
-    protected $module;
+    protected $model;
 
     /**
      * Конструктор.
-     * @param BlogModule $module модуль "Блоги"
+     * @param BlogModule $blogModule модуль "Блоги"
      */
-    public function __construct(BlogModule $module)
+    public function __construct(BlogModule $blogModule)
     {
-        $this->module = $module;
+        $this->model = $blogModule;
     }
 
     /**
@@ -42,7 +42,7 @@ class PublishController extends BaseCmsController
      */
     protected function buildForm()
     {
-        return $this->module->comment()->getForm(BlogComment::FORM_PUBLISH_COMMENT, BlogComment::TYPE);
+        return $this->model->comment()->getForm(BlogComment::FORM_UNPUBLISH_COMMENT, BlogComment::TYPE);
     }
 
     /**
@@ -50,7 +50,9 @@ class PublishController extends BaseCmsController
      */
     protected function processForm(IForm $form)
     {
-        $this->module->comment()->getById($this->getRouteVar('id'))->publish();
+        $this->model->comment()->getById(
+            $this->getRouteVar('id')
+        )->unPublish();
 
         $this->commit();
     }
