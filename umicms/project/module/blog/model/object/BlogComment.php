@@ -10,8 +10,6 @@
 
 namespace umicms\project\module\blog\model\object;
 
-use umi\acl\IAclResource;
-
 /**
  * Комментарий к посту.
  *
@@ -19,7 +17,7 @@ use umi\acl\IAclResource;
  * @property string $contents комментарий
  * @property string $publishStatus статус публикации комментария
  */
-class BlogComment extends BlogBaseComment implements IAclResource
+class BlogComment extends BlogBaseComment
 {
     /**
      * Тип объекта

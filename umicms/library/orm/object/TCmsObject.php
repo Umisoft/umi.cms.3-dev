@@ -129,5 +129,22 @@ trait TCmsObject
         return $this;
     }
 
+    /**
+     * @see IAclResource::getAclResourceName()
+     */
+    public function getAclResourceName()
+    {
+        /** @var $this ICmsObject */
+        return "model:{$this->getTypePath()}";
+    }
+
+    /**
+     * @see IAclAssertionResolver::isAllowed()
+     */
+    public function isAllowed($role, $operationName, array $assertions)
+    {
+        return true;
+    }
+
 }
  
