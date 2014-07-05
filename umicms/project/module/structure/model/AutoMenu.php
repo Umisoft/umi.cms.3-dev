@@ -16,7 +16,6 @@ use umicms\exception\InvalidArgumentException;
 use umicms\project\module\structure\model\object\StructureElement;
 use umicms\hmvc\callstack\IPageCallStackAware;
 use umicms\hmvc\callstack\TPageCallStackAware;
-use umicms\serialization\ISerializer;
 
 /**
  * API для работы с автогенерируемым меню структуры
@@ -44,11 +43,10 @@ class AutoMenu implements ILocalizable, IPageCallStackAware
      * Строит меню.
      * @param StructureElement|null $branch ветка, внутри которой строится меню
      * @param int $depth глубина вложенности меню
-     * @param array $fields поля, с которыми нужно загрузить страницы. Если не указано, загружаются все
      * @throws InvalidArgumentException
      * @return array массив в формате [['page' => StructureElement, 'active' => bool, 'children' => [...]], ...]
      */
-    public function buildMenu(StructureElement $branch = null, $depth = 1, $fields = [])
+    public function buildMenu(StructureElement $branch = null, $depth = 1)
     {
         $depth = intval($depth);
         if ($depth < 1) {
@@ -57,35 +55,22 @@ class AutoMenu implements ILocalizable, IPageCallStackAware
             ));
         }
 
-        return $this->getMenuItems($branch, $depth - 1, $fields);
+        return $this->getMenuItems($branch, $depth - 1);
     }
 
     /**
      * Возвращет массив для построения меню.
      * @param StructureElement|null $branch страница, от которой строится меню
      * @param int $depth количество уровней, на которые нужно построить подменю
-     * @param array $fields поля, с которыми нужно загрузить страницы. Если не указано, загружаются все
      * @return array массив в формате [['page' => StructureElement, 'active' => bool, 'children' => [...]], ...]
      */
-    protected function getMenuItems(StructureElement $branch = null, $depth = 0, $fields = [])
+    protected function getMenuItems(StructureElement $branch = null, $depth = 0)
     {
         $menu = [];
         $menuItems = $this->module->element()->selectChildren($branch)
             ->where(StructureElement::FIELD_IN_MENU)->equals(true);
-        if ($fields) {
-            $menuItems->fields($fields);
-        }
 
-        /**
-         * @var StructureElement $page
-         */
         foreach ($menuItems as $page) {
-
-            $page->addSerializerConfigurator(function(ISerializer $serializer) use ($menuItems) {
-                    $serializer->setOptions(['fields' => $menuItems->getFields()]);
-                }
-            );
-
             $pageInfo = ['page' => $page];
             $pageInfo['active'] = $this->hasPage($page);
             $pageInfo['current'] = ($this->hasCurrentPage() && $this->getCurrentPage() == $page);

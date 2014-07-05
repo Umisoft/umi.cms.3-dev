@@ -11,11 +11,13 @@
 use umicms\project\module\service\model\object\Backup;
 
 return [
-    'en-US' => [
-        Backup::FIELD_DATA => 'Backup'
-    ],
+        'en-US' => [
+            Backup::FIELD_DATE => 'Date create backup',
+            Backup::FIELD_DATA => 'Backup'
+        ],
 
-    'ru-RU' => [
-        Backup::FIELD_DATA => 'Резервная копия'
-    ]
-];
+        'ru-RU' => [
+            Backup::FIELD_DATE => 'Дата и время создания резервной копии',
+            Backup::FIELD_DATA => 'Резервная копия'
+        ]
+    ];

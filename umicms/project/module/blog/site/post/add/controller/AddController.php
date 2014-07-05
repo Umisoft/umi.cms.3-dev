@@ -11,6 +11,7 @@
 namespace umicms\project\module\blog\site\post\add\controller;
 
 use umi\form\IForm;
+use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
 use umi\orm\metadata\IObjectType;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\component\site\BaseSitePageController;
@@ -83,6 +84,13 @@ class AddController extends BaseSitePageController
         $this->blogPost = $this->module->addPost();
         $this->blogPost->category = $blogCategory;
 
+        if (!$this->isAllowed($this->blogPost)) {
+            throw new ResourceAccessForbiddenException(
+                $this->blogPost,
+                $this->translate('Access denied')
+            );
+        }
+
         return $this->module->post()->getForm(
             BlogPost::FORM_ADD_POST,
             IObjectType::BASE,
@@ -99,21 +107,13 @@ class AddController extends BaseSitePageController
         $this->added = true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function buildResponseContent()
     {
-        $result = [
+        return [
             'added' => $this->added,
+            'blogPost' => $this->blogPost,
             'page' => $this->getCurrentPage()
         ];
-
-        if ($this->added) {
-            $result['blogPost'] = $this->blogPost;
-        }
-
-        return $result;
     }
 }
  

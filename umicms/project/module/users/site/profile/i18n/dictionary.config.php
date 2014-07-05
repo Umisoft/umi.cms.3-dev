@@ -14,18 +14,12 @@ return [
         'Welcome' => 'Welcome',
         'Edit profile' => 'Edit profile',
         'Change password' => 'Change password',
-
-        'role:viewer:displayName' => 'Viewer profile',
-        'role:passwordExecutor:displayName' => 'Change password'
     ],
 
     'ru-RU' => [
         'Welcome' => 'Добро пожаловать',
         'Edit profile' => 'Редактировать профиль',
         'Change password' => 'Смена пароля',
-
-        'role:viewer:displayName' => 'Просмотр профиля пользователя',
-        'role:passwordExecutor:displayName' => 'Смена пароля'
     ]
 
 ];

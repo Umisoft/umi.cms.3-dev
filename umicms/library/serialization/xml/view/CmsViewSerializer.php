@@ -25,17 +25,18 @@ class CmsViewSerializer extends BaseSerializer
      */
     public function __invoke(CmsView $view, array $options = [])
     {
-        $this->configure($view);
-        
         $attributes = [];
         $properties = [];
 
+        $viewAttributes = $view->getXmlAttributes();
+        $viewExcludes = $view->getXmlExcludes();
+
         foreach ($view as $name => $value) {
-            if (in_array($name, $this->currentExcludes)) {
+            if (in_array($name, $viewExcludes)) {
                 continue;
             }
 
-            if (in_array($name, $this->currentAttributes)) {
+            if (in_array($name, $viewAttributes)) {
                 $attributes[$name] = $value;
             } else {
                 $properties[$name] = $value;

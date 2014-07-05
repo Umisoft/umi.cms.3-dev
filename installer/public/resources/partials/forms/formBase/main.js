@@ -19,13 +19,7 @@ define(
             magellan();
             submitToolbar();
 
-            UMI.FormControllerMixin = Ember.Mixin.create(UMI.i18nInterface, {
-                dictionaryNamespace: 'form',
-                localDictionary: function(){
-                    var form = this.get('control') || {};
-                    return form.i18n;
-                }.property()
-            });
+            UMI.FormControllerMixin = Ember.Mixin.create({});
 
             UMI.FormViewMixin = Ember.Mixin.create({
                 /**
@@ -62,12 +56,7 @@ define(
                      * @method gridType
                      */
                     gridType: function(){
-                        var wideElements = ['wysiwyg', 'permissions'];
-                        var widthClass = 'large-4 small-12';
-                        if(wideElements.contains(this.get('content.type'))){
-                            widthClass = 'small-12';
-                        }
-                        return 'umi-columns ' + widthClass;
+                        return 'umi-columns ' + (this.get('content.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12');
                     },
 
                     actions: {
@@ -205,13 +194,8 @@ define(
                             handler.addClass('loading');
                         }
                         var data = this.$().serialize();
-                        $.post(self.get('action'), data).then(function(results){
-                            var meta = Ember.get(results, 'result.save');
-                            var context = self.get('context');
-                            Ember.set(context, 'control.meta', meta);
+                        $.post(self.get('action'), data).then(function(){
                             handler.removeClass('loading');
-                            var params = {type: 'success', 'content': 'Сохранено.'};
-                            UMI.notification.create(params);
                         });
                     }
                 },

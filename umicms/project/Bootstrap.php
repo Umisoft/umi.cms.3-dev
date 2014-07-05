@@ -60,10 +60,11 @@ class Bootstrap
     const OPTION_TOOLS_SETTINGS = 'settings';
 
     /**
-     * Список разрешенных форматов запроса.
-     * @var array $allowedRequestFormats
+     * Тип контента в зависимости от формата запроса.
+     * @var array $contentTypes
      */
-    public $allowedRequestFormats = [
+    public static $contentTypes = [
+        'html' => 'text/html; charset=utf8',
         'json' => 'application/json; charset=utf8',
         'xml' => 'text/xml; charset=utf8',
     ];
@@ -103,42 +104,34 @@ class Bootstrap
         $this->prepareRequest($request);
 
         $routeResult = $this->routeProject($request);
+
         $routeMatches = $routeResult->getMatches();
 
+        $project = $this->createProject();
+
         $projectPrefix = isset($routeMatches['prefix']) ? $routeMatches['prefix'] : '';
-        $siteUrlPostfix = isset($routeMatches['postfix']) ? $routeMatches['postfix'] : null;
-        $domainUrl = $routeMatches[ProjectHostRoute::OPTION_SCHEME] . '://' . $routeMatches[ProjectHostRoute::OPTION_HOST];
         $routePath = $routeResult->getUnmatchedUrl();
 
-        if (preg_match('|\.([\w]+)$|u', $routePath, $matches)) {
-            $format = $matches[1];
-
-            if ($format === $siteUrlPostfix || isset($this->allowedRequestFormats[$format])) {
-                $routePath = substr($routePath, 0, -strlen($format) - 1);
-
-                if ($format === $siteUrlPostfix) {
-                    $format = 'html';
-                    $this->allowedRequestFormats['html'] = 'text/html; charset=utf8';
-                }
-
-                $request->setRequestFormat($format);
-            }
-        }
-
-        $routePath = $routePath ?: '/';
-
-        $project = $this->createProject();
         /**
          * @var IUrlManager $urlManager
          */
         $urlManager = $this->toolkit->getService('umicms\hmvc\url\IUrlManager');
+        $domainUrl = $routeMatches[ProjectHostRoute::OPTION_SCHEME] . '://' . $routeMatches[ProjectHostRoute::OPTION_HOST];
 
         $urlManager->setSchemeAndHttpHost($domainUrl);
+
         $urlManager->setUrlPrefix($projectPrefix);
-        $urlManager->setSiteUrlPostfix($siteUrlPostfix);
+
 
         $this->configureAdminUrls($project);
 
+        if (preg_match('|\.([\w]+)$|u', $routePath, $matches)) {
+            $format = $matches[1];
+            $routePath = substr($routePath, 0, -strlen($format) - 1);
+            $request->setRequestFormat($format);
+        }
+
+        $routePath = $routePath ?: '/';
         /**
          * @var CmsDispatcher $dispatcher
          */
@@ -160,10 +153,9 @@ class Bootstrap
     {
         $this->setUmiHeaders($response);
 
-        if (!$response->headers->has('content-type') && isset($this->allowedRequestFormats[$request->getRequestFormat()])) {
-            $response->headers->set('content-type', $this->allowedRequestFormats[$request->getRequestFormat()]);
+        if (!$response->headers->has('content-type') && isset(static::$contentTypes[$request->getRequestFormat()])) {
+            $response->headers->set('content-type', static::$contentTypes[$request->getRequestFormat()]);
         }
-
 
         $response->prepare($request)
             ->send();
@@ -317,7 +309,15 @@ class Bootstrap
             }
             $redirectLocation = $request->getSchemeAndHttpHost() . $url;
 
-            $this->send301($redirectLocation);
+            /**
+             * @var Response $response
+             */
+            $response = $this->toolkit->getService('umi\http\Response');
+            $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY)
+                ->headers->set('Location', $redirectLocation);
+
+            $response->send();
+            exit();
         }
     }
 
@@ -478,22 +478,6 @@ class Bootstrap
         $response = $this->toolkit->getService('umi\http\Response');
         $response->setContent($content);
         $response->setStatusCode(Response::HTTP_NOT_FOUND);
-        $response->send();
-        exit();
-    }
-
-    /**
-     * Выполняет редирект и завершает работу приложения.
-     */
-    protected function send301($redirectLocation)
-    {
-        /**
-         * @var Response $response
-         */
-        $response = $this->toolkit->getService('umi\http\Response');
-        $response->setStatusCode(Response::HTTP_MOVED_PERMANENTLY)
-            ->headers->set('Location', $redirectLocation);
-
         $response->send();
         exit();
     }

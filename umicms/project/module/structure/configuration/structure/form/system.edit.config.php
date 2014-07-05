@@ -40,9 +40,6 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => SystemPage::FIELD_PAGE_LAYOUT,
                     'options' => [
-                        'choices' => [
-                            null => 'Default or inherited layout'
-                        ],
                         'lazy' => true,
                         'dataSource' => SystemPage::FIELD_PAGE_LAYOUT
                     ],

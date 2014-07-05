@@ -40,7 +40,6 @@ class SiteGroupComponent extends SiteComponent
 
         SiteComponent::OPTION_ROUTES      => [
             'component' => [
-                'priority' => 1,
                 'type' => 'SiteComponentRoute'
             ],
             'index' => [

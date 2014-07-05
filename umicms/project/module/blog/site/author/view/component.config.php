@@ -16,6 +16,9 @@ use umicms\hmvc\component\site\SitePageComponent;
 return [
     SitePageComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SitePageComponent',
     SitePageComponent::OPTION_COLLECTION_NAME => 'blogAuthor',
+    SitePageComponent::OPTION_CONTROLLERS => [
+        'index' => __NAMESPACE__ . '\controller\IndexController',
+    ],
     SitePageComponent::OPTION_WIDGET => [
         'author' => __NAMESPACE__ . '\widget\AuthorWidget',
         'list' => __NAMESPACE__ . '\widget\AuthorListWidget',

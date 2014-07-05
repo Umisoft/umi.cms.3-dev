@@ -11,6 +11,7 @@
 use umicms\project\site\SiteApplication;
 
 return [
+    SiteApplication::SETTING_URL_POSTFIX => '',
 
     SiteApplication::SETTING_DEFAULT_DESCRIPTION => 'UMI.CMS',
     SiteApplication::SETTING_DEFAULT_TITLE => 'UMI.CMS',

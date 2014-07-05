@@ -21,7 +21,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.newsItem', 'collection', 'form'
+            'collection.newsItem', 'collection'
         ]
     ],
 
@@ -42,9 +42,6 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => NewsItem::FIELD_PAGE_LAYOUT,
                     'options' => [
-                        'choices' => [
-                            null => 'Default or inherited layout'
-                        ],
                         'lazy' => true,
                         'dataSource' => NewsItem::FIELD_PAGE_LAYOUT
                     ],

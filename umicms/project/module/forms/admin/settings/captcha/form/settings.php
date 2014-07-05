@@ -13,7 +13,6 @@ use umi\form\element\html5\Color;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
-use umi\validation\IValidatorFactory;
 
 return [
     'options' => [
@@ -31,9 +30,6 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => 'checkMode',
                     'options' => [
-                        'validators' => [
-                            IValidatorFactory::TYPE_REQUIRED => []
-                        ],
                         'choices' => [
                             'guest' => 'checkMode:guest',
                             'all' => 'checkMode:all',

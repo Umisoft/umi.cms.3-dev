@@ -10,8 +10,6 @@
 
 namespace umicms\orm\collection;
 
-use umi\acl\IAclAssertionResolver;
-use umi\acl\IAclResource;
 use umi\form\IForm;
 use umi\form\IFormAware;
 use umi\i18n\ILocalesAware;
@@ -26,7 +24,7 @@ use umicms\orm\object\ICmsObject;
 /**
  * Интерфейс коллекции объектов UMI.CMS
  */
-interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAware, IFormAware, ILocalesAware, IAclResource, IAclAssertionResolver
+interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAware, IFormAware, ILocalesAware
 {
     /**
      * Имя формы для редактирования объектов по умолчанию

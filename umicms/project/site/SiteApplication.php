@@ -13,6 +13,7 @@ namespace umicms\project\site;
 use umi\config\entity\IConfig;
 use umi\hmvc\dispatcher\IDispatchContext;
 use umi\hmvc\exception\http\HttpException;
+use umi\hmvc\exception\http\HttpNotFound;
 use umi\http\IHttpAware;
 use umi\http\Request;
 use umi\http\Response;
@@ -20,9 +21,11 @@ use umi\http\THttpAware;
 use umi\orm\collection\BaseCollection;
 use umi\session\ISessionAware;
 use umi\session\TSessionAware;
+use umi\stream\IStreamService;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
 use umicms\exception\RequiredDependencyException;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
@@ -79,6 +82,10 @@ class SiteApplication extends SiteComponent
      */
     const SETTING_DEFAULT_DESCRIPTION = 'defaultMetaDescription';
     /**
+     * Имя настройки для задания постфикса всех URL
+     */
+    const SETTING_URL_POSTFIX = 'urlPostfix';
+    /**
      * Имя настройки для задания шаблонизатора по умолчанию
      */
     const SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE = 'defaultTemplatingEngineType';
@@ -108,6 +115,10 @@ class SiteApplication extends SiteComponent
     const DEFAULT_REQUEST_FORMAT = 'html';
 
     /**
+     * Имя протокола для вызова виджетов
+     */
+    const WIDGET_PROTOCOL = 'widget';
+    /**
      * @var array $supportedRequestPostfixes список поддерживаемых постфиксов запроса
      */
     protected $supportedRequestPostfixes = ['json', 'xml'];
@@ -127,17 +138,17 @@ class SiteApplication extends SiteComponent
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
-        $isRootPath = $request->getPathInfo() === $this->getUrlManager()->getProjectUrl();
-        if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
-            return $redirectResponse;
+        if ($response = $this->postRedirectGet($request)) {
+            return $response;
         }
-
-        /*if ($response = $this->postRedirectGet($request)) {
-            return $response; //TODO разобраться, почему проблема в xslt
-        }*/
 
         $this->registerSelectorInitializer();
         $this->registerSerializers();
+
+        $dispatcher = $context->getDispatcher();
+        if ($dispatcher instanceof CmsDispatcher) {
+            $this->registerStreams($dispatcher);
+        }
 
         while (!$this->getPageCallStack()->isEmpty()) {
             $this->getPageCallStack()->pop();
@@ -167,40 +178,53 @@ class SiteApplication extends SiteComponent
     public function onDispatchResponse(IDispatchContext $context, Response $response)
     {
         $request = $context->getDispatcher()->getCurrentRequest();
+        $routePath = $request->getPathInfo();
+        if ($suffix = $request->getRequestFormat(null)) {
+            $routePath = substr($routePath, 0, -strlen($suffix) - 1);
+        }
 
-        $isRootPath = $request->getPathInfo() === $this->getUrlManager()->getProjectUrl();
+        $isRootPath = $routePath === $this->getUrlManager()->getProjectUrl();
+
+        if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
+            return $redirectResponse;
+        }
 
         if (!$isRootPath && $redirectResponse = $this->processDefaultPageRedirect()) {
             return $redirectResponse;
         }
 
-        $requestFormat = $request->getRequestFormat();
+        $requestFormat = $this->getRequestFormatByPostfix($request->getRequestFormat(null));
 
         if ($requestFormat !== self::DEFAULT_REQUEST_FORMAT) {
-
-            if ($response->headers->has('content-type')) {
-                throw new HttpException(Response::HTTP_NOT_FOUND, $this->translate(
-                    'Cannot serialize response. Headers had been already set.'
+            if ($response->getIsCompleted()) {
+                throw new HttpException(Response::HTTP_BAD_REQUEST, $this->translate(
+                    'Resource serialization is not supported.'
                 ));
             }
 
-             if ($response->getIsCompleted())  {
-                 $variables = ['result' => $response->getContent()];
-             } else {
-                 $variables = ['layout' => $response->getContent()];
-             }
-
-            $result = $this->serializeResult(
-                $requestFormat,
-                $variables
-            );
+            $result = $this->serializeResult($requestFormat, [
+                    'layout' => $response->getContent()
+                ]);
             $response->setContent($result);
-
         } elseif ($this->getSiteBrowserCacheEnabled()) {
             $this->setBrowserCacheHeaders($request, $response);
         }
 
         return $response;
+    }
+
+    /**
+     * Вызывает виджет по uri.
+     * @param string $uri URI виджета
+     * @return string результат работы виджета
+     */
+    public static function callWidgetByUri($uri)
+    {
+        if (!strpos($uri, self::WIDGET_PROTOCOL) !== 0) {
+            $uri = self::WIDGET_PROTOCOL . '://' . $uri;
+        }
+
+        return file_get_contents($uri);
     }
 
     /**
@@ -287,6 +311,28 @@ class SiteApplication extends SiteComponent
     }
 
     /**
+     * Производит определение формата запроса по постфиксу
+     * @param string $postfix
+     * @throws HttpNotFound если постфикс запроса не поддерживается приложением
+     * @return string
+     */
+    protected function getRequestFormatByPostfix($postfix)
+    {
+        if (is_null($postfix) || $postfix === $this->getSiteUrlPostfix()) {
+            return self::DEFAULT_REQUEST_FORMAT;
+        }
+
+        if (!in_array($postfix, $this->supportedRequestPostfixes)) {
+            throw new HttpNotFound($this->translate(
+                'Url postfix "{postfix}" is not supported.',
+                ['postfix' => $postfix]
+            ));
+        }
+
+        return $postfix;
+    }
+
+    /**
      * Производит редирект на url с постфиксом, если он задан в настройках
      * и запрос выполнен без его указания.
      * @param Request $request
@@ -294,7 +340,7 @@ class SiteApplication extends SiteComponent
      */
     protected function processUrlPostfixRedirect(Request $request)
     {
-        $postfix = $this->getUrlManager()->getSiteUrlPostfix();
+        $postfix = $this->getSiteUrlPostfix();
 
         if ($postfix && is_null($request->getRequestFormat(null))) {
             $redirectUrl = $request->getBaseUrl() . $request->getPathInfo() . '.' . $postfix;
@@ -366,6 +412,31 @@ class SiteApplication extends SiteComponent
                 if ($collection instanceof IActiveAccessibleCollection) {
                     $selector->where(IActiveAccessibleObject::FIELD_ACTIVE)->equals(true);
                 }
+            }
+        );
+    }
+
+    /**
+     * Регистрирует стримы для XSLT.
+     * @param CmsDispatcher $dispatcher
+     */
+    protected function registerStreams(CmsDispatcher $dispatcher)
+    {
+        /**
+         * @var IStreamService $streams
+         */
+        $streams = $this->getToolkit()->getService('umi\stream\IStreamService');
+        $streams->registerStream(
+            self::WIDGET_PROTOCOL, function($uri) use ($dispatcher) {
+                $widgetInfo = parse_url($uri);
+                $widgetParams = [];
+                if (isset($widgetInfo['query'])) {
+                    parse_str($widgetInfo['query'], $widgetParams);
+                }
+
+                return $this->serializeResult(ISerializerFactory::TYPE_XML, [
+                        'widget' => $dispatcher->executeWidgetByPath($widgetInfo['host'], $widgetParams)
+                    ]);
             }
         );
     }

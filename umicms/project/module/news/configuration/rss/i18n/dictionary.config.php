@@ -24,6 +24,6 @@ return [
             NewsRssImportScenario::FIELD_SUBJECTS => 'Сюжеты',
             NewsRssImportScenario::FIELD_RUBRIC => 'Рубрика',
 
-            'type:base:displayName' => 'Управление импортом RSS-лент'
+            'type:base:displayName' => 'Импорт RSS'
         ]
     ];

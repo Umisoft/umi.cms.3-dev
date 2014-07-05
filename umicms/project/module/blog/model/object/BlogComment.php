@@ -10,14 +10,17 @@
 
 namespace umicms\project\module\blog\model\object;
 
+use umi\acl\IAclResource;
+use umicms\project\module\users\model\UsersModule;
+
 /**
  * Комментарий к посту.
  *
- * @property BlogAuthor $author автор поста
+ * @property UsersModule $author автор поста
  * @property string $contents комментарий
  * @property string $publishStatus статус публикации комментария
  */
-class BlogComment extends BlogBaseComment
+class BlogComment extends BlogBaseComment implements IAclResource
 {
     /**
      * Тип объекта
@@ -52,10 +55,6 @@ class BlogComment extends BlogBaseComment
      */
     const FORM_REJECT_COMMENT = 'reject';
     /**
-     * Форма снятия с публикации
-     */
-    const FORM_UNPUBLISH_COMMENT = 'unpublish';
-    /**
      * Статус комментария: опубликован
      */
     const COMMENT_STATUS_PUBLISHED = 'published';
@@ -63,10 +62,6 @@ class BlogComment extends BlogBaseComment
      * Статус комментария: отклонён
      */
     const COMMENT_STATUS_REJECTED = 'rejected';
-    /**
-     * Статус комментария: снят с публикации
-     */
-    const COMMENT_STATUS_UNPUBLISHED = 'unpublished';
     /**
      * Статус комментария: требует модерации
      */
@@ -90,71 +85,32 @@ class BlogComment extends BlogBaseComment
     }
 
     /**
-     * Публикует комментарий.
+     * Выставляет статус комментария опубликован.
      * @return $this
      */
-    public function publish()
+    public function published()
     {
-        if ($this->publishStatus !== self::COMMENT_STATUS_PUBLISHED) {
-            if ($this->author instanceof BlogAuthor) {
-                $this->author->incrementCommentCount();
-            }
-            $this->post->incrementCommentCount();
-
-            $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::COMMENT_STATUS_PUBLISHED);
-        }
-
+        $this->publishStatus = self::COMMENT_STATUS_PUBLISHED;
         return $this;
     }
 
     /**
-     * Выставляет статус комментария: требует модерации.
+     * Выставляет статус поста требует модерации.
      * @return $this
      */
     public function needModerate()
     {
-        if ($this->publishStatus === self::COMMENT_STATUS_PUBLISHED) {
-            if ($this->author instanceof BlogAuthor) {
-                $this->author->decrementCommentCount();
-            }
-            $this->post->decrementCommentCount();
-        }
-
-        $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::COMMENT_STATUS_NEED_MODERATE);
+        $this->publishStatus = self::COMMENT_STATUS_NEED_MODERATE;
         return $this;
     }
 
     /**
-     * Выставляет статус комментария: отклонён.
+     * Выставляет статус комментария отклонён.
      * @return $this
      */
-    public function reject()
+    public function rejected()
     {
-        if ($this->publishStatus === self::COMMENT_STATUS_PUBLISHED) {
-            if ($this->author instanceof BlogAuthor) {
-                $this->author->decrementCommentCount();
-            }
-            $this->post->decrementCommentCount();
-        }
-
-        $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::COMMENT_STATUS_REJECTED);
-        return $this;
-    }
-
-    /**
-     * Выставляет статус комментария: снят с публикации.
-     * @return $this
-     */
-    public function unPublish()
-    {
-        if ($this->publishStatus === self::COMMENT_STATUS_PUBLISHED) {
-            if ($this->author instanceof BlogAuthor) {
-                $this->author->decrementCommentCount();
-            }
-            $this->post->decrementCommentCount();
-        }
-
-        $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::COMMENT_STATUS_UNPUBLISHED);
+        $this->publishStatus = self::COMMENT_STATUS_REJECTED;
         return $this;
     }
 
@@ -164,35 +120,6 @@ class BlogComment extends BlogBaseComment
     public function getAclResourceName()
     {
         return 'model:blogComment';
-    }
-
-    /**
-     * Мутатор для поля статус публикации.
-     * @param string $value статус публикации
-     * @return $this
-     */
-    public function changeStatus($value)
-    {
-        switch($value) {
-            case self::COMMENT_STATUS_PUBLISHED : {
-                $this->publish();
-                break;
-            }
-            case self::COMMENT_STATUS_NEED_MODERATE : {
-                $this->needModerate();
-                break;
-            }
-            case self::COMMENT_STATUS_REJECTED : {
-                $this->reject();
-                break;
-            }
-            case self::COMMENT_STATUS_UNPUBLISHED : {
-                $this->unPublish();
-                break;
-            }
-        }
-
-        return $this;
     }
 }
  

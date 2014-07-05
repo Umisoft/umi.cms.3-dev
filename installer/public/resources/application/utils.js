@@ -1,4 +1,4 @@
-define(['Modernizr'], function(Modernizr){
+define([], function(){
     "use strict";
 
     return function(UMI){
@@ -33,25 +33,24 @@ define(['Modernizr'], function(Modernizr){
          * Local Storage
          */
         UMI.Utils.LS = {
-            store: localStorage,
-            init: function(){
-                if(Modernizr.localstorage){
+            init: (function(){
+                if(typeof(localStorage) !== "undefined"){
                     if(!localStorage.getItem("UMI")){
                         localStorage.setItem("UMI", JSON.stringify({}));
                     }
                 } else{
                     //TODO: Не обрабатывается сутуация когда Local Storage не поддерживается
-                    this.store = {'UMI': JSON.stringify({})};
+                    Ember.assert('Local Storage не поддерживается браузером', typeof(localStorage) !== "undefined");
                 }
-            },
+            }()),
 
             get: function(key){
-                var data = JSON.parse(this.store.UMI);
+                var data = JSON.parse(localStorage['UMI']);
                 return Ember.get(data, key);
             },
 
             set: function(keyPath, value){
-                var data = JSON.parse(this.store.UMI);
+                var data = JSON.parse(localStorage['UMI']);
                 var keys = keyPath.split('.');
                 var i = 0;
                 var setNestedProperty = function getNestedProperty(obj, key, value){
@@ -66,15 +65,9 @@ define(['Modernizr'], function(Modernizr){
                     }
                 };
                 setNestedProperty(data, keys[0], value);
-                if(Modernizr.localstorage){
-                    this.store.setItem('UMI', JSON.stringify(data));
-                } else{
-                    this.store.UMI = JSON.stringify(data);
-                }
+                localStorage.setItem('UMI', JSON.stringify(data));
             }
         };
-
-        UMI.Utils.LS.init();
 
         //Удалить после возвращения Foundation
             $(document).mousedown(function(event){

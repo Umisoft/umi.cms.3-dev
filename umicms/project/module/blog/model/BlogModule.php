@@ -35,7 +35,6 @@ use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\blog\model\object\BlogRssImportScenario;
 use umicms\project\module\blog\model\object\BlogTag;
-use umicms\project\module\users\model\object\AuthorizedUser;
 use umicms\project\module\users\model\UsersModule;
 
 /**
@@ -289,14 +288,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             $parentComment = $this->getBranchComment($post);
         }
 
-        $comment = $this->comment()->add(null, $typeName, $parentComment);
-        $comment->post = $post;
-
-        if ($this->hasCurrentAuthor()) {
-            $comment->author = $this->getCurrentAuthor();
-        }
-
-        return $comment;
+        return $this->comment()->add(null, $typeName, $parentComment);
     }
 
     /**
@@ -322,10 +314,9 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         $comments = $this->getComments()
             ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
-            ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
-                BlogComment::COMMENT_STATUS_PUBLISHED,
-                BlogComment::COMMENT_STATUS_UNPUBLISHED
-            ]);
+            ->where(BlogComment::FIELD_PUBLISH_STATUS)->equals(
+                BlogComment::COMMENT_STATUS_PUBLISHED
+            );
 
         return $comments;
     }
@@ -343,8 +334,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
             ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
                 BlogComment::COMMENT_STATUS_PUBLISHED,
-                BlogComment::COMMENT_STATUS_NEED_MODERATE,
-                BlogComment::COMMENT_STATUS_UNPUBLISHED
+                BlogComment::COMMENT_STATUS_NEED_MODERATE
             ]);
 
         return $comments;
@@ -409,7 +399,6 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     {
         $tagsCloud = [];
 
-        /** @var BlogTag[] $tags */
         $tags = $this->getTags()->getResult()->fetchAll();
         shuffle($tags);
 
@@ -425,7 +414,6 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Возвращает текущего автора блога.
-     * Если автора не существует - создаёт нового.
      * @throws RuntimeException в случае, если текущий автор не установлен
      * @return BlogAuthor
      */
@@ -439,12 +427,6 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             ->where(BlogAuthor::FIELD_PROFILE)->equals($this->usersModule->getCurrentUser())
             ->getResult()
             ->fetch();
-
-        if ($this->usersModule->isAuthenticated()) {
-            $this->currentAuthor = $this->createAuthor(
-                $this->usersModule->getCurrentUser()
-            );
-        }
 
         if (!$this->currentAuthor instanceof BlogAuthor) {
             throw new RuntimeException(
@@ -466,31 +448,12 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      */
     public function hasCurrentAuthor()
     {
-        if (!$this->currentAuthor && $this->usersModule->isAuthenticated()) {
-            $this->currentAuthor = $this->author()->select()
-                ->where(BlogAuthor::FIELD_PROFILE)->equals($this->usersModule->getCurrentUser())
-                ->getResult()
-                ->fetch();
+        try {
+            $this->getCurrentAuthor();
+        } catch (RuntimeException $e) {
+            return false;
         }
-
-        return $this->currentAuthor instanceof BlogAuthor;
-    }
-
-    /**
-     * Создаёт автора на основе юзера.
-     * @param AuthorizedUser $user
-     * @return BlogAuthor
-     */
-    public function createAuthor(AuthorizedUser $user)
-    {
-        if ($this->hasCurrentAuthor()) {
-            return $this->getCurrentAuthor();
-        }
-
-        return $this->author()->add(IObjectType::BASE)
-            ->setValue(BlogAuthor::FIELD_PAGE_SLUG, $user->login)
-            ->setValue(BlogAuthor::FIELD_DISPLAY_NAME, $user->displayName)
-            ->setValue(BlogAuthor::FIELD_PROFILE, $user);
+        return true;
     }
 
     /**
@@ -642,7 +605,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
      * @param BlogPost $blogPost
      * @return CmsSelector|BlogComment[]
      */
-    protected function getBranchCommentByPost(BlogPost $blogPost)
+    protected  function getBranchCommentByPost(BlogPost $blogPost)
     {
         $branchComments = $this->getComments()
             ->types([BlogBranchComment::TYPE])

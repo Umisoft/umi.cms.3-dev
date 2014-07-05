@@ -2,15 +2,11 @@
 
 return [
     'en-US' => [
-        'component:registration:displayName' => 'Registration',
-
-        'role:configurator:displayName' => 'Managing setting'
+        'component:registration:displayName' => 'Registration'
     ],
 
     'ru-RU' => [
-        'component:registration:displayName' => 'Регистрация',
-
-        'role:configurator:displayName' => 'Управление настройками'
+        'component:registration:displayName' => 'Регистрация'
     ]
 ];
  

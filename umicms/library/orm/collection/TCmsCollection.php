@@ -222,22 +222,6 @@ trait TCmsCollection
     }
 
     /**
-     * @see IAclResource::getAclResourceName()
-     */
-    public function getAclResourceName()
-    {
-        return "model:{$this->getName()}";
-    }
-
-    /**
-     * @see IAclAssertionResolver::isAllowed()
-     */
-    public function isAllowed($role, $operationName, array $assertions)
-    {
-        return true;
-    }
-
-    /**
      * Возвращает значение настройки для коллекции.
      * @param string $settingName имя настройки
      * @param mixed $defaultValue значение по умолчанию

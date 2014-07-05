@@ -11,13 +11,13 @@
 namespace umicms\project\module\blog\model\object;
 
 use DateTime;
+use umi\acl\IAclAssertionResolver;
+use umi\acl\IAclResource;
 use umi\hmvc\acl\ComponentRoleProvider;
-use umi\orm\object\property\calculable\ICounterProperty;
 use umi\orm\collection\ICollection;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\property\IPropertyFactory;
 use umi\orm\objectset\IManyToManyObjectSet;
-use umicms\exception\RuntimeException;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
@@ -40,7 +40,7 @@ use umicms\project\module\users\model\UsersModule;
  * @property string $oldUrl старый URL поста
  * @property string $source источник поста
  */
-class BlogPost extends CmsObject implements ICmsPage
+class BlogPost extends CmsObject implements ICmsPage, IAclResource, IAclAssertionResolver
 {
     use TCmsPage;
 
@@ -195,66 +195,17 @@ class BlogPost extends CmsObject implements ICmsPage
      */
     public function draft()
     {
-        $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::POST_STATUS_DRAFT);
+        $this->publishStatus = self::POST_STATUS_DRAFT;
         return $this;
     }
 
     /**
-     * Публикует пост.
+     * Выставляет статус поста опубликован.
      * @return $this
      */
-    public function publish()
+    public function published()
     {
-        if ($this->publishStatus !== self::POST_STATUS_PUBLISHED) {
-            if ($this->active && $this->author instanceof BlogAuthor) {
-                $this->author->incrementPostCount();
-            }
-
-            $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::POST_STATUS_PUBLISHED);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Снимает пост с публикации и помещает его в черновики.
-     * @param string $status статус снятого с публикации поста
-     * @throws RuntimeException в случае если передан запрещённый или неизвестный статус публикации
-     * @return $this
-     */
-    public function unPublish($status = self::POST_STATUS_DRAFT)
-    {
-        if (
-            $this->active &&
-            ($this->publishStatus === self::POST_STATUS_PUBLISHED) &&
-            ($this->author instanceof BlogAuthor)
-        ) {
-            $this->author->decrementPostCount();
-        }
-
-        switch ($status) {
-            case self::POST_STATUS_NEED_MODERATE : {
-                $this->needModeration();
-                break;
-            }
-            case self::POST_STATUS_REJECTED : {
-                $this->reject();
-                break;
-            }
-            case self::POST_STATUS_DRAFT : {
-                $this->draft();
-                break;
-            }
-            default: {
-                throw new RuntimeException($this->translate(
-                    '"{status}" is unknown or forbidden publish status.',
-                    [
-                        'status' => $status
-                    ]
-                ));
-            }
-        }
-
+        $this->publishStatus = self::POST_STATUS_PUBLISHED;
         return $this;
     }
 
@@ -264,7 +215,7 @@ class BlogPost extends CmsObject implements ICmsPage
      */
     public function needModeration()
     {
-        $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::POST_STATUS_NEED_MODERATE);
+        $this->publishStatus = self::POST_STATUS_NEED_MODERATE;
         return $this;
     }
 
@@ -272,35 +223,9 @@ class BlogPost extends CmsObject implements ICmsPage
      * Выставляет статус поста отклонён.
      * @return $this
      */
-    public function reject()
+    public function rejected()
     {
-        $this->getProperty(self::FIELD_PUBLISH_STATUS)->setValue(self::POST_STATUS_REJECTED);
-        return $this;
-    }
-
-    /**
-     * Увеличивает количество комментариев, опубликованных к посту.
-     * @return $this
-     */
-    public function incrementCommentCount()
-    {
-        /** @var ICounterProperty $postCommentsCount */
-        $postCommentsCount = $this->getProperty(self::FIELD_COMMENTS_COUNT);
-        $postCommentsCount->increment();
-
-        return $this;
-    }
-
-    /**
-     * Уменьшает количество комментариев, опубликованных к посту.
-     * @return $this
-     */
-    public function decrementCommentCount()
-    {
-        /** @var ICounterProperty $postCommentsCount */
-        $postCommentsCount = $this->getProperty(self::FIELD_COMMENTS_COUNT);
-        $postCommentsCount->decrement();
-
+        $this->publishStatus = self::POST_STATUS_REJECTED;
         return $this;
     }
 
@@ -340,29 +265,6 @@ class BlogPost extends CmsObject implements ICmsPage
         }
 
         return $result;
-    }
-
-    /**
-     * Мутатор для поля статус публикации.
-     * @param string $value статус публикации
-     * @return $this
-     */
-    public function changeStatus($value)
-    {
-        switch ($value) {
-            case self::POST_STATUS_PUBLISHED : {
-                $this->publish();
-                break;
-            }
-            case self::POST_STATUS_NEED_MODERATE :
-            case self::POST_STATUS_REJECTED :
-            case self::POST_STATUS_DRAFT : {
-                $this->unPublish($value);
-                break;
-            }
-        }
-
-        return $this;
     }
 
 }

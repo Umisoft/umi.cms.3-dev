@@ -11,15 +11,11 @@
 return [
 
     'en-US' => [
-        'component:files:displayName' => 'File system',
-
-        'role:managerExecutor:displayName' => 'Managing files'
+        'component:files:displayName' => 'File system'
     ],
 
     'ru-RU' => [
-        'component:files:displayName' => 'Файловая система',
-
-        'role:managerExecutor:displayName' => 'Управление файлами'
+        'component:files:displayName' => 'Файловая система'
     ]
 
 ];

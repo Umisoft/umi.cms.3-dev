@@ -69,9 +69,14 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware
         }
 
         $widgetName = array_pop($widgetPathParts);
-        $componentPageUrl = $this->getUrlManager()->getRawSystemPageUrl(implode(IComponent::PATH_SEPARATOR, $widgetPathParts));
+        $componentPageUrl = $this->getUrlManager()->getSystemPageUrl(implode(IComponent::PATH_SEPARATOR, $widgetPathParts));
 
-        return $this->executeWidget('/' . $componentPageUrl . '/' . $widgetName, $params);
+        $projectUrl = $this->getUrlManager()->getProjectUrl();
+        if ($projectUrl != '/') {
+            $componentPageUrl = substr($componentPageUrl, strlen($projectUrl));
+        }
+
+        return $this->executeWidget($componentPageUrl . '/' . $widgetName, $params);
     }
 
     /**
@@ -88,6 +93,7 @@ class CmsDispatcher extends Dispatcher implements IUrlManagerAware
 
                 return $this->invokeWidget($widget);
             } catch (ResourceAccessForbiddenException $e) {
+
                 $resource = $e->getResource();
                 if ($resource instanceof BaseCmsWidget) {
                     return $this->invokeWidgetForbidden($resource, $e);

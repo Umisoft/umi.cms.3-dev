@@ -11,18 +11,9 @@ define(['App'], function(UMI){
                 return 'content.value';
             }.property(),
             prompt: function(){
-                var meta = this.get('meta.choices');
-                var choicesHasPrompt;
-                if(meta && Ember.typeOf(meta) === 'array'){
-                    choicesHasPrompt = meta.findBy('value', '');
-                }
-                if(choicesHasPrompt){
-                    return choicesHasPrompt.label;
-                } else{
-                    var label = 'Nothing is selected';
-                    var translateLabel = UMI.i18n.getTranslate(label, 'form');
-                    return translateLabel ? translateLabel : label;
-                }
+                var label = 'Nothing is selected';
+                var translateLabel = UMI.i18n.getTranslate(label, 'form:select');//TODO: localize
+                return translateLabel ? translateLabel : label;
             }.property('meta.placeholder'),
             content: null,
             init: function(){
@@ -33,7 +24,7 @@ define(['App'], function(UMI){
             didInsertElement: function(){
                 var prompt = this.$().find('option')[0];
                 var validators = this.get('meta.validators') || [];
-                validators = validators.findBy('type', 'required');
+                validators = validators.findBy({'type': 'required'});
                 if(!prompt.value && validators){
                     prompt.disabled = true;
                 }
@@ -50,18 +41,9 @@ define(['App'], function(UMI){
                 return this.get('isLazy') ? 'content.id' : 'content.value';
             }.property(),
             prompt: function(){
-                var meta = this.get('meta.choices');
-                var choicesHasPrompt;
-                if(meta && Ember.typeOf(meta) === 'array'){
-                    choicesHasPrompt = meta.findBy('value', '');
-                }
-                if(choicesHasPrompt){
-                    return choicesHasPrompt.label;
-                } else{
-                    var label = 'Nothing is selected';
-                    var translateLabel = UMI.i18n.getTranslate(label, 'form');
-                    return translateLabel ? translateLabel : label;
-                }
+                var label = 'Nothing is selected';
+                var translateLabel = UMI.i18n.getTranslate(label, 'form:select');//TODO: localize
+                return translateLabel ? translateLabel : label;
             }.property('meta.placeholder'),
             content: null,
             changeValue: function(){
@@ -115,18 +97,11 @@ define(['App'], function(UMI){
                 }
             },
             didInsertElement: function(){
-                var property = this.get('meta.dataSource');
-                var collectionName = this.get('object').constructor.typeKey;
-                var metadata = this.get('controller.store').metadataFor(collectionName);
-                var validators = Ember.get(metadata, 'validators.' + property);
-                if(validators && Ember.typeOf(validators) === 'array'){
-                    validators = validators.findBy('type', 'required');
-                    if(validators){
-                        var prompt = this.$().find('option')[0];
-                        if(!prompt.value && validators){
-                            prompt.disabled = true;
-                        }
-                    }
+                var prompt = this.$().find('option')[0];
+                var validators = this.get('meta.validators') || [];
+                validators = validators.findBy({'type': 'required'});
+                if(!prompt.value && validators){
+                    prompt.disabled = true;
                 }
             },
             willDestroyElement: function(){

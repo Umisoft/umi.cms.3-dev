@@ -15,9 +15,7 @@ use umicms\exception\InvalidArgumentException;
 use umicms\exception\RuntimeException;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\CmsHierarchicObject;
-use umicms\orm\object\ICmsObject;
 use umicms\orm\selector\CmsSelector;
-use umicms\orm\selector\TSelectorConfigurator;
 
 /**
  * Базовый класс виджета вывода деревьев.
@@ -25,8 +23,6 @@ use umicms\orm\selector\TSelectorConfigurator;
  */
 abstract class BaseTreeWidget extends BaseCmsWidget
 {
-    use TSelectorConfigurator;
-
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
@@ -41,15 +37,6 @@ abstract class BaseTreeWidget extends BaseCmsWidget
      * @var int $depth глубина вложения
      */
     public $depth;
-    /**
-     * @var array $options настройки селектора
-     */
-    public $options = [];
-    /**
-     * @var bool $fullyLoad признак необходимости загружать все свойства объектов списка.
-     * Список полей для загрузки, занный опциями, при значении true игнорируется.
-     */
-    public $fullyLoad;
 
     /**
      * Возвращает выборку для построения дерева.
@@ -62,7 +49,7 @@ abstract class BaseTreeWidget extends BaseCmsWidget
      */
     public function __invoke()
     {
-        $selector = $this->getSelector();
+        $selector = $this->applySelectorConditions($this->getSelector());
 
         $collection = $selector->getCollection();
 
@@ -74,19 +61,19 @@ abstract class BaseTreeWidget extends BaseCmsWidget
 
         $parentNode = $this->getParentNode($collection);
 
+        $result = $selector;
+
         if ($parentNode instanceof CmsHierarchicObject) {
-            $selector = $collection->selectDescendants($parentNode);
+            $result = $collection->selectDescendants($parentNode);
 
             if ($this->depth) {
-                $selector = $collection->selectDescendants($parentNode, $this->depth);
+                $result = $collection->selectDescendants($parentNode, $this->depth);
             }
         } else if ($this->depth) {
-            $selector = $collection->selectDescendants(null, $this->depth);
+            $result = $collection->selectDescendants(null, $this->depth);
         }
 
-        $this->applySelectorConditions($selector);
-
-        return $this->createTreeResult($this->template, $selector);
+        return $this->createTreeResult($this->template, $result);
     }
 
     /**
@@ -96,18 +83,7 @@ abstract class BaseTreeWidget extends BaseCmsWidget
      */
     protected function applySelectorConditions(CmsSelector $selector)
     {
-        if (!$this->fullyLoad) {
-            $fields = ICmsObject::FIELD_DISPLAY_NAME;
-            if (isset($this->options['fields'])) {
-                $fields = $fields . ',' . $this->options['fields'];
-            }
-            $this->applySelectorSelectedFields($selector, $fields);
-        }
-
-        if (isset($this->options['orderBy']) && is_array($this->options['orderBy'])) {
-            $this->applySelectorOrderBy($selector, $this->options['orderBy']);
-        }
-
+        //TODO применение фильтров
         return $selector;
     }
 

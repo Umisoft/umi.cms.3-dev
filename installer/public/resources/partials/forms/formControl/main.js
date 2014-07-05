@@ -44,16 +44,8 @@ define(
                     return '{{view "selectCollection" object=view.object meta=view.meta}}';
                 }.property(),
 
-                checkboxTemplate: function(){
-                    return '{{view "checkboxCollectionElement" object=view.object meta=view.meta}}';
-                }.property(),
-
                 checkboxGroupTemplate: function(){
                     return '{{view "checkboxGroupCollectionElement" object=view.object meta=view.meta}}';
-                }.property(),
-
-                permissionsTemplate: function(){
-                    return '{{view "permissions" object=object meta=view.meta}}';
                 }.property()
             });
         };

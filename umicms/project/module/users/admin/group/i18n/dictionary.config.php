@@ -11,15 +11,11 @@
 return [
 
     'en-US' => [
-        'component:group:displayName' => 'Groups',
-
-        'role:editor:displayName' => 'Managing groups'
+        'component:group:displayName' => 'Groups'
     ],
 
     'ru-RU' => [
-        'component:group:displayName' => 'Группы',
-
-        'role:editor:displayName' => 'Управление группами'
+        'component:group:displayName' => 'Группы'
     ]
 
 ];

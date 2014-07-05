@@ -333,39 +333,17 @@ define([], function(){
                  */
                 trash: function(object){
                     var self = this;
-                    var store = self.get('store');
-                    var promise;
-                    var serializeObject;
-                    var isActiveContext;
-                    var trashAction;
-                    try{
-                        serializeObject = JSON.stringify(object.toJSON({includeId: true}));
-                        isActiveContext = this.modelFor('context') === object;
-                        trashAction = this.controllerFor('component').get('settings').actions.trash;
-                        if(!trashAction){
-                            throw new Error('Action trash not supported for component.');
-                        }
-                        promise = $.ajax({
-                            url: trashAction.source + '?id=' + object.get('id'),
-                            type: "POST",
-                            data: serializeObject,
-                            contentType: 'application/json; charset=UTF-8'
-                        }).then(function(){
-                            store.unloadRecord(object);
-                            var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" удалено в корзину.'};
-                            UMI.notification.create(settings);
-                            if(isActiveContext){
-                                self.send('backToFilter');
-                            }
-                        }, function(){
-                            var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" не удалось поместить в корзину.'};
-                            UMI.notification.create(settings);
-                        });
-                    } catch(error){
-                        this.send('backgroundError', error);
-                    } finally{
-                        return promise;
-                    }
+                    var isActiveContext = this.modelFor('context') === object;
+                    return object.destroyRecord().then(function(){
+                        var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" удалено в корзину.'};
+                        UMI.notification.create(settings);
+                       if(isActiveContext){
+                           self.send('backToFilter');
+                       }
+                    }, function(){
+                        var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" не удалось поместить в корзину.'};
+                        UMI.notification.create(settings);
+                    });
                 },
 
                 /**

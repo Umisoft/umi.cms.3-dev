@@ -163,11 +163,10 @@
     &.tiny{
         .icon{
             // Костыль конечно
-            margin-top: -6px;
-            margin-bottom: -7px;
+            margin-top: -7px;
+            margin-bottom: -6px;
             margin-left: -4px;
             margin-right: -4px;
-            display: block;
         }
         &.square{
             padding-left: $button-tny;

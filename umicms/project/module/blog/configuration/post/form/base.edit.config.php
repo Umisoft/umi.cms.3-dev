@@ -40,9 +40,6 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => BlogPost::FIELD_PAGE_LAYOUT,
                     'options' => [
-                        'choices' => [
-                            null => 'Default or inherited layout'
-                        ],
                         'lazy' => true,
                         'dataSource' => BlogPost::FIELD_PAGE_LAYOUT
                     ],
@@ -111,9 +108,6 @@ return [
                         'lazy' => true,
                         'dataSource' => BlogPost::FIELD_AUTHOR
                     ],
-                    'attributes' => [
-                        'disabled' => 'disabled'
-                    ]
                 ],
                 BlogPost::FIELD_PUBLISH_TIME => [
                     'type' => DateTime::TYPE_NAME,

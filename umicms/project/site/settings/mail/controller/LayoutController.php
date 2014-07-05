@@ -28,6 +28,8 @@ class LayoutController extends SettingsLayoutController
 
         $sendersInfo = $config->get(MessagesTools::NAME . '.mailerOptions.sender_address');
         $sendersInfo = ($sendersInfo instanceof IConfig) ? $sendersInfo->toArray() : [];
+        $recipientsInfo = $config->get(MessagesTools::NAME . '.mailerOptions.delivery_address');
+        $recipientsInfo = ($recipientsInfo instanceof IConfig) ? $recipientsInfo->toArray() : [];
 
         $from = [];
         foreach ($sendersInfo as $senderInfo) {
@@ -40,8 +42,20 @@ class LayoutController extends SettingsLayoutController
             }
         }
 
+        $to = [];
+        foreach ($recipientsInfo as $recipientInfo) {
+            if (isset($recipientInfo['email'])) {
+                if (isset($recipientInfo['name'])) {
+                    $to[] = $recipientInfo['name'] . ' <' . $recipientInfo['email'] . '>';
+                } else {
+                    $to[] = $recipientInfo['email'];
+                }
+            }
+        }
+
         $data = [
-            'sender_address' => $from ? implode(', ', $from) : null
+            'sender_address' => $from ? implode(', ', $from) : null,
+            'delivery_address' => $to ? implode(', ', $to) : null
         ];
 
         $form = $this->getForm(self::SETTINGS_FORM_NAME);

@@ -65,7 +65,7 @@ class ToDraftController extends BaseCmsController
      */
     protected function processForm(IForm $form)
     {
-        $this->blogPost->unPublish();
+        $this->blogPost->draft();
         $this->commit();
     }
 }

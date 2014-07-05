@@ -28,18 +28,18 @@ class SiteRestWidgetController extends BaseCmsController
      */
     public function __invoke()
     {
+        $widgetPath = $this->getRouteVar('path');
+
         /**
          * @var CmsDispatcher $dispatcher
          */
         $dispatcher = $this->getContext()->getDispatcher();
 
-        $result = $dispatcher->executeWidgetByPath(
-            $this->getRouteVar('path'),
-            $this->getAllQueryVars()
-        );
+        $result = $dispatcher->executeWidgetByPath($widgetPath, $this->getAllQueryVars());
 
-        return $this->createResponse($result)
-            ->setIsCompleted();
+        $response = $this->createResponse($result);
+
+        return $response;
     }
 }
  
