@@ -14,7 +14,7 @@ use umicms\project\Environment;
 return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/collection.config.php',
     [
-        'name' => 'blog_rss_post',
+        'name' => 'blog_rss_import_scenario',
         'columns' => [
             'category_id' => [
                 'type' => Type::BIGINT,
@@ -34,13 +34,10 @@ return array_replace_recursive(
             ]
         ],
         'constants' => [
-            'rss_to_category' => [
+            'scenario_to_category' => [
                 'foreignTable' => 'blog_category',
                 'columns' => [
                     'category_id' => []
-                ],
-                'foreignColumns' => [
-                    'id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',

@@ -13,8 +13,9 @@ use umicms\project\module\structure\model\object\StaticPage;
 use umicms\project\module\structure\model\object\StructureElement;
 use umicms\project\module\structure\model\object\SystemPage;
 
-var_dump( array_replace_recursive(
+return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicPageCollection.config.php',
+    require Environment::$directoryCmsProject . '/configuration/model/metadata/locked.config.php',
     [
         'dataSource' => [
             'sourceName' => 'structure'
@@ -50,16 +51,16 @@ var_dump( array_replace_recursive(
             'base'           => [
                 'objectClass' => 'umicms\project\module\structure\model\object\StructureElement',
                 'fields'      => [
-                    StructureElement::FIELD_COMPONENT_NAME,
-                    StructureElement::FIELD_COMPONENT_PATH,
-                    StructureElement::FIELD_IN_MENU,
-                    StructureElement::FIELD_SUBMENU_STATE
+                    StructureElement::FIELD_COMPONENT_NAME => [],
+                    StructureElement::FIELD_COMPONENT_PATH => [],
+                    StructureElement::FIELD_IN_MENU => [],
+                    StructureElement::FIELD_SUBMENU_STATE => []
                 ]
             ],
             SystemPage::TYPE => [
                 'objectClass' => 'umicms\project\module\structure\model\object\SystemPage',
                 'fields'      => [
-                    SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS,
+                    SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => [],
                 ]
             ],
             StaticPage::TYPE => [
@@ -67,5 +68,4 @@ var_dump( array_replace_recursive(
             ]
         ]
     ]
-));
-exit;
+);

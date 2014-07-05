@@ -47,7 +47,8 @@ return [
             'type'          => IField::TYPE_STRING,
             'columnName'    => 'display_name',
             'filters'       => [
-                IFilterFactory::TYPE_STRING_TRIM => []
+                IFilterFactory::TYPE_STRING_TRIM => [],
+                IFilterFactory::TYPE_STRIP_TAGS => []
             ],
             'validators'    => [
                 IValidatorFactory::TYPE_REQUIRED => []
@@ -86,15 +87,15 @@ return [
     'types'      => [
         'base' => [
             'fields'      => [
-                CmsObject::FIELD_IDENTIFY,
-                CmsObject::FIELD_GUID,
-                CmsObject::FIELD_TYPE,
-                CmsObject::FIELD_VERSION,
-                CmsObject::FIELD_DISPLAY_NAME,
-                CmsObject::FIELD_CREATED,
-                CmsObject::FIELD_UPDATED,
-                CmsObject::FIELD_OWNER,
-                CmsObject::FIELD_EDITOR
+                CmsObject::FIELD_IDENTIFY => [],
+                CmsObject::FIELD_GUID => [],
+                CmsObject::FIELD_TYPE => [],
+                CmsObject::FIELD_VERSION => [],
+                CmsObject::FIELD_DISPLAY_NAME => [],
+                CmsObject::FIELD_CREATED => [],
+                CmsObject::FIELD_UPDATED => [],
+                CmsObject::FIELD_OWNER => [],
+                CmsObject::FIELD_EDITOR => []
             ]
         ]
     ]

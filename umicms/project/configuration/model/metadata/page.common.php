@@ -31,7 +31,10 @@ return [
             'localizations' => [
                 'ru-RU' => ['columnName' => 'meta_title'],
                 'en-US' => ['columnName' => 'meta_title_en']
-            ]
+            ],
+            'filters' => [
+                IFilterFactory::TYPE_STRIP_TAGS => []
+            ],
         ],
         ICmsPage::FIELD_PAGE_META_DESCRIPTION => [
             'type'       => IField::TYPE_STRING,
@@ -39,7 +42,10 @@ return [
             'localizations' => [
                 'ru-RU' => ['columnName' => 'meta_description'],
                 'en-US' => ['columnName' => 'meta_description_en']
-            ]
+            ],
+            'filters' => [
+                IFilterFactory::TYPE_STRIP_TAGS => []
+            ],
         ],
         ICmsPage::FIELD_PAGE_META_KEYWORDS    => [
             'type'       => IField::TYPE_STRING,
@@ -47,7 +53,10 @@ return [
             'localizations' => [
                 'ru-RU' => ['columnName' => 'meta_keywords'],
                 'en-US' => ['columnName' => 'meta_keywords_en']
-            ]
+            ],
+            'filters' => [
+                IFilterFactory::TYPE_STRIP_TAGS => []
+            ],
         ],
         ICmsPage::FIELD_PAGE_H1 => [
             'type' => IField::TYPE_STRING,
@@ -55,7 +64,10 @@ return [
             'localizations' => [
                 'ru-RU' => ['columnName' => 'h1'],
                 'en-US' => ['columnName' => 'h1_en']
-            ]
+            ],
+            'filters' => [
+                IFilterFactory::TYPE_STRIP_TAGS => []
+            ],
         ],
         ICmsPage::FIELD_PAGE_CONTENTS         => [
             'type' => IField::TYPE_TEXT,
@@ -74,13 +86,13 @@ return [
     'types'      => [
         'base' => [
             'fields'      => [
-                ICmsPage::FIELD_PAGE_SLUG,
-                ICmsPage::FIELD_PAGE_META_TITLE,
-                ICmsPage::FIELD_PAGE_META_DESCRIPTION,
-                ICmsPage::FIELD_PAGE_META_KEYWORDS,
-                ICmsPage::FIELD_PAGE_H1,
-                ICmsPage::FIELD_PAGE_CONTENTS,
-                ICmsPage::FIELD_PAGE_LAYOUT
+                ICmsPage::FIELD_PAGE_SLUG  => [],
+                ICmsPage::FIELD_PAGE_META_TITLE => [],
+                ICmsPage::FIELD_PAGE_META_DESCRIPTION => [],
+                ICmsPage::FIELD_PAGE_META_KEYWORDS => [],
+                ICmsPage::FIELD_PAGE_H1 => [],
+                ICmsPage::FIELD_PAGE_CONTENTS => [],
+                ICmsPage::FIELD_PAGE_LAYOUT => []
             ]
         ]
     ]
