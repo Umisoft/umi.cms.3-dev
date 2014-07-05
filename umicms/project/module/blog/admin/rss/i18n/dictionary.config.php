@@ -12,12 +12,14 @@ return [
 
     'en-US' => [
         'component:rss:displayName' => 'Import RSS-feed',
-        'Import {count} posts.' => 'Import {count} posts.'
+        'Import {count} posts.' => 'Import {count} posts.',
+        'action:importFromRss' => 'Import RSS-feed',
     ],
 
     'ru-RU' => [
         'component:rss:displayName' => 'Импорт RSS-лент',
-        'Import {count} posts.' => 'Импортированно {count} постов.'
+        'Import {count} posts.' => 'Импортированно {count} постов.',
+        'action:importFromRss' => 'Импортировать RSS-ленту',
     ]
 
 ];
