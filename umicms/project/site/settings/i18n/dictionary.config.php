@@ -40,11 +40,7 @@ return [
         SiteApplication::SETTING_TEMPLATE_DIRECTORY => 'Директория с шаблонами',
         SiteApplication::SETTING_COMMON_TEMPLATE_DIRECTORY => 'Директория с общими шаблонами',
         SiteApplication::SETTING_DEFAULT_TEMPLATE_EXTENSION => 'Расширение файлов шаблонов по умолчанию',
-        SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE => 'Тип шаблонизатора по умолчанию',
-
-        'role:commonExecutor:displayName' => 'Общие',
-        'role:templatingExecutor:displayName' => 'Шаблонизация',
-        'role:slugifyExecutor:displayName' => 'Формирование slug'
+        SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE => 'Тип шаблонизатора по умолчанию'
     ]
 ];
  

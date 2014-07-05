@@ -2,15 +2,11 @@
 
 return [
     'en-US' => [
-        'component:statistics:displayName' => 'Statistics',
-
-        'role:metrikaExecutor:displayName' => 'Yandex.Metrika'
+        'component:statistics:displayName' => 'Statistics'
     ],
 
     'ru-RU' => [
-        'component:statistics:displayName' => 'Статистика',
-
-        'role:metrikaExecutor:displayName' => 'Яндекс.Метрика'
+        'component:statistics:displayName' => 'Статистика'
     ]
 ];
  

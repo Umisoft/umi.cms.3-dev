@@ -36,6 +36,6 @@ class ScalarSerializer extends BaseSerializer
             $scalar = (int) $scalar;
         }
 
-        $this->getXmlWriter()->writeRaw(htmlentities($scalar, ENT_COMPAT | ENT_XML1, 'utf-8'));
+        $this->getXmlWriter()->writeRaw(htmlentities($scalar, ENT_COMPAT, 'utf-8'));
     }
 }

@@ -14,6 +14,6 @@
 
     {{ blogPost.announcement | raw }}
 
-    <a href="{{ blogPost.getPageUrl() }}">{{ translate('ReadMore') }}</a>
+    <a href="{{ blogPost.getPageUrl() }}">{{ translate('Read more') }}</a>
     {{ widget('blog.reject.sendToModeration', {'blogPost' : blogPost, 'template' : 'sendToModerationForm'}) }}
 </div>

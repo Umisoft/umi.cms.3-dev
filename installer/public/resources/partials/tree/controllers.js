@@ -5,21 +5,6 @@ define(['App'], function(UMI){
         UMI.TreeControlController = Ember.ObjectController.extend({
             needs: ['component', 'context'],
 
-            objectProperties: function(){
-                var objectProperties = ['displayName', 'order', 'active', 'childCount', 'children', 'parent'] ;
-                var collectionName = this.get('controllers.component.collectionName');
-                var model = this.get('store').modelFor(collectionName);
-                var modelFields = Ember.get(model, 'fields');
-                modelFields = modelFields.keys.list;
-                for(var i = 0; i < objectProperties.length; i++){
-                    if(!modelFields.contains(objectProperties[i])){
-                        objectProperties.splice(i, 1);
-                        --i;
-                    }
-                }
-                return objectProperties;
-            }.property('model'),
-
             expandedBranches: [],
 
             clearExpanded: function(){
@@ -65,13 +50,11 @@ define(['App'], function(UMI){
                     }.property('children.length'),
                     children: function(){
                         var children;
-                        var objectProperties;
                         try{
                             if(!collectionName){
                                 throw new Error('Collection name is not defined.');
                             }
-                            objectProperties = self.get('objectProperties').join(',');
-                            var nodes = self.store.updateCollection(collectionName, {'filters[parent]': 'null()', 'fields': objectProperties});
+                            var nodes = self.store.updateCollection(collectionName, {'filters[parent]': 'null()', 'fields': 'displayName,order,active,childCount,children,parent'});
                             children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                                 content: nodes,
                                 sortProperties: ['order', 'id'],
@@ -83,8 +66,8 @@ define(['App'], function(UMI){
                                 'message': error.message,
                                 'stack': error.stack
                             };
-                            Ember.run.next(self, function(){
-                                this.send('templateLogs', errorObject, 'component');
+                            Ember.run.next(function(){
+                                self.send('templateLogs', errorObject, 'component');
                             });
                         }
                         return children;
@@ -214,33 +197,14 @@ define(['App'], function(UMI){
         UMI.TreeItemController = Ember.ObjectController.extend({
             objectBinding: 'content',
 
-            objectProperties: function(){
-                var object = this.get('model');
-                var objectProperties = ['displayName', 'order', 'active', 'childCount', 'children', 'parent'] ;
-                var collectionName = object.get('typeKey') || object.constructor.typeKey;
-                var model = this.get('store').modelFor(collectionName);
-                var modelFields = Ember.get(model, 'fields');
-                modelFields = modelFields.keys.list;
-                for(var i = 0; i < objectProperties.length; i++){
-                    if(!modelFields.contains(objectProperties[i])){
-                        objectProperties.splice(i, 1);
-                        --i;
-                    }
-                }
-                return objectProperties;
-            }.property('content'),
-
             getChildren: function(){
                 var model = this.get('model');
                 var collectionName = model.get('typeKey') || model.constructor.typeKey;
                 var promise;
-
-                var fields = this.get('objectProperties');
-                fields = fields.join(',');
                 if(model.get('id') === 'root'){
                     promise = this.get('children');
                 } else{
-                    promise = this.store.updateCollection(collectionName, {'filters[parent]': this.get('model.id'), 'fields': fields});
+                    promise = this.store.updateCollection(collectionName, {'filters[parent]': this.get('model.id'), 'fields': 'displayName,order,active,childCount,children,parent'});
                 }
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: promise,

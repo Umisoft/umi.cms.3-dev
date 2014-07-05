@@ -1,11 +1,6 @@
-{% if (tree|length) %}
-<ul>
-    {% for node in tree %}
-        <li>
-        {{ widget('blog.comment.view', {'blogComment' : node.item , 'template' : 'view'}) }}
-        {{ widget('blog.comment.add', {'blogPost' : node.item.post, 'blogComment' : node.item, 'template' : 'addSubComment'}) }}
-        {{ include('list.twig', {'tree' : node.children}) }}
-        </li>
+{% if (comments.getTotal()) %}
+    {% for blogComment in comments %}
+        {{ widget('blog.comment.view', {'blogComment' : blogComment, 'template' : 'view'}) }}
+        {{ widget('blog.comment.add', {'blogPost' : blogComment.post, 'blogComment' : blogComment, 'template' : 'addComment'}) }}
     {% endfor %}
-</ul>
 {% endif %}

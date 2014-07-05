@@ -101,12 +101,5 @@ class AddFormWidget extends BaseFormWidget
         return $form;
 
     }
-
-    protected function buildResponseContent()
-    {
-        return [
-            'blogComment' => $this->blogComment
-        ];
-    }
 }
  

@@ -15,9 +15,7 @@ return [
         'slugify' => 'Slug generator',
         'slugGeneratorType' => 'Slug generator type',
         'slugLength' => 'Slug length',
-        'slugGeneratorActive' => 'Slug generate active',
-
-        'role:configurator:displayName' => 'Managing settings'
+        'slugGeneratorActive' => 'Slug generate active'
     ],
 
     'ru-RU' => [
@@ -27,9 +25,7 @@ return [
         'slugify' => 'Генератор slug\'ов',
         'slugGeneratorType' => 'Тип генераторации slug\'ов',
         'slugLength' => 'Длинна slug\'а',
-        'slugGeneratorActive' => 'Включить автоматическую генерацию slug\'ов',
-
-        'role:configurator:displayName' => 'Управление настройками'
+        'slugGeneratorActive' => 'Включить автоматическую генерацию slug\'ов'
     ]
 ];
  

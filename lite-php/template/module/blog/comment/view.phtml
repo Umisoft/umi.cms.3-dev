@@ -2,30 +2,21 @@
 /**
  * @var umicms\project\module\blog\model\object\BlogComment $blogComment
  */
+
 ?>
 <div class="media-body">
-    <?php if ($blogComment->publishStatus == $blogComment::COMMENT_STATUS_UNPUBLISHED) : ?>
-        <?= $this->translate('Comment has been unpublish.') ?>
-    <?php else : ?>
-        <h1><?= $blogComment->displayName ?></h1>
-        <?php if ($blogComment->publishTime) : ?>
-            <time datetime="<?= $blogComment->publishTime->format('c') ?>">
-                <?= $blogComment->publishTime->format('d.m.Y | H:i') ?>
-            </time>
-        <?php endif; ?>
-        <?= $blogComment->contents ?>
+    <h1><?= $blogComment->displayName ?></h1>
+    <?php if ($blogComment->publishTime) : ?>
+    <time datetime="<?= $blogComment->publishTime->format('c') ?>">
+        <?= $blogComment->publishTime->format('d.m.Y | H:i') ?>
+    </time>
+    <?php endif; ?>
+    <?= $blogComment->contents ?>
 
-        <?php if ($blogComment->publishStatus == $blogComment::COMMENT_STATUS_NEED_MODERATE) : ?>
-            <div class="btn-toolbar">
-                <?= $this->widget('blog.comment.publishForm', ['blogComment' => $blogComment, 'template' => 'publishForm']); ?>
-                <?= $this->widget('blog.comment.rejectForm', ['blogComment' => $blogComment, 'template' => 'rejectForm']); ?>
-            </div>
-        <?php endif; ?>
-
-        <?php if ($blogComment->publishStatus == $blogComment::COMMENT_STATUS_PUBLISHED) : ?>
-            <div class="btn-toolbar">
-                <?= $this->widget('blog.comment.unpublishForm', ['blogComment' => $blogComment, 'template' => 'unpublishForm']); ?>
-            </div>
-        <?php endif; ?>
+    <?php if ($blogComment->publishStatus == $blogComment::COMMENT_STATUS_NEED_MODERATE) : ?>
+    <div class="btn-toolbar">
+        <?= $this->widget('blog.comment.publishForm', ['blogComment' => $blogComment, 'template' => 'publishForm']); ?>
+        <?= $this->widget('blog.comment.rejectForm', ['blogComment' => $blogComment, 'template' => 'rejectForm']); ?>
+    </div>
     <?php endif; ?>
 </div>

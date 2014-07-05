@@ -12,10 +12,6 @@ namespace umicms\orm\object;
 
 use umi\orm\object\property\IProperty;
 use umicms\hmvc\url\TUrlManagerAware;
-use umicms\orm\collection\ICmsCollection;
-use umicms\serialization\ISerializer;
-use umicms\serialization\TSerializerConfigurator;
-use umicms\serialization\xml\BaseSerializer;
 
 /**
  * Трейт для поддержки объектов.
@@ -23,20 +19,12 @@ use umicms\serialization\xml\BaseSerializer;
 trait TCmsObject
 {
     use TUrlManagerAware;
-    use TSerializerConfigurator {
-        TSerializerConfigurator::configureSerializer as protected configureSerializerInternal;
-    }
 
     /**
      * @var string $traitEditLink ссылка на редактирование объекта
      */
     private $traitEditLink;
 
-    /**
-     * Возвращает коллекцию, к которой принадлежит объект
-     * @return ICmsCollection
-     */
-    abstract public function getCollection();
     /**
      * @see ICmsObject::getIsModified()
      */
@@ -73,25 +61,6 @@ trait TCmsObject
      */
     public static function className() {
         return get_called_class();
-    }
-
-    /**
-     * @see ISerializerConfigurator::configureSerializer()
-     */
-    public function configureSerializer(ISerializer $serializer)
-    {
-        $this->addSerializerConfigurator(
-            function(ISerializer $serializer) {
-                if ($serializer instanceof BaseSerializer) {
-                    $attributes = array_keys($this->getCollection()->getForcedFieldsToLoad());
-                    $attributes[] = ICmsObject::FIELD_DISPLAY_NAME;
-                    $serializer->setAttributes($attributes);
-                }
-                $serializer->setExcludes(['uri']);
-            }
-        );
-
-        return $this->configureSerializerInternal($serializer);
     }
 
     /**

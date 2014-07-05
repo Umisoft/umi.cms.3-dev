@@ -45,8 +45,8 @@ class SettingsComponent extends AdminComponent
             ],
             IAclFactory::OPTION_RULES => [
                 'configurator' => [
-                    'controller:interfaceLayout' => [],
-                    'controller:action' => []
+                    'interfaceLayout:controller' => [],
+                    'action:controller' => []
                 ]
             ]
         ],

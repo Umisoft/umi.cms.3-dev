@@ -108,9 +108,6 @@ return [
                         'lazy' => true,
                         'dataSource' => BlogPost::FIELD_AUTHOR
                     ],
-                    'attributes' => [
-                        'disabled' => 'disabled'
-                    ]
                 ],
                 BlogPost::FIELD_PUBLISH_TIME => [
                     'type' => DateTime::TYPE_NAME,

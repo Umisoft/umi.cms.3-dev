@@ -33,7 +33,8 @@ return [
     SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
             'author' => [],
-            'publisher' => []
+            'publisher' => [],
+            'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
@@ -52,6 +53,11 @@ return [
                 'model:blogPost' => [
                     IAclManager::OPERATION_ALL => ['own']
                 ]
+            ],
+            'moderator' => [
+                'controller:publish' => [],
+                'widget:publishForm' => [],
+                'model:blogPost' => []
             ]
         ]
     ],
