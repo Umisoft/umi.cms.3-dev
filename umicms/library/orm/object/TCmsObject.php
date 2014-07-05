@@ -10,9 +10,6 @@
 
 namespace umicms\orm\object;
 
-use umi\orm\metadata\field\IRelationField;
-use umi\orm\metadata\field\relation\BelongsToRelationField;
-use umi\orm\metadata\field\special\IdentifyField;
 use umi\orm\object\property\IProperty;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\ICmsCollection;
@@ -94,7 +91,7 @@ trait TCmsObject
             }
         );
 
-        return $this->configureSerializerInternal($serializer);
+        $this->configureSerializerInternal($serializer);
     }
 
     /**
