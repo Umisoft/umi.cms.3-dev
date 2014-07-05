@@ -54,6 +54,6 @@ class InvalidObjectsExceptionSerializer extends BaseSerializer
 
         $info['invalidObjects'] = $objects;
 
-        $this->delegate($info);
+        $this->delegate($info, $options);
     }
 }

@@ -17,7 +17,7 @@
 
     <?= $blogDraft->announcement ?>
 
-    <a href="<?= $blogDraft->getPageUrl() ?>"><?=$this->translate('Read more')?></a>
+    <a href="<?= $blogDraft->getPageUrl() ?>"><?=$this->translate('ReadMore')?></a>
 
     <div class="btn-toolbar">
         <?=$this->widget('blog.draft.publishForm', ['blogDraft' => $blogDraft, 'template' => 'publishDraftForm'])?>

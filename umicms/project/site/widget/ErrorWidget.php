@@ -40,6 +40,8 @@ class ErrorWidget extends BaseCmsWidget
             );
         }
 
+        $code = $this->getExceptionStatusCode($this->exception);
+
         $e = $this->exception;
         $stack = [];
 
@@ -53,7 +55,8 @@ class ErrorWidget extends BaseCmsWidget
             'error/widget',
             [
                 'error' => $this->exception,
-                'stack' => $stack
+                'stack' => $stack,
+                'code' => $code
             ]
         );
     }

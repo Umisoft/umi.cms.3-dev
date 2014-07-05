@@ -2,11 +2,15 @@
 
 return [
     'en-US' => [
-        'component:forms:displayName' => 'Form elements'
+        'component:forms:displayName' => 'Form elements',
+
+        'role:captchaExecutor:displayName' => 'Captcha'
     ],
 
     'ru-RU' => [
-        'component:forms:displayName' => 'Элементы форм'
+        'component:forms:displayName' => 'Элементы форм',
+
+        'role:captchaExecutor:displayName' => 'Captcha'
     ]
 ];
  
