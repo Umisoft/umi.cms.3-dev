@@ -90,11 +90,13 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
             );
         }
 
-        $user = $this->getInternalSelector()
+        $user = $this->selectInternal()
             ->where(RegisteredUser::FIELD_ACTIVATION_CODE)
                 ->equals($activationCode)
             ->where(RegisteredUser::FIELD_ACTIVE)
                 ->equals($active)
+            ->where(RegisteredUser::FIELD_TRASHED)
+                ->equals(false)
             ->limit(1)
             ->getResult()
             ->fetch();
@@ -116,7 +118,7 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
      */
     public function getUserByLoginOrEmail($emailOrLogin)
     {
-        $user = $this->getInternalSelector()
+        $user = $this->selectInternal()
             ->begin(IFieldConditionGroup::MODE_OR)
             ->where(RegisteredUser::FIELD_LOGIN)
                 ->equals($emailOrLogin)
@@ -143,7 +145,7 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
      */
     public function checkLoginUniqueness(RegisteredUser $user)
     {
-        $users = $this->getInternalSelector()
+        $users = $this->selectInternal()
             ->fields([RegisteredUser::FIELD_IDENTIFY])
             ->where(RegisteredUser::FIELD_LOGIN)
                 ->equals($user->login)
@@ -161,7 +163,7 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
      */
     public function checkEmailUniqueness(RegisteredUser $user)
     {
-        $users = $this->getInternalSelector()
+        $users = $this->selectInternal()
             ->fields([RegisteredUser::FIELD_IDENTIFY])
             ->where(RegisteredUser::FIELD_EMAIL)
                 ->equals($user->email)

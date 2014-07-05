@@ -31,18 +31,6 @@ return array_replace_recursive(
                     'unsigned' => true
                 ]
             ],
-            'contents' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
-                ]
-            ],
-            'contents_en' => [
-                'type' => Type::TEXT,
-                'options' => [
-                    'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
-                ]
-            ],
             'contents_raw' => [
                 'type' => Type::TEXT,
                 'options' => [
@@ -80,6 +68,9 @@ return array_replace_recursive(
                 'columns' => [
                     'author_id' => []
                 ],
+                'foreignColumns' => [
+                    'id' => []
+                ],
                 'options' => [
                     'onUpdate' => 'CASCADE',
                     'onDelete' => 'SET NULL'
@@ -89,6 +80,9 @@ return array_replace_recursive(
                 'foreignTable' => 'blog_post',
                 'columns' => [
                     'post_id' => []
+                ],
+                'foreignColumns' => [
+                    'id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',

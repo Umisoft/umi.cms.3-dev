@@ -9,8 +9,7 @@
         "psr-4": {
             "umicms\\": "umicms/library",
             "umicms\\project\\" : "umicms/project",
-            "project\\" : "",
-            "tests\\" : "tests"
+            "project\\" : ""
         },
         "classmap": ["umicms/project/module/files/admin/manager/elfinder"]
     },
@@ -19,7 +18,7 @@
     },
     "require": {
         "php": ">=5.4.0",
-        "umisoft/umi.framework-dev": "dev-feature/metadata-configs",
+        "umisoft/umi.framework-dev": "*",
         "guzzlehttp/guzzle": "4.*",
         "twig/twig": "1.*",
         "gregwar/captcha": "dev-master",
@@ -27,12 +26,7 @@
         "jbroadway/urlify": "1.0.3"
     },
     "require-dev":{
-        "behat/behat": "3.*@stable",
-        "behat/mink-extension": "*",
-        "behat/mink-sahi-driver": "*",
-        "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium2-driver": "*",
-        "sensiolabs/behat-page-object-extension": "~2.0"
+        "mockery/mockery": "0.9.*"
     },
     "repositories":[
         {

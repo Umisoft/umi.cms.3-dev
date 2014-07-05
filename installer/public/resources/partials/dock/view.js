@@ -92,10 +92,7 @@ define(['App'], function(UMI){
         UMI.DockModuleButtonView = Ember.View.extend({
             tagName: 'li',
             classNames: ['umi-dock-button', 'dropdown'],
-            classNameBindings: ['active', 'open', 'moduleClass'],
-            moduleClass: function(){
-                return this.get('model.name');
-            }.property('model.name'),
+            classNameBindings: ['active', 'open'],
             open: false,
             active: function(){
                 return this.get('model.name') === this.get('controller.activeModule.name');

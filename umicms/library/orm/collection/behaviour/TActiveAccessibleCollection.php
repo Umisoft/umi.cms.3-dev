@@ -13,7 +13,6 @@ namespace umicms\orm\collection\behaviour;
 use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\CmsHierarchicObject;
-use umicms\orm\object\ICmsObject;
 use umicms\orm\selector\CmsSelector;
 
 /**
@@ -22,17 +21,17 @@ use umicms\orm\selector\CmsSelector;
 trait TActiveAccessibleCollection
 {
     /**
-     * @see ICmsCollection::getInternalSelector()
-     * @return CmsSelector|ICmsObject[]
+     * @see TCmsCollection::selectInternal()
+     * @return CmsSelector
      */
-    abstract public function getInternalSelector();
+    abstract protected function selectInternal();
 
     /**
      * @see IActiveAccessibleCollection::selectActive()
      */
     public function selectActive()
     {
-        return $this->getInternalSelector()
+        return $this->selectInternal()
             ->where(IActiveAccessibleObject::FIELD_ACTIVE)->equals(true);
     }
 
@@ -41,7 +40,7 @@ trait TActiveAccessibleCollection
      */
     public function selectInactive()
     {
-        return $this->getInternalSelector()
+        return $this->selectInternal()
             ->where(IActiveAccessibleObject::FIELD_ACTIVE)->equals(false);
     }
 

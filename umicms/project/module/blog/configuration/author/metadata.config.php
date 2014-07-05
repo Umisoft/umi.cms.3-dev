@@ -45,10 +45,10 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\blog\model\object\BlogAuthor',
                 'fields' => [
-                    BlogAuthor::FIELD_PROFILE => [],
-                    BlogAuthor::FIELD_POSTS => [],
-                    BlogAuthor::FIELD_COMMENTS_COUNT => [],
-                    BlogAuthor::FIELD_POSTS_COUNT => []
+                    BlogAuthor::FIELD_PROFILE,
+                    BlogAuthor::FIELD_POSTS,
+                    BlogAuthor::FIELD_COMMENTS_COUNT,
+                    BlogAuthor::FIELD_POSTS_COUNT
                 ]
             ]
         ]

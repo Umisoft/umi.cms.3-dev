@@ -47,6 +47,9 @@ return array_replace_recursive(
                 'columns' => [
                     'user_id' => []
                 ],
+                'foreignColumns' => [
+                    'id' => []
+                ],
                 'options' => [
                     'onUpdate' => 'CASCADE',
                     'onDelete' => 'SET NULL'
@@ -56,6 +59,9 @@ return array_replace_recursive(
                 'foreignTable' => 'users_group',
                 'columns' => [
                     'group_id' => []
+                ],
+                'foreignColumns' => [
+                    'id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',

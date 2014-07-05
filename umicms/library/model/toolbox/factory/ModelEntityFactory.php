@@ -39,14 +39,6 @@ class ModelEntityFactory implements IFactory
      * @var string $tableNamePrefix префикс для имен таблиц проекта
      */
     public $tableNamePrefix = '';
-    /**
-     * @var string $tableDataExporterClass класс для экспорта данных таблицы
-     */
-    public $tableDataExporterClass = '';
-    /**
-     * @var string $tableDataExporterClass класс для экспорта данных таблицы
-     */
-    public $tableDataImporterClass = '';
 
     /**
      * Создает коллекцию моделей.

@@ -18,7 +18,7 @@ return [
     'types'      => [
         'base' => [
             'fields'      => [
-                ILockedAccessibleObject::FIELD_LOCKED => []
+                ILockedAccessibleObject::FIELD_LOCKED
             ]
         ]
     ]
