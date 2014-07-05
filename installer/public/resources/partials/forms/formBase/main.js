@@ -62,7 +62,12 @@ define(
                      * @method gridType
                      */
                     gridType: function(){
-                        return 'umi-columns ' + (this.get('content.type') === 'wysiwyg' ? 'small-12' : 'large-4 small-12');
+                        var wideElements = ['wysiwyg', 'permissions'];
+                        var widthClass = 'large-4 small-12';
+                        if(wideElements.contains(this.get('content.type'))){
+                            widthClass = 'small-12';
+                        }
+                        return 'umi-columns ' + widthClass;
                     },
 
                     actions: {
@@ -200,7 +205,10 @@ define(
                             handler.addClass('loading');
                         }
                         var data = this.$().serialize();
-                        $.post(self.get('action'), data).then(function(){
+                        $.post(self.get('action'), data).then(function(results){
+                            var meta = Ember.get(results, 'result.save');
+                            var context = self.get('context');
+                            Ember.set(context, 'control.meta', meta);
                             handler.removeClass('loading');
                             var params = {type: 'success', 'content': 'Сохранено.'};
                             UMI.notification.create(params);

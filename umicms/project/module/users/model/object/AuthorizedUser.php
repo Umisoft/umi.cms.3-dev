@@ -11,6 +11,7 @@
 namespace umicms\project\module\users\model\object;
 
 use umicms\project\module\users\model\collection\UserCollection;
+use umicms\serialization\ISerializer;
 use umicms\Utils;
 
 /**
@@ -105,6 +106,20 @@ class AuthorizedUser extends BaseUser
      * @var string $rawPassword устанавливаемый пароль
      */
     private $rawPassword;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureSerializer(ISerializer $serializer)
+    {
+        $this->addSerializerConfigurator(
+            function(ISerializer $serializer) {
+                $serializer->setExcludes([self::FIELD_PASSWORD, self::FIELD_ACTIVATION_CODE, self::FIELD_PASSWORD_SALT]);
+            }
+        );
+
+        return parent::configureSerializer($serializer);
+    }
 
      /**
      * Устанавливает пароль для пользователя.

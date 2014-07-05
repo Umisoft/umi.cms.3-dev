@@ -13,13 +13,17 @@ return [
     'en-US' => [
         'component:subject:displayName' => 'Subjects',
 
-        'action:create:base' => 'Create subject'
+        'action:create:base' => 'Create subject',
+
+        'role:editor:displayName' => 'Managing subject'
     ],
 
     'ru-RU' => [
         'component:subject:displayName' => 'Новостные сюжеты',
 
-        'action:create:base' => 'Добавить сюжет'
+        'action:create:base' => 'Добавить сюжет',
+
+        'role:editor:displayName' => 'Управление сюжетами'
     ]
 
 ];

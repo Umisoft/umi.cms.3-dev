@@ -31,6 +31,13 @@ interface IUrlManager
     public function setUrlPrefix($urlPrefix);
 
     /**
+     * Устанавливает постфикс URL проекта.
+     * @param string $urlPostfix
+     * @return self
+     */
+    public function setSiteUrlPostfix($urlPostfix);
+
+    /**
      * Устанавливает схему и HTTP-хост проета.
      * @param string $schemeAndHttpHost
      * @return self
@@ -57,6 +64,12 @@ interface IUrlManager
      * @return string
      */
     public function getProjectUrl($isAbsolute = false);
+
+    /**
+     * Возвращает постфикс для URL проекта.
+     * @return string|null
+     */
+    public function getSiteUrlPostfix();
 
     /**
      * Возвращает схему и HTTP-хост проета.

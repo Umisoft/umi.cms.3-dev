@@ -7,12 +7,16 @@ return [
         'component:yandex:displayName' => 'Yandex.Webmaster',
         YandexModel::YANDEX_HOST_ID => 'Host ID',
         YandexModel::YANDEX_OAUTH_TOKEN => 'oAuth token',
+
+        'role:configurator:displayName' => 'Managing setting'
     ],
 
     'ru-RU' => [
         'component:yandex:displayName' => 'Яндекс.Вебмастер',
         YandexModel::YANDEX_HOST_ID => 'Идентификатор хоста',
         YandexModel::YANDEX_OAUTH_TOKEN => 'Авторизационный токен',
+
+        'role:configurator:displayName' => 'Управление настройками'
     ]
 ];
  

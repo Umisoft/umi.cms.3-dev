@@ -14,6 +14,7 @@ use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\ISerializer;
+use umicms\serialization\ISerializerConfigurator;
 use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
 
@@ -25,6 +26,14 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
     use TSerializationAware;
     use TLocalizable;
 
+    /**
+     * @var array $currentExcludes список имен исключений
+     */
+    protected $currentExcludes = [];
+    /**
+     * @var array $currentOptions список опций сериализации
+     */
+    protected $currentOptions = [];
     /**
      * @var JsonWriter $jsonWriter
      */
@@ -50,6 +59,37 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function setOptions(array $options)
+    {
+        $this->currentOptions = array_merge($this->currentOptions, $options);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setExcludes(array $excludes)
+    {
+        $this->currentExcludes = array_merge($this->currentExcludes, $excludes);
+
+        return $this;
+    }
+
+    /**
+     * Конфигурируется через сериализуемый объект.
+     * @param ISerializerConfigurator $configurator
+     */
+    protected function configure(ISerializerConfigurator $configurator)
+    {
+        $this->currentExcludes = [];
+        $this->currentOptions = [];
+        $configurator->configureSerializer($this);
+    }
+
+    /**
      * Возвращает JsonWriter.
      * @return JsonWriter
      */
@@ -64,7 +104,7 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
 
     /**
      * Создает значение json-элемента
-     * @param $value
+     * @param mixed $value
      */
     protected function writeRaw($value)
     {
@@ -74,7 +114,7 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
 
     /**
      * Делегирует сериализацию.
-     * @param $value
+     * @param mixed $value
      * @param array $options опции сериализации
      * @return ISerializer
      */
