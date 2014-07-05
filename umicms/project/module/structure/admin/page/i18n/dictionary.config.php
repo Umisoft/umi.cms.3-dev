@@ -13,13 +13,17 @@ return [
     'en-US' => [
         'component:page:displayName' => 'Pages',
 
-        'action:create:static' => 'Create subpage'
+        'action:create:static' => 'Create subpage',
+
+        'role:editor:displayName' => 'Managing page'
     ],
 
     'ru-RU' => [
         'component:page:displayName' => 'Страницы',
 
-        'action:create:static' => 'Добавить подстраницу'
+        'action:create:static' => 'Добавить подстраницу',
+
+        'role:editor:displayName' => 'Управление страницами'
     ]
 
 ];

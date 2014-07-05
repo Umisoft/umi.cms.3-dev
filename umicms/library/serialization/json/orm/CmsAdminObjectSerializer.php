@@ -13,6 +13,8 @@ use umi\orm\metadata\field\relation\BelongsToRelationField;
 use umi\orm\metadata\field\relation\HasManyRelationField;
 use umi\orm\metadata\field\relation\ManyToManyRelationField;
 use umi\orm\metadata\field\special\MaterializedPathField;
+use umicms\hmvc\url\IUrlManagerAware;
+use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\ICmsCollection;
 use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
@@ -21,8 +23,10 @@ use umicms\orm\object\ICmsPage;
 /**
  * JSON-сериализатор для объекта.
  */
-class CmsAdminObjectSerializer extends CmsObjectSerializer
+class CmsAdminObjectSerializer extends CmsObjectSerializer implements IUrlManagerAware
 {
+    use TUrlManagerAware;
+
     /**
      * Сериализует ICmsObject в JSON.
      * @param ICmsObject $object

@@ -34,14 +34,13 @@ return [
     ],
     SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_ROLES => [
-            'author' => [],
             'moderator' => []
         ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
-            'author' => [
+            'viewer' => [
                 'controller:draft' => [],
                 'widget:toDraftForm' => [],
                 'model:blogPost' => [
@@ -49,6 +48,7 @@ return [
                 ]
             ],
             'moderator' => [
+                'controller:index' => [],
                 'controller:publish' => [],
                 'controller:reject' => [],
                 'controller:draft' => [],

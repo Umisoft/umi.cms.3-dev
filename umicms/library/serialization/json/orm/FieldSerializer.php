@@ -94,9 +94,7 @@ class FieldSerializer extends BaseSerializer implements IValidationAware
             $info['relatedField'] = $field->getRelatedFieldName();
         }
 
-        $this->delegate(
-            $info
-        );
+        $this->delegate($info, $options);
     }
 }
  

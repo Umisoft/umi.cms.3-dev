@@ -11,6 +11,7 @@
 namespace umicms\project\module\blog\model\object;
 
 use DateTime;
+use umi\orm\object\property\calculable\ICounterProperty;
 use umi\orm\objectset\IObjectSet;
 use umicms\orm\object\CmsObject;
 use umicms\orm\object\ICmsPage;
@@ -72,6 +73,58 @@ class BlogAuthor extends CmsObject implements ICmsPage
 
         $this->getProperty(self::FIELD_PAGE_CONTENTS_RAW, $locale)
             ->setValue($contents);
+
+        return $this;
+    }
+
+    /**
+     * Увеличивает количество постов, опубликованных автором.
+     * @return $this
+     */
+    public function incrementPostCount()
+    {
+        /** @var ICounterProperty $authorPostCount */
+        $authorPostCount = $this->getProperty(self::FIELD_POSTS_COUNT);
+        $authorPostCount->increment();
+
+        return $this;
+    }
+
+    /**
+     * Уменьшает количество постов, опубликованных автором.
+     * @return $this
+     */
+    public function decrementPostCount()
+    {
+        /** @var ICounterProperty $authorPostCount */
+        $authorPostCount = $this->getProperty(self::FIELD_POSTS_COUNT);
+        $authorPostCount->decrement();
+
+        return $this;
+    }
+
+    /**
+     * Увеличивает количество комментариев, опубликованных автором.
+     * @return $this
+     */
+    public function incrementCommentCount()
+    {
+        /** @var ICounterProperty $authorCommentsCount */
+        $authorCommentsCount = $this->getProperty(BlogAuthor::FIELD_COMMENTS_COUNT);
+        $authorCommentsCount->increment();
+
+        return $this;
+    }
+
+    /**
+     * Уменьшает количество комментариев, опубликованных автором.
+     * @return $this
+     */
+    public function decrementCommentCount()
+    {
+        /** @var ICounterProperty $authorCommentsCount */
+        $authorCommentsCount = $this->getProperty(BlogAuthor::FIELD_COMMENTS_COUNT);
+        $authorCommentsCount->decrement();
 
         return $this;
     }
