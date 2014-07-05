@@ -3110,28 +3110,6 @@ div.switch {
   to {
     position: relative; } }
 
-table {
-  background: #fff;
-  margin-bottom: 1.25rem;
-  border: solid 1px #ddd; }
-  table thead, table tfoot {
-    background: #f5f5f5; }
-    table thead tr th, table thead tr td, table tfoot tr th, table tfoot tr td {
-      padding: 0.5rem 0.625rem 0.625rem;
-      font-size: 0.875rem;
-      font-weight: bold;
-      color: #222;
-      text-align: left; }
-  table tr th, table tr td {
-    padding: 0.5625rem 0.625rem;
-    font-size: 0.875rem;
-    color: #222; }
-  table tr.even, table tr.alt, table tr:nth-of-type(even) {
-    background: #f9f9f9; }
-  table thead tr th, table tfoot tr th, table tbody tr td, table tr td, table tfoot tr td {
-    display: table-cell;
-    line-height: 1.125rem; }
-
 .tabs {
   *zoom: 1;
   margin-bottom: 0 !important; }
@@ -4814,6 +4792,28 @@ fieldset {
   display: block;
   visibility: visible;
   opacity: 1; }
+
+.f-table {
+  background: #fff;
+  margin-bottom: 1.25rem;
+  border: solid 1px #ddd; }
+  .f-table thead, .f-table tfoot {
+    background: #f5f5f5; }
+    .f-table thead tr th, .f-table thead tr td, .f-table tfoot tr th, .f-table tfoot tr td {
+      padding: 0.5rem 0.625rem 0.625rem;
+      font-size: 0.875rem;
+      font-weight: bold;
+      color: #222;
+      text-align: left; }
+  .f-table tr th, .f-table tr td {
+    padding: 0.5625rem 0.625rem;
+    font-size: 0.875rem;
+    color: #222; }
+  .f-table tr.even, .f-table tr.alt, .f-table tr:nth-of-type(even) {
+    background: #f9f9f9; }
+  .f-table thead tr th, .f-table tfoot tr th, .f-table tbody tr td, .f-table tr td, .f-table tfoot tr td {
+    display: table-cell;
+    line-height: 1.125rem; }
 
 .s-margin-clear, .umi-top-bar-list, .umi-top-bar-list {
   margin: 0 !important; }
