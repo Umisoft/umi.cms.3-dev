@@ -5,27 +5,8 @@ define(['App'], function(UMI){
         UMI.TableView = Ember.View.extend({
             templateName: 'table',
             classNames: ['umi-table'],
-            headers: ['test', 'test'],
-            rows: [
-                {
-                    site: "www.umi-cms.ru",
-                    code_status: "Корректно установлен.",
-                    permission: "own",
-                    name: "",
-                    id: "48117",
-                    type: "simple",
-                    owner_login: "umicms"
-                },
-                {
-                    site: "umi.ru",
-                    code_status: "Корректно установлен.",
-                    permission: "view",
-                    name: "юми",
-                    id: "5426581",
-                    type: "simple",
-                    owner_login: "umi-ru"
-                }
-            ],
+            headers: [],
+            rows: [],
             rowCount: function(){
                 var rows = this.get('rows') || [];
                 var row = rows[0] || {};
@@ -72,12 +53,28 @@ define(['App'], function(UMI){
             },
             willDestroyElement: function(){
                 $(window).off('resize.umi.table');
+                this.removeObserver('content');
             },
             actions: {
                 rowEvent: function(context){
                     this.get('controller').transitionToRoute('context', Ember.get(context, 'id'));
                 }
             }
+        });
+
+        UMI.TableCountersView = UMI.TableView.extend({
+            setContent: function(){
+                var content = this.get('content');
+                var headers = Ember.get(content, 'control.meta.labels');
+                var headersList = [];
+                var rows = Ember.get(content, 'control.meta.objects');
+                for(var key in headers){
+                    if(headers.hasOwnProperty(key)){
+                        headersList.push(headers[key]);
+                    }
+                }
+                this.setProperties({'headers': headersList, 'rows': rows});
+            }.observes('content').on('init')
         });
     };
 });
