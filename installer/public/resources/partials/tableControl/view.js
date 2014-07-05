@@ -306,6 +306,7 @@ define(['App', 'toolbar'], function(UMI){
                             }
                         }
                     }
+                    behaviour.classNames = ['white square'];
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

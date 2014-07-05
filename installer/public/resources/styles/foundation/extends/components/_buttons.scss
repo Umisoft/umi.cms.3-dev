@@ -14,7 +14,7 @@
 
 .button, button{
     border: 1px solid;
-    border-color: #4D9ED8;
+    border-color: #0A8EEC;
     @include button-bg-gradient(#3aadff, #0087d4);
     vertical-align: top;
     &.secondary{
@@ -28,8 +28,14 @@
         @include button-bg-gradient($alert-color, darken($alert-color, 10%));
     }
     &.white{
-        @include button-style(#fff, $radius:false, $disabled:false);
-        @include button-bg-gradient(#FFF, #FFF);
+        //@include button-style(#fff, $radius:false, $disabled:false);
+        //@include button-bg-gradient(#FFF, #FFF);
+        background: none;
+        border-color: transparent;
+        color: $button-font-color-alt;
+        &:hover{
+            background: #fff;
+        }
     }
     &.flat{
         background: none;
@@ -49,6 +55,7 @@
         margin-bottom: -3px;
     }
     &.tiny{
+        padding-bottom: rem-calc(6);
         .icon{
             // Костыль конечно
             margin-top: -7px;

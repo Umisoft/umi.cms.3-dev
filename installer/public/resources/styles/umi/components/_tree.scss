@@ -60,6 +60,9 @@ $primary-gradient: #3aadff, #0087d4;
                 color: #FFFFFF;
                 border-bottom: none!important;
             }
+            .split.button.open{
+                display: block;
+            }
             .f-dropdown{
                 a{
                     color: $umi-font-color;
@@ -134,188 +137,32 @@ $primary-gradient: #3aadff, #0087d4;
         margin: 0;
         padding: 0;
         margin-top: -24px;
-        .dropdown.button{
-            background: transparent;
-            padding: 0;
-            padding-right: 26px;
+        .split.button{
             display: none;
             &.open{
                 display: block;
+                .f-dropdown{
+                    display: block;
+                    visibility: visible;
+                    opacity: 1;
+                }
             }
             .button-label{
                 display: none;
             }
-            > .icon{
-                margin: 1px;
-            }
-            &:hover{
-                background: #fff;
-            }
-            span{
-                width: 1.5rem;
-                &:before{
-                    border-top-color: #7B899C;
-                }
-            }
-            .f-dropdown{
-                margin-top: 4px;
-                right: 0;
+
+            .f-dropdown{//TODO: replaced 'right' class
+                margin-top: 13px;
+                right: -1px;
                 left: auto;
                 width: auto;
                 &:before{
                     left: auto;
-                    right: 7px;
+                    right: 6px;
                 }
                 &:after{
                     left: auto;
                     right: 8px;
-                }
-            }
-        }
-    }
-
-    .umi-tree-drop-down-toggler{
-        position: relative;
-        height: 24px;
-        &:before{
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: #E7EFFC;
-            width: 1px;
-            height: 20px;
-            margin-top: 2px;
-            border-left: 1px solid #96BCE6;
-        }
-        .button{
-            margin-bottom: 0;
-        }
-        &.is-open{
-            //            box-shadow: 0 0px 2px 1px #7C99AC;
-            //            z-index: 2;
-            .button{
-                box-shadow: 0 0px 3px 0px #7C99AC;
-                z-index: 2;
-                position: relative;
-
-                height: 26px;
-                margin-top: -2px;
-                background: #fff;
-                .icon{
-                    margin-top: -6px;
-                    border-right: 1px solid #FFFFFF;
-                }
-                &:after{
-                    content: '';
-                    position: absolute;
-                    background: #FFFFFF;
-                    width: 26px;
-                    height: 3px;
-                    bottom: -3px;
-                    left: -3px;
-                }
-            }
-        }
-    }
-
-    .umi-item.active{
-        .umi-tree-drop-down-toggler{
-            &:before{
-                background: #91B5F6;
-                border-left: 1px solid #297AD1;
-            }
-        }
-    }
-
-
-    .tree-control-select-action{
-        position: relative;
-        .button{
-            //            z-index: 2;
-            margin-bottom: 0;
-            &:hover{
-                background: #fff;
-                & ~ .tree-control-select-action-tooltip{
-                    visibility: visible;
-                    bottom: 32px;
-                }
-            }
-            &:not(:hover) {
-                transition: .5s;
-            }
-        }
-    }
-
-    .tree-control-select-action-tooltip{
-        z-index: 1;
-        visibility: hidden;
-        position: absolute;
-        background: #FFFFFF;
-        right: -8px;
-        font-size: 11px;
-        padding: 1px 6px;
-        opacity: 1;
-        line-height: 1rem;
-        bottom: 28px;
-        box-shadow: 0 0 1px 1px #97B6CE;
-        color: #646464;
-        border-radius: 10px;
-        transition: visibility .2s;
-        &:before{
-            content: "";
-            bottom: -16px;
-            position: absolute;
-            right: 11px;
-            border: 8px solid transparent;
-            border-top-color: #A9C9E2;
-        }
-        &:after{
-            content: "";
-            bottom: -12px;
-            position: absolute;
-            right: 13px;
-            border: 6px solid transparent;
-            border-top-color: #FFFFFF;
-        }
-    }
-
-    .umi-tree-drop-down{
-        position: absolute;
-        z-index: 1;
-        right: 0;
-        background: #FFFFFF;
-        box-shadow: 0 0px 3px 0px #7C99AC;
-        //        border-top: 1px solid #BEC9D0;
-        .button{
-            border: none !important;
-        }
-
-        .list-action{
-            background: #fff;
-            padding: 4px 0;
-            width: 100%;
-            li{
-                padding: 0 10px;
-                padding-left: 30px;
-                height: 28px;
-                line-height: 28px;
-                position: relative;
-                &:nth-child(even){
-                    background: #E8EDEF;
-                }
-                .icon{
-                    position: absolute;
-                    left: 5px;
-                    top: 5px;
-                    cursor: pointer;
-                }
-                span{
-                    color: #535E6D;
-                    &:hover{
-                        cursor: pointer;
-                        border-bottom: 1px solid $umi-font-color;
-                    }
                 }
             }
         }
@@ -334,71 +181,5 @@ $primary-gradient: #3aadff, #0087d4;
     z-index: 100;
     i{
         margin: rem-calc(2 -2 2 0);
-    }
-}
-
-.umi-tree-control-filters{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 34px;
-    border-top: 1px solid #D6E0E9;
-    background: linear-gradient(rgba(214, 224, 233, .6), #D6E0E9);
-    .button{
-        position: relative;
-        margin-bottom: 0;
-        &:before{
-            content: "";
-            position: absolute;
-            top: -3px;
-            background: #FFFFFF;
-            left: -1px;
-            right: -1px;
-            display: none;
-            height: 2px;
-        }
-    }
-    .dropdown{
-        position: relative;
-        margin-right: 7px;
-        margin-top: 6px;
-        &.open{
-            .button{
-                z-index: 2;
-                box-shadow: 0 0px 3px 0px #7C99AC;
-                background: #fff;
-                border-top-color: #fff;
-                &:before{
-                    display: block;
-                }
-            }
-        }
-    }
-    .umi-dropup{
-        z-index: 1;
-        left: auto;
-        right: 0;
-        width: 200px;
-        padding: 5px 0;
-        box-shadow: 0 0px 2px 0px #7C99AC;
-        border: none;
-        border-bottom: 1px solid #BEC9D0;
-        margin-top: 0;
-        &:before, &:after{
-            display: none;
-        }
-        li{
-            padding: 3px 15px 3px 30px;
-            &:hover{
-                background: transparent;
-            }
-            &:nth-child(even){
-                background: #E8EDEF;
-            }
-        }
-        .umi-checkbox-custom{
-            position: absolute;
-            left: 8px;
-        }
     }
 }

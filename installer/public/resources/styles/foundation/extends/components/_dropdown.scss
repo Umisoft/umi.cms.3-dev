@@ -62,6 +62,14 @@
             }
         }
     }
+    &.composite{
+        li{
+            padding: $f-dropdown-list-padding;
+            a{
+                padding: 0;
+            }
+        }
+    }
 }
 
 .dropdown{

@@ -1,7 +1,4 @@
 .split.button{
-    &.white{
-        @include split-button(false, $split-button-pip-color-alt, false, false);
-    }
     span {
         border-#{$default-float}-color: darken($primary-color, 10%);
     }
@@ -11,8 +8,28 @@
         }
     }
     &.white{
+        @include split-button(false, $split-button-pip-color-alt, false, false);
         span{
-            border-#{$default-float}-color: darken(#fff, 16%);
+            border-left-color: transparent;
+        }
+    }
+    &.square{
+        padding-right: $split-button-padding-med - rem-calc(14);
+        &.small{
+            padding-right: $split-button-padding-med - rem-calc(18);
+        }
+        &.tiny{
+            padding-right: $split-button-padding-med - rem-calc(22);
+        }
+    }
+    &.open{
+        &.white{
+            background: #fff;
+        }
+        .f-dropdown{
+            display: block;
+            visibility: visible;
+            opacity: 1;
         }
     }
 }

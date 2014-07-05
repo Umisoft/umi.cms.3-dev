@@ -66,7 +66,6 @@ define(['App', 'text!./splitButton.hbs'],
                 template: Ember.Handlebars.compile(splitButtonTemplate),
                 tagName: 'span',
                 isOpen: false,
-                classNames: ['s-margin-clear', 'dropdown'],//TODO: избавиться от классов после возвращения Foundation
                 classNameBindings: ['meta.attributes.class', 'isOpen:open'],
                 attributeBindings: ['title'],
                 label: function(){
