@@ -10,7 +10,6 @@
 
 namespace umicms\model;
 
-use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Schema\Synchronizer\SingleDatabaseSynchronizer;
 use umi\dbal\cluster\IDbClusterAware;
@@ -67,11 +66,12 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
     }
 
     /**
-     * Запускает миграцию схем.
+     * Помечает все модели как модифицированные.
      * @return $this
      */
-    public function syncAllSchemes()
+    public function migrateAll()
     {
+
         $connection = $this->getDbCluster()->getMaster()->getConnection();
         /** @var IDialect $dialect */
         $dialect = $connection->getDatabasePlatform();
@@ -86,35 +86,8 @@ class ModelCollection implements ILocalizable, IModelEntityFactoryAware, IModelM
         }
 
         $scheme = new Schema($tables);
-
+        var_dump($synchronizer->getUpdateSchema($scheme, true));
         $synchronizer->updateSchema($scheme, true);
-
-        return $this;
-    }
-
-    /**
-     * Помечает все модели как модифицированные.
-     * @return $this
-     */
-    public function installAllSchemes()
-    {
-
-        $connection = $this->getDbCluster()->getMaster()->getConnection();
-        /** @var IDialect $dialect */
-        $dialect = $connection->getDatabasePlatform();
-
-        $connection->exec($dialect->getDisableForeignKeysSQL());
-
-        foreach ($this->getModels() as $model) {
-            $table = $model->getTableScheme();
-            $queries = $connection->getSchemaManager()->getDatabasePlatform()->getCreateTableSQL(
-                $table,
-                AbstractPlatform::CREATE_INDEXES | AbstractPlatform::CREATE_FOREIGNKEYS
-            );
-            foreach ($queries as $sql) {
-                $connection->exec($sql);
-            }
-        }
 
         return $this;
     }

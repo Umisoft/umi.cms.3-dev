@@ -35,7 +35,7 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\structure\model\object\Layout',
                 'fields'      => [
-                    Layout::FIELD_FILE_NAME => []
+                    Layout::FIELD_FILE_NAME
                 ]
             ]
         ]

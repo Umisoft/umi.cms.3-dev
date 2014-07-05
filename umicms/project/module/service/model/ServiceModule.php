@@ -19,7 +19,6 @@ use umicms\project\module\service\model\collection\BackupCollection;
 class ServiceModule extends BaseModule
 {
     /**
-     * Возвращает коллекцию бэкапов.
      * @return BackupCollection
      */
     public function backup()

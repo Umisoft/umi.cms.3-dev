@@ -47,6 +47,9 @@ return array_replace_recursive(
                 'columns' => [
                     'post_id' => []
                 ],
+                'foreignColumns' => [
+                    'id' => []
+                ],
                 'options' => [
                     'onUpdate' => 'CASCADE',
                     'onDelete' => 'SET NULL'
@@ -56,6 +59,9 @@ return array_replace_recursive(
                 'foreignTable' => 'blog_tag',
                 'columns' => [
                     'tag_id' => []
+                ],
+                'foreignColumns' => [
+                    'id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',

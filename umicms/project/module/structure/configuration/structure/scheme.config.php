@@ -13,7 +13,6 @@ use umicms\project\Environment;
 
 return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/hierarchicPageCollection.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/locked.config.php',
     [
         'name' => 'structure',
         'columns'     =>  [

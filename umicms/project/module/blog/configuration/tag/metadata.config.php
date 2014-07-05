@@ -35,8 +35,8 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\blog\model\object\BlogTag',
                 'fields' => [
-                    BlogTag::FIELD_POSTS => [],
-                    BlogTag::FIELD_POSTS_COUNT => [],
+                    BlogTag::FIELD_POSTS,
+                    BlogTag::FIELD_POSTS_COUNT,
                 ]
             ]
         ]

@@ -88,6 +88,5 @@ class Model implements ILocalizable, IConfigIOAware, IModelEntityFactoryAware
         return $this->tableScheme;
     }
 
-
 }
  

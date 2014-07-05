@@ -45,19 +45,5 @@ class Backup extends CmsObject
         }
         return [];
     }
-
-    /**
-     * Генерирует отображаемое имя, если оно не было установлено.
-     * @return bool
-     */
-    public function validateDisplayName()
-    {
-        if (!$this->displayName) {
-            $this->displayName = 'Backup for ' . $this->collectionName . '#' . $this->objectId;
-        }
-
-        return true;
-    }
-
 }
  

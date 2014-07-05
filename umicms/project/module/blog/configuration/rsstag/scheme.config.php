@@ -12,7 +12,7 @@ use Doctrine\DBAL\Types\Type;
 use umicms\project\Environment;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/collection.config.php',
+    require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
     [
         'name' => 'blog_rss_tag',
         'columns' => [
@@ -42,20 +42,26 @@ return array_replace_recursive(
             ]
         ],
         'constraints' => [
-            'to_scenario' => [
-                'foreignTable' => 'blog_rss_import_scenario',
+            'scenario_to_tag' => [
+                'foreignTable' => 'blog_blog_post_tags',
                 'columns' => [
                     'scenario_id' => []
+                ],
+                'foreignColumns' => [
+                    'id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',
                     'onDelete' => 'SET NULL'
                 ]
             ],
-            'to_tag' => [
+            'tag_to_scenarion' => [
                 'foreignTable' => 'blog_tag',
                 'columns' => [
                     'tag_id' => []
+                ],
+                'foreignColumns' => [
+                    'id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',

@@ -169,23 +169,23 @@ return array_replace_recursive(
             IObjectType::BASE => [
                 'objectClass' => 'umicms\project\module\structure\model\object\BaseInfoBlock',
                 'fields'      => [
-                    BaseInfoBlock::FIELD_INFOBLOCK_NAME => []
+                    BaseInfoBlock::FIELD_INFOBLOCK_NAME,
                 ]
             ],
             InfoBlock::TYPE   => [
                 'objectClass' => 'umicms\project\module\structure\model\object\InfoBlock',
                 'fields'      => [
-                    InfoBlock::FIELD_PHONE_NUMBER => [],
-                    InfoBlock::FIELD_EMAIL => [],
-                    InfoBlock::FIELD_ADDRESS => [],
-                    InfoBlock::FIELD_LOGO => [],
-                    InfoBlock::FIELD_COPYRIGHT => [],
-                    InfoBlock::FIELD_COUNTER => [],
-                    InfoBlock::FIELD_WIDGET_VK => [],
-                    InfoBlock::FIELD_WIDGET_FACEBOOK => [],
-                    InfoBlock::FIELD_WIDGET_TWITTER => [],
-                    InfoBlock::FIELD_SHARE => [],
-                    InfoBlock::FIELD_SOCIAL_GROUP_LINK => []
+                    InfoBlock::FIELD_PHONE_NUMBER,
+                    InfoBlock::FIELD_EMAIL,
+                    InfoBlock::FIELD_ADDRESS,
+                    InfoBlock::FIELD_LOGO,
+                    InfoBlock::FIELD_COPYRIGHT,
+                    InfoBlock::FIELD_COUNTER,
+                    InfoBlock::FIELD_WIDGET_VK,
+                    InfoBlock::FIELD_WIDGET_FACEBOOK,
+                    InfoBlock::FIELD_WIDGET_TWITTER,
+                    InfoBlock::FIELD_SHARE,
+                    InfoBlock::FIELD_SOCIAL_GROUP_LINK
                 ]
             ]
         ]

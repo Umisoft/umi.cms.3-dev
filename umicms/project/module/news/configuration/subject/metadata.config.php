@@ -31,7 +31,7 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\news\model\object\NewsSubject',
                 'fields'      => [
-                    NewsSubject::FIELD_NEWS => [],
+                    NewsSubject::FIELD_NEWS,
                 ]
             ]
         ]

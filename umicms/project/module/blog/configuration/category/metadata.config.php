@@ -9,7 +9,6 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umi\orm\metadata\IObjectType;
 use umicms\project\Environment;
 use umicms\project\module\blog\model\object\BlogCategory;
 use umicms\project\module\blog\model\object\BlogPost;
@@ -19,7 +18,7 @@ return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicPageCollection.config.php',
     [
         'dataSource' => [
-            'sourceName' => 'blog_category'
+            'sourceName' => 'umi_blog_category'
         ],
         'fields' => [
             BlogCategory::FIELD_POSTS => [
@@ -28,12 +27,10 @@ return array_replace_recursive(
                 'targetField' => BlogPost::FIELD_CATEGORY
             ]
         ],
-        'types' => [
-            IObjectType::BASE => [
-                'objectClass' => 'umicms\project\module\blog\model\object\BlogCategory',
-                'fields' => [
-                    BlogCategory::FIELD_POSTS => []
-                ]
+        'base' => [
+            'objectClass' => 'umicms\project\module\blog\model\object\BlogCategory',
+            'fields' => [
+                BlogCategory::FIELD_POSTS
             ]
         ]
     ]

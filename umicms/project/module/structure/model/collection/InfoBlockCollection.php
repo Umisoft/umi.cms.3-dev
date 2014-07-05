@@ -46,7 +46,7 @@ class InfoBlockCollection extends CmsCollection
      */
     public function checkInfoblockNameUniqueness(BaseInfoBlock $infoBlock)
     {
-        $infoBlocks = $this->getInternalSelector()
+        $infoBlocks = $this->selectInternal()
             ->fields([BaseInfoBlock::FIELD_IDENTIFY])
             ->where(BaseInfoBlock::FIELD_INFOBLOCK_NAME)
             ->equals($infoBlock->infoblockName)

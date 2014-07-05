@@ -47,6 +47,9 @@ return array_replace_recursive(
                 'columns' => [
                     'news_item_id' => []
                 ],
+                'foreignColumns' => [
+                    'id' => []
+                ],
                 'options' => [
                     'onUpdate' => 'CASCADE',
                     'onDelete' => 'SET NULL'
@@ -56,6 +59,9 @@ return array_replace_recursive(
                 'foreignTable' => 'news_subject',
                 'columns' => [
                     'subject_id' => []
+                ],
+                'foreignColumns' => [
+                    'id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',

@@ -76,15 +76,15 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\blog\model\object\BlogPost',
                 'fields' => [
-                    BlogPost::FIELD_ANNOUNCEMENT => [],
-                    BlogPost::FIELD_SOURCE => [],
-                    BlogPost::FIELD_PAGE_CONTENTS_RAW => [],
-                    BlogPost::FIELD_CATEGORY => [],
-                    BlogPost::FIELD_TAGS => [],
-                    BlogPost::FIELD_PUBLISH_TIME => [],
-                    BlogPost::FIELD_PUBLISH_STATUS => [],
-                    BlogPost::FIELD_COMMENTS_COUNT => [],
-                    BlogPost::FIELD_AUTHOR => []
+                    BlogPost::FIELD_ANNOUNCEMENT,
+                    BlogPost::FIELD_SOURCE,
+                    BlogPost::FIELD_PAGE_CONTENTS_RAW,
+                    BlogPost::FIELD_CATEGORY,
+                    BlogPost::FIELD_TAGS,
+                    BlogPost::FIELD_PUBLISH_TIME,
+                    BlogPost::FIELD_PUBLISH_STATUS,
+                    BlogPost::FIELD_COMMENTS_COUNT,
+                    BlogPost::FIELD_AUTHOR
                 ]
             ]
         ]

@@ -61,6 +61,9 @@ return array_replace_recursive(
                 'columns' => [
                     'profile_id' => []
                 ],
+                'foreignColumns' => [
+                    'id' => []
+                ],
                 'options' => [
                     'onUpdate' => 'CASCADE',
                     'onDelete' => 'SET NULL'

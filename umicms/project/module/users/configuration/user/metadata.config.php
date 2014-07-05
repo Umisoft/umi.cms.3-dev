@@ -10,6 +10,7 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
+use umicms\filter\HtmlPurifier;
 use umicms\project\Environment;
 use umicms\project\module\users\model\object\BaseUser;
 use umicms\project\module\users\model\object\Guest;
@@ -37,7 +38,7 @@ return array_replace_recursive(
                 'columnName' => 'login',
                 'filters'    => [
                     IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
+                    HtmlPurifier::TYPE               => []
                 ],
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => []
@@ -48,7 +49,7 @@ return array_replace_recursive(
                 'columnName' => 'email',
                 'filters'    => [
                     IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
+                    HtmlPurifier::TYPE               => []
                 ],
                 'validators' => [
                     IValidatorFactory::TYPE_REQUIRED => [],
@@ -79,7 +80,7 @@ return array_replace_recursive(
                 'columnName' => 'first_name',
                 'filters'    => [
                     IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
+                    HtmlPurifier::TYPE               => []
                 ]
             ],
             RegisteredUser::FIELD_MIDDLE_NAME       => [
@@ -87,7 +88,7 @@ return array_replace_recursive(
                 'columnName' => 'middle_name',
                 'filters'    => [
                     IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
+                    HtmlPurifier::TYPE               => []
                 ]
             ],
             RegisteredUser::FIELD_LAST_NAME         => [
@@ -95,7 +96,7 @@ return array_replace_recursive(
                 'columnName' => 'last_name',
                 'filters'    => [
                     IFilterFactory::TYPE_STRING_TRIM => [],
-                    IFilterFactory::TYPE_STRIP_TAGS => []
+                    HtmlPurifier::TYPE               => []
                 ]
             ],
             RegisteredUser::FIELD_REGISTRATION_DATE => [
@@ -112,22 +113,22 @@ return array_replace_recursive(
             Guest::TYPE_NAME          => [
                 'objectClass' => 'umicms\project\module\users\model\object\Guest',
                 'fields'      => [
-                    Guest::FIELD_GROUPS => []
+                    Guest::FIELD_GROUPS
                 ]
             ],
             RegisteredUser::TYPE_NAME => [
                 'objectClass' => 'umicms\project\module\users\model\object\RegisteredUser',
                 'fields'      => [
-                    RegisteredUser::FIELD_GROUPS => [],
-                    RegisteredUser::FIELD_LOGIN => [],
-                    RegisteredUser::FIELD_EMAIL => [],
-                    RegisteredUser::FIELD_PASSWORD => [],
-                    RegisteredUser::FIELD_PASSWORD_SALT => [],
-                    RegisteredUser::FIELD_ACTIVATION_CODE => [],
-                    RegisteredUser::FIELD_FIRST_NAME => [],
-                    RegisteredUser::FIELD_MIDDLE_NAME => [],
-                    RegisteredUser::FIELD_LAST_NAME => [],
-                    RegisteredUser::FIELD_REGISTRATION_DATE => []
+                    RegisteredUser::FIELD_GROUPS,
+                    RegisteredUser::FIELD_LOGIN,
+                    RegisteredUser::FIELD_EMAIL,
+                    RegisteredUser::FIELD_PASSWORD,
+                    RegisteredUser::FIELD_PASSWORD_SALT,
+                    RegisteredUser::FIELD_ACTIVATION_CODE,
+                    RegisteredUser::FIELD_FIRST_NAME,
+                    RegisteredUser::FIELD_MIDDLE_NAME,
+                    RegisteredUser::FIELD_LAST_NAME,
+                    RegisteredUser::FIELD_REGISTRATION_DATE
                 ]
             ],
             Supervisor::TYPE_NAME     => [

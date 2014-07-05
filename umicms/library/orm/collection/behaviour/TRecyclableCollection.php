@@ -15,7 +15,6 @@ use umicms\orm\collection\CmsHierarchicCollection;
 use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\CmsHierarchicObject;
-use umicms\orm\object\ICmsObject;
 use umicms\orm\selector\CmsSelector;
 
 /**
@@ -24,11 +23,10 @@ use umicms\orm\selector\CmsSelector;
 trait TRecyclableCollection
 {
     /**
-     * @see ICmsCollection::getInternalSelector()
-     * @return CmsSelector|ICmsObject[]
+     * @see TCmsCollection::selectInternal()
+     * @return CmsSelector
      */
-    abstract public function getInternalSelector();
-
+    abstract protected function selectInternal();
     /**
      * @see ILocalizable::translate()
      */
@@ -39,7 +37,7 @@ trait TRecyclableCollection
      */
     public function selectTrashed()
     {
-        return $this->getInternalSelector()
+        return $this->selectInternal()
             ->where(IRecyclableObject::FIELD_TRASHED)->equals(true);
     }
 

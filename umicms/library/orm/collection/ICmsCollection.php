@@ -20,7 +20,6 @@ use umi\orm\metadata\IObjectType;
 use umicms\exception\NonexistentEntityException;
 use umicms\exception\OutOfBoundsException;
 use umicms\orm\object\ICmsObject;
-use umicms\orm\selector\CmsSelector;
 
 /**
  * Интерфейс коллекции объектов UMI.CMS
@@ -106,10 +105,4 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
      * @return array
      */
     public function getEditTypeList();
-
-    /**
-     * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
-     * @return CmsSelector|ICmsObject[]
-     */
-    public function getInternalSelector();
 }

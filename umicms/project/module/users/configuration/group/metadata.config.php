@@ -38,8 +38,8 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\users\model\object\UserGroup',
                 'fields'      => [
-                    UserGroup::FIELD_USERS => [],
-                    UserGroup::FIELD_ROLES => []
+                    UserGroup::FIELD_USERS,
+                    UserGroup::FIELD_ROLES
                 ]
             ]
         ]

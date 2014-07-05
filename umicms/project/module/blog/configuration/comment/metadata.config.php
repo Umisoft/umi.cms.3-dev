@@ -34,18 +34,9 @@ return array_replace_recursive(
                 'columnName' => 'post_id',
                 'target' => 'blogPost'
             ],
-            BlogComment::FIELD_CONTENTS => [
-                'type' => IField::TYPE_TEXT,
-                'columnName' => 'contents',
-                'mutator' => 'setContents',
-                'localizations' => [
-                    'ru-RU' => ['columnName' => 'contents'],
-                    'en-US' => ['columnName' => 'contents']
-                ]
-            ],
             BlogComment::FIELD_CONTENTS_RAW => [
                 'type' => IField::TYPE_TEXT,
-                'columnName' => 'contents_raw',
+                'columnName' => 'contents',
                 'mutator' => 'setContents',
                 'localizations' => [
                     'ru-RU' => ['columnName' => 'contents_raw'],
@@ -59,29 +50,37 @@ return array_replace_recursive(
             BlogComment::FIELD_PUBLISH_STATUS => [
                 'type' => IField::TYPE_STRING,
                 'columnName' => 'publish_status'
+            ],
+            BlogComment::FIELD_CHILDREN => [
+                'type' => IField::TYPE_HAS_MANY,
+                'target' => 'blogComment',
+                'targetField' => BlogComment::FIELD_PARENT,
+                'readOnly' => true
             ]
         ],
         'types' => [
             IObjectType::BASE => [
                 'objectClass' => 'umicms\project\module\blog\model\object\BlogBaseComment',
                 'fields' => [
-                    BlogBaseComment::FIELD_POST => []
+                    BlogBaseComment::FIELD_POST
                 ]
             ],
             BlogBranchComment::TYPE => [
                 'objectClass' => 'umicms\project\module\blog\model\object\BlogBranchComment',
                 'fields' => [
-                    BlogBranchComment::FIELD_PUBLISH_TIME => []
+                    BlogBranchComment::FIELD_PUBLISH_TIME,
+                    BlogBranchComment::FIELD_CHILDREN
                 ]
             ],
             BlogComment::TYPE => [
                 'objectClass' => 'umicms\project\module\blog\model\object\BlogComment',
                 'fields' => [
-                    BlogComment::FIELD_AUTHOR => [],
-                    BlogComment::FIELD_CONTENTS => [],
-                    BlogComment::FIELD_CONTENTS_RAW => [],
-                    BlogComment::FIELD_PUBLISH_TIME => [],
-                    BlogComment::FIELD_PUBLISH_STATUS => []
+                    BlogComment::FIELD_AUTHOR,
+                    BlogComment::FIELD_CONTENTS,
+                    BlogComment::FIELD_CONTENTS_RAW,
+                    BlogComment::FIELD_PUBLISH_TIME,
+                    BlogComment::FIELD_PUBLISH_STATUS,
+                    BlogComment::FIELD_CHILDREN
                 ]
             ]
         ]
