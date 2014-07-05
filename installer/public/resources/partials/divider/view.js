@@ -2,7 +2,7 @@ define(['App'], function(UMI){
     'use strict';
     return function(){
 
-        UMI.OffcanvasView = Ember.View.extend({
+        UMI.DividerView = Ember.View.extend({
             classNames: ['off-canvas-wrap', 'umi-divider-wrapper', 's-full-height'],
 
             //Вызывается при первой загрузке
@@ -16,10 +16,9 @@ define(['App'], function(UMI){
             }.observes('model'),
 
             fakeDidInsertElement: function(){
-                $(window).off('resize.offcanvas'); //Идеологически неверное нахождение строки, но поскольку willDestroyElement для Offcanvas не срабатывает - приходится ставить сюда
+                $(window).off('resize.divider'); //Идеологически неверное нахождение строки, но поскольку willDestroyElement для divider не срабатывает - приходится ставить сюда
 
                 if($('.umi-divider-left').length){
-                    $('.umi-divider-left-toggle').removeClass('umi-disabled'); //Включаем кнопку
                     var showSideBarState = true;
                     var floatSideBarState = false;
                     var sideBarWidth = $('.umi-divider-left').width() + 1; //Отступ контентной области слева при открытом sideBar
@@ -41,9 +40,10 @@ define(['App'], function(UMI){
                         }
                     };
 
-                    $('.umi-divider-left-toggle:not(.umi-disabled)').mousedown(function(){
+                    $('.umi-divider-left-toggle').mousedown(function(){
                         showSideBarState = !showSideBarState;
                         showSideBar();
+                        $(this).children('.icon').toggleClass('icon-left').toggleClass('icon-right');
                     });
 
                     var floatDivider = function(){
@@ -101,12 +101,11 @@ define(['App'], function(UMI){
                     };
 
                     checkWindowWidth();
-                    $(window).on('resize.offcanvas', function(){
+                    $(window).on('resize.divider', function(){
                         checkWindowWidth();
                     });
 
                 } else{
-                    $('.umi-divider-left-toggle').addClass('umi-disabled'); //Делаем кнопку неактивной
                     $('.umi-divider-left').hide();
                     $('.umi-divider-right').css({width: '100%'});
                 }
@@ -115,7 +114,7 @@ define(['App'], function(UMI){
                     return $(window).height() - 108;
                 });
 
-                $(window).on('resize.offcanvas', function(){
+                $(window).on('resize.divider', function(){
                     $('.umi-component').height(function(){
                         return $(window).height() - 108;
                     });

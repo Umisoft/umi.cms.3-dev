@@ -1,12 +1,9 @@
 define(
     [
         'App',
-
-        //Вызов elements
-        'offcanvas',
-
         //Вызов partials
         'topBar',
+        'divider',
         'dock',
         'toolbar',
         'tableControl',
