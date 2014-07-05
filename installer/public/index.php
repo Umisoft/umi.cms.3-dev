@@ -46,7 +46,7 @@ if (!file_exists(Environment::$environmentConfiguration)) {
 
 /** @noinspection PhpIncludeInspection */
 $environmentConfig = require(Environment::$environmentConfiguration);
-Environment::init($environmentConfig);
+Environment::initErrorReporting($environmentConfig);
 
 $toolkitPath = $directoryProjects . '/vendor/umisoft/umi.framework-dev/library';
 
@@ -62,14 +62,6 @@ Environment::$directoryCms = $directoryCms;
 Environment::$directoryCmsError = $directoryCms . '/error';
 Environment::$directoryCmsProject = $directoryCms . '/project';
 Environment::$directoryProjects = $directoryProjects;
-
-
-register_shutdown_function(function() {
-    $error = error_get_last();
-    if (is_array($error) && in_array($error['type'], array(E_ERROR))) {
-        Environment::reportError('error.phtml', ['e' => $error]);
-    }
-});
 
 try {
     (new Bootstrap())->run();

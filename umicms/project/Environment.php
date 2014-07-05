@@ -92,11 +92,11 @@ class Environment
     public static $environmentConfiguration;
 
     /**
-     * Инициализирует настройки исключения.
+     * Настраивает вывод ошибок.
      * @param array $config
      * @throws \RuntimeException в случае неверной конфигурации
      */
-    public static function init($config)
+    public static function initErrorReporting($config)
     {
         if (!is_array($config)) {
             throw new \RuntimeException(
@@ -117,6 +117,13 @@ class Environment
 
         error_reporting($errorReporting);
         ini_set('display_errors', $displayErrors);
+
+        register_shutdown_function(function() {
+            $error = error_get_last();
+            if (is_array($error) && in_array($error['type'], array(E_ERROR))) {
+                Environment::reportError('error.phtml', ['e' => $error]);
+            }
+        });
     }
 
     /**
