@@ -27,13 +27,13 @@ return array_replace_recursive(
                 'columnName' => 'group_id',
                 'target'     => 'userGroup'
             ]
-
         ],
         'types'      => [
             'base' => [
+                'objectClass' => 'umicms\orm\object\CmsLinkObject',
                 'fields' => [
-                    'user',
-                    'userGroup'
+                    'user' => [],
+                    'userGroup' => []
                 ]
             ]
         ]

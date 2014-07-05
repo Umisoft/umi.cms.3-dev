@@ -38,9 +38,9 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\service\model\object\Backup',
                 'fields' => [
-                    Backup::FIELD_OBJECT_ID,
-                    Backup::FIELD_COLLECTION_NAME,
-                    Backup::FIELD_DATA
+                    Backup::FIELD_OBJECT_ID => [],
+                    Backup::FIELD_COLLECTION_NAME => [],
+                    Backup::FIELD_DATA => []
                 ]
             ]
         ]

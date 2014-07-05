@@ -31,8 +31,9 @@ return array_replace_recursive(
         ],
         'types'      => [
             'base' => [
-                'newsRssImportScenario',
-                'subject'
+                'objectClass' => 'umicms\orm\object\CmsLinkObject',
+                'newsRssImportScenario' => [],
+                'subject' => []
             ]
         ]
     ]

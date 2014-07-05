@@ -16,7 +16,7 @@ use umicms\project\module\structure\model\object\MenuExternalItem;
 use umicms\project\module\structure\model\object\MenuInternalItem;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/collection.config.php',
+    require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicCollection.config.php',
     require Environment::$directoryCmsProject . '/configuration/model/metadata/active.config.php',
     [
         'dataSource' => [
@@ -59,19 +59,19 @@ return array_replace_recursive(
             Menu::TYPE             => [
                 'objectClass' => 'umicms\project\module\structure\model\object\Menu',
                 'fields'      => [
-                    Menu::FIELD_NAME
+                    Menu::FIELD_NAME => []
                 ]
             ],
             MenuInternalItem::TYPE => [
                 'objectClass' => 'umicms\project\module\structure\model\object\MenuInternalItem',
                 'fields'      => [
-                    MenuInternalItem::FIELD_PAGE_RELATION
+                    MenuInternalItem::FIELD_PAGE_RELATION => []
                 ]
             ],
             MenuExternalItem::TYPE => [
                 'objectClass' => 'umicms\project\module\structure\model\object\MenuExternalItem',
                 'fields'      => [
-                    MenuExternalItem::FIELD_RESOURCE_URL
+                    MenuExternalItem::FIELD_RESOURCE_URL => []
                 ]
             ],
 

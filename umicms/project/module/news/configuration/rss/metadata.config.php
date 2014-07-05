@@ -41,9 +41,9 @@ return array_replace_recursive(
             'base' => [
                 'objectClass' => 'umicms\project\module\news\model\object\newsRssImportScenario',
                 'fields'      => [
-                    NewsRssImportScenario::FIELD_RSS_URL,
-                    NewsRssImportScenario::FIELD_RUBRIC,
-                    NewsRssImportScenario::FIELD_SUBJECTS
+                    NewsRssImportScenario::FIELD_RSS_URL => [],
+                    NewsRssImportScenario::FIELD_RUBRIC => [],
+                    NewsRssImportScenario::FIELD_SUBJECTS => []
                 ]
             ]
         ]

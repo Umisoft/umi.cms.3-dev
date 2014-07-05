@@ -39,9 +39,6 @@ return array_replace_recursive(
                 'columns' => [
                     'rubric_id' => []
                 ],
-                'foreignColumns' => [
-                    'id' => []
-                ],
                 'options' => [
                     'onUpdate' => 'CASCADE',
                     'onDelete' => 'SET NULL'

@@ -21,6 +21,9 @@ return array_replace_recursive(
                     'length' => 255
                 ]
             ],
+            'slug'             => [
+                'type' => Type::STRING
+            ],
             'uri' => [
                 'type' => Type::STRING,
                 'options' => [
@@ -49,6 +52,11 @@ return array_replace_recursive(
             ]
         ],
         'indexes' => [
+            'slug' => [
+                'columns' => [
+                    'slug' => []
+                ]
+            ],
             'uri' => [
                 'type' => 'unique',
                 'columns' => [
@@ -69,12 +77,8 @@ return array_replace_recursive(
         ],
         'constraints' => [
             'to_parent' => [
-                'foreignTable' => '%self%',
                 'columns' => [
                     'parent_id' => []
-                ],
-                'foreignColumns' => [
-                    'id' => []
                 ],
                 'options' => [
                     'onUpdate' => 'CASCADE',

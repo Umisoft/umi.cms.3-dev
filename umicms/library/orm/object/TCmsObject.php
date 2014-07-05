@@ -10,6 +10,9 @@
 
 namespace umicms\orm\object;
 
+use umi\orm\metadata\field\IRelationField;
+use umi\orm\metadata\field\relation\BelongsToRelationField;
+use umi\orm\metadata\field\special\IdentifyField;
 use umi\orm\object\property\IProperty;
 use umicms\hmvc\url\TUrlManagerAware;
 
