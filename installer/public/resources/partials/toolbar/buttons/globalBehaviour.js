@@ -156,7 +156,16 @@ define(
                             }
                         }
                     }
-                }
+                },
+
+                importFromRss: {
+                    actions: {
+                        importFromRss: function(){
+                            var model = this.get('controller.object');
+                            this.get('controller').send('importFromRss', model);
+                        }
+                    }
+                },
             });
         };
     }

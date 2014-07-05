@@ -204,7 +204,7 @@
     &.icon-right-thin{
         background-position: -1100px 0;
     }
-    &.icon-allowRobots{
+    &.icon-allowRobots, &.icon-importFromRss{
         background-position: -1120px 0;
     }
     &.icon-disallowRobots{
@@ -380,7 +380,7 @@
         &.icon-right-thin{
             background-position: -1100px -20px;
         }
-        &.icon-allowRobots{
+        &.icon-allowRobots, &.icon-importFromRss{
             background-position: -1120px -20px;
         }
         &.icon-disallowRobots{
@@ -557,7 +557,7 @@
         &.icon-right-thin{
             background-position: -1100px -40px;
         }
-        &.icon-allowRobots{
+        &.icon-allowRobots, &.icon-importFromRss{
             background-position: -1120px -40px;
         }
         &.icon-disallowRobots{

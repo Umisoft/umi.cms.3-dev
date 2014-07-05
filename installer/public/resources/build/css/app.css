@@ -3128,7 +3128,7 @@ label.error {
     background-position: -1080px 0; }
   .icon.icon-right-thin {
     background-position: -1100px 0; }
-  .icon.icon-allowRobots {
+  .icon.icon-allowRobots, .icon.icon-importFromRss {
     background-position: -1120px 0; }
   .icon.icon-disallowRobots {
     background-position: -1140px 0; }
@@ -3234,7 +3234,7 @@ label.error {
     background-position: -1080px -20px; }
   .icon.white.icon-right-thin {
     background-position: -1100px -20px; }
-  .icon.white.icon-allowRobots {
+  .icon.white.icon-allowRobots, .icon.white.icon-importFromRss {
     background-position: -1120px -20px; }
   .icon.white.icon-disallowRobots {
     background-position: -1140px -20px; }
@@ -3340,7 +3340,7 @@ label.error {
     background-position: -1080px -40px; }
   .icon.black.icon-right-thin {
     background-position: -1100px -40px; }
-  .icon.black.icon-allowRobots {
+  .icon.black.icon-allowRobots, .icon.black.icon-importFromRss {
     background-position: -1120px -40px; }
   .icon.black.icon-disallowRobots {
     background-position: -1140px -40px; }
@@ -5451,6 +5451,8 @@ input::-ms-clear {
   .umi-dialog .umi-dialog-content {
     margin-bottom: 20px;
     line-height: normal; }
+  .umi-dialog.check-process .umi-dialog-content {
+    margin-bottom: 0; }
 
 .triangle {
   display: inline-block;
