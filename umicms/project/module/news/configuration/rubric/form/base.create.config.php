@@ -41,6 +41,9 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => NewsRubric::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'choices' => [
+                            null => 'Default or inherited layout'
+                        ],
                         'lazy' => true,
                         'dataSource' => NewsRubric::FIELD_PAGE_LAYOUT
                     ],

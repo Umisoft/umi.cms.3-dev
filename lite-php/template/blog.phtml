@@ -16,7 +16,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <?php foreach ($locales as $localeId => $localeInfo) : ?>
                         <li class="<?= $localeInfo['current'] ? 'active' : '' ?>">
-                            <a href="<?= $localeInfo['url'] ?>"><?= $this->translate($localeId) ?></a>
+                            <a href="<?= $localeInfo['url'] ?>"><?= $this->translate($localeInfo['id']) ?></a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -54,7 +54,7 @@
 
     <?=$this->widget('structure.infoblock.view', ['template' => 'footer', 'infoBlock' => 'commonInfoBlock'])?>
     <p>
-        <a href="#"><?=$this->translate('Back to top')?></a>
+        <a href="#"><?=$this->translate('BackToTop')?></a>
     </p>
 </footer>
 

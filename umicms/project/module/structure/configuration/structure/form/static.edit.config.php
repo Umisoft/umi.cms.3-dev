@@ -39,6 +39,9 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => StaticPage::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'choices' => [
+                            null => 'Default or inherited layout'
+                        ],
                         'lazy' => true,
                         'dataSource' => StaticPage::FIELD_PAGE_LAYOUT
                     ],

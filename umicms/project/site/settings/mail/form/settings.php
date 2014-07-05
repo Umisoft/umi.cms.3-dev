@@ -21,10 +21,6 @@ return [
         'sender_address' => [
             'type' => Text::TYPE_NAME,
             'label' => 'sender_address',
-        ],
-        'delivery_address' => [
-            'type' => Text::TYPE_NAME,
-            'label' => 'delivery_address',
         ]
     ]
 

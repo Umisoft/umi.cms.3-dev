@@ -40,6 +40,9 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => NewsSubject::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'choices' => [
+                            null => 'Default or inherited layout'
+                        ],
                         'lazy' => true,
                         'dataSource' => NewsSubject::FIELD_PAGE_LAYOUT
                     ],

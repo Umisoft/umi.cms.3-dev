@@ -22,7 +22,6 @@ use umi\orm\collection\TCollectionManagerAware;
 use umi\orm\manager\IObjectManagerAware;
 use umi\orm\manager\TObjectManagerAware;
 use umi\orm\metadata\IObjectType;
-use umi\orm\object\IHierarchicObject;
 use umi\orm\persister\IObjectPersisterAware;
 use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\InvalidObjectsException;
@@ -30,13 +29,13 @@ use umicms\exception\RuntimeException;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
+use umicms\project\module\blog\model\collection\BlogCommentCollection;
 use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\news\model\collection\NewsRssImportScenarioCollection;
 use umicms\project\module\search\model\SearchApi;
 use umicms\project\module\search\model\SearchIndexApi;
 use umicms\project\module\search\model\SearchModule;
-use umicms\project\module\service\model\collection\BackupCollection;
 use umicms\project\module\structure\model\object\InfoBlock;
 use umicms\project\module\structure\model\object\Menu;
 use umicms\project\module\structure\model\object\MenuExternalItem;
@@ -223,7 +222,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'newsExecutor',
                 'structureExecutor',
                 'blogExecutor',
-                'searchExecutor'
+                'searchExecutor',
+                'viewer',
+                'widgetExecutor'
             ],
 
             'project.site.users' => [
@@ -320,16 +321,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'author'
             ],
             'project.site.blog.draft.edit' => ['author'],
-            'project.site.blog.draft.view' => ['viewer', 'author'],
+            'project.site.blog.draft.view' => ['viewer'],
 
             'project.site.blog.moderate' => [
                 'editExecutor',
                 'ownExecutor',
                 'viewer',
-                'author'
             ],
             'project.site.blog.moderate.edit' => ['author'],
-            'project.site.blog.moderate.own' => ['viewer', 'author'],
+            'project.site.blog.moderate.own' => ['viewer'],
 
             'project.site.blog.post' => [
                 'addExecutor',
@@ -338,7 +338,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'viewer',
                 'author'
             ],
-            'project.site.blog.post.add' => ['viewer', 'author'],
+            'project.site.blog.post.add' => ['author'],
 
             'project.site.blog.reject' => [
                 'editExecutor',
@@ -347,7 +347,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'author'
             ],
             'project.site.blog.reject.edit' => ['author'],
-            'project.site.blog.reject.view' => ['viewer', 'author']
+            'project.site.blog.reject.view' => ['viewer', 'author'],
+
+            'project.site.blog.author' => ['profileExecutor'],
+            'project.site.blog.author.profile' => ['author'],
         ];
 
         /**
@@ -371,16 +374,15 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'publisher'
             ],
             'project.site.blog.draft.edit' => ['author'],
-            'project.site.blog.draft.view' => ['viewer', 'author'],
+            'project.site.blog.draft.view' => ['viewer'],
 
             'project.site.blog.moderate' => [
                 'editExecutor',
                 'viewExecutor',
                 'viewer',
-                'author'
             ],
             'project.site.blog.moderate.edit' => ['author'],
-            'project.site.blog.moderate.own' => ['viewer', 'author'],
+            'project.site.blog.moderate.own' => ['viewer'],
 
             'project.site.blog.post' => [
                 'addExecutor',
@@ -389,7 +391,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'viewer',
                 'author'
             ],
-            'project.site.blog.post.add' => ['viewer', 'author'],
+            'project.site.blog.post.add' => ['author'],
 
             'project.site.blog.reject' => [
                 'editExecutor',
@@ -398,7 +400,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'author'
             ],
             'project.site.blog.reject.edit' => ['author'],
-            'project.site.blog.reject.view' => ['viewer', 'author']
+            'project.site.blog.reject.view' => ['viewer', 'author'],
+
+            'project.site.blog.author.profile' => ['author'],
         ];
 
         /**
@@ -449,11 +453,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                 'editExecutor',
                 'ownExecutor',
                 'allExecutor',
-                'viewer',
                 'moderator'
             ],
             'project.site.blog.moderate.edit' => ['moderator'],
-            'project.site.blog.moderate.own' => ['viewer', 'moderator'],
             'project.site.blog.moderate.all' => ['viewer'],
 
             'project.site.blog.post' => [
@@ -546,6 +548,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
         $guest->getProperty('locked')->setValue(true);
 
         $guest->groups->attach($visitors);
+        $guest->groups->attach($commentWithPremoderation);
 
     }
 
@@ -560,7 +563,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $categoryCollection = $this->getCollectionManager()->getCollection('blogCategory');
         /**
-         * @var SimpleCollection $postCollection
+         * @var BlogPostCollection $postCollection
          */
         $postCollection = $this->getCollectionManager()->getCollection('blogPost');
         /**
@@ -568,7 +571,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
          */
         $authorCollection = $this->getCollectionManager()->getCollection('blogAuthor');
         /**
-         * @var SimpleHierarchicCollection $commentCollection
+         * @var BlogCommentCollection $commentCollection
          */
         $commentCollection = $this->getCollectionManager()->getCollection('blogComment');
         /**
@@ -792,11 +795,11 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>Causes of deviant behavior of domestic ghosts certainly lie in the influence of MTV and the aggressive promotion of alternative music.</p>', 'en-US')
             ->setValue('contents', '<p>Причины девиантного поведения домашних призраков кроются безусловно во влиянии MTV и пропаганде агрессивной альтернативной музыки.<br /><br />Также наблюдается рост домовых, практикующих экстремальное катание на роликовых коньках, скейт-бордах, BMX, что повышает общий уровень черепно-мозговых травм среди паранормальных существ. <br /><br />Не может не оказывать влияния проникновение культуры эмо в быт и уклад домашних призраков, что ведет к росту самоубийств и депрессивных состояний среди этих в общем-то жизнерадостных<br /> созданий.<br /><br />В качестве метода влияния на отклонения у домашний призраков я вижу их обращение в более позитивные и миролюбивые культуры, их пропаганда и популяризация в среде домашних призраков.<br /><br /><strong>Екатерина Джа-Дуплинская</strong></p>')
             ->setValue('contents', '<p>Causes of deviant behavior home ghosts certainly lie in the influence of MTV and the aggressive promotion of alternative music . <br /> <br /> Also, an increase in brownies, practicing extreme inline skating , skateboarding , BMX, which increases the overall level of traumatic injuries of paranormal creatures. <br /> <br /> It can not affect the penetration of emo culture and way of life of the home of ghosts , which leads to an increase in suicide and depression among those in general cheerful <br /> creatures . <br /> <br / > as a method of influence on the deflection at home I see the ghosts of their treatment in a positive and peaceful culture , their propaganda and popularization in the home environment ghosts . <br /> <br /> <strong> Catherine Jar Duplinskaya </strong> </p>', 'en-US')
-            ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_PUBLISHED)
             ->setValue('author', $bives)
             ->setValue('slug', 'deviant')
             ->setGUID('8e675484-bea4-4fb5-9802-4750cc21e509')
             ->setValue('publishTime', new \DateTime('2010-08-11 17:35:00'));
+        $post1->publish();
 
         $post2 = $postCollection->add()
             ->setValue('displayName', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
@@ -856,7 +859,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty-4')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
 
-        $postCollection->add()
+        $post3 = $postCollection->add()
             ->setValue('displayName', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой-5')
             ->setValue('displayName', 'Conflict resolution method UFO Renata Litvinova', 'en-US')
             ->setValue('metaTitle', 'Разрешение конфликтных ситуаций с НЛО методом Ренаты Литвиновой')
@@ -865,10 +868,10 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('announcement', '<p>Renata Litvinova announced and allowed to use methods of conflict-author communication with UFOs. <br /> <br /> 1) Get yourself. If you met an alien in the morning in the kitchen, try to remember how your evening ended yesterday.</p>', 'en-US')
             ->setValue('contents', '<p>Рената Литвинова огласила и разрешила к применению авторские методы бесконфликтного общения с НЛО. <br /><br />1)&nbsp;&nbsp; &nbsp;Оставайтесь собой. Если встретили инопланетянина утром на кухне, постарайтесь вспомнить, как вчера закончился ваш вечер. Даже если вспомнить не можете, ведите себя естественно, как будто ничего и не было. Пригласите его выпить чашечку кофе, сыграть в шахматы, помыть посуду.<br /><br />2)&nbsp;&nbsp; &nbsp;Бояться не нужно. Даже если инопланетяне пристали к вам в парке или подъезде, объясните им, что с незнакомым НЛО не общаетесь. Они могут предложить вам познакомиться. Решайте &ndash; а вдруг это судьба?<br /><br />3)&nbsp;&nbsp; &nbsp; Во всем есть положительные моменты. Даже если спустя 10 лет совместной жизни, вы обнаружите, что ваш муж инопланетянин, не спешите посылать в космос негативные вопросы. Космос все сделал правильно. Зато вы до сих пор не знакомы с его мамой.</p>')
             ->setValue('category', $category)
-            ->setValue(BlogPost::FIELD_PUBLISH_STATUS, BlogPost::POST_STATUS_PUBLISHED)
             ->setValue('author', $buthead)
             ->setValue('slug', 'razreshenie_konfliktnyh_situacij_s_nlo_metodom_renaty-5')
             ->setValue('publishTime', new \DateTime('2010-08-14 17:35:00'));
+        $post3->publish();
 
 
         $commentBranch = $commentCollection->add('branch', 'branchComment')
@@ -876,7 +879,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('post', $post1);
 
         /**
-         * @var IHierarchicObject $comment1
+         * @var BlogCommentCollection $comment1
          */
         $comment1 = $commentCollection->add('comment1', 'comment',$commentBranch)
             ->setValue('displayName', 'Re: Девиантное поведение призраков и домовых и способы влияния на него')
@@ -884,8 +887,9 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>О да. Недавно в нашем замке один милый маленький призрак покончил с собой. Мы были уверены, что это невозможно, но каким-то образом ему удалось раствориться в воде, наполняющей наш древний колодец.</p>')
             ->setValue('contents', '<p>Oh yeah. Recently in our castle one cute little ghost committed suicide. We were sure that it was impossible, but somehow he managed to dissolve in water, filling our ancient well.</p>', 'en-US')
             ->setValue('post', $post1)
-            ->setValue('publishStatus', BlogComment::COMMENT_STATUS_PUBLISHED)
-            ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'));
+            ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'))
+            ->setValue('author',$bives);
+        $comment1->publish();
 
         $comment2 = $commentCollection->add('comment2', 'comment', $comment1)
             ->setValue('displayName', 'Re: Re: Девиантное поведение призраков и домовых и способы влияния на него')
@@ -894,20 +898,23 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>Perhaps your ghost still be salvaged. Try to pour into the well a couple of tablespoons of ground seeds Helichrysum. This should help the ghost again condense his intangible body. And yes, it is important that the seeds have been collected in the new moon.</p>', 'en-US')
             ->setValue('post', $post1)
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_REJECTED)
-            ->setValue('publishTime', new \DateTime('2012-11-15 15:11:21'));
+            ->setValue('publishTime', new \DateTime('2012-11-15 15:11:21'))
+            ->setValue('author',$bives);
 
         $commentBranch2 = $commentCollection->add('branch', 'branchComment')
             ->setValue('displayName', $post2->getValue('displayName'))
             ->setValue('post', $post2);
 
-        $commentCollection->add('comment3', 'comment', $commentBranch2)
+        $comment3 = $commentCollection->add('comment3', 'comment', $commentBranch2)
             ->setValue('displayName', 'важный вопрос')
             ->setValue('displayName', 'important question', 'en-US')
             ->setValue('contents', '<p>Существует ли разговорник для общения с НЛО? Основы этикета?</p>')
             ->setValue('contents', '<p>Is there a phrase book to communicate with UFO? Basics of etiquette?</p>', 'en-US')
             ->setValue('post', $post2)
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_PUBLISHED)
-            ->setValue('publishTime', new \DateTime('2012-11-15 15:05:34'));
+            ->setValue('publishTime', new \DateTime('2012-11-15 15:05:34'))
+            ->setValue('author',$buthead);
+        $comment3->publish();
 
         $commentCollection->add('comment1', 'comment', $comment2)
             ->setValue('displayName', 'Вложенный комментарий')
@@ -916,7 +923,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
             ->setValue('contents', '<p>Oh, yeah. This nested comment.</p>', 'en-US')
             ->setValue('post', $post1)
             ->setValue('publishStatus', BlogComment::COMMENT_STATUS_REJECTED)
-            ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'));
+            ->setValue('publishTime', new \DateTime('2012-11-15 15:07:31'))
+            ->setValue('author',$buthead);
 
         $rssScenarioCollection->add()
             ->setValue('displayName', 'Scripting News')
@@ -1588,7 +1596,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `contents_raw_en` text,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
-                    `comments_count` bigint(20) unsigned DEFAULT NULL,
+                    `comments_count` bigint(20) unsigned DEFAULT '0',
                     `publish_status` enum('draft','published','rejected','moderate') DEFAULT 'draft',
 
                     PRIMARY KEY (`id`),
@@ -1694,7 +1702,6 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `level` int(10) unsigned DEFAULT NULL,
                     `owner_id` bigint(20) unsigned DEFAULT NULL,
                     `editor_id` bigint(20) unsigned DEFAULT NULL,
-                    `active` tinyint(1) unsigned DEFAULT '1',
                     `trashed` tinyint(1) unsigned DEFAULT '0',
                     `created` datetime DEFAULT NULL,
                     `updated` datetime DEFAULT NULL,
@@ -1708,7 +1715,7 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `contents_raw` text,
                     `contents_raw_en` text,
                     `publish_time` datetime DEFAULT NULL,
-                    `publish_status` enum('published','rejected','moderate') DEFAULT NULL,
+                    `publish_status` enum('published','rejected','unpublished','moderate') DEFAULT 'moderate',
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_comment_guid` (`guid`),
@@ -1755,8 +1762,8 @@ class InstallController extends BaseController implements ICollectionManagerAwar
                     `contents_raw_en` text,
                     `category_id` bigint(20) unsigned DEFAULT NULL,
                     `layout_id` bigint(20) unsigned DEFAULT NULL,
-                    `comments_count` bigint(20) unsigned DEFAULT NULL,
-                    `posts_count` bigint(20) unsigned DEFAULT NULL,
+                    `comments_count` bigint(20) unsigned DEFAULT '0',
+                    `posts_count` bigint(20) unsigned DEFAULT '0',
 
                     PRIMARY KEY (`id`),
                     UNIQUE KEY `blog_author_guid` (`guid`),

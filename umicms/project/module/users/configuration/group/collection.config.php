@@ -19,7 +19,8 @@ return [
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/group/form/base.edit.config.php}'
+            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/group/form/base.edit.config.php}',
+            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/group/form/base.create.config.php}',
         ]
     ]
 ];
