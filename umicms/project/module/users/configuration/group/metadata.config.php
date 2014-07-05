@@ -8,6 +8,7 @@
  */
 
 use umi\orm\metadata\field\IField;
+use umicms\orm\metadata\field\SerializedArrayField;
 use umicms\project\Environment;
 use umicms\project\module\users\model\object\UserGroup;
 
@@ -28,7 +29,7 @@ return array_replace_recursive(
                 'targetField'  => 'user'
             ],
             UserGroup::FIELD_ROLES        => [
-                'type'       => IField::TYPE_TEXT,
+                'type' => SerializedArrayField::TYPE,
                 'columnName' => 'roles',
                 'accessor'   => 'getRoles',
                 'mutator'    => 'setRoles'

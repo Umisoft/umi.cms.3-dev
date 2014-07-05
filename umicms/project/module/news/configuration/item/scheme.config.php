@@ -17,15 +17,6 @@ return array_replace_recursive(
     [
         'name' => 'news_item',
         'columns'     =>  [
-            'display_name_en' => [
-                'type'    => Type::STRING,
-                'options' => [
-                    'notnull' => false
-                ]
-            ],
-            'contents_en'     => [
-                'type' => Type::TEXT
-            ],
             'date'            => [
                 'type' => Type::DATETIME
             ],

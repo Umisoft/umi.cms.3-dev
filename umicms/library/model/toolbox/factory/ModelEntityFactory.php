@@ -10,7 +10,6 @@
 
 namespace umicms\model\toolbox\factory;
 
-use umi\config\entity\IConfig;
 use umi\toolkit\factory\IFactory;
 use umi\toolkit\factory\TFactory;
 use umicms\model\Model;
@@ -66,16 +65,18 @@ class ModelEntityFactory implements IFactory
     /**
      * Создает модель данных.
      * @param string $modelName имя модели
-     * @param IConfig $config конфигурация
+     * @param string $schemeConfigPath символический путь к файлу с конфигурацией схемы таблицы
+     * @param string $metadataConfigPath символический путь к файлу с конфигурацией метаданных коллекции
+     * @param string $collectionConfigPath символический путь к файлу с конфигурацией коллекции
      * @return Model
      */
-    public function createModel($modelName, IConfig $config)
+    public function createModel($modelName, $schemeConfigPath, $metadataConfigPath, $collectionConfigPath)
     {
         return $this->getPrototype(
             $this->modelClass,
             ['umicms\model\Model']
         )
-            ->createInstance([$modelName, $config]);
+            ->createInstance([$modelName, $schemeConfigPath, $metadataConfigPath, $collectionConfigPath]);
     }
 
     /**
@@ -91,4 +92,3 @@ class ModelEntityFactory implements IFactory
             ->createSingleInstance([], ['tableNamePrefix' => $this->tableNamePrefix]);
     }
 }
- 

@@ -32,6 +32,11 @@ class CmsHierarchicObject extends HierarchicObject implements ICmsObject, IUrlMa
     use TCmsObject;
 
     /**
+     *  Имя поля для хранения дочерних элементов.
+     */
+    const FIELD_CHILDREN = 'children';
+
+    /**
      * @var string $normalizedURL нормализованный url объекта
      */
     private $normalizedUrl;

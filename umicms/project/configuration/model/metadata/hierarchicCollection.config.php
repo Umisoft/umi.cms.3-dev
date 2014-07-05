@@ -8,6 +8,7 @@ use umi\orm\metadata\field\IField;
 use umi\orm\object\IHierarchicObject;
 use umi\validation\IValidatorFactory;
 use umicms\filter\Slug;
+use umicms\orm\object\CmsHierarchicObject;
 
 /**
  * Метаданные иерархической коллекции объектов
@@ -46,7 +47,7 @@ return array_replace_recursive(
                 'accessor'   => 'getURI',
                 'readOnly'   => true
             ],
-            IHierarchicObject::FIELD_CHILDREN              => [
+            CmsHierarchicObject::FIELD_CHILDREN              => [
                 'type'        => IField::TYPE_HAS_MANY,
                 'targetField' => IHierarchicObject::FIELD_PARENT,
                 'readOnly'    => true
@@ -75,7 +76,7 @@ return array_replace_recursive(
             'base' => [
                 'fields'      => [
                     IHierarchicObject::FIELD_PARENT  => [],
-                    IHierarchicObject::FIELD_CHILDREN => [],
+                    CmsHierarchicObject::FIELD_CHILDREN => [],
                     IHierarchicObject::FIELD_MPATH => [],
                     IHierarchicObject::FIELD_SLUG => [],
                     IHierarchicObject::FIELD_URI => [],

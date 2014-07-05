@@ -21,7 +21,10 @@ return array_replace_recursive(
                 'type' => Type::DATETIME
             ],
             'publish_status' => [
-                'type' => Type::DATETIME
+                'type' => Type::STRING,
+                'options' => [
+                    'length' => 50
+                ]
             ],
             'announcement' => [
                 'type' => Type::TEXT,
@@ -76,6 +79,11 @@ return array_replace_recursive(
             'author' => [
                 'columns' => [
                     'author_id' => []
+                ]
+            ],
+            'publish_status' => [
+                'columns' => [
+                    'publish_status' => []
                 ]
             ]
         ],

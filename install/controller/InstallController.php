@@ -110,14 +110,6 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
     {
         header('Content-type: text/plain');
 
-        /**
-         * @var NewsModule $news
-         */
-        $news = $this->getModuleByClass(NewsModule::className());
-        $selector = $news->rubric()->getInternalSelector();
-
-        var_dump($this->getObjectsDump($selector));
-        exit;
 
         $connection = $this->dbCluster->getConnection();
         /**
