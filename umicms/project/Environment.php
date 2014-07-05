@@ -10,6 +10,8 @@
 
 namespace umicms\project;
 
+use umi\http\Response;
+
 /**
  * Настройки окружения UMI.CMS.
  */
@@ -115,6 +117,35 @@ class Environment
 
         error_reporting($errorReporting);
         ini_set('display_errors', $displayErrors);
+    }
+
+    /**
+     * Выводит сообщение об ошибке
+     * @param $templateName
+     * @param array $scope
+     * @param int $responseStatusCode
+     */
+    public static function reportError($templateName, array $scope = [], $responseStatusCode = Response::HTTP_INTERNAL_SERVER_ERROR)
+    {
+        $scope['showTrace'] = self::$displayExceptionTrace;
+        $scope['showStack'] = self::$displayExceptionStack;
+
+        $templatePath = self::$directoryCmsError . '/' . $templateName;
+        if (file_exists($templatePath)) {
+            extract($scope);
+
+            ob_start();
+            /** @noinspection PhpIncludeInspection */
+            require $templatePath;
+            $content = ob_get_clean();
+        } else {
+            $content = 'An error has occurred.';
+        }
+
+        $response = new Response();
+        $response->setContent($content);
+        $response->setStatusCode($responseStatusCode);
+        $response->send();
     }
 
 }

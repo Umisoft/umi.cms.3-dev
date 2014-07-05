@@ -67,7 +67,7 @@ Environment::$directoryProjects = $directoryProjects;
 register_shutdown_function(function() {
     $error = error_get_last();
     if (is_array($error) && in_array($error['type'], array(E_ERROR))) {
-        reportError('error.phtml', ['e' => $error]);
+        Environment::reportError('error.phtml', ['e' => $error]);
     }
 });
 
@@ -79,24 +79,7 @@ try {
     if ($e instanceof HttpException) {
         $code = $e->getCode();
     }
-    reportError('exception.phtml', ['e' => $e], $code);
-}
-
-function reportError($templateName, array $scope = [], $responseStatusCode = Response::HTTP_INTERNAL_SERVER_ERROR)
-{
-    $scope['showTrace'] = Environment::$displayExceptionTrace;
-    $scope['showStack'] = Environment::$displayExceptionStack;
-    extract($scope);
-
-    ob_start();
-    /** @noinspection PhpIncludeInspection */
-    require Environment::$directoryCmsError . '/' . $templateName;
-    $content = ob_get_clean();
-
-    $response = new Response();
-    $response->setContent($content);
-    $response->setStatusCode($responseStatusCode);
-    $response->send();
+    Environment::reportError('exception.phtml', ['e' => $e], $code);
 }
 
 
