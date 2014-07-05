@@ -11,6 +11,7 @@
 namespace umicms\serialization\json;
 
 use umicms\exception\InvalidObjectsException;
+use umicms\project\Environment;
 
 /**
  * JSON-сериализатор для исключений, связанных с наличием объектов непрошедших валидацию.
@@ -28,6 +29,10 @@ class InvalidObjectsExceptionSerializer extends BaseSerializer
             'message' => $exception->getMessage(),
             'code' => $exception->getCode()
         ];
+
+        if (Environment::$showExceptionTrace) {
+            $info['trace'] = $exception->getTraceAsString();
+        }
 
         $objects = [];
         foreach ($exception->getInvalidObjects() as $object) {

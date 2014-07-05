@@ -10,6 +10,8 @@
 
 namespace umicms\serialization\json;
 
+use umicms\project\Environment;
+
 /**
  * JSON-сериализатор для исключений.
  */
@@ -26,6 +28,10 @@ class ExceptionSerializer extends BaseSerializer
             'message' => $exception->getMessage(),
             'code' => $exception->getCode()
         ];
+
+        if (Environment::$showExceptionTrace) {
+            $info['trace'] = $exception->getTraceAsString();
+        }
 
         $this->delegate($info, $options);
     }

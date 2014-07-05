@@ -47,13 +47,13 @@ class Environment
     const DISPLAY_EXCEPTION_STACK = 'displayExceptionStack';
 
     /**
-     * @var bool $displayExceptionTrace скрытие/отображение трейса исключений
+     * @var bool $showExceptionTrace скрытие/отображение трейса исключений
      */
-    public static $displayExceptionTrace = false;
+    public static $showExceptionTrace = false;
     /**
-     * @var bool $displayExceptionStack скрытие/отображение стека предыдущих исключений
+     * @var bool $showExceptionStack скрытие/отображение стека предыдущих исключений
      */
-    public static $displayExceptionStack = false;
+    public static $showExceptionStack = false;
     /**
      * @var string $currentMode
      */
@@ -112,8 +112,8 @@ class Environment
         $modeConfig = $config[self::$currentMode];
         $errorReporting = isset($modeConfig[self::ERROR_REPORTING]) ? $modeConfig[self::ERROR_REPORTING] : 0;
         $displayErrors = isset($modeConfig[self::DISPLAY_ERRORS]) ? $modeConfig[self::DISPLAY_ERRORS] : 0;
-        self::$displayExceptionStack = isset($modeConfig[self::DISPLAY_EXCEPTION_STACK]) ? $modeConfig[self::DISPLAY_EXCEPTION_STACK] : false;
-        self::$displayExceptionTrace = isset($modeConfig[self::DISPLAY_EXCEPTION_TRACE]) ? $modeConfig[self::DISPLAY_EXCEPTION_TRACE] : false;
+        self::$showExceptionStack = isset($modeConfig[self::DISPLAY_EXCEPTION_STACK]) ? $modeConfig[self::DISPLAY_EXCEPTION_STACK] : false;
+        self::$showExceptionTrace = isset($modeConfig[self::DISPLAY_EXCEPTION_TRACE]) ? $modeConfig[self::DISPLAY_EXCEPTION_TRACE] : false;
 
         error_reporting($errorReporting);
         ini_set('display_errors', $displayErrors);
@@ -134,8 +134,8 @@ class Environment
      */
     public static function reportError($templateName, array $scope = [], $responseStatusCode = Response::HTTP_INTERNAL_SERVER_ERROR)
     {
-        $scope['showTrace'] = self::$displayExceptionTrace;
-        $scope['showStack'] = self::$displayExceptionStack;
+        $scope['showTrace'] = self::$showExceptionTrace;
+        $scope['showStack'] = self::$showExceptionStack;
 
         $templatePath = self::$directoryCmsError . '/' . $templateName;
         if (file_exists($templatePath)) {
