@@ -27,11 +27,14 @@ return [
         'link' => __NAMESPACE__ . '\widget\LinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'author' => []
+        ],
         IAclFactory::OPTION_RESOURCES => [
             'model:blogPost'
         ],
         IAclFactory::OPTION_RULES => [
-            'viewer' => [
+            'author' => [
                 'widget:view' => [],
                 'widget:list' => [],
                 'widget:link' => [],

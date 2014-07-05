@@ -1,6 +1,6 @@
 {{ include('breadcrumbs.twig') }}
 
-<h1>{{ page.getHeader() }}</h1>
+<h1>{{ page.displayName }}</h1>
 {{ page.contents }}
 
 {{ widget('blog.author.postList', {'blogAuthors' : [page], 'template' : 'postList'}) }}

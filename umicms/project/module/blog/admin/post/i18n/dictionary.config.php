@@ -12,14 +12,10 @@ return [
 
     'en-US' => [
         'action:create:base' => 'Create post',
-
-        'role:editor:displayName' => 'Managing posts'
     ],
 
     'ru-RU' => [
         'action:create:base' => 'Создать пост',
-
-        'role:editor:displayName' => 'Управление постами'
     ]
 
 ];

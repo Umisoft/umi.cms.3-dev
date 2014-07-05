@@ -21,7 +21,7 @@ use umicms\hmvc\callstack\IPageCallStackAware;
 use umicms\hmvc\callstack\TPageCallStackAware;
 
 /**
- * Представление дерева.
+ * Содержимое результата работы виджета или контроллера, требующее шаблонизации.
  */
 class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware, ILocalizable
 {
@@ -47,15 +47,6 @@ class CmsTreeView implements \IteratorAggregate, \Countable, IPageCallStackAware
                 'Cannot create tree view. Collection is not hierarchical.'
             ));
         }
-    }
-
-    /**
-     * Возвращает селектор, связанный с View
-     * @return CmsSelector
-     */
-    public function getSelector()
-    {
-        return $this->selector;
     }
 
     /**

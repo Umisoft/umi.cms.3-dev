@@ -16,20 +16,6 @@ namespace umicms\serialization;
 interface ISerializer
 {
     /**
-     * Устанавливает опции сериализации
-     * @param array $options
-     * @return self
-     */
-    public function setOptions(array $options);
-
-    /**
-     * Устанавливает список имен исключений.
-     * @param array $excludes
-     * @return self
-     */
-    public function setExcludes(array $excludes);
-
-    /**
      * Инициализирует сериализатор.
      * @return self
      */

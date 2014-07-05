@@ -12,14 +12,10 @@ return [
 
     'en-US' => [
         'action:create:comment' => 'Create comment',
-
-        'role:editor:displayName' => 'Managing comments'
     ],
 
     'ru-RU' => [
         'action:create:comment' => 'Создать комментарий',
-
-        'role:editor:displayName' => 'Управление комментариями'
     ]
 
 ];

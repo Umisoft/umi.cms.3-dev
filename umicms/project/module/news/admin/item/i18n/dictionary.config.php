@@ -13,17 +13,13 @@ return [
     'en-US' => [
         'component:item:displayName' => 'News items',
 
-        'action:create:base' => 'Create news item',
-
-        'role:editor:displayName' => 'Managing news'
+        'action:create:base' => 'Create news item'
     ],
 
     'ru-RU' => [
         'component:item:displayName' => 'Новости',
 
-        'action:create:base' => 'Добавить новость',
-
-        'role:editor:displayName' => 'Управление новостями'
+        'action:create:base' => 'Добавить новость'
     ]
 
 ];

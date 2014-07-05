@@ -7,9 +7,6 @@
 <?=$this->render('breadcrumbs.phtml', $scope) ?>
 
 <h1><?= $page->displayName ?></h1>
-<p><?= $page->contents ?></p>
-
-<p><?= $this->translate('All comments') ?>: <?=$page->commentsCount?></p>
-<p><?= $this->translate('All posts') ?>: <?=$page->postsCount?></p>
+<?= $page->contents ?>
 
 <?= $this->widget('blog.author.view.posts', ['blogAuthors' => [$page], 'template' => 'postList']); ?>

@@ -27,7 +27,6 @@ return [
             BlogComment::FORM_ADD_COMMENT => '{#lazy:~/project/module/blog/site/comment/add/form/comment.addComment.config.php}',
             BlogComment::FORM_PUBLISH_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.publish.config.php}',
             BlogComment::FORM_REJECT_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.reject.config.php}',
-            BlogComment::FORM_UNPUBLISH_COMMENT => '{#lazy:~/project/module/blog/site/comment/form/base.unpublish.config.php}',
         ],
         BlogBranchComment::TYPE => [
             ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/comment/form/branchComment.edit.config.php}'

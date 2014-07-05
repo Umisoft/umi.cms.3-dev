@@ -18,8 +18,6 @@ use umicms\project\module\structure\model\object\SystemPage;
 use umicms\project\module\structure\model\StructureModule;
 use umicms\hmvc\callstack\IPageCallStackAware;
 use umicms\hmvc\callstack\TPageCallStackAware;
-use umicms\serialization\ISerializer;
-use umicms\serialization\xml\BaseSerializer;
 
 /**
  * Базовый контроллер для сайта
@@ -36,14 +34,7 @@ abstract class BaseSitePageController extends BaseCmsController implements IPage
         $variables['breadcrumbs'] = $this->getBreadcrumbs();
 
         $view = parent::createView($templateName, $variables);
-        $view->addSerializerConfigurator(
-            function(ISerializer $serializer)
-            {
-                if ($serializer instanceof BaseSerializer) {
-                    $serializer->setAttributes(['controller']);
-                }
-            }
-        );
+        $view->setXmlAttributes(['controller']);
 
         return $view;
     }

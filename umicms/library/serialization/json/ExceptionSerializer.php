@@ -27,6 +27,6 @@ class ExceptionSerializer extends BaseSerializer
             'code' => $exception->getCode()
         ];
 
-        $this->delegate($info, $options);
+        $this->delegate($info);
     }
 }

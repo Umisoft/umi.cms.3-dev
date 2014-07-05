@@ -132,6 +132,11 @@ return [
                 'en-US' => ['columnName' => 'display_name_en']
             ]
         ],
+        BlogComment::FIELD_ACTIVE => [
+            'type' => IField::TYPE_BOOL,
+            'columnName' => 'active',
+            'defaultValue' => 1
+        ],
         BlogComment::FIELD_AUTHOR => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'author_id',
@@ -140,10 +145,7 @@ return [
         BlogComment::FIELD_POST => [
             'type' => IField::TYPE_BELONGS_TO,
             'columnName' => 'post_id',
-            'target' => 'blogPost',
-            'validators' => [
-                IValidatorFactory::TYPE_REQUIRED => []
-            ]
+            'target' => 'blogPost'
         ],
         BlogComment::FIELD_CONTENTS => [
             'type' => IField::TYPE_TEXT,
@@ -172,9 +174,7 @@ return [
         ],
         BlogComment::FIELD_PUBLISH_STATUS => [
             'type' => IField::TYPE_STRING,
-            'mutator' => 'changeStatus',
-            'columnName' => 'publish_status',
-            'defaultValue' => BlogComment::COMMENT_STATUS_NEED_MODERATE
+            'columnName' => 'publish_status'
         ],
         BlogComment::FIELD_CHILDREN => [
             'type' => IField::TYPE_HAS_MANY,
@@ -204,6 +204,7 @@ return [
                 BlogBaseComment::FIELD_CREATED,
                 BlogBaseComment::FIELD_UPDATED,
                 BlogBaseComment::FIELD_DISPLAY_NAME,
+                BlogBaseComment::FIELD_ACTIVE,
                 BlogBaseComment::FIELD_POST,
             ]
         ],
@@ -226,6 +227,7 @@ return [
                 BlogBranchComment::FIELD_CREATED,
                 BlogBranchComment::FIELD_UPDATED,
                 BlogBranchComment::FIELD_DISPLAY_NAME,
+                BlogBranchComment::FIELD_ACTIVE,
                 BlogBranchComment::FIELD_POST,
                 BlogBranchComment::FIELD_PUBLISH_TIME,
                 BlogBranchComment::FIELD_CHILDREN
@@ -251,6 +253,7 @@ return [
                 BlogComment::FIELD_CREATED,
                 BlogComment::FIELD_UPDATED,
                 BlogComment::FIELD_DISPLAY_NAME,
+                BlogComment::FIELD_ACTIVE,
                 BlogComment::FIELD_AUTHOR,
                 BlogComment::FIELD_POST,
                 BlogComment::FIELD_CONTENTS,

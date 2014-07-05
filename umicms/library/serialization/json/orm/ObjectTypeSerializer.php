@@ -25,7 +25,7 @@ class ObjectTypeSerializer extends BaseSerializer
      */
     public function __invoke(ObjectType $objectType, array $options = [])
     {
-        $this->delegate($objectType->getName(), $options);
+        $this->delegate($objectType->getName());
     }
 }
  

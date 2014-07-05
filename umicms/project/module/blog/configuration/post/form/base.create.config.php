@@ -131,6 +131,19 @@ return [
                         'dataSource' => BlogPost::FIELD_PUBLISH_TIME
                     ]
                 ],
+                BlogPost::FIELD_PUBLISH_STATUS => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => BlogPost::FIELD_PUBLISH_STATUS,
+                    'options' => [
+                        'dataSource' => BlogPost::FIELD_PUBLISH_STATUS,
+                        'choices' => [
+                            BlogPost::POST_STATUS_DRAFT => BlogPost::POST_STATUS_DRAFT,
+                            BlogPost::POST_STATUS_NEED_MODERATE => BlogPost::POST_STATUS_NEED_MODERATE,
+                            BlogPost::POST_STATUS_REJECTED => BlogPost::POST_STATUS_REJECTED,
+                            BlogPost::POST_STATUS_PUBLISHED => BlogPost::POST_STATUS_PUBLISHED
+                        ]
+                    ]
+                ],
                 BlogPost::FIELD_ANNOUNCEMENT => [
                     'type' => Wysiwyg::TYPE_NAME,
                     'label' => BlogPost::FIELD_ANNOUNCEMENT,

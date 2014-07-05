@@ -15,7 +15,6 @@ use umi\i18n\TLocalizable;
 use umicms\serialization\exception\UnexpectedValueException;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\ISerializer;
-use umicms\serialization\ISerializerConfigurator;
 use umicms\serialization\ISerializerFactory;
 use umicms\serialization\TSerializationAware;
 use XMLWriter;
@@ -32,19 +31,6 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
 
     use TSerializationAware;
     use TLocalizable;
-
-    /**
-     * @var array $currentAttributes список имен атрибутов
-     */
-    protected $currentAttributes = [];
-    /**
-     * @var array $currentExcludes список имен исключений
-     */
-    protected $currentExcludes = [];
-    /**
-     * @var array $currentOptions список опций сериализации
-     */
-    protected $currentOptions = [];
 
     /**
      * @var XMLWriter $xmlWriter
@@ -64,50 +50,6 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
      */
     public function output() {
         return self::XML_HEADER . PHP_EOL . $this->getXmlWriter()->outputMemory(true);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setOptions(array $options)
-    {
-        $this->currentOptions = array_merge($this->currentOptions, $options);
-
-        return $this;
-    }
-
-    /**
-     * Устанавливает список имен атрибутов.
-     * @param array $attributes
-     * @return $this
-     */
-    public function setAttributes(array $attributes)
-    {
-        $this->currentAttributes = array_merge($this->currentAttributes, $attributes);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setExcludes(array $excludes)
-    {
-        $this->currentExcludes = array_merge($this->currentExcludes, $excludes);
-
-        return $this;
-    }
-
-    /**
-     * Конфигурируется через сериализуемый объект.
-     * @param ISerializerConfigurator $configurator
-     */
-    protected function configure(ISerializerConfigurator $configurator)
-    {
-        $this->currentExcludes = [];
-        $this->currentAttributes = [];
-        $this->currentOptions = [];
-        $configurator->configureSerializer($this);
     }
 
     /**
@@ -146,9 +88,8 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
      * @param string $name имя элемента
      * @param array $attributes список атрибутов элемента
      * @param mixed $value значение элемента
-     * @param array $options опции сериализации
      */
-    protected function writeElement($name, array $attributes = [], $value = null, array $options = []) {
+    protected function writeElement($name, array $attributes = [], $value = null) {
         $this->getXmlWriter()->startElement($name);
 
         foreach ($attributes as $name => $attrValue) {
@@ -156,7 +97,7 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
         }
 
         if (!is_null($value)) {
-            $this->delegate($value, $options);
+            $this->delegate($value);
         }
 
         $this->getXmlWriter()->endElement();
@@ -164,7 +105,7 @@ abstract class BaseSerializer implements ISerializer, ISerializationAware, ILoca
 
     /**
      * Запускает вложенную сериализацию
-     * @param mixed $object
+     * @param $object
      * @param array $options опции сериализации
      */
     protected function delegate($object, array $options = []) {

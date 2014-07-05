@@ -13,7 +13,7 @@ namespace umicms\hmvc\view;
 use umicms\orm\object\CmsHierarchicObject;
 
 /**
- * Класс, описывающий ноду дерева.
+ * Класс описывающий ноду дерева.
  *
  * @property CmsTreeNode[] $children список детей элемента
  * @property CmsHierarchicObject $item элемент

@@ -290,11 +290,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         }
 
         $comment = $this->comment()->add(null, $typeName, $parentComment);
-        $comment->post = $post;
-
-        if ($this->hasCurrentAuthor()) {
-            $comment->author = $this->getCurrentAuthor();
-        }
+        $comment->author = $this->getCurrentAuthor();
 
         return $comment;
     }
@@ -322,10 +318,9 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         $comments = $this->getComments()
             ->types([BlogComment::TYPE . '*'])
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
-            ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
-                BlogComment::COMMENT_STATUS_PUBLISHED,
-                BlogComment::COMMENT_STATUS_UNPUBLISHED
-            ]);
+            ->where(BlogComment::FIELD_PUBLISH_STATUS)->equals(
+                BlogComment::COMMENT_STATUS_PUBLISHED
+            );
 
         return $comments;
     }
@@ -343,8 +338,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
             ->where(BlogComment::FIELD_POST)->equals($blogPost)
             ->where(BlogComment::FIELD_PUBLISH_STATUS)->in([
                 BlogComment::COMMENT_STATUS_PUBLISHED,
-                BlogComment::COMMENT_STATUS_NEED_MODERATE,
-                BlogComment::COMMENT_STATUS_UNPUBLISHED
+                BlogComment::COMMENT_STATUS_NEED_MODERATE
             ]);
 
         return $comments;
@@ -409,7 +403,6 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
     {
         $tagsCloud = [];
 
-        /** @var BlogTag[] $tags */
         $tags = $this->getTags()->getResult()->fetchAll();
         shuffle($tags);
 

@@ -2,15 +2,11 @@
 
 return [
     'en-US' => [
-        'component:service:displayName' => 'Service',
-
-        'role:backupExecutor:displayName' => 'Reserving'
+        'component:service:displayName' => 'Service'
     ],
 
     'ru-RU' => [
-        'component:service:displayName' => 'Сервис',
-
-        'role:backupExecutor:displayName' => 'Резервирование'
+        'component:service:displayName' => 'Сервис'
     ]
 ];
  

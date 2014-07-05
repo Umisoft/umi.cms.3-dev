@@ -13,17 +13,13 @@ return [
     'en-US' => [
         'component:rubric:displayName' => 'Rubrics',
 
-        'action:create:base' => 'Create subrubric',
-
-        'role:editor:displayName' => 'Managing rubrics'
+        'action:create:base' => 'Create subrubric'
     ],
 
     'ru-RU' => [
         'component:rubric:displayName' => 'Новостные рубрики',
 
-        'action:create:base' => 'Добавить подрубрику',
-
-        'role:editor:displayName' => 'Управление рубриками'
+        'action:create:base' => 'Добавить подрубрику'
     ]
 
 ];
