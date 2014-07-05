@@ -25,6 +25,7 @@ return array_replace_recursive(
             ],
             BlogPost::FIELD_PUBLISH_STATUS => [
                 'type' => IField::TYPE_STRING,
+                'mutator' => 'changeStatus',
                 'columnName' => 'publish_status',
                 'defaultValue' => BlogPost::POST_STATUS_DRAFT
             ],
@@ -40,7 +41,6 @@ return array_replace_recursive(
                 'type' => IField::TYPE_TEXT,
                 'columnName' => 'source'
             ],
-
             BlogPost::FIELD_PAGE_CONTENTS_RAW => [
                 'type' => IField::TYPE_TEXT,
                 'columnName' => 'contents_raw',

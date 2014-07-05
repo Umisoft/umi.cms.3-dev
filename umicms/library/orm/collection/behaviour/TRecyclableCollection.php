@@ -48,6 +48,10 @@ trait TRecyclableCollection
      */
     public function trash(IRecyclableObject $object)
     {
+        if ($object->trashed) {
+            return $this;
+        }
+
         if ($object instanceof ILockedAccessibleObject && $object->locked) {
             throw new NotAllowedOperationException(
                 $this->translate(
@@ -74,6 +78,10 @@ trait TRecyclableCollection
      */
     public function untrash(IRecyclableObject $object)
     {
+        if (!$object->trashed) {
+            return $this;
+        }
+
         if ($object instanceof CmsHierarchicObject && $this instanceof CmsHierarchicCollection) {
             $ancestry = $this->selectAncestry($object);
             /**

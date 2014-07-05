@@ -42,9 +42,9 @@ abstract class BaseModule implements IModule, ICollectionManagerAware, IModelEnt
      */
     public $models = [];
     /**
-     * @var array $submodules конфигурация подмодулей
+     * @var array $api конфигурация API модуля
      */
-    public $submodules = [];
+    public $api = [];
     /**
      * @var array $options настройки модуля
      */
@@ -94,28 +94,28 @@ abstract class BaseModule implements IModule, ICollectionManagerAware, IModelEnt
     }
 
     /**
-     * Возвращает подмодуль.
-     * @param string $className имя класса
+     * Возвращает API.
+     * @param string $apiClassName имя класса
      * @return object
      */
-    protected function getSubmodule($className)
+    protected function getApi($apiClassName)
     {
-        $config = $this->getSubmoduleConfig($className);
+        $config = $this->getApiConfig($apiClassName);
 
-        $concreteClassName = isset($config['className']) ? $config['className'] : $className;
+        $apiConcreteClassName = isset($config['className']) ? $config['className'] : $apiClassName;
 
-        return $this->getToolkit()->getPrototype($concreteClassName, [$className])
+        return $this->getToolkit()->getPrototype($apiConcreteClassName, [$apiClassName])
             ->createSingleInstance([], $config);
     }
 
     /**
-     * Возвращает конфигурацию подмодуля.
-     * @param string $className класс модуля
+     * Возвращает конфигурацию API.
+     * @param string $apiClassName класс API
      * @return array
      */
-    protected function getSubmoduleConfig($className)
+    protected function getApiConfig($apiClassName)
     {
-        return isset($this->submodules[$className]) ? $this->configToArray($this->submodules[$className], true) : [];
+        return isset($this->api[$apiClassName]) ? $this->configToArray($this->api[$apiClassName], true) : [];
     }
 
     /**

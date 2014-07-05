@@ -74,7 +74,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
      * Возвращает информацию об авторизованном пользователе и его правах.
      * @throws HttpForbidden
      * @throws HttpUnauthorized
-     * @return Response
+     * @return array
      */
     protected function actionAuth()
     {
@@ -129,7 +129,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
     {
         $user = $this->module->getCurrentUser();
 
-        if (!$user->isAllowed($this->getComponent(), 'controller:settings')) {
+        if (!$user->isComponentResourceAllowed($this->getComponent(), 'controller:settings')) {
             throw new HttpForbidden(
                 $this->translate('Access denied.')
             );
@@ -138,8 +138,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
         return [
             'user' => $user,
             'token' => $this->getCsrfToken(),
-            'locale' => $this->getLocalesService()->getCurrentLocale(),
-            'isSettingsAllowed' => false //TODO убрать это вообще
+            'locale' => $this->getLocalesService()->getCurrentLocale()
         ];
     }
 

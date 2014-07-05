@@ -51,7 +51,7 @@ abstract class BaseUser extends CmsObject
      * @param string $resourceName имя ресурса
      * @return bool
      */
-    public function isAllowed(IComponent $component, $resourceName)
+    public function isComponentResourceAllowed(IComponent $component, $resourceName)
     {
         $roleNames = $this->getRoleNames($component);
         $aclManager = $component->getAclManager();

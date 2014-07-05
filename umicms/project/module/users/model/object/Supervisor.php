@@ -25,7 +25,7 @@ class Supervisor extends RegisteredUser
     /**
      * {@inheritdoc}
      */
-    public function isAllowed(IComponent $component, $resourceName)
+    public function isComponentResourceAllowed(IComponent $component, $resourceName)
     {
         return true;
     }

@@ -14,14 +14,18 @@ return [
         'component:user:displayName' => 'Users',
         'button:create' => 'Create user',
         'action:create:registered' => 'Registered',
-        'action:create:registered.supervisor' => 'Create supervisor'
+        'action:create:registered.supervisor' => 'Create supervisor',
+
+        'role:editor:displayName' => 'Managing users'
     ],
 
     'ru-RU' => [
         'component:user:displayName' => 'Пользователи',
         'button:create' => 'Создать пользователя',
         'action:create:registered' => 'Зарегистрированного',
-        'action:create:registered.supervisor' => 'Супервайзера'
+        'action:create:registered.supervisor' => 'Супервайзера',
+
+        'role:editor:displayName' => 'Управление пользователями'
     ]
 
 ];

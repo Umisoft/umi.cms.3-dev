@@ -13,13 +13,17 @@ return [
     'en-US' => [
         'component:layout:displayName' => 'Layout templates',
 
-        'action:create:base' => 'Create template'
+        'action:create:base' => 'Create template',
+
+        'role:editor:displayName' => 'Managing layout'
     ],
 
     'ru-RU' => [
         'component:layout:displayName' => 'Шаблоны',
 
-        'action:create:base' => 'Добавить шаблон'
+        'action:create:base' => 'Добавить шаблон',
+
+        'role:editor:displayName' => 'Управление шаблонами'
     ]
 
 ];

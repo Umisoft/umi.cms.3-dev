@@ -12,10 +12,14 @@ return [
 
     'en-US' => [
         'action:create:base' => 'Create author',
+
+        'role:editor:displayName' => 'Managing authors'
     ],
 
     'ru-RU' => [
         'action:create:base' => 'Создать автора',
+
+        'role:editor:displayName' => 'Управление авторами'
     ]
 
 ];

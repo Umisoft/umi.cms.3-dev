@@ -11,39 +11,41 @@
 namespace umicms\model;
 
 use Doctrine\DBAL\Schema\Table;
-use umi\config\io\IConfigIOAware;
-use umi\config\io\TConfigIOAware;
+use umi\config\entity\IConfig;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
+use umicms\exception\AlreadyExistentEntityException;
+use umicms\exception\NonexistentEntityException;
 use umicms\exception\UnexpectedValueException;
+use umicms\model\manager\IModelManagerAware;
+use umicms\model\manager\TModelManagerAware;
 
 /**
- * Модель данных.
- * Предназначена для конфгурирования ресурсов коллекции.
+ * Модель данных
  */
-class Model implements ILocalizable, IConfigIOAware, IModelEntityFactoryAware
+class Model implements ILocalizable, IModelEntityFactoryAware, IModelManagerAware
 {
+
     use TLocalizable;
-    use TConfigIOAware;
     use TModelEntityFactoryAware;
+    use TModelManagerAware;
 
     /**
      * @var string $name имя модели
      */
     protected $name;
     /**
-     * @var string $name путь к файлу с конфигурацией схемы таблицы коллекции
+     * @var IConfig $config конфигурация модели
      */
-    protected $schemeConfigPath;
+    protected $config;
     /**
-     * @var string $metadataConfigPath путь к файлу с конфигурацией метаданных коллекции
+     * @var array $typeNames список имен всех типов модели
      */
-    protected $metadataConfigPath;
+    protected $typeNames;
     /**
-     * @var string $collectionConfigPath путь к файлу с конфигурацией коллекции
+     * @var Type[] $types массив всех загруженных экземпляров типов
      */
-    protected $collectionConfigPath;
-
+    protected $types = [];
     /**
      * @var Table $tableScheme схема таблицы модели в БД
      */
@@ -52,16 +54,12 @@ class Model implements ILocalizable, IConfigIOAware, IModelEntityFactoryAware
     /**
      * Конструктор.
      * @param string $name имя модели
-     * @param string $schemeConfigPath символический путь к файлу с конфигурацией схемы таблицы
-     * @param string $metadataConfigPath символический путь к файлу с конфигурацией метаданных коллекции
-     * @param string $collectionConfigPath символический путь к файлу с конфигурацией коллекции
+     * @param IConfig $config конфигурация
      */
-    public function __construct($name, $schemeConfigPath, $metadataConfigPath, $collectionConfigPath)
+    public function __construct($name, IConfig $config)
     {
         $this->name = $name;
-        $this->schemeConfigPath = $schemeConfigPath;
-        $this->metadataConfigPath = $metadataConfigPath;
-        $this->collectionConfigPath = $collectionConfigPath;
+        $this->config = $config;
     }
 
     /**
@@ -74,6 +72,94 @@ class Model implements ILocalizable, IConfigIOAware, IModelEntityFactoryAware
     }
 
     /**
+     * Помечает модель как измененную
+     * @return $this
+     */
+    public function setIsModified()
+    {
+        $this->getModelManager()->markAsModified($this);
+        return $this;
+    }
+
+    /**
+     * Возвращает тип данных по имени.
+     * @param string $typeName имя типа
+     * @throws NonexistentEntityException если типа с заданным именем не существует
+     * @return Type
+     */
+    public function getType($typeName)
+    {
+        //TODO
+    }
+
+    /**
+     * Проевряет, существует ли тип данных по имени.
+     * @param string $typeName имя типа
+     * @return bool
+     */
+    public function hasType($typeName)
+    {
+        //TODO
+    }
+
+    /**
+     * Возвращает имя таблицы для хранения модели.
+     * @return string
+     */
+    public function getTableName()
+    {
+        //TODO
+    }
+
+    /**
+     * Создает и возвращает экземпляр нового типа с указанным именем
+     * @param string $typeName имя типа
+     * @throws AlreadyExistentEntityException если тип с указанным именем уже существует
+     * @throws NonexistentEntityException если тип базовый тип, либо родительский тип не существует
+     * @return Type
+     */
+    public function addType($typeName)
+    {
+        /*if ($this->hasType($typeName)) {
+            throw new AlreadyExistentEntityException($this->translate(
+                'Object type "{name}" already exists in "{model}".',
+                ['name' => $typeName, 'model' => $this->getName()]
+            ));
+        }
+
+        $parentTypeName = $this->getParentTypeName($typeName);
+
+        if ($parentTypeName && !$this->hasType($parentTypeName)) {
+            throw new NonexistentEntityException($this->translate(
+                'Cannot create type "{name}". Parent type does not exist in "{model}".',
+                ['name' => $typeName, 'model' => $this->getName()]
+            ));
+        }
+
+        $type = new Type();
+        $this->types[$typeName] = $type;
+        $this->typeNames[] = $typeName;
+        $this->setIsModified();
+
+        if ($parentTypeName) {
+            $parentType = $this->getType($parentTypeName);
+
+            foreach ($parentType->getGroups() as $group) {
+                $type->attachGroup($group);
+                foreach ($parentType->getGroupFields($group->getName()) as $field) {
+                    $type->attachField($field, $group->getName());
+                }
+            }
+
+            if ($objectClassName = $parentType->getObjectClass()) {
+                $type->setObjectClass($objectClassName);
+            }
+        }
+
+        return $type;*/
+    }
+
+    /**
      * Возвращает схему таблицы для хранения модели.
      * @throws UnexpectedValueException если конфигурация невалидная
      * @return Table
@@ -81,7 +167,18 @@ class Model implements ILocalizable, IConfigIOAware, IModelEntityFactoryAware
     public function getTableScheme()
     {
         if (!$this->tableScheme) {
-            $tableConfig = $this->readConfig($this->schemeConfigPath);
+
+            $tableConfig = $this->config->get('tableScheme');
+
+            if(!$tableConfig instanceof IConfig) {
+                throw new UnexpectedValueException(
+                    $this->translate(
+                        'Cannot load table scheme for model "{name}". Option "tableScheme" should be an array.',
+                        ['name' => $this->name]
+                    )
+                );
+            }
+
             $this->tableScheme = $this->getModelEntityFactory()->getTableSchemeLoader()->load($tableConfig);
         }
 

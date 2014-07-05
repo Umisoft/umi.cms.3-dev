@@ -7,8 +7,8 @@
  * file that was distributed with this source code.
  */
 
-use umi\orm\metadata\field\IField;
 use umicms\project\Environment;
+use umi\orm\metadata\field\IField;
 use umicms\project\module\news\model\object\NewsItem;
 
 return array_replace_recursive(
