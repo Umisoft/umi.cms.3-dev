@@ -1,7 +1,10 @@
 <?php
+use umicms\exception\LibXMLException;
+
 /**
  * @var bool $showTrace
  * @var bool $showStack
+ * @var \LibXMLError $libXmlError
  */
 ?>
 
@@ -45,6 +48,35 @@
                             <dd>
                                 <pre><?= $error->getTraceAsString() ?></pre>
                             </dd>
+
+                            <?php if ($error instanceof LibXMLException): ?>
+
+                                <dt>Errors:</dt>
+                                <dd>
+                                        <?php foreach ($error->getErrors() as $libXmlError) : ?>
+
+                                                <?php switch ($libXmlError->level) {
+                                                    case LIBXML_ERR_WARNING:
+                                                        echo ('<b>Warning</b> :');
+                                                        break;
+                                                    case LIBXML_ERR_ERROR:
+                                                        echo ('<b>Error</b> :');
+                                                        break;
+                                                    case LIBXML_ERR_FATAL:
+                                                        echo ('<b>Fatal error</b> :');
+                                                        break;
+                                                }
+                                                ?>
+                                                <?= $libXmlError->message ?>
+                                                <?php if ($libXmlError->file): ?>
+                                                    in <b><?= $libXmlError->file ?></b> on line <b><?= $libXmlError->line?></b>
+                                                <?php endif?>
+                                                <br/>
+                                        <?php endforeach; ?>
+                                </dd>
+                            <?php endif?>
+
+
                         </dl>
                     </li>
                     <?php

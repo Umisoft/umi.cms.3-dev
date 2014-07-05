@@ -11,6 +11,7 @@
 namespace umicms\templating\engine\xslt;
 
 use DOMDocument;
+use umi\http\Response;
 use umi\templating\exception\RuntimeException;
 use umicms\exception\LibXMLException;
 use umicms\serialization\ISerializationAware;
@@ -57,18 +58,39 @@ class XsltTemplate implements ISerializationAware
             ));
         }
 
+        libxml_use_internal_errors(true);
+
         $template = $this->createDomDocument(file_get_contents($templateFilePath));
 
         $data = $this->createDomDocument($xmlData);
 
         $xslt = new XSLTProcessor();
         $xslt->registerPHPFunctions();
-        $xslt->importStylesheet($template);
 
         libxml_clear_errors();
+        $xslt->importStylesheet($template);
+
+        if ($errors = libxml_get_last_error()) {
+            throw new LibXMLException(
+                sprintf(
+                    'Cannot load template "%s" XML.',
+                    $templateFilePath
+                ),
+                Response::HTTP_INTERNAL_SERVER_ERROR,
+                libxml_get_errors()
+            );
+        }
+
         $result = (string) @$xslt->transformToXML($data);
-        if ($error = libxml_get_last_error()) {
-            throw new LibXMLException($error);
+        if ($errors = libxml_get_last_error()) {
+            throw new LibXMLException(
+                sprintf(
+                    'Cannot transform template "%s" to XML.',
+                    $templateFilePath
+                ),
+                Response::HTTP_INTERNAL_SERVER_ERROR,
+                libxml_get_errors()
+            );
         }
 
         return $result;
@@ -88,8 +110,12 @@ class XsltTemplate implements ISerializationAware
 
         libxml_clear_errors();
         @$document->loadXML($xmlString);
-        if ($error = libxml_get_last_error()) {
-            throw new LibXMLException($error);
+        if ($errors = libxml_get_last_error()) {
+            throw new LibXMLException(
+                'Cannot create DOMDocument.',
+                Response::HTTP_INTERNAL_SERVER_ERROR,
+                libxml_get_errors()
+            );
         }
 
         return $document;
