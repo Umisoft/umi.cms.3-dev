@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var bool $showTrace
+ * @var bool $showStack
+ */
+?>
+
 <!DOCTYPE HTML>
 <html data-foundation>
 <head>
@@ -7,12 +14,14 @@
 </head>
 <body>
     <h1>An error has occurred</h1>
+    <h2><?= $e->getMessage() ?></h2>
 
-    <?php if ($debugModeOn): ?>
-
-        <h2><?= $e->getMessage() ?></h2>
+    <?php if ($showTrace): ?>
         <h3>Trace:</h3>
         <pre><?= $e->getTraceAsString() ?></pre>
+    <?php endif?>
+
+    <?php if ($showStack): ?>
 
         <?php $error = $e->getPrevious(); ?>
 

@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var bool $showTrace
+ * @var bool $showStack
+ */
+?>
 <!DOCTYPE HTML>
 <html data-foundation>
     <head>
@@ -6,6 +12,10 @@
         <title>UMI.CMS</title>
     </head>
     <body>
-        <?= $e['message'] ?>: in <b><? $e['file'] ?></b> on line <b><? $e['line'] ?></b>.
+        <h1>Fatal error has occurred</h1>
+        <?php if ($showTrace): ?>
+            <?= $e['message'] ?>: in <b><?= $e['file'] ?></b> on line <b><?= $e['line'] ?></b>.
+        <?php endif?>
+
     </body>
 </html>

@@ -37,6 +37,17 @@ $loader = require $autoLoaderPath;
 $directoryCms = dirname(dirname(__DIR__)) . '/umicms';
 $directoryProjects = dirname(dirname(__DIR__));
 
+Environment::$environmentConfiguration =  $directoryProjects . '/configuration/environment.config.php';
+if (!file_exists(Environment::$environmentConfiguration)) {
+    throw new RuntimeException(
+        sprintf('Cannot configure environment. File "%s" not found.', Environment::$environmentConfiguration)
+    );
+}
+
+/** @noinspection PhpIncludeInspection */
+$environmentConfig = require(Environment::$environmentConfiguration);
+Environment::init($environmentConfig);
+
 $toolkitPath = $directoryProjects . '/vendor/umisoft/umi.framework-dev/library';
 
 defined('CMS_LIBRARY_DIR') or define('CMS_LIBRARY_DIR', $directoryCms . '/library');
@@ -52,19 +63,12 @@ Environment::$directoryCmsError = $directoryCms . '/error';
 Environment::$directoryCmsProject = $directoryCms . '/project';
 Environment::$directoryProjects = $directoryProjects;
 
-Environment::$debugModeOn = true;
-
-if (!Environment::$debugModeOn) {
-    error_reporting(0);
-    ini_set('display_errors', 0);
-}
 
 register_shutdown_function(function() {
     $error = error_get_last();
-    /*if (is_array($error) && in_array($error['type'], array(E_ERROR))) {
+    if (is_array($error) && in_array($error['type'], array(E_ERROR))) {
         reportError('error.phtml', ['e' => $error]);
-    }*/
-        echo($error['message']);
+    }
 });
 
 try {
@@ -80,7 +84,8 @@ try {
 
 function reportError($templateName, array $scope = [], $responseStatusCode = Response::HTTP_INTERNAL_SERVER_ERROR)
 {
-    $scope['debugModeOn'] = Environment::$debugModeOn;
+    $scope['showTrace'] = Environment::$displayExceptionTrace;
+    $scope['showStack'] = Environment::$displayExceptionStack;
     extract($scope);
 
     ob_start();
