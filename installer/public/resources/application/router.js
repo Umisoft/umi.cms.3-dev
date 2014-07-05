@@ -549,9 +549,23 @@ define([], function(){
                             var componentController = self.controllerFor('component');
                             if(Ember.typeOf(results) === 'object' && Ember.get(results, 'result.layout')){
                                 var settings = results.result.layout;
+                                var dataSource = Ember.get(settings, 'dataSource') || '';
                                 componentController.set('settings', settings);
                                 componentController.set('selectedContext', Ember.get(transition,'params.context') ? Ember.get(transition, 'params.context.context') : 'root');
-                                deferred.resolve(model);
+                                if(Ember.get(dataSource, 'type') === 'lazy'){
+                                    $.get(Ember.get(settings, 'actions.' + Ember.get(dataSource, 'action') + '.source')).then(
+                                        function(results){
+                                            var data = Ember.get(results, 'result.' + Ember.get(dataSource, 'action') + '.objects');
+                                            Ember.set(dataSource, 'objects', data);
+                                            deferred.resolve(model);
+                                        }, function(error){
+                                            deferred.reject(transition.send('backgroundError', error));
+                                        }
+                                    );
+                                } else{
+                                    deferred.resolve(model);
+                                }
+
                             } else{
                                 var error = new Error('Ресурс "' + Ember.get(model, 'resource') + '" некорректен.');
                                 transition.send('backgroundError', error);
@@ -637,6 +651,7 @@ define([], function(){
                     } else{
                         switch(Ember.get(collection, 'type')){
                             case 'static':
+                            case 'lazy':
                                 model = new Ember.RSVP.Promise(function(resolve, reject){
                                     var objects = Ember.get(collection, 'objects');
                                     var object;
@@ -764,7 +779,7 @@ define([], function(){
                                     }
                                 }
 
-                                Ember.$.get(actionResource).then(function(results){
+                                return $.get(actionResource).then(function(results){
                                     var dynamicControl;
                                     var dynamicControlName;
                                     if(actionName === 'dynamic'){
@@ -782,10 +797,10 @@ define([], function(){
                                         Ember.set(routeData.control, 'meta', Ember.get(results, 'result.' + actionResourceName));
                                     }
                                     deferred.resolve(routeData);
-                                }/*, function(error){
-                                 Сообщение ошибки в таких случаях возникает на уровне ajaxSetup, получается две одинаковых. Нужно научить ajax наследованию
-                                 deferred.reject(transition.send('backgroundError', error));
-                                 }*/);
+                                }, function(error){
+                                 //Сообщение ошибки в таких случаях возникает на уровне ajaxSetup, получается две одинаковых. Нужно научить ajax наследованию
+                                    deferred.reject(transition.send('backgroundError', error));
+                                 });
                             } else{
                                 throw new Error('Дествие ' + Ember.get(contentControl, 'name') + ' для данного котекста недоступно.');
                             }
@@ -811,7 +826,7 @@ define([], function(){
                         controller: controller
                     });
                 } catch(error){
-                    this.send('templateLogs', errorObject, 'component');
+                    this.send('templateLogs', error, 'component');
                 }
             },
 

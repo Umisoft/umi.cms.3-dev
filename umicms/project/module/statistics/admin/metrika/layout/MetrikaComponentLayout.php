@@ -30,7 +30,8 @@ class MetrikaComponentLayout extends AdminComponentLayout
         $this->component = $component;
 
         $this->dataSource = [
-            'type' => 'lazy'
+            'type' => 'lazy',
+            'action' => 'counters'
         ];
 
         $this->configureEmptyContextControls();

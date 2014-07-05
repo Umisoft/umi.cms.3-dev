@@ -9,7 +9,7 @@ define(
         'text!./templates/content/editForm.hbs',
         'text!./templates/content/simpleForm.hbs',
         'text!./templates/content/files.hbs',
-        'text!./templates/content/counters.hbs',
+        'text!./templates/content/simpleTable.hbs',
         'text!./templates/content/counter.hbs',
         'text!./templates/content/megaIndex.hbs',
         'text!./templates/content/yandexWebmaster.hbs'
@@ -25,7 +25,7 @@ define(
         editFormTpl,
         simpleFormTpl,
         filesTpl,
-        countersTpl,
+        simpleTableTpl,
         counterTpl,
         megaIndexTpl,
         yandexWebmasterTpl
@@ -50,7 +50,7 @@ define(
 
             Ember.TEMPLATES['UMI/fileManager'] = Ember.Handlebars.compile(filesTpl);
 
-            Ember.TEMPLATES['UMI/counters'] = Ember.Handlebars.compile(countersTpl);
+            Ember.TEMPLATES['UMI/simpleTable'] = Ember.Handlebars.compile(simpleTableTpl);
             Ember.TEMPLATES['UMI/counter'] = Ember.Handlebars.compile(counterTpl);
             Ember.TEMPLATES['UMI/megaindexReport'] = Ember.Handlebars.compile(megaIndexTpl);
             Ember.TEMPLATES['UMI/yandexWebmasterReport'] = Ember.Handlebars.compile(yandexWebmasterTpl);
