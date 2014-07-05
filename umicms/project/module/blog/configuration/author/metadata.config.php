@@ -39,12 +39,22 @@ return array_replace_recursive(
             BlogAuthor::FIELD_POSTS_COUNT => [
                 'type' => IField::TYPE_COUNTER,
                 'columnName' => 'posts_count'
-            ]
+            ],
+            BlogAuthor::FIELD_PAGE_CONTENTS_RAW => [
+                'type' => IField::TYPE_TEXT,
+                'columnName' => 'contents_raw',
+                'mutator' => 'setContents',
+                'localizations' => [
+                    'ru-RU' => ['columnName' => 'contents_raw'],
+                    'en-US' => ['columnName' => 'contents_raw_en']
+                ]
+            ],
         ],
         'types' => [
             'base' => [
                 'objectClass' => 'umicms\project\module\blog\model\object\BlogAuthor',
                 'fields' => [
+                    BlogAuthor::FIELD_PAGE_CONTENTS_RAW => [],
                     BlogAuthor::FIELD_PROFILE => [],
                     BlogAuthor::FIELD_POSTS => [],
                     BlogAuthor::FIELD_COMMENTS_COUNT => [],

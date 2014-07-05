@@ -66,7 +66,7 @@ class TableSchemeLoader implements ILocalizable
         $options = $config->get('options') ?: [];
         $options = $this->configToArray($options, true);
 
-        return $this->createTableScheme($name, $options);
+        return new Table($this->tableNamePrefix . $name, [], [], [], 0, $options);
 
     }
 
@@ -111,7 +111,9 @@ class TableSchemeLoader implements ILocalizable
      */
     protected function loadConstraint(Table $table, $constraintName, IConfig $constraintConfig)
     {
-        if (!$foreignTableName = $constraintConfig->get('foreignTable')) {
+        if ($foreignTableName = $constraintConfig->get('foreignTable')) {
+            $foreignTableName = $this->tableNamePrefix . $foreignTableName;
+        } else {
             $foreignTableName = $table->getName();
         }
 
@@ -130,7 +132,7 @@ class TableSchemeLoader implements ILocalizable
             $foreignColumnsConfig['id'] = [];
         }
 
-        $foreignTable = $this->createTableScheme($foreignTableName);
+        $foreignTable = new Table($foreignTableName);
         foreach ($foreignColumnsConfig as $columnName => $config)
         {
             $foreignTable->addColumn($columnName, Type::BIGINT);
@@ -187,7 +189,7 @@ class TableSchemeLoader implements ILocalizable
      */
     protected function loadIndex(Table $table, $indexName, IConfig $indexConfig)
     {
-        $uniqueIndexName = uniqid('ind');
+        $uniqueIndexName = $table->getName() . '_' . $indexName;
 
         $columnsConfig = $indexConfig->get('columns');
         if (!$columnsConfig instanceof IConfig) {
@@ -273,17 +275,6 @@ class TableSchemeLoader implements ILocalizable
         }
 
         $table->addColumn($columnName, $type, $options);
-    }
-
-    /**
-     * Создает схему таблицы
-     * @param string $name имя таблицы
-     * @param array $options опции
-     * @return Table
-     */
-    private function createTableScheme($name, array $options = [])
-    {
-        return new Table($this->tableNamePrefix . $name, [], [], [], 0, $options);
     }
 }
  

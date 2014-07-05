@@ -11,6 +11,7 @@
 use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
 use umicms\project\Environment;
+use umicms\project\module\blog\model\object\BlogPost;
 
 return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
@@ -23,7 +24,8 @@ return array_replace_recursive(
             'publish_status' => [
                 'type' => Type::STRING,
                 'options' => [
-                    'length' => 50
+                    'length' => 50,
+                    'default' => BlogPost::POST_STATUS_DRAFT
                 ]
             ],
             'announcement' => [
@@ -71,7 +73,8 @@ return array_replace_recursive(
             'comments_count' => [
                 'type' => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true
+                    'unsigned' => true,
+                    'default' => 0
                 ]
             ]
         ],
