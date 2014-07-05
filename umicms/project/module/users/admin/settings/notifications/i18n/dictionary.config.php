@@ -2,15 +2,11 @@
 
 return [
     'en-US' => [
-        'component:notifications:displayName' => 'Notifications',
-
-        'role:configurator:displayName' => 'Managing setting'
+        'component:notifications:displayName' => 'Notifications'
     ],
 
     'ru-RU' => [
-        'component:notifications:displayName' => 'Уведомления',
-
-        'role:configurator:displayName' => 'Управление настройками'
+        'component:notifications:displayName' => 'Уведомления'
     ]
 ];
  

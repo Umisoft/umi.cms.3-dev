@@ -13,11 +13,8 @@ namespace umicms\hmvc\widget;
 use umi\acl\IAclResource;
 use umi\hmvc\component\IComponent;
 use umi\hmvc\exception\acl\ResourceAccessForbiddenException;
-use umi\hmvc\exception\http\HttpException;
 use umi\hmvc\view\IView;
 use umi\hmvc\widget\BaseWidget;
-use umi\http\Response;
-use umicms\exception\NonexistentEntityException;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
@@ -26,8 +23,6 @@ use umicms\hmvc\view\CmsView;
 use umicms\orm\selector\CmsSelector;
 use umicms\hmvc\callstack\IPageCallStackAware;
 use umicms\hmvc\callstack\TPageCallStackAware;
-use umicms\serialization\ISerializer;
-use umicms\serialization\xml\BaseSerializer;
 
 /**
  * Базовый виджет UMI.CMS
@@ -59,7 +54,19 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
      */
     public function invokeForbidden(ResourceAccessForbiddenException $e)
     {
-        return $this->createResult($this->forbiddenTemplate, ['error' => $e, 'code' => $this->getExceptionStatusCode($e)]);
+        return $this->createResult($this->forbiddenTemplate, ['error' => $e]);
+    }
+
+    /**
+     * Устанавливает опции сериализации результата работы виджета в XML или JSON.
+     * Может быть переопределен в конкретном виджете для задания переменных,
+     * которые будут преобразованы в атрибуты xml, а так же переменные, которые будут проигнорированы
+     * в xml или json.
+     * @param CmsView $view результат работы виджета
+     */
+    protected function setSerializationOptions(CmsView $view)
+    {
+
     }
 
     /**
@@ -86,14 +93,8 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
         $variables['widget'] = $this->getShortPath();
         $view = new CmsView($this, $this->getContext(), $templateName, $variables);
 
-        $view->addSerializerConfigurator(
-            function(ISerializer $serializer)
-            {
-                if ($serializer instanceof BaseSerializer) {
-                    $serializer->setAttributes(['widget']);
-                }
-            }
-        );
+        $view->setXmlAttributes(['widget']);
+        $this->setSerializationOptions($view);
 
         return $view;
     }
@@ -112,25 +113,6 @@ abstract class BaseCmsWidget extends BaseWidget implements IAclResource, IUrlMan
         return $this->createResult($templateName, [
             'tree' => $view
         ]);
-    }
-
-    /**
-     * Определяет код статуса ответа по произошедшему исключению.
-     * @param \Exception $e
-     * @return int
-     */
-    protected function getExceptionStatusCode(\Exception $e)
-    {
-        switch(true) {
-            case $e instanceof NonexistentEntityException:
-                return Response::HTTP_NOT_FOUND;
-            case $e instanceof ResourceAccessForbiddenException:
-                return Response::HTTP_FORBIDDEN;
-            case $e instanceof HttpException:
-                return $e->getCode();
-            default:
-                return Response::HTTP_INTERNAL_SERVER_ERROR;
-        }
     }
 
     /**

@@ -12,16 +12,12 @@ return [
 
     'en-US' => [
         'Activate' => 'Activate',
-        'You have successfully activated your account' => 'You have successfully activated your account',
-
-        'role:viewer:displayName' => 'Activation user'
+        'You have successfully activated your account' => 'You have successfully activated your account'
     ],
 
     'ru-RU' => [
         'Activate' => 'Активировать',
-        'You have successfully activated your account' => 'Ваш аккаунт успешно активирован',
-
-        'role:viewer:displayName' => 'Активация пользователя'
+        'You have successfully activated your account' => 'Ваш аккаунт успешно активирован'
     ]
 
 ];

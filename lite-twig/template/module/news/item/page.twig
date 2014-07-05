@@ -1,7 +1,7 @@
 {{ include('breadcrumbs.twig') }}
 
 <div class="blog-post">
-    <h2 class="blog-post-title">{{ page.getHeader() }}</h2>
+    <h2 class="blog-post-title">{{ page.displayName }}</h2>
     <p class="blog-post-meta">
         <time datetime="{{ page.date.format('c') }}">
             {{ page.date.format('d.m.Y | H:i') }}

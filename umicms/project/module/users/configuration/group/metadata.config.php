@@ -11,7 +11,6 @@
 use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
 use umi\validation\IValidatorFactory;
-use umicms\orm\metadata\field\SerializedArrayField;
 use umicms\project\module\users\model\object\UserGroup;
 
 return [
@@ -90,9 +89,10 @@ return [
             'target' => 'user'
         ],
         UserGroup::FIELD_ROLES => [
-            'type' => SerializedArrayField::TYPE,
+            'type' => IField::TYPE_TEXT,
             'columnName' => 'roles',
-            'mutator' => 'setRoles',
+            'accessor' => 'getRoles',
+            'mutator' => 'setRoles'
         ]
     ],
     'types'      => [

@@ -12,7 +12,6 @@ namespace umicms\project\module\structure\site\menu\widget;
 
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseCmsWidget;
-use umicms\orm\object\ICmsPage;
 use umicms\project\module\structure\model\object\StructureElement;
 use umicms\project\module\structure\model\StructureModule;
 
@@ -25,23 +24,16 @@ class AutoMenuWidget extends BaseCmsWidget
      * @var string $template имя шаблона, по которому выводится виджет.
      */
     public $template = 'auto';
+
     /**
      * @var string|StructureElement $branch ветка или GUID, от которой строится меню. Если не задано, меню строится от корня сайта.
      */
     public $branch;
+
     /**
      * @var int $depth уровень вложенности меню.
      */
     public $depth = 1;
-    /**
-     * @var bool $fullyLoad признак необходимости загружать все свойства объектов списка.
-     * Список полей для загрузки при значении true игнорируется.
-     */
-    public $fullyLoad;
-    /**
-     * @var string $fields список имен полей, с которыми нужно загрузить объекты, в виде строки с разделителем в виде запятой
-     */
-    public $fields;
 
     /**
      * @var StructureModule $module
@@ -78,19 +70,10 @@ class AutoMenuWidget extends BaseCmsWidget
             );
         }
 
-        $fields = [];
-        if (!$this->fullyLoad) {
-            $fields = ICmsPage::FIELD_DISPLAY_NAME;
-            if ($this->fields) {
-                $fields = $fields . ',' . $this->fields;
-            }
-            $fields = explode(',', $fields);
-        }
-
         return $this->createResult(
             $this->template,
             [
-                'menu' => $this->module->autoMenu()->buildMenu($this->branch, $this->depth, $fields)
+                'menu' => $this->module->autoMenu()->buildMenu($this->branch, $this->depth)
             ]
         );
     }

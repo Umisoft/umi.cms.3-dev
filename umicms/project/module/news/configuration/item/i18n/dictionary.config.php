@@ -16,7 +16,6 @@ return [
             NewsItem::FIELD_ANNOUNCEMENT => 'Announcement',
             NewsItem::FIELD_DATE => 'Date',
             NewsItem::FIELD_RUBRIC => 'Rubric',
-            NewsItem::FIELD_SOURCE => 'Source',
 
             'type:base:displayName' => 'News item'
         ],
@@ -26,7 +25,6 @@ return [
             NewsItem::FIELD_ANNOUNCEMENT => 'Анонс',
             NewsItem::FIELD_DATE => 'Дата',
             NewsItem::FIELD_RUBRIC => 'Рубрика',
-            NewsItem::FIELD_SOURCE => 'Источник',
 
             'type:base:displayName' => 'Новость'
         ]

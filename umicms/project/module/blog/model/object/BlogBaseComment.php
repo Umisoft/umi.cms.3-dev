@@ -11,6 +11,7 @@
 namespace umicms\project\module\blog\model\object;
 
 use DateTime;
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecyclableObject;
 use umicms\orm\object\CmsHierarchicObject;
 
@@ -20,7 +21,7 @@ use umicms\orm\object\CmsHierarchicObject;
  * @property BlogPost $post пост, к которому относится комментарий
  * @property DateTime $publishTime дата и время публикации комментария
  */
-abstract class BlogBaseComment extends CmsHierarchicObject implements IRecyclableObject
+abstract class BlogBaseComment extends CmsHierarchicObject implements IRecyclableObject, IActiveAccessibleObject
 {
     /**
      * Имя поля для хранения поста, к которому относится комментарий

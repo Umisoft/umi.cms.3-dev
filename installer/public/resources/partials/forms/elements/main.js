@@ -20,8 +20,7 @@ define(
         'partials/forms/elements/image/main',
         'partials/forms/elements/textarea/main',
         'partials/forms/elements/checkbox-group/main',
-        'partials/forms/elements/color/main',
-        'partials/forms/elements/permissions/main'
+        'partials/forms/elements/color/main'
     ],
     function(
         UMI,
@@ -44,8 +43,7 @@ define(
         imageElement,
         textareaElement,
         checkboxGroupElement,
-        colorElement,
-        permissions
+        colorElement
     ){
         "use strict";
 
@@ -69,7 +67,6 @@ define(
             textareaElement();
             checkboxGroupElement();
             colorElement();
-            permissions();
         };
     }
 );

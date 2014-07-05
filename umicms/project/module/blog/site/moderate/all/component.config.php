@@ -25,15 +25,11 @@ return [
         'link' => __NAMESPACE__ . '\widget\LinkWidget'
     ],
     SitePageComponent::OPTION_ACL => [
-        IAclFactory::OPTION_RESOURCES => [
-            'model:blogPost'
-        ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
                 'widget:post' => [],
                 'widget:list' => [],
-                'widget:link' => [],
-                'model:blogPost' => []
+                'widget:link' => []
             ]
         ]
     ],

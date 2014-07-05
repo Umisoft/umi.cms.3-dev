@@ -52,7 +52,7 @@ class RejectController extends BaseCmsController
     protected function processForm(IForm $form)
     {
         $blogPost = $this->module->post()->getNeedModeratePostById($this->getRouteVar('id'));
-        $blogPost->reject();
+        $blogPost->rejected();
 
         $this->commit();
     }

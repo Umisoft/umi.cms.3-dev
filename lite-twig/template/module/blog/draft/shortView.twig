@@ -10,7 +10,7 @@
 
     {{ blogDraft.announcement | raw }}
 
-    <a href="{{ blogDraft.getPageUrl() }}">{{ translate('ReadMore') }}</a>
+    <a href="{{ blogDraft.getPageUrl() }}">{{ translate('Read more') }}</a>
     {{ widget('blog.draft.publishDraft', {'blogDraft' : blogDraft, 'template' : 'publishDraftForm'}) }}
     {{ widget('blog.draft.sendToModeration', {'blogDraft' : blogDraft, 'template' : 'sendToModerationForm'}) }}
 </div>

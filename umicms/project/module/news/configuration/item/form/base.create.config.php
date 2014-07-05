@@ -21,7 +21,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.newsItem', 'collection', 'form'
+            'collection.newsItem', 'collection'
         ]
     ],
 

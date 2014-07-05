@@ -1,11 +1,10 @@
 <?php
 /**
- * This file is part of UMI.CMS.
+ * UMI.Framework (http://umi-framework.ru/)
  *
- * @link http://umi-cms.ru
- * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
- * @license For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * @link http://github.com/Umisoft/framework for the canonical source repository
+ * @copyright Copyright (c) 2007-2013 Umisoft ltd. (http://umisoft.ru/)
+ * @license http://umi-framework.ru/license/bsd-3 BSD-3 License
  */
 
 return [
@@ -15,9 +14,7 @@ return [
 
         'action:create:menu' => 'Create menu',
         'action:create:internalItem' => 'Create internal element',
-        'action:create:externalItem' => 'Create external element',
-
-        'role:editor:displayName' => 'Managing menu'
+        'action:create:externalItem' => 'Create external element'
     ],
 
     'ru-RU' => [
@@ -25,9 +22,7 @@ return [
 
         'action:create:menu' => 'Добавить меню',
         'action:create:internalItem' => 'Добавить внутренний элемент меню',
-        'action:create:externalItem' => 'Добавить внешний элемент меню',
-
-        'role:editor:displayName' => 'Управление меню'
+        'action:create:externalItem' => 'Добавить внешний элемент меню'
     ]
 
 ];

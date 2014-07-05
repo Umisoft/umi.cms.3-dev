@@ -2,15 +2,11 @@
 
 return [
     'en-US' => [
-        'component:backup:displayName' => 'Backups',
-
-        'role:editor:displayName' => 'Managing reserving'
+        'component:backup:displayName' => 'Backups'
     ],
 
     'ru-RU' => [
-        'component:backup:displayName' => 'Резервирование',
-
-        'role:editor:displayName' => 'Управление резервированием'
+        'component:backup:displayName' => 'Резервирование'
     ]
 ];
  
