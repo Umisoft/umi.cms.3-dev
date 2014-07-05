@@ -5789,13 +5789,16 @@ input[type="text"].umi-search-input.active {
         background: #8B95A5; }
       .umi-table-content-tr:last-of-type td {
         border-bottom: 1px solid #A7B9C5; }
+      .umi-table-content-tr:hover {
+        background: #C8DEEE; }
   .umi-table-cell {
     white-space: nowrap;
     text-overflow: ellipsis;
     height: 2.0625rem;
     line-height: 2.0625rem;
     padding: 0 0.625rem;
-    position: relative; }
+    position: relative;
+    overflow: hidden; }
   .umi-table .s-scroll-wrap {
     width: 100%;
     height: calc(100% - 34px); }
