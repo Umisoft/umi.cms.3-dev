@@ -9,3 +9,13 @@ input::-ms-clear { //Убираем крестик браузера из пол�
         top: -1px;
     }
 }
+
+input[type="color"]{
+    -webkit-appearance: none;
+    -webkit-border-radius: $input-border-radius;
+    border-radius: $input-border-radius;
+    @include form-element;
+    @if not $input-include-glowing-effect {
+        @include single-transition(all, 0.15s, linear);
+    }
+}
