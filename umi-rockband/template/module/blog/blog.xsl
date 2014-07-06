@@ -16,6 +16,16 @@
         />
 
     <xsl:template match="contents[@controller = 'blog.index'][page]" >
+        <div class="site-name">
+            <div class="container-fluid">
+                <span>
+                    <xsl:value-of select="page/@displayName" />
+                </span>
+                <span class="sm">
+                    <xsl:apply-templates select="breadcrumbs" mode="blog"/>
+                </span>
+            </div>
+        </div>
         <div class="content-inner">
             <div class="container-fluid">
                 <!-- Заголовок -->
@@ -31,6 +41,7 @@
 
                 <!-- Вывод постов-->
                 <xsl:apply-templates select="document('widget://blog.category.postList')" mode="blogList"/>
+                <xsl:apply-templates select="document('widget://blog.category.postList?pagination[pageParam]=p&amp;pagination[type]=all&amp;pagination[pagesCount]=5&amp;limit=3')"/>
 
 
                 <!-- Сайдбар -->

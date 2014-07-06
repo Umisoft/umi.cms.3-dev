@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="/resources/umi-rockband/images/slider-img.jpg" alt="" />
+                    <img src="/resources/umi-rockband/images/slider-img-2.jpg" alt="" />
                     <div class="carousel-caption">
                         <h1>UMI ROCK THEME</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat </p>
@@ -112,7 +112,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="/resources/umi-rockband/images/slider-img.jpg" alt="" />
+                    <img src="/resources/umi-rockband/images/slider-img-3.jpg" alt="" />
                     <div class="carousel-caption">
                         <h1>UMI ROCK THEME</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat </p>

@@ -21,9 +21,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-3 col-md-2">
                         <!-- Языки -->
-                        <ul class="langs">
-                            <xsl:apply-templates select="locales" />
-                        </ul>
+                        <xsl:apply-templates select="locales" />
                         <br />
                         <!-- Логотип -->
                         <xsl:apply-templates select="document('widget://structure.infoblock.view?infoBlock=commonInfoBlock')" mode="logo"/>
