@@ -1,11 +1,9 @@
 {
-    "name": "umisoft/umi.cms.3-dev",
-    "description": "UMI.CMS 3 Development Package",
+    "name": "umisoft/umi.cms.3",
+    "description": "UMI.CMS 3",
     "type": "library",
     "license": "proprietary",
     "homepage": "http://umi-cms.ru/",
-
-    "minimum-stability": "dev",
 
     "autoload": {
         "psr-4": {
@@ -15,10 +13,6 @@
             "tests\\" : "tests"
         },
         "classmap": ["umicms/project/module/files/admin/manager/elfinder"]
-    },
-
-    "replace" : {
-        "umisoft/umi.cms.3": "self.version"
     },
 
     "require": {
