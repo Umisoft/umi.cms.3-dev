@@ -19,7 +19,7 @@
     },
     "require": {
         "php": ">=5.4.0",
-        "umisoft/umi.framework-dev": "dev-feature/metadata-configs",
+        "umisoft/umi.framework-dev": "*",
         "guzzlehttp/guzzle": "4.*",
         "twig/twig": "1.*",
         "gregwar/captcha": "dev-master",
