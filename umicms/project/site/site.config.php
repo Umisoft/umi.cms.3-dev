@@ -107,7 +107,7 @@ return [
         ],
         'robots' => [
             'type' => IRouteFactory::ROUTE_FIXED,
-            'route' => '/robots',
+            'route' => '/robots.txt',
             'defaults' => [
                 'controller' => 'robots'
             ]
