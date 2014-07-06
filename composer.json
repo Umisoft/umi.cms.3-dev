@@ -26,29 +26,10 @@
         "ezyang/htmlpurifier": "dev-master",
         "jbroadway/urlify": "1.0.3"
     },
-    "require-dev":{
-        "behat/behat": "3.*@stable",
-        "behat/mink-extension": "*",
-        "behat/mink-sahi-driver": "*",
-        "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium2-driver": "*",
-        "sensiolabs/behat-page-object-extension": "~2.0"
-    },
     "repositories":[
         {
             "type": "git",
             "url": "git@github.com:Umisoft/umi.framework-dev.git"
         }
-    ],
-    "scripts": {
-        "post-install-cmd": [
-            "cd ./installer/public/resources",
-            "bower install"
-        ],
-        "post-update-cmd": [
-            "cd ./installer/public/resources",
-            "bower update"
-        ]
-    }
-
+    ]
 }
