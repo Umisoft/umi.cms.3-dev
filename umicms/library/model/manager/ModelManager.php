@@ -108,55 +108,5 @@ class ModelManager implements IDbClusterAware
         var_dump($synchronizer->getUpdateSchema($scheme, true));
         $synchronizer->updateSchema($scheme, true);
     }
-
-    /**
-     * Выполняет запросы на создание таблиц для моделей.
-     * @param SingleDatabaseSynchronizer $synchronizer
-     */
-    private function createModelSchemes(SingleDatabaseSynchronizer $synchronizer)
-    {
-        $createTables = [];
-
-        foreach ($this->newModels as $model) {
-            $createTables[] = $model->getTableScheme();
-        }
-
-        $createScheme = new Schema($createTables);
-        $synchronizer->createSchema($createScheme);
-    }
-
-    /**
-     * Выполняет запросы на модификацию таблиц для моделей.
-     * @param SingleDatabaseSynchronizer $synchronizer
-     */
-    private function updateModelSchemes(SingleDatabaseSynchronizer $synchronizer)
-    {
-        $updateTables = [];
-
-        foreach ($this->modifiedModels as $model) {
-            $updateTables[] = $model->getTableScheme();
-        }
-
-        $updateScheme = new Schema($updateTables);
-
-        $synchronizer->updateSchema($updateScheme);
-    }
-
-    /**
-     * Выполняет запросы на удаление таблиц для моделей.
-     * @param SingleDatabaseSynchronizer $synchronizer
-     */
-    private function dropModelSchemes(SingleDatabaseSynchronizer $synchronizer)
-    {
-        $dropTables = [];
-
-        foreach ($this->deletedModels as $model) {
-            $dropTables[] = $model->getTableScheme();
-        }
-
-        $dropScheme = new Schema($dropTables);
-
-        $synchronizer->dropSchema($dropScheme);
-    }
 }
  

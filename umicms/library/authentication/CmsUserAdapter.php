@@ -15,7 +15,7 @@ use umi\authentication\result\AuthResult;
 use umi\authentication\result\IAuthResult;
 use umi\orm\object\IObject;
 use umi\orm\selector\condition\IFieldConditionGroup;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 
 /**
  * {@inheritdoc}
@@ -29,7 +29,7 @@ class CmsUserAdapter extends ORMAdapter
      * @return bool
      */
     public function checkPassword(IObject $user, $password) {
-        $passwordHash = crypt($password, $user->getProperty(AuthorizedUser::FIELD_PASSWORD_SALT)->getValue());
+        $passwordHash = crypt($password, $user->getProperty(RegisteredUser::FIELD_PASSWORD_SALT)->getValue());
 
         return $user->getProperty($this->passwordField)->getValue() === $passwordHash;
     }
@@ -55,7 +55,7 @@ class CmsUserAdapter extends ORMAdapter
         $user = $usersSelector->result()
             ->fetch();
 
-        if (!$user instanceof AuthorizedUser) {
+        if (!$user instanceof RegisteredUser) {
             return new AuthResult(IAuthResult::WRONG_USERNAME);
         } elseif (!$this->checkPassword($user, $password)) {
             return new AuthResult(IAuthResult::WRONG_PASSWORD);

@@ -13,6 +13,8 @@ namespace umicms\project\site\widget;
 use Exception;
 use umicms\exception\UnexpectedValueException;
 use umicms\hmvc\widget\BaseCmsWidget;
+use umicms\project\Environment;
+use umicms\serialization\ISerializer;
 
 /**
  * Виджет для вывода ошибки виджетов.
@@ -43,8 +45,10 @@ class ErrorWidget extends BaseCmsWidget
         $e = $this->exception;
         $stack = [];
 
-        while ($e = $e->getPrevious()) {
-            $stack[] = $e;
+        if (Environment::$showExceptionStack) {
+            while ($e = $e->getPrevious()) {
+                $stack[] = $e;
+            }
         }
 
         return $this->createResult(
@@ -55,5 +59,31 @@ class ErrorWidget extends BaseCmsWidget
                 'code' => $code
             ]
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createResult($templateName, array $variables = []) {
+        $variables['showStack'] = Environment::$showExceptionStack;
+        $variables['showTrace'] = Environment::$showExceptionTrace;
+
+        $view = parent::createResult($templateName, $variables);
+
+        $view->addSerializerConfigurator(
+            function(ISerializer $serializer)
+            {
+                $excludes = [
+                    'showStack',
+                    'showTrace'
+                ];
+                if (!Environment::$showExceptionStack) {
+                    $excludes[] = 'stack';
+                }
+                $serializer->setExcludes($excludes);
+            }
+        );
+
+        return $view;
     }
 }
