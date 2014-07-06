@@ -1,306 +1,71 @@
 <?php
 /**
  * This file is part of UMI.CMS.
- *
  * @link http://umi-cms.ru
  * @copyright Copyright (c) 2007-2014 Umisoft ltd. (http://umisoft.ru)
  * @license For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-use umi\filter\IFilterFactory;
 use umi\orm\metadata\field\IField;
-use umi\validation\IValidatorFactory;
-use umicms\filter\Slug;
+use umicms\project\Environment;
 use umicms\project\module\structure\model\object\StaticPage;
 use umicms\project\module\structure\model\object\StructureElement;
 use umicms\project\module\structure\model\object\SystemPage;
 
-return [
-    'dataSource' => [
-        'sourceName' => 'umi_structure'
-    ],
-    'fields'     => [
-
-        StructureElement::FIELD_IDENTIFY              => [
-            'type'       => IField::TYPE_IDENTIFY,
-            'columnName' => 'id',
-            'accessor'   => 'getId',
-            'readOnly'   => true
+return array_replace_recursive(
+    require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicPageCollection.config.php',
+    require Environment::$directoryCmsProject . '/configuration/model/metadata/locked.config.php',
+    [
+        'dataSource' => [
+            'sourceName' => 'structure'
         ],
-        StructureElement::FIELD_GUID                  => [
-            'type'       => IField::TYPE_GUID,
-            'columnName' => 'guid',
-            'accessor'   => 'getGuid',
-            'readOnly'   => true
-        ],
-        StructureElement::FIELD_TYPE                  => [
-            'type'       => IField::TYPE_STRING,
-            'columnName' => 'type',
-            'accessor'   => 'getType',
-            'readOnly'   => true
-        ],
-        StructureElement::FIELD_VERSION               => [
-            'type'         => IField::TYPE_VERSION,
-            'columnName'   => 'version',
-            'accessor'     => 'getVersion',
-            'readOnly'     => true,
-            'defaultValue' => 1
-        ],
-        StructureElement::FIELD_PARENT                => [
-            'type'       => IField::TYPE_BELONGS_TO,
-            'columnName' => 'pid',
-            'accessor'   => 'getParent',
-            'target'     => 'structure',
-            'readOnly'   => true
-        ],
-        StructureElement::FIELD_MPATH                 => [
-            'type'       => IField::TYPE_MPATH,
-            'columnName' => 'mpath',
-            'accessor'   => 'getMaterializedPath',
-            'readOnly'   => true
-        ],
-        StructureElement::FIELD_SLUG                  => [
-            'type'       => IField::TYPE_SLUG,
-            'columnName' => 'slug',
-            'accessor'   => 'getSlug',
-            'filters' => [
-                Slug::TYPE => []
+        'fields'     => [
+            StructureElement::FIELD_COMPONENT_NAME     => [
+                'type'       => IField::TYPE_STRING,
+                'columnName' => 'component_name',
+                'readOnly'   => true
             ],
-            'validators' => [
-                IValidatorFactory::TYPE_REQUIRED => []
+            StructureElement::FIELD_COMPONENT_PATH     => [
+                'type'       => IField::TYPE_STRING,
+                'columnName' => 'component_path',
+                'readOnly'   => true
             ],
-            'readOnly'   => true
-        ],
-        StructureElement::FIELD_URI                   => [
-            'type'       => IField::TYPE_URI,
-            'columnName' => 'uri',
-            'accessor'   => 'getURI',
-            'readOnly'   => true
-        ],
-        StructureElement::FIELD_CHILD_COUNT           => [
-            'type'         => IField::TYPE_COUNTER,
-            'columnName'   => 'child_count',
-            'accessor'     => 'getChildCount',
-            'readOnly'     => true,
-            'defaultValue' => 0
-        ],
-        StructureElement::FIELD_ORDER                 => [
-            'type'       => IField::TYPE_ORDER,
-            'columnName' => 'order',
-            'accessor'   => 'getOrder',
-            'readOnly'   => true
-        ],
-        StructureElement::FIELD_HIERARCHY_LEVEL       => [
-            'type'       => IField::TYPE_LEVEL,
-            'columnName' => 'level',
-            'accessor'   => 'getLevel',
-            'readOnly'   => true
-        ],
-        StructureElement::FIELD_DISPLAY_NAME          => [
-            'type'       => IField::TYPE_STRING,
-            'columnName' => 'display_name',
-            'filters'    => [
-                IFilterFactory::TYPE_STRING_TRIM => []
+            SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => [
+                'type'         => IField::TYPE_BOOL,
+                'columnName'   => 'skip_in_breadcrumbs',
+                'defaultValue' => 0
             ],
-            'validators' => [
-                IValidatorFactory::TYPE_REQUIRED => []
+            StructureElement::FIELD_IN_MENU            => [
+                'type'         => IField::TYPE_BOOL,
+                'columnName'   => 'in_menu',
+                'defaultValue' => 0
             ],
-            'localizations' => [
-                'ru-RU' => ['columnName' => 'display_name', 'validators' => [IValidatorFactory::TYPE_REQUIRED => []]],
-                'en-US' => ['columnName' => 'display_name_en']
+            StructureElement::FIELD_SUBMENU_STATE      => [
+                'type'         => IField::TYPE_INTEGER,
+                'columnName'   => 'submenu_state',
+                'defaultValue' => 0
             ]
         ],
-        StructureElement::FIELD_COMPONENT_PATH        => [
-            'type'       => IField::TYPE_STRING,
-            'columnName' => 'component_path',
-            'readOnly'   => true
-        ],
-        StructureElement::FIELD_COMPONENT_NAME        => [
-            'type'       => IField::TYPE_STRING,
-            'columnName' => 'component_name',
-            'readOnly'   => true
-        ],
-        StructureElement::FIELD_ACTIVE                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'active',
-            'defaultValue' => 1
-        ],
-        SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'skip_in_breadcrumbs',
-            'defaultValue' => 0
-        ],
-        StructureElement::FIELD_LOCKED                => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'locked',
-            'readOnly'     => true,
-            'defaultValue' => 0
-        ],
-        StructureElement::FIELD_TRASHED               => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'trashed',
-            'defaultValue' => 0,
-            'readOnly'     => true,
-        ],
-        StructureElement::FIELD_CREATED               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'created'],
-        StructureElement::FIELD_UPDATED               => ['type' => IField::TYPE_DATE_TIME, 'columnName' => 'updated'],
-        StructureElement::FIELD_PAGE_META_TITLE       => ['type' => IField::TYPE_STRING, 'columnName' => 'meta_title'],
-        StructureElement::FIELD_PAGE_META_KEYWORDS    => [
-            'type'       => IField::TYPE_STRING,
-            'columnName' => 'meta_keywords'
-        ],
-        StructureElement::FIELD_PAGE_META_DESCRIPTION => [
-            'type'       => IField::TYPE_STRING,
-            'columnName' => 'meta_description'
-        ],
-        StructureElement::FIELD_PAGE_H1               => ['type' => IField::TYPE_STRING, 'columnName' => 'h1'],
-        StructureElement::FIELD_PAGE_CONTENTS         => [
-            'type' => IField::TYPE_TEXT,
-            'columnName' => 'contents',
-            'localizations' => [
-                'ru-RU' => ['columnName' => 'contents'],
-                'en-US' => ['columnName' => 'contents_en']
-            ]
-        ],
-        StructureElement::FIELD_PAGE_LAYOUT           => [
-            'type'       => IField::TYPE_BELONGS_TO,
-            'columnName' => 'layout_id',
-            'target'     => 'layout'
-        ],
-        StructureElement::FIELD_CHILDREN              => [
-            'type'        => IField::TYPE_HAS_MANY,
-            'target'      => 'structure',
-            'targetField' => StructureElement::FIELD_PARENT,
-            'readOnly'    => true
-        ],
-        StructureElement::FIELD_IN_MENU                => [
-            'type'        => IField::TYPE_BOOL,
-            'columnName'  => 'in_menu',
-            'defaultValue' => 0
-        ],
-        StructureElement::FIELD_SUBMENU_STATE          => [
-            'type'        => IField::TYPE_INTEGER,
-            'columnName'  => 'submenu_state',
-            'defaultValue' => 0
-        ],
-        StructureElement::FIELD_OWNER => [
-            'type' => IField::TYPE_BELONGS_TO,
-            'columnName' => 'owner_id',
-            'target' => 'user'
-        ],
-        StructureElement::FIELD_EDITOR => [
-            'type' => IField::TYPE_BELONGS_TO,
-            'columnName' => 'editor_id',
-            'target' => 'user'
-        ]
-    ],
-    'types'      => [
-        'base'   => [
-            'objectClass' => 'umicms\project\module\structure\model\object\StructureElement',
-            'fields'      => [
-                StructureElement::FIELD_IDENTIFY,
-                StructureElement::FIELD_GUID,
-                StructureElement::FIELD_TYPE,
-                StructureElement::FIELD_VERSION,
-                StructureElement::FIELD_DISPLAY_NAME,
-                StructureElement::FIELD_PARENT,
-                StructureElement::FIELD_MPATH,
-                StructureElement::FIELD_SLUG,
-                StructureElement::FIELD_URI,
-                StructureElement::FIELD_HIERARCHY_LEVEL,
-                StructureElement::FIELD_ORDER,
-                StructureElement::FIELD_CHILD_COUNT,
-                StructureElement::FIELD_ACTIVE,
-                StructureElement::FIELD_LOCKED,
-                StructureElement::FIELD_TRASHED,
-                StructureElement::FIELD_CREATED,
-                StructureElement::FIELD_UPDATED,
-                StructureElement::FIELD_COMPONENT_PATH,
-                StructureElement::FIELD_COMPONENT_NAME,
-                StructureElement::FIELD_PAGE_META_TITLE,
-                StructureElement::FIELD_PAGE_META_KEYWORDS,
-                StructureElement::FIELD_PAGE_META_DESCRIPTION,
-                StructureElement::FIELD_PAGE_H1,
-                StructureElement::FIELD_PAGE_CONTENTS,
-                StructureElement::FIELD_PAGE_LAYOUT,
-                StructureElement::FIELD_CHILDREN,
-                StructureElement::FIELD_IN_MENU,
-                StructureElement::FIELD_SUBMENU_STATE,
-                StructureElement::FIELD_OWNER,
-                StructureElement::FIELD_EDITOR
-            ]
-        ],
-        SystemPage::TYPE => [
-            'objectClass' => 'umicms\project\module\structure\model\object\SystemPage',
-            'fields'      => [
-                SystemPage::FIELD_IDENTIFY,
-                SystemPage::FIELD_GUID,
-                SystemPage::FIELD_TYPE,
-                SystemPage::FIELD_VERSION,
-                SystemPage::FIELD_DISPLAY_NAME,
-                SystemPage::FIELD_PARENT,
-                SystemPage::FIELD_MPATH,
-                SystemPage::FIELD_SLUG,
-                SystemPage::FIELD_URI,
-                SystemPage::FIELD_HIERARCHY_LEVEL,
-                SystemPage::FIELD_ORDER,
-                SystemPage::FIELD_CHILD_COUNT,
-                SystemPage::FIELD_ACTIVE,
-                SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS,
-                SystemPage::FIELD_LOCKED,
-                SystemPage::FIELD_TRASHED,
-                SystemPage::FIELD_CREATED,
-                SystemPage::FIELD_UPDATED,
-                SystemPage::FIELD_COMPONENT_PATH,
-                SystemPage::FIELD_COMPONENT_NAME,
-                SystemPage::FIELD_PAGE_META_TITLE,
-                SystemPage::FIELD_PAGE_META_KEYWORDS,
-                SystemPage::FIELD_PAGE_META_DESCRIPTION,
-                SystemPage::FIELD_PAGE_H1,
-                SystemPage::FIELD_PAGE_CONTENTS,
-                SystemPage::FIELD_PAGE_LAYOUT,
-                SystemPage::FIELD_CHILDREN,
-                SystemPage::FIELD_IN_MENU,
-                SystemPage::FIELD_SUBMENU_STATE,
-                SystemPage::FIELD_OWNER,
-                SystemPage::FIELD_EDITOR
-            ]
-        ],
-        StaticPage::TYPE => [
-            'objectClass' => 'umicms\project\module\structure\model\object\StaticPage',
-            'fields'      => [
-                StaticPage::FIELD_IDENTIFY,
-                StaticPage::FIELD_GUID,
-                StaticPage::FIELD_TYPE,
-                StaticPage::FIELD_VERSION,
-                StaticPage::FIELD_DISPLAY_NAME,
-                StaticPage::FIELD_PARENT,
-                StaticPage::FIELD_MPATH,
-                StaticPage::FIELD_SLUG,
-                StaticPage::FIELD_URI,
-                StaticPage::FIELD_HIERARCHY_LEVEL,
-                StaticPage::FIELD_ORDER,
-                StaticPage::FIELD_CHILD_COUNT,
-                StaticPage::FIELD_ACTIVE,
-                StaticPage::FIELD_LOCKED,
-                StaticPage::FIELD_TRASHED,
-                StaticPage::FIELD_CREATED,
-                StaticPage::FIELD_UPDATED,
-                StaticPage::FIELD_COMPONENT_PATH,
-                StaticPage::FIELD_COMPONENT_NAME,
-                StaticPage::FIELD_PAGE_META_TITLE,
-                StaticPage::FIELD_PAGE_META_KEYWORDS,
-                StaticPage::FIELD_PAGE_META_DESCRIPTION,
-                StaticPage::FIELD_PAGE_H1,
-                StaticPage::FIELD_PAGE_CONTENTS,
-                StaticPage::FIELD_PAGE_LAYOUT,
-                StaticPage::FIELD_CHILDREN,
-                StaticPage::FIELD_IN_MENU,
-                StaticPage::FIELD_SUBMENU_STATE,
-                StaticPage::FIELD_OWNER,
-                StaticPage::FIELD_EDITOR
+        'types'      => [
+            'base'           => [
+                'objectClass' => 'umicms\project\module\structure\model\object\StructureElement',
+                'fields'      => [
+                    StructureElement::FIELD_COMPONENT_NAME => [],
+                    StructureElement::FIELD_COMPONENT_PATH => [],
+                    StructureElement::FIELD_IN_MENU => [],
+                    StructureElement::FIELD_SUBMENU_STATE => []
+                ]
+            ],
+            SystemPage::TYPE => [
+                'objectClass' => 'umicms\project\module\structure\model\object\SystemPage',
+                'fields'      => [
+                    SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS => [],
+                ]
+            ],
+            StaticPage::TYPE => [
+                'objectClass' => 'umicms\project\module\structure\model\object\StaticPage'
             ]
         ]
     ]
-];
+);

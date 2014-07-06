@@ -18,6 +18,11 @@
     {{ error.getMessage() }}
 {% endblock %}
 
+{% block error500 %}
+    <h1>An error occurred</h1>
+    <h2>{{ error.getMessage() }}</h2>
+{% endblock %}
+
 {% block stack_error %}
     <hr/>
     <h3>Previous exceptions:</h3>
@@ -41,11 +46,8 @@
     </ul>
 {% endblock %}
 
-{% block error500 %}
-    <h1>An error occurred</h1>
 
-    <h2>{{ error.getMessage() }}</h2>
-
+{% block trace %}
     <hr/>
     <h3>Additional information:</h3>
 
@@ -64,6 +66,8 @@
         </dd>
     </dl>
 {% endblock %}
+
+
 
 
 

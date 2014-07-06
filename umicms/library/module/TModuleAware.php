@@ -34,13 +34,21 @@ trait TModuleAware
     /**
      * Возвращает модуль по имени класса.
      * @param string $className
-     * @return BaseModule
+     * @return IModule
      */
-    protected function getModule($className)
+    protected function getModuleByClass($className)
     {
         return $this->getModuleTools()->getModuleByClass($className);
     }
 
+    /**
+     * Возвращает список всех модулей.
+     * @return IModule[]
+     */
+    protected function getModules()
+    {
+        return $this->getModuleTools()->getModules();
+    }
 
     /**
      * Возвращает инструментарий для работы с модулями.

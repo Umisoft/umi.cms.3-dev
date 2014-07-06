@@ -88,7 +88,7 @@ abstract class BaseSitePageController extends BaseCmsController implements IPage
         /**
          * @var StructureModule $structureModule
          */
-        $structureModule = $this->getModule(StructureModule::className());
+        $structureModule = $this->getModuleByClass(StructureModule::className());
 
         $defaultPage = $structureModule->getDefaultPage();
         if ($defaultPage !== $callStack->bottom()) {

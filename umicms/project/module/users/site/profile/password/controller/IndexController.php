@@ -12,7 +12,7 @@ namespace umicms\project\module\users\site\profile\password\controller;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 use umicms\project\module\users\site\profile\password\model\PasswordValidator;
 use umicms\hmvc\component\site\BaseSitePageController;
@@ -57,7 +57,7 @@ class IndexController extends BaseSitePageController
     protected function buildForm()
     {
         $user = $this->module->getCurrentUser();
-        $form = $this->module->user()->getForm(AuthorizedUser::FORM_CHANGE_PASSWORD, AuthorizedUser::TYPE_NAME, $user);
+        $form = $this->module->user()->getForm(RegisteredUser::FORM_CHANGE_PASSWORD, RegisteredUser::TYPE_NAME, $user);
 
         /**
          * @var IFormElement $passwordInput
@@ -67,8 +67,8 @@ class IndexController extends BaseSitePageController
         $passwordValidator = new PasswordValidator(
             'password',
             [
-                'salt' => $user->getProperty(AuthorizedUser::FIELD_PASSWORD_SALT)->getValue(),
-                'hash' => $user->getProperty(AuthorizedUser::FIELD_PASSWORD)->getValue(),
+                'salt' => $user->getProperty(RegisteredUser::FIELD_PASSWORD_SALT)->getValue(),
+                'hash' => $user->getProperty(RegisteredUser::FIELD_PASSWORD)->getValue(),
                 'errorLabel' => 'Wrong password.',
                 'message' => $this->translate('Wrong password.')
             ]

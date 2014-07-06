@@ -91,7 +91,7 @@ trait TCmsObject
             }
         );
 
-        return $this->configureSerializerInternal($serializer);
+        $this->configureSerializerInternal($serializer);
     }
 
     /**

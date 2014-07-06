@@ -10,6 +10,8 @@
 
 namespace umicms\serialization\xml;
 
+use umicms\project\Environment;
+
 /**
  * XML-сериализатор для исключений.
  */
@@ -24,5 +26,11 @@ class ExceptionSerializer extends BaseSerializer
     {
         $this->writeAttribute('message', $exception->getMessage());
         $this->writeAttribute('code', $exception->getCode());
+
+        if (Environment::$showExceptionTrace) {
+            $this->getXmlWriter()->startElement('trace');
+            $this->delegate($exception->getTraceAsString(), $options);
+            $this->getXmlWriter()->endElement();
+        }
     }
 }
