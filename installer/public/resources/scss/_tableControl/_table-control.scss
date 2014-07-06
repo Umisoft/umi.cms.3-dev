@@ -30,7 +30,7 @@ $table-control-row-bg-hover: #C8DEEE;
 }
 
 .umi-table-control-header-center{
-    padding: 0 $table-control-left-column-width*2 0 $table-control-left-column-width;
+    padding: 0 82px 0 0;
 
     .umi-table-control-header{
         table-layout: fixed;
@@ -56,7 +56,6 @@ $table-control-row-bg-hover: #C8DEEE;
         padding: 0;
         line-height: 1.375rem;
         border-bottom: 1px solid #E2E3E4;
-        cursor: move;
     }
 }
 
@@ -242,6 +241,7 @@ $table-control-row-bg-hover: #C8DEEE;
 
 // ----------- table content
 .umi-table-control-content-wrapper{
+    overflow: hidden;
     height: calc(100% - 66px - 33px);
     position: relative;
     &:before{
@@ -260,6 +260,10 @@ $table-control-row-bg-hover: #C8DEEE;
         border-bottom: 0;
         padding: 0;
     }
+    .s-scroll-wrap{
+        margin: 0 82px 0 0;
+        z-index: 1;
+    }
 }
 
 .umi-table-control-cell-drop-size{
@@ -274,8 +278,8 @@ $table-control-row-bg-hover: #C8DEEE;
     border-collapse: collapse;
     table-layout: fixed;
     border: 0;
-    margin: 0 64px 0 32px;
-    width: unquote("calc(100% - 96px)");
+    margin: 0;
+    width: 100%;
 }
 
 .umi-table-control-content-row{
@@ -366,6 +370,9 @@ $table-control-row-bg-hover: #C8DEEE;
 
 .umi-table-control-content-cell{
     padding: 0;
+    .umi-checkbox-state-checked{
+        vertical-align: middle;
+    }
 }
 
 .umi-table-control-content-cell-div{
@@ -374,6 +381,7 @@ $table-control-row-bg-hover: #C8DEEE;
     text-overflow: ellipsis;
     box-sizing: border-box;
     line-height: $table-control-row-height;
+    height: $table-control-row-height;
     border-right: 1px solid #E3E4E5;
     padding: rem-calc(0 10);
 }
