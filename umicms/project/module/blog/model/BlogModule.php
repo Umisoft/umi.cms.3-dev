@@ -35,7 +35,7 @@ use umicms\project\module\blog\model\object\BlogComment;
 use umicms\project\module\blog\model\object\BlogPost;
 use umicms\project\module\blog\model\object\BlogRssImportScenario;
 use umicms\project\module\blog\model\object\BlogTag;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\BaseUser;
 use umicms\project\module\users\model\UsersModule;
 
 /**
@@ -291,6 +291,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
         $comment = $this->comment()->add(null, $typeName, $parentComment);
         $comment->post = $post;
+        $comment->slug = $comment->getGUID();
 
         if ($this->hasCurrentAuthor()) {
             $comment->author = $this->getCurrentAuthor();
@@ -478,10 +479,10 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
 
     /**
      * Создаёт автора на основе юзера.
-     * @param AuthorizedUser $user
+     * @param BaseUser $user
      * @return BlogAuthor
      */
-    public function createAuthor(AuthorizedUser $user)
+    public function createAuthor(BaseUser $user)
     {
         if ($this->hasCurrentAuthor()) {
             return $this->getCurrentAuthor();
@@ -670,6 +671,7 @@ class BlogModule extends BaseModule implements IRssFeedAware, IUrlManagerAware
         $comment = $this->comment()->add(null, BlogBranchComment::TYPE);
         $comment->displayName = $post->displayName;
         $comment->post = $post;
+        $comment->slug = $comment->getGUID();
 
         return $comment;
     }

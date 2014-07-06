@@ -11,7 +11,7 @@
 namespace umicms\project\module\users\site\registration\controller;
 
 use umi\form\IForm;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\hmvc\component\site\TFormController;
@@ -28,7 +28,7 @@ class IndexController extends BaseSitePageController
      */
     protected $module;
     /**
-     * @var AuthorizedUser $user регистрируемый пользователь
+     * @var RegisteredUser $user регистрируемый пользователь
      */
     private $user;
 
@@ -54,10 +54,10 @@ class IndexController extends BaseSitePageController
      */
     protected function buildForm()
     {
-        $type = $this->getRouteVar('type', AuthorizedUser::TYPE_NAME);
+        $type = $this->getRouteVar('type', RegisteredUser::TYPE_NAME);
         $this->user = $this->module->user()->add($type);
 
-        return $this->module->user()->getForm(AuthorizedUser::FORM_REGISTRATION, $type, $this->user);
+        return $this->module->user()->getForm(RegisteredUser::FORM_REGISTRATION, $type, $this->user);
     }
 
     /**
@@ -86,7 +86,7 @@ class IndexController extends BaseSitePageController
             'page' => $this->getCurrentPage(),
             'user' => $this->user,
             'authenticated' => $this->module->isAuthenticated(),
-            'success' => (bool) $this->user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->getValue(),
+            'success' => (bool) $this->user->getProperty(RegisteredUser::FIELD_ACTIVATION_CODE)->getValue(),
         ];
     }
 
@@ -122,7 +122,7 @@ class IndexController extends BaseSitePageController
             'mail/activationMailSubject',
             'mail/activationMailBody',
             [
-                'activationCode' => $this->user->getProperty(AuthorizedUser::FIELD_ACTIVATION_CODE)->getValue(),
+                'activationCode' => $this->user->getProperty(RegisteredUser::FIELD_ACTIVATION_CODE)->getValue(),
                 'user' => $this->user
             ]
         );
