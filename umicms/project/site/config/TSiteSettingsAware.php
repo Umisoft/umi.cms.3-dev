@@ -50,15 +50,6 @@ trait TSiteSettingsAware
     }
 
     /**
-     * Возвращает постфикс для URL сайта
-     * @return string|null
-     */
-    protected function getSiteUrlPostfix()
-    {
-        return $this->getSiteSettings()->get(SiteApplication::SETTING_URL_POSTFIX);
-    }
-
-    /**
      * Возвращает GUID страницы сайта по умолчанию.
      * @return string
      */

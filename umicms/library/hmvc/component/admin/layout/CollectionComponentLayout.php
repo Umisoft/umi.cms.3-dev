@@ -39,14 +39,18 @@ class CollectionComponentLayout extends AdminComponentLayout
      * @param AdminComponent $component .
      * @throws RuntimeException если компонент не CollectionComponent
      */
-    public function __construct(AdminComponent $component) {
+    public function __construct(AdminComponent $component)
+    {
         if (!$component instanceof CollectionComponent) {
             throw new RuntimeException('Wrong component for collection component layout.');
         }
 
         $this->collection = $component->getCollection();
 
-        $this->params['collectionName'] = $component->getCollection()->getName();
+        $this->dataSource = [
+            'type' => 'collection',
+            'name' => $component->getCollection()->getName()
+        ];
 
         parent::__construct($component);
     }

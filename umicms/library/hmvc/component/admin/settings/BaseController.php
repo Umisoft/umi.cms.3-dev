@@ -52,18 +52,5 @@ abstract class BaseController extends BaseAdminController implements IConfigIOAw
         return $component;
     }
 
-    /**
-     * Возвращает форму, связанную с конфигурацией
-     * @return IForm
-     */
-    protected function getConfigForm()
-    {
-        $config = $this->readConfig($this->getComponent()->getSettingsConfigAlias());
-
-        $form = $this->getForm(self::SETTINGS_FORM_NAME, $config);
-        $form->setAction($this->getUrl('action', ['action' => 'save']));
-
-        return $form;
-    }
 }
  
