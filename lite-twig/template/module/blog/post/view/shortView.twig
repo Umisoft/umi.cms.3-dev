@@ -12,7 +12,7 @@
 
     {{ blogPost.announcement | raw }}
 
-    <a href="{{ blogPost.getPageUrl() }}">{{ translate('Read more') }}</a>
+    <a href="{{ blogPost.getPageUrl() }}">{{ translate('ReadMore') }}</a>
 
     <div class="btn-toolbar">
         {{ widget('blog.post.toDraftForm', {'blogPost' : blogPost, 'template' : 'unPublishPostForm'}) }}
