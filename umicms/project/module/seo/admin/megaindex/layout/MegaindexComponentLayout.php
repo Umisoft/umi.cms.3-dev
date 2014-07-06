@@ -70,11 +70,7 @@ class MegaindexComponentLayout extends AdminComponentLayout
     protected function configureEmptyContextControls()
     {
         $control = new AdminControl($this->component);
-        $childComponentNames = $this->component->getChildComponentNames();
-
-        if (isset($childComponentNames[0])) {
-            $control->params['slug'] = $childComponentNames[0];
-        }
+        $control->params['slug'] = 'siteAnalyze';
 
         $this->addEmptyContextControl('redirect', $control);
     }
