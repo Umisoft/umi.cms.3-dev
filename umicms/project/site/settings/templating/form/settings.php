@@ -10,6 +10,7 @@
 
 use umi\form\element\Select;
 use umi\form\element\Text;
+use umi\validation\IValidatorFactory;
 use umicms\project\site\SiteApplication;
 
 return [
@@ -24,6 +25,9 @@ return [
             'type' => Select::TYPE_NAME,
             'label' => SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE,
             'options' => [
+                'validators' => [
+                    IValidatorFactory::TYPE_REQUIRED => []
+                ],
                 'dataSource' => SiteApplication::SETTING_DEFAULT_TEMPLATING_ENGINE_TYPE,
                 'choices' => [
                     'php' => 'php',

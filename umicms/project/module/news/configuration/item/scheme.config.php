@@ -8,31 +8,29 @@
  * file that was distributed with this source code.
  */
 
+use Doctrine\DBAL\Platforms\MySqlPlatform;
 use Doctrine\DBAL\Types\Type;
 use umicms\project\Environment;
 
-return array_merge_recursive(
-    require Environment::$directoryCmsProject . '/configuration/scheme/page.config.php',
+return array_replace_recursive(
+    require Environment::$directoryCmsProject . '/configuration/model/scheme/pageCollection.config.php',
     [
-        'name'        => 'project_news_item',
+        'name' => 'news_item',
         'columns'     =>  [
-            'display_name_en' => [
-                'type'    => Type::STRING,
-                'options' => [
-                    'notnull' => false
-                ]
-            ],
-            'contents_en'     => [
-                'type' => Type::TEXT
-            ],
             'date'            => [
                 'type' => Type::DATETIME
             ],
             'announcement'    => [
-                'type' => Type::TEXT
+                'type' => Type::TEXT,
+                'options' => [
+                    'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
+                ]
             ],
             'announcement_en' => [
-                'type' => Type::TEXT
+                'type' => Type::TEXT,
+                'options' => [
+                    'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
+                ]
             ],
             'source' => [
                 'type' => Type::STRING
@@ -40,13 +38,28 @@ return array_merge_recursive(
             'rubric_id' => [
                 'type' => Type::BIGINT,
                 'options' => [
-                    'unsigned' => true,
-                    'notnull' => false
+                    'unsigned' => true
                 ]
             ]
         ],
-        'indexes'     => [],
-        'constraints' => [],
-        'options'     => []
+        'indexes'     => [
+            'rubric' => [
+                'columns' => [
+                    'rubric_id' => []
+                ]
+            ]
+        ],
+        'constraints' => [
+            'item_to_rubric' => [
+                'foreignTable' => 'news_rubric',
+                'columns' => [
+                    'rubric_id' => []
+                ],
+                'options' => [
+                    'onUpdate' => 'CASCADE',
+                    'onDelete' => 'SET NULL'
+                ]
+            ]
+        ]
     ]
 );

@@ -51,9 +51,10 @@ define(
 
                 create: {
                     actions: {
-                        create: function(behaviour){
-                            var model = this.get('controller.object');
-                            this.get('controller').send('create', model, behaviour);
+                        create: function(params){
+                            var behaviour = params.behaviour;
+                            var object = params.object || this.get('controller.object');
+                            this.get('controller').send('create', {behaviour: behaviour, object: object});
                         }
                     }
                 },
@@ -68,8 +69,9 @@ define(
                     }.property('meta.attributes.label', 'controller.object.active'),
                     classNameBindings: ['controller.object.active::umi-disabled'],
                     actions: {
-                        switchActivity: function(){
-                            var model = this.get('controller.object');
+                        switchActivity: function(params){
+                            params = params || {};
+                            var model = params.object || this.get('controller.object');
                             this.get('controller').send('switchActivity', model);
                         }
                     }
@@ -85,8 +87,9 @@ define(
 
                 trash: {
                     actions: {
-                        trash: function(){
-                            var model = this.get('controller.object');
+                        trash: function(params){
+                            params = params || {};
+                            var model = params.object || this.get('controller.object');
                             this.get('controller').send('trash', model);
                         }
                     }
@@ -94,8 +97,9 @@ define(
 
                 "delete": {
                     actions: {
-                        "delete": function(){
-                            var model = this.get('controller.object');
+                        "delete": function(params){
+                            params = params || {};
+                            var model = params.object || this.get('controller.object');
                             this.get('controller').send('delete', model);
                         }
                     }
@@ -103,8 +107,9 @@ define(
 
                 viewOnSite: {
                     actions: {
-                        viewOnSite: function(){
-                            var model = this.get('controller.object');
+                        viewOnSite: function(params){
+                            params = params || {};
+                            var model = params.object || this.get('controller.object');
                             this.get('controller').send('viewOnSite', model);
                         }
                     }
@@ -112,8 +117,9 @@ define(
 
                 edit: {
                     actions: {
-                        edit: function(){
-                            var model = this.get('controller.object');
+                        edit: function(params){
+                            params = params || {};
+                            var model = params.object || this.get('controller.object');
                             this.get('controller').send('edit', model);
                         }
                     }
@@ -121,8 +127,9 @@ define(
 
                 add: {
                     classNameBindings: ['controller.object.isValid::disabled'],
-                    beforeAdd: function(){
-                        var model = this.get('controller.object');
+                    beforeAdd: function(params){
+                        params = params || {};
+                        var model = params.object || this.get('controller.object');
                         if(!model.get('isValid')){
                             return false;
                         }
@@ -135,10 +142,11 @@ define(
                         return params;
                     },
                     actions: {
-                        add: function(){
-                            var params = this.beforeAdd();
-                            if(params){
-                                this.get('controller').send('add', params);
+                        add: function(params){
+                            params = params || {};
+                            var addParams = this.beforeAdd(params.object);
+                            if(addParams){
+                                this.get('controller').send('add', addParams);
                             }
                         },
 

@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\news\admin\rss\controller;
 
+use umi\i18n\translator\ITranslator;
 use umicms\hmvc\component\admin\collection\ActionController as CollectionActionController;
 use umicms\project\module\news\model\NewsModule;
 use umicms\project\module\news\model\object\NewsRssImportScenario;
@@ -26,11 +27,13 @@ class ActionController extends CollectionActionController
 
     /**
      * Конструктор.
+     * @param ITranslator $translator
      * @param NewsModule $module
      */
-    public function __construct(NewsModule $module)
+    public function __construct(ITranslator $translator, NewsModule $module)
     {
         $this->module = $module;
+        parent::__construct($translator);
     }
 
     /**

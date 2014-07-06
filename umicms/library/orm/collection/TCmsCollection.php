@@ -22,7 +22,10 @@ use umicms\exception\NonexistentEntityException;
 use umicms\exception\NotAllowedOperationException;
 use umicms\exception\OutOfBoundsException;
 use umicms\orm\object\behaviour\ILockedAccessibleObject;
+use umicms\orm\object\behaviour\IRecyclableObject;
+use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\object\ICmsPage;
 use umicms\orm\selector\CmsSelector;
 
 /**
@@ -222,6 +225,62 @@ trait TCmsCollection
     }
 
     /**
+     * @see ICmsCollection::getDefaultTableFilterFieldNames()
+     */
+    public function getDefaultTableFilterFieldNames()
+    {
+        $defaultFieldNames = [
+            ICmsObject::FIELD_DISPLAY_NAME
+        ];
+        if ($this instanceof ICmsPageCollection) {
+            $defaultFieldNames[] = ICmsPage::FIELD_PAGE_H1;
+            $defaultFieldNames[] = ICmsPage::FIELD_PAGE_LAYOUT;
+            $defaultFieldNames[] = ICmsPage::FIELD_PAGE_SLUG;
+        }
+
+        $fieldNames = isset($this->traitGetConfig()[ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS]) ?
+            $this->traitGetConfig()[ICmsCollection::DEFAULT_TABLE_FILTER_FIELDS] : [];
+
+        return array_merge($defaultFieldNames, array_keys($fieldNames));
+    }
+
+    /**
+     * @see ICmsCollection::getIgnoredTableFilterFieldNames()
+     */
+    public function getIgnoredTableFilterFieldNames()
+    {
+        $defaultIgnoredFieldNames = [
+            ICmsObject::FIELD_VERSION,
+            CmsHierarchicObject::FIELD_MPATH,
+            CmsHierarchicObject::FIELD_URI,
+            IRecyclableObject::FIELD_TRASHED,
+            ILockedAccessibleObject::FIELD_LOCKED,
+            ICmsPage::FIELD_PAGE_CONTENTS
+        ];
+
+        $fieldNames = isset($this->traitGetConfig()[ICmsCollection::IGNORED_TABLE_FILTER_FIELDS]) ?
+            $this->traitGetConfig()[ICmsCollection::IGNORED_TABLE_FILTER_FIELDS] : [];
+
+        return array_merge($defaultIgnoredFieldNames, array_keys($fieldNames));
+    }
+
+    /**
+     * @see IAclResource::getAclResourceName()
+     */
+    public function getAclResourceName()
+    {
+        return "model:{$this->getName()}";
+    }
+
+    /**
+     * @see IAclAssertionResolver::isAllowed()
+     */
+    public function isAllowed($role, $operationName, array $assertions)
+    {
+        return true;
+    }
+
+    /**
      * Возвращает значение настройки для коллекции.
      * @param string $settingName имя настройки
      * @param mixed $defaultValue значение по умолчанию
@@ -237,9 +296,9 @@ trait TCmsCollection
 
     /**
      * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
-     * @return CmsSelector
+     * @return CmsSelector|ICmsObject[]
      */
-    protected function selectInternal() {
+    public function getInternalSelector() {
         /** @noinspection PhpUndefinedMethodInspection */
         /** @noinspection PhpUndefinedClassInspection */
         return parent::select();

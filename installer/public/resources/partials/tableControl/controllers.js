@@ -4,10 +4,10 @@ define(['App'], function(UMI){
     return function(){
         UMI.TableControlController = Ember.ObjectController.extend(UMI.i18nInterface,{
             componentNameBinding: 'controllers.component.name',
+            collectionNameBinding: 'controllers.component.dataSource.name',
             dictionaryNamespace: 'tableControl',
             localDictionary: function(){
-                var contentControls = this.get('controllers.component.contentControls') || [];
-                var filter = contentControls.findBy('name', 'filter') || {};
+                var filter = this.get('control') || {};
                 return filter.i18n;
             }.property(),
             /**
@@ -34,8 +34,8 @@ define(['App'], function(UMI){
              */
             getObjects: function(){
                 var self = this;
-                var query = this.get('query');
-                var collectionName = self.get('controllers.component.collectionName');
+                var query = this.get('query') || {};
+                var collectionName = self.get('collectionName');
                 var objects = self.store.find(collectionName, query);
                 var orderByProperty = this.get('orderByProperty');
                 var sortProperties = orderByProperty && orderByProperty.property ? orderByProperty.property : 'id';
@@ -51,7 +51,7 @@ define(['App'], function(UMI){
              * Количество объектов на странице
              * @property limit
              */
-            limit: 100,
+            limit: 25,
             /**
              * Индекс первого объекта на странице
              * @property offset
@@ -81,6 +81,35 @@ define(['App'], function(UMI){
                     return order;
                 }
             }.property('orderByProperty'),
+            /**
+             * Список отображаемых полей принадлежащих объекту
+             */
+            nativeFieldsList: null,
+            /**
+             * Вычисляемое свойство списка полей принадлежащих объекту
+             * @property fields
+             */
+            nativeFields: function(){
+                var nativeFieldsList = this.get('nativeFieldsList');
+                if(Ember.typeOf(nativeFieldsList) === 'array' && nativeFieldsList.length){
+                    nativeFieldsList = nativeFieldsList.join(',');
+                    return nativeFieldsList;
+                }
+            }.property('nativeFieldsList'),
+            /**
+             * Список полей имеющих связь belongsTo
+             */
+            relatedFieldsList: null,
+            /**
+             * Вычисляемое свойство возвращающее поля belongsTo
+             * @property fields
+             */
+            relatedFields: function(){
+                var relatedFields = this.get('relatedFieldsList');
+                if(Ember.typeOf(relatedFields) === 'object' && JSON.stringify(relatedFields) !== '{}'){
+                    return relatedFields;
+                }
+            }.property('relatedFieldsList'),
 
             /**
              * Свойства фильтрации
@@ -93,14 +122,27 @@ define(['App'], function(UMI){
              */
             filters: function(){
                 var filters = {};
-                var filterParams = this.get('filterParams');
+                var filterParams = this.get('filterParams') || {};
                 for(var filter in filterParams){
-                    if(filter === 'parent'){
-                        filters[filter] = filterParams[filter] !== 'root' ? 'equals(' + this.get('model.object.id') + ')' : 'null()';
+                    if(filterParams.hasOwnProperty(filter)){
+                        if(Ember.typeOf(filterParams[filter]) === 'string' && !filterParams[filter].length){
+                            delete filters[filter];
+                        } else{
+                            filters[filter] = 'like(' + filterParams[filter] + '%)';
+                        }
                     }
                 }
                 return filters;
-            }.property('filterParams'),
+            }.property('filterParams.@each'),
+
+            setFilters: function(property, value){
+                this.propertyWillChange('filterParams');
+                this.set('filterParams', null);
+                var filterParams = {};
+                filterParams[property] = value;
+                this.set('filterParams', filterParams);
+                this.propertyDidChange('filterParams');
+            },
 
             /**
              * Вычисляемое свойство параметров запроса коллекции
@@ -108,10 +150,18 @@ define(['App'], function(UMI){
              */
             query: function(){
                 var query = {};
+                var nativeFields = this.get('nativeFields');
+                var relatedFields = this.get('relatedFields');
                 var limit = this.get('limit');
                 var filters = this.get('filters');
                 var offset = this.get('offset');
                 var order = this.get('order');
+                if(nativeFields){
+                    query.fields = nativeFields;
+                }
+                if(relatedFields){
+                    query['with'] = relatedFields;
+                }
                 if(limit){
                     query.limit = limit;
                 }
@@ -125,7 +175,7 @@ define(['App'], function(UMI){
                     query.orderBy = order;
                 }
                 return query;
-            }.property('limit', 'filters', 'offset', 'order'),
+            }.property('limit', 'filters', 'offset', 'order', 'nativeFields', 'relatedFields'),
 
             /**
              * Метод вызывается при смене контекста (компонента).
@@ -133,24 +183,72 @@ define(['App'], function(UMI){
              * @method contextChanged
              */
             contextChanged: function(){
+                var store = this.get('store');
                 // Вычисляем фильтр в зависимости от типа коллекции
-                var collectionName = this.get('controllers.component.collectionName');
-                var metaForCollection = this.get('store').metadataFor(collectionName);
-                var contextFilter = {};// TODO: Убрать в условии значение filter
-                if(metaForCollection && metaForCollection.collectionType === 'hierarchic' && this.get('container').lookup('route:action').get('context.action').name !== 'filter'){
-                    contextFilter.parent = this.get('model.object.id');
+                var collectionName = this.get('collectionName');
+                var metaForCollection = store.metadataFor(collectionName);
+
+                //TODO: check user configurations
+                var modelForCollection = store.modelFor(collectionName);
+                var fieldsList = this.get('control.meta.form.elements') || [];
+                var defaultFields = this.get('control.meta.defaultFields') || [];
+                var i;
+                for(i = 0; i < fieldsList.length; i++){
+                    if(!defaultFields.contains(fieldsList[i].dataSource)){
+                        fieldsList.splice(i, 1);
+                        --i;
+                    }
                 }
+
+                var nativeFieldsList = [];
+                var relatedFieldsList = {};
+
+                modelForCollection.eachAttribute(function(name){
+                    var selfProperty = fieldsList.findBy('dataSource', name);
+                    if(selfProperty){
+                        nativeFieldsList.push(selfProperty.dataSource);
+                    } else if(name === 'active'){
+                        nativeFieldsList.push('active');
+                    }
+                });
+
+                modelForCollection.eachRelationship(function(name, relatedModel){
+                    var i;
+                    var relatedModelDataSource;
+                    if(relatedModel.kind === 'belongsTo'){
+                        for(i = 0; i < fieldsList.length; i++){
+                            relatedModelDataSource = fieldsList[i].dataSource;
+                            if(relatedModelDataSource === name){
+                                relatedFieldsList[name] = relatedFieldsList[name] || [];
+                            } else if(relatedModelDataSource.indexOf(name + '.', 0) === 0){
+                                relatedFieldsList[name] = relatedFieldsList[name] || [];
+                                relatedFieldsList[name].push(relatedModelDataSource.slice(name.length + 1));
+                            }
+                        }
+                    } else if(relatedModel.kind === 'hasMany' || relatedModel.kind === 'manyToMany'){
+                        for(i = 0; i < fieldsList.length; i++){
+                            relatedModelDataSource = fieldsList[i].dataSource;
+                            if(relatedModelDataSource === name || relatedModelDataSource.indexOf(name + '.', 0) === 0){
+                                fieldsList.splice(i, 1);
+                                --i;
+                            }
+                        }
+                        //Ember.assert('Поля с типом hasMany и manyToMany недопустимы в фильтре.'); TODO: uncomment
+                    }
+
+                    if(relatedFieldsList[name]){
+                        relatedFieldsList[name] = relatedFieldsList[name].join(',');
+                    }
+                });
                 // Сбрасываем параметры запроса, не вызывая обсервер query
                 this.set('withoutChangeQuery', true);
-                this.setProperties({offset: 0, orderByProperty: null, total: 0, filterParams: contextFilter});
+                this.setProperties({nativeFieldsList: nativeFieldsList, relatedFieldsList: relatedFieldsList, offset: 0, orderByProperty: null, total: 0});
                 this.set('withoutChangeQuery', false);
 
                 this.getObjects();
                 Ember.run.next(this, function(){
                     var self = this;
                     this.get('objects.content').then(function(){
-                        var collectionName = self.get('controllers.component.collectionName');
-                        var metaForCollection = self.get('store').metadataFor(collectionName);
                         self.set('total', metaForCollection.total);
                     });
                 });
@@ -173,10 +271,9 @@ define(['App'], function(UMI){
              * return Array
              */
             contextToolbar: function(){
-                var contentControls = this.get('controllers.component.contentControls') || [];
-                var filter = contentControls.findBy('name', 'filter') || {};
+                var filter = this.get('control') || {};
                 return filter.contextToolbar;
-            }.property('controllers.component.contentControls'),
+            }.property('model'),
 
             /**
              * Возвращает toolbar
@@ -184,10 +281,8 @@ define(['App'], function(UMI){
              * return Array
              */
             toolbar: function(){
-                var toolbar = this.get('controllers.component.contentControls') || [];
-                toolbar = toolbar.findBy('name', 'filter') || {};
-                toolbar = toolbar.toolbar || [];
-                return toolbar;
+                var filter = this.get('control') || {};
+                return filter.toolbar || [];
             }.property('model'),
 
             actions: {

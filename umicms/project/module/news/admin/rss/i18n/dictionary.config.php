@@ -14,14 +14,18 @@ return [
         'component:rss:displayName' => 'Import RSS-feed',
 
         'action:create:base' => 'Create RSS-feed',
-        'action:importFromRss' => 'Import RSS-feed'
+        'action:importFromRss' => 'Import RSS-feed',
+
+        'role:editor:displayName' => 'Managing import RSS-feed'
     ],
 
     'ru-RU' => [
-        'component:rss:displayName' => 'Импорт RSS-лент',
+        'component:rss:displayName' => 'Управление импортом RSS-лент',
 
         'action:create:base' => 'Добавить RSS-ленту',
-        'action:importFromRss' => 'Импортировать RSS-ленту'
+        'action:importFromRss' => 'Импортировать RSS-ленту',
+
+        'role:editor:displayName' => 'Управление импортом'
     ]
 
 ];

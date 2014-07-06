@@ -65,18 +65,6 @@ abstract class BaseCmsController extends BaseController
     }
 
     /**
-     * Устанавливает опции сериализации результата работы контроллера в XML или JSON.
-     * Может быть переопределен в конкретном контроллере для задания переменных,
-     * которые будут преобразованы в атрибуты xml, а так же переменные, которые будут проигнорированы
-     * в xml или json.
-     * @param CmsView $view результат работы виджета
-     */
-    protected function setSerializationOptions(CmsView $view)
-    {
-
-    }
-
-    /**
      * Возвращает значение параметра из GET-параметров запроса.
      * @param string $name имя параметра
      * @throws HttpException если значение не найдено
@@ -110,6 +98,10 @@ abstract class BaseCmsController extends BaseController
         $url .= $this->getContext()->getBaseUrl();
         $url .= $this->getComponent()->getRouter()->assemble($routeName, $routeParams);
 
+        if ($postfix = $this->getUrlManager()->getSiteUrlPostfix()) {
+            $url .= '.' . $postfix;
+        }
+
         return $url;
     }
 
@@ -118,11 +110,7 @@ abstract class BaseCmsController extends BaseController
      */
     protected function createView($templateName, array $variables = [])
     {
-        $view = new CmsView($this, $this->getContext(), $templateName, $variables);
-
-        $this->setSerializationOptions($view);
-
-        return $view;
+        return new CmsView($this, $this->getContext(), $templateName, $variables);
     }
 
     /**
@@ -164,7 +152,7 @@ abstract class BaseCmsController extends BaseController
         /**
          * @var UsersModule $usersModule
          */
-        $usersModule = $this->getModule(UsersModule::className());
+        $usersModule = $this->getModuleByClass(UsersModule::className());
         $currentUser = $usersModule->isAuthenticated() ? $usersModule->getCurrentUser() : $usersModule->getGuest();
 
         $persister = $this->getObjectPersister();
