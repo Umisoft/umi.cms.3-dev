@@ -4718,12 +4718,12 @@ fieldset {
   border-width: 0;
   border-top-width: 2px; }
 
-.prefix, .postfix {
+.prefix, .postfix, span.prefix, span.postfix, label.prefix, label.postfix {
   height: 1.909375rem;
-  line-height: 1.909375rem; }
-
-label {
-  display: inline-block; }
+  line-height: 1.909375rem;
+  border-color: #d9dcde; }
+  .prefix .icon, .postfix .icon, span.prefix .icon, span.postfix .icon, label.prefix .icon, label.postfix .icon {
+    vertical-align: middle; }
 
 .error input, .error textarea, .error select {
   margin-bottom: 0.8125rem; }

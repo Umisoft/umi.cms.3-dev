@@ -5,7 +5,7 @@ define(['App', 'text!./dateElement.hbs'], function(UMI, dateElement){
         UMI.DateElementView = Ember.View.extend({
             template: Ember.Handlebars.compile(dateElement),
 
-            classNames: ['umi-element', 'umi-element-date'],
+            classNames: ['row', 'collapse'],
 
             didInsertElement: function(){
                 this.$().find('input').datepicker({

@@ -3,14 +3,19 @@ fieldset{
     border-top-width: 2px;
 }
 
-.prefix,
-.postfix{
+.prefix, .postfix,
+span.prefix, span.postfix,
+label.prefix, label.postfix{
     height: ($form-label-font-size + ($form-spacing * 1.35));
     line-height: ($form-label-font-size + ($form-spacing * 1.35));
+    border-color: #d9dcde;
+    .icon{
+        vertical-align: middle;
+    }
 }
 
 label{
-    display: inline-block;
+    //display: inline-block;
 }
 
 .error {
