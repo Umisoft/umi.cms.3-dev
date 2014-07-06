@@ -50,6 +50,25 @@ return [
                     'options' => [
                         'dataSource' => SystemPage::FIELD_SKIP_PAGE_IN_BREADCRUMBS
                     ],
+                ],
+                SystemPage::FIELD_IN_MENU => [
+                    'type' => Checkbox::TYPE_NAME,
+                    'label' => SystemPage::FIELD_IN_MENU,
+                    'options' => [
+                        'dataSource' => SystemPage::FIELD_IN_MENU
+                    ],
+                ],
+                SystemPage::FIELD_SUBMENU_STATE => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => SystemPage::FIELD_SUBMENU_STATE,
+                    'options' => [
+                        'dataSource' => SystemPage::FIELD_SUBMENU_STATE,
+                        'choices' => [
+                            SystemPage::SUBMENU_NEVER_SHOWN => 'neverShown',
+                            SystemPage::SUBMENU_CURRENT_SHOWN => 'currentShown',
+                            SystemPage::SUBMENU_ALWAYS_SHOWN => 'alwaysShown'
+                        ]
+                    ],
                 ]
             ]
         ],
