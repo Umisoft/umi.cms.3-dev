@@ -10,7 +10,7 @@ return [
     'ru-RU' => [
         'component:service:displayName' => 'Сервис',
 
-        'role:backupExecutor:displayName' => 'Резервирование'
+        'role:backupExecutor:displayName' => 'Резервные копии'
     ]
 ];
  

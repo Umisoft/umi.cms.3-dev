@@ -35,16 +35,16 @@ return [
         'component:post:displayName' => 'Посты',
         'component:author:displayName' => 'Авторы',
         'component:comment:displayName' => 'Комментарии',
-        'component:tag:displayName' => 'Тэги',
+        'component:tag:displayName' => 'Теги',
         'component:rss:displayName' => 'Управление импортом RSS-лент',
 
         'role:categoryExecutor:displayName' => 'Категории',
         'role:postExecutor:displayName' => 'Посты',
         'role:authorExecutor:displayName' => 'Авторы',
         'role:commentExecutor:displayName' => 'Комментарии',
-        'role:tagExecutor:displayName' => 'Тэги',
-        'role:posttagExecutor:displayName' => 'Управление связью посты-тэги',
-        'role:rsstagExecutor:displayName' => 'Управление связью RSS-тэги',
+        'role:tagExecutor:displayName' => 'Теги',
+        'role:posttagExecutor:displayName' => 'Управление связью посты-теги',
+        'role:rsstagExecutor:displayName' => 'Управление связью RSS-теги',
         'role:rssExecutor:displayName' => 'Управление импортом RSS-лент',
     ]
 
