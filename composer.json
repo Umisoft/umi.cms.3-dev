@@ -26,8 +26,8 @@
         "lib-pcre": "*",
         "ext-mbstring": "*",
 
-        "umisoft/umi.framework-dev": "*",
-        "umisoft/extension-twig": "*",
+        "umisoft/umi.framework-dev": "dev-dev",
+        "umisoft/extension-twig": "dev-dev",
 
         "guzzlehttp/guzzle": "4.*",
 
