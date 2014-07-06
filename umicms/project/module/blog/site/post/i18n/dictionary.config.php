@@ -17,7 +17,7 @@ return [
         'Revert to draft' => 'Revert to draft',
 
         'role:rssViewer:displayName' => 'View post RSS-feed',
-        'role:viewer:displayName' => 'View list posts',
+        'role:viewer:displayName' => 'View post list',
         'role:author:displayName' => 'Manage published posts',
         'role:moderator:displayName' => 'Moderate',
         'role:addExecutor:displayName' => 'Create post',

@@ -15,7 +15,7 @@ return [
 
         'role:userExecutor:displayName' => 'Users',
         'role:groupExecutor:displayName' => 'Users groups',
-        'role:usergroupExecutor:displayName' => 'Manage users-group relation'
+        'role:usergroupExecutor:displayName' => 'Manage users-groups relation'
     ],
 
     'ru-RU' => [
