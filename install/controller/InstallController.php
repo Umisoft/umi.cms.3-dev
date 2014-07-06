@@ -637,7 +637,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $category->getProperty('componentPath')->setValue('blog.category');
 
         $tag = $structureCollection->add('blogtag', 'system', $blogPage)
-            ->setValue('displayName', 'Тэг блога')
+            ->setValue('displayName', 'Тег блога')
             ->setValue('displayName', 'Tag', 'en-US')
             ->setGUID('3fa39832-9239-48a5-a82a-1dd2fcd0f042');
 

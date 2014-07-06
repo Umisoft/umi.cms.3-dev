@@ -35,7 +35,7 @@ return [
             'RSSFeed' => 'RSS ленты',
             'Blogs' => 'Блоги',
             'Categories' => 'Категории',
-            'Tags cloud' => 'Облако тэгов',
+            'Tags cloud' => 'Облако тегов',
             'Authors' => 'Авторы',
             'Authors\'s posts' => 'Посты автора',
             'Drafts' => 'Черновики',
