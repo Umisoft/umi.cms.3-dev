@@ -7,10 +7,8 @@
 
     "autoload": {
         "psr-4": {
-            "umicms\\": "umicms/library",
-            "umicms\\project\\" : "umicms/project",
-            "project\\" : "",
-            "tests\\" : "tests"
+            "umicms\\": "library",
+            "umicms\\project\\" : "project"
         },
         "classmap": ["umicms/project/module/files/admin/manager/elfinder"]
     },
