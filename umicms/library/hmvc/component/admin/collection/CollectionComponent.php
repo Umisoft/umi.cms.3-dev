@@ -66,6 +66,10 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
      */
     const ACTION_CHANGE_SLUG = 'changeSlug';
     /**
+     * Действие для генерации slug
+     */
+    const ACTION_GENERATE_SLUG = 'generateSlug';
+    /**
      * Действие для перемещения объекта
      */
     const ACTION_MOVE = 'move';
@@ -195,6 +199,7 @@ class CollectionComponent extends AdminComponent implements ICollectionComponent
         }
         if ($collection instanceof ICmsPageCollection) {
             $actions[self::ACTION_CHANGE_SLUG] = $this->createModifyAction(self::ACTION_CHANGE_SLUG);
+            $actions[self::ACTION_GENERATE_SLUG] = $this->createModifyAction(self::ACTION_GENERATE_SLUG);
         }
         if ($collection instanceof IRecyclableCollection) {
             $actions[self::ACTION_TRASH] = $this->createModifyAction(self::ACTION_TRASH);

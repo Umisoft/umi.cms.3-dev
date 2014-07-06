@@ -29,14 +29,17 @@ use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\service\model\object\Backup;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
+use umicms\slugify\ISlugGeneratorAware;
+use umicms\slugify\TSlugGeneratorAware;
 
 /**
  * Контроллер действий над объектом.
  */
-class ActionController extends BaseController
+class ActionController extends BaseController implements ISlugGeneratorAware
 {
     use TActionController;
+    use TSlugGeneratorAware;
 
     /**
      * Возвращает форму для редактирования объекта коллекции.
@@ -251,7 +254,7 @@ class ActionController extends BaseController
          * @var IRecoverableObject $object
          */
         return $collection->getBackupList($object)
-            ->with(Backup::FIELD_OWNER, [AuthorizedUser::FIELD_DISPLAY_NAME]);
+            ->with(Backup::FIELD_OWNER, [RegisteredUser::FIELD_DISPLAY_NAME]);
     }
 
     /**
@@ -322,6 +325,25 @@ class ActionController extends BaseController
         $collection->move($object, $branch, $previousSibling);
 
         return '';
+    }
+
+    /**
+     * Формирует slug в соответствии с установленной стратегией.
+     * @throws HttpException в случае если не получена строка из которой необходимо сгенерировать slug
+     * @return string
+     */
+    protected function actionGenerateSlug()
+    {
+        $data = $this->getIncomingData();
+
+        if (!isset($data['slug']) || !is_string($data['slug'])) {
+            throw new HttpException(
+                Response::HTTP_BAD_REQUEST,
+                $this->translate('Cannot generate slug. Undefined string to generate a slug.')
+            );
+        }
+
+        return $this->getSlugGenerator()->generate($data['slug']);
     }
 
     /**
