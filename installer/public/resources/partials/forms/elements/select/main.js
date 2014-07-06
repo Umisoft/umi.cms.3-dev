@@ -11,13 +11,32 @@ define(['App'], function(UMI){
                 return 'content.value';
             }.property(),
             prompt: function(){
-                return this.get('meta.placeholder') || "Ничего не выбрано";
+                var meta = this.get('meta.choices');
+                var choicesHasPrompt;
+                if(meta && Ember.typeOf(meta) === 'array'){
+                    choicesHasPrompt = meta.findBy('value', '');
+                }
+                if(choicesHasPrompt){
+                    return choicesHasPrompt.label;
+                } else{
+                    var label = 'Nothing is selected';
+                    var translateLabel = UMI.i18n.getTranslate(label, 'form');
+                    return translateLabel ? translateLabel : label;
+                }
             }.property('meta.placeholder'),
             content: null,
             init: function(){
                 this._super();
                 this.set('selection', this.get('object.choices').findBy('value', this.get('object.value')));
                 this.set('content', this.get('object.choices'));
+            },
+            didInsertElement: function(){
+                var prompt = this.$().find('option')[0];
+                var validators = this.get('meta.validators') || [];
+                validators = validators.findBy('type', 'required');
+                if(!prompt.value && validators){
+                    prompt.disabled = true;
+                }
             }
         });
 
@@ -31,7 +50,18 @@ define(['App'], function(UMI){
                 return this.get('isLazy') ? 'content.id' : 'content.value';
             }.property(),
             prompt: function(){
-                return this.get('meta.placeholder') || "Ничего не выбрано";
+                var meta = this.get('meta.choices');
+                var choicesHasPrompt;
+                if(meta && Ember.typeOf(meta) === 'array'){
+                    choicesHasPrompt = meta.findBy('value', '');
+                }
+                if(choicesHasPrompt){
+                    return choicesHasPrompt.label;
+                } else{
+                    var label = 'Nothing is selected';
+                    var translateLabel = UMI.i18n.getTranslate(label, 'form');
+                    return translateLabel ? translateLabel : label;
+                }
             }.property('meta.placeholder'),
             content: null,
             changeValue: function(){
@@ -82,6 +112,21 @@ define(['App'], function(UMI){
                             self.set('selection', self.get('meta.choices').findBy('value', object.get(property)));
                         });
                     });
+                }
+            },
+            didInsertElement: function(){
+                var property = this.get('meta.dataSource');
+                var collectionName = this.get('object').constructor.typeKey;
+                var metadata = this.get('controller.store').metadataFor(collectionName);
+                var validators = Ember.get(metadata, 'validators.' + property);
+                if(validators && Ember.typeOf(validators) === 'array'){
+                    validators = validators.findBy('type', 'required');
+                    if(validators){
+                        var prompt = this.$().find('option')[0];
+                        if(!prompt.value && validators){
+                            prompt.disabled = true;
+                        }
+                    }
                 }
             },
             willDestroyElement: function(){

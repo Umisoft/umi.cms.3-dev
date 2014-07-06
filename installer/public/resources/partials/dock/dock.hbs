@@ -1,12 +1,12 @@
 <div class="dock-wrapper">
     <div class="dock-wrapper-bg">
         <ul class="dock navigation">
-            {{#each module in controller}}
-                {{#view 'dockModuleButton' modelBinding="module"}}
-                    <span class="dock-module">
+            {{#each module in modules}}
+                {{#view 'dockModuleButton' module=module}}
+                    {{#link-to 'module' module.name tagName="span" class="dock-module {{unbound module.name}}"}}
                         <img {{bind-attr src=view.icon}} />
                         <span>{{module.displayName}}</span>
-                    </span>
+                    {{/link-to}}
                     <ul class="f-dropdown center">
                         {{#each component in module.components}}
                             <li class="{{unbound component.name}}">
@@ -24,8 +24,8 @@
 
 <div class="dock-components">
     <nav class="components-nav">
-        {{#if controller.activeModule}}
-            {{#with controller.activeModule as module}}
+        {{#if activeModule}}
+            {{#with activeModule as module}}
                 {{#each component in module.components}}
                     {{#link-to 'component' module.name component.name class=component.name}}
                         {{component.displayName}}

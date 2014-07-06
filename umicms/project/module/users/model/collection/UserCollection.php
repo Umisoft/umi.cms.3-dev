@@ -178,7 +178,7 @@ class UserCollection extends CmsCollection implements IActiveAccessibleCollectio
      */
     public function getIsRegistrationWithActivation()
     {
-        return (bool) $this->getSetting(self::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS);
+        return (bool) $this->getSetting(self::SETTING_REGISTRATION_WITH_ACTIVATION);
     }
 
     /**
