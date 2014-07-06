@@ -126,15 +126,9 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
         $select = $this->select()
             ->fields([CmsHierarchicObject::FIELD_IDENTIFY])
             ->where(CmsHierarchicObject::FIELD_SLUG)
-                ->equals($object->getProperty(CmsHierarchicObject::FIELD_SLUG)->getValue());
-
-        if ($object->parent instanceof CmsHierarchicObject) {
-            $select->where(CmsHierarchicObject::FIELD_PARENT)
+                ->equals($object->getProperty(CmsHierarchicObject::FIELD_SLUG)->getValue())
+            ->where(CmsHierarchicObject::FIELD_PARENT)
                 ->equals($object->getParent());
-        } else {
-            $select->where(CmsHierarchicObject::FIELD_PARENT)
-                ->isNull();
-        }
 
         return (bool) $select->getTotal();
     }

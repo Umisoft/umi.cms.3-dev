@@ -13,9 +13,8 @@ namespace umicms\orm\object;
 use umi\orm\object\property\IProperty;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\url\IUrlManager;
-use umicms\orm\collection\CmsHierarchicCollection;
-use umicms\orm\collection\CmsPageCollection;
 use umicms\orm\collection\ICmsCollection;
+use umicms\orm\collection\ICmsPageCollection;
 
 /**
  * Трейт для поддержки страниц.
@@ -67,22 +66,22 @@ trait TCmsPage
 
     /**
      * Метод валидации slug.
-     * @throws RuntimeException в случае, если объект не принадлежит CmsPageCollection или CmsHierarchicCollection
+     * @throws RuntimeException в случае неверной коллекции объекта
      * @return bool
      */
     public function validateSlug()
     {
         $result = true;
 
-        /** @var CmsPageCollection|CmsHierarchicCollection $collection */
+        /** @var ICmsPageCollection $collection */
         $collection = $this->getCollection();
 
-        if (!($collection instanceof CmsPageCollection) && !($collection instanceof CmsHierarchicCollection)) {
+        if (!$collection instanceof ICmsPageCollection) {
             throw new RuntimeException(
                 $this->translate(
-                    'Collection {collection} should be instance of CmsPageCollection or CmsHierarchicCollection.',
+                    'Collection {collection} should be instance of umicms\orm\collection\ICmsPageCollection.',
                     [
-                        'collection' => $collection::className()
+                        'collection' => $collection->getName()
                     ]
                 )
             );

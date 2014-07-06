@@ -53,6 +53,37 @@ class CmsPageCollection extends CmsCollection implements ICmsPageCollection
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function isAllowedSlug(ICmsObject $object)
+    {
+        if (!$object instanceof ICmsPage) {
+            throw new RuntimeException($this->translate(
+                'Cannot check slug. Object should be instance of "{class}".',
+                [
+                    'class' => 'umicms\orm\object\ICmsPage'
+                ]
+            ));
+        }
+
+        if (!$this->contains($object)) {
+            throw new RuntimeException($this->translate(
+                'Object from collection "{objectCollection}" does not belong to "{collection}".',
+                [
+                    'objectCollection' => $object->getCollectionName(),
+                    'collection' => $this->getName()
+                ]
+            ));
+        }
+
+        if ($object->getIsNew() && $this->hasSlug($object->getProperty(ICmsPage::FIELD_PAGE_SLUG)->getValue())) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
      * Возвращает поле, которое используется у базового типа коллекции для хранения последней части ЧПУ
      * @return IField
      */
@@ -109,40 +140,6 @@ class CmsPageCollection extends CmsCollection implements ICmsPageCollection
             ));
         }
         return $this;
-    }
-
-    /**
-     * Разрешено ли использование slug.
-     * @param ICmsObject|ICmsPage $object объект, слаг которого необходимо проверить
-     * @throws RuntimeException в случае если пришёл неверный объект или коллекция объекта не совпадает с коллекцией, в которой проверяется slug
-     * @return bool
-     */
-    public function isAllowedSlug(ICmsObject $object)
-    {
-        if (!$object instanceof ICmsPage) {
-            throw new RuntimeException($this->translate(
-                'Cannot check slug. Object should be instance of "{class}".',
-                [
-                    'class' => 'umicms\orm\object\ICmsPage'
-                ]
-            ));
-        }
-
-        if (!$this->contains($object)) {
-            throw new RuntimeException($this->translate(
-                'Object from collection "{objectCollection}" does not belong to "{collection}".',
-                [
-                    'objectCollection' => $object->getCollectionName(),
-                    'collection' => $this->getName()
-                ]
-            ));
-        }
-
-        if ($object->getIsNew() && $this->hasSlug($object->getProperty(ICmsPage::FIELD_PAGE_SLUG)->getValue())) {
-            return false;
-        } else {
-            return true;
-        }
     }
 
     /**

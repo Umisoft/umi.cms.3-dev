@@ -52,7 +52,7 @@ class FiltrationGenerator implements ISlugGenerator, ILocalizable
 
             if ($slugLength < 0) {
                 throw new RuntimeException($this->translate(
-                    'Options "{option}" should by more than 0',
+                    'Options "{option}" value should be positive.',
                     [
                         'option' => 'slugLength'
                     ]
