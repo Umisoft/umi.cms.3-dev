@@ -136,7 +136,7 @@ $primary-gradient: #3aadff, #0087d4;
         right: rem-calc(4);
         margin: 0;
         padding: 0;
-        margin-top: -24px;
+        margin-top: -23px;
         .split.button{
             display: none;
             &.open{
@@ -152,18 +152,10 @@ $primary-gradient: #3aadff, #0087d4;
             }
 
             .f-dropdown{//TODO: replaced 'right' class
-                margin-top: 13px;
-                right: -1px;
+                margin-top: 7px;
+                right: -2px;
                 left: auto;
                 width: auto;
-                &:before{
-                    left: auto;
-                    right: 6px;
-                }
-                &:after{
-                    left: auto;
-                    right: 8px;
-                }
             }
         }
     }
