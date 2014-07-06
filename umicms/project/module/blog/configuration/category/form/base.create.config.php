@@ -41,6 +41,9 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => BlogCategory::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'choices' => [
+                            null => 'Default or inherited layout'
+                        ],
                         'lazy' => true,
                         'dataSource' => BlogCategory::FIELD_PAGE_LAYOUT
                     ],

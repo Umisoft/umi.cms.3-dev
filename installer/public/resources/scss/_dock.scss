@@ -102,28 +102,13 @@ $dock-components-height: 35;
                 color: #FFF;
             }
         }
-        &.active{
+        .dock-module.active{
             position: relative;
             margin-top: -1px;
             border-top: 1px solid #3a404a;
             border-left: 1px solid #44474B;
             border-right: 1px solid #44474B;
             background-image: linear-gradient(#282e38, #101217);
-            & + li:hover{
-                border-left: 1px solid transparent;
-            }
-            &.favorites{
-                img + img{
-                    position: absolute;
-                    display: none;
-                    opacity: 0;
-                    left: 0;
-                    top: 0;
-                }
-            }
-            &.disabled{
-                opacity: 0.3;
-            }
         }
     }
     .f-dropdown{

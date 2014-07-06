@@ -3,9 +3,7 @@ define([], function(){
     return function(UMI){
         UMI.ApplicationController = Ember.ObjectController.extend({
             settings: null,
-            settingsAllowed: function(){
-                return window.UmiSettings.isSettingsAllowed;
-            }.property()
+            modules: null
         });
 
         /**
@@ -21,14 +19,10 @@ define([], function(){
                 return this.get('container').lookup('route:module').get('context.name') + Ember.String.capitalize(this.get('model.name'));
             }.property('model.name'),
 
-            collectionName: function(){
-                var settings = this.get('settings');
-                if(settings && Ember.typeOf(settings.params) === 'object'){
-                    return settings.params.collectionName;
-                }
-            }.property('settings'),
-
             settings: null,
+
+            dataSourceBinding: 'settings.dataSource',
+
             /**
              Выбранный контекcт, соответствующий модели роута 'Context'
              @property selectedContext
@@ -53,8 +47,9 @@ define([], function(){
                     for(key in controls){ //for empty - createForm & filter
                         if(controls.hasOwnProperty(key)){
                             control = controls[key];
-                            control.name = key;
-                            contentControls.push(Ember.Object.create(control));
+                            control.id = key;// used by router
+                            control.name = key;// used by templates
+                            contentControls.push(control);
                         }
                     }
                 } catch(error){
@@ -84,11 +79,15 @@ define([], function(){
                     var settings = this.get('settings');
                     if(settings && settings.hasOwnProperty('sideBar')){
                         var control;
+                        var controlParams;
                         for(control in settings.sideBar){
                             if(settings.sideBar.hasOwnProperty(control)){
-                                sideBarControl = settings.sideBar[control];
+                                controlParams = settings.sideBar[control];
+                                if(Ember.typeOf(controlParams) !== 'object'){
+                                    controlParams = {};
+                                }
+                                sideBarControl = controlParams;
                                 sideBarControl.name = control;
-                                sideBarControl = Ember.Object.create(sideBarControl);
                             }
                         }
                     }
@@ -111,8 +110,8 @@ define([], function(){
         UMI.ContextController = Ember.ObjectController.extend({});
 
         UMI.ActionController = Ember.ObjectController.extend({
-            queryParams: ['typeName'],
-            typeName: null
+            queryParams: ['type'],
+            type: null
         });
     };
 });

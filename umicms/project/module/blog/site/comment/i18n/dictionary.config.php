@@ -12,6 +12,7 @@ return [
 
     'en-US' => [
         'Publish' => 'Publish',
+        'Unpublish' => 'Unpublish',
         'Reject' => 'Reject',
 
         'role:moderator:displayName' => 'Moderate comments',
@@ -21,6 +22,7 @@ return [
 
     'ru-RU' => [
         'Publish' => 'Опубликовать',
+        'Unpublish' => 'Снять с публикации',
         'Reject' => 'Отклонить',
 
         'role:moderator:displayName' => 'Модерирование комментариев',

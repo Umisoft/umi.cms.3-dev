@@ -91,7 +91,10 @@ class CollectionControl extends AdminControl
     protected function createTypeChoice($typeName)
     {
         $label = $this->component->translate('action:create:' . $typeName);
-        return new Choice($label, new Behaviour('create', ['typeName' => $typeName]));
+        return new Choice($label, new Behaviour('create', [
+            'action' => CollectionComponent::ACTION_GET_CREATE_FORM,
+            'type' => $typeName]
+        ));
     }
 
     /**
@@ -105,7 +108,10 @@ class CollectionControl extends AdminControl
 
         if ($typesCount == 1) {
             $label = $this->component->translate('action:create:' . $typeList[0]);
-            $behaviour = new Behaviour('create', ['typeName' => $typeList[0]]);
+            $behaviour = new Behaviour('create', [
+                'action' => CollectionComponent::ACTION_GET_CREATE_FORM,
+                'type' => $typeList[0]]
+            );
 
             return new Button($label, $behaviour);
         }

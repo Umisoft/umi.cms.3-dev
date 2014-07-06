@@ -29,6 +29,7 @@ use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\service\model\object\Backup;
+use umicms\project\module\users\model\object\RegisteredUser;
 
 /**
  * Контроллер действий над объектом.
@@ -119,7 +120,7 @@ class ActionController extends BaseController
     protected function actionActivate()
     {
         $collection = $this->getCollection();
-        $object = $collection->getById($this->getRequiredQueryVar('id'));
+        $object = $this->getEditedObject($this->getIncomingData());
 
         if (!$collection instanceof IActiveAccessibleCollection || !$object instanceof IActiveAccessibleObject) {
             throw new RuntimeException(
@@ -148,7 +149,7 @@ class ActionController extends BaseController
     protected function actionDeactivate()
     {
         $collection = $this->getCollection();
-        $object = $collection->getById($this->getRequiredQueryVar('id'));
+        $object = $this->getEditedObject($this->getIncomingData());
 
         if (!$collection instanceof IActiveAccessibleCollection || !$object instanceof IActiveAccessibleObject) {
             throw new RuntimeException(
@@ -249,7 +250,8 @@ class ActionController extends BaseController
         /**
          * @var IRecoverableObject $object
          */
-        return $collection->getBackupList($object);
+        return $collection->getBackupList($object)
+            ->with(Backup::FIELD_OWNER, [RegisteredUser::FIELD_DISPLAY_NAME]);
     }
 
     /**
@@ -261,6 +263,7 @@ class ActionController extends BaseController
     {
         $collection = $this->getCollection();
         $object = $collection->getById($this->getRequiredQueryVar('id'));
+        $backupId = $this->getRequiredQueryVar('backupId');
 
         if (!$collection instanceof IRecoverableCollection || !$object instanceof IRecoverableObject) {
             throw new RuntimeException(
@@ -273,7 +276,7 @@ class ActionController extends BaseController
         /**
          * @var IRecoverableObject $object
          */
-        return $collection->wakeUpBackup($object, $this->getRequiredQueryVar('backupId'));
+        return $collection->wakeUpBackup($object, $backupId);
     }
 
     /**

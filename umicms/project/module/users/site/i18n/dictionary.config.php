@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'Password confirmation' => 'Password confirmation',
+        'PasswordConfirmation' => 'Password confirmation',
 
         'role:viewer:displayName' => 'View users',
         'role:authorizationExecutor:displayName' => 'User authorization',
@@ -21,7 +21,7 @@ return [
     ],
 
     'ru-RU' => [
-        'Password confirmation' => 'Подтверждение пароля',
+        'PasswordConfirmation' => 'Подтверждение пароля',
 
         'role:viewer:displayName' => 'Просмотр пользователей',
         'role:authorizationExecutor:displayName' => 'Авторизация пользователя',

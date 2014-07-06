@@ -51,7 +51,7 @@ class RejectController extends BaseCmsController
     protected function processForm(IForm $form)
     {
         $blogComment = $this->module->comment()->getById($this->getRouteVar('id'));
-        $blogComment->rejected();
+        $blogComment->reject();
 
         $this->commit();
     }

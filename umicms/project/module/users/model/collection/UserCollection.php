@@ -20,15 +20,13 @@ use umicms\exception\NotAllowedOperationException;
 use umicms\exception\UnexpectedValueException;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\ILockedAccessibleCollection;
-use umicms\orm\collection\behaviour\IRecyclableCollection;
 use umicms\orm\collection\behaviour\TActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\TLockedAccessibleCollection;
-use umicms\orm\collection\behaviour\TRecyclableCollection;
 use umicms\orm\collection\CmsCollection;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\ILockedAccessibleObject;
 use umicms\orm\selector\CmsSelector;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\BaseUser;
 use umicms\Utils;
 
@@ -40,10 +38,8 @@ use umicms\Utils;
  * @method BaseUser getById($objectId, $localization = ILocalesService::LOCALE_CURRENT) Возвращает пользователя по id.
  * @method BaseUser add($typeName = IObjectType::BASE) Создает и возвращает пользователя.
  */
-class UserCollection extends CmsCollection
-    implements IRecyclableCollection, IActiveAccessibleCollection, ILockedAccessibleCollection
+class UserCollection extends CmsCollection implements IActiveAccessibleCollection, ILockedAccessibleCollection
 {
-    use TRecyclableCollection;
     use TLockedAccessibleCollection;
     use TActiveAccessibleCollection {
         TActiveAccessibleCollection::deactivate as deactivateInternal;
@@ -84,7 +80,7 @@ class UserCollection extends CmsCollection
      * @param bool $active активность пользователя
      * @throws InvalidArgumentException если код активации невалидный
      * @throws NonexistentEntityException если пользователя с таким ключом активации не существует
-     * @return AuthorizedUser
+     * @return RegisteredUser
      */
     public function getUserByActivationCode($activationCode, $active = false)
     {
@@ -94,18 +90,16 @@ class UserCollection extends CmsCollection
             );
         }
 
-        $user = $this->selectInternal()
-            ->where(AuthorizedUser::FIELD_ACTIVATION_CODE)
+        $user = $this->getInternalSelector()
+            ->where(RegisteredUser::FIELD_ACTIVATION_CODE)
                 ->equals($activationCode)
-            ->where(AuthorizedUser::FIELD_ACTIVE)
+            ->where(RegisteredUser::FIELD_ACTIVE)
                 ->equals($active)
-            ->where(AuthorizedUser::FIELD_TRASHED)
-                ->equals(false)
             ->limit(1)
             ->getResult()
             ->fetch();
 
-        if (!$user instanceof AuthorizedUser) {
+        if (!$user instanceof RegisteredUser) {
             throw new NonexistentEntityException(
                 $this->translate('Cannot find user by activation code.')
             );
@@ -118,22 +112,22 @@ class UserCollection extends CmsCollection
      * Возвращает пользователя по логину или email
      * @param string $emailOrLogin логин или email
      * @throws NonexistentEntityException если не существует пользователя ни с таким логином ни email
-     * @return AuthorizedUser
+     * @return RegisteredUser
      */
     public function getUserByLoginOrEmail($emailOrLogin)
     {
-        $user = $this->selectInternal()
+        $user = $this->getInternalSelector()
             ->begin(IFieldConditionGroup::MODE_OR)
-            ->where(AuthorizedUser::FIELD_LOGIN)
+            ->where(RegisteredUser::FIELD_LOGIN)
                 ->equals($emailOrLogin)
-            ->where(AuthorizedUser::FIELD_EMAIL)
+            ->where(RegisteredUser::FIELD_EMAIL)
                 ->equals($emailOrLogin)
             ->end()
             ->limit(1)
             ->getResult()
             ->fetch();
 
-        if (!$user instanceof AuthorizedUser) {
+        if (!$user instanceof RegisteredUser) {
             throw new NonexistentEntityException(
                 $this->translate('Cannot find user by login or email.')
             );
@@ -144,16 +138,16 @@ class UserCollection extends CmsCollection
 
     /**
      * Проверяет уникальность логина пользователя.
-     * @param AuthorizedUser $user
+     * @param RegisteredUser $user
      * @return bool
      */
-    public function checkLoginUniqueness(AuthorizedUser $user)
+    public function checkLoginUniqueness(RegisteredUser $user)
     {
-        $users = $this->selectInternal()
-            ->fields([AuthorizedUser::FIELD_IDENTIFY])
-            ->where(AuthorizedUser::FIELD_LOGIN)
+        $users = $this->getInternalSelector()
+            ->fields([RegisteredUser::FIELD_IDENTIFY])
+            ->where(RegisteredUser::FIELD_LOGIN)
                 ->equals($user->login)
-            ->where(AuthorizedUser::FIELD_IDENTIFY)
+            ->where(RegisteredUser::FIELD_IDENTIFY)
                 ->notEquals($user->getId())
             ->getResult();
 
@@ -162,16 +156,16 @@ class UserCollection extends CmsCollection
 
     /**
      * Проверяет уникальность e-mail пользователя.
-     * @param AuthorizedUser $user
+     * @param RegisteredUser $user
      * @return bool
      */
-    public function checkEmailUniqueness(AuthorizedUser $user)
+    public function checkEmailUniqueness(RegisteredUser $user)
     {
-        $users = $this->selectInternal()
-            ->fields([AuthorizedUser::FIELD_IDENTIFY])
-            ->where(AuthorizedUser::FIELD_EMAIL)
+        $users = $this->getInternalSelector()
+            ->fields([RegisteredUser::FIELD_IDENTIFY])
+            ->where(RegisteredUser::FIELD_EMAIL)
                 ->equals($user->email)
-            ->where(AuthorizedUser::FIELD_IDENTIFY)
+            ->where(RegisteredUser::FIELD_IDENTIFY)
                 ->notEquals($user->getId())
             ->getResult();
 
@@ -184,7 +178,7 @@ class UserCollection extends CmsCollection
      */
     public function getIsRegistrationWithActivation()
     {
-        return (bool) $this->getSetting(self::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS);
+        return (bool) $this->getSetting(self::SETTING_REGISTRATION_WITH_ACTIVATION);
     }
 
     /**

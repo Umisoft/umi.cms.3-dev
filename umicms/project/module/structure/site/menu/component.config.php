@@ -28,7 +28,8 @@ return [
         ],
         IAclFactory::OPTION_RULES => [
             'viewer' => [
-                'widget:auto' => []
+                'widget:auto' => [],
+                'widget:custom' => [],
             ]
         ]
     ],

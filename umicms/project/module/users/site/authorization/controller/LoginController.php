@@ -12,7 +12,7 @@ namespace umicms\project\module\users\site\authorization\controller;
 
 use umi\form\element\IFormElement;
 use umi\form\IForm;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\hmvc\component\site\TFormController;
@@ -51,7 +51,7 @@ class LoginController extends BaseSitePageController
      */
     protected function buildForm()
     {
-        return $this->module->user()->getForm(AuthorizedUser::FORM_LOGIN_SITE, AuthorizedUser::TYPE_NAME);
+        return $this->module->user()->getForm(RegisteredUser::FORM_LOGIN_SITE, RegisteredUser::TYPE_NAME);
     }
 
     /**
@@ -66,11 +66,11 @@ class LoginController extends BaseSitePageController
         /**
          * @var IFormElement $loginInput
          */
-        $loginInput = $form->get(AuthorizedUser::FIELD_LOGIN);
+        $loginInput = $form->get(RegisteredUser::FIELD_LOGIN);
         /**
          * @var IFormElement $passwordInput
          */
-        $passwordInput = $form->get(AuthorizedUser::FIELD_PASSWORD);
+        $passwordInput = $form->get(RegisteredUser::FIELD_PASSWORD);
 
         if ($this->module->login($loginInput->getValue(), $passwordInput->getValue())) {
 
