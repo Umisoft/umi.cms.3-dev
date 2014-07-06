@@ -28,7 +28,7 @@ use umicms\hmvc\component\admin\TActionController;
 use umicms\i18n\CmsLocalesService;
 use umicms\project\admin\AdminApplication;
 use umicms\project\module\users\model\UsersModule;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\Utils;
 
 /**
@@ -70,7 +70,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
      * Возвращает информацию об авторизованном пользователе и его правах.
      * @throws HttpForbidden
      * @throws HttpUnauthorized
-     * @return Response
+     * @return array
      */
     protected function actionAuth()
     {
@@ -125,7 +125,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
     {
         $user = $this->module->getCurrentUser();
 
-        if (!$user->isAllowed($this->getComponent(), 'controller:settings')) {
+        if (!$user->isComponentResourceAllowed($this->getComponent(), 'controller:settings')) {
             throw new HttpForbidden(
                 $this->translate('Access denied.')
             );
@@ -134,8 +134,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
         return [
             'user' => $user,
             'token' => $this->getCsrfToken(),
-            'locale' => $this->getLocalesService()->getCurrentLocale(),
-            'isSettingsAllowed' => false //TODO убрать это вообще
+            'locale' => $this->getLocalesService()->getCurrentLocale()
         ];
     }
 
@@ -157,7 +156,7 @@ class ActionController extends BaseController implements ILocalesAware, ISession
      */
     protected function actionForm()
     {
-        $form = $this->module->user()->getForm(AuthorizedUser::FORM_LOGIN_ADMIN, 'authorized');
+        $form = $this->module->user()->getForm(RegisteredUser::FORM_LOGIN_ADMIN, RegisteredUser::TYPE_NAME);
 
         $adminLocales = $this->getLocalesService()->getAdminLocales();
         if (count($adminLocales) > 1) {

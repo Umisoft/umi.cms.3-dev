@@ -36,7 +36,7 @@ class SettingsComponent extends AdminComponent
         ],
 
         self::OPTION_MODIFY_ACTIONS => [
-            'save'
+            'save' => []
         ],
 
         self::OPTION_ACL => [
@@ -45,8 +45,8 @@ class SettingsComponent extends AdminComponent
             ],
             IAclFactory::OPTION_RULES => [
                 'configurator' => [
-                    'interfaceLayout:controller' => [],
-                    'action:controller' => []
+                    'controller:interfaceLayout' => [],
+                    'controller:action' => []
                 ]
             ]
         ],

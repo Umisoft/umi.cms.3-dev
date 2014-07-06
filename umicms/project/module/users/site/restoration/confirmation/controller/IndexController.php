@@ -11,7 +11,7 @@
 namespace umicms\project\module\users\site\restoration\confirmation\controller;
 
 use umi\http\Response;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 use umicms\hmvc\component\site\BaseSitePageController;
 
@@ -70,7 +70,7 @@ class IndexController extends BaseSitePageController
     /**
      * Отпраляет пользователю письмо с новым паролем
      */
-    protected function sendNewPassword(AuthorizedUser $user)
+    protected function sendNewPassword(RegisteredUser $user)
     {
         $this->mail(
             [$user->email => $user->displayName],

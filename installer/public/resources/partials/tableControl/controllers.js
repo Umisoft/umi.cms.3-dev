@@ -4,10 +4,10 @@ define(['App'], function(UMI){
     return function(){
         UMI.TableControlController = Ember.ObjectController.extend(UMI.i18nInterface,{
             componentNameBinding: 'controllers.component.name',
+            collectionNameBinding: 'controllers.component.dataSource.name',
             dictionaryNamespace: 'tableControl',
             localDictionary: function(){
-                var contentControls = this.get('controllers.component.contentControls') || [];
-                var filter = contentControls.findBy('name', 'filter') || {};
+                var filter = this.get('control') || {};
                 return filter.i18n;
             }.property(),
             /**
@@ -29,13 +29,13 @@ define(['App'], function(UMI){
             },
 
             /**
-             * метод получает данные учитывая queryParams параметры
+             * метод получает данные учитывая query параметры
              * @method getObjects
              */
             getObjects: function(){
                 var self = this;
                 var query = this.get('query') || {};
-                var collectionName = self.get('controllers.component.collectionName');
+                var collectionName = self.get('collectionName');
                 var objects = self.store.find(collectionName, query);
                 var orderByProperty = this.get('orderByProperty');
                 var sortProperties = orderByProperty && orderByProperty.property ? orderByProperty.property : 'id';
@@ -185,7 +185,7 @@ define(['App'], function(UMI){
             contextChanged: function(){
                 var store = this.get('store');
                 // Вычисляем фильтр в зависимости от типа коллекции
-                var collectionName = this.get('controllers.component.collectionName');
+                var collectionName = this.get('collectionName');
                 var metaForCollection = store.metadataFor(collectionName);
 
                 //TODO: check user configurations
@@ -271,8 +271,7 @@ define(['App'], function(UMI){
              * return Array
              */
             contextToolbar: function(){
-                var contentControls = this.get('controllers.component.contentControls') || [];
-                var filter = contentControls.findBy('name', 'filter') || {};
+                var filter = this.get('control') || {};
                 return filter.contextToolbar;
             }.property('model'),
 
@@ -282,10 +281,8 @@ define(['App'], function(UMI){
              * return Array
              */
             toolbar: function(){
-                var toolbar = this.get('controllers.component.contentControls') || [];
-                toolbar = toolbar.findBy('name', 'filter') || {};
-                toolbar = toolbar.toolbar || [];
-                return toolbar;
+                var filter = this.get('control') || {};
+                return filter.toolbar || [];
             }.property('model'),
 
             actions: {

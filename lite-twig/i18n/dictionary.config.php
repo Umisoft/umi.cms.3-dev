@@ -9,7 +9,7 @@ return [
             'Next' => 'Next',
             'Post on moderation' => 'Post on moderation',
             'List of rejected posts' => 'List of rejected posts',
-            'RSS feed' => 'RSS feed',
+            'RSSFeed' => 'RSS feed',
             'Blogs' => 'Blogs',
             'Categories' => 'Categories',
             'Tags cloud' => 'Tags cloud',
@@ -21,8 +21,9 @@ return [
             'News' => 'News',
             'Rubrics' => 'Rubrics',
             'Subjects' => 'Subjects',
-            'Back to top' => 'Back to top',
-            'Add post' => 'Add post'
+            'BackToTop' => 'Back to top',
+            'Add post' => 'Add post',
+            'ReadMore' => 'Читать далее',
         ],
         'ru-RU' => [
             'ru-RU' => 'RU',
@@ -31,7 +32,7 @@ return [
             'Next' => 'Дальше',
             'Post on moderation' => 'Посты на модерации',
             'List of rejected posts' => 'Список отклонённых постов',
-            'RSS feed' => 'RSS ленты',
+            'RSSFeed' => 'RSS ленты',
             'Blogs' => 'Блоги',
             'Categories' => 'Категории',
             'Tags cloud' => 'Облако тэгов',
@@ -43,51 +44,46 @@ return [
             'News' => 'Новости',
             'Rubrics' => 'Рубрики',
             'Subjects' => 'Сюжеты',
-            'Back to top' => 'Наверх',
+            'BackToTop' => 'Наверх',
             'Add post' => 'Добавить пост',
+            'ReadMore' => 'Читать далее',
         ]
     ],
 
     'project.site.blog' => [
         'en-US' => [
-            'RSS' => 'RSS feed',
             'Create post' => 'Create post',
             'Go' => 'Go',
             'Edit' => 'Edit',
             'Drafts author' => 'Drafts author',
             'Author' => 'Author',
             'Comments' => 'Comments',
-            'Read more' => 'Read more',
             'Moderation queue' => 'Moderation queue',
             'Post has been saved.' => 'Post has been saved.',
             'Profile has been saved.' => 'Profile has been saved.',
-            'Edit profile author' => 'Edit profile author'
+            'Edit profile author' => 'Edit profile author',
+            'Post has been unpublish.' => 'Post has been unpublish.'
         ],
         'ru-RU' => [
-            'RSS' => 'RSS ленты',
             'Create post' => 'Создать пост',
             'Go' => 'Перейти',
             'Edit' => 'Редактировать',
             'Drafts author' => 'Черновики автора',
             'Author' => 'Автор',
             'Comments' => 'Комментарии',
-            'Read more' => 'Читать далее',
             'Moderation queue' => 'Очередь модерации',
             'Post has been saved.' => 'Пост сохранён.',
             'Profile has been saved.' => 'Профиль сохранён.',
-            'Edit profile author' => 'Редактировать автора'
+            'Edit profile author' => 'Редактировать автора',
+            'Post has been unpublish.' => 'Пост был снят с публикации'
         ]
     ],
 
     'project.site.news' => [
         'en-US' => [
-            'RSS' => 'RSS feed',
-            'Read more' => 'Read more',
             'All news' => 'All news',
         ],
         'ru-RU' => [
-            'RSS' => 'RSS ленты',
-            'Read more' => 'Читать далее',
             'All news' => 'Все новости',
         ]
     ],

@@ -37,7 +37,9 @@ return [
     SiteGroupComponent::OPTION_ACL => [
         IAclFactory::OPTION_RULES => [
             'viewer' => [
-                'controller:index' => []
+                'controller:index' => [],
+                'widget:link' => [],
+                'widget:form' => []
             ]
         ]
     ]

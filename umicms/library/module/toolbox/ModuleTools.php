@@ -86,6 +86,21 @@ class ModuleTools implements IToolbox
     }
 
     /**
+     * Возвращает список всех модулей.
+     * @return IModule[]
+     */
+    public function getModules()
+    {
+        $result = [];
+        foreach ($this->modules as $className => $config)
+        {
+            $result[] = $this->getModuleByClass($className);
+        }
+
+        return $result;
+    }
+
+    /**
      * Возвращает конфигурацию модуля по классу
      * @param string $className
      * @throws UnexpectedValueException если конфигурация невалидна

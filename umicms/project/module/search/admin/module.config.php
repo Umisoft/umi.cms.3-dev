@@ -22,7 +22,7 @@ return [
         AdminComponent::INTERFACE_LAYOUT_CONTROLLER => __NAMESPACE__ . '\controller\LayoutController',
     ],
 
-    AdminComponent::OPTION_QUERY_ACTIONS => ['search'],
+    AdminComponent::OPTION_QUERY_ACTIONS => ['search' => []],
 
     AdminComponent::OPTION_ROUTES => [
         'action' => [

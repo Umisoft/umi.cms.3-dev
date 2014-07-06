@@ -20,7 +20,8 @@ return [
     ],
     'forms' => [
         'base' => [
-            UserGroupCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/group/form/base.edit.config.php}'
+            UserGroupCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/group/form/base.edit.config.php}',
+            UserGroupCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/group/form/base.create.config.php}'
         ]
     ],
     UserGroupCollection::IGNORED_TABLE_FILTER_FIELDS => [

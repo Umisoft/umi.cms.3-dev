@@ -10,6 +10,8 @@
 
 namespace umicms\orm\collection;
 
+use umi\acl\IAclAssertionResolver;
+use umi\acl\IAclResource;
 use umi\form\IForm;
 use umi\form\IFormAware;
 use umi\i18n\ILocalesAware;
@@ -24,7 +26,7 @@ use umicms\orm\object\ICmsObject;
 /**
  * Интерфейс коллекции объектов UMI.CMS
  */
-interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAware, IFormAware, ILocalesAware
+interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAware, IFormAware, ILocalesAware, IAclResource, IAclAssertionResolver
 {
     /**
      * Имя формы для редактирования объектов по умолчанию
@@ -50,7 +52,6 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
      * Констатнта для задания списка имен полей, игнорируемых в фильтре для таблицы
      */
     const IGNORED_TABLE_FILTER_FIELDS = 'ignoredTableFilterFields';
-
 
     /**
      * Возвращает тип коллекции.
@@ -128,4 +129,10 @@ interface ICmsCollection extends ICollection, ILocalizable, ICollectionManagerAw
      * @return array
      */
     public function getIgnoredTableFilterFieldNames();
+
+    /**
+     * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
+     * @return CmsSelector|ICmsObject[]
+     */
+    public function getInternalSelector();
 }

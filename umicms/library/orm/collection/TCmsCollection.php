@@ -265,6 +265,22 @@ trait TCmsCollection
     }
 
     /**
+     * @see IAclResource::getAclResourceName()
+     */
+    public function getAclResourceName()
+    {
+        return "model:{$this->getName()}";
+    }
+
+    /**
+     * @see IAclAssertionResolver::isAllowed()
+     */
+    public function isAllowed($role, $operationName, array $assertions)
+    {
+        return true;
+    }
+
+    /**
      * Возвращает значение настройки для коллекции.
      * @param string $settingName имя настройки
      * @param mixed $defaultValue значение по умолчанию
@@ -280,9 +296,9 @@ trait TCmsCollection
 
     /**
      * Возвращает новый селектор для формирования выборки объектов коллекции без учета установленных инициализаторов.
-     * @return CmsSelector
+     * @return CmsSelector|ICmsObject[]
      */
-    protected function selectInternal() {
+    public function getInternalSelector() {
         /** @noinspection PhpUndefinedMethodInspection */
         /** @noinspection PhpUndefinedClassInspection */
         return parent::select();
