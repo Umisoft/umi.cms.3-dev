@@ -8,14 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace umicms\hmvc\view;
+return [
 
-use umi\hmvc\view\View;
+    'en-US' => [
+        'role:viewer:displayName' => 'View profile author'
+    ],
 
-/**
- * Содержимое результата работы layout-контроллера.
- */
-class CmsLayoutView extends View
-{
-}
- 
+    'ru-RU' => [
+        'role:viewer:displayName' => 'Просмотр профиля автора'
+    ]
+
+];
