@@ -42,6 +42,9 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => NewsItem::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'choices' => [
+                            null => 'Default or inherited layout'
+                        ],
                         'lazy' => true,
                         'dataSource' => NewsItem::FIELD_PAGE_LAYOUT
                     ],
@@ -57,6 +60,7 @@ return [
                     'type' => Checkbox::TYPE_NAME,
                     'label' => NewsItem::FIELD_ACTIVE,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsItem::FIELD_ACTIVE
                     ],
                 ]

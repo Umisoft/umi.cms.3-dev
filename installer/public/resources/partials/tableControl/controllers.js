@@ -4,10 +4,10 @@ define(['App'], function(UMI){
     return function(){
         UMI.TableControlController = Ember.ObjectController.extend(UMI.i18nInterface,{
             componentNameBinding: 'controllers.component.name',
+            collectionNameBinding: 'controllers.component.dataSource.name',
             dictionaryNamespace: 'tableControl',
             localDictionary: function(){
-                var contentControls = this.get('controllers.component.contentControls') || [];
-                var filter = contentControls.findBy('name', 'filter') || {};
+                var filter = this.get('control') || {};
                 return filter.i18n;
             }.property(),
             /**
@@ -35,7 +35,7 @@ define(['App'], function(UMI){
             getObjects: function(){
                 var self = this;
                 var query = this.get('query');
-                var collectionName = self.get('controllers.component.collectionName');
+                var collectionName = self.get('collectionName');
                 var objects = self.store.find(collectionName, query);
                 var orderByProperty = this.get('orderByProperty');
                 var sortProperties = orderByProperty && orderByProperty.property ? orderByProperty.property : 'id';
@@ -134,10 +134,10 @@ define(['App'], function(UMI){
              */
             contextChanged: function(){
                 // Вычисляем фильтр в зависимости от типа коллекции
-                var collectionName = this.get('controllers.component.collectionName');
+                var collectionName = this.get('collectionName');
                 var metaForCollection = this.get('store').metadataFor(collectionName);
-                var contextFilter = {};// TODO: Убрать в условии значение filter
-                if(metaForCollection && metaForCollection.collectionType === 'hierarchic' && this.get('container').lookup('route:action').get('context.action').name !== 'filter'){
+                var contextFilter = {};
+                if(metaForCollection && metaForCollection.collectionType === 'hierarchic' && Ember.get(this.get('container').lookup('route:action'), 'context.control.name') === 'children'){
                     contextFilter.parent = this.get('model.object.id');
                 }
                 // Сбрасываем параметры запроса, не вызывая обсервер query
@@ -149,7 +149,7 @@ define(['App'], function(UMI){
                 Ember.run.next(this, function(){
                     var self = this;
                     this.get('objects.content').then(function(){
-                        var collectionName = self.get('controllers.component.collectionName');
+                        var collectionName = self.get('collectionName');
                         var metaForCollection = self.get('store').metadataFor(collectionName);
                         self.set('total', metaForCollection.total);
                     });
@@ -173,10 +173,9 @@ define(['App'], function(UMI){
              * return Array
              */
             contextToolbar: function(){
-                var contentControls = this.get('controllers.component.contentControls') || [];
-                var filter = contentControls.findBy('name', 'filter') || {};
+                var filter = this.get('control') || {};
                 return filter.contextToolbar;
-            }.property('controllers.component.contentControls'),
+            }.property('control'),
 
             /**
              * Возвращает toolbar
@@ -184,10 +183,8 @@ define(['App'], function(UMI){
              * return Array
              */
             toolbar: function(){
-                var toolbar = this.get('controllers.component.contentControls') || [];
-                toolbar = toolbar.findBy('name', 'filter') || {};
-                toolbar = toolbar.toolbar || [];
-                return toolbar;
+                var filter = this.get('control') || {};
+                return filter.toolbar || [];
             }.property('model'),
 
             actions: {

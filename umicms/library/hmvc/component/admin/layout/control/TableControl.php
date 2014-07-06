@@ -16,8 +16,7 @@ namespace umicms\hmvc\component\admin\layout\control;
 class TableControl extends CollectionControl
 {
     /**
-     * Конфигурирует toolbar.
-     * @return $this
+     * {@inheritdoc}
      */
     protected function configureToolbar()
     {
@@ -27,7 +26,7 @@ class TableControl extends CollectionControl
     }
 
     /**
-     * Конфигурирует дополнительные лейблы контрола.
+     * {@inheritdoc}
      */
     protected function configureI18n()
     {

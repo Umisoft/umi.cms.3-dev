@@ -61,14 +61,15 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
      */
     public function getQueryActions()
     {
-        $actions = [];
+        $result = [];
         if (isset($this->options[self::OPTION_QUERY_ACTIONS])) {
-            foreach ($this->options[self::OPTION_QUERY_ACTIONS] as $actionName) {
-                $actions[$actionName] = $this->createQueryAction($actionName);
+            $actions = $this->configToArray($this->options[self::OPTION_QUERY_ACTIONS], true);
+            foreach ($actions as $actionName => $params) {
+                $result[$actionName] = $this->createQueryAction($actionName, $params);
             }
         }
 
-        return $actions;
+        return $result;
     }
 
     /**
@@ -77,15 +78,16 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
      */
     public function getModifyActions()
     {
-        $actions = [];
+        $result = [];
 
         if (isset($this->options[self::OPTION_MODIFY_ACTIONS])) {
-            foreach ($this->options[self::OPTION_MODIFY_ACTIONS] as $actionName) {
-                $actions[$actionName] = $this->createModifyAction($actionName);
+            $actions = $this->configToArray($this->options[self::OPTION_MODIFY_ACTIONS], true);
+            foreach ($actions as $actionName => $params) {
+                $result[$actionName] = $this->createModifyAction($actionName, $params);
             }
         }
 
-        return $actions;
+        return $result;
     }
 
     /**
@@ -104,12 +106,13 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
     /**
      * Создает новое REST-действие компонента для выборки данных
      * @param string $actionName имя действия
+     * @param array $params список GET-параметров. Значение может быть плейсхолдером, который будет обработан на клиенте.
      * @return Action
      */
-    protected function createQueryAction($actionName)
+    protected function createQueryAction($actionName, array $params = [])
     {
         return new Action(
-            $this->getUrlManager()->getAdminComponentActionResourceUrl($this, $actionName),
+            $this->getUrlManager()->getAdminComponentActionResourceUrl($this, $actionName, $params),
             Action::TYPE_QUERY
         );
     }
@@ -117,12 +120,13 @@ class AdminComponent extends BaseCmsComponent implements IUrlManagerAware
     /**
      * Создает новое REST-действие компонента для модификации данных
      * @param string $actionName имя действия
+     * @param array $params список GET-параметров. Значение может быть плейсхолдером, который будет обработан на клиенте.
      * @return Action
      */
-    protected function createModifyAction($actionName)
+    protected function createModifyAction($actionName, array $params = [])
     {
         return new Action(
-            $this->getUrlManager()->getAdminComponentActionResourceUrl($this, $actionName),
+            $this->getUrlManager()->getAdminComponentActionResourceUrl($this, $actionName, $params),
             Action::TYPE_MODIFY
         );
     }

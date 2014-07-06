@@ -19,6 +19,7 @@ use umicms\orm\collection\behaviour\TActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\TRecoverableCollection;
 use umicms\orm\collection\behaviour\TRecyclableCollection;
 use umicms\orm\collection\behaviour\TRobotsAccessibleCollection;
+use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 
 /**
@@ -51,6 +52,37 @@ class CmsPageCollection extends CmsCollection implements ICmsPageCollection
         }
 
         return $page;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAllowedSlug(ICmsObject $object)
+    {
+        if (!$object instanceof ICmsPage) {
+            throw new RuntimeException($this->translate(
+                'Cannot check slug. Object should be instance of "{class}".',
+                [
+                    'class' => 'umicms\orm\object\ICmsPage'
+                ]
+            ));
+        }
+
+        if (!$this->contains($object)) {
+            throw new RuntimeException($this->translate(
+                'Object from collection "{objectCollection}" does not belong to "{collection}".',
+                [
+                    'objectCollection' => $object->getCollectionName(),
+                    'collection' => $this->getName()
+                ]
+            ));
+        }
+
+        if ($object->getIsNew() && $this->hasSlug($object->getProperty(ICmsPage::FIELD_PAGE_SLUG)->getValue())) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -110,6 +142,21 @@ class CmsPageCollection extends CmsCollection implements ICmsPageCollection
             ));
         }
         return $this;
+    }
+
+    /**
+     * Проверяет используется ли slug.
+     * @param string $slug искомый slug
+     * @return bool
+     */
+    protected function hasSlug($slug)
+    {
+        $select = $this->select()
+            ->fields([ICmsPage::FIELD_IDENTIFY])
+            ->where(ICmsPage::FIELD_PAGE_SLUG)
+                ->equals($slug);
+
+        return (bool) $select->getTotal();
     }
 }
  

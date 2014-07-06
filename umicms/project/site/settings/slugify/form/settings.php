@@ -16,7 +16,7 @@ use umi\form\fieldset\FieldSet;
 return [
     'options' => [
         'dictionaries' => [
-            'project.admin.settings.site.slugify'
+            'project.admin.rest.settings.site.slugify'
         ]
     ],
 

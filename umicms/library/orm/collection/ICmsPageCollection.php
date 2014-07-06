@@ -12,9 +12,11 @@ namespace umicms\orm\collection;
 
 use umi\i18n\ILocalesService;
 use umicms\exception\NonexistentEntityException;
+use umicms\exception\RuntimeException;
 use umicms\orm\collection\behaviour\IActiveAccessibleCollection;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\orm\object\ICmsObject;
 use umicms\orm\collection\behaviour\IRobotsAccessibleCollection;
 use umicms\orm\object\ICmsPage;
 
@@ -33,5 +35,12 @@ interface ICmsPageCollection extends ICmsCollection, IRecoverableCollection, IRe
      */
     public function getByUri($uri, $localization = ILocalesService::LOCALE_CURRENT);
 
+    /**
+     * Разрешено ли использование slug.
+     * @param ICmsObject $object объект, слаг которого необходимо проверить
+     * @throws RuntimeException в случае, если коллекция объекта не совпадает с коллекцией, в которой проверяется slug
+     * @return bool
+     */
+    public function isAllowedSlug(ICmsObject $object);
 }
  

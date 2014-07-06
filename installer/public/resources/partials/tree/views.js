@@ -205,7 +205,7 @@ define(['App', 'toolbar'], function(UMI){
             },
 
             willDestroyElement: function(){
-                this.get('controller').removeObserver('controllers.component.collectionName');
+                this.get('controller').removeObserver('collectionName');
                 this.get('controller').removeObserver('activeContext');
                 this.get('controller').removeObserver('objects.@each.isDeleted');
                 this.removeObserver('controller.expandedBranches');
@@ -216,37 +216,42 @@ define(['App', 'toolbar'], function(UMI){
             treeControlView: null,
             templateName: 'treeItem',
             tagName: 'li',
-            classNameBindings: ['controller.model.isDragged:hide', 'controller.model.isDeleted:hide'],
+            classNameBindings: ['item.isDragged:hide', 'item.isDeleted:hide'],
             attributeBindings: ['dataId:data-id'],
 
+            editLink: function(){
+                var link = this.get('item.meta.editLink');
+                return link;
+            }.property('item'),
+
             dataId: function(){
-                return this.get('controller.model.id');
-            }.property('controller.model'),
+                return this.get('item.id');
+            }.property('item.id'),
 
             inActive: function(){
-                return !this.get('controller.model.active');
-            }.property('controller.model.active'),
+                return !this.get('item.active');
+            }.property('item.active'),
 
             active: function(){// TODO: можно сделать через lookup http://jsbin.com/iFEvATE/2/edit
-                return this.get('controller.controllers.treeControl.activeContext.id') === this.get('controller.model.id');
-            }.property('controller.controllers.treeControl.activeContext.id'),
+                return this.get('controller.activeContext.id') === this.get('item.id');
+            }.property('controller.activeContext.id'),
 
             savedDisplayName: function(){
-                if(this.get('controller.model.id') === 'root'){
-                    return this.get('controller.model.displayName');
+                if(this.get('item.id') === 'root'){
+                    return this.get('item.displayName');
                 } else{
-                    return this.get('controller.model._data.displayName');
+                    return this.get('item._data.displayName');
                 }
-            }.property('controller.model.currentState.loaded.saved'),//TODO: Отказаться от использования _data
+            }.property('item.currentState.loaded.saved'),//TODO: Отказаться от использования _data
 
             expandActiveContext: function(){
                 Ember.run.once(this, function(){
-                    var expandedBranches = this.get('controller.controllers.treeControl.expandedBranches') || [];
+                    var expandedBranches = this.get('controller.expandedBranches') || [];
                     if(expandedBranches){
-                        if(this.get('controller.model.id') === 'root'){
+                        if(this.get('item.id') === 'root'){
                             return this.set('isExpanded', true);
                         }
-                        var contains = expandedBranches.contains(parseFloat(this.get('controller.model.id')));
+                        var contains = expandedBranches.contains(parseFloat(this.get('item.id')));
                         if(contains){
                             return this.set('isExpanded', true);
                         }
@@ -256,9 +261,9 @@ define(['App', 'toolbar'], function(UMI){
 
             actions: {
                 expanded: function(){
-                    var id = this.get('controller.model.id');
+                    var id = this.get('item.id');
                     id = id === 'root' ? id : parseFloat(id);
-                    var treeControl = this.get('controller.controllers.treeControl');
+                    var treeControl = this.get('controller');
                     var expandedBranches = treeControl.get('expandedBranches');
                     this.set('isExpanded', !this.get('isExpanded'));
                     if(this.get('isExpanded')){
@@ -270,10 +275,45 @@ define(['App', 'toolbar'], function(UMI){
                 }
             },
 
+
+            getChildren: function(){
+                var model = this.get('item');
+                var collectionName = model.get('typeKey') || model.constructor.typeKey;
+                var promise;
+                if(model.get('id') === 'root'){
+                    promise = model.get('children');
+                } else{
+                    promise = this.get('controller').store.updateCollection(collectionName, {'filters[parent]': model.get('id'), 'fields': 'displayName,order,active,childCount,children,parent'});
+                }
+                return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+                    content: promise,
+                    sortProperties: ['order', 'id'],
+                    sortAscending: true
+                });
+            },
+
+            sortedChildren: function(){
+                return this.getChildren();
+            }.property('item.didUpdate'),
+
+            init: function(){
+                this._super();
+                var self = this;
+                if('needReloadHasMany' in this.get('item')){
+                    this.get('item').on('needReloadHasMany', function(){
+                        self.get('children').then(function(children){
+                            children.reloadLinks();
+                        });
+                    });
+                }
+            },
+
             didInsertElement: function(){
-                this.expandActiveContext();
+                Ember.run.once(this, 'expandActiveContext');
             }
         });
+
+        UMI.TreeControlContextToolbarController = Ember.ObjectController.extend({});
 
         UMI.TreeControlContextToolbarView = Ember.View.extend({
             tagName: 'ul',
@@ -310,6 +350,10 @@ define(['App', 'toolbar'], function(UMI){
 
                         }
                     }
+                    behaviour.actions.sendActionForBehaviour = function(behaviour){
+                        var object = this.get('controller.model');
+                        this.send(behaviour.name, {behaviour: behaviour, object: object});
+                    };
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

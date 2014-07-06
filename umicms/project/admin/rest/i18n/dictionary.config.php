@@ -44,6 +44,7 @@ return [
 
         'Rows on page' => 'Rows on page',
         'No data' => 'No data',
+        'Nothing is selected' => 'Nothing is selected',
 
         'role:viewer:displayName' => 'View admin panel',
         'role:blogExecutor:displayName' => 'Blog',
@@ -94,6 +95,7 @@ return [
 
         'Rows on page' => 'Строк на странице',
         'No data' => 'Нет данных',
+        'Nothing is selected' => 'Ничего не выбрано',
 
         'role:viewer:displayName' => 'Просмотр административной панели',
         'role:blogExecutor:displayName' => 'Блог',

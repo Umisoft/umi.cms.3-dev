@@ -98,6 +98,10 @@ abstract class BaseCmsController extends BaseController
         $url .= $this->getContext()->getBaseUrl();
         $url .= $this->getComponent()->getRouter()->assemble($routeName, $routeParams);
 
+        if ($postfix = $this->getUrlManager()->getSiteUrlPostfix()) {
+            $url .= '.' . $postfix;
+        }
+
         return $url;
     }
 
@@ -148,7 +152,7 @@ abstract class BaseCmsController extends BaseController
         /**
          * @var UsersModule $usersModule
          */
-        $usersModule = $this->getModule(UsersModule::className());
+        $usersModule = $this->getModuleByClass(UsersModule::className());
         $currentUser = $usersModule->isAuthenticated() ? $usersModule->getCurrentUser() : $usersModule->getGuest();
 
         $persister = $this->getObjectPersister();

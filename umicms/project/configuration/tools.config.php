@@ -15,7 +15,6 @@ use umi\filter\toolbox\FilterTools;
 use umi\form\toolbox\FormTools;
 use umi\i18n\toolbox\I18nTools;
 use umi\messages\toolbox\MessagesTools;
-use umi\orm\toolbox\ORMTools;
 use umi\pagination\toolbox\PaginationTools;
 use umi\rss\toolbox\RssTools;
 use umi\stemming\toolbox\StemmingTools;
@@ -24,6 +23,7 @@ use umi\validation\toolbox\ValidationTools;
 use umicms\captcha\toolbox\CaptchaTools;
 use umicms\model\toolbox\ModelTools;
 use umicms\module\toolbox\ModuleTools;
+use umicms\orm\toolbox\CmsOrmTools;
 use umicms\purifier\toolbox\PurifierTools;
 use umicms\serialization\toolbox\SerializationTools;
 use umicms\slugify\toolbox\SlugGeneratorTools;
@@ -31,7 +31,6 @@ use umicms\slugify\toolbox\SlugGeneratorTools;
 return [
     I18nTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/i18n/toolbox/config.php'),
     DbalTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/dbal/toolbox/config.php'),
-    ORMTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/orm/toolbox/config.php'),
     FormTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/form/toolbox/config.php'),
     FilterTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/filter/toolbox/config.php'),
     ValidationTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/validation/toolbox/config.php'),
@@ -43,6 +42,7 @@ return [
     StreamTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/stream/toolbox/config.php'),
     MessagesTools::NAME => require(FRAMEWORK_LIBRARY_DIR . '/messages/toolbox/config.php'),
 
+    CmsOrmTools::NAME => require(CMS_LIBRARY_DIR . '/orm/toolbox/config.php'),
     ModuleTools::NAME => require(CMS_LIBRARY_DIR . '/module/toolbox/config.php'),
     ModelTools::NAME => require(CMS_LIBRARY_DIR . '/model/toolbox/config.php'),
     SerializationTools::NAME => require(CMS_LIBRARY_DIR . '/serialization/toolbox/config.php'),

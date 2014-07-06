@@ -100,12 +100,19 @@ class LayoutController extends BaseCmsController implements ISiteSettingsAware, 
 
         $locales = [];
         foreach ($localesService->getSiteLocales() as $locale) {
-            $url = $locale->getUrl() . $currentUrl;
+
             $localeId = $locale->getId();
+            $isCurrent = $localesService->getCurrentLocale() === $localeId;
+            $url = $locale->getUrl() . $currentUrl;
+            if (!$isCurrent && $urlManager->getSiteUrlPostfix()) {
+                $sitePostfix = $urlManager->getSiteUrlPostfix();
+                $url = substr($url, 0, -(strlen($sitePostfix) + 1));
+            }
+
             $locales[] = [
                 'id' => $localeId,
                 'url' => $url,
-                'current' => $localesService->getCurrentLocale() === $localeId
+                'current' => $isCurrent
             ];
         }
 
