@@ -22,6 +22,16 @@
             padding-right: $split-button-padding-med - rem-calc(22);
         }
     }
+    &.split-dropup{
+        span:before{
+            border-top-color: transparent;
+            border-bottom-color: #fff;
+            top: rem-calc(9);
+        }
+        .f-dropdown{
+            bottom: 100%;
+        }
+    }
     &.open{
         &.white{
             background: #fff;

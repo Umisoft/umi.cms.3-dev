@@ -15,6 +15,11 @@ form{
     }
 }
 
+.umi-form-label{
+    display: inline-block;
+    font-size: rem-calc(13);
+    margin-bottom: rem-calc(5);
+}
 .umi-form-control{
     background: #f5f6f7;
 }
@@ -37,5 +42,9 @@ form{
         &:last-child{
             border-right: 1px solid #D1D1D1;
         }
+    }
+    .f-dropdown{
+        left: auto;
+        right: 0;
     }
 }

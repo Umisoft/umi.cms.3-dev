@@ -120,7 +120,7 @@ define(['App', 'text!./splitButton.hbs'],
 
             UMI.splitButtonBehaviour = UMI.GlobalBehaviour.extend({
                 dropUp: {
-                    classNames: ['dropup']
+                    classNames: ['split-dropup']
                 },
 
                 contextMenu: {

@@ -4644,7 +4644,9 @@ select {
   white-space: nowrap;
   width: auto;
   min-width: 100%;
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  border: none;
+  box-shadow: 0 0 5px 1px #AFB4BB; }
   .f-dropdown.right {
     right: 0;
     left: auto; }
@@ -4688,8 +4690,6 @@ select {
   .dropdown.coupled.open > .button.white {
     background: #fff; }
   .dropdown.coupled .f-dropdown {
-    border: none;
-    box-shadow: 0 0 5px 1px #AFB4BB;
     width: auto;
     min-width: 300px; }
 
@@ -4732,6 +4732,9 @@ fieldset {
   height: 1.909375rem;
   line-height: 1.909375rem; }
 
+label {
+  display: inline-block; }
+
 .error input, .error textarea, .error select {
   margin-bottom: 0.8125rem; }
 
@@ -4749,6 +4752,12 @@ fieldset {
     padding-right: 2.25rem; }
   .split.button.square.tiny {
     padding-right: 2rem; }
+.split.button.split-dropup span:before {
+  border-top-color: transparent;
+  border-bottom-color: #fff;
+  top: 0.5625rem; }
+.split.button.split-dropup .f-dropdown {
+  bottom: 100%; }
 .split.button.open.white {
   background: #fff; }
 .split.button.open .f-dropdown {
@@ -5451,6 +5460,11 @@ form .input-icon {
     form .input-icon ~ input.collapse {
       margin-bottom: 0; }
 
+.umi-form-label {
+  display: inline-block;
+  font-size: 0.8125rem;
+  margin-bottom: 0.3125rem; }
+
 .umi-form-control {
   background: #f5f6f7; }
 
@@ -5470,6 +5484,9 @@ form .input-icon {
     border-right: 0; }
     .umi-form-control-buttons > li > .button:last-child {
       border-right: 1px solid #D1D1D1; }
+  .umi-form-control-buttons .f-dropdown {
+    left: auto;
+    right: 0; }
 
 .umi-validator span.error, .umi-validator small.error {
   position: absolute;
@@ -5659,7 +5676,8 @@ input[type="radio"]:checked + label span {
 
 select {
   border-radius: 0;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-size: 0.8125rem; }
   select:focus {
     box-shadow: 0 0 5px #999999;
     outline: none; }
@@ -6125,7 +6143,7 @@ table td {
     .umi-table-control-content-fixed-right .umi-table-control-control-cell-empty:nth-of-type(odd) {
       background: #E9F1F7; }
   .umi-table-control-content-fixed-right .f-dropdown {
-    margin-top: 6px;
+    margin-top: 7px;
     right: -1px;
     left: auto;
     width: auto; }
@@ -6517,8 +6535,8 @@ table td {
       .umi-tree .umi-tree-context-toolbar .split.button .button-label {
         display: none; }
       .umi-tree .umi-tree-context-toolbar .split.button .f-dropdown {
-        margin-top: 7px;
-        right: -2px;
+        margin-top: 8px;
+        right: -1px;
         left: auto;
         width: auto; }
 

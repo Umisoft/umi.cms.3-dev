@@ -9,6 +9,10 @@ fieldset{
     line-height: ($form-label-font-size + ($form-spacing * 1.35));
 }
 
+label{
+    display: inline-block;
+}
+
 .error {
     input,
     textarea,
