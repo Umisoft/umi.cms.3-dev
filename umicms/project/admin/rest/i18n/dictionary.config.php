@@ -42,8 +42,20 @@ return [
 
         'Rows on page' => 'Rows on page',
         'No data' => 'No data',
-        'Nothing is selected' => 'Nothing is selected'
+        'Nothing is selected' => 'Nothing is selected',
 
+        'role:viewer:displayName' => 'View admin panel',
+        'role:blogExecutor:displayName' => 'Blog',
+        'role:serviceExecutor:displayName' => 'Service',
+        'role:filesExecutor:displayName' => 'File manager',
+        'role:modelsExecutor:displayName' => 'Models data',
+        'role:newsExecutor:displayName' => 'News',
+        'role:seoExecutor:displayName' => 'SEO',
+        'role:searchExecutor:displayName' => 'Search',
+        'role:statisticsExecutor:displayName' => 'Statistics',
+        'role:structureExecutor:displayName' => 'Structure',
+        'role:usersExecutor:displayName' => 'Users',
+        'role:settingsExecutor:displayName' => 'Settings'
     ],
 
     'ru-RU' => [
@@ -79,7 +91,20 @@ return [
 
         'Rows on page' => 'Строк на странице',
         'No data' => 'Нет данных',
-        'Nothing is selected' => 'Ничего не выбрано'
+        'Nothing is selected' => 'Ничего не выбрано',
+
+        'role:viewer:displayName' => 'Просмотр административной панели',
+        'role:blogExecutor:displayName' => 'Блог',
+        'role:serviceExecutor:displayName' => 'Сервис',
+        'role:filesExecutor:displayName' => 'Файловый менеджер',
+        'role:modelsExecutor:displayName' => 'Модели данных',
+        'role:newsExecutor:displayName' => 'Новости',
+        'role:seoExecutor:displayName' => 'SEO',
+        'role:searchExecutor:displayName' => 'Поиск',
+        'role:statisticsExecutor:displayName' => 'Статистика',
+        'role:structureExecutor:displayName' => 'Структура сайта',
+        'role:usersExecutor:displayName' => 'Пользователи',
+        'role:settingsExecutor:displayName' => 'Настройки'
     ]
 
 ];

@@ -12,12 +12,22 @@ return [
 
     'en-US' => [
         'Publish' => 'Publish',
-        'Reject' => 'Reject'
+        'Unpublish' => 'Unpublish',
+        'Reject' => 'Reject',
+
+        'role:moderator:displayName' => 'Moderating',
+        'role:viewer:displayName' => 'Viewer comments',
+        'role:addExecutor:displayName' => 'Сommentation'
     ],
 
     'ru-RU' => [
         'Publish' => 'Опубликовать',
-        'Reject' => 'Отклонить'
+        'Unpublish' => 'Снять с публикации',
+        'Reject' => 'Отклонить',
+
+        'role:moderator:displayName' => 'Модерирование комментариев',
+        'role:viewer:displayName' => 'Просмотр комментариев',
+        'role:addExecutor:displayName' => 'Комментирование'
     ]
 
 ];

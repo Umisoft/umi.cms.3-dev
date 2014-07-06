@@ -16,7 +16,9 @@ use umi\pagination\IPaginator;
 use umi\pagination\TPaginationAware;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\OutOfBoundsException;
+use umicms\orm\object\ICmsObject;
 use umicms\orm\selector\CmsSelector;
+use umicms\orm\selector\TSelectorConfigurator;
 use umicms\templating\helper\PaginationHelper;
 
 /**
@@ -26,6 +28,7 @@ use umicms\templating\helper\PaginationHelper;
 abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
 {
     use TPaginationAware;
+    use TSelectorConfigurator;
 
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -36,6 +39,15 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
      * Если не указано, выводятся все элементы.
      */
     public $limit;
+    /**
+     * @var int $offset сдвиг.
+     * Игнорируется при заданных настройках вывода постраничной навигации
+     */
+    public $offset;
+    /**
+     * @var array $options настройки селектора
+     */
+    public $options = [];
     /**
      * @var array $pagination настройки вывода постраничной навигации в формате
      * [
@@ -50,6 +62,11 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
      *
      */
     public $pagination = [];
+    /**
+     * @var bool $fullyLoad признак необходимости загружать все свойства объектов списка.
+     * Список полей для загрузки, занный опциями, при значении true игнорируется.
+     */
+    public $fullyLoad;
 
     /**
      * Возвращает выборку для постраничной навигации.
@@ -75,11 +92,10 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
             ];
         } else {
             if ($this->limit) {
-                $selector->limit($this->limit);
+                $selector->limit($this->limit, $this->offset);
             }
             $result = ['list' => $selector];
         }
-
         return $this->createResult($this->template, $result);
     }
 
@@ -90,7 +106,26 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
      */
     protected function applySelectorConditions(CmsSelector $selector)
     {
-        //TODO применение фильтров
+        if (!$this->fullyLoad) {
+            $fields = ICmsObject::FIELD_DISPLAY_NAME;
+            if (isset($this->options['fields'])) {
+                $fields = $fields . ',' . $this->options['fields'];
+            }
+            $this->applySelectorSelectedFields($selector, $fields);
+        }
+
+        if (isset($this->options['with']) && is_array($this->options['with'])) {
+            $this->applySelectorWith($selector, $this->options['with']);
+        }
+
+        if (isset($this->options['orderBy']) && is_array($this->options['orderBy'])) {
+            $this->applySelectorOrderBy($selector, $this->options['orderBy']);
+        }
+
+        if (isset($this->options['filters']) && is_array($this->options['filters'])) {
+            $this->applySelectorConditionFilters($selector, $this->options['filters']);
+        }
+
         return $selector;
     }
 

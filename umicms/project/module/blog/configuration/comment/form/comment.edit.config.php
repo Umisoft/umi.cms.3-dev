@@ -41,13 +41,24 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'contents',
             'elements' => [
+                BlogComment::FIELD_POST => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => BlogComment::FIELD_POST,
+                    'options' => [
+                        'lazy' => true,
+                        'dataSource' => BlogComment::FIELD_POST
+                    ]
+                ],
                 BlogComment::FIELD_AUTHOR => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogComment::FIELD_AUTHOR,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => BlogComment::FIELD_AUTHOR
                     ],
+                    'attributes' => [
+                        'disabled' => 'disabled'
+                    ]
                 ],
                 BlogComment::FIELD_PUBLISH_TIME => [
                     'type' => DateTime::TYPE_NAME,
@@ -58,13 +69,13 @@ return [
                 ],
                 BlogComment::FIELD_PUBLISH_STATUS => [
                     'type' => Select::TYPE_NAME,
-                    'lazy' => true,
                     'label' => BlogComment::FIELD_PUBLISH_STATUS,
                     'options' => [
                         'dataSource' => BlogComment::FIELD_PUBLISH_STATUS,
                         'choices' => [
                             BlogComment::COMMENT_STATUS_NEED_MODERATE => BlogComment::COMMENT_STATUS_NEED_MODERATE,
                             BlogComment::COMMENT_STATUS_REJECTED => BlogComment::COMMENT_STATUS_REJECTED,
+                            BlogComment::COMMENT_STATUS_UNPUBLISHED => BlogComment::COMMENT_STATUS_UNPUBLISHED,
                             BlogComment::COMMENT_STATUS_PUBLISHED => BlogComment::COMMENT_STATUS_PUBLISHED
                         ]
                     ]

@@ -29,6 +29,7 @@ use umicms\orm\object\CmsHierarchicObject;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
 use umicms\project\module\service\model\object\Backup;
+use umicms\project\module\users\model\object\RegisteredUser;
 
 /**
  * Контроллер действий над объектом.
@@ -249,7 +250,8 @@ class ActionController extends BaseController
         /**
          * @var IRecoverableObject $object
          */
-        return $collection->getBackupList($object);
+        return $collection->getBackupList($object)
+            ->with(Backup::FIELD_OWNER, [RegisteredUser::FIELD_DISPLAY_NAME]);
     }
 
     /**
