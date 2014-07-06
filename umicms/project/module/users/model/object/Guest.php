@@ -12,10 +12,12 @@ namespace umicms\project\module\users\model\object;
 
 /**
  * Незарегистрированный пользователь.
- *
  */
 class Guest extends BaseUser
 {
-
+    /**
+     * Имя типа.
+     */
+    const TYPE_NAME = 'guest';
 }
  

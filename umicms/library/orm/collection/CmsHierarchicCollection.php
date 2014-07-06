@@ -13,7 +13,9 @@ namespace umicms\orm\collection;
 use umi\orm\collection\SimpleHierarchicCollection;
 use umi\orm\metadata\field\special\MaterializedPathField;
 use umicms\exception\InvalidArgumentException;
+use umicms\exception\RuntimeException;
 use umicms\orm\object\CmsHierarchicObject;
+use umicms\orm\object\ICmsObject;
 use umicms\orm\selector\CmsSelector;
 
 /**
@@ -80,4 +82,54 @@ class CmsHierarchicCollection extends SimpleHierarchicCollection implements ICms
         return $selector;
     }
 
+    /**
+     * Разрешено ли использование slug.
+     * @param CmsHierarchicObject|ICmsObject $object объект, слаг которого необходимо проверить
+     * @throws RuntimeException в случае если пришёл неверный объект или коллекция объекта не совпадает с коллекцией, в которой проверяется slug
+     * @return bool
+     */
+    public function isAllowedSlug(ICmsObject $object)
+    {
+        if (!$object instanceof CmsHierarchicObject) {
+            throw new RuntimeException($this->translate(
+                'Cannot check slug. Object should be instance of "{class}".',
+                [
+                    'class' => CmsHierarchicObject::className()
+                ]
+            ));
+        }
+
+        if (!$this->contains($object)) {
+            throw new RuntimeException($this->translate(
+                'Object from collection "{objectCollection}" does not belong to "{collection}".',
+                [
+                    'objectCollection' => $object->getCollectionName(),
+                    'collection' => $this->getName()
+                ]
+            ));
+        }
+
+        if ($object->getIsNew() && $this->hasSlug($object)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Проверяет используется ли slug, учитывая родителя объекта.
+     * @param CmsHierarchicObject $object объект, для которого необходимо проверить уникальность slug'а
+     * @return bool
+     */
+    protected function hasSlug(CmsHierarchicObject $object)
+    {
+        $select = $this->select()
+            ->fields([CmsHierarchicObject::FIELD_IDENTIFY])
+            ->where(CmsHierarchicObject::FIELD_SLUG)
+                ->equals($object->getProperty(CmsHierarchicObject::FIELD_SLUG)->getValue())
+            ->where(CmsHierarchicObject::FIELD_PARENT)
+                ->equals($object->getParent());
+
+        return (bool) $select->getTotal();
+    }
 }

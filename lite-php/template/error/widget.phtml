@@ -1,17 +1,28 @@
 <?php
 /** @var \Exception $error */
 /** @var int $code */
+/** @var bool $showTrace */
+/** @var bool $showStack */
 ?>
 
-<?php if(isset($code) && $code == 403): ?>
-    <pre><?= $error->getMessage() ?></pre>
+<?php if ($code == 404):?>
+    <h1>A 404 error occurred</h1>
+
+    <h2><?= $error->getMessage() ?></h2>
+
+<?php elseif($code == 403): ?>
+    <h1>Access denied</h1>
+
+    <h2><?= $error->getMessage() ?></h2>
 <?php else: ?>
+    <h1>An error occurred</h1>
+
+    <h2><?= $error->getMessage(); ?></h2>
+<?php endif;?>
+
+<?php if ($showTrace):?>
 
     <div>
-        <h1>An error occurred</h1>
-
-        <h2><?= $error->getMessage(); ?></h2>
-
         <hr/>
         <h2>Additional information:</h2>
 
@@ -30,9 +41,12 @@
                 <pre><?= $error->getTraceAsString() ?></pre>
             </dd>
         </dl>
+    </div>
+<?php endif;?>
+<?php if ($showStack):?>
+    <div>
         <?php
         $error = $error->getPrevious();
-
         if ($error) :
             ?>
             <hr/>
@@ -63,5 +77,4 @@
             </ul>
         <?php endif; ?>
     </div>
-
 <?php endif;?>

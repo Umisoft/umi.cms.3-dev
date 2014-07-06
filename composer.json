@@ -9,7 +9,8 @@
         "psr-4": {
             "umicms\\": "umicms/library",
             "umicms\\project\\" : "umicms/project",
-            "project\\" : ""
+            "project\\" : "",
+            "tests\\" : "tests"
         },
         "classmap": ["umicms/project/module/files/admin/manager/elfinder"]
     },
@@ -25,24 +26,10 @@
         "ezyang/htmlpurifier": "dev-master",
         "jbroadway/urlify": "1.0.3"
     },
-    "require-dev":{
-        "mockery/mockery": "0.9.*"
-    },
     "repositories":[
         {
             "type": "git",
             "url": "git@github.com:Umisoft/umi.framework-dev.git"
         }
-    ],
-    "scripts": {
-        "post-install-cmd": [
-            "cd ./installer/public/resources",
-            "bower install"
-        ],
-        "post-update-cmd": [
-            "cd ./installer/public/resources",
-            "bower update"
-        ]
-    }
-
+    ]
 }

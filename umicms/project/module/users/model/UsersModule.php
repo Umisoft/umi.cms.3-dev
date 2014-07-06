@@ -17,7 +17,7 @@ use umi\authentication\TAuthenticationAware;
 use umicms\module\BaseModule;
 use umicms\project\module\users\model\collection\UserCollection;
 use umicms\project\module\users\model\collection\UserGroupCollection;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\object\Guest;
 use umicms\project\module\users\model\object\Supervisor;
 use umicms\project\module\users\model\object\UserGroup;
@@ -90,10 +90,10 @@ class UsersModule extends BaseModule implements IAuthenticationAware
 
     /**
      * Регистрирует пользователя в системе.
-     * @param AuthorizedUser $user
-     * @return AuthorizedUser
+     * @param RegisteredUser $user
+     * @return RegisteredUser
      */
-    public function register(AuthorizedUser $user)
+    public function register(RegisteredUser $user)
     {
         if ($this->user()->getIsRegistrationWithActivation()) {
             $this->user()->deactivate($user);
@@ -124,7 +124,7 @@ class UsersModule extends BaseModule implements IAuthenticationAware
     /**
      * Активирует неактивированного пользователя по ключу авторизации.
      * @param string $activationCode
-     * @return AuthorizedUser
+     * @return RegisteredUser
      */
     public function activate($activationCode)
     {
@@ -138,7 +138,7 @@ class UsersModule extends BaseModule implements IAuthenticationAware
     /**
      * Выставляет пользователю новый пароль по ключу активации.
      * @param string $activationCode
-     * @return AuthorizedUser
+     * @return RegisteredUser
      */
     public function changePassword($activationCode)
     {
@@ -178,7 +178,7 @@ class UsersModule extends BaseModule implements IAuthenticationAware
     /**
      * Возвращает авторизованного пользователя.
      * @throws RuntimeException если пользователь не был авторизован
-     * @return AuthorizedUser авторизованный пользователь.
+     * @return RegisteredUser авторизованный пользователь.
      */
     public function getCurrentUser()
     {
@@ -189,10 +189,10 @@ class UsersModule extends BaseModule implements IAuthenticationAware
 
     /**
      * Устанавливает авторизованного пользователя.
-     * @param AuthorizedUser $user
+     * @param RegisteredUser $user
      * @return $this
      */
-    public function setCurrentUser(AuthorizedUser $user)
+    public function setCurrentUser(RegisteredUser $user)
     {
         $this->getDefaultAuthManager()
             ->getStorage()

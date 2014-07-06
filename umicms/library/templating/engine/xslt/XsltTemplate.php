@@ -11,11 +11,9 @@
 namespace umicms\templating\engine\xslt;
 
 use DOMDocument;
-use DOMNode;
-use DOMXPath;
+use umi\http\Response;
 use umi\templating\exception\RuntimeException;
 use umicms\exception\LibXMLException;
-use umicms\project\site\SiteApplication;
 use umicms\serialization\ISerializationAware;
 use umicms\serialization\TSerializationAware;
 use XSLTProcessor;
@@ -42,35 +40,16 @@ class XsltTemplate implements ISerializationAware
     }
 
     /**
-     * Вызывает виджет через стрим.
-     * @param string $widgetName имя виджета
-     * @param string $paramString параметры для вызова виджета
-     * @return string результат работы виджета
-     */
-    public static function callWidget($widgetName, $paramString = '')
-    {
-        $uri = SiteApplication::WIDGET_PROTOCOL . '://' . $widgetName;
-        if ($paramString) {
-            $uri .= '?' . $paramString;
-        }
-        $result = file_get_contents($uri);
-
-        $dom = new DOMDocument('1.0', 'utf8');
-        $dom->loadXML($result);
-
-        return $dom;
-    }
-
-    /**
      * Запускает XSLT-шаблонизацию.
      * @param string $templateName имя XSL-шаблона
      * @param string $xmlData данные в XML
-     * @throws \umi\templating\exception\RuntimeException
+     * @throws RuntimeException
+     * @throws LibXMLException
      * @return string
      */
     public function render($templateName, $xmlData)
     {
-        $templateFilePath = $this->findTemplate($templateName);
+        $templateFilePath = $this->templateEngine->findTemplate($templateName);
         if (!is_readable($templateFilePath)) {
             throw new RuntimeException(sprintf(
                 'Cannot render template "%s". XSLT Template file "%s" is not readable.',
@@ -79,41 +58,44 @@ class XsltTemplate implements ISerializationAware
             ));
         }
 
+        libxml_use_internal_errors(true);
+
         $template = $this->createDomDocument(file_get_contents($templateFilePath));
-        $this->prepareTemplate($template);
-        $template = $this->createDomDocument($template->saveXML());
 
         $data = $this->createDomDocument($xmlData);
 
         $xslt = new XSLTProcessor();
         $xslt->registerPHPFunctions();
+
+        libxml_clear_errors();
         $xslt->importStylesheet($template);
 
-        $result = (string) $xslt->transformToXML($data);
+        if ($errors = libxml_get_last_error()) {
+            throw new LibXMLException(
+                sprintf(
+                    'Cannot load template "%s" XML.',
+                    $templateFilePath
+                ),
+                Response::HTTP_INTERNAL_SERVER_ERROR,
+                libxml_get_errors()
+            );
+        }
+
+        $result = (string) @$xslt->transformToXML($data);
+        if ($errors = libxml_get_last_error()) {
+            throw new LibXMLException(
+                sprintf(
+                    'Cannot transform template "%s" to XML.',
+                    $templateFilePath
+                ),
+                Response::HTTP_INTERNAL_SERVER_ERROR,
+                libxml_get_errors()
+            );
+        }
 
         return $result;
     }
 
-    protected function prepareTemplate(DOMDocument $template)
-    {
-        $xpath = new DOMXPath($template);
-
-        /**
-         * @var DOMNode $widgetNode
-         */
-        foreach ($xpath->query('//umi:widget') as $widgetNode) {
-            if ($widgetName = $widgetNode->attributes->getNamedItem('name')) {
-                $functionNode = $template->createElement('xsl:apply-templates');
-                $function = 'php:function(\'' .__CLASS__ . '::callWidget\'';
-                $function .= ', \'' . $widgetName->nodeValue . '\')/result';
-                $functionNode->setAttribute('select', $function);
-
-                $widgetNode->parentNode->replaceChild($functionNode, $widgetNode);
-            }
-
-        }
-
-    }
     /**
      * Создает DOMDocument из xml-строки
      * @param string $xmlString
@@ -126,29 +108,16 @@ class XsltTemplate implements ISerializationAware
         $document->substituteEntities = true;
         $document->formatOutput = true;
 
+        libxml_clear_errors();
         @$document->loadXML($xmlString);
-
-        if ($error = libxml_get_last_error()) {
-            libxml_clear_errors();
-            throw new LibXMLException($error);
+        if ($errors = libxml_get_last_error()) {
+            throw new LibXMLException(
+                'Cannot create DOMDocument.',
+                Response::HTTP_INTERNAL_SERVER_ERROR,
+                libxml_get_errors()
+            );
         }
 
         return $document;
-    }
-
-    protected function findTemplate($templateName)
-    {
-        $directories = $this->templateEngine->getTemplateDirectories();
-
-        foreach($directories as $directory) {
-            $templateFilePath = $directory . DIRECTORY_SEPARATOR . $templateName;
-            if (is_file($templateFilePath)) {
-                return $templateFilePath;
-            }
-        }
-
-        throw new RuntimeException(
-            sprintf('Unable to find template "%s" (looked into: %s).', $templateName, implode(', ', $directories))
-        );
     }
 }

@@ -1,11 +1,11 @@
-{% if (tree) %}
-    <ul>
+{% if (tree|length) %}
+<ul>
     {% for node in tree %}
         <li>
             {{ widget('blog.comment.view', {'blogComment' : node.item, 'template' : 'view'}) }}
-            {{ widget('blog.comment.add.addForm', {'blogPost' : node.item.post, 'blogComment' : node.item, 'template' : 'addComment'}) }}
+            {{ widget('blog.comment.add.addForm', {'blogPost' : node.item.post, 'blogComment' : node.item, 'template' : 'addSubComment'}) }}
             {{ include('list.twig', {'tree' : node.children}) }}
         </li>
     {% endfor %}
-    </ul>
+</ul>
 {% endif %}

@@ -17,8 +17,30 @@ use LibXMLError;
  */
 class LibXMLException extends \RuntimeException implements IException
 {
-    public function __construct(libXMLError $error) {
-        parent::__construct($error->message, $error->code);
+    /**
+     * @var LibXMLError[] $errors
+     */
+    protected $errors;
+
+    /**
+     * {@inheritdoc}
+     * @param string $message
+     * @param int $code
+     * @param LibXMLError[] $errors
+     */
+    public function __construct($message = "", $code = 0, array $errors) {
+        parent::__construct($message, $code);
+
+        $this->errors = $errors;
+    }
+
+    /**
+     * Возвращает ошибки, породившие исключение
+     * @return LibXMLError[]
+     */
+    public function getErrors()
+    {
+        return $this->errors;
     }
 }
  
