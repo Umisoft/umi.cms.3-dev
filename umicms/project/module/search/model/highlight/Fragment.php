@@ -7,7 +7,8 @@
  * @license For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace umicms\project\module\search\highlight;
+
+namespace umicms\project\module\search\model\highlight;
 
 /**
  * Фрагмент поискового текста, состоящий из левой и правой частей и центральной, содержащей поисковое выражение.

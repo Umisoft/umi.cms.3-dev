@@ -37,4 +37,18 @@ class SearchIndex extends CmsObject
      * Когда был записан индекс
      */
     const FIELD_DATE_INDEXED = 'dateIndexed';
+
+
+    /**
+     * Генерирует отображаемое имя, если оно не было установлено.
+     * @return bool
+     */
+    public function validateDisplayName()
+    {
+        if (!$this->displayName) {
+            $this->displayName = 'Index for ' . $this->collectionName . '#' . $this->refGuid;
+        }
+
+        return true;
+    }
 }

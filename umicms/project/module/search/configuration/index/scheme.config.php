@@ -26,15 +26,15 @@ return array_replace_recursive(
                     'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
                 ]
             ],
-            'collection_id' => [
-                'type' => Type::BIGINT,
+            'contents_en' => [
+                'type' => Type::TEXT,
                 'options' => [
-                    'unsigned' => true
+                    'length' => MySqlPlatform::LENGTH_LIMIT_MEDIUMTEXT
                 ]
             ],
-            'date_indexed' => [
-                'type' => Type::DATETIME
-            ],
+            'collection_name' => [
+                'type' => Type::STRING
+            ]
         ]
     ]
 );

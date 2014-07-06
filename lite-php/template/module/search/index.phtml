@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @var umicms\project\module\structure\model\object\SystemPage $page
+ * @var umi\form\IForm $form
+ * @var string $query
+ * @var umicms\orm\object\ICmsPage[] $searchResults
+ * @var umicms\orm\object\ICmsPage $result
+ */
+
+?>
+
+
+<div class="blog-post">
+    <h2 class="blog-post-title"><?=$page->displayName?></h2>
+    <?=$page->contents?>
+
+    <?= $this->render('form/form.phtml', ['form' => $form]) ?>
+
+    <?php if (is_null($searchResults)) :?>
+        <p><?=$this->translate('No query')?></p>
+
+    <?php elseif(empty($searchResults)) :?>
+        <p><?=$this->translate('No results')?></p>
+
+    <?php else :?>
+        <?php foreach ($searchResults as $result) :?>
+            <div>
+                <h3>
+                    <a href="<?= $result->getPageUrl() ?>"><?= $result->displayName ?></a>
+                </h3>
+                <?= $this->widget('search.fragments', ['query' => $query, 'result' => $searchResults]); ?>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+</div>

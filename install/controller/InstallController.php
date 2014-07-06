@@ -32,6 +32,7 @@ use umicms\orm\dump\ICmsObjectDumpAware;
 use umicms\orm\dump\TCmsObjectDumpAware;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\object\ICmsPage;
 use umicms\project\module\blog\model\collection\BlogCommentCollection;
 use umicms\project\module\blog\model\collection\BlogPostCollection;
 use umicms\project\module\blog\model\object\BlogComment;
@@ -97,7 +98,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
     {
         $this->dbCluster = $dbCluster;
         $this->usersModule = $usersModule;
-        $this->searchIndexApi = $searchModule->getSearchApi();
+        $this->searchIndexApi = $searchModule->getSearchIndexApi();
     }
 
     /**
@@ -1424,31 +1425,6 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         }
     }
 
-    private function installSearch()
-    {
-        /**
-         * @var SimpleHierarchicCollection $structureCollection
-         */
-        $structureCollection = $this->getCollectionManager()->getCollection('structure');
-        $searchRoot = $structureCollection->add('search', 'system')
-            ->setValue('displayName', 'Поиск')
-            ->setGUID('9ee6745f-f40d-46d8-8043-d901234628ce');
-
-        $searchRoot->getProperty('locked')->setValue(true);
-        $searchRoot->getProperty('componentName')->setValue('search');
-        $searchRoot->getProperty('componentPath')->setValue('search');
-
-
-//        $this->searchIndexApi->buildIndex('structure');
-        $this->searchIndexApi->buildIndex('newsRubric');
-        $this->searchIndexApi->buildIndex('newsItem');
-        $this->searchIndexApi->buildIndex('newsSubject');
-        $this->searchIndexApi->buildIndex('blogCategory');
-        $this->searchIndexApi->buildIndex('blogPost');
-        $this->searchIndexApi->buildIndex('blogComment');
-        $this->commit();
-    }
-
     /**
      * Записывает изменения всех объектов в БД (бизнес транзакция),
      * запуская перед этим валидацию объектов.
@@ -1463,7 +1439,6 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $currentUser = $this->usersModule->user()->get('68347a1d-c6ea-49c0-9ec3-b7406e42b01e');
 
         $persister = $this->getObjectPersister();
-
         /**
          * @var ICmsObject|IRecoverableObject $object
          */
@@ -1471,6 +1446,14 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             $collection = $object->getCollection();
             if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
                 $collection->createBackup($object);
+            }
+            if ($object instanceof ICmsPage) {
+                $this->searchIndexApi->buildSiteIndexForObjects([$object]);
+            }
+        }
+        foreach ($persister->getNewObjects() as $object) {
+            if ($object instanceof ICmsPage) {
+                $this->searchIndexApi->buildSiteIndexForObjects([$object]);
             }
         }
         foreach ($persister->getNewObjects() as $object) {

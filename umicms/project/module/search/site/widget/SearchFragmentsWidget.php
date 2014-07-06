@@ -12,8 +12,9 @@ namespace umicms\project\module\search\site\widget;
 
 use Exception;
 use umi\http\THttpAware;
+use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseCmsWidget;
-use umicms\orm\object\ICmsObject;
+use umicms\orm\object\ICmsPage;
 use umicms\project\module\search\model\SearchApi;
 use umicms\project\module\search\model\SearchIndexApi;
 
@@ -25,20 +26,17 @@ class SearchFragmentsWidget extends BaseCmsWidget
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'search/fragments';
+    public $template = 'fragments';
     /**
-     * Результат поиска
-     * @var ICmsObject $result
+     * @var ICmsPage $result страница, которая попала в результат поиска
      */
-    public $result;
+    public $page;
     /**
-     * Запрос, по которому найден результат
-     * @var string $query
+     * @var string $query запрос, по которому найден результат
      */
     public $query;
     /**
-     * Сколько слов контекста выводить в цитате
-     * @var int $contextWordsLimit
+     * @var int $contextWordsLimit сколько слов контекста выводить в цитате
      */
     public $contextWordsLimit = 5;
 
@@ -67,10 +65,20 @@ class SearchFragmentsWidget extends BaseCmsWidget
      */
     public function __invoke()
     {
-        $content = $this->indexApi->extractSearchableContent($this->result);
+        if (!$this->page instanceof ICmsPage) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Option "{option}" should be instance of class "{class}".',
+                    ['option' => 'page', 'class' => 'umicms\orm\object\ICmsPage']
+                )
+            );
+        }
+
+        $content = $this->indexApi->extractSearchableContent($this->page);
         try {
             $fragmenter = $this->searchApi->getResultFragmented($this->query, $content)
                 ->fragmentize($this->contextWordsLimit);
+
             return $this->createResult(
                 $this->template,
                 [

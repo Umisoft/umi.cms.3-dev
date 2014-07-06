@@ -12,22 +12,16 @@ namespace umicms\project\module\search\model;
 
 use umi\dbal\builder\IExpressionGroup;
 use umi\dbal\builder\ISelectBuilder;
-use umi\event\IEventObservant;
-use umi\event\TEventObservant;
-use umi\orm\collection\TCollectionManagerAware;
 use umicms\orm\collection\ICmsCollection;
-use umicms\orm\object\ICmsObject;
-use umicms\project\module\search\highlight\Fragmenter;
+use umicms\orm\object\ICmsPage;
+use umicms\project\module\search\model\highlight\Fragmenter;
 use umicms\project\module\search\model\object\SearchIndex;
-use utest\event\TEventSupport;
 
 /**
  * Публичный интерфейс поиска по модулям CMS
  */
-class SearchApi extends BaseSearchApi implements IEventObservant
+class SearchApi extends BaseSearchApi
 {
-    use TEventObservant;
-
     /**
      * Минимальная длина слова в поисковом запросе.
      * Чем она больше, тем меньше нагрузка на поисковый движок.
@@ -44,44 +38,37 @@ class SearchApi extends BaseSearchApi implements IEventObservant
     /**
      * Ищет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
      * @param string $searchString
-     * @return array
+     * @return ICmsPage[]
      */
     public function search($searchString)
     {
-        $this->fireEvent('search.before', ['query' => $searchString]);
         if (mb_strlen($searchString, 'utf-8') < $this->minimumPhraseLength) {
             return [];
         }
 
-        $searchCollection = $this->getSearchIndexCollection();
+        $searchCollection = $this->getSiteIndexCollection();
 
-        $collectionNameCol = $searchCollection->getMetadata()
+        $collectionColumnName = $searchCollection->getMetadata()
             ->getField(SearchIndex::FIELD_COLLECTION_NAME)
             ->getColumnName();
-        $refGuidCol = $searchCollection->getMetadata()
+
+        $refGuidColumnName = $searchCollection->getMetadata()
             ->getField(SearchIndex::FIELD_REF_GUID)
             ->getColumnName();
 
         $selectBuilder = $this->buildQueryCondition(
+            $searchCollection,
             $this->normalizeSearchString($searchString),
             $this->detectWordBases($searchString)
         );
+
         $result = [];
         foreach ($selectBuilder->execute() as $searchResult) {
-            /** @var $searchResult ICmsObject */
-            $result[] = $this->getCollectionManager()
-                ->getCollection($searchResult[$collectionNameCol])
-                ->get($searchResult[$refGuidCol]);
-        }
 
-        $this->fireEvent(
-            'search.after',
-            [
-                'query' => $searchString,
-                'selectBuilder' => $selectBuilder,
-                'result' => $result
-            ]
-        );
+            $result[] = $this->getCollectionManager()
+                ->getCollection($searchResult[$collectionColumnName])
+                ->get($searchResult[$refGuidColumnName]);
+        }
 
         return $result;
     }
@@ -110,6 +97,7 @@ class SearchApi extends BaseSearchApi implements IEventObservant
             $highlightStart . '$1' . $highlightEnd,
             $text
         );
+
         return $highlight;
     }
 
@@ -126,6 +114,7 @@ class SearchApi extends BaseSearchApi implements IEventObservant
     {
         $searchReParts = $this->extractSearchRegexpForms($query, $content, false);
         $wordsRegexp = '(' . implode("|", $searchReParts) . ')';
+
         return new Fragmenter($content, $wordsRegexp);
     }
 
@@ -212,14 +201,15 @@ class SearchApi extends BaseSearchApi implements IEventObservant
     /**
      * Собирает условие поиска в бд по полнотекстовому индексу, в зависимости от используемой бд.
      * Позволяет модифицировать это условие после формирования, с помощью подписки на событие search.buildCondition.
+     * @param ICmsCollection $collection
      * @param array $words искомые слова
      * @param array $wordBases базовые формы искомых слов для второстепенных совпадений
      * @return ISelectBuilder
      */
-    protected function buildQueryCondition($words, array $wordBases)
+    protected function buildQueryCondition($collection, array $words, array $wordBases)
     {
-        $searchIndexCollection = $this->getSearchIndexCollection();
-        $searchMetadata = $searchIndexCollection->getMetadata();
+
+        $searchMetadata = $collection->getMetadata();
         $collectionNameColumn = $searchMetadata->getField(SearchIndex::FIELD_COLLECTION_NAME)->getColumnName();
         $refGuidColumn = $searchMetadata->getField(SearchIndex::FIELD_REF_GUID)->getColumnName();
         $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)->getColumnName();
@@ -250,8 +240,6 @@ class SearchApi extends BaseSearchApi implements IEventObservant
                 ->bindString(':searchLikeCondition', "%" . $this->buildLikeQueryPart($wordBases) . "%");
         }
 
-        $this->fireEvent('search.buildCondition', ['selectBuilder' => $select]);
-
         return $select;
     }
 
@@ -265,24 +253,15 @@ class SearchApi extends BaseSearchApi implements IEventObservant
     {
         $bases = [];
         $parts = preg_split('/[\s_-]+/u', $phrase);
+
         foreach ($parts as &$part) {
-            $partBase = $this->getStemming()
-                ->getCommonRoot($part);
+            $partBase = $this->getStemming()->getCommonRoot($part);
             if (is_numeric($partBase) || (mb_strlen($partBase) > $this->minimumWordRootLength)) {
                 $bases[] = $partBase;
             }
         }
-        return $bases;
-    }
 
-    /**
-     * Возвращает коллекцию объектов поискового индекса.
-     * @return ICmsCollection
-     */
-    public function getSearchIndexCollection()
-    {
-        return $this->getCollectionManager()
-            ->getCollection('searchIndex');
+        return $bases;
     }
 
     /**

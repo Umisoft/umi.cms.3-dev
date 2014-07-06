@@ -17,12 +17,11 @@ use umicms\module\BaseModule;
 */
 class SearchModule extends BaseModule
 {
-    //TODO
-
     /**
+     * Возвращает API индексации
      * @return SearchIndexApi
      */
-    public function getSearchApi()
+    public function getSearchIndexApi()
     {
         return $this->getApi('umicms\project\module\search\model\SearchIndexApi');
     }

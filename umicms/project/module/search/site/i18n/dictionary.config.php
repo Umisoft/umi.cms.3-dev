@@ -11,11 +11,14 @@
 return [
 
     'en-US' => [
-        'component:models:displayName' => 'Models'
+        'Search' => 'Search',
+        'Query' => 'Query',
+        'role:viewer:displayName' => 'Search',
     ],
 
     'ru-RU' => [
-        'component:models:displayName' => 'Шаблоны данных'
+        'Search' => 'Поиск',
+        'Query' => 'Запрос',
+        'role:viewer:displayName' => 'Поиск',
     ]
-
 ];

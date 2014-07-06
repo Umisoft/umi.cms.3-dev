@@ -7,7 +7,8 @@
  * @license For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace umicms\project\module\search\highlight;
+
+namespace umicms\project\module\search\model\highlight;
 
 /**
  * Фрагментатор текста по найденным в нем словам.
@@ -89,7 +90,8 @@ class Fragmenter implements \Iterator
     {
         $fragments = [];
         $textLength = mb_strlen($this->text, 'utf-8');
-        $leftPosFrom = $rightPosFrom = $leftPosTo = $rightPosTo = 0;
+
+        $rightPosFrom = $leftPosTo = $rightPosTo = 0;
         foreach ($this->foundMatches as $i => $matchPair) {
             $word = $matchPair['str'];
             if ($i == 0) {

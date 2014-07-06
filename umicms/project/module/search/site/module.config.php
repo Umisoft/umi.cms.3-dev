@@ -10,6 +10,7 @@
 
 namespace umicms\project\module\search\site;
 
+use umi\acl\IAclFactory;
 use umi\route\IRouteFactory;
 use umicms\hmvc\component\site\SiteComponent;
 
@@ -21,9 +22,27 @@ return [
         'search' => 'umicms\project\module\search\site\controller\SearchController'
     ],
     SiteComponent::OPTION_WIDGET => [
-        'search' => __NAMESPACE__ . '\widget\SearchWidget',
+        'form' => __NAMESPACE__ . '\widget\SearchFormWidget',
         'fragments' => __NAMESPACE__ . '\widget\SearchFragmentsWidget',
         'highlight' => __NAMESPACE__ . '\widget\HighlightWidget',
+    ],
+
+    SiteComponent::OPTION_FORMS => [
+        'search' => '{#lazy:~/project/module/search/site/form/search.php}'
+    ],
+
+    SiteComponent::OPTION_ACL => [
+        IAclFactory::OPTION_ROLES => [
+            'viewer' => [],
+        ],
+        IAclFactory::OPTION_RULES => [
+            'viewer' => [
+                'controller:search' => [],
+                'widget:form' => [],
+                'widget:fragments' => [],
+                'widget:highlight' => []
+            ]
+        ]
     ],
 
     SiteComponent::OPTION_VIEW        => [
