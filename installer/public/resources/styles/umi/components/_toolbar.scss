@@ -29,4 +29,10 @@
             }
         }
     }
+    .button-group{
+        white-space: nowrap;
+        > *{
+            display: inline-block;
+        }
+    }
 }

@@ -6390,6 +6390,11 @@ table td {
     .umi-toolbar .s-scroll-wrap .row:hover {
       cursor: pointer;
       background: #C5E2F7; }
+  .umi-toolbar .button-group {
+    white-space: nowrap; }
+    .umi-toolbar .button-group > * {
+      float: none;
+      display: inline-block; }
 
 .umi-top-bar {
   background: linear-gradient(#404959 0%, #181B21 100%);
