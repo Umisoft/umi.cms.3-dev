@@ -24,6 +24,9 @@ return [
             UserGroupCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/group/form/base.create.config.php}'
         ]
     ],
+    'dictionaries' => [
+        'collection.userGroup', 'collection'
+    ],
     UserGroupCollection::IGNORED_TABLE_FILTER_FIELDS => [
         UserGroup::FIELD_ROLES => []
     ]
