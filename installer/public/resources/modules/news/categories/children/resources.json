@@ -1,5 +1,5 @@
 {
-    "settings": {
+    "getFilter": {
         "columns": [
             {
                 "title": "Имя категории",

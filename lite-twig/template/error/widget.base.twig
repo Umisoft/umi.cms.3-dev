@@ -1,6 +1,5 @@
 {% block start %}
 {% endblock %}
-
 {% if code == '404' %}
 
     {% block error404 %}
@@ -18,8 +17,12 @@
 
 {% endif %}
 
+{% if showTrace %}
+    {% block trace %}
+    {% endblock %}
+{% endif %}
 
-{% if stack %}
+{% if showStack and stack %}
 
     {% block start_stack %}
     {% endblock %}

@@ -30,7 +30,8 @@ class ConnectorController extends BaseCmsController
                     'driver'        => 'LocalFileSystem',
                     'path'          => PUBLIC_DIR . '/files',
                     'URL'           => '/files',
-                    'accessControl' => [$this, 'accessControl']
+                    'accessControl' => [$this, 'accessControl'],
+                    'uploadDeny' => ['text/x-php']
                 ]
             ]
         ];
@@ -49,9 +50,8 @@ class ConnectorController extends BaseCmsController
      */
     public function accessControl($attr, $path, $data, $volume)
     {
-        return strpos(basename($path), '.') === 0
-            ? !($attr == 'read' || $attr == 'write')
-            : null;
+        return strpos(basename($path), '.') === 0 ?
+            !($attr == 'read' || $attr == 'write') : null;
     }
 }
  

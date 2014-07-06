@@ -1,4 +1,4 @@
-define([], function(){
+define(['Modernizr'], function(Modernizr){
     "use strict";
 
     return function(UMI){
@@ -9,28 +9,56 @@ define([], function(){
          */
         UMI.Utils = {};
 
+        UMI.Utils.htmlEncode = function(str){
+            str = str + "";
+            return str.replace(/[&<>"']/g, function($0) {
+                return "&" + {"&":"amp", "<":"lt", ">":"gt", '"':"quot", "'":"#39"}[$0] + ";";
+            });
+        };
+
+        UMI.Utils.replacePlaceholder = function(object, pattern){
+            var deserialize;
+            deserialize = pattern.replace(/{\w+}/g, function(key) {
+                if(key){
+                    key = key.slice(1, -1);
+                }
+                return Ember.get(object, key) || key;//TODO: error handling
+            });
+            return deserialize;
+        };
+
+        UMI.Utils.objectsMerge = function(objectBase, objectProperty){
+            Ember.assert('Некорректный тип аргументов. Метод objectsMerge ожидает аргументы с типом "object"', Ember.typeOf(objectBase) === 'object' && Ember.typeOf(objectProperty) === 'object');
+            for(var key in objectProperty){
+                if(objectProperty.hasOwnProperty(key)){
+                    objectBase[key] = objectProperty[key];
+                }
+            }
+        };
+
         /**
          * Local Storage
          */
         UMI.Utils.LS = {
-            init: (function(){
-                if(typeof(localStorage) !== "undefined"){
+            store: localStorage,
+            init: function(){
+                if(Modernizr.localstorage){
                     if(!localStorage.getItem("UMI")){
                         localStorage.setItem("UMI", JSON.stringify({}));
                     }
                 } else{
                     //TODO: Не обрабатывается сутуация когда Local Storage не поддерживается
-                    Ember.assert('Local Storage не поддерживается браузером', typeof(localStorage) !== "undefined");
+                    this.store = {'UMI': JSON.stringify({})};
                 }
-            }()),
+            },
 
             get: function(key){
-                var data = JSON.parse(localStorage['UMI']);
+                var data = JSON.parse(this.store.UMI);
                 return Ember.get(data, key);
             },
 
             set: function(keyPath, value){
-                var data = JSON.parse(localStorage['UMI']);
+                var data = JSON.parse(this.store.UMI);
                 var keys = keyPath.split('.');
                 var i = 0;
                 var setNestedProperty = function getNestedProperty(obj, key, value){
@@ -45,9 +73,21 @@ define([], function(){
                     }
                 };
                 setNestedProperty(data, keys[0], value);
-                localStorage.setItem('UMI', JSON.stringify(data));
+                if(Modernizr.localstorage){
+                    this.store.setItem('UMI', JSON.stringify(data));
+                } else{
+                    this.store.UMI = JSON.stringify(data);
+                }
             }
         };
+
+        Ember.Handlebars.registerHelper('filterClassName', function(value, options){
+            value = Ember.Handlebars.helpers.unbound.apply(this, [value, options]);
+            value =value.replace(/\./g, '__');//TODO: replace all deprecated symbols
+            return value;
+        });
+
+        UMI.Utils.LS.init();
 
         //Проверка браузера на мобильность
         window.mobileDetection = {

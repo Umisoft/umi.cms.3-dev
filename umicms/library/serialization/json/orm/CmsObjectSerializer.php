@@ -11,18 +11,18 @@
 namespace umicms\serialization\json\orm;
 use umi\orm\metadata\field\IField;
 use umi\orm\object\property\IProperty;
-use umicms\hmvc\url\IUrlManagerAware;
-use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
+use umicms\project\site\config\ISiteSettingsAware;
+use umicms\project\site\config\TSiteSettingsAware;
 use umicms\serialization\json\BaseSerializer;
 
 /**
  * JSON-сериализатор для объекта.
  */
-class CmsObjectSerializer extends BaseSerializer implements IUrlManagerAware
+class CmsObjectSerializer extends BaseSerializer implements ISiteSettingsAware
 {
-    use TUrlManagerAware;
+    use TSiteSettingsAware;
 
     /**
      * Сериализует ICmsObject в JSON.
@@ -31,20 +31,48 @@ class CmsObjectSerializer extends BaseSerializer implements IUrlManagerAware
      */
     public function __invoke(ICmsObject $object, array $options = [])
     {
-        $selectedFields = isset($options['fields']) ? $options['fields'] : [];
+        $this->configure($object);
+
+        $selectedFields = [];
+        if (isset($options['fields'])) {
+            $selectedFields = $options['fields'];
+        }
+        if (isset($this->currentOptions['fields'])) {
+            $selectedFields = array_merge($selectedFields, $this->currentOptions['fields']);
+        }
+
         $usedProperties = $this->getUsedProperties($object, $selectedFields);
 
         $properties = [];
         foreach ($usedProperties as $property) {
             $name = $property->getName();
+            if (in_array($name, $this->currentExcludes)) {
+                continue;
+            }
             $properties[$name] = $object->getValue($name);
         }
 
         if ($object instanceof ICmsPage) {
-            $properties['meta'] = ['pageUrl' => $object->getPageUrl()];
+            $properties['meta'] = [
+                'pageUrl' => $object->getPageUrl(),
+                'header' => $object->getHeader()
+            ];
+            if ($this->getSiteDefaultPageGuid() === $object->guid) {
+                $properties['meta']['isDefault'] = true;
+            }
         }
-        $options['fields'] = array_merge($selectedFields, [ICmsObject::FIELD_DISPLAY_NAME => null]);
+        $options['fields'] = [ICmsObject::FIELD_DISPLAY_NAME => null];
         $this->delegate($properties, $options);
+    }
+
+    /**
+     * Позволяет достроить массив с информацией об объектк для сериализации.
+     * @param ICmsObject $object
+     * @param array $properties
+     */
+    protected function buildProperties(ICmsObject $object, array &$properties)
+    {
+
     }
 
     /**
@@ -63,7 +91,9 @@ class CmsObjectSerializer extends BaseSerializer implements IUrlManagerAware
 
         $properties = [];
         foreach($fields as $fieldName => $field) {
-            $properties[$fieldName] = $object->getProperty($fieldName);
+            if ($object->hasProperty($fieldName)) {
+                $properties[$fieldName] = $object->getProperty($fieldName);
+            }
         }
 
         return $properties;

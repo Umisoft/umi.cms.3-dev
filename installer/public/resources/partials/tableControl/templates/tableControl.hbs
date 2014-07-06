@@ -20,24 +20,15 @@
 {{/view}}
 
 <div class="umi-table-control-header s-unselectable">
-
-    <div class="umi-table-control-header-fixed-left">
-        <div class="umi-table-control-header-cell">
-            <input type="checkbox" id="checkbox-checkall" class="s-margin-clear"/>
-            <label for="checkbox-checkall"><span></span></label>
-        </div>
-        <div class="umi-table-control-control-cell-empty"></div>
-    </div>
-
     <div class="umi-table-control-header-center">
         <table class="umi-table-control-header">
             <tbody>
                 <tr class="umi-table-control-row">
-                    {{#each column in content.viewSettings.columns}}
-                        <td class="umi-table-control-header-column column-id-{{unbound column.name}}" style="width: {{unbound column.width}}px">
+                    {{#each column in content.control.meta.form.elements}}
+                        <td class="umi-table-control-header-column column-id-{{filterClassName column.attributes.name}}" style="width: 200px">
                             <div class="umi-table-control-cell-firefox-fix">
                                 <div class="umi-table-control-header-cell">
-                                    {{column.title}}
+                                    {{column.label}}
                                 </div>
                                 <div class="umi-table-control-column-resizer"></div>
                             </div>
@@ -47,11 +38,11 @@
                 </tr>
 
                 <tr class="umi-table-control-row filters">
-                    {{#each column in content.viewSettings.columns}}
+                    {{#each column in content.control.meta.form.elements}}
                         <td class="umi-table-control-header-column">
-                            <div class="umi-table-control-header-cell filter column-id-{{unbound column.name}}">
-                                <input type="text" />
-                                {{#view view.sortHandlerView propertyName=column.name}}
+                            <div class="umi-table-control-header-cell filter column-id-{{filterClassName column.attributes.name}}">
+                                {{view view.filterRowView column=column}}
+                                {{#view view.sortHandlerView propertyName=column.attributes.name}}
                                     <i {{bind-attr class=":icon :black view.sortAscending:icon-bottom-thin:icon-top-thin"}}></i>
                                 {{/view}}
                             </div>
@@ -82,21 +73,21 @@
         <table class="umi-table-control-content">
             <tbody>
                 <tr class="umi-table-control-content-row-size">
-                    {{#each column in content.viewSettings.columns}}
-                        <td class="umi-table-control-content-cell column-id-{{unbound column.name}}" style="width: {{unbound column.width}}px"></td>
+                    {{#each column in content.control.meta.form.elements}}
+                        <td class="umi-table-control-content-cell column-id-{{filterClassName column.attributes.name}}" style="width: 200px"></td>
                     {{/each}}
                     <td class="umi-table-control-empty-column"></td>
                 </tr>
             {{#if objects.content.isFulfilled}}
                 {{#each object in objects}}
-                    <tr {{bind-attr class=":umi-table-control-content-row object.type object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
-                        {{#each column in content.viewSettings.columns}}
+                    {{#view view.rowView object=object}}
+                        {{#each column in content.control.meta.form.elements}}
                             <td class="umi-table-control-content-cell">
                                 {{view "tableCellContent" objectBinding="object" column=column}}
                             </td>
                         {{/each}}
                         <td class="umi-table-control-empty-column"></td>
-                    </tr>
+                    {{/view}}
                     {{else}}
                         <tr>
                             <td>
@@ -109,31 +100,20 @@
             {{/if}}
             </tbody>
         </table>
+    </div>
 
-        <!-- Колонка слева от контента -->
-        <div class="umi-table-control-content-fixed-left">
-            {{#each object in objects}}
-                <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
-                    <input type="checkbox" id="checkbox-{{unbound object.id}}" class="s-margin-clear"/>
-                    <label for="checkbox-{{unbound object.id}}"><span></span></label>
-                </div>
-            {{/each}}
-        </div>
-
-        <!-- Колонка справа от контента -->
-
-        <div class="umi-table-control-content-fixed-right">
-            {{#each object in objects itemController="tableControlContextToolbarItem"}}
-                <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
-                    {{#if controller.parentController.contextToolbar}}
-                        {{#view "tableControlContextToolbar" elements=controller.parentController.contextToolbar}}
-                            {{#each view.elements}}
-                                {{view view.elementView}}
-                            {{/each}}
-                        {{/view}}
-                    {{/if}}
-                </div>
-            {{/each}}
-        </div>
+    <!-- Колонка справа от контента -->
+    <div class="umi-table-control-content-fixed-right">
+        {{#each object in objects itemController="tableControlContextToolbarItem"}}
+            <div {{bind-attr class=":umi-table-control-column-fixed-cell object.active::umi-inactive"}} data-objectId="{{unbound object.id}}">
+                {{#if controller.parentController.contextToolbar}}
+                    {{#view "tableControlContextToolbar" elements=controller.parentController.contextToolbar}}
+                        {{#each view.elements}}
+                            {{view view.elementView}}
+                        {{/each}}
+                    {{/view}}
+                {{/if}}
+            </div>
+        {{/each}}
     </div>
 </div>

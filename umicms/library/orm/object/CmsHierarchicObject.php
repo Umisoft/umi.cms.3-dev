@@ -29,12 +29,12 @@ use umicms\orm\selector\CmsSelector;
  */
 class CmsHierarchicObject extends HierarchicObject implements ICmsObject, IUrlManagerAware
 {
+    use TCmsObject;
+
     /**
-     *  Имя поля для хранения дочерних элементов
+     *  Имя поля для хранения дочерних элементов.
      */
     const FIELD_CHILDREN = 'children';
-
-    use TCmsObject;
 
     /**
      * @var string $normalizedURL нормализованный url объекта
