@@ -12,8 +12,6 @@ use umi\orm\collection\ICollectionFactory;
 use umi\orm\metadata\IObjectType;
 use umicms\project\module\users\model\collection\UserCollection;
 use umicms\project\module\users\model\object\RegisteredUser;
-use umicms\orm\collection\ICmsCollection;
-use umicms\project\module\users\model\object\RegisteredUser;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -29,19 +27,19 @@ return [
             UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/guest.edit.config.php}'
         ],
         'registered.supervisor' => [
-            UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/authorized.edit.config.php}',
-            UserCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/authorized.create.config.php}',
+            UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/registered.edit.config.php}',
+            UserCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/registered.create.config.php}',
         ],
         RegisteredUser::TYPE_NAME => [
-            UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/authorized.edit.config.php}',
-            UserCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/authorized.create.config.php}',
-            RegisteredUser::FORM_LOGIN_ADMIN => '{#lazy:~/project/module/users/configuration/user/form/authorized.login.config.php}',
-            RegisteredUser::FORM_LOGIN_SITE => '{#lazy:~/project/module/users/site/authorization/form/authorized.login.config.php}',
-            RegisteredUser::FORM_LOGOUT_SITE => '{#lazy:~/project/module/users/site/authorization/form/authorized.logout.config.php}',
-            RegisteredUser::FORM_EDIT_PROFILE => '{#lazy:~/project/module/users/site/profile/form/authorized.profile.edit.config.php}',
-            RegisteredUser::FORM_REGISTRATION => '{#lazy:~/project/module/users/site/registration/form/authorized.registration.config.php}',
-            RegisteredUser::FORM_RESTORE_PASSWORD => '{#lazy:~/project/module/users/site/restoration/form/authorized.restore.password.config.php}',
-            RegisteredUser::FORM_CHANGE_PASSWORD => '{#lazy:~/project/module/users/site/profile/password/form/authorized.change.password.config.php}',
+            UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/registered.edit.config.php}',
+            UserCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/registered.create.config.php}',
+            RegisteredUser::FORM_LOGIN_ADMIN => '{#lazy:~/project/module/users/configuration/user/form/login.config.php}',
+            RegisteredUser::FORM_LOGIN_SITE => '{#lazy:~/project/module/users/site/authorization/form/login.config.php}',
+            RegisteredUser::FORM_LOGOUT_SITE => '{#lazy:~/project/module/users/site/authorization/form/logout.config.php}',
+            RegisteredUser::FORM_EDIT_PROFILE => '{#lazy:~/project/module/users/site/profile/form/profile.edit.config.php}',
+            RegisteredUser::FORM_REGISTRATION => '{#lazy:~/project/module/users/site/registration/form/registration.config.php}',
+            RegisteredUser::FORM_RESTORE_PASSWORD => '{#lazy:~/project/module/users/site/restoration/form/restore.password.config.php}',
+            RegisteredUser::FORM_CHANGE_PASSWORD => '{#lazy:~/project/module/users/site/profile/password/form/change.password.config.php}',
         ]
     ],
     'settings' => '{#lazy:~/project/module/users/configuration/user/collection.settings.config.php}',

@@ -190,8 +190,8 @@ define(['App'], function(UMI){
 
                 //TODO: check user configurations
                 var modelForCollection = store.modelFor(collectionName);
-                var fieldsList = this.get('viewSettings.form.elements') || [];
-                var defaultFields = this.get('viewSettings.defaultFields') || [];
+                var fieldsList = this.get('control.meta.form.elements') || [];
+                var defaultFields = this.get('control.meta.defaultFields') || [];
                 var i;
                 for(i = 0; i < fieldsList.length; i++){
                     if(!defaultFields.contains(fieldsList[i].dataSource)){
