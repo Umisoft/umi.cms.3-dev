@@ -26,7 +26,8 @@ return [
             'options' => [
                 'dataSource' => SiteApplication::SETTING_DEFAULT_DESCRIPTION,
                 'filters' => [
-                    IFilterFactory::TYPE_STRIP_TAGS => []
+                    IFilterFactory::TYPE_STRIP_TAGS => [],
+                    IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
                 ]
             ]
         ],
@@ -36,7 +37,8 @@ return [
             'options' => [
                 'dataSource' => SiteApplication::SETTING_DEFAULT_KEYWORDS,
                 'filters' => [
-                    IFilterFactory::TYPE_STRIP_TAGS => []
+                    IFilterFactory::TYPE_STRIP_TAGS => [],
+                    IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
                 ]
             ]
         ],
@@ -46,7 +48,8 @@ return [
             'options' => [
                 'dataSource' => SiteApplication::SETTING_DEFAULT_TITLE,
                 'filters' => [
-                    IFilterFactory::TYPE_STRIP_TAGS => []
+                    IFilterFactory::TYPE_STRIP_TAGS => [],
+                    IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
                 ]
             ]
         ],
@@ -56,7 +59,8 @@ return [
             'options' => [
                 'dataSource' => SiteApplication::SETTING_TITLE_PREFIX,
                 'filters' => [
-                    IFilterFactory::TYPE_STRIP_TAGS => []
+                    IFilterFactory::TYPE_STRIP_TAGS => [],
+                    IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
                 ]
             ]
         ]
