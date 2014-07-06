@@ -1394,7 +1394,7 @@ abstract class elFinderVolumeDriver {
 		if (!$dir['write']) {
 			return $this->setError(elFinder::ERROR_PERM_DENIED);
 		}
-		
+
 		if (!$this->nameAccepted($name)) {
 			return $this->setError(elFinder::ERROR_INVALID_NAME);
 		}
@@ -1971,15 +1971,20 @@ abstract class elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function nameAccepted($name) {
+        $result = true;
+
 		if ($this->nameValidator) {
 			if (function_exists($this->nameValidator)) {
 				$f = $this->nameValidator;
-				return $f($name);
-			}
-
-			return preg_match($this->nameValidator, $name);
+				$result = $f($name);
+			} else {
+                $result = preg_match($this->nameValidator, $name);
+            }
 		}
-		return true;
+
+        $result = $result && (substr($name, -4) !== '.php') && strpos($name, '.php.') === false;
+
+		return $result;
 	}
 	
 	/**
