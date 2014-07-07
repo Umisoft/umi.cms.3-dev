@@ -22,7 +22,7 @@ return [
     ],
 
     AdminComponent::OPTION_QUERY_ACTIONS => [
-        'getTableControl' => [
+        'getFilter' => [
             'collection' => '{id}'
         ]
     ],

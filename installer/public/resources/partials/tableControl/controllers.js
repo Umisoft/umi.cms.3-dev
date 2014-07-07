@@ -4,7 +4,13 @@ define(['App'], function(UMI){
     return function(){
         UMI.TableControlController = Ember.ObjectController.extend(UMI.i18nInterface,{
             componentNameBinding: 'controllers.component.name',
-            collectionNameBinding: 'controllers.component.dataSource.name',
+            collectionName: function(){
+                var dataSource = this.get('controllers.component.dataSource.name');
+                if(!dataSource){
+                    dataSource = this.get('controllers.component.selectedContext');
+                }
+                return dataSource;
+            }.property('controllers.component.dataSource.name', 'controllers.component.selectedContext'),
             dictionaryNamespace: 'tableControl',
             localDictionary: function(){
                 var filter = this.get('control') || {};

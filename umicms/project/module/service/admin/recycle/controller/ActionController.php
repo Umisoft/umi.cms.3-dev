@@ -14,26 +14,35 @@ use umi\hmvc\component\IComponent;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
 use umicms\exception\RuntimeException;
-use umicms\hmvc\component\admin\BaseController;
-use umicms\hmvc\component\admin\layout\control\TableControl;
 use umicms\hmvc\component\admin\TActionController;
 use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
+use umicms\hmvc\component\admin\collection\ActionController as ActionControllerBase;
 
 /**
  * Контроллер операций c корзиной.
  */
-class ActionController extends BaseController implements ICollectionManagerAware
+class ActionController extends ActionControllerBase implements ICollectionManagerAware
 {
-    use TActionController;
     use TCollectionManagerAware;
 
     /**
-     * Возвращает удалённые страницы коллекции.
-     * @throws RuntimeException в случае если коллекция не существует или она не IRecyclableCollection
-     * @return TableControl
+     * {@inheritdoc}
      */
-    protected function actionGetTableControl()
+    protected function getComponent()
+    {
+        $handlerPath = $this->getCollection()->getHandlerPath('admin');
+        $handlerComponent = $this->getContext()->getDispatcher()->getComponentByPath(
+            CmsDispatcher::ADMIN_API_COMPONENT_PATH . IComponent::PATH_SEPARATOR . $handlerPath
+        );
+
+        return $handlerComponent;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getCollection()
     {
         $collectionName = $this->getQueryVar('collection');
 
@@ -58,12 +67,6 @@ class ActionController extends BaseController implements ICollectionManagerAware
             ));
         }
 
-
-        $handlerPath = $collection->getHandlerPath('admin');
-        $handlerComponent = $this->getContext()->getDispatcher()->getComponentByPath(
-            CmsDispatcher::ADMIN_API_COMPONENT_PATH . IComponent::PATH_SEPARATOR . $handlerPath
-        );
-
-        return new TableControl($handlerComponent);
+        return $collection;
     }
 }

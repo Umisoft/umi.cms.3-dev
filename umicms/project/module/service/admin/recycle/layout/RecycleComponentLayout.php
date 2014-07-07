@@ -12,7 +12,6 @@ namespace umicms\project\module\service\admin\recycle\layout;
 
 use umi\orm\collection\ICollectionManager;
 use umicms\hmvc\component\admin\AdminComponent;
-use umicms\hmvc\component\admin\layout\action\Action;
 use umicms\hmvc\component\admin\layout\AdminComponentLayout;
 use umicms\hmvc\component\admin\layout\control\AdminControl;
 use umicms\hmvc\url\IUrlManager;
@@ -94,7 +93,7 @@ class RecycleComponentLayout extends AdminComponentLayout
     private function configureDynamicControl()
     {
         $dynamicControl = new AdminControl($this->component);
-        $dynamicControl->params['action'] = 'getTableControl';
+        $dynamicControl->params['action'] = 'getFilter';
 
         $this->addSelectedContextControl('filter', $dynamicControl);
     }
