@@ -15,7 +15,7 @@ return [
 
         'action:create:base' => 'Create RSS-feed',
 
-        'role:editor:displayName' => 'Managing import RSS-feed'
+        'role:editor:displayName' => 'Manage RSS-feed import'
     ],
 
     'ru-RU' => [

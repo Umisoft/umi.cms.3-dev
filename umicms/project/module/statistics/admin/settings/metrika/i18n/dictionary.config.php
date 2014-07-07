@@ -7,7 +7,7 @@ return [
         'component:metrika:displayName' => 'Yandex.Metrika',
         MetrikaModel::OAUTH_TOKEN => 'oAuth token',
 
-        'role:configurator:displayName' => 'Managing setting'
+        'role:configurator:displayName' => 'Manage settings'
     ],
 
     'ru-RU' => [

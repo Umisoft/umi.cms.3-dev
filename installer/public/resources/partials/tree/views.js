@@ -351,6 +351,7 @@ define(['App', 'toolbar'], function(UMI){
                         var object = this.get('controller.model');
                         this.send(behaviour.name, {behaviour: behaviour, object: object});
                     };
+                    behaviour.classNames = ['tiny white square'];
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

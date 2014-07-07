@@ -24,7 +24,7 @@ class DropdownButton extends Button
      * @var array $attributes атрибуты кнопки
      */
     public $attributes = [
-        'class' => 'umi-button umi-toolbar-create-button',
+        'class' => 'dropdown',
         'hasIcon' => true
     ];
 

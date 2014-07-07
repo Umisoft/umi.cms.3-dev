@@ -17,7 +17,7 @@ return [
         'Log out' => 'Log out',
         'You are already logged in' => 'You are already logged in',
 
-        'role:viewer:displayName' => 'Authorization users',
+        'role:viewer:displayName' => 'Authorize',
     ],
 
     'ru-RU' => [

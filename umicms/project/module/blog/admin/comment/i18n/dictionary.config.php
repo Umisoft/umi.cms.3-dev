@@ -13,7 +13,7 @@ return [
     'en-US' => [
         'action:create:comment' => 'Create comment',
 
-        'role:editor:displayName' => 'Managing comments'
+        'role:editor:displayName' => 'Manage comments'
     ],
 
     'ru-RU' => [

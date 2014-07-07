@@ -13,6 +13,7 @@ namespace umicms\orm\object;
 use umi\orm\object\property\IProperty;
 use umicms\hmvc\url\TUrlManagerAware;
 use umicms\orm\collection\ICmsCollection;
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\serialization\ISerializer;
 use umicms\serialization\TSerializerConfigurator;
 use umicms\serialization\xml\BaseSerializer;
@@ -51,12 +52,25 @@ trait TCmsObject
      */
     abstract public function getAllProperties();
     /**
+     * @see ICmsObject::getModifiedProperties()
+     * @return IProperty[]
+     */
+    abstract public function getModifiedProperties();
+    /**
      * @see ICmsObject::getProperty()
      * @param string $propName
      * @param null|string $localeId
      * @return IProperty
      */
     abstract public function getProperty($propName, $localeId = null);
+    /**
+     * @see ICmsObject::setValue()
+     */
+    abstract public function setValue($propName, $value, $localeId = null);
+    /**
+     * @see ICmsObject::getValue()
+     */
+    abstract public function getValue($propName, $localeId = null);
 
     /**
      * @see TLocalesAware::getDefaultDataLocale()
@@ -121,10 +135,28 @@ trait TCmsObject
 
         $result = true;
 
+        $currentLocaleId = $this->getCurrentDataLocale();
+        $defaultLocaleId = $this->getDefaultDataLocale();
+
+        if ($currentLocaleId !== $defaultLocaleId) {
+            foreach ($this->getModifiedProperties() as $property) {
+                if ($property->getLocaleId()) {
+                    $name = $property->getName();
+                    if ($name === IActiveAccessibleObject::FIELD_ACTIVE) {
+                        continue;
+                    }
+                    if ($this->getValue($name, $defaultLocaleId)) {
+                        continue;
+                    }
+                    $this->setValue($name, $this->getValue($name), $defaultLocaleId);
+                }
+            }
+        }
+
         foreach ($this->getAllProperties() as $property) {
 
             $localeId = $property->getLocaleId();
-            if ($localeId && $localeId !== $this->getDefaultDataLocale() && $localeId !== $this->getCurrentDataLocale()) {
+            if ($localeId && $localeId !== $defaultLocaleId && $localeId !== $currentLocaleId) {
                 continue;
             }
 

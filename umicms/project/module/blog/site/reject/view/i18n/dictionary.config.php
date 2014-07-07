@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'View rejected post'
+        'role:viewer:displayName' => 'View rejected posts'
     ],
 
     'ru-RU' => [

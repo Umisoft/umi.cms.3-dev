@@ -24,12 +24,13 @@ class CmsLinkObject extends CmsObject
 
     /**
      * Генерирует отображаемое имя, если оно не было установлено.
+     * @param string|null $localeId
      * @return bool
      */
-    public function validateDisplayName()
+    public function validateDisplayName($localeId = null)
     {
-        if (!$this->displayName) {
-            $this->displayName = $this->generateDisplayName();
+        if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
+            $this->setValue(self::FIELD_DISPLAY_NAME, $this->generateDisplayName($localeId), $localeId);
         }
 
         return true;
@@ -37,9 +38,10 @@ class CmsLinkObject extends CmsObject
 
     /**
      * Генерирует отображаемое имя, используя имена связанных объектов.
+     * @param string|null $localeId
      * @return string
      */
-    protected function generateDisplayName()
+    protected function generateDisplayName($localeId = null)
     {
         $result = [];
         foreach ($this->getAllProperties() as $property) {
@@ -51,6 +53,10 @@ class CmsLinkObject extends CmsObject
                 }
             }
         }
+        if ($localeId) {
+            $result[] = $localeId;
+        }
+
         return implode(self::DISPLAY_NAME_SEPARATOR, $result);
     }
 }

@@ -48,15 +48,21 @@ class Backup extends CmsObject
 
     /**
      * Генерирует отображаемое имя, если оно не было установлено.
+     * @param string|null $localeId
      * @return bool
      */
-    public function validateDisplayName()
+    public function validateDisplayName($localeId = null)
     {
-        if (!$this->displayName) {
-            $this->displayName = 'Backup for ' . $this->collectionName . '#' . $this->objectId;
+        if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
+            $value = 'Backup for ' . $this->collectionName . '#' . $this->objectId;
+            if ($localeId) {
+                $value .= '_' . $localeId;
+            }
+            $this->setValue(self::FIELD_DISPLAY_NAME, $value, $localeId);
         }
 
         return true;
+
     }
 
 }
