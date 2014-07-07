@@ -338,7 +338,9 @@ define([], function(){
                     var untrashAction;
                     var collectionName;
                     var store = self.get('store');
+                    var objectId;
                     try{
+                        objectId = object.get('id');
                         serializeObject = JSON.stringify(object.toJSON({includeId: true}));
                         collectionName = object.constructor.typeKey;
                         untrashAction = self.controllerFor('component').get('settings').actions.untrash;
@@ -346,14 +348,19 @@ define([], function(){
                             throw new Error('Action untrash not supported for component.');
                         }
                         promise = $.ajax({
-                            url: untrashAction.source + '?id=' + object.get('id') + '&collection=' + collectionName,
+                            url: untrashAction.source + '?id=' + objectId + '&collection=' + collectionName,
                             type: "POST",
                             data: serializeObject,
                             contentType: 'application/json; charset=UTF-8'
                         }).then(function(){
-                            store.unloadRecord(object);
-                            var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" restore.'};
-                            UMI.notification.create(settings);
+                            var successNotify = function(){
+                                store.unloadRecord(object);
+                                var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" restore.'};
+                                UMI.notification.create(settings);
+                            };
+
+                            successNotify();
+                            window.location.href = window.location.href;
                         }, function(){
                             var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" not restored.'};
                             UMI.notification.create(settings);
