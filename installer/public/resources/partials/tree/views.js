@@ -280,10 +280,16 @@ define(['App', 'toolbar'], function(UMI){
                 var model = this.get('item');
                 var collectionName = model.get('typeKey') || model.constructor.typeKey;
                 var promise;
+                var self = this;
                 if(model.get('id') === 'root'){
                     promise = model.get('children');
                 } else{
-                    promise = this.get('controller').store.updateCollection(collectionName, {'filters[parent]': model.get('id'), 'fields': 'displayName,order,active,childCount,children,parent'});
+                    var objectProperties = self.get('controller').get('objectProperties').join(',');
+                    var requestParams = {'filters[parent]': model.get('id'), 'fields': objectProperties};
+                    if(self.get('controller').get('filterTrashed')){
+                        requestParams['filters[trashed]'] = 'equals(0)';
+                    }
+                    promise = this.get('controller').store.updateCollection(collectionName, requestParams);
                 }
                 return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                     content: promise,

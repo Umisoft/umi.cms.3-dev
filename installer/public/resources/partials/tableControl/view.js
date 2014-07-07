@@ -317,14 +317,14 @@ define(['App', 'toolbar'], function(UMI){
                         case 'text':
                             $input.on('keypress.umi.tableControl.filters', function(event){
                                if(event.keyCode === 13){
-                                   self.setFilter(this.value);
+                                   self.setFilter('like(%' + this.value + '%)');
                                }
                            });
                             break;
                     }
                 },
-                setFilter: function(value){
-                    this.get('controller').setFilters(this.get('column.dataSource'), value);
+                setFilter: function(filter){
+                    this.get('controller').setFilters(this.get('column.dataSource'), filter);
                 }
             })
         });
@@ -435,11 +435,14 @@ define(['App', 'toolbar'], function(UMI){
                     if(behaviourName === 'contextMenu' && Ember.typeOf(choices) === 'array'){
                         for(i = 0; i < choices.length; i++){
                             var prefix = '';
+                            action = '';
                             var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
-                            if(behaviourAction.hasOwnProperty('_actions')){
-                                prefix = '_';
+                            if(behaviourAction){
+                                if(behaviourAction.hasOwnProperty('_actions')){
+                                    prefix = '_';
+                                }
+                                action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
                             }
-                            action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
                             if(action){
                                 if(Ember.typeOf(behaviour.actions) !== 'object'){
                                     behaviour.actions = {};

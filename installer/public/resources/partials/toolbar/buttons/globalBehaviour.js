@@ -95,6 +95,17 @@ define(
                     }
                 },
 
+                untrash: {
+                    actions: {
+                        untrash: function(params){
+                            debugger;
+                            params = params || {};
+                            var model = params.object || this.get('controller.object');
+                            this.get('controller').send('untrash', model);
+                        }
+                    }
+                },
+
                 "delete": {
                     actions: {
                         "delete": function(params){
