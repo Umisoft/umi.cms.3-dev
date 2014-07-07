@@ -21,6 +21,7 @@ define(['App'], function(UMI){
              * @property objects
              */
             objects: null,
+            fieldsList: null,
             objectChange: function(){
                 Ember.run.once(this, 'updateObjectDeleted');
             }.observes('objects.@each.isDeleted'),
@@ -118,6 +119,11 @@ define(['App'], function(UMI){
             }.property('relatedFieldsList'),
 
             /**
+             * Свойства фильтрации коллекции
+             * @collectionFilterParams
+             */
+            collectionFilterParams: null,
+            /**
              * Свойства фильтрации
              * @property filters
              */
@@ -128,24 +134,35 @@ define(['App'], function(UMI){
              */
             filters: function(){
                 var filters = {};
+                var filter;
                 var filterParams = this.get('filterParams') || {};
-                for(var filter in filterParams){
+                var collectionFilterParams = this.get('collectionFilterParams') || {};
+                for(filter in collectionFilterParams){
+                    if(collectionFilterParams.hasOwnProperty(filter)){
+                        if(Ember.typeOf(collectionFilterParams[filter]) === 'string' && !collectionFilterParams[filter].length){
+                            delete filters[filter];
+                        } else{
+                            filters[filter] = collectionFilterParams[filter];
+                        }
+                    }
+                }
+                for(filter in filterParams){
                     if(filterParams.hasOwnProperty(filter)){
                         if(Ember.typeOf(filterParams[filter]) === 'string' && !filterParams[filter].length){
                             delete filters[filter];
                         } else{
-                            filters[filter] = 'like(' + filterParams[filter] + '%)';
+                            filters[filter] = filterParams[filter];
                         }
                     }
                 }
                 return filters;
-            }.property('filterParams.@each'),
+            }.property('filterParams.@each', 'collectionFilterParams.@each'),
 
-            setFilters: function(property, value){
+            setFilters: function(property, filter){
                 this.propertyWillChange('filterParams');
                 this.set('filterParams', null);
                 var filterParams = {};
-                filterParams[property] = value;
+                filterParams[property] = filter;
                 this.set('filterParams', filterParams);
                 this.propertyDidChange('filterParams');
             },
@@ -198,6 +215,7 @@ define(['App'], function(UMI){
                 var modelForCollection = store.modelFor(collectionName);
                 var fieldsList = this.get('control.meta.form.elements') || [];
                 var defaultFields = this.get('control.meta.defaultFields') || [];
+
                 var i;
                 for(i = 0; i < fieldsList.length; i++){
                     if(!defaultFields.contains(fieldsList[i].dataSource)){
@@ -209,12 +227,16 @@ define(['App'], function(UMI){
                 var nativeFieldsList = [];
                 var relatedFieldsList = {};
 
+                var filterParams = this.get('control.params.filter') || {};
+
                 modelForCollection.eachAttribute(function(name){
                     var selfProperty = fieldsList.findBy('dataSource', name);
                     if(selfProperty){
                         nativeFieldsList.push(selfProperty.dataSource);
                     } else if(name === 'active'){
                         nativeFieldsList.push('active');
+                    } else if(name === 'trashed'){
+                        filterParams.trashed = 'equals(0)';
                     }
                 });
 
@@ -246,9 +268,10 @@ define(['App'], function(UMI){
                         relatedFieldsList[name] = relatedFieldsList[name].join(',');
                     }
                 });
+
                 // Сбрасываем параметры запроса, не вызывая обсервер query
                 this.set('withoutChangeQuery', true);
-                this.setProperties({nativeFieldsList: nativeFieldsList, relatedFieldsList: relatedFieldsList, offset: 0, orderByProperty: null, total: 0});
+                this.setProperties({nativeFieldsList: nativeFieldsList, relatedFieldsList: relatedFieldsList, offset: 0, orderByProperty: null, total: 0, collectionFilterParams: filterParams});
                 this.set('withoutChangeQuery', false);
 
                 this.getObjects();
@@ -256,6 +279,7 @@ define(['App'], function(UMI){
                     var self = this;
                     this.get('objects.content').then(function(){
                         self.set('total', metaForCollection.total);
+                        self.set('fieldsList', fieldsList);
                     });
                 });
             }.observes('content.object.id').on('init'),
