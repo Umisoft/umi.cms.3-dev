@@ -36,29 +36,27 @@ class RecycleComponentLayout extends AdminComponentLayout
      */
     public function __construct(AdminComponent $component, IUrlManager $urlManager, ICollectionManager $collectionManager)
     {
-        parent::__construct($component);
-
         $this->component = $component;
         $this->collectionManager = $collectionManager;
+
+        parent::__construct($component);
 
         $this->dataSource = [
             'type' => 'static',
             'objects' => $this->getListCollection()
         ];
-
-        $this->addSideBarControl('menu',  new AdminControl($this->component));
-
-        $this->configureEmptyContextControls();
-
-        $this->configureDynamicControl();
     }
 
     /**
-     * Возвращает массив доступных action.
+     * Возвращает массив доступных коллекций.
      * @return array
      */
     public function getListCollection()
     {
+        if ($this->listCollection) {
+            return $this->listCollection;
+        }
+
         $listCollection = $this->collectionManager->getList();
 
         foreach ($listCollection as $collectionName) {
@@ -77,10 +75,20 @@ class RecycleComponentLayout extends AdminComponentLayout
     /**
      * {@inheritdoc}
      */
+    protected function configureSideBar()
+    {
+        $this->addSideBarControl('menu',  new AdminControl($this->component));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function configureEmptyContextControls()
     {
         $control = new AdminControl($this->component);
-        if (isset($this->listCollection[0])) {
+
+        $listCollection = $this->getListCollection();
+        if (isset($listCollection[0])) {
             $control->params['slug'] = $this->listCollection[0]['id'];
         }
 
@@ -88,9 +96,9 @@ class RecycleComponentLayout extends AdminComponentLayout
     }
 
     /**
-     * Конфигурирует динамический контрол.
+     * {@inheritdoc}
      */
-    private function configureDynamicControl()
+    protected function configureSelectedContextControls()
     {
         $dynamicControl = new AdminControl($this->component);
         $dynamicControl->params['action'] = 'getFilter';
