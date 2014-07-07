@@ -184,6 +184,8 @@ abstract class BaseCmsController extends BaseController
             $object->setUpdatedTime();
         }
 
+        $searchIndexApi->clearObjectsIndex($persister->getDeletedObjects());
+
         $invalidObjects = $persister->getInvalidObjects();
 
         if (count($invalidObjects)) {

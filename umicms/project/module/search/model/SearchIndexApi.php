@@ -91,7 +91,7 @@ class SearchIndexApi extends BaseSearchApi
      * Очищает индексы для заданных объектов.
      * @param ICmsPage[] $objects
      */
-    private function clearObjectsIndex($objects)
+    public function clearObjectsIndex(array $objects)
     {
         $objectsByGuid = [];
 
@@ -118,6 +118,10 @@ class SearchIndexApi extends BaseSearchApi
      */
     private function buildIndexForObject(ICmsPage $page)
     {
+        if (!$page->isInIndex()) {
+            return;
+        }
+
         $indexCollection = $this->getSiteIndexCollection();
         $newIndexRecord = $indexCollection->add();
         $newIndexRecord
