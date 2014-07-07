@@ -5210,9 +5210,10 @@ select {
     background-image: -webkit-linear-gradient(#404959, #181b21);
     background-image: -o-linear-gradient(#404959, #181b21);
     background-image: linear-gradient(#404959, #181b21);
-    position: relative;
+    position: absolute;
+    width: 100%;
     z-index: 10;
-    height: -32.6875rem; }
+    height: 3rem; }
   .umi-dock .dock-wrapper-bg {
     background-image: -webkit-linear-gradient(#404959, #181b21);
     background-image: -o-linear-gradient(#404959, #181b21);
@@ -5336,7 +5337,8 @@ select {
   background: linear-gradient(#FFFFFF, #E0E4E7);
   border-bottom: 1px solid #98a0aa;
   text-align: center;
-  height: 2.1875rem; }
+  height: 2.1875rem;
+  margin-top: 3rem; }
   .dock-components .components-nav {
     display: inline-block; }
     .dock-components .components-nav a {
@@ -6850,9 +6852,10 @@ table td {
     background-image: -webkit-linear-gradient(#404959, #181b21);
     background-image: -o-linear-gradient(#404959, #181b21);
     background-image: linear-gradient(#404959, #181b21);
-    position: relative;
+    position: absolute;
+    width: 100%;
     z-index: 10;
-    height: -32.6875rem; }
+    height: 3rem; }
   .umi-dock .dock-wrapper-bg {
     background-image: -webkit-linear-gradient(#404959, #181b21);
     background-image: -o-linear-gradient(#404959, #181b21);
@@ -6976,7 +6979,8 @@ table td {
   background: linear-gradient(#FFFFFF, #E0E4E7);
   border-bottom: 1px solid #98a0aa;
   text-align: center;
-  height: 2.1875rem; }
+  height: 2.1875rem;
+  margin-top: 3rem; }
   .dock-components .components-nav {
     display: inline-block; }
     .dock-components .components-nav a {
