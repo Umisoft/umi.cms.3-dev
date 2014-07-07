@@ -6,6 +6,7 @@ define([], function(){
         UMI.ApplicationView = Ember.View.extend({
             classNames: ['umi-main-view', 's-full-height'],
             didInsertElement: function(){
+                $('body').removeClass('loading');
                 if(window.applicationLoading){
                     window.applicationLoading.resolve();
                 }

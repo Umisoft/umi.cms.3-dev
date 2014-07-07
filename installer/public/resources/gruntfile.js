@@ -7,7 +7,7 @@ module.exports = function(grunt){
 
         watch: {
             scss: {
-                files: ['scss/**/*.scss', 'partials/fileManager/elFinder/**/*.*'],
+                files: ['styles/**/*.scss', 'partials/fileManager/elFinder/**/*.*'],
                 tasks: ['sass', 'concat', 'autoprefixer', 'copy:styles']
             }
         },
@@ -19,7 +19,7 @@ module.exports = function(grunt){
                 },
 
                 files: {
-                    'build/css/app.css': 'scss/app.scss'
+                    'build/css/app.css': 'styles/main.scss'
                 }
             }
         },
@@ -145,7 +145,7 @@ module.exports = function(grunt){
 
         autoprefixer: {
             options: {
-                browsers: ['last 2 version', 'ie 9', 'opera 12']
+                browsers: ['last 2 version', 'Firefox >= 28', 'ie 9', 'opera 12']
             },
 
             dist: {
@@ -226,14 +226,14 @@ module.exports = function(grunt){
     //подгружаем необходимые плагины
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-sass');
-    grunt.loadNpmTasks('grunt-grunticon');
+    //grunt.loadNpmTasks('grunt-grunticon');
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-csso');
-    grunt.loadNpmTasks("grunt-contrib-yuidoc");
+    //grunt.loadNpmTasks("grunt-contrib-yuidoc");
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    //grunt.loadNpmTasks('grunt-contrib-requirejs');
 
 
     //регистрируем задачу

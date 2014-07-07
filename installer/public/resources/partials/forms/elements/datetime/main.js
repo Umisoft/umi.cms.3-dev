@@ -6,7 +6,7 @@ define(['App', 'text!./dateTimeElement.hbs'], function(UMI, dateTimeElement){
         UMI.DateTimeElementView = Ember.View.extend({
             template: Ember.Handlebars.compile(dateTimeElement),
 
-            classNames: ['umi-element', 'umi-element-date'],
+            classNames: ['row', 'collapse'],
 
             value: null,
 

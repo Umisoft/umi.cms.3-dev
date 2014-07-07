@@ -5,7 +5,7 @@ define(['App', 'text!./timeElement.hbs'], function(UMI, timeElement){
 
     return function(){
         UMI.TimeElementComponent = Ember.Component.extend(UMI.InputValidate, {
-            classNames: ['umi-element', 'umi-element-time'],
+            classNames: ['row', 'collapse'],
 
             didInsertElement: function(){
                 var el = this.$();
