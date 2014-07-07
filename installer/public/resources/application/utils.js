@@ -9,6 +9,13 @@ define(['Modernizr'], function(Modernizr){
          */
         UMI.Utils = {};
 
+        UMI.Utils.htmlEncode = function(str){
+            str = str + "";
+            return str.replace(/[&<>"']/g, function($0) {
+                return "&" + {"&":"amp", "<":"lt", ">":"gt", '"':"quot", "'":"#39"}[$0] + ";";
+            });
+        };
+
         UMI.Utils.replacePlaceholder = function(object, pattern){
             var deserialize;
             deserialize = pattern.replace(/{\w+}/g, function(key) {
@@ -73,6 +80,12 @@ define(['Modernizr'], function(Modernizr){
                 }
             }
         };
+
+        Ember.Handlebars.registerHelper('filterClassName', function(value, options){
+            value = Ember.Handlebars.helpers.unbound.apply(this, [value, options]);
+            value =value.replace(/\./g, '__');//TODO: replace all deprecated symbols
+            return value;
+        });
 
         UMI.Utils.LS.init();
 
