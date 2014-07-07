@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'View own posts awaiting moderation'
+        'role:viewer:displayName' => 'View own moderating posts'
     ],
 
     'ru-RU' => [

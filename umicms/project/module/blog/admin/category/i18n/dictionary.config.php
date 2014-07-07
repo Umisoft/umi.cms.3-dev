@@ -13,7 +13,7 @@ return [
     'en-US' => [
         'action:create:base' => 'Create subcategory',
 
-        'role:editor:displayName' => 'Managing category'
+        'role:editor:displayName' => 'Manage categories'
     ],
 
     'ru-RU' => [
