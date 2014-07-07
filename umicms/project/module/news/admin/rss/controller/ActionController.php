@@ -49,6 +49,13 @@ class ActionController extends CollectionActionController
         $count = $this->module->importRss($scenario);
         $this->commit();
 
-        return $count;
+        return [
+            'message' => $this->translate(
+                'Import {count} news.',
+                [
+                    'count' => $count
+                ]
+            )
+        ];
     }
 }

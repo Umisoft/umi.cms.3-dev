@@ -12,6 +12,7 @@ return [
 
     'en-US' => [
         'component:rss:displayName' => 'Import RSS-feed',
+        'Import {count} news.' => 'Import {count} news.',
 
         'action:create:base' => 'Create RSS-feed',
         'action:importFromRss' => 'Import RSS-feed',
@@ -21,6 +22,7 @@ return [
 
     'ru-RU' => [
         'component:rss:displayName' => 'Управление импортом RSS-лент',
+        'Import {count} news.' => 'Импортированно {count} новостей.',
 
         'action:create:base' => 'Добавить RSS-ленту',
         'action:importFromRss' => 'Импортировать RSS-ленту',
