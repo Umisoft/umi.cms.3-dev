@@ -48,7 +48,7 @@ if (!file_exists(Environment::$environmentConfiguration)) {
 $environmentConfig = require(Environment::$environmentConfiguration);
 Environment::initErrorReporting($environmentConfig);
 
-$toolkitPath = $directoryProjects . '/vendor/umisoft/umi.framework-dev/library';
+$toolkitPath = $vendorDirectory . '/umisoft/umi.framework';
 
 defined('CMS_LIBRARY_DIR') or define('CMS_LIBRARY_DIR', $directoryCms . '/library');
 defined('FRAMEWORK_LIBRARY_DIR') or define('FRAMEWORK_LIBRARY_DIR', $toolkitPath);

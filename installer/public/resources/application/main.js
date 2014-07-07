@@ -23,7 +23,8 @@ define(
         'table',
         'accordion',
         'megaIndex',
-        'yandexWebmaster'
+        'yandexWebmaster',
+        'sideMenu'
     ],
     function(UMI){
         'use strict';

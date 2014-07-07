@@ -16,6 +16,7 @@ return [
             UserGroup::FIELD_ROLES => 'Roles',
 
             'permissions' => 'Permissions',
+
             'type:base:displayName' => 'User group',
         ],
 
@@ -23,7 +24,7 @@ return [
             UserGroup::FIELD_USERS => 'Пользователи',
             UserGroup::FIELD_ROLES => 'Роли',
 
-            'permissions' => 'Права',
+            'permissions' => 'Права' ,
 
             'type:base:displayName' => 'Группа пользователей',
         ]

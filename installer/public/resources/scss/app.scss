@@ -38,7 +38,7 @@
 //    @import "foundation/components/_pricing-tables";
 //    @import "foundation/components/_progress-bars";
 //    @import "foundation/components/_reveal";
-//    @import "foundation/components/_side-nav";
+    @import "foundation/components/_side-nav";
 //    @import "foundation/components/_split-buttons";
 //    @import "foundation/components/_sub-nav";
 //    @import "foundation/components/_tabs";
@@ -79,7 +79,7 @@
 @import "_offcanvas";
 @import "_file-manager";
 @import "_datetime";
-
+@import "side-nav";
 //Содержимое попапов
 @import "popups/_table-control-column-selector-popup";
 

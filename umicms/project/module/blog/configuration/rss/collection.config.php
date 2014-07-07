@@ -9,7 +9,9 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
-use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\blog\model\collection\BlogRssImportScenarioCollection;
+use umicms\project\module\blog\model\object\BlogCategory;
+use umicms\project\module\blog\model\object\BlogRssImportScenario;
 
 return [
     'type' => ICollectionFactory::TYPE_SIMPLE,
@@ -20,11 +22,16 @@ return [
     ],
     'forms' => [
         'base' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/rss/form/base.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/rss/form/base.create.config.php}'
+            BlogRssImportScenarioCollection::FORM_EDIT => '{#lazy:~/project/module/blog/configuration/rss/form/base.edit.config.php}',
+            BlogRssImportScenarioCollection::FORM_CREATE => '{#lazy:~/project/module/blog/configuration/rss/form/base.create.config.php}'
         ]
     ],
     'dictionaries' => [
         'collection.blogRssImportScenario', 'collection'
+    ],
+
+    BlogRssImportScenarioCollection::DEFAULT_TABLE_FILTER_FIELDS => [
+        BlogRssImportScenario::FIELD_CATEGORY => [],
+        BlogRssImportScenario::FIELD_RSS_URL => []
     ]
 ];

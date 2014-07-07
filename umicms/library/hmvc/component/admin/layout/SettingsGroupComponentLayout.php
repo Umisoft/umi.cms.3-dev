@@ -10,9 +10,10 @@
 
 namespace umicms\hmvc\component\admin\layout;
 
+use umicms\hmvc\component\admin\layout\action\Action;
+use umicms\hmvc\component\admin\layout\control\AdminControl;
 use umicms\hmvc\url\IUrlManager;
 use umicms\hmvc\component\admin\AdminComponent;
-use umicms\hmvc\component\admin\layout\control\ComponentsMenuControl;
 
 /**
  * Билдер сетки для компонента, группирующего компоненты настроек.
@@ -20,17 +21,44 @@ use umicms\hmvc\component\admin\layout\control\ComponentsMenuControl;
 class SettingsGroupComponentLayout extends AdminComponentLayout
 {
     /**
-     * @var IUrlManager $urlManager URL-менеджер
-     */
-    protected $urlManager;
-
-    /**
      * {@inheritdoc}
      */
     public function __construct(AdminComponent $component, IUrlManager $urlManager)
     {
-        $this->urlManager = $urlManager;
         parent::__construct($component);
+
+
+        $this->addAction('getSettings', new Action(
+            $urlManager->getAdminComponentResourceUrl($this->component) . '/{id}')
+        );
+
+        $this->dataSource = [
+            'type' => 'static',
+            'objects' => $this->getChildSettingResources()
+        ];
+    }
+
+    /**
+     * Формирует список дочерних настроечных компонентов.
+     */
+    protected function getChildSettingResources()
+    {
+        $result = [];
+        foreach ($this->component->getChildComponentNames() as $name) {
+            /**
+             * @var AdminComponent $childComponent
+             */
+            $childComponent = $this->component->getChildComponent($name);
+
+            $result[] = [
+                'id' => $name,
+                'displayName' => $childComponent->translate(
+                    'component:' . $name . ':displayName'
+                )
+            ];
+        }
+
+        return $result;
     }
 
     /**
@@ -38,8 +66,41 @@ class SettingsGroupComponentLayout extends AdminComponentLayout
      */
     protected function configureSideBar()
     {
-        $menu = new ComponentsMenuControl($this->component, $this->urlManager);
-        $this->addSideBarControl('menu', $menu);
+        $this->addSideBarControl('menu',  new AdminControl($this->component));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureSelectedContextControls()
+    {
+        $this->addSelectedContextControl('dynamic', $this->createDynamicControl());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureEmptyContextControls()
+    {
+        $control = new AdminControl($this->component);
+        $childComponentNames = $this->component->getChildComponentNames();
+
+        if (isset($childComponentNames[0])) {
+            $control->params['slug'] = $childComponentNames[0];
+        }
+
+        $this->addEmptyContextControl('redirect', $control);
+    }
+
+    /**
+     * @return AdminControl
+     */
+    private function createDynamicControl()
+    {
+        $dynamicControl = new AdminControl($this->component);
+        $dynamicControl->params['action'] = 'getSettings';
+
+        return $dynamicControl;
     }
 }
  
