@@ -235,7 +235,7 @@ define(['App'], function(UMI){
                         nativeFieldsList.push(selfProperty.dataSource);
                     } else if(name === 'active'){
                         nativeFieldsList.push('active');
-                    } else if(name === 'trashed'){
+                    } else if(name === 'trashed' && !Ember.get(filterParams, 'trashed')){
                         filterParams.trashed = 'equals(0)';
                     }
                 });

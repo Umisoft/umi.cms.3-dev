@@ -3208,7 +3208,7 @@ label.error {
     background-position: -640px 0; }
   .icon.icon-backupList {
     background-position: -680px 0; }
-  .icon.icon-renew {
+  .icon.icon-renew, .icon.icon-untrash {
     background-position: -700px 0; }
   .icon.icon-calendar {
     background-position: -720px 0; }
@@ -3314,7 +3314,7 @@ label.error {
     background-position: -640px -20px; }
   .icon.white.icon-backupList {
     background-position: -680px -20px; }
-  .icon.white.icon-renew {
+  .icon.white.icon-renew, .icon.white.icon-untrash {
     background-position: -700px -20px; }
   .icon.white.icon-calendar {
     background-position: -720px -20px; }
@@ -3420,7 +3420,7 @@ label.error {
     background-position: -640px -40px; }
   .icon.black.icon-backupList {
     background-position: -680px -40px; }
-  .icon.black.icon-renew {
+  .icon.black.icon-renew, .icon.black.icon-untrash {
     background-position: -700px -40px; }
   .icon.black.icon-calendar {
     background-position: -720px -40px; }

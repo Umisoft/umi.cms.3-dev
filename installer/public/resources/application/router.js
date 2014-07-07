@@ -326,6 +326,46 @@ define([], function(){
                 },
 
                 /**
+                 * Восстанавливает объект из корзины
+                 * @method untrash
+                 * @param object
+                 * @returns {*|Promise}
+                 */
+                untrash: function(object){
+                    var self = this;
+                    var promise;
+                    var serializeObject;
+                    var untrashAction;
+                    var collectionName;
+                    var store = self.get('store');
+                    try{
+                        serializeObject = JSON.stringify(object.toJSON({includeId: true}));
+                        collectionName = object.constructor.typeKey;
+                        untrashAction = self.controllerFor('component').get('settings').actions.untrash;
+                        if(!untrashAction){
+                            throw new Error('Action untrash not supported for component.');
+                        }
+                        promise = $.ajax({
+                            url: untrashAction.source + '?id=' + object.get('id') + '&collection=' + collectionName,
+                            type: "POST",
+                            data: serializeObject,
+                            contentType: 'application/json; charset=UTF-8'
+                        }).then(function(){
+                            store.unloadRecord(object);
+                            var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" restore.'};
+                            UMI.notification.create(settings);
+                        }, function(){
+                            var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" not restored.'};
+                            UMI.notification.create(settings);
+                        });
+                    } catch(error){
+                        self.send('backgroundError', error);
+                    } finally{
+                        return promise;
+                    }
+                },
+
+                /**
                  * Удаляет объект (перемещает в корзину)
                  * @method trash
                  * @param object
