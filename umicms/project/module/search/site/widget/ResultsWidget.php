@@ -47,20 +47,7 @@ class ResultsWidget extends BaseListWidget
      */
     protected function getSelector()
     {
-        $offset = $pagesCount = isset($this->pagination['pagesCount']) ? (int) $this->pagination['pagesCount'] : null;
-
-        return $this->module->getSearchApi()->search($this->query, $this->limit, $offset);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getPaginator(CmsSelector $selector)
-    {
-
-        $paginator = parent::getPaginator($selector);
-        var_dump($selector->getSelectBuilder()->getSql(), $selector->getSelectBuilder()->getPlaceholderValues());
-        return $paginator;
+        return $this->module->getSearchApi()->search($this->query);
     }
 
     /**

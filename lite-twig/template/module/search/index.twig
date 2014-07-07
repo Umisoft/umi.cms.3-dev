@@ -4,17 +4,14 @@
 
     {{ include('form/form.twig', {'form' : form})  }}
 
-    {% if (searchResults) %}
-        {% for result in searchResults %}
-            <div>
-                <h3>
-                    <a href="{{ result.getPageUrl()  }}">{{ result.displayName  }}</a>
-                </h3>
-                {{ widget('search.fragments', {'query' : query, 'page' : result}) }}
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>{{ translate('No results') }}</p>
-    {% endif %}
+    {{ widget('search.results', {
+        'query' : query,
+        'limit' : 3,
+        'pagination' : {
+        'pageParam' : 'p',
+        'type' : 'sliding',
+        'pagesCount' : 5
+        }
+    }) }}
 
 </div>

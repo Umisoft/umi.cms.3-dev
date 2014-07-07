@@ -11,6 +11,7 @@
 namespace umicms\project\module\search\model;
 
 use umi\dbal\builder\IExpressionGroup;
+use umi\dbal\builder\ISelectBuilder;
 use umicms\orm\selector\CmsSelector;
 use umicms\project\module\search\model\highlight\Fragmenter;
 use umicms\project\module\search\model\object\SearchIndex;
@@ -192,26 +193,30 @@ class SearchApi extends BaseSearchApi
     protected function buildQueryCondition(CmsSelector $selector, $searchString, array $wordBases)
     {
         $searchMetadata = $selector->getCollection()->getMetadata();
-        $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)->getColumnName();
 
-        $select = $selector->getSelectBuilder();
-        $connection = $searchMetadata->getCollectionDataSource()->getConnection();
+        $selector->setSelectBuilderInitializer(
+            function(ISelectBuilder $selectBuilder) use ($searchMetadata, $searchString, $wordBases) {
 
-        $select->where(IExpressionGroup::MODE_OR)
-            ->expr(':searchMatchExpression', '>', ':minimumSearchRelevance')
-            ->bindExpression(
-                ':searchMatchExpression',
-                'MATCH(' . $connection->quoteIdentifier($contentColumnName) . ') AGAINST (' . $connection->quote($searchString)
-                . '  WITH QUERY EXPANSION)'
-            )
-            ->bindInt(':minimumSearchRelevance', 0);
+                $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)->getColumnName();
+                $connection = $searchMetadata->getCollectionDataSource()->getConnection();
 
-        if (count($wordBases)) {
-            $select->begin(IExpressionGroup::MODE_OR)
-                ->expr($contentColumnName, 'LIKE', ":searchLikeCondition")
-                ->end()
-                ->bindString(':searchLikeCondition', "%" . $this->buildLikeQueryPart($wordBases) . "%");
-        }
+                $selectBuilder->where(IExpressionGroup::MODE_OR)
+                    ->expr(':searchMatchExpression', '>', ':minimumSearchRelevance')
+                    ->bindExpression(
+                        ':searchMatchExpression',
+                        'MATCH(' . $connection->quoteIdentifier($contentColumnName) . ') AGAINST (' . $connection->quote($searchString)
+                        . '  WITH QUERY EXPANSION)'
+                    )
+                    ->bindInt(':minimumSearchRelevance', 0);
+
+                if (count($wordBases)) {
+                    $selectBuilder->begin(IExpressionGroup::MODE_OR)
+                        ->expr($contentColumnName, 'LIKE', ":searchLikeCondition")
+                        ->end()
+                        ->bindString(':searchLikeCondition', "%" . $this->buildLikeQueryPart($wordBases) . "%");
+                }
+            }
+        );
     }
 
     /**
