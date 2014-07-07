@@ -27,13 +27,6 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'slugify',
             'elements' => [
-                'slugGeneratorActive' => [
-                    'type' => Checkbox::TYPE_NAME,
-                    'label' => 'slugGeneratorActive',
-                    'options' => [
-                        'dataSource' => 'slugGeneratorActive'
-                    ]
-                ],
                 'slugGeneratorType' => [
                     'type' => Select::TYPE_NAME,
                     'label' => 'slugGeneratorType',
