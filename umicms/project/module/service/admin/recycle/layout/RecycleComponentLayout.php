@@ -17,6 +17,9 @@ use umicms\hmvc\component\admin\layout\control\AdminControl;
 use umicms\hmvc\url\IUrlManager;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 
+/**
+ * Контроллер вывода настроек компонента.
+ */
 class RecycleComponentLayout extends AdminComponentLayout
 {
     /**
