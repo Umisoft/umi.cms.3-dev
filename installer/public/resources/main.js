@@ -15,15 +15,12 @@ require.config({
 
         iscroll:    'libsStatic/iscroll-probe-5.1.1',
         ckEditor:   'libs/ckeditor/ckeditor',
-//        datepicker: 'libsStatic/datepicker',
         timepicker: 'libs/jqueryui-timepicker-addon/src/jquery-ui-timepicker-addon',
         moment:     'libs/momentjs/min/moment-with-langs.min',
-        elFinder:   'libsStatic/elFinder', //Почему папку с языками не сохраняем? Как это вообще сейчас работает?
-        chartJs:    'libs/chartjs/Chart'
+        elFinder:   'libsStatic/elFinder'
     },
 
     shim: {
-        //Устанавливаем зависимости между библиотеками
         Modernizr:  {exports: 'Modernizr'},
         jQuery:     {exports: 'jQuery'},
 
@@ -37,9 +34,7 @@ require.config({
         Ember:      {exports: 'Ember',      deps: ['Handlebars', 'jQuery']},
         DS:         {exports: 'DS',         deps: ['Ember']},
         ckEditor:   {exports: 'ckEditor'},
-//        datepicker: {exports: 'datepicker', deps: ['jQuery']},
-        timepicker: {exports: 'timepicker', deps: ['jQuery', 'jQueryUI']},
-        chartJs:    {exports: 'chartJs'}
+        timepicker: {exports: 'timepicker', deps: ['jQuery', 'jQueryUI']}
     },
 
     packages: [
@@ -56,7 +51,6 @@ require.config({
         {name: 'megaIndex',         location: "partials/seo/megaIndex"},
         {name: 'sideMenu',          location: "partials/sideMenu"},
         {name: 'yandexWebmaster',   location: "partials/seo/yandexWebmaster"},
-        //skeleton                  partials/skeleton
         {name: 'table',             location: "partials/table"},
         {name: 'tableControl',      location: "partials/tableControl"},
         {name: 'toolbar',           location: "partials/toolbar"},
