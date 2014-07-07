@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @var umicms\orm\selector\CmsSelector $list
+ * @var array $pagination
+ * @var umicms\project\module\search\model\object\SearchIndex $index
+ * @var umicms\orm\object\ICmsPage $page
+ * @var string $query
+ */
+
+?>
+
+<?php if ($list->getTotal()) : ?>
+    <?php foreach ($list as $index) : ?>
+        <?php $page = $index->getIndexedObject() ?>
+        <div>
+            <h3>
+                <a href="<?= $page->getPageUrl() ?>"><?= $page->displayName ?></a>
+            </h3>
+            <?= $this->widget('search.fragments', ['query' => $query, 'page' => $page]); ?>
+        </div>
+
+    <?php endforeach; ?>
+
+    <?= $this->render('pagination.phtml', ['pagination' => $pagination]); ?>
+<?php else :?>
+    <p><?=$this->translate('No results')?></p>
+<?php endif; ?>

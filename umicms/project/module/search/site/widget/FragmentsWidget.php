@@ -20,7 +20,7 @@ use umicms\project\module\search\model\SearchModule;
 /**
  * Виджет, выводящий подсвеченные фрагменты-цитаты результата поиска.
  */
-class SearchFragmentsWidget extends BaseCmsWidget
+class FragmentsWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

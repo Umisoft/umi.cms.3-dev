@@ -4,12 +4,9 @@
  * @var umicms\project\module\structure\model\object\SystemPage $page
  * @var umi\form\FormEntityView $form
  * @var string $query
- * @var umicms\orm\object\ICmsPage[] $searchResults
- * @var umicms\orm\object\ICmsPage $result
  */
 
 ?>
-
 
 <div class="blog-post">
     <h2 class="blog-post-title"><?=$page->getHeader()?></h2>
@@ -17,17 +14,6 @@
 
     <?= $this->render('form/form.phtml', ['form' => $form]) ?>
 
-    <?php if (!$searchResults) :?>
-        <p><?=$this->translate('No results')?></p>
-    <?php else :?>
-        <?php foreach ($searchResults as $result) :?>
-            <div>
-                <h3>
-                    <a href="<?= $result->getPageUrl() ?>"><?= $result->displayName ?></a>
-                </h3>
-                <?= $this->widget('search.fragments', ['query' => $query, 'page' => $result]); ?>
-            </div>
-        <?php endforeach; ?>
-    <?php endif; ?>
+    <?= $this->widget('search.results', ['query' => $query, 'limit' => 3, 'pagination' => ['pageParam' => 'p', 'type' => 'sliding', 'pagesCount' => 5]]); ?>
 
 </div>

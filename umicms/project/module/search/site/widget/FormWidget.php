@@ -15,7 +15,7 @@ use umicms\hmvc\widget\BaseCmsWidget;
 /**
  * Виджет, выводящий форму поиска.
  */
-class SearchFormWidget extends BaseCmsWidget
+class FormWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет

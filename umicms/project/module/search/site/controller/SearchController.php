@@ -40,26 +40,17 @@ class SearchController extends BaseSitePageController
     {
         $form = $this->getComponent()->getForm('search');
         $form->setData($this->getAllQueryVars());
-
         /**
          * @var IFormElement $queryInput
          */
         $queryInput = $form->get('query');
-
-        $query = $queryInput->getValue();
-
-        $searchResults = null;
-        if ($query) {
-            $searchResults = $this->module->getSearchApi()->search($query);
-        }
 
         return $this->createViewResponse(
             'index',
             [
                 'page' => $this->getCurrentPage(),
                 'form' => $form->getView(),
-                'searchResults' => $searchResults,
-                'query' => $query,
+                'query' => $queryInput->getValue()
             ]
         );
     }

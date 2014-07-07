@@ -11,9 +11,7 @@
 namespace umicms\project\module\search\model;
 
 use umi\dbal\builder\IExpressionGroup;
-use umi\dbal\builder\ISelectBuilder;
-use umicms\orm\collection\ICmsCollection;
-use umicms\orm\object\ICmsPage;
+use umicms\orm\selector\CmsSelector;
 use umicms\project\module\search\model\highlight\Fragmenter;
 use umicms\project\module\search\model\object\SearchIndex;
 
@@ -38,7 +36,7 @@ class SearchApi extends BaseSearchApi
     /**
      * Ищет совпадения с запросом среди объектов модулей, зарегистрированных в системе.
      * @param string $searchString
-     * @return ICmsPage[]
+     * @return CmsSelector|SearchIndex[]
      */
     public function search($searchString)
     {
@@ -46,31 +44,17 @@ class SearchApi extends BaseSearchApi
             return [];
         }
 
-        $searchCollection = $this->getSiteIndexCollection();
+        $selector = $this->getSiteIndexCollection()
+            ->select()
+            ->fields([SearchIndex::FIELD_COLLECTION_NAME, SearchIndex::FIELD_REF_GUID]);
 
-        $collectionColumnName = $searchCollection->getMetadata()
-            ->getField(SearchIndex::FIELD_COLLECTION_NAME)
-            ->getColumnName();
-
-        $refGuidColumnName = $searchCollection->getMetadata()
-            ->getField(SearchIndex::FIELD_REF_GUID)
-            ->getColumnName();
-
-        $selectBuilder = $this->buildQueryCondition(
-            $searchCollection,
+        $this->buildQueryCondition(
+            $selector,
             $this->normalizeSearchString($searchString),
             $this->detectWordBases($searchString)
         );
 
-        $result = [];
-        foreach ($selectBuilder->execute() as $searchResult) {
-
-            $result[] = $this->getCollectionManager()
-                ->getCollection($searchResult[$collectionColumnName])
-                ->get($searchResult[$refGuidColumnName]);
-        }
-
-        return $result;
+        return $selector;
     }
 
     /**
@@ -201,28 +185,17 @@ class SearchApi extends BaseSearchApi
     /**
      * Собирает условие поиска в бд по полнотекстовому индексу, в зависимости от используемой бд.
      * Позволяет модифицировать это условие после формирования, с помощью подписки на событие search.buildCondition.
-     * @param ICmsCollection $collection
+     * @param CmsSelector $selector
      * @param string $searchString искомые слова
      * @param array $wordBases базовые формы искомых слов для второстепенных совпадений
-     * @return ISelectBuilder
      */
-    protected function buildQueryCondition($collection, $searchString, array $wordBases)
+    protected function buildQueryCondition(CmsSelector $selector, $searchString, array $wordBases)
     {
-
-        $searchMetadata = $collection->getMetadata();
-        $collectionNameColumn = $searchMetadata->getField(SearchIndex::FIELD_COLLECTION_NAME)->getColumnName();
-        $refGuidColumn = $searchMetadata->getField(SearchIndex::FIELD_REF_GUID)->getColumnName();
+        $searchMetadata = $selector->getCollection()->getMetadata();
         $contentColumnName = $searchMetadata->getField(SearchIndex::FIELD_CONTENT)->getColumnName();
 
-        $dataSource = $searchMetadata->getCollectionDataSource();
-
-        /** @var $select ISelectBuilder */
-        $select = $dataSource
-            ->select([$collectionNameColumn, $refGuidColumn, [':searchMatchExpression', 'searchRelevance']])
-            ->distinct()
-            ->orderBy('searchRelevance', ISelectBuilder::ORDER_DESC);
-
-        $connection = $dataSource->getConnection();
+        $select = $selector->getSelectBuilder();
+        $connection = $searchMetadata->getCollectionDataSource()->getConnection();
 
         $select->where(IExpressionGroup::MODE_OR)
             ->expr(':searchMatchExpression', '>', ':minimumSearchRelevance')
@@ -239,8 +212,6 @@ class SearchApi extends BaseSearchApi
                 ->end()
                 ->bindString(':searchLikeCondition', "%" . $this->buildLikeQueryPart($wordBases) . "%");
         }
-
-        return $select;
     }
 
     /**

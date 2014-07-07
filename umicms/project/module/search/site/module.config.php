@@ -22,8 +22,9 @@ return [
         'search' => 'umicms\project\module\search\site\controller\SearchController'
     ],
     SiteComponent::OPTION_WIDGET => [
-        'form' => __NAMESPACE__ . '\widget\SearchFormWidget',
-        'fragments' => __NAMESPACE__ . '\widget\SearchFragmentsWidget',
+        'form' => __NAMESPACE__ . '\widget\FormWidget',
+        'results' => __NAMESPACE__ . '\widget\ResultsWidget',
+        'fragments' => __NAMESPACE__ . '\widget\FragmentsWidget',
         'highlight' => __NAMESPACE__ . '\widget\HighlightWidget',
     ],
 
@@ -39,6 +40,7 @@ return [
             'viewer' => [
                 'controller:search' => [],
                 'widget:form' => [],
+                'widget:results' => [],
                 'widget:fragments' => [],
                 'widget:highlight' => []
             ]
