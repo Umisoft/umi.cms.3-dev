@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-use umi\form\element\Checkbox;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
+use umicms\validation\Range;
 
 return [
     'options' => [
@@ -25,13 +25,6 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'slugify',
             'elements' => [
-                'slugGeneratorActive' => [
-                    'type' => Checkbox::TYPE_NAME,
-                    'label' => 'slugGeneratorActive',
-                    'options' => [
-                        'dataSource' => 'slugGeneratorActive'
-                    ]
-                ],
                 'slugGeneratorType' => [
                     'type' => Select::TYPE_NAME,
                     'label' => 'slugGeneratorType',
@@ -47,6 +40,11 @@ return [
                     'type' => Text::TYPE_NAME,
                     'label' => 'slugLength',
                     'options' => [
+                        'validators' => [
+                            Range::NAME => [
+                                'max' => 30
+                            ]
+                        ],
                         'dataSource' => 'slugLength'
                     ]
 
