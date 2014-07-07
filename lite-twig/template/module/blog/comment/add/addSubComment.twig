@@ -1,5 +1,5 @@
 <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#comment-{{ blogComment.getId() }}">
-    {{ translate('Оставить комментарий') }}
+    {{ translate('Add comment') }}
 </button>
 <div id="comment-{{ blogComment.getId() }}" class="collapse">
     {{ include('form/form.twig', {'form' : form}) }}

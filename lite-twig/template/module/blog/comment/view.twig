@@ -1,5 +1,7 @@
 <div class="media-body">
-    {% if (blogComment.publishStatus == constant('COMMENT_STATUS_PUBLISHED', blogComment)) %}
+    {% if (blogComment.publishStatus == constant('COMMENT_STATUS_UNPUBLISHED', blogComment)) %}
+        {{ translate('Comment has been unpublish.') }}
+    {% else %}
         <h1>{{ blogComment.displayName }}</h1>
         <time datetime="{{ blogComment.publishTime.format('c') }}">
             {{ blogComment.publishTime.format('d.m.Y | H:i') }}
@@ -8,18 +10,15 @@
 
         {% if (blogComment.publishStatus == constant('COMMENT_STATUS_NEED_MODERATE', blogComment)) %}
             <div class="btn-toolbar">
-                {{ widget('blog.comment.publish', {'blogComment' : blogComment, 'template' : 'publishForm'}) }}
-                {{ widget('blog.comment.reject', {'blogComment' : blogComment, 'template' : 'rejectForm'}) }}
+                {{ widget('blog.comment.publishForm', {'blogComment' : blogComment, 'template' : 'publishForm'}) }}
+                {{ widget('blog.comment.rejectForm', {'blogComment' : blogComment, 'template' : 'rejectForm'}) }}
             </div>
         {% endif %}
 
         {% if (blogComment.publishStatus == constant('COMMENT_STATUS_PUBLISHED', blogComment)) %}
             <div class="btn-toolbar">
-                {{ widget('blog.comment.unpublish', {'blogComment' : blogComment, 'template' : 'unpublishForm'}) }}
+                {{ widget('blog.comment.unpublishForm', {'blogComment' : blogComment, 'template' : 'unpublishForm'}) }}
             </div>
         {% endif %}
-
-    {% else %}
-        {{ translate('Post has been unpublish.') }}
     {% endif %}
 </div>
