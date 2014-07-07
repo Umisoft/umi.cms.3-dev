@@ -21,6 +21,9 @@ define(['App', 'text!./alert-box.hbs'], function(UMI, alertBoxTpl){
             settings.id = UMI.notificationList.incrementProperty('notificationId');
             var data = UMI.notificationList.get('content');
             Ember.run.next(this, function(){data.pushObject(Ember.Object.create(settings));});
+        },
+        removeAll: function(){
+            UMI.notificationList.set('content', []);
         }
     });
 

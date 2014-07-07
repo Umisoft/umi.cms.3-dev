@@ -5,7 +5,7 @@ define(['App', 'text!./fileElement.hbs'], function(UMI, fileElement){
         UMI.FileElementView = Ember.View.extend({
             template: Ember.Handlebars.compile(fileElement),
 
-            classNames: ['umi-element', 'umi-element-file'],
+            classNames: ['row', 'collapse'],
 
             actions: {
                 clearValue: function(){

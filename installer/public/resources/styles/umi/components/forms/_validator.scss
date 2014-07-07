@@ -1,0 +1,39 @@
+
+// Error style
+.umi-validator{
+    span.error, small.error{
+        position: absolute;
+        z-index: 2;
+        margin-top: 16px;
+        border: 1px solid darken($alert-color, 10%);
+        display: block;
+        visibility: hidden; // только для того чтобы работала анимация
+        transition: all 0.1s linear;
+        opacity: 0.2;
+        font-weight: normal;
+        &:before, &:after{
+            content: "";
+            border: 8px solid transparent;
+            border-bottom-color: darken($alert-color, 10%);
+            top: -15px;
+            left: 10px;
+            position: absolute;
+        }
+        &:after{
+            top: -11px;
+            left: 12px;
+            border-width: 6px;
+            border-bottom-color: $alert-color;
+        }
+    }
+    .error{
+        span.error, small.error{
+            margin-top: 8px;
+            visibility: visible;
+            opacity: 1;
+        }
+        .umi-form-label{
+            @include form-label-error-color;
+        }
+    }
+}

@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'Viewer information blocks'
+        'role:viewer:displayName' => 'View information blocks'
     ],
 
     'ru-RU' => [

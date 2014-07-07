@@ -167,6 +167,10 @@ define([], function(){
             },
 
             actions: {
+                willTransition: function(){
+                    UMI.notification.removeAll();
+                },
+
                 logout: function(){
                     var applicationLayout = document.querySelector('.umi-main-view');
                     var maskLayout = document.createElement('div');
@@ -731,7 +735,7 @@ define([], function(){
                         'control': contentControl
                     };
 
-                    if(Ember.get(contentControl, 'isStatic')){
+                    if(Ember.get(contentControl, 'params.isStatic')){
                         // Понадобится когда не будет необходимости менять метаданные контрола в зависимости от контекста
                         deferred.resolve(routeData);
                     } else{
@@ -776,7 +780,7 @@ define([], function(){
                              deferred.reject(transition.send('backgroundError', error));
                              }*/);
                         } else{
-                            throw new Error('Дествие ' + Ember.get(contentControl, 'name') + ' для данного котекста недоступно.');
+                            throw new Error('Действие ' + Ember.get(contentControl, 'name') + ' для данного контекста недоступно.');
                         }
 
                     }

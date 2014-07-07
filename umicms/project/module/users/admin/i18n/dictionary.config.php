@@ -14,8 +14,8 @@ return [
         'component:users:displayName' => 'Users',
 
         'role:userExecutor:displayName' => 'Users',
-        'role:groupExecutor:displayName' => 'Groups users',
-        'role:usergroupExecutor:displayName' => 'Managing relation users-group'
+        'role:groupExecutor:displayName' => 'Users groups',
+        'role:usergroupExecutor:displayName' => 'Manage users-groups relation'
     ],
 
     'ru-RU' => [

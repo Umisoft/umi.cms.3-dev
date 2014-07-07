@@ -11,9 +11,9 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'Manage own posts pending moderated',
-        'role:moderator:displayName' => 'Moderating posts',
-        'role:editExecutor:displayName' => 'Edit own moderating post',
+        'role:viewer:displayName' => 'Manage moderating posts',
+        'role:moderator:displayName' => 'Moderate posts',
+        'role:editExecutor:displayName' => 'Edit moderating posts',
         'role:ownExecutor:displayName' => 'Own posts',
         'role:allExecutor:displayName' => 'All posts',
     ],
