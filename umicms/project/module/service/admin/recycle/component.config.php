@@ -27,6 +27,10 @@ return [
         ]
     ],
 
+    AdminComponent::OPTION_MODIFY_ACTIONS => [
+        'untrash' => []
+    ],
+
     AdminComponent::OPTION_ROUTES => [
         'action' => [
             'type' => IRouteFactory::ROUTE_SIMPLE,

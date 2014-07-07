@@ -13,6 +13,8 @@ namespace umicms\project\module\service\admin\recycle\layout;
 use umi\orm\collection\ICollectionManager;
 use umicms\hmvc\component\admin\AdminComponent;
 use umicms\hmvc\component\admin\layout\AdminComponentLayout;
+use umicms\hmvc\component\admin\layout\button\behaviour\ChoicesBehaviour;
+use umicms\hmvc\component\admin\layout\button\SplitButton;
 use umicms\hmvc\component\admin\layout\control\AdminControl;
 use umicms\hmvc\url\IUrlManager;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
@@ -107,5 +109,12 @@ class RecycleComponentLayout extends AdminComponentLayout
         $dynamicControl->params['action'] = 'getFilter';
 
         $this->addSelectedContextControl('filter', $dynamicControl);
+
+        $choices = new ChoicesBehaviour('contextMenu');
+        $choices->addChoice('untrash', $dynamicControl->createActionChoice('untrash'));
+        $choices->addChoice('delete', $dynamicControl->createActionChoice('delete'));
+
+        $dropdownButton = new SplitButton('', $choices);
+        $dynamicControl->addContextButton('contextMenu', $dropdownButton);
     }
 }

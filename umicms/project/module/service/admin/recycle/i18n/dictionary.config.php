@@ -10,7 +10,9 @@ return [
         'collection:blogCategory' => 'Category',
         'collection:blogPost' => 'Posts',
         'collection:blogAuthor' => 'Authors',
-        'collection:blogTag' => 'Tags'
+        'collection:blogTag' => 'Tags',
+
+        'action:untrash' => 'Untrash'
     ],
 
     'ru-RU' => [
@@ -22,7 +24,9 @@ return [
         'collection:blogCategory' => 'Категории',
         'collection:blogPost' => 'Посты',
         'collection:blogAuthor' => 'Авторы',
-        'collection:blogTag' => 'Тэги'
+        'collection:blogTag' => 'Тэги',
+
+        'action:untrash' => 'Восстановить'
     ]
 ];
  
