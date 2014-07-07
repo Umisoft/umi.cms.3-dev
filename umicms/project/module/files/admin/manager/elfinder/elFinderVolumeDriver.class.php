@@ -1982,10 +1982,22 @@ abstract class elFinderVolumeDriver {
             }
 		}
 
-        $result = $result && (substr($name, -4) !== '.php') && strpos($name, '.php.') === false;
-
-		return $result;
+		return $result && $this->isAllowedExtension($name);
 	}
+
+    protected function isAllowedExtension($fileName)
+    {
+        $notAllowedExtensions = ["php", "php3", "php4", "php5", "phtml"];
+
+        $pathInfo = pathinfo($fileName);
+        if (isset($pathInfo['extension']) && in_array($pathInfo['extension'], $notAllowedExtensions)) {
+            return false;
+        } elseif (isset($pathInfo['filename']) && strpos($pathInfo['filename'], '.')!== false) {
+            return $this->isAllowedExtension($pathInfo['filename']);
+        }
+
+        return true;
+    }
 	
 	/**
 	 * Return new unique name based on file name and suffix

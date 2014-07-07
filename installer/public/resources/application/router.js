@@ -386,8 +386,7 @@ define([], function(){
                         'title': 'Удаление "' + object.get('displayName') + '".',
                         'content': '<div>Объект будет удалён без возможности востановления, всё равно продолжить?</div>',
                         'confirm': 'Удалить',
-                        'reject': 'Отмена',
-                        'proposeRemember': 'delete'
+                        'reject': 'Отмена'
                     };
                     return UMI.dialog.open(data).then(
                         function(){
@@ -781,7 +780,7 @@ define([], function(){
                              deferred.reject(transition.send('backgroundError', error));
                              }*/);
                         } else{
-                            throw new Error('Дествие ' + Ember.get(contentControl, 'name') + ' для данного котекста недоступно.');
+                            throw new Error('Действие ' + Ember.get(contentControl, 'name') + ' для данного контекста недоступно.');
                         }
 
                     }
