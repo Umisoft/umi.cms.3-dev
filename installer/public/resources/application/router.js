@@ -167,6 +167,10 @@ define([], function(){
             },
 
             actions: {
+                willTransition: function(){
+                    UMI.notification.removeAll();
+                },
+
                 logout: function(){
                     var applicationLayout = document.querySelector('.umi-main-view');
                     var maskLayout = document.createElement('div');

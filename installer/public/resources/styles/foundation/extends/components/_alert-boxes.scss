@@ -1,7 +1,7 @@
 $umi-alert-wrapper-index: 1000;
 
 .alert-box{
-    opacity: .8;
+    opacity: .9;
     .subheader{
         margin-top: 0;
         color: #fff;
@@ -10,6 +10,12 @@ $umi-alert-wrapper-index: 1000;
         .subheader{
             color: $body-font-color;
         }
+        .close{
+            color: #fff;
+        }
+    }
+    &.error{
+        @include alert-style($alert-color);
     }
 }
 
@@ -17,7 +23,8 @@ $umi-alert-wrapper-index: 1000;
     position: absolute;
     z-index: $umi-alert-wrapper-index;
     right: rem-calc(10);
-    top: $topbar-height + 5;
+    top: rem-calc(35);
+    width: 340px;
     .alert-box{
         margin-bottom: .6rem;
     }
