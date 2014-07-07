@@ -43,15 +43,19 @@ class SearchIndex extends CmsObject implements ICollectionManagerAware
      */
     const FIELD_DATE_INDEXED = 'dateIndexed';
 
-
     /**
      * Генерирует отображаемое имя, если оно не было установлено.
+     * @param string|null $localeId
      * @return bool
      */
-    public function validateDisplayName()
+    public function validateDisplayName($localeId = null)
     {
-        if (!$this->displayName) {
-            $this->displayName = 'Index for ' . $this->collectionName . '#' . $this->refGuid;
+        if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
+            $value = 'Index for ' . $this->collectionName . '#' . $this->refGuid;
+            if ($localeId) {
+                $value .= '_' . $localeId;
+            }
+            $this->setValue(self::FIELD_DISPLAY_NAME, $value, $localeId);
         }
 
         return true;
