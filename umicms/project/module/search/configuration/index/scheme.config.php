@@ -15,6 +15,9 @@ use umicms\project\Environment;
 return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/collection.config.php',
     [
+        'options' => [
+            'engine' => 'MyISAM'
+        ],
         'name' => 'search_index',
         'columns' => [
             'ref_guid' => [
@@ -34,6 +37,14 @@ return array_replace_recursive(
             ],
             'collection_name' => [
                 'type' => Type::STRING
+            ]
+        ],
+        'indexes' => [
+            'contents' => [
+                'flags' => ['fulltext'],
+                'columns' => [
+                    'contents' => []
+                ]
             ]
         ]
     ]

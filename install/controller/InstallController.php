@@ -136,11 +136,12 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             $this->installGratitude();
             echo "Installing blog...\n";
             $this->installBlog();
+            echo "Install search...\n";
+            $this->installSearch();
 
             $this->commit();
             $this->getObjectManager()->unloadObjects();
 
-            //$this->installSearch();
         } catch (\Exception $e) {
             echo $e->getMessage() . "\n";
             while ($e = $e->getPrevious()) {
@@ -254,7 +255,12 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
                 'blogExecutor',
                 'searchExecutor',
                 'viewer',
-                'widgetExecutor'
+                'widgetExecutor',
+                'searchExecutor'
+            ],
+
+            'project.site.search' => [
+                'viewer'
             ],
 
             'project.site.users' => [
@@ -1413,6 +1419,22 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             ->setValue(MenuExternalItem::FIELD_DISPLAY_NAME, 'Внешняя ссылка')
             ->setValue(MenuExternalItem::FIELD_RESOURCE_URL, 'http://ya.ru/');
 
+    }
+
+    protected function installSearch()
+    {
+        /**
+         * @var SimpleHierarchicCollection $structureCollection
+         */
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+        $searchRoot = $structureCollection->add('search', 'system')
+            ->setValue('displayName', 'Поиск')
+            ->setValue('displayName', 'News', 'en-US')
+            ->setGUID('9ee6745f-f40d-46d8-8043-d901234628ce');
+
+        $searchRoot->getProperty('locked')->setValue(true);
+        $searchRoot->getProperty('componentName')->setValue('search');
+        $searchRoot->getProperty('componentPath')->setValue('search');
     }
 
     protected function dropTables()

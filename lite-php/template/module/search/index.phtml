@@ -12,24 +12,20 @@
 
 
 <div class="blog-post">
-    <h2 class="blog-post-title"><?=$page->displayName?></h2>
+    <h2 class="blog-post-title"><?=$page->getHeader()?></h2>
     <?=$page->contents?>
 
     <?= $this->render('form/form.phtml', ['form' => $form]) ?>
 
-    <?php if (is_null($searchResults)) :?>
-        <p><?=$this->translate('No query')?></p>
-
-    <?php elseif(empty($searchResults)) :?>
+    <?php if (!$searchResults) :?>
         <p><?=$this->translate('No results')?></p>
-
     <?php else :?>
         <?php foreach ($searchResults as $result) :?>
             <div>
                 <h3>
                     <a href="<?= $result->getPageUrl() ?>"><?= $result->displayName ?></a>
                 </h3>
-                <?= $this->widget('search.fragments', ['query' => $query, 'result' => $searchResults]); ?>
+                <?= $this->widget('search.fragments', ['query' => $query, 'page' => $result]); ?>
             </div>
         <?php endforeach; ?>
     <?php endif; ?>

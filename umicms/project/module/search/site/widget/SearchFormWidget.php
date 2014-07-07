@@ -33,7 +33,7 @@ class SearchFormWidget extends BaseCmsWidget
         return $this->createResult(
             $this->template,
             [
-                'form' => $form
+                'form' => $form->getView()
             ]
         );
     }

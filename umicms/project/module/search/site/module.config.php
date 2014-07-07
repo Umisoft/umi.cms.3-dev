@@ -28,7 +28,7 @@ return [
     ],
 
     SiteComponent::OPTION_FORMS => [
-        'search' => '{#lazy:~/project/module/search/site/form/search.php}'
+        'search' => '{#lazy:~/project/module/search/site/form/search.config.php}'
     ],
 
     SiteComponent::OPTION_ACL => [

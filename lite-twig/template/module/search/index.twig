@@ -1,0 +1,20 @@
+<div class="blog-post">
+    <h2 class="blog-post-title">{{ page.getHeader() }} </h2>
+    {{ page.contents | raw }}
+
+    {{ include('form/form.twig', {'form' : form})  }}
+
+    {% if (searchResults) %}
+        {% for result in searchResults %}
+            <div>
+                <h3>
+                    <a href="{{ result.getPageUrl()  }}">{{ result.displayName  }}</a>
+                </h3>
+                {{ widget('search.fragments', {'query' : query, 'page' : result}) }}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>{{ translate('No results') }}</p>
+    {% endif %}
+
+</div>

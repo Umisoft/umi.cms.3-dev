@@ -202,11 +202,11 @@ class SearchApi extends BaseSearchApi
      * Собирает условие поиска в бд по полнотекстовому индексу, в зависимости от используемой бд.
      * Позволяет модифицировать это условие после формирования, с помощью подписки на событие search.buildCondition.
      * @param ICmsCollection $collection
-     * @param array $words искомые слова
+     * @param string $searchString искомые слова
      * @param array $wordBases базовые формы искомых слов для второстепенных совпадений
      * @return ISelectBuilder
      */
-    protected function buildQueryCondition($collection, array $words, array $wordBases)
+    protected function buildQueryCondition($collection, $searchString, array $wordBases)
     {
 
         $searchMetadata = $collection->getMetadata();
@@ -228,7 +228,7 @@ class SearchApi extends BaseSearchApi
             ->expr(':searchMatchExpression', '>', ':minimumSearchRelevance')
             ->bindExpression(
                 ':searchMatchExpression',
-                'MATCH(' . $connection->quoteIdentifier($contentColumnName) . ') AGAINST (' . $connection->quote($words)
+                'MATCH(' . $connection->quoteIdentifier($contentColumnName) . ') AGAINST (' . $connection->quote($searchString)
                 . '  WITH QUERY EXPANSION)'
             )
             ->bindInt(':minimumSearchRelevance', 0);

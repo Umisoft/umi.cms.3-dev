@@ -15,8 +15,7 @@ use umi\http\THttpAware;
 use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\orm\object\ICmsPage;
-use umicms\project\module\search\model\SearchApi;
-use umicms\project\module\search\model\SearchIndexApi;
+use umicms\project\module\search\model\SearchModule;
 
 /**
  * Виджет, выводящий подсвеченные фрагменты-цитаты результата поиска.
@@ -41,23 +40,17 @@ class SearchFragmentsWidget extends BaseCmsWidget
     public $contextWordsLimit = 5;
 
     /**
-     * @var SearchIndexApi $api API индексации модуля "Поиск"
+     * @var SearchModule $api модуль "Поиск"
      */
-    protected $indexApi;
-    /**
-     * @var SearchApi $searchApi API поиска модуля "Поиск"
-     */
-    private $searchApi;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param SearchApi $searchApi
-     * @param SearchIndexApi $searchIndexApi
+     * @param SearchModule $module
      */
-    public function __construct(SearchApi $searchApi, SearchIndexApi $searchIndexApi)
+    public function __construct(SearchModule $module)
     {
-        $this->indexApi = $searchIndexApi;
-        $this->searchApi = $searchApi;
+        $this->module = $module;
     }
 
     /**
@@ -74,9 +67,9 @@ class SearchFragmentsWidget extends BaseCmsWidget
             );
         }
 
-        $content = $this->indexApi->extractSearchableContent($this->page);
-        try {
-            $fragmenter = $this->searchApi->getResultFragmented($this->query, $content)
+        $content = $this->module->getSearchIndexApi()->extractSearchableContent($this->page);
+        /*try {*/
+            $fragmenter = $this->module->getSearchApi()->getResultFragmented($this->query, $content)
                 ->fragmentize($this->contextWordsLimit);
 
             return $this->createResult(
@@ -86,9 +79,9 @@ class SearchFragmentsWidget extends BaseCmsWidget
                     'fragmenter' => $fragmenter,
                 ]
             );
-        } catch (Exception $e) {
+        /*} catch (Exception $e) {
             return '';
-        }
+        }*/
 
     }
 }

@@ -12,7 +12,7 @@ namespace umicms\project\module\search\site\controller;
 
 use umi\form\element\IFormElement;
 use umicms\hmvc\component\site\BaseSitePageController;
-use umicms\project\module\search\model\SearchApi;
+use umicms\project\module\search\model\SearchModule;
 
 /**
  * Контроллер запроса и вывода результатов поиска
@@ -20,17 +20,17 @@ use umicms\project\module\search\model\SearchApi;
 class SearchController extends BaseSitePageController
 {
     /**
-     * @var SearchApi $api модуль "Поиск"
+     * @var SearchModule $api модуль "Поиск"
      */
-    protected $api;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param SearchApi $api
+     * @param SearchModule $module
      */
-    public function __construct(SearchApi $api)
+    public function __construct(SearchModule $module)
     {
-        $this->api = $api;
+        $this->module = $module;
     }
 
     /**
@@ -50,15 +50,15 @@ class SearchController extends BaseSitePageController
 
         $searchResults = null;
         if ($query) {
-            $searchResults = $this->api->search($query);
+            $searchResults = $this->module->getSearchApi()->search($query);
         }
 
         return $this->createViewResponse(
             'index',
             [
                 'page' => $this->getCurrentPage(),
-                'form' => $form,
-                'results' => $searchResults,
+                'form' => $form->getView(),
+                'searchResults' => $searchResults,
                 'query' => $query,
             ]
         );

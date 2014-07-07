@@ -42,29 +42,20 @@ class Fragmenter implements \Iterator
      * @var string $text
      */
     private $text;
-    /**
-     * Регулярное выражение, по которому ведется поиск фрагментов
-     * @var string $searchRegexp
-     */
-    private $searchRegexp;
 
     /**
      * Конструктор фрагментатора.
      * @param string $text Текст, разбиваемый на фрагменты
      * @param string $keywordRegexp Регулярное выражение поиска по тексту
-     * @throws \LogicException
      */
     public function __construct($text, $keywordRegexp)
     {
         $this->text = $text;
-        preg_match_all('/' . $keywordRegexp . '/ui', $text, $matches, PREG_PATTERN_ORDER | PREG_OFFSET_CAPTURE);
-        if (empty($matches[0])) {
-            throw new \LogicException("Fragmenter expects to receive matchable expression");
+        if (preg_match_all('/' . $keywordRegexp . '/ui', $text, $matches, PREG_PATTERN_ORDER | PREG_OFFSET_CAPTURE)) {
+            foreach ($matches[0] as $pair) {
+                $this->foundMatches[] = ['str' => $pair[0], 'pos' => $this->normalizeUtfMatchPos($text, $pair[1])];
+            }
         }
-        foreach ($matches[0] as $pair) {
-            $this->foundMatches[] = ['str' => $pair[0], 'pos' => $this->normalizeUtfMatchPos($text, $pair[1])];
-        }
-        $this->searchRegexp = $keywordRegexp;
     }
 
 
@@ -117,6 +108,7 @@ class Fragmenter implements \Iterator
         $this->fragments = $this->rejoinFragments($contextWordsLimit, $fragments);
 
         $this->rewind();
+
         return $this;
     }
 

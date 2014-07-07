@@ -25,5 +25,14 @@ class SearchModule extends BaseModule
     {
         return $this->getApi('umicms\project\module\search\model\SearchIndexApi');
     }
+
+    /**
+     * Возвращает API поиска
+     * @return SearchApi
+     */
+    public function getSearchApi()
+    {
+        return $this->getApi('umicms\project\module\search\model\SearchApi');
+    }
 }
  
