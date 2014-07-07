@@ -77,7 +77,7 @@ define(['App'], function(UMI){
                                 throw new Error('Collection name is not defined.');
                             }
                             objectProperties = self.get('objectProperties').join(',');
-                            var nodes = self.store.updateCollection(collectionName, {'filters[parent]': 'null()', 'fields': objectProperties});
+                            var nodes = self.store.updateCollection(collectionName, {'filters[parent]': 'null()', 'filters[trashed]': 'equals(0)', 'fields': objectProperties});
                             children = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
                                 content: nodes,
                                 sortProperties: ['order', 'id'],
