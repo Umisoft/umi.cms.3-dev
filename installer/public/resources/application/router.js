@@ -353,14 +353,24 @@ define([], function(){
                             data: serializeObject,
                             contentType: 'application/json; charset=UTF-8'
                         }).then(function(){
-                            var successNotify = function(){
-                                store.unloadRecord(object);
-                                var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" restore.'};
-                                UMI.notification.create(settings);
-                            };
+                            var invokedObjects = [];
+                            invokedObjects.push(object);
 
-                            successNotify();
-                            window.location.href = window.location.href;
+                            var collection = store.all(collectionName);
+                            var mpath = object.get('mpath');
+                            var parent;
+                            if(Ember.typeOf(mpath) === 'array' && mpath.length){
+                                for(var i = 0; i < mpath.length; i++){
+                                    parent = collection.findBy('id', mpath[i]  + "");
+                                    if(parent){
+                                        invokedObjects.push(parent);
+                                    }
+                                }
+                            }
+
+                            invokedObjects.invoke('unloadRecord');
+                            var settings = {type: 'success', 'content': '"' + object.get('displayName') + '" restore.'};
+                            UMI.notification.create(settings);
                         }, function(){
                             var settings = {type: 'error', 'content': '"' + object.get('displayName') + '" not restored.'};
                             UMI.notification.create(settings);
