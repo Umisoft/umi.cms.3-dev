@@ -17,7 +17,7 @@ return [
         'slugLength' => 'Slug length',
         'slugGeneratorActive' => 'Slug generate active',
 
-        'role:configurator:displayName' => 'Managing settings'
+        'role:configurator:displayName' => 'Manage settings'
     ],
 
     'ru-RU' => [

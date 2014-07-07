@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'Viewer draft'
+        'role:viewer:displayName' => 'View draft'
     ],
 
     'ru-RU' => [

@@ -15,7 +15,7 @@ return [
 
         'action:create:infoblock' => 'Create info block',
 
-        'role:editor:displayName' => 'Managing information block'
+        'role:editor:displayName' => 'Manage information blocks'
     ],
 
     'ru-RU' => [

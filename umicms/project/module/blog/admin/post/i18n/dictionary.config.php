@@ -13,7 +13,7 @@ return [
     'en-US' => [
         'action:create:base' => 'Create post',
 
-        'role:editor:displayName' => 'Managing posts'
+        'role:editor:displayName' => 'Manage posts'
     ],
 
     'ru-RU' => [
