@@ -9,7 +9,6 @@
  */
 
 use umi\filter\IFilterFactory;
-use umi\form\element\Checkbox;
 use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
