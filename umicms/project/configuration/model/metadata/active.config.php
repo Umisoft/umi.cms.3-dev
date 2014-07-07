@@ -8,10 +8,20 @@ use umicms\orm\object\behaviour\IActiveAccessibleObject;
  */
 return [
     'fields'     => [
-        IActiveAccessibleObject::FIELD_ACTIVE => [
-            'type'         => IField::TYPE_BOOL,
-            'columnName'   => 'active',
-            'defaultValue' => 1
+        IActiveAccessibleObject::FIELD_ACTIVE        => [
+            'type'          => IField::TYPE_BOOL,
+            'columnName'    => 'active',
+            'defaultValue' => 0,
+            'localizations' => [
+                'ru-RU' => [
+                    'columnName' => 'active',
+                    'defaultValue' => 0
+                ],
+                'en-US' => [
+                    'columnName' => 'active_en',
+                    'defaultValue' => 0
+                ]
+            ]
         ],
     ],
     'types'      => [
