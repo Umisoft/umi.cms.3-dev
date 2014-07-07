@@ -33,11 +33,7 @@ return array_replace_recursive(
             ],
             SearchIndex::FIELD_COLLECTION_NAME => [
                 'type' => IField::TYPE_STRING,
-                'columnName' => 'collection_id',
-            ],
-            SearchIndex::FIELD_DATE_INDEXED => [
-                'type' => IField::TYPE_DATE_TIME,
-                'columnName' => 'date_indexed',
+                'columnName' => 'collection_name',
             ]
         ],
         'types' => [
@@ -46,8 +42,7 @@ return array_replace_recursive(
                 'fields' => [
                     SearchIndex::FIELD_REF_GUID => [],
                     SearchIndex::FIELD_CONTENT => [],
-                    SearchIndex::FIELD_COLLECTION_NAME => [],
-                    SearchIndex::FIELD_DATE_INDEXED => []
+                    SearchIndex::FIELD_COLLECTION_NAME => []
                 ]
             ]
         ]

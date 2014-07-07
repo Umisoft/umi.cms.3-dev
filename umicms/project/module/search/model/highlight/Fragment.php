@@ -7,7 +7,8 @@
  * @license For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace umicms\project\module\search\highlight;
+
+namespace umicms\project\module\search\model\highlight;
 
 /**
  * Фрагмент поискового текста, состоящий из левой и правой частей и центральной, содержащей поисковое выражение.
@@ -179,6 +180,7 @@ class Fragment
         $edgeNext = $next->getEdgeLeft();
         $wordsMiddle = $this->joinEdges($edgePrev, $edgeNext);
         $keywordList = array_merge([$this->getCenter()], $wordsMiddle, [$next->getCenter()]);
+
         return new Fragment(
             implode(' ', $keywordList),
             $this->getEdgeLeft(),
@@ -199,6 +201,7 @@ class Fragment
         $intersectWidth = count($intersection);
         $leftPart = array_slice($edgePrev, 0, count($edgePrev)-$intersectWidth);
         $rightPart = array_slice($edgeNext, $intersectWidth);
+
         return array_merge($leftPart, $intersection, $rightPart);
     }
 }

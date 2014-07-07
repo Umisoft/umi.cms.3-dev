@@ -65,6 +65,15 @@ trait TCmsPage
     }
 
     /**
+     * @see ICmsPage::isInIndex()
+     */
+    public function isInIndex()
+    {
+        /** @noinspection PhpUndefinedFieldInspection */
+        return $this->active && !$this->trashed;
+    }
+
+    /**
      * Метод валидации slug.
      * @throws RuntimeException в случае неверной коллекции объекта
      * @return bool

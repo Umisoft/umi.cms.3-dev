@@ -14,6 +14,7 @@ use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\stemming\IStemmingAware;
 use umi\stemming\TStemmingAware;
+use umicms\orm\collection\CmsCollection;
 
 /**
  * Базовый класс для API поиска, индексации и проч. бизнес-логики, связанной с поиском.
@@ -32,7 +33,11 @@ class BaseSearchApi implements ICollectionManagerAware, IStemmingAware
     {
         $stringOriginal = trim(mb_strtoupper($searchString, 'utf-8'));
         $stringOriginal = $this->filterStopwords($stringOriginal);
-        preg_match_all('/[0-9A-ZА-Я_]+/u', $stringOriginal, $matches);
+
+        if (!preg_match_all('/[0-9A-ZА-Я_]+/u', $stringOriginal, $matches)) {
+            return '';
+        }
+
         $foundWords = $matches[0];
 
         $originalSearchPart = "(" . implode(' ', $foundWords) . ")";
@@ -75,7 +80,17 @@ class BaseSearchApi implements ICollectionManagerAware, IStemmingAware
         $string = preg_replace('/\s+/u', ' ', $string);
         $string = preg_replace('/[^0-9A-ZА-Я_ -]/u', '', $string);
         $string = preg_replace('/\s+/u', ' ', $string);
+
         return $this->filterStopwords($string);
+    }
+
+    /**
+     * Возвращает коллекцию для сайтовой индексации.
+     * @return CmsCollection
+     */
+    protected function getSiteIndexCollection()
+    {
+        return $this->getCollectionManager()->getCollection('searchIndex');
     }
 
     /**

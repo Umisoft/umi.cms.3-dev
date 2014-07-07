@@ -12,54 +12,45 @@ namespace umicms\project\module\search\site\widget;
 
 use Exception;
 use umi\http\THttpAware;
+use umicms\exception\InvalidArgumentException;
 use umicms\hmvc\widget\BaseCmsWidget;
-use umicms\orm\object\ICmsObject;
-use umicms\project\module\search\model\SearchApi;
-use umicms\project\module\search\model\SearchIndexApi;
+use umicms\orm\object\ICmsPage;
+use umicms\project\module\search\model\SearchModule;
 
 /**
  * Виджет, выводящий подсвеченные фрагменты-цитаты результата поиска.
  */
-class SearchFragmentsWidget extends BaseCmsWidget
+class FragmentsWidget extends BaseCmsWidget
 {
     /**
      * @var string $template имя шаблона, по которому выводится виджет
      */
-    public $template = 'search/fragments';
+    public $template = 'fragments';
     /**
-     * Результат поиска
-     * @var ICmsObject $result
+     * @var ICmsPage $result страница, которая попала в результат поиска
      */
-    public $result;
+    public $page;
     /**
-     * Запрос, по которому найден результат
-     * @var string $query
+     * @var string $query запрос, по которому найден результат
      */
     public $query;
     /**
-     * Сколько слов контекста выводить в цитате
-     * @var int $contextWordsLimit
+     * @var int $contextWordsLimit сколько слов контекста выводить в цитате
      */
     public $contextWordsLimit = 5;
 
     /**
-     * @var SearchIndexApi $api API индексации модуля "Поиск"
+     * @var SearchModule $api модуль "Поиск"
      */
-    protected $indexApi;
-    /**
-     * @var SearchApi $searchApi API поиска модуля "Поиск"
-     */
-    private $searchApi;
+    protected $module;
 
     /**
      * Конструктор.
-     * @param SearchApi $searchApi
-     * @param SearchIndexApi $searchIndexApi
+     * @param SearchModule $module
      */
-    public function __construct(SearchApi $searchApi, SearchIndexApi $searchIndexApi)
+    public function __construct(SearchModule $module)
     {
-        $this->indexApi = $searchIndexApi;
-        $this->searchApi = $searchApi;
+        $this->module = $module;
     }
 
     /**
@@ -67,10 +58,20 @@ class SearchFragmentsWidget extends BaseCmsWidget
      */
     public function __invoke()
     {
-        $content = $this->indexApi->extractSearchableContent($this->result);
-        try {
-            $fragmenter = $this->searchApi->getResultFragmented($this->query, $content)
+        if (!$this->page instanceof ICmsPage) {
+            throw new InvalidArgumentException(
+                $this->translate(
+                    'Option "{option}" should be instance of class "{class}".',
+                    ['option' => 'page', 'class' => 'umicms\orm\object\ICmsPage']
+                )
+            );
+        }
+
+        $content = $this->module->getSearchIndexApi()->extractSearchableContent($this->page);
+        /*try {*/
+            $fragmenter = $this->module->getSearchApi()->getResultFragmented($this->query, $content)
                 ->fragmentize($this->contextWordsLimit);
+
             return $this->createResult(
                 $this->template,
                 [
@@ -78,9 +79,9 @@ class SearchFragmentsWidget extends BaseCmsWidget
                     'fragmenter' => $fragmenter,
                 ]
             );
-        } catch (Exception $e) {
+        /*} catch (Exception $e) {
             return '';
-        }
+        }*/
 
     }
 }

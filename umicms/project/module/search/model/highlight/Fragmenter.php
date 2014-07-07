@@ -7,7 +7,8 @@
  * @license For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace umicms\project\module\search\highlight;
+
+namespace umicms\project\module\search\model\highlight;
 
 /**
  * Фрагментатор текста по найденным в нем словам.
@@ -41,29 +42,20 @@ class Fragmenter implements \Iterator
      * @var string $text
      */
     private $text;
-    /**
-     * Регулярное выражение, по которому ведется поиск фрагментов
-     * @var string $searchRegexp
-     */
-    private $searchRegexp;
 
     /**
      * Конструктор фрагментатора.
      * @param string $text Текст, разбиваемый на фрагменты
      * @param string $keywordRegexp Регулярное выражение поиска по тексту
-     * @throws \LogicException
      */
     public function __construct($text, $keywordRegexp)
     {
         $this->text = $text;
-        preg_match_all('/' . $keywordRegexp . '/ui', $text, $matches, PREG_PATTERN_ORDER | PREG_OFFSET_CAPTURE);
-        if (empty($matches[0])) {
-            throw new \LogicException("Fragmenter expects to receive matchable expression");
+        if (preg_match_all('/' . $keywordRegexp . '/ui', $text, $matches, PREG_PATTERN_ORDER | PREG_OFFSET_CAPTURE)) {
+            foreach ($matches[0] as $pair) {
+                $this->foundMatches[] = ['str' => $pair[0], 'pos' => $this->normalizeUtfMatchPos($text, $pair[1])];
+            }
         }
-        foreach ($matches[0] as $pair) {
-            $this->foundMatches[] = ['str' => $pair[0], 'pos' => $this->normalizeUtfMatchPos($text, $pair[1])];
-        }
-        $this->searchRegexp = $keywordRegexp;
     }
 
 
@@ -89,7 +81,8 @@ class Fragmenter implements \Iterator
     {
         $fragments = [];
         $textLength = mb_strlen($this->text, 'utf-8');
-        $leftPosFrom = $rightPosFrom = $leftPosTo = $rightPosTo = 0;
+
+        $rightPosFrom = $leftPosTo = $rightPosTo = 0;
         foreach ($this->foundMatches as $i => $matchPair) {
             $word = $matchPair['str'];
             if ($i == 0) {
@@ -115,6 +108,7 @@ class Fragmenter implements \Iterator
         $this->fragments = $this->rejoinFragments($contextWordsLimit, $fragments);
 
         $this->rewind();
+
         return $this;
     }
 
