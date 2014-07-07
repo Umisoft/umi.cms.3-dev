@@ -17,8 +17,8 @@
             </div>
         {{/if}}
 
-        <div class="umi-divider-right">
-            <div class="umi-component columns small-12 s-padding-clear">
+        <div {{bind-attr class=":umi-divider-right sideBarControl::wide"}}>
+            <div class="umi-component columns small-12 s-padding-clear s-full-height">
                 {{outlet}}
             </div>
         </div>
