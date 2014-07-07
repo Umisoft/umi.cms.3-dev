@@ -6,7 +6,7 @@
 
 <div class="s-full-height">
     {{#with model.control.meta.elements as formElements}}
-        {{#if hasFieldset}}
+        {{#if view.hasFieldset}}
             {{#view "magellan" elements=formElements}}
                 {{#each formElement in view.elements itemViewClass="view.elementView"}}
                     {{#if view.isFieldset}}

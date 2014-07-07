@@ -382,8 +382,7 @@ define([], function(){
                         'title': 'Удаление "' + object.get('displayName') + '".',
                         'content': '<div>Объект будет удалён без возможности востановления, всё равно продолжить?</div>',
                         'confirm': 'Удалить',
-                        'reject': 'Отмена',
-                        'proposeRemember': 'delete'
+                        'reject': 'Отмена'
                     };
                     return UMI.dialog.open(data).then(
                         function(){
@@ -736,60 +735,50 @@ define([], function(){
                         // Понадобится когда не будет необходимости менять метаданные контрола в зависимости от контекста
                         deferred.resolve(routeData);
                     } else{
-                        // Временно для табличного контрола
-                        if(actionName === 'children' || actionName === 'filter'){
-                            Ember.$.getJSON('/resources/modules/news/categories/children/resources.json').then(function(results){
-                                routeData.control = {
-                                    name: actionName,
-                                    meta: results.getFilter
-                                };
-                                deferred.resolve(routeData);
-                            });
-                        } else{
-                            actionResourceName = Ember.get(contentControl, 'params.action');
-                            actionResource = Ember.get(componentController, 'settings.actions.' + actionResourceName + '.source');
+                        actionResourceName = Ember.get(contentControl, 'params.action');
+                        actionResource = Ember.get(componentController, 'settings.actions.' + actionResourceName + '.source');
 
-                            if(actionResource){
-                                actionResource = UMI.Utils.replacePlaceholder(routeData.object, actionResource);
-                                if(actionName === 'createForm'){
-                                    createdParams = contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
-                                    if(transition.queryParams.type){
-                                        createdParams.type = transition.queryParams.type;
-                                    }
-                                    routeData.createObject = self.store.createRecord(componentController.get('dataSource.name'), createdParams);
-                                    if(transition.queryParams.type){
-                                        actionParams.type = transition.queryParams.type;
-                                    } else{
-                                        throw new Error("Тип создаваемого объекта не был указан.");
-                                    }
+                        if(actionResource){
+                            actionResource = UMI.Utils.replacePlaceholder(routeData.object, actionResource);
+                            if(actionName === 'createForm'){
+                                createdParams = contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
+                                if(transition.queryParams.type){
+                                    createdParams.type = transition.queryParams.type;
                                 }
-
-                                Ember.$.get(actionResource).then(function(results){
-                                    var dynamicControl;
-                                    var dynamicControlName;
-                                    if(actionName === 'dynamic'){
-                                        dynamicControl = Ember.get(results, 'result') || {};
-                                        for(var key in dynamicControl){
-                                            if(dynamicControl.hasOwnProperty(key)){
-                                                dynamicControlName = key;
-                                            }
-                                        }
-                                        dynamicControl = dynamicControl[dynamicControlName] || {};
-                                        dynamicControl.name = dynamicControlName;
-
-                                        UMI.Utils.objectsMerge(routeData.control, dynamicControl);
-                                    } else{
-                                        Ember.set(routeData.control, 'meta', Ember.get(results, 'result.' + actionResourceName));
-                                    }
-                                    deferred.resolve(routeData);
-                                }/*, function(error){
-                                 Сообщение ошибки в таких случаях возникает на уровне ajaxSetup, получается две одинаковых. Нужно научить ajax наследованию
-                                 deferred.reject(transition.send('backgroundError', error));
-                                 }*/);
-                            } else{
-                                throw new Error('Дествие ' + Ember.get(contentControl, 'name') + ' для данного котекста недоступно.');
+                                routeData.createObject = self.store.createRecord(componentController.get('dataSource.name'), createdParams);
+                                if(transition.queryParams.type){
+                                    actionParams.type = transition.queryParams.type;
+                                } else{
+                                    throw new Error("Тип создаваемого объекта не был указан.");
+                                }
                             }
+
+                            Ember.$.get(actionResource).then(function(results){
+                                var dynamicControl;
+                                var dynamicControlName;
+                                if(actionName === 'dynamic'){
+                                    dynamicControl = Ember.get(results, 'result') || {};
+                                    for(var key in dynamicControl){
+                                        if(dynamicControl.hasOwnProperty(key)){
+                                            dynamicControlName = key;
+                                        }
+                                    }
+                                    dynamicControl = dynamicControl[dynamicControlName] || {};
+                                    dynamicControl.name = dynamicControlName;
+
+                                    UMI.Utils.objectsMerge(routeData.control, dynamicControl);
+                                } else{
+                                    Ember.set(routeData.control, 'meta', Ember.get(results, 'result.' + actionResourceName));
+                                }
+                                deferred.resolve(routeData);
+                            }/*, function(error){
+                             Сообщение ошибки в таких случаях возникает на уровне ajaxSetup, получается две одинаковых. Нужно научить ajax наследованию
+                             deferred.reject(transition.send('backgroundError', error));
+                             }*/);
+                        } else{
+                            throw new Error('Дествие ' + Ember.get(contentControl, 'name') + ' для данного котекста недоступно.');
                         }
+
                     }
                 } catch(error){
                     deferred.reject(transition.send('backgroundError', error));

@@ -17,8 +17,14 @@ define(['App'], function(UMI){
                     return this.get('model.id') === this.get('parentView.parentView.focusId');
                 }.property('parentView.parentView.focusId'),
                 click: function(){
+                    var self = this;
                     var fieldset = document.getElementById('fieldset-' + this.get('model.id'));
                     $(fieldset).closest('.magellan-content').animate({'scrollTop': fieldset.parentNode.offsetTop - parseFloat(getComputedStyle(fieldset).marginTop)}, 0);
+                    setTimeout(function(){
+                        if(self.get('parentView.parentView.focusId') !== self.get('model.id')){
+                            self.get('parentView.parentView').set('focusId', self.get('model.id'));
+                        }
+                    }, 10);
                 }
             }),
             init: function(){
