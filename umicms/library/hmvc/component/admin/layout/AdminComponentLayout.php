@@ -24,11 +24,16 @@ class AdminComponentLayout
      * @var array $params список дополнительных параметров для layout
      */
     public $params = [];
+    /**
+     * @var array $dataSource источник данных для сетки
+     */
+    public $dataSource = [];
 
     /**
      * @var IComponent $component
      */
     protected $component;
+
     /**
      * @var AdminControl[] $sideBarControls список контролов для Sidebar
      */
@@ -50,13 +55,23 @@ class AdminComponentLayout
      * Конструктор.
      * @param AdminComponent $component.
      */
-    public function __construct(AdminComponent $component) {
+    public function __construct(AdminComponent $component)
+    {
         $this->component = $component;
 
         $this->configureActions();
         $this->configureSideBar();
         $this->configureEmptyContextControls();
         $this->configureSelectedContextControls();
+    }
+
+    /**
+     * Устанавливает источник данных для сетки
+     * @param array $dataSource
+     */
+    public function setDataSource(array $dataSource)
+    {
+        $this->dataSource = $dataSource;
     }
 
     /**
@@ -232,6 +247,11 @@ class AdminComponentLayout
         }
 
         $result = [];
+
+        if ($this->dataSource) {
+            $result['dataSource'] = $this->dataSource;
+        }
+
         if ($this->params) {
             $result['params'] = $this->params;
         }

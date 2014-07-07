@@ -279,6 +279,7 @@ define(
                         queryParams = queryParams.split(',');
                         queryParams.push('id');
                         queryParams.push('version');
+                        queryParams.push('meta');
                         for(var i = 0; i < payload.length; i++){
                             for(var key in payload[i]){
                                 if(payload[i].hasOwnProperty(key) && !queryParams.contains(key)){

@@ -40,6 +40,9 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => BlogPost::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'choices' => [
+                            null => 'Default or inherited layout'
+                        ],
                         'lazy' => true,
                         'dataSource' => BlogPost::FIELD_PAGE_LAYOUT
                     ],

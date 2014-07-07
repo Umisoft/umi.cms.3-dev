@@ -10,7 +10,7 @@ define(['App'], function(UMI){
                 var className = self.get('className');
                 var isChecked = self.get('value');
 
-                var hiddenInput = '<input type="hidden" name="' + name + '" value="' + attributeValue + '" />';
+                var hiddenInput = '<input type="hidden" name="' + name + '" value="0" />';
                 var checkbox = '<input type="checkbox" ' + (isChecked ? "checked" : "") + ' name="' + name + '" value="' + attributeValue + '" class="' + className + '"/>';
                 var label = '<label unselectable="on" onselectstart="return false;" {{action "change" target="view"}}><span></span>{{view.meta.label}}</label>';
                 return Ember.Handlebars.compile(hiddenInput + checkbox + label);

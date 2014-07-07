@@ -21,6 +21,6 @@ return [
     ],
 
     CollectionComponent::OPTION_MODIFY_ACTIONS => [
-        'importFromRss'
+        'importFromRss' => []
     ]
 ];

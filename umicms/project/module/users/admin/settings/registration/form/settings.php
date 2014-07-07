@@ -46,14 +46,14 @@ return [
             'options' => [
                 'dataSource' => UserCollection::SETTING_FORBID_PASSWORD_LOGIN_EQUALITY
             ]
-        ],
+        ]/*,
         UserCollection::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS => [
             'type' => CheckboxGroup::TYPE_NAME,
             'label' => UserCollection::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS,
             'options' => [
                 //TODO специальное поле
-                //'dataSource' => UserCollection::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS
+                'dataSource' => UserCollection::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS
             ]
-        ],
+        ],*/
     ]
 ];

@@ -10,7 +10,7 @@
 
 use umi\orm\collection\ICollectionFactory;
 use umi\orm\metadata\IObjectType;
-use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\users\model\collection\UserCollection;
 use umicms\project\module\users\model\object\RegisteredUser;
 
 return [
@@ -21,18 +21,18 @@ return [
     ],
     'forms' => [
         IObjectType::BASE => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/base.edit.config.php}'
+            UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/base.edit.config.php}'
         ],
         'guest' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/guest.edit.config.php}'
+            UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/guest.edit.config.php}'
         ],
         'registered.supervisor' => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/registered.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/registered.create.config.php}',
+            UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/registered.edit.config.php}',
+            UserCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/registered.create.config.php}',
         ],
         RegisteredUser::TYPE_NAME => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/registered.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/registered.create.config.php}',
+            UserCollection::FORM_EDIT => '{#lazy:~/project/module/users/configuration/user/form/registered.edit.config.php}',
+            UserCollection::FORM_CREATE => '{#lazy:~/project/module/users/configuration/user/form/registered.create.config.php}',
             RegisteredUser::FORM_LOGIN_ADMIN => '{#lazy:~/project/module/users/configuration/user/form/login.config.php}',
             RegisteredUser::FORM_LOGIN_SITE => '{#lazy:~/project/module/users/site/authorization/form/login.config.php}',
             RegisteredUser::FORM_LOGOUT_SITE => '{#lazy:~/project/module/users/site/authorization/form/logout.config.php}',
@@ -46,5 +46,17 @@ return [
 
     'dictionaries' => [
         'collection.user', 'collection'
+    ],
+
+    UserCollection::IGNORED_TABLE_FILTER_FIELDS => [
+        RegisteredUser::FIELD_ACTIVATION_CODE => [],
+        RegisteredUser::FIELD_PASSWORD_SALT => [],
+        RegisteredUser::FIELD_PASSWORD => []
+    ],
+
+    UserCollection::DEFAULT_TABLE_FILTER_FIELDS => [
+        RegisteredUser::FIELD_LOGIN => [],
+        RegisteredUser::FIELD_EMAIL => [],
+        RegisteredUser::FIELD_REGISTRATION_DATE => []
     ]
 ];
