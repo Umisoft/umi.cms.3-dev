@@ -14,7 +14,7 @@ return [
         'component:settings:displayName' => 'Settings',
         'control:settings:toolbar:apply' => 'Apply',
 
-        'role:siteExecutor:displayName' => 'Site structure',
+        'role:siteExecutor:displayName' => 'Site settings',
         'role:formsExecutor:displayName' => 'Site forms'
     ],
 
@@ -22,7 +22,7 @@ return [
         'component:settings:displayName' => 'Настройки',
         'control:settings:toolbar:apply' => 'Применить',
 
-        'role:siteExecutor:displayName' => 'Структура сайта',
+        'role:siteExecutor:displayName' => 'Настройки сайта',
         'role:formsExecutor:displayName' => 'Формы на сайте'
     ]
 

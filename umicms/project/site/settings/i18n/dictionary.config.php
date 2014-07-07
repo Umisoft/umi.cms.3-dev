@@ -22,7 +22,8 @@ return [
 
         'role:commonExecutor:displayName' => 'Common',
         'role:templatingExecutor:displayName' => 'Templating',
-        'role:slugifyExecutor:displayName' => 'Slug formation'
+        'role:slugifyExecutor:displayName' => 'Slug formation',
+        'role:mailExecutor:displayName' => 'Mail',
     ],
 
     'ru-RU' => [
@@ -45,7 +46,8 @@ return [
 
         'role:commonExecutor:displayName' => 'Общие',
         'role:templatingExecutor:displayName' => 'Шаблонизация',
-        'role:slugifyExecutor:displayName' => 'Формирование slug'
+        'role:slugifyExecutor:displayName' => 'Формирование slug',
+        'role:mailExecutor:displayName' => 'Почта',
     ]
 ];
  
