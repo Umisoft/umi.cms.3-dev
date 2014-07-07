@@ -776,7 +776,7 @@ define([], function(){
                              deferred.reject(transition.send('backgroundError', error));
                              }*/);
                         } else{
-                            throw new Error('Дествие ' + Ember.get(contentControl, 'name') + ' для данного котекста недоступно.');
+                            throw new Error('Действие ' + Ember.get(contentControl, 'name') + ' для данного контекста недоступно.');
                         }
 
                     }
