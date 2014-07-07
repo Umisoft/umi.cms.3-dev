@@ -86,6 +86,7 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'errExtractExec'       : 'Ошибка при выполнении распаковки: "$1"',
 
 			'errUploadFile'        : 'Невозможно загрузить файл "$1"',
+            'errUploadFileSize'    : 'Превышен допустимый размер загружаемого файла.',
 
 
 			/******************************* commands names ********************************/
