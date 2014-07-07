@@ -12,7 +12,9 @@ return [
         'collection:blogAuthor' => 'Authors',
         'collection:blogTag' => 'Tags',
 
-        'action:untrash' => 'Untrash'
+        'action:untrash' => 'Untrash',
+
+        'No deleted pages.' => 'No deleted pages.'
     ],
 
     'ru-RU' => [
@@ -26,7 +28,9 @@ return [
         'collection:blogAuthor' => 'Авторы',
         'collection:blogTag' => 'Тэги',
 
-        'action:untrash' => 'Восстановить'
+        'action:untrash' => 'Восстановить',
+
+        'No deleted pages.' => 'Нет удалённых страниц.'
     ]
 ];
  
