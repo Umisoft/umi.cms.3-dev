@@ -12,8 +12,8 @@ define(
         'text!./templates/content/counters.hbs',
         'text!./templates/content/counter.hbs',
         'text!./templates/content/megaIndex.hbs',
-        'text!./templates/content/yandexWebmaster.hbs'
-
+        'text!./templates/content/yandexWebmaster.hbs',
+        'text!./templates/content/empty.hbs'
 
     ], function(
         applicationTpl,
@@ -28,7 +28,8 @@ define(
         countersTpl,
         counterTpl,
         megaIndexTpl,
-        yandexWebmasterTpl
+        yandexWebmasterTpl,
+        emptyTpl
     ){
         'use strict';
 
@@ -54,6 +55,7 @@ define(
             Ember.TEMPLATES['UMI/counter'] = Ember.Handlebars.compile(counterTpl);
             Ember.TEMPLATES['UMI/megaindexReport'] = Ember.Handlebars.compile(megaIndexTpl);
             Ember.TEMPLATES['UMI/yandexWebmasterReport'] = Ember.Handlebars.compile(yandexWebmasterTpl);
+            Ember.TEMPLATES['UMI/empty'] = Ember.Handlebars.compile(emptyTpl);
         };
     }
 );

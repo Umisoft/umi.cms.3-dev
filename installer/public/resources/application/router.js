@@ -731,7 +731,7 @@ define([], function(){
                         'control': contentControl
                     };
 
-                    if(Ember.get(contentControl, 'isStatic')){
+                    if(Ember.get(contentControl, 'params.isStatic')){
                         // Понадобится когда не будет необходимости менять метаданные контрола в зависимости от контекста
                         deferred.resolve(routeData);
                     } else{
