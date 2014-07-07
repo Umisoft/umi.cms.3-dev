@@ -83,9 +83,7 @@ class RecycleComponentLayout extends AdminComponentLayout
      */
     protected function configureSideBar()
     {
-        if ($this->listCollection) {
-            $this->addSideBarControl('menu',  new AdminControl($this->component));
-        }
+        $this->addSideBarControl('menu',  new AdminControl($this->component));
     }
 
     /**
@@ -98,13 +96,9 @@ class RecycleComponentLayout extends AdminComponentLayout
         $listCollection = $this->getListCollection();
         if (isset($listCollection[0])) {
             $control->params['slug'] = $this->listCollection[0]['id'];
-            $this->addEmptyContextControl('redirect', $control);
-        } else {
-            $control->params['isStatic'] = true;
-            $control->params['content'] = $this->component->translate('No deleted pages.');
-            $this->addEmptyContextControl('empty', $control);
         }
 
+        $this->addEmptyContextControl('redirect', $control);
     }
 
     /**
@@ -112,21 +106,16 @@ class RecycleComponentLayout extends AdminComponentLayout
      */
     protected function configureSelectedContextControls()
     {
-        if ($this->listCollection) {
-            $dynamicControl = new AdminControl($this->component);
-            $dynamicControl->params['action'] = 'getFilter';
-            $dynamicControl->params['filter'] = [
-                'trashed' => 'equals(1)'
-            ];
+        $dynamicControl = new AdminControl($this->component);
+        $dynamicControl->params['action'] = 'getFilter';
 
-            $this->addSelectedContextControl('filter', $dynamicControl);
+        $this->addSelectedContextControl('filter', $dynamicControl);
 
-            $choices = new ChoicesBehaviour('contextMenu');
-            $choices->addChoice('untrash', $dynamicControl->createActionChoice('untrash'));
-            $choices->addChoice('delete', $dynamicControl->createActionChoice('delete'));
+        $choices = new ChoicesBehaviour('contextMenu');
+        $choices->addChoice('untrash', $dynamicControl->createActionChoice('untrash'));
+        $choices->addChoice('delete', $dynamicControl->createActionChoice('delete'));
 
-            $dropdownButton = new SplitButton('', $choices);
-            $dynamicControl->addContextButton('contextMenu', $dropdownButton);
-        }
+        $dropdownButton = new SplitButton('', $choices);
+        $dynamicControl->addContextButton('contextMenu', $dropdownButton);
     }
 }
