@@ -10,12 +10,14 @@
 
 namespace umicms\project\module\service\admin\recycle\controller;
 
+use umi\hmvc\component\IComponent;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\component\admin\BaseController;
 use umicms\hmvc\component\admin\layout\control\TableControl;
 use umicms\hmvc\component\admin\TActionController;
+use umicms\hmvc\dispatcher\CmsDispatcher;
 use umicms\orm\collection\behaviour\IRecyclableCollection;
 
 /**
@@ -56,8 +58,11 @@ class ActionController extends BaseController implements ICollectionManagerAware
             ));
         }
 
+
         $handlerPath = $collection->getHandlerPath('admin');
-        $handlerComponent = $this->getContext()->getDispatcher()->getComponentByPath('admin.rest.' . $handlerPath);
+        $handlerComponent = $this->getContext()->getDispatcher()->getComponentByPath(
+            CmsDispatcher::ADMIN_API_COMPONENT_PATH . IComponent::PATH_SEPARATOR . $handlerPath
+        );
 
         return new TableControl($handlerComponent);
     }

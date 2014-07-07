@@ -96,6 +96,6 @@ class RecycleComponentLayout extends AdminComponentLayout
         $dynamicControl = new AdminControl($this->component);
         $dynamicControl->params['action'] = 'getTableControl';
 
-        $this->addSelectedContextControl('dynamic', $dynamicControl);
+        $this->addSelectedContextControl('filter', $dynamicControl);
     }
 }
