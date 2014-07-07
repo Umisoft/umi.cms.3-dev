@@ -96,15 +96,6 @@ return [
                     'options' => [
                         'dataSource' => BlogCategory::FIELD_PAGE_CONTENTS
                     ]
-                ],
-
-                BlogCategory::FIELD_POSTS => [
-                    'type' => MultiSelect::TYPE_NAME,
-                    'label' => BlogCategory::FIELD_POSTS,
-                    'options' => [
-                        'dataSource' => BlogCategory::FIELD_POSTS,
-                        'lazy' => true
-                    ]
                 ]
             ]
         ]

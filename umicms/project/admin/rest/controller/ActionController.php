@@ -101,9 +101,15 @@ class ActionController extends BaseController implements ILocalesAware, ISession
             );
         }
 
+        $locale = $this->getPostVar('locale');
+        if ($locale) {
+            $this->getLocalesService()->setCurrentLocale($locale);
+        }
+
         $response = $this->createViewResponse('auth', $this->getAuthUserInfo());
 
-        if ($locale = $this->getPostVar('locale')) {
+        if ($locale) {
+            $this->getLocalesService()->setCurrentLocale($locale);
             $cookie = new Cookie(
                 AdminApplication::CURRENT_LOCALE_COOKIE_NAME,
                 $locale,

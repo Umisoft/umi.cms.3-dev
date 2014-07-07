@@ -9,7 +9,7 @@ return [
         MegaindexModel::MEGAINDEX_PASSWORD => 'Password',
         MegaindexModel::MEGAINDEX_SITE_URL => 'Site url',
 
-        'role:configurator:displayName' => 'Managing setting'
+        'role:configurator:displayName' => 'Manage settings'
     ],
 
     'ru-RU' => [

@@ -31,7 +31,8 @@ class ConnectorController extends BaseCmsController
                     'path'          => PUBLIC_DIR . '/files',
                     'URL'           => '/files',
                     'accessControl' => [$this, 'accessControl'],
-                    'uploadDeny' => ['text/x-php']
+                    'uploadDeny' => ['text/x-php'],
+                    'uploadOverwrite' => false
                 ]
             ]
         ];

@@ -215,7 +215,7 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
      * @throws HttpNotFound если текущая страница не существует
      * @return IPaginator
      */
-    private function getPaginator(CmsSelector $selector)
+    protected function getPaginator(CmsSelector $selector)
     {
         $paginator = $this->createObjectPaginator($selector, (int) $this->limit);
 

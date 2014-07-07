@@ -29,6 +29,8 @@ use umicms\module\TModuleAware;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
+use umicms\orm\object\ICmsPage;
+use umicms\project\module\search\model\SearchModule;
 use umicms\project\module\users\model\UsersModule;
 
 /**
@@ -151,9 +153,13 @@ abstract class BaseCmsController extends BaseController
     {
         /**
          * @var UsersModule $usersModule
+         * @var SearchModule $searchModule
          */
         $usersModule = $this->getModuleByClass(UsersModule::className());
+        $searchModule = $this->getModuleByClass(SearchModule::className());
+
         $currentUser = $usersModule->isAuthenticated() ? $usersModule->getCurrentUser() : $usersModule->getGuest();
+        $searchIndexApi = $searchModule->getSearchIndexApi();
 
         $persister = $this->getObjectPersister();
         /**
@@ -164,6 +170,14 @@ abstract class BaseCmsController extends BaseController
             if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
                 $collection->createBackup($object);
             }
+            if ($object instanceof ICmsPage) {
+                $searchIndexApi->buildSiteIndexForObjects([$object]);
+            }
+        }
+        foreach ($persister->getNewObjects() as $object) {
+            if ($object instanceof ICmsPage) {
+                $searchIndexApi->buildSiteIndexForObjects([$object]);
+            }
         }
         foreach ($persister->getNewObjects() as $object) {
             $object->owner = $currentUser;
@@ -173,6 +187,8 @@ abstract class BaseCmsController extends BaseController
             $object->editor = $currentUser;
             $object->setUpdatedTime();
         }
+
+        $searchIndexApi->clearObjectsIndex($persister->getDeletedObjects());
 
         $invalidObjects = $persister->getInvalidObjects();
 
