@@ -10,8 +10,14 @@ return [
         'active'          => [
             'type'    => Type::BOOLEAN,
             'options' => [
-                'default' => 1
+                'default' => 0
             ]
-        ]
+        ],
+        'active_en'          => [
+            'type'    => Type::BOOLEAN,
+            'options' => [
+                'default' => 0
+            ]
+        ],
     ]
 ];

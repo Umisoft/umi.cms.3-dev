@@ -29,45 +29,81 @@ return [
             'type' => IField::TYPE_STRING,
             'columnName' => 'meta_title',
             'localizations' => [
-                'ru-RU' => ['columnName' => 'meta_title'],
-                'en-US' => ['columnName' => 'meta_title_en']
-            ],
-            'filters' => [
-                IFilterFactory::TYPE_STRIP_TAGS => []
-            ],
+                'ru-RU' => [
+                    'columnName' => 'meta_title',
+                    'filters' => [
+                        IFilterFactory::TYPE_STRIP_TAGS => [],
+                        IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
+                    ]
+                ],
+                'en-US' => [
+                    'columnName' => 'meta_title_en',
+                    'filters' => [
+                        IFilterFactory::TYPE_STRIP_TAGS => [],
+                        IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
+                    ]
+                ]
+            ]
         ],
         ICmsPage::FIELD_PAGE_META_DESCRIPTION => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'meta_description',
             'localizations' => [
-                'ru-RU' => ['columnName' => 'meta_description'],
-                'en-US' => ['columnName' => 'meta_description_en']
-            ],
-            'filters' => [
-                IFilterFactory::TYPE_STRIP_TAGS => []
-            ],
+                'ru-RU' => [
+                    'columnName' => 'meta_description',
+                    'filters' => [
+                        IFilterFactory::TYPE_STRIP_TAGS => [],
+                        IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
+                    ]
+                ],
+                'en-US' => [
+                    'columnName' => 'meta_description_en',
+                    'filters' => [
+                        IFilterFactory::TYPE_STRIP_TAGS => [],
+                        IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
+                    ]
+                ]
+            ]
         ],
         ICmsPage::FIELD_PAGE_META_KEYWORDS    => [
             'type'       => IField::TYPE_STRING,
             'columnName' => 'meta_keywords',
             'localizations' => [
-                'ru-RU' => ['columnName' => 'meta_keywords'],
-                'en-US' => ['columnName' => 'meta_keywords_en']
-            ],
-            'filters' => [
-                IFilterFactory::TYPE_STRIP_TAGS => []
-            ],
+                'ru-RU' => [
+                    'columnName' => 'meta_keywords',
+                    'filters' => [
+                        IFilterFactory::TYPE_STRIP_TAGS => [],
+                        IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
+                    ]
+                ],
+                'en-US' => [
+                    'columnName' => 'meta_keywords_en',
+                    'filters' => [
+                        IFilterFactory::TYPE_STRIP_TAGS => [],
+                        IFilterFactory::TYPE_HTML_ENTITIES => ['flags' => ENT_QUOTES]
+                    ]
+                ]
+            ]
         ],
         ICmsPage::FIELD_PAGE_H1 => [
             'type' => IField::TYPE_STRING,
             'columnName' => 'h1',
             'localizations' => [
-                'ru-RU' => ['columnName' => 'h1'],
-                'en-US' => ['columnName' => 'h1_en']
-            ],
-            'filters' => [
-                IFilterFactory::TYPE_STRIP_TAGS => []
-            ],
+                'ru-RU' => [
+                    'columnName' => 'h1',
+                    'filters' => [
+                        IFilterFactory::TYPE_STRIP_TAGS => [],
+                        IFilterFactory::TYPE_HTML_ENTITIES => []
+                    ]
+                ],
+                'en-US' => [
+                    'columnName' => 'h1_en',
+                    'filters' => [
+                        IFilterFactory::TYPE_STRIP_TAGS => [],
+                        IFilterFactory::TYPE_HTML_ENTITIES => []
+                    ]
+                ]
+            ]
         ],
         ICmsPage::FIELD_PAGE_CONTENTS         => [
             'type' => IField::TYPE_TEXT,

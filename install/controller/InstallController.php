@@ -30,6 +30,7 @@ use umicms\module\TModuleAware;
 use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\dump\ICmsObjectDumpAware;
 use umicms\orm\dump\TCmsObjectDumpAware;
+use umicms\orm\object\behaviour\IActiveAccessibleObject;
 use umicms\orm\object\behaviour\IRecoverableObject;
 use umicms\orm\object\ICmsObject;
 use umicms\project\module\blog\model\collection\BlogCommentCollection;
@@ -142,10 +143,10 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             //$this->installSearch();
         } catch (\Exception $e) {
             echo $e->getMessage() . "\n";
+            echo $e->getTraceAsString() . "\n";
             while ($e = $e->getPrevious()) {
                 echo '... ' . $e->getMessage() . "\n";
             }
-            debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 100);
         }
 
         exit('Done');
@@ -1476,6 +1477,10 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         foreach ($persister->getNewObjects() as $object) {
             $object->owner = $currentUser;
             $object->setCreatedTime();
+            if ($object instanceof IActiveAccessibleObject) {
+                $object->setValue(IActiveAccessibleObject::FIELD_ACTIVE, true, 'ru-RU');
+                $object->setValue(IActiveAccessibleObject::FIELD_ACTIVE, true, 'en-US');
+            }
         }
         foreach ($persister->getModifiedObjects() as $object) {
             $object->editor = $currentUser;
