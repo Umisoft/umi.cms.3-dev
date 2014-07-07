@@ -8,7 +8,7 @@
 
 <span class="dropdown-toggler" {{action 'open' target="view"}}></span>
 
-<ul class="f-dropdown">
+<ul class="f-dropdown composite">
     {{#each view.meta.behaviour.choices}}
         {{#view view.itemView}}
             <i {{bind-attr class=":icon :icon-accept view.isDefaultBehaviour::white"}} {{action 'toggleDefaultBehaviour' view._parentView.contentIndex target="view.parentView" on="mouseUp"}}></i>

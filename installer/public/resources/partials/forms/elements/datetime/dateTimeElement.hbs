@@ -1,7 +1,9 @@
-<div class="umi-element-center umi-element-center-date">
+<div class="small-11 columns">
     {{input type="text" class="umi-date" value=view.value}}
 </div>
 
-<div class="umi-element-right umi-element-right-date">
-    <i class="icon icon-delete" {{action "clearValue" target="view"}}></i>
+<div class="small-1 columns">
+    <span class="postfix" {{action "clearValue" target="view"}}>
+        <i class="icon icon-delete"></i>
+    </span>
 </div>

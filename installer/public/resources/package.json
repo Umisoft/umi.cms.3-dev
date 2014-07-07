@@ -4,27 +4,16 @@
     "devDependencies": {
         "grunt-cli": "latest",
         "bower": "latest",
-        "css-b64-images": "latest",
-        "browser-sync": "latest",
-
         "grunt": "latest",
         "grunt-contrib-watch": "latest",
         "grunt-sass": "latest",
         "grunt-autoprefixer": "latest",
         "grunt-csso": "latest",
-        "grunt-contrib-uglify": "latest",
-        "grunt-contrib-concat": "latest",
-        "grunt-contrib-jshint": "latest",
-        "grunt-svgmin": "latest",
-        "grunt-grunticon": "latest",
-        "grunt-contrib-yuidoc": "latest",
 
+        "grunt-contrib-concat": "latest",
         "grunt-contrib-clean": "latest",
         "grunt-contrib-copy": "latest",
 
-        "grunt-contrib-requirejs": "latest",
-        "grunt-newer": "latest",
-        "grunt-ember-template-compiler": "latest",
-        "grunt-ember-templates": "latest"
+        "grunt-newer": "latest"
     }
 }
