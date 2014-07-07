@@ -15,7 +15,7 @@ return [
 
         'action:create:base' => 'Create news item',
 
-        'role:editor:displayName' => 'Managing news'
+        'role:editor:displayName' => 'Manage news'
     ],
 
     'ru-RU' => [
