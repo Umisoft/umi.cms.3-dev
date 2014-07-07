@@ -42,7 +42,8 @@ return [
                     'options' => [
                         'validators' => [
                             Range::NAME => [
-                                'max' => 30
+                                'min' => 1,
+                                'max' => 60
                             ]
                         ],
                         'dataSource' => 'slugLength'
