@@ -42,7 +42,7 @@ class SearchApi extends BaseSearchApi
     public function search($searchString)
     {
         if (mb_strlen($searchString, 'utf-8') < $this->minimumPhraseLength) {
-            return [];
+            return $this->getSiteIndexCollection()->emptySelect();
         }
 
         $selector = $this->getSiteIndexCollection()
