@@ -9,6 +9,7 @@ define(['App'], function(UMI){
         var intervalLeaveItem;
 
         UMI.DockView = Ember.View.extend({
+            templateName: 'partials/dock',
             classNames: ['umi-dock', 's-unselectable'],
             didInsertElement: function(){
                 var self = this;

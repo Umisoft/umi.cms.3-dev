@@ -1,10 +1,10 @@
-define(['App', 'text!./textareaElement.hbs'], function(UMI, textareaElement){
+define(['App'], function(UMI){
     "use strict";
 
     return function(){
 
         UMI.TextareaElementView = Ember.View.extend({
-            template: Ember.Handlebars.compile(textareaElement),
+            templateName: 'partials/textareaElement',
 
             classNames: ['umi-element-textarea'],
 

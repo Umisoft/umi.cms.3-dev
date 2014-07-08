@@ -1,5 +1,5 @@
-define(['App', 'text!./button.hbs'],
-    function(UMI, buttonTemplate){
+define(['App'],
+    function(UMI){
         "use strict";
 
         return function(){
@@ -7,7 +7,7 @@ define(['App', 'text!./button.hbs'],
                 label: function(){
                     return this.get('meta.attributes.label');
                 }.property('meta.attributes.label'),
-                template: Ember.Handlebars.compile(buttonTemplate),
+                templateName: 'partials/button',
                 tagName: 'a',
                 classNameBindings: 'meta.attributes.class',
                 attributeBindings: ['title'],

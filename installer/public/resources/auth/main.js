@@ -1,4 +1,4 @@
-define(['auth/templates', 'Handlebars', 'jQuery'], function(templates){
+define(['auth/templates', 'Handlebars', 'jquery'], function(templates){
     "use strict";
 
     /**
