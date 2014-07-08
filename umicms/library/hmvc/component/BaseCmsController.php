@@ -163,7 +163,7 @@ abstract class BaseCmsController extends BaseController
 
         $persister = $this->getObjectPersister();
         /**
-         * @var ICmsObject|IRecoverableObject $object
+         * @var ICmsObject|ICmsPage|IRecoverableObject $object
          */
         foreach ($persister->getModifiedObjects() as $object) {
             $collection = $object->getCollection();
@@ -171,12 +171,12 @@ abstract class BaseCmsController extends BaseController
                 $collection->createBackup($object);
             }
             if ($object instanceof ICmsPage) {
-                $searchIndexApi->buildSiteIndexForObjects([$object]);
+                $searchIndexApi->buildIndexForObject($object);
             }
         }
         foreach ($persister->getNewObjects() as $object) {
             if ($object instanceof ICmsPage) {
-                $searchIndexApi->buildSiteIndexForObjects([$object]);
+                $searchIndexApi->buildIndexForObject($object);
             }
         }
         foreach ($persister->getNewObjects() as $object) {
@@ -189,8 +189,12 @@ abstract class BaseCmsController extends BaseController
         }
 
         foreach ($persister->getDeletedObjects() as $object) {
+            $deletedPages = [];
             if ($object instanceof ICmsPage) {
-                $searchIndexApi->clearObjectsIndex([$object]);
+                $deletedPages[] = $object;
+            }
+            if ($deletedPages) {
+                $searchIndexApi->deleteObjectIndexes($deletedPages);
             }
         }
 
