@@ -1,11 +1,10 @@
 define(
     [
         'App',
-        'text!./form.hbs',
         'partials/forms/partials/magellan/main',
         'partials/forms/partials/submitToolbar/main'
     ],
-    function(UMI, formTpl, magellan, submitToolbar){
+    function(UMI, magellan, submitToolbar){
         'use strict';
 
         /**
@@ -183,7 +182,7 @@ define(
                  * @property layout
                  * @type String
                  */
-                layout: Ember.Handlebars.compile(formTpl),
+                layoutName: 'partials/form',
 
                 /**
                  * Классы view

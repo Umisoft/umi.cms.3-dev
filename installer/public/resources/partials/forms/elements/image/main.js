@@ -1,9 +1,9 @@
-define(['App', 'text!./imageElement.hbs'], function(UMI, imageElement){
+define(['App'], function(UMI){
     "use strict";
 
     return function(){
         UMI.ImageElementView = Ember.View.extend({
-            template: Ember.Handlebars.compile(imageElement),
+            template: 'partials/imageElement',
 
             classNames: ['row', 'collapse'],
 

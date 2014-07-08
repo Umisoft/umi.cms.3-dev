@@ -4,7 +4,7 @@ define(['App'], function(UMI){
     return function(){
         UMI.ChartControlView = Ember.View.extend({
             tagName: 'div',
-            templateName: 'chartControl',
+            templateName: 'partials/chartControl',
             classNames: 'umi-metrika-right',
 
             getCounter: function(counterId, resource, pageName){

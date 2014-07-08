@@ -203,6 +203,8 @@ return [
             IRecyclableObject::FIELD_TRASHED => 'В корзине',
             ILockedAccessibleObject::FIELD_LOCKED => 'Заблокировано',
             IActiveAccessibleObject::FIELD_ACTIVE => 'Активность',
+
+            'Default or inherited layout' => 'Шаблон по умолчанию или унаследованный',
         ]
     ],
 

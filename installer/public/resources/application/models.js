@@ -1,6 +1,7 @@
 define([], function(){
     'use strict';
 
+
     return function(UMI){
 
         /**
@@ -14,6 +15,10 @@ define([], function(){
 
             htmlSafe: function(value){
                 return Ember.String.htmlSafe(value);
+            },
+
+            stripTags: function(value){//TODO: add filter
+                return value;
             }
         };
 
