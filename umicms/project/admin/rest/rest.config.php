@@ -52,7 +52,6 @@ return [
         'news' => '{#lazy:~/project/module/news/admin/module.config.php}',
         'blog' => '{#lazy:~/project/module/blog/admin/module.config.php}',
         'seo' => '{#lazy:~/project/module/seo/admin/module.config.php}',
-        'statistics' => '{#lazy:~/project/module/statistics/admin/module.config.php}',
         'files' => '{#lazy:~/project/module/files/admin/module.config.php}',
         'service' => '{#lazy:~/project/module/service/admin/module.config.php}',
         'settings' => '{#lazy:~/project/module/settings/admin/module.config.php}'
