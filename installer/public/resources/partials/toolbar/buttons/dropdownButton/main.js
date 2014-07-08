@@ -4,7 +4,7 @@ define(['App', 'moment'],
 
         return function(){
             UMI.DropdownButtonView = Ember.View.extend({
-                template: Ember.TEMPLATES["UMI/partials/dropdownButton"],//TODO: replace in template name
+                templateName: 'partials/dropdownButton',
                 tagName: 'a',
                 classNameBindings: 'meta.attributes.class',
                 attributeBindings: ['title'],
@@ -44,7 +44,7 @@ define(['App', 'moment'],
 
             UMI.dropdownButtonBehaviour = UMI.GlobalBehaviour.extend({
                 backupList: {
-                    classNames: ['dropdown', 'coupled'],
+                    classNames: ['coupled'],
                     classNameBindings: ['isOpen:open'],
                     isOpen: false,
                     iScroll: null,
