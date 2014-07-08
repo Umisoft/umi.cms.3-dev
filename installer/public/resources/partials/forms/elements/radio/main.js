@@ -1,9 +1,9 @@
-define(['App', 'text!./radioElement.hbs'], function(UMI, radioElement){
+define(['App'], function(UMI){
     "use strict";
 
     return function(){
         UMI.RadioElementView = Ember.View.extend({
-            template: Ember.Handlebars.compile(radioElement),
+            templateName: 'partials/radioElement',
             classNames: ['umi-element-radio-group'],
 
             addObserverProperty: function(){
