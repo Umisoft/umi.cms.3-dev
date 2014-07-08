@@ -14,6 +14,12 @@ define(['App', 'toolbar'], function(UMI){
              * @classNames
              */
             classNames: ['umi-table-control'],
+
+            objectsEditable: function(){
+                var objectsEditable = this.get('controller.control.params.objectsEditable');
+                objectsEditable = objectsEditable === false ? false : true;
+                return objectsEditable;
+            }.property('controller.control.params.objectsEditable'),
             /**
              * @property iScroll
              */
@@ -265,7 +271,7 @@ define(['App', 'toolbar'], function(UMI){
             rowView: Ember.View.extend({
                 tagName: 'tr',
                 classNames: ['umi-table-control-content-row'],
-                classNameBindings: ['object.type', 'isActive::umi-inactive'],
+                classNameBindings: ['object.type', 'isActive::umi-inactive', 'objectsEditable:s-pointer'],
                 isActive: function(){
                     var object = this.get('object');
                     var hasActiveProperty  = false;
@@ -285,8 +291,13 @@ define(['App', 'toolbar'], function(UMI){
 
                 objectIdBinding: 'object.id',
 
+                objectsEditable: function(){
+                    return this.get('parentView.objectsEditable');
+                }.property(),
+
                 click: function(){
-                    if(this.get('object.meta.editLink')){
+                    var objectsEditable = this.get('objectsEditable');
+                    if(this.get('object.meta.editLink') && objectsEditable){
                         this.get('controller').transitionToRoute(this.get('object.meta.editLink').replace('/admin', ''));//TODO: fix replace
                     }
                 }

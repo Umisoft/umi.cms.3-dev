@@ -118,6 +118,7 @@ class RecycleComponentLayout extends AdminComponentLayout
             $dynamicControl->params['filter'] = [
                 'trashed' => 'equals(1)'
             ];
+            $dynamicControl->params['objectsEditable'] = false;
 
             $this->addSelectedContextControl('filter', $dynamicControl);
 
