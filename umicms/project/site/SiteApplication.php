@@ -22,6 +22,7 @@ use umi\session\ISessionAware;
 use umi\session\TSessionAware;
 use umi\toolkit\IToolkitAware;
 use umi\toolkit\TToolkitAware;
+use umicms\exception\InvalidLicenseException;
 use umicms\exception\RequiredDependencyException;
 use umicms\hmvc\url\IUrlManagerAware;
 use umicms\hmvc\url\TUrlManagerAware;
@@ -127,6 +128,8 @@ class SiteApplication extends SiteComponent
      */
     public function onDispatchRequest(IDispatchContext $context, Request $request)
     {
+        $this->checkLicense();
+
         $isRootPath = $request->getPathInfo() === $this->getUrlManager()->getProjectUrl();
         if (!$isRootPath && $redirectResponse = $this->processUrlPostfixRedirect($request)) {
             return $redirectResponse;
@@ -368,6 +371,79 @@ class SiteApplication extends SiteComponent
                 }
             }
         );
+    }
+
+    /**
+     * Проверяет лицензию.
+     * @throws InvalidLicenseException в случае если произошла ошибка связанная с лицензией
+     */
+    private function checkLicense()
+    {
+        $domainKey = $this->getSiteSettings()->get('domainKey');
+        $defaultDomain = $this->getDefaultDomain();
+
+        if (empty($domainKey)) {
+            throw new InvalidLicenseException($this->translate(
+                'Invalid domain key.'
+            ));
+        }
+        if (empty($defaultDomain)) {
+            throw new InvalidLicenseException($this->translate(
+                'Do not set the default domain.'
+            ));
+        }
+        $licenseType = $this->getSiteSettings()->get('licenseType');
+        if (empty($licenseType)) {
+            throw new InvalidLicenseException($this->translate(
+                'Do not set the default domain.'
+            ));
+        }
+
+        if (!$this->checkDomainKey()) {
+            throw new InvalidLicenseException($this->translate(
+                'Invalid domain key.'
+            ));
+        }
+
+    }
+
+    /**
+     * Формирует эталонный доменный ключ.
+     * @param string $license тип лицензии, для которой генерировать доменный ключ
+     * @return string
+     */
+    private function getSourceDomainKey($license) {
+        $serverAddress = $_SERVER['SERVER_ADDR'];
+        $defaultDomain = $this->getDefaultDomain();
+
+        $licenseKeyCode = strtoupper(substr(md5($serverAddress), 0, 11) . "-" . substr(md5($defaultDomain . $license), 0, 11));
+
+        return $licenseKeyCode;
+    }
+
+    /**
+     * Возвращает домен по умолчанию.
+     * @return string
+     */
+    private function getDefaultDomain()
+    {
+        $defaultDomain = $this->getSiteSettings()->get('defaultDomain');
+        if (mb_strrpos($defaultDomain, 'www.') === 0) {
+            $defaultDomain = mb_substr($defaultDomain, 4);
+        }
+        return $defaultDomain;
+    }
+
+    /**
+     * Проверяет соответствие домеенного ключа полученному.
+     * @return bool
+     */
+    private function checkDomainKey()
+    {
+        $domainKey = $this->getSiteSettings()->get('domainKey');
+        $licenseType = $this->getSiteSettings()->get('licenseType');
+        $domainKeySource = $this->getSourceDomainKey($licenseType);
+        return (substr($domainKey, 12, strlen($domainKey) - 12) == $domainKeySource);
     }
 
 }

@@ -21,7 +21,7 @@
         "umisoft/umi.framework": "1.0.*",
         "umisoft/extension-twig": "*",
 
-        "guzzlehttp/guzzle": "4.*",
+        "guzzlehttp/guzzle": "3.8.*",
 
         "gregwar/captcha": "dev-master",
         "ezyang/htmlpurifier": "dev-master",
