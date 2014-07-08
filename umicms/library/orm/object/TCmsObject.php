@@ -63,8 +63,13 @@ trait TCmsObject
      * @return IProperty
      */
     abstract public function getProperty($propName, $localeId = null);
+
     /**
      * @see ICmsObject::setValue()
+     * @param string $propName
+     * @param mixed $value
+     * @param null|string $localeId
+     * @return self
      */
     abstract public function setValue($propName, $value, $localeId = null);
     /**

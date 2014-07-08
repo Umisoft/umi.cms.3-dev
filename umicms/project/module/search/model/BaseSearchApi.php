@@ -10,19 +10,22 @@
 
 namespace umicms\project\module\search\model;
 
+use umi\i18n\ILocalesAware;
+use umi\i18n\TLocalesAware;
 use umi\orm\collection\ICollectionManagerAware;
 use umi\orm\collection\TCollectionManagerAware;
 use umi\stemming\IStemmingAware;
 use umi\stemming\TStemmingAware;
-use umicms\orm\collection\CmsCollection;
+use umicms\project\module\search\model\collection\SearchIndexCollection;
 
 /**
  * Базовый класс для API поиска, индексации и проч. бизнес-логики, связанной с поиском.
  */
-class BaseSearchApi implements ICollectionManagerAware, IStemmingAware
+class BaseSearchApi implements ICollectionManagerAware, IStemmingAware, ILocalesAware
 {
     use TCollectionManagerAware;
     use TStemmingAware;
+    use TLocalesAware;
 
     /**
      * Приводит текст к виду, пригодному для передачи в поисковый запрос.
@@ -86,7 +89,7 @@ class BaseSearchApi implements ICollectionManagerAware, IStemmingAware
 
     /**
      * Возвращает коллекцию для сайтовой индексации.
-     * @return CmsCollection
+     * @return SearchIndexCollection
      */
     protected function getSiteIndexCollection()
     {

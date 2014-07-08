@@ -1463,33 +1463,23 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
 
         $persister = $this->getObjectPersister();
         /**
-         * @var ICmsObject|IRecoverableObject $object
+         * @var ICmsObject|ICmsPage|IRecoverableObject $object
          */
-        foreach ($persister->getModifiedObjects() as $object) {
-            $collection = $object->getCollection();
-            if ($collection instanceof IRecoverableCollection && $object instanceof IRecoverableObject) {
-                $collection->createBackup($object);
-            }
-            if ($object instanceof ICmsPage) {
-                $this->searchIndexApi->buildSiteIndexForObjects([$object]);
-            }
-        }
         foreach ($persister->getNewObjects() as $object) {
-            if ($object instanceof ICmsPage) {
-                $this->searchIndexApi->buildSiteIndexForObjects([$object]);
-            }
-        }
-        foreach ($persister->getNewObjects() as $object) {
-            $object->owner = $currentUser;
-            $object->setCreatedTime();
             if ($object instanceof IActiveAccessibleObject) {
                 $object->setValue(IActiveAccessibleObject::FIELD_ACTIVE, true, 'ru-RU');
                 $object->setValue(IActiveAccessibleObject::FIELD_ACTIVE, true, 'en-US');
             }
         }
-        foreach ($persister->getModifiedObjects() as $object) {
-            $object->editor = $currentUser;
-            $object->setUpdatedTime();
+        foreach ($persister->getNewObjects() as $object) {
+            if ($object instanceof ICmsPage) {
+                $this->searchIndexApi->buildIndexForObject($object);
+            }
+        }
+
+        foreach ($persister->getNewObjects() as $object) {
+            $object->owner = $currentUser;
+            $object->setCreatedTime();
         }
 
         $invalidObjects = $persister->getInvalidObjects();

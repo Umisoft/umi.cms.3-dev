@@ -19,33 +19,51 @@ use umicms\project\module\search\model\object\SearchIndex;
  */
 class SearchIndexApi extends BaseSearchApi
 {
-    /**
-     * Перестраивает хранимый поисковый индекс для отдельной коллекции.
-     * @param ICmsPageCollection $collection
-     */
-    public function buildSiteIndex(ICmsPageCollection $collection)
-    {
-        $collectionRecords = $collection->select()
-            ->fields($collection->getIndexablePropertyNames())
-            ->getResult();
 
-        $this->buildSiteIndexForObjects($collectionRecords->fetchAll());
+    /**
+     * Удаляет индексы для заданных объектов.
+     * @param ICmsPage[] $objects
+     */
+    public function deleteObjectIndexes(array $objects)
+    {
+        $objectsByGuid = [];
+
+        foreach ($objects as $object) {
+            $objectsByGuid[] = $object->guid;
+        }
+
+        $indexCollection = $this->getSiteIndexCollection();
+
+        $deleter = $indexCollection
+            ->select()
+            ->fields([SearchIndex::FIELD_IDENTIFY])
+            ->where(SearchIndex::FIELD_REF_GUID)
+            ->in($objectsByGuid);
+
+        foreach ($deleter as $object) {
+            $indexCollection->delete($object);
+        }
     }
 
     /**
-     * Переиндексирует отдельный набор объектов.
-     * @param ICmsPage[] $objects
+     * Добавляет индексную запись для объекта.
+     * @param ICmsPage $object
      */
-    public function buildSiteIndexForObjects(array $objects)
+    public function buildIndexForObject(ICmsPage $object)
     {
-        $this->clearObjectsIndex($objects);
+        $indexCollection = $this->getSiteIndexCollection();
 
-        /**
-         * @var ICmsPage $object
-         */
-        foreach ($objects as $object) {
-            $this->buildIndexForObject($object);
+        $hasIndex = $indexCollection->hasIndexForObject($object);
+        $inIndex = $object->isInIndex();
+
+        if (!$hasIndex && !$inIndex) {
+            return;
         }
+
+        $index = $indexCollection->getIndexForObject($object);
+        $searchableContent = $inIndex ? $this->extractSearchableContent($object) : '';
+
+        $index->setValue(SearchIndex::FIELD_CONTENT, $searchableContent);
     }
 
     /**
@@ -86,51 +104,4 @@ class SearchIndexApi extends BaseSearchApi
 
         return html_entity_decode(strip_tags($nobr));
     }
-
-    /**
-     * Очищает индексы для заданных объектов.
-     * @param ICmsPage[] $objects
-     */
-    public function clearObjectsIndex(array $objects)
-    {
-        $objectsByGuid = [];
-
-        foreach ($objects as $object) {
-            $objectsByGuid[] = $object->guid;
-        }
-
-        $indexCollection = $this->getSiteIndexCollection();
-
-        $deleter = $indexCollection
-            ->select()
-            ->fields([SearchIndex::FIELD_IDENTIFY])
-            ->where(SearchIndex::FIELD_REF_GUID)
-            ->in($objectsByGuid);
-
-        foreach ($deleter as $object) {
-            $indexCollection->delete($object);
-        }
-    }
-
-    /**
-     * Добавляет индексную запись для страницы.
-     * @param ICmsPage $page
-     */
-    private function buildIndexForObject(ICmsPage $page)
-    {
-        if (!$page->isInIndex()) {
-            return;
-        }
-
-        $indexCollection = $this->getSiteIndexCollection();
-        $newIndexRecord = $indexCollection->add();
-        $newIndexRecord
-            ->setValue(SearchIndex::FIELD_COLLECTION_NAME, $page->getCollectionName())
-            ->setValue(SearchIndex::FIELD_REF_GUID, $page->guid)
-            ->setValue(
-                SearchIndex::FIELD_CONTENT,
-                $this->normalizeIndexString($this->extractSearchableContent($page))
-            );
-    }
-
 }

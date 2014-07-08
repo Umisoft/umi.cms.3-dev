@@ -45,6 +45,12 @@ return array_replace_recursive(
                 'columns' => [
                     'contents' => []
                 ]
+            ],
+            'contents_en' => [
+                'flags' => ['fulltext'],
+                'columns' => [
+                    'contents_en' => []
+                ]
             ]
         ]
     ]
