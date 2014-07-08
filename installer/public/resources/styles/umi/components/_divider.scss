@@ -5,35 +5,45 @@
     height: 100%;
     background: #D6E0E9;
     border-right: 1px solid #98A2AB;
-}
-
-.umi-divider-left-content{
-    overflow: hidden;
-    height: 100%;
-    margin-right: 5px;
-}
-
-.umi-divider-left-float{
-    border: none;
-    z-index: 5000;
-    position: absolute;
-    width: 245px!important;
-
-    //    box-shadow: -10px 0px 40px 20px rgba(0, 0, 0, .75);
-
-    &:after{
-        content: "";
-        position: absolute;
-        float: left;
-        display: block;
-        height: 100%;
-        width: 3px;
-        right: -3px;
-        bottom: 0;
-        background: url(img/shadows/toRightShadow.png);
+    ~ .umi-divider-right{
+        margin-left: 251px;
     }
-    .umi-divider-left-content{
-        margin-right: 0;
+    &.hide{
+        ~ .umi-divider-right{
+            margin-left: 0!important;
+        }
+    }
+    &-content{
+        overflow: hidden;
+        height: 100%;
+        margin-right: 5px;
+    }
+    &-float{
+        border: none;
+        z-index: 5000;
+        position: absolute;
+        width: 245px!important;
+        &:after{
+            content: "";
+            position: absolute;
+            float: left;
+            display: block;
+            height: 100%;
+            width: 3px;
+            right: -3px;
+            bottom: 0;
+            background: url(img/shadows/toRightShadow.png);
+        }
+        .umi-divider-left-content{
+            margin-right: 0;
+        }
+    }
+}
+
+.umi-divider-right{
+    height: 100%;
+    &.wide{
+        margin-left: 0!important;
     }
 }
 
@@ -48,9 +58,4 @@
     &:hover{
         cursor: col-resize;
     }
-}
-
-.umi-divider-right{
-    float: left;
-    width: 100%;
 }
