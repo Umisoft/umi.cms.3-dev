@@ -13,7 +13,7 @@ return [
     'en-US' => [
         'component:rss:displayName' => 'Import RSS-feed',
 
-        'role:editor:displayName' => 'Managing import RSS-feed'
+        'role:editor:displayName' => 'Manage RSS-feed import'
     ],
 
     'ru-RU' => [

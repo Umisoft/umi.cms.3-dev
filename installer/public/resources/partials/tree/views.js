@@ -2,6 +2,7 @@ define(['App', 'toolbar'], function(UMI){
     'use strict';
     return function(){
         UMI.TreeControlView = Ember.View.extend({
+            templateName: 'partials/treeControl',
             classNames: ['row', 's-full-height'],
 
             expandedBranchesChange: function(){
@@ -214,7 +215,7 @@ define(['App', 'toolbar'], function(UMI){
 
         UMI.TreeItemView = Ember.View.extend({
             treeControlView: null,
-            templateName: 'treeItem',
+            templateName: 'partials/treeControl/treeItem',
             tagName: 'li',
             classNameBindings: ['item.isDragged:hide', 'item.isDeleted:hide'],
             attributeBindings: ['dataId:data-id'],
@@ -357,6 +358,7 @@ define(['App', 'toolbar'], function(UMI){
                         var object = this.get('controller.model');
                         this.send(behaviour.name, {behaviour: behaviour, object: object});
                     };
+                    behaviour.classNames = ['tiny white square'];
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

@@ -1,37 +1,76 @@
 module.exports = function(grunt){
     'use strict';
-
-    //описываем конфигурацию
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'), //подгружаем package.json, чтобы использовать его данные
+        pkg: grunt.file.readJSON('package.json'),
 
         watch: {
             scss: {
-                files: ['scss/**/*.scss', 'partials/fileManager/elFinder/**/*.*'],
-                tasks: ['sass', 'concat', 'autoprefixer', 'copy:styles']
+                files: ['styles/**/*.scss'],//, 'partials/fileManager/elFinder/**/*.*'
+                tasks: ['sass', 'concat:css', 'autoprefixer', 'copy:styles']
+            },
+
+            js: {
+                files: ['application/**/*.*', 'partials/**/*.*'],
+                tasks: ['emberTemplates', 'requirejs']
             }
+
+//            auth: {
+//                files: ['auth/**/*.hbs'],
+//                tasks: ['handlebars']
+//            }
         },
 
         sass: {
             dev: {
                 options: {
-                    includePaths: ['libs/foundation/scss/', 'libs/jquery.ui/themes/base/']
+                    includePaths: ['libs/foundation/scss/']
                 },
 
                 files: {
-                    'build/css/app.css': 'scss/app.scss'
+                    'build/css/app.css': 'styles/main.scss'
                 }
             }
         },
 
-        //Чистим полностью папку deploy для уверенности, что не останется старых лишних файлов и проект будет свеж
+        emberTemplates:  {
+            compile: {
+                options: {
+                    amd: 'Ember',
+                    concatenate: true,
+                    preprocess: function(source) {
+                        return source.replace(/\s+/g, ' ');
+                    },
+                    templateRegistration: function(name, contents){
+                        name = name.split('/');
+                        name = name[name.length - 1];
+                        name = name.replace(/\./g, '\/');
+                        return 'Ember.TEMPLATES["UMI/' + name + '"] = ' + contents + ';';
+                    }
+                },
+                files: {
+                    "application/templates.compile.js": ['application/**/*.hbs', 'partials/**/*.hbs']
+                }
+            }
+        },
+
+        handlebars: {
+            compile: {
+                options: {
+                    amd: 'Handlebars',
+                    namespace: "UMI.Auth.TEMPLATES"
+                },
+                files: {
+                    "auth/templates.compile.js": "auth/**/*.hbs"
+                }
+            }
+        },
+
         clean: {
             deploy: {
                 src: ["deploy/*"]
             }
         },
 
-        // Сохраняем svg в css
         grunticon: {
             myIcons: {
                 files: [{
@@ -64,7 +103,6 @@ module.exports = function(grunt){
             }
         },
 
-        //Копируем растровые изображения
         copy: {
             png: {
                 expand: true,
@@ -99,8 +137,6 @@ module.exports = function(grunt){
                 },
 
                 src: [
-                    //'partials/fileManager/elFinder/jquery/jquery-ui-1.10.4.custom.min.js',
-                    // Файлы перечислены в необходимом порядке соединения
                     'partials/fileManager/elFinder/js/elFinder.js',
                     'partials/fileManager/elFinder/js/jquery.elfinder.js',
                     'partials/fileManager/elFinder/js/elFinder.resources.js',
@@ -132,7 +168,6 @@ module.exports = function(grunt){
                 dest: 'libsStatic/elFinder.js'
             },
 
-            //Объединяем стили с иконками
             css: {
                 src: [
                     'build/css/app.css',
@@ -145,7 +180,7 @@ module.exports = function(grunt){
 
         autoprefixer: {
             options: {
-                browsers: ['last 2 version', 'ie 9', 'opera 12']
+                browsers: ['last 2 version', 'Firefox >= 28', 'ie 9', 'opera 12']
             },
 
             dist: {
@@ -168,13 +203,13 @@ module.exports = function(grunt){
                     stubModules: ['text'], //Говорит сборщику, что мы используем модуль requirejs!text
                     mainConfigFile: "main.js", //Основной конфиг (тот же что указан в layout.phtml)
                     name: 'main',
-                    out: 'build/js/app.js', //Файл-результат
+                    out: 'build/js/app.js',
                     inlineText: true,
                     optimize: 'uglify2',
                     exclude: [
                         'Modernizr',
-                        'jQuery',
-                        'jQueryUI',
+                        'jquery',
+                        'jqueryUI',
                         'Handlebars',
                         'Ember',
                         'DS',
@@ -182,11 +217,10 @@ module.exports = function(grunt){
                         'ckEditor',
                         'timepicker',
                         'moment',
-                        'elFinder',
-                        'chartJs'
-                    ], //Исключаем файлы с их зависимостями
+                        'elFinder'
+                    ],
 
-                    findNestedDependencies: true //Ищет вызовы require внутри других require и define
+                    findNestedDependencies: true
                 }
             }
         },
@@ -215,15 +249,6 @@ module.exports = function(grunt){
         }
     });
 
-
-    /*
-    *
-    * grunt-contrib-clean
-    * grunt-contrib-copy
-    *
-    */
-
-    //подгружаем необходимые плагины
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-grunticon');
@@ -234,10 +259,11 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
-
+    grunt.loadNpmTasks('grunt-ember-templates');
+    grunt.loadNpmTasks('grunt-contrib-handlebars');
 
     //регистрируем задачу
-    grunt.registerTask('default', ['watch']); //задача по умолчанию, просто grunt
+    grunt.registerTask('default', ['watch']);
     grunt.registerTask('deploy', ['clean', 'copy:png', 'copy:svg', 'grunticon', 'sass', 'concat', 'autoprefixer', 'csso']);
     grunt.registerTask('require', ['requirejs']);
     grunt.registerTask('docs', ['yuidoc']);

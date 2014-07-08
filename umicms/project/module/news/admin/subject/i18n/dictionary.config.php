@@ -15,7 +15,7 @@ return [
 
         'action:create:base' => 'Create subject',
 
-        'role:editor:displayName' => 'Managing subject'
+        'role:editor:displayName' => 'Manage subjects'
     ],
 
     'ru-RU' => [

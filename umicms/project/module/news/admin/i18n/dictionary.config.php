@@ -15,10 +15,10 @@ return [
 
         'role:rubricExecutor:displayName' => 'Rubrics',
         'role:itemExecutor:displayName' => 'News',
-        'role:subjectExecutor:displayName' => 'Subject',
-        'role:itemsubjectExecutor:displayName' => 'Managing relation news-subject',
+        'role:subjectExecutor:displayName' => 'Subjects',
+        'role:itemsubjectExecutor:displayName' => 'Manage news-subjects relation',
         'role:rssExecutor:displayName' => 'Import RSS',
-        'role:rsssubjectExecutor:displayName' => 'Managing relation RSS-subject',
+        'role:rsssubjectExecutor:displayName' => 'Manage RSS-subjects relation',
     ],
 
     'ru-RU' => [

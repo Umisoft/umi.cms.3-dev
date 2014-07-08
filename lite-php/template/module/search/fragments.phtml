@@ -1,23 +1,18 @@
 <?php
 /**
- * @var Fragmenter $fragmenter
+ * @var umicms\project\module\search\model\highlight\Fragmenter $fragmenter
+ * @var umicms\project\module\search\model\highlight\Fragment $fragment
  * @var string $query
  */
-use umicms\project\module\search\highlight\Fragment;
-use umicms\project\module\search\highlight\Fragmenter;
-
 ?>
-<div class="mod-search mod-search-result-list">
-    <?
-    /** @var $fragment Fragment */
-    foreach ($fragmenter as $fragment) {
-        $textBefore = implode(' ', $fragment->getEdgeLeft());
-        $textAfter = implode(' ', $fragment->getEdgeRight());
-    ?>
-    <span class="mod-search-fragment">
-        <span class="before">...<?= $this->widget('search.highlight', ['text' => $textBefore,'query' => $query,]) ?></span>
+
+<div>
+    <?php foreach ($fragmenter as $fragment) : ?>
+
+    <span>
+        <span class="before">...<?= $this->widget('search.highlight', ['text' => implode(' ', $fragment->getEdgeLeft()),'query' => $query,]) ?></span>
         <span class="keyword"><?= $this->widget('search.highlight', ['text' => $fragment->getCenter(),'query' => $query,]) ?></span>
-        <span class="after"><?= $this->widget('search.highlight', ['text' => $textAfter,'query' => $query,]) ?>...</span>
+        <span class="after"><?= $this->widget('search.highlight', ['text' => implode(' ', $fragment->getEdgeRight()),'query' => $query,]) ?>...</span>
     </span>
-    <?}?>
+    <?php endforeach; ?>
 </div>

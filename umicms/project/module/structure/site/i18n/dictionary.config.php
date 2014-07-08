@@ -11,7 +11,7 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'Viewer structure',
+        'role:viewer:displayName' => 'View structure',
         'role:menuExecutor:displayName' => 'Menu',
         'role:infoblockExecutor:displayName' => 'Information blocks',
     ],

@@ -1,5 +1,5 @@
-define(['App', 'text!./button.hbs'],
-    function(UMI, buttonTemplate){
+define(['App'],
+    function(UMI){
         "use strict";
 
         return function(){
@@ -7,14 +7,17 @@ define(['App', 'text!./button.hbs'],
                 label: function(){
                     return this.get('meta.attributes.label');
                 }.property('meta.attributes.label'),
-                template: Ember.Handlebars.compile(buttonTemplate),
+                templateName: 'partials/button',
                 tagName: 'a',
-                classNames: ['s-margin-clear'],//TODO: избавиться от класса после возвращения Foundation
                 classNameBindings: 'meta.attributes.class',
                 attributeBindings: ['title'],
                 title: Ember.computed.alias('meta.attributes.title'),
                 click: function(){
-                    this.send(this.get('meta').behaviour.name, this.get('meta').behaviour);
+                    var behaviour = this.get('meta').behaviour;
+                    var params = {
+                        behaviour: behaviour
+                    };
+                    this.send(behaviour.name, params);
                 }
             });
 

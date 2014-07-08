@@ -1,9 +1,9 @@
-define(['App', 'text!./submitToolbar.hbs', 'toolbar'], function(UMI, submitToolbarTpl){
+define(['App', 'toolbar'], function(UMI){
     "use strict";
 
     return function(){
         UMI.SubmitToolbarView = Ember.View.extend({
-            layout: Ember.Handlebars.compile(submitToolbarTpl),
+            layoutName: 'partials/form/submitToolbar',
             tagName: 'ul',
             classNames: ['button-group', 'umi-form-control-buttons'],
             elementView: UMI.ToolbarElementView.extend({

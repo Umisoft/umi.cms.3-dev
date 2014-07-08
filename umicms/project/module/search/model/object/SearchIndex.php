@@ -10,7 +10,10 @@
 
 namespace umicms\project\module\search\model\object;
 
+use umi\orm\collection\ICollectionManagerAware;
+use umi\orm\collection\TCollectionManagerAware;
 use umicms\orm\object\CmsObject;
+use umicms\orm\object\ICmsObject;
 
 /**
  * Индексная запись поиска.
@@ -19,8 +22,10 @@ use umicms\orm\object\CmsObject;
  * @property string $refGuid GUID объекта, на который указывает индекс
  * @property string $collectionName Имя коллекции, к которой относится индексированный объект
  */
-class SearchIndex extends CmsObject
+class SearchIndex extends CmsObject implements ICollectionManagerAware
 {
+    use TCollectionManagerAware;
+
     /**
      * Имя поля для индексированного контента
      */
@@ -37,4 +42,33 @@ class SearchIndex extends CmsObject
      * Когда был записан индекс
      */
     const FIELD_DATE_INDEXED = 'dateIndexed';
+
+    /**
+     * Генерирует отображаемое имя, если оно не было установлено.
+     * @param string|null $localeId
+     * @return bool
+     */
+    public function validateDisplayName($localeId = null)
+    {
+        if (!$this->getValue(self::FIELD_DISPLAY_NAME, $localeId)) {
+            $value = 'Index for ' . $this->collectionName . '#' . $this->refGuid;
+            if ($localeId) {
+                $value .= '_' . $localeId;
+            }
+            $this->setValue(self::FIELD_DISPLAY_NAME, $value, $localeId);
+        }
+
+        return true;
+    }
+
+    /**
+     * Возвращает проиндексированный объект
+     * @return ICmsObject
+     */
+    public function getIndexedObject()
+    {
+        return $this->getCollectionManager()
+            ->getCollection($this->collectionName)
+            ->get($this->refGuid);
+    }
 }

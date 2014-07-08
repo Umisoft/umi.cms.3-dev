@@ -3,7 +3,7 @@ define(['App'], function(UMI){
 
     UMI.FileManagerView = Ember.View.extend({
         tagName: 'div',
-        classNames: ['umi-file-manager'],
+        classNames: ['umi-file-manager s-full-height'],
 
         layout: Ember.Handlebars.compile('<div id="elfinder"></div>'),
 
