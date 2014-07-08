@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @var umicms\project\module\structure\model\object\SystemPage $page
+ * @var umi\form\FormEntityView $form
+ * @var string $query
+ */
+
+?>
+
+<div class="blog-post">
+    <h2 class="blog-post-title"><?=$page->getHeader()?></h2>
+    <?=$page->contents?>
+
+    <?= $this->render('form/form.phtml', ['form' => $form]) ?>
+
+    <?= $this->widget('search.results', ['query' => $query, 'limit' => 3, 'pagination' => ['pageParam' => 'p', 'type' => 'sliding', 'pagesCount' => 5]]); ?>
+
+</div>

@@ -84,6 +84,19 @@ class CmsPageCollection extends CmsCollection implements ICmsPageCollection
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getIndexablePropertyNames()
+    {
+        return [
+            ICmsPage::FIELD_DISPLAY_NAME,
+            ICmsPage::FIELD_PAGE_H1,
+            ICmsPage::FIELD_PAGE_META_TITLE,
+            ICmsPage::FIELD_PAGE_CONTENTS
+        ];
+    }
+
+    /**
      * Возвращает поле, которое используется у базового типа коллекции для хранения последней части ЧПУ
      * @return IField
      */

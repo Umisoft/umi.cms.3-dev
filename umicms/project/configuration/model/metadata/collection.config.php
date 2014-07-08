@@ -60,7 +60,12 @@ return [
                         IValidatorFactory::TYPE_REQUIRED => []
                     ]
                 ],
-                'en-US' => ['columnName' => 'display_name_en']
+                'en-US' => [
+                    'columnName' => 'display_name_en',
+                    'validators' => [
+                        IValidatorFactory::TYPE_REQUIRED => []
+                    ]
+                ]
             ]
         ],
         CmsObject::FIELD_CREATED               => [

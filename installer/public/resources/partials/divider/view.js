@@ -5,120 +5,61 @@ define(['App'], function(UMI){
         UMI.DividerView = Ember.View.extend({
             classNames: ['off-canvas-wrap', 'umi-divider-wrapper', 's-full-height'],
 
-            //Вызывается при первой загрузке
             didInsertElement: function(){
                 this.fakeDidInsertElement();
             },
 
-            //Вызывается при последующих загрузках
+            willDestroyElement:  function(){
+                this.removeObserver('model');
+            },
+
             modelChange: function(){
                 this.fakeDidInsertElement();
             }.observes('model'),
 
             fakeDidInsertElement: function(){
-                $(window).off('resize.divider'); //Идеологически неверное нахождение строки, но поскольку willDestroyElement для divider не срабатывает - приходится ставить сюда
+                var $el = this.$();
+                $el.off('mousedown.umi.divider.toggle');
+                $('body').off('mousedown.umi.divider.proccess');
 
-                if($('.umi-divider-left').length){
-                    var showSideBarState = true;
-                    var floatSideBarState = false;
-                    var sideBarWidth = $('.umi-divider-left').width() + 1; //Отступ контентной области слева при открытом sideBar
+                var $sidebar = $el.find('.umi-divider-left');
+                var $content = $el.find('.umi-divider-right');
 
-                    var showSideBar = function(){
-                        if(!showSideBarState){
-                            $('.umi-divider-left').hide();
-                            $('.umi-divider-right').css({width: '100%'});
-                        }
-
-                        if(showSideBarState && !floatSideBarState){
-                            $('.umi-divider-left').show();
-                            $('.umi-divider-right').css({width: $(window).width() - sideBarWidth});
-                        }
-
-                        if(showSideBarState && floatSideBarState){
-                            $('.umi-divider-left').show();
-                            $('.umi-divider-right').css({width: '100%'});
-                        }
-                    };
-
-                    $('.umi-divider-left-toggle').mousedown(function(){
-                        showSideBarState = !showSideBarState;
-                        showSideBar();
+                if($sidebar.length){
+                    $el.on('mousedown.umi.divider.toggle', '.umi-divider-left-toggle', function(){
+                        $sidebar.toggleClass('hide');
                         $(this).children('.icon').toggleClass('icon-left').toggleClass('icon-right');
                     });
 
-                    var floatDivider = function(){
-                        floatSideBarState = true;
-                        $('.umi-divider-left').addClass('umi-divider-left-float'); //Делаем SideBar плавающим
-                        $('.umi-divider-left .umi-divider').hide();                //Скрываем полоску для изменения ширины (на подумать - сейчас отталкиваюсь от того, что на мобильных устройствах в ней нет необходимости, а случайные нажатия могут быть)
-                    };
-
-                    $('body').on('mousedown', '.umi-divider', function(event){
+                    $('body').on('mousedown.umi.divider.proccess', '.umi-divider', function(event){
                         if(event.button === 0){
+                            $sidebar.removeClass('divider-virgin');
                             $('html').addClass('s-unselectable');
 
-                            $('html').mousemove(function(event){
-                                var w = event.pageX + 5 - 3; //Плюс ширина полоски изменения ширины SideBar
+                            $('html').on('mousemove.umi.divider.proccess', function(event){
+                                var sidebarWidth = event.pageX;
+                                sidebarWidth = sidebarWidth < 150 ? 150 : sidebarWidth;
+                                sidebarWidth = sidebarWidth > 500 ? 500 : sidebarWidth;
 
-                                if(w < 150){w = 150}
-                                if(w > $(window).width() - 720){
+                                if(sidebarWidth > $(window).width() - 720){
                                     $('.magellan-content').find('.umi-columns').removeClass('large-4').addClass('large-12');
                                 }else{
                                     $('.magellan-content').find('.umi-columns').removeClass('large-12').addClass('large-4');
                                 }
-                                if(w > $(window).width() - 320){w = $(window).width() - 320}
 
-                                $('.umi-divider-left').css({width: w});
-                                $('.umi-divider-right').css({width: $(window).width() - w - 1});
+                                $content.css({marginLeft: sidebarWidth + 1});
+                                $sidebar.css({width: sidebarWidth});
 
-                                $('html').on('mouseup', function(){
-                                    sideBarWidth = w + 1;
-                                    $('html').off('mousemove');
+                                $('html').on('mouseup.umi.divider.proccess', function(){
+                                    $('html').off('mousemove.umi.divider.proccess');
                                     $('html').removeClass('s-unselectable');
                                 });
                             });
                         }
                     });
-
-                    var moveDivider = function(){
-                        floatSideBarState = false;
-
-                        $('.umi-divider-left').removeClass('umi-divider-left-float');
-
-                        if(showSideBarState){
-                            $('.umi-divider-right').css({width: $(window).width() - sideBarWidth});
-                        }
-
-                        $('.umi-divider-left .umi-divider').show();
-                    };
-
-                    var checkWindowWidth = function(){
-                        if($(window).width() < (320 + 250)){
-                            floatDivider();
-                            $('.umi-divider-right').css({width: '100%'});
-                        }else{
-                            moveDivider();
-                        }
-                    };
-
-                    checkWindowWidth();
-                    $(window).on('resize.divider', function(){
-                        checkWindowWidth();
-                    });
-
                 } else{
-                    $('.umi-divider-left').hide();
-                    $('.umi-divider-right').css({width: '100%'});
+                    $content.css({'marginLeft': ''});
                 }
-
-                $('.umi-component').height(function(){// TODO: А для чего здесь вообще JS?
-                    return $(window).height() - 108;
-                });
-
-                $(window).on('resize.divider', function(){
-                    $('.umi-component').height(function(){
-                        return $(window).height() - 108;
-                    });
-                });
             }
         });
     };

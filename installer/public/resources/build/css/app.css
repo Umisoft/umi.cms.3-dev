@@ -5149,29 +5149,36 @@ select {
   height: 100%;
   background: #D6E0E9;
   border-right: 1px solid #98A2AB; }
-
-.umi-divider-left-content {
-  overflow: hidden;
-  height: 100%;
-  margin-right: 5px; }
-
-.umi-divider-left-float {
-  border: none;
-  z-index: 5000;
-  position: absolute;
-  width: 245px !important; }
-  .umi-divider-left-float:after {
-    content: "";
-    position: absolute;
-    float: left;
-    display: block;
+  .umi-divider-left ~ .umi-divider-right {
+    margin-left: 251px; }
+  .umi-divider-left.hide ~ .umi-divider-right {
+    margin-left: 0 !important; }
+  .umi-divider-left-content {
+    overflow: hidden;
     height: 100%;
-    width: 3px;
-    right: -3px;
-    bottom: 0;
-    background: url(img/shadows/toRightShadow.png); }
-  .umi-divider-left-float .umi-divider-left-content {
-    margin-right: 0; }
+    margin-right: 5px; }
+  .umi-divider-left-float {
+    border: none;
+    z-index: 5000;
+    position: absolute;
+    width: 245px !important; }
+    .umi-divider-left-float:after {
+      content: "";
+      position: absolute;
+      float: left;
+      display: block;
+      height: 100%;
+      width: 3px;
+      right: -3px;
+      bottom: 0;
+      background: url(img/shadows/toRightShadow.png); }
+    .umi-divider-left-float .umi-divider-left-content {
+      margin-right: 0; }
+
+.umi-divider-right {
+  height: 100%; }
+  .umi-divider-right.wide {
+    margin-left: 0 !important; }
 
 .umi-divider {
   position: absolute;
@@ -5183,10 +5190,6 @@ select {
   border-left: 1px solid #ADB9C5; }
   .umi-divider:hover {
     cursor: col-resize; }
-
-.umi-divider-right {
-  float: left;
-  width: 100%; }
 
 .umi-dock {
   border-top: 1px solid #5c6472;
