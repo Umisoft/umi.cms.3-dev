@@ -19,6 +19,10 @@ define([], function(){
 
             stripTags: function(value){//TODO: add filter
                 return value;
+            },
+
+            slug: function(value){//TODO: add filter
+                return value;
             }
         };
 

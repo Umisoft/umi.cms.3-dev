@@ -69,8 +69,8 @@ define(['App'],
                 classNameBindings: ['meta.attributes.class', 'isOpen:open'],
                 attributeBindings: ['title'],
                 label: function(){
-                    return this.get('meta.attributes.label');
-                }.property('meta.attributes.label'),
+                    return this.get('defaultBehaviour.attributes.label');
+                }.property('defaultBehaviour.attributes.label'),
                 title: Ember.computed.alias('meta.attributes.title'),
                 click: function(event){
                     var el = this.$();
