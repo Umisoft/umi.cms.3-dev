@@ -1,6 +1,6 @@
 {
-    "name": "umi-cms-3",
-    "version": "0.0.1",
+    "name": "UMI.CMS",
+    "version": "3.0.0",
     "devDependencies": {
         "grunt-cli": "latest",
         "bower": "latest",
@@ -9,11 +9,14 @@
         "grunt-sass": "latest",
         "grunt-autoprefixer": "latest",
         "grunt-csso": "latest",
+        "grunt-ember-templates": "latest",
+        "grunt-contrib-handlebars": "latest",
+        "grunt-grunticon": "latest",
+        "grunt-contrib-yuidoc": "latest",
+        "grunt-contrib-requirejs": "latest",
 
         "grunt-contrib-concat": "latest",
         "grunt-contrib-clean": "latest",
-        "grunt-contrib-copy": "latest",
-
-        "grunt-newer": "latest"
+        "grunt-contrib-copy": "latest"
     }
 }

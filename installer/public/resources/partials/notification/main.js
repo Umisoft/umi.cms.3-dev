@@ -1,4 +1,4 @@
-define(['App', 'text!./alert-box.hbs'], function(UMI, alertBoxTpl){
+define(['App'], function(UMI){
     'use strict';
 
     UMI.Notification = Ember.Object.extend({
@@ -59,7 +59,7 @@ define(['App', 'text!./alert-box.hbs'], function(UMI, alertBoxTpl){
     UMI.AlertBox = Ember.View.extend({
         classNames: ['alert-box'],
         classNameBindings: ['content.type'],
-        layout: Ember.Handlebars.compile(alertBoxTpl),
+        layoutName: 'partials/alert-box',
         didInsertElement: function(){
             var duration = this.get('content.duration');
             if(duration){

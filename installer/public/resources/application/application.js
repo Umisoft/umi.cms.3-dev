@@ -4,20 +4,21 @@ define(
         'Modernizr',
         'iscroll',
         'ckEditor',
-        'jQueryUI',
+        'jqueryUI',
         'elFinder',
         'timepicker',
         'moment',
         'application/config',
         'application/utils',
         'application/i18n',
-        'application/templates',
+        'application/templates.compile',
+        'application/templates.extends',
         'application/models',
         'application/router',
         'application/controllers',
         'application/views'
     ],
-    function(DS, Modernizr, iscroll, ckEditor, jQueryUI, elFinder, timepicker, moment, config, utils, i18n, templates, models, router, controller, views){
+    function(DS, Modernizr, iscroll, ckEditor, jqueryUI, elFinder, timepicker, moment, config, utils, i18n, templates, templatesExtends, models, router, controller, views){
         'use strict';
 
         var UMI = window.UMI = window.UMI || {};
@@ -455,7 +456,7 @@ define(
             }
         });
 
-        templates(UMI);
+        templatesExtends();
         models(UMI);
         router(UMI);
         controller(UMI);

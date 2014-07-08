@@ -1,7 +1,6 @@
 define(
     [
         'App',
-        //Вызов partials
         'topBar',
         'divider',
         'dock',
@@ -11,16 +10,11 @@ define(
         'treeSimple',
         'tree',
         'forms',
-        'search',
         'notification',
         'dialog',
         'popup',
-        'chartControl',
         'DS',
         'table',
-        'accordion',
-        'megaIndex',
-        'yandexWebmaster',
         'sideMenu'
     ],
     function(UMI){

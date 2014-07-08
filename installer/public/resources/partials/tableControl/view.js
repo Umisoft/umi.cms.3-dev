@@ -8,7 +8,7 @@ define(['App', 'toolbar'], function(UMI){
              * Имя шаблона
              * @property templateName
              */
-            templateName: 'tableControl',
+            templateName: 'partials/tableControl',
             /**
              * Классы для view
              * @classNames
