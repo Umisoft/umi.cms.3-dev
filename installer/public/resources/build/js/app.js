@@ -2526,6 +2526,7 @@ define('application/templates.extends',[], function(){
 
         return function(){
             Ember.TEMPLATES['UMI/module/errors'] = Ember.TEMPLATES['UMI/component/errors'] = Ember.TEMPLATES['UMI/errors'];
+            Ember.TEMPLATES['UMI/createForm'] = Ember.TEMPLATES['UMI/editForm'];
         };
     }
 );
@@ -2549,6 +2550,10 @@ define('application/models',[], function(){
             },
 
             stripTags: function(value){//TODO: add filter
+                return value;
+            },
+
+            slug: function(value){//TODO: add filter
                 return value;
             }
         };
@@ -3860,7 +3865,6 @@ define('application/router',[], function(){
                 var contentControls;
                 var contentControl;
                 var routeData;
-                var actionParams = {};
                 var createdParams;
                 var deferred;
                 var actionResource;
@@ -3886,19 +3890,14 @@ define('application/router',[], function(){
                         actionResource = Ember.get(componentController, 'settings.actions.' + actionResourceName + '.source');
 
                         if(actionResource){
-                            actionResource = UMI.Utils.replacePlaceholder(routeData.object, actionResource);
                             if(actionName === 'createForm'){
                                 createdParams = contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
                                 if(transition.queryParams.type){
-                                    createdParams.type = transition.queryParams.type;
+                                    routeData.object.type = createdParams.type = transition.queryParams.type;
                                 }
                                 routeData.createObject = self.store.createRecord(componentController.get('dataSource.name'), createdParams);
-                                if(transition.queryParams.type){
-                                    actionParams.type = transition.queryParams.type;
-                                } else{
-                                    throw new Error("Тип создаваемого объекта не был указан.");
-                                }
                             }
+                            actionResource = UMI.Utils.replacePlaceholder(routeData.object, actionResource);
 
                             Ember.$.get(actionResource).then(function(results){
                                 var dynamicControl;
@@ -3947,7 +3946,7 @@ define('application/router',[], function(){
                         controller: controller
                     });
                 } catch(error){
-                    this.send('templateLogs', errorObject, 'component');
+                    this.send('templateLogs', error, 'component');
                 }
             },
 
@@ -5393,8 +5392,8 @@ define('partials/toolbar/buttons/splitButton/main',['App'],
                 classNameBindings: ['meta.attributes.class', 'isOpen:open'],
                 attributeBindings: ['title'],
                 label: function(){
-                    return this.get('meta.attributes.label');
-                }.property('meta.attributes.label'),
+                    return this.get('defaultBehaviour.attributes.label');
+                }.property('defaultBehaviour.attributes.label'),
                 title: Ember.computed.alias('meta.attributes.title'),
                 click: function(event){
                     var el = this.$();
@@ -6267,6 +6266,7 @@ define('tableControl/view',['App', 'toolbar'], function(UMI){
                         }
                     }
                     behaviour.classNames = ['white square'];
+                    behaviour.label = null;
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()

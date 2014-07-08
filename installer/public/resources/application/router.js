@@ -717,7 +717,6 @@ define([], function(){
                 var contentControls;
                 var contentControl;
                 var routeData;
-                var actionParams = {};
                 var createdParams;
                 var deferred;
                 var actionResource;
@@ -743,19 +742,14 @@ define([], function(){
                         actionResource = Ember.get(componentController, 'settings.actions.' + actionResourceName + '.source');
 
                         if(actionResource){
-                            actionResource = UMI.Utils.replacePlaceholder(routeData.object, actionResource);
                             if(actionName === 'createForm'){
                                 createdParams = contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
                                 if(transition.queryParams.type){
-                                    createdParams.type = transition.queryParams.type;
+                                    routeData.object.type = createdParams.type = transition.queryParams.type;
                                 }
                                 routeData.createObject = self.store.createRecord(componentController.get('dataSource.name'), createdParams);
-                                if(transition.queryParams.type){
-                                    actionParams.type = transition.queryParams.type;
-                                } else{
-                                    throw new Error("Тип создаваемого объекта не был указан.");
-                                }
                             }
+                            actionResource = UMI.Utils.replacePlaceholder(routeData.object, actionResource);
 
                             Ember.$.get(actionResource).then(function(results){
                                 var dynamicControl;
@@ -804,7 +798,7 @@ define([], function(){
                         controller: controller
                     });
                 } catch(error){
-                    this.send('templateLogs', errorObject, 'component');
+                    this.send('templateLogs', error, 'component');
                 }
             },
 
