@@ -24,8 +24,8 @@ return [
         'If you did nоt request to reset your password please ignore this message' =>
             'If you did nоt request to reset your password please ignore this message',
 
-        'role:viewer:displayName' => 'Restoration password',
-        'role:confirmationExecutor:displayName' => 'Confirmation restoration'
+        'role:viewer:displayName' => 'Password restoration',
+        'role:confirmationExecutor:displayName' => 'Restoration confirm'
     ],
 
     'ru-RU' => [
@@ -43,7 +43,7 @@ return [
             'Если Вы не запрашивали смену пароля, просто проигнорируете данное письмо ',
 
         'role:viewer:displayName' => 'Восстановление пароля',
-        'role:confirmationExecutor:displayName' => 'Подтверждение восстановления'
+        'role:confirmationExecutor:displayName' => 'Подтверждение восстановления пароля'
     ]
 
 ];

@@ -11,7 +11,7 @@
 namespace umicms\project\module\users\site\registration\widget;
 
 use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 
 /**
@@ -26,7 +26,7 @@ class FormWidget extends BaseFormWidget
     /**
      * @var string $type тип регистрируемого пользователя
      */
-    public $type = AuthorizedUser::TYPE_NAME;
+    public $type = RegisteredUser::TYPE_NAME;
 
     /**
      * @var UsersModule $module модуль "Пользователи"
@@ -47,7 +47,7 @@ class FormWidget extends BaseFormWidget
      */
     protected function getForm()
     {
-        return $this->module->user()->getForm(AuthorizedUser::FORM_REGISTRATION, $this->type)
+        return $this->module->user()->getForm(RegisteredUser::FORM_REGISTRATION, $this->type)
             ->setAction($this->getUrl('index'));
     }
 }

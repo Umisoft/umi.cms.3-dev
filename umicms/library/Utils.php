@@ -70,6 +70,6 @@ class Utils
             }
         }
 
-        return $emailList;
+        return $emailList ? $emailList : null;
     }
 }

@@ -12,14 +12,14 @@ return [
 
     'en-US' => [
         'component:admin:displayName' => 'Admin panel',
-        'role:viewer:displayName' => 'Ability to log into the admin panel',
+        'role:viewer:displayName' => 'Admin panel access',
         'role:restExecutor:displayName' => 'Admin panel'
     ],
 
     'ru-RU' => [
-        'component:admin:displayName' => 'Административная панель',
-        'role:viewer:displayName' => 'Возможность входа в административную панель',
-        'role:restExecutor:displayName' => 'Административная панель'
+        'component:admin:displayName' => 'Административный интерфейс',
+        'role:viewer:displayName' => 'Возможность входа в административный интерфейс',
+        'role:restExecutor:displayName' => 'Административный интерфейс'
     ]
 
 ];

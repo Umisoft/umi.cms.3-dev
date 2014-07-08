@@ -11,14 +11,14 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'Viewer structure',
+        'role:viewer:displayName' => 'View news structure',
         'role:rubricExecutor:displayName' => 'Rubrics',
         'role:itemExecutor:displayName' => 'News',
         'role:subjectExecutor:displayName' => 'Subjects',
     ],
 
     'ru-RU' => [
-        'role:viewer:displayName' => 'Просмотр структуры',
+        'role:viewer:displayName' => 'Просмотр структуры новостей',
         'role:rubricExecutor:displayName' => 'Рубрики',
         'role:itemExecutor:displayName' => 'Новости',
         'role:subjectExecutor:displayName' => 'Сюжеты',

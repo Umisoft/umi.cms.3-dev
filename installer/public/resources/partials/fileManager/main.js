@@ -1,23 +1,16 @@
 define(['App'], function(UMI){
     'use strict';
 
-    UMI.FileManagerControlController = Ember.ObjectController.extend({
-        needs: ['component'],
-        connector: function(){
-            return this.get('controllers.component').get('settings.actions.connector');
-        }.property('model')
-    });
-
-    UMI.FileManagerControlView = Ember.View.extend({
+    UMI.FileManagerView = Ember.View.extend({
         tagName: 'div',
-        classNames: ['umi-file-manager'],
+        classNames: ['umi-file-manager s-full-height'],
 
         layout: Ember.Handlebars.compile('<div id="elfinder"></div>'),
 
         didInsertElement: function(){
             var self = this;
             $('#elfinder').elfinder({
-                url : self.get('controller.connector.source'),
+                url : '/admin/rest/files/manager/action/connector',//self.get('controller.connector.source'),
                 lang: 'ru',
                 getFileCallback : function(fileInfo){
                     var contentParams = {};

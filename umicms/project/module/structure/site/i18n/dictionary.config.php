@@ -11,15 +11,15 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'Viewer structure',
+        'role:viewer:displayName' => 'View structure',
         'role:menuExecutor:displayName' => 'Menu',
         'role:infoblockExecutor:displayName' => 'Information blocks',
     ],
 
     'ru-RU' => [
-        'role:viewer:displayName' => 'Просмотр структуры',
+        'role:viewer:displayName' => 'Просмотр структуры сайта',
         'role:menuExecutor:displayName' => 'Меню',
-        'role:infoblockExecutor:displayName' => 'Инфоблоки'
+        'role:infoblockExecutor:displayName' => 'Информационные блоки'
     ]
 
 ];

@@ -13,13 +13,13 @@ return [
     'en-US' => [
         'component:rss:displayName' => 'Import RSS-feed',
 
-        'role:editor:displayName' => 'Managing import RSS-feed'
+        'role:editor:displayName' => 'Manage RSS-feed import'
     ],
 
     'ru-RU' => [
-        'component:rss:displayName' => 'Импорт RSS-лент',
+        'component:rss:displayName' => 'Управление импортом RSS-лент',
 
-        'role:editor:displayName' => 'Управление импортом RSS-лент'
+        'role:editor:displayName' => 'Управление импортом'
     ]
 
 ];

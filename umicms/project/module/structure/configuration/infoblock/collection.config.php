@@ -9,7 +9,8 @@
  */
 
 use umi\orm\collection\ICollectionFactory;
-use umicms\orm\collection\ICmsCollection;
+use umicms\project\module\structure\model\collection\InfoBlockCollection;
+use umicms\project\module\structure\model\object\BaseInfoBlock;
 use umicms\project\module\structure\model\object\InfoBlock;
 
 return [
@@ -22,11 +23,15 @@ return [
     ],
     'forms' => [
         InfoBlock::TYPE => [
-            ICmsCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/infoblock/form/infoblock.edit.config.php}',
-            ICmsCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/infoblock/form/infoblock.create.config.php}'
+            InfoBlockCollection::FORM_EDIT => '{#lazy:~/project/module/structure/configuration/infoblock/form/infoblock.edit.config.php}',
+            InfoBlockCollection::FORM_CREATE => '{#lazy:~/project/module/structure/configuration/infoblock/form/infoblock.create.config.php}'
         ],
     ],
     'dictionaries' => [
         'collection.infoblock', 'collection'
+    ],
+
+    InfoBlockCollection::DEFAULT_TABLE_FILTER_FIELDS => [
+        BaseInfoBlock::FIELD_INFOBLOCK_NAME => []
     ]
 ];

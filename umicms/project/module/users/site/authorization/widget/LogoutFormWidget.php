@@ -11,7 +11,7 @@
 namespace umicms\project\module\users\site\authorization\widget;
 
 use umicms\hmvc\widget\BaseFormWidget;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 
 /**
@@ -43,7 +43,7 @@ class LogoutFormWidget extends BaseFormWidget
      */
     protected function getForm()
     {
-        return $this->module->user()->getForm(AuthorizedUser::FORM_LOGOUT_SITE, AuthorizedUser::TYPE_NAME)
+        return $this->module->user()->getForm(RegisteredUser::FORM_LOGOUT_SITE, RegisteredUser::TYPE_NAME)
             ->setAction($this->getUrl('logout'));
     }
 }

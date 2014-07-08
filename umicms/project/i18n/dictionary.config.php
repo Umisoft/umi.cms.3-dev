@@ -69,10 +69,11 @@ return [
 
     'project.admin.rest.settings' => '{#lazy:~/project/module/settings/admin/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site' => '{#lazy:~/project/site/settings/i18n/dictionary.config.php}',
-    'project.admin.rest.settings.site.common' => '{#lazy:~/project/site/settings/common/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.slugify' => '{#lazy:~/project/site/settings/slugify/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.site.common' => '{#lazy:~/project/site/settings/common/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.seo' => '{#lazy:~/project/site/settings/seo/i18n/dictionary.config.php}',
     'project.admin.rest.settings.site.templating' => '{#lazy:~/project/site/settings/templating/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.site.mail' => '{#lazy:~/project/site/settings/mail/i18n/dictionary.config.php}',
     'project.admin.rest.settings.service' => '{#lazy:~/project/module/service/admin/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.service.backup' => '{#lazy:~/project/module/service/admin/settings/backup/i18n/dictionary.config.php}',
     'project.admin.rest.settings.seo' => '{#lazy:~/project/module/seo/admin/settings/i18n/dictionary.config.php}',
@@ -81,8 +82,8 @@ return [
     'project.admin.rest.settings.statistics' => '{#lazy:~/project/module/statistics/admin/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.statistics.metrika' => '{#lazy:~/project/module/statistics/admin/settings/metrika/i18n/dictionary.config.php}',
     'project.admin.rest.settings.users' => '{#lazy:~/project/module/users/admin/settings/i18n/dictionary.config.php}',
-    'project.admin.rest.settings.users.notifications' => '{#lazy:~/project/module/users/admin/settings/notifications/i18n/dictionary.config.php}',
     'project.admin.rest.settings.users.registration' => '{#lazy:~/project/module/users/admin/settings/registration/i18n/dictionary.config.php}',
+    'project.admin.rest.settings.users.notifications' => '{#lazy:~/project/module/users/admin/settings/notifications/i18n/dictionary.config.php}',
 
     'project.admin.rest.settings.forms' => '{#lazy:~/project/module/forms/admin/settings/i18n/dictionary.config.php}',
     'project.admin.rest.settings.forms.captcha' => '{#lazy:~/project/module/forms/admin/settings/captcha/i18n/dictionary.config.php}',
@@ -130,6 +131,8 @@ return [
     'project.site.blog.author.view' => '{#lazy:~/project/module/blog/site/author/view/i18n/dictionary.config.php}',
     'project.site.blog.tag' => '{#lazy:~/project/module/blog/site/tag/i18n/dictionary.config.php}',
 
+    'project.site.search' => '{#lazy:~/project/module/search/site/i18n/dictionary.config.php}',
+
     'collection' => [
 
         'en-US' => [
@@ -140,6 +143,12 @@ return [
             ICmsObject::FIELD_IDENTIFY => 'Identifier',
             ICmsObject::FIELD_TYPE => 'Type',
             ICmsObject::FIELD_VERSION => 'Version',
+            
+            IRecyclableObject::FIELD_TRASHED => 'Trashed',
+            ILockedAccessibleObject::FIELD_LOCKED => 'Locked',
+            IActiveAccessibleObject::FIELD_ACTIVE => 'Active',
+
+            'Default or inherited layout' => 'Default or inherited layout',
 
             CmsHierarchicObject::FIELD_CHILDREN => 'Children',
             CmsHierarchicObject::FIELD_CHILD_COUNT => 'Child count',
@@ -157,9 +166,13 @@ return [
             ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
             ICmsPage::FIELD_PAGE_SLUG => 'Slug',
 
-            IRecyclableObject::FIELD_TRASHED => 'Trashed',
-            ILockedAccessibleObject::FIELD_LOCKED => 'Locked',
-            IActiveAccessibleObject::FIELD_ACTIVE => 'Active',
+            ICmsPage::FIELD_PAGE_CONTENTS => 'Контент',
+            ICmsPage::FIELD_PAGE_H1 => 'H1',
+            ICmsPage::FIELD_PAGE_LAYOUT => 'Шаблон',
+            ICmsPage::FIELD_PAGE_META_DESCRIPTION => 'Meta description',
+            ICmsPage::FIELD_PAGE_META_KEYWORDS => 'Meta keywords',
+            ICmsPage::FIELD_PAGE_META_TITLE => 'Meta title',
+            ICmsPage::FIELD_PAGE_SLUG => 'Псевдостатический адрес'
         ],
 
         'ru-RU' => [

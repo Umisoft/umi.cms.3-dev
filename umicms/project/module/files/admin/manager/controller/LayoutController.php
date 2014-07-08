@@ -29,6 +29,7 @@ class LayoutController extends BaseLayoutController
         $layout = new AdminComponentLayout($this->getComponent());
 
         $fileManager = new AdminControl($this->getComponent());
+        $fileManager->params = ['isStatic' => true];
         $layout->addEmptyContextControl('fileManager', $fileManager);
 
         return $layout;

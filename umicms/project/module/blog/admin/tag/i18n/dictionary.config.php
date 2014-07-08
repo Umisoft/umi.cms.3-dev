@@ -13,13 +13,13 @@ return [
     'en-US' => [
         'action:create:base' => 'Create tag',
 
-        'role:editor:displayName' => 'Managing tags'
+        'role:editor:displayName' => 'Manage tags'
     ],
 
     'ru-RU' => [
         'action:create:base' => 'Создать тэг',
 
-        'role:editor:displayName' => 'Управление тэгами'
+        'role:editor:displayName' => 'Управление тегами'
     ]
 
 ];

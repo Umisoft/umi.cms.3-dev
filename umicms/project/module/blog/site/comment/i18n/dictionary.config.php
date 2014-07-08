@@ -12,18 +12,20 @@ return [
 
     'en-US' => [
         'Publish' => 'Publish',
+        'Unpublish' => 'Unpublish',
         'Reject' => 'Reject',
 
-        'role:moderator:displayName' => 'Moderating',
-        'role:viewer:displayName' => 'Viewer comments',
+        'role:moderator:displayName' => 'Moderate comments',
+        'role:viewer:displayName' => 'View comments',
         'role:addExecutor:displayName' => 'Сommentation'
     ],
 
     'ru-RU' => [
         'Publish' => 'Опубликовать',
+        'Unpublish' => 'Снять с публикации',
         'Reject' => 'Отклонить',
 
-        'role:moderator:displayName' => 'Модерирование',
+        'role:moderator:displayName' => 'Модерирование комментариев',
         'role:viewer:displayName' => 'Просмотр комментариев',
         'role:addExecutor:displayName' => 'Комментирование'
     ]

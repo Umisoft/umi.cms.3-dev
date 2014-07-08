@@ -2,7 +2,7 @@
     "name": "UMI3",
     "dependencies": {
         "jquery": "2.1.0",
-        "jquery.ui": "latest",
+        "jquery-ui": "latest",
         "jqueryui-timepicker-addon": "latest",
         "requirejs": "~2.1.9",
         "requirejs-text": "~2.0.10",
@@ -13,6 +13,7 @@
         "ckeditor": "4.3.4",
         "qunit": "latest",
         "momentjs": "latest",
-        "chartjs": "latest"
+        "chartjs": "latest",
+        "highlightjs": "latest"
     }
 }

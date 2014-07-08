@@ -11,6 +11,8 @@
 namespace umicms\orm\object;
 
 use DateTime;
+use umi\acl\IAclAssertionResolver;
+use umi\acl\IAclResource;
 use umi\orm\metadata\IObjectType;
 use umi\orm\object\IObject;
 use umicms\project\module\users\model\object\BaseUser;
@@ -28,7 +30,7 @@ use umicms\serialization\ISerializerConfigurator;
  * @property BaseUser $owner владелец объекта
  * @property BaseUser $editor последний редактор объекта
  */
-interface ICmsObject extends IObject, ISerializerConfigurator
+interface ICmsObject extends IObject, IAclResource, IAclAssertionResolver, ISerializerConfigurator
 {
     /**
      *  Имя поля для хранения времени создания объекта

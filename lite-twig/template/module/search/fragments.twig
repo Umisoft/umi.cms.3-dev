@@ -1,0 +1,10 @@
+
+<div>
+    {% for fragment in fragmenter %}
+        <span>
+            <span class="before">...{{ widget('search.highlight', {'query' : query, 'text' : fragment.getEdgeLeft()|join(' ')}) }}</span>
+            <span class="keyword">{{ widget('search.highlight', {'query' : query, 'text' : fragment.getCenter()}) }}</span>
+            <span class="after">{{ widget('search.highlight', {'query' : query, 'text' : fragment.getEdgeRight()|join(' ')}) }} ...</span>
+        </span>
+    {% endfor %}
+</div>

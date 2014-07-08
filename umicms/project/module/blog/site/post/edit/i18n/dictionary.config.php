@@ -11,11 +11,11 @@
 return [
 
     'en-US' => [
-        'role:moderator:displayName' => 'Moderating'
+        'role:moderator:displayName' => 'Edit all posts'
     ],
 
     'ru-RU' => [
-        'role:moderator:displayName' => 'Модерирование'
+        'role:moderator:displayName' => 'Редактирование всех постов'
     ]
 
 ];

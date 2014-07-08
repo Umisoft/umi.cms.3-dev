@@ -21,7 +21,7 @@
 
 </div>
 
-<h1><?=$this->translate('Comments')?>:</h1>
+<h1><?=$this->translate('Comments')?> (<?= $page->commentsCount?>):</h1>
 
 <?= $this->widget('blog.comment.list', ['blogPost' => $page, 'template' => 'list']); ?>
 

@@ -14,15 +14,15 @@ return [
         'component:users:displayName' => 'Users',
 
         'role:userExecutor:displayName' => 'Users',
-        'role:groupExecutor:displayName' => 'Groups',
-        'role:usergroupExecutor:displayName' => 'Managing relation users-group'
+        'role:groupExecutor:displayName' => 'Users groups',
+        'role:usergroupExecutor:displayName' => 'Manage users-groups relation'
     ],
 
     'ru-RU' => [
         'component:users:displayName' => 'Пользователи',
 
         'role:userExecutor:displayName' => 'Пользователи',
-        'role:groupExecutor:displayName' => 'Группы',
+        'role:groupExecutor:displayName' => 'Группы пользователей',
         'role:usergroupExecutor:displayName' => 'Управление связью пользователи-группы'
     ]
 

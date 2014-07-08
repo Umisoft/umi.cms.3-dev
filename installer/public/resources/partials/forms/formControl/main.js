@@ -14,35 +14,7 @@ define(
                     var settings = {};
                     settings = this.get('controllers.component.settings');
                     return settings;
-                }.property(),
-
-                toolbar: function(){
-                    var actionName = this.get('container').lookup('route:action').get('context.action.name');
-                    var editForm = this.get('controllers.component.contentControls').findBy('name', actionName);
-                    return editForm && editForm.toolbar;
-                }.property('object'),
-
-                submitToolbar: function(){
-                    var actionName = this.get('container').lookup('route:action').get('context.action.name');
-                    var editForm = this.get('controllers.component.contentControls').findBy('name', actionName);
-                    return editForm && editForm.submitToolbar;
-                }.property('object'),
-
-                hasFieldset: function(){
-                    var hasFieldset;
-                    try{
-                        hasFieldset = this.get('content.viewSettings.elements').isAny('type', 'fieldset');
-                    } catch(error){
-                        var errorObject = {
-                            'statusText': error.name,
-                            'message': error.message,
-                            'stack': error.stack
-                        };
-                        this.send('templateLogs', errorObject, 'component');
-                    } finally{
-                        return hasFieldset;
-                    }
-                }.property('model.@each')
+                }.property()
             });
 
             UMI.FormControlView = Ember.View.extend(UMI.FormViewMixin, {
@@ -60,24 +32,24 @@ define(
                 classNameBindings: ['isError:error'],
 
                 isError: function(){
-                    var meta = this.get('meta');
-                    return !!this.get('object.validErrors.' + meta.dataSource);
+                    var dataSource = this.get('meta.dataSource');
+                    return !!this.get('object.validErrors.' + dataSource);
                 }.property('object.validErrors'),
 
                 wysiwygTemplate: function(){
-                    return '{{view "htmlEditorCollection" object=object meta=view.meta}}';
+                    return '{{view "htmlEditorCollection" object=view.object meta=view.meta}}';
                 }.property(),
 
                 selectTemplate: function(){
-                    return '{{view "selectCollection" object=object meta=view.meta}}';
+                    return '{{view "selectCollection" object=view.object meta=view.meta}}';
                 }.property(),
 
                 checkboxTemplate: function(){
-                    return '{{view "checkboxCollectionElement" object=object meta=view.meta}}';
+                    return '{{view "checkboxCollectionElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 checkboxGroupTemplate: function(){
-                    return '{{view "checkboxGroupCollectionElement" object=object meta=view.meta}}';
+                    return '{{view "checkboxGroupCollectionElement" object=view.object meta=view.meta}}';
                 }.property(),
 
                 permissionsTemplate: function(){

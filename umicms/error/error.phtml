@@ -1,0 +1,21 @@
+<?php
+/**
+ * @var bool $showTrace
+ * @var bool $showStack
+ */
+?>
+<!DOCTYPE HTML>
+<html data-foundation>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>UMI.CMS</title>
+    </head>
+    <body>
+        <h1>Fatal error has occurred</h1>
+        <?php if ($showTrace): ?>
+            <?= $e['message'] ?>: in <b><?= $e['file'] ?></b> on line <b><?= $e['line'] ?></b>.
+        <?php endif?>
+
+    </body>
+</html>

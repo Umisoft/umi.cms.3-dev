@@ -1,14 +1,14 @@
 <?php
 /**
  * @var umicms\project\module\structure\model\object\SystemPage $page
- * @var umi\form\IForm $form
+ * @var umi\form\FormEntityView $form
  * @var bool $success
  */
 
 ?>
 
 <div class="blog-post">
-    <h2 class="blog-post-title"><?=$page->displayName?></h2>
+    <h2 class="blog-post-title"><?=$page->getHeader()?></h2>
     <?=$page->contents?>
 
     <?php if ($success) : ?>

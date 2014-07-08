@@ -3,19 +3,13 @@
 {{/if}}
 
 {{#if view.meta.attributes.label}}
-    <span class="umi-toolbar-create-text">
-        {{unbound view.meta.attributes.label}}
-    </span>
+    {{unbound view.meta.attributes.label}}
 {{/if}}
 
-<span class="umi-toolbar-create-icon">
-    <i class="icon icon-bottom"></i>
-</span>
-
-<span class="umi-toolbar-create-list umi-hide-on-html">
+<ul class="f-dropdown">
     {{#each view.meta.choices}}
         <span {{action 'sendActionForBehaviour' behaviour target="view"}}>
             {{attributes.label}}
         </span>
     {{/each}}
-</span>
+</ul>

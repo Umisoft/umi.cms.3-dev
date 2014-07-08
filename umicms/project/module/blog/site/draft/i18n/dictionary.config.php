@@ -11,21 +11,19 @@
 return [
 
     'en-US' => [
-        'role:author:displayName' => 'Publish posts with moderated',
-        'role:publisher:displayName' => 'Publish posts without moderated',
-        'role:moderator:displayName' => 'Moderating',
-        'role:viewer:displayName' => 'Viewer list drafts',
-        'role:editExecutor:displayName' => 'Edit draft',
-        'role:viewExecutor:displayName' => 'Viewer draft'
+        'role:author:displayName' => 'Publish posts with moderation',
+        'role:publisher:displayName' => 'Publish posts without moderation',
+        'role:viewer:displayName' => 'View draft list',
+        'role:editExecutor:displayName' => 'Edit drafts',
+        'role:viewExecutor:displayName' => 'View draft'
     ],
 
     'ru-RU' => [
         'role:author:displayName' => 'Публикация постов с премодерацией',
         'role:publisher:displayName' => 'Публикация постов без премодерации',
-        'role:moderator:displayName' => 'Модерирование',
         'role:viewer:displayName' => 'Просмотр списка черновиков',
-        'role:editExecutor:displayName' => 'Редактирование черновика',
-        'role:viewExecutor:displayName' => 'Просмотр черновика'
+        'role:editExecutor:displayName' => 'Редактирование черновиков',
+        'role:viewExecutor:displayName' => 'Просмотр черновиков'
     ]
 
 ];

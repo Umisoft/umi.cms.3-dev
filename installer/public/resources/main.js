@@ -8,7 +8,7 @@ require.config({
 
         Modernizr:  'libs/modernizr/modernizr',
         jQuery:     'libs/jquery/dist/jquery',
-        jQueryUI:   'libs/jquery-ui/ui/jquery-ui', //Официальный репозиторий jquery.ui (через точку), но там нет собранного файла. Поменял прошлый репозиторий из-за того, что на момент pull-request в нём тоже не было собранного файла
+        jQueryUI:   'libs/jquery-ui/jquery-ui.min',
         Handlebars: 'libs/handlebars/handlebars',
         Ember:      'libs/ember/ember',
         DS:         'libs/ember-data/ember-data',
@@ -43,12 +43,10 @@ require.config({
     },
 
     packages: [
-        //Подключаем Partials. замена следуют по алфавиту, как и в структуре папок
-        {name: 'offcanvas',         location: "elements/offcanvas"},
-
         {name: 'accordion',         location: "partials/accordion"},
         {name: 'chartControl',      location: "partials/chartControl"},
         {name: 'dialog',            location: "partials/dialog"},
+        {name: 'divider',            location: "partials/divider"},
         {name: 'dock',              location: "partials/dock"},
         {name: 'fileManager',       location: "partials/fileManager"},
         {name: 'forms',              location: "partials/forms"},
@@ -56,6 +54,7 @@ require.config({
         {name: 'popup',             location: "partials/popup"},
         {name: 'search',            location: "partials/search"},
         {name: 'megaIndex',         location: "partials/seo/megaIndex"},
+        {name: 'sideMenu',          location: "partials/sideMenu"},
         {name: 'yandexWebmaster',   location: "partials/seo/yandexWebmaster"},
         //skeleton                  partials/skeleton
         {name: 'table',             location: "partials/table"},

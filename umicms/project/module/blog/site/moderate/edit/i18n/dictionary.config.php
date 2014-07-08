@@ -12,12 +12,12 @@ return [
 
     'en-US' => [
         'role:author:displayName' => 'Edit own posts',
-        'role:moderator:displayName' => 'Moderating',
+        'role:moderator:displayName' => 'Edit all posts',
     ],
 
     'ru-RU' => [
-        'role:author:displayName' => 'Редактирование своих постов',
-        'role:moderator:displayName' => 'Модерирование',
+        'role:author:displayName' => 'Своих постов',
+        'role:moderator:displayName' => 'Всех постов',
     ]
 
 ];

@@ -1,12 +1,12 @@
-<a href="javascript:void(0)" class="umi-button-icon-32 umi-light-bg" {{action "open" target="view"}}>
+<a href="javascript:void(0)" class="button white dropdown" {{action "open" target="view"}}>
     <i class="icon icon-backupList"></i>
     {{#if view.meta.attributes.label}}
-        <span style="color: #fff; line-height: normal; vertical-align: top;">
+        <span>
             {{unbound view.meta.attributes.label}}
         </span>
     {{/if}}
 </a>
-<div class="f-dropdown umi-dropdown dropdown-rows">
+<div class="f-dropdown umi-dropdown dropdown-rows right">
     <div class="row collapse">
         <div class="columns small-12">
             <strong>{{view.button.displayName}}</strong>
@@ -26,7 +26,7 @@
                                 <i class="icon icon-renew"></i>
                             </button>
                         {{/if}}
-                        {{date.date}}
+                        {{created.date}}
                     </div>
                     <div class="columns small-6">
                         {{#if user}}

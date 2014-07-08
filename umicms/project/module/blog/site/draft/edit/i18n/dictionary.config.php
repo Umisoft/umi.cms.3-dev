@@ -11,13 +11,11 @@
 return [
 
     'en-US' => [
-        'role:author:displayName' => 'Edit own drafts',
-        'role:moderator:displayName' => 'Moderating'
+        'role:author:displayName' => 'Edit drafts',
     ],
 
     'ru-RU' => [
-        'role:author:displayName' => 'Редактирование своих черновиков',
-        'role:moderator:displayName' => 'Модерирование'
+        'role:author:displayName' => 'Редактирование черновиков',
     ]
 
 ];

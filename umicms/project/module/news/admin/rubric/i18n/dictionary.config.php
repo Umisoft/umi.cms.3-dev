@@ -15,7 +15,7 @@ return [
 
         'action:create:base' => 'Create subrubric',
 
-        'role:editor:displayName' => 'Managing rubrics'
+        'role:editor:displayName' => 'Manage rubrics'
     ],
 
     'ru-RU' => [

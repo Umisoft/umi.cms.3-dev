@@ -17,8 +17,12 @@
 
 {% endif %}
 
+{% if showTrace %}
+    {% block trace %}
+    {% endblock %}
+{% endif %}
 
-{% if stack %}
+{% if showStack and stack %}
 
     {% block start_stack %}
     {% endblock %}

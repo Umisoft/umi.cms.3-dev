@@ -11,17 +11,17 @@
 return [
 
     'en-US' => [
-        'role:rssViewer:displayName' => 'Viewer RSS-feed',
-        'role:viewer:displayName' => 'Viewer list authors',
+        'role:rssViewer:displayName' => 'View RSS-feeds',
+        'role:viewer:displayName' => 'View author list',
         'role:profileExecutor:displayName' => 'Edit profile',
-        'role:viewExecutor:displayName' => 'Viewer profile',
+        'role:viewExecutor:displayName' => 'View profile',
     ],
 
     'ru-RU' => [
         'role:rssViewer:displayName' => 'Просмотр RSS-лент',
         'role:viewer:displayName' => 'Просмотр списка авторов',
-        'role:profileExecutor:displayName' => 'Редактирование профиля',
-        'role:viewExecutor:displayName' => 'Просмотр профиля',
+        'role:profileExecutor:displayName' => 'Редактирование профиля автора',
+        'role:viewExecutor:displayName' => 'Просмотр профиля автора',
     ]
 
 ];

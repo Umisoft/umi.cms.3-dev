@@ -1,12 +1,9 @@
 define(
     [
         'App',
-
-        //Вызов elements
-        'offcanvas',
-
         //Вызов partials
         'topBar',
+        'divider',
         'dock',
         'toolbar',
         'tableControl',
@@ -23,7 +20,8 @@ define(
         'table',
         'accordion',
         'megaIndex',
-        'yandexWebmaster'
+        'yandexWebmaster',
+        'sideMenu'
     ],
     function(UMI){
         'use strict';

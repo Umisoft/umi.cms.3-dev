@@ -11,11 +11,11 @@
 return [
 
     'en-US' => [
-        'role:viewer:displayName' => 'Moderating'
+        'role:viewer:displayName' => 'Moderate all moderating posts'
     ],
 
     'ru-RU' => [
-        'role:viewer:displayName' => 'Модерирование'
+        'role:viewer:displayName' => 'Модерирование всех постов, ожидающих модерацию'
     ]
 
 ];

@@ -16,13 +16,13 @@ return [
         'Moderate' => 'Moderate',
         'Revert to draft' => 'Revert to draft',
 
-        'role:rssViewer:displayName' => 'Viewer RSS-feed',
-        'role:viewer:displayName' => 'Viewer list posts',
-        'role:author:displayName' => 'Manage published a post',
-        'role:moderator:displayName' => 'Moderating',
+        'role:rssViewer:displayName' => 'View post RSS-feed',
+        'role:viewer:displayName' => 'View post list',
+        'role:author:displayName' => 'Manage published posts',
+        'role:moderator:displayName' => 'Moderate',
         'role:addExecutor:displayName' => 'Create post',
-        'role:editExecutor:displayName' => 'Edit post',
-        'role:viewExecutor:displayName' => 'Viewer post',
+        'role:editExecutor:displayName' => 'Edit posts',
+        'role:viewExecutor:displayName' => 'View post',
     ],
 
     'ru-RU' => [
@@ -31,10 +31,10 @@ return [
         'Moderate' => 'На модерацию',
         'Revert to draft' => 'В черновики',
 
-        'role:rssViewer:displayName' => 'Просмотр RSS-лент',
+        'role:rssViewer:displayName' => 'Просмотр RSS-лент постов',
         'role:viewer:displayName' => 'Просмотр списка постов',
         'role:author:displayName' => 'Управление опубликованными постами',
-        'role:moderator:displayName' => 'Модерирование',
+        'role:moderator:displayName' => 'Модерирование постов',
         'role:addExecutor:displayName' => 'Создание поста',
         'role:editExecutor:displayName' => 'Редактирование поста',
         'role:viewExecutor:displayName' => 'Просмотр поста',

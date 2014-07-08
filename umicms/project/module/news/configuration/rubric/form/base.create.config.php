@@ -41,6 +41,9 @@ return [
                     'type' => Select::TYPE_NAME,
                     'label' => NewsRubric::FIELD_PAGE_LAYOUT,
                     'options' => [
+                        'choices' => [
+                            null => 'Default or inherited layout'
+                        ],
                         'lazy' => true,
                         'dataSource' => NewsRubric::FIELD_PAGE_LAYOUT
                     ],
@@ -107,14 +110,6 @@ return [
                     'label' => NewsRubric::FIELD_PAGE_CONTENTS,
                     'options' => [
                         'dataSource' => NewsRubric::FIELD_PAGE_CONTENTS
-                    ]
-                ],
-
-                NewsRubric::FIELD_NEWS => [
-                    'type' => MultiSelect::TYPE_NAME,
-                    'label' => NewsRubric::FIELD_NEWS,
-                    'options' => [
-                        'dataSource' => NewsRubric::FIELD_NEWS
                     ]
                 ]
             ]
