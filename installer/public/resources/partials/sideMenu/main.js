@@ -1,7 +1,4 @@
-define(
-    [
-        'App'
-    ],
+define(['App'],
     function(UMI){
         'use strict';
 
@@ -13,7 +10,7 @@ define(
         });
 
         UMI.SideMenuView = Ember.View.extend({
-            layout: 'partials/sideMenu'
+            layoutName: 'partials/sideMenu'
         });
     }
 );
