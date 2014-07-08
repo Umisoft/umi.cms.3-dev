@@ -205,7 +205,7 @@ module.exports = function(grunt){
                     name: 'main',
                     out: 'build/js/app.js',
                     inlineText: true,
-                    optimize: 'uglify2',
+                    optimize: 'none',
                     exclude: [
                         'Modernizr',
                         'jquery',
