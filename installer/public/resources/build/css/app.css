@@ -1366,14 +1366,14 @@ button, .button {
     margin: 0;
     float: left; }
     .button-group > li > button, .button-group > li .button {
-      border-left: 1px solid;
+      border-left: 0 solid;
       border-color: rgba(255, 255, 255, 0.5); }
     .button-group > li:first-child button, .button-group > li:first-child .button {
       border-left: 0; }
     .button-group > li:first-child {
       margin-left: 0; }
   .button-group.radius > * > button, .button-group.radius > * .button {
-    border-left: 1px solid;
+    border-left: 0 solid;
     border-color: rgba(255, 255, 255, 0.5); }
   .button-group.radius > *:first-child button, .button-group.radius > *:first-child .button {
     border-left: 0; }
@@ -1386,7 +1386,7 @@ button, .button {
     border-bottom-right-radius: 3px;
     border-top-right-radius: 3px; }
   .button-group.round > * > button, .button-group.round > * .button {
-    border-left: 1px solid;
+    border-left: 0 solid;
     border-color: rgba(255, 255, 255, 0.5); }
   .button-group.round > *:first-child button, .button-group.round > *:first-child .button {
     border-left: 0; }
@@ -1401,7 +1401,7 @@ button, .button {
   .button-group.even-2 li {
     width: 50%; }
     .button-group.even-2 li > button, .button-group.even-2 li .button {
-      border-left: 1px solid;
+      border-left: 0 solid;
       border-color: rgba(255, 255, 255, 0.5); }
     .button-group.even-2 li:first-child button, .button-group.even-2 li:first-child .button {
       border-left: 0; }
@@ -1410,7 +1410,7 @@ button, .button {
   .button-group.even-3 li {
     width: 33.3333333333%; }
     .button-group.even-3 li > button, .button-group.even-3 li .button {
-      border-left: 1px solid;
+      border-left: 0 solid;
       border-color: rgba(255, 255, 255, 0.5); }
     .button-group.even-3 li:first-child button, .button-group.even-3 li:first-child .button {
       border-left: 0; }
@@ -1419,7 +1419,7 @@ button, .button {
   .button-group.even-4 li {
     width: 25%; }
     .button-group.even-4 li > button, .button-group.even-4 li .button {
-      border-left: 1px solid;
+      border-left: 0 solid;
       border-color: rgba(255, 255, 255, 0.5); }
     .button-group.even-4 li:first-child button, .button-group.even-4 li:first-child .button {
       border-left: 0; }
@@ -1428,7 +1428,7 @@ button, .button {
   .button-group.even-5 li {
     width: 20%; }
     .button-group.even-5 li > button, .button-group.even-5 li .button {
-      border-left: 1px solid;
+      border-left: 0 solid;
       border-color: rgba(255, 255, 255, 0.5); }
     .button-group.even-5 li:first-child button, .button-group.even-5 li:first-child .button {
       border-left: 0; }
@@ -1437,7 +1437,7 @@ button, .button {
   .button-group.even-6 li {
     width: 16.6666666667%; }
     .button-group.even-6 li > button, .button-group.even-6 li .button {
-      border-left: 1px solid;
+      border-left: 0 solid;
       border-color: rgba(255, 255, 255, 0.5); }
     .button-group.even-6 li:first-child button, .button-group.even-6 li:first-child .button {
       border-left: 0; }
@@ -1446,7 +1446,7 @@ button, .button {
   .button-group.even-7 li {
     width: 14.2857142857%; }
     .button-group.even-7 li > button, .button-group.even-7 li .button {
-      border-left: 1px solid;
+      border-left: 0 solid;
       border-color: rgba(255, 255, 255, 0.5); }
     .button-group.even-7 li:first-child button, .button-group.even-7 li:first-child .button {
       border-left: 0; }
@@ -1455,7 +1455,7 @@ button, .button {
   .button-group.even-8 li {
     width: 12.5%; }
     .button-group.even-8 li > button, .button-group.even-8 li .button {
-      border-left: 1px solid;
+      border-left: 0 solid;
       border-color: rgba(255, 255, 255, 0.5); }
     .button-group.even-8 li:first-child button, .button-group.even-8 li:first-child .button {
       border-left: 0; }
@@ -3058,7 +3058,7 @@ dialog[open] {
       display: block;
       color: #535E6D;
       margin: 0;
-      padding: 0.4375rem 0.875rem; }
+      padding: 0 0.625rem; }
       .side-nav li a:not(.button):hover, .side-nav li a:not(.button):focus {
         background: rgba(0, 0, 0, 0.025);
         color: #535E6D; }
@@ -5028,6 +5028,11 @@ select {
   80% {
     background: #e8e8e8; } }
 
+.button-group {
+  left: auto; }
+  .button-group > li > button.white, .button-group > li .button.white {
+    border-color: transparent; }
+
 .f-dropdown {
   top: auto;
   visibility: hidden;
@@ -5892,7 +5897,7 @@ select {
     background-position: -640px 0; }
   .icon.icon-backupList {
     background-position: -680px 0; }
-  .icon.icon-renew, .icon.icon-untrash {
+  .icon.icon-renew {
     background-position: -700px 0; }
   .icon.icon-calendar {
     background-position: -720px 0; }
@@ -5998,7 +6003,7 @@ select {
     background-position: -640px -20px; }
   .icon.white.icon-backupList {
     background-position: -680px -20px; }
-  .icon.white.icon-renew, .icon.white.icon-untrash {
+  .icon.white.icon-renew {
     background-position: -700px -20px; }
   .icon.white.icon-calendar {
     background-position: -720px -20px; }
@@ -6104,7 +6109,7 @@ select {
     background-position: -640px -40px; }
   .icon.black.icon-backupList {
     background-position: -680px -40px; }
-  .icon.black.icon-renew, .icon.black.icon-untrash {
+  .icon.black.icon-renew {
     background-position: -700px -40px; }
   .icon.black.icon-calendar {
     background-position: -720px -40px; }
@@ -6373,7 +6378,6 @@ select {
   .side-nav li {
     height: 33px;
     line-height: 34px;
-    padding: 0 0.625rem;
     margin: 0;
     background: linear-gradient(to bottom, #EEEEEE 0%, #E0E4E7 100%);
     background: linear-gradient(top, #EEEEEE 0%, #E0E4E7 100%);

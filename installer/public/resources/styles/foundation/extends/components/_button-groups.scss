@@ -1,0 +1,9 @@
+.button-group {
+    left: auto;
+    > li{
+        > button.white,
+        .button.white{
+            border-color: transparent;
+        }
+    }
+}
