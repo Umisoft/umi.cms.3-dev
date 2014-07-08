@@ -23,28 +23,25 @@
     </xsl:template>
 
     <xsl:template match="locale">
-        <li><a href="{@url}">
-            <xsl:value-of select="document(concat('translate://project.site/', @id))/result"/>
-        </a>/</li>
+        <li>
+            <a>
+                <xsl:apply-templates select="." mode="locale.active" />
+                <xsl:value-of select="document(concat('translate://project.site/', @id))/result"/>
+            </a>
+            <xsl:apply-templates select="." mode="locale.separator" />
+        </li>
     </xsl:template>
 
-    <xsl:template match="locale[@current = '1']">
-        <li><a href="{@url}" class="active">
-            <xsl:value-of select="document(concat('translate://project.site/', @id))/result"/>
-        </a>/</li>
+    <xsl:template match="locale" mode="locale.active">
+        <xsl:attribute name="href"><xsl:value-of select="@url" /></xsl:attribute>
     </xsl:template>
-
-    <xsl:template match="locale[position() = last()]">
-        <li><a href="{@url}">
-            <xsl:value-of select="document(concat('translate://project.site/', @id))/result"/>
-        </a></li>
+    <xsl:template match="locale[@current = '1']" mode="locale.active">
+        <xsl:attribute name="class">active</xsl:attribute>
     </xsl:template>
-
-    <xsl:template match="locale[@current = '1' and position() = last()]">
-        <li><a href="{@url}" class="active">
-            <xsl:value-of select="document(concat('translate://project.site/', @id))/result"/>
-        </a></li>
+    <xsl:template match="locale"  mode="locale.separator" >
+        <xsl:text>/</xsl:text>
     </xsl:template>
+    <xsl:template match="locale[position() = last()]"  mode="locale.separator" />
     <!-- Языки в хедере <Конец> -->
 
     <!-- Значки социальных сетей <Начало> -->

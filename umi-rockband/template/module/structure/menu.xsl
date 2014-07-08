@@ -17,6 +17,9 @@
 
     <!-- Меню в хедере <Начало> -->
     <xsl:template match="result[@widget = 'structure.menu.auto']" mode="headerMenu">
+        <textarea>
+            <xsl:copy-of select="." />
+        </textarea>
         <ul class="menu">
             <xsl:apply-templates select="menu/item" mode="headerMenu"/>
             <li class="search">

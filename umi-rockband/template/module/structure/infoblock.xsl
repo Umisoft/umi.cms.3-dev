@@ -17,6 +17,9 @@
 
     <!-- Телефон в хедере <Начало> -->
     <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="phone">
+        <textarea>
+            <xsl:copy-of select="infoBlock/property[@name = 'phone']" />
+        </textarea>
         <span class="phone">
             <xsl:value-of select="infoBlock/property[@name = 'phoneNumber']/value" disable-output-escaping="yes"/>
         </span>
@@ -25,6 +28,9 @@
 
     <!-- Копирайт в футере <Начало> -->
     <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="copyright">
+        <textarea>
+            <xsl:copy-of select="infoBlock/property[@name = 'copyright']" />
+        </textarea>
         <!--<xsl:value-of select="infoBlock/property[@name = 'copyright']/value" disable-output-escaping="yes"/>-->
         UMI.CMS 2014 Все права защищены
     </xsl:template>
@@ -32,15 +38,18 @@
 
     <!-- Шаблон для логотипа <Начало> -->
     <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="logo">
+        <textarea>
+            <xsl:copy-of select="infoBlock/property[@name = 'logo']" />
+        </textarea>
         <xsl:value-of select="infoBlock/property[@name = 'logo']/value" disable-output-escaping="yes"/>
     </xsl:template>
     <!-- Шаблон для логотипа <Конец> -->
 
     <xsl:template match="result[@widget = 'structure.infoblock.view']" mode="footer">
-        <xsl:value-of select="infoBlock/property[@name='share']/value" disable-output-escaping="yes"/>
-        <xsl:value-of select="infoBlock/property[@name='copyright']/value" disable-output-escaping="yes"/>
-        <xsl:value-of select="infoBlock/property[@name='address']/value" disable-output-escaping="yes"/>
-        <xsl:value-of select="infoBlock/property[@name='phoneNumber']/value" disable-output-escaping="yes"/>
+        2<xsl:value-of select="infoBlock/property[@name='share']/value" disable-output-escaping="yes"/>1
+       2 <xsl:value-of select="infoBlock/property[@name='copyright']/value" disable-output-escaping="yes"/>1
+       2 <xsl:value-of select="infoBlock/property[@name='address']/value" disable-output-escaping="yes"/>1
+       2 <xsl:value-of select="infoBlock/property[@name='phoneNumber']/value" disable-output-escaping="yes"/>1
     </xsl:template>
 
 

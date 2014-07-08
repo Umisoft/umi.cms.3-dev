@@ -25,9 +25,9 @@
                 <h4><a href="{@url}" class="title">
                     <xsl:value-of select="property[@name='metaTitle' or @name='title']/value"/>
                 </a></h4>
-                <p class="desc">
+                <div class="desc">
                     <xsl:value-of select="property[@name='announcement']/value" disable-output-escaping="yes"/>
-                </p>
+                </div>
                 <ul class="info">
                     <li class="date">
                         <!-- DateTime format: May 6, 2014 at 7:53am -->
