@@ -2428,6 +2428,13 @@ elFinder.prototype = {
 				}
 				
 				xhr.open('POST', self.uploadURL, true);
+                //TODO: add headers params for xhr upload
+                try{
+                    var csrfToken = $.ajaxSettings.headers['X-Csrf-Token'];
+                    xhr.setRequestHeader("X-Csrf-Token", csrfToken);
+                } catch(error){
+                    console.log('csrfToken for FileManager not available.');
+                };
 				formData.append('cmd', 'upload');
 				formData.append(self.newAPI ? 'target' : 'current', self.cwd().hash);
 				$.each(self.options.customData, function(key, val) {
@@ -10971,6 +10978,7 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'errExtractExec'       : 'Ошибка при выполнении распаковки: "$1"',
 
 			'errUploadFile'        : 'Невозможно загрузить файл "$1"',
+            'errUploadFileSize'    : 'Превышен допустимый размер загружаемого файла.',
 
 
 			/******************************* commands names ********************************/

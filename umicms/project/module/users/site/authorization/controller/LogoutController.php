@@ -11,7 +11,7 @@
 namespace umicms\project\module\users\site\authorization\controller;
 
 use umicms\hmvc\component\BaseCmsController;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 
 /**
@@ -39,7 +39,7 @@ class LogoutController extends BaseCmsController
     public function __invoke()
     {
 
-        $form = $this->module->user()->getForm(AuthorizedUser::FORM_LOGOUT_SITE, AuthorizedUser::TYPE_NAME);
+        $form = $this->module->user()->getForm(RegisteredUser::FORM_LOGOUT_SITE, RegisteredUser::TYPE_NAME);
 
         if ($this->isRequestMethodPost()) {
             $form->setData($this->getAllPostVars());

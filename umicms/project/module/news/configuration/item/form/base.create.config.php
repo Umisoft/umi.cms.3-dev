@@ -21,7 +21,7 @@ return [
 
     'options' => [
         'dictionaries' => [
-            'collection.newsItem', 'collection'
+            'collection.newsItem', 'collection', 'form'
         ]
     ],
 
@@ -60,6 +60,7 @@ return [
                     'type' => Checkbox::TYPE_NAME,
                     'label' => NewsItem::FIELD_ACTIVE,
                     'options' => [
+                        'lazy' => true,
                         'dataSource' => NewsItem::FIELD_ACTIVE
                     ],
                 ]

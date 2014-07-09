@@ -13,6 +13,7 @@ namespace umicms\slugify\transliteration;
 use umi\i18n\ILocalizable;
 use umi\i18n\TLocalizable;
 use umi\spl\config\TConfigSupport;
+use umicms\exception\RuntimeException;
 use umicms\slugify\ISlugGenerator;
 use URLify;
 
@@ -47,7 +48,16 @@ class TransliterationGenerator implements ISlugGenerator, ILocalizable
 
         $slugLength = 60;
         if (isset($options['slugLength'])) {
-            $slugLength = $options['slugLength'];
+            $slugLength = (int) $options['slugLength'];
+
+            if ($slugLength < 0) {
+                throw new RuntimeException($this->translate(
+                    'Options "{option}" should by more than 0',
+                    [
+                        'option' => 'slugLength'
+                    ]
+                ));
+            }
         }
 
         return URLify::filter($text, $slugLength);

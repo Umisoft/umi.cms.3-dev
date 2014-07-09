@@ -38,6 +38,6 @@ class ObjectSerializer extends BaseSerializer
             $variables = get_object_vars($object);
         }
 
-        $this->delegate($variables);
+        $this->delegate($variables, $options);
     }
 }

@@ -1,7 +1,9 @@
+<?=$this->widget('search.form')?>
+
 <?= $this->render('partial/authorization.phtml') ?>
 
 <div class="sidebar-module sidebar-module-inset">
-    <h4><?= $this->translate('RSS feed') ?></h4>
+    <h4><?= $this->translate('RSSFeed') ?></h4>
 
     <p><?= $this->translate('Blogs') ?>: <?= $this->widget('blog.post.rssLink', ['template' => 'rssLink']) ?></p>
 </div>
@@ -36,7 +38,7 @@
                 ) ?></li>
             <li><?= $this->translate('Rejected posts') ?>: <?= $this->widget(
                     'blog.reject.view.link',
-                    ['template' => 'listLink']
+                    ['template' => 'link']
                 ) ?></li>
         </ol>
     </div>

@@ -1,14 +1,14 @@
-define(['App', 'text!./checkboxGroupElement.hbs', 'text!./checkboxGroupCollectionElement.hbs'], function(UMI, checkboxGroupElement, checkboxGroupCollectionElement){
+define(['App'], function(UMI){
     "use strict";
 
     return function(){
         UMI.CheckboxGroupElementView = Ember.View.extend({
-            template: Ember.Handlebars.compile(checkboxGroupElement),
+            templateName: 'partials/checkboxGroup',
             classNames: ['umi-element-checkbox-group']
         });
 
         UMI.CheckboxGroupCollectionElementView = Ember.View.extend({
-            template: Ember.Handlebars.compile(checkboxGroupCollectionElement),
+            templateName: 'partials/checkboxGroup/collectionElement',
             classNames: ['umi-element-checkbox-group'],
 
             addObserverProperty: function(){

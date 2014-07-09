@@ -89,21 +89,11 @@ return [
             'type' => FieldSet::TYPE_NAME,
             'label' => 'contents',
             'elements' => [
-
                 NewsRubric::FIELD_PAGE_CONTENTS => [
                     'type' => Wysiwyg::TYPE_NAME,
                     'label' => NewsRubric::FIELD_PAGE_CONTENTS,
                     'options' => [
                         'dataSource' => NewsRubric::FIELD_PAGE_CONTENTS
-                    ]
-                ],
-
-                NewsRubric::FIELD_NEWS => [
-                    'type' => MultiSelect::TYPE_NAME,
-                    'label' => NewsRubric::FIELD_NEWS,
-                    'options' => [
-                        'dataSource' => NewsRubric::FIELD_NEWS,
-                        'lazy' => true
                     ]
                 ]
             ]

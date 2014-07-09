@@ -1,5 +1,5 @@
-define(['App', 'text!./splitButton.hbs'],
-    function(UMI, splitButtonTemplate){
+define(['App'],
+    function(UMI){
         "use strict";
 
         return function(){
@@ -63,15 +63,14 @@ define(['App', 'text!./splitButton.hbs'],
             });
 
             UMI.SplitButtonView = Ember.View.extend(UMI.SplitButtonDefaultBehaviour, {
-                template: Ember.Handlebars.compile(splitButtonTemplate),
+                templateName: 'partials/splitButton',
                 tagName: 'span',
                 isOpen: false,
-                classNames: ['s-margin-clear', 'dropdown'],//TODO: избавиться от классов после возвращения Foundation
                 classNameBindings: ['meta.attributes.class', 'isOpen:open'],
                 attributeBindings: ['title'],
                 label: function(){
-                    return this.get('meta.attributes.label');
-                }.property('meta.attributes.label'),
+                    return this.get('defaultBehaviour.attributes.label');
+                }.property('defaultBehaviour.attributes.label'),
                 title: Ember.computed.alias('meta.attributes.title'),
                 click: function(event){
                     var el = this.$();
@@ -125,7 +124,7 @@ define(['App', 'text!./splitButton.hbs'],
 
             UMI.splitButtonBehaviour = UMI.GlobalBehaviour.extend({
                 dropUp: {
-                    classNames: ['dropup']
+                    classNames: ['split-dropup']
                 },
 
                 contextMenu: {

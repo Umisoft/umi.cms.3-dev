@@ -1,0 +1,45 @@
+.split.button{
+    span {
+        border-#{$default-float}-color: darken($primary-color, 10%);
+    }
+    &.secondary{
+        span{
+            border-#{$default-float}-color: darken($secondary-color, 16%);
+        }
+    }
+    &.white{
+        @include split-button(false, $split-button-pip-color-alt, false, false);
+        span{
+            border-left-color: transparent;
+        }
+    }
+    &.square{
+        padding-right: $split-button-padding-med - rem-calc(14);
+        &.small{
+            padding-right: $split-button-padding-med - rem-calc(18);
+        }
+        &.tiny{
+            padding-right: $split-button-padding-med - rem-calc(22);
+        }
+    }
+    &.split-dropup{
+        span:before{
+            border-top-color: transparent;
+            border-bottom-color: #fff;
+            top: rem-calc(9);
+        }
+        .f-dropdown{
+            bottom: 100%;
+        }
+    }
+    &.open{
+        &.white{
+            background: #fff;
+        }
+        .f-dropdown{
+            display: block;
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}

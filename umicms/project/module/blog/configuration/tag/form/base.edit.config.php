@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use umi\form\element\Select;
 use umi\form\element\Text;
 use umi\form\fieldset\FieldSet;
 use umicms\form\element\Wysiwyg;
@@ -32,6 +33,14 @@ return [
                     'label' => BlogTag::FIELD_DISPLAY_NAME,
                     'options' => [
                         'dataSource' => BlogTag::FIELD_DISPLAY_NAME
+                    ],
+                ],
+                BlogTag::FIELD_PAGE_LAYOUT => [
+                    'type' => Select::TYPE_NAME,
+                    'label' => BlogTag::FIELD_PAGE_LAYOUT,
+                    'options' => [
+                        'lazy' => true,
+                        'dataSource' => BlogTag::FIELD_PAGE_LAYOUT
                     ],
                 ]
             ]

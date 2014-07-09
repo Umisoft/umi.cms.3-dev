@@ -11,7 +11,7 @@
 namespace umicms\project\module\users\site\profile\controller;
 
 use umi\form\IForm;
-use umicms\project\module\users\model\object\AuthorizedUser;
+use umicms\project\module\users\model\object\RegisteredUser;
 use umicms\project\module\users\model\UsersModule;
 use umicms\hmvc\component\site\BaseSitePageController;
 use umicms\hmvc\component\site\TFormController;
@@ -51,8 +51,8 @@ class IndexController extends BaseSitePageController
     protected function buildForm()
     {
         return $this->module->user()->getForm(
-            AuthorizedUser::FORM_EDIT_PROFILE,
-            AuthorizedUser::TYPE_NAME,
+            RegisteredUser::FORM_EDIT_PROFILE,
+            RegisteredUser::TYPE_NAME,
             $this->module->getCurrentUser()
         );
     }

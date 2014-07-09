@@ -62,7 +62,7 @@ define(['App'], function(UMI){
             /**
              * @property layoutName
              */
-            layoutName: 'toolbar',
+            layoutName: 'partials/toolbar',
             /**
              * @property classNames
              */

@@ -19,7 +19,8 @@ return [
     SiteGroupComponent::OPTION_CLASS => 'umicms\hmvc\component\site\SiteGroupComponent',
     SiteGroupComponent::OPTION_CONTROLLERS => [
         'publish' => __NAMESPACE__ . '\controller\PublishController',
-        'reject' => __NAMESPACE__ . '\controller\RejectController'
+        'reject' => __NAMESPACE__ . '\controller\RejectController',
+        'unpublish' => __NAMESPACE__ . '\controller\UnpublishController'
     ],
     SiteGroupComponent::OPTION_COMPONENTS => [
         'add' => '{#lazy:~/project/module/blog/site/comment/add/component.config.php}'
@@ -28,7 +29,8 @@ return [
         'view' => __NAMESPACE__ . '\widget\CommentWidget',
         'list' => __NAMESPACE__ . '\widget\ListWidget',
         'publishForm' => __NAMESPACE__ . '\widget\PublishFormWidget',
-        'rejectForm' => __NAMESPACE__ . '\widget\RejectFormWidget'
+        'rejectForm' => __NAMESPACE__ . '\widget\RejectFormWidget',
+        'unpublishForm' => __NAMESPACE__ . '\widget\UnpublishFormWidget'
     ],
     SiteGroupComponent::OPTION_VIEW => [
         'directories' => ['module/blog/comment']
@@ -49,8 +51,10 @@ return [
             'moderator' => [
                 'widget:rejectForm' => [],
                 'widget:publishForm' => [],
+                'widget:unpublishForm' => [],
                 'controller:reject' => [],
                 'controller:publish' => [],
+                'controller:unpublish' => [],
                 'collection:blogComment' => [
                     'getCommentsWithNeedModeration' => []
                 ],
@@ -64,6 +68,13 @@ return [
             'route' => '/publish/{id:integer}',
             'defaults' => [
                 'controller' => 'publish'
+            ]
+        ],
+        'unpublish' => [
+            'type' => IRouteFactory::ROUTE_SIMPLE,
+            'route' => '/unpublish/{id:integer}',
+            'defaults' => [
+                'controller' => 'unpublish'
             ]
         ],
         'reject' => [

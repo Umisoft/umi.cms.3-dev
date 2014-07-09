@@ -16,6 +16,8 @@ use umi\http\Response;
 use umicms\exception\InvalidObjectsException;
 use umicms\exception\NonexistentEntityException;
 use umicms\hmvc\component\BaseCmsController;
+use umicms\project\Environment;
+use umicms\serialization\ISerializer;
 
 /**
  * Контроллер ошибок для сайта.
@@ -45,10 +47,11 @@ class ErrorController extends BaseCmsController
         $e = $this->exception;
         $stack = [];
 
-        while ($e = $e->getPrevious()) {
-            $stack[] = $e;
+        if (Environment::$showExceptionStack) {
+            while ($e = $e->getPrevious()) {
+                $stack[] = $e;
+            }
         }
-
         $code = $this->getHttpStatusCode();
 
         $templateName = ($this->exception instanceof InvalidObjectsException) ? 'error/validation' : 'error/controller';
@@ -61,6 +64,32 @@ class ErrorController extends BaseCmsController
                 'stack' => $stack
             ]
         )->setStatusCode($code);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createView($templateName, array $variables = []) {
+        $variables['showStack'] = Environment::$showExceptionStack;
+        $variables['showTrace'] = Environment::$showExceptionTrace;
+
+        $view = parent::createView($templateName, $variables);
+
+        $view->addSerializerConfigurator(
+            function(ISerializer $serializer)
+            {
+                $excludes = [
+                    'showStack',
+                    'showTrace'
+                ];
+                if (!Environment::$showExceptionStack) {
+                    $excludes[] = 'stack';
+                }
+                $serializer->setExcludes($excludes);
+            }
+        );
+
+        return $view;
     }
 
     /**

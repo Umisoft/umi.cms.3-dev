@@ -1,11 +1,11 @@
-define(['App', 'text!./timeElement.hbs'], function(UMI, timeElement){
+define(['App'], function(UMI){
     'use strict';
 
-    Ember.TEMPLATES['UMI/components/time-element'] = Ember.Handlebars.compile(timeElement);
 
     return function(){
         UMI.TimeElementComponent = Ember.Component.extend(UMI.InputValidate, {
-            classNames: ['umi-element', 'umi-element-time'],
+            templateName: 'partials/timeElement',
+            classNames: ['row', 'collapse'],
 
             didInsertElement: function(){
                 var el = this.$();

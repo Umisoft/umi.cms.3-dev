@@ -12,6 +12,8 @@ return [
         UserCollection::SETTING_REGISTERED_USERS_DEFAULT_GROUP_GUIDS => 'Registered users default groups',
         UsersModule::SETTING_MAIL_SENDER => 'Sender e-mail',
         UsersModule::SETTING_MAIL_NOTIFICATION_RECIPIENTS => 'Registration information recipient e-mail',
+        'role:notificationsExecutor:displayName' => 'Notifications',
+        'role:registrationExecutor:displayName' => 'Registration'
     ],
 
     'ru-RU' => [
@@ -23,6 +25,8 @@ return [
         UsersModule::SETTING_MAIL_SENDER => 'E-mail отправителя',
         UsersModule::SETTING_MAIL_NOTIFICATION_RECIPIENTS => 'E-mail получателя информации о регистрациях',
 
+        'role:notificationsExecutor:displayName' => 'Уведомления',
+        'role:registrationExecutor:displayName' => 'Регистрация'
+
     ]
 ];
- 

@@ -7,7 +7,7 @@
 <?=$this->render('breadcrumbs.phtml', $scope) ?>
 
 <div class="blog-post">
-    <h1><?=$page->displayName?></h1>
+    <h1><?=$page->getHeader()?></h1>
     <p class="blog-post-meta">
         <?php if ($page->publishTime) : ?>
         <time datetime="<?= $page->publishTime->format('c')?>">
@@ -21,7 +21,7 @@
 
 </div>
 
-<h1><?=$this->translate('Comments')?>:</h1>
+<h1><?=$this->translate('Comments')?> (<?= $page->commentsCount?>):</h1>
 
 <?= $this->widget('blog.comment.list', ['blogPost' => $page, 'template' => 'list']); ?>
 

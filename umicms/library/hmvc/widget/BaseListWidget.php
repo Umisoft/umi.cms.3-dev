@@ -11,12 +11,14 @@
 namespace umicms\hmvc\widget;
 
 use umi\hmvc\exception\http\HttpNotFound;
+use umi\orm\selector\ISelector;
 use umi\pagination\IPaginationAware;
 use umi\pagination\IPaginator;
 use umi\pagination\TPaginationAware;
 use umicms\exception\InvalidArgumentException;
 use umicms\exception\OutOfBoundsException;
-use umicms\orm\selector\CmsSelector;
+use umicms\orm\object\ICmsObject;
+use umicms\orm\selector\TSelectorConfigurator;
 use umicms\templating\helper\PaginationHelper;
 
 /**
@@ -26,6 +28,7 @@ use umicms\templating\helper\PaginationHelper;
 abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
 {
     use TPaginationAware;
+    use TSelectorConfigurator;
 
     /**
      * @var string $template имя шаблона, по которому выводится виджет
@@ -36,6 +39,15 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
      * Если не указано, выводятся все элементы.
      */
     public $limit;
+    /**
+     * @var int $offset сдвиг.
+     * Игнорируется при заданных настройках вывода постраничной навигации
+     */
+    public $offset;
+    /**
+     * @var array $options настройки селектора
+     */
+    public $options = [];
     /**
      * @var array $pagination настройки вывода постраничной навигации в формате
      * [
@@ -50,10 +62,15 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
      *
      */
     public $pagination = [];
+    /**
+     * @var bool $fullyLoad признак необходимости загружать все свойства объектов списка.
+     * Список полей для загрузки, занный опциями, при значении true игнорируется.
+     */
+    public $fullyLoad;
 
     /**
      * Возвращает выборку для постраничной навигации.
-     * @return CmsSelector
+     * @return ISelector
      */
     abstract protected function getSelector();
 
@@ -75,33 +92,51 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
             ];
         } else {
             if ($this->limit) {
-                $selector->limit($this->limit);
+                $selector->limit($this->limit, $this->offset);
             }
             $result = ['list' => $selector];
         }
-
         return $this->createResult($this->template, $result);
     }
 
     /**
      * Пременяет условия выборки.
-     * @param CmsSelector $selector
-     * @return CmsSelector
+     * @param ISelector $selector
+     * @return ISelector
      */
-    protected function applySelectorConditions(CmsSelector $selector)
+    protected function applySelectorConditions(ISelector $selector)
     {
-        //TODO применение фильтров
+        if (!$this->fullyLoad) {
+            $fields = ICmsObject::FIELD_DISPLAY_NAME;
+            if (isset($this->options['fields'])) {
+                $fields = $fields . ',' . $this->options['fields'];
+            }
+            $this->applySelectorSelectedFields($selector, $fields);
+        }
+
+        if (isset($this->options['with']) && is_array($this->options['with'])) {
+            $this->applySelectorWith($selector, $this->options['with']);
+        }
+
+        if (isset($this->options['orderBy']) && is_array($this->options['orderBy'])) {
+            $this->applySelectorOrderBy($selector, $this->options['orderBy']);
+        }
+
+        if (isset($this->options['filters']) && is_array($this->options['filters'])) {
+            $this->applySelectorConditionFilters($selector, $this->options['filters']);
+        }
+
         return $selector;
     }
 
     /**
      * Возвращает контекст постраничной навигации.
-     * @param CmsSelector $selector выборка объектов
+     * @param ISelector $selector выборка объектов
      * @throws InvalidArgumentException если заданы не все настройки
      * @throws OutOfBoundsException если задан неверный тип
      * @return array
      */
-    protected function getPagination(CmsSelector $selector)
+    protected function getPagination(ISelector $selector)
     {
         static $helper;
 
@@ -176,11 +211,11 @@ abstract class BaseListWidget extends BaseCmsWidget implements IPaginationAware
 
     /**
      * Возвращает постраничную навигацию.
-     * @param CmsSelector $selector выборка объектов
+     * @param ISelector $selector выборка объектов
      * @throws HttpNotFound если текущая страница не существует
      * @return IPaginator
      */
-    private function getPaginator(CmsSelector $selector)
+    protected function getPaginator(ISelector $selector)
     {
         $paginator = $this->createObjectPaginator($selector, (int) $this->limit);
 
