@@ -11,6 +11,11 @@
 namespace project\docs\controller;
 
 use project\docs\module\structure\model\object\WidgetPage;
+use Sami\Project;
+use Sami\Reflection\ClassReflection;
+use Sami\Reflection\PropertyReflection;
+use Sami\Sami;
+use Symfony\Component\Finder\Finder;
 use umi\dbal\cluster\IDbCluster;
 use umi\dbal\driver\IDialect;
 use umi\hmvc\controller\BaseController;
@@ -21,12 +26,14 @@ use umi\orm\persister\TObjectPersisterAware;
 use umicms\exception\InvalidObjectsException;
 use umicms\exception\RuntimeException;
 use umicms\hmvc\component\site\SiteComponent;
+use umicms\hmvc\widget\BaseCmsWidget;
 use umicms\module\IModuleAware;
 use umicms\module\TModuleAware;
 use umicms\orm\dump\ICmsObjectDumpAware;
 use umicms\orm\dump\TCmsObjectDumpAware;
 use umicms\orm\object\ICmsObject;
 use umicms\orm\object\ICmsPage;
+use umicms\project\Environment;
 use umicms\project\module\search\model\SearchModule;
 use umicms\project\module\structure\model\collection\LayoutCollection;
 use umicms\project\module\structure\model\collection\StructureElementCollection;
@@ -55,6 +62,10 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
      * @var IDbCluster $dbCluster
      */
     protected $dbCluster;
+    /**
+     * @var Project $samiProject
+     */
+    protected $samiProject;
 
     public function __construct(IDbCluster $dbCluster)
     {
@@ -136,7 +147,6 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
             ->setValue('displayName', 'Структура')
             ->setValue('active', true);
 
-
         $structurePage->getProperty('locked')->setValue(true);
         $structurePage->getProperty('componentName')->setValue('structure');
         $structurePage->getProperty('componentPath')->setValue('structure');
@@ -150,12 +160,16 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $menuPage->getProperty('componentPath')->setValue('structure.menu');
 
         /**
-         * @var StaticPage $about
+         * @var StaticPage $main
          */
-        $about = $structureCollection->add('main', 'static')
-            ->setValue('displayName', 'Документация')
-            ->setValue('active', true);
-        $about->setGUID('d534fd83-0f12-4a0d-9853-583b9181a948');
+        $main = $structureCollection->add('main', 'static')
+            ->setValue('displayName', 'Главная')
+            ->setValue('active', true)
+            ->setValue('inMenu', true);
+        $main->setGUID('d534fd83-0f12-4a0d-9853-583b9181a948');
+
+        $main->getProperty('componentName')->setValue('structure');
+        $main->getProperty('componentPath')->setValue('structure');
 
     }
 
@@ -231,6 +245,15 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
 
     protected function buildWidgetsStructure()
     {
+        $iterator = Finder::create()
+            ->files()
+            ->name('/(.)*Widget\.php$/')
+            ->in($dir = Environment::$directoryCms);
+
+        $sami = new Sami($iterator);
+        $this->samiProject = $sami['project'];
+        $this->samiProject->parse();
+
         /**
          * @var SiteApplication $siteApplication
          */
@@ -251,10 +274,14 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         $structureCollection = $this->getCollectionManager()->getCollection('structure');
         $page = $structureCollection->add($component->getName(), StaticPage::TYPE, $parentPage);
 
+        $name = substr($component->getPath(), strlen('project.site') + 1);
         $page->setValue('inMenu', true)
-            ->setValue('displayName', $component->getPath())
-            ->setValue('submenuState', StructureElement::SUBMENU_CURRENT_SHOWN)
+            ->setValue('displayName', $name)
+            ->setValue('submenuState', StructureElement::SUBMENU_ALWAYS_SHOWN)
             ->setValue('active', true);
+
+        $page->getProperty('componentName')->setValue('structure');
+        $page->getProperty('componentPath')->setValue('structure');
 
         foreach ($component->getChildComponentNames() as $childComponentName) {
             /**
@@ -265,12 +292,114 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
         }
 
         foreach ($component->getWidgetNames() as $widgetName) {
-            $widget = $component->getWidget($widgetName);
-
-            $widgetPage = $structureCollection->add($widget->getName(), WidgetPage::TYPE, $page)
-                ->setValue('displayName', $component->getPath() . '.' . $widget->getName())
-                ->setValue('active', true);
+            $this->buildWidgetPage($component->getWidget($widgetName),$component, $page);
         }
+
+    }
+
+    protected function buildWidgetPage(BaseCmsWidget $widget, SiteComponent $component, StaticPage $parentPage)
+    {
+        /**
+         * @var StructureElementCollection $structureCollection
+         */
+        $structureCollection = $this->getCollectionManager()->getCollection('structure');
+
+        /**
+         * @var WidgetPage $widgetPage
+         */
+        $widgetPage = $structureCollection->add($widget->getName(), WidgetPage::TYPE, $parentPage)
+            ->setValue('inMenu', true)
+            ->setValue('active', true);
+
+        $widgetPage->getProperty('componentName')->setValue('structure');
+        $widgetPage->getProperty('componentPath')->setValue('structure');
+
+        $widgetPage->displayName = substr($component->getPath(), strlen('project.site') + 1) . '.' . $widget->getName();
+        $widgetPage->active = true;
+
+        $className = get_class($widget);
+        $class = $this->samiProject->getClass($className);
+
+        $description = '';
+        if ($shortDescription = $class->getShortDesc()) {
+            $description .= '<p>' . $shortDescription . '</p>';
+        }
+        if ($longDescription = $class->getLongDesc()) {
+            $description .= '<p>' . $longDescription . '</p>';
+        }
+
+        $widgetPage->description = $description;
+
+        $parameters = '';
+
+        /**
+         * @var PropertyReflection $property
+         */
+        foreach ($class->getProperties(true) as $property) {
+
+            $name = $property->getName();
+
+            $hintDesc = $property->getHintDesc();
+            $type = $property->getHintAsString();
+
+            $current = $class;
+            if (is_null($hintDesc)) {
+                /**
+                 * @var ClassReflection $parent
+                 */
+                while ($parent = $current->getParent()) {
+                    $parentProperties = $parent->getProperties();
+                    if (isset($parentProperties[$name])) {
+                        $parentProperty = $parentProperties[$name];
+                        if (!is_null($parentProperty->getHintDesc())) {
+                            $hintDesc = $parentProperty->getHintDesc();
+                            $type = $parentProperty->getHintAsString();
+                            break;
+                        }
+                    }
+                    $current = $parent;
+                }
+            }
+
+            $hintDesc = substr($hintDesc, strlen($name) + 1);
+
+
+            $default = '';
+            if (is_array($property->getDefault())) {
+                $default = $widget->{$name};
+                if (is_array($default)) {
+                    $default = print_r($default, true);
+                }
+            }
+
+            $parameters .= '<tr>
+          <td>' . $name . '</td>
+          <td>' . $type . '</td>
+          <td>' . $default . '</td>
+          <td>' . $hintDesc . '</td>
+        </tr>';
+
+        }
+
+        if ($parameters) {
+            $parameters =
+            '<table class="table">
+      <thead>
+        <tr>
+          <th>Параметр</th>
+          <th>Тип</th>
+          <th>Значение</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody>'
+            . $parameters .
+      '</tbody>
+    </table>';
+
+        }
+
+        $widgetPage->parameters = $parameters;
 
     }
 
