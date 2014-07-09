@@ -43,6 +43,12 @@ class ActionController extends BaseActionController
                 $license = $this->activateLicense($licenseKey, $domain);
                 $config->set('domainKey', $license['domain-keycode']);
                 $config->set('licenseType', $license['codename']);
+
+                if (strstr($license['codename'], base64_decode('dHJpYWw='))) {
+                    $deactivation = new \DateTime();
+                    $deactivation->add(new \DateInterval('P30D'));
+                    $config->set('deactivation', base64_encode($deactivation->getTimestamp()));
+                }
             }
         }
 

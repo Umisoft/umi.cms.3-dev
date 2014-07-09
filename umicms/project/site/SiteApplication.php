@@ -409,13 +409,19 @@ class SiteApplication extends SiteComponent
                 'Do not set the default domain.'
             ));
         }
-
+        if (strstr($licenseType, base64_decode('dHJpYWw='))) {
+            $deactivation = $this->getSiteSettings()->get('deactivation');
+            if (empty($deactivation) || base64_decode($deactivation) < time()) {
+                throw new InvalidLicenseException($this->translate(
+                    'License has expired.'
+                ));
+            }
+        }
         if (!$this->checkDomainKey()) {
             throw new InvalidLicenseException($this->translate(
                 'Invalid domain key.'
             ));
         }
-
     }
 
     /**

@@ -7,6 +7,7 @@
 		'defaultTemplateExtension' => 'phtml',
 		'licenseKey' => '',
 		'defaultDomain' => 'umicms3',
-		'domainKey' => '12C20EC181F-F528764D624-BDA642C3BA5',
-		'licenseType' => 'lite3',
+		'domainKey' => '6A0DCDB807A-F528764D624-09852738FE4',
+		'licenseType' => 'lite3trial',
+		'deactivation' => 'MTQwNzQ4NjkyMA==',
 	);
