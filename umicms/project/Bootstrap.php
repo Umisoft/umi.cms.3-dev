@@ -39,11 +39,20 @@ use umicms\templating\engine\twig\TemplatingTwigExtension;
 use umicms\templating\engine\twig\ViewTwigExtension;
 
 /**
- * Загрузчик приложений UMI.CMS
+ * Загрузчик проектов UMI.CMS
  */
 class Bootstrap
 {
     use TConfigSupport;
+
+    /**
+     * Текущая версия UMI.CMS
+     */
+    const VERSION = '%version%';
+    /**
+     * Дата выпуска текущей версии UMI.CMS
+     */
+    const VERSION_DATE = '%versionDate%';
 
     /**
      * Имя куки сессии.
@@ -175,12 +184,10 @@ class Bootstrap
      */
     private function setUmiHeaders(Response $response)
     {
-        global $umicmsStartTime;
-
         $response->headers->set('X-Generated-By', 'UMI.CMS');
         $response->headers->set('X-Memory-Usage', round(memory_get_usage(true) / 1048576, 2) . ' Mib');
-        if ($umicmsStartTime > 0) {
-            $response->headers->set('X-Generation-Time', round(microtime(true) - $umicmsStartTime, 3));
+        if (Environment::$startTime > 0) {
+            $response->headers->set('X-Generation-Time', round(microtime(true) - Environment::$startTime, 3));
         }
     }
 
@@ -209,14 +216,15 @@ class Bootstrap
      */
     protected function routeProject(Request $request)
     {
-        if (!is_file(Environment::$projectsConfiguration)) {
+        $fileName = Environment::$directoryProjects . '/configuration/projects.config.php';
+        if (!is_file($fileName)) {
             throw new RuntimeException(sprintf(
                 'Projects configuration file "%s" does not exist.',
-                Environment::$projectsConfiguration
+                $fileName
             ));
         }
 
-        $projectsConfig = $this->loadConfig(Environment::$projectsConfiguration);
+        $projectsConfig = $this->loadConfig($fileName);
         /**
          * @var IRouteFactory $routeFactory
          */
@@ -284,7 +292,7 @@ class Bootstrap
 
         $configIO->registerAlias(
             '~/project',
-            Environment::$directoryCmsProject,
+            __DIR__,
             $directories[1]
         );
 
@@ -330,14 +338,7 @@ class Bootstrap
     {
         $toolkit = new Toolkit();
 
-        if (!is_file(Environment::$bootConfigMaster)) {
-            throw new RuntimeException(sprintf(
-                'Boot configuration file "%s" does not exist.',
-                Environment::$bootConfigMaster
-            ));
-        }
-
-        $masterConfig = $this->loadConfig(Environment::$bootConfigMaster);
+        $masterConfig = $this->loadConfig(CMS_DIR . '/configuration/boot.config.php');
 
         if (isset($masterConfig[self::OPTION_TOOLS])) {
             $toolkit->registerToolboxes($masterConfig[self::OPTION_TOOLS]);
@@ -347,8 +348,8 @@ class Bootstrap
             $toolkit->setSettings($masterConfig[self::OPTION_TOOLS_SETTINGS]);
         }
 
-        if (is_file(Environment::$bootConfigLocal)) {
-            $localConfig = $this->loadConfig(Environment::$bootConfigLocal);
+        if (Environment::$bootConfig && is_file(Environment::$bootConfig)) {
+            $localConfig = $this->loadConfig(Environment::$bootConfig);
             if (isset($localConfig[self::OPTION_TOOLS])) {
                 $toolkit->registerToolboxes($localConfig[self::OPTION_TOOLS]);
             }
@@ -410,7 +411,7 @@ class Bootstrap
 
         $configIO->registerAlias(
             '~',
-            Environment::$directoryCms,
+            CMS_DIR,
             Environment::$directoryProjects
         );
 

@@ -25,6 +25,6 @@
         "guzzlehttp/guzzle": "3.8.*",
         "gregwar/captcha": "1.0.*",
         "ezyang/htmlpurifier": "4.6.*",
-        "jbroadway/urlify": "1.0.*"
+        "jbroadway/urlify": "1.0.*",
     }
 }

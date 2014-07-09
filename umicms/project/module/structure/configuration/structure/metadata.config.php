@@ -8,14 +8,13 @@
  */
 
 use umi\orm\metadata\field\IField;
-use umicms\project\Environment;
 use umicms\project\module\structure\model\object\StaticPage;
 use umicms\project\module\structure\model\object\StructureElement;
 use umicms\project\module\structure\model\object\SystemPage;
 
 return array_replace_recursive(
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/hierarchicPageCollection.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/metadata/locked.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/hierarchicPageCollection.config.php',
+    require CMS_PROJECT_DIR . '/configuration/model/metadata/locked.config.php',
     [
         'dataSource' => [
             'sourceName' => 'structure'
