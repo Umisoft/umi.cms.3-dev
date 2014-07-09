@@ -2726,7 +2726,7 @@ define('application/models',[], function(){
                     if(collection.fields[i].displayName){
                         params.displayName = collection.fields[i].displayName;
                     }
-                    if(collection.fields[i]['default']){
+                    if(Ember.typeOf(collection.fields[i]['default']) !== 'undefined'){
                         params.defaultValue = collection.fields[i]['default'];
                     }
 
