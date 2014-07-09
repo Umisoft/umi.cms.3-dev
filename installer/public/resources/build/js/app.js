@@ -2176,29 +2176,18 @@ function program1(depth0,data) {
 Ember.TEMPLATES["UMI/partials/topBar"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, helper, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+  var buffer = '', helper, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
-function program1(depth0,data) {
-  
-  var buffer = '', helper, options;
-  data.buffer.push(" mail@yandex.ru <ul class=\"f-dropdown right\"> <li><a href=\"javascript:void(0)\" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "logout", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(">");
-  data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "Logout", options) : helperMissing.call(depth0, "i18n", "Logout", options))));
-  data.buffer.push("</a></li> </ul> ");
-  return buffer;
-  }
 
   data.buffer.push("<nav class=\"umi-top-bar\"> <ul class=\"umi-top-bar-list left\"> <li> <a href=\"javascript:void(0)\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "viewOnSite", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(" class=\"button tiny flat umi-top-bar-button\"> ");
   data.buffer.push(escapeExpression((helper = helpers.i18n || (depth0 && depth0.i18n),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "Open site in new tab", options) : helperMissing.call(depth0, "i18n", "Open site in new tab", options))));
   data.buffer.push(" <i class=\"icon icon-viewOnSite\"></i> </a> </li> </ul> <ul class=\"umi-top-bar-list right\"> <li> ");
-  stack1 = helpers.view.call(depth0, "dropdownButton", {hash:{
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "dropdownButton", {hash:{
     'tagName': ("span"),
     'class': ("button tiny flat dropdown umi-top-bar-button")
-  },hashTypes:{'tagName': "STRING",'class': "STRING"},hashContexts:{'tagName': depth0,'class': depth0},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  },hashTypes:{'tagName': "STRING",'class': "STRING"},hashContexts:{'tagName': depth0,'class': depth0},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(" </li> ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "notificationList", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
   data.buffer.push(" </ul> </nav>");
@@ -2540,6 +2529,7 @@ define('application/templates.extends',[], function(){
 
         return function(){
             Ember.TEMPLATES['UMI/module/errors'] = Ember.TEMPLATES['UMI/component/errors'] = Ember.TEMPLATES['UMI/errors'];
+            Ember.TEMPLATES['UMI/createForm'] = Ember.TEMPLATES['UMI/editForm'];
         };
     }
 );
@@ -2563,6 +2553,10 @@ define('application/models',[], function(){
             },
 
             stripTags: function(value){//TODO: add filter
+                return value;
+            },
+
+            slug: function(value){//TODO: add filter
                 return value;
             }
         };
@@ -3273,6 +3267,7 @@ define('application/router',[], function(){
                     },
 
                     function(results){
+                        results = results || {};
                         var self = this;
                         if(params.handler){
                             $(params.handler).removeClass('loading');
@@ -3961,11 +3956,11 @@ define('application/router',[], function(){
                 var contentControls;
                 var contentControl;
                 var routeData;
-                var actionParams = {};
                 var createdParams;
                 var deferred;
                 var actionResource;
                 var actionResourceName;
+                var controlObject;
 
                 try{
                     deferred = Ember.RSVP.defer();
@@ -3987,19 +3982,22 @@ define('application/router',[], function(){
                         actionResource = Ember.get(componentController, 'settings.actions.' + actionResourceName + '.source');
 
                         if(actionResource){
-                            actionResource = UMI.Utils.replacePlaceholder(routeData.object, actionResource);
+                            controlObject = routeData.object;
                             if(actionName === 'createForm'){
-                                createdParams = contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
+                                createdParams = {};
+                                if(componentController.get('dataSource.type') === 'collection'){
+                                    var meta = this.store.metadataFor(componentController.get('dataSource.name')) || {};
+                                    if(Ember.get(meta, 'collectionType') === 'hierarchic' && routeData.object.get('id') !== 'root'){
+                                        createdParams.parent = contextModel;
+                                    }
+                                }
                                 if(transition.queryParams.type){
                                     createdParams.type = transition.queryParams.type;
                                 }
                                 routeData.createObject = self.store.createRecord(componentController.get('dataSource.name'), createdParams);
-                                if(transition.queryParams.type){
-                                    actionParams.type = transition.queryParams.type;
-                                } else{
-                                    throw new Error("Тип создаваемого объекта не был указан.");
-                                }
+                                controlObject = routeData.createObject;
                             }
+                            actionResource = UMI.Utils.replacePlaceholder(controlObject, actionResource);
 
                             Ember.$.get(actionResource).then(function(results){
                                 var dynamicControl;
@@ -4048,7 +4046,7 @@ define('application/router',[], function(){
                         controller: controller
                     });
                 } catch(error){
-                    this.send('templateLogs', errorObject, 'component');
+                    this.send('templateLogs', error, 'component');
                 }
             },
 
@@ -4710,281 +4708,6 @@ define(
         return UMI;
     }
 );
-define('topBar/main',[
-    'App'
-], function(UMI){
-    
-
-    UMI.TopBarView = Ember.View.extend({
-        templateName: 'partials/topBar'
-    });
-});
-define('topBar', ['topBar/main'], function (main) { return main; });
-
-define('divider/view',['App'], function(UMI){
-    
-    return function(){
-
-        UMI.DividerView = Ember.View.extend({
-            classNames: ['off-canvas-wrap', 'umi-divider-wrapper', 's-full-height'],
-
-            didInsertElement: function(){
-                this.fakeDidInsertElement();
-            },
-
-            willDestroyElement:  function(){
-                this.removeObserver('model');
-            },
-
-            modelChange: function(){
-                this.fakeDidInsertElement();
-            }.observes('model'),
-
-            fakeDidInsertElement: function(){
-                var $el = this.$();
-                $el.off('mousedown.umi.divider.toggle');
-                $('body').off('mousedown.umi.divider.proccess');
-
-                var $sidebar = $el.find('.umi-divider-left');
-                var $content = $el.find('.umi-divider-right');
-
-                if($sidebar.length){
-                    $el.on('mousedown.umi.divider.toggle', '.umi-divider-left-toggle', function(){
-                        $sidebar.toggleClass('hide');
-                        $(this).children('.icon').toggleClass('icon-left').toggleClass('icon-right');
-                    });
-
-                    $('body').on('mousedown.umi.divider.proccess', '.umi-divider', function(event){
-                        if(event.button === 0){
-                            $sidebar.removeClass('divider-virgin');
-                            $('html').addClass('s-unselectable');
-
-                            $('html').on('mousemove.umi.divider.proccess', function(event){
-                                var sidebarWidth = event.pageX;
-                                sidebarWidth = sidebarWidth < 150 ? 150 : sidebarWidth;
-                                sidebarWidth = sidebarWidth > 500 ? 500 : sidebarWidth;
-
-                                if(sidebarWidth > $(window).width() - 720){
-                                    $('.magellan-content').find('.umi-columns').removeClass('large-4').addClass('large-12');
-                                }else{
-                                    $('.magellan-content').find('.umi-columns').removeClass('large-12').addClass('large-4');
-                                }
-
-                                $content.css({marginLeft: sidebarWidth + 1});
-                                $sidebar.css({width: sidebarWidth});
-
-                                $('html').on('mouseup.umi.divider.proccess', function(){
-                                    $('html').off('mousemove.umi.divider.proccess');
-                                    $('html').removeClass('s-unselectable');
-                                });
-                            });
-                        }
-                    });
-                } else{
-                    $content.css({'marginLeft': ''});
-                }
-            }
-        });
-    };
-});
-
-define('divider/main',[
-    'App',
-    './view'
-], function(UMI, view){
-    
-
-    view();
-});
-define('divider', ['divider/main'], function (main) { return main; });
-
-define('dock/controllers',['App'], function(UMI){
-    
-
-    return function(){
-        UMI.DockController = Ember.ObjectController.extend({
-            needs: ['application', 'module'],
-            modulesBinding: 'controllers.application.modules',
-            activeModuleBinding: 'controllers.module.model'
-        });
-    };
-});
-define('dock/view',['App'], function(UMI){
-    
-
-    return function(){
-
-        var expanded = false;
-        var move = {};
-        var def = {old: 0, cur: 0, def: 0, coeff: 1 };
-        var intervalLeaveItem;
-
-        UMI.DockView = Ember.View.extend({
-            templateName: 'partials/dock',
-            classNames: ['umi-dock', 's-unselectable'],
-            didInsertElement: function(){
-                var self = this;
-                var dock = self.$().find('.dock')[0];
-                dock.style.left = (dock.parentNode.offsetWidth - dock.offsetWidth) / 2 + 'px';
-                $(dock).addClass('active');
-                if(!dock.style.marginLeft){
-                    dock.style.marginLeft = 0;
-                }
-                var futureOffset;
-
-                var moving = function(el, event){
-                    move.proccess = true;
-                    var isDropdown = $(event.target).closest('.dropdown-menu').size();
-                    var elOffsetLeft = el.offsetLeft;
-                    var elWidth = el.offsetWidth;
-                    var dockParentWidth = el.parentNode.offsetWidth;
-                    def.cur = event.clientX;
-                    if(def.old){
-                        def.def = def.old - def.cur;
-                    }
-                    if(Math.abs(elOffsetLeft) + elWidth > dockParentWidth && !isDropdown){
-                        if(def.def > 0){
-                            // move left
-                            def.coeff = Math.abs(elOffsetLeft) / (event.clientX);
-                            futureOffset = Math.round(parseInt(el.style.marginLeft, 10) + def.def * def.coeff);
-                            if(def.coeff > 0 && futureOffset + parseInt(el.style.left, 10) < -20){
-                                el.style.marginLeft = futureOffset + 'px';
-                            }
-                        } else if(def.def < 0){
-                            // move right
-                            def.coeff = Math.abs((elWidth - dockParentWidth + elOffsetLeft) / (dockParentWidth - event.clientX));
-                            futureOffset = Math.round(parseInt(el.style.marginLeft, 10) + def.def * def.coeff);
-
-                            if(def.coeff > 0 && dockParentWidth < elWidth - 20 + ( futureOffset + (parseInt(el.style.left, 10) ))){
-                                el.style.marginLeft = futureOffset + 'px';
-                            }
-                        }
-                    }
-                    def.old = event.clientX;
-                };
-                $(dock).mousemove(function(event){
-                    if(!move.oldtime){
-                        move.oldtime = new Date();
-                    }
-                    move.curtime = new Date();
-                    if(move.curtime - move.oldtime > 700 || move.proccess){
-                        moving(this, event);
-                    }
-                });
-
-                $(window).on('resize.umi.dock', function(){
-                    setTimeout(function(){
-                        dock.style.left = (dock.parentNode.offsetWidth - dock.offsetWidth) / 2 + 'px';
-                    }, 0);
-                });
-
-                $(dock).find('.f-dropdown').on('click.umi.dock.component', 'a', function(){
-                    self.set('closeDropdown', true);
-                    $(dock).find('.dropdown').removeClass('open');
-                    self.leaveDock();
-                    setTimeout(function(){
-                        self.set('closeDropdown', false);
-                    }, 300);
-                });
-            },
-            mouseLeave: function(event){
-                var self = this;
-                var dock = self.$().find('.dock')[0];
-                def.old = false;
-
-                if(!event.relatedTarget){
-                    $(document.body).bind('mouseover', function(e){
-                        if($(dock).hasClass('full') && !($(e.target).closest('.dock')).size()){
-                            self.leaveDock();
-                        }
-                        $(this).unbind('mouseover');
-                    });
-                    return;
-                }
-                this.leaveDock();
-            },
-
-            leaveDock: function(){
-                var self = this;
-                var dock = self.$().find('.dock')[0];
-
-                expanded = false;
-                move.oldtime = false;
-                move.proccess = false;
-                $(dock).find('img').stop().animate({margin: '9px 11px 9px', height: 30}, {
-                    duration: 130,
-                    easing: 'linear'
-                });
-                $(dock).animate({marginLeft: '0px'}, {duration: 130, easing: 'linear', complete: function(){
-                    $(dock).removeClass('full');
-                }});
-            },
-
-            willDestroyElement: function(){
-                $(window).off('resize.umi.dock');
-            }
-        });
-
-        var dropDownTimeout;
-        UMI.DockModuleButtonView = Ember.View.extend({
-            tagName: 'li',
-            classNames: ['umi-dock-button', 'dropdown'],
-            classNameBindings: ['open'],
-            open: false,
-            icon: function(){
-                return '/resources/modules/' + this.get('module.name') + '/icon.svg';
-            }.property('module.name'),
-            mouseEnter: function(){
-                var self = this;
-                var dock = this.$().closest('.dock');
-                var $el = this.$();
-
-                var onHover = function(){
-                    self.set('open', true);
-                    if(!expanded){
-                        expanded = true;
-                        move.proccess = false;
-                        var posBegin = $el.position().left + $el[0].offsetWidth / 2 + (parseInt(dock[0].style.marginLeft, 10) || 0);
-
-                        $($el[0].parentNode).find('img').stop().animate({height: 48, margin: '8px 36px 28px'}, {
-                            duration: 280,
-                            step: function(n, o){
-                                if(this.parentNode.parentNode === $el[0]){
-                                    dock[0].style.marginLeft = posBegin - (o.elem.parentNode.parentNode.offsetLeft + o.elem.parentNode.offsetWidth / 2) + 'px';
-                                }
-                            },
-                            complete: function(){
-                                dock.addClass('full');
-                                move.proccess = true;
-                            }
-                        });
-                    }
-                };
-
-                !intervalLeaveItem||clearTimeout(intervalLeaveItem);
-                intervalLeaveItem = setTimeout(function() {
-                    onHover();
-                }, 120);
-            },
-            mouseLeave: function(){
-                if(intervalLeaveItem){
-                    clearTimeout(intervalLeaveItem);
-                }
-                if(dropDownTimeout){
-                    clearInterval(dropDownTimeout);
-                }
-                this.set('open', false);
-            }
-        });
-    };
-});
-define('dock/main',['./controllers', './view', 'App'], function(controller, view){
-    
-    controller();
-    view();
-});
-define('dock', ['dock/main'], function (main) { return main; });
-
 define('toolbar/view',['App'], function(UMI){
     
 
@@ -5274,7 +4997,7 @@ define('partials/toolbar/buttons/dropdownButton/main',['App', 'moment'],
 
         return function(){
             UMI.DropdownButtonView = Ember.View.extend({
-                template: Ember.TEMPLATES["UMI/partials/dropdownButton"],//TODO: replace in template name
+                templateName: 'partials/dropdownButton',
                 tagName: 'a',
                 classNameBindings: 'meta.attributes.class',
                 attributeBindings: ['title'],
@@ -5314,7 +5037,7 @@ define('partials/toolbar/buttons/dropdownButton/main',['App', 'moment'],
 
             UMI.dropdownButtonBehaviour = UMI.GlobalBehaviour.extend({
                 backupList: {
-                    classNames: ['dropdown', 'coupled'],
+                    classNames: ['coupled'],
                     classNameBindings: ['isOpen:open'],
                     isOpen: false,
                     iScroll: null,
@@ -5505,8 +5228,8 @@ define('partials/toolbar/buttons/splitButton/main',['App'],
                 classNameBindings: ['meta.attributes.class', 'isOpen:open'],
                 attributeBindings: ['title'],
                 label: function(){
-                    return this.get('meta.attributes.label');
-                }.property('meta.attributes.label'),
+                    return this.get('defaultBehaviour.attributes.label');
+                }.property('defaultBehaviour.attributes.label'),
                 title: Ember.computed.alias('meta.attributes.title'),
                 click: function(event){
                     var el = this.$();
@@ -5622,6 +5345,286 @@ define('toolbar/main',['App', './view', './buttons/main'], function(UMI, view, b
     view();
 });
 define('toolbar', ['toolbar/main'], function (main) { return main; });
+
+define('topBar/main',[
+    'App', 'toolbar'
+], function(UMI){
+    
+
+    UMI.TopBarView = Ember.View.extend({
+        templateName: 'partials/topBar',
+        dropdownView: UMI.DropdownButtonView.extend({
+            template: function(){
+                return Ember.Handlebars.compile('mail@yandex.ru<ul class="f-dropdown right"><li><a href="javascript:void(0)" {{action "logout"}}>{{i18n "Logout"}}</a></li></ul>');
+            }.property()
+        })
+    });
+});
+define('topBar', ['topBar/main'], function (main) { return main; });
+
+define('divider/view',['App'], function(UMI){
+    
+    return function(){
+
+        UMI.DividerView = Ember.View.extend({
+            classNames: ['off-canvas-wrap', 'umi-divider-wrapper', 's-full-height'],
+
+            didInsertElement: function(){
+                this.fakeDidInsertElement();
+            },
+
+            willDestroyElement:  function(){
+                this.removeObserver('model');
+            },
+
+            modelChange: function(){
+                this.fakeDidInsertElement();
+            }.observes('model'),
+
+            fakeDidInsertElement: function(){
+                var $el = this.$();
+                $el.off('mousedown.umi.divider.toggle');
+                $('body').off('mousedown.umi.divider.proccess');
+
+                var $sidebar = $el.find('.umi-divider-left');
+                var $content = $el.find('.umi-divider-right');
+
+                if($sidebar.length){
+                    $el.on('mousedown.umi.divider.toggle', '.umi-divider-left-toggle', function(){
+                        $sidebar.toggleClass('hide');
+                        $(this).children('.icon').toggleClass('icon-left').toggleClass('icon-right');
+                    });
+
+                    $('body').on('mousedown.umi.divider.proccess', '.umi-divider', function(event){
+                        if(event.button === 0){
+                            $sidebar.removeClass('divider-virgin');
+                            $('html').addClass('s-unselectable');
+
+                            $('html').on('mousemove.umi.divider.proccess', function(event){
+                                var sidebarWidth = event.pageX;
+                                sidebarWidth = sidebarWidth < 150 ? 150 : sidebarWidth;
+                                sidebarWidth = sidebarWidth > 500 ? 500 : sidebarWidth;
+
+                                if(sidebarWidth > $(window).width() - 720){
+                                    $('.magellan-content').find('.umi-columns').removeClass('large-4').addClass('large-12');
+                                }else{
+                                    $('.magellan-content').find('.umi-columns').removeClass('large-12').addClass('large-4');
+                                }
+
+                                $content.css({marginLeft: sidebarWidth + 1});
+                                $sidebar.css({width: sidebarWidth});
+
+                                $('html').on('mouseup.umi.divider.proccess', function(){
+                                    $('html').off('mousemove.umi.divider.proccess');
+                                    $('html').removeClass('s-unselectable');
+                                });
+                            });
+                        }
+                    });
+                } else{
+                    $content.css({'marginLeft': ''});
+                }
+            }
+        });
+    };
+});
+
+define('divider/main',[
+    'App',
+    './view'
+], function(UMI, view){
+    
+
+    view();
+});
+define('divider', ['divider/main'], function (main) { return main; });
+
+define('dock/controllers',['App'], function(UMI){
+    
+
+    return function(){
+        UMI.DockController = Ember.ObjectController.extend({
+            needs: ['application', 'module'],
+            modulesBinding: 'controllers.application.modules',
+            activeModuleBinding: 'controllers.module.model'
+        });
+    };
+});
+define('dock/view',['App'], function(UMI){
+    
+
+    return function(){
+
+        var expanded = false;
+        var move = {};
+        var def = {old: 0, cur: 0, def: 0, coeff: 1 };
+        var intervalLeaveItem;
+
+        UMI.DockView = Ember.View.extend({
+            templateName: 'partials/dock',
+            classNames: ['umi-dock', 's-unselectable'],
+            didInsertElement: function(){
+                var self = this;
+                var dock = self.$().find('.dock')[0];
+                dock.style.left = (dock.parentNode.offsetWidth - dock.offsetWidth) / 2 + 'px';
+                $(dock).addClass('active');
+                if(!dock.style.marginLeft){
+                    dock.style.marginLeft = 0;
+                }
+                var futureOffset;
+
+                var moving = function(el, event){
+                    move.proccess = true;
+                    var isDropdown = $(event.target).closest('.dropdown-menu').size();
+                    var elOffsetLeft = el.offsetLeft;
+                    var elWidth = el.offsetWidth;
+                    var dockParentWidth = el.parentNode.offsetWidth;
+                    def.cur = event.clientX;
+                    if(def.old){
+                        def.def = def.old - def.cur;
+                    }
+                    if(Math.abs(elOffsetLeft) + elWidth > dockParentWidth && !isDropdown){
+                        if(def.def > 0){
+                            // move left
+                            def.coeff = Math.abs(elOffsetLeft) / (event.clientX);
+                            futureOffset = Math.round(parseInt(el.style.marginLeft, 10) + def.def * def.coeff);
+                            if(def.coeff > 0 && futureOffset + parseInt(el.style.left, 10) < -20){
+                                el.style.marginLeft = futureOffset + 'px';
+                            }
+                        } else if(def.def < 0){
+                            // move right
+                            def.coeff = Math.abs((elWidth - dockParentWidth + elOffsetLeft) / (dockParentWidth - event.clientX));
+                            futureOffset = Math.round(parseInt(el.style.marginLeft, 10) + def.def * def.coeff);
+
+                            if(def.coeff > 0 && dockParentWidth < elWidth - 20 + ( futureOffset + (parseInt(el.style.left, 10) ))){
+                                el.style.marginLeft = futureOffset + 'px';
+                            }
+                        }
+                    }
+                    def.old = event.clientX;
+                };
+                $(dock).mousemove(function(event){
+                    if(!move.oldtime){
+                        move.oldtime = new Date();
+                    }
+                    move.curtime = new Date();
+                    if(move.curtime - move.oldtime > 700 || move.proccess){
+                        moving(this, event);
+                    }
+                });
+
+                $(window).on('resize.umi.dock', function(){
+                    setTimeout(function(){
+                        dock.style.left = (dock.parentNode.offsetWidth - dock.offsetWidth) / 2 + 'px';
+                    }, 0);
+                });
+
+                $(dock).find('.f-dropdown').on('click.umi.dock.component', 'a', function(){
+                    self.set('closeDropdown', true);
+                    $(dock).find('.dropdown').removeClass('open');
+                    self.leaveDock();
+                    setTimeout(function(){
+                        self.set('closeDropdown', false);
+                    }, 300);
+                });
+            },
+            mouseLeave: function(event){
+                var self = this;
+                var dock = self.$().find('.dock')[0];
+                def.old = false;
+
+                if(!event.relatedTarget){
+                    $(document.body).bind('mouseover', function(e){
+                        if($(dock).hasClass('full') && !($(e.target).closest('.dock')).size()){
+                            self.leaveDock();
+                        }
+                        $(this).unbind('mouseover');
+                    });
+                    return;
+                }
+                this.leaveDock();
+            },
+
+            leaveDock: function(){
+                var self = this;
+                var dock = self.$().find('.dock')[0];
+
+                expanded = false;
+                move.oldtime = false;
+                move.proccess = false;
+                $(dock).find('img').stop().animate({margin: '9px 11px 9px', height: 30}, {
+                    duration: 130,
+                    easing: 'linear'
+                });
+                $(dock).animate({marginLeft: '0px'}, {duration: 130, easing: 'linear', complete: function(){
+                    $(dock).removeClass('full');
+                }});
+            },
+
+            willDestroyElement: function(){
+                $(window).off('resize.umi.dock');
+            }
+        });
+
+        var dropDownTimeout;
+        UMI.DockModuleButtonView = Ember.View.extend({
+            tagName: 'li',
+            classNames: ['umi-dock-button', 'dropdown'],
+            classNameBindings: ['open'],
+            open: false,
+            icon: function(){
+                return '/resources/modules/' + this.get('module.name') + '/icon.svg';
+            }.property('module.name'),
+            mouseEnter: function(){
+                var self = this;
+                var dock = this.$().closest('.dock');
+                var $el = this.$();
+
+                var onHover = function(){
+                    self.set('open', true);
+                    if(!expanded){
+                        expanded = true;
+                        move.proccess = false;
+                        var posBegin = $el.position().left + $el[0].offsetWidth / 2 + (parseInt(dock[0].style.marginLeft, 10) || 0);
+
+                        $($el[0].parentNode).find('img').stop().animate({height: 48, margin: '8px 36px 28px'}, {
+                            duration: 280,
+                            step: function(n, o){
+                                if(this.parentNode.parentNode === $el[0]){
+                                    dock[0].style.marginLeft = posBegin - (o.elem.parentNode.parentNode.offsetLeft + o.elem.parentNode.offsetWidth / 2) + 'px';
+                                }
+                            },
+                            complete: function(){
+                                dock.addClass('full');
+                                move.proccess = true;
+                            }
+                        });
+                    }
+                };
+
+                !intervalLeaveItem||clearTimeout(intervalLeaveItem);
+                intervalLeaveItem = setTimeout(function() {
+                    onHover();
+                }, 120);
+            },
+            mouseLeave: function(){
+                if(intervalLeaveItem){
+                    clearTimeout(intervalLeaveItem);
+                }
+                if(dropDownTimeout){
+                    clearInterval(dropDownTimeout);
+                }
+                this.set('open', false);
+            }
+        });
+    };
+});
+define('dock/main',['./controllers', './view', 'App'], function(controller, view){
+    
+    controller();
+    view();
+});
+define('dock', ['dock/main'], function (main) { return main; });
 
 define('tableControl/controllers',['App'], function(UMI){
     
@@ -6423,6 +6426,7 @@ define('tableControl/view',['App', 'toolbar'], function(UMI){
                         }
                     }
                     behaviour.classNames = ['white square'];
+                    behaviour.label = null;
                     instance = instance.extend(behaviour);
                     return instance;
                 }.property()
@@ -6976,7 +6980,7 @@ define('tree/views',['App', 'toolbar'], function(UMI){
             }.property('item.id'),
 
             inActive: function(){
-                return !this.get('item.active');
+                return this.get('item.active') === false ? true : false;
             }.property('item.active'),
 
             active: function(){// TODO: можно сделать через lookup http://jsbin.com/iFEvATE/2/edit
@@ -7051,10 +7055,10 @@ define('tree/views',['App', 'toolbar'], function(UMI){
 
             init: function(){
                 this._super();
-                var self = this;
+                var model = this.get('item');
                 if('needReloadHasMany' in this.get('item')){
                     this.get('item').on('needReloadHasMany', function(){
-                        self.get('children').then(function(children){
+                        model.get('children').then(function(children){
                             children.reloadLinks();
                         });
                     });
@@ -7088,15 +7092,17 @@ define('tree/views',['App', 'toolbar'], function(UMI){
                         for(i = 0; i < choices.length; i++){
                             var prefix = '';
                             var behaviourAction = UMI.splitButtonBehaviour.get(choices[i].behaviour.name);
-                            if(behaviourAction.hasOwnProperty('_actions')){
-                                prefix = '_';
-                            }
-                            action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
-                            if(action){
-                                if(Ember.typeOf(behaviour.actions) !== 'object'){
-                                    behaviour.actions = {};
+                            if(behaviourAction){
+                                if(behaviourAction.hasOwnProperty('_actions')){
+                                    prefix = '_';
                                 }
-                                behaviour.actions[choices[i].behaviour.name] = action;
+                                action = behaviourAction[prefix + 'actions'][choices[i].behaviour.name];
+                                if(action){
+                                    if(Ember.typeOf(behaviour.actions) !== 'object'){
+                                        behaviour.actions = {};
+                                    }
+                                    behaviour.actions[choices[i].behaviour.name] = action;
+                                }
                             }
                         }
                     }
