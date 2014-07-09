@@ -27,7 +27,6 @@ use umicms\exception\InvalidObjectsException;
 use umicms\exception\RuntimeException;
 use umicms\module\IModuleAware;
 use umicms\module\TModuleAware;
-use umicms\orm\collection\behaviour\IRecoverableCollection;
 use umicms\orm\dump\ICmsObjectDumpAware;
 use umicms\orm\dump\TCmsObjectDumpAware;
 use umicms\orm\object\behaviour\IActiveAccessibleObject;
@@ -109,7 +108,6 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
     public function __invoke()
     {
         header('Content-type: text/plain');
-
 
         $connection = $this->dbCluster->getConnection();
         /**
@@ -256,8 +254,7 @@ class InstallController extends BaseController implements ICmsObjectDumpAware, I
                 'blogExecutor',
                 'searchExecutor',
                 'viewer',
-                'widgetExecutor',
-                'searchExecutor'
+                'widgetExecutor'
             ],
 
             'project.site.search' => [
