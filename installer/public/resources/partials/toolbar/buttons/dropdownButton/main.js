@@ -152,12 +152,15 @@ define(['App', 'moment'],
                             self.set('backupList', self.getBackupList());
                         });
 
-                        self.get('controller').addObserver('object', function() {
-                            self.set('backupList', self.getBackupList());
+                        self.get('controller').addObserver('object', function() {//TODO: check event
+                            if(self.get('controller.control.name') === 'editForm'){
+                                self.set('backupList', self.getBackupList());
+                            }
                         });
                     },
                     willDestroyElement: function(){
-                        this.get('controller').removeObserver('content.object');
+                        this.get('controller').removeObserver('object');
+                        this.get('controller.object').off('didUpdate');
                     }
                 }
             }).create({});
