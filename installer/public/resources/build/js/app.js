@@ -4062,7 +4062,8 @@ define('application/router',[], function(){
                                 deferred.resolve(routeData);
                             }, function(error){
                                 //Сообщение ошибки в таких случаях возникает на уровне ajaxSetup, получается две одинаковых. Нужно научить ajax наследованию
-                                deferred.reject(transition.send('backgroundError', error));
+                                //transition.send('backgroundError', error)
+                                deferred.resolve(routeData);
                              });
                         } else{
                             throw new Error('Действие ' + Ember.get(contentControl, 'name') + ' для данного контекста недоступно.');
