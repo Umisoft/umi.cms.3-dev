@@ -11,7 +11,6 @@
 namespace umicms\project\module\search\site\widget;
 
 use umicms\hmvc\widget\BaseListWidget;
-use umicms\orm\selector\CmsSelector;
 use umicms\project\module\search\model\SearchModule;
 
 /**
