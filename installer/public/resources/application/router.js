@@ -116,6 +116,7 @@ define([], function(){
                     },
 
                     function(results){
+                        results = results || {};
                         var self = this;
                         if(params.handler){
                             $(params.handler).removeClass('loading');
@@ -804,11 +805,11 @@ define([], function(){
                 var contentControls;
                 var contentControl;
                 var routeData;
-                var actionParams = {};
                 var createdParams;
                 var deferred;
                 var actionResource;
                 var actionResourceName;
+                var controlObject;
 
                 try{
                     deferred = Ember.RSVP.defer();
@@ -830,19 +831,22 @@ define([], function(){
                         actionResource = Ember.get(componentController, 'settings.actions.' + actionResourceName + '.source');
 
                         if(actionResource){
-                            actionResource = UMI.Utils.replacePlaceholder(routeData.object, actionResource);
+                            controlObject = routeData.object;
                             if(actionName === 'createForm'){
-                                createdParams = contextModel.get('id') !== 'root' ? {parent: contextModel} : {};
+                                createdParams = {};
+                                if(componentController.get('dataSource.type') === 'collection'){
+                                    var meta = this.store.metadataFor(componentController.get('dataSource.name')) || {};
+                                    if(Ember.get(meta, 'collectionType') === 'hierarchic' && routeData.object.get('id') !== 'root'){
+                                        createdParams.parent = contextModel;
+                                    }
+                                }
                                 if(transition.queryParams.type){
                                     createdParams.type = transition.queryParams.type;
                                 }
                                 routeData.createObject = self.store.createRecord(componentController.get('dataSource.name'), createdParams);
-                                if(transition.queryParams.type){
-                                    actionParams.type = transition.queryParams.type;
-                                } else{
-                                    throw new Error("Тип создаваемого объекта не был указан.");
-                                }
+                                controlObject = routeData.createObject;
                             }
+                            actionResource = UMI.Utils.replacePlaceholder(controlObject, actionResource);
 
                             Ember.$.get(actionResource).then(function(results){
                                 var dynamicControl;
@@ -891,7 +895,7 @@ define([], function(){
                         controller: controller
                     });
                 } catch(error){
-                    this.send('templateLogs', errorObject, 'component');
+                    this.send('templateLogs', error, 'component');
                 }
             },
 

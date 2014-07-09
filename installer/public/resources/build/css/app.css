@@ -5097,7 +5097,7 @@ select {
 .dropdown.dropup .f-dropdown {
   bottom: 100%; }
 
-.dropdown.button.white:before {
+.dropdown.button.white:after {
   border-color: #7B899C transparent transparent transparent; }
 
 .button.dropup {

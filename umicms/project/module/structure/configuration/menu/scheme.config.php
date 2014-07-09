@@ -13,7 +13,6 @@ use umicms\project\Environment;
 
 return array_replace_recursive(
     require Environment::$directoryCmsProject . '/configuration/model/scheme/hierarchicCollection.config.php',
-    require Environment::$directoryCmsProject . '/configuration/model/scheme/active.config.php',
     [
         'name' => 'menu',
         'columns'     =>  [
